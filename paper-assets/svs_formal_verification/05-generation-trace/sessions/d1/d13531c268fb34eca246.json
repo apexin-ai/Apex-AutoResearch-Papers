@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d13531c268fb34eca246",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "infra kill mvp 35733",
+  "task_key": "worker_infra_kill_mvp_35733_20260514T094038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill_mvp_35733_20260514T094038_result.json",
+    "occurrence": 1,
+    "bytes": 69,
+    "sha256": "231be075ec93fad6883f5a1228afdad2386cc267d977486a00402bb2fcd92f21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程 35733 已终止，无残留 `run_mvp` 进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-mvp-35733.md"
+}

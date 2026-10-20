@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "bca91d2ad49955762c8e",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "debug rescorer formalization fix",
+  "task_key": "worker_debug_rescorer_formalization_fix_20260514T130911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_rescorer_formalization_fix_20260514T130911_result.json",
+    "occurrence": 1,
+    "bytes": 2390686,
+    "sha256": "a48d1c302e3fd6556cede204e93564b1f9a996eb09bccd3f7ef4ddc52718b213"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2977968,
+                "serialized_sha256": "21413ab3563d9d82f5c347e44c3100ec10466f6f0f0ffa0e42c7c44fd564740a",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-rescorer-formalization-fix.md"
+}

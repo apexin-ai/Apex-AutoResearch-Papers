@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "18a63f2c277198820114",
+  "project": "svs_formal_verification",
+  "kind": "worker",
+  "title": "infra mvp full pipeline",
+  "task_key": "worker_infra_mvp_full_pipeline_20260514T063110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_mvp_full_pipeline_20260514T063110.log",
+    "occurrence": 1,
+    "bytes": 1101183,
+    "sha256": "b8041701fb5c653edc29c2a127e11b225dbeee10eedc8fc2f6ab046ae995e787"
+  },
+  "statistics": {
+    "messages": 540,
+    "user_turns": 1,
+    "tool_calls": 176,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 1,
+      "assistant": 170,
+      "tool_call": 176,
+      "tool_result": 176,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 460,
+      "chunks": [
+        {
+          "path": "18a63f2c277198820114-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "18a63f2c277198820114-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "18a63f2c277198820114-part-0003.json",
+          "message_count": 100
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 80,
+      "chunks": [
+        {
+          "path": "18a63f2c277198820114-part-0003.json",
+          "message_count": 80
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-mvp-full-pipeline.md"
+}

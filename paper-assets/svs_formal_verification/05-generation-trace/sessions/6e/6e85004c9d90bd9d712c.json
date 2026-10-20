@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e85004c9d90bd9d712c",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "analysis z3 formula quality",
+  "task_key": "worker_analysis_z3_formula_quality_20260514T120510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_z3_formula_quality_20260514T120510_result.json",
+    "occurrence": 1,
+    "bytes": 3444,
+    "sha256": "592720e45b9fbb2ee8b1acaa639f5a2d55ac65a6ba3e7b95eabcd96509fb3935"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。下面是完整的分析报告。\n\n---\n\n## Z3 公式质量抽查报告\n\n### 1. 数据概况\n\n| 指标 | 值 |\n|------|-----|\n| 总 chains | 192 (24题 × 8链) |\n| SAT chains | 130 (62.5%) |\n| UNSAT chains | 78 (37.5%) |\n| Perfect SAT (ic≥0.99) | 52 (27.1%) |\n| SAT 链准确率 | 56.9% |\n| UNSAT 链准确率 | 51.3% |\n| Cohen's d (correct vs wrong IC) | **-0.044** (FAIL, 方向都反了) |\n\n### 2. All-SAT 链样例分析\n\n| 问题 | Gold | All-SAT链数 | 最大claims | 答案正确? |\n|------|------|-------------|-----------|----------|\n| pw_819 | Unknown | 6/8 | 50/50 formalized, ic=1.0 | 5/6 WRONG (答True) |\n| pw_19726 | True | 8/8 | 29/29 formalized, ic=1.0 | 8/8 correct |\n| pw_4572 | True | 7/8 | 31/32 formalized, ic=1.0 | SVS答Unknown (WRONG) |\n| pw_24270 | Unknown | 6/8 | 31/31 formalized, ic=1.0 | SVS答True (WRONG) |\n| pw_2848 | True | 7/8 | 8/8 formalized, ic=1.0 | 7/7 correct |\n\n**pw_819 chain 4**: 50 个 claims 全部形式化、全部 SAT、ic=1.0 —— 但答案是 **错的**。这是 trivially SAT 的典型证据。\n\n### 3. 结构性根因（Z3 实验验证）\n\n写了纯 Z3 结构测试，关键结论：\n\n**Test K（核心发现）**：一条有推理错误的链（第3步推导错误），如果规则（ForAll）未被形式化、只保留了 ground facts，则 **Z3 返回 SAT**——错误被隐藏了。\n\n```\n完整形式化（含规则 + 事实）: UNSAT ← 正确检测到矛盾\n部分形式化（只有事实，规则缺失）: SAT  ← 错误不可见！\n纯 ground facts（无规则）: SAT  ← 独立事实永远 SAT\n```\n\n**Test L**：一组纯 ground facts（如 `Green(cat)`, `Big(dog)`, `Chase(lion, mouse)`）**在 uninterpreted functions 下永远 SAT**，除非恰好存在 `P(a) ∧ ¬P(a)` 的直接矛盾。\n\n### 4. 为什么大部分链是 trivially SAT\n\nProofWriter depth-5 的 premise 结构：\n- **36% 是规则**（\"If something is green then it is big\"）\n- **64% 是事实**（\"The cat is green\"）\n\n但 CoT 链会追加 ~10 步推导，每步都是 ground fact（\"Therefore the cat is big\"）。最终一条典型链约 **75% 是 ground atoms，25% 是量化规则**。\n\n关键链条：\n1. LLM 生成 chain → claims 以 ground facts 为主\n2. LLM 形式化：ground facts 简单（`Green(cat)`），规则更难（`ForAll([x], Implies(Green(x), Big(x)))`）\n3. 形式化失败的 14% 更可能是规则\n4. Z3 收到的表达式集以独立 ground atoms 为主\n5. 独立 ground atoms **几乎不可能 UNSAT**（除非恰好 P(a)∧¬P(a)）\n6. → **IC 分数不反映推理质量，只反映「有没有碰巧出现直接矛盾」**\n\n### 5. 结论\n\n| 类别 | 占比 | 判定 |\n|------|------|------|\n| **Trivially SAT**（ground-fact 主导，规则缺失或未触发） | **~80-90% of all-SAT** | 公式形式正确但语义空洞 |\n| **Genuinely SAT**（含完整规则链，推理无矛盾） | **~10-20% of all-SAT** | 少数 |\n\n52 条 all-SAT 链中，估计 **40-47 条是 trivially SAT**。证据：\n1. Perfect SAT 链准确率（57.7%）与其他链无差异\n2. Cohen's d 为负——IC 反而略偏向错误链\n3. Z3 结构测试确认：缺少规则的 ground-fact 集合必然 SAT\n4. 50-claim all-SAT 链答案为错误的案例存在\n\n**底线：当前 Z3 公式验证的 SAT/UNSAT 信号基本是噪音，不携带推理质量信息。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-z3-formula-quality.md"
+}

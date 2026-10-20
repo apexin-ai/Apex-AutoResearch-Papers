@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b9c0b92149cfa57318a",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "check json structure deep",
+  "task_key": "worker_check_json_structure_deep_20260514T135858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_json_structure_deep_20260514T135858_result.json",
+    "occurrence": 1,
+    "bytes": 1296,
+    "sha256": "c125c26000963dd4234af8f67dbb8dec153723e2929920662c0e1d4828806ef0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三条命令完整原始输出如下：\n\n---\n\n**命令 1：chain_verifications 结构**\n\n```\nchain_verifications type: list\nlen: 8\nSINGLE CHAIN KEYS: ['problem_id', 'chain_id', 'answer', 'total_claims', 'formalized_claims', 'ic_score', 'fc_score', 'ic_sat', 'mcs_size']\n  problem_id: str = 'pw_20952'\n  chain_id: int = 0\n  answer: str = 'True'\n  total_claims: int = 12\n  formalized_claims: int = 4\n  ic_score: float = 0.3333333333333333\n  fc_score: float = 0.3333333333333333\n  ic_sat: bool = True\n  mcs_size: int = 4\n```\n\n---\n\n**命令 2：查找 ProofWriter 数据文件**\n\n```\n/root/autodl-tmp/svs_formal_verification/svs_pipeline/data/proofwriter_cache.json\n```\n\n---\n\n**命令 3：列出 outputs 和 data 目录**\n\n`/root/outputs/` 内容：\n```\nentailment_rescore_results.json\nentailment_rescore_v2.log\nentailment_rescore_v2_results.json\nentailment_rescorer.log\nentailment_rescorer_v2.log\nentailment_v3.log\nmvp_diagnostic_report.json\nresults_partial.json\nv2_debug.log\nv2_run3.log\nv2_run3_err.log\nv2_run4.log\nv2_run4_err.log\nv2_run5.log\nv2_run5_err.log\n```\n\n`/root/autodl-tmp/svs_formal_verification/data/` 不存在（No such file or directory）。\n\n`/root/autodl-tmp/data/` 内容：\n```\nfolio\nfolio_repo\nlogiqa\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-json-structure-deep.md"
+}

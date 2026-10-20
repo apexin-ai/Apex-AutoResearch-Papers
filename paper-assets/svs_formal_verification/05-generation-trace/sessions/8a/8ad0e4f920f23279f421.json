@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ad0e4f920f23279f421",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "check z3audit and mvp003 progress",
+  "task_key": "worker_check_z3audit_and_mvp003_progress_20260514T130918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_z3audit_and_mvp003_progress_20260514T130918_result.json",
+    "occurrence": 1,
+    "bytes": 735,
+    "sha256": "6d554417c7489cf6461ad29ec11e2d44a22effec987f4f271106c3cc414cd3c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### z3_audit.py\n- PID 50602 (启动于 20:08) 和 PID 50742 (启动于 20:09) 运行约 1 小时，CPU 占用仅 0.3%，**无任何输出文件**\n- 已 kill，确认 **KILLED**\n\n### mvp_003 进度\n```\ngrep -c \"gold_label\" /root/outputs/results_partial.json\n37\n```\n\n- 进程 PID 37622 (`python -m svs_pipeline.run_mvp`) 仍在运行\n- 另有 PID 54002 (`python /root/entailment_rescorer.py`) 也在运行\n\n### GPU 状态\n\n| GPU | 利用率 | 显存使用 |\n|-----|--------|----------|\n| 0 | 99% | 31459 / 32607 MiB |\n| 1 | 99% | 31459 / 32607 MiB |\n| 2 | 0% | 3 / 32607 MiB |\n| 3 | 0% | 3 / 32607 MiB |\n\nGPU 0-1 被 vLLM (DeepSeek-R1-Distill-Qwen-14B, TP=2) 占满，GPU 2-3 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-z3audit-and-mvp003-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e576b5c657a6320c3baa",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "ops entail 001 cleanup restart",
+  "task_key": "worker_ops_entail_001_cleanup_restart_20260514T151137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_entail_001_cleanup_restart_20260514T151137_result.json",
+    "occurrence": 1,
+    "bytes": 1570,
+    "sha256": "69802b7da9397400275a27255364413931646eeb4f262853115ce4266764f4a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总报告：\n\n---\n\n## 执行结果\n\n### 1. 进程清理\n无活跃的 10q/entailment_rescore 进程需要清理（之前已被 kill 或自行终止）。\n\n### 2. vLLM 状态（cuda:0+1）\n- **模型**: DeepSeek-R1-Distill-Qwen-14B, TP=2, port 8001\n- **GPU 占用**: cuda:0 31452MiB/32607MiB, cuda:1 31452MiB/32607MiB\n- **GPU 利用率**: 0%（空闲，无推理请求）\n- **API 响应**: 正常（`/v1/models` 返回 200）\n- cuda:2+3 完全空闲（3MiB）\n\n### 3. v3 rescorer\n- **PID**: 76901（bash wrapper: 76896）\n- **状态**: RUNNING，已匹配 50 个 problems，从 problem 1/50 开始处理\n- **启动命令**: `cd /root/autodl-tmp/svs_formal_verification && nohup python entailment_rescore_v3.py > /root/outputs/entail_001_v3.log 2>&1 &`\n- **日志**: `/root/outputs/entail_001_v3.log`\n- **输出**: `/root/outputs/entailment_rescore_v3_results.json`\n- **Checkpoint**: 每 2 个 problem 自动保存\n\n### 4. 预计完成时间\n之前 v3 跑了 ~7 分钟只处理了 problem 1/50 的部分 chain（被 kill 前未完成）。按每个 problem ~7-10 分钟估算，50 个 problem 约 **350-500 分钟（6-8 小时）**。因为使用远程 V3.2 API，网络延迟是瓶颈。\n\n### 5. 注意事项\n- 脚本没有内建 resume 逻辑——如果再次中断，需从头开始（但 checkpoint 文件中的部分结果可手动恢复）\n- 此次匹配到 50 个 problems（上次 46 个），可能是 ProofWriter cache 更新了\n- 不消耗本地 GPU 资源，全部走远程 DeepSeek V3.2 API"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-entail-001-cleanup-restart.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "712d8eb15b83ea3bf0c6",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "infra download qwen25",
+  "task_key": "worker_infra_download_qwen25_20260514T075220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download_qwen25_20260514T075220_result.json",
+    "occurrence": 1,
+    "bytes": 316,
+    "sha256": "8fc6d20d0adcb0ebbb969587881619451e7478103e27ceb66cb6bb3837d2741e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载状态：\n- **PID**: 25223，后台运行中\n- **方式**: ModelScope CDN\n- **模型**: Qwen/Qwen2.5-14B-Instruct（8 个 safetensors 分片，~28GB）\n- **速度**: ~0.6-1.7 MB/s\n- **预计**: 1-2 小时\n- **MVP 未受影响**: PID 24681 正常运行\n\n4-5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-download-qwen25.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e05112a7f81b2e443656",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "ops check entail 001",
+  "task_key": "worker_ops_check_entail_001_20260514T153139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_entail_001_20260514T153139_result.json",
+    "occurrence": 1,
+    "bytes": 1025,
+    "sha256": "f3677d6be2082e65837c8cad250a645d15289cea37cafda9baa2edbcbe5c08ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## entail_001 状态汇报\n\n**进程状态**: 存活，PID 76901，运行 18 分 55 秒，状态 `Sl`（正常）\n\n**进度**: **3/50** 题完成，当前正在处理第 3 题后续的 formalization 阶段\n- Problem 1/50: pw_212 (23:13:02 开始)\n- Problem 2/50: pw_819 (23:19:29 开始)\n- Problem 3/50: pw_869 (23:24:08 开始)\n- 平均每题 ~5-6 分钟\n\n**日志**: 876 行，最后活动时间 23:31:52，持续有 API 请求返回 200 OK\n\n**输出文件**: `/root/outputs/entailment_rescore_v3_results.json` 存在，145KB（应该是之前预存/增量写入的结果）\n\n**告警（非致命）**:\n- Z3 sandbox 语法错误频繁出现（括号不匹配），每题数条 — LLM 生成的 Z3 代码质量问题，重试机制在工作\n- 7 个 claim formalization 失败（3 次重试后放弃），分布在 Problem 1-3 中\n- 1 次 502 Bad Gateway，已自动重试成功\n\n**预估**: 按当前速度 ~5.5 min/题，剩余 47 题约需 **4.3 小时**，预计完成时间约 03:45。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-entail-001.md"
+}

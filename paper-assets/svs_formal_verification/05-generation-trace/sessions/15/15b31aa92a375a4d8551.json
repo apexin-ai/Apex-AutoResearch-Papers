@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15b31aa92a375a4d8551",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "analysis ic formula code audit",
+  "task_key": "worker_analysis_ic_formula_code_audit_20260514T122154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ic_formula_code_audit_20260514T122154_result.json",
+    "occurrence": 1,
+    "bytes": 3816,
+    "sha256": "406468991d6f2bff4c9f373b7203e6aacf9aff733e657690517b46072b87bef2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部代码已审完。以下是三个问题的回答。\n\n---\n\n## Q1: IC 的具体计算公式\n\n**代码位置**: `z3_checker.py:81-134`\n\n**核心逻辑** (行 112-134):\n```python\n# 行 112: 分母选择\ndenom = total_claims if total_claims > 0 else len(formalized)\n\n# 行 114-118: Z3 满足性检查\nsolver = z3.Solver()\nsolver.add(*exprs)          # 把所有 formalized claims 的 FOL 加入\nresult = solver.check()     # SAT check: ∃ model s.t. C1 ∧ C2 ∧ ... ∧ Cn ?\n\n# 行 120-123: SAT 分支\nif result == z3.sat:\n    ic_score = len(formalized) / denom   # ← 关键行\n    return (True, ic_score, len(formalized))\n\n# 行 125-129: UNSAT 分支\nif result == z3.unsat:\n    mcs, mcs_size = self.greedy_mcs(formalized, vocab)\n    ic_score = mcs_size / denom\n    return (False, ic_score, mcs_size)\n```\n\n**调用方** (`scoring.py:71-78`):\n```python\ntotal = len(claims)                    # 所有 claims（含未 formalize 的）\nformalized = [c for c in claims if c.z3_parseable and c.fol]\nformalized_count = len(formalized)\nic_sat, ic_score, mcs_size = z3_checker.check_internal_consistency(\n    claims, vocab, total_claims=total)  # ← total_claims = total\n```\n\n**公式**:\n- **SAT 时**: `IC = formalized_claims / total_claims` = **formalization rate 本身**\n- **UNSAT 时**: `IC = mcs_size / total_claims`\n- **timeout 时**: 同 SAT\n\n---\n\n## Q2: Z3 solver 调用逻辑\n\n**代码位置**: `z3_checker.py:114-118`\n\nZ3 做的是 **满足性检查 (SAT check)**:\n```\ncheck(C1 ∧ C2 ∧ ... ∧ Cn)  →  是否存在一个模型使所有 claim 同时为真？\n```\n\n这 **不是** validity check（`check(¬(premises → conclusion))` UNSAT）。它只是问\"这些 claim 有没有矛盾\"。\n\n**关键问题**: 对于 autoformalize 生成的 FOL，不同 claim 通常使用不同的谓词（`StepValid(x)` vs `ConclusionFollows(y)`），它们在语义上是独立的。独立命题的合取几乎总是 SAT——除非出现 `P(a) ∧ ¬P(a)` 这种显式矛盾，而 autoformalize 很难产生这种结构化矛盾。\n\n**没有 PCV（Premise-Conditioned Verification）**。代码中 premises 完全没参与 Z3 验证——只是把 chain 自身的 formalized claims 扔进 solver，不引入任何来自题目的前提。\n\n---\n\n## Q3: formalization 失败的 claim 怎么处理\n\n**代码位置**: `z3_checker.py:98-101, 112`\n\n```python\nformalized = [c for c in claims if c.z3_parseable and c.fol]  # 行 98\n\nif not formalized:\n    return (True, 0.0, 0)    # 行 100-101: 全部失败 → IC=0\n\ndenom = total_claims if total_claims > 0 else len(formalized)  # 行 112: 分母用 total\n```\n\n处理方式：\n- 未 formalize 的 claim **不进分子**（不参与 Z3 检查）\n- **计入分母**（`denom = total_claims`）\n- 效果：formalization 失败越多，IC 越低\n\n这意味着 IC 分数被 formalization rate 从上方严格限制：`IC ≤ formalization_rate`，且 SAT 时 `IC = formalization_rate`。\n\n---\n\n## 最终结论\n\n**IC 已退化为 formalization rate 的代理指标。** 原因链条：\n\n1. Z3 做的是 SAT check（`∃ model: C1 ∧ ... ∧ Cn`），不是 validity check\n2. Autoformalized claims 几乎总是使用不同谓词，互相独立 → 合取几乎总是 SAT\n3. SAT 时 `IC = formalized_claims / total_claims` = formalization rate\n4. 没有引入 premises，Z3 不验证推理步骤是否从前提正确推导\n5. 结果：IC 完全由\"LLM 能否输出可解析的 FOL\"决定，与推理链的逻辑正确性无关\n\n**Cohen's d = -0.04 的根本原因**：正确链和错误链的 formalization rate 没有显著差异（LLM 对两者都能以相似的成功率生成 FOL），所以 IC 无法区分它们。这是 **实现 bug**，不是假设失败。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ic-formula-code-audit.md"
+}

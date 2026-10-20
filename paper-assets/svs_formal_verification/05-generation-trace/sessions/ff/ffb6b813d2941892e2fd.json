@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "ffb6b813d2941892e2fd",
+  "project": "svs_formal_verification",
+  "kind": "worker",
+  "title": "code entailment rescore v3",
+  "task_key": "worker_code_entailment_rescore_v3_20260514T134151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_entailment_rescore_v3_20260514T134151.log",
+    "occurrence": 1,
+    "bytes": 619911,
+    "sha256": "a8b7b97cd3f606c16b420545cbec99918b2bf60a79648da89b0c92157e45acb5"
+  },
+  "statistics": {
+    "messages": 242,
+    "user_turns": 0,
+    "tool_calls": 84,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 4,
+      "assistant": 68,
+      "tool_call": 84,
+      "tool_result": 84
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 242,
+      "chunks": [
+        {
+          "path": "ffb6b813d2941892e2fd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ffb6b813d2941892e2fd-part-0002.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-entailment-rescore-v3.md"
+}

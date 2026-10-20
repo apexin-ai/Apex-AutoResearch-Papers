@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f18d5ba674450ea6010",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "infra kill qwen vllm and check",
+  "task_key": "worker_infra_kill_qwen_vllm_and_check_20260514T120228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill_qwen_vllm_and_check_20260514T120228_result.json",
+    "occurrence": 1,
+    "bytes": 2277,
+    "sha256": "569d5a049d57ae2647d048202a7bb44252607a9a64e60e57c68cbea4bef43ff5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **Qwen vLLM（PID 41815/41816）**：已不存在，无需手动杀\n- **GPU 2+3 当前状态**：已释放，各 3MiB 占用，0% 利用率\n- **注意**：GPU 0+1 上有新的 vLLM 进程（PID 33642/33643），各占 31450MiB，99% 利用率\n- **mvp_003 gold_label 计数**：**24**（路径 `/root/outputs/results_partial.json`）\n\n完整 nvidia-smi：\n```\nThu May 14 20:02:55 2026\n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.76.05              Driver Version: 580.76.05      CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 5090        On  | 00000000:50:00.0  Off |                  N/A |\n| 59%   66C    P1            467W / 575W  |   31459MiB / 32607MiB |     99%      Default |\n|   1  NVIDIA GeForce RTX 5090        On  | 00000000:99:00.0  Off |                  N/A |\n| 64%   70C    P1            516W / 575W  |   31459MiB / 32607MiB |     99%      Default |\n|   2  NVIDIA GeForce RTX 5090        On  | 00000000:AB:00.0  Off |                  N/A |\n| 42%   28C    P8             15W / 575W  |       3MiB / 32607MiB |      0%      Default |\n|   3  NVIDIA GeForce RTX 5090        On  | 00000000:CF:00.0  Off |                  N/A |\n| 40%   28C    P8              9W / 575W  |       3MiB / 32607MiB |      0%      Default |\n+-----------------------------------------+------------------------+----------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI        PID   Type   Process name                  GPU Memory Usage       |\n|=========================================================================================|\n|    0   N/A  N/A     33642      C   VLLM::Worker_TP0                31450MiB             |\n|    1   N/A  N/A     33643      C   VLLM::Worker_TP1                31450MiB             |\n+-----------------------------------------------------------------------------------------+\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-qwen-vllm-and-check.md"
+}

@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "id": "1307e38295f61d0f7502",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "infra mvp deploy v5 sandbox",
+  "task_key": "worker_infra_mvp_deploy_v5_sandbox_20260514T094356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_mvp_deploy_v5_sandbox_20260514T094356_result.json",
+    "occurrence": 1,
+    "bytes": 3160,
+    "sha256": "e532b2574359a847551ef6403d82f14c719681b93a03ecb70ef8af02d4fd8a61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MVP 正常运行中，0 个 ERROR。\n\n---\n\n## 产出汇总\n\n### 1. 文件验证结果\n\n| 检查项 | 结果 |\n|--------|------|\n| `z3_sandbox.py` 存在 (12139 bytes) | **OK** |\n| `autoformalize.py` 无 `import z3` | **OK** |\n| `autoformalize.py` 使用 `get_sandbox()` | **OK** |\n| `z3_checker.py` 使用 `get_sandbox()` (3处) | **OK** |\n| 量词规则 `CRITICAL RULES` 存在 (两文件各1处) | **OK** |\n| `test_z3_sandbox.py` 存在 | **OK** |\n\n### 2. Crash test 完整输出\n\n```\n=== Test 1: Normal validation ===\n  Z3 sandbox worker started (pid=36608)\n  PASS: valid=True, err=None\n  PASS: valid=True, err=None\n  PASS: valid=True, err=None\n  PASS: valid=False, err=Z3 subprocess error or crash\n\n=== Test 2: IC check ===\n  Consistent set: is_sat=True, ic_score=1.00, mcs=3\n  Inconsistent set: is_sat=False, ic_score=0.50, mcs=1\n\n=== Test 3: Crash test (os.abort in worker) ===\n  PASS: Worker crashed, parent survived\n\n=== Test 4: Post-crash validation ===\n  Z3 sandbox worker started (pid=36628)\n  PASS: valid=True, err=None (worker restarted)\n  PASS: valid=True, err=None\n\n=== Test 5: Entailment check ===\n  Entailment: entails=True, status=entails\n\n=== ALL TESTS PASSED ===\n```\n\n### 3. Dry-run mvp_report.json\n\n```json\n{\n  \"config\": { \"num_problems\": 2, \"num_chains\": 2, \"total_chains\": 4 },\n  \"accuracy\": { \"svs\": 0.5, \"sc\": 0.5, \"delta\": 0.0 },\n  \"formalization\": { \"total_claims\": 93, \"formalized_claims\": 79, \"rate\": 0.8495 },\n  \"verdict\": { \"p1\": \"PASS\", \"p2\": \"PASS\", \"overall\": \"PASS\" },\n  \"cost\": { \"total_calls\": 153, \"total_tokens\": 116859, \"estimated_cost_usd\": 0.03271 }\n}\n```\n\n### 4. 完整 MVP PID\n- Python 进程 PID: **37622**\n- 配置: 50 problems × 8 chains = 400 total chains\n\n### 5. MVP 启动后日志（INFO 行）\n\n```\n17:51:19 [INFO] Loaded config from config_local.yaml\n17:51:19 [INFO] MVP config: 50 problems × 8 chains = 400 total chains\n17:51:19 [INFO] Loading 50 proofwriter depth-5 problems...\n17:51:19 [INFO] Loaded 30220 problems from local cache\n17:51:19 [INFO] Loaded 50 ProofWriter depth-5 problems\n17:51:19 [INFO] Loaded 50 problems\n17:51:19 [INFO] --- Problem 1/50: pw_20952 ---\n17:51:32 [INFO] HTTP Request: POST http://localhost:8001/v1/chat/completions \"HTTP/1.1 200 OK\"\n17:51:56 [INFO] HTTP Request: POST http://localhost:8001/v1/chat/completions \"HTTP/1.1 200 OK\"\n```\n\n### 6. 异常\n- 首次启动 MVP 漏设 `HF_DATASETS_OFFLINE=1`，导致 HuggingFace 连接失败（Network is unreachable）。已 kill 并加上环境变量重启，现在正常运行，0 ERROR。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "config": {
+                "num_problems": 2,
+                "num_chains": 2,
+                "total_chains": 4
+              },
+              "accuracy": {
+                "svs": 0.5,
+                "sc": 0.5,
+                "delta": 0.0
+              },
+              "formalization": {
+                "total_claims": 93,
+                "formalized_claims": 79,
+                "rate": 0.8495
+              },
+              "verdict": {
+                "p1": "PASS",
+                "p2": "PASS",
+                "overall": "PASS"
+              },
+              "cost": {
+                "total_calls": 153,
+                "total_tokens": 116859,
+                "estimated_cost_usd": 0.03271
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-mvp-deploy-v5-sandbox.md"
+}

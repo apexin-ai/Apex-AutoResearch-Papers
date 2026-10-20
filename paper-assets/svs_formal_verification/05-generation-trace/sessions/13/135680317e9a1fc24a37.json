@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "135680317e9a1fc24a37",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "code binary filter baseline",
+  "task_key": "worker_code_binary_filter_baseline_20260514T083237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_binary_filter_baseline_20260514T083237_result.json",
+    "occurrence": 1,
+    "bytes": 667,
+    "sha256": "4b5b0fd56ab7dfd789bace31fe13f497f126ceb33e8a226304c8dcfbab4b6a69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**创建的文件：**\n- `evaluation/binary_filter_baseline.py` — Binary Filter + SC baseline，IC 阈值过滤 + majority vote\n- `evaluation/self_certainty_baseline.py` — Self-Certainty baseline，基于 token logprob 均值选链\n\n**修改的文件：**\n- `types.py` — Chain dataclass 新增 `logprobs: Optional[list[float]]` 字段\n- `generation/chain_sampler.py` — API 调用添加 `logprobs=True, top_logprobs=1`，`_call_llm` 返回 `(content, token_logprobs)` 元组，`sample` 将 logprobs 存入 Chain\n- `evaluation/__init__.py` — 导出两个 baseline 模块的公开函数\n\n远程 import 验证通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-binary-filter-baseline.md"
+}

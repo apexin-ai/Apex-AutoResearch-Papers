@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed5ba9f0d77981cb5773",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "infra kill orphans",
+  "task_key": "worker_infra_kill_orphans_20260514T134156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill_orphans_20260514T134156_result.json",
+    "occurrence": 1,
+    "bytes": 772,
+    "sha256": "eae2ab63d699d473c16610ef6b4e9d869a3b9d489d43cf813b58df812a3bc1ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| 项目 | 状态 |\n|------|------|\n| 孤儿进程 54409, 54411 | **已清理** |\n| v2 rescorer PID 61828 | **已结束**（进程不存在） |\n| mvp_003 进度 | **44 条** gold_label 已写入 results_partial.json |\n| mvp_003 PID 37622 | **运行中**，已跑 3h51m，CPU 0.6% |\n\n当前活跃 Python 进程：\n- **vLLM server** (PID 33091) — DeepSeek-R1-Distill-Qwen-14B，端口 8001，双卡 tensor-parallel\n- **mvp_003 主进程** (PID 37622) — `svs_pipeline.run_mvp`，含 forkserver 子进程\n- **jupyter-lab** (PID 937) + **tensorboard** (PID 939) — 系统服务\n- 若干 multiprocessing forkserver/resource_tracker 子进程（属于 mvp_003）\n\nv2 rescorer 已自行退出，mvp_003 仍在正常推理中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-orphans.md"
+}

@@ -1,0 +1,3208 @@
+# code folio loader test
+
+**svs formal verification** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 51
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/workers/worker_code_folio_loader_test_20260514T075246.log`
+- **Structured JSON:** [`4dbd6dce3695c6c80aeb.json`](../../sessions/4d/4dbd6dce3695c6c80aeb.json)
+
+## Before a recorded user message
+
+51 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/svs_formal_verification",
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "2c1f8456-d54d-4350-93dc-15c4f0badd07",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-svs-formal-verification/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778750400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "04d768ce-0ec6-4f0e-9cee-1bf1ea95da9c",
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break this into two parallel tracks:
+1. Read the local cost_tracker.py
+2. Read the local loader.py and check remote state
+
+Let me start by reading the local files and checking the remote server state.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "b3e98759-4609-4a6d-acae-934ae9b32474",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gdaj7HgKZuPxQsCEP3Gs79",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12338,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12338
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先读本地文件，同时探测远程状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "56b12212-68ac-4c24-b1b2-dea9b01fbf60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gdaj7HgKZuPxQsCEP3Gs79",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12338,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12338
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — Read · `toolu_019jiwSXPJpYrdcLGKpddHJb`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/svs_formal_verification/artifacts/svs_pipeline/cost_tracker.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "bbbd0ea8-ea32-4aa0-8d40-65e805d400c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gdaj7HgKZuPxQsCEP3Gs79",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12338,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12338
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T07:53:01.890Z_
+
+<details><summary>↩ Tool result · `toolu_019jiwSXPJpYrdcLGKpddHJb`</summary>
+
+```text
+1	"""API cost tracker — 记录所有 LLM API 调用的 token 使用量和费用估算。"""
+2	
+3	import logging
+4	from dataclasses import dataclass, field
+5	from threading import Lock
+6	
+7	logger = logging.getLogger(__name__)
+8	
+9	DEFAULT_PRICING = {
+10	    "deepseek-chat": {"input": 0.14, "output": 0.28},
+11	    "deepseek-reasoner": {"input": 0.55, "output": 2.19},
+12	    "deepseek/deepseek-v3.2": {"input": 0.27, "output": 1.10},
+13	    "deepseek/deepseek-v4-pro": {"input": 0.80, "output": 3.20},
+14	}
+15	
+16	# Local vLLM: no per-token API cost, tracked as GPU-hours instead.
+17	# RTX 5090 ~$1.50/h/card. TP=2 = $3.00/h total.
+18	LOCAL_GPU_COST_PER_HOUR = 3.0
+19	
+20	
+21	@dataclass
+22	class CostTracker:
+23	    """Thread-safe API cost tracker."""
+24	
+25	    pricing: dict = field(default_factory=lambda: dict(DEFAULT_PRICING))
+26	    _records: list = field(default_factory=list, repr=False)
+27	    _lock: Lock = field(default_factory=Lock, repr=False)
+28	    _total_input_tokens: int = 0
+29	    _total_output_tokens: int = 0
+30	
+31	    def record(self, model: str, prompt_tokens: int, completion_tokens: int, module: str = ""):
+32	        with self._lock:
+33	            self._total_input_tokens += prompt_tokens
+34	            self._total_output_tokens += completion_tokens
+35	            self._records.append({
+36	                "model": model,
+37	                "prompt_tokens": prompt_tokens,
+38	                "completion_tokens": completion_tokens,
+39	                "total_tokens": prompt_tokens + completion_tokens,
+40	                "module": module,
+41	            })
+42	        logger.debug("API call [%s/%s]: %d+%d tokens", module, model, prompt_tokens, completion_tokens)
+43	
+44	    def summary(self) -> dict:
+45	        with self._lock:
+46	            by_module: dict = {}
+47	            by_model: dict = {}
+48	            for r in self._records:
+49	                mod = r["module"] or "unknown"
+50	                if mod not in by_module:
+51	                    by_module[mod] = {"calls": 0, "input_tokens": 0, "output_tokens": 0}
+52	                by_module[mod]["calls"] += 1
+53	                by_module[mod]["input_tokens"] += r["prompt_tokens"]
+54	                by_module[mod]["output_tokens"] += r["completion_tokens"]
+55	
+56	                mdl = r["model"]
+57	                if mdl not in by_model:
+58	                    by_model[mdl] = {"calls": 0, "input_tokens": 0, "output_tokens": 0}
+59	                by_model[mdl]["calls"] += 1
+60	                by_model[mdl]["input_tokens"] += r["prompt_tokens"]
+61	                by_model[mdl]["output_tokens"] += r["completion_tokens"]
+62	
+63	            total_cost = 0.0
+64	            model_costs: dict = {}
+65	            for mdl, counts in by_model.items():
+66	                prices = self.pricing.get(mdl, {"input": 0.0, "output": 0.0})
+67	                cost = (counts["input_tokens"] / 1_000_000 * prices["input"]
+68	                        + counts["output_tokens"] / 1_000_000 * prices["output"])
+69	                model_costs[mdl] = round(cost, 6)
+70	                total_cost += cost
+71	
+72	            return {
+73	                "total_calls": len(self._records),
+74	                "total_input_tokens": self._total_input_tokens,
+75	                "total_output_tokens": self._total_output_tokens,
+76	                "total_tokens": self._total_input_tokens + self._total_output_tokens,
+77	                "estimated_cost_usd": round(total_cost, 6),
+78	                "by_module": by_module,
+79	                "by_model": {
+80	                    mdl: {**counts, "estimated_cost_usd": model_costs.get(mdl, 0)}
+81	                    for mdl, counts in by_model.items()
+82	                },
+83	            }
+84	
+85	
+86	_global_tracker = CostTracker()
+87	
+88	
+89	def get_tracker() -> CostTracker:
+90	    return _global_tracker
+91	
+92	
+93	def reset_tracker():
+94	    global _global_tracker
+95	    _global_tracker = CostTracker()
+96	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "cea6378e-0e7d-4168-b149-d1be6835c058",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/svs_formal_verification/artifacts/svs_pipeline/cost_tracker.py",
+      "content": "\"\"\"API cost tracker — 记录所有 LLM API 调用的 token 使用量和费用估算。\"\"\"\n\nimport logging\nfrom dataclasses import dataclass, field\nfrom threading import Lock\n\nlogger = logging.getLogger(__name__)\n\nDEFAULT_PRICING = {\n    \"deepseek-chat\": {\"input\": 0.14, \"output\": 0.28},\n    \"deepseek-reasoner\": {\"input\": 0.55, \"output\": 2.19},\n    \"deepseek/deepseek-v3.2\": {\"input\": 0.27, \"output\": 1.10},\n    \"deepseek/deepseek-v4-pro\": {\"input\": 0.80, \"output\": 3.20},\n}\n\n# Local vLLM: no per-token API cost, tracked as GPU-hours instead.\n# RTX 5090 ~$1.50/h/card. TP=2 = $3.00/h total.\nLOCAL_GPU_COST_PER_HOUR = 3.0\n\n\n@dataclass\nclass CostTracker:\n    \"\"\"Thread-safe API cost tracker.\"\"\"\n\n    pricing: dict = field(default_factory=lambda: dict(DEFAULT_PRICING))\n    _records: list = field(default_factory=list, repr=False)\n    _lock: Lock = field(default_factory=Lock, repr=False)\n    _total_input_tokens: int = 0\n    _total_output_tokens: int = 0\n\n    def record(self, model: str, prompt_tokens: int, completion_tokens: int, module: str = \"\"):\n        with self._lock:\n            self._total_input_tokens += prompt_tokens\n            self._total_output_tokens += completion_tokens\n            self._records.append({\n                \"model\": model,\n                \"prompt_tokens\": prompt_tokens,\n                \"completion_tokens\": completion_tokens,\n                \"total_tokens\": prompt_tokens + completion_tokens,\n                \"module\": module,\n            })\n        logger.debug(\"API call [%s/%s]: %d+%d tokens\", module, model, prompt_tokens, completion_tokens)\n\n    def summary(self) -> dict:\n        with self._lock:\n            by_module: dict = {}\n            by_model: dict = {}\n            for r in self._records:\n                mod = r[\"module\"] or \"unknown\"\n                if mod not in by_module:\n                    by_module[mod] = {\"calls\": 0, \"input_tokens\": 0, \"output_tokens\": 0}\n                by_module[mod][\"calls\"] += 1\n                by_module[mod][\"input_tokens\"] += r[\"prompt_tokens\"]\n                by_module[mod][\"output_tokens\"] += r[\"completion_tokens\"]\n\n                mdl = r[\"model\"]\n                if mdl not in by_model:\n                    by_model[mdl] = {\"calls\": 0, \"input_tokens\": 0, \"output_tokens\": 0}\n                by_model[mdl][\"calls\"] += 1\n                by_model[mdl][\"input_tokens\"] += r[\"prompt_tokens\"]\n                by_model[mdl][\"output_tokens\"] += r[\"completion_tokens\"]\n\n            total_cost = 0.0\n            model_costs: dict = {}\n            for mdl, counts in by_model.items():\n                prices = self.pricing.get(mdl, {\"input\": 0.0, \"output\": 0.0})\n                cost = (counts[\"input_tokens\"] / 1_000_000 * prices[\"input\"]\n                        + counts[\"output_tokens\"] / 1_000_000 * prices[\"output\"])\n                model_costs[mdl] = round(cost, 6)\n                total_cost += cost\n\n            return {\n                \"total_calls\": len(self._records),\n                \"total_input_tokens\": self._total_input_tokens,\n                \"total_output_tokens\": self._total_output_tokens,\n                \"total_tokens\": self._total_input_tokens + self._total_output_tokens,\n                \"estimated_cost_usd\": round(total_cost, 6),\n                \"by_module\": by_module,\n                \"by_model\": {\n                    mdl: {**counts, \"estimated_cost_usd\": model_costs.get(mdl, 0)}\n                    for mdl, counts in by_model.items()\n                },\n            }\n\n\n_global_tracker = CostTracker()\n\n\ndef get_tracker() -> CostTracker:\n    return _global_tracker\n\n\ndef reset_tracker():\n    global _global_tracker\n    _global_tracker = CostTracker()\n",
+      "numLines": 96,
+      "startLine": 1,
+      "totalLines": 96
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01XiQsFEzEMnvmaLZV3PWYVD`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/svs_formal_verification/artifacts/svs_pipeline/data/loader.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "9d963eeb-84bc-4c06-a54e-904da50ff1f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gdaj7HgKZuPxQsCEP3Gs79",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12338,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12338
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T07:53:02.343Z_
+
+<details><summary>↩ Tool result · `toolu_01XiQsFEzEMnvmaLZV3PWYVD`</summary>
+
+```text
+1	"""ProofWriter / FOLIO data loader for the SVS pipeline.
+2	
+3	Loads logical reasoning problems from HuggingFace datasets, with local
+4	JSON fallback. Returns list[Problem] for downstream chain sampling.
+5	
+6	Dependencies: datasets (HuggingFace), json, random
+7	"""
+8	
+9	import json
+10	import logging
+11	import random
+12	from pathlib import Path
+13	
+14	from ..types import Problem
+15	
+16	logger = logging.getLogger(__name__)
+17	
+18	_CACHE_DIR = Path(__file__).parent
+19	
+20	
+21	def _parse_proofwriter_premises(context: str) -> list[str]:
+22	    """Split ProofWriter context string into individual premise sentences."""
+23	    sentences = [s.strip() for s in context.split(".") if s.strip()]
+24	    return [s + "." for s in sentences]
+25	
+26	
+27	def load_proofwriter(
+28	    subset: str = "depth-5",
+29	    num_problems: int = 50,
+30	    seed: int = 42,
+31	) -> list[Problem]:
+32	    """Load ProofWriter problems, filtering by proof depth.
+33	
+34	    Tries HuggingFace datasets first, falls back to local cache JSON.
+35	    """
+36	    problems = _load_proofwriter_hf(subset)
+37	    if problems is None:
+38	        problems = _load_proofwriter_cache()
+39	
+40	    if not problems:
+41	        raise RuntimeError("Failed to load ProofWriter data from both HF and local cache")
+42	
+43	    rng = random.Random(seed)
+44	    if len(problems) > num_problems:
+45	        problems = rng.sample(problems, num_problems)
+46	
+47	    logger.info("Loaded %d ProofWriter %s problems", len(problems), subset)
+48	    return problems
+49	
+50	
+51	def _load_proofwriter_hf(subset: str) -> list[Problem] | None:
+52	    """Try loading ProofWriter from HuggingFace datasets."""
+53	    try:
+54	        from datasets import load_dataset
+55	
+56	        ds = load_dataset("allenai/proofwriter-dataset-v2", "depth-5", trust_remote_code=True)
+57	        split = ds.get("test") or ds.get("validation") or ds[list(ds.keys())[0]]
+58	
+59	        depth_num = subset.replace("depth-", "") if subset.startswith("depth-") else subset
+60	
+61	        problems = []
+62	        for i, row in enumerate(split):
+63	            if "proof_depth" in row and str(row["proof_depth"]) != depth_num:
+64	                continue
+65	
+66	            label_raw = row.get("answer", row.get("label", ""))
+67	            label = _normalize_label(label_raw)
+68	            if label is None:
+69	                continue
+70	
+71	            context = row.get("theory", row.get("context", row.get("premises", "")))
+72	            hypothesis = row.get("hypothesis", row.get("question", ""))
+73	
+74	            problems.append(Problem(
+75	                id=f"pw_{i}",
+76	                premises=_parse_proofwriter_premises(context),
+77	                hypothesis=hypothesis,
+78	                label=label,
+79	                dataset="proofwriter",
+80	                raw=dict(row),
+81	            ))
+82	
+83	        logger.info("Loaded %d problems from HuggingFace (subset=%s)", len(problems), subset)
+84	        return problems if problems else None
+85	
+86	    except Exception as e:
+87	        logger.warning("HuggingFace load failed: %s. Falling back to local cache.", e)
+88	        return None
+89	
+90	
+91	def _load_proofwriter_cache() -> list[Problem] | None:
+92	    """Load ProofWriter from local JSON cache."""
+93	    cache_path = _CACHE_DIR / "proofwriter_cache.json"
+94	    if not cache_path.exists():
+95	        logger.warning("Local cache not found at %s", cache_path)
+96	        return None
+97	
+98	    with open(cache_path) as f:
+99	        data = json.load(f)
+100	
+101	    problems = []
+102	    for i, row in enumerate(data):
+103	        label = _normalize_label(row.get("answer", row.get("label", "")))
+104	        if label is None:
+105	            continue
+106	
+107	        context = row.get("theory", row.get("context", row.get("premises", "")))
+108	        hypothesis = row.get("hypothesis", row.get("question", ""))
+109	
+110	        if isinstance(context, list):
+111	            premises = context
+112	        else:
+113	            premises = _parse_proofwriter_premises(context)
+114	
+115	        problems.append(Problem(
+116	            id=f"pw_{i}",
+117	            premises=premises,
+118	            hypothesis=hypothesis,
+119	            label=label,
+120	            dataset="proofwriter",
+121	            raw=row,
+122	        ))
+123	
+124	    logger.info("Loaded %d problems from local cache", len(problems))
+125	    return problems
+126	
+127	
+128	def load_folio(
+129	    num_problems: int = 50,
+130	    seed: int = 42,
+131	) -> list[Problem]:
+132	    """Load FOLIO problems from HuggingFace datasets."""
+133	    problems = _load_folio_hf()
+134	    if problems is None:
+135	        cache_path = _CACHE_DIR / "folio_cache.json"
+136	        if cache_path.exists():
+137	            with open(cache_path) as f:
+138	                data = json.load(f)
+139	            problems = []
+140	            for i, row in enumerate(data):
+141	                label = _normalize_label(row.get("label", ""))
+142	                if label is None:
+143	                    continue
+144	                premises = row.get("premises", [])
+145	                if isinstance(premises, str):
+146	                    premises = _parse_proofwriter_premises(premises)
+147	                problems.append(Problem(
+148	                    id=f"folio_{i}",
+149	                    premises=premises,
+150	                    hypothesis=row.get("conclusion", row.get("hypothesis", "")),
+151	                    label=label,
+152	                    dataset="folio",
+153	                    raw=row,
+154	                ))
+155	
+156	    if not problems:
+157	        raise RuntimeError("Failed to load FOLIO data from both HF and local cache")
+158	
+159	    rng = random.Random(seed)
+160	    if len(problems) > num_problems:
+161	        problems = rng.sample(problems, num_problems)
+162	
+163	    logger.info("Loaded %d FOLIO problems", len(problems))
+164	    return problems
+165	
+166	
+167	def _load_folio_hf() -> list[Problem] | None:
+168	    """Try loading FOLIO from HuggingFace datasets."""
+169	    try:
+170	        from datasets import load_dataset
+171	
+172	        ds = load_dataset("yale-nlp/FOLIO", trust_remote_code=True)
+173	        split = ds.get("validation") or ds.get("test") or ds[list(ds.keys())[0]]
+174	
+175	        problems = []
+176	        for i, row in enumerate(split):
+177	            label = _normalize_label(row.get("label", ""))
+178	            if label is None:
+179	                continue
+180	
+181	            premises_raw = row.get("premises", row.get("context", ""))
+182	            if isinstance(premises_raw, list):
+183	                premises = premises_raw
+184	            else:
+185	                premises = _parse_proofwriter_premises(premises_raw)
+186	
+187	            hypothesis = row.get("conclusion", row.get("hypothesis", ""))
+188	
+189	            problems.append(Problem(
+190	                id=f"folio_{i}",
+191	                premises=premises,
+192	                hypothesis=hypothesis,
+193	                label=label,
+194	                dataset="folio",
+195	                raw=dict(row),
+196	            ))
+197	
+198	        logger.info("Loaded %d FOLIO problems from HuggingFace", len(problems))
+199	        return problems if problems else None
+200	
+201	    except Exception as e:
+202	        logger.warning("HuggingFace FOLIO load failed: %s", e)
+203	        return None
+204	
+205	
+206	def load_problems(
+207	    dataset: str,
+208	    subset: str = "",
+209	    num_problems: int = 50,
+210	    seed: int = 42,
+211	) -> list[Problem]:
+212	    """Unified entry point — dispatches to dataset-specific loaders."""
+213	    dataset = dataset.lower().strip()
+214	    if dataset == "proofwriter":
+215	        return load_proofwriter(subset=subset or "depth-5", num_problems=num_problems, seed=seed)
+216	    elif dataset == "folio":
+217	        return load_folio(num_problems=num_problems, seed=seed)
+218	    else:
+219	        raise ValueError(f"Unknown dataset: {dataset}. Supported: proofwriter, folio")
+220	
+221	
+222	def _normalize_label(raw) -> str | None:
+223	    """Normalize answer labels to 'True' / 'False' / 'Unknown'."""
+224	    if isinstance(raw, bool):
+225	        return "True" if raw else "False"
+226	    s = str(raw).strip().lower()
+227	    mapping = {
+228	        "true": "True",
+229	        "proved": "True",
+230	        "entailment": "True",
+231	        "false": "False",
+232	        "disproved": "False",
+233	        "contradiction": "False",
+234	        "unknown": "Unknown",
+235	        "uncertain": "Unknown",
+236	        "neutral": "Unknown",
+237	    }
+238	    return mapping.get(s)
+239	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "5db1a853-a892-403f-b649-f7bf47dc94d6",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/svs_formal_verification/artifacts/svs_pipeline/data/loader.py",
+      "content": "\"\"\"ProofWriter / FOLIO data loader for the SVS pipeline.\n\nLoads logical reasoning problems from HuggingFace datasets, with local\nJSON fallback. Returns list[Problem] for downstream chain sampling.\n\nDependencies: datasets (HuggingFace), json, random\n\"\"\"\n\nimport json\nimport logging\nimport random\nfrom pathlib import Path\n\nfrom ..types import Problem\n\nlogger = logging.getLogger(__name__)\n\n_CACHE_DIR = Path(__file__).parent\n\n\ndef _parse_proofwriter_premises(context: str) -> list[str]:\n    \"\"\"Split ProofWriter context string into individual premise sentences.\"\"\"\n    sentences = [s.strip() for s in context.split(\".\") if s.strip()]\n    return [s + \".\" for s in sentences]\n\n\ndef load_proofwriter(\n    subset: str = \"depth-5\",\n    num_problems: int = 50,\n    seed: int = 42,\n) -> list[Problem]:\n    \"\"\"Load ProofWriter problems, filtering by proof depth.\n\n    Tries HuggingFace datasets first, falls back to local cache JSON.\n    \"\"\"\n    problems = _load_proofwriter_hf(subset)\n    if problems is None:\n        problems = _load_proofwriter_cache()\n\n    if not problems:\n        raise RuntimeError(\"Failed to load ProofWriter data from both HF and local cache\")\n\n    rng = random.Random(seed)\n    if len(problems) > num_problems:\n        problems = rng.sample(problems, num_problems)\n\n    logger.info(\"Loaded %d ProofWriter %s problems\", len(problems), subset)\n    return problems\n\n\ndef _load_proofwriter_hf(subset: str) -> list[Problem] | None:\n    \"\"\"Try loading ProofWriter from HuggingFace datasets.\"\"\"\n    try:\n        from datasets import load_dataset\n\n        ds = load_dataset(\"allenai/proofwriter-dataset-v2\", \"depth-5\", trust_remote_code=True)\n        split = ds.get(\"test\") or ds.get(\"validation\") or ds[list(ds.keys())[0]]\n\n        depth_num = subset.replace(\"depth-\", \"\") if subset.startswith(\"depth-\") else subset\n\n        problems = []\n        for i, row in enumerate(split):\n            if \"proof_depth\" in row and str(row[\"proof_depth\"]) != depth_num:\n                continue\n\n            label_raw = row.get(\"answer\", row.get(\"label\", \"\"))\n            label = _normalize_label(label_raw)\n            if label is None:\n                continue\n\n            context = row.get(\"theory\", row.get(\"context\", row.get(\"premises\", \"\")))\n            hypothesis = row.get(\"hypothesis\", row.get(\"question\", \"\"))\n\n            problems.append(Problem(\n                id=f\"pw_{i}\",\n                premises=_parse_proofwriter_premises(context),\n                hypothesis=hypothesis,\n                label=label,\n                dataset=\"proofwriter\",\n                raw=dict(row),\n            ))\n\n        logger.info(\"Loaded %d problems from HuggingFace (subset=%s)\", len(problems), subset)\n        return problems if problems else None\n\n    except Exception as e:\n        logger.warning(\"HuggingFace load failed: %s. Falling back to local cache.\", e)\n        return None\n\n\ndef _load_proofwriter_cache() -> list[Problem] | None:\n    \"\"\"Load ProofWriter from local JSON cache.\"\"\"\n    cache_path = _CACHE_DIR / \"proofwriter_cache.json\"\n    if not cache_path.exists():\n        logger.warning(\"Local cache not found at %s\", cache_path)\n        return None\n\n    with open(cache_path) as f:\n        data = json.load(f)\n\n    problems = []\n    for i, row in enumerate(data):\n        label = _normalize_label(row.get(\"answer\", row.get(\"label\", \"\")))\n        if label is None:\n            continue\n\n        context = row.get(\"theory\", row.get(\"context\", row.get(\"premises\", \"\")))\n        hypothesis = row.get(\"hypothesis\", row.get(\"question\", \"\"))\n\n        if isinstance(context, list):\n            premises = context\n        else:\n            premises = _parse_proofwriter_premises(context)\n\n        problems.append(Problem(\n            id=f\"pw_{i}\",\n            premises=premises,\n            hypothesis=hypothesis,\n            label=label,\n            dataset=\"proofwriter\",\n            raw=row,\n        ))\n\n    logger.info(\"Loaded %d problems from local cache\", len(problems))\n    return problems\n\n\ndef load_folio(\n    num_problems: int = 50,\n    seed: int = 42,\n) -> list[Problem]:\n    \"\"\"Load FOLIO problems from HuggingFace datasets.\"\"\"\n    problems = _load_folio_hf()\n    if problems is None:\n        cache_path = _CACHE_DIR / \"folio_cache.json\"\n        if cache_path.exists():\n            with open(cache_path) as f:\n                data = json.load(f)\n            problems = []\n            for i, row in enumerate(data):\n                label = _normalize_label(row.get(\"label\", \"\"))\n                if label is None:\n                    continue\n                premises = row.get(\"premises\", [])\n                if isinstance(premises, str):\n                    premises = _parse_proofwriter_premises(premises)\n                problems.append(Problem(\n                    id=f\"folio_{i}\",\n                    premises=premises,\n                    hypothesis=row.get(\"conclusion\", row.get(\"hypothesis\", \"\")),\n                    label=label,\n                    dataset=\"folio\",\n                    raw=row,\n                ))\n\n    if not problems:\n        raise RuntimeError(\"Failed to load FOLIO data from both HF and local cache\")\n\n    rng = random.Random(seed)\n    if len(problems) > num_problems:\n        problems = rng.sample(problems, num_problems)\n\n    logger.info(\"Loaded %d FOLIO problems\", len(problems))\n    return problems\n\n\ndef _load_folio_hf() -> list[Problem] | None:\n    \"\"\"Try loading FOLIO from HuggingFace datasets.\"\"\"\n    try:\n        from datasets import load_dataset\n\n        ds = load_dataset(\"yale-nlp/FOLIO\", trust_remote_code=True)\n        split = ds.get(\"validation\") or ds.get(\"test\") or ds[list(ds.keys())[0]]\n\n        problems = []\n        for i, row in enumerate(split):\n            label = _normalize_label(row.get(\"label\", \"\"))\n            if label is None:\n                continue\n\n            premises_raw = row.get(\"premises\", row.get(\"context\", \"\"))\n            if isinstance(premises_raw, list):\n                premises = premises_raw\n            else:\n                premises = _parse_proofwriter_premises(premises_raw)\n\n            hypothesis = row.get(\"conclusion\", row.get(\"hypothesis\", \"\"))\n\n            problems.append(Problem(\n                id=f\"folio_{i}\",\n                premises=premises,\n                hypothesis=hypothesis,\n                label=label,\n                dataset=\"folio\",\n                raw=dict(row),\n            ))\n\n        logger.info(\"Loaded %d FOLIO problems from HuggingFace\", len(problems))\n        return problems if problems else None\n\n    except Exception as e:\n        logger.warning(\"HuggingFace FOLIO load failed: %s\", e)\n        return None\n\n\ndef load_problems(\n    dataset: str,\n    subset: str = \"\",\n    num_problems: int = 50,\n    seed: int = 42,\n) -> list[Problem]:\n    \"\"\"Unified entry point — dispatches to dataset-specific loaders.\"\"\"\n    dataset = dataset.lower().strip()\n    if dataset == \"proofwriter\":\n        return load_proofwriter(subset=subset or \"depth-5\", num_problems=num_problems, seed=seed)\n    elif dataset == \"folio\":\n        return load_folio(num_problems=num_problems, seed=seed)\n    else:\n        raise ValueError(f\"Unknown dataset: {dataset}. Supported: proofwriter, folio\")\n\n\ndef _normalize_label(raw) -> str | None:\n    \"\"\"Normalize answer labels to 'True' / 'False' / 'Unknown'.\"\"\"\n    if isinstance(raw, bool):\n        return \"True\" if raw else \"False\"\n    s = str(raw).strip().lower()\n    mapping = {\n        \"true\": \"True\",\n        \"proved\": \"True\",\n        \"entailment\": \"True\",\n        \"false\": \"False\",\n        \"disproved\": \"False\",\n        \"contradiction\": \"False\",\n        \"unknown\": \"Unknown\",\n        \"uncertain\": \"Unknown\",\n        \"neutral\": \"Unknown\",\n    }\n    return mapping.get(s)\n",
+      "numLines": 239,
+      "startLine": 1,
+      "totalLines": 239
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_011PEWCs6nAA83EeeJkGrJjL`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "f3cc8fb2-026a-4a61-8107-b714da938381",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gdaj7HgKZuPxQsCEP3Gs79",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12338,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12338
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T07:53:04.334Z_
+
+<details><summary>↩ Tool result · `toolu_011PEWCs6nAA83EeeJkGrJjL`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "c180ff37-5dd8-42a8-944e-88bedaff09fe",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have both local files read. Let me analyze:
+
+1. **cost_tracker.py** - Already has `deepseek/deepseek-v3.2` in DEFAULT_PRICING. Looks correct.
+2. **loader.py** - Already has `load_folio()` function with `_normalize_label` that maps "uncertain" → "Unknown". But it doesn't have a `subset` parameter - it only loads from HF or cache, no local JSONL support.
+
+Now I need to:
+- Part A: Deploy cost_tracker.py to remote
+
+
+- Part B: Check if the remote loader.py matches, and verify FOLIO loading works
+
+Let me check what's currently on the remote and examine the FOLIO data directory structure, plus review the local data module exports to understand what's being exposed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "a022badd-b14c-4b6b-9712-1db29a55a9ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016scanQyEADzj6zkCjxtp6u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5779,
+      "cache_read_input_tokens": 24179,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5779
+      },
+      "output_tokens": 16,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+本地文件已读取。cost_tracker.py 已包含 `deepseek/deepseek-v3.2` 定价，loader.py 已有 `load_folio()` 和 label 归一化。现在检查远程状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "305df598-ed26-433f-970b-df245f2d6df3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016scanQyEADzj6zkCjxtp6u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5779,
+      "cache_read_input_tokens": 24179,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5779
+      },
+      "output_tokens": 16,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FiG7ejQZmJfLUHvqZm9JYy`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/svs_pipeline/svs_pipeline/cost_tracker.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "35bbd2cf-c13a-48ec-955e-5fa5e45f12c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016scanQyEADzj6zkCjxtp6u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5779,
+      "cache_read_input_tokens": 24179,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5779
+      },
+      "output_tokens": 16,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T07:53:16.997Z_
+
+<details><summary>↩ Tool result · `toolu_01FiG7ejQZmJfLUHvqZm9JYy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"API cost tracker — 记录所有 LLM API 调用的 token 使用量和费用估算。\\\"\\\"\\\"\\n\\nimport logging\\nfrom dataclasses import dataclass, field\\nfrom threading import Lock\\n\\nlogger = logging.getLogger(__name__)\\n\\nDEFAULT_PRICING = {\\n    \\\"deepseek-chat\\\": {\\\"input\\\": 0.14, \\\"output\\\": 0.28},\\n    \\\"deepseek-reasoner\\\": {\\\"input\\\": 0.55, \\\"output\\\": 2.19},\\n}\\n\\n\\n@dataclass\\nclass CostTracker:\\n    \\\"\\\"\\\"Thread-safe API cost tracker.\\\"\\\"\\\"\\n\\n    pricing: dict = field(default_factory=lambda: dict(DEFAULT_PRICING))\\n    _records: list = field(default_factory=list, repr=False)\\n    _lock: Lock = field(default_factory=Lock, repr=False)\\n    _total_input_tokens: int = 0\\n    _total_output_tokens: int = 0\\n\\n    def record(self, model: str, prompt_tokens: int, completion_tokens: int, module: str = \\\"\\\"):\\n        with self._lock:\\n            self._total_input_tokens += prompt_tokens\\n            self._total_output_tokens += completion_tokens\\n            self._records.append({\\n                \\\"model\\\": model,\\n                \\\"prompt_tokens\\\": prompt_tokens,\\n                \\\"completion_tokens\\\": completion_tokens,\\n                \\\"total_tokens\\\": prompt_tokens + completion_tokens,\\n                \\\"module\\\": module,\\n            })\\n        logger.debug(\\\"API call [%s/%s]: %d+%d tokens\\\", module, model, prompt_tokens, completion_tokens)\\n\\n    def summary(self) -> dict:\\n        with self._lock:\\n            by_module: dict = {}\\n            by_model: dict = {}\\n            for r in self._records:\\n                mod = r[\\\"module\\\"] or \\\"unknown\\\"\\n                if mod not in by_module:\\n                    by_module[mod] = {\\\"calls\\\": 0, \\\"input_tokens\\\": 0, \\\"output_tokens\\\": 0}\\n                by_module[mod][\\\"calls\\\"] += 1\\n                by_module[mod][\\\"input_tokens\\\"] += r[\\\"prompt_tokens\\\"]\\n                by_module[mod][\\\"output_tokens\\\"] += r[\\\"completion_tokens\\\"]\\n\\n                mdl = r[\\\"model\\\"]\\n                if mdl not in by_model:\\n                    by_model[mdl] = {\\\"calls\\\": 0, \\\"input_tokens\\\": 0, \\\"output_tokens\\\": 0}\\n                by_model[mdl][\\\"calls\\\"] += 1\\n                by_model[mdl][\\\"input_tokens\\\"] += r[\\\"prompt_tokens\\\"]\\n                by_model[mdl][\\\"output_tokens\\\"] += r[\\\"completion_tokens\\\"]\\n\\n            total_cost = 0.0\\n            model_costs: dict = {}\\n            for mdl, counts in by_model.items():\\n                prices = self.pricing.get(mdl, {\\\"input\\\": 0.0, \\\"output\\\": 0.0})\\n                cost = (counts[\\\"input_tokens\\\"] / 1_000_000 * prices[\\\"input\\\"]\\n                        + counts[\\\"output_tokens\\\"] / 1_000_000 * prices[\\\"output\\\"])\\n                model_costs[mdl] = round(cost, 6)\\n                total_cost += cost\\n\\n            return {\\n                \\\"total_calls\\\": len(self._records),\\n                \\\"total_input_tokens\\\": self._total_input_tokens,\\n                \\\"total_output_tokens\\\": self._total_output_tokens,\\n                \\\"total_tokens\\\": self._total_input_tokens + self._total_output_tokens,\\n                \\\"estimated_cost_usd\\\": round(total_cost, 6),\\n                \\\"by_module\\\": by_module,\\n                \\\"by_model\\\": {\\n                    mdl: {**counts, \\\"estimated_cost_usd\\\": model_costs.get(mdl, 0)}\\n                    for mdl, counts in by_model.items()\\n                },\\n            }\\n\\n\\n_global_tracker = CostTracker()\\n\\n\\ndef get_tracker() -> CostTracker:\\n    return _global_tracker\\n\\n\\ndef reset_tracker():\\n    global _global_tracker\\n    _global_tracker = CostTracker()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "51944612-948e-47e2-bdb1-1337ba3fb014",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"API cost tracker — 记录所有 LLM API 调用的 token 使用量和费用估算。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport logging\\\\nfrom dataclasses import dataclass, field\\\\nfrom threading import Lock\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nDEFAULT_PRICING = {\\\\n    \\\\\\\"deepseek-chat\\\\\\\": {\\\\\\\"input\\\\\\\": 0.14, \\\\\\\"output\\\\\\\": 0.28},\\\\n    \\\\\\\"deepseek-reasoner\\\\\\\": {\\\\\\\"input\\\\\\\": 0.55, \\\\\\\"output\\\\\\\": 2.19},\\\\n}\\\\n\\\\n\\\\n@dataclass\\\\nclass CostTracker:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Thread-safe API cost tracker.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    pricing: dict = field(default_factory=lambda: dict(DEFAULT_PRICING))\\\\n    _records: list = field(default_factory=list, repr=False)\\\\n    _lock: Lock = field(default_factory=Lock, repr=False)\\\\n    _total_input_tokens: int = 0\\\\n    _total_output_tokens: int = 0\\\\n\\\\n    def record(self, model: str, prompt_tokens: int, completion_tokens: int, module: str = \\\\\\\"\\\\\\\"):\\\\n        with self._lock:\\\\n            self._total_input_tokens += prompt_tokens\\\\n            self._total_output_tokens += completion_tokens\\\\n            self._records.append({\\\\n                \\\\\\\"model\\\\\\\": model,\\\\n                \\\\\\\"prompt_tokens\\\\\\\": prompt_tokens,\\\\n                \\\\\\\"completion_tokens\\\\\\\": completion_tokens,\\\\n                \\\\\\\"total_tokens\\\\\\\": prompt_tokens + completion_tokens,\\\\n                \\\\\\\"module\\\\\\\": module,\\\\n            })\\\\n        logger.debug(\\\\\\\"API call [%s/%s]: %d+%d tokens\\\\\\\", module, model, prompt_tokens, completion_tokens)\\\\n\\\\n    def summary(self) -> dict:\\\\n        with self._lock:\\\\n            by_module: dict = {}\\\\n            by_model: dict = {}\\\\n            for r in self._records:\\\\n                mod = r[\\\\\\\"module\\\\\\\"] or \\\\\\\"unknown\\\\\\\"\\\\n                if mod not in by_module:\\\\n                    by_module[mod] = {\\\\\\\"calls\\\\\\\": 0, \\\\\\\"input_tokens\\\\\\\": 0, \\\\\\\"output_tokens\\\\\\\": 0}\\\\n                by_module[mod][\\\\\\\"calls\\\\\\\"] += 1\\\\n                by_module[mod][\\\\\\\"input_tokens\\\\\\\"] += r[\\\\\\\"prompt_tokens\\\\\\\"]\\\\n                by_module[mod][\\\\\\\"output_tokens\\\\\\\"] += r[\\\\\\\"completion_tokens\\\\\\\"]\\\\n\\\\n                mdl = r[\\\\\\\"model\\\\\\\"]\\\\n                if mdl not in by_model:\\\\n                    by_model[mdl] = {\\\\\\\"calls\\\\\\\": 0, \\\\\\\"input_tokens\\\\\\\": 0, \\\\\\\"output_tokens\\\\\\\": 0}\\\\n                by_model[mdl][\\\\\\\"calls\\\\\\\"] += 1\\\\n                by_model[mdl][\\\\\\\"input_tokens\\\\\\\"] += r[\\\\\\\"prompt_tokens\\\\\\\"]\\\\n                by_model[mdl][\\\\\\\"output_tokens\\\\\\\"] += r[\\\\\\\"completion_tokens\\\\\\\"]\\\\n\\\\n            total_cost = 0.0\\\\n            model_costs: dict = {}\\\\n            for mdl, counts in by_model.items():\\\\n                prices = self.pricing.get(mdl, {\\\\\\\"input\\\\\\\": 0.0, \\\\\\\"output\\\\\\\": 0.0})\\\\n                cost = (counts[\\\\\\\"input_tokens\\\\\\\"] / 1_000_000 * prices[\\\\\\\"input\\\\\\\"]\\\\n                        + counts[\\\\\\\"output_tokens\\\\\\\"] / 1_000_000 * prices[\\\\\\\"output\\\\\\\"])\\\\n                model_costs[mdl] = round(cost, 6)\\\\n                total_cost += cost\\\\n\\\\n            return {\\\\n                \\\\\\\"total_calls\\\\\\\": len(self._records),\\\\n                \\\\\\\"total_input_tokens\\\\\\\": self._total_input_tokens,\\\\n                \\\\\\\"total_output_tokens\\\\\\\": self._total_output_tokens,\\\\n                \\\\\\\"total_tokens\\\\\\\": self._total_input_tokens + self._total_output_tokens,\\\\n                \\\\\\\"estimated_cost_usd\\\\\\\": round(total_cost, 6),\\\\n                \\\\\\\"by_module\\\\\\\": by_module,\\\\n                \\\\\\\"by_model\\\\\\\": {\\\\n                    mdl: {**counts, \\\\\\\"estimated_cost_usd\\\\\\\": model_costs.get(mdl, 0)}\\\\n                    for mdl, counts in by_model.items()\\\\n                },\\\\n            }\\\\n\\\\n\\\\n_global_tracker = CostTracker()\\\\n\\\\n\\\\ndef get_tracker() -> CostTracker:\\\\n    return _global_tracker\\\\n\\\\n\\\\ndef reset_tracker():\\\\n    global _global_tracker\\\\n    _global_tracker = CostTracker()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"API cost tracker — 记录所有 LLM API 调用的 token 使用量和费用估算。\\\"\\\"\\\"\\n\\nimport logging\\nfrom dataclasses import dataclass, field\\nfrom threading import Lock\\n\\nlogger = logging.getLogger(__name__)\\n\\nDEFAULT_PRICING = {\\n    \\\"deepseek-chat\\\": {\\\"input\\\": 0.14, \\\"output\\\": 0.28},\\n    \\\"deepseek-reasoner\\\": {\\\"input\\\": 0.55, \\\"output\\\": 2.19},\\n}\\n\\n\\n@dataclass\\nclass CostTracker:\\n    \\\"\\\"\\\"Thread-safe API cost tracker.\\\"\\\"\\\"\\n\\n    pricing: dict = field(default_factory=lambda: dict(DEFAULT_PRICING))\\n    _records: list = field(default_factory=list, repr=False)\\n    _lock: Lock = field(default_factory=Lock, repr=False)\\n    _total_input_tokens: int = 0\\n    _total_output_tokens: int = 0\\n\\n    def record(self, model: str, prompt_tokens: int, completion_tokens: int, module: str = \\\"\\\"):\\n        with self._lock:\\n            self._total_input_tokens += prompt_tokens\\n            self._total_output_tokens += completion_tokens\\n            self._records.append({\\n                \\\"model\\\": model,\\n                \\\"prompt_tokens\\\": prompt_tokens,\\n                \\\"completion_tokens\\\": completion_tokens,\\n                \\\"total_tokens\\\": prompt_tokens + completion_tokens,\\n                \\\"module\\\": module,\\n            })\\n        logger.debug(\\\"API call [%s/%s]: %d+%d tokens\\\", module, model, prompt_tokens, completion_tokens)\\n\\n    def summary(self) -> dict:\\n        with self._lock:\\n            by_module: dict = {}\\n            by_model: dict = {}\\n            for r in self._records:\\n                mod = r[\\\"module\\\"] or \\\"unknown\\\"\\n                if mod not in by_module:\\n                    by_module[mod] = {\\\"calls\\\": 0, \\\"input_tokens\\\": 0, \\\"output_tokens\\\": 0}\\n                by_module[mod][\\\"calls\\\"] += 1\\n                by_module[mod][\\\"input_tokens\\\"] += r[\\\"prompt_tokens\\\"]\\n                by_module[mod][\\\"output_tokens\\\"] += r[\\\"completion_tokens\\\"]\\n\\n                mdl = r[\\\"model\\\"]\\n                if mdl not in by_model:\\n                    by_model[mdl] = {\\\"calls\\\": 0, \\\"input_tokens\\\": 0, \\\"output_tokens\\\": 0}\\n                by_model[mdl][\\\"calls\\\"] += 1\\n                by_model[mdl][\\\"input_tokens\\\"] += r[\\\"prompt_tokens\\\"]\\n                by_model[mdl][\\\"output_tokens\\\"] += r[\\\"completion_tokens\\\"]\\n\\n            total_cost = 0.0\\n            model_costs: dict = {}\\n            for mdl, counts in by_model.items():\\n                prices = self.pricing.get(mdl, {\\\"input\\\": 0.0, \\\"output\\\": 0.0})\\n                cost = (counts[\\\"input_tokens\\\"] / 1_000_000 * prices[\\\"input\\\"]\\n                        + counts[\\\"output_tokens\\\"] / 1_000_000 * prices[\\\"output\\\"])\\n                model_costs[mdl] = round(cost, 6)\\n                total_cost += cost\\n\\n            return {\\n                \\\"total_calls\\\": len(self._records),\\n                \\\"total_input_tokens\\\": self._total_input_tokens,\\n                \\\"total_output_tokens\\\": self._total_output_tokens,\\n                \\\"total_tokens\\\": self._total_input_tokens + self._total_output_tokens,\\n                \\\"estimated_cost_usd\\\": round(total_cost, 6),\\n                \\\"by_module\\\": by_module,\\n                \\\"by_model\\\": {\\n                    mdl: {**counts, \\\"estimated_cost_usd\\\": model_costs.get(mdl, 0)}\\n                    for mdl, counts in by_model.items()\\n                },\\n            }\\n\\n\\n_global_tracker = CostTracker()\\n\\n\\ndef get_tracker() -> CostTracker:\\n    return _global_tracker\\n\\n\\ndef reset_tracker():\\n    global _global_tracker\\n    _global_tracker = CostTracker()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PP1DaBWB1ytGWAQRS5gGZB`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/svs_pipeline/svs_pipeline/data/loader.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "b38d99ba-baa7-4ac9-8d87-b81ecde2020d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016scanQyEADzj6zkCjxtp6u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5779,
+      "cache_read_input_tokens": 24179,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5779
+      },
+      "output_tokens": 16,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T07:53:17.426Z_
+
+<details><summary>↩ Tool result · `toolu_01PP1DaBWB1ytGWAQRS5gGZB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"ProofWriter / FOLIO data loader for the SVS pipeline.\\\"\\\"\\\"\\n\\nimport json\\nimport logging\\nimport random\\nfrom pathlib import Path\\n\\nfrom ..types import Problem\\n\\nlogger = logging.getLogger(__name__)\\n\\n_CACHE_DIR = Path(__file__).parent\\n\\n\\ndef _parse_proofwriter_premises(context: str) -> list[str]:\\n    sentences = [s.strip() for s in context.split(\\\".\\\") if s.strip()]\\n    return [s + \\\".\\\" for s in sentences]\\n\\n\\ndef load_proofwriter(\\n    subset: str = \\\"depth-5\\\",\\n    num_problems: int = 50,\\n    seed: int = 42,\\n) -> list[Problem]:\\n    problems = _load_proofwriter_hf(subset)\\n    if problems is None:\\n        problems = _load_proofwriter_cache()\\n\\n    if not problems:\\n        raise RuntimeError(\\\"Failed to load ProofWriter data from both HF and local cache\\\")\\n\\n    rng = random.Random(seed)\\n    if len(problems) > num_problems:\\n        problems = rng.sample(problems, num_problems)\\n\\n    logger.info(\\\"Loaded %d ProofWriter %s problems\\\", len(problems), subset)\\n    return problems\\n\\n\\ndef _load_proofwriter_hf(subset: str) -> list[Problem] | None:\\n    try:\\n        from datasets import load_dataset\\n\\n        ds = load_dataset(\\\"tasksource/proofwriter\\\", split=\\\"test\\\")\\n        ds = ds.filter(lambda x: x[\\\"config\\\"] == subset)\\n\\n        problems = []\\n        for i, row in enumerate(ds):\\n            label = _normalize_label(row.get(\\\"answer\\\", \\\"\\\"))\\n            if label is None:\\n                continue\\n\\n            context = row.get(\\\"theory\\\", \\\"\\\")\\n            hypothesis = row.get(\\\"question\\\", \\\"\\\")\\n\\n            problems.append(Problem(\\n                id=f\\\"pw_{row.get('id', i)}\\\",\\n                premises=_parse_proofwriter_premises(context),\\n                hypothesis=hypothesis,\\n                label=label,\\n                dataset=\\\"proofwriter\\\",\\n                raw=dict(row),\\n            ))\\n\\n        logger.info(\\\"Loaded %d problems from HuggingFace (subset=%s)\\\", len(problems), subset)\\n        return problems if problems else None\\n\\n    except Exception as e:\\n        logger.warning(\\\"HuggingFace load failed: %s. Falling back to local cache.\\\", e)\\n        return None\\n\\n\\ndef _load_proofwriter_cache() -> list[Problem] | None:\\n    cache_path = _CACHE_DIR / \\\"proofwriter_cache.json\\\"\\n    if not cache_path.exists():\\n        logger.warning(\\\"Local cache not found at %s\\\", cache_path)\\n        return None\\n\\n    with open(cache_path) as f:\\n        data = json.load(f)\\n\\n    problems = []\\n    for i, row in enumerate(data):\\n        label = _normalize_label(row.get(\\\"answer\\\", row.get(\\\"label\\\", \\\"\\\")))\\n        if label is None:\\n            continue\\n\\n        context = row.get(\\\"theory\\\", row.get(\\\"context\\\", row.get(\\\"premises\\\", \\\"\\\")))\\n        hypothesis = row.get(\\\"hypothesis\\\", row.get(\\\"question\\\", \\\"\\\"))\\n\\n        if isinstance(context, list):\\n            premises = context\\n        else:\\n            premises = _parse_proofwriter_premises(context)\\n\\n        problems.append(Problem(\\n            id=f\\\"pw_{i}\\\",\\n            premises=premises,\\n            hypothesis=hypothesis,\\n            label=label,\\n            dataset=\\\"proofwriter\\\",\\n            raw=row,\\n        ))\\n\\n    logger.info(\\\"Loaded %d problems from local cache\\\", len(problems))\\n    return problems\\n\\n\\ndef load_folio(\\n    num_problems: int = 50,\\n    seed: int = 42,\\n) -> list[Problem]:\\n    problems = _load_folio_hf()\\n    if not problems:\\n        raise RuntimeError(\\\"Failed to load FOLIO data\\\")\\n\\n    rng = random.Random(seed)\\n    if len(problems) > num_problems:\\n        problems = rng.sample(problems, num_problems)\\n\\n    logger.info(\\\"Loaded %d FOLIO problems\\\", len(problems))\\n    return problems\\n\\n\\ndef _load_folio_hf() -> list[Problem] | None:\\n    try:\\n        from datasets import load_dataset\\n        ds = load_dataset(\\\"yale-nlp/FOLIO\\\")\\n        split = ds.get(\\\"validation\\\") or ds.get(\\\"test\\\") or ds[list(ds.keys())[0]]\\n\\n        problems = []\\n        for i, row in enumerate(split):\\n            label = _normalize_label(row.get(\\\"label\\\", \\\"\\\"))\\n            if label is None:\\n                continue\\n            premises_raw = row.get(\\\"premises\\\", row.get(\\\"context\\\", \\\"\\\"))\\n            if isinstance(premises_raw, list):\\n                premises = premises_raw\\n            else:\\n                premises = _parse_proofwriter_premises(premises_raw)\\n            hypothesis = row.get(\\\"conclusion\\\", row.get(\\\"hypothesis\\\", \\\"\\\"))\\n            problems.append(Problem(\\n                id=f\\\"folio_{i}\\\",\\n                premises=premises,\\n                hypothesis=hypothesis,\\n                label=label,\\n                dataset=\\\"folio\\\",\\n                raw=dict(row),\\n            ))\\n        return problems if problems else None\\n    except Exception as e:\\n        logger.warning(\\\"HuggingFace FOLIO load failed: %s\\\", e)\\n        return None\\n\\n\\ndef load_problems(\\n    dataset: str,\\n    subset: str = \\\"\\\",\\n    num_problems: int = 50,\\n    seed: int = 42,\\n) -> list[Problem]:\\n    dataset = dataset.lower().strip()\\n    if dataset == \\\"proofwriter\\\":\\n        return load_proofwriter(subset=subset or \\\"depth-5\\\", num_problems=num_problems, seed=seed)\\n    elif dataset == \\\"folio\\\":\\n        return load_folio(num_problems=num_problems, seed=seed)\\n    else:\\n        raise ValueError(f\\\"Unknown dataset: {dataset}. Supported: proofwriter, folio\\\")\\n\\n\\ndef _normalize_label(raw) -> str | None:\\n    if isinstance(raw, bool):\\n        return \\\"True\\\" if raw else \\\"False\\\"\\n    s = str(raw).strip().lower()\\n    mapping = {\\n        \\\"true\\\": \\\"True\\\",\\n        \\\"proved\\\": \\\"True\\\",\\n        \\\"entailment\\\": \\\"True\\\",\\n        \\\"false\\\": \\\"False\\\",\\n        \\\"disproved\\\": \\\"False\\\",\\n        \\\"contradiction\\\": \\\"False\\\",\\n        \\\"unknown\\\": \\\"Unknown\\\",\\n        \\\"uncertain\\\": \\\"Unknown\\\",\\n        \\\"neutral\\\": \\\"Unknown\\\",\\n    }\\n    return mapping.get(s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "c8d42524-f1e6-440c-88c1-4dbd0f743def",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"ProofWriter / FOLIO data loader for the SVS pipeline.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport logging\\\\nimport random\\\\nfrom pathlib import Path\\\\n\\\\nfrom ..types import Problem\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n_CACHE_DIR = Path(__file__).parent\\\\n\\\\n\\\\ndef _parse_proofwriter_premises(context: str) -> list[str]:\\\\n    sentences = [s.strip() for s in context.split(\\\\\\\".\\\\\\\") if s.strip()]\\\\n    return [s + \\\\\\\".\\\\\\\" for s in sentences]\\\\n\\\\n\\\\ndef load_proofwriter(\\\\n    subset: str = \\\\\\\"depth-5\\\\\\\",\\\\n    num_problems: int = 50,\\\\n    seed: int = 42,\\\\n) -> list[Problem]:\\\\n    problems = _load_proofwriter_hf(subset)\\\\n    if problems is None:\\\\n        problems = _load_proofwriter_cache()\\\\n\\\\n    if not problems:\\\\n        raise RuntimeError(\\\\\\\"Failed to load ProofWriter data from both HF and local cache\\\\\\\")\\\\n\\\\n    rng = random.Random(seed)\\\\n    if len(problems) > num_problems:\\\\n        problems = rng.sample(problems, num_problems)\\\\n\\\\n    logger.info(\\\\\\\"Loaded %d ProofWriter %s problems\\\\\\\", len(problems), subset)\\\\n    return problems\\\\n\\\\n\\\\ndef _load_proofwriter_hf(subset: str) -> list[Problem] | None:\\\\n    try:\\\\n        from datasets import load_dataset\\\\n\\\\n        ds = load_dataset(\\\\\\\"tasksource/proofwriter\\\\\\\", split=\\\\\\\"test\\\\\\\")\\\\n        ds = ds.filter(lambda x: x[\\\\\\\"config\\\\\\\"] == subset)\\\\n\\\\n        problems = []\\\\n        for i, row in enumerate(ds):\\\\n            label = _normalize_label(row.get(\\\\\\\"answer\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n            if label is None:\\\\n                continue\\\\n\\\\n            context = row.get(\\\\\\\"theory\\\\\\\", \\\\\\\"\\\\\\\")\\\\n            hypothesis = row.get(\\\\\\\"question\\\\\\\", \\\\\\\"\\\\\\\")\\\\n\\\\n            problems.append(Problem(\\\\n                id=f\\\\\\\"pw_{row.get('id', i)}\\\\\\\",\\\\n                premises=_parse_proofwriter_premises(context),\\\\n                hypothesis=hypothesis,\\\\n                label=label,\\\\n                dataset=\\\\\\\"proofwriter\\\\\\\",\\\\n                raw=dict(row),\\\\n            ))\\\\n\\\\n        logger.info(\\\\\\\"Loaded %d problems from HuggingFace (subset=%s)\\\\\\\", len(problems), subset)\\\\n        return problems if problems else None\\\\n\\\\n    except Exception as e:\\\\n        logger.warning(\\\\\\\"HuggingFace load failed: %s. Falling back to local cache.\\\\\\\", e)\\\\n        return None\\\\n\\\\n\\\\ndef _load_proofwriter_cache() -> list[Problem] | None:\\\\n    cache_path = _CACHE_DIR / \\\\\\\"proofwriter_cache.json\\\\\\\"\\\\n    if not cache_path.exists():\\\\n        logger.warning(\\\\\\\"Local cache not found at %s\\\\\\\", cache_path)\\\\n        return None\\\\n\\\\n    with open(cache_path) as f:\\\\n        data = json.load(f)\\\\n\\\\n    problems = []\\\\n    for i, row in enumerate(data):\\\\n        label = _normalize_label(row.get(\\\\\\\"answer\\\\\\\", row.get(\\\\\\\"label\\\\\\\", \\\\\\\"\\\\\\\")))\\\\n        if label is None:\\\\n            continue\\\\n\\\\n        context = row.get(\\\\\\\"theory\\\\\\\", row.get(\\\\\\\"context\\\\\\\", row.get(\\\\\\\"premises\\\\\\\", \\\\\\\"\\\\\\\")))\\\\n        hypothesis = row.get(\\\\\\\"hypothesis\\\\\\\", row.get(\\\\\\\"question\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n\\\\n        if isinstance(context, list):\\\\n            premises = context\\\\n        else:\\\\n            premises = _parse_proofwriter_premises(context)\\\\n\\\\n        problems.append(Problem(\\\\n            id=f\\\\\\\"pw_{i}\\\\\\\",\\\\n            premises=premises,\\\\n            hypothesis=hypothesis,\\\\n            label=label,\\\\n            dataset=\\\\\\\"proofwriter\\\\\\\",\\\\n            raw=row,\\\\n        ))\\\\n\\\\n    logger.info(\\\\\\\"Loaded %d problems from local cache\\\\\\\", len(problems))\\\\n    return problems\\\\n\\\\n\\\\ndef load_folio(\\\\n    num_problems: int = 50,\\\\n    seed: int = 42,\\\\n) -> list[Problem]:\\\\n    problems = _load_folio_hf()\\\\n    if not problems:\\\\n        raise RuntimeError(\\\\\\\"Failed to load FOLIO data\\\\\\\")\\\\n\\\\n    rng = random.Random(seed)\\\\n    if len(problems) > num_problems:\\\\n        problems = rng.sample(problems, num_problems)\\\\n\\\\n    logger.info(\\\\\\\"Loaded %d FOLIO problems\\\\\\\", len(problems))\\\\n    return problems\\\\n\\\\n\\\\ndef _load_folio_hf() -> list[Problem] | None:\\\\n    try:\\\\n        from datasets import load_dataset\\\\n        ds = load_dataset(\\\\\\\"yale-nlp/FOLIO\\\\\\\")\\\\n        split = ds.get(\\\\\\\"validation\\\\\\\") or ds.get(\\\\\\\"test\\\\\\\") or ds[list(ds.keys())[0]]\\\\n\\\\n        problems = []\\\\n        for i, row in enumerate(split):\\\\n            label = _normalize_label(row.get(\\\\\\\"label\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n            if label is None:\\\\n                continue\\\\n            premises_raw = row.get(\\\\\\\"premises\\\\\\\", row.get(\\\\\\\"context\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n            if isinstance(premises_raw, list):\\\\n                premises = premises_raw\\\\n            else:\\\\n                premises = _parse_proofwriter_premises(premises_raw)\\\\n            hypothesis = row.get(\\\\\\\"conclusion\\\\\\\", row.get(\\\\\\\"hypothesis\\\\\\\", \\\\\\\"\\\\\\\"))\\\\n            problems.append(Problem(\\\\n                id=f\\\\\\\"folio_{i}\\\\\\\",\\\\n                premises=premises,\\\\n                hypothesis=hypothesis,\\\\n                label=label,\\\\n                dataset=\\\\\\\"folio\\\\\\\",\\\\n                raw=dict(row),\\\\n            ))\\\\n        return problems if problems else None\\\\n    except Exception as e:\\\\n        logger.warning(\\\\\\\"HuggingFace FOLIO load failed: %s\\\\\\\", e)\\\\n        return None\\\\n\\\\n\\\\ndef load_problems(\\\\n    dataset: str,\\\\n    subset: str = \\\\\\\"\\\\\\\",\\\\n    num_problems: int = 50,\\\\n    seed: int = 42,\\\\n) -> list[Problem]:\\\\n    dataset = dataset.lower().strip()\\\\n    if dataset == \\\\\\\"proofwriter\\\\\\\":\\\\n        return load_proofwriter(subset=subset or \\\\\\\"depth-5\\\\\\\", num_problems=num_problems, seed=seed)\\\\n    elif dataset == \\\\\\\"folio\\\\\\\":\\\\n        return load_folio(num_problems=num_problems, seed=seed)\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown dataset: {dataset}. Supported: proofwriter, folio\\\\\\\")\\\\n\\\\n\\\\ndef _normalize_label(raw) -> str | None:\\\\n    if isinstance(raw, bool):\\\\n        return \\\\\\\"True\\\\\\\" if raw else \\\\\\\"False\\\\\\\"\\\\n    s = str(raw).strip().lower()\\\\n    mapping = {\\\\n        \\\\\\\"true\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"proved\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"entailment\\\\\\\": \\\\\\\"True\\\\\\\",\\\\n        \\\\\\\"false\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"disproved\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"contradiction\\\\\\\": \\\\\\\"False\\\\\\\",\\\\n        \\\\\\\"unknown\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"uncertain\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n        \\\\\\\"neutral\\\\\\\": \\\\\\\"Unknown\\\\\\\",\\\\n    }\\\\n    return mapping.get(s)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"ProofWriter / FOLIO data loader for the SVS pipeline.\\\"\\\"\\\"\\n\\nimport json\\nimport logging\\nimport random\\nfrom pathlib import Path\\n\\nfrom ..types import Problem\\n\\nlogger = logging.getLogger(__name__)\\n\\n_CACHE_DIR = Path(__file__).parent\\n\\n\\ndef _parse_proofwriter_premises(context: str) -> list[str]:\\n    sentences = [s.strip() for s in context.split(\\\".\\\") if s.strip()]\\n    return [s + \\\".\\\" for s in sentences]\\n\\n\\ndef load_proofwriter(\\n    subset: str = \\\"depth-5\\\",\\n    num_problems: int = 50,\\n    seed: int = 42,\\n) -> list[Problem]:\\n    problems = _load_proofwriter_hf(subset)\\n    if problems is None:\\n        problems = _load_proofwriter_cache()\\n\\n    if not problems:\\n        raise RuntimeError(\\\"Failed to load ProofWriter data from both HF and local cache\\\")\\n\\n    rng = random.Random(seed)\\n    if len(problems) > num_problems:\\n        problems = rng.sample(problems, num_problems)\\n\\n    logger.info(\\\"Loaded %d ProofWriter %s problems\\\", len(problems), subset)\\n    return problems\\n\\n\\ndef _load_proofwriter_hf(subset: str) -> list[Problem] | None:\\n    try:\\n        from datasets import load_dataset\\n\\n        ds = load_dataset(\\\"tasksource/proofwriter\\\", split=\\\"test\\\")\\n        ds = ds.filter(lambda x: x[\\\"config\\\"] == subset)\\n\\n        problems = []\\n        for i, row in enumerate(ds):\\n            label = _normalize_label(row.get(\\\"answer\\\", \\\"\\\"))\\n            if label is None:\\n                continue\\n\\n            context = row.get(\\\"theory\\\", \\\"\\\")\\n            hypothesis = row.get(\\\"question\\\", \\\"\\\")\\n\\n            problems.append(Problem(\\n                id=f\\\"pw_{row.get('id', i)}\\\",\\n                premises=_parse_proofwriter_premises(context),\\n                hypothesis=hypothesis,\\n                label=label,\\n                dataset=\\\"proofwriter\\\",\\n                raw=dict(row),\\n            ))\\n\\n        logger.info(\\\"Loaded %d problems from HuggingFace (subset=%s)\\\", len(problems), subset)\\n        return problems if problems else None\\n\\n    except Exception as e:\\n        logger.warning(\\\"HuggingFace load failed: %s. Falling back to local cache.\\\", e)\\n        return None\\n\\n\\ndef _load_proofwriter_cache() -> list[Problem] | None:\\n    cache_path = _CACHE_DIR / \\\"proofwriter_cache.json\\\"\\n    if not cache_path.exists():\\n        logger.warning(\\\"Local cache not found at %s\\\", cache_path)\\n        return None\\n\\n    with open(cache_path) as f:\\n        data = json.load(f)\\n\\n    problems = []\\n    for i, row in enumerate(data):\\n        label = _normalize_label(row.get(\\\"answer\\\", row.get(\\\"label\\\", \\\"\\\")))\\n        if label is None:\\n            continue\\n\\n        context = row.get(\\\"theory\\\", row.get(\\\"context\\\", row.get(\\\"premises\\\", \\\"\\\")))\\n        hypothesis = row.get(\\\"hypothesis\\\", row.get(\\\"question\\\", \\\"\\\"))\\n\\n        if isinstance(context, list):\\n            premises = context\\n        else:\\n            premises = _parse_proofwriter_premises(context)\\n\\n        problems.append(Problem(\\n            id=f\\\"pw_{i}\\\",\\n            premises=premises,\\n            hypothesis=hypothesis,\\n            label=label,\\n            dataset=\\\"proofwriter\\\",\\n            raw=row,\\n        ))\\n\\n    logger.info(\\\"Loaded %d problems from local cache\\\", len(problems))\\n    return problems\\n\\n\\ndef load_folio(\\n    num_problems: int = 50,\\n    seed: int = 42,\\n) -> list[Problem]:\\n    problems = _load_folio_hf()\\n    if not problems:\\n        raise RuntimeError(\\\"Failed to load FOLIO data\\\")\\n\\n    rng = random.Random(seed)\\n    if len(problems) > num_problems:\\n        problems = rng.sample(problems, num_problems)\\n\\n    logger.info(\\\"Loaded %d FOLIO problems\\\", len(problems))\\n    return problems\\n\\n\\ndef _load_folio_hf() -> list[Problem] | None:\\n    try:\\n        from datasets import load_dataset\\n        ds = load_dataset(\\\"yale-nlp/FOLIO\\\")\\n        split = ds.get(\\\"validation\\\") or ds.get(\\\"test\\\") or ds[list(ds.keys())[0]]\\n\\n        problems = []\\n        for i, row in enumerate(split):\\n            label = _normalize_label(row.get(\\\"label\\\", \\\"\\\"))\\n            if label is None:\\n                continue\\n            premises_raw = row.get(\\\"premises\\\", row.get(\\\"context\\\", \\\"\\\"))\\n            if isinstance(premises_raw, list):\\n                premises = premises_raw\\n            else:\\n                premises = _parse_proofwriter_premises(premises_raw)\\n            hypothesis = row.get(\\\"conclusion\\\", row.get(\\\"hypothesis\\\", \\\"\\\"))\\n            problems.append(Problem(\\n                id=f\\\"folio_{i}\\\",\\n                premises=premises,\\n                hypothesis=hypothesis,\\n                label=label,\\n                dataset=\\\"folio\\\",\\n                raw=dict(row),\\n            ))\\n        return problems if problems else None\\n    except Exception as e:\\n        logger.warning(\\\"HuggingFace FOLIO load failed: %s\\\", e)\\n        return None\\n\\n\\ndef load_problems(\\n    dataset: str,\\n    subset: str = \\\"\\\",\\n    num_problems: int = 50,\\n    seed: int = 42,\\n) -> list[Problem]:\\n    dataset = dataset.lower().strip()\\n    if dataset == \\\"proofwriter\\\":\\n        return load_proofwriter(subset=subset or \\\"depth-5\\\", num_problems=num_problems, seed=seed)\\n    elif dataset == \\\"folio\\\":\\n        return load_folio(num_problems=num_problems, seed=seed)\\n    else:\\n        raise ValueError(f\\\"Unknown dataset: {dataset}. Supported: proofwriter, folio\\\")\\n\\n\\ndef _normalize_label(raw) -> str | None:\\n    if isinstance(raw, bool):\\n        return \\\"True\\\" if raw else \\\"False\\\"\\n    s = str(raw).strip().lower()\\n    mapping = {\\n        \\\"true\\\": \\\"True\\\",\\n        \\\"proved\\\": \\\"True\\\",\\n        \\\"entailment\\\": \\\"True\\\",\\n        \\\"false\\\": \\\"False\\\",\\n        \\\"disproved\\\": \\\"False\\\",\\n        \\\"contradiction\\\": \\\"False\\\",\\n        \\\"unknown\\\": \\\"Unknown\\\",\\n        \\\"uncertain\\\": \\\"Unknown\\\",\\n        \\\"neutral\\\": \\\"Unknown\\\",\\n    }\\n    return mapping.get(s)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Xre77hLttJvRsWaC8AWHTn`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/autodl-tmp/data/folio/ -type f -name \"*.jsonl\" -o -name \"*.json\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "12b6809b-c122-47bc-ae79-4179e8665aac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016scanQyEADzj6zkCjxtp6u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5779,
+      "cache_read_input_tokens": 24179,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5779
+      },
+      "output_tokens": 16,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T07:53:18.335Z_
+
+<details><summary>↩ Tool result · `toolu_01Xre77hLttJvRsWaC8AWHTn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/data/folio/folio-train.jsonl\\n/root/autodl-tmp/data/folio/folio-validation.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "9fb64d8b-4e50-4b13-afc3-81c0390b019d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/data/folio/folio-train.jsonl\\\\n/root/autodl-tmp/data/folio/folio-validation.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/data/folio/folio-train.jsonl\\n/root/autodl-tmp/data/folio/folio-validation.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01TUwdPuJ2bj5vvaarx5c2Gp`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/svs_formal_verification/artifacts/svs_pipeline/data/__init__.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "ed751d34-b89b-4ba8-8b90-9c7df6bed092",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016scanQyEADzj6zkCjxtp6u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 5779,
+      "cache_read_input_tokens": 24179,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5779
+      },
+      "output_tokens": 16,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T07:53:19.422Z_
+
+<details><summary>↩ Tool result · `toolu_01TUwdPuJ2bj5vvaarx5c2Gp`</summary>
+
+```text
+1	from .loader import load_proofwriter, load_folio, load_problems
+2	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "6f925851-20ec-4b8c-90bb-0bf00015e291",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/svs_formal_verification/artifacts/svs_pipeline/data/__init__.py",
+      "content": "from .loader import load_proofwriter, load_folio, load_problems\n",
+      "numLines": 2,
+      "startLine": 1,
+      "totalLines": 2
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture:
+
+**Part A - cost_tracker.py:**
+- Remote version is OLD: only has `deepseek-chat` and `deepseek-reasoner` in DEFAULT_PRICING, missing `deepseek/deepseek-v3.2`, `deepseek/deepseek-v4-pro`, and `LOCAL_GPU_COST_PER_HOUR`
+- Need to deploy the local version to remote
+
+**Part B - loader.py:**
+- Remote version already has `load_folio()` and `_normalize_label()` with "uncertain" → "Unknown" mapping
+
+
+- The remote `_load_proofwriter_hf` uses a different HuggingFace dataset than the local version, and `load_folio` lacks a local JSONL fallback even though FOLIO data exists locally at `/root/autodl-tmp/data/folio/`. I should add that fallback and implement the `subset` parameter (train/validation) that the task requires, but the current remote version doesn't have it yet. Looking at the task requirements more carefully, I need to modify the loader to support a `subset` parameter for selecting train/validation splits, and add a fallback to load FOLIO data locally from JSONL files in `/root/autodl-tmp/data/folio/` before attempting to fetch from HuggingFace. The current remote version only loads from HF without any local option, so I'll need to restructure it to check for local files first.
+
+Since the remote loader has a different implementation for proofwriter that might be environment-specific, I should be careful to only update the FOLIO loading function while preserving the proofwriter logic. I'll construct an updated version that adds the subset parameter and local JSONL fallback while keeping the rest of the remote implementation intact. I'm thinking through the fallback logic for loading FOLIO data—first trying the Hugging Face version, then falling back to a local JSONL file, and finally checking a cache if both fail. Rather than trying to surgically update just parts of the remote file, I'll construct the complete updated loader.py and push it all at once via SSH. I'm deciding between using heredoc syntax with proper escaping versus Python scripts to write the remote files. The heredoc approach with single-quoted delimiters is cleanest for avoiding variable expansion issues. I'll deploy both cost_tracker and loader.py directly, focusing on modifying just the FOLIO functions in loader.py rather than touching the proofwriter code that might already be working correctly on the remote side.
+
+Writing the loader.py module... I'm filtering the dataset by the specified subset and then iterating through each row to extract the relevant fields—normalizing the answer label, pulling the theory as context and question as hypothesis, and constructing Problem objects with parsed premises and metadata before logging the count and returning the results, with fallback error handling if the HuggingFace load fails.
+
+Now I'm implementing a fallback function that loads problems from a local cache file instead, checking if the cache exists and then parsing the JSON data similarly, but with more flexible field mapping to handle different key names for the same data. Continuing to parse the FOLIO dataset, I'm extracting the label and premises from each row, handling cases where premises might be a string that needs parsing, then creating Problem objects with the appropriate metadata. After loading all problems, I'm sampling down to the requested number if needed and logging the final count. I'm finishing up the Problem object creation and then handling the exception case, then moving on to implement a local file loading function that searches for FOLIO data in different filename patterns and parses each line as JSON to extract the same fields. Continuing with the load_problems function to route between datasets, then I'm defining a helper that normalizes label values by converting various string representations into standardized True/False/Unknown outputs. I should also make sure the subset parameter gets properly passed through to both loader functions.
+
+Now I need to update the local version to match what I'm deploying remotely. The key changes are adding the subset parameter to load_folio, implementing the local loading function, updating the remote loader to accept subset, and making sure load_problems passes subset correctly for folio. I'll write both files to the remote server using Python to avoid issues with heredocs and multi-line code.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "781791bd-a524-4700-9fb7-2eb42fd512ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HGs7fEPCivqbtUf6PXTSK3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4461,
+      "cache_read_input_tokens": 29958,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4461
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+远程对比结果：
+- **cost_tracker.py**：远程版本缺少 `deepseek/deepseek-v3.2`、`deepseek/deepseek-v4-pro` 和 `LOCAL_GPU_COST_PER_HOUR`，需要更新
+- **loader.py**：远程版本有 `load_folio()` 但缺少 `subset` 参数和本地 JSONL 回退。FOLIO 数据文件已存在（`folio-train.jsonl`, `folio-validation.jsonl`）
+
+部署两个文件到远程。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "9e275d3e-df3e-49ae-bb8f-9f078174d303",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HGs7fEPCivqbtUf6PXTSK3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4461,
+      "cache_read_input_tokens": 29958,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4461
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Km8QxH8KzLsA7sqsJwftLW`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat << 'PYEOF' > /root/svs_pipeline/svs_pipeline/cost_tracker.py\n\"\"\"API cost tracker — 记录所有 LLM API 调用的 token 使用量和费用估算。\"\"\"\n\nimport logging\nfrom dataclasses import dataclass, field\nfrom threading import Lock\n\nlogger = logging.getLogger(__name__)\n\nDEFAULT_PRICING = {\n    \"deepseek-chat\": {\"input\": 0.14, \"output\": 0.28},\n    \"deepseek-reasoner\": {\"input\": 0.55, \"output\": 2.19},\n    \"deepseek/deepseek-v3.2\": {\"input\": 0.27, \"output\": 1.10},\n    \"deepseek/deepseek-v4-pro\": {\"input\": 0.80, \"output\": 3.20},\n}\n\n# Local vLLM: no per-token API cost, tracked as GPU-hours instead.\n# RTX 5090 ~$1.50/h/card. TP=2 = $3.00/h total.\nLOCAL_GPU_COST_PER_HOUR = 3.0\n\n\n@dataclass\nclass CostTracker:\n    \"\"\"Thread-safe API cost tracker.\"\"\"\n\n    pricing: dict = field(default_factory=lambda: dict(DEFAULT_PRICING))\n    _records: list = field(default_factory=list, repr=False)\n    _lock: Lock = field(default_factory=Lock, repr=False)\n    _total_input_tokens: int = 0\n    _total_output_tokens: int = 0\n\n    def record(self, model: str, prompt_tokens: int, completion_tokens: int, module: str = \"\"):\n        with self._lock:\n            self._total_input_tokens += prompt_tokens\n            self._total_output_tokens += completion_tokens\n            self._records.append({\n                \"model\": model,\n                \"prompt_tokens\": prompt_tokens,\n                \"completion_tokens\": completion_tokens,\n                \"total_tokens\": prompt_tokens + completion_tokens,\n                \"module\": module,\n            })\n        logger.debug(\"API call [%s/%s]: %d+%d tokens\", module, model, prompt_tokens, completion_tokens)\n\n    def summary(self) -> dict:\n        with self._lock:\n            by_module: dict = {}\n            by_model: dict = {}\n            for r in self._records:\n                mod = r[\"module\"] or \"unknown\"\n                if mod not in by_module:\n                    by_module[mod] = {\"calls\": 0, \"input_tokens\": 0, \"output_tokens\": 0}\n                by_module[mod][\"calls\"] += 1\n                by_module[mod][\"input_tokens\"] += r[\"prompt_tokens\"]\n                by_module[mod][\"output_tokens\"] += r[\"completion_tokens\"]\n\n                mdl = r[\"model\"]\n                if mdl not in by_model:\n                    by_model[mdl] = {\"calls\": 0, \"input_tokens\": 0, \"output_tokens\": 0}\n                by_model[mdl][\"calls\"] += 1\n                by_model[mdl][\"input_tokens\"] += r[\"prompt_tokens\"]\n                by_model[mdl][\"output_tokens\"] += r[\"completion_tokens\"]\n\n            total_cost = 0.0\n            model_costs: dict = {}\n            for mdl, counts in by_model.items():\n                prices = self.pricing.get(mdl, {\"input\": 0.0, \"output\": 0.0})\n                cost = (counts[\"input_tokens\"] / 1_000_000 * prices[\"input\"]\n                        + counts[\"output_tokens\"] / 1_000_000 * prices[\"output\"])\n                model_costs[mdl] = round(cost, 6)\n                total_cost += cost\n\n            return {\n                \"total_calls\": len(self._records),\n                \"total_input_tokens\": self._total_input_tokens,\n                \"total_output_tokens\": self._total_output_tokens,\n                \"total_tokens\": self._total_input_tokens + self._total_output_tokens,\n                \"estimated_cost_usd\": round(total_cost, 6),\n                \"by_module\": by_module,\n                \"by_model\": {\n                    mdl: {**counts, \"estimated_cost_usd\": model_costs.get(mdl, 0)}\n                    for mdl, counts in by_model.items()\n                },\n            }\n\n\n_global_tracker = CostTracker()\n\n\ndef get_tracker() -> CostTracker:\n    return _global_tracker\n\n\ndef reset_tracker():\n    global _global_tracker\n    _global_tracker = CostTracker()\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "3e3f3fb3-311d-454a-ae49-55b489d128a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HGs7fEPCivqbtUf6PXTSK3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4461,
+      "cache_read_input_tokens": 29958,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4461
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T07:54:55.032Z_
+
+<details><summary>↩ Tool result · `toolu_01Km8QxH8KzLsA7sqsJwftLW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "a239a965-1335-45aa-84b6-5b6d23a5917a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01MKh12nMTtGbKiR4MX3UsSC`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat << 'PYEOF' > /root/svs_pipeline/svs_pipeline/data/loader.py\n\"\"\"ProofWriter / FOLIO data loader for the SVS pipeline.\"\"\"\n\nimport json\nimport logging\nimport random\nfrom pathlib import Path\n\nfrom ..types import Problem\n\nlogger = logging.getLogger(__name__)\n\n_CACHE_DIR = Path(__file__).parent\n\n\ndef _parse_proofwriter_premises(context: str) -> list[str]:\n    sentences = [s.strip() for s in context.split(\".\") if s.strip()]\n    return [s + \".\" for s in sentences]\n\n\ndef load_proofwriter(\n    subset: str = \"depth-5\",\n    num_problems: int = 50,\n    seed: int = 42,\n) -> list[Problem]:\n    problems = _load_proofwriter_hf(subset)\n    if problems is None:\n        problems = _load_proofwriter_cache()\n\n    if not problems:\n        raise RuntimeError(\"Failed to load ProofWriter data from both HF and local cache\")\n\n    rng = random.Random(seed)\n    if len(problems) > num_problems:\n        problems = rng.sample(problems, num_problems)\n\n    logger.info(\"Loaded %d ProofWriter %s problems\", len(problems), subset)\n    return problems\n\n\ndef _load_proofwriter_hf(subset: str) -> list[Problem] | None:\n    try:\n        from datasets import load_dataset\n\n        ds = load_dataset(\"tasksource/proofwriter\", split=\"test\")\n        ds = ds.filter(lambda x: x[\"config\"] == subset)\n\n        problems = []\n        for i, row in enumerate(ds):\n            label = _normalize_label(row.get(\"answer\", \"\"))\n            if label is None:\n                continue\n\n            context = row.get(\"theory\", \"\")\n            hypothesis = row.get(\"question\", \"\")\n\n            problems.append(Problem(\n                id=f\"pw_{row.get('id', i)}\",\n                premises=_parse_proofwriter_premises(context),\n                hypothesis=hypothesis,\n                label=label,\n                dataset=\"proofwriter\",\n                raw=dict(row),\n            ))\n\n        logger.info(\"Loaded %d problems from HuggingFace (subset=%s)\", len(problems), subset)\n        return problems if problems else None\n\n    except Exception as e:\n        logger.warning(\"HuggingFace load failed: %s. Falling back to local cache.\", e)\n        return None\n\n\ndef _load_proofwriter_cache() -> list[Problem] | None:\n    cache_path = _CACHE_DIR / \"proofwriter_cache.json\"\n    if not cache_path.exists():\n        logger.warning(\"Local cache not found at %s\", cache_path)\n        return None\n\n    with open(cache_path) as f:\n        data = json.load(f)\n\n    problems = []\n    for i, row in enumerate(data):\n        label = _normalize_label(row.get(\"answer\", row.get(\"label\", \"\")))\n        if label is None:\n            continue\n\n        context = row.get(\"theory\", row.get(\"context\", row.get(\"premises\", \"\")))\n        hypothesis = row.get(\"hypothesis\", row.get(\"question\", \"\"))\n\n        if isinstance(context, list):\n            premises = context\n        else:\n            premises = _parse_proofwriter_premises(context)\n\n        problems.append(Problem(\n            id=f\"pw_{i}\",\n            premises=premises,\n            hypothesis=hypothesis,\n            label=label,\n            dataset=\"proofwriter\",\n            raw=row,\n        ))\n\n    logger.info(\"Loaded %d problems from local cache\", len(problems))\n    return problems\n\n\ndef load_folio(\n    subset: str = \"validation\",\n    num_problems: int = 50,\n    seed: int = 42,\n) -> list[Problem]:\n    problems = _load_folio_hf(subset)\n    if problems is None:\n        problems = _load_folio_local(subset)\n    if problems is None:\n        cache_path = _CACHE_DIR / \"folio_cache.json\"\n        if cache_path.exists():\n            with open(cache_path) as f:\n                data = json.load(f)\n            problems = []\n            for i, row in enumerate(data):\n                label = _normalize_label(row.get(\"label\", \"\"))\n                if label is None:\n                    continue\n                premises = row.get(\"premises\", [])\n                if isinstance(premises, str):\n                    premises = _parse_proofwriter_premises(premises)\n                problems.append(Problem(\n                    id=f\"folio_{subset}_{i}\",\n                    premises=premises,\n                    hypothesis=row.get(\"conclusion\", row.get(\"hypothesis\", \"\")),\n                    label=label,\n                    dataset=\"folio\",\n                    raw=row,\n                ))\n\n    if not problems:\n        raise RuntimeError(\"Failed to load FOLIO data from HF, local JSONL, and cache\")\n\n    rng = random.Random(seed)\n    if len(problems) > num_problems:\n        problems = rng.sample(problems, num_problems)\n\n    logger.info(\"Loaded %d FOLIO problems\", len(problems))\n    return problems\n\n\ndef _load_folio_hf(subset: str = \"validation\") -> list[Problem] | None:\n    try:\n        from datasets import load_dataset\n        ds = load_dataset(\"yale-nlp/FOLIO\")\n        split = ds.get(subset) or ds.get(\"validation\") or ds[list(ds.keys())[0]]\n\n        problems = []\n        for i, row in enumerate(split):\n            label = _normalize_label(row.get(\"label\", \"\"))\n            if label is None:\n                continue\n            premises_raw = row.get(\"premises\", row.get(\"context\", \"\"))\n            if isinstance(premises_raw, list):\n                premises = premises_raw\n            else:\n                premises = _parse_proofwriter_premises(premises_raw)\n            hypothesis = row.get(\"conclusion\", row.get(\"hypothesis\", \"\"))\n            problems.append(Problem(\n                id=f\"folio_{subset}_{i}\",\n                premises=premises,\n                hypothesis=hypothesis,\n                label=label,\n                dataset=\"folio\",\n                raw=dict(row),\n            ))\n        return problems if problems else None\n    except Exception as e:\n        logger.warning(\"HuggingFace FOLIO load failed: %s\", e)\n        return None\n\n\ndef _load_folio_local(subset: str = \"validation\") -> list[Problem] | None:\n    data_dir = Path(\"/root/autodl-tmp/data/folio\")\n    for pattern in [f\"folio-{subset}.jsonl\", f\"{subset}.jsonl\", f\"folio_{subset}.jsonl\"]:\n        path = data_dir / pattern\n        if path.exists():\n            break\n    else:\n        logger.warning(\"FOLIO local JSONL not found in %s for subset=%s\", data_dir, subset)\n        return None\n\n    problems = []\n    with open(path) as f:\n        for i, line in enumerate(f):\n            item = json.loads(line)\n            label = _normalize_label(item.get(\"label\", \"Unknown\"))\n            if label is None:\n                continue\n            premises = item.get(\"premises\", [])\n            if isinstance(premises, str):\n                premises = _parse_proofwriter_premises(premises)\n            problems.append(Problem(\n                id=f\"folio_{subset}_{i}\",\n                premises=premises,\n                hypothesis=item.get(\"conclusion\", \"\"),\n                label=label,\n                dataset=\"folio\",\n                raw=item,\n            ))\n\n    logger.info(\"Loaded %d FOLIO problems from local JSONL: %s\", len(problems), path)\n    return problems if problems else None\n\n\ndef load_problems(\n    dataset: str,\n    subset: str = \"\",\n    num_problems: int = 50,\n    seed: int = 42,\n) -> list[Problem]:\n    dataset = dataset.lower().strip()\n    if dataset == \"proofwriter\":\n        return load_proofwriter(subset=subset or \"depth-5\", num_problems=num_problems, seed=seed)\n    elif dataset == \"folio\":\n        return load_folio(subset=subset or \"validation\", num_problems=num_problems, seed=seed)\n    else:\n        raise ValueError(f\"Unknown dataset: {dataset}. Supported: proofwriter, folio\")\n\n\ndef _normalize_label(raw) -> str | None:\n    if isinstance(raw, bool):\n        return \"True\" if raw else \"False\"\n    s = str(raw).strip().lower()\n    mapping = {\n        \"true\": \"True\",\n        \"proved\": \"True\",\n        \"entailment\": \"True\",\n        \"false\": \"False\",\n        \"disproved\": \"False\",\n        \"contradiction\": \"False\",\n        \"unknown\": \"Unknown\",\n        \"uncertain\": \"Unknown\",\n        \"neutral\": \"Unknown\",\n    }\n    return mapping.get(s)\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "6af7bbfd-908f-4e99-958e-205f9e0954e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HGs7fEPCivqbtUf6PXTSK3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4461,
+      "cache_read_input_tokens": 29958,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4461
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T07:55:11.091Z_
+
+<details><summary>↩ Tool result · `toolu_01MKh12nMTtGbKiR4MX3UsSC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "933e8a50-a2ce-4538-bb60-572ce3cdc78b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both files deployed successfully. Now let me run the verification commands.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "12b6ecb2-01d3-4855-ac58-a6fbd7f933e9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BfxVqxufPLNr8Mw1kLnuZv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8399,
+      "cache_read_input_tokens": 34419,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8399
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+文件已写入。运行验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "73670858-8d59-4672-9c10-a21769842cbf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BfxVqxufPLNr8Mw1kLnuZv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8399,
+      "cache_read_input_tokens": 34419,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8399
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01BFtsx4MT7Vf3J2RqekG6bz`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/svs_pipeline && python3 -c \"\nfrom svs_pipeline.cost_tracker import DEFAULT_PRICING\nassert 'deepseek/deepseek-v3.2' in DEFAULT_PRICING\nassert 'deepseek/deepseek-v4-pro' in DEFAULT_PRICING\nprint(f'Pricing entries: {list(DEFAULT_PRICING.keys())}')\nprint('cost_tracker OK')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "95fe0986-3109-43af-a515-f28a0d321fee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BfxVqxufPLNr8Mw1kLnuZv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8399,
+      "cache_read_input_tokens": 34419,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8399
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T07:55:18.084Z_
+
+<details><summary>↩ Tool result · `toolu_01BFtsx4MT7Vf3J2RqekG6bz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Pricing entries: ['deepseek-chat', 'deepseek-reasoner', 'deepseek/deepseek-v3.2', 'deepseek/deepseek-v4-pro']\\ncost_tracker OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "592a2a35-b530-4d5f-9d47-e8de46837646",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Pricing entries: ['deepseek-chat', 'deepseek-reasoner', 'deepseek/deepseek-v3.2', 'deepseek/deepseek-v4-pro']\\\\ncost_tracker OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Pricing entries: ['deepseek-chat', 'deepseek-reasoner', 'deepseek/deepseek-v3.2', 'deepseek/deepseek-v4-pro']\\ncost_tracker OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_018gdpYt7M8xHV9giHyG6JCv`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/svs_pipeline && python3 -c \"\nfrom svs_pipeline.data import load_folio\nfrom collections import Counter\n\n# Test validation subset\nprobs = load_folio(subset='validation', num_problems=5, seed=42)\nprint(f'Loaded {len(probs)} FOLIO validation problems (sampled)')\nfor p in probs[:3]:\n    print(f'  {p.id}: label={p.label}, premises={len(p.premises)}, hyp={p.hypothesis[:60]}...')\n\n# Full validation - check label distribution\nall_probs = load_folio(subset='validation', num_problems=0)\nlabels = Counter(p.label for p in all_probs)\nprint(f'Validation label distribution: {dict(labels)} (total={len(all_probs)})')\nassert 'Uncertain' not in labels, 'Label normalization failed!'\n\n# Test train subset\ntrain_probs = load_folio(subset='train', num_problems=0)\ntrain_labels = Counter(p.label for p in train_probs)\nprint(f'Train label distribution: {dict(train_labels)} (total={len(train_probs)})')\nassert 'Uncertain' not in train_labels, 'Train label normalization failed!'\n\nprint('FOLIO loader OK')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "fdfa1e71-1d4d-42ce-a665-87a0cee8ae9f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BfxVqxufPLNr8Mw1kLnuZv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8399,
+      "cache_read_input_tokens": 34419,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8399
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T07:55:53.005Z_
+
+<details><summary>↩ Tool result · `toolu_018gdpYt7M8xHV9giHyG6JCv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/svs_pipeline && python3 -c \\\"\\\\nfrom svs_pipeline.data import load_folio\\\\nfrom collections import Counter\\\\n\\\\n# Test validation subset\\\\nprobs = load_folio(subset=\\\\'validation\\\\', num_problems=5, seed=42)\\\\nprint(f\\\\'Loaded {len(probs)} FOLIO validation problems (sampled)\\\\')\\\\nfor p in probs[:3]:\\\\n    print(f\\\\'  {p.id}: label={p.label}, premises={len(p.premises)}, hyp={p.hypothesis[:60]}...\\\\')\\\\n\\\\n# Full validation - check label distribution\\\\nall_probs = load_folio(subset=\\\\'validation\\\\', num_problems=0)\\\\nlabels = Counter(p.label for p in all_probs)\\\\nprint(f\\\\'Validation label distribution: {dict(labels)} (total={len(all_probs)})\\\\')\\\\nassert \\\\'Uncertain\\\\' not in labels, \\\\'Label normalization failed!\\\\'\\\\n\\\\n# Test train subset\\\\ntrain_probs = load_folio(subset=\\\\'train\\\\', num_problems=0)\\\\ntrain_labels = Counter(p.label for p in train_probs)\\\\nprint(f\\\\'Train label distribution: {dict(train_labels)} (total={len(train_probs)})\\\\')\\\\nassert \\\\'Uncertain\\\\' not in train_labels, \\\\'Train label normalization failed!\\\\'\\\\n\\\\nprint(\\\\'FOLIO loader OK\\\\')\\\\n\\\"'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/yale-nlp/FOLIO/resolve/main/README.md (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x7f9e97dc87d0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\"), '(Request ID: fb845741-7356-49cb-a16f-b262b98ddd52)')' thrown while requesting HEAD https://huggingface.co/datasets/yale-nlp/FOLIO/resolve/main/README.md\\nRetrying in 1s [Retry 1/5].\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.29}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "0be5f48d-fe31-4b44-9357-48b88b00a0cb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/svs_pipeline && python3 -c \\\\\\\"\\\\\\\\nfrom svs_pipeline.data import load_folio\\\\\\\\nfrom collections import Counter\\\\\\\\n\\\\\\\\n# Test validation subset\\\\\\\\nprobs = load_folio(subset=\\\\\\\\'validation\\\\\\\\', num_problems=5, seed=42)\\\\\\\\nprint(f\\\\\\\\'Loaded {len(probs)} FOLIO validation problems (sampled)\\\\\\\\')\\\\\\\\nfor p in probs[:3]:\\\\\\\\n    print(f\\\\\\\\'  {p.id}: label={p.label}, premises={len(p.premises)}, hyp={p.hypothesis[:60]}...\\\\\\\\')\\\\\\\\n\\\\\\\\n# Full validation - check label distribution\\\\\\\\nall_probs = load_folio(subset=\\\\\\\\'validation\\\\\\\\', num_problems=0)\\\\\\\\nlabels = Counter(p.label for p in all_probs)\\\\\\\\nprint(f\\\\\\\\'Validation label distribution: {dict(labels)} (total={len(all_probs)})\\\\\\\\')\\\\\\\\nassert \\\\\\\\'Uncertain\\\\\\\\' not in labels, \\\\\\\\'Label normalization failed!\\\\\\\\'\\\\\\\\n\\\\\\\\n# Test train subset\\\\\\\\ntrain_probs = load_folio(subset=\\\\\\\\'train\\\\\\\\', num_problems=0)\\\\\\\\ntrain_labels = Counter(p.label for p in train_probs)\\\\\\\\nprint(f\\\\\\\\'Train label distribution: {dict(train_labels)} (total={len(train_probs)})\\\\\\\\')\\\\\\\\nassert \\\\\\\\'Uncertain\\\\\\\\' not in train_labels, \\\\\\\\'Train label normalization failed!\\\\\\\\'\\\\\\\\n\\\\\\\\nprint(\\\\\\\\'FOLIO loader OK\\\\\\\\')\\\\\\\\n\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n'(MaxRetryError(\\\\\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/yale-nlp/FOLIO/resolve/main/README.md (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x7f9e97dc87d0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\\\\\"), '(Request ID: fb845741-7356-49cb-a16f-b262b98ddd52)')' thrown while requesting HEAD https://huggingface.co/datasets/yale-nlp/FOLIO/resolve/main/README.md\\\\nRetrying in 1s [Retry 1/5].\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.29}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/svs_pipeline && python3 -c \\\"\\\\nfrom svs_pipeline.data import load_folio\\\\nfrom collections import Counter\\\\n\\\\n# Test validation subset\\\\nprobs = load_folio(subset=\\\\'validation\\\\', num_problems=5, seed=42)\\\\nprint(f\\\\'Loaded {len(probs)} FOLIO validation problems (sampled)\\\\')\\\\nfor p in probs[:3]:\\\\n    print(f\\\\'  {p.id}: label={p.label}, premises={len(p.premises)}, hyp={p.hypothesis[:60]}...\\\\')\\\\n\\\\n# Full validation - check label distribution\\\\nall_probs = load_folio(subset=\\\\'validation\\\\', num_problems=0)\\\\nlabels = Counter(p.label for p in all_probs)\\\\nprint(f\\\\'Validation label distribution: {dict(labels)} (total={len(all_probs)})\\\\')\\\\nassert \\\\'Uncertain\\\\' not in labels, \\\\'Label normalization failed!\\\\'\\\\n\\\\n# Test train subset\\\\ntrain_probs = load_folio(subset=\\\\'train\\\\', num_problems=0)\\\\ntrain_labels = Counter(p.label for p in train_probs)\\\\nprint(f\\\\'Train label distribution: {dict(train_labels)} (total={len(train_probs)})\\\\')\\\\nassert \\\\'Uncertain\\\\' not in train_labels, \\\\'Train label normalization failed!\\\\'\\\\n\\\\nprint(\\\\'FOLIO loader OK\\\\')\\\\n\\\"'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/yale-nlp/FOLIO/resolve/main/README.md (Caused by NewConnectionError('&lt;urllib3.connection.HTTPSConnection object at 0x7f9e97dc87d0>: Failed to establish a new connection: [Errno 101] Network is unreachable'))\\\"), '(Request ID: fb845741-7356-49cb-a16f-b262b98ddd52)')' thrown while requesting HEAD https://huggingface.co/datasets/yale-nlp/FOLIO/resolve/main/README.md\\nRetrying in 1s [Retry 1/5].\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.29}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+cost_tracker deployed OK. FOLIO loader is timing out because it tries HF first, and HF is unreachable on AutoDL (network issue). It should fall back to local JSONL. The timeout is because it's retrying HF 5 times. Let me set an env var to skip HF or just test with a script that directly calls `_load_folio_local`.
+
+Actually, the fallback to local JSONL should work, but the HF retry takes too long (5 retries × timeout). Let me run the test with HF_DATASETS_OFFLINE=1 to force local fallback immediately.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "6ae9da28-11c0-495d-ad54-15cfa51e354f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019V53xZjKtKMxagcdTyXmRL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1577,
+      "cache_read_input_tokens": 42818,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1577
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+HF 不可达导致超时。设置 `HF_DATASETS_OFFLINE=1` 跳过 HF 直接走本地 JSONL。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "8a93e14a-8202-4d8c-a451-872c9d53cc10",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019V53xZjKtKMxagcdTyXmRL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1577,
+      "cache_read_input_tokens": 42818,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1577
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016uWZhGZjo2DJ86SoPC5hXw`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/svs_pipeline && HF_DATASETS_OFFLINE=1 python3 -c \"\nfrom svs_pipeline.data import load_folio\nfrom collections import Counter\n\nprobs = load_folio(subset='validation', num_problems=5, seed=42)\nprint(f'Loaded {len(probs)} FOLIO validation problems (sampled)')\nfor p in probs[:3]:\n    print(f'  {p.id}: label={p.label}, premises={len(p.premises)}, hyp={p.hypothesis[:60]}...')\n\nall_probs = load_folio(subset='validation', num_problems=0)\nlabels = Counter(p.label for p in all_probs)\nprint(f'Validation label distribution: {dict(labels)} (total={len(all_probs)})')\nassert 'Uncertain' not in labels, 'Label normalization failed!'\n\ntrain_probs = load_folio(subset='train', num_problems=0)\ntrain_labels = Counter(p.label for p in train_probs)\nprint(f'Train label distribution: {dict(train_labels)} (total={len(train_probs)})')\nassert 'Uncertain' not in train_labels, 'Train label normalization failed!'\n\nprint('FOLIO loader OK')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "4db83b59-a28a-448f-90f6-f464b0992e08",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019V53xZjKtKMxagcdTyXmRL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1577,
+      "cache_read_input_tokens": 42818,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1577
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T07:56:05.954Z_
+
+<details><summary>↩ Tool result · `toolu_016uWZhGZjo2DJ86SoPC5hXw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 5 FOLIO validation problems (sampled)\\n  folio_validation_163: label=False, premises=2, hyp=All birds land...\\n  folio_validation_28: label=True, premises=6, hyp=Marvin is neither a human nor from Mars....\\n  folio_validation_6: label=True, premises=6, hyp=There is an animal....\\nValidation label distribution: {} (total=0)\\nTrain label distribution: {} (total=0)\\nFOLIO loader OK\\n\", \"stderr\": \"HuggingFace FOLIO load failed: Couldn't reach 'yale-nlp/FOLIO' on the Hub (OfflineModeIsEnabled)\\nHuggingFace FOLIO load failed: Couldn't reach 'yale-nlp/FOLIO' on the Hub (OfflineModeIsEnabled)\\nHuggingFace FOLIO load failed: Couldn't reach 'yale-nlp/FOLIO' on the Hub (OfflineModeIsEnabled)\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.73}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "83b4dcd2-512f-4d34-a069-4931a5f37e8c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 5 FOLIO validation problems (sampled)\\\\n  folio_validation_163: label=False, premises=2, hyp=All birds land...\\\\n  folio_validation_28: label=True, premises=6, hyp=Marvin is neither a human nor from Mars....\\\\n  folio_validation_6: label=True, premises=6, hyp=There is an animal....\\\\nValidation label distribution: {} (total=0)\\\\nTrain label distribution: {} (total=0)\\\\nFOLIO loader OK\\\\n\\\", \\\"stderr\\\": \\\"HuggingFace FOLIO load failed: Couldn't reach 'yale-nlp/FOLIO' on the Hub (OfflineModeIsEnabled)\\\\nHuggingFace FOLIO load failed: Couldn't reach 'yale-nlp/FOLIO' on the Hub (OfflineModeIsEnabled)\\\\nHuggingFace FOLIO load failed: Couldn't reach 'yale-nlp/FOLIO' on the Hub (OfflineModeIsEnabled)\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.73}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 5 FOLIO validation problems (sampled)\\n  folio_validation_163: label=False, premises=2, hyp=All birds land...\\n  folio_validation_28: label=True, premises=6, hyp=Marvin is neither a human nor from Mars....\\n  folio_validation_6: label=True, premises=6, hyp=There is an animal....\\nValidation label distribution: {} (total=0)\\nTrain label distribution: {} (total=0)\\nFOLIO loader OK\\n\", \"stderr\": \"HuggingFace FOLIO load failed: Couldn't reach 'yale-nlp/FOLIO' on the Hub (OfflineModeIsEnabled)\\nHuggingFace FOLIO load failed: Couldn't reach 'yale-nlp/FOLIO' on the Hub (OfflineModeIsEnabled)\\nHuggingFace FOLIO load failed: Couldn't reach 'yale-nlp/FOLIO' on the Hub (OfflineModeIsEnabled)\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.73}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Hmm, there's a problem. The validation sampled 5 problems OK, but when loading all with `num_problems=0`, it returns 0 problems. Let me look at the issue.
+
+In `load_folio`, when `num_problems=0`:
+```python
+    if len(problems) > num_problems:
+        problems = rng.sample(problems, num_problems)
+```
+
+`len(problems) > 0` is True, so it samples 0 problems! The condition should be `num_problems > 0 and num_problems < len(problems)`.
+
+
+Actually, I see the issue now—I wrote the condition as `len(problems) > num_problems` when it should check that `num_problems` is positive and less than the total count. When `num_problems=0`, the current logic incorrectly tries to sample zero items. I need to fix this in the deployed code.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "9bc07b6b-a26a-4fea-82d6-1f4d8ae10791",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LbeSYtD4HMCVS7Rwp24DiX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 951,
+      "cache_read_input_tokens": 44395,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 951
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+Bug: `num_problems=0` 被当作采样 0 条。修复采样条件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "d3d437f2-bed4-4bd5-bb44-9ee88d9999dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LbeSYtD4HMCVS7Rwp24DiX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 951,
+      "cache_read_input_tokens": 44395,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 951
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01X4xjscPEfsp7vL3xjoBzJJ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport re\n\nwith open('/root/svs_pipeline/svs_pipeline/data/loader.py', 'r') as f:\n    content = f.read()\n\n# Fix load_folio sampling: num_problems=0 means all\nold = '    if len(problems) > num_problems:\\n        problems = rng.sample(problems, num_problems)\\n\\n    logger.info(\\\"Loaded %d FOLIO problems\\\", len(problems))'\nnew = '    if num_problems > 0 and len(problems) > num_problems:\\n        problems = rng.sample(problems, num_problems)\\n\\n    logger.info(\\\"Loaded %d FOLIO problems\\\", len(problems))'\ncontent = content.replace(old, new)\n\nwith open('/root/svs_pipeline/svs_pipeline/data/loader.py', 'w') as f:\n    f.write(content)\n\nprint('Fixed sampling condition')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "078e8c35-8ace-404e-b5cd-8ea644fb7deb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LbeSYtD4HMCVS7Rwp24DiX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 951,
+      "cache_read_input_tokens": 44395,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 951
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T07:56:19.326Z_
+
+<details><summary>↩ Tool result · `toolu_01X4xjscPEfsp7vL3xjoBzJJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fixed sampling condition\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "6daa92dd-c34a-4b72-a069-0188cb6ce7b8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Fixed sampling condition\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Fixed sampling condition\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01EBJJQZs9LDWmb7LS4J16cN`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/svs_pipeline && HF_DATASETS_OFFLINE=1 python3 -c \"\nfrom svs_pipeline.data import load_folio\nfrom collections import Counter\n\nprobs = load_folio(subset='validation', num_problems=5, seed=42)\nprint(f'Sampled {len(probs)} FOLIO validation problems')\nfor p in probs[:3]:\n    print(f'  {p.id}: label={p.label}, premises={len(p.premises)}, hyp={p.hypothesis[:60]}...')\n\nall_val = load_folio(subset='validation', num_problems=0)\nval_labels = Counter(p.label for p in all_val)\nprint(f'Validation: {dict(val_labels)} (total={len(all_val)})')\nassert 'Uncertain' not in val_labels, 'Validation label normalization failed!'\n\nall_train = load_folio(subset='train', num_problems=0)\ntrain_labels = Counter(p.label for p in all_train)\nprint(f'Train: {dict(train_labels)} (total={len(all_train)})')\nassert 'Uncertain' not in train_labels, 'Train label normalization failed!'\n\nprint('FOLIO loader OK')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "b831dea4-c005-411f-ad48-5632d39408c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016ZPw987Nk8CdAVUHqoBg6E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 829,
+      "cache_read_input_tokens": 45346,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 829
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-14T07:56:27.418Z_
+
+<details><summary>↩ Tool result · `toolu_01EBJJQZs9LDWmb7LS4J16cN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Sampled 5 FOLIO validation problems\\n  folio_validation_163: label=False, premises=2, hyp=All birds land...\\n  folio_validation_28: label=True, premises=6, hyp=Marvin is neither a human nor from Mars....\\n  folio_validation_6: label=True, premises=6, hyp=There is an animal....\\nValidation: {'Unknown': 69, 'True': 72, 'False': 63} (total=204)\\nTrain: {'True': 388, 'False': 286, 'Unknown': 330} (total=1004)\\nFOLIO loader OK\\n\", \"stderr\": \"HuggingFace FOLIO load failed: Couldn't reach 'yale-nlp/FOLIO' on the Hub (OfflineModeIsEnabled)\\nHuggingFace FOLIO load failed: Couldn't reach 'yale-nlp/FOLIO' on the Hub (OfflineModeIsEnabled)\\nHuggingFace FOLIO load failed: Couldn't reach 'yale-nlp/FOLIO' on the Hub (OfflineModeIsEnabled)\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "191cdde5-d362-4522-9bb0-98a56eb5b0c0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Sampled 5 FOLIO validation problems\\\\n  folio_validation_163: label=False, premises=2, hyp=All birds land...\\\\n  folio_validation_28: label=True, premises=6, hyp=Marvin is neither a human nor from Mars....\\\\n  folio_validation_6: label=True, premises=6, hyp=There is an animal....\\\\nValidation: {'Unknown': 69, 'True': 72, 'False': 63} (total=204)\\\\nTrain: {'True': 388, 'False': 286, 'Unknown': 330} (total=1004)\\\\nFOLIO loader OK\\\\n\\\", \\\"stderr\\\": \\\"HuggingFace FOLIO load failed: Couldn't reach 'yale-nlp/FOLIO' on the Hub (OfflineModeIsEnabled)\\\\nHuggingFace FOLIO load failed: Couldn't reach 'yale-nlp/FOLIO' on the Hub (OfflineModeIsEnabled)\\\\nHuggingFace FOLIO load failed: Couldn't reach 'yale-nlp/FOLIO' on the Hub (OfflineModeIsEnabled)\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Sampled 5 FOLIO validation problems\\n  folio_validation_163: label=False, premises=2, hyp=All birds land...\\n  folio_validation_28: label=True, premises=6, hyp=Marvin is neither a human nor from Mars....\\n  folio_validation_6: label=True, premises=6, hyp=There is an animal....\\nValidation: {'Unknown': 69, 'True': 72, 'False': 63} (total=204)\\nTrain: {'True': 388, 'False': 286, 'Unknown': 330} (total=1004)\\nFOLIO loader OK\\n\", \"stderr\": \"HuggingFace FOLIO load failed: Couldn't reach 'yale-nlp/FOLIO' on the Hub (OfflineModeIsEnabled)\\nHuggingFace FOLIO load failed: Couldn't reach 'yale-nlp/FOLIO' on the Hub (OfflineModeIsEnabled)\\nHuggingFace FOLIO load failed: Couldn't reach 'yale-nlp/FOLIO' on the Hub (OfflineModeIsEnabled)\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both are working now. Let me also sync the local artifacts to match. I need to update the local loader.py to:
+1. Add `subset` parameter to `load_folio`
+2. Add `_load_folio_local` function
+3. Fix the sampling condition
+4. Update `load_problems` to pass subset for folio
+5. Update `_load_folio_hf` to accept subset
+
+Let me update the local file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "2c10930b-aee0-4cd8-b50e-ca05ed61c5ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UhFKZsuyKYWoAkKYZv6cX4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 777,
+      "cache_read_input_tokens": 46175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 777
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+远程验证通过。同步本地 artifacts。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "2d4f6476-7a4c-4496-a8d0-85d6b5da116d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UhFKZsuyKYWoAkKYZv6cX4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 777,
+      "cache_read_input_tokens": 46175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 777
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Gamzd78SyYbA92RTq1Erde`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/svs_formal_verification/artifacts/svs_pipeline/data/loader.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "15803822-c5db-4aa5-9f65-0ad562d0dbc8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UhFKZsuyKYWoAkKYZv6cX4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 777,
+      "cache_read_input_tokens": 46175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 777
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-14T07:56:34.075Z_
+
+<details><summary>↩ Tool result · `toolu_01Gamzd78SyYbA92RTq1Erde`</summary>
+
+```text
+1	"""ProofWriter / FOLIO data loader for the SVS pipeline.
+2	
+3	Loads logical reasoning problems from HuggingFace datasets, with local
+4	JSON fallback. Returns list[Problem] for downstream chain sampling.
+5	
+6	Dependencies: datasets (HuggingFace), json, random
+7	"""
+8	
+9	import json
+10	import logging
+11	import random
+12	from pathlib import Path
+13	
+14	from ..types import Problem
+15	
+16	logger = logging.getLogger(__name__)
+17	
+18	_CACHE_DIR = Path(__file__).parent
+19	
+20	
+21	def _parse_proofwriter_premises(context: str) -> list[str]:
+22	    """Split ProofWriter context string into individual premise sentences."""
+23	    sentences = [s.strip() for s in context.split(".") if s.strip()]
+24	    return [s + "." for s in sentences]
+25	
+26	
+27	def load_proofwriter(
+28	    subset: str = "depth-5",
+29	    num_problems: int = 50,
+30	    seed: int = 42,
+31	) -> list[Problem]:
+32	    """Load ProofWriter problems, filtering by proof depth.
+33	
+34	    Tries HuggingFace datasets first, falls back to local cache JSON.
+35	    """
+36	    problems = _load_proofwriter_hf(subset)
+37	    if problems is None:
+38	        problems = _load_proofwriter_cache()
+39	
+40	    if not problems:
+41	        raise RuntimeError("Failed to load ProofWriter data from both HF and local cache")
+42	
+43	    rng = random.Random(seed)
+44	    if len(problems) > num_problems:
+45	        problems = rng.sample(problems, num_problems)
+46	
+47	    logger.info("Loaded %d ProofWriter %s problems", len(problems), subset)
+48	    return problems
+49	
+50	
+51	def _load_proofwriter_hf(subset: str) -> list[Problem] | None:
+52	    """Try loading ProofWriter from HuggingFace datasets."""
+53	    try:
+54	        from datasets import load_dataset
+55	
+56	        ds = load_dataset("allenai/proofwriter-dataset-v2", "depth-5", trust_remote_code=True)
+57	        split = ds.get("test") or ds.get("validation") or ds[list(ds.keys())[0]]
+58	
+59	        depth_num = subset.replace("depth-", "") if subset.startswith("depth-") else subset
+60	
+61	        problems = []
+62	        for i, row in enumerate(split):
+63	            if "proof_depth" in row and str(row["proof_depth"]) != depth_num:
+64	                continue
+65	
+66	            label_raw = row.get("answer", row.get("label", ""))
+67	            label = _normalize_label(label_raw)
+68	            if label is None:
+69	                continue
+70	
+71	            context = row.get("theory", row.get("context", row.get("premises", "")))
+72	            hypothesis = row.get("hypothesis", row.get("question", ""))
+73	
+74	            problems.append(Problem(
+75	                id=f"pw_{i}",
+76	                premises=_parse_proofwriter_premises(context),
+77	                hypothesis=hypothesis,
+78	                label=label,
+79	                dataset="proofwriter",
+80	                raw=dict(row),
+81	            ))
+82	
+83	        logger.info("Loaded %d problems from HuggingFace (subset=%s)", len(problems), subset)
+84	        return problems if problems else None
+85	
+86	    except Exception as e:
+87	        logger.warning("HuggingFace load failed: %s. Falling back to local cache.", e)
+88	        return None
+89	
+90	
+91	def _load_proofwriter_cache() -> list[Problem] | None:
+92	    """Load ProofWriter from local JSON cache."""
+93	    cache_path = _CACHE_DIR / "proofwriter_cache.json"
+94	    if not cache_path.exists():
+95	        logger.warning("Local cache not found at %s", cache_path)
+96	        return None
+97	
+98	    with open(cache_path) as f:
+99	        data = json.load(f)
+100	
+101	    problems = []
+102	    for i, row in enumerate(data):
+103	        label = _normalize_label(row.get("answer", row.get("label", "")))
+104	        if label is None:
+105	            continue
+106	
+107	        context = row.get("theory", row.get("context", row.get("premises", "")))
+108	        hypothesis = row.get("hypothesis", row.get("question", ""))
+109	
+110	        if isinstance(context, list):
+111	            premises = context
+112	        else:
+113	            premises = _parse_proofwriter_premises(context)
+114	
+115	        problems.append(Problem(
+116	            id=f"pw_{i}",
+117	            premises=premises,
+118	            hypothesis=hypothesis,
+119	            label=label,
+120	            dataset="proofwriter",
+121	            raw=row,
+122	        ))
+123	
+124	    logger.info("Loaded %d problems from local cache", len(problems))
+125	    return problems
+126	
+127	
+128	def load_folio(
+129	    num_problems: int = 50,
+130	    seed: int = 42,
+131	) -> list[Problem]:
+132	    """Load FOLIO problems from HuggingFace datasets."""
+133	    problems = _load_folio_hf()
+134	    if problems is None:
+135	        cache_path = _CACHE_DIR / "folio_cache.json"
+136	        if cache_path.exists():
+137	            with open(cache_path) as f:
+138	                data = json.load(f)
+139	            problems = []
+140	            for i, row in enumerate(data):
+141	                label = _normalize_label(row.get("label", ""))
+142	                if label is None:
+143	                    continue
+144	                premises = row.get("premises", [])
+145	                if isinstance(premises, str):
+146	                    premises = _parse_proofwriter_premises(premises)
+147	                problems.append(Problem(
+148	                    id=f"folio_{i}",
+149	                    premises=premises,
+150	                    hypothesis=row.get("conclusion", row.get("hypothesis", "")),
+151	                    label=label,
+152	                    dataset="folio",
+153	                    raw=row,
+154	                ))
+155	
+156	    if not problems:
+157	        raise RuntimeError("Failed to load FOLIO data from both HF and local cache")
+158	
+159	    rng = random.Random(seed)
+160	    if len(problems) > num_problems:
+161	        problems = rng.sample(problems, num_problems)
+162	
+163	    logger.info("Loaded %d FOLIO problems", len(problems))
+164	    return problems
+165	
+166	
+167	def _load_folio_hf() -> list[Problem] | None:
+168	    """Try loading FOLIO from HuggingFace datasets."""
+169	    try:
+170	        from datasets import load_dataset
+171	
+172	        ds = load_dataset("yale-nlp/FOLIO", trust_remote_code=True)
+173	        split = ds.get("validation") or ds.get("test") or ds[list(ds.keys())[0]]
+174	
+175	        problems = []
+176	        for i, row in enumerate(split):
+177	            label = _normalize_label(row.get("label", ""))
+178	            if label is None:
+179	                continue
+180	
+181	            premises_raw = row.get("premises", row.get("context", ""))
+182	            if isinstance(premises_raw, list):
+183	                premises = premises_raw
+184	            else:
+185	                premises = _parse_proofwriter_premises(premises_raw)
+186	
+187	            hypothesis = row.get("conclusion", row.get("hypothesis", ""))
+188	
+189	            problems.append(Problem(
+190	                id=f"folio_{i}",
+191	                premises=premises,
+192	                hypothesis=hypothesis,
+193	                label=label,
+194	                dataset="folio",
+195	                raw=dict(row),
+196	            ))
+197	
+198	        logger.info("Loaded %d FOLIO problems from HuggingFace", len(problems))
+199	        return problems if problems else None
+200	
+201	    except Exception as e:
+202	        logger.warning("HuggingFace FOLIO load failed: %s", e)
+203	        return None
+204	
+205	
+206	def load_problems(
+207	    dataset: str,
+208	    subset: str = "",
+209	    num_problems: int = 50,
+210	    seed: int = 42,
+211	) -> list[Problem]:
+212	    """Unified entry point — dispatches to dataset-specific loaders."""
+213	    dataset = dataset.lower().strip()
+214	    if dataset == "proofwriter":
+215	        return load_proofwriter(subset=subset or "depth-5", num_problems=num_problems, seed=seed)
+216	    elif dataset == "folio":
+217	        return load_folio(num_problems=num_problems, seed=seed)
+218	    else:
+219	        raise ValueError(f"Unknown dataset: {dataset}. Supported: proofwriter, folio")
+220	
+221	
+222	def _normalize_label(raw) -> str | None:
+223	    """Normalize answer labels to 'True' / 'False' / 'Unknown'."""
+224	    if isinstance(raw, bool):
+225	        return "True" if raw else "False"
+226	    s = str(raw).strip().lower()
+227	    mapping = {
+228	        "true": "True",
+229	        "proved": "True",
+230	        "entailment": "True",
+231	        "false": "False",
+232	        "disproved": "False",
+233	        "contradiction": "False",
+234	        "unknown": "Unknown",
+235	        "uncertain": "Unknown",
+236	        "neutral": "Unknown",
+237	    }
+238	    return mapping.get(s)
+239	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "74802e2b-6e75-433f-a634-989d0c2c48e7",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/svs_formal_verification/artifacts/svs_pipeline/data/loader.py",
+      "content": "\"\"\"ProofWriter / FOLIO data loader for the SVS pipeline.\n\nLoads logical reasoning problems from HuggingFace datasets, with local\nJSON fallback. Returns list[Problem] for downstream chain sampling.\n\nDependencies: datasets (HuggingFace), json, random\n\"\"\"\n\nimport json\nimport logging\nimport random\nfrom pathlib import Path\n\nfrom ..types import Problem\n\nlogger = logging.getLogger(__name__)\n\n_CACHE_DIR = Path(__file__).parent\n\n\ndef _parse_proofwriter_premises(context: str) -> list[str]:\n    \"\"\"Split ProofWriter context string into individual premise sentences.\"\"\"\n    sentences = [s.strip() for s in context.split(\".\") if s.strip()]\n    return [s + \".\" for s in sentences]\n\n\ndef load_proofwriter(\n    subset: str = \"depth-5\",\n    num_problems: int = 50,\n    seed: int = 42,\n) -> list[Problem]:\n    \"\"\"Load ProofWriter problems, filtering by proof depth.\n\n    Tries HuggingFace datasets first, falls back to local cache JSON.\n    \"\"\"\n    problems = _load_proofwriter_hf(subset)\n    if problems is None:\n        problems = _load_proofwriter_cache()\n\n    if not problems:\n        raise RuntimeError(\"Failed to load ProofWriter data from both HF and local cache\")\n\n    rng = random.Random(seed)\n    if len(problems) > num_problems:\n        problems = rng.sample(problems, num_problems)\n\n    logger.info(\"Loaded %d ProofWriter %s problems\", len(problems), subset)\n    return problems\n\n\ndef _load_proofwriter_hf(subset: str) -> list[Problem] | None:\n    \"\"\"Try loading ProofWriter from HuggingFace datasets.\"\"\"\n    try:\n        from datasets import load_dataset\n\n        ds = load_dataset(\"allenai/proofwriter-dataset-v2\", \"depth-5\", trust_remote_code=True)\n        split = ds.get(\"test\") or ds.get(\"validation\") or ds[list(ds.keys())[0]]\n\n        depth_num = subset.replace(\"depth-\", \"\") if subset.startswith(\"depth-\") else subset\n\n        problems = []\n        for i, row in enumerate(split):\n            if \"proof_depth\" in row and str(row[\"proof_depth\"]) != depth_num:\n                continue\n\n            label_raw = row.get(\"answer\", row.get(\"label\", \"\"))\n            label = _normalize_label(label_raw)\n            if label is None:\n                continue\n\n            context = row.get(\"theory\", row.get(\"context\", row.get(\"premises\", \"\")))\n            hypothesis = row.get(\"hypothesis\", row.get(\"question\", \"\"))\n\n            problems.append(Problem(\n                id=f\"pw_{i}\",\n                premises=_parse_proofwriter_premises(context),\n                hypothesis=hypothesis,\n                label=label,\n                dataset=\"proofwriter\",\n                raw=dict(row),\n            ))\n\n        logger.info(\"Loaded %d problems from HuggingFace (subset=%s)\", len(problems), subset)\n        return problems if problems else None\n\n    except Exception as e:\n        logger.warning(\"HuggingFace load failed: %s. Falling back to local cache.\", e)\n        return None\n\n\ndef _load_proofwriter_cache() -> list[Problem] | None:\n    \"\"\"Load ProofWriter from local JSON cache.\"\"\"\n    cache_path = _CACHE_DIR / \"proofwriter_cache.json\"\n    if not cache_path.exists():\n        logger.warning(\"Local cache not found at %s\", cache_path)\n        return None\n\n    with open(cache_path) as f:\n        data = json.load(f)\n\n    problems = []\n    for i, row in enumerate(data):\n        label = _normalize_label(row.get(\"answer\", row.get(\"label\", \"\")))\n        if label is None:\n            continue\n\n        context = row.get(\"theory\", row.get(\"context\", row.get(\"premises\", \"\")))\n        hypothesis = row.get(\"hypothesis\", row.get(\"question\", \"\"))\n\n        if isinstance(context, list):\n            premises = context\n        else:\n            premises = _parse_proofwriter_premises(context)\n\n        problems.append(Problem(\n            id=f\"pw_{i}\",\n            premises=premises,\n            hypothesis=hypothesis,\n            label=label,\n            dataset=\"proofwriter\",\n            raw=row,\n        ))\n\n    logger.info(\"Loaded %d problems from local cache\", len(problems))\n    return problems\n\n\ndef load_folio(\n    num_problems: int = 50,\n    seed: int = 42,\n) -> list[Problem]:\n    \"\"\"Load FOLIO problems from HuggingFace datasets.\"\"\"\n    problems = _load_folio_hf()\n    if problems is None:\n        cache_path = _CACHE_DIR / \"folio_cache.json\"\n        if cache_path.exists():\n            with open(cache_path) as f:\n                data = json.load(f)\n            problems = []\n            for i, row in enumerate(data):\n                label = _normalize_label(row.get(\"label\", \"\"))\n                if label is None:\n                    continue\n                premises = row.get(\"premises\", [])\n                if isinstance(premises, str):\n                    premises = _parse_proofwriter_premises(premises)\n                problems.append(Problem(\n                    id=f\"folio_{i}\",\n                    premises=premises,\n                    hypothesis=row.get(\"conclusion\", row.get(\"hypothesis\", \"\")),\n                    label=label,\n                    dataset=\"folio\",\n                    raw=row,\n                ))\n\n    if not problems:\n        raise RuntimeError(\"Failed to load FOLIO data from both HF and local cache\")\n\n    rng = random.Random(seed)\n    if len(problems) > num_problems:\n        problems = rng.sample(problems, num_problems)\n\n    logger.info(\"Loaded %d FOLIO problems\", len(problems))\n    return problems\n\n\ndef _load_folio_hf() -> list[Problem] | None:\n    \"\"\"Try loading FOLIO from HuggingFace datasets.\"\"\"\n    try:\n        from datasets import load_dataset\n\n        ds = load_dataset(\"yale-nlp/FOLIO\", trust_remote_code=True)\n        split = ds.get(\"validation\") or ds.get(\"test\") or ds[list(ds.keys())[0]]\n\n        problems = []\n        for i, row in enumerate(split):\n            label = _normalize_label(row.get(\"label\", \"\"))\n            if label is None:\n                continue\n\n            premises_raw = row.get(\"premises\", row.get(\"context\", \"\"))\n            if isinstance(premises_raw, list):\n                premises = premises_raw\n            else:\n                premises = _parse_proofwriter_premises(premises_raw)\n\n            hypothesis = row.get(\"conclusion\", row.get(\"hypothesis\", \"\"))\n\n            problems.append(Problem(\n                id=f\"folio_{i}\",\n                premises=premises,\n                hypothesis=hypothesis,\n                label=label,\n                dataset=\"folio\",\n                raw=dict(row),\n            ))\n\n        logger.info(\"Loaded %d FOLIO problems from HuggingFace\", len(problems))\n        return problems if problems else None\n\n    except Exception as e:\n        logger.warning(\"HuggingFace FOLIO load failed: %s\", e)\n        return None\n\n\ndef load_problems(\n    dataset: str,\n    subset: str = \"\",\n    num_problems: int = 50,\n    seed: int = 42,\n) -> list[Problem]:\n    \"\"\"Unified entry point — dispatches to dataset-specific loaders.\"\"\"\n    dataset = dataset.lower().strip()\n    if dataset == \"proofwriter\":\n        return load_proofwriter(subset=subset or \"depth-5\", num_problems=num_problems, seed=seed)\n    elif dataset == \"folio\":\n        return load_folio(num_problems=num_problems, seed=seed)\n    else:\n        raise ValueError(f\"Unknown dataset: {dataset}. Supported: proofwriter, folio\")\n\n\ndef _normalize_label(raw) -> str | None:\n    \"\"\"Normalize answer labels to 'True' / 'False' / 'Unknown'.\"\"\"\n    if isinstance(raw, bool):\n        return \"True\" if raw else \"False\"\n    s = str(raw).strip().lower()\n    mapping = {\n        \"true\": \"True\",\n        \"proved\": \"True\",\n        \"entailment\": \"True\",\n        \"false\": \"False\",\n        \"disproved\": \"False\",\n        \"contradiction\": \"False\",\n        \"unknown\": \"Unknown\",\n        \"uncertain\": \"Unknown\",\n        \"neutral\": \"Unknown\",\n    }\n    return mapping.get(s)\n",
+      "numLines": 239,
+      "startLine": 1,
+      "totalLines": 239
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_013URHgAk4MujVGL4t8mp5CW`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/svs_formal_verification/artifacts/svs_pipeline/data/loader.py",
+  "old_string": "def load_folio(\n    num_problems: int = 50,\n    seed: int = 42,\n) -> list[Problem]:\n    \"\"\"Load FOLIO problems from HuggingFace datasets.\"\"\"\n    problems = _load_folio_hf()\n    if problems is None:\n        cache_path = _CACHE_DIR / \"folio_cache.json\"\n        if cache_path.exists():\n            with open(cache_path) as f:\n                data = json.load(f)\n            problems = []\n            for i, row in enumerate(data):\n                label = _normalize_label(row.get(\"label\", \"\"))\n                if label is None:\n                    continue\n                premises = row.get(\"premises\", [])\n                if isinstance(premises, str):\n                    premises = _parse_proofwriter_premises(premises)\n                problems.append(Problem(\n                    id=f\"folio_{i}\",\n                    premises=premises,\n                    hypothesis=row.get(\"conclusion\", row.get(\"hypothesis\", \"\")),\n                    label=label,\n                    dataset=\"folio\",\n                    raw=row,\n                ))\n\n    if not problems:\n        raise RuntimeError(\"Failed to load FOLIO data from both HF and local cache\")\n\n    rng = random.Random(seed)\n    if len(problems) > num_problems:\n        problems = rng.sample(problems, num_problems)\n\n    logger.info(\"Loaded %d FOLIO problems\", len(problems))\n    return problems\n\n\ndef _load_folio_hf() -> list[Problem] | None:\n    \"\"\"Try loading FOLIO from HuggingFace datasets.\"\"\"\n    try:\n        from datasets import load_dataset\n\n        ds = load_dataset(\"yale-nlp/FOLIO\", trust_remote_code=True)\n        split = ds.get(\"validation\") or ds.get(\"test\") or ds[list(ds.keys())[0]]\n\n        problems = []\n        for i, row in enumerate(split):\n            label = _normalize_label(row.get(\"label\", \"\"))\n            if label is None:\n                continue\n\n            premises_raw = row.get(\"premises\", row.get(\"context\", \"\"))\n            if isinstance(premises_raw, list):\n                premises = premises_raw\n            else:\n                premises = _parse_proofwriter_premises(premises_raw)\n\n            hypothesis = row.get(\"conclusion\", row.get(\"hypothesis\", \"\"))\n\n            problems.append(Problem(\n                id=f\"folio_{i}\",\n                premises=premises,\n                hypothesis=hypothesis,\n                label=label,\n                dataset=\"folio\",\n                raw=dict(row),\n            ))\n\n        logger.info(\"Loaded %d FOLIO problems from HuggingFace\", len(problems))\n        return problems if problems else None\n\n    except Exception as e:\n        logger.warning(\"HuggingFace FOLIO load failed: %s\", e)\n        return None\n\n\ndef load_problems(\n    dataset: str,\n    subset: str = \"\",\n    num_problems: int = 50,\n    seed: int = 42,\n) -> list[Problem]:\n    \"\"\"Unified entry point — dispatches to dataset-specific loaders.\"\"\"\n    dataset = dataset.lower().strip()\n    if dataset == \"proofwriter\":\n        return load_proofwriter(subset=subset or \"depth-5\", num_problems=num_problems, seed=seed)\n    elif dataset == \"folio\":\n        return load_folio(num_problems=num_problems, seed=seed)\n    else:\n        raise ValueError(f\"Unknown dataset: {dataset}. Supported: proofwriter, folio\")",
+  "new_string": "def load_folio(\n    subset: str = \"validation\",\n    num_problems: int = 50,\n    seed: int = 42,\n) -> list[Problem]:\n    \"\"\"Load FOLIO problems. Tries HF → local JSONL → JSON cache.\"\"\"\n    problems = _load_folio_hf(subset)\n    if problems is None:\n        problems = _load_folio_local(subset)\n    if problems is None:\n        cache_path = _CACHE_DIR / \"folio_cache.json\"\n        if cache_path.exists():\n            with open(cache_path) as f:\n                data = json.load(f)\n            problems = []\n            for i, row in enumerate(data):\n                label = _normalize_label(row.get(\"label\", \"\"))\n                if label is None:\n                    continue\n                premises = row.get(\"premises\", [])\n                if isinstance(premises, str):\n                    premises = _parse_proofwriter_premises(premises)\n                problems.append(Problem(\n                    id=f\"folio_{subset}_{i}\",\n                    premises=premises,\n                    hypothesis=row.get(\"conclusion\", row.get(\"hypothesis\", \"\")),\n                    label=label,\n                    dataset=\"folio\",\n                    raw=row,\n                ))\n\n    if not problems:\n        raise RuntimeError(\"Failed to load FOLIO data from HF, local JSONL, and cache\")\n\n    rng = random.Random(seed)\n    if num_problems > 0 and len(problems) > num_problems:\n        problems = rng.sample(problems, num_problems)\n\n    logger.info(\"Loaded %d FOLIO problems\", len(problems))\n    return problems\n\n\ndef _load_folio_hf(subset: str = \"validation\") -> list[Problem] | None:\n    try:\n        from datasets import load_dataset\n\n        ds = load_dataset(\"yale-nlp/FOLIO\", trust_remote_code=True)\n        split = ds.get(subset) or ds.get(\"validation\") or ds[list(ds.keys())[0]]\n\n        problems = []\n        for i, row in enumerate(split):\n            label = _normalize_label(row.get(\"label\", \"\"))\n            if label is None:\n                continue\n\n            premises_raw = row.get(\"premises\", row.get(\"context\", \"\"))\n            if isinstance(premises_raw, list):\n                premises = premises_raw\n            else:\n                premises = _parse_proofwriter_premises(premises_raw)\n\n            hypothesis = row.get(\"conclusion\", row.get(\"hypothesis\", \"\"))\n\n            problems.append(Problem(\n                id=f\"folio_{subset}_{i}\",\n                premises=premises,\n                hypothesis=hypothesis,\n                label=label,\n                dataset=\"folio\",\n                raw=dict(row),\n            ))\n\n        logger.info(\"Loaded %d FOLIO problems from HuggingFace\", len(problems))\n        return problems if problems else None\n\n    except Exception as e:\n        logger.warning(\"HuggingFace FOLIO load failed: %s\", e)\n        return None\n\n\ndef _load_folio_local(subset: str = \"validation\") -> list[Problem] | None:\n    data_dir = Path(\"/root/autodl-tmp/data/folio\")\n    for pattern in [f\"folio-{subset}.jsonl\", f\"{subset}.jsonl\", f\"folio_{subset}.jsonl\"]:\n        path = data_dir / pattern\n        if path.exists():\n            break\n    else:\n        logger.warning(\"FOLIO local JSONL not found in %s for subset=%s\", data_dir, subset)\n        return None\n\n    problems = []\n    with open(path) as f:\n        for i, line in enumerate(f):\n            item = json.loads(line)\n            label = _normalize_label(item.get(\"label\", \"Unknown\"))\n            if label is None:\n                continue\n            premises = item.get(\"premises\", [])\n            if isinstance(premises, str):\n                premises = _parse_proofwriter_premises(premises)\n            problems.append(Problem(\n                id=f\"folio_{subset}_{i}\",\n                premises=premises,\n                hypothesis=item.get(\"conclusion\", \"\"),\n                label=label,\n                dataset=\"folio\",\n                raw=item,\n            ))\n\n    logger.info(\"Loaded %d FOLIO problems from local JSONL: %s\", len(problems), path)\n    return problems if problems else None\n\n\ndef load_problems(\n    dataset: str,\n    subset: str = \"\",\n    num_problems: int = 50,\n    seed: int = 42,\n) -> list[Problem]:\n    \"\"\"Unified entry point — dispatches to dataset-specific loaders.\"\"\"\n    dataset = dataset.lower().strip()\n    if dataset == \"proofwriter\":\n        return load_proofwriter(subset=subset or \"depth-5\", num_problems=num_problems, seed=seed)\n    elif dataset == \"folio\":\n        return load_folio(subset=subset or \"validation\", num_problems=num_problems, seed=seed)\n    else:\n        raise ValueError(f\"Unknown dataset: {dataset}. Supported: proofwriter, folio\")"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "0abbba11-7e45-471f-be2c-507a60f252fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FxqVgsHPsagYNvGN7fCunM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3016,
+      "cache_read_input_tokens": 46952,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3016
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-14T07:57:04.517Z_
+
+<details><summary>↩ Tool result · `toolu_013URHgAk4MujVGL4t8mp5CW`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/svs_formal_verification/artifacts/svs_pipeline/data/loader.py has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "4746b4db-404e-4823-8c57-dd10b4c7f44d",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/svs_formal_verification/artifacts/svs_pipeline/data/loader.py",
+    "oldString": "def load_folio(\n    num_problems: int = 50,\n    seed: int = 42,\n) -> list[Problem]:\n    \"\"\"Load FOLIO problems from HuggingFace datasets.\"\"\"\n    problems = _load_folio_hf()\n    if problems is None:\n        cache_path = _CACHE_DIR / \"folio_cache.json\"\n        if cache_path.exists():\n            with open(cache_path) as f:\n                data = json.load(f)\n            problems = []\n            for i, row in enumerate(data):\n                label = _normalize_label(row.get(\"label\", \"\"))\n                if label is None:\n                    continue\n                premises = row.get(\"premises\", [])\n                if isinstance(premises, str):\n                    premises = _parse_proofwriter_premises(premises)\n                problems.append(Problem(\n                    id=f\"folio_{i}\",\n                    premises=premises,\n                    hypothesis=row.get(\"conclusion\", row.get(\"hypothesis\", \"\")),\n                    label=label,\n                    dataset=\"folio\",\n                    raw=row,\n                ))\n\n    if not problems:\n        raise RuntimeError(\"Failed to load FOLIO data from both HF and local cache\")\n\n    rng = random.Random(seed)\n    if len(problems) > num_problems:\n        problems = rng.sample(problems, num_problems)\n\n    logger.info(\"Loaded %d FOLIO problems\", len(problems))\n    return problems\n\n\ndef _load_folio_hf() -> list[Problem] | None:\n    \"\"\"Try loading FOLIO from HuggingFace datasets.\"\"\"\n    try:\n        from datasets import load_dataset\n\n        ds = load_dataset(\"yale-nlp/FOLIO\", trust_remote_code=True)\n        split = ds.get(\"validation\") or ds.get(\"test\") or ds[list(ds.keys())[0]]\n\n        problems = []\n        for i, row in enumerate(split):\n            label = _normalize_label(row.get(\"label\", \"\"))\n            if label is None:\n                continue\n\n            premises_raw = row.get(\"premises\", row.get(\"context\", \"\"))\n            if isinstance(premises_raw, list):\n                premises = premises_raw\n            else:\n                premises = _parse_proofwriter_premises(premises_raw)\n\n            hypothesis = row.get(\"conclusion\", row.get(\"hypothesis\", \"\"))\n\n            problems.append(Problem(\n                id=f\"folio_{i}\",\n                premises=premises,\n                hypothesis=hypothesis,\n                label=label,\n                dataset=\"folio\",\n                raw=dict(row),\n            ))\n\n        logger.info(\"Loaded %d FOLIO problems from HuggingFace\", len(problems))\n        return problems if problems else None\n\n    except Exception as e:\n        logger.warning(\"HuggingFace FOLIO load failed: %s\", e)\n        return None\n\n\ndef load_problems(\n    dataset: str,\n    subset: str = \"\",\n    num_problems: int = 50,\n    seed: int = 42,\n) -> list[Problem]:\n    \"\"\"Unified entry point — dispatches to dataset-specific loaders.\"\"\"\n    dataset = dataset.lower().strip()\n    if dataset == \"proofwriter\":\n        return load_proofwriter(subset=subset or \"depth-5\", num_problems=num_problems, seed=seed)\n    elif dataset == \"folio\":\n        return load_folio(num_problems=num_problems, seed=seed)\n    else:\n        raise ValueError(f\"Unknown dataset: {dataset}. Supported: proofwriter, folio\")",
+    "newString": "def load_folio(\n    subset: str = \"validation\",\n    num_problems: int = 50,\n    seed: int = 42,\n) -> list[Problem]:\n    \"\"\"Load FOLIO problems. Tries HF → local JSONL → JSON cache.\"\"\"\n    problems = _load_folio_hf(subset)\n    if problems is None:\n        problems = _load_folio_local(subset)\n    if problems is None:\n        cache_path = _CACHE_DIR / \"folio_cache.json\"\n        if cache_path.exists():\n            with open(cache_path) as f:\n                data = json.load(f)\n            problems = []\n            for i, row in enumerate(data):\n                label = _normalize_label(row.get(\"label\", \"\"))\n                if label is None:\n                    continue\n                premises = row.get(\"premises\", [])\n                if isinstance(premises, str):\n                    premises = _parse_proofwriter_premises(premises)\n                problems.append(Problem(\n                    id=f\"folio_{subset}_{i}\",\n                    premises=premises,\n                    hypothesis=row.get(\"conclusion\", row.get(\"hypothesis\", \"\")),\n                    label=label,\n                    dataset=\"folio\",\n                    raw=row,\n                ))\n\n    if not problems:\n        raise RuntimeError(\"Failed to load FOLIO data from HF, local JSONL, and cache\")\n\n    rng = random.Random(seed)\n    if num_problems > 0 and len(problems) > num_problems:\n        problems = rng.sample(problems, num_problems)\n\n    logger.info(\"Loaded %d FOLIO problems\", len(problems))\n    return problems\n\n\ndef _load_folio_hf(subset: str = \"validation\") -> list[Problem] | None:\n    try:\n        from datasets import load_dataset\n\n        ds = load_dataset(\"yale-nlp/FOLIO\", trust_remote_code=True)\n        split = ds.get(subset) or ds.get(\"validation\") or ds[list(ds.keys())[0]]\n\n        problems = []\n        for i, row in enumerate(split):\n            label = _normalize_label(row.get(\"label\", \"\"))\n            if label is None:\n                continue\n\n            premises_raw = row.get(\"premises\", row.get(\"context\", \"\"))\n            if isinstance(premises_raw, list):\n                premises = premises_raw\n            else:\n                premises = _parse_proofwriter_premises(premises_raw)\n\n            hypothesis = row.get(\"conclusion\", row.get(\"hypothesis\", \"\"))\n\n            problems.append(Problem(\n                id=f\"folio_{subset}_{i}\",\n                premises=premises,\n                hypothesis=hypothesis,\n                label=label,\n                dataset=\"folio\",\n                raw=dict(row),\n            ))\n\n        logger.info(\"Loaded %d FOLIO problems from HuggingFace\", len(problems))\n        return problems if problems else None\n\n    except Exception as e:\n        logger.warning(\"HuggingFace FOLIO load failed: %s\", e)\n        return None\n\n\ndef _load_folio_local(subset: str = \"validation\") -> list[Problem] | None:\n    data_dir = Path(\"/root/autodl-tmp/data/folio\")\n    for pattern in [f\"folio-{subset}.jsonl\", f\"{subset}.jsonl\", f\"folio_{subset}.jsonl\"]:\n        path = data_dir / pattern\n        if path.exists():\n            break\n    else:\n        logger.warning(\"FOLIO local JSONL not found in %s for subset=%s\", data_dir, subset)\n        return None\n\n    problems = []\n    with open(path) as f:\n        for i, line in enumerate(f):\n            item = json.loads(line)\n            label = _normalize_label(item.get(\"label\", \"Unknown\"))\n            if label is None:\n                continue\n            premises = item.get(\"premises\", [])\n            if isinstance(premises, str):\n                premises = _parse_proofwriter_premises(premises)\n            problems.append(Problem(\n                id=f\"folio_{subset}_{i}\",\n                premises=premises,\n                hypothesis=item.get(\"conclusion\", \"\"),\n                label=label,\n                dataset=\"folio\",\n                raw=item,\n            ))\n\n    logger.info(\"Loaded %d FOLIO problems from local JSONL: %s\", len(problems), path)\n    return problems if problems else None\n\n\ndef load_problems(\n    dataset: str,\n    subset: str = \"\",\n    num_problems: int = 50,\n    seed: int = 42,\n) -> list[Problem]:\n    \"\"\"Unified entry point — dispatches to dataset-specific loaders.\"\"\"\n    dataset = dataset.lower().strip()\n    if dataset == \"proofwriter\":\n        return load_proofwriter(subset=subset or \"depth-5\", num_problems=num_problems, seed=seed)\n    elif dataset == \"folio\":\n        return load_folio(subset=subset or \"validation\", num_problems=num_problems, seed=seed)\n    else:\n        raise ValueError(f\"Unknown dataset: {dataset}. Supported: proofwriter, folio\")",
+    "originalFile": "\"\"\"ProofWriter / FOLIO data loader for the SVS pipeline.\n\nLoads logical reasoning problems from HuggingFace datasets, with local\nJSON fallback. Returns list[Problem] for downstream chain sampling.\n\nDependencies: datasets (HuggingFace), json, random\n\"\"\"\n\nimport json\nimport logging\nimport random\nfrom pathlib import Path\n\nfrom ..types import Problem\n\nlogger = logging.getLogger(__name__)\n\n_CACHE_DIR = Path(__file__).parent\n\n\ndef _parse_proofwriter_premises(context: str) -> list[str]:\n    \"\"\"Split ProofWriter context string into individual premise sentences.\"\"\"\n    sentences = [s.strip() for s in context.split(\".\") if s.strip()]\n    return [s + \".\" for s in sentences]\n\n\ndef load_proofwriter(\n    subset: str = \"depth-5\",\n    num_problems: int = 50,\n    seed: int = 42,\n) -> list[Problem]:\n    \"\"\"Load ProofWriter problems, filtering by proof depth.\n\n    Tries HuggingFace datasets first, falls back to local cache JSON.\n    \"\"\"\n    problems = _load_proofwriter_hf(subset)\n    if problems is None:\n        problems = _load_proofwriter_cache()\n\n    if not problems:\n        raise RuntimeError(\"Failed to load ProofWriter data from both HF and local cache\")\n\n    rng = random.Random(seed)\n    if len(problems) > num_problems:\n        problems = rng.sample(problems, num_problems)\n\n    logger.info(\"Loaded %d ProofWriter %s problems\", len(problems), subset)\n    return problems\n\n\ndef _load_proofwriter_hf(subset: str) -> list[Problem] | None:\n    \"\"\"Try loading ProofWriter from HuggingFace datasets.\"\"\"\n    try:\n        from datasets import load_dataset\n\n        ds = load_dataset(\"allenai/proofwriter-dataset-v2\", \"depth-5\", trust_remote_code=True)\n        split = ds.get(\"test\") or ds.get(\"validation\") or ds[list(ds.keys())[0]]\n\n        depth_num = subset.replace(\"depth-\", \"\") if subset.startswith(\"depth-\") else subset\n\n        problems = []\n        for i, row in enumerate(split):\n            if \"proof_depth\" in row and str(row[\"proof_depth\"]) != depth_num:\n                continue\n\n            label_raw = row.get(\"answer\", row.get(\"label\", \"\"))\n            label = _normalize_label(label_raw)\n            if label is None:\n                continue\n\n            context = row.get(\"theory\", row.get(\"context\", row.get(\"premises\", \"\")))\n            hypothesis = row.get(\"hypothesis\", row.get(\"question\", \"\"))\n\n            problems.append(Problem(\n                id=f\"pw_{i}\",\n                premises=_parse_proofwriter_premises(context),\n                hypothesis=hypothesis,\n                label=label,\n                dataset=\"proofwriter\",\n                raw=dict(row),\n            ))\n\n        logger.info(\"Loaded %d problems from HuggingFace (subset=%s)\", len(problems), subset)\n        return problems if problems else None\n\n    except Exception as e:\n        logger.warning(\"HuggingFace load failed: %s. Falling back to local cache.\", e)\n        return None\n\n\ndef _load_proofwriter_cache() -> list[Problem] | None:\n    \"\"\"Load ProofWriter from local JSON cache.\"\"\"\n    cache_path = _CACHE_DIR / \"proofwriter_cache.json\"\n    if not cache_path.exists():\n        logger.warning(\"Local cache not found at %s\", cache_path)\n        return None\n\n    with open(cache_path) as f:\n        data = json.load(f)\n\n    problems = []\n    for i, row in enumerate(data):\n        label = _normalize_label(row.get(\"answer\", row.get(\"label\", \"\")))\n        if label is None:\n            continue\n\n        context = row.get(\"theory\", row.get(\"context\", row.get(\"premises\", \"\")))\n        hypothesis = row.get(\"hypothesis\", row.get(\"question\", \"\"))\n\n        if isinstance(context, list):\n            premises = context\n        else:\n            premises = _parse_proofwriter_premises(context)\n\n        problems.append(Problem(\n            id=f\"pw_{i}\",\n            premises=premises,\n            hypothesis=hypothesis,\n            label=label,\n            dataset=\"proofwriter\",\n            raw=row,\n        ))\n\n    logger.info(\"Loaded %d problems from local cache\", len(problems))\n    return problems\n\n\ndef load_folio(\n    num_problems: int = 50,\n    seed: int = 42,\n) -> list[Problem]:\n    \"\"\"Load FOLIO problems from HuggingFace datasets.\"\"\"\n    problems = _load_folio_hf()\n    if problems is None:\n        cache_path = _CACHE_DIR / \"folio_cache.json\"\n        if cache_path.exists():\n            with open(cache_path) as f:\n                data = json.load(f)\n            problems = []\n            for i, row in enumerate(data):\n                label = _normalize_label(row.get(\"label\", \"\"))\n                if label is None:\n                    continue\n                premises = row.get(\"premises\", [])\n                if isinstance(premises, str):\n                    premises = _parse_proofwriter_premises(premises)\n                problems.append(Problem(\n                    id=f\"folio_{i}\",\n                    premises=premises,\n                    hypothesis=row.get(\"conclusion\", row.get(\"hypothesis\", \"\")),\n                    label=label,\n                    dataset=\"folio\",\n                    raw=row,\n                ))\n\n    if not problems:\n        raise RuntimeError(\"Failed to load FOLIO data from both HF and local cache\")\n\n    rng = random.Random(seed)\n    if len(problems) > num_problems:\n        problems = rng.sample(problems, num_problems)\n\n    logger.info(\"Loaded %d FOLIO problems\", len(problems))\n    return problems\n\n\ndef _load_folio_hf() -> list[Problem] | None:\n    \"\"\"Try loading FOLIO from HuggingFace datasets.\"\"\"\n    try:\n        from datasets import load_dataset\n\n        ds = load_dataset(\"yale-nlp/FOLIO\", trust_remote_code=True)\n        split = ds.get(\"validation\") or ds.get(\"test\") or ds[list(ds.keys())[0]]\n\n        problems = []\n        for i, row in enumerate(split):\n            label = _normalize_label(row.get(\"label\", \"\"))\n            if label is None:\n                continue\n\n            premises_raw = row.get(\"premises\", row.get(\"context\", \"\"))\n            if isinstance(premises_raw, list):\n                premises = premises_raw\n            else:\n                premises = _parse_proofwriter_premises(premises_raw)\n\n            hypothesis = row.get(\"conclusion\", row.get(\"hypothesis\", \"\"))\n\n            problems.append(Problem(\n                id=f\"folio_{i}\",\n                premises=premises,\n                hypothesis=hypothesis,\n                label=label,\n                dataset=\"folio\",\n                raw=dict(row),\n            ))\n\n        logger.info(\"Loaded %d FOLIO problems from HuggingFace\", len(problems))\n        return problems if problems else None\n\n    except Exception as e:\n        logger.warning(\"HuggingFace FOLIO load failed: %s\", e)\n        return None\n\n\ndef load_problems(\n    dataset: str,\n    subset: str = \"\",\n    num_problems: int = 50,\n    seed: int = 42,\n) -> list[Problem]:\n    \"\"\"Unified entry point — dispatches to dataset-specific loaders.\"\"\"\n    dataset = dataset.lower().strip()\n    if dataset == \"proofwriter\":\n        return load_proofwriter(subset=subset or \"depth-5\", num_problems=num_problems, seed=seed)\n    elif dataset == \"folio\":\n        return load_folio(num_problems=num_problems, seed=seed)\n    else:\n        raise ValueError(f\"Unknown dataset: {dataset}. Supported: proofwriter, folio\")\n\n\ndef _normalize_label(raw) -> str | None:\n    \"\"\"Normalize answer labels to 'True' / 'False' / 'Unknown'.\"\"\"\n    if isinstance(raw, bool):\n        return \"True\" if raw else \"False\"\n    s = str(raw).strip().lower()\n    mapping = {\n        \"true\": \"True\",\n        \"proved\": \"True\",\n        \"entailment\": \"True\",\n        \"false\": \"False\",\n        \"disproved\": \"False\",\n        \"contradiction\": \"False\",\n        \"unknown\": \"Unknown\",\n        \"uncertain\": \"Unknown\",\n        \"neutral\": \"Unknown\",\n    }\n    return mapping.get(s)\n",
+    "structuredPatch": [
+      {
+        "oldStart": 126,
+        "oldLines": 12,
+        "newStart": 126,
+        "newLines": 15,
+        "lines": [
+          " ",
+          " ",
+          " def load_folio(",
+          "+    subset: str = \"validation\",",
+          "     num_problems: int = 50,",
+          "     seed: int = 42,",
+          " ) -> list[Problem]:",
+          "-    \"\"\"Load FOLIO problems from HuggingFace datasets.\"\"\"",
+          "-    problems = _load_folio_hf()",
+          "+    \"\"\"Load FOLIO problems. Tries HF → local JSONL → JSON cache.\"\"\"",
+          "+    problems = _load_folio_hf(subset)",
+          "     if problems is None:",
+          "+        problems = _load_folio_local(subset)",
+          "+    if problems is None:",
+          "         cache_path = _CACHE_DIR / \"folio_cache.json\"",
+          "         if cache_path.exists():",
+          "             with open(cache_path) as f:"
+        ]
+      },
+      {
+        "oldStart": 145,
+        "oldLines": 7,
+        "newStart": 148,
+        "newLines": 7,
+        "lines": [
+          "                 if isinstance(premises, str):",
+          "                     premises = _parse_proofwriter_premises(premises)",
+          "                 problems.append(Problem(",
+          "-                    id=f\"folio_{i}\",",
+          "+                    id=f\"folio_{subset}_{i}\",",
+          "                     premises=premises,",
+          "                     hypothesis=row.get(\"conclusion\", row.get(\"hypothesis\", \"\")),",
+          "                     label=label,"
+        ]
+      },
+      {
+        "oldStart": 154,
+        "oldLines": 23,
+        "newStart": 157,
+        "newLines": 22,
+        "lines": [
+          "                 ))",
+          " ",
+          "     if not problems:",
+          "-        raise RuntimeError(\"Failed to load FOLIO data from both HF and local cache\")",
+          "+        raise RuntimeError(\"Failed to load FOLIO data from HF, local JSONL, and cache\")",
+          " ",
+          "     rng = random.Random(seed)",
+          "-    if len(problems) > num_problems:",
+          "+    if num_problems > 0 and len(problems) > num_problems:",
+          "         problems = rng.sample(problems, num_problems)",
+          " ",
+          "     logger.info(\"Loaded %d FOLIO problems\", len(problems))",
+          "     return problems",
+          " ",
+          " ",
+          "-def _load_folio_hf() -> list[Problem] | None:",
+          "-    \"\"\"Try loading FOLIO from HuggingFace datasets.\"\"\"",
+          "+def _load_folio_hf(subset: str = \"validation\") -> list[Problem] | None:",
+          "     try:",
+          "         from datasets import load_dataset",
+          " ",
+          "         ds = load_dataset(\"yale-nlp/FOLIO\", trust_remote_code=True)",
+          "-        split = ds.get(\"validation\") or ds.get(\"test\") or ds[list(ds.keys())[0]]",
+          "+        split = ds.get(subset) or ds.get(\"validation\") or ds[list(ds.keys())[0]]",
+          " ",
+          "         problems = []",
+          "         for i, row in enumerate(split):"
+        ]
+      },
+      {
+        "oldStart": 187,
+        "oldLines": 7,
+        "newStart": 189,
+        "newLines": 7,
+        "lines": [
+          "             hypothesis = row.get(\"conclusion\", row.get(\"hypothesis\", \"\"))",
+          " ",
+          "             problems.append(Problem(",
+          "-                id=f\"folio_{i}\",",
+          "+                id=f\"folio_{subset}_{i}\",",
+          "                 premises=premises,",
+          "                 hypothesis=hypothesis,",
+          "                 label=label,"
+        ]
+      },
+      {
+        "oldStart": 203,
+        "oldLines": 6,
+        "newStart": 205,
+        "newLines": 39,
+        "lines": [
+          "         return None",
+          " ",
+          " ",
+          "+def _load_folio_local(subset: str = \"validation\") -> list[Problem] | None:",
+          "+    data_dir = Path(\"/root/autodl-tmp/data/folio\")",
+          "+    for pattern in [f\"folio-{subset}.jsonl\", f\"{subset}.jsonl\", f\"folio_{subset}.jsonl\"]:",
+          "+        path = data_dir / pattern",
+          "+        if path.exists():",
+          "+            break",
+          "+    else:",
+          "+        logger.warning(\"FOLIO local JSONL not found in %s for subset=%s\", data_dir, subset)",
+          "+        return None",
+          "+",
+          "+    problems = []",
+          "+    with open(path) as f:",
+          "+        for i, line in enumerate(f):",
+          "+            item = json.loads(line)",
+          "+            label = _normalize_label(item.get(\"label\", \"Unknown\"))",
+          "+            if label is None:",
+          "+                continue",
+          "+            premises = item.get(\"premises\", [])",
+          "+            if isinstance(premises, str):",
+          "+                premises = _parse_proofwriter_premises(premises)",
+          "+            problems.append(Problem(",
+          "+                id=f\"folio_{subset}_{i}\",",
+          "+                premises=premises,",
+          "+                hypothesis=item.get(\"conclusion\", \"\"),",
+          "+                label=label,",
+          "+                dataset=\"folio\",",
+          "+                raw=item,",
+          "+            ))",
+          "+",
+          "+    logger.info(\"Loaded %d FOLIO problems from local JSONL: %s\", len(problems), path)",
+          "+    return problems if problems else None",
+          "+",
+          "+",
+          " def load_problems(",
+          "     dataset: str,",
+          "     subset: str = \"\","
+        ]
+      },
+      {
+        "oldStart": 214,
+        "oldLines": 7,
+        "newStart": 249,
+        "newLines": 7,
+        "lines": [
+          "     if dataset == \"proofwriter\":",
+          "         return load_proofwriter(subset=subset or \"depth-5\", num_problems=num_problems, seed=seed)",
+          "     elif dataset == \"folio\":",
+          "-        return load_folio(num_problems=num_problems, seed=seed)",
+          "+        return load_folio(subset=subset or \"validation\", num_problems=num_problems, seed=seed)",
+          "     else:",
+          "         raise ValueError(f\"Unknown dataset: {dataset}. Supported: proofwriter, folio\")",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+## 汇报
+
+### Part A: cost_tracker 定价修复 ✓
+已部署到远程。新增 `deepseek/deepseek-v3.2`（$0.27/$1.10）、`deepseek/deepseek-v4-pro`（$0.80/$3.20）和 `LOCAL_GPU_COST_PER_HOUR = 3.0`。验证通过。MVP（PID 24681）未重启，定价修复影响下次运行。
+
+### Part B: FOLIO 数据加载 ✓
+更新了 `loader.py`（远程 + 本地 artifacts）：
+- 新增 `subset` 参数（`"train"` / `"validation"`）
+- 新增 `_load_folio_local()` 从 `/root/autodl-tmp/data/folio/folio-{subset}.jsonl` 加载
+- 修复 `num_problems=0` 表示加载全部的逻辑
+- 回退链：HF → 本地 JSONL → JSON cache
+
+**Label 分布**（`"Uncertain"` 已统一映射为 `"Unknown"`）：
+
+| subset | True | False | Unknown | 总计 |
+|--------|------|-------|---------|------|
+| validation | 72 | 63 | 69 | 204 |
+| train | 388 | 286 | 330 | 1004 |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "uuid": "f9582dc8-d521-41ca-a5d0-8fdf075db450",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JH4VuMcdTXHChrUtzYnbbq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2351,
+      "cache_read_input_tokens": 49968,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2351
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 51_
+
+## 汇报
+
+### Part A: cost_tracker 定价修复 ✓
+已部署到远程。新增 `deepseek/deepseek-v3.2`（$0.27/$1.10）、`deepseek/deepseek-v4-pro`（$0.80/$3.20）和 `LOCAL_GPU_COST_PER_HOUR = 3.0`。验证通过。MVP（PID 24681）未重启，定价修复影响下次运行。
+
+### Part B: FOLIO 数据加载 ✓
+更新了 `loader.py`（远程 + 本地 artifacts）：
+- 新增 `subset` 参数（`"train"` / `"validation"`）
+- 新增 `_load_folio_local()` 从 `/root/autodl-tmp/data/folio/folio-{subset}.jsonl` 加载
+- 修复 `num_problems=0` 表示加载全部的逻辑
+- 回退链：HF → 本地 JSONL → JSON cache
+
+**Label 分布**（`"Uncertain"` 已统一映射为 `"Unknown"`）：
+
+| subset | True | False | Unknown | 总计 |
+|--------|------|-------|---------|------|
+| validation | 72 | 63 | 69 | 204 |
+| train | 388 | 286 | 330 | 1004 |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 264729,
+  "duration_api_ms": 232124,
+  "num_turns": 17,
+  "stop_reason": "end_turn",
+  "session_id": "ecd0b529-4284-4a9b-baaa-82864e1f39fe",
+  "total_cost_usd": 0.805757,
+  "usage": {
+    "input_tokens": 13,
+    "cache_creation_input_tokens": 40478,
+    "cache_read_input_tokens": 376051,
+    "output_tokens": 14497,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 40478,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 383,
+        "cache_read_input_tokens": 49968,
+        "cache_creation_input_tokens": 2351,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2351
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2154,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002254,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 13,
+      "outputTokens": 14497,
+      "cacheReadInputTokens": 376051,
+      "cacheCreationInputTokens": 40478,
+      "webSearchRequests": 0,
+      "costUSD": 0.8035029999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "f9331313-006f-4afd-a0a7-29423f53b162"
+}
+```
+
+</details>
+
+---

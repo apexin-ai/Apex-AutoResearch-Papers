@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d32f5fcf337a877d64b3",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "infra qwen vllm deploy",
+  "task_key": "worker_infra_qwen-vllm-deploy_20260514T103741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_qwen-vllm-deploy_20260514T103741_result.json",
+    "occurrence": 1,
+    "bytes": 1045,
+    "sha256": "4cd19dcb29ca9dd164c98b5b8e91f08d861657b549f32ffcd0cd767d8f3e9c1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总结果：\n\n## Qwen2.5-14B vLLM 部署 + Dry-run 报告\n\n### 部署\n- **Qwen vLLM**: cuda:2+3, port 8002, PID 41276, TP=2, max-model-len 4096\n- **DeepSeek vLLM**: 未受影响，cuda:0+1, port 8001\n- **mvp_003**: 正常运行中 (9/50)\n\n### Dry-run 结果 (3 ProofWriter depth-5 × 4 chains)\n\n| 验证项 | 结果 | 状态 |\n|--------|------|------|\n| Chain 格式兼容性 | 12/12 chains 采样成功，答案提取正常 | **通过** |\n| Premise formalization | 56/56 (100%) | **通过** |\n| Claim formalization rate | 77/178 = 43.26% (threshold 50%) | **未达标** |\n| Z3 sandbox 稳定性 | 无 crash，正确检测 SAT 与 inconsistency | **通过** |\n| Cost | 408 calls, 285K tokens, $0.00 (本地 vLLM) | - |\n\n### 关键问题\nFormalization rate (43.26%) 低于 50% 目标。原因是 Qwen2.5-14B 同时承担 chain generation 和 formalization 两个角色，formalization 能力弱于 mvp_003 使用的远程 DeepSeek-V3.2。正式实验建议 formalization 仍走更强的模型 API。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-qwen-vllm-deploy.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "019b4e89b16f25ea0d2d",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "infra model download",
+  "task_key": "worker_infra_model_download_20260514T054731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_model_download_20260514T054731_result.json",
+    "occurrence": 1,
+    "bytes": 287,
+    "sha256": "3194fab7d3bccd4037711218a34e1c43448ee57b534c7e61916f174bed237ccd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SSH 连接失败：`No authentication methods available`。\n\nAutoDL 实例重启后 SSH 端口会变。请去 AutoDL 控制台检查 autodl-5090 的当前 SSH 端口，然后更新 `~/.ssh/config` 中的端口配置。\n\n需要我帮你检查当前的 SSH config 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-model-download.md"
+}

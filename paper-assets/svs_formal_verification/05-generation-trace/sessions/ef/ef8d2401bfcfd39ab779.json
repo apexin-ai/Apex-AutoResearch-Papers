@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "ef8d2401bfcfd39ab779",
+  "project": "svs_formal_verification",
+  "kind": "worker",
+  "title": "infra mvp restart v2",
+  "task_key": "worker_infra_mvp_restart_v2_20260514T071920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_mvp_restart_v2_20260514T071920.log",
+    "occurrence": 1,
+    "bytes": 1190682,
+    "sha256": "229ee79bdd96a52814e5daa383621d28d6d68a1b3b2248bad172e39a5c059cc1"
+  },
+  "statistics": {
+    "messages": 669,
+    "user_turns": 1,
+    "tool_calls": 280,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 101,
+      "tool_call": 280,
+      "tool_result": 280,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 644,
+      "chunks": [
+        {
+          "path": "ef8d2401bfcfd39ab779-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ef8d2401bfcfd39ab779-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ef8d2401bfcfd39ab779-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "ef8d2401bfcfd39ab779-part-0004.json",
+          "message_count": 104
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "ef8d2401bfcfd39ab779-part-0004.json",
+          "message_count": 25
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-mvp-restart-v2.md"
+}

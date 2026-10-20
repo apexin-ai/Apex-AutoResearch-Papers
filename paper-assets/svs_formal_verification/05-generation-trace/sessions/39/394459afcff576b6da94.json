@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "394459afcff576b6da94",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "infra mvp003 completion and entailment 10q",
+  "task_key": "worker_infra_mvp003_completion_and_entailment_10q_20260514T141646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_mvp003_completion_and_entailment_10q_20260514T141646_result.json",
+    "occurrence": 1,
+    "bytes": 55,
+    "sha256": "f56df0a4ac212fb688c000f70999384843a2c8ccad1ed0a90b4945dcad886a2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Polling. Will check back in ~20 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-mvp003-completion-and-entailment-10q.md"
+}

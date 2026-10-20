@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f43e159cd997a1e7c409",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "research literature formal verification",
+  "task_key": "worker_research_literature_formal_verification_20260514T103412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature_formal_verification_20260514T103412_result.json",
+    "occurrence": 1,
+    "bytes": 1065,
+    "sha256": "7c1e2de3f7e1e7f30371f3ef7b112c21c875c07db9506cafbcf3e2e82967a291"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研报告已写入 `artifacts/literature_survey_formal_verification.md`。\n\n**核心发现：**\n\n**两个高风险竞品：**\n- **VeriCoT** (2025.11) — 与我们几乎同样的 pipeline：CoT→FOL(SMT-LIB)→Z3 验证，但做 binary 验证，无 MCS/IC scoring，无 PCV\n- **VERGE** (2026.01) — 更接近：FOL+Z3+**MCS**，但 MCS 用于 error localization + iterative refinement，不做 graded scoring 或 chain selection\n\n**我们的差异化空间（novelty 中等偏上）：**\n1. IC = MCS_size/total_claims 作为连续 graded verifier — 现有工作均为 binary 或定性\n2. Premise-Conditioned Verification (PCV) — 现有工作未区分题目约束 vs 推理生成的 claims\n3. IC 替代 self-consistency 做 chain selection — 现有 formal verification 工作无人做 Best-of-N selection\n\n**定位建议：** 不宜说 \"首次用形式验证检查 CoT\"，应说 \"首次将形式一致性检查转化为 graded chain selection 机制 + PCV 框架\"。论文中需清晰区分与 VERGE 的 MCS 用法差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-formal-verification.md"
+}

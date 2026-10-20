@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a868b349f4b90f57b2a",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "validation sc baseline dryrun",
+  "task_key": "worker_validation_sc_baseline_dryrun_20260514T113843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_validation_sc_baseline_dryrun_20260514T113843_result.json",
+    "occurrence": 1,
+    "bytes": 1484,
+    "sha256": "c6070b200ba57ea4ed876d0d96d571c28f9361a9f626fbd7f6ee9b5051296388"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SC Baseline dry-run 完成，管线跑通。汇报：\n\n---\n\n## gpu-5090-4x-4 状态 & SC Baseline Dry-Run 结果\n\n### GPU 状态（4x RTX 5090, 各 32GB）\n| GPU | 利用率 | 显存占用 | 状态 |\n|-----|--------|----------|------|\n| 0 | 99% | 31459/32607 MiB | 忙 |\n| 1 | 99% | 31459/32607 MiB | 忙 |\n| 2 | 0% | 31401/32607 MiB | 显存被占但空闲 |\n| 3 | 0% | 31401/32607 MiB | 显存被占但空闲 |\n\n### 代码部署\n- `/root/autodl-tmp/svs_formal_verification/` ✓ 已存在\n- `svs_pipeline/` 完整（data loader, evaluation/metrics, generation, formalization, verification）\n- ProofWriter 本地缓存 ✓ 可用\n- Python 3.12.3 (conda base) ✓\n- HuggingFace 网络不通（需 `source /etc/network_turbo`），但本地缓存回退正常\n\n### SC Baseline 管线验证 ✓ 跑通\n- **10 题 ProofWriter depth-5**，每题 8 条 mock chain（60% 正确率）\n- **Majority voting + evaluate_results() + format_report()** 全部正常\n- Mock 场景下 SC accuracy = 100%（60% correct rate + 8 chains 足够让正确答案成为多数）\n- 输出文件：`outputs_dryrun/sc_baseline_dryrun.json`\n- 管线组件验证：数据加载 ✓ → Chain 生成 ✓ → Majority Vote ✓ → Metrics 计算 ✓ → 报告输出 ✓\n\n### Blocker\n- **GPU 0-3 显存全被占**（即便 GPU 2-3 利用率 0%），如果要跑真实 LLM 推理需要先释放显存\n- HF Hub 网络不通，正式实验前需 `source /etc/network_turbo`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/validation-sc-baseline-dryrun.md"
+}

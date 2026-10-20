@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f17f4fa4691c64ae32b9",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "infra mvp deploy v4 z3fix",
+  "task_key": "worker_infra_mvp_deploy_v4_z3fix_20260514T092146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_mvp_deploy_v4_z3fix_20260514T092146_result.json",
+    "occurrence": 1,
+    "bytes": 1748,
+    "sha256": "cf37a78d4e4bedef341ccde8799ff9cd5c85778c0b274ac3e3e110cb5a6aaadc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整 MVP 正常启动：50 problems × 8 chains = 400 total chains，正在处理 Problem 1/50。\n\n---\n\n## 产出汇总\n\n### 1. 修复验证\n| 检查项 | 结果 |\n|--------|------|\n| `_z3_lock` in autoformalize.py | ✓ |\n| `_z3_corrupted` in autoformalize.py | ✓ |\n| `_z3_lock` in z3_checker.py | ✓ |\n| 量词规则 (CRITICAL RULES) | ✓ (两文件各1处) |\n| `import threading` | ✓ (两文件) |\n\n### 2. vLLM 状态\n- 模型: `/root/autodl-tmp/models/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B`\n- TP=2, float16, port 8001\n- 状态: **运行中**\n\n### 3. Dry-run mvp_report.json\n- SVS accuracy: 50% (1/2), SC accuracy: 50% (1/2), delta: 0%\n- P1 (formalization > 50%): **PASS** (75%, 63/84 claims formalized)\n- P2 (IC discrimination): FAIL（样本量不足，无法计算统计量）\n- API calls: 143, tokens: 109,830, cost: $0.0301\n\n### 4. 异常检查\n- **0 segfault** — Z3 crash 修复有效\n- **0 \"Z3 state corrupted\"** — corrupted state 检测未触发（好事，说明 lock 真正防住了并发问题）\n- **0 \"unreachable\"**\n- 有少量 formalization 语法错误重试（正常行为，非 crash）\n\n### 5. 完整 MVP\n- **PID: 35733**\n- 配置: 50 problems × 8 chains = 400 chains\n- 已成功加载 50 个 ProofWriter depth-5 问题，正在处理 Problem 1/50\n\n### 6. MVP 启动日志前 20 行\n- 正常加载 config_local.yaml\n- 从本地缓存加载 30220 问题 → 选取 50 个 depth-5\n- 已开始向 vLLM 发送推理请求\n\n### 7. 无异常\n唯一 note：dry-run 中有一个 claim \"If Gary is not kind then Gary might not be blue\" 因含 modal \"might\" 导致 3 次 formalization 均语法错误被跳过——这是预期行为，不影响流程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-mvp-deploy-v4-z3fix.md"
+}

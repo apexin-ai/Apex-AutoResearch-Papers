@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd15c7e9609200574a5f",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "check entailment rescorer results",
+  "task_key": "worker_check_entailment_rescorer_results_20260514T150348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_entailment_rescorer_results_20260514T150348_result.json",
+    "occurrence": 1,
+    "bytes": 2872,
+    "sha256": "768af9df4e74e100427f6cbd044eaff03b180ba773106db8dde27892f4cc441b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总所有结果：\n\n---\n\n## 1. PID 54002 状态\n**PROCESS_ENDED** — 进程已结束。\n\n## 2. 结果文件列表\n\n| 文件 | 大小 | 时间 |\n|------|------|------|\n| `entailment_rescore_results.json` | 1KB | 21:26 |\n| `entailment_rescore_v2_results.json` | 105B | 22:00 |\n| `mvp_report.json` | 2.4KB | 22:17 |\n| `results.json` / `mvp_003_final.json` | 125KB | 22:17 |\n| `chain_details.json` | 9KB | 22:17 |\n\n当前无 entailment/rescore 进程运行。\n\n## 3. 结果 JSON 内容\n\n### `entailment_rescore_results.json`\n```json\n{\"chains\": [], \"summary\": {\"n_problems\": 0, \"n_chains\": 0, ...}, \"status\": \"complete\", \"total_time_s\": 9.5e-07}\n```\n**空结果** — 0 chains, 0 problems。运行瞬间完成，没有处理任何数据。\n\n### `entailment_rescore_v2_results.json`\n```json\n{\"chains\": [], \"summary\": {}, \"status\": \"interrupted\", \"problems_done\": 0, \"total_time_s\": 0}\n```\n**被中断** — 0 problems done。\n\n### `mvp_report.json`（最新完整结果，50 problems）\n```json\n{\n  \"config\": {\"num_problems\": 50, \"num_chains\": 8, \"total_chains\": 400},\n  \"accuracy\": {\n    \"svs\": {\"correct\": 30, \"total\": 50, \"accuracy\": 0.60},\n    \"sc\":  {\"correct\": 29, \"total\": 50, \"accuracy\": 0.58},\n    \"delta\": 0.02\n  },\n  \"formalization\": {\n    \"total_claims\": 7941, \"formalized_claims\": 6742, \"rate\": 0.849\n  },\n  \"p1_autoformalization\": {\"threshold\": 0.5, \"actual\": 0.849, \"pass\": true},\n  \"p2_ic_discrimination\": {\n    \"n_correct_chains\": 226, \"n_incorrect_chains\": 174,\n    \"mean_correct_ic\": 0.7476, \"mean_incorrect_ic\": 0.8223,\n    \"cohens_d\": -0.3736,  // 方向反了！incorrect > correct\n    \"ttest_p_value\": 0.999879,\n    \"mannwhitney_p_value\": 0.998748,\n    \"pass\": \"False\"\n  },\n  \"verdict\": {\"p1\": \"PASS\", \"p2\": \"FAIL\", \"overall\": \"FAIL\"},\n  \"cost\": {\"estimated_cost_usd\": 2.50}\n}\n```\n\n## 4. 关键发现\n\n- **P1 (autoformalization)**: PASS，84.9% formalization rate (阈值 50%)\n- **P2 (IC discrimination)**: **FAIL** — Cohen's d = **-0.3736**，方向完全反了（incorrect chains 的 IC 分数更高：0.8223 vs correct 的 0.7476）\n- **SVS vs SC**: SVS 60% vs SC 58%，仅 +2pp，几乎无区分度\n- t-test p=0.9999, Mann-Whitney p=0.9987 — IC 分数完全无法区分 correct/incorrect chains\n\n## 5. 日志中的 formalization 问题\n\n- `entailment_rescorer.log` 中有 344 行包含 formalization/success/fail 关键词\n- 大量 Z3 sandbox SyntaxError：LLM 生成的 Z3 表达式语法无效\n- `entailment_v3.log`：处理了 46 个 problems，formalization 成功率较好（16/16, 30/30 等）\n- `entailment_10q_test.log`：因 HuggingFace 网络不可达（Errno 101）而失败，`trust_remote_code` API 变更也导致 datasets 加载报错"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-entailment-rescorer-results.md"
+}

@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "8fc479c09554fb56b400",
+  "project": "svs_formal_verification",
+  "kind": "worker",
+  "title": "code entailment rescore v2",
+  "task_key": "worker_code_entailment_rescore_v2_20260514T131542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_entailment_rescore_v2_20260514T131542.log",
+    "occurrence": 1,
+    "bytes": 1507937,
+    "sha256": "84f6504966cfad7fa4b3f55ce6bc0b24f0275dab92c3df2600bb5c29813480af"
+  },
+  "statistics": {
+    "messages": 675,
+    "user_turns": 1,
+    "tool_calls": 248,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 171,
+      "tool_call": 248,
+      "tool_result": 248,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 427,
+      "chunks": [
+        {
+          "path": "8fc479c09554fb56b400-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8fc479c09554fb56b400-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8fc479c09554fb56b400-part-0003.json",
+          "message_count": 67
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 248,
+      "chunks": [
+        {
+          "path": "8fc479c09554fb56b400-part-0003.json",
+          "message_count": 113
+        },
+        {
+          "path": "8fc479c09554fb56b400-part-0004.json",
+          "message_count": 135
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-entailment-rescore-v2.md"
+}

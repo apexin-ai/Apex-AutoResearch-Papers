@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aefc65e2300e44ebc8c5",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "infra logicreward download",
+  "task_key": "worker_infra_logicreward-download_20260514T113744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_logicreward-download_20260514T113744_result.json",
+    "occurrence": 1,
+    "bytes": 1213,
+    "sha256": "b3393d00a4d4bfea8d762faaa24fb33e45a0b7ba8b388ca8ee202963ed384852"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。汇报结果：\n\n---\n\n**模型验证结果：Aiden0526/LogicReward-Qwen3-8B**\n\n| 项目 | 结果 |\n|------|------|\n| 模型存在 | 是，HuggingFace Hub 验证通过 |\n| 模型类型 | **LoRA adapter**（非完整模型），83MB safetensors |\n| 基座模型 | `Qwen/Qwen3-8B` |\n| 训练流程 | SFT → DPO，使用 LLaMA-Factory |\n| LoRA 配置 | r=8, alpha=16, target: q/k/v/o/gate/up/down_proj |\n| task_type | CAUSAL_LM |\n| Tokenizer | 加载成功，vocab_size=151,643 |\n| 下载路径 | `/root/autodl-tmp/models/LogicReward-Qwen3-8B/` |\n| 文件数 | 11 个文件（adapter_model.safetensors + tokenizer + config） |\n| 论文 | LogicReward: Incentivizing LLM Reasoning via Step-Wise Logical Supervision (ICLR 2026) |\n\n**gpu-5090-4x-4 GPU 状态：**\n\n| GPU | 利用率 | 显存使用 |\n|-----|--------|----------|\n| GPU 0 | 99% | 31,459 / 32,607 MiB |\n| GPU 1 | 99% | 31,459 / 32,607 MiB |\n| GPU 2 | 0% | 31,401 / 32,607 MiB（显存被占但空闲） |\n| GPU 3 | 0% | 31,401 / 32,607 MiB（显存被占但空闲） |\n\n注意：使用此 adapter 需要先下载基座模型 `Qwen/Qwen3-8B`（约 16GB）。4 张 5090 显存几乎全部被占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-logicreward-download.md"
+}

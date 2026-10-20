@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2af1cf04329323931636",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "infra kill v2 duplicate",
+  "task_key": "worker_infra_kill_v2_duplicate_20260514T134438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill_v2_duplicate_20260514T134438_result.json",
+    "occurrence": 1,
+    "bytes": 142,
+    "sha256": "38da8bdcc1718120eea4118ee51f834c886fcf386535af0daac343dc3a967bac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- PID 63573（debug wrapper）：已终止\n- PID 63393（v2 rescorer）：正常运行中，已运行 1 分 53 秒，CPU 11.9%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-v2-duplicate.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc861c99e1a190b4bc1c",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "code d012 phase2 prep",
+  "task_key": "worker_code_d012_phase2_prep_20260514T153326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d012_phase2_prep_20260514T153326_result.json",
+    "occurrence": 1,
+    "bytes": 1238,
+    "sha256": "ecce1888b005df75b970684b625aa96847f1b9423de6ba12ebcf75b7c819c964"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**Entailment check 已完整集成到主管线，无需额外代码修改。**\n\n代码审查的完整调用链路：\n\n```\nrun_mvp.py\n  ├─ formalizer.formalize_batch(premises)       # 前提 → FOL\n  └─ scorer.select_answer(premises_fol=...)\n       ├─ z3_checker.check_entailment()          # 逐 claim: premises ∧ prior ∧ ¬claim → UNSAT?\n       │    └─ sandbox.check_entailment()        # 子进程 Z3 执行\n       ├─ score_chain(ic_entail, fc_score)       # 0.5*ic_entail + 0.5*fc_score\n       └─ evaluate_and_judge() → cv.ic_entail    # P2 Cohen's d 判定\n```\n\n**与 v3 独立脚本的差异**（设计选择，非 bug）：\n- v3 合并分母 `entailed/total_claims`；主管线分离为 `entailed/formalized` + `fc_score=formalized/total`，更干净\n- v3 额外计算 `ic_consist`（per-claim 一致性）；主管线省略——entailed 必然 consistent\n- 旧 `check_internal_consistency()` 仍被调用但结果不参与评分，保留用于 ablation\n\n**无阻塞问题。** Phase 1（PID 54002）完成后可直接用 `run_mvp.py` 跑正式实验。\n\n设计文档已写入 `artifacts/d012_phase2_integration_design.md`，memory.md 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d012-phase2-prep.md"
+}

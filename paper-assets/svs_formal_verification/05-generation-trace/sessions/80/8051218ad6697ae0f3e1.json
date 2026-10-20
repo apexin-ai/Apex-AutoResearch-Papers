@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8051218ad6697ae0f3e1",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "infra kill orphan vllm",
+  "task_key": "worker_infra_kill_orphan_vllm_20260514T072222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill_orphan_vllm_20260514T072222_result.json",
+    "occurrence": 1,
+    "bytes": 437,
+    "sha256": "be820f2b8c879c6b8f48fdb5aa4df63f84278ab60d5a0069c5131d77e7fac216"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。孤儿进程 PID 21051 (VLLM::EngineCore) 和 21050 (resource_tracker) 已终止。\n\n**清理后 GPU 显存状态：**\n\n| GPU | 已用 | 总量 |\n|-----|------|------|\n| cuda:0 | 29925 MiB | 32607 MiB |\n| cuda:1 | 29925 MiB | 32607 MiB |\n| cuda:2 | **0 MiB** | 32607 MiB |\n| cuda:3 | 0 MiB | 32607 MiB |\n\ncuda:2 显存已完全释放。port 8001 的 vLLM 服务（cuda:0+1, TP=2）正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-orphan-vllm.md"
+}

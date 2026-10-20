@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "03ae2bee486ac1d1c54e",
+  "project": "svs_formal_verification",
+  "kind": "worker",
+  "title": "analysis z3 formula quality",
+  "task_key": "worker_analysis_z3_formula_quality_20260514T120510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_z3_formula_quality_20260514T120510.log",
+    "occurrence": 1,
+    "bytes": 924118,
+    "sha256": "1e80dfafd9cdc3fa839ab91d8f94e465f6da6d39fd37382a2e6a2fe3035cacb2"
+  },
+  "statistics": {
+    "messages": 172,
+    "user_turns": 0,
+    "tool_calls": 59,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 50,
+      "tool_call": 59,
+      "tool_result": 59,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 172,
+      "chunks": [
+        {
+          "path": "03ae2bee486ac1d1c54e-part-0001.json",
+          "message_count": 119
+        },
+        {
+          "path": "03ae2bee486ac1d1c54e-part-0002.json",
+          "message_count": 53
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-z3-formula-quality.md"
+}

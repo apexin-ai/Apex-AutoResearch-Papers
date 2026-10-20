@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f3b99861f2fe1c936f7",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "infra check mvp003 progress",
+  "task_key": "worker_infra_check_mvp003_progress_20260514T103353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check_mvp003_progress_20260514T103353_result.json",
+    "occurrence": 1,
+    "bytes": 865,
+    "sha256": "3be0fec4bc103bf8630fc61098db8afb3295c9fb556b041069c14b1ee599de64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## mvp_003 实验进度汇报\n\n| 项目 | 状态 |\n|------|------|\n| **进程状态** | alive, PID 37622, 运行 42 分 53 秒, 内存 288MB, CPU 1.0% |\n| **已完成问题** | **8 / 50**（刚开始处理第 9 题 pw_24132） |\n| **最新处理** | pw_4572（第 8 题，18:34:50 完成） |\n| **ERROR/CRASH** | 0 |\n| **502 Bad Gateway** | 10 次（外部 API 47.94.22.126 偶发 502，自动重试成功，未影响流程） |\n| **GPU 利用率** | GPU 0-1: 0%, 31.5/32.6 GB 显存占用（模型已加载但 utilization 0%）; GPU 2-3: 空闲 |\n\n### 准确率（前 8 题）\n\n| 方法 | 正确数 | 准确率 |\n|------|--------|--------|\n| SVS | 3/8 | 37.5% |\n| SC (Self-Consistency) | 3/8 | 37.5% |\n\n### 预估剩余时间\n\n平均每题耗时 ~5.3 分钟（42.9 min / 8 题），剩余 42 题，预估还需 **~3.7 小时**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-mvp003-progress.md"
+}

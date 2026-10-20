@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2ce3e92d4e73e0e3384",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "code folio loader test",
+  "task_key": "worker_code_folio_loader_test_20260514T075246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_folio_loader_test_20260514T075246_result.json",
+    "occurrence": 1,
+    "bytes": 900,
+    "sha256": "67a34145ecec4aae26011733a8392d59b9773d849b5dca256b8f58920d39667a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### Part A: cost_tracker 定价修复 ✓\n已部署到远程。新增 `deepseek/deepseek-v3.2`（$0.27/$1.10）、`deepseek/deepseek-v4-pro`（$0.80/$3.20）和 `LOCAL_GPU_COST_PER_HOUR = 3.0`。验证通过。MVP（PID 24681）未重启，定价修复影响下次运行。\n\n### Part B: FOLIO 数据加载 ✓\n更新了 `loader.py`（远程 + 本地 artifacts）：\n- 新增 `subset` 参数（`\"train\"` / `\"validation\"`）\n- 新增 `_load_folio_local()` 从 `/root/autodl-tmp/data/folio/folio-{subset}.jsonl` 加载\n- 修复 `num_problems=0` 表示加载全部的逻辑\n- 回退链：HF → 本地 JSONL → JSON cache\n\n**Label 分布**（`\"Uncertain\"` 已统一映射为 `\"Unknown\"`）：\n\n| subset | True | False | Unknown | 总计 |\n|--------|------|-------|---------|------|\n| validation | 72 | 63 | 69 | 204 |\n| train | 388 | 286 | 330 | 1004 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-folio-loader-test.md"
+}

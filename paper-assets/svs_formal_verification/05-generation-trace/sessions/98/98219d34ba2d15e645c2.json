@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98219d34ba2d15e645c2",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "check mvp 003 progress v2",
+  "task_key": "worker_check_mvp_003_progress_v2_20260514T105350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_mvp_003_progress_v2_20260514T105350_result.json",
+    "occurrence": 1,
+    "bytes": 1101,
+    "sha256": "098a4b054f3146588c9246fc92d80b62dd3bb8fd983d4da52da5f78173551846"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕，汇总如下：\n\n## mvp_003 进度报告\n\n| 指标 | 值 |\n|------|-----|\n| **已完成** | **10 / 50** (20%) |\n| **进程状态** | 存活，PID 37622，运行 1h03min，CPU 0.8% |\n| **SVS 准确率** | 4/10 = **40%** |\n| **SC 准确率** | 4/10 = **40%** (SVS 未优于 SC) |\n| **平均 IC score** | ~**0.82** (80 chains, 范围 0.20–1.00) |\n| **Formalization rate** | 大部分 chain 接近 100%，少数 problem 低至 ~80% |\n\n### 速率和剩余时间\n\n- 文件创建 17:55 → 最后修改 18:47 → **52 min 完成 10 个 problem**\n- 速率：**~11.5 problems/hr**\n- 剩余 40 个 → **预估还需 ~3.5 小时**（约 22:15 完成）\n- 上次写入在 18:47（距查询时 ~5 min），可能正在处理第 11 个 problem\n\n### 异常\n\n- **无 crash/重试迹象**，进程平稳运行\n- **输出目录位置**：进程 cwd 是 `/root`，所以 outputs 写在 `/root/outputs/` 而非项目目录下的 `outputs/`\n- 当前 SVS 和 SC 准确率持平（都是 40%），SVS 暂未展现优势，但样本量仅 10，后续可能变化"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-mvp-003-progress-v2.md"
+}

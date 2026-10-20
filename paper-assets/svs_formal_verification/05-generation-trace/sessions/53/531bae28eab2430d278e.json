@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "531bae28eab2430d278e",
+  "project": "svs_formal_verification",
+  "kind": "result",
+  "title": "check mvp003 final status",
+  "task_key": "worker_check_mvp003_final_status_20260514T141927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_mvp003_final_status_20260514T141927_result.json",
+    "occurrence": 1,
+    "bytes": 1228,
+    "sha256": "515782e23a033cf07e35344d83d3f8e411d733c56e708bd1260d524d6a7952ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## mvp_003 最终状态汇总\n\n| 检查项 | 结果 |\n|--------|------|\n| **日志末尾** | 正常结束，打印了 MVP VERDICT 摘要，无崩溃 |\n| **results_partial.json** | 50 条 gold_label 记录，完整 |\n| **进程 37622** | 已退出 (PROCESS_ENDED) |\n| **错误日志** | nohup.out / mvp_run_err.log 不存在 |\n| **Traceback** | 日志中有 ~90 次 traceback，均为 formalization 重试失败（预期行为，有 retry 逻辑兜底） |\n| **备份文件** | `/root/outputs/mvp_003_final.json` 存在，124KB，时间戳 May 14 22:17 |\n\n### MVP VERDICT（程序自身判定）\n\n```\nP1 (formalization > 50%):  PASS\nP2 (IC discrimination):    FAIL\nOverall:                   FAIL\n```\n\n- SVS accuracy: **60.0%**，SC accuracy: **58.0%**，Delta: **+2.0%**\n- Cohen's d: **-0.3736**，t-test p: **0.999879**（SVS 未显著优于 SC）\n- API cost: **$2.50**，12140 calls，9.2M tokens\n\n### 最终判断：**mvp_003 运行 SUCCESS（正常完成），但实验结果 FAIL**\n\n程序跑完了全部 50 个问题、输出了完整结果和报告、正常退出。但 P2 指标（IC discrimination）未通过——SVS 相对 SC 仅 +2% 且统计不显著，MVP 判定为 FAIL。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-mvp003-final-status.md"
+}
