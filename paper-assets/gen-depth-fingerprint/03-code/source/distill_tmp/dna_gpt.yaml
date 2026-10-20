@@ -1,0 +1,179 @@
+paper_key: "dna_gpt"
+title: "DNA-GPT: Divergent N-Gram Analysis for Training-Free Detection of GPT-Generated Text"
+venue: "ICLR 2024"
+full_text_available: true  # via ar5iv HTML rendering
+
+research:
+  baselines:
+    - GPTZero
+    - "OpenAI's official classifier (fine-tuned on 34 models)"
+    - DetectGPT  # white-box only comparison
+  metrics:
+    - {name: "AUROC", direction: "higher_better"}
+    - {name: "TPR at 1% FPR", direction: "higher_better"}
+  datasets:
+    - {name: "Reddit ELI5", size: "150-300 instances, physics/biology, Jan 2022-Mar 2023"}
+    - {name: "Scientific Abstracts", size: "150-300 instances, Nature, April 2023"}
+    - {name: "PubMedQA", size: "150-300 instances, biomedical domain"}
+    - {name: "Xsum", size: "150-300 instances, news summarization"}
+    - {name: "WMT16", size: "English and German machine translation"}
+  ablation_dimensions:
+    - "truncation ratio gamma (0.02-0.98, optimal 0.5)"
+    - "number of re-generations K (1-20, saturates ~10 black-box, ~5 white-box)"
+    - "decoding temperature (0.7, 1.0, 1.4, 1.8)"
+    - "revision attack ratio (0-0.5, using T5-3B span replacement)"
+    - "starting n-gram n0 (1-6, optimal 4)"
+    - "weight function f(n) (log(n), n, n*log(n), n*log^2(n), n^2, e^n)"
+    - "maximum n-gram N (set to 25)"
+    - "non-English language (German via WMT16)"
+    - "proxy model size (OPT-125M, GPT2-124M as proxies)"
+    - "model version drift over time (41-day interval)"
+    - "sliding window for mixed human+AI content"
+  training_recipe:
+    optimizer: "N/A (training-free, zero-shot method)"
+    lr: "N/A"
+    hardware: "N/A (uses LLM API calls; K regenerations per sample)"
+  method_family: "re-generation + divergence analysis (zero-shot, training-free)"
+
+positioning:
+  core_claim: "Truncating text and comparing re-generated continuations via n-gram overlap (black-box) or probability divergence (white-box) provides training-free, explainable detection that outperforms trained classifiers including OpenAI's own."
+  key_results: >
+    GPT-4 on Reddit-ELI5: 99.63 AUROC, 87.34% TPR@1%FPR (vs GPTZero 94.50/36.00, OpenAI 71.64/5.00).
+    White-box text-davinci-003: 100.00 AUROC on Reddit and Xsum.
+    Robust under 50% text revision: 98.48 AUROC (vs GPTZero ~60, OpenAI ~50).
+    German detection: ~98 AUROC white-box (vs GPTZero ~50 random chance).
+  limitations:
+    - "Evaluated only on decoder-only GPT-architecture models; cannot reliably detect non-decoder-only generated text"
+    - "Tested only on 1000-2000 character texts; significantly shorter/longer texts may fail"
+    - "Black-box detection requires K API calls per sample (cost/latency overhead)"
+    - "Proxy model detection with small models (OPT-125M) only reaches 73-82 AUROC, leaving room for improvement"
+    - "Dataset memorization issue: WikiText-103 shows dramatic degradation because model memorizes training data"
+  relation_to_us: "competitor"  # directly competing zero-shot detection method; our depth-fingerprint approach is conceptually related but uses different signal
+
+narrative:
+  story_type: "突破局限型"
+  hook: >
+    Opens with the societal urgency of ChatGPT/GPT-4 release sparking global AI safety discussions,
+    positioning detection as a pressing real-world problem. First sentence: "The release of ChatGPT and
+    GPT-4 by OpenAI has sparked global discussions on the effective utilization of AI-assistant writing."
+  tension: >
+    Three-layer tension build:
+    (1) Training-based detectors become obsolete when models update — inflexibility problem.
+    (2) Methods requiring token probabilities (e.g., DetectGPT) fail for closed-source APIs — accessibility problem.
+    (3) Existing approaches lack interpretability — explainability problem.
+    Each layer eliminates a class of prior methods, leaving no satisfactory existing solution.
+  key_insight: >
+    Revealed in Section 3 as the formal "Likelihood-Gap Hypothesis": machine text shows high consistency
+    when regenerated from the same prefix (low divergence), while human text shows high diversity
+    (high divergence). This is grounded in the empirical observation that "given appropriate preceding text,
+    LLMs tend to output highly similar text across multiple runs of generations."
+    The insight is first conceptually hinted in intro paragraph 4, then formalized mathematically as a boxed hypothesis.
+  argument_chain: >
+    societal urgency (ChatGPT release) → training-based methods inflexible →
+    perturbation methods require white-box access → no method provides explainability →
+    empirical observation: regeneration consistency differs for human vs machine →
+    likelihood-gap hypothesis (formalized) → BScore (black-box) and WScore (white-box) algorithms →
+    SOTA on 5 datasets × 5 models + robustness to revision/temperature/language/model-drift
+  contribution_framing: >
+    3 numbered contributions at end of introduction:
+    (1) identify the divergence phenomenon with theoretical hypothesis,
+    (2) develop zero-shot detection for both black/white-box,
+    (3) demonstrate SOTA + robustness + explainability.
+    Framing emphasizes novelty on three axes: theory, method, and practical properties.
+  intro_structure: >
+    4 paragraphs:
+    P1 — societal context/urgency (ChatGPT release, AI writing concerns)
+    P2 — gap identification (training-based obsolescence, white-box requirement, DetectGPT failure)
+    P3 — explainability need (pressing demand for interpretable detection)
+    P4 — approach introduction (two scenarios, core observation, contribution list)
+  notable_technique: >
+    Uses the "elimination ladder": each paragraph in the intro eliminates one category of existing
+    methods (trained classifiers → perturbation methods → uninterpretable black-boxes), creating
+    a narrowing funnel that leaves only the proposed approach as viable. This makes the contribution
+    feel inevitable rather than arbitrary.
+
+figures:
+  figure_count: 8  # 7 in main text + 1 in appendix (sliding window)
+  figure1:
+    type: "method_overview"
+    description: >
+      Split-panel workflow diagram showing the three-stage DNA-GPT pipeline:
+      (Left) original text split at truncation point into X' (preceding) and Y0 (remaining);
+      (Center) X' fed to LLM K times generating {Y1,...,Yk};
+      (Right) BScore/WScore calculation comparing regenerations against Y0, with threshold classification.
+    narrative_role: "Provides the method overview immediately after the introduction, anchoring the reader's understanding of the truncate-regenerate-compare pipeline before mathematical formalization."
+    design_elements:
+      - "flowchart with rectangular text boxes and directional arrows"
+      - "explicit truncation point visualization"
+      - "K parallel regeneration paths"
+      - "equation notation integrated into diagram"
+    visual_style: "Horizontal flowchart, clean boxes with arrows, mathematical notation embedded. Functional rather than decorative — prioritizes clarity of the pipeline stages."
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "dual_histogram"
+      what_compared: "Log-likelihood distributions of machine-generated vs human-written text continuations on Reddit prompts (text-davinci-003)"
+      how_gain_highlighted: "Clear visual separation between two distributions demonstrates the likelihood-gap hypothesis is empirically supported"
+      design_note: "Placed right after the hypothesis statement as immediate visual evidence. The non-overlapping distributions make the theoretical claim viscerally convincing."
+    - figure_id: "Figure 6"
+      viz_type: "grouped_bar_chart"
+      what_compared: "German vs English detection performance across methods (white-box and black-box)"
+      how_gain_highlighted: "GPTZero drops to ~50 AUROC (random chance) on German while DNA-GPT maintains ~88-98, creating dramatic visual contrast"
+      design_note: "Cross-lingual robustness as a differentiator — baseline collapse on non-English makes DNA-GPT advantage unmistakable."
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      dimensions_varied: ["truncation ratio gamma"]
+      design_note: "Shows inverted-U curve peaking at gamma=0.5; both extremes degrade. Clean parametric sweep visualization."
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      dimensions_varied: ["number of re-generations K"]
+      design_note: "Shows saturation behavior — AUROC plateaus at K=10, TPR at K=5. Justifies practical parameter choice."
+    - figure_id: "Figure 5"
+      viz_type: "grouped_bar_chart"
+      dimensions_varied: ["decoding temperature (0.7, 1.0, 1.4, 1.8)"]
+      design_note: "Baselines degrade sharply at high temperature while DNA-GPT shows ~2% drop. Robustness claim visualized."
+    - figure_id: "Figure 7"
+      viz_type: "line_plot"
+      dimensions_varied: ["revision attack ratio (0.0-0.5)"]
+      design_note: "DNA-GPT curve stays flat (~99-98 AUROC) while baselines plummet to 50-60. Most compelling robustness evidence."
+  figure_narrative_role: >
+    Figure 1 (method overview) → Figure 2 (hypothesis evidence via distribution separation) →
+    Figures 3-4 (parameter sensitivity: truncation ratio, K) → Figure 5 (temperature robustness) →
+    Figure 6 (cross-lingual generalization) → Figure 7 (revision attack robustness).
+    Flow: understand pipeline → believe the signal exists → tune parameters → stress-test robustness.
+
+tables:
+  table_count: 16  # 3 main + 13 appendix
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "datasets x metrics (AUROC + TPR@1%FPR)"
+    row_organization: "by_category"  # grouped by target model (GPT-4, GPT-3.5-turbo, text-davinci-003), then baselines vs DNA-GPT variants within each group
+    col_organization: "grouped_by_dataset"  # Reddit-ELI5, Scientific Abstracts, PubMedQA, Xsum columns, each with AUROC and TPR sub-columns
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single-run point estimates (no std reported)"
+    num_baselines: 3  # GPTZero, OpenAI classifier, DetectGPT (white-box only)
+    design_note: >
+      Three-level grouping (model → method → parameter variant) creates a comprehensive but dense table.
+      DNA-GPT variants shown with different K and gamma settings to demonstrate parameter sensitivity
+      within the main results table rather than relegating to ablation.
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["source model identity for model sourcing task"]
+      variation_style: "full_numbers"
+      design_note: "Novel task (model sourcing) presented as a separate table with pairwise model comparisons. Shows the method's unique capability beyond binary detection."
+    - table_id: "Table 3"
+      what_varied: ["open-source vs closed-source models", "black-box vs white-box setting"]
+      variation_style: "full_numbers"
+      design_note: "Demonstrates generalization to open-source models (GPT-NeoX-20B, LLaMa-13B) on Xsum and Reddit. Baselines show dramatic degradation."
+  supplementary_tables:
+    in_appendix: true
+    content: >
+      Tables 4-16 in appendix: prompt templates, detailed parameter sensitivity results
+      (n-gram starting value, weight function, maximum n-gram), model version drift results,
+      sliding window mixed-content results, proxy model performance, additional dataset results,
+      and example evidence outputs with highlighted n-gram overlaps.
+    reason: >
+      Main paper keeps 3 tables focused on core claims (SOTA, model sourcing, open-source generalization).
+      Exhaustive parameter sweeps and additional analyses relegated to appendix to maintain narrative flow
+      while supporting reproducibility.

@@ -1,0 +1,7 @@
+_next_id: 2
+constraints:
+- id: C001
+  added: 2026-05-19 15:54 UTC
+  summary: 每次跑实验前确认当前可用的GPU卡数量
+  scope: all
+  reason: 用户(陈卓凡)要求添加的研究规则，防止在GPU不可用时启动实验

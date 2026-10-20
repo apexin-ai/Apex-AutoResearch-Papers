@@ -1,0 +1,76 @@
+# diag bjb2 status check
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_diag_bjb2-status-check_20260518T061259_result.json`
+- **Structured JSON:** [`e67be352613f8d75085f.json`](../../sessions/e6/e67be352613f8d75085f.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+所有信息收集完毕。汇总如下：
+
+---
+
+## 实验状态报告 — bjb2-18868 (2026-05-18 14:13)
+
+### GPU 使用 (4× RTX 5090 32GB)
+
+| GPU | 进程 | 显存 | 利用率 |
+|-----|------|------|--------|
+| 0 | Qwen3-1.7B t=0.9 生成 (PID 2067) | 3,968 MiB | 42% |
+| 1 | 空闲 | 0 MiB | 0% |
+| 2 | Llama-3.2-3B-Instruct 生成 (PID 3103) | 6,916 MiB | 65% |
+| 3 | 空闲 | 0 MiB | 0% |
+
+### Tmux 会话 (4个)
+
+#### 1. `tc_phase3` — Qwen3-1.7B-Base t=0.9 生成 **[运行中]**
+- 进度: **585/996 seeds (59%)**, 从之前 ~55% 推进
+- 速度: ~0.22 seeds/s（有大量 empty output 跳过）
+- 数据: `qwen3-1.7b-t09/generations_shard0.jsonl` — **2,672 行**
+- 预估剩余: ~30 min
+
+#### 2. `exp054_resume` — Llama-3.2-3B-Instruct 生成 **[运行中]**
+- 进度: **494/995 seeds (~50%)**, 从之前 ~42% 推进
+- 从 294 个已完成 seed 恢复，实际新跑了 200 个
+- 数据: `llama-3.2-3b-instruct/generations_shard0.jsonl` — **2,473 行**
+- 预估剩余: ~70 min
+
+#### 3. `feat_t05` — Pythia-2.8B t=0.9 特征提取 **[已完成]**
+- 输出: `features_pythia-2.8b-t09.csv` — 4,536 行 × 10 列
+
+#### 4. `feat_qwen_t09` — Qwen3-1.7B t=0.9 特征提取 **[已完成]**
+- 输出: `features_qwen3-1.7b-t09.csv` — 2,413 行 × 10 列
+- 注意: 这是基于部分数据（生成仍在进行），生成完成后需重跑
+
+### 温度曲线数据产出
+
+| 文件 | 行数 | 状态 |
+|------|------|------|
+| `pythia-2.8b-t05/generations_shard0.jsonl` | 4,708 | 完成 |
+| `pythia-2.8b-t09/generations_shard0.jsonl` | 4,536 | 完成 |
+| `qwen3-1.7b-t09/generations_shard0.jsonl` | 2,672 | 生成中 (59%) |
+
+### 磁盘
+- 系统盘: 31% (9.3G/30G)
+- 数据盘: 70% (174G/250G)
+
+### 关键提醒
+- GPU 1 和 GPU 3 空闲，可启动其他任务
+- `features_qwen3-1.7b-t09.csv` 是基于不完整数据提取的（2,413 行 vs 生成中的 2,672+ 行），Qwen 生成完成后需要重新提取特征
+- Llama instruct 生成完成后也需要跑特征提取
+
+---

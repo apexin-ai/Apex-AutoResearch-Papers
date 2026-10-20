@@ -1,0 +1,4 @@
+Remote file: autodl-5090:/root/gen-depth-fingerprint/data/pythia-2.8b-continuation/features.jsonl
+Also as CSV: autodl-5090:/root/gen-depth-fingerprint/data/pythia-2.8b-continuation/features.csv
+Records: 4620, Seeds: 995, Depths: 0-4
+Features: entropy_mean, entropy_std, entropy_max, entropy_min, tail_decay, ttr, hapax_ratio

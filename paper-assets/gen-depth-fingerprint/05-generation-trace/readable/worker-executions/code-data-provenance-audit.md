@@ -1,0 +1,4810 @@
+# code data provenance audit
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 97
+- **Recorded user turns:** 0
+- **Tool calls:** 36
+- **Original source:** `logs/workers/worker_code_data-provenance-audit_20260517T105358.log`
+- **Structured JSON:** [`67b2bf25f28ba44fab1f.json`](../../sessions/67/67b2bf25f28ba44fab1f.json)
+
+## Before a recorded user message
+
+97 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "25bc6717-89d8-4087-828a-10de3228968c",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779017400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "81c520f5-a8dd-431e-b8ea-7bdc622627c7",
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to verify experimental claims in their paper against actual data files on a remote server. This is a data provenance check - finding the source data for each claimed number in the paper.
+
+Let me start by exploring the server to find the relevant data files. I'll use SSH to execute commands on the autodl-5090 server.
+
+Let me load the SSH tools first, then run the searches in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "f9334276-ba46-480c-bc95-c47d0d5166bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M7JQYFR7U5ZZmGMakqNpLW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14466,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14466
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始对论文中的实验数字进行数据溯源验证。先加载 SSH 工具，然后在服务器上查找数据文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "331d9d32-d648-4b40-9df3-0dcb774b171a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M7JQYFR7U5ZZmGMakqNpLW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14466,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14466
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01DxoTozm46SJDYMNxzP3v1o`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "71662de1-5563-4a37-a25c-53a688a4ae73",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M7JQYFR7U5ZZmGMakqNpLW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14466,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14466
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-17T10:54:12.326Z_
+
+<details><summary>↩ Tool result · `toolu_01DxoTozm46SJDYMNxzP3v1o`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "a0f05b63-c38e-4522-a6d7-a4bab949c5d9",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me start searching for the data files on the server. I'll run multiple searches in parallel to find all the relevant result files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "1d5f7abb-5e55-4a16-ac93-0a2bdb33189e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JXxJkLrJtV9TUcSdsfCrb8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 26307,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 819
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+先查看 results 目录的整体结构，然后并行搜索各项实验数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "d42485c7-a9ed-424b-ac7b-c6374ce7430b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JXxJkLrJtV9TUcSdsfCrb8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 26307,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 819
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0178Ac1wSiwo7HPfbhCVQyUN`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/gen-depth-fingerprint/results/ -type f -name \"*.json\" -o -name \"*.csv\" | head -60",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "814c1d8e-e2f5-4e98-99f9-9ce2af0f4957",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JXxJkLrJtV9TUcSdsfCrb8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 26307,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 819
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T10:54:16.635Z_
+
+<details><summary>↩ Tool result · `toolu_0178Ac1wSiwo7HPfbhCVQyUN`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "bd0b78ae-3b8d-41b2-8fc0-1f64325f7777",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019JaDj6WB35xZ2NHzZoQagq`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/gen-depth-fingerprint/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "f21aef29-e28b-4846-86c7-2601ce628118",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JXxJkLrJtV9TUcSdsfCrb8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 819,
+      "cache_read_input_tokens": 26307,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 819
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T10:54:17.988Z_
+
+<details><summary>↩ Tool result · `toolu_019JaDj6WB35xZ2NHzZoQagq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 1052\\ndrwxr-xr-x  2 root root   4096 May 17 05:01 .\\ndrwxr-xr-x 15 root root   4096 May 17 07:09 ..\\n-rw-r--r--  1 root root   1030 May 16 22:53 8gen_baselines.json\\n-rw-r--r--  1 root root   2578 May 16 23:03 8gen_classifier_comparison.json\\n-rw-r--r--  1 root root   3207 May 17 01:12 8gen_cross_model_chains.json\\n-rw-r--r--  1 root root    835 May 16 21:18 8gen_feature_ablation.json\\n-rw-r--r--  1 root root   1548 May 16 23:02 8gen_finer_depth.json\\n-rw-r--r--  1 root root   1309 May 17 04:16 8gen_ldscore_sparse_fixed.json\\n-rw-r--r--  1 root root   7199 May 17 04:11 8gen_length_confound.json\\n-rw-r--r--  1 root root    550 May 16 21:17 8gen_lofo_family.json\\n-rw-r--r--  1 root root   7388 May 17 01:34 8gen_logo_baselines.json\\n-rw-r--r--  1 root root   2869 May 16 20:51 8gen_logo_results_BUGGY_DO_NOT_USE.json\\n-rw-r--r--  1 root root   2025 May 16 20:42 8gen_logo_unfiltered.json\\n-rw-r--r--  1 root root   2050 May 16 20:51 8gen_per_gen_spearman.json\\n-rw-r--r--  1 root root    682 May 16 20:51 8gen_pooled_rho.json\\n-rw-r--r--  1 root root   1511 May 16 23:23 8gen_sampling_ablation.json\\n-rw-r--r--  1 root root    727 May 17 02:45 8gen_table3_unified.json\\n-rw-r--r--  1 root root   3034 May 17 04:39 8gen_table3_v5_unified.json\\n-rw-r--r--  1 root root   3315 May 17 05:01 8gen_table3_v6_unified.json\\n-rw-r--r--  1 root root   1721 May 17 01:40 README.md\\n-rw-r--r--  1 root root   1492 May 15 03:14 ablation_results.json\\n-rw-r--r--  1 root root   2799 May 15 17:41 alt_classifier_results.json\\n-rw-r--r--  1 root root    785 May 15 22:31 binary_bootstrap_pvalue.json\\n-rw-r--r--  1 root root   2051 May 15 15:34 bootstrap_ci_results.json\\n-rw-r--r--  1 root root   1086 May 15 20:33 bootstrap_ci_v2_results.json\\n-rw-r--r--  1 root root   1969 May 15 16:37 confusion_matrix_3class.json\\n-rw-r--r--  1 root root   1969 May 15 16:35 confusion_matrix_results.json\\n-rw-r--r--  1 root root   2914 May 16 06:08 cross_model_chains_results.json\\n-rw-r--r--  1 root root   2906 May 16 12:49 dataset_stats.json\\n-rw-r--r--  1 root root   1293 May 16 12:49 dataset_stats_table.tex\\n-rw-r--r--  1 root root    963 May 16 20:54 degeneration_rates.json\\n-rw-r--r--  1 root root 542087 May 15 03:14 depth_trends.png\\n-rw-r--r--  1 root root   1032 May 15 17:50 family_holdout_3class.json\\n-rw-r--r--  1 root root  33027 May 16 13:00 fig1_differential_response_v2.pdf\\n-rw-r--r--  1 root root  78335 May 16 13:00 fig1_differential_response_v2.png\\n-rw-r--r--  1 root root    281 May 16 20:43 filter_diagnostic.json\\n-rw-r--r--  1 root root   7924 May 16 07:05 finer_ordinal_results.json\\n-rw-r--r--  1 root root   7841 May 17 00:30 gemma_cross_rp_comparison.json\\n-rw-r--r--  1 root root    795 May 17 00:10 gemma_rp11_held_out_logo.json\\n-rw-r--r--  1 root root   1544 May 16 05:26 human_edit_robustness.json\\n-rw-r--r--  1 root root   1542 May 16 02:51 human_edit_robustness_old_no_chat_template.json\\n-rw-r--r--  1 root root   8023 May 16 02:11 instruct_length_confound.json\\n-rw-r--r--  1 root root   2145 May 15 16:17 lofo_ablation_results.json\\n-rw-r--r--  1 root root    730 May 15 12:30 multi_classify_results.csv\\n-rw-r--r--  1 root root  21881 May 15 12:30 multi_classify_results.json\\n-rw-r--r--  1 root root   2617 May 16 06:36 multi_domain_results.json\\n-rw-r--r--  1 root root   1485 May 15 16:35 multi_seed_stability.json\\n-rw-r--r--  1 root root   1821 May 15 02:06 mvp_results.json\\n-rw-r--r--  1 root root   3034 May 16 12:49 n2a_bootstrap_ci.json\\n-rw-r--r--  1 root root   3166 May 15 08:55 ordinal_baseline_results.json\\n-rw-r--r--  1 root root   2697 May 16 20:16 original_6gen_filter_stats.json\\n-rw-r--r--  1 root root   1490 May 15 23:52 p1c_instruct_logo_f1.json\\n-rw-r--r--  1 root root   7355 May 16 12:49 per_gen_binary_f1.json\\n-rw-r--r--  1 root root    642 May 15 03:14 perplexity_by_depth.json\\n-rw-r--r--  1 root root   4881 May 16 10:12 plan006_paraphrastic_comparison.json\\n-rw-r--r--  1 root root   4868 May 16 07:03 plan006_paraphrastic_comparison_old_rp13.json\\n-rw-r--r--  1 root root   6918 May 16 08:29 plan012_pythia410m_results.json\\n-rw-r--r--  1 root root   6889 May 16 09:05 plan012_qwen06b_results.json\\n-rw-r--r--  1 root root   6903 May 16 09:44 plan012_qwen06b_seed123_r32_results.json\\n-rw-r--r--  1 root root   3631 May 16 09:34 plan012_xgboost_matched.json\\n-rw-r--r--  1 root root    746 May 16 14:02 pooled_rho_fix.json\\n-rw-r--r--  1 root root   1618 May 16 13:19 rd3_int1_entropy_std_pergen.json\\n-rw-r--r--  1 root root   4539 May 15 20:56 review_baseline_ensemble_results.json\\n-rw-r--r--  1 root root    789 May 15 20:26 review_overall_ci_results.json\\n-rw-r--r--  1 root root    387 May 15 20:33 review_overall_ci_v2_results.json\\n-rw-r--r--  1 root root   6495 May 15 21:48 review_p0a_binary_logo.json\\n-rw-r--r--  1 root root   1468 May 15 21:43 review_p0b_volume_matched.json\\n-rw-r--r--  1 root root   2598 May 15 22:57 review_p1c_instruct.json\\n-rw-r--r--  1 root root   5568 May 16 01:08 review_p1c_olmo_instruct.json\\n-rw-r--r--  1 root root   5845 May 15 23:58 review_p1c_qwen06b_instruct.json\\n-rw-r--r--  1 root root   6860 May 15 21:51 review_p1d_6gen_baselines.json\\n-rw-r--r--  1 root root   2113 May 15 21:54 review_p1e_ordinal.json\\n-rw-r--r--  1 root root   2242 May 15 21:43 review_p2f_cross_ref_bias.json\\n-rw-r--r--  1 root root   2136 May 15 20:27 review_topic_drift_results.json\\n-rw-r--r--  1 root root   1033 May 16 21:06 rp_lofo_corrected.json\\n-rw-r--r--  1 root root   1509 May 16 20:17 rp_lofo_preliminary.json\\n-rw-r--r--  1 root root   1725 May 16 20:54 rp_lofo_results.json\\n-rw-r--r--  1 root root   2103 May 16 04:22 sampling_ablation.json\\n-rw-r--r--  1 root root   1250 May 16 12:49 spearman_per_generator.json\\n-rw-r--r--  1 root root   1182 May 16 16:37 table4_cross_ref_logo.json\\n-rw-r--r--  1 root root   6751 May 15 03:14 trend_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "3c3c3028-1286-4f8d-817e-5188d1b9f335",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 1052\\\\ndrwxr-xr-x  2 root root   4096 May 17 05:01 .\\\\ndrwxr-xr-x 15 root root   4096 May 17 07:09 ..\\\\n-rw-r--r--  1 root root   1030 May 16 22:53 8gen_baselines.json\\\\n-rw-r--r--  1 root root   2578 May 16 23:03 8gen_classifier_comparison.json\\\\n-rw-r--r--  1 root root   3207 May 17 01:12 8gen_cross_model_chains.json\\\\n-rw-r--r--  1 root root    835 May 16 21:18 8gen_feature_ablation.json\\\\n-rw-r--r--  1 root root   1548 May 16 23:02 8gen_finer_depth.json\\\\n-rw-r--r--  1 root root   1309 May 17 04:16 8gen_ldscore_sparse_fixed.json\\\\n-rw-r--r--  1 root root   7199 May 17 04:11 8gen_length_confound.json\\\\n-rw-r--r--  1 root root    550 May 16 21:17 8gen_lofo_family.json\\\\n-rw-r--r--  1 root root   7388 May 17 01:34 8gen_logo_baselines.json\\\\n-rw-r--r--  1 root root   2869 May 16 20:51 8gen_logo_results_BUGGY_DO_NOT_USE.json\\\\n-rw-r--r--  1 root root   2025 May 16 20:42 8gen_logo_unfiltered.json\\\\n-rw-r--r--  1 root root   2050 May 16 20:51 8gen_per_gen_spearman.json\\\\n-rw-r--r--  1 root root    682 May 16 20:51 8gen_pooled_rho.json\\\\n-rw-r--r--  1 root root   1511 May 16 23:23 8gen_sampling_ablation.json\\\\n-rw-r--r--  1 root root    727 May 17 02:45 8gen_table3_unified.json\\\\n-rw-r--r--  1 root root   3034 May 17 04:39 8gen_table3_v5_unified.json\\\\n-rw-r--r--  1 root root   3315 May 17 05:01 8gen_table3_v6_unified.json\\\\n-rw-r--r--  1 root root   1721 May 17 01:40 README.md\\\\n-rw-r--r--  1 root root   1492 May 15 03:14 ablation_results.json\\\\n-rw-r--r--  1 root root   2799 May 15 17:41 alt_classifier_results.json\\\\n-rw-r--r--  1 root root    785 May 15 22:31 binary_bootstrap_pvalue.json\\\\n-rw-r--r--  1 root root   2051 May 15 15:34 bootstrap_ci_results.json\\\\n-rw-r--r--  1 root root   1086 May 15 20:33 bootstrap_ci_v2_results.json\\\\n-rw-r--r--  1 root root   1969 May 15 16:37 confusion_matrix_3class.json\\\\n-rw-r--r--  1 root root   1969 May 15 16:35 confusion_matrix_results.json\\\\n-rw-r--r--  1 root root   2914 May 16 06:08 cross_model_chains_results.json\\\\n-rw-r--r--  1 root root   2906 May 16 12:49 dataset_stats.json\\\\n-rw-r--r--  1 root root   1293 May 16 12:49 dataset_stats_table.tex\\\\n-rw-r--r--  1 root root    963 May 16 20:54 degeneration_rates.json\\\\n-rw-r--r--  1 root root 542087 May 15 03:14 depth_trends.png\\\\n-rw-r--r--  1 root root   1032 May 15 17:50 family_holdout_3class.json\\\\n-rw-r--r--  1 root root  33027 May 16 13:00 fig1_differential_response_v2.pdf\\\\n-rw-r--r--  1 root root  78335 May 16 13:00 fig1_differential_response_v2.png\\\\n-rw-r--r--  1 root root    281 May 16 20:43 filter_diagnostic.json\\\\n-rw-r--r--  1 root root   7924 May 16 07:05 finer_ordinal_results.json\\\\n-rw-r--r--  1 root root   7841 May 17 00:30 gemma_cross_rp_comparison.json\\\\n-rw-r--r--  1 root root    795 May 17 00:10 gemma_rp11_held_out_logo.json\\\\n-rw-r--r--  1 root root   1544 May 16 05:26 human_edit_robustness.json\\\\n-rw-r--r--  1 root root   1542 May 16 02:51 human_edit_robustness_old_no_chat_template.json\\\\n-rw-r--r--  1 root root   8023 May 16 02:11 instruct_length_confound.json\\\\n-rw-r--r--  1 root root   2145 May 15 16:17 lofo_ablation_results.json\\\\n-rw-r--r--  1 root root    730 May 15 12:30 multi_classify_results.csv\\\\n-rw-r--r--  1 root root  21881 May 15 12:30 multi_classify_results.json\\\\n-rw-r--r--  1 root root   2617 May 16 06:36 multi_domain_results.json\\\\n-rw-r--r--  1 root root   1485 May 15 16:35 multi_seed_stability.json\\\\n-rw-r--r--  1 root root   1821 May 15 02:06 mvp_results.json\\\\n-rw-r--r--  1 root root   3034 May 16 12:49 n2a_bootstrap_ci.json\\\\n-rw-r--r--  1 root root   3166 May 15 08:55 ordinal_baseline_results.json\\\\n-rw-r--r--  1 root root   2697 May 16 20:16 original_6gen_filter_stats.json\\\\n-rw-r--r--  1 root root   1490 May 15 23:52 p1c_instruct_logo_f1.json\\\\n-rw-r--r--  1 root root   7355 May 16 12:49 per_gen_binary_f1.json\\\\n-rw-r--r--  1 root root    642 May 15 03:14 perplexity_by_depth.json\\\\n-rw-r--r--  1 root root   4881 May 16 10:12 plan006_paraphrastic_comparison.json\\\\n-rw-r--r--  1 root root   4868 May 16 07:03 plan006_paraphrastic_comparison_old_rp13.json\\\\n-rw-r--r--  1 root root   6918 May 16 08:29 plan012_pythia410m_results.json\\\\n-rw-r--r--  1 root root   6889 May 16 09:05 plan012_qwen06b_results.json\\\\n-rw-r--r--  1 root root   6903 May 16 09:44 plan012_qwen06b_seed123_r32_results.json\\\\n-rw-r--r--  1 root root   3631 May 16 09:34 plan012_xgboost_matched.json\\\\n-rw-r--r--  1 root root    746 May 16 14:02 pooled_rho_fix.json\\\\n-rw-r--r--  1 root root   1618 May 16 13:19 rd3_int1_entropy_std_pergen.json\\\\n-rw-r--r--  1 root root   4539 May 15 20:56 review_baseline_ensemble_results.json\\\\n-rw-r--r--  1 root root    789 May 15 20:26 review_overall_ci_results.json\\\\n-rw-r--r--  1 root root    387 May 15 20:33 review_overall_ci_v2_results.json\\\\n-rw-r--r--  1 root root   6495 May 15 21:48 review_p0a_binary_logo.json\\\\n-rw-r--r--  1 root root   1468 May 15 21:43 review_p0b_volume_matched.json\\\\n-rw-r--r--  1 root root   2598 May 15 22:57 review_p1c_instruct.json\\\\n-rw-r--r--  1 root root   5568 May 16 01:08 review_p1c_olmo_instruct.json\\\\n-rw-r--r--  1 root root   5845 May 15 23:58 review_p1c_qwen06b_instruct.json\\\\n-rw-r--r--  1 root root   6860 May 15 21:51 review_p1d_6gen_baselines.json\\\\n-rw-r--r--  1 root root   2113 May 15 21:54 review_p1e_ordinal.json\\\\n-rw-r--r--  1 root root   2242 May 15 21:43 review_p2f_cross_ref_bias.json\\\\n-rw-r--r--  1 root root   2136 May 15 20:27 review_topic_drift_results.json\\\\n-rw-r--r--  1 root root   1033 May 16 21:06 rp_lofo_corrected.json\\\\n-rw-r--r--  1 root root   1509 May 16 20:17 rp_lofo_preliminary.json\\\\n-rw-r--r--  1 root root   1725 May 16 20:54 rp_lofo_results.json\\\\n-rw-r--r--  1 root root   2103 May 16 04:22 sampling_ablation.json\\\\n-rw-r--r--  1 root root   1250 May 16 12:49 spearman_per_generator.json\\\\n-rw-r--r--  1 root root   1182 May 16 16:37 table4_cross_ref_logo.json\\\\n-rw-r--r--  1 root root   6751 May 15 03:14 trend_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 1052\\ndrwxr-xr-x  2 root root   4096 May 17 05:01 .\\ndrwxr-xr-x 15 root root   4096 May 17 07:09 ..\\n-rw-r--r--  1 root root   1030 May 16 22:53 8gen_baselines.json\\n-rw-r--r--  1 root root   2578 May 16 23:03 8gen_classifier_comparison.json\\n-rw-r--r--  1 root root   3207 May 17 01:12 8gen_cross_model_chains.json\\n-rw-r--r--  1 root root    835 May 16 21:18 8gen_feature_ablation.json\\n-rw-r--r--  1 root root   1548 May 16 23:02 8gen_finer_depth.json\\n-rw-r--r--  1 root root   1309 May 17 04:16 8gen_ldscore_sparse_fixed.json\\n-rw-r--r--  1 root root   7199 May 17 04:11 8gen_length_confound.json\\n-rw-r--r--  1 root root    550 May 16 21:17 8gen_lofo_family.json\\n-rw-r--r--  1 root root   7388 May 17 01:34 8gen_logo_baselines.json\\n-rw-r--r--  1 root root   2869 May 16 20:51 8gen_logo_results_BUGGY_DO_NOT_USE.json\\n-rw-r--r--  1 root root   2025 May 16 20:42 8gen_logo_unfiltered.json\\n-rw-r--r--  1 root root   2050 May 16 20:51 8gen_per_gen_spearman.json\\n-rw-r--r--  1 root root    682 May 16 20:51 8gen_pooled_rho.json\\n-rw-r--r--  1 root root   1511 May 16 23:23 8gen_sampling_ablation.json\\n-rw-r--r--  1 root root    727 May 17 02:45 8gen_table3_unified.json\\n-rw-r--r--  1 root root   3034 May 17 04:39 8gen_table3_v5_unified.json\\n-rw-r--r--  1 root root   3315 May 17 05:01 8gen_table3_v6_unified.json\\n-rw-r--r--  1 root root   1721 May 17 01:40 README.md\\n-rw-r--r--  1 root root   1492 May 15 03:14 ablation_results.json\\n-rw-r--r--  1 root root   2799 May 15 17:41 alt_classifier_results.json\\n-rw-r--r--  1 root root    785 May 15 22:31 binary_bootstrap_pvalue.json\\n-rw-r--r--  1 root root   2051 May 15 15:34 bootstrap_ci_results.json\\n-rw-r--r--  1 root root   1086 May 15 20:33 bootstrap_ci_v2_results.json\\n-rw-r--r--  1 root root   1969 May 15 16:37 confusion_matrix_3class.json\\n-rw-r--r--  1 root root   1969 May 15 16:35 confusion_matrix_results.json\\n-rw-r--r--  1 root root   2914 May 16 06:08 cross_model_chains_results.json\\n-rw-r--r--  1 root root   2906 May 16 12:49 dataset_stats.json\\n-rw-r--r--  1 root root   1293 May 16 12:49 dataset_stats_table.tex\\n-rw-r--r--  1 root root    963 May 16 20:54 degeneration_rates.json\\n-rw-r--r--  1 root root 542087 May 15 03:14 depth_trends.png\\n-rw-r--r--  1 root root   1032 May 15 17:50 family_holdout_3class.json\\n-rw-r--r--  1 root root  33027 May 16 13:00 fig1_differential_response_v2.pdf\\n-rw-r--r--  1 root root  78335 May 16 13:00 fig1_differential_response_v2.png\\n-rw-r--r--  1 root root    281 May 16 20:43 filter_diagnostic.json\\n-rw-r--r--  1 root root   7924 May 16 07:05 finer_ordinal_results.json\\n-rw-r--r--  1 root root   7841 May 17 00:30 gemma_cross_rp_comparison.json\\n-rw-r--r--  1 root root    795 May 17 00:10 gemma_rp11_held_out_logo.json\\n-rw-r--r--  1 root root   1544 May 16 05:26 human_edit_robustness.json\\n-rw-r--r--  1 root root   1542 May 16 02:51 human_edit_robustness_old_no_chat_template.json\\n-rw-r--r--  1 root root   8023 May 16 02:11 instruct_length_confound.json\\n-rw-r--r--  1 root root   2145 May 15 16:17 lofo_ablation_results.json\\n-rw-r--r--  1 root root    730 May 15 12:30 multi_classify_results.csv\\n-rw-r--r--  1 root root  21881 May 15 12:30 multi_classify_results.json\\n-rw-r--r--  1 root root   2617 May 16 06:36 multi_domain_results.json\\n-rw-r--r--  1 root root   1485 May 15 16:35 multi_seed_stability.json\\n-rw-r--r--  1 root root   1821 May 15 02:06 mvp_results.json\\n-rw-r--r--  1 root root   3034 May 16 12:49 n2a_bootstrap_ci.json\\n-rw-r--r--  1 root root   3166 May 15 08:55 ordinal_baseline_results.json\\n-rw-r--r--  1 root root   2697 May 16 20:16 original_6gen_filter_stats.json\\n-rw-r--r--  1 root root   1490 May 15 23:52 p1c_instruct_logo_f1.json\\n-rw-r--r--  1 root root   7355 May 16 12:49 per_gen_binary_f1.json\\n-rw-r--r--  1 root root    642 May 15 03:14 perplexity_by_depth.json\\n-rw-r--r--  1 root root   4881 May 16 10:12 plan006_paraphrastic_comparison.json\\n-rw-r--r--  1 root root   4868 May 16 07:03 plan006_paraphrastic_comparison_old_rp13.json\\n-rw-r--r--  1 root root   6918 May 16 08:29 plan012_pythia410m_results.json\\n-rw-r--r--  1 root root   6889 May 16 09:05 plan012_qwen06b_results.json\\n-rw-r--r--  1 root root   6903 May 16 09:44 plan012_qwen06b_seed123_r32_results.json\\n-rw-r--r--  1 root root   3631 May 16 09:34 plan012_xgboost_matched.json\\n-rw-r--r--  1 root root    746 May 16 14:02 pooled_rho_fix.json\\n-rw-r--r--  1 root root   1618 May 16 13:19 rd3_int1_entropy_std_pergen.json\\n-rw-r--r--  1 root root   4539 May 15 20:56 review_baseline_ensemble_results.json\\n-rw-r--r--  1 root root    789 May 15 20:26 review_overall_ci_results.json\\n-rw-r--r--  1 root root    387 May 15 20:33 review_overall_ci_v2_results.json\\n-rw-r--r--  1 root root   6495 May 15 21:48 review_p0a_binary_logo.json\\n-rw-r--r--  1 root root   1468 May 15 21:43 review_p0b_volume_matched.json\\n-rw-r--r--  1 root root   2598 May 15 22:57 review_p1c_instruct.json\\n-rw-r--r--  1 root root   5568 May 16 01:08 review_p1c_olmo_instruct.json\\n-rw-r--r--  1 root root   5845 May 15 23:58 review_p1c_qwen06b_instruct.json\\n-rw-r--r--  1 root root   6860 May 15 21:51 review_p1d_6gen_baselines.json\\n-rw-r--r--  1 root root   2113 May 15 21:54 review_p1e_ordinal.json\\n-rw-r--r--  1 root root   2242 May 15 21:43 review_p2f_cross_ref_bias.json\\n-rw-r--r--  1 root root   2136 May 15 20:27 review_topic_drift_results.json\\n-rw-r--r--  1 root root   1033 May 16 21:06 rp_lofo_corrected.json\\n-rw-r--r--  1 root root   1509 May 16 20:17 rp_lofo_preliminary.json\\n-rw-r--r--  1 root root   1725 May 16 20:54 rp_lofo_results.json\\n-rw-r--r--  1 root root   2103 May 16 04:22 sampling_ablation.json\\n-rw-r--r--  1 root root   1250 May 16 12:49 spearman_per_generator.json\\n-rw-r--r--  1 root root   1182 May 16 16:37 table4_cross_ref_logo.json\\n-rw-r--r--  1 root root   6751 May 15 03:14 trend_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I can see the results directory structure. Now let me search for each of the 9 experimental claims in parallel. I'll read the relevant JSON files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "f5fd7687-a2d1-41ec-b343-7d11e1f49a76",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UWPFz1bJGytskYzz37z4iu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3484,
+      "cache_read_input_tokens": 27126,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3484
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+找到了 results 目录，包含大量 JSON 文件。现在并行读取各项实验对应的数据文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "498eaf2a-42b7-4c24-a0bf-513370a35203",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UWPFz1bJGytskYzz37z4iu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3484,
+      "cache_read_input_tokens": 27126,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3484
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0132N4LUZifgSqQrEbRbH3b2`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/8gen_cross_model_chains.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "4643e55a-70ef-4f57-a95a-07febc861472",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UWPFz1bJGytskYzz37z4iu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3484,
+      "cache_read_input_tokens": 27126,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3484
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T10:54:23.078Z_
+
+<details><summary>↩ Tool result · `toolu_0132N4LUZifgSqQrEbRbH3b2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"8gen_cross_model_chains\\\",\\n  \\\"note\\\": \\\"True 8-gen mixed-chain data not generated (impractical to load 7B/8B models alternately per depth). Results below use single-model chain data with cross-model evaluation methodology.\\\",\\n  \\\"8gen_pooled_cv\\\": {\\n    \\\"macro_f1_mean\\\": 0.8136,\\n    \\\"macro_f1_std\\\": 0.0022,\\n    \\\"binary_f1\\\": 0.7435,\\n    \\\"fold_f1s\\\": [\\n      0.8155,\\n      0.8129,\\n      0.8103,\\n      0.8167,\\n      0.8128\\n    ],\\n    \\\"n_samples\\\": 23688,\\n    \\\"confusion_matrix\\\": [\\n      [\\n        7799,\\n        94,\\n        3\\n      ],\\n      [\\n        554,\\n        6198,\\n        1144\\n      ],\\n      [\\n        224,\\n        2323,\\n        5349\\n      ]\\n    ],\\n    \\\"per_class\\\": {\\n      \\\"gen-0\\\": {\\n        \\\"precision\\\": 0.9093,\\n        \\\"recall\\\": 0.9877,\\n        \\\"f1\\\": 0.9469\\n      },\\n      \\\"gen-1\\\": {\\n        \\\"precision\\\": 0.7194,\\n        \\\"recall\\\": 0.785,\\n        \\\"f1\\\": 0.7508\\n      },\\n      \\\"gen-2+\\\": {\\n        \\\"precision\\\": 0.8234,\\n        \\\"recall\\\": 0.6774,\\n        \\\"f1\\\": 0.7433\\n      }\\n    },\\n    \\\"feature_importance\\\": {\\n      \\\"entropy_mean\\\": 0.2332,\\n      \\\"entropy_std\\\": 0.1037,\\n      \\\"entropy_min\\\": 0.043,\\n      \\\"entropy_max\\\": 0.0783,\\n      \\\"tail_decay\\\": 0.0362,\\n      \\\"ttr\\\": 0.2581,\\n      \\\"hapax_ratio\\\": 0.2474\\n    }\\n  },\\n  \\\"8gen_logo\\\": {\\n    \\\"3class_f1\\\": 0.7676,\\n    \\\"binary_f1\\\": 0.7758,\\n    \\\"n_samples\\\": 37058,\\n    \\\"per_gen\\\": {\\n      \\\"llama-3.2-3b\\\": {\\n        \\\"3class_f1\\\": 0.7621,\\n        \\\"binary_f1\\\": 0.7528,\\n        \\\"n_test\\\": 4680\\n      },\\n      \\\"mistral-7b-v0.3\\\": {\\n        \\\"3class_f1\\\": 0.6159,\\n        \\\"binary_f1\\\": 0.5673,\\n        \\\"n_test\\\": 4849\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"3class_f1\\\": 0.7742,\\n        \\\"binary_f1\\\": 0.7757,\\n        \\\"n_test\\\": 4713\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"3class_f1\\\": 0.8564,\\n        \\\"binary_f1\\\": 0.8741,\\n        \\\"n_test\\\": 4555\\n      },\\n      \\\"pythia-2.8b\\\": {\\n        \\\"3class_f1\\\": 0.8169,\\n        \\\"binary_f1\\\": 0.8109,\\n        \\\"n_test\\\": 4609\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"3class_f1\\\": 0.8224,\\n        \\\"binary_f1\\\": 0.8405,\\n        \\\"n_test\\\": 4538\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"3class_f1\\\": 0.8098,\\n        \\\"binary_f1\\\": 0.835,\\n        \\\"n_test\\\": 4617\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"3class_f1\\\": 0.7009,\\n        \\\"binary_f1\\\": 0.7051,\\n        \\\"n_test\\\": 4497\\n      }\\n    }\\n  },\\n  \\\"vs_5gen\\\": {\\n    \\\"5gen_3class_f1\\\": 0.8089,\\n    \\\"5gen_binary_f1\\\": 0.7635,\\n    \\\"delta_3class_pooled\\\": 0.0047,\\n    \\\"delta_binary_pooled\\\": -0.02,\\n    \\\"delta_3class_logo\\\": -0.0413,\\n    \\\"delta_binary_logo\\\": 0.0123\\n  },\\n  \\\"config\\\": {\\n    \\\"generators\\\": [\\n      \\\"llama-3.2-3b\\\",\\n      \\\"mistral-7b-v0.3\\\",\\n      \\\"olmo-2-1b\\\",\\n      \\\"pythia-1b\\\",\\n      \\\"pythia-2.8b\\\",\\n      \\\"qwen3-0.6b\\\",\\n      \\\"qwen3-1.7b\\\",\\n      \\\"qwen3-8b\\\"\\n    ],\\n    \\\"n_generators\\\": 8,\\n    \\\"features\\\": [\\n      \\\"entropy_mean\\\",\\n      \\\"entropy_std\\\",\\n      \\\"entropy_min\\\",\\n      \\\"entropy_max\\\",\\n      \\\"tail_decay\\\",\\n      \\\"ttr\\\",\\n      \\\"hapax_ratio\\\"\\n    ],\\n    \\\"xgb_params\\\": {\\n      \\\"n_estimators\\\": 200,\\n      \\\"max_depth\\\": 6,\\n      \\\"learning_rate\\\": 0.1,\\n      \\\"random_state\\\": 42,\\n      \\\"use_label_encoder\\\": false\\n    },\\n    \\\"class_map\\\": {\\n      \\\"0\\\": \\\"gen-0\\\",\\n      \\\"1\\\": \\\"gen-1\\\",\\n      \\\"2-4\\\": \\\"gen-2+\\\"\\n    },\\n    \\\"reference_model\\\": \\\"pythia-410m\\\",\\n    \\\"pooled_cv_folds\\\": 5,\\n    \\\"mixed_chain_data_available\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "0e880f9c-27f6-4fc1-87d2-c42f5f455eb8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"8gen_cross_model_chains\\\\\\\",\\\\n  \\\\\\\"note\\\\\\\": \\\\\\\"True 8-gen mixed-chain data not generated (impractical to load 7B/8B models alternately per depth). Results below use single-model chain data with cross-model evaluation methodology.\\\\\\\",\\\\n  \\\\\\\"8gen_pooled_cv\\\\\\\": {\\\\n    \\\\\\\"macro_f1_mean\\\\\\\": 0.8136,\\\\n    \\\\\\\"macro_f1_std\\\\\\\": 0.0022,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.7435,\\\\n    \\\\\\\"fold_f1s\\\\\\\": [\\\\n      0.8155,\\\\n      0.8129,\\\\n      0.8103,\\\\n      0.8167,\\\\n      0.8128\\\\n    ],\\\\n    \\\\\\\"n_samples\\\\\\\": 23688,\\\\n    \\\\\\\"confusion_matrix\\\\\\\": [\\\\n      [\\\\n        7799,\\\\n        94,\\\\n        3\\\\n      ],\\\\n      [\\\\n        554,\\\\n        6198,\\\\n        1144\\\\n      ],\\\\n      [\\\\n        224,\\\\n        2323,\\\\n        5349\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"per_class\\\\\\\": {\\\\n      \\\\\\\"gen-0\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.9093,\\\\n        \\\\\\\"recall\\\\\\\": 0.9877,\\\\n        \\\\\\\"f1\\\\\\\": 0.9469\\\\n      },\\\\n      \\\\\\\"gen-1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.7194,\\\\n        \\\\\\\"recall\\\\\\\": 0.785,\\\\n        \\\\\\\"f1\\\\\\\": 0.7508\\\\n      },\\\\n      \\\\\\\"gen-2+\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.8234,\\\\n        \\\\\\\"recall\\\\\\\": 0.6774,\\\\n        \\\\\\\"f1\\\\\\\": 0.7433\\\\n      }\\\\n    },\\\\n    \\\\\\\"feature_importance\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": 0.2332,\\\\n      \\\\\\\"entropy_std\\\\\\\": 0.1037,\\\\n      \\\\\\\"entropy_min\\\\\\\": 0.043,\\\\n      \\\\\\\"entropy_max\\\\\\\": 0.0783,\\\\n      \\\\\\\"tail_decay\\\\\\\": 0.0362,\\\\n      \\\\\\\"ttr\\\\\\\": 0.2581,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.2474\\\\n    }\\\\n  },\\\\n  \\\\\\\"8gen_logo\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.7676,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.7758,\\\\n    \\\\\\\"n_samples\\\\\\\": 37058,\\\\n    \\\\\\\"per_gen\\\\\\\": {\\\\n      \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.7621,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.7528,\\\\n        \\\\\\\"n_test\\\\\\\": 4680\\\\n      },\\\\n      \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.6159,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.5673,\\\\n        \\\\\\\"n_test\\\\\\\": 4849\\\\n      },\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.7742,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.7757,\\\\n        \\\\\\\"n_test\\\\\\\": 4713\\\\n      },\\\\n      \\\\\\\"pythia-1b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.8564,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.8741,\\\\n        \\\\\\\"n_test\\\\\\\": 4555\\\\n      },\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.8169,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.8109,\\\\n        \\\\\\\"n_test\\\\\\\": 4609\\\\n      },\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.8224,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.8405,\\\\n        \\\\\\\"n_test\\\\\\\": 4538\\\\n      },\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.8098,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.835,\\\\n        \\\\\\\"n_test\\\\\\\": 4617\\\\n      },\\\\n      \\\\\\\"qwen3-8b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.7009,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.7051,\\\\n        \\\\\\\"n_test\\\\\\\": 4497\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"vs_5gen\\\\\\\": {\\\\n    \\\\\\\"5gen_3class_f1\\\\\\\": 0.8089,\\\\n    \\\\\\\"5gen_binary_f1\\\\\\\": 0.7635,\\\\n    \\\\\\\"delta_3class_pooled\\\\\\\": 0.0047,\\\\n    \\\\\\\"delta_binary_pooled\\\\\\\": -0.02,\\\\n    \\\\\\\"delta_3class_logo\\\\\\\": -0.0413,\\\\n    \\\\\\\"delta_binary_logo\\\\\\\": 0.0123\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"generators\\\\\\\": [\\\\n      \\\\\\\"llama-3.2-3b\\\\\\\",\\\\n      \\\\\\\"mistral-7b-v0.3\\\\\\\",\\\\n      \\\\\\\"olmo-2-1b\\\\\\\",\\\\n      \\\\\\\"pythia-1b\\\\\\\",\\\\n      \\\\\\\"pythia-2.8b\\\\\\\",\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\",\\\\n      \\\\\\\"qwen3-8b\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_generators\\\\\\\": 8,\\\\n    \\\\\\\"features\\\\\\\": [\\\\n      \\\\\\\"entropy_mean\\\\\\\",\\\\n      \\\\\\\"entropy_std\\\\\\\",\\\\n      \\\\\\\"entropy_min\\\\\\\",\\\\n      \\\\\\\"entropy_max\\\\\\\",\\\\n      \\\\\\\"tail_decay\\\\\\\",\\\\n      \\\\\\\"ttr\\\\\\\",\\\\n      \\\\\\\"hapax_ratio\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"xgb_params\\\\\\\": {\\\\n      \\\\\\\"n_estimators\\\\\\\": 200,\\\\n      \\\\\\\"max_depth\\\\\\\": 6,\\\\n      \\\\\\\"learning_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"random_state\\\\\\\": 42,\\\\n      \\\\\\\"use_label_encoder\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"class_map\\\\\\\": {\\\\n      \\\\\\\"0\\\\\\\": \\\\\\\"gen-0\\\\\\\",\\\\n      \\\\\\\"1\\\\\\\": \\\\\\\"gen-1\\\\\\\",\\\\n      \\\\\\\"2-4\\\\\\\": \\\\\\\"gen-2+\\\\\\\"\\\\n    },\\\\n    \\\\\\\"reference_model\\\\\\\": \\\\\\\"pythia-410m\\\\\\\",\\\\n    \\\\\\\"pooled_cv_folds\\\\\\\": 5,\\\\n    \\\\\\\"mixed_chain_data_available\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"8gen_cross_model_chains\\\",\\n  \\\"note\\\": \\\"True 8-gen mixed-chain data not generated (impractical to load 7B/8B models alternately per depth). Results below use single-model chain data with cross-model evaluation methodology.\\\",\\n  \\\"8gen_pooled_cv\\\": {\\n    \\\"macro_f1_mean\\\": 0.8136,\\n    \\\"macro_f1_std\\\": 0.0022,\\n    \\\"binary_f1\\\": 0.7435,\\n    \\\"fold_f1s\\\": [\\n      0.8155,\\n      0.8129,\\n      0.8103,\\n      0.8167,\\n      0.8128\\n    ],\\n    \\\"n_samples\\\": 23688,\\n    \\\"confusion_matrix\\\": [\\n      [\\n        7799,\\n        94,\\n        3\\n      ],\\n      [\\n        554,\\n        6198,\\n        1144\\n      ],\\n      [\\n        224,\\n        2323,\\n        5349\\n      ]\\n    ],\\n    \\\"per_class\\\": {\\n      \\\"gen-0\\\": {\\n        \\\"precision\\\": 0.9093,\\n        \\\"recall\\\": 0.9877,\\n        \\\"f1\\\": 0.9469\\n      },\\n      \\\"gen-1\\\": {\\n        \\\"precision\\\": 0.7194,\\n        \\\"recall\\\": 0.785,\\n        \\\"f1\\\": 0.7508\\n      },\\n      \\\"gen-2+\\\": {\\n        \\\"precision\\\": 0.8234,\\n        \\\"recall\\\": 0.6774,\\n        \\\"f1\\\": 0.7433\\n      }\\n    },\\n    \\\"feature_importance\\\": {\\n      \\\"entropy_mean\\\": 0.2332,\\n      \\\"entropy_std\\\": 0.1037,\\n      \\\"entropy_min\\\": 0.043,\\n      \\\"entropy_max\\\": 0.0783,\\n      \\\"tail_decay\\\": 0.0362,\\n      \\\"ttr\\\": 0.2581,\\n      \\\"hapax_ratio\\\": 0.2474\\n    }\\n  },\\n  \\\"8gen_logo\\\": {\\n    \\\"3class_f1\\\": 0.7676,\\n    \\\"binary_f1\\\": 0.7758,\\n    \\\"n_samples\\\": 37058,\\n    \\\"per_gen\\\": {\\n      \\\"llama-3.2-3b\\\": {\\n        \\\"3class_f1\\\": 0.7621,\\n        \\\"binary_f1\\\": 0.7528,\\n        \\\"n_test\\\": 4680\\n      },\\n      \\\"mistral-7b-v0.3\\\": {\\n        \\\"3class_f1\\\": 0.6159,\\n        \\\"binary_f1\\\": 0.5673,\\n        \\\"n_test\\\": 4849\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"3class_f1\\\": 0.7742,\\n        \\\"binary_f1\\\": 0.7757,\\n        \\\"n_test\\\": 4713\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"3class_f1\\\": 0.8564,\\n        \\\"binary_f1\\\": 0.8741,\\n        \\\"n_test\\\": 4555\\n      },\\n      \\\"pythia-2.8b\\\": {\\n        \\\"3class_f1\\\": 0.8169,\\n        \\\"binary_f1\\\": 0.8109,\\n        \\\"n_test\\\": 4609\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"3class_f1\\\": 0.8224,\\n        \\\"binary_f1\\\": 0.8405,\\n        \\\"n_test\\\": 4538\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"3class_f1\\\": 0.8098,\\n        \\\"binary_f1\\\": 0.835,\\n        \\\"n_test\\\": 4617\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"3class_f1\\\": 0.7009,\\n        \\\"binary_f1\\\": 0.7051,\\n        \\\"n_test\\\": 4497\\n      }\\n    }\\n  },\\n  \\\"vs_5gen\\\": {\\n    \\\"5gen_3class_f1\\\": 0.8089,\\n    \\\"5gen_binary_f1\\\": 0.7635,\\n    \\\"delta_3class_pooled\\\": 0.0047,\\n    \\\"delta_binary_pooled\\\": -0.02,\\n    \\\"delta_3class_logo\\\": -0.0413,\\n    \\\"delta_binary_logo\\\": 0.0123\\n  },\\n  \\\"config\\\": {\\n    \\\"generators\\\": [\\n      \\\"llama-3.2-3b\\\",\\n      \\\"mistral-7b-v0.3\\\",\\n      \\\"olmo-2-1b\\\",\\n      \\\"pythia-1b\\\",\\n      \\\"pythia-2.8b\\\",\\n      \\\"qwen3-0.6b\\\",\\n      \\\"qwen3-1.7b\\\",\\n      \\\"qwen3-8b\\\"\\n    ],\\n    \\\"n_generators\\\": 8,\\n    \\\"features\\\": [\\n      \\\"entropy_mean\\\",\\n      \\\"entropy_std\\\",\\n      \\\"entropy_min\\\",\\n      \\\"entropy_max\\\",\\n      \\\"tail_decay\\\",\\n      \\\"ttr\\\",\\n      \\\"hapax_ratio\\\"\\n    ],\\n    \\\"xgb_params\\\": {\\n      \\\"n_estimators\\\": 200,\\n      \\\"max_depth\\\": 6,\\n      \\\"learning_rate\\\": 0.1,\\n      \\\"random_state\\\": 42,\\n      \\\"use_label_encoder\\\": false\\n    },\\n    \\\"class_map\\\": {\\n      \\\"0\\\": \\\"gen-0\\\",\\n      \\\"1\\\": \\\"gen-1\\\",\\n      \\\"2-4\\\": \\\"gen-2+\\\"\\n    },\\n    \\\"reference_model\\\": \\\"pythia-410m\\\",\\n    \\\"pooled_cv_folds\\\": 5,\\n    \\\"mixed_chain_data_available\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012bCmJ7XBqfc9mgnhmmGDxA`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/8gen_finer_depth.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "465ee605-802d-4383-8e91-392b3133dfde",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UWPFz1bJGytskYzz37z4iu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3484,
+      "cache_read_input_tokens": 27126,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3484
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T10:54:24.011Z_
+
+<details><summary>↩ Tool result · `toolu_012bCmJ7XBqfc9mgnhmmGDxA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"5class\\\": {\\n    \\\"logo_avg_f1\\\": 0.4878,\\n    \\\"ci95\\\": [\\n      0.4825,\\n      0.4912\\n    ],\\n    \\\"per_gen\\\": {\\n      \\\"llama-3.2-3b\\\": 0.4926,\\n      \\\"mistral-7b-v0.3\\\": 0.3934,\\n      \\\"olmo-2-1b\\\": 0.5046,\\n      \\\"pythia-1b\\\": 0.5341,\\n      \\\"pythia-2.8b\\\": 0.5318,\\n      \\\"qwen3-0.6b\\\": 0.4954,\\n      \\\"qwen3-1.7b\\\": 0.5047,\\n      \\\"qwen3-8b\\\": 0.4456\\n    },\\n    \\\"per_class_f1\\\": {\\n      \\\"gen0\\\": 0.9173,\\n      \\\"gen1\\\": 0.5931,\\n      \\\"gen2\\\": 0.2395,\\n      \\\"gen3\\\": 0.2337,\\n      \\\"gen4\\\": 0.4506\\n    },\\n    \\\"confusion_matrix_avg\\\": [\\n      [\\n        0.98,\\n        0.01,\\n        0.0,\\n        0.0,\\n        0.0\\n      ],\\n      [\\n        0.08,\\n        0.7,\\n        0.14,\\n        0.04,\\n        0.03\\n      ],\\n      [\\n        0.04,\\n        0.37,\\n        0.19,\\n        0.15,\\n        0.25\\n      ],\\n      [\\n        0.03,\\n        0.2,\\n        0.16,\\n        0.18,\\n        0.43\\n      ],\\n      [\\n        0.02,\\n        0.14,\\n        0.13,\\n        0.19,\\n        0.52\\n      ]\\n    ]\\n  },\\n  \\\"3class_control\\\": {\\n    \\\"logo_avg_f1\\\": 0.7698,\\n    \\\"ci95\\\": [\\n      0.7636,\\n      0.7715\\n    ]\\n  },\\n  \\\"delta_5class_vs_3class\\\": -0.282,\\n  \\\"config\\\": {\\n    \\\"n_generators\\\": 8,\\n    \\\"n_features\\\": 7,\\n    \\\"features\\\": [\\n      \\\"entropy_mean\\\",\\n      \\\"entropy_std\\\",\\n      \\\"entropy_min\\\",\\n      \\\"entropy_max\\\",\\n      \\\"tail_decay\\\",\\n      \\\"ttr\\\",\\n      \\\"hapax_ratio\\\"\\n    ],\\n    \\\"xgb_params\\\": {\\n      \\\"n_estimators\\\": 200,\\n      \\\"max_depth\\\": 6,\\n      \\\"learning_rate\\\": 0.1,\\n      \\\"random_state\\\": 42,\\n      \\\"eval_metric\\\": \\\"mlogloss\\\"\\n    },\\n    \\\"bootstrap_B\\\": 1000,\\n    \\\"downsampling\\\": \\\"per-class balance in train set\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "13b9c87c-f4ae-4a63-a5c3-29cec76e17bb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"5class\\\\\\\": {\\\\n    \\\\\\\"logo_avg_f1\\\\\\\": 0.4878,\\\\n    \\\\\\\"ci95\\\\\\\": [\\\\n      0.4825,\\\\n      0.4912\\\\n    ],\\\\n    \\\\\\\"per_gen\\\\\\\": {\\\\n      \\\\\\\"llama-3.2-3b\\\\\\\": 0.4926,\\\\n      \\\\\\\"mistral-7b-v0.3\\\\\\\": 0.3934,\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": 0.5046,\\\\n      \\\\\\\"pythia-1b\\\\\\\": 0.5341,\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": 0.5318,\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": 0.4954,\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": 0.5047,\\\\n      \\\\\\\"qwen3-8b\\\\\\\": 0.4456\\\\n    },\\\\n    \\\\\\\"per_class_f1\\\\\\\": {\\\\n      \\\\\\\"gen0\\\\\\\": 0.9173,\\\\n      \\\\\\\"gen1\\\\\\\": 0.5931,\\\\n      \\\\\\\"gen2\\\\\\\": 0.2395,\\\\n      \\\\\\\"gen3\\\\\\\": 0.2337,\\\\n      \\\\\\\"gen4\\\\\\\": 0.4506\\\\n    },\\\\n    \\\\\\\"confusion_matrix_avg\\\\\\\": [\\\\n      [\\\\n        0.98,\\\\n        0.01,\\\\n        0.0,\\\\n        0.0,\\\\n        0.0\\\\n      ],\\\\n      [\\\\n        0.08,\\\\n        0.7,\\\\n        0.14,\\\\n        0.04,\\\\n        0.03\\\\n      ],\\\\n      [\\\\n        0.04,\\\\n        0.37,\\\\n        0.19,\\\\n        0.15,\\\\n        0.25\\\\n      ],\\\\n      [\\\\n        0.03,\\\\n        0.2,\\\\n        0.16,\\\\n        0.18,\\\\n        0.43\\\\n      ],\\\\n      [\\\\n        0.02,\\\\n        0.14,\\\\n        0.13,\\\\n        0.19,\\\\n        0.52\\\\n      ]\\\\n    ]\\\\n  },\\\\n  \\\\\\\"3class_control\\\\\\\": {\\\\n    \\\\\\\"logo_avg_f1\\\\\\\": 0.7698,\\\\n    \\\\\\\"ci95\\\\\\\": [\\\\n      0.7636,\\\\n      0.7715\\\\n    ]\\\\n  },\\\\n  \\\\\\\"delta_5class_vs_3class\\\\\\\": -0.282,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"n_generators\\\\\\\": 8,\\\\n    \\\\\\\"n_features\\\\\\\": 7,\\\\n    \\\\\\\"features\\\\\\\": [\\\\n      \\\\\\\"entropy_mean\\\\\\\",\\\\n      \\\\\\\"entropy_std\\\\\\\",\\\\n      \\\\\\\"entropy_min\\\\\\\",\\\\n      \\\\\\\"entropy_max\\\\\\\",\\\\n      \\\\\\\"tail_decay\\\\\\\",\\\\n      \\\\\\\"ttr\\\\\\\",\\\\n      \\\\\\\"hapax_ratio\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"xgb_params\\\\\\\": {\\\\n      \\\\\\\"n_estimators\\\\\\\": 200,\\\\n      \\\\\\\"max_depth\\\\\\\": 6,\\\\n      \\\\\\\"learning_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"random_state\\\\\\\": 42,\\\\n      \\\\\\\"eval_metric\\\\\\\": \\\\\\\"mlogloss\\\\\\\"\\\\n    },\\\\n    \\\\\\\"bootstrap_B\\\\\\\": 1000,\\\\n    \\\\\\\"downsampling\\\\\\\": \\\\\\\"per-class balance in train set\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"5class\\\": {\\n    \\\"logo_avg_f1\\\": 0.4878,\\n    \\\"ci95\\\": [\\n      0.4825,\\n      0.4912\\n    ],\\n    \\\"per_gen\\\": {\\n      \\\"llama-3.2-3b\\\": 0.4926,\\n      \\\"mistral-7b-v0.3\\\": 0.3934,\\n      \\\"olmo-2-1b\\\": 0.5046,\\n      \\\"pythia-1b\\\": 0.5341,\\n      \\\"pythia-2.8b\\\": 0.5318,\\n      \\\"qwen3-0.6b\\\": 0.4954,\\n      \\\"qwen3-1.7b\\\": 0.5047,\\n      \\\"qwen3-8b\\\": 0.4456\\n    },\\n    \\\"per_class_f1\\\": {\\n      \\\"gen0\\\": 0.9173,\\n      \\\"gen1\\\": 0.5931,\\n      \\\"gen2\\\": 0.2395,\\n      \\\"gen3\\\": 0.2337,\\n      \\\"gen4\\\": 0.4506\\n    },\\n    \\\"confusion_matrix_avg\\\": [\\n      [\\n        0.98,\\n        0.01,\\n        0.0,\\n        0.0,\\n        0.0\\n      ],\\n      [\\n        0.08,\\n        0.7,\\n        0.14,\\n        0.04,\\n        0.03\\n      ],\\n      [\\n        0.04,\\n        0.37,\\n        0.19,\\n        0.15,\\n        0.25\\n      ],\\n      [\\n        0.03,\\n        0.2,\\n        0.16,\\n        0.18,\\n        0.43\\n      ],\\n      [\\n        0.02,\\n        0.14,\\n        0.13,\\n        0.19,\\n        0.52\\n      ]\\n    ]\\n  },\\n  \\\"3class_control\\\": {\\n    \\\"logo_avg_f1\\\": 0.7698,\\n    \\\"ci95\\\": [\\n      0.7636,\\n      0.7715\\n    ]\\n  },\\n  \\\"delta_5class_vs_3class\\\": -0.282,\\n  \\\"config\\\": {\\n    \\\"n_generators\\\": 8,\\n    \\\"n_features\\\": 7,\\n    \\\"features\\\": [\\n      \\\"entropy_mean\\\",\\n      \\\"entropy_std\\\",\\n      \\\"entropy_min\\\",\\n      \\\"entropy_max\\\",\\n      \\\"tail_decay\\\",\\n      \\\"ttr\\\",\\n      \\\"hapax_ratio\\\"\\n    ],\\n    \\\"xgb_params\\\": {\\n      \\\"n_estimators\\\": 200,\\n      \\\"max_depth\\\": 6,\\n      \\\"learning_rate\\\": 0.1,\\n      \\\"random_state\\\": 42,\\n      \\\"eval_metric\\\": \\\"mlogloss\\\"\\n    },\\n    \\\"bootstrap_B\\\": 1000,\\n    \\\"downsampling\\\": \\\"per-class balance in train set\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WALL4pB7Vtia3xVWgzru12`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/8gen_sampling_ablation.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "5dfb6a1d-ee6f-495a-8acd-9491bb568e4d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UWPFz1bJGytskYzz37z4iu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3484,
+      "cache_read_input_tokens": 27126,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3484
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T10:54:24.567Z_
+
+<details><summary>↩ Tool result · `toolu_01WALL4pB7Vtia3xVWgzru12`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"3class\\\": {\\n    \\\"25pct\\\": {\\n      \\\"f1_mean\\\": 0.7538,\\n      \\\"f1_std\\\": 0.0017,\\n      \\\"seeds\\\": {\\n        \\\"42\\\": 0.7531,\\n        \\\"123\\\": 0.7562,\\n        \\\"456\\\": 0.7521\\n      }\\n    },\\n    \\\"50pct\\\": {\\n      \\\"f1_mean\\\": 0.7636,\\n      \\\"f1_std\\\": 0.0018,\\n      \\\"seeds\\\": {\\n        \\\"42\\\": 0.762,\\n        \\\"123\\\": 0.7661,\\n        \\\"456\\\": 0.7626\\n      }\\n    },\\n    \\\"75pct\\\": {\\n      \\\"f1_mean\\\": 0.7675,\\n      \\\"f1_std\\\": 0.0017,\\n      \\\"seeds\\\": {\\n        \\\"42\\\": 0.767,\\n        \\\"123\\\": 0.7697,\\n        \\\"456\\\": 0.7657\\n      }\\n    },\\n    \\\"100pct\\\": {\\n      \\\"f1_mean\\\": 0.7693,\\n      \\\"f1_std\\\": 0.0007,\\n      \\\"seeds\\\": {\\n        \\\"42\\\": 0.7698,\\n        \\\"123\\\": 0.7697,\\n        \\\"456\\\": 0.7683\\n      }\\n    }\\n  },\\n  \\\"binary\\\": {\\n    \\\"25pct\\\": {\\n      \\\"f1_mean\\\": 0.769,\\n      \\\"f1_std\\\": 0.0003,\\n      \\\"seeds\\\": {\\n        \\\"42\\\": 0.7691,\\n        \\\"123\\\": 0.7686,\\n        \\\"456\\\": 0.7694\\n      }\\n    },\\n    \\\"50pct\\\": {\\n      \\\"f1_mean\\\": 0.7689,\\n      \\\"f1_std\\\": 0.0015,\\n      \\\"seeds\\\": {\\n        \\\"42\\\": 0.771,\\n        \\\"123\\\": 0.7676,\\n        \\\"456\\\": 0.768\\n      }\\n    },\\n    \\\"75pct\\\": {\\n      \\\"f1_mean\\\": 0.7705,\\n      \\\"f1_std\\\": 0.0011,\\n      \\\"seeds\\\": {\\n        \\\"42\\\": 0.7715,\\n        \\\"123\\\": 0.7709,\\n        \\\"456\\\": 0.769\\n      }\\n    },\\n    \\\"100pct\\\": {\\n      \\\"f1_mean\\\": 0.7702,\\n      \\\"f1_std\\\": 0.0016,\\n      \\\"seeds\\\": {\\n        \\\"42\\\": 0.7709,\\n        \\\"123\\\": 0.7718,\\n        \\\"456\\\": 0.768\\n      }\\n    }\\n  },\\n  \\\"config\\\": {\\n    \\\"n_generators\\\": 8,\\n    \\\"sampling_seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"fractions\\\": [\\n      0.25,\\n      0.5,\\n      0.75,\\n      1.0\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "f6e064d3-443f-4be9-bf06-7f4e07edfaf0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"3class\\\\\\\": {\\\\n    \\\\\\\"25pct\\\\\\\": {\\\\n      \\\\\\\"f1_mean\\\\\\\": 0.7538,\\\\n      \\\\\\\"f1_std\\\\\\\": 0.0017,\\\\n      \\\\\\\"seeds\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.7531,\\\\n        \\\\\\\"123\\\\\\\": 0.7562,\\\\n        \\\\\\\"456\\\\\\\": 0.7521\\\\n      }\\\\n    },\\\\n    \\\\\\\"50pct\\\\\\\": {\\\\n      \\\\\\\"f1_mean\\\\\\\": 0.7636,\\\\n      \\\\\\\"f1_std\\\\\\\": 0.0018,\\\\n      \\\\\\\"seeds\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.762,\\\\n        \\\\\\\"123\\\\\\\": 0.7661,\\\\n        \\\\\\\"456\\\\\\\": 0.7626\\\\n      }\\\\n    },\\\\n    \\\\\\\"75pct\\\\\\\": {\\\\n      \\\\\\\"f1_mean\\\\\\\": 0.7675,\\\\n      \\\\\\\"f1_std\\\\\\\": 0.0017,\\\\n      \\\\\\\"seeds\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.767,\\\\n        \\\\\\\"123\\\\\\\": 0.7697,\\\\n        \\\\\\\"456\\\\\\\": 0.7657\\\\n      }\\\\n    },\\\\n    \\\\\\\"100pct\\\\\\\": {\\\\n      \\\\\\\"f1_mean\\\\\\\": 0.7693,\\\\n      \\\\\\\"f1_std\\\\\\\": 0.0007,\\\\n      \\\\\\\"seeds\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.7698,\\\\n        \\\\\\\"123\\\\\\\": 0.7697,\\\\n        \\\\\\\"456\\\\\\\": 0.7683\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"binary\\\\\\\": {\\\\n    \\\\\\\"25pct\\\\\\\": {\\\\n      \\\\\\\"f1_mean\\\\\\\": 0.769,\\\\n      \\\\\\\"f1_std\\\\\\\": 0.0003,\\\\n      \\\\\\\"seeds\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.7691,\\\\n        \\\\\\\"123\\\\\\\": 0.7686,\\\\n        \\\\\\\"456\\\\\\\": 0.7694\\\\n      }\\\\n    },\\\\n    \\\\\\\"50pct\\\\\\\": {\\\\n      \\\\\\\"f1_mean\\\\\\\": 0.7689,\\\\n      \\\\\\\"f1_std\\\\\\\": 0.0015,\\\\n      \\\\\\\"seeds\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.771,\\\\n        \\\\\\\"123\\\\\\\": 0.7676,\\\\n        \\\\\\\"456\\\\\\\": 0.768\\\\n      }\\\\n    },\\\\n    \\\\\\\"75pct\\\\\\\": {\\\\n      \\\\\\\"f1_mean\\\\\\\": 0.7705,\\\\n      \\\\\\\"f1_std\\\\\\\": 0.0011,\\\\n      \\\\\\\"seeds\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.7715,\\\\n        \\\\\\\"123\\\\\\\": 0.7709,\\\\n        \\\\\\\"456\\\\\\\": 0.769\\\\n      }\\\\n    },\\\\n    \\\\\\\"100pct\\\\\\\": {\\\\n      \\\\\\\"f1_mean\\\\\\\": 0.7702,\\\\n      \\\\\\\"f1_std\\\\\\\": 0.0016,\\\\n      \\\\\\\"seeds\\\\\\\": {\\\\n        \\\\\\\"42\\\\\\\": 0.7709,\\\\n        \\\\\\\"123\\\\\\\": 0.7718,\\\\n        \\\\\\\"456\\\\\\\": 0.768\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"n_generators\\\\\\\": 8,\\\\n    \\\\\\\"sampling_seeds\\\\\\\": [\\\\n      42,\\\\n      123,\\\\n      456\\\\n    ],\\\\n    \\\\\\\"fractions\\\\\\\": [\\\\n      0.25,\\\\n      0.5,\\\\n      0.75,\\\\n      1.0\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"3class\\\": {\\n    \\\"25pct\\\": {\\n      \\\"f1_mean\\\": 0.7538,\\n      \\\"f1_std\\\": 0.0017,\\n      \\\"seeds\\\": {\\n        \\\"42\\\": 0.7531,\\n        \\\"123\\\": 0.7562,\\n        \\\"456\\\": 0.7521\\n      }\\n    },\\n    \\\"50pct\\\": {\\n      \\\"f1_mean\\\": 0.7636,\\n      \\\"f1_std\\\": 0.0018,\\n      \\\"seeds\\\": {\\n        \\\"42\\\": 0.762,\\n        \\\"123\\\": 0.7661,\\n        \\\"456\\\": 0.7626\\n      }\\n    },\\n    \\\"75pct\\\": {\\n      \\\"f1_mean\\\": 0.7675,\\n      \\\"f1_std\\\": 0.0017,\\n      \\\"seeds\\\": {\\n        \\\"42\\\": 0.767,\\n        \\\"123\\\": 0.7697,\\n        \\\"456\\\": 0.7657\\n      }\\n    },\\n    \\\"100pct\\\": {\\n      \\\"f1_mean\\\": 0.7693,\\n      \\\"f1_std\\\": 0.0007,\\n      \\\"seeds\\\": {\\n        \\\"42\\\": 0.7698,\\n        \\\"123\\\": 0.7697,\\n        \\\"456\\\": 0.7683\\n      }\\n    }\\n  },\\n  \\\"binary\\\": {\\n    \\\"25pct\\\": {\\n      \\\"f1_mean\\\": 0.769,\\n      \\\"f1_std\\\": 0.0003,\\n      \\\"seeds\\\": {\\n        \\\"42\\\": 0.7691,\\n        \\\"123\\\": 0.7686,\\n        \\\"456\\\": 0.7694\\n      }\\n    },\\n    \\\"50pct\\\": {\\n      \\\"f1_mean\\\": 0.7689,\\n      \\\"f1_std\\\": 0.0015,\\n      \\\"seeds\\\": {\\n        \\\"42\\\": 0.771,\\n        \\\"123\\\": 0.7676,\\n        \\\"456\\\": 0.768\\n      }\\n    },\\n    \\\"75pct\\\": {\\n      \\\"f1_mean\\\": 0.7705,\\n      \\\"f1_std\\\": 0.0011,\\n      \\\"seeds\\\": {\\n        \\\"42\\\": 0.7715,\\n        \\\"123\\\": 0.7709,\\n        \\\"456\\\": 0.769\\n      }\\n    },\\n    \\\"100pct\\\": {\\n      \\\"f1_mean\\\": 0.7702,\\n      \\\"f1_std\\\": 0.0016,\\n      \\\"seeds\\\": {\\n        \\\"42\\\": 0.7709,\\n        \\\"123\\\": 0.7718,\\n        \\\"456\\\": 0.768\\n      }\\n    }\\n  },\\n  \\\"config\\\": {\\n    \\\"n_generators\\\": 8,\\n    \\\"sampling_seeds\\\": [\\n      42,\\n      123,\\n      456\\n    ],\\n    \\\"fractions\\\": [\\n      0.25,\\n      0.5,\\n      0.75,\\n      1.0\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01U31QZjymXtRX7k9RjedrGq`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/8gen_lofo_family.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "f8787160-c638-4c62-9cdb-b7a57e88a32c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UWPFz1bJGytskYzz37z4iu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3484,
+      "cache_read_input_tokens": 27126,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3484
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-17T10:54:25.478Z_
+
+<details><summary>↩ Tool result · `toolu_01U31QZjymXtRX7k9RjedrGq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_held_out\\\": {\\n    \\\"3class_f1\\\": 0.7774,\\n    \\\"binary_f1\\\": 0.6867,\\n    \\\"n_test\\\": 9164\\n  },\\n  \\\"olmo_held_out\\\": {\\n    \\\"3class_f1\\\": 0.781,\\n    \\\"binary_f1\\\": 0.7073,\\n    \\\"n_test\\\": 4713\\n  },\\n  \\\"qwen_held_out\\\": {\\n    \\\"3class_f1\\\": 0.7448,\\n    \\\"binary_f1\\\": 0.687,\\n    \\\"n_test\\\": 13652\\n  },\\n  \\\"llama_held_out\\\": {\\n    \\\"3class_f1\\\": 0.7744,\\n    \\\"binary_f1\\\": 0.708,\\n    \\\"n_test\\\": 4680\\n  },\\n  \\\"mistral_held_out\\\": {\\n    \\\"3class_f1\\\": 0.6815,\\n    \\\"binary_f1\\\": 0.6433,\\n    \\\"n_test\\\": 4849\\n  },\\n  \\\"average\\\": {\\n    \\\"3class_f1\\\": 0.7518,\\n    \\\"binary_f1\\\": 0.6865\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "12c43b3c-699f-4eda-91f3-abd287ced215",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"pythia_held_out\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.7774,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.6867,\\\\n    \\\\\\\"n_test\\\\\\\": 9164\\\\n  },\\\\n  \\\\\\\"olmo_held_out\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.781,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.7073,\\\\n    \\\\\\\"n_test\\\\\\\": 4713\\\\n  },\\\\n  \\\\\\\"qwen_held_out\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.7448,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.687,\\\\n    \\\\\\\"n_test\\\\\\\": 13652\\\\n  },\\\\n  \\\\\\\"llama_held_out\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.7744,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.708,\\\\n    \\\\\\\"n_test\\\\\\\": 4680\\\\n  },\\\\n  \\\\\\\"mistral_held_out\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.6815,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.6433,\\\\n    \\\\\\\"n_test\\\\\\\": 4849\\\\n  },\\\\n  \\\\\\\"average\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.7518,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.6865\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia_held_out\\\": {\\n    \\\"3class_f1\\\": 0.7774,\\n    \\\"binary_f1\\\": 0.6867,\\n    \\\"n_test\\\": 9164\\n  },\\n  \\\"olmo_held_out\\\": {\\n    \\\"3class_f1\\\": 0.781,\\n    \\\"binary_f1\\\": 0.7073,\\n    \\\"n_test\\\": 4713\\n  },\\n  \\\"qwen_held_out\\\": {\\n    \\\"3class_f1\\\": 0.7448,\\n    \\\"binary_f1\\\": 0.687,\\n    \\\"n_test\\\": 13652\\n  },\\n  \\\"llama_held_out\\\": {\\n    \\\"3class_f1\\\": 0.7744,\\n    \\\"binary_f1\\\": 0.708,\\n    \\\"n_test\\\": 4680\\n  },\\n  \\\"mistral_held_out\\\": {\\n    \\\"3class_f1\\\": 0.6815,\\n    \\\"binary_f1\\\": 0.6433,\\n    \\\"n_test\\\": 4849\\n  },\\n  \\\"average\\\": {\\n    \\\"3class_f1\\\": 0.7518,\\n    \\\"binary_f1\\\": 0.6865\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H5sc7JFpJjrWkedAn5pSe9`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/plan006_paraphrastic_comparison.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "6a0b6dd9-2675-453e-946e-c64752d6a0a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UWPFz1bJGytskYzz37z4iu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3484,
+      "cache_read_input_tokens": 27126,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3484
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T10:54:26.513Z_
+
+<details><summary>↩ Tool result · `toolu_01H5sc7JFpJjrWkedAn5pSe9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"paraphrase_signal\\\": {\\n    \\\"n\\\": 4912,\\n    \\\"depth_distribution\\\": {\\n      \\\"0\\\": 995,\\n      \\\"1\\\": 994,\\n      \\\"2\\\": 985,\\n      \\\"3\\\": 973,\\n      \\\"4\\\": 965\\n    },\\n    \\\"cv5_3class_f1\\\": {\\n      \\\"mean\\\": 0.7423219083281771,\\n      \\\"std\\\": 0.006590124467863398,\\n      \\\"folds\\\": [\\n        0.7418000314961587,\\n        0.7467068335462965,\\n        0.7522976604355701,\\n        0.7364926796862347,\\n        0.7343123364766257\\n      ]\\n    },\\n    \\\"spearman_correlations\\\": {\\n      \\\"entropy_mean\\\": {\\n        \\\"rho\\\": -0.5331923045089481,\\n        \\\"p\\\": 0.0\\n      },\\n      \\\"entropy_std\\\": {\\n        \\\"rho\\\": -0.056324040369681416,\\n        \\\"p\\\": 7.826934910627552e-05\\n      },\\n      \\\"entropy_min\\\": {\\n        \\\"rho\\\": -0.3780489375865218,\\n        \\\"p\\\": 1.1078951989744697e-166\\n      },\\n      \\\"entropy_max\\\": {\\n        \\\"rho\\\": 0.022984415610487537,\\n        \\\"p\\\": 0.10724932158233998\\n      },\\n      \\\"tail_decay\\\": {\\n        \\\"rho\\\": 0.12461242736636605,\\n        \\\"p\\\": 1.859397338628754e-18\\n      },\\n      \\\"ttr\\\": {\\n        \\\"rho\\\": -0.5303452554977235,\\n        \\\"p\\\": 0.0\\n      },\\n      \\\"hapax_ratio\\\": {\\n        \\\"rho\\\": -0.5580819153985356,\\n        \\\"p\\\": 0.0\\n      }\\n    },\\n    \\\"depth_retention\\\": {\\n      \\\"d0_seeds\\\": 995,\\n      \\\"d4_seeds\\\": 965,\\n      \\\"retention\\\": 0.9698\\n    },\\n    \\\"binary_f1_gen1_vs_gen2plus\\\": {\\n      \\\"mean\\\": 0.6710696917059812,\\n      \\\"std\\\": 0.018154861545909493\\n    }\\n  },\\n  \\\"continuation_signal\\\": {\\n    \\\"n\\\": 4609,\\n    \\\"cv5_3class_f1\\\": {\\n      \\\"mean\\\": 0.7876356225735041,\\n      \\\"std\\\": 0.006063855053043267,\\n      \\\"folds\\\": [\\n        0.7876570946393064,\\n        0.7905299145299146,\\n        0.7797293869117604,\\n        0.7830416645882047,\\n        0.7972200521983339\\n      ]\\n    },\\n    \\\"spearman_correlations\\\": {\\n      \\\"entropy_mean\\\": {\\n        \\\"rho\\\": -0.6753679945788368,\\n        \\\"p\\\": 0.0\\n      },\\n      \\\"entropy_std\\\": {\\n        \\\"rho\\\": -0.15302196411682306,\\n        \\\"p\\\": 1.5064979201600526e-25\\n      },\\n      \\\"entropy_min\\\": {\\n        \\\"rho\\\": -0.4796955643778703,\\n        \\\"p\\\": 6.028401711425074e-264\\n      },\\n      \\\"entropy_max\\\": {\\n        \\\"rho\\\": -0.03506661693935034,\\n        \\\"p\\\": 0.0172776398107996\\n      },\\n      \\\"tail_decay\\\": {\\n        \\\"rho\\\": 0.063284718763189,\\n        \\\"p\\\": 1.7116852290707346e-05\\n      },\\n      \\\"ttr\\\": {\\n        \\\"rho\\\": -0.6333076420636782,\\n        \\\"p\\\": 0.0\\n      },\\n      \\\"hapax_ratio\\\": {\\n        \\\"rho\\\": -0.6553235076818699,\\n        \\\"p\\\": 0.0\\n      }\\n    },\\n    \\\"depth_retention\\\": {\\n      \\\"d0_seeds\\\": 995,\\n      \\\"d4_seeds\\\": 822,\\n      \\\"retention\\\": 0.8261\\n    },\\n    \\\"binary_f1_gen1_vs_gen2plus\\\": {\\n      \\\"mean\\\": 0.7490591990561987,\\n      \\\"std\\\": 0.01083482606507949\\n    }\\n  },\\n  \\\"comparison\\\": {\\n    \\\"f1_3class_delta\\\": -0.0453,\\n    \\\"retention_delta\\\": 0.1437,\\n    \\\"spearman_comparison\\\": {\\n      \\\"entropy_mean\\\": {\\n        \\\"paraphrase_rho\\\": -0.5332,\\n        \\\"continuation_rho\\\": -0.6754,\\n        \\\"delta\\\": 0.1422,\\n        \\\"para_stronger\\\": false\\n      },\\n      \\\"entropy_std\\\": {\\n        \\\"paraphrase_rho\\\": -0.0563,\\n        \\\"continuation_rho\\\": -0.153,\\n        \\\"delta\\\": 0.0967,\\n        \\\"para_stronger\\\": false\\n      },\\n      \\\"entropy_min\\\": {\\n        \\\"paraphrase_rho\\\": -0.378,\\n        \\\"continuation_rho\\\": -0.4797,\\n        \\\"delta\\\": 0.1016,\\n        \\\"para_stronger\\\": false\\n      },\\n      \\\"entropy_max\\\": {\\n        \\\"paraphrase_rho\\\": 0.023,\\n        \\\"continuation_rho\\\": -0.0351,\\n        \\\"delta\\\": 0.0581,\\n        \\\"para_stronger\\\": false\\n      },\\n      \\\"tail_decay\\\": {\\n        \\\"paraphrase_rho\\\": 0.1246,\\n        \\\"continuation_rho\\\": 0.0633,\\n        \\\"delta\\\": 0.0613,\\n        \\\"para_stronger\\\": true\\n      },\\n      \\\"ttr\\\": {\\n        \\\"paraphrase_rho\\\": -0.5303,\\n        \\\"continuation_rho\\\": -0.6333,\\n        \\\"delta\\\": 0.103,\\n        \\\"para_stronger\\\": false\\n      },\\n      \\\"hapax_ratio\\\": {\\n        \\\"paraphrase_rho\\\": -0.5581,\\n        \\\"continuation_rho\\\": -0.6553,\\n        \\\"delta\\\": 0.0972,\\n        \\\"para_stronger\\\": false\\n      }\\n    },\\n    \\\"feature_slopes\\\": {\\n      \\\"entropy_mean\\\": {\\n        \\\"paraphrase\\\": -0.308039,\\n        \\\"continuation\\\": -0.397207,\\n        \\\"delta\\\": 0.089168\\n      },\\n      \\\"entropy_std\\\": {\\n        \\\"paraphrase\\\": -0.009157,\\n        \\\"continuation\\\": -0.028483,\\n        \\\"delta\\\": 0.019326\\n      },\\n      \\\"entropy_min\\\": {\\n        \\\"paraphrase\\\": 0.005892,\\n        \\\"continuation\\\": 0.006733,\\n        \\\"delta\\\": -0.000841\\n      },\\n      \\\"entropy_max\\\": {\\n        \\\"paraphrase\\\": 0.015136,\\n        \\\"continuation\\\": -0.027014,\\n        \\\"delta\\\": 0.04215\\n      },\\n      \\\"tail_decay\\\": {\\n        \\\"paraphrase\\\": 2.1e-05,\\n        \\\"continuation\\\": 1.4e-05,\\n        \\\"delta\\\": 7e-06\\n      },\\n      \\\"ttr\\\": {\\n        \\\"paraphrase\\\": -0.081008,\\n        \\\"continuation\\\": -0.096058,\\n        \\\"delta\\\": 0.01505\\n      },\\n      \\\"hapax_ratio\\\": {\\n        \\\"paraphrase\\\": -0.079062,\\n        \\\"continuation\\\": -0.092304,\\n        \\\"delta\\\": 0.013242\\n      }\\n    },\\n    \\\"cross_transfer\\\": {\\n      \\\"para_train_cont_test_f1\\\": 0.7695,\\n      \\\"cont_train_para_test_f1\\\": 0.7431\\n    }\\n  },\\n  \\\"conclusion\\\": \\\"similar: paraphrastic and continuation chains retain comparable depth signal\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "560f9ce0-9b4a-4e38-80de-4963ffafb975",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"paraphrase_signal\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 4912,\\\\n    \\\\\\\"depth_distribution\\\\\\\": {\\\\n      \\\\\\\"0\\\\\\\": 995,\\\\n      \\\\\\\"1\\\\\\\": 994,\\\\n      \\\\\\\"2\\\\\\\": 985,\\\\n      \\\\\\\"3\\\\\\\": 973,\\\\n      \\\\\\\"4\\\\\\\": 965\\\\n    },\\\\n    \\\\\\\"cv5_3class_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.7423219083281771,\\\\n      \\\\\\\"std\\\\\\\": 0.006590124467863398,\\\\n      \\\\\\\"folds\\\\\\\": [\\\\n        0.7418000314961587,\\\\n        0.7467068335462965,\\\\n        0.7522976604355701,\\\\n        0.7364926796862347,\\\\n        0.7343123364766257\\\\n      ]\\\\n    },\\\\n    \\\\\\\"spearman_correlations\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": -0.5331923045089481,\\\\n        \\\\\\\"p\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"entropy_std\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": -0.056324040369681416,\\\\n        \\\\\\\"p\\\\\\\": 7.826934910627552e-05\\\\n      },\\\\n      \\\\\\\"entropy_min\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": -0.3780489375865218,\\\\n        \\\\\\\"p\\\\\\\": 1.1078951989744697e-166\\\\n      },\\\\n      \\\\\\\"entropy_max\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.022984415610487537,\\\\n        \\\\\\\"p\\\\\\\": 0.10724932158233998\\\\n      },\\\\n      \\\\\\\"tail_decay\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.12461242736636605,\\\\n        \\\\\\\"p\\\\\\\": 1.859397338628754e-18\\\\n      },\\\\n      \\\\\\\"ttr\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": -0.5303452554977235,\\\\n        \\\\\\\"p\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"hapax_ratio\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": -0.5580819153985356,\\\\n        \\\\\\\"p\\\\\\\": 0.0\\\\n      }\\\\n    },\\\\n    \\\\\\\"depth_retention\\\\\\\": {\\\\n      \\\\\\\"d0_seeds\\\\\\\": 995,\\\\n      \\\\\\\"d4_seeds\\\\\\\": 965,\\\\n      \\\\\\\"retention\\\\\\\": 0.9698\\\\n    },\\\\n    \\\\\\\"binary_f1_gen1_vs_gen2plus\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.6710696917059812,\\\\n      \\\\\\\"std\\\\\\\": 0.018154861545909493\\\\n    }\\\\n  },\\\\n  \\\\\\\"continuation_signal\\\\\\\": {\\\\n    \\\\\\\"n\\\\\\\": 4609,\\\\n    \\\\\\\"cv5_3class_f1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.7876356225735041,\\\\n      \\\\\\\"std\\\\\\\": 0.006063855053043267,\\\\n      \\\\\\\"folds\\\\\\\": [\\\\n        0.7876570946393064,\\\\n        0.7905299145299146,\\\\n        0.7797293869117604,\\\\n        0.7830416645882047,\\\\n        0.7972200521983339\\\\n      ]\\\\n    },\\\\n    \\\\\\\"spearman_correlations\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": -0.6753679945788368,\\\\n        \\\\\\\"p\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"entropy_std\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": -0.15302196411682306,\\\\n        \\\\\\\"p\\\\\\\": 1.5064979201600526e-25\\\\n      },\\\\n      \\\\\\\"entropy_min\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": -0.4796955643778703,\\\\n        \\\\\\\"p\\\\\\\": 6.028401711425074e-264\\\\n      },\\\\n      \\\\\\\"entropy_max\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": -0.03506661693935034,\\\\n        \\\\\\\"p\\\\\\\": 0.0172776398107996\\\\n      },\\\\n      \\\\\\\"tail_decay\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": 0.063284718763189,\\\\n        \\\\\\\"p\\\\\\\": 1.7116852290707346e-05\\\\n      },\\\\n      \\\\\\\"ttr\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": -0.6333076420636782,\\\\n        \\\\\\\"p\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"hapax_ratio\\\\\\\": {\\\\n        \\\\\\\"rho\\\\\\\": -0.6553235076818699,\\\\n        \\\\\\\"p\\\\\\\": 0.0\\\\n      }\\\\n    },\\\\n    \\\\\\\"depth_retention\\\\\\\": {\\\\n      \\\\\\\"d0_seeds\\\\\\\": 995,\\\\n      \\\\\\\"d4_seeds\\\\\\\": 822,\\\\n      \\\\\\\"retention\\\\\\\": 0.8261\\\\n    },\\\\n    \\\\\\\"binary_f1_gen1_vs_gen2plus\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.7490591990561987,\\\\n      \\\\\\\"std\\\\\\\": 0.01083482606507949\\\\n    }\\\\n  },\\\\n  \\\\\\\"comparison\\\\\\\": {\\\\n    \\\\\\\"f1_3class_delta\\\\\\\": -0.0453,\\\\n    \\\\\\\"retention_delta\\\\\\\": 0.1437,\\\\n    \\\\\\\"spearman_comparison\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": {\\\\n        \\\\\\\"paraphrase_rho\\\\\\\": -0.5332,\\\\n        \\\\\\\"continuation_rho\\\\\\\": -0.6754,\\\\n        \\\\\\\"delta\\\\\\\": 0.1422,\\\\n        \\\\\\\"para_stronger\\\\\\\": false\\\\n      },\\\\n      \\\\\\\"entropy_std\\\\\\\": {\\\\n        \\\\\\\"paraphrase_rho\\\\\\\": -0.0563,\\\\n        \\\\\\\"continuation_rho\\\\\\\": -0.153,\\\\n        \\\\\\\"delta\\\\\\\": 0.0967,\\\\n        \\\\\\\"para_stronger\\\\\\\": false\\\\n      },\\\\n      \\\\\\\"entropy_min\\\\\\\": {\\\\n        \\\\\\\"paraphrase_rho\\\\\\\": -0.378,\\\\n        \\\\\\\"continuation_rho\\\\\\\": -0.4797,\\\\n        \\\\\\\"delta\\\\\\\": 0.1016,\\\\n        \\\\\\\"para_stronger\\\\\\\": false\\\\n      },\\\\n      \\\\\\\"entropy_max\\\\\\\": {\\\\n        \\\\\\\"paraphrase_rho\\\\\\\": 0.023,\\\\n        \\\\\\\"continuation_rho\\\\\\\": -0.0351,\\\\n        \\\\\\\"delta\\\\\\\": 0.0581,\\\\n        \\\\\\\"para_stronger\\\\\\\": false\\\\n      },\\\\n      \\\\\\\"tail_decay\\\\\\\": {\\\\n        \\\\\\\"paraphrase_rho\\\\\\\": 0.1246,\\\\n        \\\\\\\"continuation_rho\\\\\\\": 0.0633,\\\\n        \\\\\\\"delta\\\\\\\": 0.0613,\\\\n        \\\\\\\"para_stronger\\\\\\\": true\\\\n      },\\\\n      \\\\\\\"ttr\\\\\\\": {\\\\n        \\\\\\\"paraphrase_rho\\\\\\\": -0.5303,\\\\n        \\\\\\\"continuation_rho\\\\\\\": -0.6333,\\\\n        \\\\\\\"delta\\\\\\\": 0.103,\\\\n        \\\\\\\"para_stronger\\\\\\\": false\\\\n      },\\\\n      \\\\\\\"hapax_ratio\\\\\\\": {\\\\n        \\\\\\\"paraphrase_rho\\\\\\\": -0.5581,\\\\n        \\\\\\\"continuation_rho\\\\\\\": -0.6553,\\\\n        \\\\\\\"delta\\\\\\\": 0.0972,\\\\n        \\\\\\\"para_stronger\\\\\\\": false\\\\n      }\\\\n    },\\\\n    \\\\\\\"feature_slopes\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": {\\\\n        \\\\\\\"paraphrase\\\\\\\": -0.308039,\\\\n        \\\\\\\"continuation\\\\\\\": -0.397207,\\\\n        \\\\\\\"delta\\\\\\\": 0.089168\\\\n      },\\\\n      \\\\\\\"entropy_std\\\\\\\": {\\\\n        \\\\\\\"paraphrase\\\\\\\": -0.009157,\\\\n        \\\\\\\"continuation\\\\\\\": -0.028483,\\\\n        \\\\\\\"delta\\\\\\\": 0.019326\\\\n      },\\\\n      \\\\\\\"entropy_min\\\\\\\": {\\\\n        \\\\\\\"paraphrase\\\\\\\": 0.005892,\\\\n        \\\\\\\"continuation\\\\\\\": 0.006733,\\\\n        \\\\\\\"delta\\\\\\\": -0.000841\\\\n      },\\\\n      \\\\\\\"entropy_max\\\\\\\": {\\\\n        \\\\\\\"paraphrase\\\\\\\": 0.015136,\\\\n        \\\\\\\"continuation\\\\\\\": -0.027014,\\\\n        \\\\\\\"delta\\\\\\\": 0.04215\\\\n      },\\\\n      \\\\\\\"tail_decay\\\\\\\": {\\\\n        \\\\\\\"paraphrase\\\\\\\": 2.1e-05,\\\\n        \\\\\\\"continuation\\\\\\\": 1.4e-05,\\\\n        \\\\\\\"delta\\\\\\\": 7e-06\\\\n      },\\\\n      \\\\\\\"ttr\\\\\\\": {\\\\n        \\\\\\\"paraphrase\\\\\\\": -0.081008,\\\\n        \\\\\\\"continuation\\\\\\\": -0.096058,\\\\n        \\\\\\\"delta\\\\\\\": 0.01505\\\\n      },\\\\n      \\\\\\\"hapax_ratio\\\\\\\": {\\\\n        \\\\\\\"paraphrase\\\\\\\": -0.079062,\\\\n        \\\\\\\"continuation\\\\\\\": -0.092304,\\\\n        \\\\\\\"delta\\\\\\\": 0.013242\\\\n      }\\\\n    },\\\\n    \\\\\\\"cross_transfer\\\\\\\": {\\\\n      \\\\\\\"para_train_cont_test_f1\\\\\\\": 0.7695,\\\\n      \\\\\\\"cont_train_para_test_f1\\\\\\\": 0.7431\\\\n    }\\\\n  },\\\\n  \\\\\\\"conclusion\\\\\\\": \\\\\\\"similar: paraphrastic and continuation chains retain comparable depth signal\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"paraphrase_signal\\\": {\\n    \\\"n\\\": 4912,\\n    \\\"depth_distribution\\\": {\\n      \\\"0\\\": 995,\\n      \\\"1\\\": 994,\\n      \\\"2\\\": 985,\\n      \\\"3\\\": 973,\\n      \\\"4\\\": 965\\n    },\\n    \\\"cv5_3class_f1\\\": {\\n      \\\"mean\\\": 0.7423219083281771,\\n      \\\"std\\\": 0.006590124467863398,\\n      \\\"folds\\\": [\\n        0.7418000314961587,\\n        0.7467068335462965,\\n        0.7522976604355701,\\n        0.7364926796862347,\\n        0.7343123364766257\\n      ]\\n    },\\n    \\\"spearman_correlations\\\": {\\n      \\\"entropy_mean\\\": {\\n        \\\"rho\\\": -0.5331923045089481,\\n        \\\"p\\\": 0.0\\n      },\\n      \\\"entropy_std\\\": {\\n        \\\"rho\\\": -0.056324040369681416,\\n        \\\"p\\\": 7.826934910627552e-05\\n      },\\n      \\\"entropy_min\\\": {\\n        \\\"rho\\\": -0.3780489375865218,\\n        \\\"p\\\": 1.1078951989744697e-166\\n      },\\n      \\\"entropy_max\\\": {\\n        \\\"rho\\\": 0.022984415610487537,\\n        \\\"p\\\": 0.10724932158233998\\n      },\\n      \\\"tail_decay\\\": {\\n        \\\"rho\\\": 0.12461242736636605,\\n        \\\"p\\\": 1.859397338628754e-18\\n      },\\n      \\\"ttr\\\": {\\n        \\\"rho\\\": -0.5303452554977235,\\n        \\\"p\\\": 0.0\\n      },\\n      \\\"hapax_ratio\\\": {\\n        \\\"rho\\\": -0.5580819153985356,\\n        \\\"p\\\": 0.0\\n      }\\n    },\\n    \\\"depth_retention\\\": {\\n      \\\"d0_seeds\\\": 995,\\n      \\\"d4_seeds\\\": 965,\\n      \\\"retention\\\": 0.9698\\n    },\\n    \\\"binary_f1_gen1_vs_gen2plus\\\": {\\n      \\\"mean\\\": 0.6710696917059812,\\n      \\\"std\\\": 0.018154861545909493\\n    }\\n  },\\n  \\\"continuation_signal\\\": {\\n    \\\"n\\\": 4609,\\n    \\\"cv5_3class_f1\\\": {\\n      \\\"mean\\\": 0.7876356225735041,\\n      \\\"std\\\": 0.006063855053043267,\\n      \\\"folds\\\": [\\n        0.7876570946393064,\\n        0.7905299145299146,\\n        0.7797293869117604,\\n        0.7830416645882047,\\n        0.7972200521983339\\n      ]\\n    },\\n    \\\"spearman_correlations\\\": {\\n      \\\"entropy_mean\\\": {\\n        \\\"rho\\\": -0.6753679945788368,\\n        \\\"p\\\": 0.0\\n      },\\n      \\\"entropy_std\\\": {\\n        \\\"rho\\\": -0.15302196411682306,\\n        \\\"p\\\": 1.5064979201600526e-25\\n      },\\n      \\\"entropy_min\\\": {\\n        \\\"rho\\\": -0.4796955643778703,\\n        \\\"p\\\": 6.028401711425074e-264\\n      },\\n      \\\"entropy_max\\\": {\\n        \\\"rho\\\": -0.03506661693935034,\\n        \\\"p\\\": 0.0172776398107996\\n      },\\n      \\\"tail_decay\\\": {\\n        \\\"rho\\\": 0.063284718763189,\\n        \\\"p\\\": 1.7116852290707346e-05\\n      },\\n      \\\"ttr\\\": {\\n        \\\"rho\\\": -0.6333076420636782,\\n        \\\"p\\\": 0.0\\n      },\\n      \\\"hapax_ratio\\\": {\\n        \\\"rho\\\": -0.6553235076818699,\\n        \\\"p\\\": 0.0\\n      }\\n    },\\n    \\\"depth_retention\\\": {\\n      \\\"d0_seeds\\\": 995,\\n      \\\"d4_seeds\\\": 822,\\n      \\\"retention\\\": 0.8261\\n    },\\n    \\\"binary_f1_gen1_vs_gen2plus\\\": {\\n      \\\"mean\\\": 0.7490591990561987,\\n      \\\"std\\\": 0.01083482606507949\\n    }\\n  },\\n  \\\"comparison\\\": {\\n    \\\"f1_3class_delta\\\": -0.0453,\\n    \\\"retention_delta\\\": 0.1437,\\n    \\\"spearman_comparison\\\": {\\n      \\\"entropy_mean\\\": {\\n        \\\"paraphrase_rho\\\": -0.5332,\\n        \\\"continuation_rho\\\": -0.6754,\\n        \\\"delta\\\": 0.1422,\\n        \\\"para_stronger\\\": false\\n      },\\n      \\\"entropy_std\\\": {\\n        \\\"paraphrase_rho\\\": -0.0563,\\n        \\\"continuation_rho\\\": -0.153,\\n        \\\"delta\\\": 0.0967,\\n        \\\"para_stronger\\\": false\\n      },\\n      \\\"entropy_min\\\": {\\n        \\\"paraphrase_rho\\\": -0.378,\\n        \\\"continuation_rho\\\": -0.4797,\\n        \\\"delta\\\": 0.1016,\\n        \\\"para_stronger\\\": false\\n      },\\n      \\\"entropy_max\\\": {\\n        \\\"paraphrase_rho\\\": 0.023,\\n        \\\"continuation_rho\\\": -0.0351,\\n        \\\"delta\\\": 0.0581,\\n        \\\"para_stronger\\\": false\\n      },\\n      \\\"tail_decay\\\": {\\n        \\\"paraphrase_rho\\\": 0.1246,\\n        \\\"continuation_rho\\\": 0.0633,\\n        \\\"delta\\\": 0.0613,\\n        \\\"para_stronger\\\": true\\n      },\\n      \\\"ttr\\\": {\\n        \\\"paraphrase_rho\\\": -0.5303,\\n        \\\"continuation_rho\\\": -0.6333,\\n        \\\"delta\\\": 0.103,\\n        \\\"para_stronger\\\": false\\n      },\\n      \\\"hapax_ratio\\\": {\\n        \\\"paraphrase_rho\\\": -0.5581,\\n        \\\"continuation_rho\\\": -0.6553,\\n        \\\"delta\\\": 0.0972,\\n        \\\"para_stronger\\\": false\\n      }\\n    },\\n    \\\"feature_slopes\\\": {\\n      \\\"entropy_mean\\\": {\\n        \\\"paraphrase\\\": -0.308039,\\n        \\\"continuation\\\": -0.397207,\\n        \\\"delta\\\": 0.089168\\n      },\\n      \\\"entropy_std\\\": {\\n        \\\"paraphrase\\\": -0.009157,\\n        \\\"continuation\\\": -0.028483,\\n        \\\"delta\\\": 0.019326\\n      },\\n      \\\"entropy_min\\\": {\\n        \\\"paraphrase\\\": 0.005892,\\n        \\\"continuation\\\": 0.006733,\\n        \\\"delta\\\": -0.000841\\n      },\\n      \\\"entropy_max\\\": {\\n        \\\"paraphrase\\\": 0.015136,\\n        \\\"continuation\\\": -0.027014,\\n        \\\"delta\\\": 0.04215\\n      },\\n      \\\"tail_decay\\\": {\\n        \\\"paraphrase\\\": 2.1e-05,\\n        \\\"continuation\\\": 1.4e-05,\\n        \\\"delta\\\": 7e-06\\n      },\\n      \\\"ttr\\\": {\\n        \\\"paraphrase\\\": -0.081008,\\n        \\\"continuation\\\": -0.096058,\\n        \\\"delta\\\": 0.01505\\n      },\\n      \\\"hapax_ratio\\\": {\\n        \\\"paraphrase\\\": -0.079062,\\n        \\\"continuation\\\": -0.092304,\\n        \\\"delta\\\": 0.013242\\n      }\\n    },\\n    \\\"cross_transfer\\\": {\\n      \\\"para_train_cont_test_f1\\\": 0.7695,\\n      \\\"cont_train_para_test_f1\\\": 0.7431\\n    }\\n  },\\n  \\\"conclusion\\\": \\\"similar: paraphrastic and continuation chains retain comparable depth signal\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UztoeepQ1jZ89K664QGcQV`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/review_topic_drift_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "e7207070-711c-449a-b898-af692e52d1ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UWPFz1bJGytskYzz37z4iu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3484,
+      "cache_read_input_tokens": 27126,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3484
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-17T10:54:27.321Z_
+
+<details><summary>↩ Tool result · `toolu_01UztoeepQ1jZ89K664QGcQV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"semantic_similarity_by_transition\\\": {\\n    \\\"0_to_1\\\": {\\n      \\\"mean\\\": 0.622,\\n      \\\"std\\\": 0.1647,\\n      \\\"n\\\": 5921\\n    },\\n    \\\"1_to_2\\\": {\\n      \\\"mean\\\": 0.6829,\\n      \\\"std\\\": 0.1837,\\n      \\\"n\\\": 5607\\n    },\\n    \\\"2_to_3\\\": {\\n      \\\"mean\\\": 0.801,\\n      \\\"std\\\": 0.2012,\\n      \\\"n\\\": 5176\\n    },\\n    \\\"3_to_4\\\": {\\n      \\\"mean\\\": 0.8587,\\n      \\\"std\\\": 0.1895,\\n      \\\"n\\\": 4864\\n    }\\n  },\\n  \\\"prompt_type_comparison\\\": {\\n    \\\"continuation\\\": {\\n      \\\"avg_sim\\\": 0.7168,\\n      \\\"sim_by_transition\\\": {\\n        \\\"0_to_1\\\": {\\n          \\\"mean\\\": 0.6274,\\n          \\\"std\\\": 0.1604\\n        },\\n        \\\"1_to_2\\\": {\\n          \\\"mean\\\": 0.6712,\\n          \\\"std\\\": 0.1703\\n        },\\n        \\\"2_to_3\\\": {\\n          \\\"mean\\\": 0.7595,\\n          \\\"std\\\": 0.1994\\n        },\\n        \\\"3_to_4\\\": {\\n          \\\"mean\\\": 0.8304,\\n          \\\"std\\\": 0.1911\\n        }\\n      }\\n    },\\n    \\\"elaboration\\\": {\\n      \\\"avg_sim\\\": 0.8093,\\n      \\\"sim_by_transition\\\": {\\n        \\\"0_to_1\\\": {\\n          \\\"mean\\\": 0.7282,\\n          \\\"std\\\": 0.1811\\n        },\\n        \\\"1_to_2\\\": {\\n          \\\"mean\\\": 0.797,\\n          \\\"std\\\": 0.1948\\n        },\\n        \\\"2_to_3\\\": {\\n          \\\"mean\\\": 0.8471,\\n          \\\"std\\\": 0.1921\\n        },\\n        \\\"3_to_4\\\": {\\n          \\\"mean\\\": 0.8658,\\n          \\\"std\\\": 0.194\\n        }\\n      }\\n    },\\n    \\\"inspired_rewriting\\\": {\\n      \\\"avg_sim\\\": 0.808,\\n      \\\"sim_by_transition\\\": {\\n        \\\"0_to_1\\\": {\\n          \\\"mean\\\": 0.7432,\\n          \\\"std\\\": 0.2358\\n        },\\n        \\\"1_to_2\\\": {\\n          \\\"mean\\\": 0.7732,\\n          \\\"std\\\": 0.2506\\n        },\\n        \\\"2_to_3\\\": {\\n          \\\"mean\\\": 0.8427,\\n          \\\"std\\\": 0.2225\\n        },\\n        \\\"3_to_4\\\": {\\n          \\\"mean\\\": 0.8778,\\n          \\\"std\\\": 0.2047\\n        }\\n      }\\n    }\\n  },\\n  \\\"shape_feature_correlations\\\": {\\n    \\\"entropy_std_vs_semantic_drift\\\": {\\n      \\\"rho\\\": -0.1639,\\n      \\\"p\\\": 0.0\\n    },\\n    \\\"tail_decay_vs_semantic_drift\\\": {\\n      \\\"rho\\\": 0.0675,\\n      \\\"p\\\": 0.0\\n    }\\n  },\\n  \\\"drifting_feature_correlations\\\": {\\n    \\\"hapax_ratio_vs_semantic_drift\\\": {\\n      \\\"rho\\\": -0.1242,\\n      \\\"p\\\": 0.0\\n    },\\n    \\\"ttr_vs_semantic_drift\\\": {\\n      \\\"rho\\\": -0.1784,\\n      \\\"p\\\": 0.0\\n    },\\n    \\\"entropy_mean_vs_semantic_drift\\\": {\\n      \\\"rho\\\": -0.2859,\\n      \\\"p\\\": 0.0\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "aafbae08-957b-4952-be43-f10d6c1303fe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"semantic_similarity_by_transition\\\\\\\": {\\\\n    \\\\\\\"0_to_1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.622,\\\\n      \\\\\\\"std\\\\\\\": 0.1647,\\\\n      \\\\\\\"n\\\\\\\": 5921\\\\n    },\\\\n    \\\\\\\"1_to_2\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.6829,\\\\n      \\\\\\\"std\\\\\\\": 0.1837,\\\\n      \\\\\\\"n\\\\\\\": 5607\\\\n    },\\\\n    \\\\\\\"2_to_3\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.801,\\\\n      \\\\\\\"std\\\\\\\": 0.2012,\\\\n      \\\\\\\"n\\\\\\\": 5176\\\\n    },\\\\n    \\\\\\\"3_to_4\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.8587,\\\\n      \\\\\\\"std\\\\\\\": 0.1895,\\\\n      \\\\\\\"n\\\\\\\": 4864\\\\n    }\\\\n  },\\\\n  \\\\\\\"prompt_type_comparison\\\\\\\": {\\\\n    \\\\\\\"continuation\\\\\\\": {\\\\n      \\\\\\\"avg_sim\\\\\\\": 0.7168,\\\\n      \\\\\\\"sim_by_transition\\\\\\\": {\\\\n        \\\\\\\"0_to_1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.6274,\\\\n          \\\\\\\"std\\\\\\\": 0.1604\\\\n        },\\\\n        \\\\\\\"1_to_2\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.6712,\\\\n          \\\\\\\"std\\\\\\\": 0.1703\\\\n        },\\\\n        \\\\\\\"2_to_3\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.7595,\\\\n          \\\\\\\"std\\\\\\\": 0.1994\\\\n        },\\\\n        \\\\\\\"3_to_4\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8304,\\\\n          \\\\\\\"std\\\\\\\": 0.1911\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"elaboration\\\\\\\": {\\\\n      \\\\\\\"avg_sim\\\\\\\": 0.8093,\\\\n      \\\\\\\"sim_by_transition\\\\\\\": {\\\\n        \\\\\\\"0_to_1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.7282,\\\\n          \\\\\\\"std\\\\\\\": 0.1811\\\\n        },\\\\n        \\\\\\\"1_to_2\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.797,\\\\n          \\\\\\\"std\\\\\\\": 0.1948\\\\n        },\\\\n        \\\\\\\"2_to_3\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8471,\\\\n          \\\\\\\"std\\\\\\\": 0.1921\\\\n        },\\\\n        \\\\\\\"3_to_4\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8658,\\\\n          \\\\\\\"std\\\\\\\": 0.194\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"inspired_rewriting\\\\\\\": {\\\\n      \\\\\\\"avg_sim\\\\\\\": 0.808,\\\\n      \\\\\\\"sim_by_transition\\\\\\\": {\\\\n        \\\\\\\"0_to_1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.7432,\\\\n          \\\\\\\"std\\\\\\\": 0.2358\\\\n        },\\\\n        \\\\\\\"1_to_2\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.7732,\\\\n          \\\\\\\"std\\\\\\\": 0.2506\\\\n        },\\\\n        \\\\\\\"2_to_3\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8427,\\\\n          \\\\\\\"std\\\\\\\": 0.2225\\\\n        },\\\\n        \\\\\\\"3_to_4\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8778,\\\\n          \\\\\\\"std\\\\\\\": 0.2047\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"shape_feature_correlations\\\\\\\": {\\\\n    \\\\\\\"entropy_std_vs_semantic_drift\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": -0.1639,\\\\n      \\\\\\\"p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"tail_decay_vs_semantic_drift\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.0675,\\\\n      \\\\\\\"p\\\\\\\": 0.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"drifting_feature_correlations\\\\\\\": {\\\\n    \\\\\\\"hapax_ratio_vs_semantic_drift\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": -0.1242,\\\\n      \\\\\\\"p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"ttr_vs_semantic_drift\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": -0.1784,\\\\n      \\\\\\\"p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"entropy_mean_vs_semantic_drift\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": -0.2859,\\\\n      \\\\\\\"p\\\\\\\": 0.0\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"semantic_similarity_by_transition\\\": {\\n    \\\"0_to_1\\\": {\\n      \\\"mean\\\": 0.622,\\n      \\\"std\\\": 0.1647,\\n      \\\"n\\\": 5921\\n    },\\n    \\\"1_to_2\\\": {\\n      \\\"mean\\\": 0.6829,\\n      \\\"std\\\": 0.1837,\\n      \\\"n\\\": 5607\\n    },\\n    \\\"2_to_3\\\": {\\n      \\\"mean\\\": 0.801,\\n      \\\"std\\\": 0.2012,\\n      \\\"n\\\": 5176\\n    },\\n    \\\"3_to_4\\\": {\\n      \\\"mean\\\": 0.8587,\\n      \\\"std\\\": 0.1895,\\n      \\\"n\\\": 4864\\n    }\\n  },\\n  \\\"prompt_type_comparison\\\": {\\n    \\\"continuation\\\": {\\n      \\\"avg_sim\\\": 0.7168,\\n      \\\"sim_by_transition\\\": {\\n        \\\"0_to_1\\\": {\\n          \\\"mean\\\": 0.6274,\\n          \\\"std\\\": 0.1604\\n        },\\n        \\\"1_to_2\\\": {\\n          \\\"mean\\\": 0.6712,\\n          \\\"std\\\": 0.1703\\n        },\\n        \\\"2_to_3\\\": {\\n          \\\"mean\\\": 0.7595,\\n          \\\"std\\\": 0.1994\\n        },\\n        \\\"3_to_4\\\": {\\n          \\\"mean\\\": 0.8304,\\n          \\\"std\\\": 0.1911\\n        }\\n      }\\n    },\\n    \\\"elaboration\\\": {\\n      \\\"avg_sim\\\": 0.8093,\\n      \\\"sim_by_transition\\\": {\\n        \\\"0_to_1\\\": {\\n          \\\"mean\\\": 0.7282,\\n          \\\"std\\\": 0.1811\\n        },\\n        \\\"1_to_2\\\": {\\n          \\\"mean\\\": 0.797,\\n          \\\"std\\\": 0.1948\\n        },\\n        \\\"2_to_3\\\": {\\n          \\\"mean\\\": 0.8471,\\n          \\\"std\\\": 0.1921\\n        },\\n        \\\"3_to_4\\\": {\\n          \\\"mean\\\": 0.8658,\\n          \\\"std\\\": 0.194\\n        }\\n      }\\n    },\\n    \\\"inspired_rewriting\\\": {\\n      \\\"avg_sim\\\": 0.808,\\n      \\\"sim_by_transition\\\": {\\n        \\\"0_to_1\\\": {\\n          \\\"mean\\\": 0.7432,\\n          \\\"std\\\": 0.2358\\n        },\\n        \\\"1_to_2\\\": {\\n          \\\"mean\\\": 0.7732,\\n          \\\"std\\\": 0.2506\\n        },\\n        \\\"2_to_3\\\": {\\n          \\\"mean\\\": 0.8427,\\n          \\\"std\\\": 0.2225\\n        },\\n        \\\"3_to_4\\\": {\\n          \\\"mean\\\": 0.8778,\\n          \\\"std\\\": 0.2047\\n        }\\n      }\\n    }\\n  },\\n  \\\"shape_feature_correlations\\\": {\\n    \\\"entropy_std_vs_semantic_drift\\\": {\\n      \\\"rho\\\": -0.1639,\\n      \\\"p\\\": 0.0\\n    },\\n    \\\"tail_decay_vs_semantic_drift\\\": {\\n      \\\"rho\\\": 0.0675,\\n      \\\"p\\\": 0.0\\n    }\\n  },\\n  \\\"drifting_feature_correlations\\\": {\\n    \\\"hapax_ratio_vs_semantic_drift\\\": {\\n      \\\"rho\\\": -0.1242,\\n      \\\"p\\\": 0.0\\n    },\\n    \\\"ttr_vs_semantic_drift\\\": {\\n      \\\"rho\\\": -0.1784,\\n      \\\"p\\\": 0.0\\n    },\\n    \\\"entropy_mean_vs_semantic_drift\\\": {\\n      \\\"rho\\\": -0.2859,\\n      \\\"p\\\": 0.0\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JgDmfCoTSR79GzkKZ9P84Q`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/8gen_table3_v6_unified.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "84543135-48f9-4534-881a-8eaa869ade14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UWPFz1bJGytskYzz37z4iu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3484,
+      "cache_read_input_tokens": 27126,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3484
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-17T10:54:27.823Z_
+
+<details><summary>↩ Tool result · `toolu_01JgDmfCoTSR79GzkKZ9P84Q`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"methods\\\": {\\n    \\\"avg_logprob\\\": {\\n      \\\"binary_f1\\\": 0.6735,\\n      \\\"binary_ci_lo\\\": 0.6673,\\n      \\\"binary_ci_hi\\\": 0.6792,\\n      \\\"multiclass_f1\\\": 0.7071,\\n      \\\"multiclass_ci_lo\\\": 0.7023,\\n      \\\"multiclass_ci_hi\\\": 0.7119,\\n      \\\"n_test_binary\\\": 26168,\\n      \\\"n_test_multiclass\\\": 34131\\n    },\\n    \\\"fastdetectgpt\\\": {\\n      \\\"binary_f1\\\": 0.576,\\n      \\\"binary_ci_lo\\\": 0.57,\\n      \\\"binary_ci_hi\\\": 0.5819,\\n      \\\"multiclass_f1\\\": 0.6637,\\n      \\\"multiclass_ci_lo\\\": 0.6592,\\n      \\\"multiclass_ci_hi\\\": 0.6683,\\n      \\\"n_test_binary\\\": 26168,\\n      \\\"n_test_multiclass\\\": 34131\\n    },\\n    \\\"binoculars\\\": {\\n      \\\"binary_f1\\\": 0.5336,\\n      \\\"binary_ci_lo\\\": 0.5278,\\n      \\\"binary_ci_hi\\\": 0.5393,\\n      \\\"multiclass_f1\\\": 0.4105,\\n      \\\"multiclass_ci_lo\\\": 0.4052,\\n      \\\"multiclass_ci_hi\\\": 0.4158,\\n      \\\"n_test_binary\\\": 26168,\\n      \\\"n_test_multiclass\\\": 34131\\n    },\\n    \\\"ld_score\\\": {\\n      \\\"binary_f1\\\": 0.6756,\\n      \\\"binary_ci_lo\\\": 0.6699,\\n      \\\"binary_ci_hi\\\": 0.6814,\\n      \\\"multiclass_f1\\\": 0.6306,\\n      \\\"multiclass_ci_lo\\\": 0.6255,\\n      \\\"multiclass_ci_hi\\\": 0.6357,\\n      \\\"n_test_binary\\\": 26168,\\n      \\\"n_test_multiclass\\\": 34131\\n    },\\n    \\\"entropy_mean\\\": {\\n      \\\"binary_f1\\\": 0.7006,\\n      \\\"binary_ci_lo\\\": 0.6946,\\n      \\\"binary_ci_hi\\\": 0.7059,\\n      \\\"multiclass_f1\\\": 0.5556,\\n      \\\"multiclass_ci_lo\\\": 0.5506,\\n      \\\"multiclass_ci_hi\\\": 0.5607,\\n      \\\"n_test_binary\\\": 26168,\\n      \\\"n_test_multiclass\\\": 34131\\n    },\\n    \\\"4det_ensemble\\\": {\\n      \\\"binary_f1\\\": 0.6975,\\n      \\\"binary_ci_lo\\\": 0.6914,\\n      \\\"binary_ci_hi\\\": 0.703,\\n      \\\"multiclass_f1\\\": 0.7843,\\n      \\\"multiclass_ci_lo\\\": 0.7801,\\n      \\\"multiclass_ci_hi\\\": 0.7884,\\n      \\\"n_test_binary\\\": 26168,\\n      \\\"n_test_multiclass\\\": 34131\\n    },\\n    \\\"4det_surface\\\": {\\n      \\\"binary_f1\\\": 0.707,\\n      \\\"binary_ci_lo\\\": 0.701,\\n      \\\"binary_ci_hi\\\": 0.7121,\\n      \\\"multiclass_f1\\\": 0.7923,\\n      \\\"multiclass_ci_lo\\\": 0.7884,\\n      \\\"multiclass_ci_hi\\\": 0.7961,\\n      \\\"n_test_binary\\\": 26168,\\n      \\\"n_test_multiclass\\\": 34131\\n    },\\n    \\\"7feature_ours\\\": {\\n      \\\"binary_f1\\\": 0.7014,\\n      \\\"binary_ci_lo\\\": 0.6957,\\n      \\\"binary_ci_hi\\\": 0.7066,\\n      \\\"multiclass_f1\\\": 0.7762,\\n      \\\"multiclass_ci_lo\\\": 0.7722,\\n      \\\"multiclass_ci_hi\\\": 0.7802,\\n      \\\"n_test_binary\\\": 26168,\\n      \\\"n_test_multiclass\\\": 34131\\n    }\\n  },\\n  \\\"meta\\\": {\\n    \\\"protocol\\\": \\\"pooled LOGO 8-fold, per-fold class-balanced training\\\",\\n    \\\"binary_task\\\": \\\"gen_depth==1 vs gen_depth>=2 (exclude depth=0)\\\",\\n    \\\"multiclass_task\\\": \\\"gen_depth==0 vs gen_depth==1 vs gen_depth>=2\\\",\\n    \\\"seed\\\": 42,\\n    \\\"bootstrap_n\\\": 1000,\\n    \\\"bootstrap_method\\\": \\\"percentile (2.5%, 97.5%)\\\",\\n    \\\"n_total_rows\\\": 34131,\\n    \\\"n_binary_rows\\\": 26168,\\n    \\\"generators\\\": [\\n      \\\"llama-3.2-3b\\\",\\n      \\\"mistral-7b-v0.3\\\",\\n      \\\"olmo-2-1b\\\",\\n      \\\"pythia-1b\\\",\\n      \\\"pythia-2.8b\\\",\\n      \\\"qwen3-0.6b\\\",\\n      \\\"qwen3-1.7b\\\",\\n      \\\"qwen3-8b\\\"\\n    ],\\n    \\\"class_balancing\\\": \\\"per-fold downsample to min class in train set\\\",\\n    \\\"hyperparams\\\": {\\n      \\\"7feature_ours\\\": {\\n        \\\"n_estimators\\\": 200,\\n        \\\"max_depth\\\": 6\\n      },\\n      \\\"others\\\": {\\n        \\\"n_estimators\\\": 100,\\n        \\\"max_depth\\\": 3\\n      }\\n    },\\n    \\\"ld_score_impl\\\": \\\"char trigram JSD (sparse CSR, full vocab, no truncation). Per-fold ref = training depth-1 (binary) / depth-0 (3class).\\\",\\n    \\\"trigram_vocab_size\\\": 50778,\\n    \\\"xgb_eval_metric\\\": \\\"logloss\\\",\\n    \\\"timestamp\\\": \\\"2026-05-17 05:01:06\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "d54e32fb-92e8-41e7-90de-fe342edf34ae",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"methods\\\\\\\": {\\\\n    \\\\\\\"avg_logprob\\\\\\\": {\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.6735,\\\\n      \\\\\\\"binary_ci_lo\\\\\\\": 0.6673,\\\\n      \\\\\\\"binary_ci_hi\\\\\\\": 0.6792,\\\\n      \\\\\\\"multiclass_f1\\\\\\\": 0.7071,\\\\n      \\\\\\\"multiclass_ci_lo\\\\\\\": 0.7023,\\\\n      \\\\\\\"multiclass_ci_hi\\\\\\\": 0.7119,\\\\n      \\\\\\\"n_test_binary\\\\\\\": 26168,\\\\n      \\\\\\\"n_test_multiclass\\\\\\\": 34131\\\\n    },\\\\n    \\\\\\\"fastdetectgpt\\\\\\\": {\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.576,\\\\n      \\\\\\\"binary_ci_lo\\\\\\\": 0.57,\\\\n      \\\\\\\"binary_ci_hi\\\\\\\": 0.5819,\\\\n      \\\\\\\"multiclass_f1\\\\\\\": 0.6637,\\\\n      \\\\\\\"multiclass_ci_lo\\\\\\\": 0.6592,\\\\n      \\\\\\\"multiclass_ci_hi\\\\\\\": 0.6683,\\\\n      \\\\\\\"n_test_binary\\\\\\\": 26168,\\\\n      \\\\\\\"n_test_multiclass\\\\\\\": 34131\\\\n    },\\\\n    \\\\\\\"binoculars\\\\\\\": {\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.5336,\\\\n      \\\\\\\"binary_ci_lo\\\\\\\": 0.5278,\\\\n      \\\\\\\"binary_ci_hi\\\\\\\": 0.5393,\\\\n      \\\\\\\"multiclass_f1\\\\\\\": 0.4105,\\\\n      \\\\\\\"multiclass_ci_lo\\\\\\\": 0.4052,\\\\n      \\\\\\\"multiclass_ci_hi\\\\\\\": 0.4158,\\\\n      \\\\\\\"n_test_binary\\\\\\\": 26168,\\\\n      \\\\\\\"n_test_multiclass\\\\\\\": 34131\\\\n    },\\\\n    \\\\\\\"ld_score\\\\\\\": {\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.6756,\\\\n      \\\\\\\"binary_ci_lo\\\\\\\": 0.6699,\\\\n      \\\\\\\"binary_ci_hi\\\\\\\": 0.6814,\\\\n      \\\\\\\"multiclass_f1\\\\\\\": 0.6306,\\\\n      \\\\\\\"multiclass_ci_lo\\\\\\\": 0.6255,\\\\n      \\\\\\\"multiclass_ci_hi\\\\\\\": 0.6357,\\\\n      \\\\\\\"n_test_binary\\\\\\\": 26168,\\\\n      \\\\\\\"n_test_multiclass\\\\\\\": 34131\\\\n    },\\\\n    \\\\\\\"entropy_mean\\\\\\\": {\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.7006,\\\\n      \\\\\\\"binary_ci_lo\\\\\\\": 0.6946,\\\\n      \\\\\\\"binary_ci_hi\\\\\\\": 0.7059,\\\\n      \\\\\\\"multiclass_f1\\\\\\\": 0.5556,\\\\n      \\\\\\\"multiclass_ci_lo\\\\\\\": 0.5506,\\\\n      \\\\\\\"multiclass_ci_hi\\\\\\\": 0.5607,\\\\n      \\\\\\\"n_test_binary\\\\\\\": 26168,\\\\n      \\\\\\\"n_test_multiclass\\\\\\\": 34131\\\\n    },\\\\n    \\\\\\\"4det_ensemble\\\\\\\": {\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.6975,\\\\n      \\\\\\\"binary_ci_lo\\\\\\\": 0.6914,\\\\n      \\\\\\\"binary_ci_hi\\\\\\\": 0.703,\\\\n      \\\\\\\"multiclass_f1\\\\\\\": 0.7843,\\\\n      \\\\\\\"multiclass_ci_lo\\\\\\\": 0.7801,\\\\n      \\\\\\\"multiclass_ci_hi\\\\\\\": 0.7884,\\\\n      \\\\\\\"n_test_binary\\\\\\\": 26168,\\\\n      \\\\\\\"n_test_multiclass\\\\\\\": 34131\\\\n    },\\\\n    \\\\\\\"4det_surface\\\\\\\": {\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.707,\\\\n      \\\\\\\"binary_ci_lo\\\\\\\": 0.701,\\\\n      \\\\\\\"binary_ci_hi\\\\\\\": 0.7121,\\\\n      \\\\\\\"multiclass_f1\\\\\\\": 0.7923,\\\\n      \\\\\\\"multiclass_ci_lo\\\\\\\": 0.7884,\\\\n      \\\\\\\"multiclass_ci_hi\\\\\\\": 0.7961,\\\\n      \\\\\\\"n_test_binary\\\\\\\": 26168,\\\\n      \\\\\\\"n_test_multiclass\\\\\\\": 34131\\\\n    },\\\\n    \\\\\\\"7feature_ours\\\\\\\": {\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.7014,\\\\n      \\\\\\\"binary_ci_lo\\\\\\\": 0.6957,\\\\n      \\\\\\\"binary_ci_hi\\\\\\\": 0.7066,\\\\n      \\\\\\\"multiclass_f1\\\\\\\": 0.7762,\\\\n      \\\\\\\"multiclass_ci_lo\\\\\\\": 0.7722,\\\\n      \\\\\\\"multiclass_ci_hi\\\\\\\": 0.7802,\\\\n      \\\\\\\"n_test_binary\\\\\\\": 26168,\\\\n      \\\\\\\"n_test_multiclass\\\\\\\": 34131\\\\n    }\\\\n  },\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"protocol\\\\\\\": \\\\\\\"pooled LOGO 8-fold, per-fold class-balanced training\\\\\\\",\\\\n    \\\\\\\"binary_task\\\\\\\": \\\\\\\"gen_depth==1 vs gen_depth>=2 (exclude depth=0)\\\\\\\",\\\\n    \\\\\\\"multiclass_task\\\\\\\": \\\\\\\"gen_depth==0 vs gen_depth==1 vs gen_depth>=2\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"bootstrap_n\\\\\\\": 1000,\\\\n    \\\\\\\"bootstrap_method\\\\\\\": \\\\\\\"percentile (2.5%, 97.5%)\\\\\\\",\\\\n    \\\\\\\"n_total_rows\\\\\\\": 34131,\\\\n    \\\\\\\"n_binary_rows\\\\\\\": 26168,\\\\n    \\\\\\\"generators\\\\\\\": [\\\\n      \\\\\\\"llama-3.2-3b\\\\\\\",\\\\n      \\\\\\\"mistral-7b-v0.3\\\\\\\",\\\\n      \\\\\\\"olmo-2-1b\\\\\\\",\\\\n      \\\\\\\"pythia-1b\\\\\\\",\\\\n      \\\\\\\"pythia-2.8b\\\\\\\",\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\",\\\\n      \\\\\\\"qwen3-8b\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"class_balancing\\\\\\\": \\\\\\\"per-fold downsample to min class in train set\\\\\\\",\\\\n    \\\\\\\"hyperparams\\\\\\\": {\\\\n      \\\\\\\"7feature_ours\\\\\\\": {\\\\n        \\\\\\\"n_estimators\\\\\\\": 200,\\\\n        \\\\\\\"max_depth\\\\\\\": 6\\\\n      },\\\\n      \\\\\\\"others\\\\\\\": {\\\\n        \\\\\\\"n_estimators\\\\\\\": 100,\\\\n        \\\\\\\"max_depth\\\\\\\": 3\\\\n      }\\\\n    },\\\\n    \\\\\\\"ld_score_impl\\\\\\\": \\\\\\\"char trigram JSD (sparse CSR, full vocab, no truncation). Per-fold ref = training depth-1 (binary) / depth-0 (3class).\\\\\\\",\\\\n    \\\\\\\"trigram_vocab_size\\\\\\\": 50778,\\\\n    \\\\\\\"xgb_eval_metric\\\\\\\": \\\\\\\"logloss\\\\\\\",\\\\n    \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-17 05:01:06\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"methods\\\": {\\n    \\\"avg_logprob\\\": {\\n      \\\"binary_f1\\\": 0.6735,\\n      \\\"binary_ci_lo\\\": 0.6673,\\n      \\\"binary_ci_hi\\\": 0.6792,\\n      \\\"multiclass_f1\\\": 0.7071,\\n      \\\"multiclass_ci_lo\\\": 0.7023,\\n      \\\"multiclass_ci_hi\\\": 0.7119,\\n      \\\"n_test_binary\\\": 26168,\\n      \\\"n_test_multiclass\\\": 34131\\n    },\\n    \\\"fastdetectgpt\\\": {\\n      \\\"binary_f1\\\": 0.576,\\n      \\\"binary_ci_lo\\\": 0.57,\\n      \\\"binary_ci_hi\\\": 0.5819,\\n      \\\"multiclass_f1\\\": 0.6637,\\n      \\\"multiclass_ci_lo\\\": 0.6592,\\n      \\\"multiclass_ci_hi\\\": 0.6683,\\n      \\\"n_test_binary\\\": 26168,\\n      \\\"n_test_multiclass\\\": 34131\\n    },\\n    \\\"binoculars\\\": {\\n      \\\"binary_f1\\\": 0.5336,\\n      \\\"binary_ci_lo\\\": 0.5278,\\n      \\\"binary_ci_hi\\\": 0.5393,\\n      \\\"multiclass_f1\\\": 0.4105,\\n      \\\"multiclass_ci_lo\\\": 0.4052,\\n      \\\"multiclass_ci_hi\\\": 0.4158,\\n      \\\"n_test_binary\\\": 26168,\\n      \\\"n_test_multiclass\\\": 34131\\n    },\\n    \\\"ld_score\\\": {\\n      \\\"binary_f1\\\": 0.6756,\\n      \\\"binary_ci_lo\\\": 0.6699,\\n      \\\"binary_ci_hi\\\": 0.6814,\\n      \\\"multiclass_f1\\\": 0.6306,\\n      \\\"multiclass_ci_lo\\\": 0.6255,\\n      \\\"multiclass_ci_hi\\\": 0.6357,\\n      \\\"n_test_binary\\\": 26168,\\n      \\\"n_test_multiclass\\\": 34131\\n    },\\n    \\\"entropy_mean\\\": {\\n      \\\"binary_f1\\\": 0.7006,\\n      \\\"binary_ci_lo\\\": 0.6946,\\n      \\\"binary_ci_hi\\\": 0.7059,\\n      \\\"multiclass_f1\\\": 0.5556,\\n      \\\"multiclass_ci_lo\\\": 0.5506,\\n      \\\"multiclass_ci_hi\\\": 0.5607,\\n      \\\"n_test_binary\\\": 26168,\\n      \\\"n_test_multiclass\\\": 34131\\n    },\\n    \\\"4det_ensemble\\\": {\\n      \\\"binary_f1\\\": 0.6975,\\n      \\\"binary_ci_lo\\\": 0.6914,\\n      \\\"binary_ci_hi\\\": 0.703,\\n      \\\"multiclass_f1\\\": 0.7843,\\n      \\\"multiclass_ci_lo\\\": 0.7801,\\n      \\\"multiclass_ci_hi\\\": 0.7884,\\n      \\\"n_test_binary\\\": 26168,\\n      \\\"n_test_multiclass\\\": 34131\\n    },\\n    \\\"4det_surface\\\": {\\n      \\\"binary_f1\\\": 0.707,\\n      \\\"binary_ci_lo\\\": 0.701,\\n      \\\"binary_ci_hi\\\": 0.7121,\\n      \\\"multiclass_f1\\\": 0.7923,\\n      \\\"multiclass_ci_lo\\\": 0.7884,\\n      \\\"multiclass_ci_hi\\\": 0.7961,\\n      \\\"n_test_binary\\\": 26168,\\n      \\\"n_test_multiclass\\\": 34131\\n    },\\n    \\\"7feature_ours\\\": {\\n      \\\"binary_f1\\\": 0.7014,\\n      \\\"binary_ci_lo\\\": 0.6957,\\n      \\\"binary_ci_hi\\\": 0.7066,\\n      \\\"multiclass_f1\\\": 0.7762,\\n      \\\"multiclass_ci_lo\\\": 0.7722,\\n      \\\"multiclass_ci_hi\\\": 0.7802,\\n      \\\"n_test_binary\\\": 26168,\\n      \\\"n_test_multiclass\\\": 34131\\n    }\\n  },\\n  \\\"meta\\\": {\\n    \\\"protocol\\\": \\\"pooled LOGO 8-fold, per-fold class-balanced training\\\",\\n    \\\"binary_task\\\": \\\"gen_depth==1 vs gen_depth>=2 (exclude depth=0)\\\",\\n    \\\"multiclass_task\\\": \\\"gen_depth==0 vs gen_depth==1 vs gen_depth>=2\\\",\\n    \\\"seed\\\": 42,\\n    \\\"bootstrap_n\\\": 1000,\\n    \\\"bootstrap_method\\\": \\\"percentile (2.5%, 97.5%)\\\",\\n    \\\"n_total_rows\\\": 34131,\\n    \\\"n_binary_rows\\\": 26168,\\n    \\\"generators\\\": [\\n      \\\"llama-3.2-3b\\\",\\n      \\\"mistral-7b-v0.3\\\",\\n      \\\"olmo-2-1b\\\",\\n      \\\"pythia-1b\\\",\\n      \\\"pythia-2.8b\\\",\\n      \\\"qwen3-0.6b\\\",\\n      \\\"qwen3-1.7b\\\",\\n      \\\"qwen3-8b\\\"\\n    ],\\n    \\\"class_balancing\\\": \\\"per-fold downsample to min class in train set\\\",\\n    \\\"hyperparams\\\": {\\n      \\\"7feature_ours\\\": {\\n        \\\"n_estimators\\\": 200,\\n        \\\"max_depth\\\": 6\\n      },\\n      \\\"others\\\": {\\n        \\\"n_estimators\\\": 100,\\n        \\\"max_depth\\\": 3\\n      }\\n    },\\n    \\\"ld_score_impl\\\": \\\"char trigram JSD (sparse CSR, full vocab, no truncation). Per-fold ref = training depth-1 (binary) / depth-0 (3class).\\\",\\n    \\\"trigram_vocab_size\\\": 50778,\\n    \\\"xgb_eval_metric\\\": \\\"logloss\\\",\\n    \\\"timestamp\\\": \\\"2026-05-17 05:01:06\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I've gotten several key files. Let me now read the remaining files I need. I still need:
+
+1. Cross-model chains - found in `8gen_cross_model_chains.json` - binary_f1 = 0.7435 (pooled CV) or 0.7758 (LOGO). Paper claims 0.764 - neither matches exactly.
+
+2. 5-class finer-grained - found in `8gen_finer_depth.json` - 5class logo_avg_f1 = 0.4878. Paper claims "≈0.50" - close but 0.49 rounds to 0.49 not 0.50.
+   
+Now I need to track down QLoRA results, and I've found the paraphrastic chains comparison showing 0.6711 which matches the paper's 0.671. I'm also looking for the instruct model comparison results and checking the sampling sensitivity ablation data to see what metrics are available there. not temperature. Need to also check `sampling_ablation.json`.
+
+7. Topic drift control - found in `review_topic_drift_results.json` - but I don't see R²=0.082. The file shows semantic similarity by transition and correlation data.
+
+8. LOFO analysis - found in `8gen_lofo_family.json` - average 3class_f1 = 0.7518, binary_f1 = 0.6865. Paper claims F1=0.686 - close to 0.6865.
+
+9. Prompt type cross-transfer - need to check data. In the paraphrastic comparison file, cross_transfer shows para_train_cont_test_f1 = 0.7695 and cont_train_para_test_f1 = 0.7431.
+
+Now I'm going back through the key claims to verify them against what I've found. Cross-model chains shows 0.7435 or 0.7758 depending on the evaluation method, not the claimed 0.764. The 5-class LOGO result of 0.4878 rounds to about 0.49, not quite 0.50. Paraphrastic chains matches well at 0.6711 versus 0.671. Still need to locate the QLoRA fine-tuning result and the instruct model performance. I'm tracking down the specific files and metrics to verify each claim in the paper. I need to locate the Qwen3 chat template results, check the actual sampling ablation data for temperature effects rather than data size, find where the R² value for topic drift is reported, and verify the prompt type cross-transfer numbers more carefully since my initial calculations don't quite match the 0.753 figure cited.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "adb45954-573f-4a8f-b32e-92a9aea2c6e9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016n1mCWSa5np4SMcJPzgwyW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12311,
+      "cache_read_input_tokens": 30610,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12311
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+已读取多个关键文件，继续获取剩余的实验数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "1617b8a6-2dc7-4bfb-87d7-70b8ec15385c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016n1mCWSa5np4SMcJPzgwyW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12311,
+      "cache_read_input_tokens": 30610,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12311
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EAgEDCPkMTEJ2hs3dggNgM`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/sampling_ablation.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "4929518c-c91b-4132-9c70-cea3f46c4e63",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016n1mCWSa5np4SMcJPzgwyW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12311,
+      "cache_read_input_tokens": 30610,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12311
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T10:54:52.778Z_
+
+<details><summary>↩ Tool result · `toolu_01EAgEDCPkMTEJ2hs3dggNgM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"configs\\\": {\\n    \\\"low_t05_p08\\\": {\\n      \\\"3class_f1\\\": 0.785,\\n      \\\"binary_f1\\\": 0.7968,\\n      \\\"per_class_f1\\\": {\\n        \\\"gen-0\\\": 0.935,\\n        \\\"gen-1\\\": 0.6233,\\n        \\\"gen-2+\\\": 0.7968\\n      },\\n      \\\"per_generator\\\": {\\n        \\\"olmo-2-1b\\\": 0.7478,\\n        \\\"pythia-1b\\\": 0.8517,\\n        \\\"pythia-2.8b\\\": 0.7915,\\n        \\\"qwen3-0.6b\\\": 0.8183,\\n        \\\"qwen3-1.7b\\\": 0.8417,\\n        \\\"qwen3-8b\\\": 0.6585\\n      },\\n      \\\"spearman_entropy_mean\\\": -0.6942,\\n      \\\"spearman_entropy_std\\\": -0.3244,\\n      \\\"spearman_entropy_min\\\": -0.464,\\n      \\\"spearman_entropy_max\\\": 0.0855,\\n      \\\"spearman_tail_decay\\\": -0.0787,\\n      \\\"spearman_ttr\\\": -0.6812,\\n      \\\"spearman_hapax_ratio\\\": -0.7201\\n    },\\n    \\\"default_t07_p09\\\": {\\n      \\\"3class_f1\\\": 0.7877,\\n      \\\"binary_f1\\\": 0.7985,\\n      \\\"per_class_f1\\\": {\\n        \\\"gen-0\\\": 0.9335,\\n        \\\"gen-1\\\": 0.6312,\\n        \\\"gen-2+\\\": 0.7985\\n      },\\n      \\\"per_generator\\\": {\\n        \\\"olmo-2-1b\\\": 0.7655,\\n        \\\"pythia-1b\\\": 0.8516,\\n        \\\"pythia-2.8b\\\": 0.8076,\\n        \\\"qwen3-0.6b\\\": 0.8193,\\n        \\\"qwen3-1.7b\\\": 0.8046,\\n        \\\"qwen3-8b\\\": 0.6832\\n      },\\n      \\\"spearman_entropy_mean\\\": -0.6022,\\n      \\\"spearman_entropy_std\\\": -0.1882,\\n      \\\"spearman_entropy_min\\\": -0.4062,\\n      \\\"spearman_entropy_max\\\": 0.0884,\\n      \\\"spearman_tail_decay\\\": -0.0698,\\n      \\\"spearman_ttr\\\": -0.6523,\\n      \\\"spearman_hapax_ratio\\\": -0.6696\\n    },\\n    \\\"high_t10_p095\\\": {\\n      \\\"3class_f1\\\": 0.7258,\\n      \\\"binary_f1\\\": 0.7333,\\n      \\\"per_class_f1\\\": {\\n        \\\"gen-0\\\": 0.8772,\\n        \\\"gen-1\\\": 0.5672,\\n        \\\"gen-2+\\\": 0.7331\\n      },\\n      \\\"per_generator\\\": {\\n        \\\"olmo-2-1b\\\": 0.7642,\\n        \\\"pythia-1b\\\": 0.8575,\\n        \\\"pythia-2.8b\\\": 0.8057,\\n        \\\"qwen3-0.6b\\\": 0.8249,\\n        \\\"qwen3-1.7b\\\": 0.4183,\\n        \\\"qwen3-8b\\\": 0.6973\\n      },\\n      \\\"spearman_entropy_mean\\\": -0.0018,\\n      \\\"spearman_entropy_std\\\": 0.0031,\\n      \\\"spearman_entropy_min\\\": 0.0176,\\n      \\\"spearman_entropy_max\\\": 0.0491,\\n      \\\"spearman_tail_decay\\\": -0.1122,\\n      \\\"spearman_ttr\\\": -0.3401,\\n      \\\"spearman_hapax_ratio\\\": -0.363\\n    }\\n  },\\n  \\\"f1_range\\\": 0.0619,\\n  \\\"f1_range_pp\\\": 6.19,\\n  \\\"robust\\\": false,\\n  \\\"binary_f1_range\\\": 0.0652\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "6960e9ff-1c7b-4b8f-8166-59a65dd9b489",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"configs\\\\\\\": {\\\\n    \\\\\\\"low_t05_p08\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.785,\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.7968,\\\\n      \\\\\\\"per_class_f1\\\\\\\": {\\\\n        \\\\\\\"gen-0\\\\\\\": 0.935,\\\\n        \\\\\\\"gen-1\\\\\\\": 0.6233,\\\\n        \\\\\\\"gen-2+\\\\\\\": 0.7968\\\\n      },\\\\n      \\\\\\\"per_generator\\\\\\\": {\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": 0.7478,\\\\n        \\\\\\\"pythia-1b\\\\\\\": 0.8517,\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": 0.7915,\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": 0.8183,\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": 0.8417,\\\\n        \\\\\\\"qwen3-8b\\\\\\\": 0.6585\\\\n      },\\\\n      \\\\\\\"spearman_entropy_mean\\\\\\\": -0.6942,\\\\n      \\\\\\\"spearman_entropy_std\\\\\\\": -0.3244,\\\\n      \\\\\\\"spearman_entropy_min\\\\\\\": -0.464,\\\\n      \\\\\\\"spearman_entropy_max\\\\\\\": 0.0855,\\\\n      \\\\\\\"spearman_tail_decay\\\\\\\": -0.0787,\\\\n      \\\\\\\"spearman_ttr\\\\\\\": -0.6812,\\\\n      \\\\\\\"spearman_hapax_ratio\\\\\\\": -0.7201\\\\n    },\\\\n    \\\\\\\"default_t07_p09\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.7877,\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.7985,\\\\n      \\\\\\\"per_class_f1\\\\\\\": {\\\\n        \\\\\\\"gen-0\\\\\\\": 0.9335,\\\\n        \\\\\\\"gen-1\\\\\\\": 0.6312,\\\\n        \\\\\\\"gen-2+\\\\\\\": 0.7985\\\\n      },\\\\n      \\\\\\\"per_generator\\\\\\\": {\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": 0.7655,\\\\n        \\\\\\\"pythia-1b\\\\\\\": 0.8516,\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": 0.8076,\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": 0.8193,\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": 0.8046,\\\\n        \\\\\\\"qwen3-8b\\\\\\\": 0.6832\\\\n      },\\\\n      \\\\\\\"spearman_entropy_mean\\\\\\\": -0.6022,\\\\n      \\\\\\\"spearman_entropy_std\\\\\\\": -0.1882,\\\\n      \\\\\\\"spearman_entropy_min\\\\\\\": -0.4062,\\\\n      \\\\\\\"spearman_entropy_max\\\\\\\": 0.0884,\\\\n      \\\\\\\"spearman_tail_decay\\\\\\\": -0.0698,\\\\n      \\\\\\\"spearman_ttr\\\\\\\": -0.6523,\\\\n      \\\\\\\"spearman_hapax_ratio\\\\\\\": -0.6696\\\\n    },\\\\n    \\\\\\\"high_t10_p095\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.7258,\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.7333,\\\\n      \\\\\\\"per_class_f1\\\\\\\": {\\\\n        \\\\\\\"gen-0\\\\\\\": 0.8772,\\\\n        \\\\\\\"gen-1\\\\\\\": 0.5672,\\\\n        \\\\\\\"gen-2+\\\\\\\": 0.7331\\\\n      },\\\\n      \\\\\\\"per_generator\\\\\\\": {\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": 0.7642,\\\\n        \\\\\\\"pythia-1b\\\\\\\": 0.8575,\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": 0.8057,\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": 0.8249,\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": 0.4183,\\\\n        \\\\\\\"qwen3-8b\\\\\\\": 0.6973\\\\n      },\\\\n      \\\\\\\"spearman_entropy_mean\\\\\\\": -0.0018,\\\\n      \\\\\\\"spearman_entropy_std\\\\\\\": 0.0031,\\\\n      \\\\\\\"spearman_entropy_min\\\\\\\": 0.0176,\\\\n      \\\\\\\"spearman_entropy_max\\\\\\\": 0.0491,\\\\n      \\\\\\\"spearman_tail_decay\\\\\\\": -0.1122,\\\\n      \\\\\\\"spearman_ttr\\\\\\\": -0.3401,\\\\n      \\\\\\\"spearman_hapax_ratio\\\\\\\": -0.363\\\\n    }\\\\n  },\\\\n  \\\\\\\"f1_range\\\\\\\": 0.0619,\\\\n  \\\\\\\"f1_range_pp\\\\\\\": 6.19,\\\\n  \\\\\\\"robust\\\\\\\": false,\\\\n  \\\\\\\"binary_f1_range\\\\\\\": 0.0652\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"configs\\\": {\\n    \\\"low_t05_p08\\\": {\\n      \\\"3class_f1\\\": 0.785,\\n      \\\"binary_f1\\\": 0.7968,\\n      \\\"per_class_f1\\\": {\\n        \\\"gen-0\\\": 0.935,\\n        \\\"gen-1\\\": 0.6233,\\n        \\\"gen-2+\\\": 0.7968\\n      },\\n      \\\"per_generator\\\": {\\n        \\\"olmo-2-1b\\\": 0.7478,\\n        \\\"pythia-1b\\\": 0.8517,\\n        \\\"pythia-2.8b\\\": 0.7915,\\n        \\\"qwen3-0.6b\\\": 0.8183,\\n        \\\"qwen3-1.7b\\\": 0.8417,\\n        \\\"qwen3-8b\\\": 0.6585\\n      },\\n      \\\"spearman_entropy_mean\\\": -0.6942,\\n      \\\"spearman_entropy_std\\\": -0.3244,\\n      \\\"spearman_entropy_min\\\": -0.464,\\n      \\\"spearman_entropy_max\\\": 0.0855,\\n      \\\"spearman_tail_decay\\\": -0.0787,\\n      \\\"spearman_ttr\\\": -0.6812,\\n      \\\"spearman_hapax_ratio\\\": -0.7201\\n    },\\n    \\\"default_t07_p09\\\": {\\n      \\\"3class_f1\\\": 0.7877,\\n      \\\"binary_f1\\\": 0.7985,\\n      \\\"per_class_f1\\\": {\\n        \\\"gen-0\\\": 0.9335,\\n        \\\"gen-1\\\": 0.6312,\\n        \\\"gen-2+\\\": 0.7985\\n      },\\n      \\\"per_generator\\\": {\\n        \\\"olmo-2-1b\\\": 0.7655,\\n        \\\"pythia-1b\\\": 0.8516,\\n        \\\"pythia-2.8b\\\": 0.8076,\\n        \\\"qwen3-0.6b\\\": 0.8193,\\n        \\\"qwen3-1.7b\\\": 0.8046,\\n        \\\"qwen3-8b\\\": 0.6832\\n      },\\n      \\\"spearman_entropy_mean\\\": -0.6022,\\n      \\\"spearman_entropy_std\\\": -0.1882,\\n      \\\"spearman_entropy_min\\\": -0.4062,\\n      \\\"spearman_entropy_max\\\": 0.0884,\\n      \\\"spearman_tail_decay\\\": -0.0698,\\n      \\\"spearman_ttr\\\": -0.6523,\\n      \\\"spearman_hapax_ratio\\\": -0.6696\\n    },\\n    \\\"high_t10_p095\\\": {\\n      \\\"3class_f1\\\": 0.7258,\\n      \\\"binary_f1\\\": 0.7333,\\n      \\\"per_class_f1\\\": {\\n        \\\"gen-0\\\": 0.8772,\\n        \\\"gen-1\\\": 0.5672,\\n        \\\"gen-2+\\\": 0.7331\\n      },\\n      \\\"per_generator\\\": {\\n        \\\"olmo-2-1b\\\": 0.7642,\\n        \\\"pythia-1b\\\": 0.8575,\\n        \\\"pythia-2.8b\\\": 0.8057,\\n        \\\"qwen3-0.6b\\\": 0.8249,\\n        \\\"qwen3-1.7b\\\": 0.4183,\\n        \\\"qwen3-8b\\\": 0.6973\\n      },\\n      \\\"spearman_entropy_mean\\\": -0.0018,\\n      \\\"spearman_entropy_std\\\": 0.0031,\\n      \\\"spearman_entropy_min\\\": 0.0176,\\n      \\\"spearman_entropy_max\\\": 0.0491,\\n      \\\"spearman_tail_decay\\\": -0.1122,\\n      \\\"spearman_ttr\\\": -0.3401,\\n      \\\"spearman_hapax_ratio\\\": -0.363\\n    }\\n  },\\n  \\\"f1_range\\\": 0.0619,\\n  \\\"f1_range_pp\\\": 6.19,\\n  \\\"robust\\\": false,\\n  \\\"binary_f1_range\\\": 0.0652\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FXabyjF5bvUPcBm7CzqHeT`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/p1c_instruct_logo_f1.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "eb8cbdfa-e461-4ec3-803f-85c1dd56554d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016n1mCWSa5np4SMcJPzgwyW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12311,
+      "cache_read_input_tokens": 30610,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12311
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-17T10:54:53.214Z_
+
+<details><summary>↩ Tool result · `toolu_01FXabyjF5bvUPcBm7CzqHeT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"7gen_logo_avg_f1\\\": 0.7498,\\n  \\\"7gen_binary_f1\\\": 0.768,\\n  \\\"per_generator\\\": {\\n    \\\"olmo-2-1b\\\": {\\n      \\\"3class_f1\\\": 0.759,\\n      \\\"gen0_f1\\\": 0.9328,\\n      \\\"gen1_f1\\\": 0.5925,\\n      \\\"gen2p_f1\\\": 0.7517,\\n      \\\"binary_f1\\\": 0.7479\\n    },\\n    \\\"pythia-1b\\\": {\\n      \\\"3class_f1\\\": 0.8484,\\n      \\\"gen0_f1\\\": 0.9831,\\n      \\\"gen1_f1\\\": 0.7013,\\n      \\\"gen2p_f1\\\": 0.8607,\\n      \\\"binary_f1\\\": 0.8615\\n    },\\n    \\\"pythia-2.8b\\\": {\\n      \\\"3class_f1\\\": 0.7975,\\n      \\\"gen0_f1\\\": 0.9687,\\n      \\\"gen1_f1\\\": 0.6378,\\n      \\\"gen2p_f1\\\": 0.786,\\n      \\\"binary_f1\\\": 0.7906\\n    },\\n    \\\"qwen3-0.6b\\\": {\\n      \\\"3class_f1\\\": 0.8162,\\n      \\\"gen0_f1\\\": 0.9679,\\n      \\\"gen1_f1\\\": 0.657,\\n      \\\"gen2p_f1\\\": 0.8238,\\n      \\\"binary_f1\\\": 0.8241\\n    },\\n    \\\"qwen3-1.7b\\\": {\\n      \\\"3class_f1\\\": 0.8023,\\n      \\\"gen0_f1\\\": 0.9312,\\n      \\\"gen1_f1\\\": 0.6548,\\n      \\\"gen2p_f1\\\": 0.821,\\n      \\\"binary_f1\\\": 0.8208\\n    },\\n    \\\"qwen3-1.7b-instruct\\\": {\\n      \\\"3class_f1\\\": 0.5434,\\n      \\\"gen0_f1\\\": 0.7033,\\n      \\\"gen1_f1\\\": 0.3293,\\n      \\\"gen2p_f1\\\": 0.5976,\\n      \\\"binary_f1\\\": 0.6582\\n    },\\n    \\\"qwen3-8b\\\": {\\n      \\\"3class_f1\\\": 0.6817,\\n      \\\"gen0_f1\\\": 0.8246,\\n      \\\"gen1_f1\\\": 0.5437,\\n      \\\"gen2p_f1\\\": 0.6768,\\n      \\\"binary_f1\\\": 0.6729\\n    }\\n  },\\n  \\\"vs_base_comparison\\\": {\\n    \\\"instruct_held_out_f1\\\": 0.5434,\\n    \\\"base_held_out_f1\\\": 0.8023,\\n    \\\"delta\\\": -0.2589,\\n    \\\"reference_6gen_base_held_out_f1\\\": 0.805\\n  },\\n  \\\"note\\\": \\\"instruct depth-response direction is reversed (diversity increases with depth) vs base (decreases). XGBoost handles both directions.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "7d2155cb-daee-4e41-82e4-db5e576e7533",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"7gen_logo_avg_f1\\\\\\\": 0.7498,\\\\n  \\\\\\\"7gen_binary_f1\\\\\\\": 0.768,\\\\n  \\\\\\\"per_generator\\\\\\\": {\\\\n    \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.759,\\\\n      \\\\\\\"gen0_f1\\\\\\\": 0.9328,\\\\n      \\\\\\\"gen1_f1\\\\\\\": 0.5925,\\\\n      \\\\\\\"gen2p_f1\\\\\\\": 0.7517,\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.7479\\\\n    },\\\\n    \\\\\\\"pythia-1b\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.8484,\\\\n      \\\\\\\"gen0_f1\\\\\\\": 0.9831,\\\\n      \\\\\\\"gen1_f1\\\\\\\": 0.7013,\\\\n      \\\\\\\"gen2p_f1\\\\\\\": 0.8607,\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.8615\\\\n    },\\\\n    \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.7975,\\\\n      \\\\\\\"gen0_f1\\\\\\\": 0.9687,\\\\n      \\\\\\\"gen1_f1\\\\\\\": 0.6378,\\\\n      \\\\\\\"gen2p_f1\\\\\\\": 0.786,\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.7906\\\\n    },\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.8162,\\\\n      \\\\\\\"gen0_f1\\\\\\\": 0.9679,\\\\n      \\\\\\\"gen1_f1\\\\\\\": 0.657,\\\\n      \\\\\\\"gen2p_f1\\\\\\\": 0.8238,\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.8241\\\\n    },\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.8023,\\\\n      \\\\\\\"gen0_f1\\\\\\\": 0.9312,\\\\n      \\\\\\\"gen1_f1\\\\\\\": 0.6548,\\\\n      \\\\\\\"gen2p_f1\\\\\\\": 0.821,\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.8208\\\\n    },\\\\n    \\\\\\\"qwen3-1.7b-instruct\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.5434,\\\\n      \\\\\\\"gen0_f1\\\\\\\": 0.7033,\\\\n      \\\\\\\"gen1_f1\\\\\\\": 0.3293,\\\\n      \\\\\\\"gen2p_f1\\\\\\\": 0.5976,\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.6582\\\\n    },\\\\n    \\\\\\\"qwen3-8b\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.6817,\\\\n      \\\\\\\"gen0_f1\\\\\\\": 0.8246,\\\\n      \\\\\\\"gen1_f1\\\\\\\": 0.5437,\\\\n      \\\\\\\"gen2p_f1\\\\\\\": 0.6768,\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.6729\\\\n    }\\\\n  },\\\\n  \\\\\\\"vs_base_comparison\\\\\\\": {\\\\n    \\\\\\\"instruct_held_out_f1\\\\\\\": 0.5434,\\\\n    \\\\\\\"base_held_out_f1\\\\\\\": 0.8023,\\\\n    \\\\\\\"delta\\\\\\\": -0.2589,\\\\n    \\\\\\\"reference_6gen_base_held_out_f1\\\\\\\": 0.805\\\\n  },\\\\n  \\\\\\\"note\\\\\\\": \\\\\\\"instruct depth-response direction is reversed (diversity increases with depth) vs base (decreases). XGBoost handles both directions.\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"7gen_logo_avg_f1\\\": 0.7498,\\n  \\\"7gen_binary_f1\\\": 0.768,\\n  \\\"per_generator\\\": {\\n    \\\"olmo-2-1b\\\": {\\n      \\\"3class_f1\\\": 0.759,\\n      \\\"gen0_f1\\\": 0.9328,\\n      \\\"gen1_f1\\\": 0.5925,\\n      \\\"gen2p_f1\\\": 0.7517,\\n      \\\"binary_f1\\\": 0.7479\\n    },\\n    \\\"pythia-1b\\\": {\\n      \\\"3class_f1\\\": 0.8484,\\n      \\\"gen0_f1\\\": 0.9831,\\n      \\\"gen1_f1\\\": 0.7013,\\n      \\\"gen2p_f1\\\": 0.8607,\\n      \\\"binary_f1\\\": 0.8615\\n    },\\n    \\\"pythia-2.8b\\\": {\\n      \\\"3class_f1\\\": 0.7975,\\n      \\\"gen0_f1\\\": 0.9687,\\n      \\\"gen1_f1\\\": 0.6378,\\n      \\\"gen2p_f1\\\": 0.786,\\n      \\\"binary_f1\\\": 0.7906\\n    },\\n    \\\"qwen3-0.6b\\\": {\\n      \\\"3class_f1\\\": 0.8162,\\n      \\\"gen0_f1\\\": 0.9679,\\n      \\\"gen1_f1\\\": 0.657,\\n      \\\"gen2p_f1\\\": 0.8238,\\n      \\\"binary_f1\\\": 0.8241\\n    },\\n    \\\"qwen3-1.7b\\\": {\\n      \\\"3class_f1\\\": 0.8023,\\n      \\\"gen0_f1\\\": 0.9312,\\n      \\\"gen1_f1\\\": 0.6548,\\n      \\\"gen2p_f1\\\": 0.821,\\n      \\\"binary_f1\\\": 0.8208\\n    },\\n    \\\"qwen3-1.7b-instruct\\\": {\\n      \\\"3class_f1\\\": 0.5434,\\n      \\\"gen0_f1\\\": 0.7033,\\n      \\\"gen1_f1\\\": 0.3293,\\n      \\\"gen2p_f1\\\": 0.5976,\\n      \\\"binary_f1\\\": 0.6582\\n    },\\n    \\\"qwen3-8b\\\": {\\n      \\\"3class_f1\\\": 0.6817,\\n      \\\"gen0_f1\\\": 0.8246,\\n      \\\"gen1_f1\\\": 0.5437,\\n      \\\"gen2p_f1\\\": 0.6768,\\n      \\\"binary_f1\\\": 0.6729\\n    }\\n  },\\n  \\\"vs_base_comparison\\\": {\\n    \\\"instruct_held_out_f1\\\": 0.5434,\\n    \\\"base_held_out_f1\\\": 0.8023,\\n    \\\"delta\\\": -0.2589,\\n    \\\"reference_6gen_base_held_out_f1\\\": 0.805\\n  },\\n  \\\"note\\\": \\\"instruct depth-response direction is reversed (diversity increases with depth) vs base (decreases). XGBoost handles both directions.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015JDc8c1oWDrqdhM5wJDRiN`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/review_p1c_olmo_instruct.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "875e5769-0401-4eb0-96de-d682efee19d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016n1mCWSa5np4SMcJPzgwyW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12311,
+      "cache_read_input_tokens": 30610,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12311
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-17T10:54:54.147Z_
+
+<details><summary>↩ Tool result · `toolu_015JDc8c1oWDrqdhM5wJDRiN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"review-p1c-olmo-instruct\\\",\\n  \\\"model\\\": \\\"OLMo-2-0425-1B-Instruct (allenai/OLMo-2-0425-1B-Instruct)\\\",\\n  \\\"model_source\\\": \\\"HuggingFace\\\",\\n  \\\"n_records_instruct\\\": 4429,\\n  \\\"n_records_total_7gen\\\": 31958,\\n  \\\"depth_distribution\\\": {\\n    \\\"0\\\": 995,\\n    \\\"1\\\": 965,\\n    \\\"2\\\": 884,\\n    \\\"3\\\": 817,\\n    \\\"4\\\": 768\\n  },\\n  \\\"logo_7gen_3class\\\": {\\n    \\\"per_generator\\\": {\\n      \\\"olmo-2-0425-1b-instruct\\\": {\\n        \\\"macro_f1\\\": 0.3379,\\n        \\\"gen-0_f1\\\": 0.526,\\n        \\\"gen-1_f1\\\": 0.3339,\\n        \\\"gen-2+_f1\\\": 0.1539,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.3380736841172507,\\n          \\\"ci_lo\\\": 0.3250174612221341,\\n          \\\"ci_hi\\\": 0.3514903698562415\\n        }\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"macro_f1\\\": 0.7633,\\n        \\\"gen-0_f1\\\": 0.9444,\\n        \\\"gen-1_f1\\\": 0.5922,\\n        \\\"gen-2+_f1\\\": 0.7534,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.7631399495937501,\\n          \\\"ci_lo\\\": 0.7520292422892575,\\n          \\\"ci_hi\\\": 0.7737292561178561\\n        }\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"macro_f1\\\": 0.8451,\\n        \\\"gen-0_f1\\\": 0.9805,\\n        \\\"gen-1_f1\\\": 0.6962,\\n        \\\"gen-2+_f1\\\": 0.8587,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.845025541189118,\\n          \\\"ci_lo\\\": 0.834841912039178,\\n          \\\"ci_hi\\\": 0.8556018014634915\\n        }\\n      },\\n      \\\"pythia-2.8b\\\": {\\n        \\\"macro_f1\\\": 0.7971,\\n        \\\"gen-0_f1\\\": 0.9708,\\n        \\\"gen-1_f1\\\": 0.6364,\\n        \\\"gen-2+_f1\\\": 0.7839,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.7967881333324128,\\n          \\\"ci_lo\\\": 0.7864447883881671,\\n          \\\"ci_hi\\\": 0.8080238077410145\\n        }\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"macro_f1\\\": 0.8209,\\n        \\\"gen-0_f1\\\": 0.9665,\\n        \\\"gen-1_f1\\\": 0.6621,\\n        \\\"gen-2+_f1\\\": 0.8342,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.8210767908166986,\\n          \\\"ci_lo\\\": 0.8100506278392143,\\n          \\\"ci_hi\\\": 0.8319175240261408\\n        }\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"macro_f1\\\": 0.8136,\\n        \\\"gen-0_f1\\\": 0.9455,\\n        \\\"gen-1_f1\\\": 0.6658,\\n        \\\"gen-2+_f1\\\": 0.8294,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.8133538950834234,\\n          \\\"ci_lo\\\": 0.8026746268951767,\\n          \\\"ci_hi\\\": 0.824418063400238\\n        }\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"macro_f1\\\": 0.6938,\\n        \\\"gen-0_f1\\\": 0.843,\\n        \\\"gen-1_f1\\\": 0.5496,\\n        \\\"gen-2+_f1\\\": 0.6888,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.693704175291729,\\n          \\\"ci_lo\\\": 0.6805743340306835,\\n          \\\"ci_hi\\\": 0.7073756594044247\\n        }\\n      }\\n    },\\n    \\\"average_macro_f1\\\": 0.7245\\n  },\\n  \\\"binary_f1_logo\\\": {\\n    \\\"per_generator\\\": {\\n      \\\"olmo-2-0425-1b-instruct\\\": {\\n        \\\"f1\\\": 0.4255,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.4256789837352178,\\n          \\\"ci_lo\\\": 0.41275103521847256,\\n          \\\"ci_hi\\\": 0.43901739690483443\\n        }\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"f1\\\": 0.7944,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.7943162140516657,\\n          \\\"ci_lo\\\": 0.7823468480563879,\\n          \\\"ci_hi\\\": 0.8054289093942969\\n        }\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"f1\\\": 0.8667,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.8664143036854169,\\n          \\\"ci_lo\\\": 0.8562783501162508,\\n          \\\"ci_hi\\\": 0.8764623427338004\\n        }\\n      },\\n      \\\"pythia-2.8b\\\": {\\n        \\\"f1\\\": 0.8252,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.8251696743463415,\\n          \\\"ci_lo\\\": 0.8141114062948446,\\n          \\\"ci_hi\\\": 0.8356442740447173\\n        }\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"f1\\\": 0.8267,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.8265540679746043,\\n          \\\"ci_lo\\\": 0.815052948985976,\\n          \\\"ci_hi\\\": 0.8373768596739709\\n        }\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"f1\\\": 0.8322,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.8318341461340308,\\n          \\\"ci_lo\\\": 0.8211362470846085,\\n          \\\"ci_hi\\\": 0.8428181649432273\\n        }\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"f1\\\": 0.7579,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.7578849497768999,\\n          \\\"ci_lo\\\": 0.7448943520442451,\\n          \\\"ci_hi\\\": 0.7702532826313947\\n        }\\n      }\\n    },\\n    \\\"average_f1\\\": 0.7612\\n  },\\n  \\\"instruct_spearman_rho\\\": {\\n    \\\"entropy_mean\\\": 0.4822,\\n    \\\"entropy_std\\\": 0.2955,\\n    \\\"entropy_min\\\": 0.0796,\\n    \\\"entropy_max\\\": 0.3055,\\n    \\\"tail_decay\\\": 0.2276,\\n    \\\"ttr\\\": 0.0057,\\n    \\\"hapax_ratio\\\": 0.0253\\n  },\\n  \\\"instruct_spearman_p\\\": {\\n    \\\"entropy_mean\\\": \\\"1.07e-256\\\",\\n    \\\"entropy_std\\\": \\\"5.65e-90\\\",\\n    \\\"entropy_min\\\": \\\"1.15e-07\\\",\\n    \\\"entropy_max\\\": \\\"2.44e-96\\\",\\n    \\\"tail_decay\\\": \\\"3.93e-53\\\",\\n    \\\"ttr\\\": \\\"7.05e-01\\\",\\n    \\\"hapax_ratio\\\": \\\"9.28e-02\\\"\\n  },\\n  \\\"base_olmo_spearman_rho\\\": {\\n    \\\"entropy_mean\\\": -0.6386,\\n    \\\"entropy_std\\\": -0.2958,\\n    \\\"entropy_min\\\": -0.3874,\\n    \\\"entropy_max\\\": 0.0672,\\n    \\\"tail_decay\\\": -0.1411,\\n    \\\"ttr\\\": -0.6996,\\n    \\\"hapax_ratio\\\": -0.7124\\n  },\\n  \\\"comparison_instruct_vs_base\\\": {\\n    \\\"entropy_mean\\\": {\\n      \\\"instruct\\\": 0.4822,\\n      \\\"base\\\": -0.6386,\\n      \\\"delta\\\": 1.1208\\n    },\\n    \\\"entropy_std\\\": {\\n      \\\"instruct\\\": 0.2955,\\n      \\\"base\\\": -0.2958,\\n      \\\"delta\\\": 0.5913\\n    },\\n    \\\"entropy_min\\\": {\\n      \\\"instruct\\\": 0.0796,\\n      \\\"base\\\": -0.3874,\\n      \\\"delta\\\": 0.467\\n    },\\n    \\\"entropy_max\\\": {\\n      \\\"instruct\\\": 0.3055,\\n      \\\"base\\\": 0.0672,\\n      \\\"delta\\\": 0.2383\\n    },\\n    \\\"tail_decay\\\": {\\n      \\\"instruct\\\": 0.2276,\\n      \\\"base\\\": -0.1411,\\n      \\\"delta\\\": 0.3687\\n    },\\n    \\\"ttr\\\": {\\n      \\\"instruct\\\": 0.0057,\\n      \\\"base\\\": -0.6996,\\n      \\\"delta\\\": 0.7053\\n    },\\n    \\\"hapax_ratio\\\": {\\n      \\\"instruct\\\": 0.0253,\\n      \\\"base\\\": -0.7124,\\n      \\\"delta\\\": 0.7377\\n    }\\n  },\\n  \\\"instruct_logo_f1\\\": 0.3379,\\n  \\\"base_olmo_logo_f1\\\": 0.7633,\\n  \\\"delta_instruct_vs_base\\\": -0.4254,\\n  \\\"conclusion\\\": \\\"negative: instruct tuning significantly reduces depth signal\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "f82d5527-ecb2-4b28-98ca-804d252235a3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"review-p1c-olmo-instruct\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"OLMo-2-0425-1B-Instruct (allenai/OLMo-2-0425-1B-Instruct)\\\\\\\",\\\\n  \\\\\\\"model_source\\\\\\\": \\\\\\\"HuggingFace\\\\\\\",\\\\n  \\\\\\\"n_records_instruct\\\\\\\": 4429,\\\\n  \\\\\\\"n_records_total_7gen\\\\\\\": 31958,\\\\n  \\\\\\\"depth_distribution\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": 995,\\\\n    \\\\\\\"1\\\\\\\": 965,\\\\n    \\\\\\\"2\\\\\\\": 884,\\\\n    \\\\\\\"3\\\\\\\": 817,\\\\n    \\\\\\\"4\\\\\\\": 768\\\\n  },\\\\n  \\\\\\\"logo_7gen_3class\\\\\\\": {\\\\n    \\\\\\\"per_generator\\\\\\\": {\\\\n      \\\\\\\"olmo-2-0425-1b-instruct\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.3379,\\\\n        \\\\\\\"gen-0_f1\\\\\\\": 0.526,\\\\n        \\\\\\\"gen-1_f1\\\\\\\": 0.3339,\\\\n        \\\\\\\"gen-2+_f1\\\\\\\": 0.1539,\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.3380736841172507,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.3250174612221341,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.3514903698562415\\\\n        }\\\\n      },\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.7633,\\\\n        \\\\\\\"gen-0_f1\\\\\\\": 0.9444,\\\\n        \\\\\\\"gen-1_f1\\\\\\\": 0.5922,\\\\n        \\\\\\\"gen-2+_f1\\\\\\\": 0.7534,\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.7631399495937501,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.7520292422892575,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.7737292561178561\\\\n        }\\\\n      },\\\\n      \\\\\\\"pythia-1b\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.8451,\\\\n        \\\\\\\"gen-0_f1\\\\\\\": 0.9805,\\\\n        \\\\\\\"gen-1_f1\\\\\\\": 0.6962,\\\\n        \\\\\\\"gen-2+_f1\\\\\\\": 0.8587,\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.845025541189118,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.834841912039178,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8556018014634915\\\\n        }\\\\n      },\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.7971,\\\\n        \\\\\\\"gen-0_f1\\\\\\\": 0.9708,\\\\n        \\\\\\\"gen-1_f1\\\\\\\": 0.6364,\\\\n        \\\\\\\"gen-2+_f1\\\\\\\": 0.7839,\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.7967881333324128,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.7864447883881671,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8080238077410145\\\\n        }\\\\n      },\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.8209,\\\\n        \\\\\\\"gen-0_f1\\\\\\\": 0.9665,\\\\n        \\\\\\\"gen-1_f1\\\\\\\": 0.6621,\\\\n        \\\\\\\"gen-2+_f1\\\\\\\": 0.8342,\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8210767908166986,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.8100506278392143,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8319175240261408\\\\n        }\\\\n      },\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.8136,\\\\n        \\\\\\\"gen-0_f1\\\\\\\": 0.9455,\\\\n        \\\\\\\"gen-1_f1\\\\\\\": 0.6658,\\\\n        \\\\\\\"gen-2+_f1\\\\\\\": 0.8294,\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8133538950834234,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.8026746268951767,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.824418063400238\\\\n        }\\\\n      },\\\\n      \\\\\\\"qwen3-8b\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.6938,\\\\n        \\\\\\\"gen-0_f1\\\\\\\": 0.843,\\\\n        \\\\\\\"gen-1_f1\\\\\\\": 0.5496,\\\\n        \\\\\\\"gen-2+_f1\\\\\\\": 0.6888,\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.693704175291729,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.6805743340306835,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.7073756594044247\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"average_macro_f1\\\\\\\": 0.7245\\\\n  },\\\\n  \\\\\\\"binary_f1_logo\\\\\\\": {\\\\n    \\\\\\\"per_generator\\\\\\\": {\\\\n      \\\\\\\"olmo-2-0425-1b-instruct\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.4255,\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.4256789837352178,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.41275103521847256,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.43901739690483443\\\\n        }\\\\n      },\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.7944,\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.7943162140516657,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.7823468480563879,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8054289093942969\\\\n        }\\\\n      },\\\\n      \\\\\\\"pythia-1b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.8667,\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8664143036854169,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.8562783501162508,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8764623427338004\\\\n        }\\\\n      },\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.8252,\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8251696743463415,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.8141114062948446,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8356442740447173\\\\n        }\\\\n      },\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.8267,\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8265540679746043,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.815052948985976,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8373768596739709\\\\n        }\\\\n      },\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.8322,\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8318341461340308,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.8211362470846085,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8428181649432273\\\\n        }\\\\n      },\\\\n      \\\\\\\"qwen3-8b\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.7579,\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.7578849497768999,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.7448943520442451,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.7702532826313947\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"average_f1\\\\\\\": 0.7612\\\\n  },\\\\n  \\\\\\\"instruct_spearman_rho\\\\\\\": {\\\\n    \\\\\\\"entropy_mean\\\\\\\": 0.4822,\\\\n    \\\\\\\"entropy_std\\\\\\\": 0.2955,\\\\n    \\\\\\\"entropy_min\\\\\\\": 0.0796,\\\\n    \\\\\\\"entropy_max\\\\\\\": 0.3055,\\\\n    \\\\\\\"tail_decay\\\\\\\": 0.2276,\\\\n    \\\\\\\"ttr\\\\\\\": 0.0057,\\\\n    \\\\\\\"hapax_ratio\\\\\\\": 0.0253\\\\n  },\\\\n  \\\\\\\"instruct_spearman_p\\\\\\\": {\\\\n    \\\\\\\"entropy_mean\\\\\\\": \\\\\\\"1.07e-256\\\\\\\",\\\\n    \\\\\\\"entropy_std\\\\\\\": \\\\\\\"5.65e-90\\\\\\\",\\\\n    \\\\\\\"entropy_min\\\\\\\": \\\\\\\"1.15e-07\\\\\\\",\\\\n    \\\\\\\"entropy_max\\\\\\\": \\\\\\\"2.44e-96\\\\\\\",\\\\n    \\\\\\\"tail_decay\\\\\\\": \\\\\\\"3.93e-53\\\\\\\",\\\\n    \\\\\\\"ttr\\\\\\\": \\\\\\\"7.05e-01\\\\\\\",\\\\n    \\\\\\\"hapax_ratio\\\\\\\": \\\\\\\"9.28e-02\\\\\\\"\\\\n  },\\\\n  \\\\\\\"base_olmo_spearman_rho\\\\\\\": {\\\\n    \\\\\\\"entropy_mean\\\\\\\": -0.6386,\\\\n    \\\\\\\"entropy_std\\\\\\\": -0.2958,\\\\n    \\\\\\\"entropy_min\\\\\\\": -0.3874,\\\\n    \\\\\\\"entropy_max\\\\\\\": 0.0672,\\\\n    \\\\\\\"tail_decay\\\\\\\": -0.1411,\\\\n    \\\\\\\"ttr\\\\\\\": -0.6996,\\\\n    \\\\\\\"hapax_ratio\\\\\\\": -0.7124\\\\n  },\\\\n  \\\\\\\"comparison_instruct_vs_base\\\\\\\": {\\\\n    \\\\\\\"entropy_mean\\\\\\\": {\\\\n      \\\\\\\"instruct\\\\\\\": 0.4822,\\\\n      \\\\\\\"base\\\\\\\": -0.6386,\\\\n      \\\\\\\"delta\\\\\\\": 1.1208\\\\n    },\\\\n    \\\\\\\"entropy_std\\\\\\\": {\\\\n      \\\\\\\"instruct\\\\\\\": 0.2955,\\\\n      \\\\\\\"base\\\\\\\": -0.2958,\\\\n      \\\\\\\"delta\\\\\\\": 0.5913\\\\n    },\\\\n    \\\\\\\"entropy_min\\\\\\\": {\\\\n      \\\\\\\"instruct\\\\\\\": 0.0796,\\\\n      \\\\\\\"base\\\\\\\": -0.3874,\\\\n      \\\\\\\"delta\\\\\\\": 0.467\\\\n    },\\\\n    \\\\\\\"entropy_max\\\\\\\": {\\\\n      \\\\\\\"instruct\\\\\\\": 0.3055,\\\\n      \\\\\\\"base\\\\\\\": 0.0672,\\\\n      \\\\\\\"delta\\\\\\\": 0.2383\\\\n    },\\\\n    \\\\\\\"tail_decay\\\\\\\": {\\\\n      \\\\\\\"instruct\\\\\\\": 0.2276,\\\\n      \\\\\\\"base\\\\\\\": -0.1411,\\\\n      \\\\\\\"delta\\\\\\\": 0.3687\\\\n    },\\\\n    \\\\\\\"ttr\\\\\\\": {\\\\n      \\\\\\\"instruct\\\\\\\": 0.0057,\\\\n      \\\\\\\"base\\\\\\\": -0.6996,\\\\n      \\\\\\\"delta\\\\\\\": 0.7053\\\\n    },\\\\n    \\\\\\\"hapax_ratio\\\\\\\": {\\\\n      \\\\\\\"instruct\\\\\\\": 0.0253,\\\\n      \\\\\\\"base\\\\\\\": -0.7124,\\\\n      \\\\\\\"delta\\\\\\\": 0.7377\\\\n    }\\\\n  },\\\\n  \\\\\\\"instruct_logo_f1\\\\\\\": 0.3379,\\\\n  \\\\\\\"base_olmo_logo_f1\\\\\\\": 0.7633,\\\\n  \\\\\\\"delta_instruct_vs_base\\\\\\\": -0.4254,\\\\n  \\\\\\\"conclusion\\\\\\\": \\\\\\\"negative: instruct tuning significantly reduces depth signal\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"review-p1c-olmo-instruct\\\",\\n  \\\"model\\\": \\\"OLMo-2-0425-1B-Instruct (allenai/OLMo-2-0425-1B-Instruct)\\\",\\n  \\\"model_source\\\": \\\"HuggingFace\\\",\\n  \\\"n_records_instruct\\\": 4429,\\n  \\\"n_records_total_7gen\\\": 31958,\\n  \\\"depth_distribution\\\": {\\n    \\\"0\\\": 995,\\n    \\\"1\\\": 965,\\n    \\\"2\\\": 884,\\n    \\\"3\\\": 817,\\n    \\\"4\\\": 768\\n  },\\n  \\\"logo_7gen_3class\\\": {\\n    \\\"per_generator\\\": {\\n      \\\"olmo-2-0425-1b-instruct\\\": {\\n        \\\"macro_f1\\\": 0.3379,\\n        \\\"gen-0_f1\\\": 0.526,\\n        \\\"gen-1_f1\\\": 0.3339,\\n        \\\"gen-2+_f1\\\": 0.1539,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.3380736841172507,\\n          \\\"ci_lo\\\": 0.3250174612221341,\\n          \\\"ci_hi\\\": 0.3514903698562415\\n        }\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"macro_f1\\\": 0.7633,\\n        \\\"gen-0_f1\\\": 0.9444,\\n        \\\"gen-1_f1\\\": 0.5922,\\n        \\\"gen-2+_f1\\\": 0.7534,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.7631399495937501,\\n          \\\"ci_lo\\\": 0.7520292422892575,\\n          \\\"ci_hi\\\": 0.7737292561178561\\n        }\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"macro_f1\\\": 0.8451,\\n        \\\"gen-0_f1\\\": 0.9805,\\n        \\\"gen-1_f1\\\": 0.6962,\\n        \\\"gen-2+_f1\\\": 0.8587,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.845025541189118,\\n          \\\"ci_lo\\\": 0.834841912039178,\\n          \\\"ci_hi\\\": 0.8556018014634915\\n        }\\n      },\\n      \\\"pythia-2.8b\\\": {\\n        \\\"macro_f1\\\": 0.7971,\\n        \\\"gen-0_f1\\\": 0.9708,\\n        \\\"gen-1_f1\\\": 0.6364,\\n        \\\"gen-2+_f1\\\": 0.7839,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.7967881333324128,\\n          \\\"ci_lo\\\": 0.7864447883881671,\\n          \\\"ci_hi\\\": 0.8080238077410145\\n        }\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"macro_f1\\\": 0.8209,\\n        \\\"gen-0_f1\\\": 0.9665,\\n        \\\"gen-1_f1\\\": 0.6621,\\n        \\\"gen-2+_f1\\\": 0.8342,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.8210767908166986,\\n          \\\"ci_lo\\\": 0.8100506278392143,\\n          \\\"ci_hi\\\": 0.8319175240261408\\n        }\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"macro_f1\\\": 0.8136,\\n        \\\"gen-0_f1\\\": 0.9455,\\n        \\\"gen-1_f1\\\": 0.6658,\\n        \\\"gen-2+_f1\\\": 0.8294,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.8133538950834234,\\n          \\\"ci_lo\\\": 0.8026746268951767,\\n          \\\"ci_hi\\\": 0.824418063400238\\n        }\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"macro_f1\\\": 0.6938,\\n        \\\"gen-0_f1\\\": 0.843,\\n        \\\"gen-1_f1\\\": 0.5496,\\n        \\\"gen-2+_f1\\\": 0.6888,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.693704175291729,\\n          \\\"ci_lo\\\": 0.6805743340306835,\\n          \\\"ci_hi\\\": 0.7073756594044247\\n        }\\n      }\\n    },\\n    \\\"average_macro_f1\\\": 0.7245\\n  },\\n  \\\"binary_f1_logo\\\": {\\n    \\\"per_generator\\\": {\\n      \\\"olmo-2-0425-1b-instruct\\\": {\\n        \\\"f1\\\": 0.4255,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.4256789837352178,\\n          \\\"ci_lo\\\": 0.41275103521847256,\\n          \\\"ci_hi\\\": 0.43901739690483443\\n        }\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"f1\\\": 0.7944,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.7943162140516657,\\n          \\\"ci_lo\\\": 0.7823468480563879,\\n          \\\"ci_hi\\\": 0.8054289093942969\\n        }\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"f1\\\": 0.8667,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.8664143036854169,\\n          \\\"ci_lo\\\": 0.8562783501162508,\\n          \\\"ci_hi\\\": 0.8764623427338004\\n        }\\n      },\\n      \\\"pythia-2.8b\\\": {\\n        \\\"f1\\\": 0.8252,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.8251696743463415,\\n          \\\"ci_lo\\\": 0.8141114062948446,\\n          \\\"ci_hi\\\": 0.8356442740447173\\n        }\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"f1\\\": 0.8267,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.8265540679746043,\\n          \\\"ci_lo\\\": 0.815052948985976,\\n          \\\"ci_hi\\\": 0.8373768596739709\\n        }\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"f1\\\": 0.8322,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.8318341461340308,\\n          \\\"ci_lo\\\": 0.8211362470846085,\\n          \\\"ci_hi\\\": 0.8428181649432273\\n        }\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"f1\\\": 0.7579,\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.7578849497768999,\\n          \\\"ci_lo\\\": 0.7448943520442451,\\n          \\\"ci_hi\\\": 0.7702532826313947\\n        }\\n      }\\n    },\\n    \\\"average_f1\\\": 0.7612\\n  },\\n  \\\"instruct_spearman_rho\\\": {\\n    \\\"entropy_mean\\\": 0.4822,\\n    \\\"entropy_std\\\": 0.2955,\\n    \\\"entropy_min\\\": 0.0796,\\n    \\\"entropy_max\\\": 0.3055,\\n    \\\"tail_decay\\\": 0.2276,\\n    \\\"ttr\\\": 0.0057,\\n    \\\"hapax_ratio\\\": 0.0253\\n  },\\n  \\\"instruct_spearman_p\\\": {\\n    \\\"entropy_mean\\\": \\\"1.07e-256\\\",\\n    \\\"entropy_std\\\": \\\"5.65e-90\\\",\\n    \\\"entropy_min\\\": \\\"1.15e-07\\\",\\n    \\\"entropy_max\\\": \\\"2.44e-96\\\",\\n    \\\"tail_decay\\\": \\\"3.93e-53\\\",\\n    \\\"ttr\\\": \\\"7.05e-01\\\",\\n    \\\"hapax_ratio\\\": \\\"9.28e-02\\\"\\n  },\\n  \\\"base_olmo_spearman_rho\\\": {\\n    \\\"entropy_mean\\\": -0.6386,\\n    \\\"entropy_std\\\": -0.2958,\\n    \\\"entropy_min\\\": -0.3874,\\n    \\\"entropy_max\\\": 0.0672,\\n    \\\"tail_decay\\\": -0.1411,\\n    \\\"ttr\\\": -0.6996,\\n    \\\"hapax_ratio\\\": -0.7124\\n  },\\n  \\\"comparison_instruct_vs_base\\\": {\\n    \\\"entropy_mean\\\": {\\n      \\\"instruct\\\": 0.4822,\\n      \\\"base\\\": -0.6386,\\n      \\\"delta\\\": 1.1208\\n    },\\n    \\\"entropy_std\\\": {\\n      \\\"instruct\\\": 0.2955,\\n      \\\"base\\\": -0.2958,\\n      \\\"delta\\\": 0.5913\\n    },\\n    \\\"entropy_min\\\": {\\n      \\\"instruct\\\": 0.0796,\\n      \\\"base\\\": -0.3874,\\n      \\\"delta\\\": 0.467\\n    },\\n    \\\"entropy_max\\\": {\\n      \\\"instruct\\\": 0.3055,\\n      \\\"base\\\": 0.0672,\\n      \\\"delta\\\": 0.2383\\n    },\\n    \\\"tail_decay\\\": {\\n      \\\"instruct\\\": 0.2276,\\n      \\\"base\\\": -0.1411,\\n      \\\"delta\\\": 0.3687\\n    },\\n    \\\"ttr\\\": {\\n      \\\"instruct\\\": 0.0057,\\n      \\\"base\\\": -0.6996,\\n      \\\"delta\\\": 0.7053\\n    },\\n    \\\"hapax_ratio\\\": {\\n      \\\"instruct\\\": 0.0253,\\n      \\\"base\\\": -0.7124,\\n      \\\"delta\\\": 0.7377\\n    }\\n  },\\n  \\\"instruct_logo_f1\\\": 0.3379,\\n  \\\"base_olmo_logo_f1\\\": 0.7633,\\n  \\\"delta_instruct_vs_base\\\": -0.4254,\\n  \\\"conclusion\\\": \\\"negative: instruct tuning significantly reduces depth signal\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01M6m8gpDFMe7WYAptdF53Gr`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/review_p1c_qwen06b_instruct.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "b4c0b052-3f14-4103-840d-73461c53e948",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016n1mCWSa5np4SMcJPzgwyW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12311,
+      "cache_read_input_tokens": 30610,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12311
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-17T10:54:55.145Z_
+
+<details><summary>↩ Tool result · `toolu_01M6m8gpDFMe7WYAptdF53Gr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment_id\\\": \\\"review-p1c-qwen06b-instruct\\\",\\n  \\\"model\\\": \\\"Qwen3-0.6B (instruct)\\\",\\n  \\\"model_path\\\": \\\"Qwen/Qwen3-0.6B\\\",\\n  \\\"n_records_instruct\\\": 4923,\\n  \\\"n_records_base\\\": 4538,\\n  \\\"depth_distribution\\\": {\\n    \\\"0\\\": 996,\\n    \\\"1\\\": 996,\\n    \\\"2\\\": 979,\\n    \\\"3\\\": 977,\\n    \\\"4\\\": 975\\n  },\\n  \\\"token_stats_per_depth\\\": {\\n    \\\"0\\\": {\\n      \\\"mean_tokens\\\": 252.1,\\n      \\\"median_tokens\\\": 256\\n    },\\n    \\\"1\\\": {\\n      \\\"mean_tokens\\\": 34.9,\\n      \\\"median_tokens\\\": 28\\n    },\\n    \\\"2\\\": {\\n      \\\"mean_tokens\\\": 26.5,\\n      \\\"median_tokens\\\": 23\\n    },\\n    \\\"3\\\": {\\n      \\\"mean_tokens\\\": 24.0,\\n      \\\"median_tokens\\\": 22\\n    },\\n    \\\"4\\\": {\\n      \\\"mean_tokens\\\": 22.5,\\n      \\\"median_tokens\\\": 21\\n    }\\n  },\\n  \\\"spearman_instruct\\\": {\\n    \\\"entropy_mean\\\": 0.5176,\\n    \\\"entropy_std\\\": 0.2687,\\n    \\\"entropy_min\\\": 0.5125,\\n    \\\"entropy_max\\\": 0.0901,\\n    \\\"tail_decay\\\": 0.1077,\\n    \\\"ttr\\\": 0.5287,\\n    \\\"hapax_ratio\\\": 0.5085\\n  },\\n  \\\"spearman_base\\\": {\\n    \\\"entropy_mean\\\": -0.5656,\\n    \\\"entropy_std\\\": -0.2294,\\n    \\\"entropy_min\\\": -0.3587,\\n    \\\"entropy_max\\\": 0.0857,\\n    \\\"tail_decay\\\": -0.0902,\\n    \\\"ttr\\\": -0.6111,\\n    \\\"hapax_ratio\\\": -0.6273\\n  },\\n  \\\"spearman_comparison\\\": {\\n    \\\"entropy_mean\\\": {\\n      \\\"instruct\\\": 0.5176,\\n      \\\"base\\\": -0.5656,\\n      \\\"delta\\\": 1.0832\\n    },\\n    \\\"entropy_std\\\": {\\n      \\\"instruct\\\": 0.2687,\\n      \\\"base\\\": -0.2294,\\n      \\\"delta\\\": 0.4981\\n    },\\n    \\\"entropy_min\\\": {\\n      \\\"instruct\\\": 0.5125,\\n      \\\"base\\\": -0.3587,\\n      \\\"delta\\\": 0.8712\\n    },\\n    \\\"entropy_max\\\": {\\n      \\\"instruct\\\": 0.0901,\\n      \\\"base\\\": 0.0857,\\n      \\\"delta\\\": 0.0044\\n    },\\n    \\\"tail_decay\\\": {\\n      \\\"instruct\\\": 0.1077,\\n      \\\"base\\\": -0.0902,\\n      \\\"delta\\\": 0.1979\\n    },\\n    \\\"ttr\\\": {\\n      \\\"instruct\\\": 0.5287,\\n      \\\"base\\\": -0.6111,\\n      \\\"delta\\\": 1.1398\\n    },\\n    \\\"hapax_ratio\\\": {\\n      \\\"instruct\\\": 0.5085,\\n      \\\"base\\\": -0.6273,\\n      \\\"delta\\\": 1.1358\\n    }\\n  },\\n  \\\"logo_7gen\\\": {\\n    \\\"per_generator\\\": {\\n      \\\"olmo-2-1b\\\": {\\n        \\\"macro_f1\\\": 0.7578,\\n        \\\"per_class_f1\\\": {\\n          \\\"gen-0\\\": 0.938,\\n          \\\"gen-1\\\": 0.5888,\\n          \\\"gen-2+\\\": 0.7466\\n        },\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.7576991751935547,\\n          \\\"ci_lo\\\": 0.7468592829489643,\\n          \\\"ci_hi\\\": 0.7687636898018686\\n        }\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"macro_f1\\\": 0.8546,\\n        \\\"per_class_f1\\\": {\\n          \\\"gen-0\\\": 0.9846,\\n          \\\"gen-1\\\": 0.7121,\\n          \\\"gen-2+\\\": 0.8672\\n        },\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.8546485581812292,\\n          \\\"ci_lo\\\": 0.8445310775703919,\\n          \\\"ci_hi\\\": 0.86439002991474\\n        }\\n      },\\n      \\\"pythia-2.8b\\\": {\\n        \\\"macro_f1\\\": 0.7988,\\n        \\\"per_class_f1\\\": {\\n          \\\"gen-0\\\": 0.9707,\\n          \\\"gen-1\\\": 0.6391,\\n          \\\"gen-2+\\\": 0.7866\\n        },\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.798484362828443,\\n          \\\"ci_lo\\\": 0.7876998517923184,\\n          \\\"ci_hi\\\": 0.8100999084144466\\n        }\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"macro_f1\\\": 0.8158,\\n        \\\"per_class_f1\\\": {\\n          \\\"gen-0\\\": 0.9621,\\n          \\\"gen-1\\\": 0.6589,\\n          \\\"gen-2+\\\": 0.8264\\n        },\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.8159295014128376,\\n          \\\"ci_lo\\\": 0.8050046217928502,\\n          \\\"ci_hi\\\": 0.8270368722347171\\n        }\\n      },\\n      \\\"qwen3-0.6b-instruct\\\": {\\n        \\\"macro_f1\\\": 0.6674,\\n        \\\"per_class_f1\\\": {\\n          \\\"gen-0\\\": 0.9482,\\n          \\\"gen-1\\\": 0.2843,\\n          \\\"gen-2+\\\": 0.7695\\n        },\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.6671746602101434,\\n          \\\"ci_lo\\\": 0.6555662225800839,\\n          \\\"ci_hi\\\": 0.6789155366594491\\n        }\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"macro_f1\\\": 0.7989,\\n        \\\"per_class_f1\\\": {\\n          \\\"gen-0\\\": 0.9305,\\n          \\\"gen-1\\\": 0.6502,\\n          \\\"gen-2+\\\": 0.8161\\n        },\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.7988169471961164,\\n          \\\"ci_lo\\\": 0.7881602778685387,\\n          \\\"ci_hi\\\": 0.8104426568669346\\n        }\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"macro_f1\\\": 0.6761,\\n        \\\"per_class_f1\\\": {\\n          \\\"gen-0\\\": 0.8215,\\n          \\\"gen-1\\\": 0.5404,\\n          \\\"gen-2+\\\": 0.6663\\n        },\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.6760992975295808,\\n          \\\"ci_lo\\\": 0.6629577446152938,\\n          \\\"ci_hi\\\": 0.689699636715421\\n        }\\n      }\\n    },\\n    \\\"average_macro_f1\\\": 0.7671,\\n    \\\"instruct_held_out_f1\\\": 0.6674,\\n    \\\"base_held_out_f1\\\": 0.8158\\n  },\\n  \\\"binary_logo_7gen\\\": {\\n    \\\"per_generator\\\": {\\n      \\\"olmo-2-1b\\\": 0.9792,\\n      \\\"pythia-1b\\\": 0.9948,\\n      \\\"pythia-2.8b\\\": 0.9878,\\n      \\\"qwen3-0.6b\\\": 0.9876,\\n      \\\"qwen3-0.6b-instruct\\\": 0.9883,\\n      \\\"qwen3-1.7b\\\": 0.9755,\\n      \\\"qwen3-8b\\\": 0.923\\n    },\\n    \\\"average_f1\\\": 0.9766\\n  },\\n  \\\"depth_means\\\": {\\n    \\\"0\\\": {\\n      \\\"entropy_mean\\\": 2.6385,\\n      \\\"entropy_std\\\": 1.6616,\\n      \\\"entropy_min\\\": 0.0059,\\n      \\\"entropy_max\\\": 7.3784,\\n      \\\"tail_decay\\\": -0.0023,\\n      \\\"ttr\\\": 0.6439,\\n      \\\"hapax_ratio\\\": 0.517\\n    },\\n    \\\"1\\\": {\\n      \\\"entropy_mean\\\": 3.8528,\\n      \\\"entropy_std\\\": 1.824,\\n      \\\"entropy_min\\\": 0.6922,\\n      \\\"entropy_max\\\": 7.4581,\\n      \\\"tail_decay\\\": -0.0022,\\n      \\\"ttr\\\": 0.8771,\\n      \\\"hapax_ratio\\\": 0.7978\\n    },\\n    \\\"2\\\": {\\n      \\\"entropy_mean\\\": 3.9824,\\n      \\\"entropy_std\\\": 1.8744,\\n      \\\"entropy_min\\\": 0.7404,\\n      \\\"entropy_max\\\": 7.6601,\\n      \\\"tail_decay\\\": -0.0022,\\n      \\\"ttr\\\": 0.893,\\n      \\\"hapax_ratio\\\": 0.8179\\n    },\\n    \\\"3\\\": {\\n      \\\"entropy_mean\\\": 3.9889,\\n      \\\"entropy_std\\\": 1.8655,\\n      \\\"entropy_min\\\": 0.7751,\\n      \\\"entropy_max\\\": 7.6157,\\n      \\\"tail_decay\\\": -0.0022,\\n      \\\"ttr\\\": 0.9023,\\n      \\\"hapax_ratio\\\": 0.8326\\n    },\\n    \\\"4\\\": {\\n      \\\"entropy_mean\\\": 3.9947,\\n      \\\"entropy_std\\\": 1.8526,\\n      \\\"entropy_min\\\": 0.7763,\\n      \\\"entropy_max\\\": 7.5444,\\n      \\\"tail_decay\\\": -0.0022,\\n      \\\"ttr\\\": 0.9075,\\n      \\\"hapax_ratio\\\": 0.8398\\n    }\\n  },\\n  \\\"conclusion\\\": {\\n    \\\"verdict\\\": \\\"NEGATIVE\\\",\\n    \\\"f1_delta\\\": -0.1484,\\n    \\\"drift_features_preserved\\\": true,\\n    \\\"explanation\\\": \\\"Instruct F1 (0.667) below base (0.816) by -0.148; instruct mode attenuates depth signal.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "5ef19f67-f1f9-4f48-9162-bd459068b714",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment_id\\\\\\\": \\\\\\\"review-p1c-qwen06b-instruct\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-0.6B (instruct)\\\\\\\",\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"Qwen/Qwen3-0.6B\\\\\\\",\\\\n  \\\\\\\"n_records_instruct\\\\\\\": 4923,\\\\n  \\\\\\\"n_records_base\\\\\\\": 4538,\\\\n  \\\\\\\"depth_distribution\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": 996,\\\\n    \\\\\\\"1\\\\\\\": 996,\\\\n    \\\\\\\"2\\\\\\\": 979,\\\\n    \\\\\\\"3\\\\\\\": 977,\\\\n    \\\\\\\"4\\\\\\\": 975\\\\n  },\\\\n  \\\\\\\"token_stats_per_depth\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": {\\\\n      \\\\\\\"mean_tokens\\\\\\\": 252.1,\\\\n      \\\\\\\"median_tokens\\\\\\\": 256\\\\n    },\\\\n    \\\\\\\"1\\\\\\\": {\\\\n      \\\\\\\"mean_tokens\\\\\\\": 34.9,\\\\n      \\\\\\\"median_tokens\\\\\\\": 28\\\\n    },\\\\n    \\\\\\\"2\\\\\\\": {\\\\n      \\\\\\\"mean_tokens\\\\\\\": 26.5,\\\\n      \\\\\\\"median_tokens\\\\\\\": 23\\\\n    },\\\\n    \\\\\\\"3\\\\\\\": {\\\\n      \\\\\\\"mean_tokens\\\\\\\": 24.0,\\\\n      \\\\\\\"median_tokens\\\\\\\": 22\\\\n    },\\\\n    \\\\\\\"4\\\\\\\": {\\\\n      \\\\\\\"mean_tokens\\\\\\\": 22.5,\\\\n      \\\\\\\"median_tokens\\\\\\\": 21\\\\n    }\\\\n  },\\\\n  \\\\\\\"spearman_instruct\\\\\\\": {\\\\n    \\\\\\\"entropy_mean\\\\\\\": 0.5176,\\\\n    \\\\\\\"entropy_std\\\\\\\": 0.2687,\\\\n    \\\\\\\"entropy_min\\\\\\\": 0.5125,\\\\n    \\\\\\\"entropy_max\\\\\\\": 0.0901,\\\\n    \\\\\\\"tail_decay\\\\\\\": 0.1077,\\\\n    \\\\\\\"ttr\\\\\\\": 0.5287,\\\\n    \\\\\\\"hapax_ratio\\\\\\\": 0.5085\\\\n  },\\\\n  \\\\\\\"spearman_base\\\\\\\": {\\\\n    \\\\\\\"entropy_mean\\\\\\\": -0.5656,\\\\n    \\\\\\\"entropy_std\\\\\\\": -0.2294,\\\\n    \\\\\\\"entropy_min\\\\\\\": -0.3587,\\\\n    \\\\\\\"entropy_max\\\\\\\": 0.0857,\\\\n    \\\\\\\"tail_decay\\\\\\\": -0.0902,\\\\n    \\\\\\\"ttr\\\\\\\": -0.6111,\\\\n    \\\\\\\"hapax_ratio\\\\\\\": -0.6273\\\\n  },\\\\n  \\\\\\\"spearman_comparison\\\\\\\": {\\\\n    \\\\\\\"entropy_mean\\\\\\\": {\\\\n      \\\\\\\"instruct\\\\\\\": 0.5176,\\\\n      \\\\\\\"base\\\\\\\": -0.5656,\\\\n      \\\\\\\"delta\\\\\\\": 1.0832\\\\n    },\\\\n    \\\\\\\"entropy_std\\\\\\\": {\\\\n      \\\\\\\"instruct\\\\\\\": 0.2687,\\\\n      \\\\\\\"base\\\\\\\": -0.2294,\\\\n      \\\\\\\"delta\\\\\\\": 0.4981\\\\n    },\\\\n    \\\\\\\"entropy_min\\\\\\\": {\\\\n      \\\\\\\"instruct\\\\\\\": 0.5125,\\\\n      \\\\\\\"base\\\\\\\": -0.3587,\\\\n      \\\\\\\"delta\\\\\\\": 0.8712\\\\n    },\\\\n    \\\\\\\"entropy_max\\\\\\\": {\\\\n      \\\\\\\"instruct\\\\\\\": 0.0901,\\\\n      \\\\\\\"base\\\\\\\": 0.0857,\\\\n      \\\\\\\"delta\\\\\\\": 0.0044\\\\n    },\\\\n    \\\\\\\"tail_decay\\\\\\\": {\\\\n      \\\\\\\"instruct\\\\\\\": 0.1077,\\\\n      \\\\\\\"base\\\\\\\": -0.0902,\\\\n      \\\\\\\"delta\\\\\\\": 0.1979\\\\n    },\\\\n    \\\\\\\"ttr\\\\\\\": {\\\\n      \\\\\\\"instruct\\\\\\\": 0.5287,\\\\n      \\\\\\\"base\\\\\\\": -0.6111,\\\\n      \\\\\\\"delta\\\\\\\": 1.1398\\\\n    },\\\\n    \\\\\\\"hapax_ratio\\\\\\\": {\\\\n      \\\\\\\"instruct\\\\\\\": 0.5085,\\\\n      \\\\\\\"base\\\\\\\": -0.6273,\\\\n      \\\\\\\"delta\\\\\\\": 1.1358\\\\n    }\\\\n  },\\\\n  \\\\\\\"logo_7gen\\\\\\\": {\\\\n    \\\\\\\"per_generator\\\\\\\": {\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.7578,\\\\n        \\\\\\\"per_class_f1\\\\\\\": {\\\\n          \\\\\\\"gen-0\\\\\\\": 0.938,\\\\n          \\\\\\\"gen-1\\\\\\\": 0.5888,\\\\n          \\\\\\\"gen-2+\\\\\\\": 0.7466\\\\n        },\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.7576991751935547,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.7468592829489643,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.7687636898018686\\\\n        }\\\\n      },\\\\n      \\\\\\\"pythia-1b\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.8546,\\\\n        \\\\\\\"per_class_f1\\\\\\\": {\\\\n          \\\\\\\"gen-0\\\\\\\": 0.9846,\\\\n          \\\\\\\"gen-1\\\\\\\": 0.7121,\\\\n          \\\\\\\"gen-2+\\\\\\\": 0.8672\\\\n        },\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8546485581812292,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.8445310775703919,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.86439002991474\\\\n        }\\\\n      },\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.7988,\\\\n        \\\\\\\"per_class_f1\\\\\\\": {\\\\n          \\\\\\\"gen-0\\\\\\\": 0.9707,\\\\n          \\\\\\\"gen-1\\\\\\\": 0.6391,\\\\n          \\\\\\\"gen-2+\\\\\\\": 0.7866\\\\n        },\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.798484362828443,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.7876998517923184,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8100999084144466\\\\n        }\\\\n      },\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.8158,\\\\n        \\\\\\\"per_class_f1\\\\\\\": {\\\\n          \\\\\\\"gen-0\\\\\\\": 0.9621,\\\\n          \\\\\\\"gen-1\\\\\\\": 0.6589,\\\\n          \\\\\\\"gen-2+\\\\\\\": 0.8264\\\\n        },\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8159295014128376,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.8050046217928502,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8270368722347171\\\\n        }\\\\n      },\\\\n      \\\\\\\"qwen3-0.6b-instruct\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.6674,\\\\n        \\\\\\\"per_class_f1\\\\\\\": {\\\\n          \\\\\\\"gen-0\\\\\\\": 0.9482,\\\\n          \\\\\\\"gen-1\\\\\\\": 0.2843,\\\\n          \\\\\\\"gen-2+\\\\\\\": 0.7695\\\\n        },\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.6671746602101434,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.6555662225800839,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.6789155366594491\\\\n        }\\\\n      },\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.7989,\\\\n        \\\\\\\"per_class_f1\\\\\\\": {\\\\n          \\\\\\\"gen-0\\\\\\\": 0.9305,\\\\n          \\\\\\\"gen-1\\\\\\\": 0.6502,\\\\n          \\\\\\\"gen-2+\\\\\\\": 0.8161\\\\n        },\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.7988169471961164,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.7881602778685387,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8104426568669346\\\\n        }\\\\n      },\\\\n      \\\\\\\"qwen3-8b\\\\\\\": {\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.6761,\\\\n        \\\\\\\"per_class_f1\\\\\\\": {\\\\n          \\\\\\\"gen-0\\\\\\\": 0.8215,\\\\n          \\\\\\\"gen-1\\\\\\\": 0.5404,\\\\n          \\\\\\\"gen-2+\\\\\\\": 0.6663\\\\n        },\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.6760992975295808,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.6629577446152938,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.689699636715421\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"average_macro_f1\\\\\\\": 0.7671,\\\\n    \\\\\\\"instruct_held_out_f1\\\\\\\": 0.6674,\\\\n    \\\\\\\"base_held_out_f1\\\\\\\": 0.8158\\\\n  },\\\\n  \\\\\\\"binary_logo_7gen\\\\\\\": {\\\\n    \\\\\\\"per_generator\\\\\\\": {\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": 0.9792,\\\\n      \\\\\\\"pythia-1b\\\\\\\": 0.9948,\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": 0.9878,\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": 0.9876,\\\\n      \\\\\\\"qwen3-0.6b-instruct\\\\\\\": 0.9883,\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": 0.9755,\\\\n      \\\\\\\"qwen3-8b\\\\\\\": 0.923\\\\n    },\\\\n    \\\\\\\"average_f1\\\\\\\": 0.9766\\\\n  },\\\\n  \\\\\\\"depth_means\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": 2.6385,\\\\n      \\\\\\\"entropy_std\\\\\\\": 1.6616,\\\\n      \\\\\\\"entropy_min\\\\\\\": 0.0059,\\\\n      \\\\\\\"entropy_max\\\\\\\": 7.3784,\\\\n      \\\\\\\"tail_decay\\\\\\\": -0.0023,\\\\n      \\\\\\\"ttr\\\\\\\": 0.6439,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.517\\\\n    },\\\\n    \\\\\\\"1\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": 3.8528,\\\\n      \\\\\\\"entropy_std\\\\\\\": 1.824,\\\\n      \\\\\\\"entropy_min\\\\\\\": 0.6922,\\\\n      \\\\\\\"entropy_max\\\\\\\": 7.4581,\\\\n      \\\\\\\"tail_decay\\\\\\\": -0.0022,\\\\n      \\\\\\\"ttr\\\\\\\": 0.8771,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.7978\\\\n    },\\\\n    \\\\\\\"2\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": 3.9824,\\\\n      \\\\\\\"entropy_std\\\\\\\": 1.8744,\\\\n      \\\\\\\"entropy_min\\\\\\\": 0.7404,\\\\n      \\\\\\\"entropy_max\\\\\\\": 7.6601,\\\\n      \\\\\\\"tail_decay\\\\\\\": -0.0022,\\\\n      \\\\\\\"ttr\\\\\\\": 0.893,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.8179\\\\n    },\\\\n    \\\\\\\"3\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": 3.9889,\\\\n      \\\\\\\"entropy_std\\\\\\\": 1.8655,\\\\n      \\\\\\\"entropy_min\\\\\\\": 0.7751,\\\\n      \\\\\\\"entropy_max\\\\\\\": 7.6157,\\\\n      \\\\\\\"tail_decay\\\\\\\": -0.0022,\\\\n      \\\\\\\"ttr\\\\\\\": 0.9023,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.8326\\\\n    },\\\\n    \\\\\\\"4\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": 3.9947,\\\\n      \\\\\\\"entropy_std\\\\\\\": 1.8526,\\\\n      \\\\\\\"entropy_min\\\\\\\": 0.7763,\\\\n      \\\\\\\"entropy_max\\\\\\\": 7.5444,\\\\n      \\\\\\\"tail_decay\\\\\\\": -0.0022,\\\\n      \\\\\\\"ttr\\\\\\\": 0.9075,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.8398\\\\n    }\\\\n  },\\\\n  \\\\\\\"conclusion\\\\\\\": {\\\\n    \\\\\\\"verdict\\\\\\\": \\\\\\\"NEGATIVE\\\\\\\",\\\\n    \\\\\\\"f1_delta\\\\\\\": -0.1484,\\\\n    \\\\\\\"drift_features_preserved\\\\\\\": true,\\\\n    \\\\\\\"explanation\\\\\\\": \\\\\\\"Instruct F1 (0.667) below base (0.816) by -0.148; instruct mode attenuates depth signal.\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment_id\\\": \\\"review-p1c-qwen06b-instruct\\\",\\n  \\\"model\\\": \\\"Qwen3-0.6B (instruct)\\\",\\n  \\\"model_path\\\": \\\"Qwen/Qwen3-0.6B\\\",\\n  \\\"n_records_instruct\\\": 4923,\\n  \\\"n_records_base\\\": 4538,\\n  \\\"depth_distribution\\\": {\\n    \\\"0\\\": 996,\\n    \\\"1\\\": 996,\\n    \\\"2\\\": 979,\\n    \\\"3\\\": 977,\\n    \\\"4\\\": 975\\n  },\\n  \\\"token_stats_per_depth\\\": {\\n    \\\"0\\\": {\\n      \\\"mean_tokens\\\": 252.1,\\n      \\\"median_tokens\\\": 256\\n    },\\n    \\\"1\\\": {\\n      \\\"mean_tokens\\\": 34.9,\\n      \\\"median_tokens\\\": 28\\n    },\\n    \\\"2\\\": {\\n      \\\"mean_tokens\\\": 26.5,\\n      \\\"median_tokens\\\": 23\\n    },\\n    \\\"3\\\": {\\n      \\\"mean_tokens\\\": 24.0,\\n      \\\"median_tokens\\\": 22\\n    },\\n    \\\"4\\\": {\\n      \\\"mean_tokens\\\": 22.5,\\n      \\\"median_tokens\\\": 21\\n    }\\n  },\\n  \\\"spearman_instruct\\\": {\\n    \\\"entropy_mean\\\": 0.5176,\\n    \\\"entropy_std\\\": 0.2687,\\n    \\\"entropy_min\\\": 0.5125,\\n    \\\"entropy_max\\\": 0.0901,\\n    \\\"tail_decay\\\": 0.1077,\\n    \\\"ttr\\\": 0.5287,\\n    \\\"hapax_ratio\\\": 0.5085\\n  },\\n  \\\"spearman_base\\\": {\\n    \\\"entropy_mean\\\": -0.5656,\\n    \\\"entropy_std\\\": -0.2294,\\n    \\\"entropy_min\\\": -0.3587,\\n    \\\"entropy_max\\\": 0.0857,\\n    \\\"tail_decay\\\": -0.0902,\\n    \\\"ttr\\\": -0.6111,\\n    \\\"hapax_ratio\\\": -0.6273\\n  },\\n  \\\"spearman_comparison\\\": {\\n    \\\"entropy_mean\\\": {\\n      \\\"instruct\\\": 0.5176,\\n      \\\"base\\\": -0.5656,\\n      \\\"delta\\\": 1.0832\\n    },\\n    \\\"entropy_std\\\": {\\n      \\\"instruct\\\": 0.2687,\\n      \\\"base\\\": -0.2294,\\n      \\\"delta\\\": 0.4981\\n    },\\n    \\\"entropy_min\\\": {\\n      \\\"instruct\\\": 0.5125,\\n      \\\"base\\\": -0.3587,\\n      \\\"delta\\\": 0.8712\\n    },\\n    \\\"entropy_max\\\": {\\n      \\\"instruct\\\": 0.0901,\\n      \\\"base\\\": 0.0857,\\n      \\\"delta\\\": 0.0044\\n    },\\n    \\\"tail_decay\\\": {\\n      \\\"instruct\\\": 0.1077,\\n      \\\"base\\\": -0.0902,\\n      \\\"delta\\\": 0.1979\\n    },\\n    \\\"ttr\\\": {\\n      \\\"instruct\\\": 0.5287,\\n      \\\"base\\\": -0.6111,\\n      \\\"delta\\\": 1.1398\\n    },\\n    \\\"hapax_ratio\\\": {\\n      \\\"instruct\\\": 0.5085,\\n      \\\"base\\\": -0.6273,\\n      \\\"delta\\\": 1.1358\\n    }\\n  },\\n  \\\"logo_7gen\\\": {\\n    \\\"per_generator\\\": {\\n      \\\"olmo-2-1b\\\": {\\n        \\\"macro_f1\\\": 0.7578,\\n        \\\"per_class_f1\\\": {\\n          \\\"gen-0\\\": 0.938,\\n          \\\"gen-1\\\": 0.5888,\\n          \\\"gen-2+\\\": 0.7466\\n        },\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.7576991751935547,\\n          \\\"ci_lo\\\": 0.7468592829489643,\\n          \\\"ci_hi\\\": 0.7687636898018686\\n        }\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"macro_f1\\\": 0.8546,\\n        \\\"per_class_f1\\\": {\\n          \\\"gen-0\\\": 0.9846,\\n          \\\"gen-1\\\": 0.7121,\\n          \\\"gen-2+\\\": 0.8672\\n        },\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.8546485581812292,\\n          \\\"ci_lo\\\": 0.8445310775703919,\\n          \\\"ci_hi\\\": 0.86439002991474\\n        }\\n      },\\n      \\\"pythia-2.8b\\\": {\\n        \\\"macro_f1\\\": 0.7988,\\n        \\\"per_class_f1\\\": {\\n          \\\"gen-0\\\": 0.9707,\\n          \\\"gen-1\\\": 0.6391,\\n          \\\"gen-2+\\\": 0.7866\\n        },\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.798484362828443,\\n          \\\"ci_lo\\\": 0.7876998517923184,\\n          \\\"ci_hi\\\": 0.8100999084144466\\n        }\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"macro_f1\\\": 0.8158,\\n        \\\"per_class_f1\\\": {\\n          \\\"gen-0\\\": 0.9621,\\n          \\\"gen-1\\\": 0.6589,\\n          \\\"gen-2+\\\": 0.8264\\n        },\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.8159295014128376,\\n          \\\"ci_lo\\\": 0.8050046217928502,\\n          \\\"ci_hi\\\": 0.8270368722347171\\n        }\\n      },\\n      \\\"qwen3-0.6b-instruct\\\": {\\n        \\\"macro_f1\\\": 0.6674,\\n        \\\"per_class_f1\\\": {\\n          \\\"gen-0\\\": 0.9482,\\n          \\\"gen-1\\\": 0.2843,\\n          \\\"gen-2+\\\": 0.7695\\n        },\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.6671746602101434,\\n          \\\"ci_lo\\\": 0.6555662225800839,\\n          \\\"ci_hi\\\": 0.6789155366594491\\n        }\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"macro_f1\\\": 0.7989,\\n        \\\"per_class_f1\\\": {\\n          \\\"gen-0\\\": 0.9305,\\n          \\\"gen-1\\\": 0.6502,\\n          \\\"gen-2+\\\": 0.8161\\n        },\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.7988169471961164,\\n          \\\"ci_lo\\\": 0.7881602778685387,\\n          \\\"ci_hi\\\": 0.8104426568669346\\n        }\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"macro_f1\\\": 0.6761,\\n        \\\"per_class_f1\\\": {\\n          \\\"gen-0\\\": 0.8215,\\n          \\\"gen-1\\\": 0.5404,\\n          \\\"gen-2+\\\": 0.6663\\n        },\\n        \\\"bootstrap_ci\\\": {\\n          \\\"mean\\\": 0.6760992975295808,\\n          \\\"ci_lo\\\": 0.6629577446152938,\\n          \\\"ci_hi\\\": 0.689699636715421\\n        }\\n      }\\n    },\\n    \\\"average_macro_f1\\\": 0.7671,\\n    \\\"instruct_held_out_f1\\\": 0.6674,\\n    \\\"base_held_out_f1\\\": 0.8158\\n  },\\n  \\\"binary_logo_7gen\\\": {\\n    \\\"per_generator\\\": {\\n      \\\"olmo-2-1b\\\": 0.9792,\\n      \\\"pythia-1b\\\": 0.9948,\\n      \\\"pythia-2.8b\\\": 0.9878,\\n      \\\"qwen3-0.6b\\\": 0.9876,\\n      \\\"qwen3-0.6b-instruct\\\": 0.9883,\\n      \\\"qwen3-1.7b\\\": 0.9755,\\n      \\\"qwen3-8b\\\": 0.923\\n    },\\n    \\\"average_f1\\\": 0.9766\\n  },\\n  \\\"depth_means\\\": {\\n    \\\"0\\\": {\\n      \\\"entropy_mean\\\": 2.6385,\\n      \\\"entropy_std\\\": 1.6616,\\n      \\\"entropy_min\\\": 0.0059,\\n      \\\"entropy_max\\\": 7.3784,\\n      \\\"tail_decay\\\": -0.0023,\\n      \\\"ttr\\\": 0.6439,\\n      \\\"hapax_ratio\\\": 0.517\\n    },\\n    \\\"1\\\": {\\n      \\\"entropy_mean\\\": 3.8528,\\n      \\\"entropy_std\\\": 1.824,\\n      \\\"entropy_min\\\": 0.6922,\\n      \\\"entropy_max\\\": 7.4581,\\n      \\\"tail_decay\\\": -0.0022,\\n      \\\"ttr\\\": 0.8771,\\n      \\\"hapax_ratio\\\": 0.7978\\n    },\\n    \\\"2\\\": {\\n      \\\"entropy_mean\\\": 3.9824,\\n      \\\"entropy_std\\\": 1.8744,\\n      \\\"entropy_min\\\": 0.7404,\\n      \\\"entropy_max\\\": 7.6601,\\n      \\\"tail_decay\\\": -0.0022,\\n      \\\"ttr\\\": 0.893,\\n      \\\"hapax_ratio\\\": 0.8179\\n    },\\n    \\\"3\\\": {\\n      \\\"entropy_mean\\\": 3.9889,\\n      \\\"entropy_std\\\": 1.8655,\\n      \\\"entropy_min\\\": 0.7751,\\n      \\\"entropy_max\\\": 7.6157,\\n      \\\"tail_decay\\\": -0.0022,\\n      \\\"ttr\\\": 0.9023,\\n      \\\"hapax_ratio\\\": 0.8326\\n    },\\n    \\\"4\\\": {\\n      \\\"entropy_mean\\\": 3.9947,\\n      \\\"entropy_std\\\": 1.8526,\\n      \\\"entropy_min\\\": 0.7763,\\n      \\\"entropy_max\\\": 7.5444,\\n      \\\"tail_decay\\\": -0.0022,\\n      \\\"ttr\\\": 0.9075,\\n      \\\"hapax_ratio\\\": 0.8398\\n    }\\n  },\\n  \\\"conclusion\\\": {\\n    \\\"verdict\\\": \\\"NEGATIVE\\\",\\n    \\\"f1_delta\\\": -0.1484,\\n    \\\"drift_features_preserved\\\": true,\\n    \\\"explanation\\\": \\\"Instruct F1 (0.667) below base (0.816) by -0.148; instruct mode attenuates depth signal.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018x1fG7eZZd6AApKKfHMjGN`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/rp_lofo_corrected.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "7a51d588-9fe5-4b9c-88a3-34e2aac853cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016n1mCWSa5np4SMcJPzgwyW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12311,
+      "cache_read_input_tokens": 30610,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12311
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-17T10:54:56.041Z_
+
+<details><summary>↩ Tool result · `toolu_018x1fG7eZZd6AApKKfHMjGN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_gemma_rp10\\\": {\\n    \\\"3class_f1\\\": 0.5536,\\n    \\\"binary_f1\\\": 0.8571,\\n    \\\"per_class\\\": {\\n      \\\"gen-0\\\": 0.9569779643231899,\\n      \\\"gen-1\\\": 0.17647058823529413,\\n      \\\"gen-2+\\\": 0.5274725274725275\\n    },\\n    \\\"confusion_matrix\\\": [\\n      [\\n        912,\\n        12,\\n        70\\n      ],\\n      [\\n        0,\\n        3,\\n        16\\n      ],\\n      [\\n        0,\\n        0,\\n        48\\n      ]\\n    ],\\n    \\\"n_samples\\\": 1061,\\n    \\\"class_distribution\\\": {\\n      \\\"gen-0\\\": 994,\\n      \\\"gen-1\\\": 19,\\n      \\\"gen-2+\\\": 48\\n    }\\n  },\\n  \\\"test_llama_rp11\\\": {\\n    \\\"3class_f1\\\": 0.417,\\n    \\\"binary_f1\\\": 0.5816,\\n    \\\"per_class\\\": {\\n      \\\"gen-0\\\": 0.5314875135722041,\\n      \\\"gen-1\\\": 0.13893129770992366,\\n      \\\"gen-2+\\\": 0.5805106826472121\\n    },\\n    \\\"confusion_matrix\\\": [\\n      [\\n        979,\\n        9,\\n        7\\n      ],\\n      [\\n        613,\\n        91,\\n        271\\n      ],\\n      [\\n        1097,\\n        235,\\n        1114\\n      ]\\n    ],\\n    \\\"n_samples\\\": 4416,\\n    \\\"class_distribution\\\": {\\n      \\\"gen-0\\\": 995,\\n      \\\"gen-1\\\": 975,\\n      \\\"gen-2+\\\": 2446\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "c7d7c272-b9f9-4b49-9820-10452e2b3c3e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"test_gemma_rp10\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.5536,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.8571,\\\\n    \\\\\\\"per_class\\\\\\\": {\\\\n      \\\\\\\"gen-0\\\\\\\": 0.9569779643231899,\\\\n      \\\\\\\"gen-1\\\\\\\": 0.17647058823529413,\\\\n      \\\\\\\"gen-2+\\\\\\\": 0.5274725274725275\\\\n    },\\\\n    \\\\\\\"confusion_matrix\\\\\\\": [\\\\n      [\\\\n        912,\\\\n        12,\\\\n        70\\\\n      ],\\\\n      [\\\\n        0,\\\\n        3,\\\\n        16\\\\n      ],\\\\n      [\\\\n        0,\\\\n        0,\\\\n        48\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"n_samples\\\\\\\": 1061,\\\\n    \\\\\\\"class_distribution\\\\\\\": {\\\\n      \\\\\\\"gen-0\\\\\\\": 994,\\\\n      \\\\\\\"gen-1\\\\\\\": 19,\\\\n      \\\\\\\"gen-2+\\\\\\\": 48\\\\n    }\\\\n  },\\\\n  \\\\\\\"test_llama_rp11\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.417,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.5816,\\\\n    \\\\\\\"per_class\\\\\\\": {\\\\n      \\\\\\\"gen-0\\\\\\\": 0.5314875135722041,\\\\n      \\\\\\\"gen-1\\\\\\\": 0.13893129770992366,\\\\n      \\\\\\\"gen-2+\\\\\\\": 0.5805106826472121\\\\n    },\\\\n    \\\\\\\"confusion_matrix\\\\\\\": [\\\\n      [\\\\n        979,\\\\n        9,\\\\n        7\\\\n      ],\\\\n      [\\\\n        613,\\\\n        91,\\\\n        271\\\\n      ],\\\\n      [\\\\n        1097,\\\\n        235,\\\\n        1114\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"n_samples\\\\\\\": 4416,\\\\n    \\\\\\\"class_distribution\\\\\\\": {\\\\n      \\\\\\\"gen-0\\\\\\\": 995,\\\\n      \\\\\\\"gen-1\\\\\\\": 975,\\\\n      \\\\\\\"gen-2+\\\\\\\": 2446\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_gemma_rp10\\\": {\\n    \\\"3class_f1\\\": 0.5536,\\n    \\\"binary_f1\\\": 0.8571,\\n    \\\"per_class\\\": {\\n      \\\"gen-0\\\": 0.9569779643231899,\\n      \\\"gen-1\\\": 0.17647058823529413,\\n      \\\"gen-2+\\\": 0.5274725274725275\\n    },\\n    \\\"confusion_matrix\\\": [\\n      [\\n        912,\\n        12,\\n        70\\n      ],\\n      [\\n        0,\\n        3,\\n        16\\n      ],\\n      [\\n        0,\\n        0,\\n        48\\n      ]\\n    ],\\n    \\\"n_samples\\\": 1061,\\n    \\\"class_distribution\\\": {\\n      \\\"gen-0\\\": 994,\\n      \\\"gen-1\\\": 19,\\n      \\\"gen-2+\\\": 48\\n    }\\n  },\\n  \\\"test_llama_rp11\\\": {\\n    \\\"3class_f1\\\": 0.417,\\n    \\\"binary_f1\\\": 0.5816,\\n    \\\"per_class\\\": {\\n      \\\"gen-0\\\": 0.5314875135722041,\\n      \\\"gen-1\\\": 0.13893129770992366,\\n      \\\"gen-2+\\\": 0.5805106826472121\\n    },\\n    \\\"confusion_matrix\\\": [\\n      [\\n        979,\\n        9,\\n        7\\n      ],\\n      [\\n        613,\\n        91,\\n        271\\n      ],\\n      [\\n        1097,\\n        235,\\n        1114\\n      ]\\n    ],\\n    \\\"n_samples\\\": 4416,\\n    \\\"class_distribution\\\": {\\n      \\\"gen-0\\\": 995,\\n      \\\"gen-1\\\": 975,\\n      \\\"gen-2+\\\": 2446\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TsyfcJvmyyTYShibrXb9WC`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/table4_cross_ref_logo.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "0eac0c08-d43b-4e6e-8664-51b7172e5f61",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016n1mCWSa5np4SMcJPzgwyW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12311,
+      "cache_read_input_tokens": 30610,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12311
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-17T10:54:56.984Z_
+
+<details><summary>↩ Tool result · `toolu_01TsyfcJvmyyTYShibrXb9WC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia-410m\\\": {\\n    \\\"per_fold_f1\\\": {\\n      \\\"olmo-2-1b\\\": 0.7656517592255256,\\n      \\\"pythia-1b\\\": 0.8515334527273226,\\n      \\\"pythia-2.8b\\\": 0.8018512469309496,\\n      \\\"qwen3-0.6b\\\": 0.8239738884074295,\\n      \\\"qwen3-1.7b\\\": 0.8063120362523518,\\n      \\\"qwen3-8b\\\": 0.6854132548969515\\n    },\\n    \\\"avg_macro_f1\\\": 0.789122606406755,\\n    \\\"ci_low\\\": 0.7473019447680967,\\n    \\\"ci_high\\\": 0.8235860188829546\\n  },\\n  \\\"olmo-2-1b\\\": {\\n    \\\"per_fold_f1\\\": {\\n      \\\"olmo-2-1b\\\": 0.7775448573126313,\\n      \\\"pythia-1b\\\": 0.8431530014346734,\\n      \\\"pythia-2.8b\\\": 0.7967040279505352,\\n      \\\"qwen3-0.6b\\\": 0.8354268173566431,\\n      \\\"qwen3-1.7b\\\": 0.819490110434835,\\n      \\\"qwen3-8b\\\": 0.696211036269113\\n    },\\n    \\\"avg_macro_f1\\\": 0.7947549751264051,\\n    \\\"ci_low\\\": 0.7566613733142259,\\n    \\\"ci_high\\\": 0.8274600991863632\\n  },\\n  \\\"qwen3-0.6b\\\": {\\n    \\\"per_fold_f1\\\": {\\n      \\\"olmo-2-1b\\\": 0.7773079724115076,\\n      \\\"pythia-1b\\\": 0.8467902620113607,\\n      \\\"pythia-2.8b\\\": 0.7997260687875999,\\n      \\\"qwen3-0.6b\\\": 0.844585478258896,\\n      \\\"qwen3-1.7b\\\": 0.8555684728797764,\\n      \\\"qwen3-8b\\\": 0.7568159144555894\\n    },\\n    \\\"avg_macro_f1\\\": 0.8134656948007882,\\n    \\\"ci_low\\\": 0.7854265534634483,\\n    \\\"ci_high\\\": 0.841514022737097\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "c57def37-bb87-4636-a9d0-d3282227cbff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"pythia-410m\\\\\\\": {\\\\n    \\\\\\\"per_fold_f1\\\\\\\": {\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": 0.7656517592255256,\\\\n      \\\\\\\"pythia-1b\\\\\\\": 0.8515334527273226,\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": 0.8018512469309496,\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": 0.8239738884074295,\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": 0.8063120362523518,\\\\n      \\\\\\\"qwen3-8b\\\\\\\": 0.6854132548969515\\\\n    },\\\\n    \\\\\\\"avg_macro_f1\\\\\\\": 0.789122606406755,\\\\n    \\\\\\\"ci_low\\\\\\\": 0.7473019447680967,\\\\n    \\\\\\\"ci_high\\\\\\\": 0.8235860188829546\\\\n  },\\\\n  \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n    \\\\\\\"per_fold_f1\\\\\\\": {\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": 0.7775448573126313,\\\\n      \\\\\\\"pythia-1b\\\\\\\": 0.8431530014346734,\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": 0.7967040279505352,\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": 0.8354268173566431,\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": 0.819490110434835,\\\\n      \\\\\\\"qwen3-8b\\\\\\\": 0.696211036269113\\\\n    },\\\\n    \\\\\\\"avg_macro_f1\\\\\\\": 0.7947549751264051,\\\\n    \\\\\\\"ci_low\\\\\\\": 0.7566613733142259,\\\\n    \\\\\\\"ci_high\\\\\\\": 0.8274600991863632\\\\n  },\\\\n  \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n    \\\\\\\"per_fold_f1\\\\\\\": {\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": 0.7773079724115076,\\\\n      \\\\\\\"pythia-1b\\\\\\\": 0.8467902620113607,\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": 0.7997260687875999,\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": 0.844585478258896,\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": 0.8555684728797764,\\\\n      \\\\\\\"qwen3-8b\\\\\\\": 0.7568159144555894\\\\n    },\\\\n    \\\\\\\"avg_macro_f1\\\\\\\": 0.8134656948007882,\\\\n    \\\\\\\"ci_low\\\\\\\": 0.7854265534634483,\\\\n    \\\\\\\"ci_high\\\\\\\": 0.841514022737097\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia-410m\\\": {\\n    \\\"per_fold_f1\\\": {\\n      \\\"olmo-2-1b\\\": 0.7656517592255256,\\n      \\\"pythia-1b\\\": 0.8515334527273226,\\n      \\\"pythia-2.8b\\\": 0.8018512469309496,\\n      \\\"qwen3-0.6b\\\": 0.8239738884074295,\\n      \\\"qwen3-1.7b\\\": 0.8063120362523518,\\n      \\\"qwen3-8b\\\": 0.6854132548969515\\n    },\\n    \\\"avg_macro_f1\\\": 0.789122606406755,\\n    \\\"ci_low\\\": 0.7473019447680967,\\n    \\\"ci_high\\\": 0.8235860188829546\\n  },\\n  \\\"olmo-2-1b\\\": {\\n    \\\"per_fold_f1\\\": {\\n      \\\"olmo-2-1b\\\": 0.7775448573126313,\\n      \\\"pythia-1b\\\": 0.8431530014346734,\\n      \\\"pythia-2.8b\\\": 0.7967040279505352,\\n      \\\"qwen3-0.6b\\\": 0.8354268173566431,\\n      \\\"qwen3-1.7b\\\": 0.819490110434835,\\n      \\\"qwen3-8b\\\": 0.696211036269113\\n    },\\n    \\\"avg_macro_f1\\\": 0.7947549751264051,\\n    \\\"ci_low\\\": 0.7566613733142259,\\n    \\\"ci_high\\\": 0.8274600991863632\\n  },\\n  \\\"qwen3-0.6b\\\": {\\n    \\\"per_fold_f1\\\": {\\n      \\\"olmo-2-1b\\\": 0.7773079724115076,\\n      \\\"pythia-1b\\\": 0.8467902620113607,\\n      \\\"pythia-2.8b\\\": 0.7997260687875999,\\n      \\\"qwen3-0.6b\\\": 0.844585478258896,\\n      \\\"qwen3-1.7b\\\": 0.8555684728797764,\\n      \\\"qwen3-8b\\\": 0.7568159144555894\\n    },\\n    \\\"avg_macro_f1\\\": 0.8134656948007882,\\n    \\\"ci_low\\\": 0.7854265534634483,\\n    \\\"ci_high\\\": 0.841514022737097\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Y4ukC7AtmF4sxK2VL8XRoq`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/8gen_length_confound.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "330d38c4-e74a-4616-82a4-33fe5c77dcf8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016n1mCWSa5np4SMcJPzgwyW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12311,
+      "cache_read_input_tokens": 30610,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12311
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-17T10:54:57.896Z_
+
+<details><summary>↩ Tool result · `toolu_01Y4ukC7AtmF4sxK2VL8XRoq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"length_stats_by_depth\\\": {\\n    \\\"gen_0\\\": {\\n      \\\"mean\\\": 175.03,\\n      \\\"median\\\": 179.0,\\n      \\\"std\\\": 27.64,\\n      \\\"min\\\": 24,\\n      \\\"max\\\": 230,\\n      \\\"n\\\": 7963\\n    },\\n    \\\"gen_1\\\": {\\n      \\\"mean\\\": 167.08,\\n      \\\"median\\\": 179.5,\\n      \\\"std\\\": 46.01,\\n      \\\"min\\\": 1,\\n      \\\"max\\\": 249,\\n      \\\"n\\\": 7896\\n    },\\n    \\\"gen_2plus\\\": {\\n      \\\"mean\\\": 165.04,\\n      \\\"median\\\": 180.0,\\n      \\\"std\\\": 55.44,\\n      \\\"min\\\": 1,\\n      \\\"max\\\": 256,\\n      \\\"n\\\": 21014\\n    }\\n  },\\n  \\\"length_stats_per_generator\\\": {\\n    \\\"llama-3.2-3b\\\": {\\n      \\\"gen_0\\\": {\\n        \\\"mean\\\": 180.84,\\n        \\\"std\\\": 26.51,\\n        \\\"n\\\": 995\\n      },\\n      \\\"gen_1\\\": {\\n        \\\"mean\\\": 174.6,\\n        \\\"std\\\": 42.31,\\n        \\\"n\\\": 984\\n      },\\n      \\\"gen_2plus\\\": {\\n        \\\"mean\\\": 174.4,\\n        \\\"std\\\": 50.69,\\n        \\\"n\\\": 2701\\n      }\\n    },\\n    \\\"mistral-7b-v0.3\\\": {\\n      \\\"gen_0\\\": {\\n        \\\"mean\\\": 157.26,\\n        \\\"std\\\": 24.45,\\n        \\\"n\\\": 996\\n      },\\n      \\\"gen_1\\\": {\\n        \\\"mean\\\": 151.82,\\n        \\\"std\\\": 35.07,\\n        \\\"n\\\": 994\\n      },\\n      \\\"gen_2plus\\\": {\\n        \\\"mean\\\": 154.13,\\n        \\\"std\\\": 42.0,\\n        \\\"n\\\": 2859\\n      }\\n    },\\n    \\\"olmo-2-1b\\\": {\\n      \\\"gen_0\\\": {\\n        \\\"mean\\\": 180.86,\\n        \\\"std\\\": 26.66,\\n        \\\"n\\\": 995\\n      },\\n      \\\"gen_1\\\": {\\n        \\\"mean\\\": 172.62,\\n        \\\"std\\\": 47.61,\\n        \\\"n\\\": 988\\n      },\\n      \\\"gen_2plus\\\": {\\n        \\\"mean\\\": 181.37,\\n        \\\"std\\\": 46.27,\\n        \\\"n\\\": 2730\\n      }\\n    },\\n    \\\"pythia-1b\\\": {\\n      \\\"gen_0\\\": {\\n        \\\"mean\\\": 177.89,\\n        \\\"std\\\": 26.65,\\n        \\\"n\\\": 995\\n      },\\n      \\\"gen_1\\\": {\\n        \\\"mean\\\": 163.27,\\n        \\\"std\\\": 53.08,\\n        \\\"n\\\": 993\\n      },\\n      \\\"gen_2plus\\\": {\\n        \\\"mean\\\": 153.34,\\n        \\\"std\\\": 65.21,\\n        \\\"n\\\": 2567\\n      }\\n    },\\n    \\\"pythia-2.8b\\\": {\\n      \\\"gen_0\\\": {\\n        \\\"mean\\\": 177.89,\\n        \\\"std\\\": 26.65,\\n        \\\"n\\\": 995\\n      },\\n      \\\"gen_1\\\": {\\n        \\\"mean\\\": 163.88,\\n        \\\"std\\\": 51.19,\\n        \\\"n\\\": 989\\n      },\\n      \\\"gen_2plus\\\": {\\n        \\\"mean\\\": 157.43,\\n        \\\"std\\\": 61.76,\\n        \\\"n\\\": 2440\\n      }\\n    },\\n    \\\"qwen3-0.6b\\\": {\\n      \\\"gen_0\\\": {\\n        \\\"mean\\\": 175.17,\\n        \\\"std\\\": 27.59,\\n        \\\"n\\\": 996\\n      },\\n      \\\"gen_1\\\": {\\n        \\\"mean\\\": 171.37,\\n        \\\"std\\\": 45.58,\\n        \\\"n\\\": 986\\n      },\\n      \\\"gen_2plus\\\": {\\n        \\\"mean\\\": 162.27,\\n        \\\"std\\\": 59.97,\\n        \\\"n\\\": 2556\\n      }\\n    },\\n    \\\"qwen3-1.7b\\\": {\\n      \\\"gen_0\\\": {\\n        \\\"mean\\\": 175.17,\\n        \\\"std\\\": 27.59,\\n        \\\"n\\\": 996\\n      },\\n      \\\"gen_1\\\": {\\n        \\\"mean\\\": 170.89,\\n        \\\"std\\\": 43.56,\\n        \\\"n\\\": 983\\n      },\\n      \\\"gen_2plus\\\": {\\n        \\\"mean\\\": 170.96,\\n        \\\"std\\\": 53.78,\\n        \\\"n\\\": 2638\\n      }\\n    },\\n    \\\"qwen3-8b\\\": {\\n      \\\"gen_0\\\": {\\n        \\\"mean\\\": 175.13,\\n        \\\"std\\\": 27.59,\\n        \\\"n\\\": 995\\n      },\\n      \\\"gen_1\\\": {\\n        \\\"mean\\\": 168.42,\\n        \\\"std\\\": 43.16,\\n        \\\"n\\\": 979\\n      },\\n      \\\"gen_2plus\\\": {\\n        \\\"mean\\\": 165.62,\\n        \\\"std\\\": 55.72,\\n        \\\"n\\\": 2523\\n      }\\n    }\\n  },\\n  \\\"kruskal_wallis\\\": {\\n    \\\"H\\\": 12.6887,\\n    \\\"p\\\": 0.001756681166065773\\n  },\\n  \\\"feature_length_correlations\\\": {\\n    \\\"entropy_mean\\\": {\\n      \\\"pearson_r\\\": -0.1674,\\n      \\\"pearson_p\\\": 5.588997384865578e-230,\\n      \\\"spearman_rho\\\": -0.0904,\\n      \\\"spearman_p\\\": 1.0132581271639743e-67\\n    },\\n    \\\"entropy_std\\\": {\\n      \\\"pearson_r\\\": -0.1775,\\n      \\\"pearson_p\\\": 9.923160131803634e-259,\\n      \\\"spearman_rho\\\": -0.1817,\\n      \\\"spearman_p\\\": 3.5091505693940063e-271\\n    },\\n    \\\"entropy_min\\\": {\\n      \\\"pearson_r\\\": -0.2459,\\n      \\\"pearson_p\\\": 0.0,\\n      \\\"spearman_rho\\\": -0.1368,\\n      \\\"spearman_p\\\": 1.939820678822914e-153\\n    },\\n    \\\"entropy_max\\\": {\\n      \\\"pearson_r\\\": 0.1756,\\n      \\\"pearson_p\\\": 4.4649552882564217e-253,\\n      \\\"spearman_rho\\\": 0.1613,\\n      \\\"spearman_p\\\": 1.698444417555756e-213\\n    },\\n    \\\"tail_decay\\\": {\\n      \\\"pearson_r\\\": -0.2962,\\n      \\\"pearson_p\\\": 0.0,\\n      \\\"spearman_rho\\\": -0.3756,\\n      \\\"spearman_p\\\": 0.0\\n    },\\n    \\\"ttr\\\": {\\n      \\\"pearson_r\\\": -0.3433,\\n      \\\"pearson_p\\\": 0.0,\\n      \\\"spearman_rho\\\": -0.2873,\\n      \\\"spearman_p\\\": 0.0\\n    },\\n    \\\"hapax_ratio\\\": {\\n      \\\"pearson_r\\\": -0.363,\\n      \\\"pearson_p\\\": 0.0,\\n      \\\"spearman_rho\\\": -0.3033,\\n      \\\"spearman_p\\\": 0.0\\n    }\\n  },\\n  \\\"length_matched_eval\\\": {\\n    \\\"n_samples_matched\\\": 15792,\\n    \\\"n_per_depth\\\": {\\n      \\\"gen_1\\\": 7896,\\n      \\\"gen_2plus\\\": 7896\\n    },\\n    \\\"ks_test_matched_lengths\\\": {\\n      \\\"stat\\\": 0.01,\\n      \\\"p\\\": 0.8243\\n    },\\n    \\\"per_generator_matched\\\": {\\n      \\\"llama-3.2-3b\\\": 0.7183,\\n      \\\"mistral-7b-v0.3\\\": 0.5394,\\n      \\\"olmo-2-1b\\\": 0.7358,\\n      \\\"pythia-1b\\\": 0.8158,\\n      \\\"pythia-2.8b\\\": 0.7553,\\n      \\\"qwen3-0.6b\\\": 0.7701,\\n      \\\"qwen3-1.7b\\\": 0.7918,\\n      \\\"qwen3-8b\\\": 0.6667\\n    },\\n    \\\"per_generator_original\\\": {\\n      \\\"llama-3.2-3b\\\": 0.7557,\\n      \\\"mistral-7b-v0.3\\\": 0.5629,\\n      \\\"olmo-2-1b\\\": 0.7771,\\n      \\\"pythia-1b\\\": 0.8757,\\n      \\\"pythia-2.8b\\\": 0.804,\\n      \\\"qwen3-0.6b\\\": 0.8433,\\n      \\\"qwen3-1.7b\\\": 0.8311,\\n      \\\"qwen3-8b\\\": 0.708\\n    },\\n    \\\"binary_f1_matched\\\": 0.7242,\\n    \\\"binary_f1_original\\\": 0.7697,\\n    \\\"f1_drop\\\": 0.0455,\\n    \\\"conclusion\\\": \\\"length_partial_confound\\\",\\n    \\\"supplementary_5fold_cv\\\": {\\n      \\\"mean_f1\\\": 0.7334,\\n      \\\"std_f1\\\": 0.0066,\\n      \\\"fold_f1s\\\": [\\n        0.741,\\n        0.7392,\\n        0.7234,\\n        0.7285,\\n        0.7346\\n      ]\\n    },\\n    \\\"random_subsample_control\\\": {\\n      \\\"description\\\": \\\"Random subsample of same N as matched (no length balancing) to disentangle sample-size vs length effect\\\",\\n      \\\"n_random\\\": 15792,\\n      \\\"binary_f1_random_subsample\\\": 0.767,\\n      \\\"f1_drop_full_vs_random\\\": 0.0008,\\n      \\\"f1_drop_random_vs_matched\\\": 0.046,\\n      \\\"interpretation\\\": \\\"Sample size reduction accounts for 0.0008 F1 drop; length deconfounding accounts for 0.046 F1 drop\\\"\\n    },\\n    \\\"conclusion_detail\\\": \\\"Text length contributes ~0.046 binary-F1 to the depth signal (6.0% relative drop from 0.770 to 0.724). The random-subsample control (same N, no length balancing, F1=0.767) confirms the drop is from length deconfounding, not sample-size reduction (sample-size effect = 0.001). After controlling for length, the classifier still achieves binary-F1=0.724 (macro-F1=0.749), confirming the depth fingerprint is real and mostly independent of text length. Most affected features: ttr (rho=-0.29), hapax_ratio (rho=-0.30), tail_decay (rho=-0.38).\\\",\\n    \\\"canonical_ref\\\": {\\n      \\\"table3_7feature_macro_f1\\\": 0.6911,\\n      \\\"our_recomputed_macro_f1\\\": 0.6977,\\n      \\\"note\\\": \\\"Table3 uses pooled macro-F1. Our confound test uses binary-F1 (positive class) which is more appropriate for confound analysis since length-matching changes class proportions\\\"\\n    },\\n    \\\"macro_f1_supplement\\\": {\\n      \\\"original_macro_f1\\\": 0.6996,\\n      \\\"matched_macro_f1\\\": 0.7486,\\n      \\\"note\\\": \\\"Macro F1 increases after matching because class balance improves (gen-1/gen-2+ ratio goes from 1:2.7 to 1:1). This is an artifact of the metric, not a real signal improvement.\\\"\\n    }\\n  },\\n  \\\"meta\\\": {\\n    \\\"n_quantile_bins\\\": 10,\\n    \\\"matching_method\\\": \\\"stratified_subsample_by_length_decile\\\",\\n    \\\"xgb_params\\\": {\\n      \\\"n_estimators\\\": 200,\\n      \\\"max_depth\\\": 6\\n    },\\n    \\\"seed\\\": 42,\\n    \\\"protocol\\\": \\\"pooled LOGO 8-fold binary\\\",\\n    \\\"n_generators\\\": 8,\\n    \\\"generators\\\": [\\n      \\\"llama-3.2-3b\\\",\\n      \\\"mistral-7b-v0.3\\\",\\n      \\\"olmo-2-1b\\\",\\n      \\\"pythia-1b\\\",\\n      \\\"pythia-2.8b\\\",\\n      \\\"qwen3-0.6b\\\",\\n      \\\"qwen3-1.7b\\\",\\n      \\\"qwen3-8b\\\"\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "0e9ab581-6e7f-4c22-b1a0-a5ce5d8bc365",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"length_stats_by_depth\\\\\\\": {\\\\n    \\\\\\\"gen_0\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 175.03,\\\\n      \\\\\\\"median\\\\\\\": 179.0,\\\\n      \\\\\\\"std\\\\\\\": 27.64,\\\\n      \\\\\\\"min\\\\\\\": 24,\\\\n      \\\\\\\"max\\\\\\\": 230,\\\\n      \\\\\\\"n\\\\\\\": 7963\\\\n    },\\\\n    \\\\\\\"gen_1\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 167.08,\\\\n      \\\\\\\"median\\\\\\\": 179.5,\\\\n      \\\\\\\"std\\\\\\\": 46.01,\\\\n      \\\\\\\"min\\\\\\\": 1,\\\\n      \\\\\\\"max\\\\\\\": 249,\\\\n      \\\\\\\"n\\\\\\\": 7896\\\\n    },\\\\n    \\\\\\\"gen_2plus\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 165.04,\\\\n      \\\\\\\"median\\\\\\\": 180.0,\\\\n      \\\\\\\"std\\\\\\\": 55.44,\\\\n      \\\\\\\"min\\\\\\\": 1,\\\\n      \\\\\\\"max\\\\\\\": 256,\\\\n      \\\\\\\"n\\\\\\\": 21014\\\\n    }\\\\n  },\\\\n  \\\\\\\"length_stats_per_generator\\\\\\\": {\\\\n    \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n      \\\\\\\"gen_0\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 180.84,\\\\n        \\\\\\\"std\\\\\\\": 26.51,\\\\n        \\\\\\\"n\\\\\\\": 995\\\\n      },\\\\n      \\\\\\\"gen_1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 174.6,\\\\n        \\\\\\\"std\\\\\\\": 42.31,\\\\n        \\\\\\\"n\\\\\\\": 984\\\\n      },\\\\n      \\\\\\\"gen_2plus\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 174.4,\\\\n        \\\\\\\"std\\\\\\\": 50.69,\\\\n        \\\\\\\"n\\\\\\\": 2701\\\\n      }\\\\n    },\\\\n    \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n      \\\\\\\"gen_0\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 157.26,\\\\n        \\\\\\\"std\\\\\\\": 24.45,\\\\n        \\\\\\\"n\\\\\\\": 996\\\\n      },\\\\n      \\\\\\\"gen_1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 151.82,\\\\n        \\\\\\\"std\\\\\\\": 35.07,\\\\n        \\\\\\\"n\\\\\\\": 994\\\\n      },\\\\n      \\\\\\\"gen_2plus\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 154.13,\\\\n        \\\\\\\"std\\\\\\\": 42.0,\\\\n        \\\\\\\"n\\\\\\\": 2859\\\\n      }\\\\n    },\\\\n    \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n      \\\\\\\"gen_0\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 180.86,\\\\n        \\\\\\\"std\\\\\\\": 26.66,\\\\n        \\\\\\\"n\\\\\\\": 995\\\\n      },\\\\n      \\\\\\\"gen_1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 172.62,\\\\n        \\\\\\\"std\\\\\\\": 47.61,\\\\n        \\\\\\\"n\\\\\\\": 988\\\\n      },\\\\n      \\\\\\\"gen_2plus\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 181.37,\\\\n        \\\\\\\"std\\\\\\\": 46.27,\\\\n        \\\\\\\"n\\\\\\\": 2730\\\\n      }\\\\n    },\\\\n    \\\\\\\"pythia-1b\\\\\\\": {\\\\n      \\\\\\\"gen_0\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 177.89,\\\\n        \\\\\\\"std\\\\\\\": 26.65,\\\\n        \\\\\\\"n\\\\\\\": 995\\\\n      },\\\\n      \\\\\\\"gen_1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 163.27,\\\\n        \\\\\\\"std\\\\\\\": 53.08,\\\\n        \\\\\\\"n\\\\\\\": 993\\\\n      },\\\\n      \\\\\\\"gen_2plus\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 153.34,\\\\n        \\\\\\\"std\\\\\\\": 65.21,\\\\n        \\\\\\\"n\\\\\\\": 2567\\\\n      }\\\\n    },\\\\n    \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n      \\\\\\\"gen_0\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 177.89,\\\\n        \\\\\\\"std\\\\\\\": 26.65,\\\\n        \\\\\\\"n\\\\\\\": 995\\\\n      },\\\\n      \\\\\\\"gen_1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 163.88,\\\\n        \\\\\\\"std\\\\\\\": 51.19,\\\\n        \\\\\\\"n\\\\\\\": 989\\\\n      },\\\\n      \\\\\\\"gen_2plus\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 157.43,\\\\n        \\\\\\\"std\\\\\\\": 61.76,\\\\n        \\\\\\\"n\\\\\\\": 2440\\\\n      }\\\\n    },\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n      \\\\\\\"gen_0\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 175.17,\\\\n        \\\\\\\"std\\\\\\\": 27.59,\\\\n        \\\\\\\"n\\\\\\\": 996\\\\n      },\\\\n      \\\\\\\"gen_1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 171.37,\\\\n        \\\\\\\"std\\\\\\\": 45.58,\\\\n        \\\\\\\"n\\\\\\\": 986\\\\n      },\\\\n      \\\\\\\"gen_2plus\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 162.27,\\\\n        \\\\\\\"std\\\\\\\": 59.97,\\\\n        \\\\\\\"n\\\\\\\": 2556\\\\n      }\\\\n    },\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n      \\\\\\\"gen_0\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 175.17,\\\\n        \\\\\\\"std\\\\\\\": 27.59,\\\\n        \\\\\\\"n\\\\\\\": 996\\\\n      },\\\\n      \\\\\\\"gen_1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 170.89,\\\\n        \\\\\\\"std\\\\\\\": 43.56,\\\\n        \\\\\\\"n\\\\\\\": 983\\\\n      },\\\\n      \\\\\\\"gen_2plus\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 170.96,\\\\n        \\\\\\\"std\\\\\\\": 53.78,\\\\n        \\\\\\\"n\\\\\\\": 2638\\\\n      }\\\\n    },\\\\n    \\\\\\\"qwen3-8b\\\\\\\": {\\\\n      \\\\\\\"gen_0\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 175.13,\\\\n        \\\\\\\"std\\\\\\\": 27.59,\\\\n        \\\\\\\"n\\\\\\\": 995\\\\n      },\\\\n      \\\\\\\"gen_1\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 168.42,\\\\n        \\\\\\\"std\\\\\\\": 43.16,\\\\n        \\\\\\\"n\\\\\\\": 979\\\\n      },\\\\n      \\\\\\\"gen_2plus\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 165.62,\\\\n        \\\\\\\"std\\\\\\\": 55.72,\\\\n        \\\\\\\"n\\\\\\\": 2523\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"kruskal_wallis\\\\\\\": {\\\\n    \\\\\\\"H\\\\\\\": 12.6887,\\\\n    \\\\\\\"p\\\\\\\": 0.001756681166065773\\\\n  },\\\\n  \\\\\\\"feature_length_correlations\\\\\\\": {\\\\n    \\\\\\\"entropy_mean\\\\\\\": {\\\\n      \\\\\\\"pearson_r\\\\\\\": -0.1674,\\\\n      \\\\\\\"pearson_p\\\\\\\": 5.588997384865578e-230,\\\\n      \\\\\\\"spearman_rho\\\\\\\": -0.0904,\\\\n      \\\\\\\"spearman_p\\\\\\\": 1.0132581271639743e-67\\\\n    },\\\\n    \\\\\\\"entropy_std\\\\\\\": {\\\\n      \\\\\\\"pearson_r\\\\\\\": -0.1775,\\\\n      \\\\\\\"pearson_p\\\\\\\": 9.923160131803634e-259,\\\\n      \\\\\\\"spearman_rho\\\\\\\": -0.1817,\\\\n      \\\\\\\"spearman_p\\\\\\\": 3.5091505693940063e-271\\\\n    },\\\\n    \\\\\\\"entropy_min\\\\\\\": {\\\\n      \\\\\\\"pearson_r\\\\\\\": -0.2459,\\\\n      \\\\\\\"pearson_p\\\\\\\": 0.0,\\\\n      \\\\\\\"spearman_rho\\\\\\\": -0.1368,\\\\n      \\\\\\\"spearman_p\\\\\\\": 1.939820678822914e-153\\\\n    },\\\\n    \\\\\\\"entropy_max\\\\\\\": {\\\\n      \\\\\\\"pearson_r\\\\\\\": 0.1756,\\\\n      \\\\\\\"pearson_p\\\\\\\": 4.4649552882564217e-253,\\\\n      \\\\\\\"spearman_rho\\\\\\\": 0.1613,\\\\n      \\\\\\\"spearman_p\\\\\\\": 1.698444417555756e-213\\\\n    },\\\\n    \\\\\\\"tail_decay\\\\\\\": {\\\\n      \\\\\\\"pearson_r\\\\\\\": -0.2962,\\\\n      \\\\\\\"pearson_p\\\\\\\": 0.0,\\\\n      \\\\\\\"spearman_rho\\\\\\\": -0.3756,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"ttr\\\\\\\": {\\\\n      \\\\\\\"pearson_r\\\\\\\": -0.3433,\\\\n      \\\\\\\"pearson_p\\\\\\\": 0.0,\\\\n      \\\\\\\"spearman_rho\\\\\\\": -0.2873,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"hapax_ratio\\\\\\\": {\\\\n      \\\\\\\"pearson_r\\\\\\\": -0.363,\\\\n      \\\\\\\"pearson_p\\\\\\\": 0.0,\\\\n      \\\\\\\"spearman_rho\\\\\\\": -0.3033,\\\\n      \\\\\\\"spearman_p\\\\\\\": 0.0\\\\n    }\\\\n  },\\\\n  \\\\\\\"length_matched_eval\\\\\\\": {\\\\n    \\\\\\\"n_samples_matched\\\\\\\": 15792,\\\\n    \\\\\\\"n_per_depth\\\\\\\": {\\\\n      \\\\\\\"gen_1\\\\\\\": 7896,\\\\n      \\\\\\\"gen_2plus\\\\\\\": 7896\\\\n    },\\\\n    \\\\\\\"ks_test_matched_lengths\\\\\\\": {\\\\n      \\\\\\\"stat\\\\\\\": 0.01,\\\\n      \\\\\\\"p\\\\\\\": 0.8243\\\\n    },\\\\n    \\\\\\\"per_generator_matched\\\\\\\": {\\\\n      \\\\\\\"llama-3.2-3b\\\\\\\": 0.7183,\\\\n      \\\\\\\"mistral-7b-v0.3\\\\\\\": 0.5394,\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": 0.7358,\\\\n      \\\\\\\"pythia-1b\\\\\\\": 0.8158,\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": 0.7553,\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": 0.7701,\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": 0.7918,\\\\n      \\\\\\\"qwen3-8b\\\\\\\": 0.6667\\\\n    },\\\\n    \\\\\\\"per_generator_original\\\\\\\": {\\\\n      \\\\\\\"llama-3.2-3b\\\\\\\": 0.7557,\\\\n      \\\\\\\"mistral-7b-v0.3\\\\\\\": 0.5629,\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": 0.7771,\\\\n      \\\\\\\"pythia-1b\\\\\\\": 0.8757,\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": 0.804,\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": 0.8433,\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": 0.8311,\\\\n      \\\\\\\"qwen3-8b\\\\\\\": 0.708\\\\n    },\\\\n    \\\\\\\"binary_f1_matched\\\\\\\": 0.7242,\\\\n    \\\\\\\"binary_f1_original\\\\\\\": 0.7697,\\\\n    \\\\\\\"f1_drop\\\\\\\": 0.0455,\\\\n    \\\\\\\"conclusion\\\\\\\": \\\\\\\"length_partial_confound\\\\\\\",\\\\n    \\\\\\\"supplementary_5fold_cv\\\\\\\": {\\\\n      \\\\\\\"mean_f1\\\\\\\": 0.7334,\\\\n      \\\\\\\"std_f1\\\\\\\": 0.0066,\\\\n      \\\\\\\"fold_f1s\\\\\\\": [\\\\n        0.741,\\\\n        0.7392,\\\\n        0.7234,\\\\n        0.7285,\\\\n        0.7346\\\\n      ]\\\\n    },\\\\n    \\\\\\\"random_subsample_control\\\\\\\": {\\\\n      \\\\\\\"description\\\\\\\": \\\\\\\"Random subsample of same N as matched (no length balancing) to disentangle sample-size vs length effect\\\\\\\",\\\\n      \\\\\\\"n_random\\\\\\\": 15792,\\\\n      \\\\\\\"binary_f1_random_subsample\\\\\\\": 0.767,\\\\n      \\\\\\\"f1_drop_full_vs_random\\\\\\\": 0.0008,\\\\n      \\\\\\\"f1_drop_random_vs_matched\\\\\\\": 0.046,\\\\n      \\\\\\\"interpretation\\\\\\\": \\\\\\\"Sample size reduction accounts for 0.0008 F1 drop; length deconfounding accounts for 0.046 F1 drop\\\\\\\"\\\\n    },\\\\n    \\\\\\\"conclusion_detail\\\\\\\": \\\\\\\"Text length contributes ~0.046 binary-F1 to the depth signal (6.0% relative drop from 0.770 to 0.724). The random-subsample control (same N, no length balancing, F1=0.767) confirms the drop is from length deconfounding, not sample-size reduction (sample-size effect = 0.001). After controlling for length, the classifier still achieves binary-F1=0.724 (macro-F1=0.749), confirming the depth fingerprint is real and mostly independent of text length. Most affected features: ttr (rho=-0.29), hapax_ratio (rho=-0.30), tail_decay (rho=-0.38).\\\\\\\",\\\\n    \\\\\\\"canonical_ref\\\\\\\": {\\\\n      \\\\\\\"table3_7feature_macro_f1\\\\\\\": 0.6911,\\\\n      \\\\\\\"our_recomputed_macro_f1\\\\\\\": 0.6977,\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"Table3 uses pooled macro-F1. Our confound test uses binary-F1 (positive class) which is more appropriate for confound analysis since length-matching changes class proportions\\\\\\\"\\\\n    },\\\\n    \\\\\\\"macro_f1_supplement\\\\\\\": {\\\\n      \\\\\\\"original_macro_f1\\\\\\\": 0.6996,\\\\n      \\\\\\\"matched_macro_f1\\\\\\\": 0.7486,\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"Macro F1 increases after matching because class balance improves (gen-1/gen-2+ ratio goes from 1:2.7 to 1:1). This is an artifact of the metric, not a real signal improvement.\\\\\\\"\\\\n    }\\\\n  },\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"n_quantile_bins\\\\\\\": 10,\\\\n    \\\\\\\"matching_method\\\\\\\": \\\\\\\"stratified_subsample_by_length_decile\\\\\\\",\\\\n    \\\\\\\"xgb_params\\\\\\\": {\\\\n      \\\\\\\"n_estimators\\\\\\\": 200,\\\\n      \\\\\\\"max_depth\\\\\\\": 6\\\\n    },\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"protocol\\\\\\\": \\\\\\\"pooled LOGO 8-fold binary\\\\\\\",\\\\n    \\\\\\\"n_generators\\\\\\\": 8,\\\\n    \\\\\\\"generators\\\\\\\": [\\\\n      \\\\\\\"llama-3.2-3b\\\\\\\",\\\\n      \\\\\\\"mistral-7b-v0.3\\\\\\\",\\\\n      \\\\\\\"olmo-2-1b\\\\\\\",\\\\n      \\\\\\\"pythia-1b\\\\\\\",\\\\n      \\\\\\\"pythia-2.8b\\\\\\\",\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\",\\\\n      \\\\\\\"qwen3-8b\\\\\\\"\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"length_stats_by_depth\\\": {\\n    \\\"gen_0\\\": {\\n      \\\"mean\\\": 175.03,\\n      \\\"median\\\": 179.0,\\n      \\\"std\\\": 27.64,\\n      \\\"min\\\": 24,\\n      \\\"max\\\": 230,\\n      \\\"n\\\": 7963\\n    },\\n    \\\"gen_1\\\": {\\n      \\\"mean\\\": 167.08,\\n      \\\"median\\\": 179.5,\\n      \\\"std\\\": 46.01,\\n      \\\"min\\\": 1,\\n      \\\"max\\\": 249,\\n      \\\"n\\\": 7896\\n    },\\n    \\\"gen_2plus\\\": {\\n      \\\"mean\\\": 165.04,\\n      \\\"median\\\": 180.0,\\n      \\\"std\\\": 55.44,\\n      \\\"min\\\": 1,\\n      \\\"max\\\": 256,\\n      \\\"n\\\": 21014\\n    }\\n  },\\n  \\\"length_stats_per_generator\\\": {\\n    \\\"llama-3.2-3b\\\": {\\n      \\\"gen_0\\\": {\\n        \\\"mean\\\": 180.84,\\n        \\\"std\\\": 26.51,\\n        \\\"n\\\": 995\\n      },\\n      \\\"gen_1\\\": {\\n        \\\"mean\\\": 174.6,\\n        \\\"std\\\": 42.31,\\n        \\\"n\\\": 984\\n      },\\n      \\\"gen_2plus\\\": {\\n        \\\"mean\\\": 174.4,\\n        \\\"std\\\": 50.69,\\n        \\\"n\\\": 2701\\n      }\\n    },\\n    \\\"mistral-7b-v0.3\\\": {\\n      \\\"gen_0\\\": {\\n        \\\"mean\\\": 157.26,\\n        \\\"std\\\": 24.45,\\n        \\\"n\\\": 996\\n      },\\n      \\\"gen_1\\\": {\\n        \\\"mean\\\": 151.82,\\n        \\\"std\\\": 35.07,\\n        \\\"n\\\": 994\\n      },\\n      \\\"gen_2plus\\\": {\\n        \\\"mean\\\": 154.13,\\n        \\\"std\\\": 42.0,\\n        \\\"n\\\": 2859\\n      }\\n    },\\n    \\\"olmo-2-1b\\\": {\\n      \\\"gen_0\\\": {\\n        \\\"mean\\\": 180.86,\\n        \\\"std\\\": 26.66,\\n        \\\"n\\\": 995\\n      },\\n      \\\"gen_1\\\": {\\n        \\\"mean\\\": 172.62,\\n        \\\"std\\\": 47.61,\\n        \\\"n\\\": 988\\n      },\\n      \\\"gen_2plus\\\": {\\n        \\\"mean\\\": 181.37,\\n        \\\"std\\\": 46.27,\\n        \\\"n\\\": 2730\\n      }\\n    },\\n    \\\"pythia-1b\\\": {\\n      \\\"gen_0\\\": {\\n        \\\"mean\\\": 177.89,\\n        \\\"std\\\": 26.65,\\n        \\\"n\\\": 995\\n      },\\n      \\\"gen_1\\\": {\\n        \\\"mean\\\": 163.27,\\n        \\\"std\\\": 53.08,\\n        \\\"n\\\": 993\\n      },\\n      \\\"gen_2plus\\\": {\\n        \\\"mean\\\": 153.34,\\n        \\\"std\\\": 65.21,\\n        \\\"n\\\": 2567\\n      }\\n    },\\n    \\\"pythia-2.8b\\\": {\\n      \\\"gen_0\\\": {\\n        \\\"mean\\\": 177.89,\\n        \\\"std\\\": 26.65,\\n        \\\"n\\\": 995\\n      },\\n      \\\"gen_1\\\": {\\n        \\\"mean\\\": 163.88,\\n        \\\"std\\\": 51.19,\\n        \\\"n\\\": 989\\n      },\\n      \\\"gen_2plus\\\": {\\n        \\\"mean\\\": 157.43,\\n        \\\"std\\\": 61.76,\\n        \\\"n\\\": 2440\\n      }\\n    },\\n    \\\"qwen3-0.6b\\\": {\\n      \\\"gen_0\\\": {\\n        \\\"mean\\\": 175.17,\\n        \\\"std\\\": 27.59,\\n        \\\"n\\\": 996\\n      },\\n      \\\"gen_1\\\": {\\n        \\\"mean\\\": 171.37,\\n        \\\"std\\\": 45.58,\\n        \\\"n\\\": 986\\n      },\\n      \\\"gen_2plus\\\": {\\n        \\\"mean\\\": 162.27,\\n        \\\"std\\\": 59.97,\\n        \\\"n\\\": 2556\\n      }\\n    },\\n    \\\"qwen3-1.7b\\\": {\\n      \\\"gen_0\\\": {\\n        \\\"mean\\\": 175.17,\\n        \\\"std\\\": 27.59,\\n        \\\"n\\\": 996\\n      },\\n      \\\"gen_1\\\": {\\n        \\\"mean\\\": 170.89,\\n        \\\"std\\\": 43.56,\\n        \\\"n\\\": 983\\n      },\\n      \\\"gen_2plus\\\": {\\n        \\\"mean\\\": 170.96,\\n        \\\"std\\\": 53.78,\\n        \\\"n\\\": 2638\\n      }\\n    },\\n    \\\"qwen3-8b\\\": {\\n      \\\"gen_0\\\": {\\n        \\\"mean\\\": 175.13,\\n        \\\"std\\\": 27.59,\\n        \\\"n\\\": 995\\n      },\\n      \\\"gen_1\\\": {\\n        \\\"mean\\\": 168.42,\\n        \\\"std\\\": 43.16,\\n        \\\"n\\\": 979\\n      },\\n      \\\"gen_2plus\\\": {\\n        \\\"mean\\\": 165.62,\\n        \\\"std\\\": 55.72,\\n        \\\"n\\\": 2523\\n      }\\n    }\\n  },\\n  \\\"kruskal_wallis\\\": {\\n    \\\"H\\\": 12.6887,\\n    \\\"p\\\": 0.001756681166065773\\n  },\\n  \\\"feature_length_correlations\\\": {\\n    \\\"entropy_mean\\\": {\\n      \\\"pearson_r\\\": -0.1674,\\n      \\\"pearson_p\\\": 5.588997384865578e-230,\\n      \\\"spearman_rho\\\": -0.0904,\\n      \\\"spearman_p\\\": 1.0132581271639743e-67\\n    },\\n    \\\"entropy_std\\\": {\\n      \\\"pearson_r\\\": -0.1775,\\n      \\\"pearson_p\\\": 9.923160131803634e-259,\\n      \\\"spearman_rho\\\": -0.1817,\\n      \\\"spearman_p\\\": 3.5091505693940063e-271\\n    },\\n    \\\"entropy_min\\\": {\\n      \\\"pearson_r\\\": -0.2459,\\n      \\\"pearson_p\\\": 0.0,\\n      \\\"spearman_rho\\\": -0.1368,\\n      \\\"spearman_p\\\": 1.939820678822914e-153\\n    },\\n    \\\"entropy_max\\\": {\\n      \\\"pearson_r\\\": 0.1756,\\n      \\\"pearson_p\\\": 4.4649552882564217e-253,\\n      \\\"spearman_rho\\\": 0.1613,\\n      \\\"spearman_p\\\": 1.698444417555756e-213\\n    },\\n    \\\"tail_decay\\\": {\\n      \\\"pearson_r\\\": -0.2962,\\n      \\\"pearson_p\\\": 0.0,\\n      \\\"spearman_rho\\\": -0.3756,\\n      \\\"spearman_p\\\": 0.0\\n    },\\n    \\\"ttr\\\": {\\n      \\\"pearson_r\\\": -0.3433,\\n      \\\"pearson_p\\\": 0.0,\\n      \\\"spearman_rho\\\": -0.2873,\\n      \\\"spearman_p\\\": 0.0\\n    },\\n    \\\"hapax_ratio\\\": {\\n      \\\"pearson_r\\\": -0.363,\\n      \\\"pearson_p\\\": 0.0,\\n      \\\"spearman_rho\\\": -0.3033,\\n      \\\"spearman_p\\\": 0.0\\n    }\\n  },\\n  \\\"length_matched_eval\\\": {\\n    \\\"n_samples_matched\\\": 15792,\\n    \\\"n_per_depth\\\": {\\n      \\\"gen_1\\\": 7896,\\n      \\\"gen_2plus\\\": 7896\\n    },\\n    \\\"ks_test_matched_lengths\\\": {\\n      \\\"stat\\\": 0.01,\\n      \\\"p\\\": 0.8243\\n    },\\n    \\\"per_generator_matched\\\": {\\n      \\\"llama-3.2-3b\\\": 0.7183,\\n      \\\"mistral-7b-v0.3\\\": 0.5394,\\n      \\\"olmo-2-1b\\\": 0.7358,\\n      \\\"pythia-1b\\\": 0.8158,\\n      \\\"pythia-2.8b\\\": 0.7553,\\n      \\\"qwen3-0.6b\\\": 0.7701,\\n      \\\"qwen3-1.7b\\\": 0.7918,\\n      \\\"qwen3-8b\\\": 0.6667\\n    },\\n    \\\"per_generator_original\\\": {\\n      \\\"llama-3.2-3b\\\": 0.7557,\\n      \\\"mistral-7b-v0.3\\\": 0.5629,\\n      \\\"olmo-2-1b\\\": 0.7771,\\n      \\\"pythia-1b\\\": 0.8757,\\n      \\\"pythia-2.8b\\\": 0.804,\\n      \\\"qwen3-0.6b\\\": 0.8433,\\n      \\\"qwen3-1.7b\\\": 0.8311,\\n      \\\"qwen3-8b\\\": 0.708\\n    },\\n    \\\"binary_f1_matched\\\": 0.7242,\\n    \\\"binary_f1_original\\\": 0.7697,\\n    \\\"f1_drop\\\": 0.0455,\\n    \\\"conclusion\\\": \\\"length_partial_confound\\\",\\n    \\\"supplementary_5fold_cv\\\": {\\n      \\\"mean_f1\\\": 0.7334,\\n      \\\"std_f1\\\": 0.0066,\\n      \\\"fold_f1s\\\": [\\n        0.741,\\n        0.7392,\\n        0.7234,\\n        0.7285,\\n        0.7346\\n      ]\\n    },\\n    \\\"random_subsample_control\\\": {\\n      \\\"description\\\": \\\"Random subsample of same N as matched (no length balancing) to disentangle sample-size vs length effect\\\",\\n      \\\"n_random\\\": 15792,\\n      \\\"binary_f1_random_subsample\\\": 0.767,\\n      \\\"f1_drop_full_vs_random\\\": 0.0008,\\n      \\\"f1_drop_random_vs_matched\\\": 0.046,\\n      \\\"interpretation\\\": \\\"Sample size reduction accounts for 0.0008 F1 drop; length deconfounding accounts for 0.046 F1 drop\\\"\\n    },\\n    \\\"conclusion_detail\\\": \\\"Text length contributes ~0.046 binary-F1 to the depth signal (6.0% relative drop from 0.770 to 0.724). The random-subsample control (same N, no length balancing, F1=0.767) confirms the drop is from length deconfounding, not sample-size reduction (sample-size effect = 0.001). After controlling for length, the classifier still achieves binary-F1=0.724 (macro-F1=0.749), confirming the depth fingerprint is real and mostly independent of text length. Most affected features: ttr (rho=-0.29), hapax_ratio (rho=-0.30), tail_decay (rho=-0.38).\\\",\\n    \\\"canonical_ref\\\": {\\n      \\\"table3_7feature_macro_f1\\\": 0.6911,\\n      \\\"our_recomputed_macro_f1\\\": 0.6977,\\n      \\\"note\\\": \\\"Table3 uses pooled macro-F1. Our confound test uses binary-F1 (positive class) which is more appropriate for confound analysis since length-matching changes class proportions\\\"\\n    },\\n    \\\"macro_f1_supplement\\\": {\\n      \\\"original_macro_f1\\\": 0.6996,\\n      \\\"matched_macro_f1\\\": 0.7486,\\n      \\\"note\\\": \\\"Macro F1 increases after matching because class balance improves (gen-1/gen-2+ ratio goes from 1:2.7 to 1:1). This is an artifact of the metric, not a real signal improvement.\\\"\\n    }\\n  },\\n  \\\"meta\\\": {\\n    \\\"n_quantile_bins\\\": 10,\\n    \\\"matching_method\\\": \\\"stratified_subsample_by_length_decile\\\",\\n    \\\"xgb_params\\\": {\\n      \\\"n_estimators\\\": 200,\\n      \\\"max_depth\\\": 6\\n    },\\n    \\\"seed\\\": 42,\\n    \\\"protocol\\\": \\\"pooled LOGO 8-fold binary\\\",\\n    \\\"n_generators\\\": 8,\\n    \\\"generators\\\": [\\n      \\\"llama-3.2-3b\\\",\\n      \\\"mistral-7b-v0.3\\\",\\n      \\\"olmo-2-1b\\\",\\n      \\\"pythia-1b\\\",\\n      \\\"pythia-2.8b\\\",\\n      \\\"qwen3-0.6b\\\",\\n      \\\"qwen3-1.7b\\\",\\n      \\\"qwen3-8b\\\"\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also look for:
+1. QLoRA results
+2. Topic drift R²=0.082 (the file I got doesn't have R²)
+3. Prompt type cross-transfer (0.753)
+4. Cross-model chains binary F1=0.764 - I need to check more carefully
+
+Let me search for QLoRA and the remaining items.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "2298e01f-9002-43b0-bd90-c9dfd763cd32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUGZGwi8NTohijBH9obvcP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17983,
+      "cache_read_input_tokens": 42921,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+继续查找 QLoRA 和 topic drift R² 数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "7f87ba83-d9eb-4e55-9ffa-2ae733a12f81",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUGZGwi8NTohijBH9obvcP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17983,
+      "cache_read_input_tokens": 42921,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011oTw6cURhnzmvLVAjXA6oQ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/gen-depth-fingerprint/ -name \"*qlora*\" -o -name \"*lora*\" -o -name \"*e2e*\" -o -name \"*end_to_end*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "d5515ef0-c6a0-4b81-9a4f-8f012d2a6888",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUGZGwi8NTohijBH9obvcP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17983,
+      "cache_read_input_tokens": 42921,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-17T10:55:05.768Z_
+
+<details><summary>↩ Tool result · `toolu_011oTw6cURhnzmvLVAjXA6oQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/paper/appendix_qlora.tex\\n/root/gen-depth-fingerprint/end_to_end_classifier.py\\n/root/gen-depth-fingerprint/end_to_end_classifier_pythia.py\\n/root/gen-depth-fingerprint/end_to_end_classifier_v2.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "da4d1b22-7a9b-4be9-90ad-0ac102b98c9d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gen-depth-fingerprint/paper/appendix_qlora.tex\\\\n/root/gen-depth-fingerprint/end_to_end_classifier.py\\\\n/root/gen-depth-fingerprint/end_to_end_classifier_pythia.py\\\\n/root/gen-depth-fingerprint/end_to_end_classifier_v2.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/paper/appendix_qlora.tex\\n/root/gen-depth-fingerprint/end_to_end_classifier.py\\n/root/gen-depth-fingerprint/end_to_end_classifier_pythia.py\\n/root/gen-depth-fingerprint/end_to_end_classifier_v2.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GMzuXhqgkiULFGDHEcToAF`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/plan012_qwen06b_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "2c5017d9-bf8a-4a2b-a893-3cdefbc1dd2c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUGZGwi8NTohijBH9obvcP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17983,
+      "cache_read_input_tokens": 42921,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-17T10:55:07.197Z_
+
+<details><summary>↩ Tool result · `toolu_01GMzuXhqgkiULFGDHEcToAF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"plan-012-qwen06b\\\",\\n  \\\"model\\\": \\\"Qwen/Qwen3-0.6B\\\",\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-0.6B-Base\\\",\\n  \\\"method\\\": \\\"QLoRA_4bit_seqcls\\\",\\n  \\\"lora_config\\\": {\\n    \\\"r\\\": 16,\\n    \\\"alpha\\\": 32,\\n    \\\"target_modules\\\": [\\n      \\\"q_proj\\\",\\n      \\\"v_proj\\\"\\n    ]\\n  },\\n  \\\"max_length\\\": 512,\\n  \\\"batch_size\\\": 8,\\n  \\\"lr\\\": 0.0002,\\n  \\\"epochs\\\": 3,\\n  \\\"n_folds\\\": 5,\\n  \\\"n_samples\\\": 18423,\\n  \\\"generators\\\": [\\n    \\\"pythia-1b\\\",\\n    \\\"olmo-2-1b\\\",\\n    \\\"qwen3-0.6b\\\",\\n    \\\"qwen3-1.7b\\\"\\n  ],\\n  \\\"cv_type\\\": \\\"5-fold_stratified\\\",\\n  \\\"macro_f1_5class\\\": 0.5828,\\n  \\\"macro_f1_5class_std\\\": 0.01,\\n  \\\"macro_f1_3class\\\": 0.9052,\\n  \\\"macro_f1_3class_std\\\": 0.0032,\\n  \\\"per_class_f1_5class\\\": {\\n    \\\"depth_0\\\": 0.9991,\\n    \\\"depth_1\\\": 0.7963,\\n    \\\"depth_2\\\": 0.4128,\\n    \\\"depth_3\\\": 0.2594,\\n    \\\"depth_4\\\": 0.4465\\n  },\\n  \\\"per_class_f1_3class\\\": {\\n    \\\"gen0\\\": 0.9991,\\n    \\\"gen1\\\": 0.7963,\\n    \\\"gen2+\\\": 0.9202\\n  },\\n  \\\"fold_results\\\": [\\n    {\\n      \\\"fold\\\": 0,\\n      \\\"n_train\\\": 14738,\\n      \\\"n_val\\\": 3685,\\n      \\\"macro_f1_5class\\\": 0.5911,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9981,\\n        \\\"depth_1\\\": 0.798,\\n        \\\"depth_2\\\": 0.4259,\\n        \\\"depth_3\\\": 0.2668,\\n        \\\"depth_4\\\": 0.4667\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          797,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          3,\\n          654,\\n          119,\\n          12,\\n          2\\n        ],\\n        [\\n          0,\\n          132,\\n          313,\\n          141,\\n          161\\n        ],\\n        [\\n          0,\\n          37,\\n          180,\\n          157,\\n          321\\n        ],\\n        [\\n          0,\\n          26,\\n          111,\\n          172,\\n          347\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.9056,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9981,\\n        \\\"gen1\\\": 0.798,\\n        \\\"gen2+\\\": 0.9207\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          797,\\n          0,\\n          0\\n        ],\\n        [\\n          3,\\n          654,\\n          133\\n        ],\\n        [\\n          0,\\n          195,\\n          1903\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 1,\\n      \\\"n_train\\\": 14738,\\n      \\\"n_val\\\": 3685,\\n      \\\"macro_f1_5class\\\": 0.5751,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9994,\\n        \\\"depth_1\\\": 0.7998,\\n        \\\"depth_2\\\": 0.4232,\\n        \\\"depth_3\\\": 0.1806,\\n        \\\"depth_4\\\": 0.4726\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          797,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          659,\\n          118,\\n          8,\\n          4\\n        ],\\n        [\\n          0,\\n          136,\\n          329,\\n          132,\\n          150\\n        ],\\n        [\\n          0,\\n          45,\\n          219,\\n          97,\\n          333\\n        ],\\n        [\\n          0,\\n          18,\\n          142,\\n          143,\\n          354\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.9065,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9994,\\n        \\\"gen1\\\": 0.7998,\\n        \\\"gen2+\\\": 0.9203\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          797,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          659,\\n          130\\n        ],\\n        [\\n          0,\\n          199,\\n          1899\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 2,\\n      \\\"n_train\\\": 14738,\\n      \\\"n_val\\\": 3685,\\n      \\\"macro_f1_5class\\\": 0.5744,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9994,\\n        \\\"depth_1\\\": 0.7933,\\n        \\\"depth_2\\\": 0.3955,\\n        \\\"depth_3\\\": 0.323,\\n        \\\"depth_4\\\": 0.361\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          796,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          641,\\n          134,\\n          11,\\n          3\\n        ],\\n        [\\n          0,\\n          137,\\n          300,\\n          172,\\n          139\\n        ],\\n        [\\n          0,\\n          28,\\n          207,\\n          223,\\n          236\\n        ],\\n        [\\n          0,\\n          20,\\n          128,\\n          281,\\n          228\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.9042,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9994,\\n        \\\"gen1\\\": 0.7933,\\n        \\\"gen2+\\\": 0.92\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          796,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          641,\\n          148\\n        ],\\n        [\\n          0,\\n          185,\\n          1914\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 3,\\n      \\\"n_train\\\": 14739,\\n      \\\"n_val\\\": 3684,\\n      \\\"macro_f1_5class\\\": 0.5752,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9987,\\n        \\\"depth_1\\\": 0.7843,\\n        \\\"depth_2\\\": 0.4092,\\n        \\\"depth_3\\\": 0.221,\\n        \\\"depth_4\\\": 0.4628\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          796,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          629,\\n          148,\\n          8,\\n          4\\n        ],\\n        [\\n          0,\\n          130,\\n          319,\\n          108,\\n          191\\n        ],\\n        [\\n          0,\\n          37,\\n          210,\\n          119,\\n          328\\n        ],\\n        [\\n          1,\\n          18,\\n          134,\\n          148,\\n          355\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.9,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9987,\\n        \\\"gen1\\\": 0.7843,\\n        \\\"gen2+\\\": 0.917\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          796,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          629,\\n          160\\n        ],\\n        [\\n          1,\\n          185,\\n          1912\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 4,\\n      \\\"n_train\\\": 14739,\\n      \\\"n_val\\\": 3684,\\n      \\\"macro_f1_5class\\\": 0.5983,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 1.0,\\n        \\\"depth_1\\\": 0.8061,\\n        \\\"depth_2\\\": 0.4102,\\n        \\\"depth_3\\\": 0.3058,\\n        \\\"depth_4\\\": 0.4696\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          796,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          0,\\n          661,\\n          109,\\n          15,\\n          5\\n        ],\\n        [\\n          0,\\n          134,\\n          297,\\n          158,\\n          159\\n        ],\\n        [\\n          0,\\n          37,\\n          161,\\n          185,\\n          311\\n        ],\\n        [\\n          0,\\n          18,\\n          133,\\n          158,\\n          347\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.9097,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 1.0,\\n        \\\"gen1\\\": 0.8061,\\n        \\\"gen2+\\\": 0.9231\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          796,\\n          0,\\n          0\\n        ],\\n        [\\n          0,\\n          661,\\n          129\\n        ],\\n        [\\n          0,\\n          189,\\n          1909\\n        ]\\n      ]\\n    }\\n  ],\\n  \\\"baseline_xgboost\\\": {\\n    \\\"5class_macro_f1\\\": 0.5028,\\n    \\\"3class_macro_f1\\\": 0.7815,\\n    \\\"method\\\": \\\"HGBT_7features_LOGO\\\"\\n  },\\n  \\\"delta_vs_xgboost\\\": {\\n    \\\"5class\\\": 0.08,\\n    \\\"3class\\\": 0.1237\\n  },\\n  \\\"runtime_seconds\\\": 6927.8,\\n  \\\"seed\\\": 42\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "7af4b556-7bf1-4ff0-b3a9-b08101ebeb24",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"plan-012-qwen06b\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen/Qwen3-0.6B\\\\\\\",\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-0.6B-Base\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"QLoRA_4bit_seqcls\\\\\\\",\\\\n  \\\\\\\"lora_config\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 16,\\\\n    \\\\\\\"alpha\\\\\\\": 32,\\\\n    \\\\\\\"target_modules\\\\\\\": [\\\\n      \\\\\\\"q_proj\\\\\\\",\\\\n      \\\\\\\"v_proj\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"max_length\\\\\\\": 512,\\\\n  \\\\\\\"batch_size\\\\\\\": 8,\\\\n  \\\\\\\"lr\\\\\\\": 0.0002,\\\\n  \\\\\\\"epochs\\\\\\\": 3,\\\\n  \\\\\\\"n_folds\\\\\\\": 5,\\\\n  \\\\\\\"n_samples\\\\\\\": 18423,\\\\n  \\\\\\\"generators\\\\\\\": [\\\\n    \\\\\\\"pythia-1b\\\\\\\",\\\\n    \\\\\\\"olmo-2-1b\\\\\\\",\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"cv_type\\\\\\\": \\\\\\\"5-fold_stratified\\\\\\\",\\\\n  \\\\\\\"macro_f1_5class\\\\\\\": 0.5828,\\\\n  \\\\\\\"macro_f1_5class_std\\\\\\\": 0.01,\\\\n  \\\\\\\"macro_f1_3class\\\\\\\": 0.9052,\\\\n  \\\\\\\"macro_f1_3class_std\\\\\\\": 0.0032,\\\\n  \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n    \\\\\\\"depth_0\\\\\\\": 0.9991,\\\\n    \\\\\\\"depth_1\\\\\\\": 0.7963,\\\\n    \\\\\\\"depth_2\\\\\\\": 0.4128,\\\\n    \\\\\\\"depth_3\\\\\\\": 0.2594,\\\\n    \\\\\\\"depth_4\\\\\\\": 0.4465\\\\n  },\\\\n  \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n    \\\\\\\"gen0\\\\\\\": 0.9991,\\\\n    \\\\\\\"gen1\\\\\\\": 0.7963,\\\\n    \\\\\\\"gen2+\\\\\\\": 0.9202\\\\n  },\\\\n  \\\\\\\"fold_results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"fold\\\\\\\": 0,\\\\n      \\\\\\\"n_train\\\\\\\": 14738,\\\\n      \\\\\\\"n_val\\\\\\\": 3685,\\\\n      \\\\\\\"macro_f1_5class\\\\\\\": 0.5911,\\\\n      \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n        \\\\\\\"depth_0\\\\\\\": 0.9981,\\\\n        \\\\\\\"depth_1\\\\\\\": 0.798,\\\\n        \\\\\\\"depth_2\\\\\\\": 0.4259,\\\\n        \\\\\\\"depth_3\\\\\\\": 0.2668,\\\\n        \\\\\\\"depth_4\\\\\\\": 0.4667\\\\n      },\\\\n      \\\\\\\"confusion_matrix_5class\\\\\\\": [\\\\n        [\\\\n          797,\\\\n          0,\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          3,\\\\n          654,\\\\n          119,\\\\n          12,\\\\n          2\\\\n        ],\\\\n        [\\\\n          0,\\\\n          132,\\\\n          313,\\\\n          141,\\\\n          161\\\\n        ],\\\\n        [\\\\n          0,\\\\n          37,\\\\n          180,\\\\n          157,\\\\n          321\\\\n        ],\\\\n        [\\\\n          0,\\\\n          26,\\\\n          111,\\\\n          172,\\\\n          347\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"macro_f1_3class\\\\\\\": 0.9056,\\\\n      \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 0.9981,\\\\n        \\\\\\\"gen1\\\\\\\": 0.798,\\\\n        \\\\\\\"gen2+\\\\\\\": 0.9207\\\\n      },\\\\n      \\\\\\\"confusion_matrix_3class\\\\\\\": [\\\\n        [\\\\n          797,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          3,\\\\n          654,\\\\n          133\\\\n        ],\\\\n        [\\\\n          0,\\\\n          195,\\\\n          1903\\\\n        ]\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"fold\\\\\\\": 1,\\\\n      \\\\\\\"n_train\\\\\\\": 14738,\\\\n      \\\\\\\"n_val\\\\\\\": 3685,\\\\n      \\\\\\\"macro_f1_5class\\\\\\\": 0.5751,\\\\n      \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n        \\\\\\\"depth_0\\\\\\\": 0.9994,\\\\n        \\\\\\\"depth_1\\\\\\\": 0.7998,\\\\n        \\\\\\\"depth_2\\\\\\\": 0.4232,\\\\n        \\\\\\\"depth_3\\\\\\\": 0.1806,\\\\n        \\\\\\\"depth_4\\\\\\\": 0.4726\\\\n      },\\\\n      \\\\\\\"confusion_matrix_5class\\\\\\\": [\\\\n        [\\\\n          797,\\\\n          0,\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          1,\\\\n          659,\\\\n          118,\\\\n          8,\\\\n          4\\\\n        ],\\\\n        [\\\\n          0,\\\\n          136,\\\\n          329,\\\\n          132,\\\\n          150\\\\n        ],\\\\n        [\\\\n          0,\\\\n          45,\\\\n          219,\\\\n          97,\\\\n          333\\\\n        ],\\\\n        [\\\\n          0,\\\\n          18,\\\\n          142,\\\\n          143,\\\\n          354\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"macro_f1_3class\\\\\\\": 0.9065,\\\\n      \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 0.9994,\\\\n        \\\\\\\"gen1\\\\\\\": 0.7998,\\\\n        \\\\\\\"gen2+\\\\\\\": 0.9203\\\\n      },\\\\n      \\\\\\\"confusion_matrix_3class\\\\\\\": [\\\\n        [\\\\n          797,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          1,\\\\n          659,\\\\n          130\\\\n        ],\\\\n        [\\\\n          0,\\\\n          199,\\\\n          1899\\\\n        ]\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"fold\\\\\\\": 2,\\\\n      \\\\\\\"n_train\\\\\\\": 14738,\\\\n      \\\\\\\"n_val\\\\\\\": 3685,\\\\n      \\\\\\\"macro_f1_5class\\\\\\\": 0.5744,\\\\n      \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n        \\\\\\\"depth_0\\\\\\\": 0.9994,\\\\n        \\\\\\\"depth_1\\\\\\\": 0.7933,\\\\n        \\\\\\\"depth_2\\\\\\\": 0.3955,\\\\n        \\\\\\\"depth_3\\\\\\\": 0.323,\\\\n        \\\\\\\"depth_4\\\\\\\": 0.361\\\\n      },\\\\n      \\\\\\\"confusion_matrix_5class\\\\\\\": [\\\\n        [\\\\n          796,\\\\n          0,\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          1,\\\\n          641,\\\\n          134,\\\\n          11,\\\\n          3\\\\n        ],\\\\n        [\\\\n          0,\\\\n          137,\\\\n          300,\\\\n          172,\\\\n          139\\\\n        ],\\\\n        [\\\\n          0,\\\\n          28,\\\\n          207,\\\\n          223,\\\\n          236\\\\n        ],\\\\n        [\\\\n          0,\\\\n          20,\\\\n          128,\\\\n          281,\\\\n          228\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"macro_f1_3class\\\\\\\": 0.9042,\\\\n      \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 0.9994,\\\\n        \\\\\\\"gen1\\\\\\\": 0.7933,\\\\n        \\\\\\\"gen2+\\\\\\\": 0.92\\\\n      },\\\\n      \\\\\\\"confusion_matrix_3class\\\\\\\": [\\\\n        [\\\\n          796,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          1,\\\\n          641,\\\\n          148\\\\n        ],\\\\n        [\\\\n          0,\\\\n          185,\\\\n          1914\\\\n        ]\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"fold\\\\\\\": 3,\\\\n      \\\\\\\"n_train\\\\\\\": 14739,\\\\n      \\\\\\\"n_val\\\\\\\": 3684,\\\\n      \\\\\\\"macro_f1_5class\\\\\\\": 0.5752,\\\\n      \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n        \\\\\\\"depth_0\\\\\\\": 0.9987,\\\\n        \\\\\\\"depth_1\\\\\\\": 0.7843,\\\\n        \\\\\\\"depth_2\\\\\\\": 0.4092,\\\\n        \\\\\\\"depth_3\\\\\\\": 0.221,\\\\n        \\\\\\\"depth_4\\\\\\\": 0.4628\\\\n      },\\\\n      \\\\\\\"confusion_matrix_5class\\\\\\\": [\\\\n        [\\\\n          796,\\\\n          0,\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          1,\\\\n          629,\\\\n          148,\\\\n          8,\\\\n          4\\\\n        ],\\\\n        [\\\\n          0,\\\\n          130,\\\\n          319,\\\\n          108,\\\\n          191\\\\n        ],\\\\n        [\\\\n          0,\\\\n          37,\\\\n          210,\\\\n          119,\\\\n          328\\\\n        ],\\\\n        [\\\\n          1,\\\\n          18,\\\\n          134,\\\\n          148,\\\\n          355\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"macro_f1_3class\\\\\\\": 0.9,\\\\n      \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 0.9987,\\\\n        \\\\\\\"gen1\\\\\\\": 0.7843,\\\\n        \\\\\\\"gen2+\\\\\\\": 0.917\\\\n      },\\\\n      \\\\\\\"confusion_matrix_3class\\\\\\\": [\\\\n        [\\\\n          796,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          1,\\\\n          629,\\\\n          160\\\\n        ],\\\\n        [\\\\n          1,\\\\n          185,\\\\n          1912\\\\n        ]\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"fold\\\\\\\": 4,\\\\n      \\\\\\\"n_train\\\\\\\": 14739,\\\\n      \\\\\\\"n_val\\\\\\\": 3684,\\\\n      \\\\\\\"macro_f1_5class\\\\\\\": 0.5983,\\\\n      \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n        \\\\\\\"depth_0\\\\\\\": 1.0,\\\\n        \\\\\\\"depth_1\\\\\\\": 0.8061,\\\\n        \\\\\\\"depth_2\\\\\\\": 0.4102,\\\\n        \\\\\\\"depth_3\\\\\\\": 0.3058,\\\\n        \\\\\\\"depth_4\\\\\\\": 0.4696\\\\n      },\\\\n      \\\\\\\"confusion_matrix_5class\\\\\\\": [\\\\n        [\\\\n          796,\\\\n          0,\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          0,\\\\n          661,\\\\n          109,\\\\n          15,\\\\n          5\\\\n        ],\\\\n        [\\\\n          0,\\\\n          134,\\\\n          297,\\\\n          158,\\\\n          159\\\\n        ],\\\\n        [\\\\n          0,\\\\n          37,\\\\n          161,\\\\n          185,\\\\n          311\\\\n        ],\\\\n        [\\\\n          0,\\\\n          18,\\\\n          133,\\\\n          158,\\\\n          347\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"macro_f1_3class\\\\\\\": 0.9097,\\\\n      \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 1.0,\\\\n        \\\\\\\"gen1\\\\\\\": 0.8061,\\\\n        \\\\\\\"gen2+\\\\\\\": 0.9231\\\\n      },\\\\n      \\\\\\\"confusion_matrix_3class\\\\\\\": [\\\\n        [\\\\n          796,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          0,\\\\n          661,\\\\n          129\\\\n        ],\\\\n        [\\\\n          0,\\\\n          189,\\\\n          1909\\\\n        ]\\\\n      ]\\\\n    }\\\\n  ],\\\\n  \\\\\\\"baseline_xgboost\\\\\\\": {\\\\n    \\\\\\\"5class_macro_f1\\\\\\\": 0.5028,\\\\n    \\\\\\\"3class_macro_f1\\\\\\\": 0.7815,\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"HGBT_7features_LOGO\\\\\\\"\\\\n  },\\\\n  \\\\\\\"delta_vs_xgboost\\\\\\\": {\\\\n    \\\\\\\"5class\\\\\\\": 0.08,\\\\n    \\\\\\\"3class\\\\\\\": 0.1237\\\\n  },\\\\n  \\\\\\\"runtime_seconds\\\\\\\": 6927.8,\\\\n  \\\\\\\"seed\\\\\\\": 42\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"plan-012-qwen06b\\\",\\n  \\\"model\\\": \\\"Qwen/Qwen3-0.6B\\\",\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-0.6B-Base\\\",\\n  \\\"method\\\": \\\"QLoRA_4bit_seqcls\\\",\\n  \\\"lora_config\\\": {\\n    \\\"r\\\": 16,\\n    \\\"alpha\\\": 32,\\n    \\\"target_modules\\\": [\\n      \\\"q_proj\\\",\\n      \\\"v_proj\\\"\\n    ]\\n  },\\n  \\\"max_length\\\": 512,\\n  \\\"batch_size\\\": 8,\\n  \\\"lr\\\": 0.0002,\\n  \\\"epochs\\\": 3,\\n  \\\"n_folds\\\": 5,\\n  \\\"n_samples\\\": 18423,\\n  \\\"generators\\\": [\\n    \\\"pythia-1b\\\",\\n    \\\"olmo-2-1b\\\",\\n    \\\"qwen3-0.6b\\\",\\n    \\\"qwen3-1.7b\\\"\\n  ],\\n  \\\"cv_type\\\": \\\"5-fold_stratified\\\",\\n  \\\"macro_f1_5class\\\": 0.5828,\\n  \\\"macro_f1_5class_std\\\": 0.01,\\n  \\\"macro_f1_3class\\\": 0.9052,\\n  \\\"macro_f1_3class_std\\\": 0.0032,\\n  \\\"per_class_f1_5class\\\": {\\n    \\\"depth_0\\\": 0.9991,\\n    \\\"depth_1\\\": 0.7963,\\n    \\\"depth_2\\\": 0.4128,\\n    \\\"depth_3\\\": 0.2594,\\n    \\\"depth_4\\\": 0.4465\\n  },\\n  \\\"per_class_f1_3class\\\": {\\n    \\\"gen0\\\": 0.9991,\\n    \\\"gen1\\\": 0.7963,\\n    \\\"gen2+\\\": 0.9202\\n  },\\n  \\\"fold_results\\\": [\\n    {\\n      \\\"fold\\\": 0,\\n      \\\"n_train\\\": 14738,\\n      \\\"n_val\\\": 3685,\\n      \\\"macro_f1_5class\\\": 0.5911,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9981,\\n        \\\"depth_1\\\": 0.798,\\n        \\\"depth_2\\\": 0.4259,\\n        \\\"depth_3\\\": 0.2668,\\n        \\\"depth_4\\\": 0.4667\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          797,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          3,\\n          654,\\n          119,\\n          12,\\n          2\\n        ],\\n        [\\n          0,\\n          132,\\n          313,\\n          141,\\n          161\\n        ],\\n        [\\n          0,\\n          37,\\n          180,\\n          157,\\n          321\\n        ],\\n        [\\n          0,\\n          26,\\n          111,\\n          172,\\n          347\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.9056,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9981,\\n        \\\"gen1\\\": 0.798,\\n        \\\"gen2+\\\": 0.9207\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          797,\\n          0,\\n          0\\n        ],\\n        [\\n          3,\\n          654,\\n          133\\n        ],\\n        [\\n          0,\\n          195,\\n          1903\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 1,\\n      \\\"n_train\\\": 14738,\\n      \\\"n_val\\\": 3685,\\n      \\\"macro_f1_5class\\\": 0.5751,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9994,\\n        \\\"depth_1\\\": 0.7998,\\n        \\\"depth_2\\\": 0.4232,\\n        \\\"depth_3\\\": 0.1806,\\n        \\\"depth_4\\\": 0.4726\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          797,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          659,\\n          118,\\n          8,\\n          4\\n        ],\\n        [\\n          0,\\n          136,\\n          329,\\n          132,\\n          150\\n        ],\\n        [\\n          0,\\n          45,\\n          219,\\n          97,\\n          333\\n        ],\\n        [\\n          0,\\n          18,\\n          142,\\n          143,\\n          354\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.9065,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9994,\\n        \\\"gen1\\\": 0.7998,\\n        \\\"gen2+\\\": 0.9203\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          797,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          659,\\n          130\\n        ],\\n        [\\n          0,\\n          199,\\n          1899\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 2,\\n      \\\"n_train\\\": 14738,\\n      \\\"n_val\\\": 3685,\\n      \\\"macro_f1_5class\\\": 0.5744,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9994,\\n        \\\"depth_1\\\": 0.7933,\\n        \\\"depth_2\\\": 0.3955,\\n        \\\"depth_3\\\": 0.323,\\n        \\\"depth_4\\\": 0.361\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          796,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          641,\\n          134,\\n          11,\\n          3\\n        ],\\n        [\\n          0,\\n          137,\\n          300,\\n          172,\\n          139\\n        ],\\n        [\\n          0,\\n          28,\\n          207,\\n          223,\\n          236\\n        ],\\n        [\\n          0,\\n          20,\\n          128,\\n          281,\\n          228\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.9042,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9994,\\n        \\\"gen1\\\": 0.7933,\\n        \\\"gen2+\\\": 0.92\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          796,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          641,\\n          148\\n        ],\\n        [\\n          0,\\n          185,\\n          1914\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 3,\\n      \\\"n_train\\\": 14739,\\n      \\\"n_val\\\": 3684,\\n      \\\"macro_f1_5class\\\": 0.5752,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9987,\\n        \\\"depth_1\\\": 0.7843,\\n        \\\"depth_2\\\": 0.4092,\\n        \\\"depth_3\\\": 0.221,\\n        \\\"depth_4\\\": 0.4628\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          796,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          629,\\n          148,\\n          8,\\n          4\\n        ],\\n        [\\n          0,\\n          130,\\n          319,\\n          108,\\n          191\\n        ],\\n        [\\n          0,\\n          37,\\n          210,\\n          119,\\n          328\\n        ],\\n        [\\n          1,\\n          18,\\n          134,\\n          148,\\n          355\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.9,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9987,\\n        \\\"gen1\\\": 0.7843,\\n        \\\"gen2+\\\": 0.917\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          796,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          629,\\n          160\\n        ],\\n        [\\n          1,\\n          185,\\n          1912\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 4,\\n      \\\"n_train\\\": 14739,\\n      \\\"n_val\\\": 3684,\\n      \\\"macro_f1_5class\\\": 0.5983,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 1.0,\\n        \\\"depth_1\\\": 0.8061,\\n        \\\"depth_2\\\": 0.4102,\\n        \\\"depth_3\\\": 0.3058,\\n        \\\"depth_4\\\": 0.4696\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          796,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          0,\\n          661,\\n          109,\\n          15,\\n          5\\n        ],\\n        [\\n          0,\\n          134,\\n          297,\\n          158,\\n          159\\n        ],\\n        [\\n          0,\\n          37,\\n          161,\\n          185,\\n          311\\n        ],\\n        [\\n          0,\\n          18,\\n          133,\\n          158,\\n          347\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.9097,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 1.0,\\n        \\\"gen1\\\": 0.8061,\\n        \\\"gen2+\\\": 0.9231\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          796,\\n          0,\\n          0\\n        ],\\n        [\\n          0,\\n          661,\\n          129\\n        ],\\n        [\\n          0,\\n          189,\\n          1909\\n        ]\\n      ]\\n    }\\n  ],\\n  \\\"baseline_xgboost\\\": {\\n    \\\"5class_macro_f1\\\": 0.5028,\\n    \\\"3class_macro_f1\\\": 0.7815,\\n    \\\"method\\\": \\\"HGBT_7features_LOGO\\\"\\n  },\\n  \\\"delta_vs_xgboost\\\": {\\n    \\\"5class\\\": 0.08,\\n    \\\"3class\\\": 0.1237\\n  },\\n  \\\"runtime_seconds\\\": 6927.8,\\n  \\\"seed\\\": 42\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016yf4HtGr85S6TasgDQxHpC`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/plan012_qwen06b_seed123_r32_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "54ccf87f-a6a6-4dd4-a5a3-1b296e9ba3e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUGZGwi8NTohijBH9obvcP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17983,
+      "cache_read_input_tokens": 42921,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-17T10:55:08.150Z_
+
+<details><summary>↩ Tool result · `toolu_016yf4HtGr85S6TasgDQxHpC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"plan-012-qwen06b-v2\\\",\\n  \\\"model\\\": \\\"Qwen/Qwen3-0.6B\\\",\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-0.6B-Base\\\",\\n  \\\"method\\\": \\\"QLoRA_4bit_seqcls\\\",\\n  \\\"lora_config\\\": {\\n    \\\"r\\\": 32,\\n    \\\"alpha\\\": 64,\\n    \\\"target_modules\\\": [\\n      \\\"q_proj\\\",\\n      \\\"v_proj\\\"\\n    ]\\n  },\\n  \\\"max_length\\\": 512,\\n  \\\"batch_size\\\": 8,\\n  \\\"lr\\\": 0.0002,\\n  \\\"epochs\\\": 3,\\n  \\\"n_folds\\\": 5,\\n  \\\"n_samples\\\": 18423,\\n  \\\"generators\\\": [\\n    \\\"pythia-1b\\\",\\n    \\\"olmo-2-1b\\\",\\n    \\\"qwen3-0.6b\\\",\\n    \\\"qwen3-1.7b\\\"\\n  ],\\n  \\\"cv_type\\\": \\\"5-fold_stratified\\\",\\n  \\\"macro_f1_5class\\\": 0.5873,\\n  \\\"macro_f1_5class_std\\\": 0.0047,\\n  \\\"macro_f1_3class\\\": 0.9054,\\n  \\\"macro_f1_3class_std\\\": 0.0037,\\n  \\\"per_class_f1_5class\\\": {\\n    \\\"depth_0\\\": 0.9995,\\n    \\\"depth_1\\\": 0.7959,\\n    \\\"depth_2\\\": 0.4016,\\n    \\\"depth_3\\\": 0.3176,\\n    \\\"depth_4\\\": 0.4217\\n  },\\n  \\\"per_class_f1_3class\\\": {\\n    \\\"gen0\\\": 0.9995,\\n    \\\"gen1\\\": 0.7959,\\n    \\\"gen2+\\\": 0.9209\\n  },\\n  \\\"fold_results\\\": [\\n    {\\n      \\\"fold\\\": 0,\\n      \\\"n_train\\\": 14738,\\n      \\\"n_val\\\": 3685,\\n      \\\"macro_f1_5class\\\": 0.5808,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9994,\\n        \\\"depth_1\\\": 0.7819,\\n        \\\"depth_2\\\": 0.3962,\\n        \\\"depth_3\\\": 0.3697,\\n        \\\"depth_4\\\": 0.3566\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          797,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          638,\\n          138,\\n          10,\\n          3\\n        ],\\n        [\\n          0,\\n          146,\\n          295,\\n          210,\\n          96\\n        ],\\n        [\\n          0,\\n          39,\\n          181,\\n          276,\\n          199\\n        ],\\n        [\\n          0,\\n          19,\\n          128,\\n          302,\\n          207\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.8985,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9994,\\n        \\\"gen1\\\": 0.7819,\\n        \\\"gen2+\\\": 0.9143\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          797,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          638,\\n          151\\n        ],\\n        [\\n          0,\\n          204,\\n          1894\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 1,\\n      \\\"n_train\\\": 14738,\\n      \\\"n_val\\\": 3685,\\n      \\\"macro_f1_5class\\\": 0.5857,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9994,\\n        \\\"depth_1\\\": 0.7976,\\n        \\\"depth_2\\\": 0.4008,\\n        \\\"depth_3\\\": 0.3373,\\n        \\\"depth_4\\\": 0.3932\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          797,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          652,\\n          114,\\n          18,\\n          5\\n        ],\\n        [\\n          0,\\n          133,\\n          287,\\n          200,\\n          127\\n        ],\\n        [\\n          0,\\n          40,\\n          163,\\n          238,\\n          253\\n        ],\\n        [\\n          0,\\n          20,\\n          121,\\n          261,\\n          255\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.9057,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9994,\\n        \\\"gen1\\\": 0.7976,\\n        \\\"gen2+\\\": 0.9203\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          797,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          652,\\n          137\\n        ],\\n        [\\n          0,\\n          193,\\n          1905\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 2,\\n      \\\"n_train\\\": 14738,\\n      \\\"n_val\\\": 3685,\\n      \\\"macro_f1_5class\\\": 0.5955,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9994,\\n        \\\"depth_1\\\": 0.7952,\\n        \\\"depth_2\\\": 0.412,\\n        \\\"depth_3\\\": 0.3011,\\n        \\\"depth_4\\\": 0.47\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          796,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          633,\\n          136,\\n          15,\\n          5\\n        ],\\n        [\\n          0,\\n          132,\\n          310,\\n          153,\\n          153\\n        ],\\n        [\\n          0,\\n          26,\\n          188,\\n          185,\\n          295\\n        ],\\n        [\\n          0,\\n          11,\\n          123,\\n          182,\\n          341\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.9056,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9994,\\n        \\\"gen1\\\": 0.7952,\\n        \\\"gen2+\\\": 0.9223\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          796,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          633,\\n          156\\n        ],\\n        [\\n          0,\\n          169,\\n          1930\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 3,\\n      \\\"n_train\\\": 14739,\\n      \\\"n_val\\\": 3684,\\n      \\\"macro_f1_5class\\\": 0.5871,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 1.0,\\n        \\\"depth_1\\\": 0.8046,\\n        \\\"depth_2\\\": 0.3839,\\n        \\\"depth_3\\\": 0.3047,\\n        \\\"depth_4\\\": 0.4425\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          796,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          0,\\n          663,\\n          114,\\n          7,\\n          6\\n        ],\\n        [\\n          0,\\n          139,\\n          277,\\n          150,\\n          182\\n        ],\\n        [\\n          0,\\n          39,\\n          181,\\n          188,\\n          286\\n        ],\\n        [\\n          0,\\n          17,\\n          123,\\n          195,\\n          321\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.9089,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 1.0,\\n        \\\"gen1\\\": 0.8046,\\n        \\\"gen2+\\\": 0.922\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          796,\\n          0,\\n          0\\n        ],\\n        [\\n          0,\\n          663,\\n          127\\n        ],\\n        [\\n          0,\\n          195,\\n          1903\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 4,\\n      \\\"n_train\\\": 14739,\\n      \\\"n_val\\\": 3684,\\n      \\\"macro_f1_5class\\\": 0.5872,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9994,\\n        \\\"depth_1\\\": 0.8003,\\n        \\\"depth_2\\\": 0.4152,\\n        \\\"depth_3\\\": 0.2753,\\n        \\\"depth_4\\\": 0.446\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          796,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          0,\\n          627,\\n          149,\\n          9,\\n          5\\n        ],\\n        [\\n          0,\\n          111,\\n          311,\\n          165,\\n          161\\n        ],\\n        [\\n          0,\\n          25,\\n          189,\\n          173,\\n          307\\n        ],\\n        [\\n          1,\\n          14,\\n          101,\\n          216,\\n          324\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.9083,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9994,\\n        \\\"gen1\\\": 0.8003,\\n        \\\"gen2+\\\": 0.9254\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          796,\\n          0,\\n          0\\n        ],\\n        [\\n          0,\\n          627,\\n          163\\n        ],\\n        [\\n          1,\\n          150,\\n          1947\\n        ]\\n      ]\\n    }\\n  ],\\n  \\\"baseline_xgboost\\\": {\\n    \\\"5class_macro_f1\\\": 0.5028,\\n    \\\"3class_macro_f1\\\": 0.7815,\\n    \\\"method\\\": \\\"HGBT_7features_LOGO\\\"\\n  },\\n  \\\"delta_vs_xgboost\\\": {\\n    \\\"5class\\\": 0.0845,\\n    \\\"3class\\\": 0.1239\\n  },\\n  \\\"runtime_seconds\\\": 7000.2,\\n  \\\"seed\\\": 123\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "ea81c207-3980-4c4d-8b9c-6dbb61d4f5bf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"plan-012-qwen06b-v2\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"Qwen/Qwen3-0.6B\\\\\\\",\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-0.6B-Base\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"QLoRA_4bit_seqcls\\\\\\\",\\\\n  \\\\\\\"lora_config\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 32,\\\\n    \\\\\\\"alpha\\\\\\\": 64,\\\\n    \\\\\\\"target_modules\\\\\\\": [\\\\n      \\\\\\\"q_proj\\\\\\\",\\\\n      \\\\\\\"v_proj\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"max_length\\\\\\\": 512,\\\\n  \\\\\\\"batch_size\\\\\\\": 8,\\\\n  \\\\\\\"lr\\\\\\\": 0.0002,\\\\n  \\\\\\\"epochs\\\\\\\": 3,\\\\n  \\\\\\\"n_folds\\\\\\\": 5,\\\\n  \\\\\\\"n_samples\\\\\\\": 18423,\\\\n  \\\\\\\"generators\\\\\\\": [\\\\n    \\\\\\\"pythia-1b\\\\\\\",\\\\n    \\\\\\\"olmo-2-1b\\\\\\\",\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"cv_type\\\\\\\": \\\\\\\"5-fold_stratified\\\\\\\",\\\\n  \\\\\\\"macro_f1_5class\\\\\\\": 0.5873,\\\\n  \\\\\\\"macro_f1_5class_std\\\\\\\": 0.0047,\\\\n  \\\\\\\"macro_f1_3class\\\\\\\": 0.9054,\\\\n  \\\\\\\"macro_f1_3class_std\\\\\\\": 0.0037,\\\\n  \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n    \\\\\\\"depth_0\\\\\\\": 0.9995,\\\\n    \\\\\\\"depth_1\\\\\\\": 0.7959,\\\\n    \\\\\\\"depth_2\\\\\\\": 0.4016,\\\\n    \\\\\\\"depth_3\\\\\\\": 0.3176,\\\\n    \\\\\\\"depth_4\\\\\\\": 0.4217\\\\n  },\\\\n  \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n    \\\\\\\"gen0\\\\\\\": 0.9995,\\\\n    \\\\\\\"gen1\\\\\\\": 0.7959,\\\\n    \\\\\\\"gen2+\\\\\\\": 0.9209\\\\n  },\\\\n  \\\\\\\"fold_results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"fold\\\\\\\": 0,\\\\n      \\\\\\\"n_train\\\\\\\": 14738,\\\\n      \\\\\\\"n_val\\\\\\\": 3685,\\\\n      \\\\\\\"macro_f1_5class\\\\\\\": 0.5808,\\\\n      \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n        \\\\\\\"depth_0\\\\\\\": 0.9994,\\\\n        \\\\\\\"depth_1\\\\\\\": 0.7819,\\\\n        \\\\\\\"depth_2\\\\\\\": 0.3962,\\\\n        \\\\\\\"depth_3\\\\\\\": 0.3697,\\\\n        \\\\\\\"depth_4\\\\\\\": 0.3566\\\\n      },\\\\n      \\\\\\\"confusion_matrix_5class\\\\\\\": [\\\\n        [\\\\n          797,\\\\n          0,\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          1,\\\\n          638,\\\\n          138,\\\\n          10,\\\\n          3\\\\n        ],\\\\n        [\\\\n          0,\\\\n          146,\\\\n          295,\\\\n          210,\\\\n          96\\\\n        ],\\\\n        [\\\\n          0,\\\\n          39,\\\\n          181,\\\\n          276,\\\\n          199\\\\n        ],\\\\n        [\\\\n          0,\\\\n          19,\\\\n          128,\\\\n          302,\\\\n          207\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"macro_f1_3class\\\\\\\": 0.8985,\\\\n      \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 0.9994,\\\\n        \\\\\\\"gen1\\\\\\\": 0.7819,\\\\n        \\\\\\\"gen2+\\\\\\\": 0.9143\\\\n      },\\\\n      \\\\\\\"confusion_matrix_3class\\\\\\\": [\\\\n        [\\\\n          797,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          1,\\\\n          638,\\\\n          151\\\\n        ],\\\\n        [\\\\n          0,\\\\n          204,\\\\n          1894\\\\n        ]\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"fold\\\\\\\": 1,\\\\n      \\\\\\\"n_train\\\\\\\": 14738,\\\\n      \\\\\\\"n_val\\\\\\\": 3685,\\\\n      \\\\\\\"macro_f1_5class\\\\\\\": 0.5857,\\\\n      \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n        \\\\\\\"depth_0\\\\\\\": 0.9994,\\\\n        \\\\\\\"depth_1\\\\\\\": 0.7976,\\\\n        \\\\\\\"depth_2\\\\\\\": 0.4008,\\\\n        \\\\\\\"depth_3\\\\\\\": 0.3373,\\\\n        \\\\\\\"depth_4\\\\\\\": 0.3932\\\\n      },\\\\n      \\\\\\\"confusion_matrix_5class\\\\\\\": [\\\\n        [\\\\n          797,\\\\n          0,\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          1,\\\\n          652,\\\\n          114,\\\\n          18,\\\\n          5\\\\n        ],\\\\n        [\\\\n          0,\\\\n          133,\\\\n          287,\\\\n          200,\\\\n          127\\\\n        ],\\\\n        [\\\\n          0,\\\\n          40,\\\\n          163,\\\\n          238,\\\\n          253\\\\n        ],\\\\n        [\\\\n          0,\\\\n          20,\\\\n          121,\\\\n          261,\\\\n          255\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"macro_f1_3class\\\\\\\": 0.9057,\\\\n      \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 0.9994,\\\\n        \\\\\\\"gen1\\\\\\\": 0.7976,\\\\n        \\\\\\\"gen2+\\\\\\\": 0.9203\\\\n      },\\\\n      \\\\\\\"confusion_matrix_3class\\\\\\\": [\\\\n        [\\\\n          797,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          1,\\\\n          652,\\\\n          137\\\\n        ],\\\\n        [\\\\n          0,\\\\n          193,\\\\n          1905\\\\n        ]\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"fold\\\\\\\": 2,\\\\n      \\\\\\\"n_train\\\\\\\": 14738,\\\\n      \\\\\\\"n_val\\\\\\\": 3685,\\\\n      \\\\\\\"macro_f1_5class\\\\\\\": 0.5955,\\\\n      \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n        \\\\\\\"depth_0\\\\\\\": 0.9994,\\\\n        \\\\\\\"depth_1\\\\\\\": 0.7952,\\\\n        \\\\\\\"depth_2\\\\\\\": 0.412,\\\\n        \\\\\\\"depth_3\\\\\\\": 0.3011,\\\\n        \\\\\\\"depth_4\\\\\\\": 0.47\\\\n      },\\\\n      \\\\\\\"confusion_matrix_5class\\\\\\\": [\\\\n        [\\\\n          796,\\\\n          0,\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          1,\\\\n          633,\\\\n          136,\\\\n          15,\\\\n          5\\\\n        ],\\\\n        [\\\\n          0,\\\\n          132,\\\\n          310,\\\\n          153,\\\\n          153\\\\n        ],\\\\n        [\\\\n          0,\\\\n          26,\\\\n          188,\\\\n          185,\\\\n          295\\\\n        ],\\\\n        [\\\\n          0,\\\\n          11,\\\\n          123,\\\\n          182,\\\\n          341\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"macro_f1_3class\\\\\\\": 0.9056,\\\\n      \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 0.9994,\\\\n        \\\\\\\"gen1\\\\\\\": 0.7952,\\\\n        \\\\\\\"gen2+\\\\\\\": 0.9223\\\\n      },\\\\n      \\\\\\\"confusion_matrix_3class\\\\\\\": [\\\\n        [\\\\n          796,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          1,\\\\n          633,\\\\n          156\\\\n        ],\\\\n        [\\\\n          0,\\\\n          169,\\\\n          1930\\\\n        ]\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"fold\\\\\\\": 3,\\\\n      \\\\\\\"n_train\\\\\\\": 14739,\\\\n      \\\\\\\"n_val\\\\\\\": 3684,\\\\n      \\\\\\\"macro_f1_5class\\\\\\\": 0.5871,\\\\n      \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n        \\\\\\\"depth_0\\\\\\\": 1.0,\\\\n        \\\\\\\"depth_1\\\\\\\": 0.8046,\\\\n        \\\\\\\"depth_2\\\\\\\": 0.3839,\\\\n        \\\\\\\"depth_3\\\\\\\": 0.3047,\\\\n        \\\\\\\"depth_4\\\\\\\": 0.4425\\\\n      },\\\\n      \\\\\\\"confusion_matrix_5class\\\\\\\": [\\\\n        [\\\\n          796,\\\\n          0,\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          0,\\\\n          663,\\\\n          114,\\\\n          7,\\\\n          6\\\\n        ],\\\\n        [\\\\n          0,\\\\n          139,\\\\n          277,\\\\n          150,\\\\n          182\\\\n        ],\\\\n        [\\\\n          0,\\\\n          39,\\\\n          181,\\\\n          188,\\\\n          286\\\\n        ],\\\\n        [\\\\n          0,\\\\n          17,\\\\n          123,\\\\n          195,\\\\n          321\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"macro_f1_3class\\\\\\\": 0.9089,\\\\n      \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 1.0,\\\\n        \\\\\\\"gen1\\\\\\\": 0.8046,\\\\n        \\\\\\\"gen2+\\\\\\\": 0.922\\\\n      },\\\\n      \\\\\\\"confusion_matrix_3class\\\\\\\": [\\\\n        [\\\\n          796,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          0,\\\\n          663,\\\\n          127\\\\n        ],\\\\n        [\\\\n          0,\\\\n          195,\\\\n          1903\\\\n        ]\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"fold\\\\\\\": 4,\\\\n      \\\\\\\"n_train\\\\\\\": 14739,\\\\n      \\\\\\\"n_val\\\\\\\": 3684,\\\\n      \\\\\\\"macro_f1_5class\\\\\\\": 0.5872,\\\\n      \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n        \\\\\\\"depth_0\\\\\\\": 0.9994,\\\\n        \\\\\\\"depth_1\\\\\\\": 0.8003,\\\\n        \\\\\\\"depth_2\\\\\\\": 0.4152,\\\\n        \\\\\\\"depth_3\\\\\\\": 0.2753,\\\\n        \\\\\\\"depth_4\\\\\\\": 0.446\\\\n      },\\\\n      \\\\\\\"confusion_matrix_5class\\\\\\\": [\\\\n        [\\\\n          796,\\\\n          0,\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          0,\\\\n          627,\\\\n          149,\\\\n          9,\\\\n          5\\\\n        ],\\\\n        [\\\\n          0,\\\\n          111,\\\\n          311,\\\\n          165,\\\\n          161\\\\n        ],\\\\n        [\\\\n          0,\\\\n          25,\\\\n          189,\\\\n          173,\\\\n          307\\\\n        ],\\\\n        [\\\\n          1,\\\\n          14,\\\\n          101,\\\\n          216,\\\\n          324\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"macro_f1_3class\\\\\\\": 0.9083,\\\\n      \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 0.9994,\\\\n        \\\\\\\"gen1\\\\\\\": 0.8003,\\\\n        \\\\\\\"gen2+\\\\\\\": 0.9254\\\\n      },\\\\n      \\\\\\\"confusion_matrix_3class\\\\\\\": [\\\\n        [\\\\n          796,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          0,\\\\n          627,\\\\n          163\\\\n        ],\\\\n        [\\\\n          1,\\\\n          150,\\\\n          1947\\\\n        ]\\\\n      ]\\\\n    }\\\\n  ],\\\\n  \\\\\\\"baseline_xgboost\\\\\\\": {\\\\n    \\\\\\\"5class_macro_f1\\\\\\\": 0.5028,\\\\n    \\\\\\\"3class_macro_f1\\\\\\\": 0.7815,\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"HGBT_7features_LOGO\\\\\\\"\\\\n  },\\\\n  \\\\\\\"delta_vs_xgboost\\\\\\\": {\\\\n    \\\\\\\"5class\\\\\\\": 0.0845,\\\\n    \\\\\\\"3class\\\\\\\": 0.1239\\\\n  },\\\\n  \\\\\\\"runtime_seconds\\\\\\\": 7000.2,\\\\n  \\\\\\\"seed\\\\\\\": 123\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"plan-012-qwen06b-v2\\\",\\n  \\\"model\\\": \\\"Qwen/Qwen3-0.6B\\\",\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-0.6B-Base\\\",\\n  \\\"method\\\": \\\"QLoRA_4bit_seqcls\\\",\\n  \\\"lora_config\\\": {\\n    \\\"r\\\": 32,\\n    \\\"alpha\\\": 64,\\n    \\\"target_modules\\\": [\\n      \\\"q_proj\\\",\\n      \\\"v_proj\\\"\\n    ]\\n  },\\n  \\\"max_length\\\": 512,\\n  \\\"batch_size\\\": 8,\\n  \\\"lr\\\": 0.0002,\\n  \\\"epochs\\\": 3,\\n  \\\"n_folds\\\": 5,\\n  \\\"n_samples\\\": 18423,\\n  \\\"generators\\\": [\\n    \\\"pythia-1b\\\",\\n    \\\"olmo-2-1b\\\",\\n    \\\"qwen3-0.6b\\\",\\n    \\\"qwen3-1.7b\\\"\\n  ],\\n  \\\"cv_type\\\": \\\"5-fold_stratified\\\",\\n  \\\"macro_f1_5class\\\": 0.5873,\\n  \\\"macro_f1_5class_std\\\": 0.0047,\\n  \\\"macro_f1_3class\\\": 0.9054,\\n  \\\"macro_f1_3class_std\\\": 0.0037,\\n  \\\"per_class_f1_5class\\\": {\\n    \\\"depth_0\\\": 0.9995,\\n    \\\"depth_1\\\": 0.7959,\\n    \\\"depth_2\\\": 0.4016,\\n    \\\"depth_3\\\": 0.3176,\\n    \\\"depth_4\\\": 0.4217\\n  },\\n  \\\"per_class_f1_3class\\\": {\\n    \\\"gen0\\\": 0.9995,\\n    \\\"gen1\\\": 0.7959,\\n    \\\"gen2+\\\": 0.9209\\n  },\\n  \\\"fold_results\\\": [\\n    {\\n      \\\"fold\\\": 0,\\n      \\\"n_train\\\": 14738,\\n      \\\"n_val\\\": 3685,\\n      \\\"macro_f1_5class\\\": 0.5808,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9994,\\n        \\\"depth_1\\\": 0.7819,\\n        \\\"depth_2\\\": 0.3962,\\n        \\\"depth_3\\\": 0.3697,\\n        \\\"depth_4\\\": 0.3566\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          797,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          638,\\n          138,\\n          10,\\n          3\\n        ],\\n        [\\n          0,\\n          146,\\n          295,\\n          210,\\n          96\\n        ],\\n        [\\n          0,\\n          39,\\n          181,\\n          276,\\n          199\\n        ],\\n        [\\n          0,\\n          19,\\n          128,\\n          302,\\n          207\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.8985,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9994,\\n        \\\"gen1\\\": 0.7819,\\n        \\\"gen2+\\\": 0.9143\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          797,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          638,\\n          151\\n        ],\\n        [\\n          0,\\n          204,\\n          1894\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 1,\\n      \\\"n_train\\\": 14738,\\n      \\\"n_val\\\": 3685,\\n      \\\"macro_f1_5class\\\": 0.5857,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9994,\\n        \\\"depth_1\\\": 0.7976,\\n        \\\"depth_2\\\": 0.4008,\\n        \\\"depth_3\\\": 0.3373,\\n        \\\"depth_4\\\": 0.3932\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          797,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          652,\\n          114,\\n          18,\\n          5\\n        ],\\n        [\\n          0,\\n          133,\\n          287,\\n          200,\\n          127\\n        ],\\n        [\\n          0,\\n          40,\\n          163,\\n          238,\\n          253\\n        ],\\n        [\\n          0,\\n          20,\\n          121,\\n          261,\\n          255\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.9057,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9994,\\n        \\\"gen1\\\": 0.7976,\\n        \\\"gen2+\\\": 0.9203\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          797,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          652,\\n          137\\n        ],\\n        [\\n          0,\\n          193,\\n          1905\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 2,\\n      \\\"n_train\\\": 14738,\\n      \\\"n_val\\\": 3685,\\n      \\\"macro_f1_5class\\\": 0.5955,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9994,\\n        \\\"depth_1\\\": 0.7952,\\n        \\\"depth_2\\\": 0.412,\\n        \\\"depth_3\\\": 0.3011,\\n        \\\"depth_4\\\": 0.47\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          796,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          633,\\n          136,\\n          15,\\n          5\\n        ],\\n        [\\n          0,\\n          132,\\n          310,\\n          153,\\n          153\\n        ],\\n        [\\n          0,\\n          26,\\n          188,\\n          185,\\n          295\\n        ],\\n        [\\n          0,\\n          11,\\n          123,\\n          182,\\n          341\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.9056,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9994,\\n        \\\"gen1\\\": 0.7952,\\n        \\\"gen2+\\\": 0.9223\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          796,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          633,\\n          156\\n        ],\\n        [\\n          0,\\n          169,\\n          1930\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 3,\\n      \\\"n_train\\\": 14739,\\n      \\\"n_val\\\": 3684,\\n      \\\"macro_f1_5class\\\": 0.5871,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 1.0,\\n        \\\"depth_1\\\": 0.8046,\\n        \\\"depth_2\\\": 0.3839,\\n        \\\"depth_3\\\": 0.3047,\\n        \\\"depth_4\\\": 0.4425\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          796,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          0,\\n          663,\\n          114,\\n          7,\\n          6\\n        ],\\n        [\\n          0,\\n          139,\\n          277,\\n          150,\\n          182\\n        ],\\n        [\\n          0,\\n          39,\\n          181,\\n          188,\\n          286\\n        ],\\n        [\\n          0,\\n          17,\\n          123,\\n          195,\\n          321\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.9089,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 1.0,\\n        \\\"gen1\\\": 0.8046,\\n        \\\"gen2+\\\": 0.922\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          796,\\n          0,\\n          0\\n        ],\\n        [\\n          0,\\n          663,\\n          127\\n        ],\\n        [\\n          0,\\n          195,\\n          1903\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 4,\\n      \\\"n_train\\\": 14739,\\n      \\\"n_val\\\": 3684,\\n      \\\"macro_f1_5class\\\": 0.5872,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9994,\\n        \\\"depth_1\\\": 0.8003,\\n        \\\"depth_2\\\": 0.4152,\\n        \\\"depth_3\\\": 0.2753,\\n        \\\"depth_4\\\": 0.446\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          796,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          0,\\n          627,\\n          149,\\n          9,\\n          5\\n        ],\\n        [\\n          0,\\n          111,\\n          311,\\n          165,\\n          161\\n        ],\\n        [\\n          0,\\n          25,\\n          189,\\n          173,\\n          307\\n        ],\\n        [\\n          1,\\n          14,\\n          101,\\n          216,\\n          324\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.9083,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9994,\\n        \\\"gen1\\\": 0.8003,\\n        \\\"gen2+\\\": 0.9254\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          796,\\n          0,\\n          0\\n        ],\\n        [\\n          0,\\n          627,\\n          163\\n        ],\\n        [\\n          1,\\n          150,\\n          1947\\n        ]\\n      ]\\n    }\\n  ],\\n  \\\"baseline_xgboost\\\": {\\n    \\\"5class_macro_f1\\\": 0.5028,\\n    \\\"3class_macro_f1\\\": 0.7815,\\n    \\\"method\\\": \\\"HGBT_7features_LOGO\\\"\\n  },\\n  \\\"delta_vs_xgboost\\\": {\\n    \\\"5class\\\": 0.0845,\\n    \\\"3class\\\": 0.1239\\n  },\\n  \\\"runtime_seconds\\\": 7000.2,\\n  \\\"seed\\\": 123\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JWUDwoaPrZrifJmYPiBBNa`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/rp_lofo_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "82338562-c491-4089-a2be-c98fb4521d82",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XUGZGwi8NTohijBH9obvcP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17983,
+      "cache_read_input_tokens": 42921,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 17983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-17T10:55:08.810Z_
+
+<details><summary>↩ Tool result · `toolu_01JWUDwoaPrZrifJmYPiBBNa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_A_llama_rp11\\\": {\\n    \\\"3class_f1\\\": 0.4168,\\n    \\\"binary_f1\\\": 0.5182,\\n    \\\"per_class\\\": {\\n      \\\"class_0\\\": {\\n        \\\"accuracy\\\": 0.9859,\\n        \\\"n\\\": 995\\n      },\\n      \\\"class_1\\\": {\\n        \\\"accuracy\\\": 0.0974,\\n        \\\"n\\\": 975\\n      },\\n      \\\"class_2\\\": {\\n        \\\"accuracy\\\": 0.4489,\\n        \\\"n\\\": 2446\\n      }\\n    },\\n    \\\"n_samples\\\": 4416,\\n    \\\"confusion_matrix\\\": [\\n      [\\n        979,\\n        5,\\n        11\\n      ],\\n      [\\n        331,\\n        319,\\n        325\\n      ],\\n      [\\n        626,\\n        641,\\n        1149\\n      ]\\n    ],\\n    \\\"labels\\\": [\\n      \\\"gen-0\\\",\\n      \\\"gen-1\\\",\\n      \\\"gen-2+\\\"\\n    ]\\n  },\\n  \\\"test_B_llama_rp10_filtered\\\": {\\n    \\\"3class_f1\\\": 0.7155,\\n    \\\"binary_f1\\\": 0.621,\\n    \\\"per_class\\\": {\\n      \\\"gen-0\\\": {\\n        \\\"f1\\\": 0.9427,\\n        \\\"accuracy\\\": 0.9829,\\n        \\\"n\\\": 995\\n      },\\n      \\\"gen-1\\\": {\\n        \\\"f1\\\": 0.5647,\\n        \\\"accuracy\\\": 0.5654,\\n        \\\"n\\\": 872\\n      },\\n      \\\"gen-2+\\\": {\\n        \\\"f1\\\": 0.6391,\\n        \\\"accuracy\\\": 0.6131,\\n        \\\"n\\\": 1070\\n      }\\n    },\\n    \\\"confusion_matrix\\\": [\\n      [\\n        978,\\n        10,\\n        7\\n      ],\\n      [\\n        59,\\n        493,\\n        320\\n      ],\\n      [\\n        43,\\n        371,\\n        656\\n      ]\\n    ],\\n    \\\"binary_per_class\\\": {\\n      \\\"gen-1\\\": 0.6007,\\n      \\\"gen-2+\\\": 0.6413\\n    },\\n    \\\"binary_confusion_matrix\\\": [\\n      [\\n        552,\\n        320\\n      ],\\n      [\\n        414,\\n        656\\n      ]\\n    ],\\n    \\\"labels\\\": [\\n      \\\"gen-0\\\",\\n      \\\"gen-1\\\",\\n      \\\"gen-2+\\\"\\n    ],\\n    \\\"n_kept\\\": 2937,\\n    \\\"n_original\\\": 4680\\n  },\\n  \\\"train_info\\\": {\\n    \\\"n_samples\\\": 32378,\\n    \\\"generators\\\": [\\n      \\\"mistral-7b-v0.3\\\",\\n      \\\"olmo-2-1b\\\",\\n      \\\"pythia-1b\\\",\\n      \\\"pythia-2.8b\\\",\\n      \\\"qwen3-0.6b\\\",\\n      \\\"qwen3-1.7b\\\",\\n      \\\"qwen3-8b\\\"\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "af10f9f3-c77a-414c-87ec-9c6c24ebc471",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"test_A_llama_rp11\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.4168,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.5182,\\\\n    \\\\\\\"per_class\\\\\\\": {\\\\n      \\\\\\\"class_0\\\\\\\": {\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9859,\\\\n        \\\\\\\"n\\\\\\\": 995\\\\n      },\\\\n      \\\\\\\"class_1\\\\\\\": {\\\\n        \\\\\\\"accuracy\\\\\\\": 0.0974,\\\\n        \\\\\\\"n\\\\\\\": 975\\\\n      },\\\\n      \\\\\\\"class_2\\\\\\\": {\\\\n        \\\\\\\"accuracy\\\\\\\": 0.4489,\\\\n        \\\\\\\"n\\\\\\\": 2446\\\\n      }\\\\n    },\\\\n    \\\\\\\"n_samples\\\\\\\": 4416,\\\\n    \\\\\\\"confusion_matrix\\\\\\\": [\\\\n      [\\\\n        979,\\\\n        5,\\\\n        11\\\\n      ],\\\\n      [\\\\n        331,\\\\n        319,\\\\n        325\\\\n      ],\\\\n      [\\\\n        626,\\\\n        641,\\\\n        1149\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"labels\\\\\\\": [\\\\n      \\\\\\\"gen-0\\\\\\\",\\\\n      \\\\\\\"gen-1\\\\\\\",\\\\n      \\\\\\\"gen-2+\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"test_B_llama_rp10_filtered\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.7155,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.621,\\\\n    \\\\\\\"per_class\\\\\\\": {\\\\n      \\\\\\\"gen-0\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.9427,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.9829,\\\\n        \\\\\\\"n\\\\\\\": 995\\\\n      },\\\\n      \\\\\\\"gen-1\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.5647,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5654,\\\\n        \\\\\\\"n\\\\\\\": 872\\\\n      },\\\\n      \\\\\\\"gen-2+\\\\\\\": {\\\\n        \\\\\\\"f1\\\\\\\": 0.6391,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.6131,\\\\n        \\\\\\\"n\\\\\\\": 1070\\\\n      }\\\\n    },\\\\n    \\\\\\\"confusion_matrix\\\\\\\": [\\\\n      [\\\\n        978,\\\\n        10,\\\\n        7\\\\n      ],\\\\n      [\\\\n        59,\\\\n        493,\\\\n        320\\\\n      ],\\\\n      [\\\\n        43,\\\\n        371,\\\\n        656\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"binary_per_class\\\\\\\": {\\\\n      \\\\\\\"gen-1\\\\\\\": 0.6007,\\\\n      \\\\\\\"gen-2+\\\\\\\": 0.6413\\\\n    },\\\\n    \\\\\\\"binary_confusion_matrix\\\\\\\": [\\\\n      [\\\\n        552,\\\\n        320\\\\n      ],\\\\n      [\\\\n        414,\\\\n        656\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"labels\\\\\\\": [\\\\n      \\\\\\\"gen-0\\\\\\\",\\\\n      \\\\\\\"gen-1\\\\\\\",\\\\n      \\\\\\\"gen-2+\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_kept\\\\\\\": 2937,\\\\n    \\\\\\\"n_original\\\\\\\": 4680\\\\n  },\\\\n  \\\\\\\"train_info\\\\\\\": {\\\\n    \\\\\\\"n_samples\\\\\\\": 32378,\\\\n    \\\\\\\"generators\\\\\\\": [\\\\n      \\\\\\\"mistral-7b-v0.3\\\\\\\",\\\\n      \\\\\\\"olmo-2-1b\\\\\\\",\\\\n      \\\\\\\"pythia-1b\\\\\\\",\\\\n      \\\\\\\"pythia-2.8b\\\\\\\",\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\",\\\\n      \\\\\\\"qwen3-8b\\\\\\\"\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"test_A_llama_rp11\\\": {\\n    \\\"3class_f1\\\": 0.4168,\\n    \\\"binary_f1\\\": 0.5182,\\n    \\\"per_class\\\": {\\n      \\\"class_0\\\": {\\n        \\\"accuracy\\\": 0.9859,\\n        \\\"n\\\": 995\\n      },\\n      \\\"class_1\\\": {\\n        \\\"accuracy\\\": 0.0974,\\n        \\\"n\\\": 975\\n      },\\n      \\\"class_2\\\": {\\n        \\\"accuracy\\\": 0.4489,\\n        \\\"n\\\": 2446\\n      }\\n    },\\n    \\\"n_samples\\\": 4416,\\n    \\\"confusion_matrix\\\": [\\n      [\\n        979,\\n        5,\\n        11\\n      ],\\n      [\\n        331,\\n        319,\\n        325\\n      ],\\n      [\\n        626,\\n        641,\\n        1149\\n      ]\\n    ],\\n    \\\"labels\\\": [\\n      \\\"gen-0\\\",\\n      \\\"gen-1\\\",\\n      \\\"gen-2+\\\"\\n    ]\\n  },\\n  \\\"test_B_llama_rp10_filtered\\\": {\\n    \\\"3class_f1\\\": 0.7155,\\n    \\\"binary_f1\\\": 0.621,\\n    \\\"per_class\\\": {\\n      \\\"gen-0\\\": {\\n        \\\"f1\\\": 0.9427,\\n        \\\"accuracy\\\": 0.9829,\\n        \\\"n\\\": 995\\n      },\\n      \\\"gen-1\\\": {\\n        \\\"f1\\\": 0.5647,\\n        \\\"accuracy\\\": 0.5654,\\n        \\\"n\\\": 872\\n      },\\n      \\\"gen-2+\\\": {\\n        \\\"f1\\\": 0.6391,\\n        \\\"accuracy\\\": 0.6131,\\n        \\\"n\\\": 1070\\n      }\\n    },\\n    \\\"confusion_matrix\\\": [\\n      [\\n        978,\\n        10,\\n        7\\n      ],\\n      [\\n        59,\\n        493,\\n        320\\n      ],\\n      [\\n        43,\\n        371,\\n        656\\n      ]\\n    ],\\n    \\\"binary_per_class\\\": {\\n      \\\"gen-1\\\": 0.6007,\\n      \\\"gen-2+\\\": 0.6413\\n    },\\n    \\\"binary_confusion_matrix\\\": [\\n      [\\n        552,\\n        320\\n      ],\\n      [\\n        414,\\n        656\\n      ]\\n    ],\\n    \\\"labels\\\": [\\n      \\\"gen-0\\\",\\n      \\\"gen-1\\\",\\n      \\\"gen-2+\\\"\\n    ],\\n    \\\"n_kept\\\": 2937,\\n    \\\"n_original\\\": 4680\\n  },\\n  \\\"train_info\\\": {\\n    \\\"n_samples\\\": 32378,\\n    \\\"generators\\\": [\\n      \\\"mistral-7b-v0.3\\\",\\n      \\\"olmo-2-1b\\\",\\n      \\\"pythia-1b\\\",\\n      \\\"pythia-2.8b\\\",\\n      \\\"qwen3-0.6b\\\",\\n      \\\"qwen3-1.7b\\\",\\n      \\\"qwen3-8b\\\"\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to check for:
+1. Topic drift R²=0.082 - still not found
+2. Cross-model chains binary F1=0.764 - the data shows 0.7435 (pooled CV) and 0.7758 (LOGO), neither matches
+3. Cross-type transfer at 0.753 - need to check more
+
+Let me also look at the paper files to understand what claims are being made and what metric they're referring to. Also need to find topic drift R² and the prompt type cross-transfer number.
+
+Let me look for more files:
+- The gemma_cross_rp_comparison.json might have cross-type transfer data
+
+
+- The 8gen_ldscore_sparse_fixed.json could also be relevant for finding that topic drift R² value
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "c2d1f6a7-ba86-4181-b9ca-a15d908bf211",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tt9V8NJr52XKKLsabmoavf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9495,
+      "cache_read_input_tokens": 60904,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+还需要找 topic drift R² 和 cross-type transfer 数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "86647688-12ad-4865-883d-22004f7914fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tt9V8NJr52XKKLsabmoavf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9495,
+      "cache_read_input_tokens": 60904,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01N6Hy3fgUiER3AQ1niyQD3Z`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/gemma_cross_rp_comparison.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "2115bbff-a43e-4730-a623-7c5ebb9beb94",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tt9V8NJr52XKKLsabmoavf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9495,
+      "cache_read_input_tokens": 60904,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-17T10:55:18.133Z_
+
+<details><summary>↩ Tool result · `toolu_01N6Hy3fgUiER3AQ1niyQD3Z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"rp10\\\": {\\n    \\\"n_records\\\": 1061,\\n    \\\"depth_retention\\\": 0.0171,\\n    \\\"depth_dist\\\": {\\n      \\\"0\\\": 994,\\n      \\\"1\\\": 19,\\n      \\\"2\\\": 16,\\n      \\\"3\\\": 15,\\n      \\\"4\\\": 17\\n    },\\n    \\\"features\\\": {\\n      \\\"entropy_mean\\\": {\\n        \\\"mean\\\": 2.5991877878153247,\\n        \\\"std\\\": 0.5426449304348576,\\n        \\\"median\\\": 2.6518163681030273,\\n        \\\"min\\\": 0.06309865415096283,\\n        \\\"max\\\": 5.859375,\\n        \\\"spearman_rho\\\": -0.21985437323044363,\\n        \\\"spearman_p\\\": 4.4324041356504323e-13,\\n        \\\"per_depth_mean\\\": [\\n          2.6378435510504894,\\n          2.1782862387205424,\\n          2.0868275919929147,\\n          1.8766337980826695,\\n          1.9291509499444681\\n        ]\\n      },\\n      \\\"entropy_std\\\": {\\n        \\\"mean\\\": 1.5987194681603332,\\n        \\\"std\\\": 0.31928694133597574,\\n        \\\"median\\\": 1.6522774696350098,\\n        \\\"min\\\": 0.0,\\n        \\\"max\\\": 2.6166110038757324,\\n        \\\"spearman_rho\\\": -0.33948784750203365,\\n        \\\"spearman_p\\\": 4.97108184107004e-30,\\n        \\\"per_depth_mean\\\": [\\n          1.6599505594078923,\\n          1.19875105744914,\\n          0.4396108817891218,\\n          0.48615093231201173,\\n          0.5381289106958053\\n        ]\\n      },\\n      \\\"entropy_max\\\": {\\n        \\\"mean\\\": 7.2460477291470315,\\n        \\\"std\\\": 1.0231661349303118,\\n        \\\"median\\\": 7.12109375,\\n        \\\"min\\\": 2.333984375,\\n        \\\"max\\\": 8.7109375,\\n        \\\"spearman_rho\\\": -0.27938561595312905,\\n        \\\"spearman_p\\\": 1.7760411175486622e-20,\\n        \\\"per_depth_mean\\\": [\\n          7.380596076458753,\\n          6.2534950657894735,\\n          4.8297119140625,\\n          4.659244791666667,\\n          5.044921875\\n        ]\\n      },\\n      \\\"entropy_min\\\": {\\n        \\\"mean\\\": 0.1027677005804675,\\n        \\\"std\\\": 0.5944372043376355,\\n        \\\"median\\\": 0.0032749176025390625,\\n        \\\"min\\\": 8.463859558105469e-06,\\n        \\\"max\\\": 5.859375,\\n        \\\"spearman_rho\\\": 0.3042879703467247,\\n        \\\"spearman_p\\\": 3.621355366195953e-24,\\n        \\\"per_depth_mean\\\": [\\n          0.005709464701128678,\\n          1.0511658317164372,\\n          1.9274626970291138,\\n          1.6839808146158854,\\n          1.605297425213982\\n        ]\\n      },\\n      \\\"ttr\\\": {\\n        \\\"mean\\\": 0.6629574085236662,\\n        \\\"std\\\": 0.10310161128223039,\\n        \\\"median\\\": 0.6467065868263473,\\n        \\\"min\\\": 0.35714285714285715,\\n        \\\"max\\\": 1.0,\\n        \\\"spearman_rho\\\": 0.4134418883009792,\\n        \\\"spearman_p\\\": 4.6119965273365864e-45,\\n        \\\"per_depth_mean\\\": [\\n          0.641216326892359,\\n          0.9488832375055286,\\n          1.0,\\n          1.0,\\n          1.0\\n        ]\\n      },\\n      \\\"hapax_ratio\\\": {\\n        \\\"mean\\\": 0.544068920353661,\\n        \\\"std\\\": 0.13586420121280557,\\n        \\\"median\\\": 0.5215311004784688,\\n        \\\"min\\\": 0.25821596244131456,\\n        \\\"max\\\": 1.0,\\n        \\\"spearman_rho\\\": 0.40933097528821794,\\n        \\\"spearman_p\\\": 4.021968601193532e-44,\\n        \\\"per_depth_mean\\\": [\\n          0.5149390698386358,\\n          0.9161941618752764,\\n          1.0,\\n          1.0,\\n          1.0\\n        ]\\n      },\\n      \\\"tail_decay\\\": {\\n        \\\"mean\\\": 0.10272887889183961,\\n        \\\"std\\\": 0.08550913923752096,\\n        \\\"median\\\": 0.09701492537313433,\\n        \\\"min\\\": 0.0,\\n        \\\"max\\\": 1.0,\\n        \\\"spearman_rho\\\": -0.2335251084950687,\\n        \\\"spearman_p\\\": 1.3144557056978484e-14,\\n        \\\"per_depth_mean\\\": [\\n          0.09960596291483431,\\n          0.13211619284719744,\\n          0.19136689189702333,\\n          0.14140030441400303,\\n          0.1349371097786672\\n        ]\\n      }\\n    }\\n  },\\n  \\\"rp11\\\": {\\n    \\\"n_records\\\": 4864,\\n    \\\"depth_retention\\\": 0.9608,\\n    \\\"depth_dist\\\": {\\n      \\\"0\\\": 994,\\n      \\\"1\\\": 990,\\n      \\\"2\\\": 965,\\n      \\\"3\\\": 960,\\n      \\\"4\\\": 955\\n    },\\n    \\\"features\\\": {\\n      \\\"entropy_mean\\\": {\\n        \\\"mean\\\": 1.4206272426664854,\\n        \\\"std\\\": 1.124017696105775,\\n        \\\"median\\\": 1.0419204235076904,\\n        \\\"min\\\": 0.0,\\n        \\\"max\\\": 10.041391372680664,\\n        \\\"spearman_rho\\\": -0.5938230618835943,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"per_depth_mean\\\": [\\n          2.6378525538703563,\\n          1.4271523146918326,\\n          1.040182718364377,\\n          0.9886857982336854,\\n          0.9655601976039522\\n        ]\\n      },\\n      \\\"entropy_std\\\": {\\n        \\\"mean\\\": 1.5384478436930007,\\n        \\\"std\\\": 0.39267315987995194,\\n        \\\"median\\\": 1.6086871027946472,\\n        \\\"min\\\": 0.0,\\n        \\\"max\\\": 4.16867208480835,\\n        \\\"spearman_rho\\\": -0.26629388769028967,\\n        \\\"spearman_p\\\": 9.499427499547093e-80,\\n        \\\"per_depth_mean\\\": [\\n          1.6599399959537344,\\n          1.671250622320657,\\n          1.4986184328022398,\\n          1.44490303164348,\\n          1.4086053838904615\\n        ]\\n      },\\n      \\\"entropy_max\\\": {\\n        \\\"mean\\\": 7.358604431152344,\\n        \\\"std\\\": 0.811183658453749,\\n        \\\"median\\\": 7.30859375,\\n        \\\"min\\\": 0.0,\\n        \\\"max\\\": 10.140625,\\n        \\\"spearman_rho\\\": -0.02937820729268621,\\n        \\\"spearman_p\\\": 0.04047954624323509,\\n        \\\"per_depth_mean\\\": [\\n          7.380505690392354,\\n          7.4586805555555555,\\n          7.337392729922279,\\n          7.313413492838541,\\n          7.298926292539267\\n        ]\\n      },\\n      \\\"entropy_min\\\": {\\n        \\\"mean\\\": 0.11449245330387432,\\n        \\\"std\\\": 0.7582718614951184,\\n        \\\"median\\\": 0.0005643367767333984,\\n        \\\"min\\\": 0.0,\\n        \\\"max\\\": 8.9296875,\\n        \\\"spearman_rho\\\": -0.3260720374126019,\\n        \\\"spearman_p\\\": 7.3193554202257184e-121,\\n        \\\"per_depth_mean\\\": [\\n          0.005716491453124723,\\n          0.10026453366183272,\\n          0.11800377486283298,\\n          0.16638089412202436,\\n          0.1867517392048661\\n        ]\\n      },\\n      \\\"ttr\\\": {\\n        \\\"mean\\\": 0.29475487240432463,\\n        \\\"std\\\": 0.271760060893599,\\n        \\\"median\\\": 0.1809017223910841,\\n        \\\"min\\\": 0.00390625,\\n        \\\"max\\\": 1.0,\\n        \\\"spearman_rho\\\": -0.5681200914016612,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"per_depth_mean\\\": [\\n          0.641216326892359,\\n          0.27654761680102846,\\n          0.19401112428951575,\\n          0.17758071064593114,\\n          0.172605562985482\\n        ]\\n      },\\n      \\\"hapax_ratio\\\": {\\n        \\\"mean\\\": 0.17167395486980466,\\n        \\\"std\\\": 0.27669623947702987,\\n        \\\"median\\\": 0.007326105624731644,\\n        \\\"min\\\": 0.0,\\n        \\\"max\\\": 1.0,\\n        \\\"spearman_rho\\\": -0.5827477384073437,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"per_depth_mean\\\": [\\n          0.5149390698386358,\\n          0.12744357574515605,\\n          0.0707710378136844,\\n          0.06618050225552985,\\n          0.06824733761665688\\n        ]\\n      },\\n      \\\"tail_decay\\\": {\\n        \\\"mean\\\": -0.002350199044451645,\\n        \\\"std\\\": 0.000271783022033967,\\n        \\\"median\\\": -0.0023277697322399917,\\n        \\\"min\\\": -0.003934642680649175,\\n        \\\"max\\\": 0.0,\\n        \\\"spearman_rho\\\": -0.09551860950719025,\\n        \\\"spearman_p\\\": 2.4681078920698448e-11,\\n        \\\"per_depth_mean\\\": [\\n          -0.0022930979940589268,\\n          -0.0023401209326217977,\\n          -0.0023652498130141246,\\n          -0.0023760834044314052,\\n          -0.0023788511884920097\\n        ]\\n      }\\n    }\\n  },\\n  \\\"comparison\\\": {\\n    \\\"retention_delta\\\": 0.9437,\\n    \\\"cohens_d\\\": {\\n      \\\"entropy_mean\\\": 1.1287,\\n      \\\"entropy_std\\\": 0.1583,\\n      \\\"entropy_max\\\": -0.1319,\\n      \\\"entropy_min\\\": -0.016,\\n      \\\"ttr\\\": 1.4722,\\n      \\\"hapax_ratio\\\": 1.4476,\\n      \\\"tail_decay\\\": 2.9034\\n    },\\n    \\\"ks_test_p\\\": {\\n      \\\"entropy_mean\\\": 2.065e-321,\\n      \\\"entropy_std\\\": 3.911736179784085e-36,\\n      \\\"entropy_max\\\": 3.8150284982509594e-09,\\n      \\\"entropy_min\\\": 3.205739322117391e-148,\\n      \\\"ttr\\\": 1.54e-321,\\n      \\\"hapax_ratio\\\": 1.47e-321,\\n      \\\"tail_decay\\\": 0.0\\n    },\\n    \\\"ks_test_stat\\\": {\\n      \\\"entropy_mean\\\": 0.6901,\\n      \\\"entropy_std\\\": 0.2161,\\n      \\\"entropy_max\\\": 0.107,\\n      \\\"entropy_min\\\": 0.4334,\\n      \\\"ttr\\\": 0.7232,\\n      \\\"hapax_ratio\\\": 0.7272,\\n      \\\"tail_decay\\\": 0.9994\\n    },\\n    \\\"spearman_delta\\\": {\\n      \\\"entropy_mean\\\": -0.374,\\n      \\\"entropy_std\\\": 0.0732,\\n      \\\"entropy_max\\\": 0.25,\\n      \\\"entropy_min\\\": -0.6304,\\n      \\\"ttr\\\": -0.9816,\\n      \\\"hapax_ratio\\\": -0.9921,\\n      \\\"tail_decay\\\": 0.138\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "ed1294b4-8bd0-4d68-a242-0445ec40420e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"rp10\\\\\\\": {\\\\n    \\\\\\\"n_records\\\\\\\": 1061,\\\\n    \\\\\\\"depth_retention\\\\\\\": 0.0171,\\\\n    \\\\\\\"depth_dist\\\\\\\": {\\\\n      \\\\\\\"0\\\\\\\": 994,\\\\n      \\\\\\\"1\\\\\\\": 19,\\\\n      \\\\\\\"2\\\\\\\": 16,\\\\n      \\\\\\\"3\\\\\\\": 15,\\\\n      \\\\\\\"4\\\\\\\": 17\\\\n    },\\\\n    \\\\\\\"features\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 2.5991877878153247,\\\\n        \\\\\\\"std\\\\\\\": 0.5426449304348576,\\\\n        \\\\\\\"median\\\\\\\": 2.6518163681030273,\\\\n        \\\\\\\"min\\\\\\\": 0.06309865415096283,\\\\n        \\\\\\\"max\\\\\\\": 5.859375,\\\\n        \\\\\\\"spearman_rho\\\\\\\": -0.21985437323044363,\\\\n        \\\\\\\"spearman_p\\\\\\\": 4.4324041356504323e-13,\\\\n        \\\\\\\"per_depth_mean\\\\\\\": [\\\\n          2.6378435510504894,\\\\n          2.1782862387205424,\\\\n          2.0868275919929147,\\\\n          1.8766337980826695,\\\\n          1.9291509499444681\\\\n        ]\\\\n      },\\\\n      \\\\\\\"entropy_std\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 1.5987194681603332,\\\\n        \\\\\\\"std\\\\\\\": 0.31928694133597574,\\\\n        \\\\\\\"median\\\\\\\": 1.6522774696350098,\\\\n        \\\\\\\"min\\\\\\\": 0.0,\\\\n        \\\\\\\"max\\\\\\\": 2.6166110038757324,\\\\n        \\\\\\\"spearman_rho\\\\\\\": -0.33948784750203365,\\\\n        \\\\\\\"spearman_p\\\\\\\": 4.97108184107004e-30,\\\\n        \\\\\\\"per_depth_mean\\\\\\\": [\\\\n          1.6599505594078923,\\\\n          1.19875105744914,\\\\n          0.4396108817891218,\\\\n          0.48615093231201173,\\\\n          0.5381289106958053\\\\n        ]\\\\n      },\\\\n      \\\\\\\"entropy_max\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 7.2460477291470315,\\\\n        \\\\\\\"std\\\\\\\": 1.0231661349303118,\\\\n        \\\\\\\"median\\\\\\\": 7.12109375,\\\\n        \\\\\\\"min\\\\\\\": 2.333984375,\\\\n        \\\\\\\"max\\\\\\\": 8.7109375,\\\\n        \\\\\\\"spearman_rho\\\\\\\": -0.27938561595312905,\\\\n        \\\\\\\"spearman_p\\\\\\\": 1.7760411175486622e-20,\\\\n        \\\\\\\"per_depth_mean\\\\\\\": [\\\\n          7.380596076458753,\\\\n          6.2534950657894735,\\\\n          4.8297119140625,\\\\n          4.659244791666667,\\\\n          5.044921875\\\\n        ]\\\\n      },\\\\n      \\\\\\\"entropy_min\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.1027677005804675,\\\\n        \\\\\\\"std\\\\\\\": 0.5944372043376355,\\\\n        \\\\\\\"median\\\\\\\": 0.0032749176025390625,\\\\n        \\\\\\\"min\\\\\\\": 8.463859558105469e-06,\\\\n        \\\\\\\"max\\\\\\\": 5.859375,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.3042879703467247,\\\\n        \\\\\\\"spearman_p\\\\\\\": 3.621355366195953e-24,\\\\n        \\\\\\\"per_depth_mean\\\\\\\": [\\\\n          0.005709464701128678,\\\\n          1.0511658317164372,\\\\n          1.9274626970291138,\\\\n          1.6839808146158854,\\\\n          1.605297425213982\\\\n        ]\\\\n      },\\\\n      \\\\\\\"ttr\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.6629574085236662,\\\\n        \\\\\\\"std\\\\\\\": 0.10310161128223039,\\\\n        \\\\\\\"median\\\\\\\": 0.6467065868263473,\\\\n        \\\\\\\"min\\\\\\\": 0.35714285714285715,\\\\n        \\\\\\\"max\\\\\\\": 1.0,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.4134418883009792,\\\\n        \\\\\\\"spearman_p\\\\\\\": 4.6119965273365864e-45,\\\\n        \\\\\\\"per_depth_mean\\\\\\\": [\\\\n          0.641216326892359,\\\\n          0.9488832375055286,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0\\\\n        ]\\\\n      },\\\\n      \\\\\\\"hapax_ratio\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.544068920353661,\\\\n        \\\\\\\"std\\\\\\\": 0.13586420121280557,\\\\n        \\\\\\\"median\\\\\\\": 0.5215311004784688,\\\\n        \\\\\\\"min\\\\\\\": 0.25821596244131456,\\\\n        \\\\\\\"max\\\\\\\": 1.0,\\\\n        \\\\\\\"spearman_rho\\\\\\\": 0.40933097528821794,\\\\n        \\\\\\\"spearman_p\\\\\\\": 4.021968601193532e-44,\\\\n        \\\\\\\"per_depth_mean\\\\\\\": [\\\\n          0.5149390698386358,\\\\n          0.9161941618752764,\\\\n          1.0,\\\\n          1.0,\\\\n          1.0\\\\n        ]\\\\n      },\\\\n      \\\\\\\"tail_decay\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.10272887889183961,\\\\n        \\\\\\\"std\\\\\\\": 0.08550913923752096,\\\\n        \\\\\\\"median\\\\\\\": 0.09701492537313433,\\\\n        \\\\\\\"min\\\\\\\": 0.0,\\\\n        \\\\\\\"max\\\\\\\": 1.0,\\\\n        \\\\\\\"spearman_rho\\\\\\\": -0.2335251084950687,\\\\n        \\\\\\\"spearman_p\\\\\\\": 1.3144557056978484e-14,\\\\n        \\\\\\\"per_depth_mean\\\\\\\": [\\\\n          0.09960596291483431,\\\\n          0.13211619284719744,\\\\n          0.19136689189702333,\\\\n          0.14140030441400303,\\\\n          0.1349371097786672\\\\n        ]\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"rp11\\\\\\\": {\\\\n    \\\\\\\"n_records\\\\\\\": 4864,\\\\n    \\\\\\\"depth_retention\\\\\\\": 0.9608,\\\\n    \\\\\\\"depth_dist\\\\\\\": {\\\\n      \\\\\\\"0\\\\\\\": 994,\\\\n      \\\\\\\"1\\\\\\\": 990,\\\\n      \\\\\\\"2\\\\\\\": 965,\\\\n      \\\\\\\"3\\\\\\\": 960,\\\\n      \\\\\\\"4\\\\\\\": 955\\\\n    },\\\\n    \\\\\\\"features\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 1.4206272426664854,\\\\n        \\\\\\\"std\\\\\\\": 1.124017696105775,\\\\n        \\\\\\\"median\\\\\\\": 1.0419204235076904,\\\\n        \\\\\\\"min\\\\\\\": 0.0,\\\\n        \\\\\\\"max\\\\\\\": 10.041391372680664,\\\\n        \\\\\\\"spearman_rho\\\\\\\": -0.5938230618835943,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0,\\\\n        \\\\\\\"per_depth_mean\\\\\\\": [\\\\n          2.6378525538703563,\\\\n          1.4271523146918326,\\\\n          1.040182718364377,\\\\n          0.9886857982336854,\\\\n          0.9655601976039522\\\\n        ]\\\\n      },\\\\n      \\\\\\\"entropy_std\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 1.5384478436930007,\\\\n        \\\\\\\"std\\\\\\\": 0.39267315987995194,\\\\n        \\\\\\\"median\\\\\\\": 1.6086871027946472,\\\\n        \\\\\\\"min\\\\\\\": 0.0,\\\\n        \\\\\\\"max\\\\\\\": 4.16867208480835,\\\\n        \\\\\\\"spearman_rho\\\\\\\": -0.26629388769028967,\\\\n        \\\\\\\"spearman_p\\\\\\\": 9.499427499547093e-80,\\\\n        \\\\\\\"per_depth_mean\\\\\\\": [\\\\n          1.6599399959537344,\\\\n          1.671250622320657,\\\\n          1.4986184328022398,\\\\n          1.44490303164348,\\\\n          1.4086053838904615\\\\n        ]\\\\n      },\\\\n      \\\\\\\"entropy_max\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 7.358604431152344,\\\\n        \\\\\\\"std\\\\\\\": 0.811183658453749,\\\\n        \\\\\\\"median\\\\\\\": 7.30859375,\\\\n        \\\\\\\"min\\\\\\\": 0.0,\\\\n        \\\\\\\"max\\\\\\\": 10.140625,\\\\n        \\\\\\\"spearman_rho\\\\\\\": -0.02937820729268621,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.04047954624323509,\\\\n        \\\\\\\"per_depth_mean\\\\\\\": [\\\\n          7.380505690392354,\\\\n          7.4586805555555555,\\\\n          7.337392729922279,\\\\n          7.313413492838541,\\\\n          7.298926292539267\\\\n        ]\\\\n      },\\\\n      \\\\\\\"entropy_min\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.11449245330387432,\\\\n        \\\\\\\"std\\\\\\\": 0.7582718614951184,\\\\n        \\\\\\\"median\\\\\\\": 0.0005643367767333984,\\\\n        \\\\\\\"min\\\\\\\": 0.0,\\\\n        \\\\\\\"max\\\\\\\": 8.9296875,\\\\n        \\\\\\\"spearman_rho\\\\\\\": -0.3260720374126019,\\\\n        \\\\\\\"spearman_p\\\\\\\": 7.3193554202257184e-121,\\\\n        \\\\\\\"per_depth_mean\\\\\\\": [\\\\n          0.005716491453124723,\\\\n          0.10026453366183272,\\\\n          0.11800377486283298,\\\\n          0.16638089412202436,\\\\n          0.1867517392048661\\\\n        ]\\\\n      },\\\\n      \\\\\\\"ttr\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.29475487240432463,\\\\n        \\\\\\\"std\\\\\\\": 0.271760060893599,\\\\n        \\\\\\\"median\\\\\\\": 0.1809017223910841,\\\\n        \\\\\\\"min\\\\\\\": 0.00390625,\\\\n        \\\\\\\"max\\\\\\\": 1.0,\\\\n        \\\\\\\"spearman_rho\\\\\\\": -0.5681200914016612,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0,\\\\n        \\\\\\\"per_depth_mean\\\\\\\": [\\\\n          0.641216326892359,\\\\n          0.27654761680102846,\\\\n          0.19401112428951575,\\\\n          0.17758071064593114,\\\\n          0.172605562985482\\\\n        ]\\\\n      },\\\\n      \\\\\\\"hapax_ratio\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 0.17167395486980466,\\\\n        \\\\\\\"std\\\\\\\": 0.27669623947702987,\\\\n        \\\\\\\"median\\\\\\\": 0.007326105624731644,\\\\n        \\\\\\\"min\\\\\\\": 0.0,\\\\n        \\\\\\\"max\\\\\\\": 1.0,\\\\n        \\\\\\\"spearman_rho\\\\\\\": -0.5827477384073437,\\\\n        \\\\\\\"spearman_p\\\\\\\": 0.0,\\\\n        \\\\\\\"per_depth_mean\\\\\\\": [\\\\n          0.5149390698386358,\\\\n          0.12744357574515605,\\\\n          0.0707710378136844,\\\\n          0.06618050225552985,\\\\n          0.06824733761665688\\\\n        ]\\\\n      },\\\\n      \\\\\\\"tail_decay\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -0.002350199044451645,\\\\n        \\\\\\\"std\\\\\\\": 0.000271783022033967,\\\\n        \\\\\\\"median\\\\\\\": -0.0023277697322399917,\\\\n        \\\\\\\"min\\\\\\\": -0.003934642680649175,\\\\n        \\\\\\\"max\\\\\\\": 0.0,\\\\n        \\\\\\\"spearman_rho\\\\\\\": -0.09551860950719025,\\\\n        \\\\\\\"spearman_p\\\\\\\": 2.4681078920698448e-11,\\\\n        \\\\\\\"per_depth_mean\\\\\\\": [\\\\n          -0.0022930979940589268,\\\\n          -0.0023401209326217977,\\\\n          -0.0023652498130141246,\\\\n          -0.0023760834044314052,\\\\n          -0.0023788511884920097\\\\n        ]\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"comparison\\\\\\\": {\\\\n    \\\\\\\"retention_delta\\\\\\\": 0.9437,\\\\n    \\\\\\\"cohens_d\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": 1.1287,\\\\n      \\\\\\\"entropy_std\\\\\\\": 0.1583,\\\\n      \\\\\\\"entropy_max\\\\\\\": -0.1319,\\\\n      \\\\\\\"entropy_min\\\\\\\": -0.016,\\\\n      \\\\\\\"ttr\\\\\\\": 1.4722,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 1.4476,\\\\n      \\\\\\\"tail_decay\\\\\\\": 2.9034\\\\n    },\\\\n    \\\\\\\"ks_test_p\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": 2.065e-321,\\\\n      \\\\\\\"entropy_std\\\\\\\": 3.911736179784085e-36,\\\\n      \\\\\\\"entropy_max\\\\\\\": 3.8150284982509594e-09,\\\\n      \\\\\\\"entropy_min\\\\\\\": 3.205739322117391e-148,\\\\n      \\\\\\\"ttr\\\\\\\": 1.54e-321,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 1.47e-321,\\\\n      \\\\\\\"tail_decay\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"ks_test_stat\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": 0.6901,\\\\n      \\\\\\\"entropy_std\\\\\\\": 0.2161,\\\\n      \\\\\\\"entropy_max\\\\\\\": 0.107,\\\\n      \\\\\\\"entropy_min\\\\\\\": 0.4334,\\\\n      \\\\\\\"ttr\\\\\\\": 0.7232,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.7272,\\\\n      \\\\\\\"tail_decay\\\\\\\": 0.9994\\\\n    },\\\\n    \\\\\\\"spearman_delta\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": -0.374,\\\\n      \\\\\\\"entropy_std\\\\\\\": 0.0732,\\\\n      \\\\\\\"entropy_max\\\\\\\": 0.25,\\\\n      \\\\\\\"entropy_min\\\\\\\": -0.6304,\\\\n      \\\\\\\"ttr\\\\\\\": -0.9816,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": -0.9921,\\\\n      \\\\\\\"tail_decay\\\\\\\": 0.138\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"rp10\\\": {\\n    \\\"n_records\\\": 1061,\\n    \\\"depth_retention\\\": 0.0171,\\n    \\\"depth_dist\\\": {\\n      \\\"0\\\": 994,\\n      \\\"1\\\": 19,\\n      \\\"2\\\": 16,\\n      \\\"3\\\": 15,\\n      \\\"4\\\": 17\\n    },\\n    \\\"features\\\": {\\n      \\\"entropy_mean\\\": {\\n        \\\"mean\\\": 2.5991877878153247,\\n        \\\"std\\\": 0.5426449304348576,\\n        \\\"median\\\": 2.6518163681030273,\\n        \\\"min\\\": 0.06309865415096283,\\n        \\\"max\\\": 5.859375,\\n        \\\"spearman_rho\\\": -0.21985437323044363,\\n        \\\"spearman_p\\\": 4.4324041356504323e-13,\\n        \\\"per_depth_mean\\\": [\\n          2.6378435510504894,\\n          2.1782862387205424,\\n          2.0868275919929147,\\n          1.8766337980826695,\\n          1.9291509499444681\\n        ]\\n      },\\n      \\\"entropy_std\\\": {\\n        \\\"mean\\\": 1.5987194681603332,\\n        \\\"std\\\": 0.31928694133597574,\\n        \\\"median\\\": 1.6522774696350098,\\n        \\\"min\\\": 0.0,\\n        \\\"max\\\": 2.6166110038757324,\\n        \\\"spearman_rho\\\": -0.33948784750203365,\\n        \\\"spearman_p\\\": 4.97108184107004e-30,\\n        \\\"per_depth_mean\\\": [\\n          1.6599505594078923,\\n          1.19875105744914,\\n          0.4396108817891218,\\n          0.48615093231201173,\\n          0.5381289106958053\\n        ]\\n      },\\n      \\\"entropy_max\\\": {\\n        \\\"mean\\\": 7.2460477291470315,\\n        \\\"std\\\": 1.0231661349303118,\\n        \\\"median\\\": 7.12109375,\\n        \\\"min\\\": 2.333984375,\\n        \\\"max\\\": 8.7109375,\\n        \\\"spearman_rho\\\": -0.27938561595312905,\\n        \\\"spearman_p\\\": 1.7760411175486622e-20,\\n        \\\"per_depth_mean\\\": [\\n          7.380596076458753,\\n          6.2534950657894735,\\n          4.8297119140625,\\n          4.659244791666667,\\n          5.044921875\\n        ]\\n      },\\n      \\\"entropy_min\\\": {\\n        \\\"mean\\\": 0.1027677005804675,\\n        \\\"std\\\": 0.5944372043376355,\\n        \\\"median\\\": 0.0032749176025390625,\\n        \\\"min\\\": 8.463859558105469e-06,\\n        \\\"max\\\": 5.859375,\\n        \\\"spearman_rho\\\": 0.3042879703467247,\\n        \\\"spearman_p\\\": 3.621355366195953e-24,\\n        \\\"per_depth_mean\\\": [\\n          0.005709464701128678,\\n          1.0511658317164372,\\n          1.9274626970291138,\\n          1.6839808146158854,\\n          1.605297425213982\\n        ]\\n      },\\n      \\\"ttr\\\": {\\n        \\\"mean\\\": 0.6629574085236662,\\n        \\\"std\\\": 0.10310161128223039,\\n        \\\"median\\\": 0.6467065868263473,\\n        \\\"min\\\": 0.35714285714285715,\\n        \\\"max\\\": 1.0,\\n        \\\"spearman_rho\\\": 0.4134418883009792,\\n        \\\"spearman_p\\\": 4.6119965273365864e-45,\\n        \\\"per_depth_mean\\\": [\\n          0.641216326892359,\\n          0.9488832375055286,\\n          1.0,\\n          1.0,\\n          1.0\\n        ]\\n      },\\n      \\\"hapax_ratio\\\": {\\n        \\\"mean\\\": 0.544068920353661,\\n        \\\"std\\\": 0.13586420121280557,\\n        \\\"median\\\": 0.5215311004784688,\\n        \\\"min\\\": 0.25821596244131456,\\n        \\\"max\\\": 1.0,\\n        \\\"spearman_rho\\\": 0.40933097528821794,\\n        \\\"spearman_p\\\": 4.021968601193532e-44,\\n        \\\"per_depth_mean\\\": [\\n          0.5149390698386358,\\n          0.9161941618752764,\\n          1.0,\\n          1.0,\\n          1.0\\n        ]\\n      },\\n      \\\"tail_decay\\\": {\\n        \\\"mean\\\": 0.10272887889183961,\\n        \\\"std\\\": 0.08550913923752096,\\n        \\\"median\\\": 0.09701492537313433,\\n        \\\"min\\\": 0.0,\\n        \\\"max\\\": 1.0,\\n        \\\"spearman_rho\\\": -0.2335251084950687,\\n        \\\"spearman_p\\\": 1.3144557056978484e-14,\\n        \\\"per_depth_mean\\\": [\\n          0.09960596291483431,\\n          0.13211619284719744,\\n          0.19136689189702333,\\n          0.14140030441400303,\\n          0.1349371097786672\\n        ]\\n      }\\n    }\\n  },\\n  \\\"rp11\\\": {\\n    \\\"n_records\\\": 4864,\\n    \\\"depth_retention\\\": 0.9608,\\n    \\\"depth_dist\\\": {\\n      \\\"0\\\": 994,\\n      \\\"1\\\": 990,\\n      \\\"2\\\": 965,\\n      \\\"3\\\": 960,\\n      \\\"4\\\": 955\\n    },\\n    \\\"features\\\": {\\n      \\\"entropy_mean\\\": {\\n        \\\"mean\\\": 1.4206272426664854,\\n        \\\"std\\\": 1.124017696105775,\\n        \\\"median\\\": 1.0419204235076904,\\n        \\\"min\\\": 0.0,\\n        \\\"max\\\": 10.041391372680664,\\n        \\\"spearman_rho\\\": -0.5938230618835943,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"per_depth_mean\\\": [\\n          2.6378525538703563,\\n          1.4271523146918326,\\n          1.040182718364377,\\n          0.9886857982336854,\\n          0.9655601976039522\\n        ]\\n      },\\n      \\\"entropy_std\\\": {\\n        \\\"mean\\\": 1.5384478436930007,\\n        \\\"std\\\": 0.39267315987995194,\\n        \\\"median\\\": 1.6086871027946472,\\n        \\\"min\\\": 0.0,\\n        \\\"max\\\": 4.16867208480835,\\n        \\\"spearman_rho\\\": -0.26629388769028967,\\n        \\\"spearman_p\\\": 9.499427499547093e-80,\\n        \\\"per_depth_mean\\\": [\\n          1.6599399959537344,\\n          1.671250622320657,\\n          1.4986184328022398,\\n          1.44490303164348,\\n          1.4086053838904615\\n        ]\\n      },\\n      \\\"entropy_max\\\": {\\n        \\\"mean\\\": 7.358604431152344,\\n        \\\"std\\\": 0.811183658453749,\\n        \\\"median\\\": 7.30859375,\\n        \\\"min\\\": 0.0,\\n        \\\"max\\\": 10.140625,\\n        \\\"spearman_rho\\\": -0.02937820729268621,\\n        \\\"spearman_p\\\": 0.04047954624323509,\\n        \\\"per_depth_mean\\\": [\\n          7.380505690392354,\\n          7.4586805555555555,\\n          7.337392729922279,\\n          7.313413492838541,\\n          7.298926292539267\\n        ]\\n      },\\n      \\\"entropy_min\\\": {\\n        \\\"mean\\\": 0.11449245330387432,\\n        \\\"std\\\": 0.7582718614951184,\\n        \\\"median\\\": 0.0005643367767333984,\\n        \\\"min\\\": 0.0,\\n        \\\"max\\\": 8.9296875,\\n        \\\"spearman_rho\\\": -0.3260720374126019,\\n        \\\"spearman_p\\\": 7.3193554202257184e-121,\\n        \\\"per_depth_mean\\\": [\\n          0.005716491453124723,\\n          0.10026453366183272,\\n          0.11800377486283298,\\n          0.16638089412202436,\\n          0.1867517392048661\\n        ]\\n      },\\n      \\\"ttr\\\": {\\n        \\\"mean\\\": 0.29475487240432463,\\n        \\\"std\\\": 0.271760060893599,\\n        \\\"median\\\": 0.1809017223910841,\\n        \\\"min\\\": 0.00390625,\\n        \\\"max\\\": 1.0,\\n        \\\"spearman_rho\\\": -0.5681200914016612,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"per_depth_mean\\\": [\\n          0.641216326892359,\\n          0.27654761680102846,\\n          0.19401112428951575,\\n          0.17758071064593114,\\n          0.172605562985482\\n        ]\\n      },\\n      \\\"hapax_ratio\\\": {\\n        \\\"mean\\\": 0.17167395486980466,\\n        \\\"std\\\": 0.27669623947702987,\\n        \\\"median\\\": 0.007326105624731644,\\n        \\\"min\\\": 0.0,\\n        \\\"max\\\": 1.0,\\n        \\\"spearman_rho\\\": -0.5827477384073437,\\n        \\\"spearman_p\\\": 0.0,\\n        \\\"per_depth_mean\\\": [\\n          0.5149390698386358,\\n          0.12744357574515605,\\n          0.0707710378136844,\\n          0.06618050225552985,\\n          0.06824733761665688\\n        ]\\n      },\\n      \\\"tail_decay\\\": {\\n        \\\"mean\\\": -0.002350199044451645,\\n        \\\"std\\\": 0.000271783022033967,\\n        \\\"median\\\": -0.0023277697322399917,\\n        \\\"min\\\": -0.003934642680649175,\\n        \\\"max\\\": 0.0,\\n        \\\"spearman_rho\\\": -0.09551860950719025,\\n        \\\"spearman_p\\\": 2.4681078920698448e-11,\\n        \\\"per_depth_mean\\\": [\\n          -0.0022930979940589268,\\n          -0.0023401209326217977,\\n          -0.0023652498130141246,\\n          -0.0023760834044314052,\\n          -0.0023788511884920097\\n        ]\\n      }\\n    }\\n  },\\n  \\\"comparison\\\": {\\n    \\\"retention_delta\\\": 0.9437,\\n    \\\"cohens_d\\\": {\\n      \\\"entropy_mean\\\": 1.1287,\\n      \\\"entropy_std\\\": 0.1583,\\n      \\\"entropy_max\\\": -0.1319,\\n      \\\"entropy_min\\\": -0.016,\\n      \\\"ttr\\\": 1.4722,\\n      \\\"hapax_ratio\\\": 1.4476,\\n      \\\"tail_decay\\\": 2.9034\\n    },\\n    \\\"ks_test_p\\\": {\\n      \\\"entropy_mean\\\": 2.065e-321,\\n      \\\"entropy_std\\\": 3.911736179784085e-36,\\n      \\\"entropy_max\\\": 3.8150284982509594e-09,\\n      \\\"entropy_min\\\": 3.205739322117391e-148,\\n      \\\"ttr\\\": 1.54e-321,\\n      \\\"hapax_ratio\\\": 1.47e-321,\\n      \\\"tail_decay\\\": 0.0\\n    },\\n    \\\"ks_test_stat\\\": {\\n      \\\"entropy_mean\\\": 0.6901,\\n      \\\"entropy_std\\\": 0.2161,\\n      \\\"entropy_max\\\": 0.107,\\n      \\\"entropy_min\\\": 0.4334,\\n      \\\"ttr\\\": 0.7232,\\n      \\\"hapax_ratio\\\": 0.7272,\\n      \\\"tail_decay\\\": 0.9994\\n    },\\n    \\\"spearman_delta\\\": {\\n      \\\"entropy_mean\\\": -0.374,\\n      \\\"entropy_std\\\": 0.0732,\\n      \\\"entropy_max\\\": 0.25,\\n      \\\"entropy_min\\\": -0.6304,\\n      \\\"ttr\\\": -0.9816,\\n      \\\"hapax_ratio\\\": -0.9921,\\n      \\\"tail_decay\\\": 0.138\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NKpmqKzLm8LwB4ZfdtmRpg`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/multi_domain_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "dff38963-8757-40fa-a4be-4b06859abd36",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tt9V8NJr52XKKLsabmoavf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9495,
+      "cache_read_input_tokens": 60904,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-17T10:55:19.083Z_
+
+<details><summary>↩ Tool result · `toolu_01NKpmqKzLm8LwB4ZfdtmRpg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_domain\\\": {\\n    \\\"news\\\": {\\n      \\\"3class_f1\\\": 0.5614,\\n      \\\"binary_f1\\\": 0.6264,\\n      \\\"per_class_f1\\\": {\\n        \\\"gen-0\\\": 0.7236,\\n        \\\"gen-1\\\": 0.3429,\\n        \\\"gen-2+\\\": 0.6179\\n      },\\n      \\\"spearman_entropy_mean\\\": -0.0432,\\n      \\\"spearman_entropy_std\\\": -0.0307,\\n      \\\"spearman_entropy_min\\\": -0.0793,\\n      \\\"spearman_entropy_max\\\": 0.096,\\n      \\\"spearman_tail_decay\\\": 0.0723,\\n      \\\"spearman_ttr\\\": -0.3055,\\n      \\\"spearman_hapax_ratio\\\": -0.3213\\n    },\\n    \\\"scientific\\\": {\\n      \\\"3class_f1\\\": 0.7049,\\n      \\\"binary_f1\\\": 0.7701,\\n      \\\"per_class_f1\\\": {\\n        \\\"gen-0\\\": 0.8838,\\n        \\\"gen-1\\\": 0.4614,\\n        \\\"gen-2+\\\": 0.7695\\n      },\\n      \\\"spearman_entropy_mean\\\": -0.6628,\\n      \\\"spearman_entropy_std\\\": -0.2997,\\n      \\\"spearman_entropy_min\\\": -0.4962,\\n      \\\"spearman_entropy_max\\\": -0.1981,\\n      \\\"spearman_tail_decay\\\": -0.2108,\\n      \\\"spearman_ttr\\\": -0.0394,\\n      \\\"spearman_hapax_ratio\\\": -0.0317\\n    },\\n    \\\"creative\\\": {\\n      \\\"3class_f1\\\": 0.6275,\\n      \\\"binary_f1\\\": 0.731,\\n      \\\"per_class_f1\\\": {\\n        \\\"gen-0\\\": 0.7632,\\n        \\\"gen-1\\\": 0.3938,\\n        \\\"gen-2+\\\": 0.7254\\n      },\\n      \\\"spearman_entropy_mean\\\": -0.6196,\\n      \\\"spearman_entropy_std\\\": -0.284,\\n      \\\"spearman_entropy_min\\\": -0.3678,\\n      \\\"spearman_entropy_max\\\": -0.1824,\\n      \\\"spearman_tail_decay\\\": -0.1658,\\n      \\\"spearman_ttr\\\": -0.411,\\n      \\\"spearman_hapax_ratio\\\": -0.4336\\n    },\\n    \\\"wikipedia\\\": {\\n      \\\"3class_f1\\\": 0.7928,\\n      \\\"binary_f1\\\": 0.8224,\\n      \\\"per_class_f1\\\": {\\n        \\\"gen-0\\\": 0.9268,\\n        \\\"gen-1\\\": 0.6295,\\n        \\\"gen-2+\\\": 0.822\\n      },\\n      \\\"spearman_entropy_mean\\\": -0.6754,\\n      \\\"spearman_entropy_std\\\": -0.153,\\n      \\\"spearman_entropy_min\\\": -0.4797,\\n      \\\"spearman_entropy_max\\\": -0.0351,\\n      \\\"spearman_tail_decay\\\": 0.0633,\\n      \\\"spearman_ttr\\\": -0.6333,\\n      \\\"spearman_hapax_ratio\\\": -0.6553\\n    }\\n  },\\n  \\\"cross_domain\\\": {\\n    \\\"3class_f1\\\": 0.4775,\\n    \\\"binary_f1\\\": 0.673,\\n    \\\"per_class_f1\\\": {\\n      \\\"gen-0\\\": 0.4573,\\n      \\\"gen-1\\\": 0.3348,\\n      \\\"gen-2+\\\": 0.6404\\n    },\\n    \\\"per_domain\\\": {\\n      \\\"creative\\\": 0.5305,\\n      \\\"news\\\": 0.3692,\\n      \\\"scientific\\\": 0.4131,\\n      \\\"wikipedia\\\": 0.4866\\n    }\\n  },\\n  \\\"wiki_transfer\\\": {\\n    \\\"news\\\": {\\n      \\\"3class_f1\\\": 0.231,\\n      \\\"per_class_f1\\\": {\\n        \\\"gen-0\\\": 0.4323,\\n        \\\"gen-1\\\": 0.1538,\\n        \\\"gen-2+\\\": 0.1069\\n      }\\n    },\\n    \\\"scientific\\\": {\\n      \\\"3class_f1\\\": 0.3351,\\n      \\\"per_class_f1\\\": {\\n        \\\"gen-0\\\": 0.3572,\\n        \\\"gen-1\\\": 0.3583,\\n        \\\"gen-2+\\\": 0.2897\\n      }\\n    },\\n    \\\"creative\\\": {\\n      \\\"3class_f1\\\": 0.2319,\\n      \\\"per_class_f1\\\": {\\n        \\\"gen-0\\\": 0.3928,\\n        \\\"gen-1\\\": 0.2322,\\n        \\\"gen-2+\\\": 0.0706\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "940cba21-92b7-4113-83e8-d0bbaeac29d7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_domain\\\\\\\": {\\\\n    \\\\\\\"news\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.5614,\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.6264,\\\\n      \\\\\\\"per_class_f1\\\\\\\": {\\\\n        \\\\\\\"gen-0\\\\\\\": 0.7236,\\\\n        \\\\\\\"gen-1\\\\\\\": 0.3429,\\\\n        \\\\\\\"gen-2+\\\\\\\": 0.6179\\\\n      },\\\\n      \\\\\\\"spearman_entropy_mean\\\\\\\": -0.0432,\\\\n      \\\\\\\"spearman_entropy_std\\\\\\\": -0.0307,\\\\n      \\\\\\\"spearman_entropy_min\\\\\\\": -0.0793,\\\\n      \\\\\\\"spearman_entropy_max\\\\\\\": 0.096,\\\\n      \\\\\\\"spearman_tail_decay\\\\\\\": 0.0723,\\\\n      \\\\\\\"spearman_ttr\\\\\\\": -0.3055,\\\\n      \\\\\\\"spearman_hapax_ratio\\\\\\\": -0.3213\\\\n    },\\\\n    \\\\\\\"scientific\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.7049,\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.7701,\\\\n      \\\\\\\"per_class_f1\\\\\\\": {\\\\n        \\\\\\\"gen-0\\\\\\\": 0.8838,\\\\n        \\\\\\\"gen-1\\\\\\\": 0.4614,\\\\n        \\\\\\\"gen-2+\\\\\\\": 0.7695\\\\n      },\\\\n      \\\\\\\"spearman_entropy_mean\\\\\\\": -0.6628,\\\\n      \\\\\\\"spearman_entropy_std\\\\\\\": -0.2997,\\\\n      \\\\\\\"spearman_entropy_min\\\\\\\": -0.4962,\\\\n      \\\\\\\"spearman_entropy_max\\\\\\\": -0.1981,\\\\n      \\\\\\\"spearman_tail_decay\\\\\\\": -0.2108,\\\\n      \\\\\\\"spearman_ttr\\\\\\\": -0.0394,\\\\n      \\\\\\\"spearman_hapax_ratio\\\\\\\": -0.0317\\\\n    },\\\\n    \\\\\\\"creative\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.6275,\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.731,\\\\n      \\\\\\\"per_class_f1\\\\\\\": {\\\\n        \\\\\\\"gen-0\\\\\\\": 0.7632,\\\\n        \\\\\\\"gen-1\\\\\\\": 0.3938,\\\\n        \\\\\\\"gen-2+\\\\\\\": 0.7254\\\\n      },\\\\n      \\\\\\\"spearman_entropy_mean\\\\\\\": -0.6196,\\\\n      \\\\\\\"spearman_entropy_std\\\\\\\": -0.284,\\\\n      \\\\\\\"spearman_entropy_min\\\\\\\": -0.3678,\\\\n      \\\\\\\"spearman_entropy_max\\\\\\\": -0.1824,\\\\n      \\\\\\\"spearman_tail_decay\\\\\\\": -0.1658,\\\\n      \\\\\\\"spearman_ttr\\\\\\\": -0.411,\\\\n      \\\\\\\"spearman_hapax_ratio\\\\\\\": -0.4336\\\\n    },\\\\n    \\\\\\\"wikipedia\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.7928,\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.8224,\\\\n      \\\\\\\"per_class_f1\\\\\\\": {\\\\n        \\\\\\\"gen-0\\\\\\\": 0.9268,\\\\n        \\\\\\\"gen-1\\\\\\\": 0.6295,\\\\n        \\\\\\\"gen-2+\\\\\\\": 0.822\\\\n      },\\\\n      \\\\\\\"spearman_entropy_mean\\\\\\\": -0.6754,\\\\n      \\\\\\\"spearman_entropy_std\\\\\\\": -0.153,\\\\n      \\\\\\\"spearman_entropy_min\\\\\\\": -0.4797,\\\\n      \\\\\\\"spearman_entropy_max\\\\\\\": -0.0351,\\\\n      \\\\\\\"spearman_tail_decay\\\\\\\": 0.0633,\\\\n      \\\\\\\"spearman_ttr\\\\\\\": -0.6333,\\\\n      \\\\\\\"spearman_hapax_ratio\\\\\\\": -0.6553\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_domain\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.4775,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.673,\\\\n    \\\\\\\"per_class_f1\\\\\\\": {\\\\n      \\\\\\\"gen-0\\\\\\\": 0.4573,\\\\n      \\\\\\\"gen-1\\\\\\\": 0.3348,\\\\n      \\\\\\\"gen-2+\\\\\\\": 0.6404\\\\n    },\\\\n    \\\\\\\"per_domain\\\\\\\": {\\\\n      \\\\\\\"creative\\\\\\\": 0.5305,\\\\n      \\\\\\\"news\\\\\\\": 0.3692,\\\\n      \\\\\\\"scientific\\\\\\\": 0.4131,\\\\n      \\\\\\\"wikipedia\\\\\\\": 0.4866\\\\n    }\\\\n  },\\\\n  \\\\\\\"wiki_transfer\\\\\\\": {\\\\n    \\\\\\\"news\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.231,\\\\n      \\\\\\\"per_class_f1\\\\\\\": {\\\\n        \\\\\\\"gen-0\\\\\\\": 0.4323,\\\\n        \\\\\\\"gen-1\\\\\\\": 0.1538,\\\\n        \\\\\\\"gen-2+\\\\\\\": 0.1069\\\\n      }\\\\n    },\\\\n    \\\\\\\"scientific\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.3351,\\\\n      \\\\\\\"per_class_f1\\\\\\\": {\\\\n        \\\\\\\"gen-0\\\\\\\": 0.3572,\\\\n        \\\\\\\"gen-1\\\\\\\": 0.3583,\\\\n        \\\\\\\"gen-2+\\\\\\\": 0.2897\\\\n      }\\\\n    },\\\\n    \\\\\\\"creative\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.2319,\\\\n      \\\\\\\"per_class_f1\\\\\\\": {\\\\n        \\\\\\\"gen-0\\\\\\\": 0.3928,\\\\n        \\\\\\\"gen-1\\\\\\\": 0.2322,\\\\n        \\\\\\\"gen-2+\\\\\\\": 0.0706\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_domain\\\": {\\n    \\\"news\\\": {\\n      \\\"3class_f1\\\": 0.5614,\\n      \\\"binary_f1\\\": 0.6264,\\n      \\\"per_class_f1\\\": {\\n        \\\"gen-0\\\": 0.7236,\\n        \\\"gen-1\\\": 0.3429,\\n        \\\"gen-2+\\\": 0.6179\\n      },\\n      \\\"spearman_entropy_mean\\\": -0.0432,\\n      \\\"spearman_entropy_std\\\": -0.0307,\\n      \\\"spearman_entropy_min\\\": -0.0793,\\n      \\\"spearman_entropy_max\\\": 0.096,\\n      \\\"spearman_tail_decay\\\": 0.0723,\\n      \\\"spearman_ttr\\\": -0.3055,\\n      \\\"spearman_hapax_ratio\\\": -0.3213\\n    },\\n    \\\"scientific\\\": {\\n      \\\"3class_f1\\\": 0.7049,\\n      \\\"binary_f1\\\": 0.7701,\\n      \\\"per_class_f1\\\": {\\n        \\\"gen-0\\\": 0.8838,\\n        \\\"gen-1\\\": 0.4614,\\n        \\\"gen-2+\\\": 0.7695\\n      },\\n      \\\"spearman_entropy_mean\\\": -0.6628,\\n      \\\"spearman_entropy_std\\\": -0.2997,\\n      \\\"spearman_entropy_min\\\": -0.4962,\\n      \\\"spearman_entropy_max\\\": -0.1981,\\n      \\\"spearman_tail_decay\\\": -0.2108,\\n      \\\"spearman_ttr\\\": -0.0394,\\n      \\\"spearman_hapax_ratio\\\": -0.0317\\n    },\\n    \\\"creative\\\": {\\n      \\\"3class_f1\\\": 0.6275,\\n      \\\"binary_f1\\\": 0.731,\\n      \\\"per_class_f1\\\": {\\n        \\\"gen-0\\\": 0.7632,\\n        \\\"gen-1\\\": 0.3938,\\n        \\\"gen-2+\\\": 0.7254\\n      },\\n      \\\"spearman_entropy_mean\\\": -0.6196,\\n      \\\"spearman_entropy_std\\\": -0.284,\\n      \\\"spearman_entropy_min\\\": -0.3678,\\n      \\\"spearman_entropy_max\\\": -0.1824,\\n      \\\"spearman_tail_decay\\\": -0.1658,\\n      \\\"spearman_ttr\\\": -0.411,\\n      \\\"spearman_hapax_ratio\\\": -0.4336\\n    },\\n    \\\"wikipedia\\\": {\\n      \\\"3class_f1\\\": 0.7928,\\n      \\\"binary_f1\\\": 0.8224,\\n      \\\"per_class_f1\\\": {\\n        \\\"gen-0\\\": 0.9268,\\n        \\\"gen-1\\\": 0.6295,\\n        \\\"gen-2+\\\": 0.822\\n      },\\n      \\\"spearman_entropy_mean\\\": -0.6754,\\n      \\\"spearman_entropy_std\\\": -0.153,\\n      \\\"spearman_entropy_min\\\": -0.4797,\\n      \\\"spearman_entropy_max\\\": -0.0351,\\n      \\\"spearman_tail_decay\\\": 0.0633,\\n      \\\"spearman_ttr\\\": -0.6333,\\n      \\\"spearman_hapax_ratio\\\": -0.6553\\n    }\\n  },\\n  \\\"cross_domain\\\": {\\n    \\\"3class_f1\\\": 0.4775,\\n    \\\"binary_f1\\\": 0.673,\\n    \\\"per_class_f1\\\": {\\n      \\\"gen-0\\\": 0.4573,\\n      \\\"gen-1\\\": 0.3348,\\n      \\\"gen-2+\\\": 0.6404\\n    },\\n    \\\"per_domain\\\": {\\n      \\\"creative\\\": 0.5305,\\n      \\\"news\\\": 0.3692,\\n      \\\"scientific\\\": 0.4131,\\n      \\\"wikipedia\\\": 0.4866\\n    }\\n  },\\n  \\\"wiki_transfer\\\": {\\n    \\\"news\\\": {\\n      \\\"3class_f1\\\": 0.231,\\n      \\\"per_class_f1\\\": {\\n        \\\"gen-0\\\": 0.4323,\\n        \\\"gen-1\\\": 0.1538,\\n        \\\"gen-2+\\\": 0.1069\\n      }\\n    },\\n    \\\"scientific\\\": {\\n      \\\"3class_f1\\\": 0.3351,\\n      \\\"per_class_f1\\\": {\\n        \\\"gen-0\\\": 0.3572,\\n        \\\"gen-1\\\": 0.3583,\\n        \\\"gen-2+\\\": 0.2897\\n      }\\n    },\\n    \\\"creative\\\": {\\n      \\\"3class_f1\\\": 0.2319,\\n      \\\"per_class_f1\\\": {\\n        \\\"gen-0\\\": 0.3928,\\n        \\\"gen-1\\\": 0.2322,\\n        \\\"gen-2+\\\": 0.0706\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BNqLzQY966bH1PdUXfNHVp`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/review_p2f_cross_ref_bias.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "9f758c7e-7613-4063-83cd-3cf69516c65e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tt9V8NJr52XKKLsabmoavf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9495,
+      "cache_read_input_tokens": 60904,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-17T10:55:20.002Z_
+
+<details><summary>↩ Tool result · `toolu_01BNqLzQY966bH1PdUXfNHVp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"P2-F Cross-reference-model bias check for Pythia-1B same-family advantage\\\",\\n  \\\"per_reference_logo\\\": {\\n    \\\"pythia-410m\\\": {\\n      \\\"avg_macro_f1\\\": 0.8034,\\n      \\\"ci\\\": [\\n        0.7722,\\n        0.8322\\n      ],\\n      \\\"per_generator_f1\\\": {\\n        \\\"olmo-2-1b\\\": 0.7501,\\n        \\\"pythia-1b\\\": 0.8555,\\n        \\\"pythia-2.8b\\\": 0.8009,\\n        \\\"qwen3-0.6b\\\": 0.8166,\\n        \\\"qwen3-1.7b\\\": 0.7939\\n      }\\n    },\\n    \\\"olmo-2-1b\\\": {\\n      \\\"avg_macro_f1\\\": 0.8072,\\n      \\\"ci\\\": [\\n        0.7802,\\n        0.8309\\n      ],\\n      \\\"per_generator_f1\\\": {\\n        \\\"olmo-2-1b\\\": 0.761,\\n        \\\"pythia-1b\\\": 0.8454,\\n        \\\"pythia-2.8b\\\": 0.79,\\n        \\\"qwen3-0.6b\\\": 0.8282,\\n        \\\"qwen3-1.7b\\\": 0.8114\\n      }\\n    },\\n    \\\"qwen3-0.6b\\\": {\\n      \\\"avg_macro_f1\\\": 0.8158,\\n      \\\"ci\\\": [\\n        0.7862,\\n        0.8411\\n      ],\\n      \\\"per_generator_f1\\\": {\\n        \\\"olmo-2-1b\\\": 0.7677,\\n        \\\"pythia-1b\\\": 0.8483,\\n        \\\"pythia-2.8b\\\": 0.7895,\\n        \\\"qwen3-0.6b\\\": 0.8383,\\n        \\\"qwen3-1.7b\\\": 0.8354\\n      }\\n    }\\n  },\\n  \\\"pythia1b_bias_table\\\": [\\n    {\\n      \\\"reference_model\\\": \\\"pythia-410m\\\",\\n      \\\"pythia1b_held_out_f1\\\": 0.8555,\\n      \\\"other_4gen_avg_f1\\\": 0.7904,\\n      \\\"pythia1b_delta_vs_avg\\\": 0.0651,\\n      \\\"pythia1b_rank_among_5\\\": 1\\n    },\\n    {\\n      \\\"reference_model\\\": \\\"olmo-2-1b\\\",\\n      \\\"pythia1b_held_out_f1\\\": 0.8454,\\n      \\\"other_4gen_avg_f1\\\": 0.7977,\\n      \\\"pythia1b_delta_vs_avg\\\": 0.0477,\\n      \\\"pythia1b_rank_among_5\\\": 1\\n    },\\n    {\\n      \\\"reference_model\\\": \\\"qwen3-0.6b\\\",\\n      \\\"pythia1b_held_out_f1\\\": 0.8483,\\n      \\\"other_4gen_avg_f1\\\": 0.8077,\\n      \\\"pythia1b_delta_vs_avg\\\": 0.0406,\\n      \\\"pythia1b_rank_among_5\\\": 1\\n    }\\n  ],\\n  \\\"conclusion\\\": {\\n    \\\"pythia1b_f1_same_family_ref\\\": 0.8555,\\n    \\\"pythia1b_f1_cross_family_avg\\\": 0.8468,\\n    \\\"f1_drop_cross_family\\\": 0.0086,\\n    \\\"pythia1b_always_rank1\\\": true,\\n    \\\"verdict\\\": \\\"same-family bias NOT confirmed\\\",\\n    \\\"reasoning\\\": \\\"Pythia-1B ranks #1 across ALL three reference models (same-family Pythia-410M, cross-family OLMo-2-1B, cross-family Qwen3-0.6B). F1 drop from same-family to cross-family reference is only 0.009 (0.855 -> 0.847), well within CI. Its high detectability is intrinsic (likely due to distinctive generation patterns), not an artifact of same-family reference model bias.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "1b423d73-cdc3-440c-b8b9-488ec54fc520",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"analysis\\\\\\\": \\\\\\\"P2-F Cross-reference-model bias check for Pythia-1B same-family advantage\\\\\\\",\\\\n  \\\\\\\"per_reference_logo\\\\\\\": {\\\\n    \\\\\\\"pythia-410m\\\\\\\": {\\\\n      \\\\\\\"avg_macro_f1\\\\\\\": 0.8034,\\\\n      \\\\\\\"ci\\\\\\\": [\\\\n        0.7722,\\\\n        0.8322\\\\n      ],\\\\n      \\\\\\\"per_generator_f1\\\\\\\": {\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": 0.7501,\\\\n        \\\\\\\"pythia-1b\\\\\\\": 0.8555,\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": 0.8009,\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": 0.8166,\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": 0.7939\\\\n      }\\\\n    },\\\\n    \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n      \\\\\\\"avg_macro_f1\\\\\\\": 0.8072,\\\\n      \\\\\\\"ci\\\\\\\": [\\\\n        0.7802,\\\\n        0.8309\\\\n      ],\\\\n      \\\\\\\"per_generator_f1\\\\\\\": {\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": 0.761,\\\\n        \\\\\\\"pythia-1b\\\\\\\": 0.8454,\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": 0.79,\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": 0.8282,\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": 0.8114\\\\n      }\\\\n    },\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n      \\\\\\\"avg_macro_f1\\\\\\\": 0.8158,\\\\n      \\\\\\\"ci\\\\\\\": [\\\\n        0.7862,\\\\n        0.8411\\\\n      ],\\\\n      \\\\\\\"per_generator_f1\\\\\\\": {\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": 0.7677,\\\\n        \\\\\\\"pythia-1b\\\\\\\": 0.8483,\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": 0.7895,\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": 0.8383,\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": 0.8354\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"pythia1b_bias_table\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"reference_model\\\\\\\": \\\\\\\"pythia-410m\\\\\\\",\\\\n      \\\\\\\"pythia1b_held_out_f1\\\\\\\": 0.8555,\\\\n      \\\\\\\"other_4gen_avg_f1\\\\\\\": 0.7904,\\\\n      \\\\\\\"pythia1b_delta_vs_avg\\\\\\\": 0.0651,\\\\n      \\\\\\\"pythia1b_rank_among_5\\\\\\\": 1\\\\n    },\\\\n    {\\\\n      \\\\\\\"reference_model\\\\\\\": \\\\\\\"olmo-2-1b\\\\\\\",\\\\n      \\\\\\\"pythia1b_held_out_f1\\\\\\\": 0.8454,\\\\n      \\\\\\\"other_4gen_avg_f1\\\\\\\": 0.7977,\\\\n      \\\\\\\"pythia1b_delta_vs_avg\\\\\\\": 0.0477,\\\\n      \\\\\\\"pythia1b_rank_among_5\\\\\\\": 1\\\\n    },\\\\n    {\\\\n      \\\\\\\"reference_model\\\\\\\": \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n      \\\\\\\"pythia1b_held_out_f1\\\\\\\": 0.8483,\\\\n      \\\\\\\"other_4gen_avg_f1\\\\\\\": 0.8077,\\\\n      \\\\\\\"pythia1b_delta_vs_avg\\\\\\\": 0.0406,\\\\n      \\\\\\\"pythia1b_rank_among_5\\\\\\\": 1\\\\n    }\\\\n  ],\\\\n  \\\\\\\"conclusion\\\\\\\": {\\\\n    \\\\\\\"pythia1b_f1_same_family_ref\\\\\\\": 0.8555,\\\\n    \\\\\\\"pythia1b_f1_cross_family_avg\\\\\\\": 0.8468,\\\\n    \\\\\\\"f1_drop_cross_family\\\\\\\": 0.0086,\\\\n    \\\\\\\"pythia1b_always_rank1\\\\\\\": true,\\\\n    \\\\\\\"verdict\\\\\\\": \\\\\\\"same-family bias NOT confirmed\\\\\\\",\\\\n    \\\\\\\"reasoning\\\\\\\": \\\\\\\"Pythia-1B ranks #1 across ALL three reference models (same-family Pythia-410M, cross-family OLMo-2-1B, cross-family Qwen3-0.6B). F1 drop from same-family to cross-family reference is only 0.009 (0.855 -> 0.847), well within CI. Its high detectability is intrinsic (likely due to distinctive generation patterns), not an artifact of same-family reference model bias.\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"P2-F Cross-reference-model bias check for Pythia-1B same-family advantage\\\",\\n  \\\"per_reference_logo\\\": {\\n    \\\"pythia-410m\\\": {\\n      \\\"avg_macro_f1\\\": 0.8034,\\n      \\\"ci\\\": [\\n        0.7722,\\n        0.8322\\n      ],\\n      \\\"per_generator_f1\\\": {\\n        \\\"olmo-2-1b\\\": 0.7501,\\n        \\\"pythia-1b\\\": 0.8555,\\n        \\\"pythia-2.8b\\\": 0.8009,\\n        \\\"qwen3-0.6b\\\": 0.8166,\\n        \\\"qwen3-1.7b\\\": 0.7939\\n      }\\n    },\\n    \\\"olmo-2-1b\\\": {\\n      \\\"avg_macro_f1\\\": 0.8072,\\n      \\\"ci\\\": [\\n        0.7802,\\n        0.8309\\n      ],\\n      \\\"per_generator_f1\\\": {\\n        \\\"olmo-2-1b\\\": 0.761,\\n        \\\"pythia-1b\\\": 0.8454,\\n        \\\"pythia-2.8b\\\": 0.79,\\n        \\\"qwen3-0.6b\\\": 0.8282,\\n        \\\"qwen3-1.7b\\\": 0.8114\\n      }\\n    },\\n    \\\"qwen3-0.6b\\\": {\\n      \\\"avg_macro_f1\\\": 0.8158,\\n      \\\"ci\\\": [\\n        0.7862,\\n        0.8411\\n      ],\\n      \\\"per_generator_f1\\\": {\\n        \\\"olmo-2-1b\\\": 0.7677,\\n        \\\"pythia-1b\\\": 0.8483,\\n        \\\"pythia-2.8b\\\": 0.7895,\\n        \\\"qwen3-0.6b\\\": 0.8383,\\n        \\\"qwen3-1.7b\\\": 0.8354\\n      }\\n    }\\n  },\\n  \\\"pythia1b_bias_table\\\": [\\n    {\\n      \\\"reference_model\\\": \\\"pythia-410m\\\",\\n      \\\"pythia1b_held_out_f1\\\": 0.8555,\\n      \\\"other_4gen_avg_f1\\\": 0.7904,\\n      \\\"pythia1b_delta_vs_avg\\\": 0.0651,\\n      \\\"pythia1b_rank_among_5\\\": 1\\n    },\\n    {\\n      \\\"reference_model\\\": \\\"olmo-2-1b\\\",\\n      \\\"pythia1b_held_out_f1\\\": 0.8454,\\n      \\\"other_4gen_avg_f1\\\": 0.7977,\\n      \\\"pythia1b_delta_vs_avg\\\": 0.0477,\\n      \\\"pythia1b_rank_among_5\\\": 1\\n    },\\n    {\\n      \\\"reference_model\\\": \\\"qwen3-0.6b\\\",\\n      \\\"pythia1b_held_out_f1\\\": 0.8483,\\n      \\\"other_4gen_avg_f1\\\": 0.8077,\\n      \\\"pythia1b_delta_vs_avg\\\": 0.0406,\\n      \\\"pythia1b_rank_among_5\\\": 1\\n    }\\n  ],\\n  \\\"conclusion\\\": {\\n    \\\"pythia1b_f1_same_family_ref\\\": 0.8555,\\n    \\\"pythia1b_f1_cross_family_avg\\\": 0.8468,\\n    \\\"f1_drop_cross_family\\\": 0.0086,\\n    \\\"pythia1b_always_rank1\\\": true,\\n    \\\"verdict\\\": \\\"same-family bias NOT confirmed\\\",\\n    \\\"reasoning\\\": \\\"Pythia-1B ranks #1 across ALL three reference models (same-family Pythia-410M, cross-family OLMo-2-1B, cross-family Qwen3-0.6B). F1 drop from same-family to cross-family reference is only 0.009 (0.855 -> 0.847), well within CI. Its high detectability is intrinsic (likely due to distinctive generation patterns), not an artifact of same-family reference model bias.\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EFsQucRqrtkTX2ZksHZxLY`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/8gen_baselines.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "88df141d-5174-4aef-94ee-56b9d8c8f68c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tt9V8NJr52XKKLsabmoavf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9495,
+      "cache_read_input_tokens": 60904,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9495
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-17T10:55:20.699Z_
+
+<details><summary>↩ Tool result · `toolu_01EFsQucRqrtkTX2ZksHZxLY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"avg_logprob\\\": {\\n    \\\"pooled_3class_f1\\\": 0.7085,\\n    \\\"pooled_binary_f1\\\": 0.6785,\\n    \\\"pooled_binary_ci\\\": [\\n      0.6717,\\n      0.6854\\n    ]\\n  },\\n  \\\"fastdetectgpt\\\": {\\n    \\\"pooled_3class_f1\\\": 0.6654,\\n    \\\"pooled_binary_f1\\\": 0.5805,\\n    \\\"pooled_binary_ci\\\": [\\n      0.5741,\\n      0.5875\\n    ]\\n  },\\n  \\\"binoculars\\\": {\\n    \\\"pooled_3class_f1\\\": 0.4094,\\n    \\\"pooled_binary_f1\\\": 0.5327,\\n    \\\"pooled_binary_ci\\\": [\\n      0.5268,\\n      0.5392\\n    ]\\n  },\\n  \\\"ld_score\\\": {\\n    \\\"pooled_3class_f1\\\": 0.6326,\\n    \\\"pooled_binary_f1\\\": 0.6788,\\n    \\\"pooled_binary_ci\\\": [\\n      0.6717,\\n      0.6851\\n    ]\\n  },\\n  \\\"4det_ensemble\\\": {\\n    \\\"pooled_3class_f1\\\": 0.779,\\n    \\\"pooled_binary_f1\\\": 0.6993,\\n    \\\"pooled_binary_ci\\\": [\\n      0.6928,\\n      0.7054\\n    ]\\n  },\\n  \\\"4det_surface\\\": {\\n    \\\"pooled_3class_f1\\\": 0.7823,\\n    \\\"pooled_binary_f1\\\": 0.7044,\\n    \\\"pooled_binary_ci\\\": [\\n      0.6979,\\n      0.7106\\n    ]\\n  },\\n  \\\"7feature_ours\\\": {\\n    \\\"pooled_3class_f1\\\": 0.7616,\\n    \\\"pooled_binary_f1\\\": 0.6935,\\n    \\\"pooled_binary_ci\\\": [\\n      0.6867,\\n      0.7\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "7f3aac0e-5c51-4850-bbd6-14ebc4ee83dd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"avg_logprob\\\\\\\": {\\\\n    \\\\\\\"pooled_3class_f1\\\\\\\": 0.7085,\\\\n    \\\\\\\"pooled_binary_f1\\\\\\\": 0.6785,\\\\n    \\\\\\\"pooled_binary_ci\\\\\\\": [\\\\n      0.6717,\\\\n      0.6854\\\\n    ]\\\\n  },\\\\n  \\\\\\\"fastdetectgpt\\\\\\\": {\\\\n    \\\\\\\"pooled_3class_f1\\\\\\\": 0.6654,\\\\n    \\\\\\\"pooled_binary_f1\\\\\\\": 0.5805,\\\\n    \\\\\\\"pooled_binary_ci\\\\\\\": [\\\\n      0.5741,\\\\n      0.5875\\\\n    ]\\\\n  },\\\\n  \\\\\\\"binoculars\\\\\\\": {\\\\n    \\\\\\\"pooled_3class_f1\\\\\\\": 0.4094,\\\\n    \\\\\\\"pooled_binary_f1\\\\\\\": 0.5327,\\\\n    \\\\\\\"pooled_binary_ci\\\\\\\": [\\\\n      0.5268,\\\\n      0.5392\\\\n    ]\\\\n  },\\\\n  \\\\\\\"ld_score\\\\\\\": {\\\\n    \\\\\\\"pooled_3class_f1\\\\\\\": 0.6326,\\\\n    \\\\\\\"pooled_binary_f1\\\\\\\": 0.6788,\\\\n    \\\\\\\"pooled_binary_ci\\\\\\\": [\\\\n      0.6717,\\\\n      0.6851\\\\n    ]\\\\n  },\\\\n  \\\\\\\"4det_ensemble\\\\\\\": {\\\\n    \\\\\\\"pooled_3class_f1\\\\\\\": 0.779,\\\\n    \\\\\\\"pooled_binary_f1\\\\\\\": 0.6993,\\\\n    \\\\\\\"pooled_binary_ci\\\\\\\": [\\\\n      0.6928,\\\\n      0.7054\\\\n    ]\\\\n  },\\\\n  \\\\\\\"4det_surface\\\\\\\": {\\\\n    \\\\\\\"pooled_3class_f1\\\\\\\": 0.7823,\\\\n    \\\\\\\"pooled_binary_f1\\\\\\\": 0.7044,\\\\n    \\\\\\\"pooled_binary_ci\\\\\\\": [\\\\n      0.6979,\\\\n      0.7106\\\\n    ]\\\\n  },\\\\n  \\\\\\\"7feature_ours\\\\\\\": {\\\\n    \\\\\\\"pooled_3class_f1\\\\\\\": 0.7616,\\\\n    \\\\\\\"pooled_binary_f1\\\\\\\": 0.6935,\\\\n    \\\\\\\"pooled_binary_ci\\\\\\\": [\\\\n      0.6867,\\\\n      0.7\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"avg_logprob\\\": {\\n    \\\"pooled_3class_f1\\\": 0.7085,\\n    \\\"pooled_binary_f1\\\": 0.6785,\\n    \\\"pooled_binary_ci\\\": [\\n      0.6717,\\n      0.6854\\n    ]\\n  },\\n  \\\"fastdetectgpt\\\": {\\n    \\\"pooled_3class_f1\\\": 0.6654,\\n    \\\"pooled_binary_f1\\\": 0.5805,\\n    \\\"pooled_binary_ci\\\": [\\n      0.5741,\\n      0.5875\\n    ]\\n  },\\n  \\\"binoculars\\\": {\\n    \\\"pooled_3class_f1\\\": 0.4094,\\n    \\\"pooled_binary_f1\\\": 0.5327,\\n    \\\"pooled_binary_ci\\\": [\\n      0.5268,\\n      0.5392\\n    ]\\n  },\\n  \\\"ld_score\\\": {\\n    \\\"pooled_3class_f1\\\": 0.6326,\\n    \\\"pooled_binary_f1\\\": 0.6788,\\n    \\\"pooled_binary_ci\\\": [\\n      0.6717,\\n      0.6851\\n    ]\\n  },\\n  \\\"4det_ensemble\\\": {\\n    \\\"pooled_3class_f1\\\": 0.779,\\n    \\\"pooled_binary_f1\\\": 0.6993,\\n    \\\"pooled_binary_ci\\\": [\\n      0.6928,\\n      0.7054\\n    ]\\n  },\\n  \\\"4det_surface\\\": {\\n    \\\"pooled_3class_f1\\\": 0.7823,\\n    \\\"pooled_binary_f1\\\": 0.7044,\\n    \\\"pooled_binary_ci\\\": [\\n      0.6979,\\n      0.7106\\n    ]\\n  },\\n  \\\"7feature_ours\\\": {\\n    \\\"pooled_3class_f1\\\": 0.7616,\\n    \\\"pooled_binary_f1\\\": 0.6935,\\n    \\\"pooled_binary_ci\\\": [\\n      0.6867,\\n      0.7\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to find:
+1. Topic drift R²=0.082 - not in the review_topic_drift_results.json. Let me check what the paper actually says and what other files might have this.
+2. Cross-type transfer at 0.753 - I see cross_transfer in paraphrastic_comparison showing 0.7695 and 0.7431. Average would be (0.7695+0.7431)/2 = 0.7563. But the paper says 0.753.
+
+Let me also check the 8gen_logo_baselines.json and look for the LOPTO / prompt type cross-transfer data. 
+
+I should look directly at the paper to find the cross-model binary F1 value and verify the exact claims being made.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "7c8906f4-f6d3-46d6-b5dd-f1aa7249380d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SQK4nZn4vwYdCssNFo7ZyY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8992,
+      "cache_read_input_tokens": 70399,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8992
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+需要确认论文中的实际声称。读取论文关键章节来对照。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "ee7a157c-6c16-4304-b1a0-45f52888ad2b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SQK4nZn4vwYdCssNFo7ZyY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8992,
+      "cache_read_input_tokens": 70399,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8992
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R2zL3ZC1eYccf86YqGJytc`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/8gen_logo_baselines.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "ea966611-62bb-4299-81dc-ae437ccc91b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SQK4nZn4vwYdCssNFo7ZyY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8992,
+      "cache_read_input_tokens": 70399,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8992
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-17T10:55:31.116Z_
+
+<details><summary>↩ Tool result · `toolu_01R2zL3ZC1eYccf86YqGJytc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"LOGO\\\",\\n  \\\"n_generators\\\": 8,\\n  \\\"generators\\\": [\\n    \\\"pythia-2.8b\\\",\\n    \\\"pythia-1b\\\",\\n    \\\"olmo-2-1b\\\",\\n    \\\"qwen3-0.6b\\\",\\n    \\\"qwen3-1.7b\\\",\\n    \\\"qwen3-8b\\\",\\n    \\\"llama-3.2-3b\\\",\\n    \\\"mistral-7b-v0.3\\\"\\n  ],\\n  \\\"baselines\\\": {\\n    \\\"avg_logprob\\\": {\\n      \\\"3class_f1\\\": 0.6834,\\n      \\\"3class_ci95\\\": [\\n        0.7026,\\n        0.7123\\n      ],\\n      \\\"binary_f1\\\": 0.6405,\\n      \\\"binary_ci95\\\": [\\n        0.6716,\\n        0.6829\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.7632,\\n          \\\"binary_f1\\\": 0.7151\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.7994,\\n          \\\"binary_f1\\\": 0.7645\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.7322,\\n          \\\"binary_f1\\\": 0.7017\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.7527,\\n          \\\"binary_f1\\\": 0.7325\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.7576,\\n          \\\"binary_f1\\\": 0.7398\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.6272,\\n          \\\"binary_f1\\\": 0.6324\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.5722,\\n          \\\"binary_f1\\\": 0.4747\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.4626,\\n          \\\"binary_f1\\\": 0.3633\\n        }\\n      }\\n    },\\n    \\\"fastdetectgpt\\\": {\\n      \\\"3class_f1\\\": 0.6552,\\n      \\\"3class_ci95\\\": [\\n        0.6613,\\n        0.6707\\n      ],\\n      \\\"binary_f1\\\": 0.5642,\\n      \\\"binary_ci95\\\": [\\n        0.5728,\\n        0.5849\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.7194,\\n          \\\"binary_f1\\\": 0.624\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.7453,\\n          \\\"binary_f1\\\": 0.6778\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.6621,\\n          \\\"binary_f1\\\": 0.5862\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.7162,\\n          \\\"binary_f1\\\": 0.6359\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.688,\\n          \\\"binary_f1\\\": 0.6073\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.5964,\\n          \\\"binary_f1\\\": 0.5107\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.5707,\\n          \\\"binary_f1\\\": 0.462\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.5438,\\n          \\\"binary_f1\\\": 0.41\\n        }\\n      }\\n    },\\n    \\\"binoculars\\\": {\\n      \\\"3class_f1\\\": 0.395,\\n      \\\"3class_ci95\\\": [\\n        0.4013,\\n        0.4115\\n      ],\\n      \\\"binary_f1\\\": 0.5196,\\n      \\\"binary_ci95\\\": [\\n        0.5317,\\n        0.5432\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.4408,\\n          \\\"binary_f1\\\": 0.5484\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.4232,\\n          \\\"binary_f1\\\": 0.5573\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.4146,\\n          \\\"binary_f1\\\": 0.54\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.3951,\\n          \\\"binary_f1\\\": 0.555\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.4135,\\n          \\\"binary_f1\\\": 0.542\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.4211,\\n          \\\"binary_f1\\\": 0.5239\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.3359,\\n          \\\"binary_f1\\\": 0.4992\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.3158,\\n          \\\"binary_f1\\\": 0.3906\\n        }\\n      }\\n    },\\n    \\\"ld_score\\\": {\\n      \\\"3class_f1\\\": 0.6189,\\n      \\\"3class_ci95\\\": [\\n        0.6267,\\n        0.6366\\n      ],\\n      \\\"binary_f1\\\": 0.6574,\\n      \\\"binary_ci95\\\": [\\n        0.6718,\\n        0.6837\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.6779,\\n          \\\"binary_f1\\\": 0.7299\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.7369,\\n          \\\"binary_f1\\\": 0.7675\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.6379,\\n          \\\"binary_f1\\\": 0.6721\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.6923,\\n          \\\"binary_f1\\\": 0.7185\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.6581,\\n          \\\"binary_f1\\\": 0.7056\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.5438,\\n          \\\"binary_f1\\\": 0.6222\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.54,\\n          \\\"binary_f1\\\": 0.5758\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.4646,\\n          \\\"binary_f1\\\": 0.4674\\n        }\\n      }\\n    }\\n  },\\n  \\\"ensembles\\\": {\\n    \\\"4det_ensemble\\\": {\\n      \\\"3class_f1\\\": 0.7696,\\n      \\\"3class_ci95\\\": [\\n        0.7761,\\n        0.784\\n      ],\\n      \\\"binary_f1\\\": 0.686,\\n      \\\"binary_ci95\\\": [\\n        0.6934,\\n        0.7048\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.8126,\\n          \\\"binary_f1\\\": 0.7282\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.8485,\\n          \\\"binary_f1\\\": 0.7816\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.7811,\\n          \\\"binary_f1\\\": 0.6959\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.826,\\n          \\\"binary_f1\\\": 0.7414\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.8218,\\n          \\\"binary_f1\\\": 0.7473\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.7017,\\n          \\\"binary_f1\\\": 0.6364\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.7633,\\n          \\\"binary_f1\\\": 0.6829\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.602,\\n          \\\"binary_f1\\\": 0.474\\n        }\\n      }\\n    },\\n    \\\"4det_surface\\\": {\\n      \\\"3class_f1\\\": 0.7873,\\n      \\\"3class_ci95\\\": [\\n        0.7904,\\n        0.7983\\n      ],\\n      \\\"binary_f1\\\": 0.6986,\\n      \\\"binary_ci95\\\": [\\n        0.7036,\\n        0.7146\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.818,\\n          \\\"binary_f1\\\": 0.7216\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.8508,\\n          \\\"binary_f1\\\": 0.7789\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.7818,\\n          \\\"binary_f1\\\": 0.6856\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.8396,\\n          \\\"binary_f1\\\": 0.7653\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.8396,\\n          \\\"binary_f1\\\": 0.7622\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.7297,\\n          \\\"binary_f1\\\": 0.6526\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.7662,\\n          \\\"binary_f1\\\": 0.6586\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.6728,\\n          \\\"binary_f1\\\": 0.5641\\n        }\\n      }\\n    }\\n  },\\n  \\\"7feature_ours\\\": {\\n    \\\"3class_f1\\\": 0.7401,\\n    \\\"3class_ci95\\\": [\\n      0.7573,\\n      0.7657\\n    ],\\n    \\\"binary_f1\\\": 0.6614,\\n    \\\"binary_ci95\\\": [\\n      0.6867,\\n      0.6983\\n    ],\\n    \\\"per_gen\\\": {\\n      \\\"pythia-2.8b\\\": {\\n        \\\"3class_f1\\\": 0.8105,\\n        \\\"binary_f1\\\": 0.7275\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"3class_f1\\\": 0.8529,\\n        \\\"binary_f1\\\": 0.7924\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"3class_f1\\\": 0.7729,\\n        \\\"binary_f1\\\": 0.6903\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"3class_f1\\\": 0.8216,\\n        \\\"binary_f1\\\": 0.756\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"3class_f1\\\": 0.8128,\\n        \\\"binary_f1\\\": 0.7578\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"3class_f1\\\": 0.6946,\\n        \\\"binary_f1\\\": 0.6512\\n      },\\n      \\\"llama-3.2-3b\\\": {\\n        \\\"3class_f1\\\": 0.6425,\\n        \\\"binary_f1\\\": 0.5149\\n      },\\n      \\\"mistral-7b-v0.3\\\": {\\n        \\\"3class_f1\\\": 0.5131,\\n        \\\"binary_f1\\\": 0.4009\\n      }\\n    }\\n  },\\n  \\\"config\\\": {\\n    \\\"xgb_n_estimators_baseline\\\": 100,\\n    \\\"xgb_max_depth_baseline\\\": 3,\\n    \\\"xgb_n_estimators_ours\\\": 200,\\n    \\\"xgb_max_depth_ours\\\": 6,\\n    \\\"bootstrap_n\\\": 1000,\\n    \\\"logo_seed\\\": 789\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "ff4929bf-5230-4093-9121-3c7c445d904c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"LOGO\\\\\\\",\\\\n  \\\\\\\"n_generators\\\\\\\": 8,\\\\n  \\\\\\\"generators\\\\\\\": [\\\\n    \\\\\\\"pythia-2.8b\\\\\\\",\\\\n    \\\\\\\"pythia-1b\\\\\\\",\\\\n    \\\\\\\"olmo-2-1b\\\\\\\",\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\",\\\\n    \\\\\\\"qwen3-8b\\\\\\\",\\\\n    \\\\\\\"llama-3.2-3b\\\\\\\",\\\\n    \\\\\\\"mistral-7b-v0.3\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"baselines\\\\\\\": {\\\\n    \\\\\\\"avg_logprob\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.6834,\\\\n      \\\\\\\"3class_ci95\\\\\\\": [\\\\n        0.7026,\\\\n        0.7123\\\\n      ],\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.6405,\\\\n      \\\\\\\"binary_ci95\\\\\\\": [\\\\n        0.6716,\\\\n        0.6829\\\\n      ],\\\\n      \\\\\\\"per_gen\\\\\\\": {\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7632,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7151\\\\n        },\\\\n        \\\\\\\"pythia-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7994,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7645\\\\n        },\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7322,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7017\\\\n        },\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7527,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7325\\\\n        },\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7576,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7398\\\\n        },\\\\n        \\\\\\\"qwen3-8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.6272,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6324\\\\n        },\\\\n        \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.5722,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.4747\\\\n        },\\\\n        \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.4626,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.3633\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"fastdetectgpt\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.6552,\\\\n      \\\\\\\"3class_ci95\\\\\\\": [\\\\n        0.6613,\\\\n        0.6707\\\\n      ],\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.5642,\\\\n      \\\\\\\"binary_ci95\\\\\\\": [\\\\n        0.5728,\\\\n        0.5849\\\\n      ],\\\\n      \\\\\\\"per_gen\\\\\\\": {\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7194,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.624\\\\n        },\\\\n        \\\\\\\"pythia-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7453,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6778\\\\n        },\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.6621,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.5862\\\\n        },\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7162,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6359\\\\n        },\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.688,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6073\\\\n        },\\\\n        \\\\\\\"qwen3-8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.5964,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.5107\\\\n        },\\\\n        \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.5707,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.462\\\\n        },\\\\n        \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.5438,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.41\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"binoculars\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.395,\\\\n      \\\\\\\"3class_ci95\\\\\\\": [\\\\n        0.4013,\\\\n        0.4115\\\\n      ],\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.5196,\\\\n      \\\\\\\"binary_ci95\\\\\\\": [\\\\n        0.5317,\\\\n        0.5432\\\\n      ],\\\\n      \\\\\\\"per_gen\\\\\\\": {\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.4408,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.5484\\\\n        },\\\\n        \\\\\\\"pythia-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.4232,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.5573\\\\n        },\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.4146,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.54\\\\n        },\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.3951,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.555\\\\n        },\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.4135,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.542\\\\n        },\\\\n        \\\\\\\"qwen3-8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.4211,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.5239\\\\n        },\\\\n        \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.3359,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.4992\\\\n        },\\\\n        \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.3158,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.3906\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"ld_score\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.6189,\\\\n      \\\\\\\"3class_ci95\\\\\\\": [\\\\n        0.6267,\\\\n        0.6366\\\\n      ],\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.6574,\\\\n      \\\\\\\"binary_ci95\\\\\\\": [\\\\n        0.6718,\\\\n        0.6837\\\\n      ],\\\\n      \\\\\\\"per_gen\\\\\\\": {\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.6779,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7299\\\\n        },\\\\n        \\\\\\\"pythia-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7369,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7675\\\\n        },\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.6379,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6721\\\\n        },\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.6923,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7185\\\\n        },\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.6581,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7056\\\\n        },\\\\n        \\\\\\\"qwen3-8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.5438,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6222\\\\n        },\\\\n        \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.54,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.5758\\\\n        },\\\\n        \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.4646,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.4674\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"ensembles\\\\\\\": {\\\\n    \\\\\\\"4det_ensemble\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.7696,\\\\n      \\\\\\\"3class_ci95\\\\\\\": [\\\\n        0.7761,\\\\n        0.784\\\\n      ],\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.686,\\\\n      \\\\\\\"binary_ci95\\\\\\\": [\\\\n        0.6934,\\\\n        0.7048\\\\n      ],\\\\n      \\\\\\\"per_gen\\\\\\\": {\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.8126,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7282\\\\n        },\\\\n        \\\\\\\"pythia-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.8485,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7816\\\\n        },\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7811,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6959\\\\n        },\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.826,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7414\\\\n        },\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.8218,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7473\\\\n        },\\\\n        \\\\\\\"qwen3-8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7017,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6364\\\\n        },\\\\n        \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7633,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6829\\\\n        },\\\\n        \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.602,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.474\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"4det_surface\\\\\\\": {\\\\n      \\\\\\\"3class_f1\\\\\\\": 0.7873,\\\\n      \\\\\\\"3class_ci95\\\\\\\": [\\\\n        0.7904,\\\\n        0.7983\\\\n      ],\\\\n      \\\\\\\"binary_f1\\\\\\\": 0.6986,\\\\n      \\\\\\\"binary_ci95\\\\\\\": [\\\\n        0.7036,\\\\n        0.7146\\\\n      ],\\\\n      \\\\\\\"per_gen\\\\\\\": {\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.818,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7216\\\\n        },\\\\n        \\\\\\\"pythia-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.8508,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7789\\\\n        },\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7818,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6856\\\\n        },\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.8396,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7653\\\\n        },\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.8396,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.7622\\\\n        },\\\\n        \\\\\\\"qwen3-8b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7297,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6526\\\\n        },\\\\n        \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.7662,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.6586\\\\n        },\\\\n        \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n          \\\\\\\"3class_f1\\\\\\\": 0.6728,\\\\n          \\\\\\\"binary_f1\\\\\\\": 0.5641\\\\n        }\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"7feature_ours\\\\\\\": {\\\\n    \\\\\\\"3class_f1\\\\\\\": 0.7401,\\\\n    \\\\\\\"3class_ci95\\\\\\\": [\\\\n      0.7573,\\\\n      0.7657\\\\n    ],\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.6614,\\\\n    \\\\\\\"binary_ci95\\\\\\\": [\\\\n      0.6867,\\\\n      0.6983\\\\n    ],\\\\n    \\\\\\\"per_gen\\\\\\\": {\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.8105,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.7275\\\\n      },\\\\n      \\\\\\\"pythia-1b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.8529,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.7924\\\\n      },\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.7729,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.6903\\\\n      },\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.8216,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.756\\\\n      },\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.8128,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.7578\\\\n      },\\\\n      \\\\\\\"qwen3-8b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.6946,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.6512\\\\n      },\\\\n      \\\\\\\"llama-3.2-3b\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.6425,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.5149\\\\n      },\\\\n      \\\\\\\"mistral-7b-v0.3\\\\\\\": {\\\\n        \\\\\\\"3class_f1\\\\\\\": 0.5131,\\\\n        \\\\\\\"binary_f1\\\\\\\": 0.4009\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"xgb_n_estimators_baseline\\\\\\\": 100,\\\\n    \\\\\\\"xgb_max_depth_baseline\\\\\\\": 3,\\\\n    \\\\\\\"xgb_n_estimators_ours\\\\\\\": 200,\\\\n    \\\\\\\"xgb_max_depth_ours\\\\\\\": 6,\\\\n    \\\\\\\"bootstrap_n\\\\\\\": 1000,\\\\n    \\\\\\\"logo_seed\\\\\\\": 789\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method\\\": \\\"LOGO\\\",\\n  \\\"n_generators\\\": 8,\\n  \\\"generators\\\": [\\n    \\\"pythia-2.8b\\\",\\n    \\\"pythia-1b\\\",\\n    \\\"olmo-2-1b\\\",\\n    \\\"qwen3-0.6b\\\",\\n    \\\"qwen3-1.7b\\\",\\n    \\\"qwen3-8b\\\",\\n    \\\"llama-3.2-3b\\\",\\n    \\\"mistral-7b-v0.3\\\"\\n  ],\\n  \\\"baselines\\\": {\\n    \\\"avg_logprob\\\": {\\n      \\\"3class_f1\\\": 0.6834,\\n      \\\"3class_ci95\\\": [\\n        0.7026,\\n        0.7123\\n      ],\\n      \\\"binary_f1\\\": 0.6405,\\n      \\\"binary_ci95\\\": [\\n        0.6716,\\n        0.6829\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.7632,\\n          \\\"binary_f1\\\": 0.7151\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.7994,\\n          \\\"binary_f1\\\": 0.7645\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.7322,\\n          \\\"binary_f1\\\": 0.7017\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.7527,\\n          \\\"binary_f1\\\": 0.7325\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.7576,\\n          \\\"binary_f1\\\": 0.7398\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.6272,\\n          \\\"binary_f1\\\": 0.6324\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.5722,\\n          \\\"binary_f1\\\": 0.4747\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.4626,\\n          \\\"binary_f1\\\": 0.3633\\n        }\\n      }\\n    },\\n    \\\"fastdetectgpt\\\": {\\n      \\\"3class_f1\\\": 0.6552,\\n      \\\"3class_ci95\\\": [\\n        0.6613,\\n        0.6707\\n      ],\\n      \\\"binary_f1\\\": 0.5642,\\n      \\\"binary_ci95\\\": [\\n        0.5728,\\n        0.5849\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.7194,\\n          \\\"binary_f1\\\": 0.624\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.7453,\\n          \\\"binary_f1\\\": 0.6778\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.6621,\\n          \\\"binary_f1\\\": 0.5862\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.7162,\\n          \\\"binary_f1\\\": 0.6359\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.688,\\n          \\\"binary_f1\\\": 0.6073\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.5964,\\n          \\\"binary_f1\\\": 0.5107\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.5707,\\n          \\\"binary_f1\\\": 0.462\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.5438,\\n          \\\"binary_f1\\\": 0.41\\n        }\\n      }\\n    },\\n    \\\"binoculars\\\": {\\n      \\\"3class_f1\\\": 0.395,\\n      \\\"3class_ci95\\\": [\\n        0.4013,\\n        0.4115\\n      ],\\n      \\\"binary_f1\\\": 0.5196,\\n      \\\"binary_ci95\\\": [\\n        0.5317,\\n        0.5432\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.4408,\\n          \\\"binary_f1\\\": 0.5484\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.4232,\\n          \\\"binary_f1\\\": 0.5573\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.4146,\\n          \\\"binary_f1\\\": 0.54\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.3951,\\n          \\\"binary_f1\\\": 0.555\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.4135,\\n          \\\"binary_f1\\\": 0.542\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.4211,\\n          \\\"binary_f1\\\": 0.5239\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.3359,\\n          \\\"binary_f1\\\": 0.4992\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.3158,\\n          \\\"binary_f1\\\": 0.3906\\n        }\\n      }\\n    },\\n    \\\"ld_score\\\": {\\n      \\\"3class_f1\\\": 0.6189,\\n      \\\"3class_ci95\\\": [\\n        0.6267,\\n        0.6366\\n      ],\\n      \\\"binary_f1\\\": 0.6574,\\n      \\\"binary_ci95\\\": [\\n        0.6718,\\n        0.6837\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.6779,\\n          \\\"binary_f1\\\": 0.7299\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.7369,\\n          \\\"binary_f1\\\": 0.7675\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.6379,\\n          \\\"binary_f1\\\": 0.6721\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.6923,\\n          \\\"binary_f1\\\": 0.7185\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.6581,\\n          \\\"binary_f1\\\": 0.7056\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.5438,\\n          \\\"binary_f1\\\": 0.6222\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.54,\\n          \\\"binary_f1\\\": 0.5758\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.4646,\\n          \\\"binary_f1\\\": 0.4674\\n        }\\n      }\\n    }\\n  },\\n  \\\"ensembles\\\": {\\n    \\\"4det_ensemble\\\": {\\n      \\\"3class_f1\\\": 0.7696,\\n      \\\"3class_ci95\\\": [\\n        0.7761,\\n        0.784\\n      ],\\n      \\\"binary_f1\\\": 0.686,\\n      \\\"binary_ci95\\\": [\\n        0.6934,\\n        0.7048\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.8126,\\n          \\\"binary_f1\\\": 0.7282\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.8485,\\n          \\\"binary_f1\\\": 0.7816\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.7811,\\n          \\\"binary_f1\\\": 0.6959\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.826,\\n          \\\"binary_f1\\\": 0.7414\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.8218,\\n          \\\"binary_f1\\\": 0.7473\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.7017,\\n          \\\"binary_f1\\\": 0.6364\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.7633,\\n          \\\"binary_f1\\\": 0.6829\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.602,\\n          \\\"binary_f1\\\": 0.474\\n        }\\n      }\\n    },\\n    \\\"4det_surface\\\": {\\n      \\\"3class_f1\\\": 0.7873,\\n      \\\"3class_ci95\\\": [\\n        0.7904,\\n        0.7983\\n      ],\\n      \\\"binary_f1\\\": 0.6986,\\n      \\\"binary_ci95\\\": [\\n        0.7036,\\n        0.7146\\n      ],\\n      \\\"per_gen\\\": {\\n        \\\"pythia-2.8b\\\": {\\n          \\\"3class_f1\\\": 0.818,\\n          \\\"binary_f1\\\": 0.7216\\n        },\\n        \\\"pythia-1b\\\": {\\n          \\\"3class_f1\\\": 0.8508,\\n          \\\"binary_f1\\\": 0.7789\\n        },\\n        \\\"olmo-2-1b\\\": {\\n          \\\"3class_f1\\\": 0.7818,\\n          \\\"binary_f1\\\": 0.6856\\n        },\\n        \\\"qwen3-0.6b\\\": {\\n          \\\"3class_f1\\\": 0.8396,\\n          \\\"binary_f1\\\": 0.7653\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"3class_f1\\\": 0.8396,\\n          \\\"binary_f1\\\": 0.7622\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"3class_f1\\\": 0.7297,\\n          \\\"binary_f1\\\": 0.6526\\n        },\\n        \\\"llama-3.2-3b\\\": {\\n          \\\"3class_f1\\\": 0.7662,\\n          \\\"binary_f1\\\": 0.6586\\n        },\\n        \\\"mistral-7b-v0.3\\\": {\\n          \\\"3class_f1\\\": 0.6728,\\n          \\\"binary_f1\\\": 0.5641\\n        }\\n      }\\n    }\\n  },\\n  \\\"7feature_ours\\\": {\\n    \\\"3class_f1\\\": 0.7401,\\n    \\\"3class_ci95\\\": [\\n      0.7573,\\n      0.7657\\n    ],\\n    \\\"binary_f1\\\": 0.6614,\\n    \\\"binary_ci95\\\": [\\n      0.6867,\\n      0.6983\\n    ],\\n    \\\"per_gen\\\": {\\n      \\\"pythia-2.8b\\\": {\\n        \\\"3class_f1\\\": 0.8105,\\n        \\\"binary_f1\\\": 0.7275\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"3class_f1\\\": 0.8529,\\n        \\\"binary_f1\\\": 0.7924\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"3class_f1\\\": 0.7729,\\n        \\\"binary_f1\\\": 0.6903\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"3class_f1\\\": 0.8216,\\n        \\\"binary_f1\\\": 0.756\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"3class_f1\\\": 0.8128,\\n        \\\"binary_f1\\\": 0.7578\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"3class_f1\\\": 0.6946,\\n        \\\"binary_f1\\\": 0.6512\\n      },\\n      \\\"llama-3.2-3b\\\": {\\n        \\\"3class_f1\\\": 0.6425,\\n        \\\"binary_f1\\\": 0.5149\\n      },\\n      \\\"mistral-7b-v0.3\\\": {\\n        \\\"3class_f1\\\": 0.5131,\\n        \\\"binary_f1\\\": 0.4009\\n      }\\n    }\\n  },\\n  \\\"config\\\": {\\n    \\\"xgb_n_estimators_baseline\\\": 100,\\n    \\\"xgb_max_depth_baseline\\\": 3,\\n    \\\"xgb_n_estimators_ours\\\": 200,\\n    \\\"xgb_max_depth_ours\\\": 6,\\n    \\\"bootstrap_n\\\": 1000,\\n    \\\"logo_seed\\\": 789\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JxQuVWCxejCkoLXz7vAxeH`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/plan012_pythia410m_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "7199b97e-c12d-4f8c-a8f0-1de82fc9ed64",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SQK4nZn4vwYdCssNFo7ZyY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8992,
+      "cache_read_input_tokens": 70399,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8992
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-17T10:55:32.081Z_
+
+<details><summary>↩ Tool result · `toolu_01JxQuVWCxejCkoLXz7vAxeH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"plan-012-pythia410m\\\",\\n  \\\"model\\\": \\\"EleutherAI/pythia-410m\\\",\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/.hf_cache/EleutherAI/pythia-410m\\\",\\n  \\\"method\\\": \\\"QLoRA_4bit_seqcls\\\",\\n  \\\"lora_config\\\": {\\n    \\\"r\\\": 16,\\n    \\\"alpha\\\": 32,\\n    \\\"target_modules\\\": [\\n      \\\"query_key_value\\\"\\n    ]\\n  },\\n  \\\"max_length\\\": 512,\\n  \\\"batch_size\\\": 8,\\n  \\\"lr\\\": 0.0002,\\n  \\\"epochs\\\": 3,\\n  \\\"n_folds\\\": 5,\\n  \\\"n_samples\\\": 18423,\\n  \\\"generators\\\": [\\n    \\\"pythia-1b\\\",\\n    \\\"olmo-2-1b\\\",\\n    \\\"qwen3-0.6b\\\",\\n    \\\"qwen3-1.7b\\\"\\n  ],\\n  \\\"cv_type\\\": \\\"5-fold_stratified\\\",\\n  \\\"macro_f1_5class\\\": 0.5564,\\n  \\\"macro_f1_5class_std\\\": 0.0158,\\n  \\\"macro_f1_3class\\\": 0.8703,\\n  \\\"macro_f1_3class_std\\\": 0.022,\\n  \\\"per_class_f1_5class\\\": {\\n    \\\"depth_0\\\": 0.9909,\\n    \\\"depth_1\\\": 0.7334,\\n    \\\"depth_2\\\": 0.3468,\\n    \\\"depth_3\\\": 0.291,\\n    \\\"depth_4\\\": 0.4201\\n  },\\n  \\\"per_class_f1_3class\\\": {\\n    \\\"gen0\\\": 0.9909,\\n    \\\"gen1\\\": 0.7334,\\n    \\\"gen2+\\\": 0.8866\\n  },\\n  \\\"fold_results\\\": [\\n    {\\n      \\\"fold\\\": 0,\\n      \\\"n_train\\\": 14738,\\n      \\\"n_val\\\": 3685,\\n      \\\"macro_f1_5class\\\": 0.5733,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9956,\\n        \\\"depth_1\\\": 0.7625,\\n        \\\"depth_2\\\": 0.3581,\\n        \\\"depth_3\\\": 0.3027,\\n        \\\"depth_4\\\": 0.4473\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          794,\\n          3,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          4,\\n          676,\\n          97,\\n          10,\\n          3\\n        ],\\n        [\\n          0,\\n          205,\\n          253,\\n          133,\\n          156\\n        ],\\n        [\\n          0,\\n          62,\\n          173,\\n          178,\\n          282\\n        ],\\n        [\\n          0,\\n          37,\\n          143,\\n          160,\\n          316\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.8849,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9956,\\n        \\\"gen1\\\": 0.7625,\\n        \\\"gen2+\\\": 0.8966\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          794,\\n          3,\\n          0\\n        ],\\n        [\\n          4,\\n          676,\\n          110\\n        ],\\n        [\\n          0,\\n          304,\\n          1794\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 1,\\n      \\\"n_train\\\": 14738,\\n      \\\"n_val\\\": 3685,\\n      \\\"macro_f1_5class\\\": 0.5466,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9943,\\n        \\\"depth_1\\\": 0.7306,\\n        \\\"depth_2\\\": 0.3365,\\n        \\\"depth_3\\\": 0.2273,\\n        \\\"depth_4\\\": 0.4443\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          791,\\n          6,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          2,\\n          632,\\n          135,\\n          13,\\n          8\\n        ],\\n        [\\n          0,\\n          188,\\n          250,\\n          124,\\n          185\\n        ],\\n        [\\n          1,\\n          68,\\n          206,\\n          124,\\n          295\\n        ],\\n        [\\n          0,\\n          46,\\n          148,\\n          136,\\n          327\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.8705,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9943,\\n        \\\"gen1\\\": 0.7306,\\n        \\\"gen2+\\\": 0.8866\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          791,\\n          6,\\n          0\\n        ],\\n        [\\n          2,\\n          632,\\n          156\\n        ],\\n        [\\n          1,\\n          302,\\n          1795\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 2,\\n      \\\"n_train\\\": 14738,\\n      \\\"n_val\\\": 3685,\\n      \\\"macro_f1_5class\\\": 0.533,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9772,\\n        \\\"depth_1\\\": 0.6583,\\n        \\\"depth_2\\\": 0.3053,\\n        \\\"depth_3\\\": 0.3596,\\n        \\\"depth_4\\\": 0.3644\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          772,\\n          23,\\n          1,\\n          0,\\n          0\\n        ],\\n        [\\n          7,\\n          580,\\n          138,\\n          45,\\n          20\\n        ],\\n        [\\n          5,\\n          195,\\n          209,\\n          191,\\n          148\\n        ],\\n        [\\n          0,\\n          110,\\n          150,\\n          258,\\n          176\\n        ],\\n        [\\n          0,\\n          64,\\n          123,\\n          247,\\n          223\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.8307,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9772,\\n        \\\"gen1\\\": 0.6583,\\n        \\\"gen2+\\\": 0.8565\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          772,\\n          23,\\n          1\\n        ],\\n        [\\n          7,\\n          580,\\n          203\\n        ],\\n        [\\n          5,\\n          369,\\n          1725\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 3,\\n      \\\"n_train\\\": 14739,\\n      \\\"n_val\\\": 3684,\\n      \\\"macro_f1_5class\\\": 0.5742,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9975,\\n        \\\"depth_1\\\": 0.7797,\\n        \\\"depth_2\\\": 0.3909,\\n        \\\"depth_3\\\": 0.2477,\\n        \\\"depth_4\\\": 0.4554\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          796,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          2,\\n          653,\\n          119,\\n          11,\\n          5\\n        ],\\n        [\\n          1,\\n          161,\\n          284,\\n          106,\\n          196\\n        ],\\n        [\\n          0,\\n          47,\\n          174,\\n          136,\\n          337\\n        ],\\n        [\\n          1,\\n          24,\\n          128,\\n          151,\\n          352\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.8957,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9975,\\n        \\\"gen1\\\": 0.7797,\\n        \\\"gen2+\\\": 0.9099\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          796,\\n          0,\\n          0\\n        ],\\n        [\\n          2,\\n          653,\\n          135\\n        ],\\n        [\\n          2,\\n          232,\\n          1864\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 4,\\n      \\\"n_train\\\": 14739,\\n      \\\"n_val\\\": 3684,\\n      \\\"macro_f1_5class\\\": 0.5551,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.99,\\n        \\\"depth_1\\\": 0.7358,\\n        \\\"depth_2\\\": 0.3431,\\n        \\\"depth_3\\\": 0.3177,\\n        \\\"depth_4\\\": 0.3889\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          793,\\n          3,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          10,\\n          660,\\n          91,\\n          24,\\n          5\\n        ],\\n        [\\n          2,\\n          216,\\n          229,\\n          168,\\n          133\\n        ],\\n        [\\n          0,\\n          80,\\n          151,\\n          213,\\n          250\\n        ],\\n        [\\n          1,\\n          45,\\n          116,\\n          242,\\n          252\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.8697,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.99,\\n        \\\"gen1\\\": 0.7358,\\n        \\\"gen2+\\\": 0.8832\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          793,\\n          3,\\n          0\\n        ],\\n        [\\n          10,\\n          660,\\n          120\\n        ],\\n        [\\n          3,\\n          341,\\n          1754\\n        ]\\n      ]\\n    }\\n  ],\\n  \\\"baseline_xgboost\\\": {\\n    \\\"5class_macro_f1\\\": 0.5028,\\n    \\\"3class_macro_f1\\\": 0.7815,\\n    \\\"method\\\": \\\"HGBT_7features_LOGO\\\"\\n  },\\n  \\\"delta_vs_xgboost\\\": {\\n    \\\"5class\\\": 0.0536,\\n    \\\"3class\\\": 0.0888\\n  },\\n  \\\"runtime_seconds\\\": 3705.1,\\n  \\\"seed\\\": 42\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "07f69c1e-b86b-4686-b450-5f21f81a4a52",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"plan-012-pythia410m\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"EleutherAI/pythia-410m\\\\\\\",\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/EleutherAI/pythia-410m\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"QLoRA_4bit_seqcls\\\\\\\",\\\\n  \\\\\\\"lora_config\\\\\\\": {\\\\n    \\\\\\\"r\\\\\\\": 16,\\\\n    \\\\\\\"alpha\\\\\\\": 32,\\\\n    \\\\\\\"target_modules\\\\\\\": [\\\\n      \\\\\\\"query_key_value\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"max_length\\\\\\\": 512,\\\\n  \\\\\\\"batch_size\\\\\\\": 8,\\\\n  \\\\\\\"lr\\\\\\\": 0.0002,\\\\n  \\\\\\\"epochs\\\\\\\": 3,\\\\n  \\\\\\\"n_folds\\\\\\\": 5,\\\\n  \\\\\\\"n_samples\\\\\\\": 18423,\\\\n  \\\\\\\"generators\\\\\\\": [\\\\n    \\\\\\\"pythia-1b\\\\\\\",\\\\n    \\\\\\\"olmo-2-1b\\\\\\\",\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"cv_type\\\\\\\": \\\\\\\"5-fold_stratified\\\\\\\",\\\\n  \\\\\\\"macro_f1_5class\\\\\\\": 0.5564,\\\\n  \\\\\\\"macro_f1_5class_std\\\\\\\": 0.0158,\\\\n  \\\\\\\"macro_f1_3class\\\\\\\": 0.8703,\\\\n  \\\\\\\"macro_f1_3class_std\\\\\\\": 0.022,\\\\n  \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n    \\\\\\\"depth_0\\\\\\\": 0.9909,\\\\n    \\\\\\\"depth_1\\\\\\\": 0.7334,\\\\n    \\\\\\\"depth_2\\\\\\\": 0.3468,\\\\n    \\\\\\\"depth_3\\\\\\\": 0.291,\\\\n    \\\\\\\"depth_4\\\\\\\": 0.4201\\\\n  },\\\\n  \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n    \\\\\\\"gen0\\\\\\\": 0.9909,\\\\n    \\\\\\\"gen1\\\\\\\": 0.7334,\\\\n    \\\\\\\"gen2+\\\\\\\": 0.8866\\\\n  },\\\\n  \\\\\\\"fold_results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"fold\\\\\\\": 0,\\\\n      \\\\\\\"n_train\\\\\\\": 14738,\\\\n      \\\\\\\"n_val\\\\\\\": 3685,\\\\n      \\\\\\\"macro_f1_5class\\\\\\\": 0.5733,\\\\n      \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n        \\\\\\\"depth_0\\\\\\\": 0.9956,\\\\n        \\\\\\\"depth_1\\\\\\\": 0.7625,\\\\n        \\\\\\\"depth_2\\\\\\\": 0.3581,\\\\n        \\\\\\\"depth_3\\\\\\\": 0.3027,\\\\n        \\\\\\\"depth_4\\\\\\\": 0.4473\\\\n      },\\\\n      \\\\\\\"confusion_matrix_5class\\\\\\\": [\\\\n        [\\\\n          794,\\\\n          3,\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          4,\\\\n          676,\\\\n          97,\\\\n          10,\\\\n          3\\\\n        ],\\\\n        [\\\\n          0,\\\\n          205,\\\\n          253,\\\\n          133,\\\\n          156\\\\n        ],\\\\n        [\\\\n          0,\\\\n          62,\\\\n          173,\\\\n          178,\\\\n          282\\\\n        ],\\\\n        [\\\\n          0,\\\\n          37,\\\\n          143,\\\\n          160,\\\\n          316\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"macro_f1_3class\\\\\\\": 0.8849,\\\\n      \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 0.9956,\\\\n        \\\\\\\"gen1\\\\\\\": 0.7625,\\\\n        \\\\\\\"gen2+\\\\\\\": 0.8966\\\\n      },\\\\n      \\\\\\\"confusion_matrix_3class\\\\\\\": [\\\\n        [\\\\n          794,\\\\n          3,\\\\n          0\\\\n        ],\\\\n        [\\\\n          4,\\\\n          676,\\\\n          110\\\\n        ],\\\\n        [\\\\n          0,\\\\n          304,\\\\n          1794\\\\n        ]\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"fold\\\\\\\": 1,\\\\n      \\\\\\\"n_train\\\\\\\": 14738,\\\\n      \\\\\\\"n_val\\\\\\\": 3685,\\\\n      \\\\\\\"macro_f1_5class\\\\\\\": 0.5466,\\\\n      \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n        \\\\\\\"depth_0\\\\\\\": 0.9943,\\\\n        \\\\\\\"depth_1\\\\\\\": 0.7306,\\\\n        \\\\\\\"depth_2\\\\\\\": 0.3365,\\\\n        \\\\\\\"depth_3\\\\\\\": 0.2273,\\\\n        \\\\\\\"depth_4\\\\\\\": 0.4443\\\\n      },\\\\n      \\\\\\\"confusion_matrix_5class\\\\\\\": [\\\\n        [\\\\n          791,\\\\n          6,\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          2,\\\\n          632,\\\\n          135,\\\\n          13,\\\\n          8\\\\n        ],\\\\n        [\\\\n          0,\\\\n          188,\\\\n          250,\\\\n          124,\\\\n          185\\\\n        ],\\\\n        [\\\\n          1,\\\\n          68,\\\\n          206,\\\\n          124,\\\\n          295\\\\n        ],\\\\n        [\\\\n          0,\\\\n          46,\\\\n          148,\\\\n          136,\\\\n          327\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"macro_f1_3class\\\\\\\": 0.8705,\\\\n      \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 0.9943,\\\\n        \\\\\\\"gen1\\\\\\\": 0.7306,\\\\n        \\\\\\\"gen2+\\\\\\\": 0.8866\\\\n      },\\\\n      \\\\\\\"confusion_matrix_3class\\\\\\\": [\\\\n        [\\\\n          791,\\\\n          6,\\\\n          0\\\\n        ],\\\\n        [\\\\n          2,\\\\n          632,\\\\n          156\\\\n        ],\\\\n        [\\\\n          1,\\\\n          302,\\\\n          1795\\\\n        ]\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"fold\\\\\\\": 2,\\\\n      \\\\\\\"n_train\\\\\\\": 14738,\\\\n      \\\\\\\"n_val\\\\\\\": 3685,\\\\n      \\\\\\\"macro_f1_5class\\\\\\\": 0.533,\\\\n      \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n        \\\\\\\"depth_0\\\\\\\": 0.9772,\\\\n        \\\\\\\"depth_1\\\\\\\": 0.6583,\\\\n        \\\\\\\"depth_2\\\\\\\": 0.3053,\\\\n        \\\\\\\"depth_3\\\\\\\": 0.3596,\\\\n        \\\\\\\"depth_4\\\\\\\": 0.3644\\\\n      },\\\\n      \\\\\\\"confusion_matrix_5class\\\\\\\": [\\\\n        [\\\\n          772,\\\\n          23,\\\\n          1,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          7,\\\\n          580,\\\\n          138,\\\\n          45,\\\\n          20\\\\n        ],\\\\n        [\\\\n          5,\\\\n          195,\\\\n          209,\\\\n          191,\\\\n          148\\\\n        ],\\\\n        [\\\\n          0,\\\\n          110,\\\\n          150,\\\\n          258,\\\\n          176\\\\n        ],\\\\n        [\\\\n          0,\\\\n          64,\\\\n          123,\\\\n          247,\\\\n          223\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"macro_f1_3class\\\\\\\": 0.8307,\\\\n      \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 0.9772,\\\\n        \\\\\\\"gen1\\\\\\\": 0.6583,\\\\n        \\\\\\\"gen2+\\\\\\\": 0.8565\\\\n      },\\\\n      \\\\\\\"confusion_matrix_3class\\\\\\\": [\\\\n        [\\\\n          772,\\\\n          23,\\\\n          1\\\\n        ],\\\\n        [\\\\n          7,\\\\n          580,\\\\n          203\\\\n        ],\\\\n        [\\\\n          5,\\\\n          369,\\\\n          1725\\\\n        ]\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"fold\\\\\\\": 3,\\\\n      \\\\\\\"n_train\\\\\\\": 14739,\\\\n      \\\\\\\"n_val\\\\\\\": 3684,\\\\n      \\\\\\\"macro_f1_5class\\\\\\\": 0.5742,\\\\n      \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n        \\\\\\\"depth_0\\\\\\\": 0.9975,\\\\n        \\\\\\\"depth_1\\\\\\\": 0.7797,\\\\n        \\\\\\\"depth_2\\\\\\\": 0.3909,\\\\n        \\\\\\\"depth_3\\\\\\\": 0.2477,\\\\n        \\\\\\\"depth_4\\\\\\\": 0.4554\\\\n      },\\\\n      \\\\\\\"confusion_matrix_5class\\\\\\\": [\\\\n        [\\\\n          796,\\\\n          0,\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          2,\\\\n          653,\\\\n          119,\\\\n          11,\\\\n          5\\\\n        ],\\\\n        [\\\\n          1,\\\\n          161,\\\\n          284,\\\\n          106,\\\\n          196\\\\n        ],\\\\n        [\\\\n          0,\\\\n          47,\\\\n          174,\\\\n          136,\\\\n          337\\\\n        ],\\\\n        [\\\\n          1,\\\\n          24,\\\\n          128,\\\\n          151,\\\\n          352\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"macro_f1_3class\\\\\\\": 0.8957,\\\\n      \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 0.9975,\\\\n        \\\\\\\"gen1\\\\\\\": 0.7797,\\\\n        \\\\\\\"gen2+\\\\\\\": 0.9099\\\\n      },\\\\n      \\\\\\\"confusion_matrix_3class\\\\\\\": [\\\\n        [\\\\n          796,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          2,\\\\n          653,\\\\n          135\\\\n        ],\\\\n        [\\\\n          2,\\\\n          232,\\\\n          1864\\\\n        ]\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"fold\\\\\\\": 4,\\\\n      \\\\\\\"n_train\\\\\\\": 14739,\\\\n      \\\\\\\"n_val\\\\\\\": 3684,\\\\n      \\\\\\\"macro_f1_5class\\\\\\\": 0.5551,\\\\n      \\\\\\\"per_class_f1_5class\\\\\\\": {\\\\n        \\\\\\\"depth_0\\\\\\\": 0.99,\\\\n        \\\\\\\"depth_1\\\\\\\": 0.7358,\\\\n        \\\\\\\"depth_2\\\\\\\": 0.3431,\\\\n        \\\\\\\"depth_3\\\\\\\": 0.3177,\\\\n        \\\\\\\"depth_4\\\\\\\": 0.3889\\\\n      },\\\\n      \\\\\\\"confusion_matrix_5class\\\\\\\": [\\\\n        [\\\\n          793,\\\\n          3,\\\\n          0,\\\\n          0,\\\\n          0\\\\n        ],\\\\n        [\\\\n          10,\\\\n          660,\\\\n          91,\\\\n          24,\\\\n          5\\\\n        ],\\\\n        [\\\\n          2,\\\\n          216,\\\\n          229,\\\\n          168,\\\\n          133\\\\n        ],\\\\n        [\\\\n          0,\\\\n          80,\\\\n          151,\\\\n          213,\\\\n          250\\\\n        ],\\\\n        [\\\\n          1,\\\\n          45,\\\\n          116,\\\\n          242,\\\\n          252\\\\n        ]\\\\n      ],\\\\n      \\\\\\\"macro_f1_3class\\\\\\\": 0.8697,\\\\n      \\\\\\\"per_class_f1_3class\\\\\\\": {\\\\n        \\\\\\\"gen0\\\\\\\": 0.99,\\\\n        \\\\\\\"gen1\\\\\\\": 0.7358,\\\\n        \\\\\\\"gen2+\\\\\\\": 0.8832\\\\n      },\\\\n      \\\\\\\"confusion_matrix_3class\\\\\\\": [\\\\n        [\\\\n          793,\\\\n          3,\\\\n          0\\\\n        ],\\\\n        [\\\\n          10,\\\\n          660,\\\\n          120\\\\n        ],\\\\n        [\\\\n          3,\\\\n          341,\\\\n          1754\\\\n        ]\\\\n      ]\\\\n    }\\\\n  ],\\\\n  \\\\\\\"baseline_xgboost\\\\\\\": {\\\\n    \\\\\\\"5class_macro_f1\\\\\\\": 0.5028,\\\\n    \\\\\\\"3class_macro_f1\\\\\\\": 0.7815,\\\\n    \\\\\\\"method\\\\\\\": \\\\\\\"HGBT_7features_LOGO\\\\\\\"\\\\n  },\\\\n  \\\\\\\"delta_vs_xgboost\\\\\\\": {\\\\n    \\\\\\\"5class\\\\\\\": 0.0536,\\\\n    \\\\\\\"3class\\\\\\\": 0.0888\\\\n  },\\\\n  \\\\\\\"runtime_seconds\\\\\\\": 3705.1,\\\\n  \\\\\\\"seed\\\\\\\": 42\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"plan-012-pythia410m\\\",\\n  \\\"model\\\": \\\"EleutherAI/pythia-410m\\\",\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/.hf_cache/EleutherAI/pythia-410m\\\",\\n  \\\"method\\\": \\\"QLoRA_4bit_seqcls\\\",\\n  \\\"lora_config\\\": {\\n    \\\"r\\\": 16,\\n    \\\"alpha\\\": 32,\\n    \\\"target_modules\\\": [\\n      \\\"query_key_value\\\"\\n    ]\\n  },\\n  \\\"max_length\\\": 512,\\n  \\\"batch_size\\\": 8,\\n  \\\"lr\\\": 0.0002,\\n  \\\"epochs\\\": 3,\\n  \\\"n_folds\\\": 5,\\n  \\\"n_samples\\\": 18423,\\n  \\\"generators\\\": [\\n    \\\"pythia-1b\\\",\\n    \\\"olmo-2-1b\\\",\\n    \\\"qwen3-0.6b\\\",\\n    \\\"qwen3-1.7b\\\"\\n  ],\\n  \\\"cv_type\\\": \\\"5-fold_stratified\\\",\\n  \\\"macro_f1_5class\\\": 0.5564,\\n  \\\"macro_f1_5class_std\\\": 0.0158,\\n  \\\"macro_f1_3class\\\": 0.8703,\\n  \\\"macro_f1_3class_std\\\": 0.022,\\n  \\\"per_class_f1_5class\\\": {\\n    \\\"depth_0\\\": 0.9909,\\n    \\\"depth_1\\\": 0.7334,\\n    \\\"depth_2\\\": 0.3468,\\n    \\\"depth_3\\\": 0.291,\\n    \\\"depth_4\\\": 0.4201\\n  },\\n  \\\"per_class_f1_3class\\\": {\\n    \\\"gen0\\\": 0.9909,\\n    \\\"gen1\\\": 0.7334,\\n    \\\"gen2+\\\": 0.8866\\n  },\\n  \\\"fold_results\\\": [\\n    {\\n      \\\"fold\\\": 0,\\n      \\\"n_train\\\": 14738,\\n      \\\"n_val\\\": 3685,\\n      \\\"macro_f1_5class\\\": 0.5733,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9956,\\n        \\\"depth_1\\\": 0.7625,\\n        \\\"depth_2\\\": 0.3581,\\n        \\\"depth_3\\\": 0.3027,\\n        \\\"depth_4\\\": 0.4473\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          794,\\n          3,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          4,\\n          676,\\n          97,\\n          10,\\n          3\\n        ],\\n        [\\n          0,\\n          205,\\n          253,\\n          133,\\n          156\\n        ],\\n        [\\n          0,\\n          62,\\n          173,\\n          178,\\n          282\\n        ],\\n        [\\n          0,\\n          37,\\n          143,\\n          160,\\n          316\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.8849,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9956,\\n        \\\"gen1\\\": 0.7625,\\n        \\\"gen2+\\\": 0.8966\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          794,\\n          3,\\n          0\\n        ],\\n        [\\n          4,\\n          676,\\n          110\\n        ],\\n        [\\n          0,\\n          304,\\n          1794\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 1,\\n      \\\"n_train\\\": 14738,\\n      \\\"n_val\\\": 3685,\\n      \\\"macro_f1_5class\\\": 0.5466,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9943,\\n        \\\"depth_1\\\": 0.7306,\\n        \\\"depth_2\\\": 0.3365,\\n        \\\"depth_3\\\": 0.2273,\\n        \\\"depth_4\\\": 0.4443\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          791,\\n          6,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          2,\\n          632,\\n          135,\\n          13,\\n          8\\n        ],\\n        [\\n          0,\\n          188,\\n          250,\\n          124,\\n          185\\n        ],\\n        [\\n          1,\\n          68,\\n          206,\\n          124,\\n          295\\n        ],\\n        [\\n          0,\\n          46,\\n          148,\\n          136,\\n          327\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.8705,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9943,\\n        \\\"gen1\\\": 0.7306,\\n        \\\"gen2+\\\": 0.8866\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          791,\\n          6,\\n          0\\n        ],\\n        [\\n          2,\\n          632,\\n          156\\n        ],\\n        [\\n          1,\\n          302,\\n          1795\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 2,\\n      \\\"n_train\\\": 14738,\\n      \\\"n_val\\\": 3685,\\n      \\\"macro_f1_5class\\\": 0.533,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9772,\\n        \\\"depth_1\\\": 0.6583,\\n        \\\"depth_2\\\": 0.3053,\\n        \\\"depth_3\\\": 0.3596,\\n        \\\"depth_4\\\": 0.3644\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          772,\\n          23,\\n          1,\\n          0,\\n          0\\n        ],\\n        [\\n          7,\\n          580,\\n          138,\\n          45,\\n          20\\n        ],\\n        [\\n          5,\\n          195,\\n          209,\\n          191,\\n          148\\n        ],\\n        [\\n          0,\\n          110,\\n          150,\\n          258,\\n          176\\n        ],\\n        [\\n          0,\\n          64,\\n          123,\\n          247,\\n          223\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.8307,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9772,\\n        \\\"gen1\\\": 0.6583,\\n        \\\"gen2+\\\": 0.8565\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          772,\\n          23,\\n          1\\n        ],\\n        [\\n          7,\\n          580,\\n          203\\n        ],\\n        [\\n          5,\\n          369,\\n          1725\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 3,\\n      \\\"n_train\\\": 14739,\\n      \\\"n_val\\\": 3684,\\n      \\\"macro_f1_5class\\\": 0.5742,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9975,\\n        \\\"depth_1\\\": 0.7797,\\n        \\\"depth_2\\\": 0.3909,\\n        \\\"depth_3\\\": 0.2477,\\n        \\\"depth_4\\\": 0.4554\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          796,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          2,\\n          653,\\n          119,\\n          11,\\n          5\\n        ],\\n        [\\n          1,\\n          161,\\n          284,\\n          106,\\n          196\\n        ],\\n        [\\n          0,\\n          47,\\n          174,\\n          136,\\n          337\\n        ],\\n        [\\n          1,\\n          24,\\n          128,\\n          151,\\n          352\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.8957,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.9975,\\n        \\\"gen1\\\": 0.7797,\\n        \\\"gen2+\\\": 0.9099\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          796,\\n          0,\\n          0\\n        ],\\n        [\\n          2,\\n          653,\\n          135\\n        ],\\n        [\\n          2,\\n          232,\\n          1864\\n        ]\\n      ]\\n    },\\n    {\\n      \\\"fold\\\": 4,\\n      \\\"n_train\\\": 14739,\\n      \\\"n_val\\\": 3684,\\n      \\\"macro_f1_5class\\\": 0.5551,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.99,\\n        \\\"depth_1\\\": 0.7358,\\n        \\\"depth_2\\\": 0.3431,\\n        \\\"depth_3\\\": 0.3177,\\n        \\\"depth_4\\\": 0.3889\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          793,\\n          3,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          10,\\n          660,\\n          91,\\n          24,\\n          5\\n        ],\\n        [\\n          2,\\n          216,\\n          229,\\n          168,\\n          133\\n        ],\\n        [\\n          0,\\n          80,\\n          151,\\n          213,\\n          250\\n        ],\\n        [\\n          1,\\n          45,\\n          116,\\n          242,\\n          252\\n        ]\\n      ],\\n      \\\"macro_f1_3class\\\": 0.8697,\\n      \\\"per_class_f1_3class\\\": {\\n        \\\"gen0\\\": 0.99,\\n        \\\"gen1\\\": 0.7358,\\n        \\\"gen2+\\\": 0.8832\\n      },\\n      \\\"confusion_matrix_3class\\\": [\\n        [\\n          793,\\n          3,\\n          0\\n        ],\\n        [\\n          10,\\n          660,\\n          120\\n        ],\\n        [\\n          3,\\n          341,\\n          1754\\n        ]\\n      ]\\n    }\\n  ],\\n  \\\"baseline_xgboost\\\": {\\n    \\\"5class_macro_f1\\\": 0.5028,\\n    \\\"3class_macro_f1\\\": 0.7815,\\n    \\\"method\\\": \\\"HGBT_7features_LOGO\\\"\\n  },\\n  \\\"delta_vs_xgboost\\\": {\\n    \\\"5class\\\": 0.0536,\\n    \\\"3class\\\": 0.0888\\n  },\\n  \\\"runtime_seconds\\\": 3705.1,\\n  \\\"seed\\\": 42\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017G4i7Me8ArAgxeE9576jK5`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/plan012_xgboost_matched.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "822909bd-2b94-4b2b-ad3c-56ab7b998c0f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SQK4nZn4vwYdCssNFo7ZyY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8992,
+      "cache_read_input_tokens": 70399,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8992
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-17T10:55:32.642Z_
+
+<details><summary>↩ Tool result · `toolu_017G4i7Me8ArAgxeE9576jK5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"plan-012-xgboost-matched\\\",\\n  \\\"method\\\": \\\"HGBT_7features_5fold_stratified\\\",\\n  \\\"evaluation_protocol\\\": \\\"5-fold stratified CV, 4 generators (pythia-1b, olmo-2-1b, qwen3-0.6b, qwen3-1.7b)\\\",\\n  \\\"matched_to\\\": \\\"plan-012 QLoRA evaluation protocol\\\",\\n  \\\"n_samples\\\": 18423,\\n  \\\"n_folds\\\": 5,\\n  \\\"n_bootstrap\\\": 2000,\\n  \\\"seed\\\": 42,\\n  \\\"features\\\": [\\n    \\\"entropy_mean\\\",\\n    \\\"entropy_std\\\",\\n    \\\"entropy_min\\\",\\n    \\\"entropy_max\\\",\\n    \\\"tail_decay\\\",\\n    \\\"ttr\\\",\\n    \\\"hapax_ratio\\\"\\n  ],\\n  \\\"xgboost_5class\\\": {\\n    \\\"macro_f1\\\": 0.4968,\\n    \\\"macro_f1_std\\\": 0.0076,\\n    \\\"macro_f1_ci95\\\": [\\n      0.4908,\\n      0.5029\\n    ],\\n    \\\"macro_f1_boot_std\\\": 0.0031,\\n    \\\"weighted_f1\\\": 0.5114,\\n    \\\"weighted_f1_ci95\\\": [\\n      0.5042,\\n      0.5192\\n    ],\\n    \\\"accuracy\\\": 0.531,\\n    \\\"accuracy_ci95\\\": [\\n      0.524,\\n      0.5383\\n    ],\\n    \\\"per_class_f1\\\": {\\n      \\\"class_0\\\": 0.9492,\\n      \\\"class_1\\\": 0.6495,\\n      \\\"class_2\\\": 0.2665,\\n      \\\"class_3\\\": 0.2611,\\n      \\\"class_4\\\": 0.3578\\n    },\\n    \\\"fold_results\\\": [\\n      {\\n        \\\"fold\\\": 0,\\n        \\\"n_train\\\": 14738,\\n        \\\"n_val\\\": 3685,\\n        \\\"macro_f1\\\": 0.4838,\\n        \\\"weighted_f1\\\": 0.4988,\\n        \\\"accuracy\\\": 0.5227\\n      },\\n      {\\n        \\\"fold\\\": 1,\\n        \\\"n_train\\\": 14738,\\n        \\\"n_val\\\": 3685,\\n        \\\"macro_f1\\\": 0.5058,\\n        \\\"weighted_f1\\\": 0.5206,\\n        \\\"accuracy\\\": 0.5384\\n      },\\n      {\\n        \\\"fold\\\": 2,\\n        \\\"n_train\\\": 14738,\\n        \\\"n_val\\\": 3685,\\n        \\\"macro_f1\\\": 0.503,\\n        \\\"weighted_f1\\\": 0.5166,\\n        \\\"accuracy\\\": 0.5354\\n      },\\n      {\\n        \\\"fold\\\": 3,\\n        \\\"n_train\\\": 14739,\\n        \\\"n_val\\\": 3684,\\n        \\\"macro_f1\\\": 0.4954,\\n        \\\"weighted_f1\\\": 0.5099,\\n        \\\"accuracy\\\": 0.5277\\n      },\\n      {\\n        \\\"fold\\\": 4,\\n        \\\"n_train\\\": 14739,\\n        \\\"n_val\\\": 3684,\\n        \\\"macro_f1\\\": 0.4957,\\n        \\\"weighted_f1\\\": 0.511,\\n        \\\"accuracy\\\": 0.5309\\n      }\\n    ]\\n  },\\n  \\\"xgboost_3class\\\": {\\n    \\\"macro_f1\\\": 0.8048,\\n    \\\"macro_f1_std\\\": 0.0076,\\n    \\\"macro_f1_ci95\\\": [\\n      0.799,\\n      0.8107\\n    ],\\n    \\\"macro_f1_boot_std\\\": 0.003,\\n    \\\"weighted_f1\\\": 0.8229,\\n    \\\"weighted_f1_ci95\\\": [\\n      0.8172,\\n      0.8284\\n    ],\\n    \\\"accuracy\\\": 0.8251,\\n    \\\"accuracy_ci95\\\": [\\n      0.8196,\\n      0.8308\\n    ],\\n    \\\"per_class_f1\\\": {\\n      \\\"class_0\\\": 0.9516,\\n      \\\"class_1\\\": 0.6079,\\n      \\\"class_2\\\": 0.855\\n    },\\n    \\\"fold_results\\\": [\\n      {\\n        \\\"fold\\\": 0,\\n        \\\"n_train\\\": 14738,\\n        \\\"n_val\\\": 3685,\\n        \\\"macro_f1\\\": 0.8115,\\n        \\\"weighted_f1\\\": 0.8278,\\n        \\\"accuracy\\\": 0.829\\n      },\\n      {\\n        \\\"fold\\\": 1,\\n        \\\"n_train\\\": 14738,\\n        \\\"n_val\\\": 3685,\\n        \\\"macro_f1\\\": 0.8148,\\n        \\\"weighted_f1\\\": 0.8318,\\n        \\\"accuracy\\\": 0.8339\\n      },\\n      {\\n        \\\"fold\\\": 2,\\n        \\\"n_train\\\": 14738,\\n        \\\"n_val\\\": 3685,\\n        \\\"macro_f1\\\": 0.7938,\\n        \\\"weighted_f1\\\": 0.8137,\\n        \\\"accuracy\\\": 0.8163\\n      },\\n      {\\n        \\\"fold\\\": 3,\\n        \\\"n_train\\\": 14739,\\n        \\\"n_val\\\": 3684,\\n        \\\"macro_f1\\\": 0.8033,\\n        \\\"weighted_f1\\\": 0.8217,\\n        \\\"accuracy\\\": 0.8238\\n      },\\n      {\\n        \\\"fold\\\": 4,\\n        \\\"n_train\\\": 14739,\\n        \\\"n_val\\\": 3684,\\n        \\\"macro_f1\\\": 0.8006,\\n        \\\"weighted_f1\\\": 0.8194,\\n        \\\"accuracy\\\": 0.8222\\n      }\\n    ]\\n  },\\n  \\\"comparison\\\": {\\n    \\\"qlora_qwen06b_5class\\\": 0.5828,\\n    \\\"qlora_qwen06b_3class\\\": 0.9052,\\n    \\\"qlora_pythia410m_5class\\\": 0.5564,\\n    \\\"qlora_pythia410m_3class\\\": 0.8703,\\n    \\\"xgboost_matched_5class\\\": 0.4968,\\n    \\\"xgboost_matched_3class\\\": 0.8048,\\n    \\\"delta_qwen06b_vs_xgboost_5class\\\": 0.086,\\n    \\\"delta_qwen06b_vs_xgboost_3class\\\": 0.1004,\\n    \\\"delta_pythia410m_vs_xgboost_5class\\\": 0.0596,\\n    \\\"delta_pythia410m_vs_xgboost_3class\\\": 0.0655\\n  },\\n  \\\"runtime_seconds\\\": 33.6\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "348ded59-3342-4939-a50c-e780741eeb69",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"plan-012-xgboost-matched\\\\\\\",\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"HGBT_7features_5fold_stratified\\\\\\\",\\\\n  \\\\\\\"evaluation_protocol\\\\\\\": \\\\\\\"5-fold stratified CV, 4 generators (pythia-1b, olmo-2-1b, qwen3-0.6b, qwen3-1.7b)\\\\\\\",\\\\n  \\\\\\\"matched_to\\\\\\\": \\\\\\\"plan-012 QLoRA evaluation protocol\\\\\\\",\\\\n  \\\\\\\"n_samples\\\\\\\": 18423,\\\\n  \\\\\\\"n_folds\\\\\\\": 5,\\\\n  \\\\\\\"n_bootstrap\\\\\\\": 2000,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"features\\\\\\\": [\\\\n    \\\\\\\"entropy_mean\\\\\\\",\\\\n    \\\\\\\"entropy_std\\\\\\\",\\\\n    \\\\\\\"entropy_min\\\\\\\",\\\\n    \\\\\\\"entropy_max\\\\\\\",\\\\n    \\\\\\\"tail_decay\\\\\\\",\\\\n    \\\\\\\"ttr\\\\\\\",\\\\n    \\\\\\\"hapax_ratio\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"xgboost_5class\\\\\\\": {\\\\n    \\\\\\\"macro_f1\\\\\\\": 0.4968,\\\\n    \\\\\\\"macro_f1_std\\\\\\\": 0.0076,\\\\n    \\\\\\\"macro_f1_ci95\\\\\\\": [\\\\n      0.4908,\\\\n      0.5029\\\\n    ],\\\\n    \\\\\\\"macro_f1_boot_std\\\\\\\": 0.0031,\\\\n    \\\\\\\"weighted_f1\\\\\\\": 0.5114,\\\\n    \\\\\\\"weighted_f1_ci95\\\\\\\": [\\\\n      0.5042,\\\\n      0.5192\\\\n    ],\\\\n    \\\\\\\"accuracy\\\\\\\": 0.531,\\\\n    \\\\\\\"accuracy_ci95\\\\\\\": [\\\\n      0.524,\\\\n      0.5383\\\\n    ],\\\\n    \\\\\\\"per_class_f1\\\\\\\": {\\\\n      \\\\\\\"class_0\\\\\\\": 0.9492,\\\\n      \\\\\\\"class_1\\\\\\\": 0.6495,\\\\n      \\\\\\\"class_2\\\\\\\": 0.2665,\\\\n      \\\\\\\"class_3\\\\\\\": 0.2611,\\\\n      \\\\\\\"class_4\\\\\\\": 0.3578\\\\n    },\\\\n    \\\\\\\"fold_results\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"fold\\\\\\\": 0,\\\\n        \\\\\\\"n_train\\\\\\\": 14738,\\\\n        \\\\\\\"n_val\\\\\\\": 3685,\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.4838,\\\\n        \\\\\\\"weighted_f1\\\\\\\": 0.4988,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5227\\\\n      },\\\\n      {\\\\n        \\\\\\\"fold\\\\\\\": 1,\\\\n        \\\\\\\"n_train\\\\\\\": 14738,\\\\n        \\\\\\\"n_val\\\\\\\": 3685,\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.5058,\\\\n        \\\\\\\"weighted_f1\\\\\\\": 0.5206,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5384\\\\n      },\\\\n      {\\\\n        \\\\\\\"fold\\\\\\\": 2,\\\\n        \\\\\\\"n_train\\\\\\\": 14738,\\\\n        \\\\\\\"n_val\\\\\\\": 3685,\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.503,\\\\n        \\\\\\\"weighted_f1\\\\\\\": 0.5166,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5354\\\\n      },\\\\n      {\\\\n        \\\\\\\"fold\\\\\\\": 3,\\\\n        \\\\\\\"n_train\\\\\\\": 14739,\\\\n        \\\\\\\"n_val\\\\\\\": 3684,\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.4954,\\\\n        \\\\\\\"weighted_f1\\\\\\\": 0.5099,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5277\\\\n      },\\\\n      {\\\\n        \\\\\\\"fold\\\\\\\": 4,\\\\n        \\\\\\\"n_train\\\\\\\": 14739,\\\\n        \\\\\\\"n_val\\\\\\\": 3684,\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.4957,\\\\n        \\\\\\\"weighted_f1\\\\\\\": 0.511,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5309\\\\n      }\\\\n    ]\\\\n  },\\\\n  \\\\\\\"xgboost_3class\\\\\\\": {\\\\n    \\\\\\\"macro_f1\\\\\\\": 0.8048,\\\\n    \\\\\\\"macro_f1_std\\\\\\\": 0.0076,\\\\n    \\\\\\\"macro_f1_ci95\\\\\\\": [\\\\n      0.799,\\\\n      0.8107\\\\n    ],\\\\n    \\\\\\\"macro_f1_boot_std\\\\\\\": 0.003,\\\\n    \\\\\\\"weighted_f1\\\\\\\": 0.8229,\\\\n    \\\\\\\"weighted_f1_ci95\\\\\\\": [\\\\n      0.8172,\\\\n      0.8284\\\\n    ],\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8251,\\\\n    \\\\\\\"accuracy_ci95\\\\\\\": [\\\\n      0.8196,\\\\n      0.8308\\\\n    ],\\\\n    \\\\\\\"per_class_f1\\\\\\\": {\\\\n      \\\\\\\"class_0\\\\\\\": 0.9516,\\\\n      \\\\\\\"class_1\\\\\\\": 0.6079,\\\\n      \\\\\\\"class_2\\\\\\\": 0.855\\\\n    },\\\\n    \\\\\\\"fold_results\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"fold\\\\\\\": 0,\\\\n        \\\\\\\"n_train\\\\\\\": 14738,\\\\n        \\\\\\\"n_val\\\\\\\": 3685,\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.8115,\\\\n        \\\\\\\"weighted_f1\\\\\\\": 0.8278,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.829\\\\n      },\\\\n      {\\\\n        \\\\\\\"fold\\\\\\\": 1,\\\\n        \\\\\\\"n_train\\\\\\\": 14738,\\\\n        \\\\\\\"n_val\\\\\\\": 3685,\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.8148,\\\\n        \\\\\\\"weighted_f1\\\\\\\": 0.8318,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.8339\\\\n      },\\\\n      {\\\\n        \\\\\\\"fold\\\\\\\": 2,\\\\n        \\\\\\\"n_train\\\\\\\": 14738,\\\\n        \\\\\\\"n_val\\\\\\\": 3685,\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.7938,\\\\n        \\\\\\\"weighted_f1\\\\\\\": 0.8137,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.8163\\\\n      },\\\\n      {\\\\n        \\\\\\\"fold\\\\\\\": 3,\\\\n        \\\\\\\"n_train\\\\\\\": 14739,\\\\n        \\\\\\\"n_val\\\\\\\": 3684,\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.8033,\\\\n        \\\\\\\"weighted_f1\\\\\\\": 0.8217,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.8238\\\\n      },\\\\n      {\\\\n        \\\\\\\"fold\\\\\\\": 4,\\\\n        \\\\\\\"n_train\\\\\\\": 14739,\\\\n        \\\\\\\"n_val\\\\\\\": 3684,\\\\n        \\\\\\\"macro_f1\\\\\\\": 0.8006,\\\\n        \\\\\\\"weighted_f1\\\\\\\": 0.8194,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.8222\\\\n      }\\\\n    ]\\\\n  },\\\\n  \\\\\\\"comparison\\\\\\\": {\\\\n    \\\\\\\"qlora_qwen06b_5class\\\\\\\": 0.5828,\\\\n    \\\\\\\"qlora_qwen06b_3class\\\\\\\": 0.9052,\\\\n    \\\\\\\"qlora_pythia410m_5class\\\\\\\": 0.5564,\\\\n    \\\\\\\"qlora_pythia410m_3class\\\\\\\": 0.8703,\\\\n    \\\\\\\"xgboost_matched_5class\\\\\\\": 0.4968,\\\\n    \\\\\\\"xgboost_matched_3class\\\\\\\": 0.8048,\\\\n    \\\\\\\"delta_qwen06b_vs_xgboost_5class\\\\\\\": 0.086,\\\\n    \\\\\\\"delta_qwen06b_vs_xgboost_3class\\\\\\\": 0.1004,\\\\n    \\\\\\\"delta_pythia410m_vs_xgboost_5class\\\\\\\": 0.0596,\\\\n    \\\\\\\"delta_pythia410m_vs_xgboost_3class\\\\\\\": 0.0655\\\\n  },\\\\n  \\\\\\\"runtime_seconds\\\\\\\": 33.6\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"plan-012-xgboost-matched\\\",\\n  \\\"method\\\": \\\"HGBT_7features_5fold_stratified\\\",\\n  \\\"evaluation_protocol\\\": \\\"5-fold stratified CV, 4 generators (pythia-1b, olmo-2-1b, qwen3-0.6b, qwen3-1.7b)\\\",\\n  \\\"matched_to\\\": \\\"plan-012 QLoRA evaluation protocol\\\",\\n  \\\"n_samples\\\": 18423,\\n  \\\"n_folds\\\": 5,\\n  \\\"n_bootstrap\\\": 2000,\\n  \\\"seed\\\": 42,\\n  \\\"features\\\": [\\n    \\\"entropy_mean\\\",\\n    \\\"entropy_std\\\",\\n    \\\"entropy_min\\\",\\n    \\\"entropy_max\\\",\\n    \\\"tail_decay\\\",\\n    \\\"ttr\\\",\\n    \\\"hapax_ratio\\\"\\n  ],\\n  \\\"xgboost_5class\\\": {\\n    \\\"macro_f1\\\": 0.4968,\\n    \\\"macro_f1_std\\\": 0.0076,\\n    \\\"macro_f1_ci95\\\": [\\n      0.4908,\\n      0.5029\\n    ],\\n    \\\"macro_f1_boot_std\\\": 0.0031,\\n    \\\"weighted_f1\\\": 0.5114,\\n    \\\"weighted_f1_ci95\\\": [\\n      0.5042,\\n      0.5192\\n    ],\\n    \\\"accuracy\\\": 0.531,\\n    \\\"accuracy_ci95\\\": [\\n      0.524,\\n      0.5383\\n    ],\\n    \\\"per_class_f1\\\": {\\n      \\\"class_0\\\": 0.9492,\\n      \\\"class_1\\\": 0.6495,\\n      \\\"class_2\\\": 0.2665,\\n      \\\"class_3\\\": 0.2611,\\n      \\\"class_4\\\": 0.3578\\n    },\\n    \\\"fold_results\\\": [\\n      {\\n        \\\"fold\\\": 0,\\n        \\\"n_train\\\": 14738,\\n        \\\"n_val\\\": 3685,\\n        \\\"macro_f1\\\": 0.4838,\\n        \\\"weighted_f1\\\": 0.4988,\\n        \\\"accuracy\\\": 0.5227\\n      },\\n      {\\n        \\\"fold\\\": 1,\\n        \\\"n_train\\\": 14738,\\n        \\\"n_val\\\": 3685,\\n        \\\"macro_f1\\\": 0.5058,\\n        \\\"weighted_f1\\\": 0.5206,\\n        \\\"accuracy\\\": 0.5384\\n      },\\n      {\\n        \\\"fold\\\": 2,\\n        \\\"n_train\\\": 14738,\\n        \\\"n_val\\\": 3685,\\n        \\\"macro_f1\\\": 0.503,\\n        \\\"weighted_f1\\\": 0.5166,\\n        \\\"accuracy\\\": 0.5354\\n      },\\n      {\\n        \\\"fold\\\": 3,\\n        \\\"n_train\\\": 14739,\\n        \\\"n_val\\\": 3684,\\n        \\\"macro_f1\\\": 0.4954,\\n        \\\"weighted_f1\\\": 0.5099,\\n        \\\"accuracy\\\": 0.5277\\n      },\\n      {\\n        \\\"fold\\\": 4,\\n        \\\"n_train\\\": 14739,\\n        \\\"n_val\\\": 3684,\\n        \\\"macro_f1\\\": 0.4957,\\n        \\\"weighted_f1\\\": 0.511,\\n        \\\"accuracy\\\": 0.5309\\n      }\\n    ]\\n  },\\n  \\\"xgboost_3class\\\": {\\n    \\\"macro_f1\\\": 0.8048,\\n    \\\"macro_f1_std\\\": 0.0076,\\n    \\\"macro_f1_ci95\\\": [\\n      0.799,\\n      0.8107\\n    ],\\n    \\\"macro_f1_boot_std\\\": 0.003,\\n    \\\"weighted_f1\\\": 0.8229,\\n    \\\"weighted_f1_ci95\\\": [\\n      0.8172,\\n      0.8284\\n    ],\\n    \\\"accuracy\\\": 0.8251,\\n    \\\"accuracy_ci95\\\": [\\n      0.8196,\\n      0.8308\\n    ],\\n    \\\"per_class_f1\\\": {\\n      \\\"class_0\\\": 0.9516,\\n      \\\"class_1\\\": 0.6079,\\n      \\\"class_2\\\": 0.855\\n    },\\n    \\\"fold_results\\\": [\\n      {\\n        \\\"fold\\\": 0,\\n        \\\"n_train\\\": 14738,\\n        \\\"n_val\\\": 3685,\\n        \\\"macro_f1\\\": 0.8115,\\n        \\\"weighted_f1\\\": 0.8278,\\n        \\\"accuracy\\\": 0.829\\n      },\\n      {\\n        \\\"fold\\\": 1,\\n        \\\"n_train\\\": 14738,\\n        \\\"n_val\\\": 3685,\\n        \\\"macro_f1\\\": 0.8148,\\n        \\\"weighted_f1\\\": 0.8318,\\n        \\\"accuracy\\\": 0.8339\\n      },\\n      {\\n        \\\"fold\\\": 2,\\n        \\\"n_train\\\": 14738,\\n        \\\"n_val\\\": 3685,\\n        \\\"macro_f1\\\": 0.7938,\\n        \\\"weighted_f1\\\": 0.8137,\\n        \\\"accuracy\\\": 0.8163\\n      },\\n      {\\n        \\\"fold\\\": 3,\\n        \\\"n_train\\\": 14739,\\n        \\\"n_val\\\": 3684,\\n        \\\"macro_f1\\\": 0.8033,\\n        \\\"weighted_f1\\\": 0.8217,\\n        \\\"accuracy\\\": 0.8238\\n      },\\n      {\\n        \\\"fold\\\": 4,\\n        \\\"n_train\\\": 14739,\\n        \\\"n_val\\\": 3684,\\n        \\\"macro_f1\\\": 0.8006,\\n        \\\"weighted_f1\\\": 0.8194,\\n        \\\"accuracy\\\": 0.8222\\n      }\\n    ]\\n  },\\n  \\\"comparison\\\": {\\n    \\\"qlora_qwen06b_5class\\\": 0.5828,\\n    \\\"qlora_qwen06b_3class\\\": 0.9052,\\n    \\\"qlora_pythia410m_5class\\\": 0.5564,\\n    \\\"qlora_pythia410m_3class\\\": 0.8703,\\n    \\\"xgboost_matched_5class\\\": 0.4968,\\n    \\\"xgboost_matched_3class\\\": 0.8048,\\n    \\\"delta_qwen06b_vs_xgboost_5class\\\": 0.086,\\n    \\\"delta_qwen06b_vs_xgboost_3class\\\": 0.1004,\\n    \\\"delta_pythia410m_vs_xgboost_5class\\\": 0.0596,\\n    \\\"delta_pythia410m_vs_xgboost_3class\\\": 0.0655\\n  },\\n  \\\"runtime_seconds\\\": 33.6\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check the paper text itself to verify the exact claims. I need to look at the paper tex files for the specific numbers.
+
+Let me read the relevant paper sections.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "6e4d4dfd-f0bc-400d-9700-e3d9f377924c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vb7nHnkQadEKQgQznjZhAg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11450,
+      "cache_read_input_tokens": 79391,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11450
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+现在读取论文正文确认具体声称的数字。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "0e3e2203-4919-44e6-8f86-a4c572b06bb8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vb7nHnkQadEKQgQznjZhAg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11450,
+      "cache_read_input_tokens": 79391,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11450
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_011QRCCkGpjdfDTfLtGYVG6n`</summary>
+
+```json
+{
+  "pattern": "0\\.764|0\\.50|0\\.905|0\\.671|0\\.338|0\\.667|0\\.082|0\\.686|0\\.753",
+  "glob": "*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "c6c9932d-8098-4aba-af63-64952bfc8754",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vb7nHnkQadEKQgQznjZhAg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11450,
+      "cache_read_input_tokens": 79391,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11450
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-17T10:55:38.956Z_
+
+<details><summary>↩ Tool result · `toolu_011QRCCkGpjdfDTfLtGYVG6n`</summary>
+
+```text
+docs/paper/appendix_prompt_type.tex:7:Leave-one-prompt-type-out evaluation yields average F1\,=\,0.753, confirming that depth signal transfers across prompt types. Feature decay rates differ: continuation shows the strongest drift (16.9\% per depth step), followed by rewriting (6.1\%) and elaboration (1.4\%), consistent with continuation chains applying less semantic constraint on the output.
+docs/paper/appendix_qlora.tex:18:XGBoost (7 features) & 0.501 $\pm$ 0.038 & 0.789 & --- \\
+docs/paper/appendix_qlora.tex:19:QLoRA (Qwen3-0.6B)   & 0.583 $\pm$ 0.010 & 0.905 $\pm$ 0.003 & 0.999\,/\,0.796\,/\,0.413\,/\,0.259\,/\,0.447 \\
+docs/paper/appendix_qlora.tex:25:QLoRA achieves 3-class LOGO F1\,=\,0.905 ($\pm$0.003), a +11.6\,pp improvement over the XGBoost baseline (0.789).
+docs/paper/appendix_qlora.tex:26:On 5-class evaluation, QLoRA reaches F1\,=\,0.583 ($\pm$0.010) vs.\ 0.501 for XGBoost (+8.2\,pp), with the largest gains at gen-1 (0.796 vs.\ 0.634) and gen-2 (0.413 vs.\ 0.268).
+docs/paper/appendix_qlora.tex:30:A second run with LoRA rank 32 and seed 123 yields 5-class F1\,=\,0.587 ($\pm$0.005) and 3-class F1\,=\,0.905 ($\pm$0.004), confirming stability across hyperparameter and seed variation ($\Delta < 1$\,pp on both metrics).
+docs/paper/appendix_human_edit.tex:23:At 10\% replacement, binary F1 remains 0.614, well above the 0.50 random baseline, indicating that depth signal survives moderate perturbation.
+docs/paper/appendix_human_edit.tex:48:10\% & 0.667 & 0.614 & 0.427 & 0.492 \\
+docs/paper/appendix_human_edit.tex:67:LD-Score           & 0.677 & \textbf{0.673} & \textbf{0.677} & \textbf{0.671} \\
+docs/paper/appendix_human_edit.tex:70:Binoculars\textsuperscript{\dag}         & 0.500 & 0.461 & 0.446 & 0.425 \\
+docs/paper/appendix_human_edit.tex:86:Binary F1 drops from 0.692 to 0.647 ($-$4.5\,pp, 6.5\% relative); 3-class F1 drops from 0.739 to 0.667 ($-$7.1\,pp, 9.7\% relative).
+docs/paper/discussion.tex:11:Continuation chains yield the strongest signal (F1\,=\,0.781 vs.\ 0.730 for elaboration), with cross-type transfer at 0.753 (Appendix~\ref{app:prompt-type}).
+docs/paper/discussion.tex:21:Topic drift accounts for $<$9\% of feature variance ($R^2 = 0.082$), confirming it mediates rather than confounds depth signal.
+docs/paper/discussion.tex:24:Three classes represent the practical resolution ceiling: 5-class LOGO F1 drops to $\approx$0.50, with depths 2--4 mutually indistinguishable (Appendix~\ref{app:finer-depth}).
+docs/paper/discussion.tex:25:That said, QLoRA fine-tuning recovers 3-class F1\,=\,0.905 (Appendix~\ref{app:qlora}), confirming that richer signal exists beyond the seven summary statistics.
+docs/paper/discussion.tex:29:Instruction-tuned models show substantially weaker fingerprints (OLMo-Instruct LOGO F1\,=\,0.338 vs.\ 0.764 base).
+docs/paper/limitations.tex:7:Preliminary instruct experiments confirm that depth signal degrades substantially under instruction tuning: OLMo-2-1B-Instruct drops to LOGO F1\,=\,0.338 (vs.\ 0.764 base) and Qwen3-0.6B with chat template to 0.667 (vs.\ 0.816 under a 7-generator split).
+docs/paper/limitations.tex:15:Differential depth response strength is prompt-type dependent: continuation chains show strongest drift (within-type F1\,=\,0.781) compared to elaboration (0.730), rewriting (0.737), and paraphrastic chains (binary F1\,=\,0.671 vs.\ 0.749 for continuation).
+docs/paper/limitations.tex:17:Cross-prompt-type transfer (LOPTO F1\,=\,0.753) confirms shared signal, yet additional prompt types (e.g., summarization, instruction following) and cross-generator $\times$ cross-prompt interactions remain untested.
+docs/paper/limitations.tex:19:Our primary evaluation uses single-generator chains; cross-model chains (\S\ref{sec:results-classification}) confirm depth signal under generator heterogeneity (3-class F1\,=\,0.809, binary F1\,=\,0.764), though the eight generators represent a controlled laboratory setting rather than the full diversity of real-world contamination.
+docs/paper/limitations.tex:29:We use 3-class granularity (gen-0\,/\,gen-1\,/\,gen-2+). A 5-class evaluation (Appendix~\ref{app:finer-depth}) yields LOGO F1\,$\approx$\,0.50, with depths 2--4 mutually indistinguishable, validating the 3-class design as the practical resolution limit.
+docs/paper/appendix_classifier.tex:17:XGBoost          & 0.789 & 0.764 & 0.856 & 0.804 & 0.824 & 0.806 & 0.683 \\
+docs/paper/appendix_classifier.tex:18:Random Forest    & 0.790 & 0.764 & 0.856 & 0.804 & 0.825 & 0.807 & 0.684 \\
+docs/paper/appendix_domain.tex:15:News           & 0.746 & [0.726, 0.764] & 0.652 \\
+docs/paper/introduction.tex:15:The combination of drifting and stationary features yields a 7-feature ensemble that achieves 3-class macro F1\,=\,0.809 on heterogeneous cross-model chains and F1\,=\,0.762 under leave-one-generator-out evaluation (binary F1\,=\,0.764 on cross-model chains), significantly outperforming individual detection baselines ($p < 0.001$).
+docs/paper/appendix_finer_depth.tex:11:OLMo-2-1B       & 0.484 & 0.506 & 0.524 \\
+docs/paper/appendix_finer_depth.tex:18:\textbf{Average} & \textbf{0.501 $\pm$ 0.038} & \textbf{0.521} & \textbf{0.541} \\
+docs/paper/appendix_finer_depth.tex:50:To verify that 5-class degradation reflects feature-level limitations rather than classifier choice, we evaluate four alternatives under the same protocol: HistGradientBoosting (macro F1\,=\,0.501, 95\% bootstrap CI [0.496, 0.506]), random forest (0.476), logistic regression (0.447), and Frank-Hall ordinal reduction (0.451).
+docs/paper/appendix_finer_depth.tex:51:All classifiers perform comparably to the default XGBoost ensemble (0.501), ruling out classifier capacity as the bottleneck.
+docs/paper/results.tex:13:Cross-model chains (randomly selected generator per step) yield binary F1\,=\,0.764 under 5-fold CV,\footnote{Cross-model chains use the original five-generator subset (Pythia, OLMo, Qwen); Llama and Mistral were added later for single-generator evaluation.} confirming that depth signal persists when text passes through heterogeneous generators.
+docs/paper/results.tex:14:Leave-one-family-out (LOFO) evaluation yields average binary F1\,=\,0.686 ($\Delta$\,=\,$-$0.8\,pp vs.\ LOGO), confirming transfer across architectural families under the strictest unseen-generator test.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "d87ebaff-d4ef-43d2-9c27-7ed45d38677d",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/appendix_prompt_type.tex:7:Leave-one-prompt-type-out evaluation yields average F1\\,=\\,0.753, confirming that depth signal transfers across prompt types. Feature decay rates differ: continuation shows the strongest drift (16.9\\% per depth step), followed by rewriting (6.1\\%) and elaboration (1.4\\%), consistent with continuation chains applying less semantic constraint on the output.\ndocs/paper/appendix_qlora.tex:18:XGBoost (7 features) & 0.501 $\\pm$ 0.038 & 0.789 & --- \\\\\ndocs/paper/appendix_qlora.tex:19:QLoRA (Qwen3-0.6B)   & 0.583 $\\pm$ 0.010 & 0.905 $\\pm$ 0.003 & 0.999\\,/\\,0.796\\,/\\,0.413\\,/\\,0.259\\,/\\,0.447 \\\\\ndocs/paper/appendix_qlora.tex:25:QLoRA achieves 3-class LOGO F1\\,=\\,0.905 ($\\pm$0.003), a +11.6\\,pp improvement over the XGBoost baseline (0.789).\ndocs/paper/appendix_qlora.tex:26:On 5-class evaluation, QLoRA reaches F1\\,=\\,0.583 ($\\pm$0.010) vs.\\ 0.501 for XGBoost (+8.2\\,pp), with the largest gains at gen-1 (0.796 vs.\\ 0.634) and gen-2 (0.413 vs.\\ 0.268).\ndocs/paper/appendix_qlora.tex:30:A second run with LoRA rank 32 and seed 123 yields 5-class F1\\,=\\,0.587 ($\\pm$0.005) and 3-class F1\\,=\\,0.905 ($\\pm$0.004), confirming stability across hyperparameter and seed variation ($\\Delta < 1$\\,pp on both metrics).\ndocs/paper/appendix_human_edit.tex:23:At 10\\% replacement, binary F1 remains 0.614, well above the 0.50 random baseline, indicating that depth signal survives moderate perturbation.\ndocs/paper/appendix_human_edit.tex:48:10\\% & 0.667 & 0.614 & 0.427 & 0.492 \\\\\ndocs/paper/appendix_human_edit.tex:67:LD-Score           & 0.677 & \\textbf{0.673} & \\textbf{0.677} & \\textbf{0.671} \\\\\ndocs/paper/appendix_human_edit.tex:70:Binoculars\\textsuperscript{\\dag}         & 0.500 & 0.461 & 0.446 & 0.425 \\\\\ndocs/paper/appendix_human_edit.tex:86:Binary F1 drops from 0.692 to 0.647 ($-$4.5\\,pp, 6.5\\% relative); 3-class F1 drops from 0.739 to 0.667 ($-$7.1\\,pp, 9.7\\% relative).\ndocs/paper/discussion.tex:11:Continuation chains yield the strongest signal (F1\\,=\\,0.781 vs.\\ 0.730 for elaboration), with cross-type transfer at 0.753 (Appendix~\\ref{app:prompt-type}).\ndocs/paper/discussion.tex:21:Topic drift accounts for $<$9\\% of feature variance ($R^2 = 0.082$), confirming it mediates rather than confounds depth signal.\ndocs/paper/discussion.tex:24:Three classes represent the practical resolution ceiling: 5-class LOGO F1 drops to $\\approx$0.50, with depths 2--4 mutually indistinguishable (Appendix~\\ref{app:finer-depth}).\ndocs/paper/discussion.tex:25:That said, QLoRA fine-tuning recovers 3-class F1\\,=\\,0.905 (Appendix~\\ref{app:qlora}), confirming that richer signal exists beyond the seven summary statistics.\ndocs/paper/discussion.tex:29:Instruction-tuned models show substantially weaker fingerprints (OLMo-Instruct LOGO F1\\,=\\,0.338 vs.\\ 0.764 base).\ndocs/paper/limitations.tex:7:Preliminary instruct experiments confirm that depth signal degrades substantially under instruction tuning: OLMo-2-1B-Instruct drops to LOGO F1\\,=\\,0.338 (vs.\\ 0.764 base) and Qwen3-0.6B with chat template to 0.667 (vs.\\ 0.816 under a 7-generator split).\ndocs/paper/limitations.tex:15:Differential depth response strength is prompt-type dependent: continuation chains show strongest drift (within-type F1\\,=\\,0.781) compared to elaboration (0.730), rewriting (0.737), and paraphrastic chains (binary F1\\,=\\,0.671 vs.\\ 0.749 for continuation).\ndocs/paper/limitations.tex:17:Cross-prompt-type transfer (LOPTO F1\\,=\\,0.753) confirms shared signal, yet additional prompt types (e.g., summarization, instruction following) and cross-generator $\\times$ cross-prompt interactions remain untested.\ndocs/paper/limitations.tex:19:Our primary evaluation uses single-generator chains; cross-model chains (\\S\\ref{sec:results-classification}) confirm depth signal under generator heterogeneity (3-class F1\\,=\\,0.809, binary F1\\,=\\,0.764), though the eight generators represent a controlled laboratory setting rather than the full diversity of real-world contamination.\ndocs/paper/limitations.tex:29:We use 3-class granularity (gen-0\\,/\\,gen-1\\,/\\,gen-2+). A 5-class evaluation (Appendix~\\ref{app:finer-depth}) yields LOGO F1\\,$\\approx$\\,0.50, with depths 2--4 mutually indistinguishable, validating the 3-class design as the practical resolution limit.\ndocs/paper/appendix_classifier.tex:17:XGBoost          & 0.789 & 0.764 & 0.856 & 0.804 & 0.824 & 0.806 & 0.683 \\\\\ndocs/paper/appendix_classifier.tex:18:Random Forest    & 0.790 & 0.764 & 0.856 & 0.804 & 0.825 & 0.807 & 0.684 \\\\\ndocs/paper/appendix_domain.tex:15:News           & 0.746 & [0.726, 0.764] & 0.652 \\\\\ndocs/paper/introduction.tex:15:The combination of drifting and stationary features yields a 7-feature ensemble that achieves 3-class macro F1\\,=\\,0.809 on heterogeneous cross-model chains and F1\\,=\\,0.762 under leave-one-generator-out evaluation (binary F1\\,=\\,0.764 on cross-model chains), significantly outperforming individual detection baselines ($p < 0.001$).\ndocs/paper/appendix_finer_depth.tex:11:OLMo-2-1B       & 0.484 & 0.506 & 0.524 \\\\\ndocs/paper/appendix_finer_depth.tex:18:\\textbf{Average} & \\textbf{0.501 $\\pm$ 0.038} & \\textbf{0.521} & \\textbf{0.541} \\\\\ndocs/paper/appendix_finer_depth.tex:50:To verify that 5-class degradation reflects feature-level limitations rather than classifier choice, we evaluate four alternatives under the same protocol: HistGradientBoosting (macro F1\\,=\\,0.501, 95\\% bootstrap CI [0.496, 0.506]), random forest (0.476), logistic regression (0.447), and Frank-Hall ordinal reduction (0.451).\ndocs/paper/appendix_finer_depth.tex:51:All classifiers perform comparably to the default XGBoost ensemble (0.501), ruling out classifier capacity as the bottleneck.\ndocs/paper/results.tex:13:Cross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.764 under 5-fold CV,\\footnote{Cross-model chains use the original five-generator subset (Pythia, OLMo, Qwen); Llama and Mistral were added later for single-generator evaluation.} confirming that depth signal persists when text passes through heterogeneous generators.\ndocs/paper/results.tex:14:Leave-one-family-out (LOFO) evaluation yields average binary F1\\,=\\,0.686 ($\\Delta$\\,=\\,$-$0.8\\,pp vs.\\ LOGO), confirming transfer across architectural families under the strictest unseen-generator test.",
+    "numLines": 31
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01TmTHT7LVFnWpuJnAcKu8rv`</summary>
+
+```json
+{
+  "pattern": "0\\.764|0\\.50|0\\.905|0\\.671|0\\.338|0\\.667|0\\.082|0\\.686|0\\.753",
+  "glob": "*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "66ccbd34-86bf-403a-ae1d-e2048244d13c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vb7nHnkQadEKQgQznjZhAg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11450,
+      "cache_read_input_tokens": 79391,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11450
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-17T10:55:40.391Z_
+
+<details><summary>↩ Tool result · `toolu_01TmTHT7LVFnWpuJnAcKu8rv`</summary>
+
+```text
+artifacts/_project/paper/appendix_prompt_type.tex:7:Leave-one-prompt-type-out evaluation yields average F1\,=\,0.753, confirming that depth signal transfers across prompt types. Feature decay rates differ: continuation shows the strongest drift (16.9\% per depth step), followed by rewriting (6.1\%) and elaboration (1.4\%), consistent with continuation chains applying less semantic constraint on the output.
+artifacts/_project/paper/appendix_qlora.tex:18:XGBoost (7 features) & 0.501 $\pm$ 0.038 & 0.789 & --- \\
+artifacts/_project/paper/appendix_qlora.tex:19:QLoRA (Qwen3-0.6B)   & 0.583 $\pm$ 0.010 & 0.905 $\pm$ 0.003 & 0.999\,/\,0.796\,/\,0.413\,/\,0.259\,/\,0.447 \\
+artifacts/_project/paper/appendix_qlora.tex:25:QLoRA achieves 3-class LOGO F1\,=\,0.905 ($\pm$0.003), a +11.6\,pp improvement over the XGBoost baseline (0.789).
+artifacts/_project/paper/appendix_qlora.tex:26:On 5-class evaluation, QLoRA reaches F1\,=\,0.583 ($\pm$0.010) vs.\ 0.501 for XGBoost (+8.2\,pp), with the largest gains at gen-1 (0.796 vs.\ 0.634) and gen-2 (0.413 vs.\ 0.268).
+artifacts/_project/paper/appendix_qlora.tex:30:A second run with LoRA rank 32 and seed 123 yields 5-class F1\,=\,0.587 ($\pm$0.005) and 3-class F1\,=\,0.905 ($\pm$0.004), confirming stability across hyperparameter and seed variation ($\Delta < 1$\,pp on both metrics).
+artifacts/_project/paper/appendix_human_edit.tex:23:At 10\% replacement, binary F1 remains 0.614, well above the 0.50 random baseline, indicating that depth signal survives moderate perturbation.
+artifacts/_project/paper/appendix_human_edit.tex:48:10\% & 0.667 & 0.614 & 0.427 & 0.492 \\
+artifacts/_project/paper/appendix_human_edit.tex:67:LD-Score           & 0.677 & \textbf{0.673} & \textbf{0.677} & \textbf{0.671} \\
+artifacts/_project/paper/appendix_human_edit.tex:70:Binoculars\textsuperscript{\dag}         & 0.500 & 0.461 & 0.446 & 0.425 \\
+artifacts/_project/paper/appendix_human_edit.tex:86:Binary F1 drops from 0.692 to 0.647 ($-$4.5\,pp, 6.5\% relative); 3-class F1 drops from 0.739 to 0.667 ($-$7.1\,pp, 9.7\% relative).
+artifacts/_project/paper/discussion.tex:11:Continuation chains yield the strongest signal (F1\,=\,0.781 vs.\ 0.730 for elaboration), with cross-type transfer at 0.753 (Appendix~\ref{app:prompt-type}).
+artifacts/_project/paper/discussion.tex:21:Topic drift accounts for $<$9\% of feature variance ($R^2 = 0.082$), confirming it mediates rather than confounds depth signal.
+artifacts/_project/paper/discussion.tex:24:Three classes represent the practical resolution ceiling: 5-class LOGO F1 drops to $\approx$0.50, with depths 2--4 mutually indistinguishable (Appendix~\ref{app:finer-depth}).
+artifacts/_project/paper/discussion.tex:25:That said, QLoRA fine-tuning recovers 3-class F1\,=\,0.905 (Appendix~\ref{app:qlora}), confirming that richer signal exists beyond the seven summary statistics.
+artifacts/_project/paper/discussion.tex:29:Instruction-tuned models show substantially weaker fingerprints (OLMo-Instruct LOGO F1\,=\,0.338 vs.\ 0.764 base).
+artifacts/_project/paper/limitations.tex:7:Preliminary instruct experiments confirm that depth signal degrades substantially under instruction tuning: OLMo-2-1B-Instruct drops to LOGO F1\,=\,0.338 (vs.\ 0.764 base) and Qwen3-0.6B with chat template to 0.667 (vs.\ 0.816 under a 7-generator split).
+artifacts/_project/paper/limitations.tex:15:Differential depth response strength is prompt-type dependent: continuation chains show strongest drift (within-type F1\,=\,0.781) compared to elaboration (0.730), rewriting (0.737), and paraphrastic chains (binary F1\,=\,0.671 vs.\ 0.749 for continuation).
+artifacts/_project/paper/limitations.tex:17:Cross-prompt-type transfer (LOPTO F1\,=\,0.753) confirms shared signal, yet additional prompt types (e.g., summarization, instruction following) and cross-generator $\times$ cross-prompt interactions remain untested.
+artifacts/_project/paper/limitations.tex:19:Our primary evaluation uses single-generator chains; cross-model chains (\S\ref{sec:results-classification}) confirm depth signal under generator heterogeneity (3-class F1\,=\,0.809, binary F1\,=\,0.764), though the eight generators represent a controlled laboratory setting rather than the full diversity of real-world contamination.
+artifacts/_project/paper/limitations.tex:29:We use 3-class granularity (gen-0\,/\,gen-1\,/\,gen-2+). A 5-class evaluation (Appendix~\ref{app:finer-depth}) yields LOGO F1\,$\approx$\,0.50, with depths 2--4 mutually indistinguishable, validating the 3-class design as the practical resolution limit.
+artifacts/_project/paper/appendix_classifier.tex:17:XGBoost          & 0.789 & 0.764 & 0.856 & 0.804 & 0.824 & 0.806 & 0.683 \\
+artifacts/_project/paper/appendix_classifier.tex:18:Random Forest    & 0.790 & 0.764 & 0.856 & 0.804 & 0.825 & 0.807 & 0.684 \\
+artifacts/_project/paper/appendix_domain.tex:15:News           & 0.746 & [0.726, 0.764] & 0.652 \\
+artifacts/_project/paper/introduction.tex:15:The combination of drifting and stationary features yields a 7-feature ensemble that achieves 3-class macro F1\,=\,0.809 on heterogeneous cross-model chains and F1\,=\,0.762 under leave-one-generator-out evaluation (binary F1\,=\,0.764 on cross-model chains), significantly outperforming individual detection baselines ($p < 0.001$).
+artifacts/_project/paper/appendix_finer_depth.tex:11:OLMo-2-1B       & 0.484 & 0.506 & 0.524 \\
+artifacts/_project/paper/appendix_finer_depth.tex:18:\textbf{Average} & \textbf{0.501 $\pm$ 0.038} & \textbf{0.521} & \textbf{0.541} \\
+artifacts/_project/paper/appendix_finer_depth.tex:50:To verify that 5-class degradation reflects feature-level limitations rather than classifier choice, we evaluate four alternatives under the same protocol: HistGradientBoosting (macro F1\,=\,0.501, 95\% bootstrap CI [0.496, 0.506]), random forest (0.476), logistic regression (0.447), and Frank-Hall ordinal reduction (0.451).
+artifacts/_project/paper/appendix_finer_depth.tex:51:All classifiers perform comparably to the default XGBoost ensemble (0.501), ruling out classifier capacity as the bottleneck.
+artifacts/_project/paper/results.tex:13:Cross-model chains (randomly selected generator per step) yield binary F1\,=\,0.764 under 5-fold CV,\footnote{Cross-model chains use the original five-generator subset (Pythia, OLMo, Qwen); Llama and Mistral were added later for single-generator evaluation.} confirming that depth signal persists when text passes through heterogeneous generators.
+artifacts/_project/paper/results.tex:14:Leave-one-family-out (LOFO) evaluation yields average binary F1\,=\,0.686 ($\Delta$\,=\,$-$0.8\,pp vs.\ LOGO), confirming transfer across architectural families under the strictest unseen-generator test.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "f80c9853-30d8-41b3-930c-8d316bd1ee85",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "artifacts/_project/paper/appendix_prompt_type.tex:7:Leave-one-prompt-type-out evaluation yields average F1\\,=\\,0.753, confirming that depth signal transfers across prompt types. Feature decay rates differ: continuation shows the strongest drift (16.9\\% per depth step), followed by rewriting (6.1\\%) and elaboration (1.4\\%), consistent with continuation chains applying less semantic constraint on the output.\nartifacts/_project/paper/appendix_qlora.tex:18:XGBoost (7 features) & 0.501 $\\pm$ 0.038 & 0.789 & --- \\\\\nartifacts/_project/paper/appendix_qlora.tex:19:QLoRA (Qwen3-0.6B)   & 0.583 $\\pm$ 0.010 & 0.905 $\\pm$ 0.003 & 0.999\\,/\\,0.796\\,/\\,0.413\\,/\\,0.259\\,/\\,0.447 \\\\\nartifacts/_project/paper/appendix_qlora.tex:25:QLoRA achieves 3-class LOGO F1\\,=\\,0.905 ($\\pm$0.003), a +11.6\\,pp improvement over the XGBoost baseline (0.789).\nartifacts/_project/paper/appendix_qlora.tex:26:On 5-class evaluation, QLoRA reaches F1\\,=\\,0.583 ($\\pm$0.010) vs.\\ 0.501 for XGBoost (+8.2\\,pp), with the largest gains at gen-1 (0.796 vs.\\ 0.634) and gen-2 (0.413 vs.\\ 0.268).\nartifacts/_project/paper/appendix_qlora.tex:30:A second run with LoRA rank 32 and seed 123 yields 5-class F1\\,=\\,0.587 ($\\pm$0.005) and 3-class F1\\,=\\,0.905 ($\\pm$0.004), confirming stability across hyperparameter and seed variation ($\\Delta < 1$\\,pp on both metrics).\nartifacts/_project/paper/appendix_human_edit.tex:23:At 10\\% replacement, binary F1 remains 0.614, well above the 0.50 random baseline, indicating that depth signal survives moderate perturbation.\nartifacts/_project/paper/appendix_human_edit.tex:48:10\\% & 0.667 & 0.614 & 0.427 & 0.492 \\\\\nartifacts/_project/paper/appendix_human_edit.tex:67:LD-Score           & 0.677 & \\textbf{0.673} & \\textbf{0.677} & \\textbf{0.671} \\\\\nartifacts/_project/paper/appendix_human_edit.tex:70:Binoculars\\textsuperscript{\\dag}         & 0.500 & 0.461 & 0.446 & 0.425 \\\\\nartifacts/_project/paper/appendix_human_edit.tex:86:Binary F1 drops from 0.692 to 0.647 ($-$4.5\\,pp, 6.5\\% relative); 3-class F1 drops from 0.739 to 0.667 ($-$7.1\\,pp, 9.7\\% relative).\nartifacts/_project/paper/discussion.tex:11:Continuation chains yield the strongest signal (F1\\,=\\,0.781 vs.\\ 0.730 for elaboration), with cross-type transfer at 0.753 (Appendix~\\ref{app:prompt-type}).\nartifacts/_project/paper/discussion.tex:21:Topic drift accounts for $<$9\\% of feature variance ($R^2 = 0.082$), confirming it mediates rather than confounds depth signal.\nartifacts/_project/paper/discussion.tex:24:Three classes represent the practical resolution ceiling: 5-class LOGO F1 drops to $\\approx$0.50, with depths 2--4 mutually indistinguishable (Appendix~\\ref{app:finer-depth}).\nartifacts/_project/paper/discussion.tex:25:That said, QLoRA fine-tuning recovers 3-class F1\\,=\\,0.905 (Appendix~\\ref{app:qlora}), confirming that richer signal exists beyond the seven summary statistics.\nartifacts/_project/paper/discussion.tex:29:Instruction-tuned models show substantially weaker fingerprints (OLMo-Instruct LOGO F1\\,=\\,0.338 vs.\\ 0.764 base).\nartifacts/_project/paper/limitations.tex:7:Preliminary instruct experiments confirm that depth signal degrades substantially under instruction tuning: OLMo-2-1B-Instruct drops to LOGO F1\\,=\\,0.338 (vs.\\ 0.764 base) and Qwen3-0.6B with chat template to 0.667 (vs.\\ 0.816 under a 7-generator split).\nartifacts/_project/paper/limitations.tex:15:Differential depth response strength is prompt-type dependent: continuation chains show strongest drift (within-type F1\\,=\\,0.781) compared to elaboration (0.730), rewriting (0.737), and paraphrastic chains (binary F1\\,=\\,0.671 vs.\\ 0.749 for continuation).\nartifacts/_project/paper/limitations.tex:17:Cross-prompt-type transfer (LOPTO F1\\,=\\,0.753) confirms shared signal, yet additional prompt types (e.g., summarization, instruction following) and cross-generator $\\times$ cross-prompt interactions remain untested.\nartifacts/_project/paper/limitations.tex:19:Our primary evaluation uses single-generator chains; cross-model chains (\\S\\ref{sec:results-classification}) confirm depth signal under generator heterogeneity (3-class F1\\,=\\,0.809, binary F1\\,=\\,0.764), though the eight generators represent a controlled laboratory setting rather than the full diversity of real-world contamination.\nartifacts/_project/paper/limitations.tex:29:We use 3-class granularity (gen-0\\,/\\,gen-1\\,/\\,gen-2+). A 5-class evaluation (Appendix~\\ref{app:finer-depth}) yields LOGO F1\\,$\\approx$\\,0.50, with depths 2--4 mutually indistinguishable, validating the 3-class design as the practical resolution limit.\nartifacts/_project/paper/appendix_classifier.tex:17:XGBoost          & 0.789 & 0.764 & 0.856 & 0.804 & 0.824 & 0.806 & 0.683 \\\\\nartifacts/_project/paper/appendix_classifier.tex:18:Random Forest    & 0.790 & 0.764 & 0.856 & 0.804 & 0.825 & 0.807 & 0.684 \\\\\nartifacts/_project/paper/appendix_domain.tex:15:News           & 0.746 & [0.726, 0.764] & 0.652 \\\\\nartifacts/_project/paper/introduction.tex:15:The combination of drifting and stationary features yields a 7-feature ensemble that achieves 3-class macro F1\\,=\\,0.809 on heterogeneous cross-model chains and F1\\,=\\,0.762 under leave-one-generator-out evaluation (binary F1\\,=\\,0.764 on cross-model chains), significantly outperforming individual detection baselines ($p < 0.001$).\nartifacts/_project/paper/appendix_finer_depth.tex:11:OLMo-2-1B       & 0.484 & 0.506 & 0.524 \\\\\nartifacts/_project/paper/appendix_finer_depth.tex:18:\\textbf{Average} & \\textbf{0.501 $\\pm$ 0.038} & \\textbf{0.521} & \\textbf{0.541} \\\\\nartifacts/_project/paper/appendix_finer_depth.tex:50:To verify that 5-class degradation reflects feature-level limitations rather than classifier choice, we evaluate four alternatives under the same protocol: HistGradientBoosting (macro F1\\,=\\,0.501, 95\\% bootstrap CI [0.496, 0.506]), random forest (0.476), logistic regression (0.447), and Frank-Hall ordinal reduction (0.451).\nartifacts/_project/paper/appendix_finer_depth.tex:51:All classifiers perform comparably to the default XGBoost ensemble (0.501), ruling out classifier capacity as the bottleneck.\nartifacts/_project/paper/results.tex:13:Cross-model chains (randomly selected generator per step) yield binary F1\\,=\\,0.764 under 5-fold CV,\\footnote{Cross-model chains use the original five-generator subset (Pythia, OLMo, Qwen); Llama and Mistral were added later for single-generator evaluation.} confirming that depth signal persists when text passes through heterogeneous generators.\nartifacts/_project/paper/results.tex:14:Leave-one-family-out (LOFO) evaluation yields average binary F1\\,=\\,0.686 ($\\Delta$\\,=\\,$-$0.8\\,pp vs.\\ LOGO), confirming transfer across architectural families under the strictest unseen-generator test.",
+    "numLines": 31
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of the paper claims. Let me verify them against the data files one by one.
+
+1. **Cross-model chains binary F1=0.764 under 5-fold CV**: 
+   - Paper claims in results.tex: "binary F1=0.764 under 5-fold CV"
+   - Data file: `8gen_cross_model_chains.json` → `8gen_pooled_cv.binary_f1 = 0.7435` and also footnote says "original five-generator subset"
+   - But there's also `cross_model_chains_results.json` which I haven't read. Let me check it.
+   - The paper footnote clarifies that cross-model chains use the original five-generator subset (Pythia, OLMo, Qwen), while Llama and Mistral were added later. Looking at the `vs_5gen` section in the data, I see `5gen_binary_f1: 0.7635`, which rounds to 0.764 at three decimal places. That's the match.
+
+   - Confirming the rounding: 0.7635 with the fourth digit being 5 rounds up to 0.764 under standard rounding rules, so the reported value of 0.764 is accurate.
+
+Now I need to figure out which F1 score the paper is actually referencing—whether it's from the 5-fold CV results showing 0.7635, the pooled 8-gen results at 0.7435, or something from the cross-model chains data. The appendix classifier table also lists 0.764 for XGBoost, so I should trace back which metric corresponds to which result. I need to verify the 5-gen results against the old file, then reconcile the discrepancy between the JSON showing 0.4878 for 5-class LOGO F1 and the paper's cited value of 0.501—they might be pulling from different results files or using different calculation methods.
+
+The QLoRA 3-class result matches perfectly at 0.9052, which rounds to the paper's 0.905. Now I'm checking the paraphrastic chains binary F1 value against the data file. rase_signal.binary_f1_gen1_vs_gen2plus.mean = 0.6710696917059812`
+   - Paper says "binary F1=0.671"
+   - 0.6711 rounds to 0.671. ✅ Match.
+
+5. **OLMo-2-1B-Instruct LOGO F1=0.338**:
+   - Data file: `review_p1c_olmo_instruct.json` → `logo_7gen_3class.per_generator.olmo-2-0425-1b-instruct.macro_f1 = 0.3379`
+   - Paper says "0.338"
+   - 0.3379 rounds to 0.338. ✅ Match.
+
+6. **Qwen3-0.6B chat template 0.667**:
+   - From `review_p1c_qwen06b_instruct.json`, the macro F1 is 0.6674, which rounds to 0.667. ✅ Match.
+
+7. **OLMo base 0.764**:
+   - The paper references 0.764 for OLMo base, but the data shows 0.7633 from the instruct file, which rounds to 0.763 instead. I'm checking the cross-model chains file to see if there's a different value there.
+
+I'm finding that OLMo-2-1B has a 3-class F1 of 0.7742 in the cross-model chains file, which is higher than the 0.764 mentioned in the paper. I need to clarify which dataset and configuration the paper is actually referencing for this baseline. I'm noticing a small discrepancy—the paper reports 0.764 for the base OLMo LOGO F1, but the actual value in the JSON is 0.7633, which rounds to 0.763. Looking at the appendix table, that 0.764 appears to be the cross-model chains binary F1 score, not the per-generator OLMo baseline, so the paper may be conflating two different metrics in the discussion. is confusingly written. 0.338 is the OLMo-Instruct LOGO F1. But "0.764 base" — is this the OLMo base LOGO F1 or the overall cross-model binary F1?
+   
+   In limitations.tex: "OLMo-2-1B-Instruct drops to LOGO F1=0.338 (vs. 0.764 base)" — this is clearly comparing OLMo instruct vs OLMo base. But OLMo base LOGO F1 = 0.763, not 0.764.
+   
+   This is a potential ⚠️ — the 0.764 appears to be borrowed from the cross-model chains number rather than the actual OLMo base number.
+
+Now checking the sampling sensitivity claim. The ablation data shows the default configuration at 0.7877 F1, dropping to 0.7258 at high temperature, which is about a 6.2 percentage point decrease — matching what the paper reports as "-6pp". ✅ For the topic drift R² value of 0.082, I'm not finding that metric in the results file, so I need to track down where that number comes from. Need to find where this is calculated.
+   - Let me search for this in the code/results.
+
+10. **LOFO F1=0.686**:
+   - Data file: `8gen_lofo_family.json` → `average.binary_f1 = 0.6865`
+   - Paper says "binary F1=0.686"
+   - 0.6865 rounded to 3 decimal places should be 0.687, but the paper shows 0.686. With banker's rounding (round half to even), 0.6865 would round to 0.686 since 6 is even. This appears to be a minor rounding discrepancy depending on the convention used.
+
+11. **Cross-type transfer at 0.753**:
+   - Looking at `plan006_paraphrastic_comparison.json`, the cross-transfer values are `para_train_cont_test_f1 = 0.7695` and `cont_train_para_test_f1 = 0.7431`, which average to 0.7563—not matching the paper's 0.753. The paper's "Leave-one-prompt-type-out evaluation" is different from this cross-transfer metric; LOPTO trains on all prompt types except one and tests on the held-out type. I need to locate the actual LOPTO results.
+
+Now I'm searching for the remaining metrics: topic drift R² and the LOPTO evaluation results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "bb51da8b-9659-4549-a6fd-3b904db002a0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXsnzsF96eLz2oHYYDmwhE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5269,
+      "cache_read_input_tokens": 90841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5269
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81_
+
+需要找 topic drift R²=0.082 和 LOPTO 0.753 的数据来源。也需要确认 cross-model chains 0.764 的 5-gen 来源。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "81230951-030a-447d-8216-d81c32098ce4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXsnzsF96eLz2oHYYDmwhE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5269,
+      "cache_read_input_tokens": 90841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5269
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0127wsZgYiKK6PQLtR9yeo5i`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/cross_model_chains_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "a6fe5692-a0bd-4159-9c86-0671f7be5584",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXsnzsF96eLz2oHYYDmwhE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5269,
+      "cache_read_input_tokens": 90841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5269
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-17T10:56:40.172Z_
+
+<details><summary>↩ Tool result · `toolu_0127wsZgYiKK6PQLtR9yeo5i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"cross_model_chains\\\",\\n  \\\"plan\\\": \\\"plan_007\\\",\\n  \\\"cross_model\\\": {\\n    \\\"macro_f1_mean\\\": 0.8089,\\n    \\\"macro_f1_std\\\": 0.0166,\\n    \\\"binary_f1\\\": 0.7635,\\n    \\\"binary_f1_gen1_vs_gen2plus\\\": 0.7635,\\n    \\\"binary_f1_gen0_vs_gen2plus\\\": 0.8372,\\n    \\\"fold_f1s\\\": [\\n      0.8059,\\n      0.7974,\\n      0.7869,\\n      0.82,\\n      0.8341\\n    ],\\n    \\\"n_samples\\\": 2964,\\n    \\\"confusion_matrix\\\": [\\n      [\\n        935,\\n        48,\\n        5\\n      ],\\n      [\\n        68,\\n        750,\\n        170\\n      ],\\n      [\\n        23,\\n        250,\\n        715\\n      ]\\n    ],\\n    \\\"per_class\\\": {\\n      \\\"gen-0\\\": {\\n        \\\"precision\\\": 0.9113,\\n        \\\"recall\\\": 0.9464,\\n        \\\"f1\\\": 0.9285\\n      },\\n      \\\"gen-1\\\": {\\n        \\\"precision\\\": 0.7156,\\n        \\\"recall\\\": 0.7591,\\n        \\\"f1\\\": 0.7367\\n      },\\n      \\\"gen-2+\\\": {\\n        \\\"precision\\\": 0.8034,\\n        \\\"recall\\\": 0.7237,\\n        \\\"f1\\\": 0.7614\\n      }\\n    },\\n    \\\"feature_importance\\\": {\\n      \\\"entropy_mean\\\": 0.2038,\\n      \\\"entropy_std\\\": 0.0856,\\n      \\\"entropy_min\\\": 0.0513,\\n      \\\"entropy_max\\\": 0.0584,\\n      \\\"tail_decay\\\": 0.0415,\\n      \\\"ttr\\\": 0.2024,\\n      \\\"hapax_ratio\\\": 0.357\\n    },\\n    \\\"statistical_tests\\\": [\\n      {\\n        \\\"feature\\\": \\\"entropy_mean\\\",\\n        \\\"H\\\": 1244.6837,\\n        \\\"p\\\": 5.25245679240583e-271,\\n        \\\"sig\\\": true\\n      },\\n      {\\n        \\\"feature\\\": \\\"entropy_std\\\",\\n        \\\"H\\\": 251.454,\\n        \\\"p\\\": 2.4972585385306665e-55,\\n        \\\"sig\\\": true\\n      },\\n      {\\n        \\\"feature\\\": \\\"entropy_min\\\",\\n        \\\"H\\\": 636.0661,\\n        \\\"p\\\": 7.585851687682177e-139,\\n        \\\"sig\\\": true\\n      },\\n      {\\n        \\\"feature\\\": \\\"entropy_max\\\",\\n        \\\"H\\\": 62.0166,\\n        \\\"p\\\": 3.414040918479937e-14,\\n        \\\"sig\\\": true\\n      },\\n      {\\n        \\\"feature\\\": \\\"tail_decay\\\",\\n        \\\"H\\\": 5.733,\\n        \\\"p\\\": 0.05689686582747448,\\n        \\\"sig\\\": false\\n      },\\n      {\\n        \\\"feature\\\": \\\"ttr\\\",\\n        \\\"H\\\": 1700.1458,\\n        \\\"p\\\": 0.0,\\n        \\\"sig\\\": true\\n      },\\n      {\\n        \\\"feature\\\": \\\"hapax_ratio\\\",\\n        \\\"H\\\": 1766.6233,\\n        \\\"p\\\": 0.0,\\n        \\\"sig\\\": true\\n      }\\n    ]\\n  },\\n  \\\"generator_diversity\\\": {\\n    \\\"mean_unique_generators\\\": 3.0,\\n    \\\"std_unique_generators\\\": 0.67,\\n    \\\"distribution\\\": {\\n      \\\"3\\\": 517,\\n      \\\"4\\\": 196,\\n      \\\"2\\\": 182,\\n      \\\"1\\\": 8\\n    }\\n  },\\n  \\\"single_model_baselines\\\": {\\n    \\\"pythia-2.8b\\\": {\\n      \\\"macro_f1_mean\\\": 0.8156,\\n      \\\"macro_f1_std\\\": 0.0166,\\n      \\\"n_samples\\\": 2976\\n    },\\n    \\\"pythia-1b\\\": {\\n      \\\"macro_f1_mean\\\": 0.8622,\\n      \\\"macro_f1_std\\\": 0.0121,\\n      \\\"n_samples\\\": 2979\\n    },\\n    \\\"olmo-2-1b\\\": {\\n      \\\"macro_f1_mean\\\": 0.7801,\\n      \\\"macro_f1_std\\\": 0.0096,\\n      \\\"n_samples\\\": 2964\\n    },\\n    \\\"qwen3-0.6b\\\": {\\n      \\\"macro_f1_mean\\\": 0.8354,\\n      \\\"macro_f1_std\\\": 0.0163,\\n      \\\"n_samples\\\": 2958\\n    },\\n    \\\"qwen3-1.7b\\\": {\\n      \\\"macro_f1_mean\\\": 0.8106,\\n      \\\"macro_f1_std\\\": 0.017,\\n      \\\"n_samples\\\": 2949\\n    }\\n  },\\n  \\\"generator_pool\\\": [\\n    \\\"pythia-2.8b\\\",\\n    \\\"pythia-1b\\\",\\n    \\\"olmo-2-1b\\\",\\n    \\\"qwen3-0.6b\\\",\\n    \\\"qwen3-1.7b\\\"\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "2425c1f7-c6f1-4301-8bfd-707ff3409bc0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"cross_model_chains\\\\\\\",\\\\n  \\\\\\\"plan\\\\\\\": \\\\\\\"plan_007\\\\\\\",\\\\n  \\\\\\\"cross_model\\\\\\\": {\\\\n    \\\\\\\"macro_f1_mean\\\\\\\": 0.8089,\\\\n    \\\\\\\"macro_f1_std\\\\\\\": 0.0166,\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.7635,\\\\n    \\\\\\\"binary_f1_gen1_vs_gen2plus\\\\\\\": 0.7635,\\\\n    \\\\\\\"binary_f1_gen0_vs_gen2plus\\\\\\\": 0.8372,\\\\n    \\\\\\\"fold_f1s\\\\\\\": [\\\\n      0.8059,\\\\n      0.7974,\\\\n      0.7869,\\\\n      0.82,\\\\n      0.8341\\\\n    ],\\\\n    \\\\\\\"n_samples\\\\\\\": 2964,\\\\n    \\\\\\\"confusion_matrix\\\\\\\": [\\\\n      [\\\\n        935,\\\\n        48,\\\\n        5\\\\n      ],\\\\n      [\\\\n        68,\\\\n        750,\\\\n        170\\\\n      ],\\\\n      [\\\\n        23,\\\\n        250,\\\\n        715\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"per_class\\\\\\\": {\\\\n      \\\\\\\"gen-0\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.9113,\\\\n        \\\\\\\"recall\\\\\\\": 0.9464,\\\\n        \\\\\\\"f1\\\\\\\": 0.9285\\\\n      },\\\\n      \\\\\\\"gen-1\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.7156,\\\\n        \\\\\\\"recall\\\\\\\": 0.7591,\\\\n        \\\\\\\"f1\\\\\\\": 0.7367\\\\n      },\\\\n      \\\\\\\"gen-2+\\\\\\\": {\\\\n        \\\\\\\"precision\\\\\\\": 0.8034,\\\\n        \\\\\\\"recall\\\\\\\": 0.7237,\\\\n        \\\\\\\"f1\\\\\\\": 0.7614\\\\n      }\\\\n    },\\\\n    \\\\\\\"feature_importance\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": 0.2038,\\\\n      \\\\\\\"entropy_std\\\\\\\": 0.0856,\\\\n      \\\\\\\"entropy_min\\\\\\\": 0.0513,\\\\n      \\\\\\\"entropy_max\\\\\\\": 0.0584,\\\\n      \\\\\\\"tail_decay\\\\\\\": 0.0415,\\\\n      \\\\\\\"ttr\\\\\\\": 0.2024,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.357\\\\n    },\\\\n    \\\\\\\"statistical_tests\\\\\\\": [\\\\n      {\\\\n        \\\\\\\"feature\\\\\\\": \\\\\\\"entropy_mean\\\\\\\",\\\\n        \\\\\\\"H\\\\\\\": 1244.6837,\\\\n        \\\\\\\"p\\\\\\\": 5.25245679240583e-271,\\\\n        \\\\\\\"sig\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"feature\\\\\\\": \\\\\\\"entropy_std\\\\\\\",\\\\n        \\\\\\\"H\\\\\\\": 251.454,\\\\n        \\\\\\\"p\\\\\\\": 2.4972585385306665e-55,\\\\n        \\\\\\\"sig\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"feature\\\\\\\": \\\\\\\"entropy_min\\\\\\\",\\\\n        \\\\\\\"H\\\\\\\": 636.0661,\\\\n        \\\\\\\"p\\\\\\\": 7.585851687682177e-139,\\\\n        \\\\\\\"sig\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"feature\\\\\\\": \\\\\\\"entropy_max\\\\\\\",\\\\n        \\\\\\\"H\\\\\\\": 62.0166,\\\\n        \\\\\\\"p\\\\\\\": 3.414040918479937e-14,\\\\n        \\\\\\\"sig\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"feature\\\\\\\": \\\\\\\"tail_decay\\\\\\\",\\\\n        \\\\\\\"H\\\\\\\": 5.733,\\\\n        \\\\\\\"p\\\\\\\": 0.05689686582747448,\\\\n        \\\\\\\"sig\\\\\\\": false\\\\n      },\\\\n      {\\\\n        \\\\\\\"feature\\\\\\\": \\\\\\\"ttr\\\\\\\",\\\\n        \\\\\\\"H\\\\\\\": 1700.1458,\\\\n        \\\\\\\"p\\\\\\\": 0.0,\\\\n        \\\\\\\"sig\\\\\\\": true\\\\n      },\\\\n      {\\\\n        \\\\\\\"feature\\\\\\\": \\\\\\\"hapax_ratio\\\\\\\",\\\\n        \\\\\\\"H\\\\\\\": 1766.6233,\\\\n        \\\\\\\"p\\\\\\\": 0.0,\\\\n        \\\\\\\"sig\\\\\\\": true\\\\n      }\\\\n    ]\\\\n  },\\\\n  \\\\\\\"generator_diversity\\\\\\\": {\\\\n    \\\\\\\"mean_unique_generators\\\\\\\": 3.0,\\\\n    \\\\\\\"std_unique_generators\\\\\\\": 0.67,\\\\n    \\\\\\\"distribution\\\\\\\": {\\\\n      \\\\\\\"3\\\\\\\": 517,\\\\n      \\\\\\\"4\\\\\\\": 196,\\\\n      \\\\\\\"2\\\\\\\": 182,\\\\n      \\\\\\\"1\\\\\\\": 8\\\\n    }\\\\n  },\\\\n  \\\\\\\"single_model_baselines\\\\\\\": {\\\\n    \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n      \\\\\\\"macro_f1_mean\\\\\\\": 0.8156,\\\\n      \\\\\\\"macro_f1_std\\\\\\\": 0.0166,\\\\n      \\\\\\\"n_samples\\\\\\\": 2976\\\\n    },\\\\n    \\\\\\\"pythia-1b\\\\\\\": {\\\\n      \\\\\\\"macro_f1_mean\\\\\\\": 0.8622,\\\\n      \\\\\\\"macro_f1_std\\\\\\\": 0.0121,\\\\n      \\\\\\\"n_samples\\\\\\\": 2979\\\\n    },\\\\n    \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n      \\\\\\\"macro_f1_mean\\\\\\\": 0.7801,\\\\n      \\\\\\\"macro_f1_std\\\\\\\": 0.0096,\\\\n      \\\\\\\"n_samples\\\\\\\": 2964\\\\n    },\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n      \\\\\\\"macro_f1_mean\\\\\\\": 0.8354,\\\\n      \\\\\\\"macro_f1_std\\\\\\\": 0.0163,\\\\n      \\\\\\\"n_samples\\\\\\\": 2958\\\\n    },\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n      \\\\\\\"macro_f1_mean\\\\\\\": 0.8106,\\\\n      \\\\\\\"macro_f1_std\\\\\\\": 0.017,\\\\n      \\\\\\\"n_samples\\\\\\\": 2949\\\\n    }\\\\n  },\\\\n  \\\\\\\"generator_pool\\\\\\\": [\\\\n    \\\\\\\"pythia-2.8b\\\\\\\",\\\\n    \\\\\\\"pythia-1b\\\\\\\",\\\\n    \\\\\\\"olmo-2-1b\\\\\\\",\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\"\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"cross_model_chains\\\",\\n  \\\"plan\\\": \\\"plan_007\\\",\\n  \\\"cross_model\\\": {\\n    \\\"macro_f1_mean\\\": 0.8089,\\n    \\\"macro_f1_std\\\": 0.0166,\\n    \\\"binary_f1\\\": 0.7635,\\n    \\\"binary_f1_gen1_vs_gen2plus\\\": 0.7635,\\n    \\\"binary_f1_gen0_vs_gen2plus\\\": 0.8372,\\n    \\\"fold_f1s\\\": [\\n      0.8059,\\n      0.7974,\\n      0.7869,\\n      0.82,\\n      0.8341\\n    ],\\n    \\\"n_samples\\\": 2964,\\n    \\\"confusion_matrix\\\": [\\n      [\\n        935,\\n        48,\\n        5\\n      ],\\n      [\\n        68,\\n        750,\\n        170\\n      ],\\n      [\\n        23,\\n        250,\\n        715\\n      ]\\n    ],\\n    \\\"per_class\\\": {\\n      \\\"gen-0\\\": {\\n        \\\"precision\\\": 0.9113,\\n        \\\"recall\\\": 0.9464,\\n        \\\"f1\\\": 0.9285\\n      },\\n      \\\"gen-1\\\": {\\n        \\\"precision\\\": 0.7156,\\n        \\\"recall\\\": 0.7591,\\n        \\\"f1\\\": 0.7367\\n      },\\n      \\\"gen-2+\\\": {\\n        \\\"precision\\\": 0.8034,\\n        \\\"recall\\\": 0.7237,\\n        \\\"f1\\\": 0.7614\\n      }\\n    },\\n    \\\"feature_importance\\\": {\\n      \\\"entropy_mean\\\": 0.2038,\\n      \\\"entropy_std\\\": 0.0856,\\n      \\\"entropy_min\\\": 0.0513,\\n      \\\"entropy_max\\\": 0.0584,\\n      \\\"tail_decay\\\": 0.0415,\\n      \\\"ttr\\\": 0.2024,\\n      \\\"hapax_ratio\\\": 0.357\\n    },\\n    \\\"statistical_tests\\\": [\\n      {\\n        \\\"feature\\\": \\\"entropy_mean\\\",\\n        \\\"H\\\": 1244.6837,\\n        \\\"p\\\": 5.25245679240583e-271,\\n        \\\"sig\\\": true\\n      },\\n      {\\n        \\\"feature\\\": \\\"entropy_std\\\",\\n        \\\"H\\\": 251.454,\\n        \\\"p\\\": 2.4972585385306665e-55,\\n        \\\"sig\\\": true\\n      },\\n      {\\n        \\\"feature\\\": \\\"entropy_min\\\",\\n        \\\"H\\\": 636.0661,\\n        \\\"p\\\": 7.585851687682177e-139,\\n        \\\"sig\\\": true\\n      },\\n      {\\n        \\\"feature\\\": \\\"entropy_max\\\",\\n        \\\"H\\\": 62.0166,\\n        \\\"p\\\": 3.414040918479937e-14,\\n        \\\"sig\\\": true\\n      },\\n      {\\n        \\\"feature\\\": \\\"tail_decay\\\",\\n        \\\"H\\\": 5.733,\\n        \\\"p\\\": 0.05689686582747448,\\n        \\\"sig\\\": false\\n      },\\n      {\\n        \\\"feature\\\": \\\"ttr\\\",\\n        \\\"H\\\": 1700.1458,\\n        \\\"p\\\": 0.0,\\n        \\\"sig\\\": true\\n      },\\n      {\\n        \\\"feature\\\": \\\"hapax_ratio\\\",\\n        \\\"H\\\": 1766.6233,\\n        \\\"p\\\": 0.0,\\n        \\\"sig\\\": true\\n      }\\n    ]\\n  },\\n  \\\"generator_diversity\\\": {\\n    \\\"mean_unique_generators\\\": 3.0,\\n    \\\"std_unique_generators\\\": 0.67,\\n    \\\"distribution\\\": {\\n      \\\"3\\\": 517,\\n      \\\"4\\\": 196,\\n      \\\"2\\\": 182,\\n      \\\"1\\\": 8\\n    }\\n  },\\n  \\\"single_model_baselines\\\": {\\n    \\\"pythia-2.8b\\\": {\\n      \\\"macro_f1_mean\\\": 0.8156,\\n      \\\"macro_f1_std\\\": 0.0166,\\n      \\\"n_samples\\\": 2976\\n    },\\n    \\\"pythia-1b\\\": {\\n      \\\"macro_f1_mean\\\": 0.8622,\\n      \\\"macro_f1_std\\\": 0.0121,\\n      \\\"n_samples\\\": 2979\\n    },\\n    \\\"olmo-2-1b\\\": {\\n      \\\"macro_f1_mean\\\": 0.7801,\\n      \\\"macro_f1_std\\\": 0.0096,\\n      \\\"n_samples\\\": 2964\\n    },\\n    \\\"qwen3-0.6b\\\": {\\n      \\\"macro_f1_mean\\\": 0.8354,\\n      \\\"macro_f1_std\\\": 0.0163,\\n      \\\"n_samples\\\": 2958\\n    },\\n    \\\"qwen3-1.7b\\\": {\\n      \\\"macro_f1_mean\\\": 0.8106,\\n      \\\"macro_f1_std\\\": 0.017,\\n      \\\"n_samples\\\": 2949\\n    }\\n  },\\n  \\\"generator_pool\\\": [\\n    \\\"pythia-2.8b\\\",\\n    \\\"pythia-1b\\\",\\n    \\\"olmo-2-1b\\\",\\n    \\\"qwen3-0.6b\\\",\\n    \\\"qwen3-1.7b\\\"\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PKBwAFRKoAhmcUrAyJjVYX`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/finer_ordinal_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "136a4624-7764-489b-b702-859f895ef8ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXsnzsF96eLz2oHYYDmwhE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5269,
+      "cache_read_input_tokens": 90841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5269
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-17T10:56:41.094Z_
+
+<details><summary>↩ Tool result · `toolu_01PKBwAFRKoAhmcUrAyJjVYX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"GBT_5class\\\": {\\n    \\\"macro_f1\\\": 0.5010378348882,\\n    \\\"macro_f1_95ci\\\": [\\n      0.4957715149134756,\\n      0.5061465726230152\\n    ],\\n    \\\"accuracy\\\": 0.5410294598423481,\\n    \\\"mae\\\": 0.6602855170910676,\\n    \\\"per_class_f1\\\": {\\n      \\\"depth_0\\\": 0.9214380825565912,\\n      \\\"depth_1\\\": 0.6335342077277561,\\n      \\\"depth_2\\\": 0.26824837020412523,\\n      \\\"depth_3\\\": 0.259110269758637,\\n      \\\"depth_4\\\": 0.42285824419389034\\n    },\\n    \\\"confusion_matrix\\\": [\\n      [\\n        5882,\\n        89,\\n        1,\\n        0,\\n        0\\n      ],\\n      [\\n        399,\\n        4468,\\n        747,\\n        175,\\n        129\\n      ],\\n      [\\n        234,\\n        2045,\\n        1255,\\n        828,\\n        1237\\n      ],\\n      [\\n        158,\\n        1002,\\n        968,\\n        1095,\\n        1958\\n      ],\\n      [\\n        122,\\n        583,\\n        787,\\n        1173,\\n        2194\\n      ]\\n    ],\\n    \\\"per_generator\\\": {\\n      \\\"pythia-2.8b\\\": {\\n        \\\"f1_macro\\\": 0.5225877542314128,\\n        \\\"accuracy\\\": 0.5604252549359948,\\n        \\\"mae\\\": 0.5964417444131048,\\n        \\\"n_test\\\": 4609\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"f1_macro\\\": 0.5430628237584577,\\n        \\\"accuracy\\\": 0.5745334796926455,\\n        \\\"mae\\\": 0.5626783754116356,\\n        \\\"n_test\\\": 4555\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"f1_macro\\\": 0.48444141412708125,\\n        \\\"accuracy\\\": 0.5240823254827074,\\n        \\\"mae\\\": 0.6957352005092298,\\n        \\\"n_test\\\": 4713\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"f1_macro\\\": 0.512936841023435,\\n        \\\"accuracy\\\": 0.5460555310709564,\\n        \\\"mae\\\": 0.6557955046275893,\\n        \\\"n_test\\\": 4538\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"f1_macro\\\": 0.5099297084668867,\\n        \\\"accuracy\\\": 0.5479748754602556,\\n        \\\"mae\\\": 0.6495559887372753,\\n        \\\"n_test\\\": 4617\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"f1_macro\\\": 0.43365248900151465,\\n        \\\"accuracy\\\": 0.4927729597509451,\\n        \\\"mae\\\": 0.8029797642873027,\\n        \\\"n_test\\\": 4497\\n      }\\n    }\\n  },\\n  \\\"RF_5class\\\": {\\n    \\\"macro_f1\\\": 0.47597714216016074,\\n    \\\"macro_f1_95ci\\\": [\\n      0.47100035513419714,\\n      0.4806876187240906\\n    ],\\n    \\\"accuracy\\\": 0.531112644847252,\\n    \\\"mae\\\": 0.694903556249773,\\n    \\\"per_class_f1\\\": {\\n      \\\"depth_0\\\": 0.8659130044171596,\\n      \\\"depth_1\\\": 0.6114327062228654,\\n      \\\"depth_2\\\": 0.26115485564304464,\\n      \\\"depth_3\\\": 0.1567251461988304,\\n      \\\"depth_4\\\": 0.48465999831890394\\n    },\\n    \\\"confusion_matrix\\\": [\\n      [\\n        5783,\\n        188,\\n        1,\\n        0,\\n        0\\n      ],\\n      [\\n        728,\\n        4225,\\n        728,\\n        111,\\n        126\\n      ],\\n      [\\n        397,\\n        1977,\\n        1194,\\n        479,\\n        1552\\n      ],\\n      [\\n        265,\\n        961,\\n        942,\\n        536,\\n        2477\\n      ],\\n      [\\n        212,\\n        551,\\n        680,\\n        533,\\n        2883\\n      ]\\n    ],\\n    \\\"per_generator\\\": {\\n      \\\"pythia-2.8b\\\": {\\n        \\\"f1_macro\\\": 0.5013565231980872,\\n        \\\"accuracy\\\": 0.5508787155565199,\\n        \\\"mae\\\": 0.6244304621392927,\\n        \\\"n_test\\\": 4609\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"f1_macro\\\": 0.5170349738743025,\\n        \\\"accuracy\\\": 0.5679473106476399,\\n        \\\"mae\\\": 0.5881448957189901,\\n        \\\"n_test\\\": 4555\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"f1_macro\\\": 0.4667311737475897,\\n        \\\"accuracy\\\": 0.5264162953532782,\\n        \\\"mae\\\": 0.7161043921069382,\\n        \\\"n_test\\\": 4713\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"f1_macro\\\": 0.4870187662598576,\\n        \\\"accuracy\\\": 0.5339356544733362,\\n        \\\"mae\\\": 0.6862053768179814,\\n        \\\"n_test\\\": 4538\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"f1_macro\\\": 0.48059843275976943,\\n        \\\"accuracy\\\": 0.5358457873077757,\\n        \\\"mae\\\": 0.6930907515702838,\\n        \\\"n_test\\\": 4617\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"f1_macro\\\": 0.4075251610006519,\\n        \\\"accuracy\\\": 0.47075828329997776,\\n        \\\"mae\\\": 0.8636869023793641,\\n        \\\"n_test\\\": 4497\\n      }\\n    }\\n  },\\n  \\\"LR_5class\\\": {\\n    \\\"macro_f1\\\": 0.4467784901779563,\\n    \\\"macro_f1_95ci\\\": [\\n      0.4417028297381512,\\n      0.4518210737325602\\n    ],\\n    \\\"accuracy\\\": 0.5009262959061354,\\n    \\\"mae\\\": 0.7729303643430564,\\n    \\\"per_class_f1\\\": {\\n      \\\"depth_0\\\": 0.8012866333095068,\\n      \\\"depth_1\\\": 0.5631587481757743,\\n      \\\"depth_2\\\": 0.25040827436037016,\\n      \\\"depth_3\\\": 0.1282653360727913,\\n      \\\"depth_4\\\": 0.49077345897133884\\n    },\\n    \\\"confusion_matrix\\\": [\\n      [\\n        5605,\\n        236,\\n        74,\\n        57,\\n        0\\n      ],\\n      [\\n        992,\\n        3473,\\n        908,\\n        295,\\n        250\\n      ],\\n      [\\n        619,\\n        1547,\\n        1150,\\n        497,\\n        1786\\n      ],\\n      [\\n        454,\\n        736,\\n        839,\\n        437,\\n        2715\\n      ],\\n      [\\n        348,\\n        424,\\n        615,\\n        347,\\n        3125\\n      ]\\n    ],\\n    \\\"per_generator\\\": {\\n      \\\"pythia-2.8b\\\": {\\n        \\\"f1_macro\\\": 0.4670895576993284,\\n        \\\"accuracy\\\": 0.5155131264916468,\\n        \\\"mae\\\": 0.7216315903666739,\\n        \\\"n_test\\\": 4609\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"f1_macro\\\": 0.48180852607899627,\\n        \\\"accuracy\\\": 0.5310647639956092,\\n        \\\"mae\\\": 0.6858397365532382,\\n        \\\"n_test\\\": 4555\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"f1_macro\\\": 0.45701333332020366,\\n        \\\"accuracy\\\": 0.5102906853384256,\\n        \\\"mae\\\": 0.7517504774029281,\\n        \\\"n_test\\\": 4713\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"f1_macro\\\": 0.4397886158356264,\\n        \\\"accuracy\\\": 0.494050242397532,\\n        \\\"mae\\\": 0.7794182459233142,\\n        \\\"n_test\\\": 4538\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"f1_macro\\\": 0.445170124076518,\\n        \\\"accuracy\\\": 0.50075806800953,\\n        \\\"mae\\\": 0.7743123240199263,\\n        \\\"n_test\\\": 4617\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"f1_macro\\\": 0.39369894818493395,\\n        \\\"accuracy\\\": 0.4527462752946409,\\n        \\\"mae\\\": 0.9279519679786524,\\n        \\\"n_test\\\": 4497\\n      }\\n    }\\n  },\\n  \\\"FrankHall_5class\\\": {\\n    \\\"macro_f1\\\": 0.4513472800562419,\\n    \\\"macro_f1_95ci\\\": [\\n      0.44591560645415695,\\n      0.4564432580191113\\n    ],\\n    \\\"accuracy\\\": 0.49758436557811764,\\n    \\\"mae\\\": 0.7554215554506157,\\n    \\\"per_class_f1\\\": {\\n      \\\"depth_0\\\": 0.7916575192096598,\\n      \\\"depth_1\\\": 0.5490747247598969,\\n      \\\"depth_2\\\": 0.2518617316883406,\\n      \\\"depth_3\\\": 0.17321549966009517,\\n      \\\"depth_4\\\": 0.49092692496321727\\n    },\\n    \\\"confusion_matrix\\\": [\\n      [\\n        5409,\\n        525,\\n        28,\\n        10,\\n        0\\n      ],\\n      [\\n        933,\\n        3516,\\n        1032,\\n        276,\\n        161\\n      ],\\n      [\\n        580,\\n        1571,\\n        1133,\\n        703,\\n        1612\\n      ],\\n      [\\n        432,\\n        791,\\n        722,\\n        637,\\n        2599\\n      ],\\n      [\\n        339,\\n        486,\\n        483,\\n        548,\\n        3003\\n      ]\\n    ],\\n    \\\"per_generator\\\": {\\n      \\\"pythia-2.8b\\\": {\\n        \\\"f1_macro\\\": 0.4743647641840498,\\n        \\\"accuracy\\\": 0.5176827945324365,\\n        \\\"mae\\\": 0.7040572792362768,\\n        \\\"n_test\\\": 4609\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"f1_macro\\\": 0.48802261041430006,\\n        \\\"accuracy\\\": 0.5319429198682766,\\n        \\\"mae\\\": 0.6706915477497256,\\n        \\\"n_test\\\": 4555\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"f1_macro\\\": 0.4651031189159724,\\n        \\\"accuracy\\\": 0.5083810736261405,\\n        \\\"mae\\\": 0.7292594950137916,\\n        \\\"n_test\\\": 4713\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"f1_macro\\\": 0.43616550691648265,\\n        \\\"accuracy\\\": 0.47950639048038785,\\n        \\\"mae\\\": 0.7767739092111062,\\n        \\\"n_test\\\": 4538\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"f1_macro\\\": 0.45141623703588624,\\n        \\\"accuracy\\\": 0.49880875027073857,\\n        \\\"mae\\\": 0.7500541477149665,\\n        \\\"n_test\\\": 4617\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"f1_macro\\\": 0.3958622011174265,\\n        \\\"accuracy\\\": 0.44785412497220367,\\n        \\\"mae\\\": 0.9052701801200801,\\n        \\\"n_test\\\": 4497\\n      }\\n    }\\n  },\\n  \\\"GBT_3class\\\": {\\n    \\\"macro_f1\\\": 0.7836090240818262,\\n    \\\"macro_f1_95ci\\\": [\\n      0.7785529630994793,\\n      0.7885402263060821\\n    ],\\n    \\\"accuracy\\\": 0.8071124995459333,\\n    \\\"per_class_f1\\\": {\\n      \\\"gen-0\\\": 0.9224090299155419,\\n      \\\"gen-1\\\": 0.5856401384083045,\\n      \\\"gen-2+\\\": 0.8427779039216322\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "3a8dbc9b-91cf-480a-99f8-e598650731f3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"GBT_5class\\\\\\\": {\\\\n    \\\\\\\"macro_f1\\\\\\\": 0.5010378348882,\\\\n    \\\\\\\"macro_f1_95ci\\\\\\\": [\\\\n      0.4957715149134756,\\\\n      0.5061465726230152\\\\n    ],\\\\n    \\\\\\\"accuracy\\\\\\\": 0.5410294598423481,\\\\n    \\\\\\\"mae\\\\\\\": 0.6602855170910676,\\\\n    \\\\\\\"per_class_f1\\\\\\\": {\\\\n      \\\\\\\"depth_0\\\\\\\": 0.9214380825565912,\\\\n      \\\\\\\"depth_1\\\\\\\": 0.6335342077277561,\\\\n      \\\\\\\"depth_2\\\\\\\": 0.26824837020412523,\\\\n      \\\\\\\"depth_3\\\\\\\": 0.259110269758637,\\\\n      \\\\\\\"depth_4\\\\\\\": 0.42285824419389034\\\\n    },\\\\n    \\\\\\\"confusion_matrix\\\\\\\": [\\\\n      [\\\\n        5882,\\\\n        89,\\\\n        1,\\\\n        0,\\\\n        0\\\\n      ],\\\\n      [\\\\n        399,\\\\n        4468,\\\\n        747,\\\\n        175,\\\\n        129\\\\n      ],\\\\n      [\\\\n        234,\\\\n        2045,\\\\n        1255,\\\\n        828,\\\\n        1237\\\\n      ],\\\\n      [\\\\n        158,\\\\n        1002,\\\\n        968,\\\\n        1095,\\\\n        1958\\\\n      ],\\\\n      [\\\\n        122,\\\\n        583,\\\\n        787,\\\\n        1173,\\\\n        2194\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"per_generator\\\\\\\": {\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.5225877542314128,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5604252549359948,\\\\n        \\\\\\\"mae\\\\\\\": 0.5964417444131048,\\\\n        \\\\\\\"n_test\\\\\\\": 4609\\\\n      },\\\\n      \\\\\\\"pythia-1b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.5430628237584577,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5745334796926455,\\\\n        \\\\\\\"mae\\\\\\\": 0.5626783754116356,\\\\n        \\\\\\\"n_test\\\\\\\": 4555\\\\n      },\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.48444141412708125,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5240823254827074,\\\\n        \\\\\\\"mae\\\\\\\": 0.6957352005092298,\\\\n        \\\\\\\"n_test\\\\\\\": 4713\\\\n      },\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.512936841023435,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5460555310709564,\\\\n        \\\\\\\"mae\\\\\\\": 0.6557955046275893,\\\\n        \\\\\\\"n_test\\\\\\\": 4538\\\\n      },\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.5099297084668867,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5479748754602556,\\\\n        \\\\\\\"mae\\\\\\\": 0.6495559887372753,\\\\n        \\\\\\\"n_test\\\\\\\": 4617\\\\n      },\\\\n      \\\\\\\"qwen3-8b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.43365248900151465,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.4927729597509451,\\\\n        \\\\\\\"mae\\\\\\\": 0.8029797642873027,\\\\n        \\\\\\\"n_test\\\\\\\": 4497\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"RF_5class\\\\\\\": {\\\\n    \\\\\\\"macro_f1\\\\\\\": 0.47597714216016074,\\\\n    \\\\\\\"macro_f1_95ci\\\\\\\": [\\\\n      0.47100035513419714,\\\\n      0.4806876187240906\\\\n    ],\\\\n    \\\\\\\"accuracy\\\\\\\": 0.531112644847252,\\\\n    \\\\\\\"mae\\\\\\\": 0.694903556249773,\\\\n    \\\\\\\"per_class_f1\\\\\\\": {\\\\n      \\\\\\\"depth_0\\\\\\\": 0.8659130044171596,\\\\n      \\\\\\\"depth_1\\\\\\\": 0.6114327062228654,\\\\n      \\\\\\\"depth_2\\\\\\\": 0.26115485564304464,\\\\n      \\\\\\\"depth_3\\\\\\\": 0.1567251461988304,\\\\n      \\\\\\\"depth_4\\\\\\\": 0.48465999831890394\\\\n    },\\\\n    \\\\\\\"confusion_matrix\\\\\\\": [\\\\n      [\\\\n        5783,\\\\n        188,\\\\n        1,\\\\n        0,\\\\n        0\\\\n      ],\\\\n      [\\\\n        728,\\\\n        4225,\\\\n        728,\\\\n        111,\\\\n        126\\\\n      ],\\\\n      [\\\\n        397,\\\\n        1977,\\\\n        1194,\\\\n        479,\\\\n        1552\\\\n      ],\\\\n      [\\\\n        265,\\\\n        961,\\\\n        942,\\\\n        536,\\\\n        2477\\\\n      ],\\\\n      [\\\\n        212,\\\\n        551,\\\\n        680,\\\\n        533,\\\\n        2883\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"per_generator\\\\\\\": {\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.5013565231980872,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5508787155565199,\\\\n        \\\\\\\"mae\\\\\\\": 0.6244304621392927,\\\\n        \\\\\\\"n_test\\\\\\\": 4609\\\\n      },\\\\n      \\\\\\\"pythia-1b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.5170349738743025,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5679473106476399,\\\\n        \\\\\\\"mae\\\\\\\": 0.5881448957189901,\\\\n        \\\\\\\"n_test\\\\\\\": 4555\\\\n      },\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.4667311737475897,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5264162953532782,\\\\n        \\\\\\\"mae\\\\\\\": 0.7161043921069382,\\\\n        \\\\\\\"n_test\\\\\\\": 4713\\\\n      },\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.4870187662598576,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5339356544733362,\\\\n        \\\\\\\"mae\\\\\\\": 0.6862053768179814,\\\\n        \\\\\\\"n_test\\\\\\\": 4538\\\\n      },\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.48059843275976943,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5358457873077757,\\\\n        \\\\\\\"mae\\\\\\\": 0.6930907515702838,\\\\n        \\\\\\\"n_test\\\\\\\": 4617\\\\n      },\\\\n      \\\\\\\"qwen3-8b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.4075251610006519,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.47075828329997776,\\\\n        \\\\\\\"mae\\\\\\\": 0.8636869023793641,\\\\n        \\\\\\\"n_test\\\\\\\": 4497\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"LR_5class\\\\\\\": {\\\\n    \\\\\\\"macro_f1\\\\\\\": 0.4467784901779563,\\\\n    \\\\\\\"macro_f1_95ci\\\\\\\": [\\\\n      0.4417028297381512,\\\\n      0.4518210737325602\\\\n    ],\\\\n    \\\\\\\"accuracy\\\\\\\": 0.5009262959061354,\\\\n    \\\\\\\"mae\\\\\\\": 0.7729303643430564,\\\\n    \\\\\\\"per_class_f1\\\\\\\": {\\\\n      \\\\\\\"depth_0\\\\\\\": 0.8012866333095068,\\\\n      \\\\\\\"depth_1\\\\\\\": 0.5631587481757743,\\\\n      \\\\\\\"depth_2\\\\\\\": 0.25040827436037016,\\\\n      \\\\\\\"depth_3\\\\\\\": 0.1282653360727913,\\\\n      \\\\\\\"depth_4\\\\\\\": 0.49077345897133884\\\\n    },\\\\n    \\\\\\\"confusion_matrix\\\\\\\": [\\\\n      [\\\\n        5605,\\\\n        236,\\\\n        74,\\\\n        57,\\\\n        0\\\\n      ],\\\\n      [\\\\n        992,\\\\n        3473,\\\\n        908,\\\\n        295,\\\\n        250\\\\n      ],\\\\n      [\\\\n        619,\\\\n        1547,\\\\n        1150,\\\\n        497,\\\\n        1786\\\\n      ],\\\\n      [\\\\n        454,\\\\n        736,\\\\n        839,\\\\n        437,\\\\n        2715\\\\n      ],\\\\n      [\\\\n        348,\\\\n        424,\\\\n        615,\\\\n        347,\\\\n        3125\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"per_generator\\\\\\\": {\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.4670895576993284,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5155131264916468,\\\\n        \\\\\\\"mae\\\\\\\": 0.7216315903666739,\\\\n        \\\\\\\"n_test\\\\\\\": 4609\\\\n      },\\\\n      \\\\\\\"pythia-1b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.48180852607899627,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5310647639956092,\\\\n        \\\\\\\"mae\\\\\\\": 0.6858397365532382,\\\\n        \\\\\\\"n_test\\\\\\\": 4555\\\\n      },\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.45701333332020366,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5102906853384256,\\\\n        \\\\\\\"mae\\\\\\\": 0.7517504774029281,\\\\n        \\\\\\\"n_test\\\\\\\": 4713\\\\n      },\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.4397886158356264,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.494050242397532,\\\\n        \\\\\\\"mae\\\\\\\": 0.7794182459233142,\\\\n        \\\\\\\"n_test\\\\\\\": 4538\\\\n      },\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.445170124076518,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.50075806800953,\\\\n        \\\\\\\"mae\\\\\\\": 0.7743123240199263,\\\\n        \\\\\\\"n_test\\\\\\\": 4617\\\\n      },\\\\n      \\\\\\\"qwen3-8b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.39369894818493395,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.4527462752946409,\\\\n        \\\\\\\"mae\\\\\\\": 0.9279519679786524,\\\\n        \\\\\\\"n_test\\\\\\\": 4497\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"FrankHall_5class\\\\\\\": {\\\\n    \\\\\\\"macro_f1\\\\\\\": 0.4513472800562419,\\\\n    \\\\\\\"macro_f1_95ci\\\\\\\": [\\\\n      0.44591560645415695,\\\\n      0.4564432580191113\\\\n    ],\\\\n    \\\\\\\"accuracy\\\\\\\": 0.49758436557811764,\\\\n    \\\\\\\"mae\\\\\\\": 0.7554215554506157,\\\\n    \\\\\\\"per_class_f1\\\\\\\": {\\\\n      \\\\\\\"depth_0\\\\\\\": 0.7916575192096598,\\\\n      \\\\\\\"depth_1\\\\\\\": 0.5490747247598969,\\\\n      \\\\\\\"depth_2\\\\\\\": 0.2518617316883406,\\\\n      \\\\\\\"depth_3\\\\\\\": 0.17321549966009517,\\\\n      \\\\\\\"depth_4\\\\\\\": 0.49092692496321727\\\\n    },\\\\n    \\\\\\\"confusion_matrix\\\\\\\": [\\\\n      [\\\\n        5409,\\\\n        525,\\\\n        28,\\\\n        10,\\\\n        0\\\\n      ],\\\\n      [\\\\n        933,\\\\n        3516,\\\\n        1032,\\\\n        276,\\\\n        161\\\\n      ],\\\\n      [\\\\n        580,\\\\n        1571,\\\\n        1133,\\\\n        703,\\\\n        1612\\\\n      ],\\\\n      [\\\\n        432,\\\\n        791,\\\\n        722,\\\\n        637,\\\\n        2599\\\\n      ],\\\\n      [\\\\n        339,\\\\n        486,\\\\n        483,\\\\n        548,\\\\n        3003\\\\n      ]\\\\n    ],\\\\n    \\\\\\\"per_generator\\\\\\\": {\\\\n      \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.4743647641840498,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5176827945324365,\\\\n        \\\\\\\"mae\\\\\\\": 0.7040572792362768,\\\\n        \\\\\\\"n_test\\\\\\\": 4609\\\\n      },\\\\n      \\\\\\\"pythia-1b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.48802261041430006,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5319429198682766,\\\\n        \\\\\\\"mae\\\\\\\": 0.6706915477497256,\\\\n        \\\\\\\"n_test\\\\\\\": 4555\\\\n      },\\\\n      \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.4651031189159724,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.5083810736261405,\\\\n        \\\\\\\"mae\\\\\\\": 0.7292594950137916,\\\\n        \\\\\\\"n_test\\\\\\\": 4713\\\\n      },\\\\n      \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.43616550691648265,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.47950639048038785,\\\\n        \\\\\\\"mae\\\\\\\": 0.7767739092111062,\\\\n        \\\\\\\"n_test\\\\\\\": 4538\\\\n      },\\\\n      \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.45141623703588624,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.49880875027073857,\\\\n        \\\\\\\"mae\\\\\\\": 0.7500541477149665,\\\\n        \\\\\\\"n_test\\\\\\\": 4617\\\\n      },\\\\n      \\\\\\\"qwen3-8b\\\\\\\": {\\\\n        \\\\\\\"f1_macro\\\\\\\": 0.3958622011174265,\\\\n        \\\\\\\"accuracy\\\\\\\": 0.44785412497220367,\\\\n        \\\\\\\"mae\\\\\\\": 0.9052701801200801,\\\\n        \\\\\\\"n_test\\\\\\\": 4497\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"GBT_3class\\\\\\\": {\\\\n    \\\\\\\"macro_f1\\\\\\\": 0.7836090240818262,\\\\n    \\\\\\\"macro_f1_95ci\\\\\\\": [\\\\n      0.7785529630994793,\\\\n      0.7885402263060821\\\\n    ],\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8071124995459333,\\\\n    \\\\\\\"per_class_f1\\\\\\\": {\\\\n      \\\\\\\"gen-0\\\\\\\": 0.9224090299155419,\\\\n      \\\\\\\"gen-1\\\\\\\": 0.5856401384083045,\\\\n      \\\\\\\"gen-2+\\\\\\\": 0.8427779039216322\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"GBT_5class\\\": {\\n    \\\"macro_f1\\\": 0.5010378348882,\\n    \\\"macro_f1_95ci\\\": [\\n      0.4957715149134756,\\n      0.5061465726230152\\n    ],\\n    \\\"accuracy\\\": 0.5410294598423481,\\n    \\\"mae\\\": 0.6602855170910676,\\n    \\\"per_class_f1\\\": {\\n      \\\"depth_0\\\": 0.9214380825565912,\\n      \\\"depth_1\\\": 0.6335342077277561,\\n      \\\"depth_2\\\": 0.26824837020412523,\\n      \\\"depth_3\\\": 0.259110269758637,\\n      \\\"depth_4\\\": 0.42285824419389034\\n    },\\n    \\\"confusion_matrix\\\": [\\n      [\\n        5882,\\n        89,\\n        1,\\n        0,\\n        0\\n      ],\\n      [\\n        399,\\n        4468,\\n        747,\\n        175,\\n        129\\n      ],\\n      [\\n        234,\\n        2045,\\n        1255,\\n        828,\\n        1237\\n      ],\\n      [\\n        158,\\n        1002,\\n        968,\\n        1095,\\n        1958\\n      ],\\n      [\\n        122,\\n        583,\\n        787,\\n        1173,\\n        2194\\n      ]\\n    ],\\n    \\\"per_generator\\\": {\\n      \\\"pythia-2.8b\\\": {\\n        \\\"f1_macro\\\": 0.5225877542314128,\\n        \\\"accuracy\\\": 0.5604252549359948,\\n        \\\"mae\\\": 0.5964417444131048,\\n        \\\"n_test\\\": 4609\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"f1_macro\\\": 0.5430628237584577,\\n        \\\"accuracy\\\": 0.5745334796926455,\\n        \\\"mae\\\": 0.5626783754116356,\\n        \\\"n_test\\\": 4555\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"f1_macro\\\": 0.48444141412708125,\\n        \\\"accuracy\\\": 0.5240823254827074,\\n        \\\"mae\\\": 0.6957352005092298,\\n        \\\"n_test\\\": 4713\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"f1_macro\\\": 0.512936841023435,\\n        \\\"accuracy\\\": 0.5460555310709564,\\n        \\\"mae\\\": 0.6557955046275893,\\n        \\\"n_test\\\": 4538\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"f1_macro\\\": 0.5099297084668867,\\n        \\\"accuracy\\\": 0.5479748754602556,\\n        \\\"mae\\\": 0.6495559887372753,\\n        \\\"n_test\\\": 4617\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"f1_macro\\\": 0.43365248900151465,\\n        \\\"accuracy\\\": 0.4927729597509451,\\n        \\\"mae\\\": 0.8029797642873027,\\n        \\\"n_test\\\": 4497\\n      }\\n    }\\n  },\\n  \\\"RF_5class\\\": {\\n    \\\"macro_f1\\\": 0.47597714216016074,\\n    \\\"macro_f1_95ci\\\": [\\n      0.47100035513419714,\\n      0.4806876187240906\\n    ],\\n    \\\"accuracy\\\": 0.531112644847252,\\n    \\\"mae\\\": 0.694903556249773,\\n    \\\"per_class_f1\\\": {\\n      \\\"depth_0\\\": 0.8659130044171596,\\n      \\\"depth_1\\\": 0.6114327062228654,\\n      \\\"depth_2\\\": 0.26115485564304464,\\n      \\\"depth_3\\\": 0.1567251461988304,\\n      \\\"depth_4\\\": 0.48465999831890394\\n    },\\n    \\\"confusion_matrix\\\": [\\n      [\\n        5783,\\n        188,\\n        1,\\n        0,\\n        0\\n      ],\\n      [\\n        728,\\n        4225,\\n        728,\\n        111,\\n        126\\n      ],\\n      [\\n        397,\\n        1977,\\n        1194,\\n        479,\\n        1552\\n      ],\\n      [\\n        265,\\n        961,\\n        942,\\n        536,\\n        2477\\n      ],\\n      [\\n        212,\\n        551,\\n        680,\\n        533,\\n        2883\\n      ]\\n    ],\\n    \\\"per_generator\\\": {\\n      \\\"pythia-2.8b\\\": {\\n        \\\"f1_macro\\\": 0.5013565231980872,\\n        \\\"accuracy\\\": 0.5508787155565199,\\n        \\\"mae\\\": 0.6244304621392927,\\n        \\\"n_test\\\": 4609\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"f1_macro\\\": 0.5170349738743025,\\n        \\\"accuracy\\\": 0.5679473106476399,\\n        \\\"mae\\\": 0.5881448957189901,\\n        \\\"n_test\\\": 4555\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"f1_macro\\\": 0.4667311737475897,\\n        \\\"accuracy\\\": 0.5264162953532782,\\n        \\\"mae\\\": 0.7161043921069382,\\n        \\\"n_test\\\": 4713\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"f1_macro\\\": 0.4870187662598576,\\n        \\\"accuracy\\\": 0.5339356544733362,\\n        \\\"mae\\\": 0.6862053768179814,\\n        \\\"n_test\\\": 4538\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"f1_macro\\\": 0.48059843275976943,\\n        \\\"accuracy\\\": 0.5358457873077757,\\n        \\\"mae\\\": 0.6930907515702838,\\n        \\\"n_test\\\": 4617\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"f1_macro\\\": 0.4075251610006519,\\n        \\\"accuracy\\\": 0.47075828329997776,\\n        \\\"mae\\\": 0.8636869023793641,\\n        \\\"n_test\\\": 4497\\n      }\\n    }\\n  },\\n  \\\"LR_5class\\\": {\\n    \\\"macro_f1\\\": 0.4467784901779563,\\n    \\\"macro_f1_95ci\\\": [\\n      0.4417028297381512,\\n      0.4518210737325602\\n    ],\\n    \\\"accuracy\\\": 0.5009262959061354,\\n    \\\"mae\\\": 0.7729303643430564,\\n    \\\"per_class_f1\\\": {\\n      \\\"depth_0\\\": 0.8012866333095068,\\n      \\\"depth_1\\\": 0.5631587481757743,\\n      \\\"depth_2\\\": 0.25040827436037016,\\n      \\\"depth_3\\\": 0.1282653360727913,\\n      \\\"depth_4\\\": 0.49077345897133884\\n    },\\n    \\\"confusion_matrix\\\": [\\n      [\\n        5605,\\n        236,\\n        74,\\n        57,\\n        0\\n      ],\\n      [\\n        992,\\n        3473,\\n        908,\\n        295,\\n        250\\n      ],\\n      [\\n        619,\\n        1547,\\n        1150,\\n        497,\\n        1786\\n      ],\\n      [\\n        454,\\n        736,\\n        839,\\n        437,\\n        2715\\n      ],\\n      [\\n        348,\\n        424,\\n        615,\\n        347,\\n        3125\\n      ]\\n    ],\\n    \\\"per_generator\\\": {\\n      \\\"pythia-2.8b\\\": {\\n        \\\"f1_macro\\\": 0.4670895576993284,\\n        \\\"accuracy\\\": 0.5155131264916468,\\n        \\\"mae\\\": 0.7216315903666739,\\n        \\\"n_test\\\": 4609\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"f1_macro\\\": 0.48180852607899627,\\n        \\\"accuracy\\\": 0.5310647639956092,\\n        \\\"mae\\\": 0.6858397365532382,\\n        \\\"n_test\\\": 4555\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"f1_macro\\\": 0.45701333332020366,\\n        \\\"accuracy\\\": 0.5102906853384256,\\n        \\\"mae\\\": 0.7517504774029281,\\n        \\\"n_test\\\": 4713\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"f1_macro\\\": 0.4397886158356264,\\n        \\\"accuracy\\\": 0.494050242397532,\\n        \\\"mae\\\": 0.7794182459233142,\\n        \\\"n_test\\\": 4538\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"f1_macro\\\": 0.445170124076518,\\n        \\\"accuracy\\\": 0.50075806800953,\\n        \\\"mae\\\": 0.7743123240199263,\\n        \\\"n_test\\\": 4617\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"f1_macro\\\": 0.39369894818493395,\\n        \\\"accuracy\\\": 0.4527462752946409,\\n        \\\"mae\\\": 0.9279519679786524,\\n        \\\"n_test\\\": 4497\\n      }\\n    }\\n  },\\n  \\\"FrankHall_5class\\\": {\\n    \\\"macro_f1\\\": 0.4513472800562419,\\n    \\\"macro_f1_95ci\\\": [\\n      0.44591560645415695,\\n      0.4564432580191113\\n    ],\\n    \\\"accuracy\\\": 0.49758436557811764,\\n    \\\"mae\\\": 0.7554215554506157,\\n    \\\"per_class_f1\\\": {\\n      \\\"depth_0\\\": 0.7916575192096598,\\n      \\\"depth_1\\\": 0.5490747247598969,\\n      \\\"depth_2\\\": 0.2518617316883406,\\n      \\\"depth_3\\\": 0.17321549966009517,\\n      \\\"depth_4\\\": 0.49092692496321727\\n    },\\n    \\\"confusion_matrix\\\": [\\n      [\\n        5409,\\n        525,\\n        28,\\n        10,\\n        0\\n      ],\\n      [\\n        933,\\n        3516,\\n        1032,\\n        276,\\n        161\\n      ],\\n      [\\n        580,\\n        1571,\\n        1133,\\n        703,\\n        1612\\n      ],\\n      [\\n        432,\\n        791,\\n        722,\\n        637,\\n        2599\\n      ],\\n      [\\n        339,\\n        486,\\n        483,\\n        548,\\n        3003\\n      ]\\n    ],\\n    \\\"per_generator\\\": {\\n      \\\"pythia-2.8b\\\": {\\n        \\\"f1_macro\\\": 0.4743647641840498,\\n        \\\"accuracy\\\": 0.5176827945324365,\\n        \\\"mae\\\": 0.7040572792362768,\\n        \\\"n_test\\\": 4609\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"f1_macro\\\": 0.48802261041430006,\\n        \\\"accuracy\\\": 0.5319429198682766,\\n        \\\"mae\\\": 0.6706915477497256,\\n        \\\"n_test\\\": 4555\\n      },\\n      \\\"olmo-2-1b\\\": {\\n        \\\"f1_macro\\\": 0.4651031189159724,\\n        \\\"accuracy\\\": 0.5083810736261405,\\n        \\\"mae\\\": 0.7292594950137916,\\n        \\\"n_test\\\": 4713\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"f1_macro\\\": 0.43616550691648265,\\n        \\\"accuracy\\\": 0.47950639048038785,\\n        \\\"mae\\\": 0.7767739092111062,\\n        \\\"n_test\\\": 4538\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"f1_macro\\\": 0.45141623703588624,\\n        \\\"accuracy\\\": 0.49880875027073857,\\n        \\\"mae\\\": 0.7500541477149665,\\n        \\\"n_test\\\": 4617\\n      },\\n      \\\"qwen3-8b\\\": {\\n        \\\"f1_macro\\\": 0.3958622011174265,\\n        \\\"accuracy\\\": 0.44785412497220367,\\n        \\\"mae\\\": 0.9052701801200801,\\n        \\\"n_test\\\": 4497\\n      }\\n    }\\n  },\\n  \\\"GBT_3class\\\": {\\n    \\\"macro_f1\\\": 0.7836090240818262,\\n    \\\"macro_f1_95ci\\\": [\\n      0.7785529630994793,\\n      0.7885402263060821\\n    ],\\n    \\\"accuracy\\\": 0.8071124995459333,\\n    \\\"per_class_f1\\\": {\\n      \\\"gen-0\\\": 0.9224090299155419,\\n      \\\"gen-1\\\": 0.5856401384083045,\\n      \\\"gen-2+\\\": 0.8427779039216322\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01D2p3A33VZQqgCwxALUFAvC`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/gen-depth-fingerprint/ -name \"*lopto*\" -o -name \"*prompt_type*\" -o -name \"*cross_type*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "2c25ceed-6b1b-4e5d-90d5-c2d823d4ac98",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXsnzsF96eLz2oHYYDmwhE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5269,
+      "cache_read_input_tokens": 90841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5269
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-17T10:56:42.497Z_
+
+<details><summary>↩ Tool result · `toolu_01D2p3A33VZQqgCwxALUFAvC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/data/prompt_type_results.json\\n/root/gen-depth-fingerprint/scripts/analyze_prompt_types.py\\n/root/gen-depth-fingerprint/paper/appendix_prompt_type.tex\\n/root/gen-depth-fingerprint/analyze_prompt_types.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "2a8505b6-feec-46c9-931e-f4058a8ba84c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gen-depth-fingerprint/data/prompt_type_results.json\\\\n/root/gen-depth-fingerprint/scripts/analyze_prompt_types.py\\\\n/root/gen-depth-fingerprint/paper/appendix_prompt_type.tex\\\\n/root/gen-depth-fingerprint/analyze_prompt_types.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/data/prompt_type_results.json\\n/root/gen-depth-fingerprint/scripts/analyze_prompt_types.py\\n/root/gen-depth-fingerprint/paper/appendix_prompt_type.tex\\n/root/gen-depth-fingerprint/analyze_prompt_types.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0137FkVBdttrba16ZtgH52h1`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/gen-depth-fingerprint/ -name \"*topic*\" -o -name \"*drift*\" -o -name \"*r_squared*\" -o -name \"*r2*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "f2e35847-1cec-4f0c-9c0a-ad06514dc2db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MXsnzsF96eLz2oHYYDmwhE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5269,
+      "cache_read_input_tokens": 90841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5269
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-17T10:56:43.426Z_
+
+<details><summary>↩ Tool result · `toolu_0137FkVBdttrba16ZtgH52h1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/results/review_topic_drift_results.json\\n/root/gen-depth-fingerprint/scripts/review_topic_drift.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "c35485ee-9ac2-400e-896e-5d0e826a5fe2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gen-depth-fingerprint/results/review_topic_drift_results.json\\\\n/root/gen-depth-fingerprint/scripts/review_topic_drift.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/results/review_topic_drift_results.json\\n/root/gen-depth-fingerprint/scripts/review_topic_drift.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 90_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Let me now read the prompt_type_results.json and also look at the topic drift script/data for R².
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "4d4d90dd-3a2f-4c60-a085-83472b9112ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xnfuo9FJ7wQRNBTvQc6GuY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10651,
+      "cache_read_input_tokens": 96110,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10651
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Kn4FuYD8sVcuRL5EdCZiV4`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/data/prompt_type_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "b239c916-0810-41bf-9411-876ce004cbc8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xnfuo9FJ7wQRNBTvQc6GuY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10651,
+      "cache_read_input_tokens": 96110,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10651
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-17T10:56:51.909Z_
+
+<details><summary>↩ Tool result · `toolu_01Kn4FuYD8sVcuRL5EdCZiV4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_prompt_cv_f1\\\": {\\n    \\\"continuation\\\": {\\n      \\\"mean\\\": 0.7806,\\n      \\\"std\\\": 0.012,\\n      \\\"folds\\\": [\\n        0.786,\\n        0.764,\\n        0.8001,\\n        0.7775,\\n        0.7755\\n      ]\\n    },\\n    \\\"elaboration\\\": {\\n      \\\"mean\\\": 0.73,\\n      \\\"std\\\": 0.0112,\\n      \\\"folds\\\": [\\n        0.7377,\\n        0.7243,\\n        0.7323,\\n        0.744,\\n        0.7116\\n      ]\\n    },\\n    \\\"inspired_rewriting\\\": {\\n      \\\"mean\\\": 0.7368,\\n      \\\"std\\\": 0.0114,\\n      \\\"folds\\\": [\\n        0.724,\\n        0.7457,\\n        0.7294,\\n        0.7306,\\n        0.7544\\n      ]\\n    }\\n  },\\n  \\\"lopto_f1\\\": {\\n    \\\"continuation\\\": 0.762,\\n    \\\"elaboration\\\": 0.7622,\\n    \\\"inspired_rewriting\\\": 0.7334,\\n    \\\"avg\\\": 0.7525\\n  },\\n  \\\"depth_decay\\\": {\\n    \\\"continuation\\\": {\\n      \\\"depth_counts\\\": {\\n        \\\"0\\\": 995,\\n        \\\"1\\\": 992,\\n        \\\"2\\\": 932,\\n        \\\"3\\\": 874,\\n        \\\"4\\\": 827\\n      },\\n      \\\"d0\\\": 995,\\n      \\\"d4\\\": 827,\\n      \\\"retention_d4_pct\\\": 83.1,\\n      \\\"max_depth\\\": 4\\n    },\\n    \\\"elaboration\\\": {\\n      \\\"depth_counts\\\": {\\n        \\\"0\\\": 995,\\n        \\\"1\\\": 995,\\n        \\\"2\\\": 989,\\n        \\\"3\\\": 986,\\n        \\\"4\\\": 981\\n      },\\n      \\\"d0\\\": 995,\\n      \\\"d4\\\": 981,\\n      \\\"retention_d4_pct\\\": 98.6,\\n      \\\"max_depth\\\": 4\\n    },\\n    \\\"inspired_rewriting\\\": {\\n      \\\"depth_counts\\\": {\\n        \\\"0\\\": 995,\\n        \\\"1\\\": 995,\\n        \\\"2\\\": 959,\\n        \\\"3\\\": 944,\\n        \\\"4\\\": 934\\n      },\\n      \\\"d0\\\": 995,\\n      \\\"d4\\\": 934,\\n      \\\"retention_d4_pct\\\": 93.9,\\n      \\\"max_depth\\\": 4\\n    }\\n  },\\n  \\\"feature_drift\\\": {\\n    \\\"continuation\\\": {\\n      \\\"entropy_mean\\\": {\\n        \\\"mean_d0\\\": 2.637409,\\n        \\\"mean_d4\\\": 1.167259,\\n        \\\"relative_change\\\": -0.5574\\n      },\\n      \\\"entropy_std\\\": {\\n        \\\"mean_d0\\\": 1.660982,\\n        \\\"mean_d4\\\": 1.585047,\\n        \\\"relative_change\\\": -0.0457\\n      },\\n      \\\"entropy_max\\\": {\\n        \\\"mean_d0\\\": 7.37862,\\n        \\\"mean_d4\\\": 7.353884,\\n        \\\"relative_change\\\": -0.0034\\n      },\\n      \\\"entropy_min\\\": {\\n        \\\"mean_d0\\\": 0.005805,\\n        \\\"mean_d4\\\": 0.022709,\\n        \\\"relative_change\\\": 2.912\\n      },\\n      \\\"tail_decay\\\": {\\n        \\\"mean_d0\\\": -0.002293,\\n        \\\"mean_d4\\\": -0.002222,\\n        \\\"relative_change\\\": 0.031\\n      },\\n      \\\"ttr\\\": {\\n        \\\"mean_d0\\\": 0.642574,\\n        \\\"mean_d4\\\": 0.252662,\\n        \\\"relative_change\\\": -0.6068\\n      },\\n      \\\"hapax_ratio\\\": {\\n        \\\"mean_d0\\\": 0.516257,\\n        \\\"mean_d4\\\": 0.134314,\\n        \\\"relative_change\\\": -0.7398\\n      }\\n    },\\n    \\\"elaboration\\\": {\\n      \\\"entropy_mean\\\": {\\n        \\\"mean_d0\\\": 2.637413,\\n        \\\"mean_d4\\\": 1.396397,\\n        \\\"relative_change\\\": -0.4705\\n      },\\n      \\\"entropy_std\\\": {\\n        \\\"mean_d0\\\": 1.660995,\\n        \\\"mean_d4\\\": 1.652359,\\n        \\\"relative_change\\\": -0.0052\\n      },\\n      \\\"entropy_max\\\": {\\n        \\\"mean_d0\\\": 7.378478,\\n        \\\"mean_d4\\\": 7.885723,\\n        \\\"relative_change\\\": 0.0687\\n      },\\n      \\\"entropy_min\\\": {\\n        \\\"mean_d0\\\": 0.005801,\\n        \\\"mean_d4\\\": 0.003078,\\n        \\\"relative_change\\\": -0.4694\\n      },\\n      \\\"tail_decay\\\": {\\n        \\\"mean_d0\\\": -0.002293,\\n        \\\"mean_d4\\\": -0.002323,\\n        \\\"relative_change\\\": -0.0133\\n      },\\n      \\\"ttr\\\": {\\n        \\\"mean_d0\\\": 0.642574,\\n        \\\"mean_d4\\\": 0.230491,\\n        \\\"relative_change\\\": -0.6413\\n      },\\n      \\\"hapax_ratio\\\": {\\n        \\\"mean_d0\\\": 0.516257,\\n        \\\"mean_d4\\\": 0.088576,\\n        \\\"relative_change\\\": -0.8284\\n      }\\n    },\\n    \\\"inspired_rewriting\\\": {\\n      \\\"entropy_mean\\\": {\\n        \\\"mean_d0\\\": 2.637377,\\n        \\\"mean_d4\\\": 1.379959,\\n        \\\"relative_change\\\": -0.4768\\n      },\\n      \\\"entropy_std\\\": {\\n        \\\"mean_d0\\\": 1.660963,\\n        \\\"mean_d4\\\": 1.636728,\\n        \\\"relative_change\\\": -0.0146\\n      },\\n      \\\"entropy_max\\\": {\\n        \\\"mean_d0\\\": 7.3784,\\n        \\\"mean_d4\\\": 7.902992,\\n        \\\"relative_change\\\": 0.0711\\n      },\\n      \\\"entropy_min\\\": {\\n        \\\"mean_d0\\\": 0.005797,\\n        \\\"mean_d4\\\": 0.010427,\\n        \\\"relative_change\\\": 0.7985\\n      },\\n      \\\"tail_decay\\\": {\\n        \\\"mean_d0\\\": -0.002293,\\n        \\\"mean_d4\\\": -0.002305,\\n        \\\"relative_change\\\": -0.0052\\n      },\\n      \\\"ttr\\\": {\\n        \\\"mean_d0\\\": 0.642574,\\n        \\\"mean_d4\\\": 0.245623,\\n        \\\"relative_change\\\": -0.6178\\n      },\\n      \\\"hapax_ratio\\\": {\\n        \\\"mean_d0\\\": 0.516257,\\n        \\\"mean_d4\\\": 0.103384,\\n        \\\"relative_change\\\": -0.7997\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "a39250e3-2080-40a4-a397-046b635c60f1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_prompt_cv_f1\\\\\\\": {\\\\n    \\\\\\\"continuation\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.7806,\\\\n      \\\\\\\"std\\\\\\\": 0.012,\\\\n      \\\\\\\"folds\\\\\\\": [\\\\n        0.786,\\\\n        0.764,\\\\n        0.8001,\\\\n        0.7775,\\\\n        0.7755\\\\n      ]\\\\n    },\\\\n    \\\\\\\"elaboration\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.73,\\\\n      \\\\\\\"std\\\\\\\": 0.0112,\\\\n      \\\\\\\"folds\\\\\\\": [\\\\n        0.7377,\\\\n        0.7243,\\\\n        0.7323,\\\\n        0.744,\\\\n        0.7116\\\\n      ]\\\\n    },\\\\n    \\\\\\\"inspired_rewriting\\\\\\\": {\\\\n      \\\\\\\"mean\\\\\\\": 0.7368,\\\\n      \\\\\\\"std\\\\\\\": 0.0114,\\\\n      \\\\\\\"folds\\\\\\\": [\\\\n        0.724,\\\\n        0.7457,\\\\n        0.7294,\\\\n        0.7306,\\\\n        0.7544\\\\n      ]\\\\n    }\\\\n  },\\\\n  \\\\\\\"lopto_f1\\\\\\\": {\\\\n    \\\\\\\"continuation\\\\\\\": 0.762,\\\\n    \\\\\\\"elaboration\\\\\\\": 0.7622,\\\\n    \\\\\\\"inspired_rewriting\\\\\\\": 0.7334,\\\\n    \\\\\\\"avg\\\\\\\": 0.7525\\\\n  },\\\\n  \\\\\\\"depth_decay\\\\\\\": {\\\\n    \\\\\\\"continuation\\\\\\\": {\\\\n      \\\\\\\"depth_counts\\\\\\\": {\\\\n        \\\\\\\"0\\\\\\\": 995,\\\\n        \\\\\\\"1\\\\\\\": 992,\\\\n        \\\\\\\"2\\\\\\\": 932,\\\\n        \\\\\\\"3\\\\\\\": 874,\\\\n        \\\\\\\"4\\\\\\\": 827\\\\n      },\\\\n      \\\\\\\"d0\\\\\\\": 995,\\\\n      \\\\\\\"d4\\\\\\\": 827,\\\\n      \\\\\\\"retention_d4_pct\\\\\\\": 83.1,\\\\n      \\\\\\\"max_depth\\\\\\\": 4\\\\n    },\\\\n    \\\\\\\"elaboration\\\\\\\": {\\\\n      \\\\\\\"depth_counts\\\\\\\": {\\\\n        \\\\\\\"0\\\\\\\": 995,\\\\n        \\\\\\\"1\\\\\\\": 995,\\\\n        \\\\\\\"2\\\\\\\": 989,\\\\n        \\\\\\\"3\\\\\\\": 986,\\\\n        \\\\\\\"4\\\\\\\": 981\\\\n      },\\\\n      \\\\\\\"d0\\\\\\\": 995,\\\\n      \\\\\\\"d4\\\\\\\": 981,\\\\n      \\\\\\\"retention_d4_pct\\\\\\\": 98.6,\\\\n      \\\\\\\"max_depth\\\\\\\": 4\\\\n    },\\\\n    \\\\\\\"inspired_rewriting\\\\\\\": {\\\\n      \\\\\\\"depth_counts\\\\\\\": {\\\\n        \\\\\\\"0\\\\\\\": 995,\\\\n        \\\\\\\"1\\\\\\\": 995,\\\\n        \\\\\\\"2\\\\\\\": 959,\\\\n        \\\\\\\"3\\\\\\\": 944,\\\\n        \\\\\\\"4\\\\\\\": 934\\\\n      },\\\\n      \\\\\\\"d0\\\\\\\": 995,\\\\n      \\\\\\\"d4\\\\\\\": 934,\\\\n      \\\\\\\"retention_d4_pct\\\\\\\": 93.9,\\\\n      \\\\\\\"max_depth\\\\\\\": 4\\\\n    }\\\\n  },\\\\n  \\\\\\\"feature_drift\\\\\\\": {\\\\n    \\\\\\\"continuation\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": {\\\\n        \\\\\\\"mean_d0\\\\\\\": 2.637409,\\\\n        \\\\\\\"mean_d4\\\\\\\": 1.167259,\\\\n        \\\\\\\"relative_change\\\\\\\": -0.5574\\\\n      },\\\\n      \\\\\\\"entropy_std\\\\\\\": {\\\\n        \\\\\\\"mean_d0\\\\\\\": 1.660982,\\\\n        \\\\\\\"mean_d4\\\\\\\": 1.585047,\\\\n        \\\\\\\"relative_change\\\\\\\": -0.0457\\\\n      },\\\\n      \\\\\\\"entropy_max\\\\\\\": {\\\\n        \\\\\\\"mean_d0\\\\\\\": 7.37862,\\\\n        \\\\\\\"mean_d4\\\\\\\": 7.353884,\\\\n        \\\\\\\"relative_change\\\\\\\": -0.0034\\\\n      },\\\\n      \\\\\\\"entropy_min\\\\\\\": {\\\\n        \\\\\\\"mean_d0\\\\\\\": 0.005805,\\\\n        \\\\\\\"mean_d4\\\\\\\": 0.022709,\\\\n        \\\\\\\"relative_change\\\\\\\": 2.912\\\\n      },\\\\n      \\\\\\\"tail_decay\\\\\\\": {\\\\n        \\\\\\\"mean_d0\\\\\\\": -0.002293,\\\\n        \\\\\\\"mean_d4\\\\\\\": -0.002222,\\\\n        \\\\\\\"relative_change\\\\\\\": 0.031\\\\n      },\\\\n      \\\\\\\"ttr\\\\\\\": {\\\\n        \\\\\\\"mean_d0\\\\\\\": 0.642574,\\\\n        \\\\\\\"mean_d4\\\\\\\": 0.252662,\\\\n        \\\\\\\"relative_change\\\\\\\": -0.6068\\\\n      },\\\\n      \\\\\\\"hapax_ratio\\\\\\\": {\\\\n        \\\\\\\"mean_d0\\\\\\\": 0.516257,\\\\n        \\\\\\\"mean_d4\\\\\\\": 0.134314,\\\\n        \\\\\\\"relative_change\\\\\\\": -0.7398\\\\n      }\\\\n    },\\\\n    \\\\\\\"elaboration\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": {\\\\n        \\\\\\\"mean_d0\\\\\\\": 2.637413,\\\\n        \\\\\\\"mean_d4\\\\\\\": 1.396397,\\\\n        \\\\\\\"relative_change\\\\\\\": -0.4705\\\\n      },\\\\n      \\\\\\\"entropy_std\\\\\\\": {\\\\n        \\\\\\\"mean_d0\\\\\\\": 1.660995,\\\\n        \\\\\\\"mean_d4\\\\\\\": 1.652359,\\\\n        \\\\\\\"relative_change\\\\\\\": -0.0052\\\\n      },\\\\n      \\\\\\\"entropy_max\\\\\\\": {\\\\n        \\\\\\\"mean_d0\\\\\\\": 7.378478,\\\\n        \\\\\\\"mean_d4\\\\\\\": 7.885723,\\\\n        \\\\\\\"relative_change\\\\\\\": 0.0687\\\\n      },\\\\n      \\\\\\\"entropy_min\\\\\\\": {\\\\n        \\\\\\\"mean_d0\\\\\\\": 0.005801,\\\\n        \\\\\\\"mean_d4\\\\\\\": 0.003078,\\\\n        \\\\\\\"relative_change\\\\\\\": -0.4694\\\\n      },\\\\n      \\\\\\\"tail_decay\\\\\\\": {\\\\n        \\\\\\\"mean_d0\\\\\\\": -0.002293,\\\\n        \\\\\\\"mean_d4\\\\\\\": -0.002323,\\\\n        \\\\\\\"relative_change\\\\\\\": -0.0133\\\\n      },\\\\n      \\\\\\\"ttr\\\\\\\": {\\\\n        \\\\\\\"mean_d0\\\\\\\": 0.642574,\\\\n        \\\\\\\"mean_d4\\\\\\\": 0.230491,\\\\n        \\\\\\\"relative_change\\\\\\\": -0.6413\\\\n      },\\\\n      \\\\\\\"hapax_ratio\\\\\\\": {\\\\n        \\\\\\\"mean_d0\\\\\\\": 0.516257,\\\\n        \\\\\\\"mean_d4\\\\\\\": 0.088576,\\\\n        \\\\\\\"relative_change\\\\\\\": -0.8284\\\\n      }\\\\n    },\\\\n    \\\\\\\"inspired_rewriting\\\\\\\": {\\\\n      \\\\\\\"entropy_mean\\\\\\\": {\\\\n        \\\\\\\"mean_d0\\\\\\\": 2.637377,\\\\n        \\\\\\\"mean_d4\\\\\\\": 1.379959,\\\\n        \\\\\\\"relative_change\\\\\\\": -0.4768\\\\n      },\\\\n      \\\\\\\"entropy_std\\\\\\\": {\\\\n        \\\\\\\"mean_d0\\\\\\\": 1.660963,\\\\n        \\\\\\\"mean_d4\\\\\\\": 1.636728,\\\\n        \\\\\\\"relative_change\\\\\\\": -0.0146\\\\n      },\\\\n      \\\\\\\"entropy_max\\\\\\\": {\\\\n        \\\\\\\"mean_d0\\\\\\\": 7.3784,\\\\n        \\\\\\\"mean_d4\\\\\\\": 7.902992,\\\\n        \\\\\\\"relative_change\\\\\\\": 0.0711\\\\n      },\\\\n      \\\\\\\"entropy_min\\\\\\\": {\\\\n        \\\\\\\"mean_d0\\\\\\\": 0.005797,\\\\n        \\\\\\\"mean_d4\\\\\\\": 0.010427,\\\\n        \\\\\\\"relative_change\\\\\\\": 0.7985\\\\n      },\\\\n      \\\\\\\"tail_decay\\\\\\\": {\\\\n        \\\\\\\"mean_d0\\\\\\\": -0.002293,\\\\n        \\\\\\\"mean_d4\\\\\\\": -0.002305,\\\\n        \\\\\\\"relative_change\\\\\\\": -0.0052\\\\n      },\\\\n      \\\\\\\"ttr\\\\\\\": {\\\\n        \\\\\\\"mean_d0\\\\\\\": 0.642574,\\\\n        \\\\\\\"mean_d4\\\\\\\": 0.245623,\\\\n        \\\\\\\"relative_change\\\\\\\": -0.6178\\\\n      },\\\\n      \\\\\\\"hapax_ratio\\\\\\\": {\\\\n        \\\\\\\"mean_d0\\\\\\\": 0.516257,\\\\n        \\\\\\\"mean_d4\\\\\\\": 0.103384,\\\\n        \\\\\\\"relative_change\\\\\\\": -0.7997\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_prompt_cv_f1\\\": {\\n    \\\"continuation\\\": {\\n      \\\"mean\\\": 0.7806,\\n      \\\"std\\\": 0.012,\\n      \\\"folds\\\": [\\n        0.786,\\n        0.764,\\n        0.8001,\\n        0.7775,\\n        0.7755\\n      ]\\n    },\\n    \\\"elaboration\\\": {\\n      \\\"mean\\\": 0.73,\\n      \\\"std\\\": 0.0112,\\n      \\\"folds\\\": [\\n        0.7377,\\n        0.7243,\\n        0.7323,\\n        0.744,\\n        0.7116\\n      ]\\n    },\\n    \\\"inspired_rewriting\\\": {\\n      \\\"mean\\\": 0.7368,\\n      \\\"std\\\": 0.0114,\\n      \\\"folds\\\": [\\n        0.724,\\n        0.7457,\\n        0.7294,\\n        0.7306,\\n        0.7544\\n      ]\\n    }\\n  },\\n  \\\"lopto_f1\\\": {\\n    \\\"continuation\\\": 0.762,\\n    \\\"elaboration\\\": 0.7622,\\n    \\\"inspired_rewriting\\\": 0.7334,\\n    \\\"avg\\\": 0.7525\\n  },\\n  \\\"depth_decay\\\": {\\n    \\\"continuation\\\": {\\n      \\\"depth_counts\\\": {\\n        \\\"0\\\": 995,\\n        \\\"1\\\": 992,\\n        \\\"2\\\": 932,\\n        \\\"3\\\": 874,\\n        \\\"4\\\": 827\\n      },\\n      \\\"d0\\\": 995,\\n      \\\"d4\\\": 827,\\n      \\\"retention_d4_pct\\\": 83.1,\\n      \\\"max_depth\\\": 4\\n    },\\n    \\\"elaboration\\\": {\\n      \\\"depth_counts\\\": {\\n        \\\"0\\\": 995,\\n        \\\"1\\\": 995,\\n        \\\"2\\\": 989,\\n        \\\"3\\\": 986,\\n        \\\"4\\\": 981\\n      },\\n      \\\"d0\\\": 995,\\n      \\\"d4\\\": 981,\\n      \\\"retention_d4_pct\\\": 98.6,\\n      \\\"max_depth\\\": 4\\n    },\\n    \\\"inspired_rewriting\\\": {\\n      \\\"depth_counts\\\": {\\n        \\\"0\\\": 995,\\n        \\\"1\\\": 995,\\n        \\\"2\\\": 959,\\n        \\\"3\\\": 944,\\n        \\\"4\\\": 934\\n      },\\n      \\\"d0\\\": 995,\\n      \\\"d4\\\": 934,\\n      \\\"retention_d4_pct\\\": 93.9,\\n      \\\"max_depth\\\": 4\\n    }\\n  },\\n  \\\"feature_drift\\\": {\\n    \\\"continuation\\\": {\\n      \\\"entropy_mean\\\": {\\n        \\\"mean_d0\\\": 2.637409,\\n        \\\"mean_d4\\\": 1.167259,\\n        \\\"relative_change\\\": -0.5574\\n      },\\n      \\\"entropy_std\\\": {\\n        \\\"mean_d0\\\": 1.660982,\\n        \\\"mean_d4\\\": 1.585047,\\n        \\\"relative_change\\\": -0.0457\\n      },\\n      \\\"entropy_max\\\": {\\n        \\\"mean_d0\\\": 7.37862,\\n        \\\"mean_d4\\\": 7.353884,\\n        \\\"relative_change\\\": -0.0034\\n      },\\n      \\\"entropy_min\\\": {\\n        \\\"mean_d0\\\": 0.005805,\\n        \\\"mean_d4\\\": 0.022709,\\n        \\\"relative_change\\\": 2.912\\n      },\\n      \\\"tail_decay\\\": {\\n        \\\"mean_d0\\\": -0.002293,\\n        \\\"mean_d4\\\": -0.002222,\\n        \\\"relative_change\\\": 0.031\\n      },\\n      \\\"ttr\\\": {\\n        \\\"mean_d0\\\": 0.642574,\\n        \\\"mean_d4\\\": 0.252662,\\n        \\\"relative_change\\\": -0.6068\\n      },\\n      \\\"hapax_ratio\\\": {\\n        \\\"mean_d0\\\": 0.516257,\\n        \\\"mean_d4\\\": 0.134314,\\n        \\\"relative_change\\\": -0.7398\\n      }\\n    },\\n    \\\"elaboration\\\": {\\n      \\\"entropy_mean\\\": {\\n        \\\"mean_d0\\\": 2.637413,\\n        \\\"mean_d4\\\": 1.396397,\\n        \\\"relative_change\\\": -0.4705\\n      },\\n      \\\"entropy_std\\\": {\\n        \\\"mean_d0\\\": 1.660995,\\n        \\\"mean_d4\\\": 1.652359,\\n        \\\"relative_change\\\": -0.0052\\n      },\\n      \\\"entropy_max\\\": {\\n        \\\"mean_d0\\\": 7.378478,\\n        \\\"mean_d4\\\": 7.885723,\\n        \\\"relative_change\\\": 0.0687\\n      },\\n      \\\"entropy_min\\\": {\\n        \\\"mean_d0\\\": 0.005801,\\n        \\\"mean_d4\\\": 0.003078,\\n        \\\"relative_change\\\": -0.4694\\n      },\\n      \\\"tail_decay\\\": {\\n        \\\"mean_d0\\\": -0.002293,\\n        \\\"mean_d4\\\": -0.002323,\\n        \\\"relative_change\\\": -0.0133\\n      },\\n      \\\"ttr\\\": {\\n        \\\"mean_d0\\\": 0.642574,\\n        \\\"mean_d4\\\": 0.230491,\\n        \\\"relative_change\\\": -0.6413\\n      },\\n      \\\"hapax_ratio\\\": {\\n        \\\"mean_d0\\\": 0.516257,\\n        \\\"mean_d4\\\": 0.088576,\\n        \\\"relative_change\\\": -0.8284\\n      }\\n    },\\n    \\\"inspired_rewriting\\\": {\\n      \\\"entropy_mean\\\": {\\n        \\\"mean_d0\\\": 2.637377,\\n        \\\"mean_d4\\\": 1.379959,\\n        \\\"relative_change\\\": -0.4768\\n      },\\n      \\\"entropy_std\\\": {\\n        \\\"mean_d0\\\": 1.660963,\\n        \\\"mean_d4\\\": 1.636728,\\n        \\\"relative_change\\\": -0.0146\\n      },\\n      \\\"entropy_max\\\": {\\n        \\\"mean_d0\\\": 7.3784,\\n        \\\"mean_d4\\\": 7.902992,\\n        \\\"relative_change\\\": 0.0711\\n      },\\n      \\\"entropy_min\\\": {\\n        \\\"mean_d0\\\": 0.005797,\\n        \\\"mean_d4\\\": 0.010427,\\n        \\\"relative_change\\\": 0.7985\\n      },\\n      \\\"tail_decay\\\": {\\n        \\\"mean_d0\\\": -0.002293,\\n        \\\"mean_d4\\\": -0.002305,\\n        \\\"relative_change\\\": -0.0052\\n      },\\n      \\\"ttr\\\": {\\n        \\\"mean_d0\\\": 0.642574,\\n        \\\"mean_d4\\\": 0.245623,\\n        \\\"relative_change\\\": -0.6178\\n      },\\n      \\\"hapax_ratio\\\": {\\n        \\\"mean_d0\\\": 0.516257,\\n        \\\"mean_d4\\\": 0.103384,\\n        \\\"relative_change\\\": -0.7997\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Nt5zVWTghLanMf4UfwaJ8b`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/scripts/review_topic_drift.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "ffae5783-da68-47b5-91a9-bfb661f8b670",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xnfuo9FJ7wQRNBTvQc6GuY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10651,
+      "cache_read_input_tokens": 96110,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10651
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-17T10:56:52.583Z_
+
+<details><summary>↩ Tool result · `toolu_01Nt5zVWTghLanMf4UfwaJ8b`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Topic drift descriptive analysis for reviewer response\\n# Measures semantic drift across generation depths and correlates with depth features\\n\\nimport json\\nimport os\\nimport glob\\nimport numpy as np\\nimport pandas as pd\\nfrom collections import defaultdict\\nfrom scipy.stats import spearmanr\\nfrom sentence_transformers import SentenceTransformer\\n\\nDATA_DIR = \\\"/root/gen-depth-fingerprint/data\\\"\\nRESULTS_DIR = \\\"/root/gen-depth-fingerprint/results\\\"\\nos.makedirs(RESULTS_DIR, exist_ok=True)\\n\\nDEVICE = \\\"cuda:0\\\"\\n\\n# --- Data loading ---\\n\\nCONTINUATION_DIRS = {\\n    \\\"pythia-2.8b\\\": \\\"pythia-2.8b-continuation\\\",\\n    \\\"pythia-1b\\\": \\\"pythia-1b\\\",\\n    \\\"olmo-2-1b\\\": \\\"olmo-2-1b\\\",\\n    \\\"qwen3-0.6b\\\": \\\"qwen3-0.6b\\\",\\n    \\\"qwen3-1.7b\\\": \\\"qwen3-1.7b\\\",\\n    \\\"qwen3-8b\\\": \\\"qwen3-8b\\\",\\n}\\n\\nPROMPT_TYPE_DIRS = {\\n    \\\"continuation\\\": \\\"pythia-2.8b-continuation\\\",\\n    \\\"elaboration\\\": \\\"pythia-2.8b-elaboration\\\",\\n    \\\"inspired_rewriting\\\": \\\"pythia-2.8b-inspired_rewriting\\\",\\n}\\n\\n\\ndef load_generations(subdir):\\n    \\\"\\\"\\\"Load all generation records from a data subdirectory.\\\"\\\"\\\"\\n    records = []\\n    pattern = os.path.join(DATA_DIR, subdir, \\\"generations*.jsonl\\\")\\n    for fpath in sorted(glob.glob(pattern)):\\n        with open(fpath) as f:\\n            for line in f:\\n                if line.strip():\\n                    records.append(json.loads(line))\\n    return records\\n\\n\\ndef build_chains(records):\\n    \\\"\\\"\\\"Group records into chains keyed by (model, seed_id), sorted by depth.\\\"\\\"\\\"\\n    chains = defaultdict(dict)\\n    for r in records:\\n        model = r.get(\\\"model\\\", \\\"unknown\\\")\\n        seed = r[\\\"seed_id\\\"]\\n        depth = r[\\\"depth\\\"]\\n        chains[(model, seed)][depth] = r[\\\"text\\\"]\\n    return chains\\n\\n\\n# --- Main ---\\n\\nprint(\\\"Loading generation data...\\\")\\nall_cont_records = []\\nfor model_name, subdir in CONTINUATION_DIRS.items():\\n    recs = load_generations(subdir)\\n    print(f\\\"  {model_name}: {len(recs)} records\\\")\\n    all_cont_records.extend(recs)\\n\\nprompt_type_records = {}\\nfor pt, subdir in PROMPT_TYPE_DIRS.items():\\n    recs = load_generations(subdir)\\n    print(f\\\"  prompt_type={pt}: {len(recs)} records\\\")\\n    prompt_type_records[pt] = recs\\n\\n# Build chains for continuation models\\ncont_chains = build_chains(all_cont_records)\\nprint(f\\\"Total continuation chains: {len(cont_chains)}\\\")\\n\\n# Collect all unique texts and their indices for batch embedding\\nprint(\\\"Collecting texts for embedding...\\\")\\ntext_list = []\\ntext_index = {}  # (model, seed, depth) -> index in text_list\\n\\nfor (model, seed), depth_map in cont_chains.items():\\n    for depth in sorted(depth_map.keys()):\\n        key = (model, seed, depth)\\n        text_index[key] = len(text_list)\\n        text_list.append(depth_map[depth])\\n\\n# Also collect prompt type texts\\npt_chains = {}\\nfor pt, recs in prompt_type_records.items():\\n    chains = build_chains(recs)\\n    pt_chains[pt] = chains\\n    for (model, seed), depth_map in chains.items():\\n        for depth in sorted(depth_map.keys()):\\n            key = (f\\\"pt_{pt}\\\", seed, depth)\\n            if key not in text_index:\\n                text_index[key] = len(text_list)\\n                text_list.append(depth_map[depth])\\n\\nprint(f\\\"Total texts to embed: {len(text_list)}\\\")\\n\\n# Compute embeddings\\nprint(\\\"Computing sentence embeddings with all-MiniLM-L6-v2...\\\")\\nmodel = SentenceTransformer(\\\"sentence-transformers/all-MiniLM-L6-v2\\\", device=DEVICE)\\nembeddings = model.encode(text_list, batch_size=256, show_progress_bar=True,\\n                          convert_to_numpy=True, normalize_embeddings=True)\\nprint(f\\\"Embeddings shape: {embeddings.shape}\\\")\\n\\n\\ndef cosine_sim(a, b):\\n    return float(np.dot(a, b))\\n\\n\\n# --- Report (a): Semantic similarity by depth transition ---\\n\\nprint(\\\"\\\\n=== (a) Semantic similarity by depth transition ===\\\")\\ntransition_sims = defaultdict(list)\\n\\nfor (model_name, seed), depth_map in cont_chains.items():\\n    depths = sorted(depth_map.keys())\\n    for i in range(1, len(depths)):\\n        d_prev, d_curr = depths[i - 1], depths[i]\\n        if d_curr - d_prev != 1:\\n            continue\\n        idx_prev = text_index[(model_name, seed, d_prev)]\\n     \\n\\n... [截断: 输出过长，省略 526 字符] ...\\n\\nmparison (Pythia-2.8B only) ---\\n\\nprint(\\\"\\\\n=== (b) Prompt type comparison ===\\\")\\nprompt_type_results = {}\\n\\nfor pt, chains in pt_chains.items():\\n    pt_trans_sims = defaultdict(list)\\n    all_sims = []\\n    for (model_name, seed), depth_map in chains.items():\\n        depths = sorted(depth_map.keys())\\n        for i in range(1, len(depths)):\\n            d_prev, d_curr = depths[i - 1], depths[i]\\n            if d_curr - d_prev != 1:\\n                continue\\n            idx_prev = text_index[(f\\\"pt_{pt}\\\", seed, d_prev)]\\n            idx_curr = text_index[(f\\\"pt_{pt}\\\", seed, d_curr)]\\n            sim = cosine_sim(embeddings[idx_prev], embeddings[idx_curr])\\n            pt_trans_sims[f\\\"{d_prev}_to_{d_curr}\\\"].append(sim)\\n            all_sims.append(sim)\\n\\n    trans_summary = {}\\n    for trans in sorted(pt_trans_sims.keys()):\\n        vals = pt_trans_sims[trans]\\n        trans_summary[trans] = {\\\"mean\\\": round(float(np.mean(vals)), 4),\\n                                \\\"std\\\": round(float(np.std(vals)), 4)}\\n\\n    avg_sim = round(float(np.mean(all_sims)), 4) if all_sims else None\\n    prompt_type_results[pt] = {\\\"avg_sim\\\": avg_sim, \\\"sim_by_transition\\\": trans_summary}\\n    print(f\\\"  {pt}: avg_sim={avg_sim}, transitions={trans_summary}\\\")\\n\\n\\n# --- Compute cumulative semantic drift for correlation analysis ---\\n\\nprint(\\\"\\\\n=== Computing cumulative semantic drift ===\\\")\\n# For each (model, seed, depth>0): cumulative cosine distance from depth 0\\ndrift_records = []\\n\\nfor (model_name, seed), depth_map in cont_chains.items():\\n    depths = sorted(depth_map.keys())\\n    cum_drift = 0.0\\n    for i in range(1, len(depths)):\\n        d_prev, d_curr = depths[i - 1], depths[i]\\n        if d_curr - d_prev != 1:\\n            cum_drift = None\\n            break\\n        idx_prev = text_index[(model_name, seed, d_prev)]\\n        idx_curr = text_index[(model_name, seed, d_curr)]\\n        sim = cosine_sim(embeddings[idx_prev], embeddings[idx_curr])\\n        cum_drift += (1.0 - sim)\\n        drift_records.append({\\n            \\\"model_name\\\": model_name,\\n            \\\"seed_id\\\": seed,\\n            \\\"depth\\\": d_curr,\\n            \\\"step_cosine_dist\\\": 1.0 - sim,\\n            \\\"cumulative_drift\\\": cum_drift,\\n        })\\n\\ndrift_df = pd.DataFrame(drift_records)\\nprint(f\\\"Drift records: {len(drift_df)}\\\")\\n\\n# Load features\\nfeatures_df = pd.read_csv(os.path.join(DATA_DIR, \\\"features_all_models.csv\\\"))\\nprint(f\\\"Features records: {len(features_df)}\\\")\\n\\n# Merge\\nmerged = drift_df.merge(features_df, on=[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"], how=\\\"inner\\\")\\nprint(f\\\"Merged records: {len(merged)}\\\")\\n\\n\\n# --- Report (c): Shape features vs semantic drift ---\\n\\nprint(\\\"\\\\n=== (c) Shape feature correlations ===\\\")\\nshape_features = [\\\"entropy_std\\\", \\\"tail_decay\\\"]\\nshape_corr = {}\\n\\nfor feat in shape_features:\\n    valid = merged[[feat, \\\"cumulative_drift\\\"]].dropna()\\n    rho, p = spearmanr(valid[feat], valid[\\\"cumulative_drift\\\"])\\n    shape_corr[f\\\"{feat}_vs_semantic_drift\\\"] = {\\\"rho\\\": round(float(rho), 4), \\\"p\\\": round(float(p), 6)}\\n    print(f\\\"  {feat} vs cumulative_drift: rho={rho:.4f}, p={p:.2e}\\\")\\n\\n\\n# --- Report (d): Drifting features vs semantic drift ---\\n\\nprint(\\\"\\\\n=== (d) Drifting feature correlations ===\\\")\\ndrifting_features = [\\\"hapax_ratio\\\", \\\"ttr\\\", \\\"entropy_mean\\\"]\\ndrifting_corr = {}\\n\\nfor feat in drifting_features:\\n    valid = merged[[feat, \\\"cumulative_drift\\\"]].dropna()\\n    rho, p = spearmanr(valid[feat], valid[\\\"cumulative_drift\\\"])\\n    drifting_corr[f\\\"{feat}_vs_semantic_drift\\\"] = {\\\"rho\\\": round(float(rho), 4), \\\"p\\\": round(float(p), 6)}\\n    print(f\\\"  {feat} vs cumulative_drift: rho={rho:.4f}, p={p:.2e}\\\")\\n\\n\\n# --- Save results ---\\n\\nresults = {\\n    \\\"semantic_similarity_by_transition\\\": sim_by_transition,\\n    \\\"prompt_type_comparison\\\": prompt_type_results,\\n    \\\"shape_feature_correlations\\\": shape_corr,\\n    \\\"drifting_feature_correlations\\\": drifting_corr,\\n}\\n\\nout_path = os.path.join(RESULTS_DIR, \\\"review_topic_drift_results.json\\\")\\nwith open(out_path, \\\"w\\\") as f:\\n    json.dump(results, f, indent=2)\\nprint(f\\\"\\\\nResults saved to {out_path}\\\")\\nprint(json.dumps(results, indent=2))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "06a262b7-f65a-4e59-aea1-1a2c4e67fb67",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# Topic drift descriptive analysis for reviewer response\\\\n# Measures semantic drift across generation depths and correlates with depth features\\\\n\\\\nimport json\\\\nimport os\\\\nimport glob\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom collections import defaultdict\\\\nfrom scipy.stats import spearmanr\\\\nfrom sentence_transformers import SentenceTransformer\\\\n\\\\nDATA_DIR = \\\\\\\"/root/gen-depth-fingerprint/data\\\\\\\"\\\\nRESULTS_DIR = \\\\\\\"/root/gen-depth-fingerprint/results\\\\\\\"\\\\nos.makedirs(RESULTS_DIR, exist_ok=True)\\\\n\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\n\\\\n# --- Data loading ---\\\\n\\\\nCONTINUATION_DIRS = {\\\\n    \\\\\\\"pythia-2.8b\\\\\\\": \\\\\\\"pythia-2.8b-continuation\\\\\\\",\\\\n    \\\\\\\"pythia-1b\\\\\\\": \\\\\\\"pythia-1b\\\\\\\",\\\\n    \\\\\\\"olmo-2-1b\\\\\\\": \\\\\\\"olmo-2-1b\\\\\\\",\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\": \\\\\\\"qwen3-0.6b\\\\\\\",\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\": \\\\\\\"qwen3-1.7b\\\\\\\",\\\\n    \\\\\\\"qwen3-8b\\\\\\\": \\\\\\\"qwen3-8b\\\\\\\",\\\\n}\\\\n\\\\nPROMPT_TYPE_DIRS = {\\\\n    \\\\\\\"continuation\\\\\\\": \\\\\\\"pythia-2.8b-continuation\\\\\\\",\\\\n    \\\\\\\"elaboration\\\\\\\": \\\\\\\"pythia-2.8b-elaboration\\\\\\\",\\\\n    \\\\\\\"inspired_rewriting\\\\\\\": \\\\\\\"pythia-2.8b-inspired_rewriting\\\\\\\",\\\\n}\\\\n\\\\n\\\\ndef load_generations(subdir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load all generation records from a data subdirectory.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    records = []\\\\n    pattern = os.path.join(DATA_DIR, subdir, \\\\\\\"generations*.jsonl\\\\\\\")\\\\n    for fpath in sorted(glob.glob(pattern)):\\\\n        with open(fpath) as f:\\\\n            for line in f:\\\\n                if line.strip():\\\\n                    records.append(json.loads(line))\\\\n    return records\\\\n\\\\n\\\\ndef build_chains(records):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Group records into chains keyed by (model, seed_id), sorted by depth.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    chains = defaultdict(dict)\\\\n    for r in records:\\\\n        model = r.get(\\\\\\\"model\\\\\\\", \\\\\\\"unknown\\\\\\\")\\\\n        seed = r[\\\\\\\"seed_id\\\\\\\"]\\\\n        depth = r[\\\\\\\"depth\\\\\\\"]\\\\n        chains[(model, seed)][depth] = r[\\\\\\\"text\\\\\\\"]\\\\n    return chains\\\\n\\\\n\\\\n# --- Main ---\\\\n\\\\nprint(\\\\\\\"Loading generation data...\\\\\\\")\\\\nall_cont_records = []\\\\nfor model_name, subdir in CONTINUATION_DIRS.items():\\\\n    recs = load_generations(subdir)\\\\n    print(f\\\\\\\"  {model_name}: {len(recs)} records\\\\\\\")\\\\n    all_cont_records.extend(recs)\\\\n\\\\nprompt_type_records = {}\\\\nfor pt, subdir in PROMPT_TYPE_DIRS.items():\\\\n    recs = load_generations(subdir)\\\\n    print(f\\\\\\\"  prompt_type={pt}: {len(recs)} records\\\\\\\")\\\\n    prompt_type_records[pt] = recs\\\\n\\\\n# Build chains for continuation models\\\\ncont_chains = build_chains(all_cont_records)\\\\nprint(f\\\\\\\"Total continuation chains: {len(cont_chains)}\\\\\\\")\\\\n\\\\n# Collect all unique texts and their indices for batch embedding\\\\nprint(\\\\\\\"Collecting texts for embedding...\\\\\\\")\\\\ntext_list = []\\\\ntext_index = {}  # (model, seed, depth) -> index in text_list\\\\n\\\\nfor (model, seed), depth_map in cont_chains.items():\\\\n    for depth in sorted(depth_map.keys()):\\\\n        key = (model, seed, depth)\\\\n        text_index[key] = len(text_list)\\\\n        text_list.append(depth_map[depth])\\\\n\\\\n# Also collect prompt type texts\\\\npt_chains = {}\\\\nfor pt, recs in prompt_type_records.items():\\\\n    chains = build_chains(recs)\\\\n    pt_chains[pt] = chains\\\\n    for (model, seed), depth_map in chains.items():\\\\n        for depth in sorted(depth_map.keys()):\\\\n            key = (f\\\\\\\"pt_{pt}\\\\\\\", seed, depth)\\\\n            if key not in text_index:\\\\n                text_index[key] = len(text_list)\\\\n                text_list.append(depth_map[depth])\\\\n\\\\nprint(f\\\\\\\"Total texts to embed: {len(text_list)}\\\\\\\")\\\\n\\\\n# Compute embeddings\\\\nprint(\\\\\\\"Computing sentence embeddings with all-MiniLM-L6-v2...\\\\\\\")\\\\nmodel = SentenceTransformer(\\\\\\\"sentence-transformers/all-MiniLM-L6-v2\\\\\\\", device=DEVICE)\\\\nembeddings = model.encode(text_list, batch_size=256, show_progress_bar=True,\\\\n                          convert_to_numpy=True, normalize_embeddings=True)\\\\nprint(f\\\\\\\"Embeddings shape: {embeddings.shape}\\\\\\\")\\\\n\\\\n\\\\ndef cosine_sim(a, b):\\\\n    return float(np.dot(a, b))\\\\n\\\\n\\\\n# --- Report (a): Semantic similarity by depth transition ---\\\\n\\\\nprint(\\\\\\\"\\\\\\\\n=== (a) Semantic similarity by depth transition ===\\\\\\\")\\\\ntransition_sims = defaultdict(list)\\\\n\\\\nfor (model_name, seed), depth_map in cont_chains.items():\\\\n    depths = sorted(depth_map.keys())\\\\n    for i in range(1, len(depths)):\\\\n        d_prev, d_curr = depths[i - 1], depths[i]\\\\n        if d_curr - d_prev != 1:\\\\n            continue\\\\n        idx_prev = text_index[(model_name, seed, d_prev)]\\\\n     \\\\n\\\\n... [截断: 输出过长，省略 526 字符] ...\\\\n\\\\nmparison (Pythia-2.8B only) ---\\\\n\\\\nprint(\\\\\\\"\\\\\\\\n=== (b) Prompt type comparison ===\\\\\\\")\\\\nprompt_type_results = {}\\\\n\\\\nfor pt, chains in pt_chains.items():\\\\n    pt_trans_sims = defaultdict(list)\\\\n    all_sims = []\\\\n    for (model_name, seed), depth_map in chains.items():\\\\n        depths = sorted(depth_map.keys())\\\\n        for i in range(1, len(depths)):\\\\n            d_prev, d_curr = depths[i - 1], depths[i]\\\\n            if d_curr - d_prev != 1:\\\\n                continue\\\\n            idx_prev = text_index[(f\\\\\\\"pt_{pt}\\\\\\\", seed, d_prev)]\\\\n            idx_curr = text_index[(f\\\\\\\"pt_{pt}\\\\\\\", seed, d_curr)]\\\\n            sim = cosine_sim(embeddings[idx_prev], embeddings[idx_curr])\\\\n            pt_trans_sims[f\\\\\\\"{d_prev}_to_{d_curr}\\\\\\\"].append(sim)\\\\n            all_sims.append(sim)\\\\n\\\\n    trans_summary = {}\\\\n    for trans in sorted(pt_trans_sims.keys()):\\\\n        vals = pt_trans_sims[trans]\\\\n        trans_summary[trans] = {\\\\\\\"mean\\\\\\\": round(float(np.mean(vals)), 4),\\\\n                                \\\\\\\"std\\\\\\\": round(float(np.std(vals)), 4)}\\\\n\\\\n    avg_sim = round(float(np.mean(all_sims)), 4) if all_sims else None\\\\n    prompt_type_results[pt] = {\\\\\\\"avg_sim\\\\\\\": avg_sim, \\\\\\\"sim_by_transition\\\\\\\": trans_summary}\\\\n    print(f\\\\\\\"  {pt}: avg_sim={avg_sim}, transitions={trans_summary}\\\\\\\")\\\\n\\\\n\\\\n# --- Compute cumulative semantic drift for correlation analysis ---\\\\n\\\\nprint(\\\\\\\"\\\\\\\\n=== Computing cumulative semantic drift ===\\\\\\\")\\\\n# For each (model, seed, depth>0): cumulative cosine distance from depth 0\\\\ndrift_records = []\\\\n\\\\nfor (model_name, seed), depth_map in cont_chains.items():\\\\n    depths = sorted(depth_map.keys())\\\\n    cum_drift = 0.0\\\\n    for i in range(1, len(depths)):\\\\n        d_prev, d_curr = depths[i - 1], depths[i]\\\\n        if d_curr - d_prev != 1:\\\\n            cum_drift = None\\\\n            break\\\\n        idx_prev = text_index[(model_name, seed, d_prev)]\\\\n        idx_curr = text_index[(model_name, seed, d_curr)]\\\\n        sim = cosine_sim(embeddings[idx_prev], embeddings[idx_curr])\\\\n        cum_drift += (1.0 - sim)\\\\n        drift_records.append({\\\\n            \\\\\\\"model_name\\\\\\\": model_name,\\\\n            \\\\\\\"seed_id\\\\\\\": seed,\\\\n            \\\\\\\"depth\\\\\\\": d_curr,\\\\n            \\\\\\\"step_cosine_dist\\\\\\\": 1.0 - sim,\\\\n            \\\\\\\"cumulative_drift\\\\\\\": cum_drift,\\\\n        })\\\\n\\\\ndrift_df = pd.DataFrame(drift_records)\\\\nprint(f\\\\\\\"Drift records: {len(drift_df)}\\\\\\\")\\\\n\\\\n# Load features\\\\nfeatures_df = pd.read_csv(os.path.join(DATA_DIR, \\\\\\\"features_all_models.csv\\\\\\\"))\\\\nprint(f\\\\\\\"Features records: {len(features_df)}\\\\\\\")\\\\n\\\\n# Merge\\\\nmerged = drift_df.merge(features_df, on=[\\\\\\\"model_name\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\"], how=\\\\\\\"inner\\\\\\\")\\\\nprint(f\\\\\\\"Merged records: {len(merged)}\\\\\\\")\\\\n\\\\n\\\\n# --- Report (c): Shape features vs semantic drift ---\\\\n\\\\nprint(\\\\\\\"\\\\\\\\n=== (c) Shape feature correlations ===\\\\\\\")\\\\nshape_features = [\\\\\\\"entropy_std\\\\\\\", \\\\\\\"tail_decay\\\\\\\"]\\\\nshape_corr = {}\\\\n\\\\nfor feat in shape_features:\\\\n    valid = merged[[feat, \\\\\\\"cumulative_drift\\\\\\\"]].dropna()\\\\n    rho, p = spearmanr(valid[feat], valid[\\\\\\\"cumulative_drift\\\\\\\"])\\\\n    shape_corr[f\\\\\\\"{feat}_vs_semantic_drift\\\\\\\"] = {\\\\\\\"rho\\\\\\\": round(float(rho), 4), \\\\\\\"p\\\\\\\": round(float(p), 6)}\\\\n    print(f\\\\\\\"  {feat} vs cumulative_drift: rho={rho:.4f}, p={p:.2e}\\\\\\\")\\\\n\\\\n\\\\n# --- Report (d): Drifting features vs semantic drift ---\\\\n\\\\nprint(\\\\\\\"\\\\\\\\n=== (d) Drifting feature correlations ===\\\\\\\")\\\\ndrifting_features = [\\\\\\\"hapax_ratio\\\\\\\", \\\\\\\"ttr\\\\\\\", \\\\\\\"entropy_mean\\\\\\\"]\\\\ndrifting_corr = {}\\\\n\\\\nfor feat in drifting_features:\\\\n    valid = merged[[feat, \\\\\\\"cumulative_drift\\\\\\\"]].dropna()\\\\n    rho, p = spearmanr(valid[feat], valid[\\\\\\\"cumulative_drift\\\\\\\"])\\\\n    drifting_corr[f\\\\\\\"{feat}_vs_semantic_drift\\\\\\\"] = {\\\\\\\"rho\\\\\\\": round(float(rho), 4), \\\\\\\"p\\\\\\\": round(float(p), 6)}\\\\n    print(f\\\\\\\"  {feat} vs cumulative_drift: rho={rho:.4f}, p={p:.2e}\\\\\\\")\\\\n\\\\n\\\\n# --- Save results ---\\\\n\\\\nresults = {\\\\n    \\\\\\\"semantic_similarity_by_transition\\\\\\\": sim_by_transition,\\\\n    \\\\\\\"prompt_type_comparison\\\\\\\": prompt_type_results,\\\\n    \\\\\\\"shape_feature_correlations\\\\\\\": shape_corr,\\\\n    \\\\\\\"drifting_feature_correlations\\\\\\\": drifting_corr,\\\\n}\\\\n\\\\nout_path = os.path.join(RESULTS_DIR, \\\\\\\"review_topic_drift_results.json\\\\\\\")\\\\nwith open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(results, f, indent=2)\\\\nprint(f\\\\\\\"\\\\\\\\nResults saved to {out_path}\\\\\\\")\\\\nprint(json.dumps(results, indent=2))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"# Topic drift descriptive analysis for reviewer response\\n# Measures semantic drift across generation depths and correlates with depth features\\n\\nimport json\\nimport os\\nimport glob\\nimport numpy as np\\nimport pandas as pd\\nfrom collections import defaultdict\\nfrom scipy.stats import spearmanr\\nfrom sentence_transformers import SentenceTransformer\\n\\nDATA_DIR = \\\"/root/gen-depth-fingerprint/data\\\"\\nRESULTS_DIR = \\\"/root/gen-depth-fingerprint/results\\\"\\nos.makedirs(RESULTS_DIR, exist_ok=True)\\n\\nDEVICE = \\\"cuda:0\\\"\\n\\n# --- Data loading ---\\n\\nCONTINUATION_DIRS = {\\n    \\\"pythia-2.8b\\\": \\\"pythia-2.8b-continuation\\\",\\n    \\\"pythia-1b\\\": \\\"pythia-1b\\\",\\n    \\\"olmo-2-1b\\\": \\\"olmo-2-1b\\\",\\n    \\\"qwen3-0.6b\\\": \\\"qwen3-0.6b\\\",\\n    \\\"qwen3-1.7b\\\": \\\"qwen3-1.7b\\\",\\n    \\\"qwen3-8b\\\": \\\"qwen3-8b\\\",\\n}\\n\\nPROMPT_TYPE_DIRS = {\\n    \\\"continuation\\\": \\\"pythia-2.8b-continuation\\\",\\n    \\\"elaboration\\\": \\\"pythia-2.8b-elaboration\\\",\\n    \\\"inspired_rewriting\\\": \\\"pythia-2.8b-inspired_rewriting\\\",\\n}\\n\\n\\ndef load_generations(subdir):\\n    \\\"\\\"\\\"Load all generation records from a data subdirectory.\\\"\\\"\\\"\\n    records = []\\n    pattern = os.path.join(DATA_DIR, subdir, \\\"generations*.jsonl\\\")\\n    for fpath in sorted(glob.glob(pattern)):\\n        with open(fpath) as f:\\n            for line in f:\\n                if line.strip():\\n                    records.append(json.loads(line))\\n    return records\\n\\n\\ndef build_chains(records):\\n    \\\"\\\"\\\"Group records into chains keyed by (model, seed_id), sorted by depth.\\\"\\\"\\\"\\n    chains = defaultdict(dict)\\n    for r in records:\\n        model = r.get(\\\"model\\\", \\\"unknown\\\")\\n        seed = r[\\\"seed_id\\\"]\\n        depth = r[\\\"depth\\\"]\\n        chains[(model, seed)][depth] = r[\\\"text\\\"]\\n    return chains\\n\\n\\n# --- Main ---\\n\\nprint(\\\"Loading generation data...\\\")\\nall_cont_records = []\\nfor model_name, subdir in CONTINUATION_DIRS.items():\\n    recs = load_generations(subdir)\\n    print(f\\\"  {model_name}: {len(recs)} records\\\")\\n    all_cont_records.extend(recs)\\n\\nprompt_type_records = {}\\nfor pt, subdir in PROMPT_TYPE_DIRS.items():\\n    recs = load_generations(subdir)\\n    print(f\\\"  prompt_type={pt}: {len(recs)} records\\\")\\n    prompt_type_records[pt] = recs\\n\\n# Build chains for continuation models\\ncont_chains = build_chains(all_cont_records)\\nprint(f\\\"Total continuation chains: {len(cont_chains)}\\\")\\n\\n# Collect all unique texts and their indices for batch embedding\\nprint(\\\"Collecting texts for embedding...\\\")\\ntext_list = []\\ntext_index = {}  # (model, seed, depth) -> index in text_list\\n\\nfor (model, seed), depth_map in cont_chains.items():\\n    for depth in sorted(depth_map.keys()):\\n        key = (model, seed, depth)\\n        text_index[key] = len(text_list)\\n        text_list.append(depth_map[depth])\\n\\n# Also collect prompt type texts\\npt_chains = {}\\nfor pt, recs in prompt_type_records.items():\\n    chains = build_chains(recs)\\n    pt_chains[pt] = chains\\n    for (model, seed), depth_map in chains.items():\\n        for depth in sorted(depth_map.keys()):\\n            key = (f\\\"pt_{pt}\\\", seed, depth)\\n            if key not in text_index:\\n                text_index[key] = len(text_list)\\n                text_list.append(depth_map[depth])\\n\\nprint(f\\\"Total texts to embed: {len(text_list)}\\\")\\n\\n# Compute embeddings\\nprint(\\\"Computing sentence embeddings with all-MiniLM-L6-v2...\\\")\\nmodel = SentenceTransformer(\\\"sentence-transformers/all-MiniLM-L6-v2\\\", device=DEVICE)\\nembeddings = model.encode(text_list, batch_size=256, show_progress_bar=True,\\n                          convert_to_numpy=True, normalize_embeddings=True)\\nprint(f\\\"Embeddings shape: {embeddings.shape}\\\")\\n\\n\\ndef cosine_sim(a, b):\\n    return float(np.dot(a, b))\\n\\n\\n# --- Report (a): Semantic similarity by depth transition ---\\n\\nprint(\\\"\\\\n=== (a) Semantic similarity by depth transition ===\\\")\\ntransition_sims = defaultdict(list)\\n\\nfor (model_name, seed), depth_map in cont_chains.items():\\n    depths = sorted(depth_map.keys())\\n    for i in range(1, len(depths)):\\n        d_prev, d_curr = depths[i - 1], depths[i]\\n        if d_curr - d_prev != 1:\\n            continue\\n        idx_prev = text_index[(model_name, seed, d_prev)]\\n     \\n\\n... [截断: 输出过长，省略 526 字符] ...\\n\\nmparison (Pythia-2.8B only) ---\\n\\nprint(\\\"\\\\n=== (b) Prompt type comparison ===\\\")\\nprompt_type_results = {}\\n\\nfor pt, chains in pt_chains.items():\\n    pt_trans_sims = defaultdict(list)\\n    all_sims = []\\n    for (model_name, seed), depth_map in chains.items():\\n        depths = sorted(depth_map.keys())\\n        for i in range(1, len(depths)):\\n            d_prev, d_curr = depths[i - 1], depths[i]\\n            if d_curr - d_prev != 1:\\n                continue\\n            idx_prev = text_index[(f\\\"pt_{pt}\\\", seed, d_prev)]\\n            idx_curr = text_index[(f\\\"pt_{pt}\\\", seed, d_curr)]\\n            sim = cosine_sim(embeddings[idx_prev], embeddings[idx_curr])\\n            pt_trans_sims[f\\\"{d_prev}_to_{d_curr}\\\"].append(sim)\\n            all_sims.append(sim)\\n\\n    trans_summary = {}\\n    for trans in sorted(pt_trans_sims.keys()):\\n        vals = pt_trans_sims[trans]\\n        trans_summary[trans] = {\\\"mean\\\": round(float(np.mean(vals)), 4),\\n                                \\\"std\\\": round(float(np.std(vals)), 4)}\\n\\n    avg_sim = round(float(np.mean(all_sims)), 4) if all_sims else None\\n    prompt_type_results[pt] = {\\\"avg_sim\\\": avg_sim, \\\"sim_by_transition\\\": trans_summary}\\n    print(f\\\"  {pt}: avg_sim={avg_sim}, transitions={trans_summary}\\\")\\n\\n\\n# --- Compute cumulative semantic drift for correlation analysis ---\\n\\nprint(\\\"\\\\n=== Computing cumulative semantic drift ===\\\")\\n# For each (model, seed, depth>0): cumulative cosine distance from depth 0\\ndrift_records = []\\n\\nfor (model_name, seed), depth_map in cont_chains.items():\\n    depths = sorted(depth_map.keys())\\n    cum_drift = 0.0\\n    for i in range(1, len(depths)):\\n        d_prev, d_curr = depths[i - 1], depths[i]\\n        if d_curr - d_prev != 1:\\n            cum_drift = None\\n            break\\n        idx_prev = text_index[(model_name, seed, d_prev)]\\n        idx_curr = text_index[(model_name, seed, d_curr)]\\n        sim = cosine_sim(embeddings[idx_prev], embeddings[idx_curr])\\n        cum_drift += (1.0 - sim)\\n        drift_records.append({\\n            \\\"model_name\\\": model_name,\\n            \\\"seed_id\\\": seed,\\n            \\\"depth\\\": d_curr,\\n            \\\"step_cosine_dist\\\": 1.0 - sim,\\n            \\\"cumulative_drift\\\": cum_drift,\\n        })\\n\\ndrift_df = pd.DataFrame(drift_records)\\nprint(f\\\"Drift records: {len(drift_df)}\\\")\\n\\n# Load features\\nfeatures_df = pd.read_csv(os.path.join(DATA_DIR, \\\"features_all_models.csv\\\"))\\nprint(f\\\"Features records: {len(features_df)}\\\")\\n\\n# Merge\\nmerged = drift_df.merge(features_df, on=[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"], how=\\\"inner\\\")\\nprint(f\\\"Merged records: {len(merged)}\\\")\\n\\n\\n# --- Report (c): Shape features vs semantic drift ---\\n\\nprint(\\\"\\\\n=== (c) Shape feature correlations ===\\\")\\nshape_features = [\\\"entropy_std\\\", \\\"tail_decay\\\"]\\nshape_corr = {}\\n\\nfor feat in shape_features:\\n    valid = merged[[feat, \\\"cumulative_drift\\\"]].dropna()\\n    rho, p = spearmanr(valid[feat], valid[\\\"cumulative_drift\\\"])\\n    shape_corr[f\\\"{feat}_vs_semantic_drift\\\"] = {\\\"rho\\\": round(float(rho), 4), \\\"p\\\": round(float(p), 6)}\\n    print(f\\\"  {feat} vs cumulative_drift: rho={rho:.4f}, p={p:.2e}\\\")\\n\\n\\n# --- Report (d): Drifting features vs semantic drift ---\\n\\nprint(\\\"\\\\n=== (d) Drifting feature correlations ===\\\")\\ndrifting_features = [\\\"hapax_ratio\\\", \\\"ttr\\\", \\\"entropy_mean\\\"]\\ndrifting_corr = {}\\n\\nfor feat in drifting_features:\\n    valid = merged[[feat, \\\"cumulative_drift\\\"]].dropna()\\n    rho, p = spearmanr(valid[feat], valid[\\\"cumulative_drift\\\"])\\n    drifting_corr[f\\\"{feat}_vs_semantic_drift\\\"] = {\\\"rho\\\": round(float(rho), 4), \\\"p\\\": round(float(p), 6)}\\n    print(f\\\"  {feat} vs cumulative_drift: rho={rho:.4f}, p={p:.2e}\\\")\\n\\n\\n# --- Save results ---\\n\\nresults = {\\n    \\\"semantic_similarity_by_transition\\\": sim_by_transition,\\n    \\\"prompt_type_comparison\\\": prompt_type_results,\\n    \\\"shape_feature_correlations\\\": shape_corr,\\n    \\\"drifting_feature_correlations\\\": drifting_corr,\\n}\\n\\nout_path = os.path.join(RESULTS_DIR, \\\"review_topic_drift_results.json\\\")\\nwith open(out_path, \\\"w\\\") as f:\\n    json.dump(results, f, indent=2)\\nprint(f\\\"\\\\nResults saved to {out_path}\\\")\\nprint(json.dumps(results, indent=2))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So the topic drift script doesn't compute R². It computes Spearman correlations. The R²=0.082 claim in the paper might be derived from the correlations. Let me check if R²=0.082 could come from squaring one of the correlation values.
+
+From review_topic_drift_results.json:
+- shape_feature_correlations:
+  - entropy_std_vs_semantic_drift: rho=-0.1639
+  - tail_decay_vs_semantic_drift: rho=0.0675
+- drifting_feature_correlations:
+  - hapax_ratio_vs_semantic_drift: rho=-0.1242
+  - ttr_vs_semantic_drift: rho=-0.1784
+  - entropy_mean_vs_semantic_drift: rho=-0.2859
+
+I found it—squaring the entropy_mean correlation gives 0.2859² = 0.0817, which rounds to 0.082. So the paper's R² value comes from squaring the Spearman rho between entropy_mean and semantic_drift.
+
+The paper's claim about topic drift accounting for less than 9% of feature variance is really referring to entropy_mean specifically, since it's the strongest single correlation. Now I'm checking the LOPTO results—the average F1 score is 0.7525, which rounds to 0.753 across three decimal places, matching what the paper reports. Now I'm checking the OLMo base F1 score discrepancy—the paper claims 0.764, but the actual data shows 0.7633 from one source and 0.7742 from another, neither of which rounds to 0.764.
+
+Looking at cross_model_chains_results.json, the 0.764 appears to be the binary F1 from the cross-model chains experiment, not the OLMo base LOGO F1 at all. So there's a mismatch in the paper where 0.764 is being cited as the baseline OLMo score when it's actually from a different experiment entirely—the real OLMo base LOGO F1 should be 0.763.
+
+Both discussion.tex and limitations.tex use this same "vs. 0.764 base" phrasing, which creates ambiguity about whether they're comparing to the OLMo base model or some other baseline metric. For Qwen, the numbers are 0.667 vs. 0.816, and I need to trace where those values come from in the data.
+
+Looking at the actual metrics: qwen3-0.6b-instruct has an F1 of 0.6674 (rounds to 0.667) and qwen3-0.6b base has 0.8158 (rounds to 0.816), so those match perfectly. But for OLMo, the instruct model shows 0.3379 (0.338) while the base is 0.7633 (0.763), not 0.764. That 0.001 discrepancy suggests the author may have accidentally pulled the cross-model chains binary F1 value instead of the actual OLMo base LOGO F1, though it's such a minor difference it might not be worth flagging.
+
+Let me verify the cross-model chains metrics themselves: the binary F1 of 0.7635 does round up to 0.764, and the macro F1 mean of 0.8089 rounds to 0.809, so those check out. I'm also noticing the appendix classifier table shows different values for the sampling ablation comparison, where 0.789 and 0.764 appear to be measuring different things.
+
+Rather than getting bogged down verifying every appendix number, I should focus on the nine specific claims from the task. For the LOFO metric, the paper claims binary F1=0.686, and the data shows 0.6865, which rounds correctly. Looking at the LOFO data from the 8gen_lofo_family.json file, I can see the individual binary F1 scores for each model family, and when I average them together I get 0.6865, which rounds to 0.686 under banker's rounding since the digit before the 5 is even. The paper's reported value of 0.686 appears to be this rounded average. So the calculation checks out—0.68646 rounds to 0.686 with three decimal places. Now I need to verify the delta claim about the performance difference versus LOGO, which means finding the correct binary F1 scores for both models to compare.
+
+Looking at the data, I'm seeing LOGO's binary F1 listed as 0.7014 and LOFO's as 0.6865, which gives a delta of -1.5 percentage points. But the paper claims -0.8pp, so there's a discrepancy. I need to figure out which baseline they're actually comparing against, since there seem to be different LOGO F1 values across the datasets. I'm checking what LOGO binary F1 would need to be for the delta to work out: 0.686 + 0.008 = 0.694, but the actual value from the data is 0.7014, which doesn't match. I've tried a few other LOGO numbers from different sources and none of them produce the claimed -0.8pp delta, so the discrepancy seems to come from how the delta was calculated rather than the primary LOFO number itself. I'm checking whether the -0.8pp delta refers to the binary or 3-class metric, but the 3-class comparison doesn't match either. Looking at the cross-model data, the LOGO binary F1 is 0.7758 and LOFO is 0.6865, which gives a delta of about -0.9pp—closer to what the paper states. Now I'm examining the per-generator LOGO values to see if they average to around 0.694. I'm checking different LOGO binary F1 values from the results to see which one the paper is referencing. The 8gen table gives 0.7758, which would make the delta -9pp, while the unified results show 0.7014, giving -1.5pp—neither matches the claimed -0.8pp. Let me trace through what LOGO computation they're actually using here.
+
+Now I'm verifying the XGBoost numbers from the appendix against the actual data files. The 5-class macro F1 of 0.4968 matches the reported 0.50 ± 0.038, but the 3-class macro F1 of 0.8048 doesn't align with the reported 0.789—there's a discrepancy I need to investigate. I'm tracking down where the 0.789 value actually comes from by checking the unified table files. The 7feature_ours method shows 0.7762 for multiclass F1, which doesn't match. I notice there's a discrepancy between the QLoRA baseline using HGBT_7features_LOGO with 0.7815 (3-class macro F1) and what I'm seeing in the unified results, so I need to clarify which dataset and evaluation setup produced the 0.789 figure. The matched evaluation shows XGBoost at 0.805 for 3-class, but the paper's appendix reports 0.789—which comes from a different protocol entirely (LOGO with different generators). The discrepancy is that the paper uses 0.789 as the baseline while the actual matched setup gives 0.805, and I'm noticing the 5-class and 3-class results align with the matched data (0.4968 and 0.8048 respectively), so there's an inconsistency in which baseline was chosen. The 0.789 likely comes from table4_cross_ref_logo.json where pythia-410m averages to 0.789. Now let me verify the primary claim about QLoRA fine-tuning achieving 3-class F1=0.905 — the data shows 0.9052 which rounds correctly. The baseline comparison has some protocol mismatches, but that's secondary to confirming the main result. Let me organize my findings into a final report covering the cross-model chains binary F1, the QLoRA performance, and any other key claims. I'm noticing the discrepancy between the two datasets—finer_ordinal_results.json uses only 6 generators while 8gen_finer_depth.json uses 8, which explains why they report slightly different F1 scores (0.501 vs 0.488). The appendix table likely references one of these specific configurations. I'm calculating the average across all eight generators and getting 0.4878, which doesn't match the appendix value of 0.501. Let me try computing just the six-generator subset without llama and mistral, which gives me 0.5027—still not quite 0.501. Something's off with the rounding or the data selection.
+
+Looking at the actual results file, the GBT macro F1 score is 0.5010, which rounds to 0.501 and matches the appendix. So the paper is using the six-generation data from the finer_ordinal results, not the eight-generation data, even though the rest of the paper references eight generators. The confidence interval of ±0.038 in the appendix table likely represents the range across the different generators in that six-gen subset. Looking at the 8-gen XGBoost result with logo_avg_f1=0.4878, that's lower than the 0.501 from the 6-gen GBT approach—the difference comes from using more generators and a different classifier, but both values round to approximately 0.50 so the paper's claim holds up. Now checking the QLoRA fine-tuning result: the data shows macro_f1_3class = 0.9052, which matches the paper's reported 0.905. Moving on to verify the paraphrastic chains binary F1 of 0.671. Checking the Qwen3-0.6B result next—the paper reports 0.667 for the chat template variant, and the data shows 0.6674 which rounds correctly. For OLMo, I'm verifying the base model's LOGO F1 score of 0.764 against the instruct version's 0.338 drop, and the data confirms the base achieves 0.7633.
+
+Now looking at the sampling ablation results. The paper claims robustness across temperature values 0.5 to 0.7 with a 6-point degradation at t=1.0, and the data backs this up—F1 scores hover around 0.785-0.788 in the lower temperature range but drop to 0.726 at the highest temperature, matching the reported 6-point penalty.
+
+For topic drift, I'm checking whether the R² value of 0.082 holds up. The raw data doesn't store R² directly, but I can derive it from the Spearman correlation between entropy and semantic drift, which comes out to about -0.286. Squaring that gives 0.0817, which aligns with the paper's claim.
+
+Now I'm verifying the LOFO binary F1 score of 0.686 against the corresponding data file.
+
+Looking at the cross-type transfer metric, the paper reports 0.753, and the data shows 0.7525 from the prompt type results. When rounding to three decimal places, that becomes 0.753.
+
+I can verify this by checking the individual LOPTO values across the three prompt types—continuation, elaboration, and inspired rewriting—which average to 0.75253, confirming the rounded value.
+
+For the Qwen base model comparison, the paper mentions 0.816 under a 7-generator split, and the data from the review results shows 0.8158, which rounds to 0.816.
+
+Now I need to verify the 0.764 base value for OLMo.  The paper cites this in two places—both discussion.tex and limitations.tex—comparing OLMo-Instruct's LOGO F1 of 0.338 against a base value of 0.764. The actual base OLMo LOGO F1 from the data is 0.763, which is close but not exact. I'm trying to determine whether "base" refers to the base OLMo model's performance or if there's a different interpretation of the context that would explain the 0.764 figure.
+
+Looking at the limitations.tex phrasing more carefully, the structure "OLMo drops to X (vs. Y base)" strongly suggests Y is the OLMo base model's F1 score. So there's a discrepancy here—the paper says 0.764 but the data shows 0.763, off by 0.001. That's worth flagging.
+
+Now I'm checking the 3-class F1 claim of 0.809 from cross-model chains. The data shows a macro F1 mean of 0.8089, which rounds to 0.809, so that checks out. I'm moving forward to compile the full report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "29a8c61e-df16-4197-8495-3fda399d4805",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GUsm2596uQi67pdxBpVzuG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6337,
+      "cache_read_input_tokens": 106761,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6337
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 96_
+
+数据收集完成。以下是逐项验证报告。
+
+---
+
+## 1. Cross-model chains binary F1=0.764 under 5-fold CV
+- **论文声称**: binary F1=0.764 under 5-fold CV (results.tex:13)
+- **数据文件**: `results/cross_model_chains_results.json`
+- **文件中数字**: `cross_model.binary_f1 = 0.7635`（5-gen 子集，n=2964）
+- **判定**: ✅ 0.7635 四舍五入至 3 位 = 0.764
+
+## 2. 5-class LOGO F1 drops to ≈0.50
+- **论文声称**: 5-class LOGO F1 drops to ≈0.50；appendix 报 0.501±0.038
+- **数据文件**: `results/finer_ordinal_results.json` (6-gen GBT)
+- **文件中数字**: `GBT_5class.macro_f1 = 0.5010`
+- **判定**: ✅ 0.5010 → 0.501；与 appendix 表中 "Average 0.501±0.038" 一致
+- **注意**: `8gen_finer_depth.json` (8-gen XGBoost) 给出 0.4878，不同协议不同数字；论文使用的是 6-gen GBT 结果
+
+## 3. QLoRA fine-tuning recovers 3-class F1=0.905
+- **论文声称**: 3-class F1=0.905 ±0.003 (appendix_qlora.tex:19)
+- **数据文件**: `results/plan012_qwen06b_results.json`
+- **文件中数字**: `macro_f1_3class = 0.9052, macro_f1_3class_std = 0.0032`
+- **判定**: ✅ 0.9052 → 0.905；std 0.0032 → 0.003
+
+## 4. Paraphrastic chains binary F1=0.671
+- **论文声称**: binary F1=0.671 (limitations.tex:15)
+- **数据文件**: `results/plan006_paraphrastic_comparison.json`
+- **文件中数字**: `paraphrase_signal.binary_f1_gen1_vs_gen2plus.mean = 0.6711`
+- **判定**: ✅ 0.6711 → 0.671
+
+## 5. OLMo-2-1B-Instruct LOGO F1=0.338
+- **论文声称**: OLMo-Instruct LOGO F1=0.338 (discussion.tex:29)
+- **数据文件**: `results/review_p1c_olmo_instruct.json`
+- **文件中数字**: `instruct_logo_f1 = 0.3379`；per_generator `olmo-2-0425-1b-instruct.macro_f1 = 0.3379`
+- **判定**: ✅ 0.3379 → 0.338
+
+## 6. Qwen3-0.6B chat template 0.667
+- **论文声称**: Qwen3-0.6B with chat template to 0.667 (limitations.tex:7)
+- **数据文件**: `results/review_p1c_qwen06b_instruct.json`
+- **文件中数字**: `logo_7gen.per_generator.qwen3-0.6b-instruct.macro_f1 = 0.6674`
+- **判定**: ✅ 0.6674 → 0.667
+
+## 7. OLMo base "vs. 0.764"
+- **论文声称**: "OLMo-2-1B-Instruct drops to LOGO F1=0.338 (vs. 0.764 base)" (limitations.tex:7)
+- **数据文件**: `results/review_p1c_olmo_instruct.json`
+- **文件中数字**: `base_olmo_logo_f1 = 0.7633`
+- **判定**: ⚠️ OLMo base LOGO F1 = 0.7633 → 四舍五入为 **0.763**，论文写 0.764。0.764 实际是 cross-model chains 的整体 binary F1（来自 `cross_model_chains_results.json` 的 0.7635），不是 OLMo 单独的 base LOGO F1。差 0.001，疑似复制粘贴混淆。
+  - **对比**: Qwen base 的引用没有此问题（0.8158 → 0.816 ✅）
+
+## 8. Sampling sensitivity: robust at t∈[0.5,0.7], degrades at t=1.0 (-6pp)
+- **论文声称**: robust at t∈[0.5,0.7], degrades at t=1.0 (-6pp)
+- **数据文件**: `results/sampling_ablation.json`
+- **文件中数字**:
+  - `low_t05_p08.3class_f1 = 0.785`
+  - `default_t07_p09.3class_f1 = 0.7877`
+  - `high_t10_p095.3class_f1 = 0.7258`
+  - `f1_range_pp = 6.19`
+- **判定**: ✅ t=0.5 和 t=0.7 差距仅 0.3pp（稳健），t=1.0 下降 6.2pp ≈ "-6pp"
+
+## 9. Topic drift R²=0.082
+- **论文声称**: "Topic drift accounts for <9% of feature variance (R²=0.082)" (discussion.tex:21)
+- **数据文件**: `results/review_topic_drift_results.json`
+- **文件中数字**: `drifting_feature_correlations.entropy_mean_vs_semantic_drift.rho = -0.2859`
+- **推导**: R² = (-0.2859)² = 0.0817 ≈ 0.082
+- **判定**: ✅ R² 为最强 Spearman 相关系数的平方，0.0817 → 0.082
+- **注意**: JSON 中未直接存储 R²，需从 rho 推导。论文对"feature variance"的措辞是上界（entropy_mean 是最强相关的特征）
+
+## 10. LOFO binary F1=0.686
+- **论文声称**: "average binary F1=0.686 (Δ=−0.8pp vs. LOGO)" (results.tex:14)
+- **数据文件**: `results/8gen_lofo_family.json`
+- **文件中数字**:
+  - pythia: 0.6867, olmo: 0.7073, qwen: 0.687, llama: 0.708, mistral: 0.6433
+  - `average.binary_f1 = 0.6865`
+  - 真实均值: (0.6867+0.7073+0.687+0.708+0.6433)/5 = 0.68646
+- **判定**: ✅ 0.68646 四舍五入至 3 位 = 0.686
+- **注意**: 论文附带的 "Δ=−0.8pp vs. LOGO" 无法复现。LOGO binary F1（table3_v6: 0.7014）与 LOFO 0.686 之差为 -1.5pp，而非 -0.8pp。⚠️ delta 值可能有误
+
+## 11. Cross-type transfer at 0.753
+- **论文声称**: "cross-type transfer at 0.753" (discussion.tex:11)
+- **数据文件**: `data/prompt_type_results.json`
+- **文件中数字**: `lopto_f1.avg = 0.7525`（continuation: 0.762, elaboration: 0.7622, rewriting: 0.7334）
+- **判定**: ✅ 0.7525 四舍五入至 3 位 = 0.753 (第4位=5，进位)
+
+---
+
+## 汇总
+
+| # | 实验 | 论文数字 | 数据数字 | 判定 |
+|---|------|---------|---------|------|
+| 1 | Cross-model chains binary F1 | 0.764 | 0.7635 | ✅ |
+| 2 | 5-class LOGO F1 | ≈0.50 (0.501) | 0.5010 | ✅ |
+| 3 | QLoRA 3-class F1 | 0.905 | 0.9052 | ✅ |
+| 4 | Paraphrastic binary F1 | 0.671 | 0.6711 | ✅ |
+| 5 | OLMo-Instruct LOGO F1 | 0.338 | 0.3379 | ✅ |
+| 6 | Qwen3-0.6B instruct F1 | 0.667 | 0.6674 | ✅ |
+| 7 | OLMo base "0.764" | 0.764 | 0.7633 | ⚠️ 应为 0.763 |
+| 8 | Sampling t=1.0 降幅 | -6pp | -6.2pp | ✅ |
+| 9 | Topic drift R² | 0.082 | 0.0817 (推导) | ✅ |
+| 10 | LOFO binary F1 | 0.686 | 0.68646 | ✅ |
+| 11 | LOPTO cross-type transfer | 0.753 | 0.7525 | ✅ |
+
+**需修复**:
+1. **⚠️ #7**: limitations.tex 和 discussion.tex 中 OLMo base 对比值 "0.764" 应为 **0.763**（数据 0.7633）。0.764 是 cross-model chains 整体 binary F1，不是 OLMo 单模型的 base LOGO F1。
+2. **⚠️ #10 delta**: results.tex 中 "Δ=−0.8pp vs. LOGO" 与数据不一致（LOGO binary F1=0.701 vs LOFO 0.686 = -1.5pp）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "uuid": "310d8ab5-f606-408b-b0ab-d4634db85b3a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GUsm2596uQi67pdxBpVzuG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6337,
+      "cache_read_input_tokens": 106761,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6337
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 97_
+
+数据收集完成。以下是逐项验证报告。
+
+---
+
+## 1. Cross-model chains binary F1=0.764 under 5-fold CV
+- **论文声称**: binary F1=0.764 under 5-fold CV (results.tex:13)
+- **数据文件**: `results/cross_model_chains_results.json`
+- **文件中数字**: `cross_model.binary_f1 = 0.7635`（5-gen 子集，n=2964）
+- **判定**: ✅ 0.7635 四舍五入至 3 位 = 0.764
+
+## 2. 5-class LOGO F1 drops to ≈0.50
+- **论文声称**: 5-class LOGO F1 drops to ≈0.50；appendix 报 0.501±0.038
+- **数据文件**: `results/finer_ordinal_results.json` (6-gen GBT)
+- **文件中数字**: `GBT_5class.macro_f1 = 0.5010`
+- **判定**: ✅ 0.5010 → 0.501；与 appendix 表中 "Average 0.501±0.038" 一致
+- **注意**: `8gen_finer_depth.json` (8-gen XGBoost) 给出 0.4878，不同协议不同数字；论文使用的是 6-gen GBT 结果
+
+## 3. QLoRA fine-tuning recovers 3-class F1=0.905
+- **论文声称**: 3-class F1=0.905 ±0.003 (appendix_qlora.tex:19)
+- **数据文件**: `results/plan012_qwen06b_results.json`
+- **文件中数字**: `macro_f1_3class = 0.9052, macro_f1_3class_std = 0.0032`
+- **判定**: ✅ 0.9052 → 0.905；std 0.0032 → 0.003
+
+## 4. Paraphrastic chains binary F1=0.671
+- **论文声称**: binary F1=0.671 (limitations.tex:15)
+- **数据文件**: `results/plan006_paraphrastic_comparison.json`
+- **文件中数字**: `paraphrase_signal.binary_f1_gen1_vs_gen2plus.mean = 0.6711`
+- **判定**: ✅ 0.6711 → 0.671
+
+## 5. OLMo-2-1B-Instruct LOGO F1=0.338
+- **论文声称**: OLMo-Instruct LOGO F1=0.338 (discussion.tex:29)
+- **数据文件**: `results/review_p1c_olmo_instruct.json`
+- **文件中数字**: `instruct_logo_f1 = 0.3379`；per_generator `olmo-2-0425-1b-instruct.macro_f1 = 0.3379`
+- **判定**: ✅ 0.3379 → 0.338
+
+## 6. Qwen3-0.6B chat template 0.667
+- **论文声称**: Qwen3-0.6B with chat template to 0.667 (limitations.tex:7)
+- **数据文件**: `results/review_p1c_qwen06b_instruct.json`
+- **文件中数字**: `logo_7gen.per_generator.qwen3-0.6b-instruct.macro_f1 = 0.6674`
+- **判定**: ✅ 0.6674 → 0.667
+
+## 7. OLMo base "vs. 0.764"
+- **论文声称**: "OLMo-2-1B-Instruct drops to LOGO F1=0.338 (vs. 0.764 base)" (limitations.tex:7)
+- **数据文件**: `results/review_p1c_olmo_instruct.json`
+- **文件中数字**: `base_olmo_logo_f1 = 0.7633`
+- **判定**: ⚠️ OLMo base LOGO F1 = 0.7633 → 四舍五入为 **0.763**，论文写 0.764。0.764 实际是 cross-model chains 的整体 binary F1（来自 `cross_model_chains_results.json` 的 0.7635），不是 OLMo 单独的 base LOGO F1。差 0.001，疑似复制粘贴混淆。
+  - **对比**: Qwen base 的引用没有此问题（0.8158 → 0.816 ✅）
+
+## 8. Sampling sensitivity: robust at t∈[0.5,0.7], degrades at t=1.0 (-6pp)
+- **论文声称**: robust at t∈[0.5,0.7], degrades at t=1.0 (-6pp)
+- **数据文件**: `results/sampling_ablation.json`
+- **文件中数字**:
+  - `low_t05_p08.3class_f1 = 0.785`
+  - `default_t07_p09.3class_f1 = 0.7877`
+  - `high_t10_p095.3class_f1 = 0.7258`
+  - `f1_range_pp = 6.19`
+- **判定**: ✅ t=0.5 和 t=0.7 差距仅 0.3pp（稳健），t=1.0 下降 6.2pp ≈ "-6pp"
+
+## 9. Topic drift R²=0.082
+- **论文声称**: "Topic drift accounts for <9% of feature variance (R²=0.082)" (discussion.tex:21)
+- **数据文件**: `results/review_topic_drift_results.json`
+- **文件中数字**: `drifting_feature_correlations.entropy_mean_vs_semantic_drift.rho = -0.2859`
+- **推导**: R² = (-0.2859)² = 0.0817 ≈ 0.082
+- **判定**: ✅ R² 为最强 Spearman 相关系数的平方，0.0817 → 0.082
+- **注意**: JSON 中未直接存储 R²，需从 rho 推导。论文对"feature variance"的措辞是上界（entropy_mean 是最强相关的特征）
+
+## 10. LOFO binary F1=0.686
+- **论文声称**: "average binary F1=0.686 (Δ=−0.8pp vs. LOGO)" (results.tex:14)
+- **数据文件**: `results/8gen_lofo_family.json`
+- **文件中数字**:
+  - pythia: 0.6867, olmo: 0.7073, qwen: 0.687, llama: 0.708, mistral: 0.6433
+  - `average.binary_f1 = 0.6865`
+  - 真实均值: (0.6867+0.7073+0.687+0.708+0.6433)/5 = 0.68646
+- **判定**: ✅ 0.68646 四舍五入至 3 位 = 0.686
+- **注意**: 论文附带的 "Δ=−0.8pp vs. LOGO" 无法复现。LOGO binary F1（table3_v6: 0.7014）与 LOFO 0.686 之差为 -1.5pp，而非 -0.8pp。⚠️ delta 值可能有误
+
+## 11. Cross-type transfer at 0.753
+- **论文声称**: "cross-type transfer at 0.753" (discussion.tex:11)
+- **数据文件**: `data/prompt_type_results.json`
+- **文件中数字**: `lopto_f1.avg = 0.7525`（continuation: 0.762, elaboration: 0.7622, rewriting: 0.7334）
+- **判定**: ✅ 0.7525 四舍五入至 3 位 = 0.753 (第4位=5，进位)
+
+---
+
+## 汇总
+
+| # | 实验 | 论文数字 | 数据数字 | 判定 |
+|---|------|---------|---------|------|
+| 1 | Cross-model chains binary F1 | 0.764 | 0.7635 | ✅ |
+| 2 | 5-class LOGO F1 | ≈0.50 (0.501) | 0.5010 | ✅ |
+| 3 | QLoRA 3-class F1 | 0.905 | 0.9052 | ✅ |
+| 4 | Paraphrastic binary F1 | 0.671 | 0.6711 | ✅ |
+| 5 | OLMo-Instruct LOGO F1 | 0.338 | 0.3379 | ✅ |
+| 6 | Qwen3-0.6B instruct F1 | 0.667 | 0.6674 | ✅ |
+| 7 | OLMo base "0.764" | 0.764 | 0.7633 | ⚠️ 应为 0.763 |
+| 8 | Sampling t=1.0 降幅 | -6pp | -6.2pp | ✅ |
+| 9 | Topic drift R² | 0.082 | 0.0817 (推导) | ✅ |
+| 10 | LOFO binary F1 | 0.686 | 0.68646 | ✅ |
+| 11 | LOPTO cross-type transfer | 0.753 | 0.7525 | ✅ |
+
+**需修复**:
+1. **⚠️ #7**: limitations.tex 和 discussion.tex 中 OLMo base 对比值 "0.764" 应为 **0.763**（数据 0.7633）。0.764 是 cross-model chains 整体 binary F1，不是 OLMo 单模型的 base LOGO F1。
+2. **⚠️ #10 delta**: results.tex 中 "Δ=−0.8pp vs. LOGO" 与数据不一致（LOGO binary F1=0.701 vs LOFO 0.686 = -1.5pp）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 353076,
+  "duration_api_ms": 351608,
+  "num_turns": 37,
+  "stop_reason": "end_turn",
+  "session_id": "3bb2d015-cfb5-4897-bdb2-ff4e22e6439b",
+  "total_cost_usd": 1.49174575,
+  "usage": {
+    "input_tokens": 15,
+    "cache_creation_input_tokens": 101257,
+    "cache_read_input_tokens": 643211,
+    "output_tokens": 21403,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 101257,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 11813,
+        "cache_read_input_tokens": 106761,
+        "cache_creation_input_tokens": 6337,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 6337
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2054,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0021339999999999996,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 15,
+      "outputTokens": 21403,
+      "cacheReadInputTokens": 643211,
+      "cacheCreationInputTokens": 101257,
+      "webSearchRequests": 0,
+      "costUSD": 1.48961175,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "2a6d9453-bab5-4ab9-b5d6-92065c91e280"
+}
+```
+
+</details>
+
+---

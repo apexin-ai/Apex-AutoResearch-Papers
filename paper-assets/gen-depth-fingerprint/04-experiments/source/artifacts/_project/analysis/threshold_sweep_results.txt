@@ -1,0 +1,52 @@
+THRESHOLD SWEEP RESULTS
+=======================
+
+Drifting-boundary threshold sensitivity analysis for DDR partition.
+Features: entropy_mean, ttr, hapax_ratio, entropy_std, entropy_min, entropy_max, tail_decay
+Coordinates: (|rho|, d) from gen-1 vs gen-2+ Cohen's d and depth correlation.
+
+| |d| threshold | # Drifting | Drifting Features                           | Silhouette | Partition Match          |
+|---------------|------------|---------------------------------------------|------------|--------------------------|
+| 0.10          | 4          | entropy_mean, ttr, hapax_ratio, entropy_std | 0.4510     | 4/3 (paper 3+1 drifting) |
+| 0.15          | 4          | entropy_mean, ttr, hapax_ratio, entropy_std | 0.4510     | 4/3 (paper 3+1 drifting) |
+| 0.20          | 4          | entropy_mean, ttr, hapax_ratio, entropy_std | 0.4510     | 4/3 (paper 3+1 drifting) |
+| 0.25          | 4          | entropy_mean, ttr, hapax_ratio, entropy_std | 0.4510     | 4/3 (paper 3+1 drifting) |
+| 0.30          | 4          | entropy_mean, ttr, hapax_ratio, entropy_std | 0.4510     | 4/3 (paper 3+1 drifting) |
+| 0.35          | 4          | entropy_mean, ttr, hapax_ratio, entropy_std | 0.4510     | 4/3 (paper 3+1 drifting) |
+| 0.40          | 4          | entropy_mean, ttr, hapax_ratio, entropy_std | 0.4510     | 4/3 (paper 3+1 drifting) |
+| 0.45          | 4          | entropy_mean, ttr, hapax_ratio, entropy_std | 0.4510     | 4/3 (paper 3+1 drifting) |
+| 0.50          | 3          | entropy_mean, ttr, hapax_ratio              | 0.6603     | 3/4 (paper 3-drifting)   |
+| 0.55          | 3          | entropy_mean, ttr, hapax_ratio              | 0.6603     | 3/4 (paper 3-drifting)   |
+| 0.60          | 3          | entropy_mean, ttr, hapax_ratio              | 0.6603     | 3/4 (paper 3-drifting)   |
+| 0.65          | 3          | entropy_mean, ttr, hapax_ratio              | 0.6603     | 3/4 (paper 3-drifting)   |
+| 0.70          | 3          | entropy_mean, ttr, hapax_ratio              | 0.6603     | 3/4 (paper 3-drifting)   |
+| 0.75          | 3          | entropy_mean, ttr, hapax_ratio              | 0.6603     | 3/4 (paper 3-drifting)   |
+| 0.80          | 2          | entropy_mean, ttr                           | 0.3627     | 2/5                      |
+
+STABILITY ANALYSIS
+==================
+
+Paper 3/4 partition (3 drifting: entropy_mean, ttr, hapax_ratio):
+  Stable range: |d| in [0.50, 0.75]
+  Silhouette: 0.6603 (constant across range)
+  Width: 0.25 (5 threshold steps)
+
+Paper 4/3 partition (3+1 drifting, includes entropy_std):
+  Stable range: |d| in [0.10, 0.45]
+  Silhouette: 0.4510 (constant across range)
+  Width: 0.35 (8 threshold steps)
+
+Peak silhouette at threshold = 0.50 (sil = 0.6603)
+
+KEY OBSERVATION
+===============
+
+Only 3 distinct partitions exist across the entire [0.10, 0.80] range:
+  1. {entropy_mean, ttr, hapax_ratio, entropy_std} vs rest  — |d| in [0.10, 0.45], sil=0.4510
+  2. {entropy_mean, ttr, hapax_ratio} vs rest               — |d| in [0.50, 0.75], sil=0.6603
+  3. {entropy_mean, ttr} vs rest                             — |d| = 0.80,          sil=0.3627
+
+entropy_std (d=0.4914) is the only feature that switches group.
+The gap between d=0.0905 (tail_decay) and d=0.4914 (entropy_std) = 0.40
+The gap between d=0.4914 (entropy_std) and d=0.7833 (hapax_ratio) = 0.29
+Both gaps are large enough that no threshold within them changes the partition.

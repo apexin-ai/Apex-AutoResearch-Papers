@@ -1,0 +1,93 @@
+{
+  "5class": {
+    "logo_avg_f1": 0.4878,
+    "ci95": [
+      0.4825,
+      0.4912
+    ],
+    "per_gen": {
+      "llama-3.2-3b": 0.4926,
+      "mistral-7b-v0.3": 0.3934,
+      "olmo-2-1b": 0.5046,
+      "pythia-1b": 0.5341,
+      "pythia-2.8b": 0.5318,
+      "qwen3-0.6b": 0.4954,
+      "qwen3-1.7b": 0.5047,
+      "qwen3-8b": 0.4456
+    },
+    "per_class_f1": {
+      "gen0": 0.9173,
+      "gen1": 0.5931,
+      "gen2": 0.2395,
+      "gen3": 0.2337,
+      "gen4": 0.4506
+    },
+    "confusion_matrix_avg": [
+      [
+        0.98,
+        0.01,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.08,
+        0.7,
+        0.14,
+        0.04,
+        0.03
+      ],
+      [
+        0.04,
+        0.37,
+        0.19,
+        0.15,
+        0.25
+      ],
+      [
+        0.03,
+        0.2,
+        0.16,
+        0.18,
+        0.43
+      ],
+      [
+        0.02,
+        0.14,
+        0.13,
+        0.19,
+        0.52
+      ]
+    ]
+  },
+  "3class_control": {
+    "logo_avg_f1": 0.7698,
+    "ci95": [
+      0.7636,
+      0.7715
+    ]
+  },
+  "delta_5class_vs_3class": -0.282,
+  "config": {
+    "n_generators": 8,
+    "n_features": 7,
+    "features": [
+      "entropy_mean",
+      "entropy_std",
+      "entropy_min",
+      "entropy_max",
+      "tail_decay",
+      "ttr",
+      "hapax_ratio"
+    ],
+    "xgb_params": {
+      "n_estimators": 200,
+      "max_depth": 6,
+      "learning_rate": 0.1,
+      "random_state": 42,
+      "eval_metric": "mlogloss"
+    },
+    "bootstrap_B": 1000,
+    "downsampling": "per-class balance in train set"
+  }
+}

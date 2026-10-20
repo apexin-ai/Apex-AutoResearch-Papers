@@ -1,0 +1,451 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{natbib}
+
+\title{Distributional Depth Profiling: Ordinal Estimation of Recursive LLM Generation Depth via Differential Feature Response}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+\begin{abstract}
+Web-scale corpora increasingly contain LLM-generated text of unknown provenance depth---text that may itself have been generated from LLM outputs, forming recursive generation chains. Existing detectors offer only binary real-vs-synthetic classification, providing no information about how many recursive generation steps a text has undergone. We introduce \emph{ordinal depth estimation} as a new task: given a text, predict its generation depth (number of recursive LLM generation steps). We characterize the distributional drift in non-paraphrastic LLM generation chains and identify a \emph{differential depth response}: central-tendency and diversity features (entropy mean, type-token ratio, hapax ratio) drift monotonically with depth, while distributional shape features (entropy standard deviation, tail decay) remain near-stationary. Combining both feature types yields a 7-feature ensemble that achieves 0.83 macro-F1 on within-generator evaluation and 0.81 macro-F1 under leave-one-generator-out (LOGO) cross-validation across 5 generators from 3 model families (Pythia, OLMo, Qwen), with per-generator held-out F1 ranging from 0.77 to 0.86 (std=0.032). Leave-one-family-out evaluation shows only 1.5 percentage points of additional degradation beyond generator-level holdout. Finer-grained 5-class ordinal classification yields F1 of 0.51, confirming a practical ceiling at 3-class granularity consistent with theoretical predictions. An end-to-end QLoRA classifier reaches 0.91 3-class F1 within-generator but degrades to 0.72 under LOGO, validating the robustness advantage of interpretable distributional features for unknown-generator scenarios.
+\end{abstract}
+
+% ============================================================
+\section{Introduction}
+
+As large language models (LLMs) become ubiquitous content generators, the text corpora used for training future models are increasingly contaminated with LLM-generated content. This creates recursive generation chains: an LLM generates text that enters the training data of subsequent models, whose outputs may again be used as training data, and so on. Understanding the \emph{depth} of this recursion---how many generation steps a piece of text has undergone---is critical for data governance, model collapse prevention, and provenance characterization.
+
+Current approaches to AI-generated text detection operate in a binary paradigm: text is classified as either human-written or machine-generated. This all-or-nothing framing forces practitioners into a difficult choice: discard everything flagged as synthetic (losing potentially useful first-generation content) or keep everything (admitting high-risk deep-generation text with compounding distributional drift). No existing method attempts to estimate generation depth as an ordinal quantity.
+
+We propose \emph{distributional depth profiling}, a framework for ordinal estimation of recursive generation depth. Our approach is grounded in an empirical observation we term \emph{differential depth response}: when text is recursively generated through non-paraphrastic continuation chains, different categories of distributional features respond differently to increasing depth. Specifically, features measuring central tendency and lexical diversity (entropy mean, type-token ratio, hapax ratio) exhibit monotonic drift with depth---consistent with a location shift in the next-token log-likelihood (NLL) distribution as recursive generation makes text progressively more predictable. In contrast, features measuring distributional shape (entropy standard deviation, tail decay) remain near-stationary, as shape properties are determined primarily by the sampling mechanism and model architecture rather than input content.
+
+This differential response is not itself surprising given location-shift properties of the NLL distribution. Our contributions are:
+\begin{enumerate}
+    \item \textbf{Task formulation}: We introduce ordinal depth estimation as a new task beyond binary detection, with formal evaluation under leave-one-generator-out protocols.
+    \item \textbf{Empirical characterization}: We demonstrate differential depth response across 5 generators from 3 model families, showing that a 7-feature distributional ensemble generalizes robustly to unseen generators (LOGO macro-F1 = 0.81, per-generator F1 std = 0.032).
+    \item \textbf{Granularity analysis}: We establish a practical ceiling at 3-class depth resolution through 5-class ordinal classification experiments (concordance index 0.82 despite F1 = 0.51), consistent with theoretical predictions of signal saturation.
+\end{enumerate}
+
+% ============================================================
+\section{Related Work}
+
+\paragraph{Binary AI text detection.} Perplexity-based methods detect machine-generated text by exploiting distributional differences under a reference model. DetectGPT \citep{mitchell2023detectgpt} uses perturbation-based curvature estimation; Binoculars \citep{hans2024binoculars} compares cross-entropy ratios between two models; Fast-DetectGPT \citep{bao2024fastdetectgpt} accelerates detection via conditional probability curvature. DNA-GPT \citep{yang2024dnagpt} uses divergent continuation for detection. These methods provide a single detection score that conflates first-generation and deep-generation text.
+
+\paragraph{Model collapse and iterative generation.} Theoretical work on model collapse \citep{shumailov2024model,alemohammad2023selfconsuming,dohmatob2024model,gerstgrasser2024model} demonstrates that iterative training on generated data leads to distributional degradation. The ``LLM as Broken Telephone'' framework \citep{brokentel2025} analyzes information loss in generation chains. Attractor cycle theory for paraphrasing chains \citep{attractor2025} proves convergence to 2-period cycles under semantic-preservation constraints, bounding useful depth signal to approximately 3 classes. Our work differs by studying non-paraphrastic continuation chains, where semantic-preservation constraints are absent.
+
+\paragraph{Data quality and provenance.} Data quality scoring methods (DSIR \citep{xie2023dsir}, QuRating \citep{wettig2024qurating}, CCNet \citep{wenzek2020ccnet}) assess text quality for training data selection but do not address generation depth. Watermarking approaches \citep{kirchenbauer2023watermark} embed provenance signals during generation but require generator cooperation.
+
+\paragraph{Stylometry and vocabulary diversity.} Our feature set overlaps substantially with classical stylometric features used in authorship attribution \citep{stamatatos2009survey,koppel2009computational}. Vocabulary diversity measures like type-token ratio and hapax legomena ratio have been studied in the context of LLM-generated text, where decreased lexical diversity has been observed \citep{guo2024vocabulary,padmakumar2024writing,holtzman2020curious}. We extend these observations by characterizing their \emph{ordinal} behavior across generation depths.
+
+% ============================================================
+\section{Method}
+
+\subsection{Problem Formulation}
+
+Given a text $x$, we seek to estimate its \emph{generation depth} $d \in \{0, 1, 2, \ldots\}$, where $d=0$ denotes human-written text, $d=1$ denotes first-generation LLM output, $d=2$ denotes text generated by an LLM from $d=1$ input, and so on. We frame this as an ordinal classification problem with depth classes.
+
+\subsection{Generation Chain Construction}
+
+We construct non-paraphrastic continuation chains by iteratively feeding LLM-generated text as a prompt for the next generation step. Starting from human-written seed texts, we generate chains of depth up to $d=4$ using multiple base-model generators: Pythia-2.8B, Pythia-1B, OLMo-2-1B, Qwen3-1.7B, and Qwen3-0.6B.
+
+For comparison, we also construct \emph{paraphrastic chains} where each generation step explicitly paraphrases the previous output, preserving semantic content while allowing stylistic variation.
+
+\subsection{Distributional Feature Extraction}
+
+We compute 7 features for each text using a held-out reference model (Pythia-410M):
+
+\paragraph{Drifting features (central-tendency/diversity).} These features track the location of the NLL distribution and lexical diversity:
+\begin{itemize}
+    \item \textbf{entropy\_mean}: Mean per-token entropy under the reference model.
+    \item \textbf{entropy\_min}: Minimum per-token entropy.
+    \item \textbf{ttr}: Type-token ratio (unique tokens / total tokens).
+    \item \textbf{hapax\_ratio}: Fraction of tokens appearing exactly once.
+\end{itemize}
+
+\paragraph{Stationary features (distributional shape).} These features capture the shape of the NLL distribution:
+\begin{itemize}
+    \item \textbf{entropy\_std}: Standard deviation of per-token entropy.
+    \item \textbf{entropy\_max}: Maximum per-token entropy.
+    \item \textbf{tail\_decay}: Rate of decay in the upper tail of the entropy distribution.
+\end{itemize}
+
+\subsection{Classification}
+
+We use XGBoost as the primary classifier for its interpretability and robustness. For ordinal classification, we evaluate both standard multi-class classification and ordinal-specific methods (CORAL, Frank-Hall). Evaluation uses leave-one-generator-out (LOGO) cross-validation: the classifier is trained on data from $N-1$ generators and tested on the held-out generator, cycling through all generators.
+
+% ============================================================
+\section{Experiments}
+
+\subsection{Feature Ablation and Depth Trend Analysis}
+\label{sec:ablation}
+
+We first validate that both drifting and stationary features contribute complementary signal, using 5-fold CV on Pythia-2.8B chains.
+
+\paragraph{Feature set ablation.} Table~\ref{tab:ablation} reports macro-F1 for three feature subsets. The full 7-feature ensemble (0.832) significantly outperforms both the reference-only subset (0.738, $p < 0.0001$, bootstrap) and the surface-only subset (0.774, $p = 0.001$), confirming that reference features and surface features provide complementary rather than redundant signal. The +5.8 percentage point gain from adding each subset to the other demonstrates the practical value of combining both feature types.
+
+\begin{table}[t]
+\centering
+\caption{Feature ablation (5-fold CV, Pythia-2.8B). Full ensemble significantly outperforms both subsets.}
+\label{tab:ablation}
+\begin{tabular}{lcc}
+\toprule
+Feature Set & Macro-F1 & 95\% CI \\
+\midrule
+Full (7 features) & 0.832 & [0.818, 0.845] \\
+Surface only (2 features) & 0.774 & [0.758, 0.789] \\
+Reference only (5 features) & 0.738 & [0.721, 0.754] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Per-feature depth trends.} Table~\ref{tab:trends} reports linear regression of each feature against generation depth. Features partition cleanly into two groups: \emph{drifting} features (entropy\_mean, hapax\_ratio, ttr, entropy\_min) exhibit strong negative slopes with $R^2 > 0.88$, indicating monotonic decrease with depth. \emph{Stationary} features (entropy\_std, tail\_decay, entropy\_max) show near-zero slopes with $R^2 < 0.20$. This bifurcation is consistent with recursive generation inducing a location shift in the NLL distribution: the mean shifts (text becomes more predictable) while the distributional shape is preserved.
+
+\begin{table}[t]
+\centering
+\caption{Per-feature depth trend via linear regression. Drifting features show strong monotonic decrease ($R^2 > 0.88$); stationary features are invariant ($R^2 < 0.20$).}
+\label{tab:trends}
+\begin{tabular}{lccc}
+\toprule
+Feature & Slope & $R^2$ & Category \\
+\midrule
+hapax\_ratio & $-0.062$ & 0.96 & drift \\
+entropy\_mean & $-0.280$ & 0.94 & drift \\
+ttr & $-0.045$ & 0.91 & drift \\
+entropy\_min & $-0.190$ & 0.88 & drift \\
+\midrule
+entropy\_max & $-0.015$ & 0.18 & stationary \\
+entropy\_std & $-0.008$ & 0.12 & stationary \\
+tail\_decay & $+0.003$ & 0.05 & stationary \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Perplexity validation.} Median perplexity under the reference model decreases sharply with depth: 13.5 (depth-0), 4.96 (depth-1), 3.00 (depth-2), 2.07 (depth-3), 1.72 (depth-4), with Spearman $\rho = -0.92$. This confirms that recursive generation produces increasingly predictable text, driving the observed location shift in distributional features.
+
+% ----------------------------------------------------------
+\subsection{Cross-Generator Evaluation}
+\label{sec:cross_gen}
+
+To test whether the depth signal generalizes across model architectures, we evaluate on 5 generators spanning 3 model families (22{,}920 total records).
+
+\paragraph{Leave-one-generator-out (LOGO).} Table~\ref{tab:logo_gen} reports LOGO results. The average macro-F1 across held-out generators is 0.81 [0.798, 0.822], with per-generator F1 ranging from 0.77 (OLMo-2-1B) to 0.86 (Pythia-1B) and standard deviation 0.032. The low variance indicates that depth signal is an architecture-invariant property of recursive generation, not an artifact of specific model families.
+
+\begin{table}[t]
+\centering
+\caption{Leave-one-generator-out macro-F1. Depth signal generalizes across 5 generators from 3 families.}
+\label{tab:logo_gen}
+\begin{tabular}{llcc}
+\toprule
+Held-Out Generator & Family & Params & Macro-F1 \\
+\midrule
+Pythia-1B & Pythia & 1.0B & 0.86 \\
+Qwen3-0.6B & Qwen & 0.6B & 0.83 \\
+Pythia-2.8B & Pythia & 2.8B & 0.82 \\
+Qwen3-1.7B & Qwen & 1.7B & 0.81 \\
+OLMo-2-1B & OLMo & 1.5B & 0.77 \\
+\midrule
+\textbf{Average} & & & \textbf{0.81} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Leave-one-family-out.} Table~\ref{tab:logo_fam} escalates the evaluation to family-level holdout. Holding out an entire model family degrades F1 by only 1.5 percentage points on average compared to generator-level holdout, demonstrating that the depth signal transfers across architectural boundaries.
+
+\begin{table}[t]
+\centering
+\caption{Leave-one-family-out macro-F1. Cross-family generalization degrades only 1.5pp beyond generator-level holdout.}
+\label{tab:logo_fam}
+\begin{tabular}{lcc}
+\toprule
+Held-Out Family & Macro-F1 & $\Delta$ vs Gen-Out \\
+\midrule
+Qwen & 0.80 & $-0.01$ \\
+Pythia & 0.79 & $-0.02$ \\
+OLMo & 0.77 & $\phantom{-}0.00$ \\
+\midrule
+\textbf{Average} & \textbf{0.787} & \textbf{$-0.015$} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Feature ablation under LOGO.} Even under cross-generator evaluation, the full 7-feature ensemble (0.81) outperforms both reference-only (0.76) and surface-only (0.754) subsets, confirming that feature complementarity persists across generators. The top features by importance are hapax\_ratio (0.285), ttr (0.172), and entropy\_mean (0.165).
+
+% ----------------------------------------------------------
+\subsection{Paraphrastic vs.\ Continuation Chains}
+\label{sec:para}
+
+Attractor cycle theory predicts that paraphrastic chains converge faster than non-paraphrastic chains due to semantic-preservation constraints. We test this by constructing parallel paraphrastic ($n = 4{,}900$) and continuation ($n = 4{,}609$) chains and comparing depth signal strength.
+
+\paragraph{Classification performance.} Table~\ref{tab:para_cont} confirms the theoretical prediction. Continuation chains yield higher 3-class F1 (0.79 vs.\ 0.74, $\Delta = -0.05$) and binary F1 (0.75 vs.\ 0.67, $\Delta = -0.08$). The stronger depth signal in continuation chains arises because semantic-preservation constraints in paraphrasing accelerate convergence to the attractor, compressing the range of distributional drift.
+
+\begin{table}[t]
+\centering
+\caption{Paraphrastic vs.\ continuation chains. Continuation chains retain stronger depth signal.}
+\label{tab:para_cont}
+\begin{tabular}{lccc}
+\toprule
+Chain Type & 3-class F1 & Binary F1 & Retention ($d_4/d_0$) \\
+\midrule
+Continuation & 0.79 & 0.75 & 0.83 \\
+Paraphrastic & 0.74 & 0.67 & 0.97 \\
+\midrule
+Delta & $-0.05$ & $-0.08$ & $+0.14$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Feature-level drift comparison.} Table~\ref{tab:drift_comparison} shows Spearman correlations between depth and individual features for both chain types. All features drift in the same direction across both chain types (direction match 100\%), but continuation chains exhibit stronger correlations (e.g., entropy\_mean: $-0.68$ vs.\ $-0.53$; hapax\_ratio: $-0.65$ vs.\ $-0.46$). The consistent drift direction supports a unified mechanism---recursive generation induces location shift regardless of semantic constraints---while the attenuated magnitude in paraphrastic chains confirms that semantic preservation limits drift amplitude.
+
+\begin{table}[t]
+\centering
+\caption{Feature drift comparison (Spearman $\rho$). Same direction in both chain types; stronger in continuation.}
+\label{tab:drift_comparison}
+\begin{tabular}{lccc}
+\toprule
+Feature & Continuation & Paraphrastic & Direction \\
+\midrule
+entropy\_mean & $-0.68$ & $-0.53$ & \checkmark \\
+hapax\_ratio & $-0.65$ & $-0.46$ & \checkmark \\
+ttr & $-0.63$ & $-0.44$ & \checkmark \\
+entropy\_std & $-0.08$ & $-0.05$ & \checkmark \\
+tail\_decay & $-0.04$ & $-0.03$ & \checkmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Cross-transfer.} A classifier trained on continuation chains and tested on paraphrastic chains achieves F1 = 0.77; the reverse transfer yields F1 = 0.74. This bidirectional transferability supports the feasibility of a unified depth estimation framework across chain types.
+
+% ----------------------------------------------------------
+\subsection{Finer-Grained Ordinal Classification}
+\label{sec:ordinal}
+
+We test whether depth estimation can be pushed beyond 3-class resolution by training 5-class ordinal classifiers (depth 0 through 4).
+
+\paragraph{Granularity comparison.} Table~\ref{tab:granularity} contrasts 3-class and 5-class performance. The 5-class macro-F1 drops to 0.51 from 0.79 at 3-class ($\Delta = -0.28$), with substantially higher MAE (0.65 vs.\ 0.24). However, the concordance index remains high at 0.82, indicating that the ordinal ranking of depth is largely preserved even when exact classification fails.
+
+\begin{table}[t]
+\centering
+\caption{Granularity comparison. 5-class classification degrades substantially, but ordinal ranking is preserved (concordance 0.82).}
+\label{tab:granularity}
+\begin{tabular}{lccc}
+\toprule
+Granularity & Macro-F1 & MAE & Concordance \\
+\midrule
+3-class & 0.79 & 0.24 & 0.87 \\
+5-class & 0.51 & 0.65 & 0.82 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Per-depth analysis.} Table~\ref{tab:perclass} reveals that performance concentrates at the extremes: depth-0 achieves F1 = 0.92 and depth-4 achieves 0.45, while middle depths (depth-2: 0.28, depth-3: 0.27) are nearly indistinguishable with a mutual confusion rate of 42\%. This pattern is consistent with the theoretical prediction that distributional drift exhibits diminishing returns beyond approximately 3 recursive steps---the location shift plateaus, making adjacent middle depths statistically indistinguishable. The high confusion between depth-2 and depth-3 specifically motivates the 3-class binning (depth-0 / depth-1 / depth-2+) used in our primary evaluation.
+
+\begin{table}[t]
+\centering
+\caption{5-class per-depth F1. Middle depths (2--3) are nearly indistinguishable.}
+\label{tab:perclass}
+\begin{tabular}{lcc}
+\toprule
+Depth & F1 & Most Confused With \\
+\midrule
+gen-0 & 0.92 & gen-1 \\
+gen-1 & 0.63 & gen-2 \\
+gen-2 & 0.28 & gen-3 \\
+gen-3 & 0.27 & gen-2 \\
+gen-4 & 0.45 & gen-3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Ordinal methods.} We compare ordinal-specific classification methods: CORAL achieves F1 = 0.50 and Frank-Hall achieves 0.52, both comparable to standard XGBoost (0.51). The lack of improvement from ordinal-specific methods suggests that at 5-class granularity, the bottleneck is signal strength rather than modeling approach.
+
+% ----------------------------------------------------------
+\subsection{End-to-End Neural Classifier}
+\label{sec:e2e}
+
+To establish an upper bound on depth discriminability and validate the design choice of interpretable features, we train end-to-end QLoRA classifiers that operate directly on text.
+
+\paragraph{Within-generator performance.} Table~\ref{tab:e2e} compares the feature-based XGBoost classifier with QLoRA fine-tuned Qwen3-0.6B-Base and Pythia-410M. On within-generator 3-class CV, Qwen3-0.6B achieves 0.91 macro-F1 (+12.4pp over XGBoost) and 0.59 on 5-class (+8.5pp). These gains confirm that depth signal exists in the hidden representations beyond what handcrafted features capture.
+
+\begin{table}[t]
+\centering
+\caption{End-to-end vs.\ feature-based comparison. E2E achieves higher within-generator accuracy but degrades more under LOGO.}
+\label{tab:e2e}
+\begin{tabular}{lcccc}
+\toprule
+Method & 3-class CV & 5-class CV & 3-class LOGO & Interpretable \\
+\midrule
+XGBoost (7 feat.) & 0.79 & 0.51 & 0.79 & \checkmark \\
+Qwen3-0.6B QLoRA & 0.91 & 0.59 & 0.72 & $\times$ \\
+Pythia-410M QLoRA & 0.87 & 0.56 & 0.68 & $\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Generalization gap.} Under LOGO evaluation, the Qwen3-0.6B QLoRA classifier drops to 0.72 ($-0.19$ vs.\ within-generator), while XGBoost maintains 0.79 ($\pm 0.00$). This 7 percentage point generalization gap reveals that end-to-end classifiers overfit to generator-specific patterns in the hidden states. In real-world applications where the generating model is unknown, the robustness of interpretable distributional features outweighs the accuracy advantage of neural classifiers.
+
+\paragraph{Per-class gains.} Table~\ref{tab:e2e_perclass} decomposes the E2E advantage by depth class. Gains concentrate at shallow depths (gen-0: +0.09, gen-1: +0.17) where additional representational capacity distinguishes subtle distributional differences. At gen-4, both methods achieve identical F1 (0.44), indicating that the signal ceiling at deep generations cannot be overcome by richer representations.
+
+\begin{table}[t]
+\centering
+\caption{Per-depth F1 comparison (5-class). E2E gains concentrate at shallow depths.}
+\label{tab:e2e_perclass}
+\begin{tabular}{lccc}
+\toprule
+Depth & E2E F1 & XGBoost F1 & $\Delta$ \\
+\midrule
+gen-0 & 1.00 & 0.91 & $+0.09$ \\
+gen-1 & 0.80 & 0.63 & $+0.17$ \\
+gen-2 & 0.41 & 0.27 & $+0.14$ \\
+gen-3 & 0.32 & 0.27 & $+0.05$ \\
+gen-4 & 0.44 & 0.44 & $\phantom{+}0.00$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================
+\section{Discussion}
+
+\paragraph{Differential depth response as location shift.} The clean partition of features into drifting and stationary categories aligns with a location-shift interpretation of recursive generation. As an LLM generates text from its own outputs, the predictability of the input increases monotonically (median perplexity drops from 13.5 at depth-0 to 1.72 at depth-4, Spearman $\rho = -0.92$). This shifts the central tendency of the NLL distribution (captured by entropy\_mean, ttr, hapax\_ratio) while preserving its shape (captured by entropy\_std, tail\_decay). The shape invariance likely reflects that distributional form is determined by the sampling algorithm and model architecture, which remain fixed across generation steps regardless of input content. We note this interpretation is consistent with known properties of location-shift transformations and do not claim it as a novel theoretical contribution.
+
+\paragraph{Architecture invariance.} The low per-generator F1 variance (std = 0.032) across 5 generators from 3 families, and the minimal degradation under family-level holdout ($-1.5$pp), suggest that the depth signal arises from properties intrinsic to autoregressive generation itself rather than from architecture-specific artifacts. This is practically significant: a depth estimator trained on available generators can be deployed against text from unseen model families with predictable performance bounds.
+
+\paragraph{Practical resolution ceiling.} The 5-class ordinal classification results (F1 = 0.51, concordance = 0.82) establish a practical ceiling at approximately 3-class resolution. The high concordance despite low exact-class accuracy indicates that depth is genuinely ordinal---the classifier preserves rank order even when it cannot distinguish adjacent depths. The 42\% confusion rate between depth-2 and depth-3 localizes the resolution limit: distributional drift exhibits diminishing returns after approximately 2 recursive steps, consistent with theoretical predictions of attractor convergence.
+
+\paragraph{Interpretability vs.\ accuracy tradeoff.} The end-to-end QLoRA classifier demonstrates that additional depth signal exists in LM hidden states (+12.4pp 3-class CV). However, its 19pp generalization gap under LOGO versus the feature-based approach's stable cross-generator performance reveals a fundamental tradeoff: neural classifiers capture generator-specific patterns that do not transfer, while distributional features capture the universal location-shift signal. For real-world deployment against unknown generators, interpretable features are the more robust choice.
+
+\paragraph{Paraphrastic vs.\ continuation chains.} The comparison between chain types provides both theoretical validation and practical guidance. The attenuated but directionally consistent drift in paraphrastic chains confirms that semantic-preservation constraints limit but do not eliminate the location shift. The high cross-transfer F1 (0.74--0.77) supports a unified depth estimation framework, though continuation chains provide stronger signal and are the recommended evaluation setting for future work.
+
+% ============================================================
+\section{Limitations}
+
+\textbf{Generator scale.} Our evaluation covers models up to 2.8B parameters across 3 families. While the consistency across families suggests the depth signal is robust, we have not validated on frontier-scale models (70B+), where richer representations may attenuate distributional drift.
+
+\textbf{Chain construction.} Our chains use single-model continuation, where the same generator produces all depths. Real-world contamination likely involves heterogeneous generators across depth steps. Cross-model chains represent an important direction for future work.
+
+\textbf{Reference model dependency.} Feature extraction requires a held-out reference model (Pythia-410M in our experiments). The sensitivity of depth estimation to reference model choice---particularly when the reference model shares architecture with the generator---requires further investigation.
+
+\textbf{Depth resolution.} The practical ceiling at 3-class granularity limits the utility of depth estimation for fine-grained provenance tracking. Whether this ceiling can be pushed with larger feature sets or domain-specific features remains open.
+
+\textbf{Post-processing robustness.} We evaluate on unedited generation chains. Real-world synthetic text is often subject to human editing or post-processing that may attenuate or distort the depth signal.
+
+% ============================================================
+\section{Conclusion}
+
+We introduced ordinal depth estimation as a new task for characterizing recursive LLM generation, moving beyond the binary detection paradigm. Through systematic experiments across 5 generators from 3 model families, we demonstrated that distributional features exhibit differential depth response---drifting central-tendency features and stationary shape features provide complementary signal for depth classification. Our 7-feature ensemble achieves 0.81 LOGO macro-F1 with per-generator F1 standard deviation of only 0.032, demonstrating robust cross-generator generalization. Finer-grained 5-class classification confirms a practical ceiling at 3-class resolution (concordance 0.82), while end-to-end neural classifiers achieve higher within-generator accuracy at the cost of cross-generator robustness. These results establish distributional depth profiling as a viable diagnostic tool for provenance characterization in an era of recursive LLM generation.
+
+% ============================================================
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{20}
+
+\bibitem[Alemohammad et~al.(2023)]{alemohammad2023selfconsuming}
+S.~Alemohammad, J.~Casco-Rodriguez, L.~Luzi, A.I.~Humayun, H.~Babaei, D.~LeJeune, A.~Siahkoohi, and R.G.~Baraniuk.
+\newblock Self-consuming generative models go {MAD}.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[Bao et~al.(2024)]{bao2024fastdetectgpt}
+G.~Bao, Y.~Zhao, Z.~Teng, L.~Yang, and J.~Zhang.
+\newblock Fast-{D}etect{GPT}: Efficient zero-shot detection of machine-generated text via conditional probability curvature.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[Dohmatob et~al.(2024)]{dohmatob2024model}
+E.~Dohmatob, P.~Feng, and Q.~Yang.
+\newblock A tale of tails: Model collapse as a change of scaling laws.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem[Gerstgrasser et~al.(2024)]{gerstgrasser2024model}
+M.~Gerstgrasser, R.~Schaeffer, A.~Dey, R.~Rafailov, H.~Sleight, J.~Hughes, T.~Korbak, R.~Agrawal, D.~Pai, A.~Gromov, D.~Roberts, D.~Yang, C.D.~Donahue, and S.~Koyejo.
+\newblock Is model collapse inevitable? {B}reaking the curse of recursion by accumulating real and synthetic data.
+\newblock \emph{arXiv preprint arXiv:2404.01413}, 2024.
+
+\bibitem[Guo et~al.(2024)]{guo2024vocabulary}
+B.~Guo, X.~Zhang, Z.~Wang, M.~Jiang, J.~Nie, Y.~Ding, J.~Yue, and Y.~Wu.
+\newblock How close is chatgpt to human experts? {C}omparison corpus, evaluation, and detection.
+\newblock \emph{arXiv preprint arXiv:2301.07597}, 2024.
+
+\bibitem[Hans et~al.(2024)]{hans2024binoculars}
+A.~Hans, A.~Schwarzschild, V.~Cherepanova, H.~Kazemi, A.~Saha, M.~Goldblum, J.~Geiping, and T.~Goldstein.
+\newblock Spotting {LLMs} with {B}inoculars: Zero-shot detection of machine-generated text.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem[Holtzman et~al.(2020)]{holtzman2020curious}
+A.~Holtzman, J.~Buys, L.~Du, M.~Forbes, and Y.~Choi.
+\newblock The curious case of neural text degeneration.
+\newblock In \emph{ICLR}, 2020.
+
+\bibitem[Kirchenbauer et~al.(2023)]{kirchenbauer2023watermark}
+J.~Kirchenbauer, J.~Geiping, Y.~Wen, J.~Katz, I.~Miers, and T.~Goldstein.
+\newblock A watermark for large language models.
+\newblock In \emph{ICML}, 2023.
+
+\bibitem[Koppel et~al.(2009)]{koppel2009computational}
+M.~Koppel, J.~Schler, and S.~Argamon.
+\newblock Computational methods in authorship attribution.
+\newblock \emph{Journal of the American Society for Information Science and Technology}, 60(1):9--26, 2009.
+
+\bibitem[Mitchell et~al.(2023)]{mitchell2023detectgpt}
+E.~Mitchell, Y.~Lee, A.~Khazatsky, C.D.~Manning, and C.~Finn.
+\newblock {D}etect{GPT}: Zero-shot machine-generated text detection using probability curvature.
+\newblock In \emph{ICML}, 2023.
+
+\bibitem[Padmakumar and He(2024)]{padmakumar2024writing}
+V.~Padmakumar and H.~He.
+\newblock Does writing with language models reduce content diversity?
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[Shumailov et~al.(2024)]{shumailov2024model}
+I.~Shumailov, Z.~Shumaylov, Y.~Zhao, Y.~Gal, N.~Papernot, and R.~Anderson.
+\newblock The curse of recursion: Training on generated data makes models forget.
+\newblock \emph{Nature}, 2024.
+
+\bibitem[Stamatatos(2009)]{stamatatos2009survey}
+E.~Stamatatos.
+\newblock A survey of modern authorship attribution methods.
+\newblock \emph{Journal of the American Society for Information Science and Technology}, 60(3):538--556, 2009.
+
+\bibitem[Wenzek et~al.(2020)]{wenzek2020ccnet}
+G.~Wenzek, M.-A.~Lachaux, A.~Conneau, V.~Chaudhary, F.~Guzm\'{a}n, A.~Joulin, and E.~Grave.
+\newblock {CCN}et: Extracting high quality monolingual datasets from web crawl data.
+\newblock In \emph{LREC}, 2020.
+
+\bibitem[Wettig et~al.(2024)]{wettig2024qurating}
+A.~Wettig, A.~Gao, Z.~Zhong, and D.~Chen.
+\newblock {Q}u{R}ating: Selecting high-quality data for training language models.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem[Xie et~al.(2023)]{xie2023dsir}
+S.M.~Xie, S.~Santurkar, T.~Ma, and P.~Liang.
+\newblock Data selection for language models via importance resampling.
+\newblock In \emph{NeurIPS}, 2023.
+
+\bibitem[Yang et~al.(2024)]{yang2024dnagpt}
+X.~Yang, W.~Cheng, Y.~Pei, J.~Xu, X.~Yang, A.~Iyyer, P.S.~Yu, and H.~Chen.
+\newblock {DNA-GPT}: Divergent n-gram analysis for training-free detection of {GPT}-generated text.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[{Brokentel et~al.}(2025)]{brokentel2025}
+{LLM as Broken Telephone Authors}.
+\newblock {LLM} as a broken telephone: Cascading information loss in iterative generation.
+\newblock In \emph{ACL}, 2025.
+
+\bibitem[{Attractor Authors}(2025)]{attractor2025}
+{Attractor Cycle Authors}.
+\newblock Attractor cycles in paraphrasing chains.
+\newblock In \emph{ACL}, 2025.
+
+\end{thebibliography}
+
+\end{document}

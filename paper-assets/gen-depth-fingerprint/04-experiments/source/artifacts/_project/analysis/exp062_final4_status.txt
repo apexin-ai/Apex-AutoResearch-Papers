@@ -1,0 +1,41 @@
+exp062 Final 4 Combo Status — 2026-05-22 01:10 CST
+====================================================
+
+GPU utilization:
+  cuda:0 — idle (0%, 0 MiB)
+  cuda:1 — active (78%, 16.5 GB) → Qwen3-8B generation
+  cuda:2 — idle (0%, 0 MiB)
+  cuda:3 — active (33%, 1.8 GB) → Qwen3-0.6B generation
+
+1. Mistral-7B topk — DONE ✓
+   chains: 4851 lines (complete)
+   features: features_mistral-7b-v0.3-topk.csv (4852 lines, valid)
+   Cohen's d: computed → Shape=PASS, Drift=PASS
+     entropy_max=0.064, entropy_min=0.013, tail_decay=0.123 → Shape PASS
+     entropy_mean=0.697, TTR=0.644, hapax=0.668 → Drift PASS
+     entropy_std=0.070 (intermediate)
+   gen1=995, gen2+=2860
+
+2. Qwen3-0.6B topk — IN PROGRESS (40%)
+   chains: 1956/~4850 lines
+   process: PID 357811 on cuda:3 (via cuda3_chain_v2 watcher)
+   greedy phase done (4872 lines), now running topk
+   ETA: ~4-5 hours (≈05:00-06:00 CST)
+
+3. Qwen3-8B greedy — IN PROGRESS (38%)
+   chains: 1833/~4850 lines
+   process: PID 369104 on cuda:1 (via qwen8b_watcher)
+   started at 23:22 on cuda:1
+   ETA: ~3 hours (≈04:00 CST)
+
+4. Qwen3-8B topk — QUEUED (runs after greedy)
+   directory: not yet created
+   will start after PID 369104 finishes greedy
+   ETA: greedy done ~04:00 + topk ~4-5h ≈ 08:00-09:00 CST
+
+Feature watcher (PID 372589) — active, working correctly.
+  Completed Mistral extraction at 01:07:37 CST.
+  Now waiting for Qwen3-0.6B (PID 357811) to finish.
+  Will auto-extract features for combos 2-4 as they complete.
+
+Overall: 13/16 combos have Cohen's d. Final 3 expected by ~09:00 CST.

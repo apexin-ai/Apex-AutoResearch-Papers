@@ -1,0 +1,143 @@
+## Writing Quality Upgrade Plan — Patch Mode (v2)
+## Date: 2026-05-20
+## Goal: 提升 story 包装 + 主文视觉密度，严守 8 页限制
+
+# ============================================================
+# 空间预算分析 (v2 — 基于已有图的实际尺寸)
+# ============================================================
+space_budget:
+  current_state:
+    visual_elements: "1 Figure (DDR strip, p6) + 2 Tables (LOGO p6, Baselines p7)"
+    text_heavy_pages: "p1-p5 全为纯文本，p8 也是纯文本"
+    available_figures:
+      - "fig2_framework.pdf — 已存在，三面板概念图 (1157×490px)，未被引用"
+      - "fig3_baseline_comparison.pdf — 已存在，在 appendix (main.tex:116-121)"
+
+  figure_space_cost:
+    fig2_framework:
+      dimensions: "width=columnwidth 缩放后 ~6in × 2.5in"
+      with_caption: "~0.35 页"
+      placement: "§3 Method 开头 (\\begin{figure}[t])"
+    fig3_baseline:
+      dimensions: "~3in × 2.2in"
+      with_caption: "~0.25 页"
+      placement: "§4.3 Baselines 段内 (替换 appendix 位置)"
+
+  compression_targets:
+    - section: "§3.1 Task Formulation"
+      savings: "~5 lines"
+    - section: "§3.2 Generation Chain Construction"
+      savings: "~5 lines"
+    - section: "§3.4 Evaluation Protocol"
+      savings: "~8 lines"
+    - section: "§1 Introduction"
+      savings: "~3 lines"
+    - section: "Results 文本微调"
+      savings: "~3 lines"
+  total_compression: "~24 lines ≈ 0.40 页"
+
+  scenario_analysis:
+    fig2_only:
+      need: "0.35 页"
+      available: "0.40 页"
+      verdict: "✅ 安全，有 ~0.05 页 buffer"
+    fig2_plus_fig3:
+      need: "0.60 页"
+      available: "0.40 页"
+      gap: "~0.20 页"
+      verdict: "⚠️ 需要额外压缩 Related Work (~0.10 页) + Discussion (~0.10 页) 才可行"
+      risk: "中等——需要编译验证每步不溢出"
+
+# ============================================================
+# Phase C2: Method 压缩 + 插入 Figure 2
+# ============================================================
+phase_c2_method:
+  priority: HIGHEST
+  step: 1
+  changes:
+    - action: "在 §3 (method.tex) 开头插入 fig2_framework"
+      code: |
+        \begin{figure}[t]
+        \centering
+        \includegraphics[width=\columnwidth]{fig2_framework.pdf}
+        \caption{Depth fingerprinting pipeline. (a) Generation chains: human seed text is recursively processed by LLMs to produce texts at increasing depths. (b) Feature extraction: a reference model (Pythia-410M) computes per-token NLL distributions, from which five statistics and two surface features are extracted. (c) Evaluation: Leave-One-Generator-Out cross-validation across eight generators from five families.}
+        \label{fig:framework}
+        \end{figure}
+    - action: "§3.1 Task Formulation 压缩（12行→7行）"
+    - action: "§3.2 Chain Construction — chain breaks/yield 细节移入 appendix（14行→9行）"
+    - action: "§3.4 Evaluation Protocol — 精简（25行→17行）"
+    - action: "正文中添加 'Figure~\\ref{fig:framework}' 交叉引用"
+
+# ============================================================
+# Phase C2b: 评估 Figure 3 移入主文
+# ============================================================
+phase_c2b_figure3:
+  priority: MEDIUM
+  step: 2 (在 step 1 编译验证后决定)
+  assessment: |
+    **推荐移入主文**，理由：
+    1. results.tex 已引用 Figure~\ref{fig:baseline-ci}，当前指向 appendix 图——
+       读者在主文遇到图引用却要翻 appendix，体验差
+    2. fig3 紧凑（~0.25 页），是 §4.3 的最佳视觉伴侣
+    3. 移入后主文达到 3 Figures + 2 Tables，视觉密度大幅改善
+    
+    **执行条件**：step 1 编译后页数 ≤7.75 页（留 0.25 页给 fig3）
+    **操作**：从 main.tex appendix 区域（line 116-121）剪切到 results.tex §4.3 段内
+  fallback: "若空间不足，fig3 留在 appendix，改交叉引用为 'Appendix Figure X'"
+
+# ============================================================
+# Phase C1: Introduction 重写
+# ============================================================
+phase_c1_introduction:
+  priority: HIGH
+  step: 3
+  target_structure:
+    p1_hook: "从 practical problem（LLM 输出递归回流训练语料）入手"
+    p2_gap: "现有 binary detection 和 model collapse 研究的不足"
+    p3_insight: "DDR 发现 + base model 限制（一句话带过）"
+    p4_results: "关键数字，不罗列温度/prompt 细节"
+    p5_contributions: "3条精简贡献，去掉括号内数字堆砌"
+  word_budget: "~520 → ~470 words"
+
+# ============================================================
+# Phase C4+C5: Caption 优化 + 全文语言润色
+# ============================================================
+phase_c4c5_polish:
+  priority: HIGH
+  step: 4
+  items:
+    - "Figure 1 caption 重写：增加 DDR quantitative summary"
+    - "em-dash 全文清零"
+    - "-ing 分词结尾清理"
+    - "AI 风格过渡词去除"
+    - "段落衔接和指代检查"
+
+# ============================================================
+# Phase E: 验证
+# ============================================================
+phase_e_verify:
+  step: 5
+  items:
+    - "编译验证 ≤8 页"
+    - "consistency check"
+    - "交叉引用完整性"
+
+# ============================================================
+# 执行顺序
+# ============================================================
+execution_order:
+  - step: 1
+    phase: "C2"
+    desc: "Method 压缩 + 插入 Figure 2 → 编译验证页数"
+  - step: 2
+    phase: "C2b"
+    desc: "若空间够，移入 Figure 3 → 编译验证"
+  - step: 3
+    phase: "C1"
+    desc: "Introduction 重写"
+  - step: 4
+    phase: "C4+C5"
+    desc: "Caption 优化 + 全文语言润色"
+  - step: 5
+    phase: "E"
+    desc: "最终编译 + consistency check + 页数确认"

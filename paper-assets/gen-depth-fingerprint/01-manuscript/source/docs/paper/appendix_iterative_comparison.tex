@@ -1,0 +1,47 @@
+\begin{table*}[!t]
+\centering
+\small
+\caption{Comparison with concurrent iterative-generation studies. All three examine how repeated LLM inference transforms text, but differ in chain operator, analytic lens, and downstream goal.}
+\label{tab:iterative-comparison}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}l p{2.2cm} p{2.4cm} p{2.4cm} p{2.0cm} c p{3.4cm}@{}}
+\toprule
+\textbf{Study} & \textbf{Chain Type} & \textbf{Feature Space} & \textbf{Analysis Goal} & \textbf{Generator Scale} & \textbf{Steps} & \textbf{Core Insight} \\
+\midrule
+\citet{broken_telephone}
+  & Back-translation (6 bridge langs); rephrasing (ablation)
+  & Surface overlap (BLEU, ROUGE, METEOR, ChrF, BERTScore) + atomic factuality (FActScore)
+  & Factuality degradation rate across iterations
+  & 7--9B (3 open models)
+  & 100
+  & Factual accuracy decays progressively; rate governed by source--bridge linguistic distance \\
+\addlinespace
+\citet{markovian_chains}
+  & Rephrasing + round-trip translation
+  & String recurrence time, distinct-output count, similarity plateau (METEOR), KL contraction
+  & Convergence \& diversity dynamics of inference-time Markov chains
+  & 7--8B (3 open + GPT-4o-mini)
+  & 50
+  & Greedy decoding collapses to 1--4 recurrent outputs; sampling sustains 10--20\,+ realizations \\
+\addlinespace
+\textbf{Ours}
+  & Open-ended continuation (no meaning-preserving constraint)
+  & Token-level NLL statistics (location, scale, shape) + lexical diversity
+  & Depth classification + DDR decomposition into generator \& depth effects
+  & 0.6--8B (8 models)
+  & 5
+  & NLL location drifts monotonically with depth while shape remains invariant, enabling per-generator depth profiling \\
+\bottomrule
+\end{tabular}}
+\end{table*}
+
+Table~\ref{tab:iterative-comparison} compares this work with two concurrent studies on iterative LLM generation.
+All three examine how repeated inference transforms text, but differ in chain operator, analytic lens, and downstream goal.
+Our continuation-chain setting permits richer depth signal and enables the location/shape decomposition that defines DDR.
+
+\paragraph{Finding-level connections.}
+\citet{broken_telephone}'s factuality degradation under back-translation chains parallels DDR's location drift: both document monotonic loss of input-specific information with iteration depth, though the former measures semantic content loss while DDR captures distributional compression in the NLL feature space.
+Their finding that degradation rate scales with source--bridge linguistic distance mirrors our observation that elaboration prompts attenuate DDR (Appendix~\ref{app:prompt-type}): tighter semantic constraints slow both factuality decay and distributional drift.
+
+\citet{markovian_chains}'s convergence dynamics under greedy decoding (collapse to 1--4 recurrent outputs within 50 steps) aligns with our greedy-decoding experiment where the DDR partition persists: shape features remain near-stationary (mean $|d|{=}0.05$) while location drift is maintained (mean $d{=}0.94$; Appendix~\ref{app:decoding-strategy}). This confirms that DDR is an empirical regularity of autoregressive generation independent of sampling stochasticity.
+Their KL contraction analysis complements DDR: where they quantify \emph{how fast} the output distribution contracts, DDR decomposes \emph{what} contracts (location) from what is preserved (shape).

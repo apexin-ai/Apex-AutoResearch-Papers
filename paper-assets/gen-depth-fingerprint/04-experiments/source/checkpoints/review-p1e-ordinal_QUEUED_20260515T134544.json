@@ -1,0 +1,15 @@
+{
+  "exp_id": "review-p1e-ordinal",
+  "project": "gen-depth-fingerprint",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:39:14.393Z",
+    "updated_at": "2026-05-15T13:45:44.530Z",
+    "hypothesis": "P1-E: Ordinal regression (CORAL) vs multiclass XGBoost 对比——验证 ordinal structure 对 3-class 任务的增益"
+  },
+  "timestamp": "2026-05-15T13:45:44.622834+00:00",
+  "trigger": "update_registry"
+}

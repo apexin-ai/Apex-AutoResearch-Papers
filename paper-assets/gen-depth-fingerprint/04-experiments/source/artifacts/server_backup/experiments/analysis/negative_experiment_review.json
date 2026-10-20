@@ -1,0 +1,55 @@
+{
+  "review_date": "2026-05-17",
+  "negative_experiments": [
+    {
+      "exp_id": "plan-004-v2",
+      "hypothesis": "Downstream utility: depth-stratified 数据对 OLMo-2-0425-1B CLM fine-tuning 的影响——5 variants × 3 seeds",
+      "result": "size_matched(2.367) < depth01(2.387) < binary_filtered(2.389), all(2.335) best by volume. Depth-aware curation does NOT improve CLM quality.",
+      "what_was_falsified": "The assumption that depth-aware data selection provides training signal superior to random subsampling. Data quantity dominates over depth composition.",
+      "handling": "D009: Reframed as diagnostic-not-curative. Paper honestly reports as negative finding in appendix.",
+      "parent_chain": "plan-004 (OOM failed) → plan-004-v2 (negative) → D009 reframe → [terminal]",
+      "missed_improvement_hints": [
+        "Could have tested OTHER downstream tasks (AI detection accuracy with depth-stratified training, style transfer, summarization) where depth information might actually help",
+        "Could have tested depth as a FEATURE (input signal to downstream model) rather than data FILTER — e.g., augmenting training data with depth labels as auxiliary signal",
+        "The negative result assumes CLM perplexity as sole metric. Depth-aware curation might help with output diversity or factuality even if perplexity is unchanged"
+      ],
+      "actionable_suggestion": "For future work / rebuttal: test depth as input feature for detection models, not just as data curation criterion. The negative finding is correctly scoped to 'curation for general CLM quality'."
+    }
+  ],
+  "framing_level_negatives": [
+    {
+      "exp_id": "plan-001",
+      "original_hypothesis": "Claim 2 Feature Independence: reference-only features independently sufficient to discriminate depth",
+      "actual_result": "surface_only(0.76) > reference_only(0.72), original independence framing falsified",
+      "what_was_falsified": "The assumption that model-derived distributional features carry more depth signal than surface statistics. In reality, surface features (TTR, hapax) are stronger individual discriminators.",
+      "handling": "D003→D004→D005→D007: Progressive refinement from 'independence' to 'complementarity' to 'dual dynamics' to 'differential depth response'. Each step driven by data.",
+      "parent_chain": "plan-001 (framing negative) → D004 (reframe) → plan-002-eval (validates new framing) → D007 (re-dream validates) → [complete]",
+      "missed_improvement_hints": [
+        "entropy_min showed the most inconsistent behavior across experiments (direction reversal between prompt types). Could have investigated whether entropy_min captures a different phenomenon worth separating",
+        "The surface > reference finding might suggest that LEARNED features (e.g., fine-tuned probe on token distributions) could extract stronger signal than hand-crafted entropy statistics",
+        "tail_decay consistently low importance (0.012-0.015) across all experiments — suggests the rank 100-1000 range may not be optimal; could explore other tail ranges"
+      ],
+      "actionable_suggestion": "tail_decay's persistent low importance suggests either the feature definition needs revision (different rank range, or per-position rather than mean) or it genuinely adds minimal signal and could be replaced by a better shape feature."
+    },
+    {
+      "exp_id": "plan-015",
+      "original_hypothesis": "No existing detector's continuous score achieves >0.70 ordinal depth classification",
+      "actual_result": "Avg-LogProb reaches 0.77, LD-Score 0.72 — both exceed threshold",
+      "what_was_falsified": "The assumption that existing detectors cannot capture depth signal. They can, but inconsistently across generators (CI spans 0.59-0.82).",
+      "handling": "D008: Reframe from 'detectors cannot' to 'detectors are inconsistent; our ensemble provides stable advantage'. plan-015-v2 confirmed with bug fixes + bootstrap CI.",
+      "parent_chain": "plan-015 (unexpected result) → plan-015-v2 (bug fix + CI) → D008 (reframe) → [complete]",
+      "missed_improvement_hints": [
+        "Avg-LogProb's strong performance (0.77) suggests our 7-feature set could be improved by including it as 8th feature (detector score as feature)",
+        "The wide CI of single detectors across generators reveals generator-specific detector biases — could be exploited with a generator-aware stacking approach",
+        "LD-Score's character trigram approach captures something our token-level features miss — could add character-level features to complement token-level ones"
+      ],
+      "actionable_suggestion": "Most impactful: add Avg-LogProb as 8th feature to the ensemble. The current 7-feature set + detector scores as additional features could close the gap with the 3-detector surface ensemble (Table 3: 0.70 vs 0.71)."
+    }
+  ],
+  "cross_cutting_insights": {
+    "feature_engineering": "tail_decay consistently underperforms (importance 0.01-0.02). entropy_min is unreliable (direction reversal). Both are candidates for replacement. Avg-LogProb as additional feature is the lowest-hanging fruit.",
+    "model_selection": "Error analysis shows Mistral-7B (45% error) and Qwen3-8B (38.5% error) are hardest. The reference model (Pythia-410M) may be too small/different to capture their distributional properties. A larger or multi-reference approach could help.",
+    "data_processing": "Depth-2 samples account for 48% error rate — the gen-1→gen-2 transition is where features haven't diverged enough. Possible fix: use confidence-based abstention (don't classify samples near decision boundary) or add depth-2-specific features.",
+    "overall_pattern": "All negatives point to the same root: our features capture ACCUMULATED drift well (gen-3, gen-4 easy) but not INITIAL divergence (gen-2 hard). Future work should focus on features that detect the first generation step's unique signature."
+  }
+}

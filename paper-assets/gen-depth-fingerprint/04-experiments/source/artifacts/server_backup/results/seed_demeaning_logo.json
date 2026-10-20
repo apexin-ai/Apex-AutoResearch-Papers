@@ -1,0 +1,55 @@
+{
+  "experiment": "seed_demeaning_logo",
+  "description": "Binary LOGO (gen-1 vs gen-2+) after subtracting depth-0 features per (seed, generator)",
+  "binary_logo_average_f1": 0.7008,
+  "per_generator": {
+    "llama-3.2-3b": {
+      "binary_f1": 0.6893,
+      "ci_lower": 0.6748,
+      "ci_upper": 0.7037,
+      "n_test": 3685
+    },
+    "mistral-7b-v0.3": {
+      "binary_f1": 0.5472,
+      "ci_lower": 0.5319,
+      "ci_upper": 0.5628,
+      "n_test": 3853
+    },
+    "olmo-2-1b": {
+      "binary_f1": 0.6956,
+      "ci_lower": 0.6792,
+      "ci_upper": 0.7105,
+      "n_test": 3718
+    },
+    "pythia-1b": {
+      "binary_f1": 0.7814,
+      "ci_lower": 0.7664,
+      "ci_upper": 0.7967,
+      "n_test": 3560
+    },
+    "pythia-2.8b": {
+      "binary_f1": 0.7352,
+      "ci_lower": 0.7217,
+      "ci_upper": 0.7503,
+      "n_test": 3614
+    },
+    "qwen3-0.6b": {
+      "binary_f1": 0.7457,
+      "ci_lower": 0.7295,
+      "ci_upper": 0.7608,
+      "n_test": 3542
+    },
+    "qwen3-1.7b": {
+      "binary_f1": 0.7498,
+      "ci_lower": 0.7342,
+      "ci_upper": 0.763,
+      "n_test": 3621
+    },
+    "qwen3-8b": {
+      "binary_f1": 0.6623,
+      "ci_lower": 0.6461,
+      "ci_upper": 0.6786,
+      "n_test": 3502
+    }
+  }
+}

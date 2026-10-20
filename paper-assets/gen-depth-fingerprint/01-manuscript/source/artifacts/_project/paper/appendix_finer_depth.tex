@@ -1,0 +1,53 @@
+We evaluate finer-grained 5-class depth classification (gen-0 through gen-4) using the same 7-feature ensemble and LOGO protocol described in \S\ref{sec:method}.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{5-class LOGO evaluation. Each row holds out one generator for testing, training on the remaining five.}
+\label{tab:5class-logo}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Held-out Generator} & \textbf{Macro F1} & \textbf{Weighted F1} & \textbf{Accuracy} \\
+\midrule
+OLMo-2-1B       & 0.484 & 0.506 & 0.524 \\
+Pythia-1B        & 0.543 & 0.568 & 0.575 \\
+Pythia-2.8B      & 0.523 & 0.540 & 0.560 \\
+Qwen3-0.6B      & 0.513 & 0.521 & 0.546 \\
+Qwen3-1.7B      & 0.510 & 0.536 & 0.548 \\
+Qwen3-8B        & 0.434 & 0.455 & 0.493 \\
+\midrule
+\textbf{Average} & \textbf{0.501 $\pm$ 0.038} & \textbf{0.521} & \textbf{0.541} \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Per-class F1 averaged across all six LOGO folds.}
+\label{tab:5class-perclass}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Metric} & \textbf{Gen-0} & \textbf{Gen-1} & \textbf{Gen-2} & \textbf{Gen-3} & \textbf{Gen-4} \\
+\midrule
+Avg F1      & 0.921 & 0.634 & 0.268 & 0.259 & 0.423 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\paragraph{Analysis.}
+Moving from 3-class (gen-0 / gen-1 / gen-2+) to 5-class classification reduces LOGO macro F1 to approximately 0.50 (six-generator subset; the 3-class baseline for this subset is comparable to the 8-generator result of 0.762 in Table~\ref{tab:logo-results}).
+The degradation is concentrated in the middle depths: gen-2 and gen-3 achieve only 0.268 and 0.259 F1, respectively.
+The aggregated confusion matrix reveals that 36.5\% of true gen-2 samples are misclassified as gen-1, while 37.8\% of true gen-3 samples are predicted as gen-4.
+Adjacent depths (gen-2$\leftrightarrow$gen-3, gen-3$\leftrightarrow$gen-4) account for the majority of errors, consistent with the intuition that deeper recursive generations converge in surface-level statistical signatures.
+Gen-0 (human text) remains highly distinguishable (F1 = 0.921), and gen-1 retains moderate separability (F1 = 0.634).
+Shape features that are near-stationary in the 3-class setting become substantially more important under 5-class evaluation: permutation importance of entropy\_std increases by 93\% and tail\_decay by 400\% relative to 3-class, yet these gains are insufficient to resolve adjacent depths.
+These results support the 3-class grouping adopted in the main paper: collapsing gen-2+ preserves the most informative boundary (human vs.\ first-generation vs.\ deeper recursion) while avoiding the noise introduced by near-identical adjacent depths.
+
+\paragraph{Classifier comparison.}
+To verify that 5-class degradation reflects feature-level limitations rather than classifier choice, we evaluate four alternatives under the same protocol: HistGradientBoosting (macro F1\,=\,0.501, 95\% bootstrap CI [0.496, 0.506]), random forest (0.476), logistic regression (0.447), and Frank-Hall ordinal reduction (0.451).
+All classifiers perform comparably to the default XGBoost ensemble (0.501); classifier capacity is not the bottleneck.
+The gen-2/gen-3 boundary is the primary failure mode across all methods: these two classes are effectively inseparable with the current feature set. This establishes 3-class granularity as the practical ceiling for surface and entropy features.
+At the 3-class level, ordinal-specific methods (CORAL ordinal regression, Frank-Hall reduction) similarly fail to improve over multiclass XGBoost (\S\ref{sec:results}), which confirms that the bottleneck is feature separability across all granularities, not the modeling of label ordinality.

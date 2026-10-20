@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp_058_ddr_causality",
+  "project": "gen-depth-fingerprint",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:05:46.902Z",
+    "updated_at": "2026-05-20T07:50:02.920Z",
+    "hypothesis": "DDR features have causal predictive power for depth beyond correlation: permutation importance confirms each feature group (drifting/stationary) contributes independently, and Granger causality tests show depth-t features predict depth-(t+1) features beyond autoregressive baseline, establishing temporal causal direction in the generation chain",
+    "notes": "脚本 444 行，3 模块（permutation/granger/intervention）已实现并 dry-run 验证。全部 CPU-bound，不需要 GPU。数据: features_8gen.csv 37058 行。预估: Granger ~2min, Permutation ~15min, Intervention ~45min，可并行。",
+    "server": "bjb2-18868",
+    "gpu": "cuda:1",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python3 scripts/ddr_causal_analysis.py --module permutation --n-repeats 50 --output results/ddr_causal_permutation.json && python3 scripts/ddr_causal_analysis.py --module granger --output results/ddr_causal_granger.json && python3 scripts/ddr_causal_analysis.py --module intervention --n-repeats 30 --output results/ddr_causal_intervention.json\"",
+      "server": "bjb2-18868",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "179978",
+      "log_path": "~/runs/gen-depth-fingerprint/exp_058_ddr_causality.log",
+      "submitted_at": "2026-05-20T07:33:06.935Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "179978",
+    "log_path": "~/runs/gen-depth-fingerprint/exp_058_ddr_causality.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python3 scripts/ddr_causal_analysis.py --module permutation --n-repeats 50 --output results/ddr_causal_permutation.json && python3 scripts/ddr_causal_analysis.py --module granger --output results/ddr_causal_granger.json && python3 scripts/ddr_causal_analysis.py --module intervention --n-repeats 30 --output results/ddr_causal_intervention.json\"",
+      "finished_at": "2026-05-20T07:50:02.678Z"
+    }
+  },
+  "timestamp": "2026-05-20T07:50:03.023669+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,87 @@
+# agent / loop_5.md
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/agent/loop_5.md`
+- **Structured JSON:** [`1f22ba6e8d66a5dd7b75.json`](../../sessions/1f/1f22ba6e8d66a5dd7b75.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 5
+reason: idle_timeout
+updated: '2026-05-15T12:17:35+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单: autodl-5090 的 cuda:0, cuda:1, cuda:2, cuda:3（config 已确认）
+- `submit_training_job` 内脚本 `--device` 必须写 `cuda:0`（框架注入 CUDA_VISIBLE_DEVICES 做映射，mvp-001-gen-s1/s2/s3 因写 cuda:1/2/3 全部 CUDA invalid device ordinal 失败）
+- Claim 3 (Downstream Utility) 已确认 negative (D009)，reframe 为 diagnostic-not-curative，**不可再尝试正面叙事**
+- 根分区 ~30GB，大文件必须放 /root/autodl-tmp/。之前 plan-004 因根分区 100% 满而 OOM，checkpoint 已 symlink 到数据盘
+- Qwen3-1.7B/0.6B 生成曾多次因 tmux SIGHUP 被杀（系统性问题，非代码 bug），retry 时用 nohup 或确认 tmux session 稳定性
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: autodl-5090, account=root
+- **工作目录**: /root/gen-depth-fingerprint
+- **Python**: /root/miniconda3/bin/python（conda base 环境，不是 venv）
+- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- **模型路径**: /root/autodl-tmp/models/（Qwen3-8B-Base, Qwen3-1.7B-Base, Qwen3-0.6B-Base, OLMo-2-0425-1B 等）
+- **HF cache**: /root/autodl-tmp/.hf_cache
+- **数据**: /root/gen-depth-fingerprint/data/（features_all_models.csv=23032 records, 6 generators × ~1000 seeds × 5 depths）
+- **论文**: /root/gen-depth-fingerprint/paper/ (LaTeX, 13页, 0 errors)
+- **活跃进程**: 无（全部实验已完成，4× GPU 空闲）
+- **Cron**: 无活跃 cron（reconcile 返回 0）
+
+### 3. 📊 当前状态
+**阶段: Pre-submission — 论文实质完成，等待 Review Director 最终审查。**
+
+所有实验已完成（34 总计: success 24 / negative 1 / failed 8），无 RUNNING/PREPARING 中的活跃任务。全部 20 个近期 Worker 状态=done。
+
+核心实验结果:
+- 6-gen LOGO F1=0.789, LOPTO F1=0.753
+- 7-feature ensemble 显著优于所有单检测器 baseline（vs Avg-LogProb +3.3pp, p<0.001）
+- 3 prompt types 均展现 differential depth response
+- Qwen3-8B held-out F1=0.683（depth signal 跨规模存在但有 domain shift）
+- Claim 3 negative: all(ppl 2.335) < size_matched(2.367)，depth filtering 反而损害
+
+补充分析全部完成: Bootstrap CI v2、5-class finer-depth、LOFO ablation、Confusion matrix、Multi-seed stability (std=0.0009)、Fig regen、docs sync。
+
+**等待中**: Review Director fresh 审查 → 修正发现的问题 → 最终 polish → EMNLP ARR 5/25 提交。无 Worker/Cron 回调在等待。
+
+### 4. 📋 待办（条件触发式）
+- Review Director 返回审查意见 → 按意见逐条修正论文（spawn Writer Worker）→ 重新编译验证
+- Director 指示最终 polish → spawn Worker 做 camera-ready 级别检查（typo、数字一致性、引用完整性）
+- Director 说"提交" → spawn Worker 执行 EMNLP ARR 提交工程链（匿名化、补充材料打包、PDF 合规检查）
+- 如 Director 要求补实验（如 reviewer concern 预演暴露新缺口）→ GPU 全部空闲可立即开跑
+- 如 Director 要求 S3 备份 → 使用 s3-backup skill 归档代码+artifacts
+
+### 5. 🎯 战略上下文
+**核心结论链**:
+- D005: H1(shape稳态)/H2(level+diversity漂移) dual dynamics
+- D008: 叙事从"无检测器>0.70"调整为"ensemble 跨生成器一致性优势"（因 Avg-LogProb 单独达 0.765）
+- D009: Claim 3 negative → diagnostic-not-curative reframe
+- D011: RC9 Scale 验证通过（8B signal 存在但弱于小模型）
+- D012: 撤回 D010（放弃 EMNLP），恢复 EMNLP 2026 ARR 5/25 为主投
+- D013: prompt type 结果纳入
+
+**易错点**:
+- Qwen3-8B held-out F1=0.683 明显低于 5-gen avg 0.800，论文中必须诚实讨论 cross-scale gap（不能 cherry-pick 6-gen avg 0.789 掩盖）
+- plan-015 中 Binoculars 有 denominator bug（已修复），如果有人质疑 baseline 公平性需要指向 plan-015-v2 的修正结果
+- PREPARING 状态的 plan-004-prep / plan-001-restore / mvp-001-gen-s* 都是历史遗留条目，实际已由后续实验覆盖，不要误以为还有待办
+- experiment_plan.yaml 里所有 plan 的 status 显示 "planned" 是因为 registry_id 映射缺失，实际状态看 registry
+
+
+---

@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp_048_cross_temp_transfer",
+  "project": "gen-depth-fingerprint",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T12:52:44.889Z",
+    "updated_at": "2026-05-17T12:52:52.787Z",
+    "hypothesis": "Cross-temperature transfer: XGBoost 7-feature classifier trained at one sampling temperature (t=0.7 or t=1.0) maintains depth discrimination when tested at a different temperature, demonstrating deployment robustness to unknown decoding parameters",
+    "spec": {
+      "command": "python cross_temp_transfer.py",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/features_all_models.csv + sampling_ablation features",
+      "data_count": "~37000",
+      "model_name": "XGBoost 7-feature (est200, md6)",
+      "seed": "42",
+      "checkpoint_path": "N/A",
+      "log_path": "/root/gen-depth-fingerprint/results/cross_temp_transfer.json"
+    }
+  },
+  "timestamp": "2026-05-17T12:52:52.879131+00:00",
+  "trigger": "update_registry"
+}

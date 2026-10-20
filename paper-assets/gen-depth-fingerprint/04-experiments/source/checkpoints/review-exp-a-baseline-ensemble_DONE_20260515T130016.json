@@ -1,0 +1,57 @@
+{
+  "exp_id": "review-exp-a-baseline-ensemble",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:22:30.747Z",
+    "updated_at": "2026-05-15T13:00:16.314Z",
+    "hypothesis": "审稿回应实验A：4-baseline ensemble + 统一超参对比，验证 7-feature vs 4-baseline vs 6-feature 在公平条件下的性能差异",
+    "spec": {
+      "command": "python scripts/review_baseline_ensemble.py --skip-inference",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/",
+      "data_count": 27529,
+      "model_name": "XGBoost-ensemble",
+      "seed": 789
+    },
+    "log_path": "/tmp/review_baseline_v2.log",
+    "checkpoint_path": "/root/gen-depth-fingerprint/results/review_baseline_ensemble_results.json",
+    "conclusion": "success",
+    "completed_at": "2026-05-15T12:54:40.682Z",
+    "metrics": {
+      "4_baseline": {
+        "avg_f1": 0.7964,
+        "ci95": [
+          0.7921,
+          0.8007
+        ]
+      },
+      "4_baseline_plus_surface": {
+        "avg_f1": 0.8049,
+        "ci95": [
+          0.8003,
+          0.8092
+        ]
+      },
+      "7_feature_unified": {
+        "avg_f1": 0.7887,
+        "ci95": [
+          0.7839,
+          0.793
+        ]
+      },
+      "7_feature_original": {
+        "avg_f1": 0.7887,
+        "ci95": [
+          0.7839,
+          0.793
+        ]
+      }
+    }
+  },
+  "timestamp": "2026-05-15T13:00:16.403194+00:00",
+  "trigger": "update_registry"
+}

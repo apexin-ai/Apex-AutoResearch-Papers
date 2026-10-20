@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_057_scale_9gen_logo",
+  "project": "gen-depth-fingerprint",
+  "state": "ALLOCATED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:05:40.222Z",
+    "updated_at": "2026-05-20T07:32:20.660Z",
+    "hypothesis": "Depth signal persists at 7B+ scale: Qwen3-8B-Base generation chains exhibit DDR patterns (drifting central-tendency, stationary shape features) comparable to sub-3B models, and adding Qwen3-8B as 9th generator to LOGO evaluation maintains or improves ensemble F1, ruling out scale-dependent signal collapse",
+    "notes": "Feature extraction 不需要——qwen3-8b 7-feature 已在 features_all_models.csv (4497行)。发现 9 generators 可用（含新 gemma-2-2b 1061行）。总计 38119 行。纯 CPU XGBoost ~3min。命令: cd /root/gen-depth-fingerprint && python3 eval_9gen_logo.py → results/9gen_logo_results.json",
+    "server": "bjb2-18868",
+    "gpu": "cuda:0",
+    "reproduce": {
+      "server": "bjb2-18868",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-20T07:31:56.516Z"
+    }
+  },
+  "timestamp": "2026-05-20T07:32:20.761457+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,39 @@
+{
+  "exp_id": "plan-002-qwen3-1_7b-s0",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:52:58.460Z",
+    "updated_at": "2026-05-14T21:14:14.533Z",
+    "spec": {
+      "command": "python generate_chain.py --model-name qwen3-1.7b --shard-id 0 --num-shards 2",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "111533",
+      "log_path": "~/runs/gen-depth-fingerprint/plan-002-qwen3-1_7b-s0.log",
+      "submitted_at": "2026-05-14T20:52:58.411Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl",
+      "data_count": 1000,
+      "model_name": "Qwen/Qwen3-1.7B-Base",
+      "seed": 42,
+      "wall_clock_seconds": 1276.1,
+      "gpu_hours": 0.35
+    },
+    "conclusion": "failed",
+    "reproduce": {
+      "finished_at": "2026-05-14T21:14:13.990Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "completed_at": "2026-05-14T21:14:14.533Z"
+  },
+  "timestamp": "2026-05-14T21:14:14.557116+00:00",
+  "trigger": "update_registry"
+}

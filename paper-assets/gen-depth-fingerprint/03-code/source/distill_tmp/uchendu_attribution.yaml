@@ -1,0 +1,24 @@
+paper_key: "uchendu_attribution"
+title: "Authorship Attribution for Neural Text Generation"
+venue: "EMNLP 2020"
+full_text_available: false
+
+research:
+  baselines: ["human-written text baseline"]
+  metrics:
+    - {name: "classification accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "human-written + 8 generator outputs (CTRL, GPT, GPT2, GROVER, XLM, XLNET, PPLM, FAIR)", size: "unknown"}
+  ablation_dimensions: ["attribution task type (same-method verification, human-vs-machine, k-way generator identification)", "generator model"]
+  training_recipe: {optimizer: "unknown", lr: "unknown", hardware: "unknown"}
+  method_family: "supervised authorship attribution (multi-class generator classification)"
+
+positioning:
+  core_claim: "Formulates three authorship attribution problems for neural text (same-method verification, human-vs-machine, k-way identification) and evaluates classifiers across 8 generators, finding GPT2/GROVER/FAIR produce the most human-like text that confuses classifiers."
+  key_results: "N/A - abstract only"
+  limitations: ["N/A"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

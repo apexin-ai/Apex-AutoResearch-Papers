@@ -1,0 +1,33 @@
+STATUS: PARTIAL
+Timestamp: 2026-05-21 ~14:39 server time (UTC+8)
+
+Completed: []
+In progress:
+  - pythia-2.8b × greedy: 38/995 seeds (~3.8%), ~14.3s/it, ETA ~3.8h remaining
+  - olmo-2-1b × greedy: 59/995 seeds (~5.9%), ~8.65s/it, ETA ~2.25h remaining
+Missing:
+  - pythia-2.8b × topk (runs automatically after greedy finishes)
+  - olmo-2-1b × topk (runs automatically after greedy finishes)
+  - qwen3-1.7b × greedy (NOT STARTED — no log file at /tmp/gen_qwen.log)
+  - qwen3-1.7b × topk (NOT STARTED)
+
+Errors: None. Both running processes show clean progress with no errors.
+
+GPU status:
+  GPU 0: 92% util, 12382/32607 MiB — pythia-2.8b
+  GPU 1: 45% util, 3623/32607 MiB — olmo-2-1b
+  GPU 2: 0% util, 3/32607 MiB — idle
+  GPU 3: 0% util, 3/32607 MiB — idle
+
+Data files:
+  pythia-2.8b-greedy/generations_shard0.jsonl: 178 lines (~35 seeds × 5 depths)
+  olmo-2-1b-greedy/generations_shard0.jsonl: 273 lines (~54 seeds × 5 depths)
+
+Script: generate_chain_decoding.py runs greedy then topk sequentially per model.
+
+Next steps:
+  1. Qwen3-1.7b needs to be launched — GPUs 2,3 are idle and available.
+     Command: nohup python generate_chain_decoding.py --model qwen3-1.7b --device cuda:2 > /tmp/gen_qwen.log 2>&1 &
+  2. No analysis scripts can run until all 6 generator×decoding combinations complete.
+  3. Estimated total completion (pythia+olmo): ~7-8h from now (greedy + topk for each).
+     Qwen would add ~4-6h if started now on a separate GPU.

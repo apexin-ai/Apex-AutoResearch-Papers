@@ -1,0 +1,28 @@
+{
+  "exp_id": "plan-016-gemma2-2b",
+  "project": "gen-depth-fingerprint",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T07:18:06.285Z",
+    "updated_at": "2026-05-16T12:08:24.034Z",
+    "hypothesis": "Scope expansion: Gemma-2-2B (Google/Gemma family) continuation chains — extend depth fingerprinting from 3 to 6 model families",
+    "spec": {
+      "command": "python generate_chains.py --model gemma-2-2b --seeds 994 --depths 5",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/gemma-2-2b/generations_shard0.jsonl",
+      "data_count": 4970,
+      "model_name": "google/gemma-2-2b",
+      "seed": 42,
+      "gpu": "cuda:1",
+      "pid": 286895,
+      "model_source": "ModelScope: AI-ModelScope/gemma-2-2b",
+      "log_path": "/tmp/gemma_generate.log"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T12:08:24.162040+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,97 @@
+{
+  "full_baseline_f1": 0.7904,
+  "reference_f1": 0.789,
+  "lofo_results": [
+    {
+      "dropped": "hapax_ratio",
+      "logo_f1": 0.7848,
+      "delta": -0.0042,
+      "per_gen": {
+        "olmo-2-1b": 0.7623,
+        "pythia-1b": 0.8468,
+        "pythia-2.8b": 0.8028,
+        "qwen3-0.6b": 0.8122,
+        "qwen3-1.7b": 0.8021,
+        "qwen3-8b": 0.6826
+      }
+    },
+    {
+      "dropped": "ttr",
+      "logo_f1": 0.7835,
+      "delta": -0.0055,
+      "per_gen": {
+        "olmo-2-1b": 0.7582,
+        "pythia-1b": 0.8504,
+        "pythia-2.8b": 0.7961,
+        "qwen3-0.6b": 0.8134,
+        "qwen3-1.7b": 0.8009,
+        "qwen3-8b": 0.682
+      }
+    },
+    {
+      "dropped": "entropy_mean",
+      "logo_f1": 0.7827,
+      "delta": -0.0063,
+      "per_gen": {
+        "olmo-2-1b": 0.7563,
+        "pythia-1b": 0.8542,
+        "pythia-2.8b": 0.8002,
+        "qwen3-0.6b": 0.8123,
+        "qwen3-1.7b": 0.7959,
+        "qwen3-8b": 0.6774
+      }
+    },
+    {
+      "dropped": "entropy_std",
+      "logo_f1": 0.7861,
+      "delta": -0.0029,
+      "per_gen": {
+        "olmo-2-1b": 0.7576,
+        "pythia-1b": 0.8508,
+        "pythia-2.8b": 0.7998,
+        "qwen3-0.6b": 0.8235,
+        "qwen3-1.7b": 0.8036,
+        "qwen3-8b": 0.6814
+      }
+    },
+    {
+      "dropped": "entropy_min",
+      "logo_f1": 0.7891,
+      "delta": 0.0001,
+      "per_gen": {
+        "olmo-2-1b": 0.7593,
+        "pythia-1b": 0.8519,
+        "pythia-2.8b": 0.7995,
+        "qwen3-0.6b": 0.827,
+        "qwen3-1.7b": 0.8089,
+        "qwen3-8b": 0.6876
+      }
+    },
+    {
+      "dropped": "entropy_max",
+      "logo_f1": 0.774,
+      "delta": -0.015,
+      "per_gen": {
+        "olmo-2-1b": 0.7475,
+        "pythia-1b": 0.8407,
+        "pythia-2.8b": 0.787,
+        "qwen3-0.6b": 0.8106,
+        "qwen3-1.7b": 0.7973,
+        "qwen3-8b": 0.6607
+      }
+    },
+    {
+      "dropped": "tail_decay",
+      "logo_f1": 0.7857,
+      "delta": -0.0033,
+      "per_gen": {
+        "olmo-2-1b": 0.759,
+        "pythia-1b": 0.8515,
+        "pythia-2.8b": 0.8073,
+        "qwen3-0.6b": 0.8187,
+        "qwen3-1.7b": 0.8014,
+        "qwen3-8b": 0.6759
+      }
+    }
+  ]
+}

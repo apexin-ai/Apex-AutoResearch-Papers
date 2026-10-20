@@ -1,0 +1,109 @@
+paper_key: "fast_detectgpt"
+title: "Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature"
+venue: "ICLR 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - DetectGPT
+    - NPR
+    - DNA-GPT
+    - Likelihood
+    - LogRank
+    - Entropy
+    - LRR
+    - RoBERTa-base (OpenAI GPT-2 detector)
+    - RoBERTa-large (OpenAI GPT-2 detector)
+    - GPTZero
+  metrics:
+    - {name: "AUROC", direction: "higher_better"}
+    - {name: "Relative Improvement", direction: "higher_better", note: "(new-old)/(1.0-old)"}
+    - {name: "Speedup", direction: "higher_better"}
+  datasets:
+    - {name: "XSum", domain: "news articles"}
+    - {name: "SQuAD", domain: "Wikipedia contexts"}
+    - {name: "WritingPrompts", domain: "story writing"}
+    - {name: "WMT16-en", domain: "English translation"}
+    - {name: "WMT16-de", domain: "German translation"}
+    - {name: "PubMedQA", domain: "biomedical research QA"}
+  ablation_dimensions:
+    - sampling_model_choice
+    - normalization_effect
+    - passage_length
+    - decoding_strategy (top-p, top-k, temperature)
+    - paraphrasing_attack_robustness
+    - in_distribution_vs_out_distribution
+  training_recipe:
+    optimizer: "N/A (zero-shot, no training)"
+    lr: "N/A"
+    hardware: "Tesla A100 GPU"
+    inference_time: "233 seconds for full evaluation (vs 79113 seconds for DetectGPT)"
+  method_family: "zero-shot detection via probability curvature"
+
+positioning:
+  core_claim: "Conditional probability curvature at token level is a more fundamental and efficient indicator of machine-generated text than perturbation-based probability curvature, achieving 340x speedup and ~75% relative accuracy improvement over DetectGPT."
+  key_results: "White-box AUROC 0.9887 (+74.7% relative over DetectGPT); Black-box AUROC 0.9677 (+74.5% relative); ChatGPT detection AUROC 0.9615 (+78.3% relative); GPT-4 detection AUROC 0.9061 (+75.1% relative); 340x speedup (4 min vs 22 hours)"
+  limitations:
+    - "Theoretical explorations of why conditional probability curvature works are earmarked for future work"
+    - "Relies on pre-trained models to span multiple domains/languages; no single model covers all linguistic territories in black-box setting"
+    - "Focus predominantly on empirical advancements rather than theoretical foundations"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "LLMs have transformed productivity but create risks of fake news, malicious reviews, and plagiarism; the fluency of generated text makes detection 'challenging even for experts.'"
+  tension: "DetectGPT is the leading zero-shot detector but requires ~100 model calls per passage for perturbation, creating prohibitive computational costs (22 hours for a benchmark)."
+  key_insight: "Revealed in paragraph 4 of intro—'machines lean towards tokens with higher statistical probability' while 'humans craft sentences based on underlying meanings, intentions, and contexts rather than data statistics.' This asymmetry means conditional probability p(x̃|x) reaches maximum at machine-generated x (positive curvature ~3) vs near zero for human text."
+  argument_chain: "LLMs create detection need → existing zero-shot methods work but are slow → core hypothesis about token-level selection difference → conditional probability curvature as efficient proxy → single forward pass via conditional independent sampling → 340x speedup + 75% accuracy gain → validated across white-box, black-box, real-world (ChatGPT/GPT-4), cross-domain, cross-language settings"
+  contribution_framing: "Three numbered contributions: (1) unveiling/validating hypothesis, (2) proposing efficient method, (3) achieving SOTA. Framing emphasizes both conceptual insight and practical gains."
+  intro_structure: "4 paragraphs: P1=context+risk (LLMs dual nature), P2=related work landscape (supervised vs zero-shot), P3=problem statement (DetectGPT's computational bottleneck), P4=solution+contributions (hypothesis + method + results)"
+  notable_technique: "The connection revelation—showing the curvature numerator decomposes into Likelihood + Entropy baselines, positioning Fast-DetectGPT as a principled unification rather than just a speedup trick."
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "motivation"
+    description: "Distribution of conditional probability curvatures for human-written vs machine-generated passages across four source models (GPT-2, OPT-2.7, Neo-2.7, GPT-J) on XSum dataset with 30-token prefix."
+    narrative_role: "Visual proof of core hypothesis—clean separation between human (curvature≈0) and machine (curvature≈3) distributions motivates the entire method."
+    design_elements: ["overlaid density distributions", "multiple source models in one plot", "clear separation visualization", "contrasting colors for human vs machine"]
+    visual_style: "Histogram/density plot with overlaid distributions; human texts cluster at 0, machine texts at ~3; four model variants shown to demonstrate generality; single unified panel."
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "ROC curves for multiple detection methods on WritingPrompts dataset"
+      how_gain_highlighted: "Fast-DetectGPT curve dominates upper-left region; log scale emphasizes differences at low false positive rates"
+      design_note: "Log-scale ROC is unusual but effective for emphasizing practical operating points (low FPR); dashed random baseline."
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Detection AUROC vs passage word count for ChatGPT and GPT-4 generations"
+      how_gain_highlighted: "Fast-DetectGPT shows consistent monotonic improvement; baselines plateau or are inconsistent"
+      design_note: "Two subplots (ChatGPT/GPT-4) side-by-side; multiple colored lines per detector; demonstrates robustness to passage length."
+    - figure_id: "Figure 5"
+      viz_type: "bar_chart"
+      what_compared: "Supervised vs zero-shot detectors on in-distribution (XSum, WMT16-en) and out-distribution (PubMedQA, WMT16-de) datasets"
+      how_gain_highlighted: "Fast-DetectGPT bars consistently tallest; supervised detectors visibly degrade on out-distribution while Fast-DetectGPT maintains performance"
+      design_note: "Grouped bars by dataset; clean separation of in-distribution vs out-distribution highlights generalization advantage of zero-shot approach."
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (motivation: hypothesis visualization) → Figure 2 (method: architecture comparison) → Figure 3 (validation: ROC curves) → Figure 4 (robustness: length sensitivity) → Figure 5 (generalization: cross-domain comparison). Clean progression from why → how → does it work → how robust → how general."
+
+tables:
+  table_count: 9
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods"
+    col_axis: "source models (GPT-2, OPT-2.7, Neo-2.7, GPT-J, NeoX) × settings (white-box, black-box)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "† marks second-best; ♢ marks methods requiring multiple model calls; relative improvement percentages in bottom row"
+    statistical_reporting: "AUROC values (single run implied, no std reported in main tables)"
+    num_baselines: 8
+    design_note: "Two-section layout (white-box / black-box) in single table enables direct setting comparison; symbolic markers (†, ♢) add information density without cluttering numbers."
+  ablation_tables:
+    - table_id: "Table 9 (Appendix F.1)"
+      what_varied: ["decoding strategy (top-p, top-k, temperature)"]
+      variation_style: "full_numbers"
+      design_note: "Shows robustness across decoding strategies; relative improvements (95%, 81%, 99%) demonstrate method generality."
+  supplementary_tables:
+    in_appendix: true
+    content: "Tables 4-9 cover: source model details (Table 4), detailed per-dataset results for open-source models (Table 5), additional breakdowns, and decoding strategy robustness (Table 9). Paraphrasing attack results also in appendix."
+    reason: "Main paper keeps 3 tables for key claims (overview, detailed comparison, real-world); appendix holds exhaustive per-dataset/per-model/per-strategy breakdowns for reproducibility."

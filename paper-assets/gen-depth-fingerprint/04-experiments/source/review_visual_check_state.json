@@ -1,0 +1,92 @@
+{
+  "status": "done",
+  "started_at": "2026-05-24T22:50:56.506443+00:00",
+  "completed_at": "2026-05-24T22:55:16.204193+00:00",
+  "findings": [
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "首页无 display item。第一个视觉锚点 Figure 1（feature trajectories）出现在 page 2 顶部，传达核心 DDR 概念，信息清晰。Title/Abstract 排版整洁专业。审稿人需翻到第 2 页才获得视觉锚定，但 Abstract 信息密度高，影响有限。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1 四面板线图清晰可读，颜色可区分（每个 generator 独立颜色），caption 自包含（解释了 DDR 定义）。作为首个 display item，有效传达核心 message。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 2（pipeline 架构图）整体清晰，但部分内部文字框（如分类标签 \"drifting/intermediate/near-stationary\"）字号偏小，建议适当放大以确保打印可读性。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Figure 3（8×8 transfer matrix heatmap）单元格内数字字号偏小，但在屏幕阅读时仍可辨识。红色渐变色板区分度良好。Caption 自包含。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 4（DDR drifting features）位于右栏，尺寸偏小。数据点和 axis labels 处于可读性下限（约正文 70%），建议在修改时考虑适当放大或改为跨栏 figure*。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "单页包含 3 个 display items（Figure 5 + Figure 6 + Table 3），信息密度极高。排版合理未溢出，但视觉上略显拥挤。Figure 6 的 scatter plot 中部分 detector 名称标注可能重叠。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Figure 7（ANOVA bar chart）清晰可读。Discussion 和 Conclusion 在同一页，布局合理。页面利用率 >90%。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9",
+      "message": "Limitations 段简短（约 3 行），符合 EMNLP 要求。References 从本页中部开始，排版正常。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 12",
+      "message": "Figure 8（violin plots）占据整页，7 个子图。整体分辨率足够，颜色方案区分度好（每个 depth 一种颜色）。个别子图的 y 轴标签字号偏小但仍可读。Caption 位于页底，自包含。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 16",
+      "message": "Table 11（classifier comparison）和 Table 13（sampling sensitivity）列数较多，字号明显缩小。Table 13 有 7+ 列，部分数字在正常缩放下可读性差，建议检查是否可拆表或使用 \\resizebox 适度调整。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 17",
+      "message": "Figure 9（3-class confusion matrix，3 面板）清晰可读。Table 14（aggregated confusion matrix）行间距合理。页面布局节奏好。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 22",
+      "message": "单页 5 个表格（Table 22-26），table-heavy 但排版紧凑无溢出。审稿人可能会快速跳过此类密集表格页。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 25",
+      "message": "Figure 13（UMAP 2D，双面板）+ Figure 14（cross-temperature，双面板）共 4 个可视化面板。颜色方案一致，区分度好。UMAP 散点图中点的颜色在 depth 0-4 之间可区分。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 27",
+      "message": "Figure 16（embedding cosine similarity）+ Figure 17（TOST equivalence heatmap）布局合理。Figure 17 的 heatmap 红/蓝双色方案清晰，asterisk 标注可读。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 34",
+      "message": "Figure 20（decoding strategy robustness，双面板）bar chart 颜色区分度好（3 种 strategy 用不同色）。清晰传达 message。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 36",
+      "message": "末页内容填充约 70-75%。底部约 1/4 空白。Figure 22 在页面中上部，下方有 \"Use of AI Assistants\" 段落。作为附录最后一页，可接受。"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 1,
+    "info": 15
+  }
+}

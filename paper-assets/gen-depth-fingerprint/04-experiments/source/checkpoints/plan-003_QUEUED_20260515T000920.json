@@ -1,0 +1,35 @@
+{
+  "exp_id": "plan-003",
+  "project": "gen-depth-fingerprint",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:58:40.949Z",
+    "updated_at": "2026-05-15T00:09:20.004Z",
+    "hypothesis": "跨家族参考模型伪证化：用 OLMo-2-1B 和 Qwen3-0.6B 作参考模型提取特征，验证 differential depth response 非 Pythia 特异",
+    "conclusion": "success",
+    "metrics": {
+      "logo_f1_pythia_ref": 0.8034,
+      "logo_f1_olmo_ref": 0.8072,
+      "logo_f1_qwen_ref": 0.8158,
+      "entropy_drift_all_refs_negative": true,
+      "olmo_ref_drift_range": [
+        -0.608,
+        -0.9089
+      ],
+      "qwen_ref_drift_range": [
+        -0.9557,
+        -1.3458
+      ],
+      "pythia_ref_drift_range": [
+        -1.1872,
+        -1.4017
+      ],
+      "dual_dynamics_is_pythia_artifact": false
+    }
+  },
+  "timestamp": "2026-05-15T00:09:20.053820+00:00",
+  "trigger": "update_registry"
+}

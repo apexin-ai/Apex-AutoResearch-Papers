@@ -1,0 +1,24 @@
+\begin{table}[t]
+\centering
+\caption{Two-way ANOVA variance decomposition ($\eta^2$) for depth $\times$ generator. Location features show dominant depth effects; shape features are architecture-invariant.}
+\label{tab:anova_decomposition}
+\small
+\begin{tabular}{l cccc}
+\toprule
+Feature & $\eta^2_{\text{depth}}$ & $\eta^2_{\text{gen}}$ & $\eta^2_{\text{inter}}$ & $\eta^2_{\text{resid}}$ \\
+\midrule
+\multicolumn{5}{l}{\textit{Location features}} \\
+  $\bar{H}$ (Ent. Mean) & \textbf{0.341} & 0.022 & 0.010 & 0.627 \\
+  TTR & \textbf{0.370} & 0.024 & 0.007 & 0.599 \\
+  Hapax Ratio & \textbf{0.364} & 0.017 & 0.006 & 0.612 \\
+\addlinespace
+\multicolumn{5}{l}{\textit{Shape features}} \\
+  $H_{\max}$ (Ent. Max) & 0.007 & 0.002 & 0.003 & 0.988 \\
+  $H_{\min}$ (Ent. Min) & 0.001 & 0.001 & 0.001 & 0.996 \\
+  $\beta$ (Tail Decay) & 0.002 & 0.023 & 0.009 & 0.967 \\
+\addlinespace
+\multicolumn{5}{l}{\textit{Intermediate features}} \\
+  $\sigma_H$ (Ent. Std) & 0.054 & 0.020 & 0.011 & 0.915 \\
+\bottomrule
+\end{tabular}
+\end{table}

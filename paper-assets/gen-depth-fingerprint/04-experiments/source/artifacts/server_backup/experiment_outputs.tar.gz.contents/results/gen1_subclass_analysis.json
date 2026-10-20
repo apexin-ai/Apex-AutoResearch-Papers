@@ -1,0 +1,182 @@
+{
+  "experiment": "gen1_subclass_error_analysis",
+  "classifier": "HistGradientBoostingClassifier(max_iter=200, max_depth=6, lr=0.1)",
+  "per_generator": {
+    "qwen3-0.6b": {
+      "size_B": 0.6,
+      "n_gen1": 986,
+      "n_gen2p": 2556,
+      "gen1_f1": 0.6684,
+      "binary_macro_f1": 0.7568,
+      "fnr": 0.2353,
+      "fpr": 0.2019,
+      "confusion_matrix": [
+        [
+          754,
+          232
+        ],
+        [
+          516,
+          2040
+        ]
+      ]
+    },
+    "olmo-2-1b": {
+      "size_B": 1.0,
+      "n_gen1": 988,
+      "n_gen2p": 2730,
+      "gen1_f1": 0.6077,
+      "binary_macro_f1": 0.6889,
+      "fnr": 0.1549,
+      "fpr": 0.3388,
+      "confusion_matrix": [
+        [
+          835,
+          153
+        ],
+        [
+          925,
+          1805
+        ]
+      ]
+    },
+    "pythia-1b": {
+      "size_B": 1.0,
+      "n_gen1": 993,
+      "n_gen2p": 2567,
+      "gen1_f1": 0.72,
+      "binary_macro_f1": 0.7938,
+      "fnr": 0.1712,
+      "fpr": 0.1831,
+      "confusion_matrix": [
+        [
+          823,
+          170
+        ],
+        [
+          470,
+          2097
+        ]
+      ]
+    },
+    "qwen3-1.7b": {
+      "size_B": 1.7,
+      "n_gen1": 983,
+      "n_gen2p": 2638,
+      "gen1_f1": 0.6764,
+      "binary_macro_f1": 0.754,
+      "fnr": 0.1475,
+      "fpr": 0.2491,
+      "confusion_matrix": [
+        [
+          838,
+          145
+        ],
+        [
+          657,
+          1981
+        ]
+      ]
+    },
+    "pythia-2.8b": {
+      "size_B": 2.8,
+      "n_gen1": 989,
+      "n_gen2p": 2625,
+      "gen1_f1": 0.6718,
+      "binary_macro_f1": 0.7427,
+      "fnr": 0.1112,
+      "fpr": 0.2853,
+      "confusion_matrix": [
+        [
+          879,
+          110
+        ],
+        [
+          749,
+          1876
+        ]
+      ]
+    },
+    "llama-3.2-3b": {
+      "size_B": 3.0,
+      "n_gen1": 984,
+      "n_gen2p": 2701,
+      "gen1_f1": 0.6207,
+      "binary_macro_f1": 0.6841,
+      "fnr": 0.0711,
+      "fpr": 0.3876,
+      "confusion_matrix": [
+        [
+          914,
+          70
+        ],
+        [
+          1047,
+          1654
+        ]
+      ]
+    },
+    "mistral-7b-v0.3": {
+      "size_B": 7.0,
+      "n_gen1": 994,
+      "n_gen2p": 2859,
+      "gen1_f1": 0.5097,
+      "binary_macro_f1": 0.5344,
+      "fnr": 0.0644,
+      "fpr": 0.6034,
+      "confusion_matrix": [
+        [
+          930,
+          64
+        ],
+        [
+          1725,
+          1134
+        ]
+      ]
+    },
+    "qwen3-8b": {
+      "size_B": 8.0,
+      "n_gen1": 979,
+      "n_gen2p": 2523,
+      "gen1_f1": 0.6008,
+      "binary_macro_f1": 0.6503,
+      "fnr": 0.0776,
+      "fpr": 0.4455,
+      "confusion_matrix": [
+        [
+          903,
+          76
+        ],
+        [
+          1124,
+          1399
+        ]
+      ]
+    }
+  },
+  "correlations": {
+    "size_vs_fnr": {
+      "rho": -0.9222,
+      "p": 0.0011
+    },
+    "size_vs_gen1_f1": {
+      "rho": -0.5868,
+      "p": 0.1262
+    },
+    "size_vs_fpr": {
+      "rho": 0.8383,
+      "p": 0.0093
+    }
+  },
+  "size_ordering": [
+    "qwen3-0.6b",
+    "olmo-2-1b",
+    "pythia-1b",
+    "qwen3-1.7b",
+    "pythia-2.8b",
+    "llama-3.2-3b",
+    "mistral-7b-v0.3",
+    "qwen3-8b"
+  ]
+}

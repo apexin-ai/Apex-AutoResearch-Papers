@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_048_cross_temp_transfer",
+  "project": "gen-depth-fingerprint",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T12:52:44.889Z",
+    "updated_at": "2026-05-17T12:52:47.753Z",
+    "hypothesis": "Cross-temperature transfer: XGBoost 7-feature classifier trained at one sampling temperature (t=0.7 or t=1.0) maintains depth discrimination when tested at a different temperature, demonstrating deployment robustness to unknown decoding parameters"
+  },
+  "timestamp": "2026-05-17T12:52:47.869381+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,59 @@
+{
+  "results": {
+    "0.00": {
+      "binary_f1": 0.6953,
+      "multiclass_f1": 0.7371,
+      "binary_ci": [
+        0.6798,
+        0.7102
+      ]
+    },
+    "0.05": {
+      "binary_f1": 0.6496,
+      "multiclass_f1": 0.6407,
+      "binary_ci": [
+        0.6351,
+        0.6655
+      ]
+    },
+    "0.10": {
+      "binary_f1": 0.6139,
+      "multiclass_f1": 0.4916,
+      "binary_ci": [
+        0.5989,
+        0.6287
+      ]
+    },
+    "0.20": {
+      "binary_f1": 0.5912,
+      "multiclass_f1": 0.3669,
+      "binary_ci": [
+        0.5761,
+        0.6049
+      ]
+    }
+  },
+  "degradation": {
+    "0.05_drop_binary": -0.0457,
+    "0.10_drop_binary": -0.0814,
+    "0.20_drop_binary": -0.1041
+  },
+  "meta": {
+    "n_samples": 5000,
+    "n_per_generator": {
+      "llama-3.2-3b": 625,
+      "mistral-7b-v0.3": 625,
+      "olmo-2-1b": 625,
+      "pythia-1b": 625,
+      "pythia-2.8b": 625,
+      "qwen3-0.6b": 625,
+      "qwen3-1.7b": 625,
+      "qwen3-8b": 625
+    },
+    "perturbation_method": "random word replacement from same-text vocabulary",
+    "feature_extraction": "Pythia-410M",
+    "classifier": "XGBoost 200/6, class-balanced LOGO",
+    "seed": 42,
+    "batch_size": 48
+  }
+}

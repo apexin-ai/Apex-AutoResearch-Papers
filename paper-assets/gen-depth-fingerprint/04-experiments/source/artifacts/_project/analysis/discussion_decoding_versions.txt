@@ -1,0 +1,10 @@
+=== Discussion line 10 — Decoding Strategy sentence replacement ===
+
+ORIGINAL:
+but verification under alternative decoding strategies (greedy, top-$k$) remains open.
+
+--- Version A (shape stability confirmed) ---
+Appendix~\ref{app:decoding-strategy} confirms that shape stability holds under greedy and top-$k$ decoding ($d < 0.15$), extending DDR beyond nucleus sampling.
+
+--- Version B (shape stability partially degrades) ---
+Appendix~\ref{app:decoding-strategy} shows that shape stability partially degrades under greedy decoding ($d = $ XX), suggesting DDR may depend on sampling stochasticity.

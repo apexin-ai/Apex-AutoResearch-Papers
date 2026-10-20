@@ -1,0 +1,103 @@
+{
+  "log_likelihood": {
+    "5fold_macro_f1": 0.7613,
+    "5fold_f1_ci": [
+      0.756,
+      0.7669
+    ],
+    "gen-0_f1": 0.8663,
+    "gen-1_f1": 0.6163,
+    "gen-2+_f1": 0.8013,
+    "spearman_rho": 0.7246,
+    "spearman_p": 0.0,
+    "spearman_ci": [
+      0.7169,
+      0.732
+    ],
+    "logo_macro_f1": 0.7587,
+    "logo_f1_ci": [
+      0.753,
+      0.764
+    ],
+    "logo_gen-0_f1": 0.8651,
+    "logo_gen-1_f1": 0.6125,
+    "logo_gen-2+_f1": 0.7985,
+    "per_generator": {
+      "olmo-2-1b": 0.7238,
+      "pythia-1b": 0.8065,
+      "pythia-2.8b": 0.7617,
+      "qwen3-0.6b": 0.7601,
+      "qwen3-1.7b": 0.7452
+    }
+  },
+  "fast_detect_gpt": {
+    "5fold_macro_f1": 0.7195,
+    "5fold_f1_ci": [
+      0.714,
+      0.7252
+    ],
+    "gen-0_f1": 0.84,
+    "gen-1_f1": 0.6076,
+    "gen-2+_f1": 0.7108,
+    "spearman_rho": 0.2531,
+    "spearman_p": 0.0,
+    "spearman_ci": [
+      0.2387,
+      0.267
+    ],
+    "logo_macro_f1": 0.7171,
+    "logo_f1_ci": [
+      0.7116,
+      0.7228
+    ],
+    "logo_gen-0_f1": 0.8362,
+    "logo_gen-1_f1": 0.6059,
+    "logo_gen-2+_f1": 0.7092,
+    "per_generator": {
+      "olmo-2-1b": 0.6731,
+      "pythia-1b": 0.7712,
+      "pythia-2.8b": 0.7211,
+      "qwen3-0.6b": 0.7129,
+      "qwen3-1.7b": 0.7086
+    }
+  },
+  "entropy_mean": {
+    "5fold_macro_f1": 0.5914,
+    "5fold_f1_ci": [
+      0.5849,
+      0.5973
+    ],
+    "gen-0_f1": 0.6169,
+    "gen-1_f1": 0.3542,
+    "gen-2+_f1": 0.803,
+    "spearman_rho": -0.6367,
+    "spearman_p": 0.0,
+    "spearman_ci": [
+      -0.6448,
+      -0.6284
+    ],
+    "logo_macro_f1": 0.5927,
+    "logo_f1_ci": [
+      0.5867,
+      0.5992
+    ],
+    "logo_gen-0_f1": 0.6269,
+    "logo_gen-1_f1": 0.3573,
+    "logo_gen-2+_f1": 0.7939,
+    "per_generator": {
+      "olmo-2-1b": 0.5527,
+      "pythia-1b": 0.6304,
+      "pythia-2.8b": 0.5821,
+      "qwen3-0.6b": 0.6046,
+      "qwen3-1.7b": 0.5955
+    }
+  },
+  "7_feature_model_reference": {
+    "logo_macro_f1": 0.8037,
+    "note": "plan-002-eval LOGO, 7 features, XGBoost"
+  },
+  "skipped_detectors": {
+    "ld_score": "arXiv:2605.01647 -- no public implementation; character-distribution method not trivially reproducible",
+    "binoculars": "requires two models (observer+performer); skipped to conserve GPU memory on shared device"
+  }
+}

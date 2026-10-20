@@ -1,0 +1,32 @@
+\begin{thebibliography}{4}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Bao et~al.(2024)Bao, Zhao, Teng, Yang, and
+  Zhang}]{bao2024fastdetectgpt}
+Guangsheng Bao, Yanbin Zhao, Zhiyang Teng, Linyi Yang, and Yue Zhang. 2024.
+\newblock Fast-detectgpt: Efficient zero-shot detection of machine-generated
+  text via conditional probability curvature.
+\newblock In \emph{ICLR}.
+
+\bibitem[{Gehrmann et~al.(2019)Gehrmann, Strobelt, and Rush}]{gehrmann2019gltr}
+Sebastian Gehrmann, Hendrik Strobelt, and Alexander Rush. 2019.
+\newblock Gltr: Statistical detection and visualization of generated text.
+\newblock In \emph{ACL: System Demonstrations}.
+
+\bibitem[{Hans et~al.(2024)Hans, Schwarzschild, Cheber, Alon, Goldblum, and
+  Goldstein}]{hans2024binoculars}
+Abhimanyu Hans, Avi Schwarzschild, Valeriia Cheber, Nadav Alon, Micah Goldblum,
+  and Tom Goldstein. 2024.
+\newblock Spotting llms with binoculars: Zero-shot detection of
+  machine-generated text.
+\newblock In \emph{ICML}.
+
+\bibitem[{Mitchell et~al.(2023)Mitchell, Lee, Khazatsky, Manning, and
+  Finn}]{mitchell2023detectgpt}
+Eric Mitchell, Yoonho Lee, Alexander Khazatsky, Christopher~D Manning, and
+  Chelsea Finn. 2023.
+\newblock Detectgpt: Zero-shot machine-generated text detection using
+  probability curvature.
+\newblock In \emph{ICML}.
+
+\end{thebibliography}

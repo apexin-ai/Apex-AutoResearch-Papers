@@ -1,0 +1,5 @@
+Script location: autodl-5090:/root/gen-depth-fingerprint/paraphrastic_chains.py
+Running: nohup python paraphrastic_chains.py --phase all --device cuda:1 (PID 246021)
+Log: /tmp/plan006_full.log
+Output: data/pythia-2.8b-paraphrase/generations_shard0.jsonl → data/paraphrase_features.csv → results/plan006_paraphrastic_comparison.json
+Key params: Pythia-2.8B generator, Pythia-410M ref, repetition_penalty=1.3, temp=0.7, top_p=0.9, max_new_tokens=200

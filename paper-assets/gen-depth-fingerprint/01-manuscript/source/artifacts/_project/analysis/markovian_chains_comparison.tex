@@ -1,0 +1,40 @@
+% Comparison with concurrent iterative-generation studies
+% Broken Telephone: Mohamed et al., ACL 2025 (arXiv 2502.20258)
+% Markovian Chains: Geng et al., 2026 (arXiv 2603.11228)
+
+\begin{table}[t]
+\centering
+\small
+\caption{Comparison with concurrent iterative-generation studies.  All three examine how repeated LLM inference transforms text, but differ in chain operator, analytic lens, and downstream goal.}
+\label{tab:iterative-comparison}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}l p{2.2cm} p{2.4cm} p{2.4cm} p{2.0cm} c p{3.4cm}@{}}
+\toprule
+\textbf{Study} & \textbf{Chain Type} & \textbf{Feature Space} & \textbf{Analysis Goal} & \textbf{Generator Scale} & \textbf{Steps} & \textbf{Core Insight} \\
+\midrule
+\citet{broken_telephone}
+  & Back-translation (6 bridge langs); rephrasing (ablation)
+  & Surface overlap (BLEU, ROUGE, METEOR, ChrF, BERTScore) + atomic factuality (FActScore)
+  & Factuality degradation rate across iterations
+  & 7--9B (3 open models)
+  & 100
+  & Factual accuracy decays progressively; rate governed by source--bridge linguistic distance \\
+\addlinespace
+\citet{markovian_chains}
+  & Rephrasing + round-trip translation
+  & String recurrence time, distinct-output count, similarity plateau (METEOR), KL contraction
+  & Convergence \& diversity dynamics of inference-time Markov chains
+  & 7--8B (3 open + GPT-4o-mini)
+  & 50
+  & Greedy decoding collapses to 1--4 recurrent outputs; sampling sustains 10--20\,+ realizations \\
+\addlinespace
+\textbf{Ours}
+  & Open-ended continuation (no meaning-preserving constraint)
+  & Token-level NLL statistics (location, scale, shape) + lexical diversity
+  & Depth classification + DDR decomposition into generator \& depth effects
+  & 0.6--8B (8 models)
+  & 5
+  & NLL location drifts monotonically with depth while shape remains invariant---enabling per-generator depth fingerprinting \\
+\bottomrule
+\end{tabular}}
+\end{table}

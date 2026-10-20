@@ -1,0 +1,58 @@
+{
+  "avg_logprob": {
+    "pooled_3class_f1": 0.7085,
+    "pooled_binary_f1": 0.6785,
+    "pooled_binary_ci": [
+      0.6717,
+      0.6854
+    ]
+  },
+  "fastdetectgpt": {
+    "pooled_3class_f1": 0.6654,
+    "pooled_binary_f1": 0.5805,
+    "pooled_binary_ci": [
+      0.5741,
+      0.5875
+    ]
+  },
+  "binoculars": {
+    "pooled_3class_f1": 0.4094,
+    "pooled_binary_f1": 0.5327,
+    "pooled_binary_ci": [
+      0.5268,
+      0.5392
+    ]
+  },
+  "ld_score": {
+    "pooled_3class_f1": 0.6326,
+    "pooled_binary_f1": 0.6788,
+    "pooled_binary_ci": [
+      0.6717,
+      0.6851
+    ]
+  },
+  "4det_ensemble": {
+    "pooled_3class_f1": 0.779,
+    "pooled_binary_f1": 0.6993,
+    "pooled_binary_ci": [
+      0.6928,
+      0.7054
+    ]
+  },
+  "4det_surface": {
+    "pooled_3class_f1": 0.7823,
+    "pooled_binary_f1": 0.7044,
+    "pooled_binary_ci": [
+      0.6979,
+      0.7106
+    ]
+  },
+  "7feature_ours": {
+    "pooled_3class_f1": 0.7616,
+    "pooled_binary_f1": 0.6935,
+    "pooled_binary_ci": [
+      0.6867,
+      0.7
+    ]
+  }
+}

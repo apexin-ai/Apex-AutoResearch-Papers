@@ -1,0 +1,1015 @@
+narrative_guidance: 'Original framing 完全成立。DDR 作为 decoding-agnostic autoregressive
+  property 是 headline， 三条 claims 无需降级。Abstract 可写 ''DDR is an intrinsic property of
+  autoregressive generation,  independent of decoding strategy''。Contribution positioning
+  从 ''empirical characterization''  微升为 ''empirical discovery of a structural regularity''。Negative
+  finding 正面叙事： depth fingerprinting is diagnostic, not curative — a principled scope
+  boundary. Decoding-agnostic DDR (greedy mean |d|=0.05) 将 Claim 2 从 empirical observation
+  升级为 structural property。写作修复 72h 内完成（related work 补齐、decoding section 整合、 limitation
+  措辞精确化）后，Findings accept prob 0.75–0.90。
+
+  '
+imagined_experiments:
+- name: feature_ablation_and_trend
+  plan_id: plan_001
+  description: '三部分分析：(A) 特征消融——reference-only vs surface-only vs full 7-feature；
+    (B) DDR 趋势分析——每个特征沿 depth 0–4 的 mean±std 走势，线性回归 slope+R²； (C) Perplexity 预验证——Pythia-410M
+    对 depth-stratified subsets 前向 pass。
+
+    '
+  expected_results:
+    full_macro_f1: 0.82
+    reference_only_f1: 0.719
+    surface_only_f1: 0.763
+    mcnemar_p_full_vs_surface: 0.0
+    mcnemar_p_full_vs_ref: 0.0
+    ref_vs_surf_bootstrap_ci: '[0.706, 0.733] vs [0.747, 0.774]'
+    drifting_features:
+    - entropy_mean
+    - ttr
+    - hapax_ratio
+    stationary_features:
+    - tail_decay
+    - entropy_std
+    - entropy_max
+    - entropy_min
+    entropy_mean_slope: -0.3
+    entropy_mean_R2: 0.92
+    ttr_slope: -0.04
+    ttr_R2: 0.88
+    hapax_ratio_slope: -0.05
+    hapax_ratio_R2: 0.95
+    tail_decay_slope: 0.001
+    tail_decay_R2: 0.02
+    entropy_max_slope: -0.003
+    entropy_max_R2: 0.03
+    median_ppl_by_depth:
+    - 13.5
+    - 4.96
+    - 3.0
+    - 2.07
+    - 1.72
+  result_rationale: 'Best 档下 full 7-feature 显著优于任一子集（McNemar p≈0），验证 drifting + stationary  互补假说。Reference-only
+    F1=0.719 高于 random baseline 但低于 surface-only 0.763， 说明 reference features 捕获的是不同维度的信号（NLL
+    distribution shape），而非冗余信息。 Surface features 占优是因为 hapax_ratio 和 ttr 直接追踪 vocabulary
+    impoverishment， 这是 recursive generation 最显性的效应。Drifting features 呈高 R² 线性下降， 因为
+    recursive generation 的 location shift 是单调累积的——每步生成都在前一步的  compressed distribution
+    上采样。Stationary features（tail_decay, entropy_max）R²<0.05， 因为 NLL 分布的 shape（极端值分布、尾部衰减）不随
+    location shift 改变， 这正是 DDR 的核心机制。Perplexity 从 13.50（human seed）急降至 4.96（gen-1）
+    再缓降至 1.72（gen-4），验证 Pythia-410M 对生成文本的 familiarity 随 depth 增加， 为 Claim 3 downstream
+    utility 实验提供前置信号。
+
+    '
+  tables:
+  - name: 'Table 2: Feature Ablation (5-fold CV)'
+    columns:
+    - Feature Set
+    - Macro F1
+    - 95% CI
+    rows:
+    - - Full (7 features)
+      - '0.820'
+      - '[0.808, 0.832]'
+    - - Surface-only (TTR + hapax)
+      - '0.763'
+      - '[0.747, 0.774]'
+    - - Reference-only (5 entropy + tail_decay)
+      - '0.719'
+      - '[0.706, 0.733]'
+  - name: 'Table 3: DDR Trend Analysis'
+    columns:
+    - Feature
+    - Slope (per depth)
+    - R²
+    - Category
+    rows:
+    - - entropy_mean
+      - '-0.30'
+      - '0.92'
+      - Drifting
+    - - ttr
+      - '-0.04'
+      - '0.88'
+      - Drifting
+    - - hapax_ratio
+      - '-0.05'
+      - '0.95'
+      - Drifting
+    - - entropy_std
+      - '-0.08'
+      - '0.45'
+      - Intermediate
+    - - entropy_min
+      - '-0.15'
+      - '0.52'
+      - Intermediate
+    - - entropy_max
+      - '-0.003'
+      - '0.03'
+      - Stationary
+    - - tail_decay
+      - '+0.001'
+      - '0.02'
+      - Stationary
+  figures_description:
+  - 'Fig 2: 7-feature mean ± std ribbon plot across depth 0–4. Drifting features (entropy_mean,
+    ttr, hapax) 呈明确单调下降趋势，stationary features (tail_decay, entropy_max) 水平走势，error
+    bands 完全重叠。'
+  - 'Fig 3: Perplexity box plot by depth (0–4). 中位数从 13.50 急降至 1.72，但 IQR 逐步收窄——深层文本的
+    perplexity 方差更小。'
+  analysis: 'Best 档的关键发现：surface features 和 reference features 不是替代关系而是互补关系。 Surface-only
+    缺乏对 gen-0 vs gen-1 的区分能力（因为 gen-1 保留了大部分 source vocabulary）， 而 reference-only
+    的 entropy features 在 gen-0 discrimination 上更强。 Full feature set 的 +5.7 pp 提升来自这种互补性，而非简单的特征叠加。
+    DDR 趋势分析为 Claim 2 提供了核心实证基础——drifting/stationary 分离不是 arbitrary threshold， 而是
+    R² 有两个数量级的差异（0.88–0.95 vs 0.02–0.03）。
+
+    '
+- name: cross_generator_evaluation
+  plan_id: plan_002
+  description: '扩展到 5 generators（Pythia-2.8B, Pythia-1B, OLMo-2-1B, Qwen3-1.7B, Qwen3-0.6B），
+    1000 seeds × 5 generators × 5 depths = 25K chains。Leave-one-generator-out CV  测试跨
+    generator 泛化。
+
+    '
+  expected_results:
+    total_records: 18423
+    generators:
+    - pythia-2.8b
+    - pythia-1b
+    - olmo-2-1b
+    - qwen3-1.7b
+    - qwen3-0.6b
+    logo_avg_macro_f1: 0.804
+    logo_best_held_out:
+      model: pythia-1b
+      macro_f1: 0.851
+    logo_worst_held_out:
+      model: olmo-2-1b
+      macro_f1: 0.752
+    family_out_delta: 0.011
+    ablation_full_f1: 0.804
+    ablation_reference_only_f1: 0.754
+    ablation_surface_only_f1: 0.747
+    mcnemar_p: 0.0
+    top_features_importance:
+    - hapax_ratio (0.289)
+    - ttr (0.168)
+    - entropy_mean (0.160)
+    entropy_std_drift: 0.12
+    entropy_mean_drift: 1.5
+  result_rationale: 'Best 档下 LOGO avg macro F1=0.804 表明 depth fingerprint 具有强跨 generator
+    泛化能力。 Pythia-1b 被 hold-out 时 F1 最高（0.851），因为训练集中仍有 Pythia-2.8B（同 family）， 而 Pythia
+    family 的 DDR pattern 最稳定。OLMo-2-1B worst（0.752）因为 OLMo 是训练集中 唯一的 OLMo family 代表——hold-out
+    后无同 family 数据，验证了 cross-family transfer 的 真实难度。Family-out delta 仅 0.011 pp 说明跨
+    family 信号损失极小，DDR 是 autoregressive  generation 的通用属性而非特定 model family 的 artifact。Feature
+    importance 排序 （hapax > ttr > entropy_mean）与 plan_001 一致，说明 vocabulary impoverishment
+    是 最 portable 的 depth signal——它不依赖于特定 model 的 NLL distribution shape。
+
+    '
+  tables:
+  - name: 'Table 4: Leave-One-Generator-Out Results'
+    columns:
+    - Held-out Generator
+    - Macro F1
+    - Binary F1
+    - Family
+    rows:
+    - - Pythia-1B
+      - '0.851'
+      - '0.718'
+      - Pythia
+    - - Pythia-2.8B
+      - '0.804'
+      - '0.724'
+      - Pythia
+    - - Qwen3-0.6B
+      - '0.824'
+      - '0.691'
+      - Qwen
+    - - Qwen3-1.7B
+      - '0.805'
+      - '0.709'
+      - Qwen
+    - - OLMo-2-1B
+      - '0.752'
+      - '0.695'
+      - OLMo
+  figures_description:
+  - 'Fig 4: LOGO per-generator bar chart with 95% CI error bars. 5 generators 按 family
+    分色，Pythia family inflation 明显（虚线标出 family-out baseline）。'
+  analysis: 'Cross-generator 泛化是 best 档的基石。0.804 LOGO macro F1 在 5-generator 设置下已经
+    足够说明 DDR 不是 model-specific artifact。Family-out delta 0.011 直接回应 RC2 （''does this
+    generalize beyond Pythia?''）——答案是 yes，且 penalty 极小。
+
+    '
+- name: cross_family_reference_model
+  plan_id: plan_003
+  description: '测试 non-Pythia reference models（OLMo-2-1B, Qwen3-0.6B）提取特征。 验证 entropy_mean
+    drift 是否在非 Pythia reference 下仍存在—— 如果消失则 DDR 是 reference-model artifact。
+
+    '
+  expected_results:
+    logo_f1_pythia_ref: 0.803
+    logo_f1_olmo_ref: 0.807
+    logo_f1_qwen_ref: 0.816
+    entropy_drift_all_refs_negative: true
+    olmo_ref_drift_range:
+    - -0.608
+    - -0.909
+    qwen_ref_drift_range:
+    - -0.956
+    - -1.346
+    pythia_ref_drift_range:
+    - -1.187
+    - -1.402
+    dual_dynamics_is_pythia_artifact: false
+  result_rationale: 'Best 档的关键 falsification test 通过。三个不同 family 的 reference model
+    均观察到 entropy_mean 负向 drift，Qwen ref 甚至比 Pythia ref LOGO F1 更高（0.816 vs 0.803）。
+    这证明 DDR 是 generator 的 intrinsic property，与 reference model 选择无关。 Drift range 跨
+    reference model 有量级差异（Qwen 最强，OLMo 最弱），因为不同 reference  model 的 NLL landscape 不同，但
+    drift 的方向一致（均为负）。这支持 best 档叙事： DDR 可被升级为 ''structural property of autoregressive
+    generation''，因为它不依赖于 (a) 特定 generator family，(b) 特定 reference model family，(c)
+    特定 decoding strategy。 三重独立性是 claim strength 升级的实证基础。
+
+    '
+  tables:
+  - name: 'Table 5: Reference Model Robustness'
+    columns:
+    - Reference Model
+    - LOGO F1
+    - entropy_mean Drift Range
+    rows:
+    - - Pythia-410M (default)
+      - '0.803'
+      - '[-1.19, -1.40]'
+    - - OLMo-2-1B
+      - '0.807'
+      - '[-0.61, -0.91]'
+    - - Qwen3-0.6B
+      - '0.816'
+      - '[-0.96, -1.35]'
+  figures_description:
+  - 'Fig 5: Entropy_mean drift 热力图 (generator × reference model)。所有 cell 均为蓝色（负 drift），无
+    warm cell，视觉上直接否定 Pythia-artifact 假说。'
+  analysis: 'DDR 非 reference-model artifact 的结论是 best 档 Claim 2 升级的第二支柱 （第一支柱是 cross-generator、第三支柱是
+    decoding-agnostic）。Reviewer 看到 3 个 reference family × 5+ generator family 的完全一致
+    drift direction， 不会质疑 DDR 的 generation-intrinsic 性质。
+
+    '
+- name: downstream_utility
+  plan_id: plan_004
+  description: 'Fine-tune OLMo-1B（避免 reference model circularity）on depth-stratified
+    data subsets。 ≥3 random seeds with bootstrap CIs。Sample-count-matched comparison
+    控制 data size confound。
+
+    '
+  expected_results:
+    total_runs: 15
+    completed: 15
+    ppl_all_data: 2.335
+    ppl_size_matched: 2.367
+    ppl_depth01: 2.387
+    ppl_binary_filtered: 2.389
+    ppl_depth0_only: 2.681
+    seed_variance: <0.002 within each variant
+    ranking: all(2.335) < size_matched(2.367) < depth01(2.387) ≈ binary_filtered(2.389)
+      << depth0_only(2.681)
+    tost_margin_2pct_p: 0.00011
+    tost_equivalence_confirmed: true
+    cohens_d_size_vs_depth01: small (inflated by low seed variance)
+  result_rationale: 'Best 档的 negative finding 完美服务于论文叙事。Equal-count comparison（n=3,951）中
+    random subsampling（ppl=2.367）优于 depth-aware filtering（depth01: 2.387, binary:
+    2.389）， 但差异极小（<1%）且 TOST 在 ±2% margin 下确认等价（p=1.1×10⁻⁴）。这说明 depth  fingerprinting
+    不能用于 data curation——depth-aware filtering 不比 random 更好。 Depth0_only（ppl=2.681）显著更差，因为仅用
+    human seed 训练丢弃了 80% 数据量， 但这是 data volume effect 而非 depth quality effect。Seed
+    variance <0.002 说明 结果极其稳定（OLMo-1B fine-tuning 对 random seed 不敏感），三个 seed 已足够。
+    Best 档将此叙述为 intellectual honesty：''depth fingerprinting is diagnostic,  not curative''——一个有原则的
+    scope boundary，reviewer 会视为加分项。
+
+    '
+  tables:
+  - name: 'Table 7: Downstream CLM Quality by Training Data Depth'
+    columns:
+    - Variant
+    - n_train
+    - Perplexity (mean±std)
+    - TOST p (±2%)
+    rows:
+    - - All depths
+      - 12,299
+      - 2.335 ± 0.000
+      - —
+    - - Random subsample
+      - 3,951
+      - 2.367 ± 0.000
+      - ref
+    - - Depth 0–1 only
+      - 3,951
+      - 2.387 ± 0.001
+      - 1.1×10⁻⁴
+    - - Binary-filtered
+      - 3,951
+      - 2.389 ± 0.001
+      - 8.7×10⁻⁵
+    - - Depth 0 only
+      - '797'
+      - 2.681 ± 0.001
+      - reject
+  figures_description:
+  - 'Fig 8: Perplexity bar chart with 3-seed error bars. 前四个 variant 视觉上几乎等高，depth0_only
+    显著突出——一眼可见 volume effect vs depth effect 的区别。'
+  analysis: 'Negative finding 在 best 档下是 Claim 3 的完整验证。TOST 是比 t-test 更合适的统计检验 （t-test
+    会因 low variance 得出 significant difference 的误导结论）。Reviewer 看到 3 seeds × 5 variants
+    × matched-count control × TOST，会认为这是 rigorous negative  finding 而非 underpowered
+    experiment。
+
+    '
+- name: prompt_type_comparison
+  plan_id: plan_005
+  description: '比较 continuation vs elaboration vs inspired_rewriting chains。 测试 semantic
+    divergence 与 depth signal 的关系。
+
+    '
+  expected_results:
+    cv_f1_continuation: 0.781
+    cv_f1_elaboration: 0.73
+    cv_f1_inspired_rewriting: 0.737
+    lopto_avg_f1: 0.753
+    lopto_held_out_continuation: 0.762
+    lopto_held_out_elaboration: 0.762
+    lopto_held_out_rewriting: 0.733
+    depth_retention_d4_d0_continuation: 0.831
+    depth_retention_d4_d0_elaboration: 0.986
+    depth_retention_d4_d0_rewriting: 0.939
+    spearman_hapax_continuation: -0.651
+    spearman_hapax_elaboration: -0.674
+    spearman_hapax_rewriting: -0.67
+    spearman_entropy_mean_continuation: -0.665
+    spearman_entropy_mean_elaboration: -0.583
+    spearman_entropy_mean_rewriting: -0.564
+  result_rationale: 'Best 档下三种 prompt type 均保留 DDR pattern，但信号强度分层明确： continuation（0.781）>
+    rewriting（0.737）> elaboration（0.730）。这与 semantic  divergence 反相关：continuation
+    chains 的 gen-4 retention 最低（0.831），说明文本 偏离 source 最多，但 depth discriminability
+    最高——因为 vocabulary impoverishment  在 unconstrained continuation 中累积最快。Elaboration
+    retention 最高（0.986）， 因为 elaboration prompt 约束生成围绕原始 topic，减缓了 distributional drift。
+    Spearman ρ 显示 hapax_ratio 在所有 prompt types 下均为最强 drifting feature （-0.651 到 -0.674），而
+    entropy_mean 在 continuation 下最强（-0.665）但在 elaboration/rewriting 下减弱（-0.583/-0.564），因为
+    topic-constrained generation  压缩了 entropy 的 dynamic range。LOPTO（leave-one-prompt-type-out）F1=0.753  说明跨
+    prompt-type transfer 有 moderate loss（vs within-type 0.781）， 这在 paper 中作为 honest
+    limitation 报告。
+
+    '
+  tables:
+  - name: 'Table 5: Prompt Type Comparison (Pythia-2.8B, 1000 seeds)'
+    columns:
+    - Prompt Type
+    - CV F1
+    - LOPTO F1
+    - Depth Retention
+    - hapax ρ
+    rows:
+    - - Continuation
+      - '0.781'
+      - '0.762'
+      - '0.831'
+      - '-0.651'
+    - - Inspired Rewriting
+      - '0.737'
+      - '0.733'
+      - '0.939'
+      - '-0.670'
+    - - Elaboration
+      - '0.730'
+      - '0.762'
+      - '0.986'
+      - '-0.674'
+  figures_description:
+  - 'Fig 6: 三种 prompt type 的 feature drift ribbon plots (depth 0–4)。Continuation 的
+    entropy_mean 下降斜率最陡，elaboration 最缓。hapax_ratio 在三种 type 下走势几乎平行。'
+  analysis: 'Prompt-type dependence 的透明报告是 best 档的 credibility 信号。 Continuation 0.781
+    vs elaboration 0.730 的 5.1 pp gap 说明 DDR 强度与 generation  freedom 正相关——这是可解释的、符合直觉的结果，不需要
+    ad-hoc 解释。
+
+    '
+- name: paraphrastic_comparison
+  plan_id: plan_006
+  description: '构建平行 paraphrasing chains 与 continuation chains 直接对比。 测试 attractor
+    convergence theory（ACL 2025）——paraphrastic chains 是否更快 收敛，从而保留更少 depth signal？
+
+    '
+  expected_results:
+    paraphrastic_cv_binary_f1: 0.635
+    paraphrastic_cv_3class_f1: 0.705
+    continuation_cv_binary_f1: 0.781
+    continuation_cv_3class_f1: 0.832
+    delta_binary_f1: -0.146
+    paraphrastic_hapax_rho: -0.38
+    paraphrastic_ttr_rho: -0.35
+    paraphrastic_entropy_mean_rho: -0.42
+    continuation_hapax_rho: -0.65
+    continuation_ttr_rho: -0.63
+    continuation_entropy_mean_rho: -0.67
+    paraphrastic_attractor_depth: 2
+    paraphrastic_gen2_gen3_ks: <0.05 (converged)
+    continuation_gen2_gen3_ks: '>0.15 (still diverging)'
+  result_rationale: 'Best 档下 paraphrastic chains 显示快速 attractor convergence——depth
+    2 后 feature  distribution 基本稳定（gen-2 vs gen-3 KS < 0.05），与 ACL 2025 ''LLM as Broken
+    Telephone''  的 ~3 class ceiling 一致。Paraphrastic binary F1 仅 0.635（vs continuation
+    0.781）， 因为 semantic preservation constraint 限制了 vocabulary drift——每步 paraphrase
+    被迫 保留 source 的 lexical neighborhood，抑制了 hapax_ratio 和 ttr 的单调下降。 Drifting features
+    的 |ρ| 从 0.63–0.67 降至 0.35–0.42，说明 DDR 的 location shift  在 paraphrastic setting
+    下被大幅衰减。这验证了论文的 scope boundary： ''non-paraphrastic continuation chains'' 是 depth
+    fingerprinting 的 applicable domain， paraphrastic chains 需要不同的方法（如 watermarking
+    或 semantic fingerprinting）。 Best 档叙事：这个对比 strengthens 而非 weakens 贡献——它精确界定了 DDR
+    的  applicability boundary，reviewer 会视为 thorough empirical characterization。
+
+    '
+  tables:
+  - name: 'Table 6: Paraphrastic vs Non-paraphrastic Chains'
+    columns:
+    - Chain Type
+    - Binary F1
+    - hapax ρ
+    - Attractor Depth
+    rows:
+    - - Continuation
+      - '0.781'
+      - '-0.65'
+      - '>4'
+    - - Inspired Rewriting
+      - '0.737'
+      - '-0.67'
+      - '>4'
+    - - Paraphrasing
+      - '0.635'
+      - '-0.38'
+      - ~2
+  figures_description:
+  - 'Fig 7: Feature trajectory comparison: continuation vs paraphrastic chains. Paraphrastic
+    chains 在 depth 2 后 plateau（水平灰色区域），continuation chains 持续下降到 depth 4。'
+  analysis: 'Paraphrastic comparison 是 best 档中连接 prior work (ACL 2025) 的关键 bridge。
+    展示了 DDR 的 mechanism（distributional location shift）在 semantic-preservation  constraint
+    下被抑制，为 DDR 提供了 mechanistic 解释而非 purely empirical observation。
+
+    '
+- name: cross_model_chains
+  plan_id: plan_007
+  description: 'Cross-model chains（每个 depth step 用不同 generator）vs single-model chains。
+    更接近真实 web contamination scenario。
+
+    '
+  expected_results:
+    cross_model_binary_f1: 0.83
+    cross_model_binary_ci:
+    - 0.817
+    - 0.843
+    cross_model_3class_f1: 0.789
+    cross_model_3class_ci:
+    - 0.776
+    - 0.802
+    single_model_logo_binary_f1: 0.694
+    delta_cross_vs_single: 0.136
+    generator_pool:
+    - pythia-2.8b
+    - pythia-1b
+    - olmo-2-1b
+    - qwen3-0.6b
+    - qwen3-1.7b
+    n_samples: 2964
+  result_rationale: 'Best 档的亮点结果。Cross-model chains F1=0.830 显著高于 single-model LOGO
+    F1=0.694 （+13.6 pp）。这是因为 generator heterogeneity amplifies distributional shifts——
+    当不同 model 的 NLL landscape 在每步都不同时，vocabulary impoverishment 和 entropy  drift 的累积效应更大。每步切换
+    generator 相当于增加了一个额外的 distributional  perturbation source，使 drifting features
+    的 signal-to-noise ratio 更高。 这直接回应 RC4（''how realistic are single-model chains?''）——真实的
+    web contamination  涉及 diverse generators，而我们的方法在这种 realistic setting 下表现更好，not
+    worse。 Best 档叙事：cross-model result 证明 depth fingerprinting 的 practical relevance  比
+    controlled single-model evaluation 更强。
+
+    '
+  tables:
+  - name: 'Table 8: Cross-Model vs Single-Model Chains'
+    columns:
+    - Setting
+    - Binary F1
+    - 3-class F1
+    - 95% CI (binary)
+    rows:
+    - - Single-model (8-gen LOGO)
+      - '0.694'
+      - '0.762'
+      - '[0.688, 0.700]'
+    - - Cross-model (5-gen pool)
+      - '0.830'
+      - '0.789'
+      - '[0.817, 0.843]'
+  figures_description:
+  - 'Fig 9: Confusion matrix pair: single-model (left) vs cross-model (right)。Cross-model
+    的 gen-1 vs gen-2+ 误分率显著降低。'
+  analysis: '+13.6 pp uplift 是 best 档 headline result 之一。它将 depth fingerprinting  从
+    ''controlled lab setting'' 推向 ''realistic deployment scenario'' 的 credibility。
+
+    '
+- name: multi_domain_seeds
+  plan_id: plan_008
+  description: '扩展到 4 domains：Wikipedia, news (CNN/DailyMail), scientific (S2ORC),
+    code。 500 seeds per domain × 5 depths。测试 domain independence。
+
+    '
+  expected_results:
+    news_binary_f1: 0.746
+    news_binary_ci:
+    - 0.726
+    - 0.764
+    academic_binary_f1: 0.739
+    academic_binary_ci:
+    - 0.72
+    - 0.757
+    code_binary_f1: 0.754
+    code_binary_ci:
+    - 0.737
+    - 0.77
+    wikipedia_baseline_binary_f1: 0.815
+    max_gap_vs_wiki_pp: 7.62
+    worst_domain: academic
+    best_non_wiki_domain: code
+    domain_independent: true
+  result_rationale: 'Best 档下所有 4 domains 的 binary F1 均超过 0.73，domain 间最大差异 7.6 pp。
+    Wikipedia baseline 最高（0.815）因为原始 seed pool 来自 Wikipedia——这是 distribution  match
+    advantage 而非 domain intrinsic 差异。Academic 最低（0.739）因为 scientific  text 的 vocabulary
+    本身就 constrained（专业术语复用率高），压缩了 hapax_ratio 和 ttr  的 dynamic range。Code 出乎意料地高（0.754）因为
+    code generation 的 token distribution  极其 peaked（syntactic tokens 高频复现），使 entropy
+    features 的 drift 更明显。 Best 档叙事：DDR 是 domain-agnostic 的——7.6 pp max gap 在 cross-domain
+    NLP 中 是 acceptable 的 variance，不构成 domain-specific limitation。
+
+    '
+  tables:
+  - name: 'Table 9: Multi-Domain Evaluation'
+    columns:
+    - Domain
+    - Binary F1
+    - 95% CI
+    - Δ vs Wikipedia
+    rows:
+    - - Wikipedia (baseline)
+      - '0.815'
+      - '[0.800, 0.829]'
+      - —
+    - - Code
+      - '0.754'
+      - '[0.737, 0.770]'
+      - -6.1 pp
+    - - News
+      - '0.746'
+      - '[0.726, 0.764]'
+      - -6.9 pp
+    - - Academic
+      - '0.739'
+      - '[0.720, 0.757]'
+      - -7.6 pp
+  figures_description:
+  - 'Fig 10: Domain-stratified LOGO binary F1 bar chart。四个 domain 的 bar 高度差异可见但不大，error
+    bars 部分重叠。Wikipedia 明显最高（distribution match）。'
+  analysis: 'Domain independence 验证直接回应 RC6（ecological validity）。4 domains × cross-generator  evaluation
+    提供了 comprehensive coverage。Best 档下 reviewer 会视为 solid evidence  for generalization。
+
+    '
+- name: finer_grained_ordinal
+  plan_id: plan_009
+  description: '5-class ordinal classification（gen-0 through gen-4）on non-paraphrastic
+    chains。 测试 3-class 之外的更细粒度 depth resolution。
+
+    '
+  expected_results:
+    five_class_f1: 0.498
+    five_class_ci:
+    - 0.485
+    - 0.511
+    three_class_f1: 0.762
+    ordinal_coral_f1: 0.502
+    ordinal_frank_hall_f1: 0.495
+    xgboost_standard_f1: 0.498
+    gen1_vs_gen2_confusion_rate: 0.41
+    gen2_vs_gen3_confusion_rate: 0.52
+    gen3_vs_gen4_confusion_rate: 0.58
+    resolution_bottleneck: gen-2/gen-3/gen-4 mutual confusion (86% of errors)
+  result_rationale: 'Best 档坦诚报告 3-class resolution ceiling。5-class F1 ~0.50（接近 random
+    的 0.20  但远低于 3-class 的 0.76）说明 depth signal 在 gen-2 之后迅速衰减。Ordinal methods  (CORAL,
+    Frank-Hall) 没有改善，因为 DDR 的 feature drift 在深层是非线性的—— gen-2 到 gen-3 的 marginal drift
+    远小于 gen-0 到 gen-1。这是 recursive generation  的 diminishing returns：每步的 distributional
+    shift 量递减（因为已经接近 attractor）， 导致深层 depths 之间的 feature overlap 增大。Best 档叙事：3-class
+    是 principled  ceiling，不是方法的 limitation——it reflects the structure of the problem。
+    Reviewer 看到 ordinal methods 也无法改善，会接受 3-class 作为 reasonable resolution。
+
+    '
+  tables:
+  - name: 'Table 10: Ordinal Resolution Analysis'
+    columns:
+    - Method
+    - 3-class F1
+    - 5-class F1
+    rows:
+    - - XGBoost (standard)
+      - '0.762'
+      - '0.498'
+    - - CORAL (ordinal)
+      - '0.758'
+      - '0.502'
+    - - Frank-Hall
+      - '0.755'
+      - '0.495'
+  figures_description:
+  - 'Fig 11: 5-class confusion matrix。对角线在 gen-0 和 gen-1 处亮，gen-2/3/4 块大面积混淆（off-diagonal
+    dark mass）。'
+  analysis: '5-class ceiling 是 best 档中的 scope-defining result。它不削弱贡献—— 反而说明 depth
+    fingerprinting 的 resolution limit 是 problem-intrinsic  而非 method-specific，因为 ordinal
+    methods 同样无法突破。
+
+    '
+- name: human_edit_robustness
+  plan_id: plan_010
+  description: 'RC5 robustness test：(A) Random word replacement (5%, 10%, 20%)； (B)
+    LLM-simulated editing (light rephrasing)。
+
+    '
+  expected_results:
+    baseline_binary_f1: 0.695
+    random_5pct_f1: 0.65
+    random_10pct_f1: 0.614
+    random_20pct_f1: 0.591
+    drop_5pct_pp: -4.6
+    drop_10pct_pp: -8.1
+    drop_20pct_pp: -10.4
+    llm_rephrase_binary_f1: 0.647
+    llm_rephrase_binary_ci:
+    - 0.631
+    - 0.662
+    llm_rephrase_multiclass_f1: 0.667
+    llm_rephrase_drop_pp: -4.5
+    edit_distance_ratio: 0.507
+    avg_sentences_replaced: 1.69
+  result_rationale: 'Best 档下 graceful degradation 是核心叙事。5% random replacement 仅损失
+    4.6 pp， 即使 20% replacement（极端 adversarial 场景）F1 仍为 0.591（远高于 random 0.50）。 LLM
+    rephrase（更 realistic 的 human editing simulation，edit distance ratio=0.507  表示约一半的文本被改写）损失
+    4.5 pp 至 0.647——与 5% random replacement 相当， 说明 LLM rephrase 虽然改变了更多表面文本但保留了 distributional
+    properties。 这是因为 DDR 追踪的是 distributional statistics（entropy, TTR）而非 specific tokens，
+    所以 token-level editing 对 distributional signal 的破坏是有限的。 Best 档叙事：depth fingerprint
+    对 moderate human editing 具有 practical robustness， 适用于 ''lightly edited LLM text''
+    的真实场景。
+
+    '
+  tables:
+  - name: 'Table 11: Robustness to Human Editing'
+    columns:
+    - Condition
+    - Binary F1
+    - Δ vs Baseline
+    rows:
+    - - Baseline (no edit)
+      - '0.695'
+      - —
+    - - Random 5%
+      - '0.650'
+      - -4.6 pp
+    - - Random 10%
+      - '0.614'
+      - -8.1 pp
+    - - Random 20%
+      - '0.591'
+      - -10.4 pp
+    - - LLM rephrase (~50% edit)
+      - '0.647'
+      - -4.5 pp
+  figures_description:
+  - 'Fig 12: Degradation curve: x-axis = edit intensity, y-axis = binary F1。线性下降趋势，LLM
+    rephrase 点标为星号（在 5% random 附近）。'
+  analysis: 'Robustness 结果直接回应 RC5。Graceful degradation（非 cliff-drop）说明 distributional  features
+    的 robustness 来自 statistical aggregation——单个 token 的改变对 distribution  统计量的影响是 O(1/n)
+    的。
+
+    '
+- name: ld_score_feature
+  plan_id: plan_011
+  description: '添加 LD-Score（character-distribution signature）作为 additional feature。
+    测试 character-level features 是否提供互补 depth signal。
+
+    '
+  expected_results:
+    ld_score_solo_logo_f1: 0.721
+    ld_score_solo_ci:
+    - 0.588
+    - 0.77
+    ld_score_spearman_depth: 0.794
+    seven_feature_logo_f1: 0.798
+    eight_feature_with_ld_logo_f1: 0.805
+    delta_with_ld: 0.7
+    ld_cv_f1_within: 0.793
+    ld_complementarity: moderate — character-level captures script-pattern drift not
+      in token-level features
+  result_rationale: 'Best 档下 LD-Score 作为 single feature 的 LOGO F1=0.721（与 avg_logprob
+    的 0.765  同量级），说明 character-level distribution 确实 encode depth signal。但加入 7-feature  ensemble
+    后仅提升 0.7 pp（0.798→0.805），说明 LD-Score 捕获的信号与 token-level  features 高度重叠——character
+    distribution drift 大部分是 vocabulary impoverishment  在 character level 的 reflection。LD-Score
+    的 Spearman ρ=0.794 高于任何单一  token-level feature，因为 character n-gram distribution
+    是更 fine-grained 的  distributional summary。Best 档叙事：LD-Score 验证了 DDR 在 character
+    level 同样  存在（multi-level convergence evidence），但实际 marginal value 有限， 7-feature
+    ensemble 已捕获 dominant signal。
+
+    '
+  tables:
+  - name: 'Appendix Table: LD-Score Feature Analysis'
+    columns:
+    - Feature Set
+    - LOGO F1
+    - 95% CI
+    rows:
+    - - 7 features (baseline)
+      - '0.798'
+      - '[0.786, 0.799]'
+    - - LD-Score only
+      - '0.721'
+      - '[0.588, 0.770]'
+    - - 7 features + LD-Score
+      - '0.805'
+      - '[0.793, 0.808]'
+  figures_description:
+  - 'Appendix Fig: LD-Score vs depth scatter plot. 负相关趋势明显但方差大（CI 宽），低 depth 的 spread
+    尤其大。'
+  analysis: 'LD-Score 验证了 DDR 的 multi-level 存在性，但 marginal gain 有限。 Best 档将其放在 appendix
+    作为 supplementary evidence，不影响 main story。
+
+    '
+- name: end_to_end_classifier
+  plan_id: plan_012
+  description: 'QLoRA fine-tuned classifier for end-to-end depth classification。 比较
+    learned representations vs handcrafted distributional features。
+
+    '
+  expected_results:
+    qlora_within_3class_f1: 0.906
+    qlora_within_3class_std: 0.008
+    qlora_within_binary_f1: 0.867
+    qlora_within_binary_std: 0.014
+    qlora_within_5class_f1: 0.551
+    qlora_within_5class_std: 0.007
+    seven_feature_within_3class_f1: 0.773
+    seven_feature_logo_binary_f1: 0.694
+    qlora_cross_gen_binary_f1: 0.68
+    qlora_cross_gen_3class_f1: 0.72
+    qlora_inference_cost_ratio: ~50× (full forward pass vs 7 features)
+    qlora_gpu_memory_gb: 4.2
+    seven_feature_gpu_memory_gb: 1.3
+  result_rationale: 'Best 档下 QLoRA within-distribution F1 远高于 7-feature ensemble（3-class
+    0.906 vs  0.773），但 cross-generator generalization 明显下降（binary 0.680 vs LOGO 0.694）。
+    这是因为 learned representations 过拟合了 training generators 的 specific stylistic  patterns，而
+    handcrafted distributional features（entropy, TTR, hapax）捕获的是  generator-agnostic
+    的 distributional shift。QLoRA 的 within-dist 优势来自利用了  generator-specific artifacts（implicit
+    generator fingerprinting），但这些 artifacts  在 unseen generator 上不 transfer。同时 QLoRA
+    的 inference cost 是 ~50×， GPU memory 是 3.2×。Best 档叙事：7-feature ensemble 是 efficiency-optimized
+    choice， 在 generalization 和 cost 两个维度都优于 end-to-end approach。这支持 paper 的  positioning——contribution
+    不在于 absolute performance 而在于 DDR 的 empirical  characterization 和 lightweight,
+    interpretable method。
+
+    '
+  tables:
+  - name: 'Table 12: Feature Ensemble vs End-to-End Classifier'
+    columns:
+    - Method
+    - Within 3-class
+    - Cross-gen Binary
+    - Cost Ratio
+    rows:
+    - - 7-feature XGBoost
+      - '0.773'
+      - 0.694 (LOGO)
+      - 1×
+    - - QLoRA (Qwen3-1.7B)
+      - '0.906'
+      - '0.680'
+      - ~50×
+    - - QLoRA (OLMo-1B)
+      - '0.888'
+      - '0.670'
+      - ~40×
+  figures_description:
+  - 'Appendix Fig: Within-dist vs cross-gen F1 scatter. QLoRA 在右上（within 高）但 cross-gen
+    轴回落至 7-feature 水平以下。Efficiency frontier 标注 7-feature 为 Pareto optimal。'
+  analysis: 'QLoRA 结果完美支持 7-feature ensemble 的 positioning。 Within-dist 差距（0.906 vs
+    0.773）看似巨大但 cross-gen 差距逆转（0.680 vs 0.694）， 说明 learned features 不 generalize。Best
+    档将此作为 ''interpretability and  generalization over raw performance'' 的 evidence。
+
+    '
+- name: text_length_control
+  plan_id: plan_013
+  description: 'Text length confound control：(A) length-depth correlation 分析； (B)
+    length-normalized features；(C) length-matched subsampling。
+
+    '
+  expected_results:
+    spearman_rho_range: '[-0.066, +0.134]'
+    length_depth_correlation: weak (|ρ| < 0.14)
+    normalized_ttr_trend_preserved: true
+    normalized_hapax_trend_preserved: true
+    normalized_rho_stronger: true
+    length_matched_f1_delta: '+0.041'
+    length_is_confound: false
+    short_text_dropout_bias: true
+  result_rationale: 'Best 档下 length confound 被彻底排除。Length-depth Spearman |ρ| < 0.14
+    说明 text  length 与 depth 几乎无关——deeper generations 不 systematically shorter or longer。
+    Length-normalized features（fixed-window TTR/hapax）保留甚至增强了 DDR trend （normalized
+    ρ stronger），说明 DDR 不是 length 的 proxy。Length-matched subsampling  后 F1 反而提升 +4.1
+    pp，因为 length matching 去除了 short-text dropout bias （极短文本在深层被 skip，这些 outliers 在原始数据中增加了噪声）。
+    Best 档叙事：length is not a confound——it''s a noise source that, when removed,  actually
+    improves the signal。这是 reviewer-proof 的 confound control。
+
+    '
+  tables:
+  - name: 'Appendix Table: Length Confound Analysis'
+    columns:
+    - Analysis
+    - Result
+    rows:
+    - - Length–depth Spearman ρ
+      - '[-0.066, +0.134] (all generators)'
+    - - Normalized TTR drift preserved
+      - Yes (stronger after normalization)
+    - - Length-matched Δ F1
+      - +4.1 pp (0.724 matched vs 0.770 unmatched base)
+    - - Conclusion
+      - Length is not a confound
+  figures_description:
+  - 'Appendix Fig: Length distribution violin plots by depth (0–4)。各 depth 的 violin
+    shape 高度重叠，无 systematic shift。'
+  analysis: 'Length confound 排除是所有三个 dream tiers 的 consensus requirement。 +4.1 pp
+    的 counter-intuitive improvement 实际上比 ''no change'' 更有说服力—— 它说明 length matching
+    是 denoising 而非 deconfounding。
+
+    '
+- name: large_scale_generator
+  plan_id: plan_014
+  description: '添加 7B+ generator（Qwen3-8B-Base）测试 frontier scale 下 depth signal 是否存在。
+
+    '
+  expected_results:
+    total_records: 4497
+    unique_seeds: 995
+    logo_6gen_avg_f1: 0.789
+    logo_qwen3_8b_held_out_f1: 0.683
+    logo_5gen_baseline_f1: 0.8
+    delta_vs_avg: -1.1
+    spearman_hapax: -0.558
+    spearman_ttr: -0.542
+    spearman_entropy_mean: -0.475
+    spearman_tail_decay: -0.089
+    spearman_entropy_max: 0.095
+    ddr_pattern_preserved: true
+    feature_importance_hapax: 0.269
+    feature_importance_entropy_mean: 0.164
+    feature_importance_ttr: 0.159
+  result_rationale: 'Best 档下 Qwen3-8B held-out F1=0.683（vs 6-gen avg 0.789），显示 moderate
+    scale  degradation（−1.1 pp vs overall average 0.694）。Drifting features 的 |ρ| 仍
+    >0.47 （hapax -0.558, ttr -0.542），stationary features 仍 |ρ| <0.10（tail_decay -0.089,  entropy_max
+    +0.095），DDR pattern 完全保留。Scale effect 的 mechanism 是 higher-capacity  models 的
+    generation 更接近 training distribution（lower initial perplexity）， 压缩了 feature margins——但
+    drift direction 不变。Best 档叙事：DDR is scale-robust  up to 8B，with moderate performance
+    degradation as an honest limitation。 6-gen LOGO 0.789 甚至高于 5-gen baseline 0.800
+    的预期，因为 Qwen3-8B 的加入 增加了 training diversity。
+
+    '
+  tables:
+  - name: 'Table 13: Scale Analysis with Qwen3-8B'
+    columns:
+    - Generator
+    - Held-out F1
+    - hapax ρ
+    - tail_decay ρ
+    rows:
+    - - Qwen3-8B (8.2B)
+      - '0.683'
+      - '-0.558'
+      - '-0.089'
+    - - Mistral-7B (7.2B)
+      - '0.633'
+      - '-0.511'
+      - '+0.050'
+    - - 5-gen avg (0.6B–2.8B)
+      - '0.800'
+      - '-0.647'
+      - '-0.040'
+  figures_description:
+  - 'Fig 13: Scale vs held-out F1 scatter plot. X-axis = model size (log), y-axis
+    = LOGO binary F1。轻微负斜率，但所有点都 >0.63。DDR feature ρ 作为 annotation 显示 pattern preservation。'
+  analysis: '8B 结果是 best 档 generalization story 的最后一块拼图。DDR pattern 在 8B scale  完全保留，performance
+    degradation 是 moderate 且可解释的（capacity compression）。 这将 scope 从 ''small models
+    ≤2.8B'' 扩展到 ''base models up to 8B''。
+
+    '
+- name: ordinal_baseline_comparison
+  plan_id: plan_015
+  description: 'CRITICAL baseline：测试 existing detector scores（FastDetectGPT, Binoculars,
+    LD-Score,  Avg-LogProb）是否已提供 ordinal depth signal。单 feature ordinal classifiers
+    vs  our 7-feature model。
+
+    '
+  expected_results:
+    seven_feature_logo_f1: 0.798
+    seven_feature_ci:
+    - 0.786
+    - 0.799
+    avg_logprob_logo_f1: 0.765
+    avg_logprob_ci:
+    - 0.616
+    - 0.82
+    ld_score_logo_f1: 0.721
+    ld_score_ci:
+    - 0.588
+    - 0.77
+    fast_detect_gpt_logo_f1: 0.627
+    fast_detect_gpt_ci:
+    - 0.511
+    - 0.762
+    binoculars_logo_f1: 0.579
+    binoculars_ci:
+    - 0.405
+    - 0.664
+    bootstrap_7feat_vs_avglogprob_delta: 0.039
+    bootstrap_7feat_vs_avglogprob_p: 0.0
+    bootstrap_7feat_vs_fdgpt_delta: 0.067
+    bootstrap_7feat_vs_fdgpt_p: 0.0
+    best_single_detector: Avg-LogProb (0.765)
+    seven_feature_advantage_pp: 3.3
+  result_rationale: 'Best 档的关键 baseline comparison。7-feature ensemble（0.798）significantly
+    outperforms  所有 single-detector baselines（bootstrap p=0 vs top-2）。Best single
+    detector  Avg-LogProb（0.765）距 7-feature 仅 3.3 pp，但 bootstrap CI 不重叠。 FastDetectGPT（0.627）和
+    Binoculars（0.579）表现更差，因为它们是为 binary real-vs-fake  detection 设计的——ordinal depth
+    signal 不是它们的 optimization target。 LD-Score（0.721）强于 binary detectors 因为 character
+    distribution 对 depth drift  更敏感。Avg-LogProb 接近 7-feature 因为它本质上是 entropy_mean
+    的 monotonic transform， 而 entropy_mean 是 drifting features 中最强的单一 feature。 7-feature
+    的 advantage 来自 complementarity：surface features（TTR, hapax）和  shape features（entropy_max,
+    tail_decay）提供了 Avg-LogProb 无法捕获的 orthogonal  signal dimensions。Best 档叙事：existing
+    detectors have some ordinal signal， but our formulation captures complementary
+    dimensions that significantly improve  depth discrimination。Contribution 不是 ''novel
+    features'' 而是 ''the DDR framework  that explains why certain feature combinations
+    work and others don''t''。
+
+    '
+  tables:
+  - name: 'Table 14: Ordinal Baseline Comparison'
+    columns:
+    - Method
+    - LOGO F1
+    - 95% CI
+    - Δ vs 7-feature
+    rows:
+    - - 7-feature ensemble
+      - '0.798'
+      - '[0.786, 0.799]'
+      - —
+    - - Avg-LogProb
+      - '0.765'
+      - '[0.616, 0.820]'
+      - -3.3 pp
+    - - LD-Score
+      - '0.721'
+      - '[0.588, 0.770]'
+      - -7.7 pp
+    - - FastDetectGPT
+      - '0.627'
+      - '[0.511, 0.762]'
+      - -17.1 pp
+    - - Binoculars
+      - '0.579'
+      - '[0.405, 0.664]'
+      - -21.9 pp
+  - name: 'Table 15: Bootstrap Pairwise Significance (n=1000)'
+    columns:
+    - Comparison
+    - Δ F1
+    - p-value
+    - Significant
+    rows:
+    - - 7-feat vs Avg-LogProb
+      - '+0.039'
+      - '0.000'
+      - 'Yes'
+    - - 7-feat vs LD-Score
+      - '+0.077'
+      - '0.000'
+      - 'Yes'
+    - - 7-feat vs FastDetectGPT
+      - '+0.067'
+      - '0.000'
+      - 'Yes'
+    - - 7-feat vs Binoculars
+      - '+0.219'
+      - '0.000'
+      - 'Yes'
+  figures_description:
+  - 'Fig 14: LOGO F1 comparison bar chart with bootstrap CI error bars。7-feature bar
+    最高且 CI 最窄。Avg-LogProb 第二但 CI 极宽（cross-generator variance 大）。'
+  - 'Fig 15: Spearman ρ heatmap (detector × generator)。7-feature 在所有 generators 均为强负相关，Binoculars
+    在 3/8 generators 接近 0。'
+  analysis: Baseline comparison 是 reviewer 必看的 table。7-feature 显著优于所有 single detectors  是
+    best 档的核心 quantitative claim。关键不在于 absolute margin（3.3 pp vs Avg-LogProb） 而在于
+    consistency：7-feature 的 CI 最窄（[0.786, 0.799]），而 Avg-LogProb 的 CI  跨越 20+ pp（[0.616,
+    0.820]），说明 single-detector 的 cross-generator robustness  远不如 multi-feature ensemble。Best
+    档下 reviewer 会接受： 'existing detectors have depth signal but our DDR-informed feature
+    combination  provides significantly more robust ordinal discrimination'。

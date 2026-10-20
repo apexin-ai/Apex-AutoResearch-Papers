@@ -1,0 +1,26 @@
+paper_key: "reliable_detection"
+title: "Can AI-Generated Text be Reliably Detected?"
+venue: "ICLR 2024"
+full_text_available: false
+
+research:
+  baselines: ["watermarking-based detectors", "neural network-based detectors", "zero-shot classifiers", "retrieval-based detectors"]
+  metrics:
+    - {name: "AUROC", direction: "higher_better"}
+    - {name: "detection accuracy under attack", direction: "higher_better"}
+    - {name: "Total Variation distance", direction: "descriptive"}
+  datasets:
+    - {name: "passages of ~300 tokens", size: "unknown"}
+  ablation_dimensions: ["recursive paraphrasing attack strength", "spoofing attack on watermarked LLMs"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "adversarial attack analysis on AI text detectors (recursive paraphrasing)"
+
+positioning:
+  core_claim: "Demonstrates that AI text detectors are unreliable in practice via recursive paraphrasing attacks, and provides theoretical bounds connecting best-possible detector AUROC to Total Variation distance between human and AI text distributions."
+  key_results: "N/A - abstract only"
+  limitations: ["N/A"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

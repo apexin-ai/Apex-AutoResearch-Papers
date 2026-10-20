@@ -1,0 +1,21 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\looseness=-1 DDR reflects monotonic NLL compression under recursive generation (Appendix~\ref{app:nll-distribution}).
+Shape stability is not trivially predictable from architecture: entropy\_max is bounded by $\log|V|{\approx}10.8$ nats but observed values fall far below this ceiling; tail\_decay lacks an obvious bound yet remains near-stationary ($|d|{=}0.10$--$0.22$); entropy\_std drifts ($d{=}0.46$) despite shared NLL derivation.
+ANOVA confirms depth explains ${>}48{\times}$ more variance in location than shape features (Appendix~\ref{app:variance-decomposition}).
+
+\paragraph{Relationship to model collapse.}
+\looseness=-1 Model collapse erodes tail coverage via weight updates, and shape features \emph{do} change under retraining \cite{curse_of_recursion,strong_model_collapse}. DDR, by contrast, characterizes fixed-parameter inference where shape remains stable.
+Shape stability is thus specific to the fixed-parameter regime, not an a priori consequence of architecture; DDR complements concurrent iterative-generation studies (Appendix~\ref{app:iterative-comparison}).
+
+\paragraph{Temperature sensitivity.}
+\looseness=-1 Higher sampling temperature ($\tau > 0.7$) flattens token probability distributions, narrowing NLL variance and diluting the location shift that drifting features capture (\S\ref{sec:results-differential}).
+The DDR partition hierarchy is preserved across all tested temperatures (Appendix~\ref{app:ddr-temp-stability}), but signal strength is temperature-dependent, bounding current applicability to moderate sampling.
+
+\paragraph{Error structure and scope.}
+\looseness=-1 The gen-1$\to$gen-2+ boundary is the primary failure point (error rate 48.4\%; Appendix~\ref{app:error-analysis}): gen-1 texts retain sufficient diversity to overlap with gen-0; deeper generations show monotonically decreasing error ($\leq$29.2\%), so DDR-based classifiers are most reliable for heavily recycled content.
+The DDR partition is robust across decoding strategies, temperatures, and reference models (Appendices~\ref{app:decoding-strategy}--\ref{app:cross-ref}).
+Instruction tuning compresses DDR (Appendix~\ref{app:instruct}), but QLoRA recovery to F1\,=\,0.89--0.91 (within-model) shows the signal persists.
+Cross-domain (F1\,=\,0.74--0.75; Appendix~\ref{app:domain}) and 9-generator (Appendix~\ref{app:9gen-scale}) evaluations confirm generalization.
+DDR enables corpus contamination detection and synthetic data pipeline auditing; depth-aware filtering does not improve perplexity (Appendix~\ref{app:downstream}), so DDR identifies \emph{provenance} rather than \emph{fluency degradation}. Finer-grained 5-class classification yields F1\,$\approx$\,0.50 (Appendix~\ref{app:finer-depth}), a resolution limit of three depth classes.

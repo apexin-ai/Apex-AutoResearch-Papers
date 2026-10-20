@@ -1,0 +1,19 @@
+\section*{Ethics Statement}
+\label{sec:ethics}
+
+All texts analyzed in this work are LLM-generated from publicly available Wikipedia seeds; no personal or sensitive data is involved.
+Our method estimates the generation depth of a text passage (how many recursive generation steps it has undergone), not the identity of its author.
+Individual authorship attribution is outside both the scope and the capability of this approach; privacy implications are minimal.
+We acknowledge that depth estimation tools could in principle be used to selectively suppress machine-generated text in contexts where such content is legitimate (e.g., accessibility tools, assistive writing).
+We encourage deployment in data governance pipelines where provenance transparency, rather than content removal, is the objective.
+All code, data, and trained models will be released upon publication.
+
+\paragraph{Licenses.}
+All generator models are publicly available under permissive licenses (Apache 2.0 for Pythia, OLMo, and Mistral; Qwen License for Qwen3; Llama Community License for Llama 3.2).
+Wikipedia seed passages are distributed under CC BY-SA 3.0.
+
+\paragraph{Compute budget.}
+All experiments were conducted on 4$\times$ NVIDIA RTX 5090 GPUs (32\,GB each), totaling approximately 62 GPU-hours.
+
+\paragraph{Software.}
+Experiments used Python 3.12.3, PyTorch 2.10.0 (CUDA 12.8), Transformers 4.57.6, XGBoost 3.2.0, scikit-learn 1.8.0, NumPy 2.2.6, pandas 3.0.2, and SciPy 1.17.1.

@@ -1,0 +1,122 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024model}
+\citation{alemohammad2023selfconsuming,dohmatob2024model}
+\citation{gerstgrasser2024model}
+\citation{mitchell2023detectgpt,bao2024fastdetectgpt,hans2024binoculars}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{gehrmann2019gltr}
+\citation{mitchell2023detectgpt}
+\citation{bao2024fastdetectgpt}
+\citation{hans2024binoculars}
+\citation{yang2023dnagpt}
+\citation{shumailov2024model}
+\citation{alemohammad2023selfconsuming}
+\citation{dohmatob2024model}
+\citation{gerstgrasser2024model}
+\citation{guo2024curious}
+\citation{brokentelephone2025}
+\citation{kovacs2025attractor}
+\citation{stamatatos2009survey,koppel2009computational}
+\citation{xie2023data}
+\citation{wettig2024qurating}
+\citation{wenzek2020ccnet}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{AI-Text Detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model Collapse and Iterative Generation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stylometry and Authorship Attribution.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data Quality and Curation.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task Formulation}{2}{subsection.3.1}\protected@file@percent }
+\citation{biderman2023pythia}
+\citation{groeneveld2024olmo}
+\citation{yang2024qwen2}
+\citation{touvron2023llama}
+\citation{team2024gemma}
+\citation{jiang2023mistral}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Data Generation Pipeline}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Feature Design}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:features}{{3.3}{3}{Feature Design}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Drifting features (central tendency / diversity).}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stationary features (distributional shape).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Classification}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Feature Ablation and Depth Trends}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:ablation}{{4.1}{3}{Feature Ablation and Depth Trends}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Feature-depth Spearman $\rho $ on the MVP dataset (Pythia-2.8B, individual-level, bootstrap 95\% CIs all exclude 0 for drifting features). Features partition into drifting ($|\rho | > 0.35$) and stationary ($|\rho | < 0.12$) groups, consistent with a location-shift model.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:spearman}{{1}{4}{Feature-depth Spearman $\rho $ on the MVP dataset (Pythia-2.8B, individual-level, bootstrap 95\% CIs all exclude 0 for drifting features). Features partition into drifting ($|\rho | > 0.35$) and stationary ($|\rho | < 0.12$) groups, consistent with a location-shift model}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Feature ablation on the MVP dataset (3-class). Full 7-feature ensemble significantly outperforms both subsets ($p$-values from paired bootstrap).}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:ablation}{{2}{4}{Feature ablation on the MVP dataset (3-class). Full 7-feature ensemble significantly outperforms both subsets ($p$-values from paired bootstrap)}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Feature-depth correlations.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Feature ablation.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Perplexity trend.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Generator Evaluation}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:cross_gen}{{4.2}{4}{Cross-Generator Evaluation}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{9-generator LOGO results.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{New families (Plan-016).}{4}{section*.11}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Per-generator held-out F1 under LOGO evaluation (3-class). Smaller generators ($\leq $1B) are easier to classify; the scale gradient is consistent with the location-shift theory (smaller models exhibit more pronounced drift). Overall binary LOGO F1 = 0.73; 3-class LOGO F1 = 0.78.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:logo}{{3}{5}{Per-generator held-out F1 under LOGO evaluation (3-class). Smaller generators ($\leq $1B) are easier to classify; the scale gradient is consistent with the location-shift theory (smaller models exhibit more pronounced drift). Overall binary LOGO F1 = 0.73; 3-class LOGO F1 = 0.78}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Binary LOGO F1 (gen-1 vs.\ gen-2+) across 9 generators. Our 7-feature ensemble outperforms the best single baseline (Avg-LogProb) by +3.0pp and the 4-baseline ensemble by +2.0pp ($p < 0.001$, paired bootstrap). Per-generator F1 std for the 7-feature ensemble (0.056) is lower than Avg-LogProb (${\sim }$0.09), indicating more stable cross-generator performance.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:baselines}{{4}{5}{Binary LOGO F1 (gen-1 vs.\ gen-2+) across 9 generators. Our 7-feature ensemble outperforms the best single baseline (Avg-LogProb) by +3.0pp and the 4-baseline ensemble by +2.0pp ($p < 0.001$, paired bootstrap). Per-generator F1 std for the 7-feature ensemble (0.056) is lower than Avg-LogProb (${\sim }$0.09), indicating more stable cross-generator performance}{table.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Pooled Spearman correlations.}{5}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Baseline Comparison}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:baselines}{{4.3}{5}{Baseline Comparison}{subsection.4.3}{}}
+\citation{kovacs2025attractor}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces 3-class LOGO F1 across reference models (6-generator subset). Spread = 0.024pp. All configurations show negative entropy drift, confirming depth signal is generation-intrinsic, not a reference-model artifact.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:crossref}{{5}{6}{3-class LOGO F1 across reference models (6-generator subset). Spread = 0.024pp. All configurations show negative entropy drift, confirming depth signal is generation-intrinsic, not a reference-model artifact}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Continuation vs.\ paraphrastic chains. Continuation chains retain significantly more depth signal (+5pp 3-class, +8pp binary). Spearman $\rho $ signs are consistent across chain types (all drifting features negative), but magnitudes are attenuated for paraphrastic chains.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:paraphrastic}{{6}{6}{Continuation vs.\ paraphrastic chains. Continuation chains retain significantly more depth signal (+5pp 3-class, +8pp binary). Spearman $\rho $ signs are consistent across chain types (all drifting features negative), but magnitudes are attenuated for paraphrastic chains}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Cross-Reference Model Analysis}{6}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:crossref}{{4.4}{6}{Cross-Reference Model Analysis}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Continuation vs.\ Paraphrastic Chains}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:paraphrastic}{{4.5}{6}{Continuation vs.\ Paraphrastic Chains}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Analysis and Discussion}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Finer-Grained Ordinal Classification}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces 5-class ordinal classification per-depth F1. Gen-2 and gen-3 are effectively inseparable (both F1 = 0.27), suggesting 3-class granularity is the practical ceiling for handcrafted features. The 5-class macro F1 (0.51) is 27pp below 3-class (0.78).}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:fiveclass}{{7}{7}{5-class ordinal classification per-depth F1. Gen-2 and gen-3 are effectively inseparable (both F1 = 0.27), suggesting 3-class granularity is the practical ceiling for handcrafted features. The 5-class macro F1 (0.51) is 27pp below 3-class (0.78)}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}End-to-End Neural Classification}{7}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Repetition Penalty Sensitivity}{7}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Downstream Utility (Negative Finding)}{7}{subsection.5.4}\protected@file@percent }
+\bibcite{alemohammad2023selfconsuming}{{1}{2023}{{Alemohammad et al.}}{{}}}
+\bibcite{bao2024fastdetectgpt}{{2}{2024}{{Bao et al.}}{{}}}
+\bibcite{biderman2023pythia}{{3}{2023}{{Biderman et al.}}{{}}}
+\bibcite{dohmatob2024model}{{4}{2024}{{Dohmatob et al.}}{{}}}
+\bibcite{gehrmann2019gltr}{{5}{2019}{{Gehrmann et al.}}{{}}}
+\bibcite{gerstgrasser2024model}{{6}{2024}{{Gerstgrasser et al.}}{{}}}
+\bibcite{groeneveld2024olmo}{{7}{2024}{{Groeneveld et al.}}{{}}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Scope and Limitations}{8}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Base models only.}{8}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Continuation chains.}{8}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scale ceiling.}{8}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Feature saturation.}{8}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\bibcite{guo2024curious}{{8}{2024}{{Guo et al.}}{{}}}
+\bibcite{hans2024binoculars}{{9}{2024}{{Hans et al.}}{{}}}
+\bibcite{holtzman2020curious}{{10}{2020}{{Holtzman et al.}}{{}}}
+\bibcite{jiang2023mistral}{{11}{2023}{{Jiang et al.}}{{}}}
+\bibcite{koppel2009computational}{{12}{2009}{{Koppel et al.}}{{}}}
+\bibcite{kovacs2025attractor}{{13}{2025}{{Kov{\'a}cs et al.}}{{}}}
+\bibcite{mitchell2023detectgpt}{{14}{2023}{{Mitchell et al.}}{{}}}
+\bibcite{shumailov2024model}{{15}{2024}{{Shumailov et al.}}{{}}}
+\bibcite{stamatatos2009survey}{{16}{2009}{{Stamatatos}}{{}}}
+\bibcite{team2024gemma}{{17}{2024}{{Team et al.}}{{}}}
+\bibcite{touvron2023llama}{{18}{2023}{{Touvron et al.}}{{}}}
+\bibcite{wenzek2020ccnet}{{19}{2020}{{Wenzek et al.}}{{}}}
+\bibcite{wettig2024qurating}{{20}{2024}{{Wettig et al.}}{{}}}
+\bibcite{xie2023data}{{21}{2023}{{Xie et al.}}{{}}}
+\bibcite{yang2023dnagpt}{{22}{2023}{{Yang et al.}}{{}}}
+\bibcite{yang2024qwen2}{{23}{2024}{{Yang et al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Supplementary Tables}{10}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}5-Class Confusion Matrix}{10}{subsection.A.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}QLoRA vs.\ XGBoost Comparison}{10}{subsection.A.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces QLoRA fine-tuned LM vs.\ XGBoost on 7 handcrafted features. The neural model captures substantially more depth signal from raw text, but at $>$100$\times $ training cost. Per-class 5-class F1 for QLoRA: depth-0 = 0.999, depth-1 = 0.80, depth-2 = 0.40, depth-3 = 0.32, depth-4 = 0.42.}}{10}{table.8}\protected@file@percent }
+\newlabel{tab:qlora}{{8}{10}{QLoRA fine-tuned LM vs.\ XGBoost on 7 handcrafted features. The neural model captures substantially more depth signal from raw text, but at $>$100$\times $ training cost. Per-class 5-class F1 for QLoRA: depth-0 = 0.999, depth-1 = 0.80, depth-2 = 0.40, depth-3 = 0.32, depth-4 = 0.42}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Continuation vs.\ Paraphrastic Detailed Results}{10}{subsection.A.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Spearman $\rho $ comparison. All signs consistent; paraphrastic magnitudes attenuated by 0.08--0.15, reflecting attractor convergence compressing the drift space. Cross-transfer F1: cont$\to $para = 0.74, para$\to $cont = 0.77 ($n_{\text  {para}} = 4{,}900$ clean chains).}}{10}{table.9}\protected@file@percent }
+\newlabel{tab:para_detail}{{9}{10}{Spearman $\rho $ comparison. All signs consistent; paraphrastic magnitudes attenuated by 0.08--0.15, reflecting attractor convergence compressing the drift space. Cross-transfer F1: cont$\to $para = 0.74, para$\to $cont = 0.77 ($n_{\text {para}} = 4{,}900$ clean chains)}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}rp-LOFO Sensitivity Analysis}{10}{subsection.A.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces rp-LOFO analysis: classifiers trained on 8 generators ($r_p = 1.0$), tested on $r_p = 1.1$ data. Reference features (entropy mean) are $r_p$-invariant ($\Delta \rho < 0.01$); surface features (hapax, TTR) show mild suppression ($\Delta \rho \approx 0.03$). Both pass the $\geq $0.70 gate, justifying Gemma's inclusion in main results.}}{10}{table.10}\protected@file@percent }
+\newlabel{tab:rplofo}{{10}{10}{rp-LOFO analysis: classifiers trained on 8 generators ($r_p = 1.0$), tested on $r_p = 1.1$ data. Reference features (entropy mean) are $r_p$-invariant ($\Delta \rho < 0.01$); surface features (hapax, TTR) show mild suppression ($\Delta \rho \approx 0.03$). Both pass the $\geq $0.70 gate, justifying Gemma's inclusion in main results}{table.10}{}}
+\gdef \@abspage@last{10}

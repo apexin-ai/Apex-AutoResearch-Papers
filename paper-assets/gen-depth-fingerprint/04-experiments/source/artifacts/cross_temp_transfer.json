@@ -1,0 +1,201 @@
+{
+  "experiment": "cross_temperature_transfer",
+  "date": "2026-05-17",
+  "model": "XGBoost",
+  "hyperparams": {
+    "n_estimators": 200,
+    "max_depth": 6
+  },
+  "features": [
+    "entropy_mean",
+    "entropy_std",
+    "entropy_min",
+    "entropy_max",
+    "tail_decay",
+    "ttr",
+    "hapax_ratio"
+  ],
+  "method": "LOGO-CV: hold out one generator, train on remaining five from training-temp dataset (class-balanced), test on held-out generator from test-temp dataset. D_0.7 = features_all_models.csv (6 gens). D_1.0 = same 5 generators + qwen3-1.7b at t=1.0.",
+  "results": {
+    "0.7_to_0.7": {
+      "binary_f1": 0.9471,
+      "three_class_f1": 0.7888,
+      "per_class": {
+        "gen0": {
+          "precision": 0.8778,
+          "recall": 0.9958,
+          "f1": 0.9331
+        },
+        "gen1": {
+          "precision": 0.5274,
+          "recall": 0.7966,
+          "f1": 0.6346
+        },
+        "gen2+": {
+          "precision": 0.9281,
+          "recall": 0.7012,
+          "f1": 0.7989
+        }
+      },
+      "per_generator_3class": {
+        "olmo-2-1b": 0.7635,
+        "pythia-1b": 0.8536,
+        "pythia-2.8b": 0.8045,
+        "qwen3-0.6b": 0.8199,
+        "qwen3-1.7b": 0.81,
+        "qwen3-8b": 0.6875
+      },
+      "per_generator_binary": {
+        "olmo-2-1b": 0.9493,
+        "pythia-1b": 0.9898,
+        "pythia-2.8b": 0.9757,
+        "qwen3-0.6b": 0.9707,
+        "qwen3-1.7b": 0.9484,
+        "qwen3-8b": 0.8597
+      }
+    },
+    "0.7_to_1.0": {
+      "binary_f1": 0.9001,
+      "three_class_f1": 0.7225,
+      "per_class": {
+        "gen0": {
+          "precision": 0.7753,
+          "recall": 0.9953,
+          "f1": 0.8716
+        },
+        "gen1": {
+          "precision": 0.4569,
+          "recall": 0.7545,
+          "f1": 0.5691
+        },
+        "gen2+": {
+          "precision": 0.9252,
+          "recall": 0.5984,
+          "f1": 0.7267
+        }
+      },
+      "per_generator_3class": {
+        "olmo-2-1b": 0.7635,
+        "pythia-1b": 0.8536,
+        "pythia-2.8b": 0.8045,
+        "qwen3-0.6b": 0.8199,
+        "qwen3-1.7b": 0.4179,
+        "qwen3-8b": 0.6875
+      },
+      "per_generator_binary": {
+        "olmo-2-1b": 0.9493,
+        "pythia-1b": 0.9898,
+        "pythia-2.8b": 0.9757,
+        "qwen3-0.6b": 0.9707,
+        "qwen3-1.7b": 0.7131,
+        "qwen3-8b": 0.8597
+      }
+    },
+    "1.0_to_1.0": {
+      "binary_f1": 0.9107,
+      "three_class_f1": 0.7257,
+      "per_class": {
+        "gen0": {
+          "precision": 0.7904,
+          "recall": 0.9886,
+          "f1": 0.8784
+        },
+        "gen1": {
+          "precision": 0.4563,
+          "recall": 0.7433,
+          "f1": 0.5655
+        },
+        "gen2+": {
+          "precision": 0.9155,
+          "recall": 0.6113,
+          "f1": 0.7331
+        }
+      },
+      "per_generator_3class": {
+        "olmo-2-1b": 0.7642,
+        "pythia-1b": 0.8514,
+        "pythia-2.8b": 0.8036,
+        "qwen3-0.6b": 0.824,
+        "qwen3-1.7b": 0.4216,
+        "qwen3-8b": 0.7018
+      },
+      "per_generator_binary": {
+        "olmo-2-1b": 0.9632,
+        "pythia-1b": 0.9923,
+        "pythia-2.8b": 0.9787,
+        "qwen3-0.6b": 0.9799,
+        "qwen3-1.7b": 0.7158,
+        "qwen3-8b": 0.8935
+      }
+    },
+    "1.0_to_0.7": {
+      "binary_f1": 0.9581,
+      "three_class_f1": 0.7913,
+      "per_class": {
+        "gen0": {
+          "precision": 0.8965,
+          "recall": 0.9891,
+          "f1": 0.9405
+        },
+        "gen1": {
+          "precision": 0.5264,
+          "recall": 0.7854,
+          "f1": 0.6304
+        },
+        "gen2+": {
+          "precision": 0.9198,
+          "recall": 0.7123,
+          "f1": 0.8029
+        }
+      },
+      "per_generator_3class": {
+        "olmo-2-1b": 0.7642,
+        "pythia-1b": 0.8514,
+        "pythia-2.8b": 0.8036,
+        "qwen3-0.6b": 0.824,
+        "qwen3-1.7b": 0.8073,
+        "qwen3-8b": 0.7018
+      },
+      "per_generator_binary": {
+        "olmo-2-1b": 0.9632,
+        "pythia-1b": 0.9923,
+        "pythia-2.8b": 0.9787,
+        "qwen3-0.6b": 0.9799,
+        "qwen3-1.7b": 0.9475,
+        "qwen3-8b": 0.8935
+      }
+    }
+  },
+  "data_info": {
+    "t07": {
+      "path": "data/features_all_models.csv",
+      "n_samples": 27529,
+      "generators": [
+        "olmo-2-1b",
+        "pythia-1b",
+        "pythia-2.8b",
+        "qwen3-0.6b",
+        "qwen3-1.7b",
+        "qwen3-8b"
+      ]
+    },
+    "t10": {
+      "path": "data/features_all_models.csv + data/features_qwen3-1.7b-high-temp.csv",
+      "n_samples": 27614,
+      "generators": [
+        "olmo-2-1b",
+        "pythia-1b",
+        "pythia-2.8b",
+        "qwen3-0.6b",
+        "qwen3-1.7b",
+        "qwen3-8b"
+      ]
+    }
+  },
+  "cross_temp_delta": {
+    "0.7_train_delta_binary": -0.047,
+    "0.7_train_delta_3class": -0.0663,
+    "1.0_train_delta_binary": 0.0474,
+    "1.0_train_delta_3class": 0.0656
+  }
+}

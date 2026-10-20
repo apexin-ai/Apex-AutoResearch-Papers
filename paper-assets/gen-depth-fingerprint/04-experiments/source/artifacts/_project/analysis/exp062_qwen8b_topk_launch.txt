@@ -1,0 +1,25 @@
+exp062: Qwen3-8B topk generation launch
+========================================
+Time: 2026-05-21 ~01:15 CST
+
+GPU: cuda:0 (32GB V100, was idle)
+PID: 375795
+Log: /tmp/gen_qwen8b_topk_gpu0.log
+
+Launch command:
+  CUDA_VISIBLE_DEVICES=0 python3 generate_chain_decoding.py \
+    --model-name qwen3-8b --device cuda:0 --strategies topk
+
+Output: data/qwen3-8b-topk/generations_shard0.jsonl
+ETA: ~4.7h (996 seeds × ~17s/seed)
+
+Concurrent state:
+  GPU 1 (PID 369104): Qwen3-8B greedy, 423/996 (~42%), ETA ~2.7h
+  GPU 3 (PID 357811): Qwen3-0.6B topk
+
+Anti-duplicate measure:
+  Watcher PID 376120 monitors /tmp/gen_qwen8b_decoding.log for "[greedy] Done".
+  When greedy completes, it kills PID 369104 (GPU 1 process) before it enters
+  the topk phase. Greedy data is safe (flushed per record to
+  data/qwen3-8b-greedy/generations_shard0.jsonl).
+  Log: /tmp/qwen8b_topk_sentinel.log

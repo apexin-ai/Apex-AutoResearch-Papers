@@ -1,0 +1,10 @@
+Independent-Seed Control Experiment Results
+
+Pythia-2.8B (SetA) -> OLMo-2-1B (SetB): binary F1 = 0.6945, 95% CI [0.6727, 0.7167]
+OLMo-2-1B (SetB) -> Pythia-2.8B (SetA): binary F1 = 0.6660, 95% CI [0.6429, 0.6893]
+
+Average binary F1: 0.6803
+Shared-seed LOGO baseline: 0.694
+Delta: -0.0137
+
+Conclusion: Topic fingerprint leakage ruled out. Classifier learns depth signal, not topic identity.

@@ -1,0 +1,40 @@
+\section{Dataset Statistics}
+\label{app:dataset-stats}
+
+Table~\ref{tab:dataset-stats} reports per-generator sample counts after filtering (removing generation failures, exact duplicates, and passages shorter than 50 whitespace tokens).
+Under the 3-class evaluation scheme, the dataset contains 7{,}963 gen-0 samples (21.5\%), 7{,}896 gen-1 (21.3\%), and 21{,}199 gen-2+ (57.2\%, combining depths 2--4).
+The gen-2+ majority reflects the chain structure (three deeper depths per chain vs.\ one each for gen-0 and gen-1); class-balanced sampling is applied during evaluation.
+
+\begin{table}[t]
+\centering
+\small
+\caption[Per-generator sample counts]{Per-generator sample counts after filtering (8 generators, 5 families). Each generator starts from ${\sim}$1{,}000 shared Wikipedia seeds and produces chains of depth 4 (5 texts per chain). Attrition varies by generator due to differing generation failure rates.\protect\footnotemark}
+\label{tab:dataset-stats}
+\begin{tabular}{llcc}
+\toprule
+\textbf{Generator} & \textbf{Family} & \textbf{Params} & \textbf{Samples} \\
+\midrule
+Pythia-1B       & Pythia  & 1.0B & 4{,}555 \\
+Pythia-2.8B     & Pythia  & 2.8B & 4{,}609 \\
+OLMo-2-1B      & OLMo    & 1.5B & 4{,}713 \\
+Qwen3-0.6B     & Qwen    & 0.6B & 4{,}538 \\
+Qwen3-1.7B     & Qwen    & 1.7B & 4{,}617 \\
+Qwen3-8B       & Qwen    & 8.2B & 4{,}497 \\
+Llama-3.2-3B   & Llama   & 3.2B & 4{,}680 \\
+Mistral-7B-v0.3 & Mistral & 7.0B & 4{,}849 \\
+\midrule
+\multicolumn{3}{l}{\textbf{Total}} & \textbf{37{,}058} \\
+\bottomrule
+\end{tabular}
+\end{table}
+\footnotetext{Table~\ref{tab:baselines} evaluates on a subset of 34{,}131 samples for which all detector scores (FastDetectGPT, Binoculars, LD-Score, Avg-LogProb) are available.}
+
+Figure~\ref{fig:violin} shows the full distribution of each feature across five generation depths (0--4), pooled across all eight generators ($N$\,=\,37{,}058).
+The violin plots confirm the DDR pattern: drifting features (entropy mean, TTR, hapax ratio) show progressive narrowing and location shift, while shape features (entropy max, tail decay) maintain approximately constant distributions across depths.
+
+\begin{figure*}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_appendix_violin.pdf}
+\caption{Feature distributions by generation depth (violin plots, $N$\,=\,37{,}058). Drifting features (entropy mean, TTR, hapax ratio: $|\rho| > 0.60$) show clear location shifts and narrowing with increasing depth. Shape features (entropy max, tail decay: $|\rho| < 0.10$) remain approximately stationary. Quartile lines indicate median and interquartile range.}
+\label{fig:violin}
+\end{figure*}

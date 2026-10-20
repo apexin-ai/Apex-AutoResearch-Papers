@@ -1,0 +1,30 @@
+{
+  "pooled_rho": {
+    "hapax_ratio": -0.6467,
+    "ttr": -0.6302,
+    "entropy_mean": -0.6098,
+    "entropy_min": -0.4061,
+    "entropy_max": 0.0503,
+    "tail_decay": -0.0403,
+    "entropy_std": -0.1996
+  },
+  "per_gen_median_rho": {
+    "hapax_ratio": -0.6624,
+    "ttr": -0.6428,
+    "entropy_mean": -0.6204,
+    "entropy_min": -0.3968,
+    "entropy_max": 0.0764,
+    "tail_decay": -0.0796,
+    "entropy_std": -0.2088
+  },
+  "n_samples_pooled": 27529,
+  "generators": [
+    "olmo-2-1b",
+    "pythia-1b",
+    "pythia-2.8b",
+    "qwen3-0.6b",
+    "qwen3-1.7b",
+    "qwen3-8b"
+  ],
+  "computation_details": "Pooled: Spearman rho on all 27529 samples from 6 generators. Median: median of 6 per-gen rho values from spearman_per_generator.json."
+}

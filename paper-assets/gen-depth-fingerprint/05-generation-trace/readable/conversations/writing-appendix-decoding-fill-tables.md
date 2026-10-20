@@ -1,0 +1,1350 @@
+# writing appendix decoding fill tables
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 21
+- **Original source:** `logs/chats/worker_writing_appendix_decoding_fill_tables_20260521T151125.jsonl`
+- **Structured JSON:** [`4dc9072503fb0a21e5cd.json`](../../sessions/4d/4dc9072503fb0a21e5cd.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+43 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-21T15:15:56.694735+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/analysis/decoding_cohens_d_all.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/analysis/decoding_cohens_d_all.txt"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-21T15:15:56.695072+00:00_
+
+1	Cohen's d: gen-1 vs gen-2+ — All Decoding Strategy Results (9/16 combos)
+2	===========================================================================
+3	Reference model: Pythia-410M | Date: 2026-05-21
+4	Source: All completed decoding-strategy combos (greedy ×6, top-k ×3)
+5	
+6	| Generator        | Strategy | entropy_mean | entropy_std | entropy_max | entropy_min | tail_decay |   TTR   | hapax_ratio | Shape Pass | Drift Pass |
+7	|------------------|----------|-------------|-------------|-------------|-------------|------------|---------|-------------|------------|------------|
+8	| LLaMA-3.2-3B    | greedy   |      1.4589 |      1.0104 |      0.0604 |      0.0690 |     0.0449 |  1.2717 |      1.2628 |    YES     |    YES     |
+9	| Mistral-7B-v0.3 | greedy   |      1.3075 |      0.6161 |      0.0137 |      0.0203 |     0.1382 |  1.0447 |      1.0300 |    YES     |    YES     |
+10	| OLMo-2-1B       | greedy   |      1.2933 |      0.9473 |      0.0310 |      0.0267 |     0.0329 |  0.8888 |      0.8049 |    YES     |    YES     |
+11	| OLMo-2-1B       | top-k    |      0.7285 |      0.3524 |      0.0108 |      0.0107 |     0.2218 |  0.7038 |      0.6899 |    NO*     |    YES     |
+12	| Pythia-1B        | greedy   |      0.9832 |      0.9120 |      0.1226 |      0.0438 |     0.0386 |  0.6350 |      0.5290 |    YES     |    YES     |
+13	| Pythia-1B        | top-k    |      0.8327 |      0.1286 |      0.2714 |      0.0351 |     0.1772 |  0.4107 |      0.3367 |    NO*     |    NO*     |
+14	| Pythia-2.8B      | greedy   |      1.4262 |      0.9310 |      0.0909 |      0.0751 |     0.0665 |  0.9808 |      0.8745 |    YES     |    YES     |
+15	| Pythia-2.8B      | top-k    |      0.7046 |      0.0991 |      0.2649 |      0.0437 |     0.1161 |  0.4124 |      0.3665 |    NO*     |    NO*     |
+16	| Qwen3-1.7B      | greedy   |      1.0281 |      0.7799 |      0.0789 |      0.0118 |     0.0370 |  0.7400 |      0.6833 |    YES     |    YES     |
+17	
+18	Thresholds:
+19	  Shape pass: a
+…[truncated 3457 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-21T15:15:56.695259+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-21T15:15:56.695450+00:00_
+
+1	% Decoding Strategy Robustness — placeholder pending experiment results
+2	To verify that DDR shape stability is not an artifact of nucleus sampling ($p{=}0.9$, $\tau{=}0.7$),
+3	we repeat the generation chain experiment under two alternative decoding strategies:
+4	greedy decoding ($\tau{=}0$) and top-$k$ sampling ($k{=}50$, $\tau{=}0.7$).
+5	All eight generators spanning five architectural families produce ${\sim}$1{,}000 chains of depth 0--4 per strategy,
+6	yielding ${\sim}$5{,}000 texts per generator--strategy combination.
+7	
+8	Table~\ref{tab:decoding-shape} reports Cohen's $d$ (gen-1 vs.\ gen-2+) for the three shape features across strategies;
+9	Table~\ref{tab:decoding-drift} provides the corresponding values for drifting and intermediate features.
+10	
+11	\begin{table}[ht]
+12	\centering
+13	\small
+14	\caption{Shape-feature Cohen's $d$ (gen-1 vs.\ gen-2+) under three decoding strategies per generator.
+15	Values below 0.20 indicate negligible drift.
+16	Shape features are expected to remain near-stationary across strategies if DDR is decoding-agnostic.}
+17	\label{tab:decoding-shape}
+18	\resizebox{\linewidth}{!}{%
+19	\begin{tabular}{ll ccc ccc ccc}
+20	\toprule
+21	& & \multicolumn{3}{c}{entropy\_max} & \multicolumn{3}{c}{entropy\_min} & \multicolumn{3}{c}{tail\_decay} \\
+22	\cmidrule(lr){3-5} \cmidrule(lr){6-8} \cmidrule(lr){9-11}
+23	Family & Generator & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ \\
+24	\midrule
+25	Pythia  & 2.8B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\
+26	        & 1B      & XX & XX & XX & XX & XX & XX & XX & XX & XX \\
+27	OLMo    & 2-1B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\
+28	Qwen3   & 0.6B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\
+29	        & 1.7B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\
+30	        & 8B      & XX & XX & XX & XX & XX & XX & XX & XX & XX \\
+31	Llama   & 3.2-3B  & XX & XX & XX & XX & XX & XX & XX & XX & XX \\
+32	Mistral & 7B-v0.3 & XX & XX & XX & XX & XX & XX & XX & XX 
+…[truncated 4501 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T15:15:56.695631+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T15:15:56.695767+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T15:15:56.695906+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "ls -la /root/gen-depth-fingerprint/data/features*.csv 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "ls -la /root/gen-depth-fingerprint/data/features*.csv 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T15:15:56.696026+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-21T15:15:56.696141+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "ls -la /root/gen-depth-fingerprint/data/features_pythia-2.8b.csv /root/gen-depth-fingerprint/data/features_pythia-1b.csv /root/gen-depth-fingerprint/data/features_olmo-2-1b.csv /root/gen-depth-fingerprint/data/features_qwen3-0.6b.csv /root/gen-depth-fingerprint/data/features_qwen3-1.7b.csv /root/gen-depth-fingerprint/data/features_qwen3-8b.csv /root/gen-depth-fingerprint/data/features_llama-3.2-3b.csv /root/gen-depth-fingerprint/data/features_mistral-7b-v0.3.csv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "ls -la /root/gen-depth-fingerprint/data/features_pythia-2.8b.csv /root/gen-depth-fingerprint/data/features_pythia-1b.csv /root/gen-depth-fingerprint/data/features_olmo-2-1b.csv /root/gen-depth-fingerprint/data/features_qwen3-0.6b.csv /root/gen-depth-fingerprint/data/features_qwen3-1.7b.csv /root/gen-depth-fingerprint/data/features_qwen3-8b.csv /root/gen-depth-fingerprint/data/features_llama-3.2-3b.csv /root/gen-depth-fingerprint/data/features_mistral-7b-v0.3.csv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T15:15:56.696269+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 667821 May 15 07:27 /root/gen-depth-fingerprint/data/features_olmo-2-1b.csv\\n-rw-r--r-- 1 root root 642681 May 15 07:26 /root/gen-depth-fingerprint/data/features_pythia-1b.csv\\n-rw-r--r-- 1 root root 660315 May 15 07:25 /root/gen-depth-fingerprint/data/features_pythia-2.8b.csv\\n-rw-r--r-- 1 root root 642884 May 15 07:27 /root/gen-depth-fingerprint/data/features_qwen3-0.6b.csv\\n-rw-r--r-- 1 root root 655369 May 15 07:28 /root/gen-depth-fingerprint/data/features_qwen3-1.7b.csv\\n\", \"stderr\": \"ls: cannot access '/root/gen-depth-fingerprint/data/features_qwen3-8b.csv': No such file or directory\\nls: cannot access '/root/gen-depth-fingerprint/data/features_llama-3.2-3b.csv': No such file or directory\\nls: cannot access '/root/gen-depth-fingerprint/data/features_mistral-7b-v0.3.csv': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-21T15:15:56.696427+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "ls /root/gen-depth-fingerprint/data/features*.csv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "ls /root/gen-depth-fingerprint/data/features*.csv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T15:15:56.696593+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/data/features.csv\\n/root/gen-depth-fingerprint/data/features_8gen.csv\\n/root/gen-depth-fingerprint/data/features_9gen.csv\\n/root/gen-depth-fingerprint/data/features_all.csv\\n/root/gen-depth-fingerprint/data/features_all_models.csv\\n/root/gen-depth-fingerprint/data/features_indep_olmo-2-1b.csv\\n/root/gen-depth-fingerprint/data/features_indep_pythia-2.8b.csv\\n/root/gen-depth-fingerprint/data/features_instruct_ref_qwen06b.csv\\n/root/gen-depth-fingerprint/data/features_llama-3.2-3b-greedy.csv\\n/root/gen-depth-fingerprint/data/features_llama-3.2-3b-instruct.csv\\n/root/gen-depth-fingerprint/data/features_mistral-7b-v0.3-greedy.csv\\n/root/gen-depth-fingerprint/data/features_olmo-2-0425-1b-instruct.csv\\n/root/gen-depth-fingerprint/data/features_olmo-2-1b-greedy.csv\\n/root/gen-depth-fingerprint/data/features_olmo-2-1b-t05.csv\\n/root/gen-depth-fingerprint/data/features_olmo-2-1b-t09.csv\\n/root/gen-depth-fingerprint/data/features_olmo-2-1b-topk.csv\\n/root/gen-depth-fingerprint/data/features_olmo-2-1b.csv\\n/root/gen-depth-fingerprint/data/features_pythia-1b-greedy.csv\\n/root/gen-depth-fingerprint/data/features_pythia-1b-topk.csv\\n/root/gen-depth-fingerprint/data/features_pythia-1b.csv\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-creative.csv\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-greedy.csv\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-news.csv\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-scientific.csv\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-t05.csv\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-t09.csv\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b-topk.csv\\n/root/gen-depth-fingerprint/data/features_pythia-2.8b.csv\\n/root/gen-depth-fingerprint/data/features_qwen3-0.6b-instruct.csv\\n/root/gen-depth-fingerprint/data/features_qwen3-0.6b-t05.csv\\n/root/gen-depth-fingerprint/data/features_qwen3
+…[truncated 877 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T15:15:56.696737+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "ls -d /root/gen-depth-fingerprint/data/chains_llama-3.2-3b /root/gen-depth-fingerprint/data/chains_mistral-7b-v0.3 /root/gen-depth-fingerprint/data/chains_qwen3-8b"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "ls -d /root/gen-depth-fingerprint/data/chains_llama-3.2-3b /root/gen-depth-fingerprint/data/chains_mistral-7b-v0.3 /root/gen-depth-fingerprint/data/chains_qwen3-8b"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T15:15:56.696861+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/gen-depth-fingerprint/data/chains_llama-3.2-3b': No such file or directory\\nls: cannot access '/root/gen-depth-fingerprint/data/chains_mistral-7b-v0.3': No such file or directory\\nls: cannot access '/root/gen-depth-fingerprint/data/chains_qwen3-8b': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T15:15:56.697026+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "head -3 /root/gen-depth-fingerprint/data/features_8gen.csv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "head -3 /root/gen-depth-fingerprint/data/features_8gen.csv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-21T15:15:56.697148+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "head -3 /root/gen-depth-fingerprint/data/features_all_models.csv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "head -3 /root/gen-depth-fingerprint/data/features_all_models.csv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T15:15:56.697266+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\\npythia-2.8b,0,0,2.7516980171203613,1.744314193725586,0.003396987915039,8.1875,-0.0023380015550609,0.6565656565656566,0.5454545454545454\\npythia-2.8b,0,1,2.616674900054932,1.59860098361969,0.0011329650878906,7.59375,-0.002411389477936,0.5532994923857868,0.4010152284263959\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T15:15:56.697384+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\\npythia-2.8b,0,0,2.7516980171203613,1.744314193725586,0.003396987915039,8.1875,-0.0023380015550609,0.6565656565656566,0.5454545454545454\\npythia-2.8b,0,1,2.616674900054932,1.59860098361969,0.0011329650878906,7.59375,-0.002411389477936,0.5532994923857868,0.4010152284263959\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T15:15:56.697498+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -c \"\" /root/gen-depth-fingerprint/data/features_8gen.csv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -c \"\" /root/gen-depth-fingerprint/data/features_8gen.csv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T15:15:56.697636+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"37059\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T15:15:56.697755+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "python3 -c \"import csv; r=csv.reader(open('/root/gen-depth-fingerprint/data/features_8gen.csv')); next(r); models=set(); [models.add(row[0]) for row in r]; print(sorted(models))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "python3 -c \"import csv; r=csv.reader(open('/root/gen-depth-fingerprint/data/features_8gen.csv')); next(r); models=set(); [models.add(row[0]) for row in r]; print(sorted(models))\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T15:15:56.697869+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-21T15:15:56.697985+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "python3 -c \"import csv; r=csv.reader(open('/root/gen-depth-fingerprint/data/features_8gen.csv')); next(r); models=set([row[0] for row in r]); print(sorted(models))\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "python3 -c \"import csv; r=csv.reader(open('/root/gen-depth-fingerprint/data/features_8gen.csv')); next(r); models=set([row[0] for row in r]); print(sorted(models))\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T15:15:56.698098+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-21T15:15:56.698207+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -oP \"^[^,]+\" /root/gen-depth-fingerprint/data/features_8gen.csv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -oP \"^[^,]+\" /root/gen-depth-fingerprint/data/features_8gen.csv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T15:15:56.698453+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"model_name\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\
+…[truncated 7369 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-21T15:15:56.698644+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T15:15:56.698776+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-21T15:15:56.698900+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint && python3 -c \"\nimport csv\nimport numpy as np\n\n# Read features_8gen.csv\ndata = {}\nwith open('data/features_8gen.csv') as f:\n    reader = csv.DictReader(f)\n    for row in reader:\n        model = row['model_name']\n        depth = int(row['depth'])\n        if model not in data:\n            data[model] = {}\n        if depth not in data[model]:\n            data[model][depth] = []\n        data[model][depth].append({\n            'entropy_mean': float(row['entropy_mean']),\n            'entropy_std': float(row['entropy_std']),\n            'entropy_min': float(row['entropy_min']),\n            'entropy_max': float(row['entropy_max']),\n            'tail_decay': float(row['tail_decay']),\n            'ttr': float(row['ttr']),\n            'hapax_ratio': float(row['hapax_ratio']),\n        })\n\nfeatures = ['entropy_mean', 'entropy_std', 'entropy_max', 'entropy_min', 'tail_decay', 'ttr', 'hapax_ratio']\n\nprint('Generator | ' + ' | '.join(features))\nprint('-' * 120)\n\nfor model in sorted(data.keys()):\n    # gen-1 = depth 1, gen-2+ = depth 2,3,4\n    gen1_rows = data[model].get(1, [])\n    gen2plus_rows = []\n    for d in [2, 3, 4]:\n        gen2plus_rows.extend(data[model].get(d, []))\n    \n    if not gen1_rows or not gen2plus_rows:\n        print(f'{model}: SKIP (gen1={len(gen1_rows)}, gen2+={len(gen2plus_rows)})')\n        continue\n    \n    vals = []\n    for feat in features:\n        g1 = np.array([r[feat] for r in gen1_rows])\n        g2 = np.array([r[feat] for r in gen2plus_rows])\n        pooled_std = np.sqrt((g1.var(ddof=1) * (len(g1)-1) + g2.var(ddof=1) * (len(g2)-1)) / (len(g1) + len(g2) - 2))\n        d = abs(g1.mean() - g2.mean()) / pooled_std if pooled_std > 0 else 0\n        vals.append(f'{d:.4f}')\n    \n    print(f'{model} | ' + ' | '.join(vals))\n    print(f'  (gen1={len(gen1_rows)}, gen2+={len(gen2plus_rows)})')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint && python3 -c \"\nimport csv\nimport numpy as np\n\n# Read features_8gen.csv\ndata = {}\nwith open('data/features_8gen.csv') as f:\n    reader = csv.DictReader(f)\n    for row in reader:\n        model = row['model_name']\n        depth = int(row['depth'])\n        if model not in data:\n            data[model] = {}\n        if depth not in data[model]:\n            data[model][depth] = []\n        data[model][depth].append({\n            'entropy_mean': float(row['entropy_mean']),\n            'entropy_std': float(row['entropy_std']),\n            'entropy_min': float(row['entropy_min']),\n            'entropy_max': float(row['entropy_max']),\n            'tail_decay': float(row['tail_decay']),\n            'ttr': float(row['ttr']),\n            'hapax_ratio': float(row['hapax_ratio']),\n        })\n\nfeatures = ['entropy_mean', 'entropy_std', 'entropy_max', 'entropy_min', 'tail_decay', 'ttr', 'hapax_ratio']\n\nprint('Generator | ' + ' | '.join(features))\nprint('-' * 120)\n\nfor model in sorted(data.keys()):\n    # gen-1 = depth 1, gen-2+ = depth 2,3,4\n    gen1_rows = data[model].get(1, [])\n    gen2plus_rows = []\n    for d in [2, 3, 4]:\n        gen2plus_rows.extend(data[model].get(d, []))\n    \n    if not gen1_rows or not gen2plus_rows:\n        print(f'{model}: SKIP (gen1={len(gen1_rows)}, gen2+={len(gen2plus_rows)})')\n        continue\n    \n    vals = []\n    for feat in features:\n        g1 = np.array([r[feat] for r in gen1_rows])\n        g2 = np.array([r[feat] for r in gen2plus_rows])\n        pooled_std = np.sqrt((g1.var(ddof=1) * (len(g1)-1) + g2.var(ddof=1) * (len(g2)-1)) / (len(g1) + len(g2) - 2))\n        d = abs(g1.mean() - g2.mean()) / pooled_std if pooled_std > 0 else 0\n        vals.append(f'{d:.4f}')\n    \n    print(f'{model} | ' + ' | '.join(vals))\n    print(f'  (gen1={len(gen1_rows)}, gen2+={len(gen2plus_rows)})')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T15:15:56.699043+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Generator | entropy_mean | entropy_std | entropy_max | entropy_min | tail_decay | ttr | hapax_ratio\\n------------------------------------------------------------------------------------------------------------------------\\nllama-3.2-3b | 1.1476 | 0.4984 | 0.0081 | 0.0067 | 0.1880 | 1.0372 | 0.9833\\n  (gen1=984, gen2+=2701)\\nmistral-7b-v0.3 | 0.8922 | 0.2292 | 0.0040 | 0.0377 | 0.1604 | 0.8198 | 0.8207\\n  (gen1=994, gen2+=2859)\\nolmo-2-1b | 1.1887 | 0.6086 | 0.0601 | 0.0682 | 0.2230 | 1.0766 | 1.0027\\n  (gen1=988, gen2+=2730)\\npythia-1b | 1.4044 | 0.5320 | 0.2062 | 0.0240 | 0.0838 | 0.7984 | 0.6491\\n  (gen1=993, gen2+=2567)\\npythia-2.8b | 1.1971 | 0.3885 | 0.2531 | 0.0319 | 0.0673 | 0.7689 | 0.6680\\n  (gen1=989, gen2+=2625)\\nqwen3-0.6b | 0.9165 | 0.5569 | 0.0125 | 0.1000 | 0.0845 | 0.6276 | 0.5028\\n  (gen1=986, gen2+=2556)\\nqwen3-1.7b | 1.1150 | 0.5155 | 0.0198 | 0.0491 | 0.0879 | 0.9285 | 0.8301\\n  (gen1=983, gen2+=2638)\\nqwen3-8b | 0.8638 | 0.3717 | 0.0404 | 0.0057 | 0.1544 | 0.7080 | 0.6579\\n  (gen1=979, gen2+=2523)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.57}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-21T15:15:56.699315+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex",
+  "old_string": "Pythia  & 2.8B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 1B      & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nOLMo    & 2-1B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nQwen3   & 0.6B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 1.7B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 8B      & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nLlama   & 3.2-3B  & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nMistral & 7B-v0.3 & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} \\\\",
+  "new_string": "Pythia  & 2.8B    & 0.25 & 0.09 & 0.26 & 0.03 & 0.08 & 0.04 & 0.07 & 0.07 & 0.12 \\\\\n        & 1B      & 0.21 & 0.12 & 0.27 & 0.02 & 0.04 & 0.04 & 0.08 & 0.04 & 0.18 \\\\\nOLMo    & 2-1B    & 0.06 & 0.03 & 0.01 & 0.07 & 0.03 & 0.01 & 0.22 & 0.03 & 0.22 \\\\\nQwen3   & 0.6B    & 0.01 & XX & XX & 0.10 & XX & XX & 0.08 & XX & XX \\\\\n        & 1.7B    & 0.02 & 0.08 & XX & 0.05 & 0.01 & XX & 0.09 & 0.04 & XX \\\\\n        & 8B      & 0.04 & XX & XX & 0.01 & XX & XX & 0.15 & XX & XX \\\\\nLlama   & 3.2-3B  & 0.01 & 0.06 & XX & 0.01 & 0.07 & XX & 0.19 & 0.04 & XX \\\\\nMistral & 7B-v0.3 & 0.00 & 0.01 & XX & 0.04 & 0.02 & XX & 0.16 & 0.14 & XX \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{0.08}$^{8/8}$ & \\textbf{0.07}$^{6/8}$ & \\textbf{0.18}$^{3/8}$ & \\textbf{0.04}$^{8/8}$ & \\textbf{0.04}$^{6/8}$ & \\textbf{0.03}$^{3/8}$ & \\textbf{0.13}$^{8/8}$ & \\textbf{0.06}$^{6/8}$ & \\textbf{0.17}$^{3/8}$ \\\\"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex",
+    "old_string": "Pythia  & 2.8B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 1B      & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nOLMo    & 2-1B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nQwen3   & 0.6B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 1.7B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 8B      & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nLlama   & 3.2-3B  & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nMistral & 7B-v0.3 & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} \\\\",
+    "new_string": "Pythia  & 2.8B    & 0.25 & 0.09 & 0.26 & 0.03 & 0.08 & 0.04 & 0.07 & 0.07 & 0.12 \\\\\n        & 1B      & 0.21 & 0.12 & 0.27 & 0.02 & 0.04 & 0.04 & 0.08 & 0.04 & 0.18 \\\\\nOLMo    & 2-1B    & 0.06 & 0.03 & 0.01 & 0.07 & 0.03 & 0.01 & 0.22 & 0.03 & 0.22 \\\\\nQwen3   & 0.6B    & 0.01 & XX & XX & 0.10 & XX & XX & 0.08 & XX & XX \\\\\n        & 1.7B    & 0.02 & 0.08 & XX & 0.05 & 0.01 & XX & 0.09 & 0.04 & XX \\\\\n        & 8B      & 0.04 & XX & XX & 0.01 & XX & XX & 0.15 & XX & XX \\\\\nLlama   & 3.2-3B  & 0.01 & 0.06 & XX & 0.01 & 0.07 & XX & 0.19 & 0.04 & XX \\\\\nMistral & 7B-v0.3 & 0.00 & 0.01 & XX & 0.04 & 0.02 & XX & 0.16 & 0.14 & XX \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{0.08}$^{8/8}$ & \\textbf{0.07}$^{6/8}$ & \\textbf{0.18}$^{3/8}$ & \\textbf{0.04}$^{8/8}$ & \\textbf{0.04}$^{6/8}$ & \\textbf{0.03}$^{3/8}$ & \\textbf{0.13}$^{8/8}$ & \\textbf{0.06}$^{6/8}$ & \\textbf{0.17}$^{3/8}$ \\\\"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T15:15:56.699511+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-21T15:15:56.699667+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex",
+  "old_string": "Pythia  & 2.8B    & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 1B      & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nOLMo    & 2-1B    & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nQwen3   & 0.6B    & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 1.7B    & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 8B      & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nLlama   & 3.2-3B  & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nMistral & 7B-v0.3 & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} \\\\",
+  "new_string": "Pythia  & 2.8B    & 1.20 & 1.43 & 0.70 & 0.77 & 0.98 & 0.41 & 0.67 & 0.87 & 0.37 & 0.39 & 0.93 & 0.10 \\\\\n        & 1B      & 1.40 & 0.98 & 0.83 & 0.80 & 0.64 & 0.41 & 0.65 & 0.53 & 0.34 & 0.53 & 0.91 & 0.13 \\\\\nOLMo    & 2-1B    & 1.19 & 1.29 & 0.73 & 1.08 & 0.89 & 0.70 & 1.00 & 0.80 & 0.69 & 0.61 & 0.95 & 0.35 \\\\\nQwen3   & 0.6B    & 0.92 & XX & XX & 0.63 & XX & XX & 0.50 & XX & XX & 0.56 & XX & XX \\\\\n        & 1.7B    & 1.12 & 1.03 & XX & 0.93 & 0.74 & XX & 0.83 & 0.68 & XX & 0.52 & 0.78 & XX \\\\\n        & 8B      & 0.86 & XX & XX & 0.71 & XX & XX & 0.66 & XX & XX & 0.37 & XX & XX \\\\\nLlama   & 3.2-3B  & 1.15 & 1.46 & XX & 1.04 & 1.27 & XX & 0.98 & 1.26 & XX & 0.50 & 1.01 & XX \\\\\nMistral & 7B-v0.3 & 0.89 & 1.31 & XX & 0.82 & 1.04 & XX & 0.82 & 1.03 & XX & 0.23 & 0.62 & XX \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{1.09}$^{8/8}$ & \\textbf{1.25}$^{6/8}$ & \\textbf{0.76}$^{3/8}$ & \\textbf{0.85}$^{8/8}$ & \\textbf{0.93}$^{6/8}$ & \\textbf{0.51}$^{3/8}$ & \\textbf{0.76}$^{8/8}$ & \\textbf{0.86}$^{6/8}$ & \\textbf{0.46}$^{3/8}$ & \\textbf{0.46}$^{8/8}$ & \\textbf{0.87}$^{6/8}$ & \\textbf{0.19}$^{3/8}$ \\\\"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex",
+    "old_string": "Pythia  & 2.8B    & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 1B      & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nOLMo    & 2-1B    & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nQwen3   & 0.6B    & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 1.7B    & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 8B      & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nLlama   & 3.2-3B  & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nMistral & 7B-v0.3 & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} \\\\",
+    "new_string": "Pythia  & 2.8B    & 1.20 & 1.43 & 0.70 & 0.77 & 0.98 & 0.41 & 0.67 & 0.87 & 0.37 & 0.39 & 0.93 & 0.10 \\\\\n        & 1B      & 1.40 & 0.98 & 0.83 & 0.80 & 0.64 & 0.41 & 0.65 & 0.53 & 0.34 & 0.53 & 0.91 & 0.13 \\\\\nOLMo    & 2-1B    & 1.19 & 1.29 & 0.73 & 1.08 & 0.89 & 0.70 & 1.00 & 0.80 & 0.69 & 0.61 & 0.95 & 0.35 \\\\\nQwen3   & 0.6B    & 0.92 & XX & XX & 0.63 & XX & XX & 0.50 & XX & XX & 0.56 & XX & XX \\\\\n        & 1.7B    & 1.12 & 1.03 & XX & 0.93 & 0.74 & XX & 0.83 & 0.68 & XX & 0.52 & 0.78 & XX \\\\\n        & 8B      & 0.86 & XX & XX & 0.71 & XX & XX & 0.66 & XX & XX & 0.37 & XX & XX \\\\\nLlama   & 3.2-3B  & 1.15 & 1.46 & XX & 1.04 & 1.27 & XX & 0.98 & 1.26 & XX & 0.50 & 1.01 & XX \\\\\nMistral & 7B-v0.3 & 0.89 & 1.31 & XX & 0.82 & 1.04 & XX & 0.82 & 1.03 & XX & 0.23 & 0.62 & XX \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{1.09}$^{8/8}$ & \\textbf{1.25}$^{6/8}$ & \\textbf{0.76}$^{3/8}$ & \\textbf{0.85}$^{8/8}$ & \\textbf{0.93}$^{6/8}$ & \\textbf{0.51}$^{3/8}$ & \\textbf{0.76}$^{8/8}$ & \\textbf{0.86}$^{6/8}$ & \\textbf{0.46}$^{3/8}$ & \\textbf{0.46}$^{8/8}$ & \\textbf{0.87}$^{6/8}$ & \\textbf{0.19}$^{3/8}$ \\\\"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T15:15:56.699859+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-21T15:15:56.700005+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_decoding_strategy.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_decoding_strategy.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T15:15:56.700177+00:00_
+
+1	% Decoding Strategy Robustness — placeholder pending experiment results
+2	To verify that DDR shape stability is not an artifact of nucleus sampling ($p{=}0.9$, $\tau{=}0.7$),
+3	we repeat the generation chain experiment under two alternative decoding strategies:
+4	greedy decoding ($\tau{=}0$) and top-$k$ sampling ($k{=}50$, $\tau{=}0.7$).
+5	All eight generators spanning five architectural families produce ${\sim}$1{,}000 chains of depth 0--4 per strategy,
+6	yielding ${\sim}$5{,}000 texts per generator--strategy combination.
+7	
+8	Table~\ref{tab:decoding-shape} reports Cohen's $d$ (gen-1 vs.\ gen-2+) for the three shape features across strategies;
+9	Table~\ref{tab:decoding-drift} provides the corresponding values for drifting and intermediate features.
+10	
+11	\begin{table}[ht]
+12	\centering
+13	\small
+14	\caption{Shape-feature Cohen's $d$ (gen-1 vs.\ gen-2+) under three decoding strategies per generator.
+15	Values below 0.20 indicate negligible drift.
+16	Shape features are expected to remain near-stationary across strategies if DDR is decoding-agnostic.}
+17	\label{tab:decoding-shape}
+18	\resizebox{\linewidth}{!}{%
+19	\begin{tabular}{ll ccc ccc ccc}
+20	\toprule
+21	& & \multicolumn{3}{c}{entropy\_max} & \multicolumn{3}{c}{entropy\_min} & \multicolumn{3}{c}{tail\_decay} \\
+22	\cmidrule(lr){3-5} \cmidrule(lr){6-8} \cmidrule(lr){9-11}
+23	Family & Generator & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ \\
+24	\midrule
+25	Pythia  & 2.8B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\
+26	        & 1B      & XX & XX & XX & XX & XX & XX & XX & XX & XX \\
+27	OLMo    & 2-1B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\
+28	Qwen3   & 0.6B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\
+29	        & 1.7B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\
+30	        & 8B      & XX & XX & XX & XX & XX & XX & XX & XX & XX \\
+31	Llama   & 3.2-3B  & XX & XX & XX & XX & XX & XX & XX & XX & XX \\
+32	Mistral & 7B-v0.3 & XX & XX & XX & XX & XX & XX & XX & XX 
+…[truncated 4501 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-21T15:15:56.700329+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_decoding_strategy.tex",
+  "old_string": "Pythia  & 2.8B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 1B      & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nOLMo    & 2-1B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nQwen3   & 0.6B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 1.7B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 8B      & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nLlama   & 3.2-3B  & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nMistral & 7B-v0.3 & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} \\\\",
+  "new_string": "Pythia  & 2.8B    & 0.25 & 0.09 & 0.26 & 0.03 & 0.08 & 0.04 & 0.07 & 0.07 & 0.12 \\\\\n        & 1B      & 0.21 & 0.12 & 0.27 & 0.02 & 0.04 & 0.04 & 0.08 & 0.04 & 0.18 \\\\\nOLMo    & 2-1B    & 0.06 & 0.03 & 0.01 & 0.07 & 0.03 & 0.01 & 0.22 & 0.03 & 0.22 \\\\\nQwen3   & 0.6B    & 0.01 & XX & XX & 0.10 & XX & XX & 0.08 & XX & XX \\\\\n        & 1.7B    & 0.02 & 0.08 & XX & 0.05 & 0.01 & XX & 0.09 & 0.04 & XX \\\\\n        & 8B      & 0.04 & XX & XX & 0.01 & XX & XX & 0.15 & XX & XX \\\\\nLlama   & 3.2-3B  & 0.01 & 0.06 & XX & 0.01 & 0.07 & XX & 0.19 & 0.04 & XX \\\\\nMistral & 7B-v0.3 & 0.00 & 0.01 & XX & 0.04 & 0.02 & XX & 0.16 & 0.14 & XX \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{0.08}$^{8/8}$ & \\textbf{0.07}$^{6/8}$ & \\textbf{0.18}$^{3/8}$ & \\textbf{0.04}$^{8/8}$ & \\textbf{0.04}$^{6/8}$ & \\textbf{0.03}$^{3/8}$ & \\textbf{0.13}$^{8/8}$ & \\textbf{0.06}$^{6/8}$ & \\textbf{0.17}$^{3/8}$ \\\\"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_decoding_strategy.tex",
+    "old_string": "Pythia  & 2.8B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 1B      & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nOLMo    & 2-1B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nQwen3   & 0.6B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 1.7B    & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 8B      & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nLlama   & 3.2-3B  & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nMistral & 7B-v0.3 & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} \\\\",
+    "new_string": "Pythia  & 2.8B    & 0.25 & 0.09 & 0.26 & 0.03 & 0.08 & 0.04 & 0.07 & 0.07 & 0.12 \\\\\n        & 1B      & 0.21 & 0.12 & 0.27 & 0.02 & 0.04 & 0.04 & 0.08 & 0.04 & 0.18 \\\\\nOLMo    & 2-1B    & 0.06 & 0.03 & 0.01 & 0.07 & 0.03 & 0.01 & 0.22 & 0.03 & 0.22 \\\\\nQwen3   & 0.6B    & 0.01 & XX & XX & 0.10 & XX & XX & 0.08 & XX & XX \\\\\n        & 1.7B    & 0.02 & 0.08 & XX & 0.05 & 0.01 & XX & 0.09 & 0.04 & XX \\\\\n        & 8B      & 0.04 & XX & XX & 0.01 & XX & XX & 0.15 & XX & XX \\\\\nLlama   & 3.2-3B  & 0.01 & 0.06 & XX & 0.01 & 0.07 & XX & 0.19 & 0.04 & XX \\\\\nMistral & 7B-v0.3 & 0.00 & 0.01 & XX & 0.04 & 0.02 & XX & 0.16 & 0.14 & XX \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{0.08}$^{8/8}$ & \\textbf{0.07}$^{6/8}$ & \\textbf{0.18}$^{3/8}$ & \\textbf{0.04}$^{8/8}$ & \\textbf{0.04}$^{6/8}$ & \\textbf{0.03}$^{3/8}$ & \\textbf{0.13}$^{8/8}$ & \\textbf{0.06}$^{6/8}$ & \\textbf{0.17}$^{3/8}$ \\\\"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-21T15:15:56.700513+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_decoding_strategy.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-21T15:15:56.700680+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_decoding_strategy.tex",
+  "old_string": "Pythia  & 2.8B    & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 1B      & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nOLMo    & 2-1B    & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nQwen3   & 0.6B    & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 1.7B    & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 8B      & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nLlama   & 3.2-3B  & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nMistral & 7B-v0.3 & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} \\\\",
+  "new_string": "Pythia  & 2.8B    & 1.20 & 1.43 & 0.70 & 0.77 & 0.98 & 0.41 & 0.67 & 0.87 & 0.37 & 0.39 & 0.93 & 0.10 \\\\\n        & 1B      & 1.40 & 0.98 & 0.83 & 0.80 & 0.64 & 0.41 & 0.65 & 0.53 & 0.34 & 0.53 & 0.91 & 0.13 \\\\\nOLMo    & 2-1B    & 1.19 & 1.29 & 0.73 & 1.08 & 0.89 & 0.70 & 1.00 & 0.80 & 0.69 & 0.61 & 0.95 & 0.35 \\\\\nQwen3   & 0.6B    & 0.92 & XX & XX & 0.63 & XX & XX & 0.50 & XX & XX & 0.56 & XX & XX \\\\\n        & 1.7B    & 1.12 & 1.03 & XX & 0.93 & 0.74 & XX & 0.83 & 0.68 & XX & 0.52 & 0.78 & XX \\\\\n        & 8B      & 0.86 & XX & XX & 0.71 & XX & XX & 0.66 & XX & XX & 0.37 & XX & XX \\\\\nLlama   & 3.2-3B  & 1.15 & 1.46 & XX & 1.04 & 1.27 & XX & 0.98 & 1.26 & XX & 0.50 & 1.01 & XX \\\\\nMistral & 7B-v0.3 & 0.89 & 1.31 & XX & 0.82 & 1.04 & XX & 0.82 & 1.03 & XX & 0.23 & 0.62 & XX \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{1.09}$^{8/8}$ & \\textbf{1.25}$^{6/8}$ & \\textbf{0.76}$^{3/8}$ & \\textbf{0.85}$^{8/8}$ & \\textbf{0.93}$^{6/8}$ & \\textbf{0.51}$^{3/8}$ & \\textbf{0.76}$^{8/8}$ & \\textbf{0.86}$^{6/8}$ & \\textbf{0.46}$^{3/8}$ & \\textbf{0.46}$^{8/8}$ & \\textbf{0.87}$^{6/8}$ & \\textbf{0.19}$^{3/8}$ \\\\"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_decoding_strategy.tex",
+    "old_string": "Pythia  & 2.8B    & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 1B      & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nOLMo    & 2-1B    & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nQwen3   & 0.6B    & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 1.7B    & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n        & 8B      & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nLlama   & 3.2-3B  & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\nMistral & 7B-v0.3 & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX & XX \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} & \\textbf{XX} \\\\",
+    "new_string": "Pythia  & 2.8B    & 1.20 & 1.43 & 0.70 & 0.77 & 0.98 & 0.41 & 0.67 & 0.87 & 0.37 & 0.39 & 0.93 & 0.10 \\\\\n        & 1B      & 1.40 & 0.98 & 0.83 & 0.80 & 0.64 & 0.41 & 0.65 & 0.53 & 0.34 & 0.53 & 0.91 & 0.13 \\\\\nOLMo    & 2-1B    & 1.19 & 1.29 & 0.73 & 1.08 & 0.89 & 0.70 & 1.00 & 0.80 & 0.69 & 0.61 & 0.95 & 0.35 \\\\\nQwen3   & 0.6B    & 0.92 & XX & XX & 0.63 & XX & XX & 0.50 & XX & XX & 0.56 & XX & XX \\\\\n        & 1.7B    & 1.12 & 1.03 & XX & 0.93 & 0.74 & XX & 0.83 & 0.68 & XX & 0.52 & 0.78 & XX \\\\\n        & 8B      & 0.86 & XX & XX & 0.71 & XX & XX & 0.66 & XX & XX & 0.37 & XX & XX \\\\\nLlama   & 3.2-3B  & 1.15 & 1.46 & XX & 1.04 & 1.27 & XX & 0.98 & 1.26 & XX & 0.50 & 1.01 & XX \\\\\nMistral & 7B-v0.3 & 0.89 & 1.31 & XX & 0.82 & 1.04 & XX & 0.82 & 1.03 & XX & 0.23 & 0.62 & XX \\\\\n\\midrule\n\\multicolumn{2}{l}{\\textbf{Mean}} & \\textbf{1.09}$^{8/8}$ & \\textbf{1.25}$^{6/8}$ & \\textbf{0.76}$^{3/8}$ & \\textbf{0.85}$^{8/8}$ & \\textbf{0.93}$^{6/8}$ & \\textbf{0.51}$^{3/8}$ & \\textbf{0.76}$^{8/8}$ & \\textbf{0.86}$^{6/8}$ & \\textbf{0.46}$^{3/8}$ & \\textbf{0.46}$^{8/8}$ & \\textbf{0.87}$^{6/8}$ & \\textbf{0.19}$^{3/8}$ \\\\"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T15:15:56.700929+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_decoding_strategy.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-21T15:15:56.701094+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex",
+  "limit": "65"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_decoding_strategy.tex",
+    "limit": "65"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-21T15:15:56.701254+00:00_
+
+1	% Decoding Strategy Robustness — placeholder pending experiment results
+2	To verify that DDR shape stability is not an artifact of nucleus sampling ($p{=}0.9$, $\tau{=}0.7$),
+3	we repeat the generation chain experiment under two alternative decoding strategies:
+4	greedy decoding ($\tau{=}0$) and top-$k$ sampling ($k{=}50$, $\tau{=}0.7$).
+5	All eight generators spanning five architectural families produce ${\sim}$1{,}000 chains of depth 0--4 per strategy,
+6	yielding ${\sim}$5{,}000 texts per generator--strategy combination.
+7	
+8	Table~\ref{tab:decoding-shape} reports Cohen's $d$ (gen-1 vs.\ gen-2+) for the three shape features across strategies;
+9	Table~\ref{tab:decoding-drift} provides the corresponding values for drifting and intermediate features.
+10	
+11	\begin{table}[ht]
+12	\centering
+13	\small
+14	\caption{Shape-feature Cohen's $d$ (gen-1 vs.\ gen-2+) under three decoding strategies per generator.
+15	Values below 0.20 indicate negligible drift.
+16	Shape features are expected to remain near-stationary across strategies if DDR is decoding-agnostic.}
+17	\label{tab:decoding-shape}
+18	\resizebox{\linewidth}{!}{%
+19	\begin{tabular}{ll ccc ccc ccc}
+20	\toprule
+21	& & \multicolumn{3}{c}{entropy\_max} & \multicolumn{3}{c}{entropy\_min} & \multicolumn{3}{c}{tail\_decay} \\
+22	\cmidrule(lr){3-5} \cmidrule(lr){6-8} \cmidrule(lr){9-11}
+23	Family & Generator & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ \\
+24	\midrule
+25	Pythia  & 2.8B    & 0.25 & 0.09 & 0.26 & 0.03 & 0.08 & 0.04 & 0.07 & 0.07 & 0.12 \\
+26	        & 1B      & 0.21 & 0.12 & 0.27 & 0.02 & 0.04 & 0.04 & 0.08 & 0.04 & 0.18 \\
+27	OLMo    & 2-1B    & 0.06 & 0.03 & 0.01 & 0.07 & 0.03 & 0.01 & 0.22 & 0.03 & 0.22 \\
+28	Qwen3   & 0.6B    & 0.01 & XX & XX & 0.10 & XX & XX & 0.08 & XX & XX \\
+29	        & 1.7B    & 0.02 & 0.08 & XX & 0.05 & 0.01 & XX & 0.09 & 0.04 & XX \\
+30	        & 8B      & 0.04 & XX & XX & 0.01 & XX & XX & 0.15 & XX & XX \\
+31	Llama   & 3.2-3B  & 0.01 & 0.06 & XX & 0.01 & 0.0
+…[truncated 2344 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-21T15:15:56.701431+00:00_
+
+Both files updated. Data sources and coverage summary:
+
+**Nucleus (Nuc.)**: 8/8 generators — computed from `features_8gen.csv` on server (gen-1 vs gen-2+ Cohen's d)
+
+**Greedy (Gr.)**: 6/8 generators — from `decoding_cohens_d_all.txt` (Qwen3-0.6B and Qwen3-8B missing)
+
+**Top-k**: 3/8 generators — from `decoding_cohens_d_all.txt` (only Pythia-2.8B, Pythia-1B, OLMo-2-1B completed)
+
+Remaining XX cells: Qwen3-0.6B greedy/topk, Qwen3-8B greedy/topk, Qwen3-1.7B topk, LLaMA-3.2-3B topk, Mistral-7B topk — pending experiment completion. Conclusion text (VERSION A/B/C) left untouched as requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_writing_appendix_decoding_fill_tables_20260521T151125"
+}
+```
+
+</details>
+
+---

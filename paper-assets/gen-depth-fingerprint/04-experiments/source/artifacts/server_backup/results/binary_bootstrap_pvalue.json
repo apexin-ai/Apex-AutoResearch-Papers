@@ -1,0 +1,47 @@
+{
+  "7feat_vs_avglogprob": {
+    "delta": 0.0109,
+    "p_value": 0.0,
+    "ci95": [
+      0.0061,
+      0.0157
+    ],
+    "bootstrap_mean_delta": 0.0109
+  },
+  "7feat_vs_ldscore": {
+    "delta": 0.0224,
+    "p_value": 0.0,
+    "ci95": [
+      0.0167,
+      0.0281
+    ],
+    "bootstrap_mean_delta": 0.0224
+  },
+  "7feat_vs_fastdetectgpt": {
+    "delta": 0.1079,
+    "p_value": 0.0,
+    "ci95": [
+      0.1005,
+      0.1151
+    ],
+    "bootstrap_mean_delta": 0.1079
+  },
+  "7feat_vs_binoculars": {
+    "delta": 0.1994,
+    "p_value": 0.0,
+    "ci95": [
+      0.1918,
+      0.2068
+    ],
+    "bootstrap_mean_delta": 0.1994
+  },
+  "7feat_vs_4det_ensemble": {
+    "delta": 0.0116,
+    "p_value": 0.0,
+    "ci95": [
+      0.0065,
+      0.0167
+    ],
+    "bootstrap_mean_delta": 0.0116
+  }
+}

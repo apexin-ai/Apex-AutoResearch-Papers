@@ -1,0 +1,28 @@
+paper_key: "detection_possibilities"
+title: "Position: On the Possibilities of AI-Generated Text Detection"
+venue: "ICML 2024"
+full_text_available: false
+
+research:
+  baselines: ["RoBERTa-Large-Detector", "RoBERTa-Base-Detector", "GPTZero"]
+  metrics:
+    - {name: "sample complexity bounds", direction: "lower_better"}
+    - {name: "detection accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "Xsum", size: "unknown"}
+    - {name: "Squad", size: "unknown"}
+    - {name: "IMDb", size: "unknown"}
+    - {name: "Kaggle FakeNews", size: "unknown"}
+  ablation_dimensions: ["sample size", "sequence length", "generator model", "dataset domain"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "information-theoretic analysis of detection feasibility"
+
+positioning:
+  core_claim: "Proves that distinguishing human from LLM text is consistently achievable (except when distributions are indistinguishable) and derives sample complexity bounds for reliable detection, validated across multiple datasets and generators (GPT-2, GPT-3.5-Turbo, Llama, Llama-2-13B/70B)."
+  key_results: "N/A - abstract only"
+  limitations: ["N/A"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

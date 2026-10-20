@@ -1,0 +1,44 @@
+{
+  "exp_id": "plan-015",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:58:41.890Z",
+    "updated_at": "2026-05-15T00:26:13.036Z",
+    "hypothesis": "现有检测器 ordinal baseline：FastDetectGPT/LD-Score 等检测器的连续分数是否已提供 ordinal depth signal",
+    "spec": {
+      "command": "python detector_baseline.py (log_likelihood + fast_detect_gpt + entropy_mean)",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/features_all_models.csv",
+      "data_count": 23032,
+      "model_name": "Pythia-410M (log_likelihood, FastDetectGPT, entropy_mean baselines)",
+      "seed": 42,
+      "checkpoint_path": "/root/gen-depth-fingerprint/data/detector_baseline_results.json",
+      "log_path": "/root/gen-depth-fingerprint/data/"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "log_likelihood_5fold_f1": 0.7613,
+      "log_likelihood_logo_f1": 0.7587,
+      "log_likelihood_spearman_rho": 0.7246,
+      "log_likelihood_rho_ci": "[0.717, 0.732]",
+      "fast_detect_gpt_5fold_f1": 0.7195,
+      "fast_detect_gpt_logo_f1": 0.7171,
+      "fast_detect_gpt_spearman_rho": 0.2531,
+      "fast_detect_gpt_rho_ci": "[0.239, 0.267]",
+      "entropy_mean_5fold_f1": 0.5914,
+      "entropy_mean_logo_f1": 0.5927,
+      "entropy_mean_spearman_rho": -0.6367,
+      "entropy_mean_rho_ci": "[-0.645, -0.628]",
+      "seven_feature_logo_f1_ref": 0.8037,
+      "best_single_detector": "log_likelihood (LOGO 0.76)",
+      "seven_feature_advantage_pp": 4.5
+    },
+    "completed_at": "2026-05-15T00:26:12.709Z"
+  },
+  "timestamp": "2026-05-15T00:26:13.121711+00:00",
+  "trigger": "update_registry"
+}

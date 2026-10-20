@@ -1,0 +1,31 @@
+{
+  "exp_id": "plan-002-qwen06b-s1",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:25:23.092Z",
+    "updated_at": "2026-05-14T22:05:00.872Z",
+    "spec": {
+      "data_path": "/root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl",
+      "data_count": 1000,
+      "model_name": "Qwen/Qwen3-0.6B-Base",
+      "seed": 42,
+      "command": "python generate_chain.py --model-name qwen3-0.6b --shard-id 1 --num-shards 2 --device cuda:0",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:3"
+      ]
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T22:05:00.617Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-14T22:05:00.872Z"
+  },
+  "timestamp": "2026-05-14T22:05:00.909283+00:00",
+  "trigger": "update_registry"
+}

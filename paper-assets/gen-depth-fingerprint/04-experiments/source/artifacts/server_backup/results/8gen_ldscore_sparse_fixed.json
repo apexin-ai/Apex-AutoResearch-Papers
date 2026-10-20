@@ -1,0 +1,50 @@
+{
+  "ld_score_sparse": {
+    "binary_f1": 0.6762,
+    "binary_ci": [
+      0.6706,
+      0.6818
+    ],
+    "three_class_f1": 0.6317,
+    "three_class_ci": [
+      0.6268,
+      0.6363
+    ],
+    "per_generator_binary": {
+      "llama-3.2-3b": 0.5769,
+      "mistral-7b-v0.3": 0.4666,
+      "olmo-2-1b": 0.6685,
+      "pythia-1b": 0.7662,
+      "pythia-2.8b": 0.7225,
+      "qwen3-0.6b": 0.7178,
+      "qwen3-1.7b": 0.707,
+      "qwen3-8b": 0.6216
+    },
+    "per_generator_3class": {
+      "llama-3.2-3b": 0.5474,
+      "mistral-7b-v0.3": 0.4679,
+      "olmo-2-1b": 0.6348,
+      "pythia-1b": 0.734,
+      "pythia-2.8b": 0.6754,
+      "qwen3-0.6b": 0.6906,
+      "qwen3-1.7b": 0.6547,
+      "qwen3-8b": 0.5501
+    }
+  },
+  "meta": {
+    "implementation": "character-level trigram JSD (sparse CSR, full vocab, no truncation). Per-fold reference = mean trigram distribution of depth-0 (binary) or label-0 (3class) training samples.",
+    "n_samples_binary": 26168,
+    "n_samples_3class": 34131,
+    "xgb_params": {
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.1
+    },
+    "seed": 42,
+    "bootstrap_n": 1000,
+    "protocol": "pooled LOGO 8-fold",
+    "vocab_size": 50778,
+    "trigram_type": "character-level (n=3)",
+    "downsampling": "per-fold class-balanced (min-class)"
+  }
+}

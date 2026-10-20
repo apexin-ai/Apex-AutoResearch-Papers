@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan-007-cross-model",
+  "project": "gen-depth-fingerprint",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:41:08.851Z",
+    "updated_at": "2026-05-15T20:41:12.555Z",
+    "hypothesis": "Cross-model chains (different generator per depth step) vs single-model chains: depth signal 在更真实的多生成器场景下是否保持"
+  },
+  "timestamp": "2026-05-15T20:41:12.661099+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,26 @@
+{
+  "exp_id": "plan-008-multi-domain",
+  "project": "gen-depth-fingerprint",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:31:52.426Z",
+    "updated_at": "2026-05-15T18:56:53.260Z",
+    "hypothesis": "Multi-domain seeds: depth signal 在 news/scientific/creative 三种域的 seeds 上是否一致，验证 domain robustness",
+    "spec": {
+      "server": "autodl-5090",
+      "gpu": "cuda:0",
+      "account": "root",
+      "model_name": "Pythia-2.8B (generator) + Pythia-410M (reference)",
+      "data_path": "3 domains: news (abisee/cnn_dailymail), scientific (ccdv/arxiv-summarization), creative (euclaise/writingprompts)",
+      "data_count": "500 seeds × 3 domains × 5 depths = 7500 target texts",
+      "seed": "not set (sequential seed_ids 0-499 per domain)",
+      "command": "python multi_domain_seeds.py --phase all --device cuda:0",
+      "pid": 234066
+    }
+  },
+  "timestamp": "2026-05-15T18:56:53.429669+00:00",
+  "trigger": "update_registry"
+}

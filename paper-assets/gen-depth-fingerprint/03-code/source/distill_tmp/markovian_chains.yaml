@@ -1,0 +1,25 @@
+paper_key: "markovian_chains"
+title: "Markovian Generation Chains in Large Language Models"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: []
+  metrics:
+    - {name: "output convergence pattern", direction: "descriptive"}
+    - {name: "sentence diversity", direction: "descriptive"}
+  datasets:
+    - {name: "simulated iterative LLM outputs", size: "unknown"}
+  ablation_dimensions: ["temperature parameter", "initial input sentence", "iteration count", "task type (rephrasing vs translation)"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "Markov chain analysis of iterative LLM inference"
+
+positioning:
+  core_claim: "Formalizes iterative LLM inference as Markovian generation chains, showing outputs either converge to recurrent sets or continue producing novel sentences, with diversity increasing or decreasing depending on temperature and initial input."
+  key_results: "N/A - abstract only"
+  limitations: ["N/A"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,13 @@
+{
+  "scores": {
+    "layout": 9,
+    "consistency": 9,
+    "completeness": 9,
+    "aesthetics": 9,
+    "readability": 9
+  },
+  "overall": 9,
+  "needs_revision": false,
+  "issues": [],
+  "suggestions": []
+}

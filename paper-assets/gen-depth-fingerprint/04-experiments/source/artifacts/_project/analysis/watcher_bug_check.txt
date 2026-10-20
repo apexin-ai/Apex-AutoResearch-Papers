@@ -1,0 +1,30 @@
+Watcher Script pgrep Self-Matching Bug Check
+=============================================
+Date: 2026-05-21
+
+## 1. start_qwen8b_on_free_gpu.sh (PID 356867)
+
+Status: PID 356867 alive, running 01:46:38, state S (sleeping)
+Log: Only shows startup message — all GPUs 0/1/2 busy, watcher polling every 60s as expected.
+
+### pgrep/grep self-matching risk: NONE
+
+The script does NOT use pgrep at all. GPU availability is checked via:
+    nvidia-smi --query-compute-apps=pid --format=csv,noheader -i $GPU_ID | grep -c '[0-9]'
+
+This queries nvidia-smi for compute processes on a specific GPU, then counts numeric PIDs.
+The bash watcher process itself does not appear in nvidia-smi compute app list,
+so there is no self-matching risk. The while loop will exit correctly once a GPU becomes free.
+
+## 2. start_cuda3_chain_v2.sh
+
+### pgrep/grep self-matching risk: NONE
+
+Uses `kill -0 $PYTHIA1B_PID` to wait for a specific PID passed as $1.
+No process name matching at all — purely PID-based. No bug.
+
+## Summary
+
+Neither script has the pgrep self-matching bug that affected extract_after_pythia.sh.
+Both use safe mechanisms (nvidia-smi query / kill -0 PID) instead of pgrep -f pattern matching.
+No fix needed.

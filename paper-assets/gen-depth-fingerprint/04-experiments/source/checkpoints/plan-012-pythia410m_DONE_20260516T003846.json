@@ -1,0 +1,32 @@
+{
+  "exp_id": "plan-012-pythia410m",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:26:52.465Z",
+    "updated_at": "2026-05-16T00:38:46.022Z",
+    "spec": {
+      "hypothesis": "End-to-end depth classification with Pythia-410M (same family as reference model) — tests information leakage advantage vs cross-family Qwen3-0.6B",
+      "command": "CUDA_VISIBLE_DEVICES=3 python end_to_end_classifier_pythia.py --model_path /root/autodl-tmp/.hf_cache/EleutherAI/pythia-410m --device cuda:0 --output results/plan012_pythia410m_results.json",
+      "server": "autodl-5090",
+      "gpu": "cuda:3",
+      "data_path": "data/{pythia-1b,olmo-2-1b,qwen3-0.6b,qwen3-1.7b}/generations.jsonl",
+      "data_count": 18423,
+      "model_name": "EleutherAI/pythia-410m",
+      "seed": 42,
+      "checkpoint_path": "checkpoints/plan012_pythia410m",
+      "log_path": "logs/plan012_pythia410m.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T00:38:44.570Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T00:38:44.797Z"
+  },
+  "timestamp": "2026-05-16T00:38:46.171019+00:00",
+  "trigger": "update_registry"
+}

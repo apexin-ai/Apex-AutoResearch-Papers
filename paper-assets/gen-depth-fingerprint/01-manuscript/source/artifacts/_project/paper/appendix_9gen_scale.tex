@@ -1,0 +1,58 @@
+\subsection{9-Generator Scale Evaluation}\label{app:9gen-scale}
+
+This analysis extends the 8-generator LOGO evaluation to nine generators by adding Gemma-2-2B, a model from a previously unrepresented architecture family (Gemma).
+All results use class-balanced LOGO; the 8-gen averages here (0.770/0.701) differ slightly from Table~\ref{tab:logo-results} (0.762/0.694), which uses an unfiltered protocol.
+Table~\ref{tab:9gen-logo} reports per-generator LOGO performance under this expanded set.
+
+\begin{table}[ht]
+\centering
+\caption{9-generator LOGO evaluation. Each row holds out the listed generator at test time. 3-class: gen-0\,/\,gen-1\,/\,gen-2+; binary: gen-1 vs.\ gen-2+. 95\% bootstrap CIs in brackets.}
+\label{tab:9gen-logo}
+\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llr cc cc}
+\toprule
+\textbf{Generator} & \textbf{Family} & \textbf{Params} & \textbf{3-class F1} & \textbf{95\% CI} & \textbf{Binary F1} & \textbf{95\% CI} \\
+\midrule
+Pythia-1B       & Pythia  & 1.0B & 0.857 & [0.848, 0.866] & 0.785 & --- \\
+Qwen3-0.6B      & Qwen    & 0.6B & 0.819 & [0.807, 0.830] & 0.743 & --- \\
+Pythia-2.8B     & Pythia  & 2.8B & 0.812 & [0.801, 0.822] & 0.728 & --- \\
+Qwen3-1.7B      & Qwen    & 1.7B & 0.811 & [0.800, 0.823] & 0.746 & --- \\
+OLMo-2-1B       & OLMo    & 1.5B & 0.773 & [0.762, 0.784] & 0.692 & --- \\
+Llama-3.2-3B    & Llama   & 3.2B & 0.759 & [0.748, 0.770] & 0.680 & --- \\
+Qwen3-8B        & Qwen    & 8.2B & 0.696 & [0.683, 0.709] & 0.647 & [0.631, 0.664] \\
+Gemma-2-2B      & Gemma   & 2.6B & 0.628 & [0.622, 0.634] & 0.440 & [0.432, 0.449] \\
+Mistral-7B      & Mistral & 7.0B & 0.605 & [0.593, 0.617] & 0.534 & --- \\
+\midrule
+\textbf{Average (9-gen)} & & & \textbf{0.751} & & \textbf{0.666} & \\
+\textbf{Average (8-gen)} & & & \textbf{0.770} & & \textbf{0.701} & \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_appendix_9gen_scale.pdf}
+\caption{Per-generator 3-class LOGO F1 for the 9-generator evaluation. Gemma-2-2B (orange) is the weakest held-out generator. Dashed line: 9-gen average (0.751). Parameter counts shown in parentheses.}
+\label{fig:9gen-scale}
+\end{figure}
+
+\paragraph{Overall comparison.}
+Adding Gemma-2-2B reduces the mean 3-class LOGO F1 from 0.770 (8-gen) to 0.751 (9-gen), a drop of $\Delta = -0.019$.
+The per-generator F1 values for the original eight generators shift by at most $[-0.011, +0.002]$; the inclusion of Gemma data in training does not destabilize existing generalization patterns.
+
+\paragraph{Gemma-2-2B anomaly.}
+Gemma-2-2B is the weakest held-out generator: 3-class F1\,=\,0.628, binary F1\,=\,0.440.
+Per-class breakdown reveals a striking asymmetry: gen-0 F1\,=\,0.991 and gen-2+ F1\,=\,0.856, but gen-1 F1\,=\,0.036; the classifier almost entirely fails to identify first-generation Gemma continuations.
+This is not a data-quality artifact: the Gemma-2-2B partition contains 4{,}957 instances with a balanced depth distribution ($\sim$990 per level).
+A plausible explanation is that Gemma-2's first-generation continuations occupy a region of feature space highly similar to human-written text (gen-0), causing systematic misclassification of gen-1 as gen-0 or gen-2+.
+This constitutes an architecture-specific generalization limitation rather than a systemic failure of the depth profiling approach.
+Several architectural differences may explain this behavior: (a)~Gemma-2's distinct attention mechanism and SentencePiece tokenizer with a larger vocabulary may produce first-generation continuations whose feature-space signature closely resembles human text, causing systematic gen-0/gen-1 confusion; (b)~this anomaly does not affect DDR's validity for the remaining eight generators, where per-generator F1 shifts by at most 0.011 upon Gemma inclusion.
+
+\paragraph{Scale effect.}
+A clear parameter-count gradient emerges across the nine generators: three of four sub-1.7B generators achieve F1\,$>$\,0.81 (OLMo-2-1B at 0.773 is the exception), mid-range models (2--3B) cluster at 0.63--0.81, and large models (7B+) fall to 0.60--0.70.
+Qwen3-8B (8.2B parameters) achieves 3-class F1\,=\,0.696 under the 9-gen split, compared to 0.701 in the class-balanced 8-gen evaluation; this small difference reflects the changed training composition rather than a property of the Qwen3-8B generator itself.
+
+\paragraph{14B-parameter evidence.}
+Preliminary evidence from a 14.7B generator (Qwen3-14B-Base) confirms that the DDR partition persists at larger scale: Cohen's $d$ for drifting features remains in the large-effect range ($d{=}0.78$--$1.12$), though Spearman $|\rho|$ attenuates by 21--35\%, with entropy mean falling just below the drifting threshold ($|\rho|{=}0.39 < 0.40$, $d{=}0.78$).
+This scale-dependent signal compression is consistent with larger models producing more self-typical outputs that narrow inter-depth contrasts; the partition structure is preserved even as absolute effect sizes compress.

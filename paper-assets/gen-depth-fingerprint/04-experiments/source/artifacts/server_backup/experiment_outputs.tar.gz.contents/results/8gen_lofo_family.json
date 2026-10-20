@@ -1,0 +1,31 @@
+{
+  "pythia_held_out": {
+    "3class_f1": 0.7774,
+    "binary_f1": 0.6867,
+    "n_test": 9164
+  },
+  "olmo_held_out": {
+    "3class_f1": 0.781,
+    "binary_f1": 0.7073,
+    "n_test": 4713
+  },
+  "qwen_held_out": {
+    "3class_f1": 0.7448,
+    "binary_f1": 0.687,
+    "n_test": 13652
+  },
+  "llama_held_out": {
+    "3class_f1": 0.7744,
+    "binary_f1": 0.708,
+    "n_test": 4680
+  },
+  "mistral_held_out": {
+    "3class_f1": 0.6815,
+    "binary_f1": 0.6433,
+    "n_test": 4849
+  },
+  "average": {
+    "3class_f1": 0.7518,
+    "binary_f1": 0.6865
+  }
+}

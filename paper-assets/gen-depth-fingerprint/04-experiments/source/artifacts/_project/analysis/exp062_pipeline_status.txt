@@ -1,0 +1,44 @@
+exp062 Pipeline Status — 2026-05-21 22:36 CST
+
+| #  | Generator       | Strategy | Chain              | Features  | Cohen's d | GPU    | Notes                            |
+|----|-----------------|----------|--------------------|-----------|-----------|--------|----------------------------------|
+| 1  | pythia-2.8b     | greedy   | DONE (4854)        | EXTRACTED | —         | —      | batch1                           |
+| 2  | pythia-2.8b     | topk     | DONE (4527)        | EXTRACTED | —         | —      | batch1                           |
+| 3  | pythia-1b       | greedy   | DONE (4867)        | EXTRACTED | —         | —      | batch1                           |
+| 4  | pythia-1b       | topk     | DONE (4589)        | EXTRACTED | —         | —      | batch1                           |
+| 5  | olmo-2-1b       | greedy   | DONE (4879)        | EXTRACTED | —         | —      | batch1                           |
+| 6  | olmo-2-1b       | topk     | DONE (4641)        | EXTRACTED | —         | —      | batch1                           |
+| 7  | qwen3-0.6b     | greedy   | RUNNING 631/996    | —         | —         | cuda:3 | ~13.1s/it, ETA 23:56 May 21     |
+| 8  | qwen3-0.6b     | topk     | QUEUED             | —         | —         | cuda:3 | after greedy on same GPU         |
+| 9  | qwen3-1.7b     | greedy   | DONE (4864)        | EXTRACTED | —         | —      | batch2                           |
+| 10 | qwen3-1.7b     | topk     | RUNNING 757/996    | —         | —         | cuda:1 | ~12.5s/it, ETA 23:26 May 21     |
+| 11 | qwen3-8b       | greedy   | QUEUED             | —         | —         | —      | watcher waiting for cuda:0/1/2   |
+| 12 | qwen3-8b       | topk     | QUEUED             | —         | —         | —      | watcher waiting for cuda:0/1/2   |
+| 13 | llama-3.2-3b   | greedy   | DONE (4875)        | EXTRACTED | —         | —      | batch2                           |
+| 14 | llama-3.2-3b   | topk     | RUNNING 463/995    | —         | —         | cuda:0 | ~10.5s/it, ETA 00:05 May 22     |
+| 15 | mistral-7b-v0.3 | greedy  | DONE (4918)        | EXTRACTED | —         | —      | batch2                           |
+| 16 | mistral-7b-v0.3 | topk    | RUNNING 289/996    | —         | —         | cuda:2 | ~12.5s/it, ETA 01:03 May 22     |
+
+GPU allocation:
+  cuda:0: PID 347968 — llama-3.2-3b topk (463/995)
+  cuda:1: PID 344399 — qwen3-1.7b topk (757/996) [first to finish ~23:26]
+  cuda:2: PID 349080 — mistral-7b-v0.3 topk (289/996)
+  cuda:3: PID 357811 — qwen3-0.6b greedy (631/996)
+
+Watcher status:
+  PID 356867 (qwen8b): alive (2h27m uptime), watching cuda:0/1/2
+  PID 356682 (chain v2): alive (2h28m uptime), running qwen3-0.6b on cuda:3
+
+Completion sequence:
+  1. qwen3-1.7b topk finishes ~23:26 → cuda:1 freed → qwen8b watcher starts qwen3-8b
+  2. qwen3-0.6b greedy finishes ~23:56 → topk starts immediately on cuda:3
+  3. llama-3.2-3b topk finishes ~00:05 May 22 → cuda:0 idle (watcher may not grab it if already started on cuda:1)
+  4. mistral-7b-v0.3 topk finishes ~01:03 May 22 → cuda:2 idle
+  5. qwen3-0.6b topk finishes ~03:32 May 22 → cuda:3 idle
+  6. qwen3-8b greedy+topk finishes ~09:30 May 22 (est. ~19s/it for 8B model)
+
+ETA all 16 combos chain-complete: 2026-05-22 ~09:30 CST
+ETA all 16 combos features-extracted: 2026-05-22 ~10:30 CST
+
+Pipeline health: NOMINAL — all GPUs saturated, no broken processes, no fix needed.
+Feature extraction: 9/16 done. Remaining 7 blocked on chain completion.

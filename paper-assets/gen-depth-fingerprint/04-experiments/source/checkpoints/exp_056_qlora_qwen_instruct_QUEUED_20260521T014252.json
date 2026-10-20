@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp_056_qlora_qwen_instruct",
+  "project": "gen-depth-fingerprint",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:53:15.921Z",
+    "updated_at": "2026-05-21T01:42:52.366Z",
+    "hypothesis": "QLoRA end-to-end classifier on Qwen3-1.7B-Instruct generation data recovers depth signal partially: 3-class F1 lower than base QLoRA (0.905) due to instruct-tuning compressing depth features, but higher than XGBoost on instruct features (0.732)",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && python /root/gen-depth-fingerprint/qlora_instruct.py --generator qwen3-1.7b-instruct --data_path /root/gen-depth-fingerprint/data/qwen3-1.7b-instruct/generations_shard0.jsonl --backbone /root/autodl-tmp/models/qwen3-0.6b/Qwen/Qwen3-0___6B-Base/ --device cuda:0 --output /root/gen-depth-fingerprint/results/qlora_qwen3-1.7b-instruct.json 2>&1 | tee /root/gen-depth-fingerprint/results/qlora_qwen_instruct.log\"",
+      "server": "bjb2-18868",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "72065",
+      "log_path": "~/runs/gen-depth-fingerprint/exp_056_qlora_qwen_instruct.log",
+      "submitted_at": "2026-05-19T09:02:37.080Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "macro_f1_3class": 0.9066,
+      "macro_f1_3class_std": 0.0082,
+      "macro_f1_5class": 0.5514,
+      "macro_f1_5class_std": 0.0031,
+      "binary_f1": 0.8672,
+      "binary_f1_std": 0.0137,
+      "n_samples": 4963,
+      "runtime_seconds": 1880.5
+    }
+  },
+  "timestamp": "2026-05-21T01:42:52.474144+00:00",
+  "trigger": "update_registry"
+}

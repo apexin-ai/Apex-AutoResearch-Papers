@@ -1,0 +1,66 @@
+{
+  "exp_id": "exp_053_instruct_olmo2_1b",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T03:06:06.142Z",
+    "updated_at": "2026-05-21T01:45:51.119Z",
+    "hypothesis": "Instruct-tuned OLMo-2-1B-Instruct shows degraded depth signal vs base OLMo-2-1B (F1=0.695), quantifying instruction-tuning's impact on DDR",
+    "spec": {
+      "checkpoint_path": "N/A",
+      "log_path": "N/A",
+      "model_name": "OLMo-2-0425-1B-Instruct",
+      "note": "Used OLMo-2-0425-1B-Instruct (0725 version does not exist on HF)",
+      "command": "generate + extract + eval",
+      "server": "bjb2-18868",
+      "data_path": "data/olmo-2-1b-instruct/",
+      "data_count": 4429,
+      "seed": 42
+    },
+    "conclusion": "success",
+    "metrics": {
+      "within_binary_f1": 0.8131,
+      "within_binary_ci": [
+        0.8012,
+        0.8251
+      ],
+      "within_3class_f1": 0.5748,
+      "within_3class_ci": [
+        0.5605,
+        0.5897
+      ],
+      "base_binary_f1": 0.8454,
+      "base_3class_f1": 0.7538,
+      "gen1_f1_instruct": 0.256,
+      "gen1_f1_base": 0.523,
+      "delta_within_binary": -0.032,
+      "delta_within_3class": -0.179,
+      "spearman_instruct": {
+        "entropy_mean": 0.482,
+        "entropy_std": 0.296,
+        "entropy_min": 0.08,
+        "entropy_max": 0.306,
+        "tail_decay": 0.228,
+        "ttr": 0.006,
+        "hapax_ratio": 0.025
+      },
+      "spearman_base": {
+        "entropy_mean": -0.639,
+        "entropy_std": -0.296,
+        "entropy_min": -0.387,
+        "entropy_max": 0.067,
+        "tail_decay": -0.141,
+        "ttr": -0.7,
+        "hapax_ratio": -0.712
+      },
+      "features_reversed": "6/7",
+      "model_used": "allenai/OLMo-2-0425-1B-Instruct"
+    },
+    "completed_at": "2026-05-21T01:45:51.119Z"
+  },
+  "timestamp": "2026-05-21T01:45:51.325205+00:00",
+  "trigger": "update_registry"
+}

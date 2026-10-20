@@ -1,0 +1,20 @@
+Ordinal Baseline Comparison Results (23032 texts, 5 models)
+
+Detector           5-fold F1    LOGO F1    Spearman rho
+LD-Score           0.6607       0.6596     0.6837
+FastDetectGPT      0.6938       0.6824     0.4174
+Avg-LogProb        0.7592       0.7564     0.7282
+Binoculars         0.5306       0.5300    -0.5145
+7-feature ensemble 0.8024       0.7980     N/A
+
+Per-class F1 (gen-0 / gen-1 / gen-2+):
+LD-Score:      0.74 / 0.40 / 0.84
+FastDetectGPT: 0.91 / 0.37 / 0.80
+Avg-LogProb:   0.87 / 0.58 / 0.83
+Binoculars:    0.81 / 0.00 / 0.79
+7-feature:     0.93 / 0.62 / 0.86
+
+Conclusion: No specified detector (FastDetectGPT/Binoculars/LD-Score) exceeds 0.70 ordinal F1.
+Avg-LogProb reaches 0.76 but is still 4+ points below 7-feature model.
+All detectors struggle most with gen-1 class.
+Server: autodl-5090, scoring model: pythia-410m, observer: pythia-160m

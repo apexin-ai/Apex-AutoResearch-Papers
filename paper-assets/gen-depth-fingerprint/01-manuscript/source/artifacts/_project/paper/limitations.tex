@@ -1,0 +1,7 @@
+\section*{Limitations}
+\label{sec:limitations}
+
+\looseness=-1 All eight generators are base (pretrained) models with $\leq$8.2B parameters; instruction-tuned variants show substantially degraded depth signal (within-model 3-class F1 drops 3.7--19.9\,pp; Appendix~\ref{app:instruct}), though QLoRA partially recovers (F1\,=\,0.89--0.91, within-model); this pattern is consistent with signal compression rather than elimination.
+The evaluation assumes English Wikipedia seeds, a fixed decoding regime ($t{=}0.7$, nucleus $p{=}0.9$), and an English-centric reference model (Pythia-410M); cross-temperature transfer is tested (Appendix~\ref{app:cross-temp}) but cross-lingual generalization remains untested.
+Depth resolution is bounded at three classes (gen-0\,/\,gen-1\,/\,gen-2+); finer-grained 5-class classification yields F1\,$\approx$\,0.50 with deeper depths mutually indistinguishable (Appendix~\ref{app:finer-depth}).
+DDR signal strength is temperature-dependent; at $\tau{=}0.9$, classification performance degrades substantially ($-$9.3 to $-$26.0\,pp binary F1), and cross-temperature transfer at production scales remains untested.

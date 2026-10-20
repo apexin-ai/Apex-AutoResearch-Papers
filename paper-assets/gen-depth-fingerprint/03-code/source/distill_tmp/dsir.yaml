@@ -1,0 +1,28 @@
+paper_key: "dsir"
+title: "Data Selection for Language Models via Importance Resampling"
+venue: "NeurIPS 2023"
+full_text_available: false
+
+research:
+  baselines: ["expert curation", "random selection", "heuristic filtering"]
+  metrics:
+    - {name: "KL reduction", direction: "higher_better"}
+    - {name: "GLUE benchmark score", direction: "higher_better"}
+    - {name: "correlation with downstream accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "The Pile", size: "100M documents"}
+    - {name: "GLUE benchmark", size: "unknown"}
+    - {name: "Wikipedia and books", size: "unknown"}
+  ablation_dimensions: ["target distribution", "feature space", "n-gram hash features"]
+  training_recipe: {optimizer: "unknown", lr: "unknown", hardware: "processes 100M docs in 4.5 hours"}
+  method_family: "importance resampling for data selection (hashed n-gram features)"
+
+positioning:
+  core_claim: "Proposes DSIR, a scalable data selection method using importance resampling with hashed n-gram features, achieving strong correlation (r=0.82) between KL reduction and downstream task performance."
+  key_results: "N/A - abstract only"
+  limitations: ["N/A"]
+  relation_to_us: "orthogonal"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

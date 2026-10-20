@@ -1,0 +1,2812 @@
+baseline: null
+experiments:
+  mvp-001:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T16:17:16.218Z'
+    updated_at: '2026-05-14T18:08:20.940Z'
+    hypothesis: Pythia-410M 参考模型的分布特征（entropy stats, tail-decay, TTR, hapax）能区分 Pythia-2.8B
+      continuation 链的 gen-0/gen-1/gen-2+，3-class macro-F1 ≥ 0.45
+    spec:
+      command: python generate_chain.py --input data/wiki_seed_1000.jsonl --shard-id
+        {0-3} --num-shards 4 --device cuda:0 (4 shards parallel)
+      server: autodl-5090
+      data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl
+      data_count: 1000
+      model_name: EleutherAI/pythia-2.8b (FP16)
+      seed: 42
+      temperature: 0.7
+      top_p: 0.9
+      max_new_tokens: 256
+      reference_model: EleutherAI/pythia-410m
+      script_path: /root/gen-depth-fingerprint/generate_chain.py
+      generation_type: continuation
+      depths: gen-0 to gen-4
+      checkpoint_path: /root/gen-depth-fingerprint/results/mvp_results.json
+      log_path: /root/gen-depth-fingerprint/data/features.csv
+    conclusion: success
+    metrics:
+      macro_f1: 0.8408
+      binary_f1_gen0_vs_gen2plus: 0.8653
+      cv_macro_f1: 0.806
+      cv_std: 0.013
+      gen0_f1: 0.9517
+      gen1_f1: 0.7759
+      gen2plus_f1: 0.7947
+      total_records: 4609
+      seeds_used: 995
+      skipped: 173
+    completed_at: '2026-05-14T18:08:20.940Z'
+  mvp-001-gen-s0:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T17:23:13.139Z'
+    updated_at: '2026-05-21T01:46:02.996Z'
+    spec:
+      command: N/A (superseded by mvp-001)
+      server: autodl-5090
+      gpu:
+      - cuda:0
+      pid: '92168'
+      log_path: N/A
+      submitted_at: '2026-05-14T17:23:13.138Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: N/A
+      data_count: 0
+      model_name: N/A
+      seed: 0
+      checkpoint_path: N/A
+      wall_clock_seconds: 548569.9
+      gpu_hours: 152.38
+    reproduce:
+      finished_at: '2026-05-14T18:00:08.256Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-14T18:00:08.934694+00:00'
+    notes: 历史遗留条目，实际已由 mvp-001 完成覆盖。可忽略。
+    conclusion: killed
+    completed_at: '2026-05-21T01:46:02.996Z'
+  mvp-001-gen-s1:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T17:23:14.464Z'
+    updated_at: '2026-05-21T01:46:03.885Z'
+    spec:
+      command: N/A (failed)
+      server: autodl-5090
+      gpu:
+      - cuda:1
+      pid: '93039'
+      log_path: N/A
+      submitted_at: '2026-05-14T17:25:16.359Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: N/A
+      data_count: 0
+      model_name: N/A
+      seed: 0
+      checkpoint_path: N/A
+      wall_clock_seconds: 548447.5
+      gpu_hours: 152.35
+    reproduce:
+      finished_at: '2026-05-14T17:23:44.818Z'
+    failure_reason: EXIT_CODE=1 (generic error — check log tail)
+    conclusion: failed
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-14T17:23:45.838438+00:00'
+    notes: '失败原因: CUDA error: invalid device ordinal — submit_training_job 注入 CUDA_VISIBLE_DEVICES
+      后脚本只能看到 cuda:0，但命令用了 --device cuda:1 | 修复: --device 应始终为 cuda:0'
+    completed_at: '2026-05-21T01:46:03.885Z'
+  mvp-001-gen-s2:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T17:23:15.855Z'
+    updated_at: '2026-05-21T01:46:04.855Z'
+    spec:
+      command: N/A (failed)
+      server: autodl-5090
+      gpu:
+      - cuda:2
+      pid: '93116'
+      log_path: N/A
+      submitted_at: '2026-05-14T17:25:17.741Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: N/A
+      data_count: 0
+      model_name: N/A
+      seed: 0
+      checkpoint_path: N/A
+      wall_clock_seconds: 548447.1
+      gpu_hours: 152.35
+    reproduce:
+      finished_at: '2026-05-14T17:23:46.743Z'
+    failure_reason: EXIT_CODE=1 (generic error — check log tail)
+    conclusion: failed
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-14T17:23:48.090747+00:00'
+    notes: '失败原因: CUDA error: invalid device ordinal — submit_training_job 注入 CUDA_VISIBLE_DEVICES
+      后脚本只能看到 cuda:0，但命令用了 --device cuda:2 | 修复: --device 应始终为 cuda:0'
+    completed_at: '2026-05-21T01:46:04.855Z'
+  mvp-001-gen-s3:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T17:23:17.526Z'
+    updated_at: '2026-05-21T01:46:06.264Z'
+    spec:
+      command: N/A (failed)
+      server: autodl-5090
+      gpu:
+      - cuda:3
+      pid: '93256'
+      log_path: N/A
+      submitted_at: '2026-05-14T17:25:18.991Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: N/A
+      data_count: 0
+      model_name: N/A
+      seed: 0
+      checkpoint_path: N/A
+      wall_clock_seconds: 548447.3
+      gpu_hours: 152.35
+    reproduce:
+      finished_at: '2026-05-14T17:23:49.183Z'
+    failure_reason: EXIT_CODE=1 (generic error — check log tail)
+    conclusion: failed
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-14T17:23:50.669309+00:00'
+    notes: '失败原因: CUDA error: invalid device ordinal — submit_training_job 注入 CUDA_VISIBLE_DEVICES
+      后脚本只能看到 cuda:0，但命令用了 --device cuda:3 | 修复: --device 应始终为 cuda:0'
+    completed_at: '2026-05-21T01:46:06.264Z'
+  plan-001:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T18:25:29.824Z'
+    updated_at: '2026-05-14T19:34:17.597Z'
+    hypothesis: 'Feature ablation: 模型级特征（entropy系列+tail_decay）独立于表面特征仍能区分生成深度；H1/H2趋势分析确认特征随depth的变化模式；perplexity随depth显著变化'
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/gen-depth-fingerprint && python ablation_analysis.py --parts
+        A B C --device cuda:0"
+      server: autodl-5090
+      gpu:
+      - cuda:0
+      pid: '98324'
+      log_path: /tmp/plan-001-fix.log
+      submitted_at: '2026-05-14T18:25:56.326Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      checkpoint_path: /root/gen-depth-fingerprint/results/ablation_results.json
+      wall_clock_seconds: 1685.0
+      gpu_hours: 0.47
+    reproduce:
+      finished_at: '2026-05-14T18:51:40.563Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-14T18:51:41.308501+00:00'
+    conclusion: success
+    metrics:
+      note: initial_run_partial_issues_fixed_in_plan-001-fix
+      ablation_full_macro_f1: 0.82
+      ablation_surface_only_f1: 0.76
+      ablation_reference_only_f1: 0.72
+    completed_at: '2026-05-14T18:54:01.340Z'
+  plan-001-fix:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T18:50:14.620Z'
+    updated_at: '2026-05-17T02:55:10.600Z'
+    spec:
+      command: python ablation_analysis.py --parts A B C --device cuda:0
+      server: autodl-5090
+      data_path: data/features.csv + data/generations.jsonl
+      data_count: 4609
+      model_name: pythia-410m
+      seed: 42
+      pid: 101585
+      log_path: /tmp/plan-001-fix.log
+      checkpoint_path: /root/gen-depth-fingerprint/results/ablation_results.json
+    conclusion: success
+    metrics:
+      full_macro_f1: 0.8204
+      reference_only_f1: 0.7187
+      surface_only_f1: 0.7628
+      ref_vs_surf_bootstrap_ci: '[0.706,0.733] vs [0.747,0.774]'
+      h2_features: entropy_mean, ttr, hapax_ratio
+      h1_features: tail_decay, entropy_std, entropy_max, entropy_min
+      median_ppl_by_depth: 13.50, 4.96, 3.00, 2.07, 1.72
+    completed_at: '2026-05-14T19:34:25.973Z'
+    hypothesis: Feature ablation 修复验证：reference-only features (entropy系列+tail_decay)
+      独立于 surface features 仍能区分 depth，且两组特征的 bootstrap CI 不重叠，证明 differential response
+      和 lexical drift 是互补的独立信号源
+    parent: plan-001
+  plan-001-restore:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T19:14:00.170Z'
+    updated_at: '2026-05-21T01:46:01.499Z'
+    spec:
+      command: N/A (superseded by plan-001-fix)
+      server: autodl-5090
+      gpu:
+      - cuda:0
+      pid: '105217'
+      log_path: N/A
+      submitted_at: '2026-05-14T19:14:00.157Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: N/A
+      data_count: 0
+      model_name: N/A
+      seed: 0
+      checkpoint_path: N/A
+      wall_clock_seconds: 541921.3
+      gpu_hours: 150.53
+    notes: 历史遗留条目，实际已由 plan-001-fix 完成覆盖。可忽略。
+    conclusion: killed
+    completed_at: '2026-05-21T01:46:01.499Z'
+  plan-002:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T20:08:55.258Z'
+    updated_at: '2026-05-14T23:19:42.066Z'
+    hypothesis: 跨模型泛化：Pythia-410M 参考模型下的深度特征能否区分不同架构/规模生成器（Pythia-1B, OLMo-2-1B, Qwen3-1.7B,
+      Qwen3-0.6B）的 continuation 链
+    spec:
+      command: generate_chain.py --model-name {X} --model-path {path} --shard-id {0,1}
+        --num-shards 2 --device cuda:0
+      server: autodl-5090
+      data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl
+      data_count: 1000
+      model_name: pythia-1b, olmo-2-1b, qwen3-1.7b, qwen3-0.6b (+ pythia-2.8b from
+        MVP)
+      seed: 42
+      temperature: 0.7
+      top_p: 0.9
+      max_new_tokens: 256
+      reference_model: EleutherAI/pythia-410m
+      round1: pythia-1b (cuda:0,1) + olmo-2-1b (cuda:2,3)
+      round2: qwen3-1.7b (cuda:0,1) + qwen3-0.6b (cuda:2,3)
+      checkpoint_path: /root/gen-depth-fingerprint/data/
+      log_path: /root/gen-depth-fingerprint/data/
+    conclusion: success
+    completed_at: '2026-05-14T23:19:36.270Z'
+    metrics:
+      total_records: 18423
+      models: 4
+      pythia_1b:
+        records: 4555
+        seeds: 995
+        file: data/pythia-1b/generations.jsonl
+      olmo_2_1b:
+        records: 4713
+        seeds: 995
+        file: data/olmo-2-1b/generations.jsonl
+      qwen3_0_6b:
+        records: 4538
+        seeds: 996
+        depth_dist:
+          gen0: 996
+          gen1: 986
+          gen2: 938
+          gen3: 840
+          gen4: 778
+        file: data/qwen3-0.6b/generations.jsonl
+      qwen3_1_7b:
+        records: 4617
+        seeds: 996
+        depth_dist:
+          gen0: 996
+          gen1: 983
+          gen2: 941
+          gen3: 875
+          gen4: 822
+        file: data/qwen3-1.7b/generations.jsonl
+  plan-002-pythia1b-s0:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T20:09:40.947Z'
+    updated_at: '2026-05-17T02:55:46.455Z'
+    spec:
+      command: python generate_chain.py --model-name pythia-1b --shard-id 0 --num-shards
+        2
+      server: autodl-5090
+      gpu:
+      - cuda:0
+      pid: '108021'
+      log_path: ~/runs/gen-depth-fingerprint/plan-002-pythia1b-s0.log
+      submitted_at: '2026-05-14T20:09:40.932Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl
+      data_count: 1000
+      model_name: EleutherAI/pythia-1b
+      seed: 42
+      checkpoint_path: /root/gen-depth-fingerprint/data/pythia-1b/generations_shard0.jsonl
+      wall_clock_seconds: 2862.8
+      gpu_hours: 0.8
+    reproduce:
+      finished_at: '2026-05-14T20:50:12.706Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-14T20:50:13.422601+00:00'
+    conclusion: success
+    metrics:
+      records: 2286
+      seeds: 497
+      skipped: 91
+      wall_time_s: 2296.7
+      depth_dist:
+        gen0: 497
+        gen1: 497
+        gen2: 457
+        gen3: 429
+        gen4: 406
+      file: data/pythia-1b/generations_shard0.jsonl
+      file_size_mb: 2.5
+    completed_at: '2026-05-14T20:57:23.757Z'
+    hypothesis: 跨模型泛化数据生成（Pythia-1B shard0）：同家族更大模型 Pythia-1B 的 continuation 链是否展现与
+      Pythia-2.8B 相似的 depth dynamics，验证 depth signal 非特定参数量产物
+    parent: plan-002
+  plan-002-pythia1b-s1:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T20:09:42.815Z'
+    updated_at: '2026-05-17T02:55:49.321Z'
+    spec:
+      command: python generate_chain.py --model-name pythia-1b --shard-id 1 --num-shards
+        2
+      server: autodl-5090
+      gpu:
+      - cuda:1
+      pid: '108098'
+      log_path: ~/runs/gen-depth-fingerprint/plan-002-pythia1b-s1.log
+      submitted_at: '2026-05-14T20:09:42.799Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl
+      data_count: 1000
+      model_name: EleutherAI/pythia-1b
+      seed: 42
+      checkpoint_path: /root/gen-depth-fingerprint/data/pythia-1b/generations_shard1.jsonl
+      wall_clock_seconds: 2862.4
+      gpu_hours: 0.8
+    reproduce:
+      finished_at: '2026-05-14T20:50:17.333Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-14T20:50:18.063486+00:00'
+    conclusion: success
+    metrics:
+      records: 2269
+      seeds: 498
+      skipped: 100
+      wall_time_s: 2247.6
+      depth_dist:
+        gen0: 498
+        gen1: 496
+        gen2: 455
+        gen3: 422
+        gen4: 398
+      file: data/pythia-1b/generations_shard1.jsonl
+      file_size_mb: 2.44
+    completed_at: '2026-05-14T20:57:25.200Z'
+    hypothesis: 跨模型泛化数据生成（Pythia-1B shard1）：Pythia-1B continuation 链第二分片，与 shard0
+      合并后提供完整 ~995 seeds 的 depth 数据
+    parent: plan-002
+  plan-002-olmo2-s0:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T20:09:45.173Z'
+    updated_at: '2026-05-17T02:55:52.145Z'
+    spec:
+      command: python generate_chain.py --model-name olmo-2-1b --shard-id 0 --num-shards
+        2
+      server: autodl-5090
+      gpu:
+      - cuda:2
+      pid: '108242'
+      log_path: ~/runs/gen-depth-fingerprint/plan-002-olmo2-s0.log
+      submitted_at: '2026-05-14T20:09:45.156Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl
+      data_count: 1000
+      model_name: allenai/OLMo-2-0425-1B
+      seed: 42
+      wall_clock_seconds: 4243.6
+      gpu_hours: 1.18
+    reproduce:
+      finished_at: '2026-05-14T21:17:49.730Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-14T21:17:50.547144+00:00'
+    conclusion: success
+    metrics:
+      records: 2379
+      seeds: 497
+      skipped: 47
+      wall_time_s: 3885.2
+      depth_dist:
+        gen0: 497
+        gen1: 494
+        gen2: 477
+        gen3: 461
+        gen4: 450
+      file: generations_shard0.jsonl
+      file_size_mb: 2.68
+    checkpoint_path: /root/gen-depth-fingerprint/data/olmo-2-1b/generations_shard0.jsonl
+    completed_at: '2026-05-14T21:20:28.747Z'
+    hypothesis: 跨家族泛化数据生成（OLMo-2-1B shard0）：非 Pythia 架构(OLMo)的 continuation 链中 depth
+      signal 是否存在，验证 depth dynamics 跨训练数据和架构的普遍性
+    parent: plan-002
+  plan-002-olmo2-s1:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T20:09:46.880Z'
+    updated_at: '2026-05-17T02:55:54.134Z'
+    spec:
+      command: python generate_chain.py --model-name olmo-2-1b --shard-id 1 --num-shards
+        2
+      server: autodl-5090
+      gpu:
+      - cuda:3
+      pid: '108452'
+      log_path: ~/runs/gen-depth-fingerprint/plan-002-olmo2-s1.log
+      submitted_at: '2026-05-14T20:09:46.862Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl
+      data_count: 1000
+      model_name: allenai/OLMo-2-0425-1B
+      seed: 42
+      wall_clock_seconds: 4242.5
+      gpu_hours: 1.18
+    reproduce:
+      finished_at: '2026-05-14T21:18:05.854Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-14T21:18:09.081771+00:00'
+    conclusion: success
+    metrics:
+      records: 2334
+      seeds: 498
+      skipped: 70
+      wall_time_s: 4081.2
+      depth_dist:
+        gen0: 498
+        gen1: 494
+        gen2: 470
+        gen3: 444
+        gen4: 428
+      file: generations_shard1.jsonl
+      file_size_mb: 2.57
+    checkpoint_path: /root/gen-depth-fingerprint/data/olmo-2-1b/generations_shard1.jsonl
+    completed_at: '2026-05-14T21:20:29.344Z'
+    hypothesis: 跨家族泛化数据生成（OLMo-2-1B shard1）：OLMo-2-1B continuation 链第二分片，补全 ~995 seeds
+      覆盖
+    parent: plan-002
+  plan-002-qwen3-1_7b-s0:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T20:52:58.460Z'
+    updated_at: '2026-05-14T21:53:48.299Z'
+    spec:
+      command: python generate_chain.py --model-name qwen3-1.7b --shard-id 0 --num-shards
+        2
+      server: autodl-5090
+      gpu:
+      - cuda:0
+      pid: '111533'
+      log_path: ~/runs/gen-depth-fingerprint/plan-002-qwen3-1_7b-s0.log
+      submitted_at: '2026-05-14T20:52:58.411Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl
+      data_count: 1000
+      model_name: Qwen/Qwen3-1.7B-Base
+      seed: 42
+      wall_clock_seconds: 1276.1
+      gpu_hours: 0.35
+      checkpoint_path: N/A - killed
+    conclusion: failed
+    reproduce:
+      finished_at: '2026-05-14T21:14:13.990Z'
+    failure_reason: EXIT_CODE=129 (non-zero)
+    completed_at: '2026-05-14T21:14:14.533Z'
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-14T21:14:15.305085+00:00'
+    notes: '失败原因: SIGHUP (EXIT_CODE=129)，运行 ~21min 后被外部终止。日志无 Python/CUDA 错误，进度正常（104/498
+      seeds）。同时 s1 也被 SIGHUP。OLMo-2 (cuda:2/3) 不受影响 → 非服务器重启。诊断 Worker worker_diagnose_plan-002-qwen3-1_7b_20260514T211526
+      正在排查。'
+  plan-002-qwen3-1_7b-s1:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T20:53:00.298Z'
+    updated_at: '2026-05-14T21:33:26.442Z'
+    spec:
+      command: python generate_chain.py --model-name qwen3-1.7b --shard-id 1 --num-shards
+        2
+      server: autodl-5090
+      gpu:
+      - cuda:1
+      pid: '111646'
+      log_path: ~/runs/gen-depth-fingerprint/plan-002-qwen3-1_7b-s1.log
+      submitted_at: '2026-05-14T20:53:00.276Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl
+      data_count: 1000
+      model_name: Qwen/Qwen3-1.7B-Base
+      seed: 42
+      wall_clock_seconds: 1277.2
+      gpu_hours: 0.35
+    reproduce:
+      finished_at: '2026-05-14T21:14:16.436Z'
+    failure_reason: EXIT_CODE=129 (non-zero)
+    conclusion: killed
+    completed_at: '2026-05-14T21:14:17.437Z'
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-14T21:14:18.840857+00:00'
+    notes: '失败原因: SIGHUP (EXIT_CODE=129)，运行 ~21min 后被外部终止。日志无 Python/CUDA 错误，进度正常（95/498
+      seeds）。与 s0 同时被终止。诊断 Worker 正在排查。'
+  plan-002-qwen17b-s0:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T20:53:19.356Z'
+    updated_at: '2026-05-14T21:53:49.671Z'
+    spec:
+      command: python generate_chain.py --model-name qwen3-1.7b --shard-id 0 --num-shards
+        2
+      server: autodl-5090
+      gpu:
+      - cuda:0
+      pid: '112179'
+      log_path: ~/runs/gen-depth-fingerprint/plan-002-qwen17b-s0.log
+      submitted_at: '2026-05-14T20:53:19.334Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl
+      data_count: 1000
+      model_name: Qwen/Qwen3-1.7B-Base
+      seed: 42
+      wall_clock_seconds: 332.1
+      gpu_hours: 0.09
+      checkpoint_path: N/A - killed duplicate
+    conclusion: failed
+    notes: 重复提交（与 plan-002-qwen3-1_7b-s0 冲突），争抢 cuda:0 + 写同一输出文件。已 kill。
+    reproduce:
+      finished_at: '2026-05-14T20:58:50.820Z'
+    failure_reason: EXIT_CODE=143 (SIGTERM — graceful kill)
+    completed_at: '2026-05-14T20:58:51.386Z'
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-14T20:58:52.236318+00:00'
+  plan-002-qwen17b-s1:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T20:53:21.708Z'
+    updated_at: '2026-05-14T21:53:51.130Z'
+    spec:
+      command: python generate_chain.py --model-name qwen3-1.7b --shard-id 1 --num-shards
+        2
+      server: autodl-5090
+      gpu:
+      - cuda:1
+      pid: '112264'
+      log_path: ~/runs/gen-depth-fingerprint/plan-002-qwen17b-s1.log
+      submitted_at: '2026-05-14T20:53:21.683Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl
+      data_count: 1000
+      model_name: Qwen/Qwen3-1.7B-Base
+      seed: 42
+      wall_clock_seconds: 332.0
+      gpu_hours: 0.09
+      checkpoint_path: N/A - killed duplicate
+    conclusion: failed
+    notes: 重复提交（与 plan-002-qwen3-1_7b-s1 冲突），争抢 cuda:1 + 写同一输出文件。已 kill。
+    reproduce:
+      finished_at: '2026-05-14T20:58:53.002Z'
+    failure_reason: EXIT_CODE=143 (SIGTERM — graceful kill)
+    completed_at: '2026-05-14T20:58:53.722Z'
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-14T20:58:54.655352+00:00'
+  plan-002-qwen17b-retry-s0:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T21:25:18.048Z'
+    updated_at: '2026-05-14T22:24:06.388Z'
+    spec:
+      data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl
+      data_count: 1000
+      model_name: Qwen/Qwen3-1.7B-Base
+      seed: 42
+      command: python generate_chain.py --model-name qwen3-1.7b --shard-id 0 --num-shards
+        2 --device cuda:0
+      server: autodl-5090
+      gpu:
+      - cuda:0
+    reproduce:
+      finished_at: '2026-05-14T21:59:28.952Z'
+    failure_reason: EXIT_CODE=129 (non-zero)
+    conclusion: failed
+    completed_at: '2026-05-14T21:59:28.716Z'
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-14T21:59:29.622694+00:00'
+    notes: r2 进程 PID 120617 存活，resume 从 seed 154 继续。之前 failed 标记是对旧 retry 进程的判断，r2
+      是新提交。ETA ~07:20 UTC
+  plan-002-qwen17b-retry-s1:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T21:25:19.756Z'
+    updated_at: '2026-05-14T22:24:07.274Z'
+    spec:
+      data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl
+      data_count: 1000
+      model_name: Qwen/Qwen3-1.7B-Base
+      seed: 42
+      command: python generate_chain.py --model-name qwen3-1.7b --shard-id 1 --num-shards
+        2 --device cuda:0
+      server: autodl-5090
+      gpu:
+      - cuda:1
+    reproduce:
+      finished_at: '2026-05-14T21:59:32.631Z'
+    failure_reason: 'Process terminated by SIGHUP (EXIT_CODE=129) at 29% progress
+      (144/498 seeds). Only 693/~2490 expected records generated. Partial data: 148
+      unique seeds, depth distribution {0:148, 1:145, 2:142, 3:132, 4:126}. File size
+      718KB.'
+    conclusion: failed
+    completed_at: '2026-05-14T21:59:33.017Z'
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-14T21:59:35.431144+00:00'
+    notes: r2 进程 PID 120694 存活，resume 从 seed 143 继续。之前 failed 标记是对旧 retry 进程的判断，r2
+      是新提交。ETA ~07:30 UTC
+  plan-002-qwen06b-s0:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T21:25:21.697Z'
+    updated_at: '2026-05-14T22:07:33.758Z'
+    spec:
+      data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl
+      data_count: 1000
+      model_name: Qwen/Qwen3-0.6B-Base
+      seed: 42
+      command: python generate_chain.py --model-name qwen3-0.6b --shard-id 0 --num-shards
+        2 --device cuda:0
+      server: autodl-5090
+      gpu:
+      - cuda:2
+    reproduce:
+      finished_at: '2026-05-14T22:04:42.939Z'
+    failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed
+    conclusion: failed
+    completed_at: '2026-05-14T22:04:42.688Z'
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-14T22:04:43.683303+00:00'
+    notes: '失败原因: 进程在 226/498 seeds (45%) 正常运行中被外部终止，日志无任何 Python/CUDA 错误。与 Qwen3-1.7B
+      同一 tmux session 死亡模式。系统性 tmux 问题，非代码问题。诊断 Worker worker_diagnose_tmux-death-root-cause_20260514T220718
+      正在深查。'
+  plan-002-qwen06b-s1:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T21:25:23.092Z'
+    updated_at: '2026-05-14T22:07:37.394Z'
+    spec:
+      data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl
+      data_count: 1000
+      model_name: Qwen/Qwen3-0.6B-Base
+      seed: 42
+      command: python generate_chain.py --model-name qwen3-0.6b --shard-id 1 --num-shards
+        2 --device cuda:0
+      server: autodl-5090
+      gpu:
+      - cuda:3
+    reproduce:
+      finished_at: '2026-05-14T22:05:00.617Z'
+    failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed
+    conclusion: failed
+    completed_at: '2026-05-14T22:05:00.872Z'
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-14T22:05:03.941470+00:00'
+    notes: '失败原因: 进程在 218/498 seeds (44%) 正常运行中被外部终止，日志无任何 Python/CUDA 错误。与 s0 和 Qwen3-1.7B
+      同一 tmux session 死亡模式。系统性 tmux 问题。'
+  plan-002-qwen17b-r2-s0:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T21:58:12.310Z'
+    updated_at: '2026-05-17T02:56:01.158Z'
+    spec:
+      command: python generate_chain.py --model-name qwen3-1.7b --model-path /root/autodl-tmp/models/Qwen/Qwen3-1___7B-Base
+        --input data/wiki_seed_1000.jsonl --shard-id 0 --num-shards 2 --device cuda:0
+      server: autodl-5090
+      gpu:
+      - cuda:0
+      pid: '120617'
+      log_path: ~/runs/gen-depth-fingerprint/plan-002-qwen17b-r2-s0.log
+      submitted_at: '2026-05-14T21:58:12.274Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/gen-depth-fingerprint/data/qwen3-1.7b/generations_shard0.jsonl
+      data_count: 2500
+      model_name: Qwen3-1.7B
+      seed: 0-499
+      wall_clock_seconds: 7656.9
+      gpu_hours: 2.13
+    notes: Orphan 进程 PID 120617 存活，shard0 进度 289/500 seeds (58%)，预计 ~22:55 UTC 完成。GPU
+      cuda:0 利用率 40%。
+    reproduce:
+      finished_at: '2026-05-14T23:15:31.078Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-14T23:15:31.991817+00:00'
+    conclusion: success
+    checkpoint_path: /root/gen-depth-fingerprint/data/qwen3-1.7b/generations_shard0.jsonl
+    log_path: ~/runs/gen-depth-fingerprint/plan-002-qwen17b-r2-s0.log
+    metrics:
+      records: 2291
+      seeds: 498
+      depth_dist:
+        '0': 498
+        '1': 492
+        '2': 468
+        '3': 435
+        '4': 398
+      skipped: 199
+      duration_s: 4548.2
+      file_size_mb: 2.5
+      file: generations_shard0.jsonl
+    completed_at: '2026-05-15T00:05:49.186Z'
+    hypothesis: 跨家族泛化数据生成（Qwen3-1.7B shard0）：Qwen 家族 1.7B 模型的 continuation 链 depth
+      dynamics，验证中等规模非 Pythia 模型也产生可检测的 depth signal
+    parent: plan-002
+  plan-002-qwen17b-r2-s1:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T21:58:14.195Z'
+    updated_at: '2026-05-17T02:56:03.576Z'
+    spec:
+      command: python generate_chain.py --model-name qwen3-1.7b --model-path /root/autodl-tmp/models/Qwen/Qwen3-1___7B-Base
+        --input data/wiki_seed_1000.jsonl --shard-id 1 --num-shards 2 --device cuda:0
+      server: autodl-5090
+      gpu:
+      - cuda:1
+      pid: '120694'
+      log_path: ~/runs/gen-depth-fingerprint/plan-002-qwen17b-r2-s1.log
+      submitted_at: '2026-05-14T21:58:14.157Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/gen-depth-fingerprint/data/qwen3-1.7b/generations_shard1.jsonl
+      data_count: 2500
+      model_name: Qwen3-1.7B
+      seed: 500-999
+      wall_clock_seconds: 4435.6
+      gpu_hours: 1.23
+    notes: Orphan 进程 PID 120694 存活，shard1 进度 295/500 seeds (59%)，预计 ~22:55 UTC 完成。GPU
+      cuda:1 利用率 44%。
+    reproduce:
+      finished_at: '2026-05-14T23:09:11.091Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-14T23:09:12.039773+00:00'
+    conclusion: success
+    checkpoint_path: /root/gen-depth-fingerprint/data/qwen3-1.7b/generations_shard1.jsonl
+    log_path: ~/runs/gen-depth-fingerprint/plan-002-qwen17b-r2-s1.log
+    metrics:
+      records: 2326
+      seeds: 498
+      depth_dist:
+        '0': 498
+        '1': 491
+        '2': 473
+        '3': 440
+        '4': 424
+      skipped: 53
+      duration_s: 4228
+      file: generations_shard1.jsonl
+    completed_at: '2026-05-14T23:12:09.724Z'
+    hypothesis: 跨家族泛化数据生成（Qwen3-1.7B shard1）：Qwen3-1.7B continuation 链第二分片，补全 ~995
+      seeds 覆盖
+    parent: plan-002
+  plan-002-qwen06b-r2-s0:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T22:35:10.950Z'
+    updated_at: '2026-05-17T02:56:23.413Z'
+    hypothesis: 跨家族泛化数据生成（Qwen3-0.6B shard0）：最小参数量(0.6B) Qwen 模型的 continuation 链，验证
+      depth signal 在极小模型中是否仍存在（小模型可能因容量不足而无法维持深层生成的分布稳定性）
+    spec:
+      command: python generate_chain.py --model-name qwen3-0.6b --model-path /root/autodl-tmp/models/Qwen/Qwen3-0___6B-Base
+        --input data/wiki_seed_1000.jsonl --shard-id 0 --num-shards 2 --device cuda:0
+      server: autodl-5090
+      data_path: /root/gen-depth-fingerprint/data/qwen3-0.6b/generations_shard0.jsonl
+      data_count: 2500
+      model_name: Qwen3-0.6B
+      seed: 0-499
+      pid: '117855'
+      gpu:
+      - cuda:2
+    notes: Orphan 进程 PID 117855 存活，shard0 进度 350/500 seeds (70%)，当前 1593 行，预计 ~23:00
+      UTC 完成。GPU cuda:2 利用率 34%。
+    conclusion: success
+    metrics:
+      records: 2270
+      seeds: 498
+      depth_dist:
+        '0': 498
+        '1': 493
+        '2': 468
+        '3': 423
+        '4': 388
+      file: generations_shard0.jsonl
+    checkpoint_path: /root/gen-depth-fingerprint/data/qwen3-0.6b/generations_shard0.jsonl
+    log_path: N/A
+    completed_at: '2026-05-14T23:00:55.097Z'
+    parent: plan-002
+  plan-002-qwen06b-r2-s1:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T22:35:11.142Z'
+    updated_at: '2026-05-17T02:56:25.805Z'
+    hypothesis: 跨家族泛化数据生成（Qwen3-0.6B shard1）：Qwen3-0.6B continuation 链第二分片，补全 ~995
+      seeds 覆盖
+    spec:
+      command: python generate_chain.py --model-name qwen3-0.6b --model-path /root/autodl-tmp/models/Qwen/Qwen3-0___6B-Base
+        --input data/wiki_seed_1000.jsonl --shard-id 1 --num-shards 2 --device cuda:0
+      server: autodl-5090
+      data_path: /root/gen-depth-fingerprint/data/qwen3-0.6b/generations_shard1.jsonl
+      data_count: 2500
+      model_name: Qwen3-0.6B
+      seed: 500-999
+      pid: '118126'
+      gpu:
+      - cuda:3
+    notes: Orphan 进程 PID 118126 存活，shard1 进度 340/500 seeds (68%)，当前 1542 行，预计 ~23:00
+      UTC 完成。GPU cuda:3 利用率 33%。
+    conclusion: success
+    checkpoint_path: /root/gen-depth-fingerprint/data/qwen3-0.6b/generations_shard1.jsonl
+    log_path: /root/gen-depth-fingerprint/data/qwen3-0.6b/generations_shard1.jsonl
+    completed_at: '2026-05-14T23:01:44.209Z'
+    metrics:
+      records: 2268
+      seeds: 498
+      depth_dist:
+        '0': 498
+        '1': 493
+        '2': 470
+        '3': 417
+        '4': 390
+      file: generations_shard1.jsonl
+    parent: plan-002
+  plan-002-eval:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T23:33:25.348Z'
+    updated_at: '2026-05-17T02:55:34.658Z'
+    hypothesis: 跨生成器泛化评估：Pythia-410M 深度特征在 leave-one-generator-out 设置下能否泛化到未见过的生成器
+    conclusion: success
+    metrics:
+      leave_one_out_avg_macro_f1: 0.8037
+      best_held_out:
+        model: pythia-1b
+        macro_f1: 0.8507
+      worst_held_out:
+        model: olmo-2-1b
+        macro_f1: 0.7519
+      family_out_delta: 0.0107
+      ablation_full_f1: 0.8037
+      ablation_reference_only_f1: 0.7543
+      ablation_surface_only_f1: 0.7471
+      mcnemar_p: 0
+      top_features:
+      - hapax_ratio_0.289
+      - ttr_0.168
+      - entropy_mean_0.160
+      entropy_std_drop: 0.0049
+      entropy_std_drift: 0.12
+      entropy_mean_drift: 1.5
+    spec:
+      command: python cross_generator_eval.py
+      server: autodl-5090
+      data_path: /root/gen-depth-fingerprint/data/features_all_models.csv
+      data_count: 23032
+      model_name: XGBoost classifier
+      seed: 42
+      checkpoint_path: /root/gen-depth-fingerprint/data/cross_generator_results.json
+      log_path: /root/gen-depth-fingerprint/data/cross_generator_report.md
+    completed_at: '2026-05-14T23:40:47.236Z'
+    parent: plan-002
+  plan-013:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T23:33:25.590Z'
+    updated_at: '2026-05-14T23:53:38.901Z'
+    hypothesis: 文本长度混淆控制：深度特征的区分力是否独立于文本长度变化（长度归一化后趋势是否保持）
+    conclusion: success
+    metrics:
+      spearman_rho_range: '[-0.066, +0.134]'
+      length_depth_correlation: weak (|ρ|<0.14)
+      normalized_ttr_trend_preserved: true
+      normalized_hapax_trend_preserved: true
+      normalized_rho_stronger: true
+      length_matched_f1_delta: '+0.041'
+      length_is_confound: false
+      dropout_short_text_bias: true
+    spec:
+      command: python text_length_analysis.py
+      server: autodl-5090
+      data_path: /root/gen-depth-fingerprint/data/features_all_models.csv
+      data_count: 23032
+      model_name: text length analysis
+      seed: 42
+      checkpoint_path: /root/gen-depth-fingerprint/data/text_length_analysis.json
+      log_path: /root/gen-depth-fingerprint/data/text_length_boxplot.png
+    completed_at: '2026-05-14T23:53:38.902Z'
+  plan-003:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T23:58:40.949Z'
+    updated_at: '2026-05-15T00:09:28.999Z'
+    hypothesis: 跨家族参考模型伪证化：用 OLMo-2-1B 和 Qwen3-0.6B 作参考模型提取特征，验证 differential depth
+      response 非 Pythia 特异
+    conclusion: success
+    metrics:
+      logo_f1_pythia_ref: 0.8034
+      logo_f1_olmo_ref: 0.8072
+      logo_f1_qwen_ref: 0.8158
+      entropy_drift_all_refs_negative: true
+      olmo_ref_drift_range:
+      - -0.608
+      - -0.9089
+      qwen_ref_drift_range:
+      - -0.9557
+      - -1.3458
+      pythia_ref_drift_range:
+      - -1.1872
+      - -1.4017
+      dual_dynamics_is_pythia_artifact: false
+    spec:
+      command: python extract_features_crossref.py + cross_ref_analysis.py
+      server: autodl-5090
+      data_path: /root/gen-depth-fingerprint/data/features_all_models.csv
+      data_count: 23032
+      model_name: OLMo-2-1B + Qwen3-0.6B as reference
+      seed: 42
+      checkpoint_path: /root/gen-depth-fingerprint/data/cross_ref_results.json
+      log_path: /root/gen-depth-fingerprint/data/
+    completed_at: '2026-05-15T00:09:28.999Z'
+  plan-015:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T23:58:41.890Z'
+    updated_at: '2026-05-15T01:25:59.552Z'
+    hypothesis: 现有检测器 ordinal baseline：FastDetectGPT/LD-Score 等检测器的连续分数是否已提供 ordinal
+      depth signal
+    spec:
+      command: python detector_baseline.py (log_likelihood + fast_detect_gpt + entropy_mean)
+      server: autodl-5090
+      data_path: /root/gen-depth-fingerprint/data/features_all_models.csv
+      data_count: 23032
+      model_name: Pythia-410M (log_likelihood, FastDetectGPT, entropy_mean baselines)
+      seed: 42
+      checkpoint_path: /root/gen-depth-fingerprint/data/detector_baseline_results.json
+      log_path: /root/gen-depth-fingerprint/data/
+    conclusion: success
+    metrics:
+      seven_feature_logo_f1: 0.798
+      seven_feature_ci:
+      - 0.786
+      - 0.799
+      avg_logprob_logo_f1: 0.7653
+      avg_logprob_ci:
+      - 0.616
+      - 0.82
+      avg_logprob_spearman: 0.7876
+      ld_score_logo_f1: 0.7212
+      ld_score_ci:
+      - 0.588
+      - 0.77
+      ld_score_spearman: 0.7943
+      ld_score_pre_fix: 0.6854
+      fast_detect_gpt_logo_f1: 0.6269
+      fast_detect_gpt_ci:
+      - 0.511
+      - 0.762
+      fast_detect_gpt_spearman: 0.4325
+      binoculars_logo_f1: 0.579
+      binoculars_ci:
+      - 0.405
+      - 0.664
+      binoculars_spearman: 0.1989
+      binoculars_bug_confirmed: true
+      binoculars_bug_fix: denominator changed from CE(performer, obs_argmax) to CE(performer,
+        shifted_ids)
+      bootstrap_n: 1000
+      bootstrap_delta_7feat_vs_avglogprob:
+        delta: 0.039
+        p: 0
+        significant: true
+      bootstrap_delta_7feat_vs_fdgpt:
+        delta: 0.067
+        p: 0
+        significant: true
+      best_single_detector: Avg-LogProb (0.7653)
+      seven_feature_advantage_pp: 3.3
+    completed_at: '2026-05-15T00:26:12.709Z'
+  plan-004-prep:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T23:58:42.465Z'
+    updated_at: '2026-05-21T01:46:09.872Z'
+    hypothesis: Downstream utility 准备：depth-stratified 数据集 + OLMo-1B fine-tuning 脚本（不开跑，等
+      Director 确认）
+    conclusion: success
+    metrics:
+      model: OLMo-2-0425-1B (1485M)
+      datasets:
+        depth0_only:
+          train: 797
+          test: 3138
+        depth01:
+          train: 3951
+          test: 3138
+        all:
+          train: 12299
+          test: 3138
+        size_matched:
+          train: 3951
+          test: 3138
+        binary_filtered:
+          train: 3951
+          test: 3138
+      dry_run_loss: 2.18
+      script: finetune_downstream.py
+    spec:
+      command: data prep + script
+      server: autodl-5090
+      data_path: data/downstream/
+      data_count: 12299
+      model_name: OLMo-2-0425-1B
+      seed: 42
+      checkpoint_path: N/A
+      log_path: N/A
+    completed_at: '2026-05-21T01:46:09.872Z'
+  plan-003-olmo2ref:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T00:09:31.145Z'
+    updated_at: '2026-05-17T02:55:33.041Z'
+    spec:
+      command: python extract_features_crossref.py --reference-model /root/autodl-tmp/models/olmo-2-1b-hf/allenai/OLMo-2-0425-1B
+        --output data/features_ref_olmo.csv --device cuda:0
+      server: autodl-5090
+      data_path: /root/gen-depth-fingerprint/data/
+      data_count: 23032
+      model_name: OLMo-2-1B (reference)
+      seed: 42
+    checkpoint_path: /root/gen-depth-fingerprint/data/features_ref_olmo.csv
+    log_path: /root/gen-depth-fingerprint/data/features_ref_olmo.csv
+    conclusion: success
+    completed_at: '2026-05-15T00:10:00.971Z'
+    hypothesis: 跨家族参考模型验证（OLMo-2-1B）：用 OLMo-2-1B 作为参考模型提取 differential entropy 特征，验证
+      depth signal 的参考模型无关性——不同训练数据和架构的模型仍能检测相同的 depth dynamics
+    parent: plan-003
+  plan-003-qwen06bref:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T00:09:31.649Z'
+    updated_at: '2026-05-17T02:55:27.742Z'
+    spec:
+      command: python extract_features_crossref.py --reference-model /root/autodl-tmp/models/Qwen/Qwen3-0___6B-Base
+        --output data/features_ref_qwen.csv --device cuda:0
+      server: autodl-5090
+      data_path: /root/gen-depth-fingerprint/data/
+      data_count: 23032
+      model_name: Qwen3-0.6B (reference)
+      seed: 42
+    checkpoint_path: /root/gen-depth-fingerprint/data/features_ref_qwen.csv
+    log_path: /root/gen-depth-fingerprint/data/features_ref_qwen.csv
+    conclusion: success
+    completed_at: '2026-05-15T00:10:01.383Z'
+    hypothesis: 跨家族参考模型验证（Qwen3-0.6B）：用非 Pythia 家族的 Qwen3-0.6B 作为参考模型提取 differential
+      entropy 特征，验证 depth signal 不依赖于参考模型与生成器的家族匹配
+    parent: plan-003
+  plan-014:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T00:12:01.909Z'
+    updated_at: '2026-05-17T02:56:07.395Z'
+    hypothesis: 大模型规模泛化：Qwen3-8B (7B+参数) 的 continuation 链是否展现同样的 entropy 收敛和 lexical
+      drift，验证 depth dynamics 不因模型容量增大而消失（更大模型可能有更强的分布记忆导致 depth signal 衰减）
+    spec:
+      command: nohup /root/miniconda3/bin/python generate_chain.py --model-name qwen3-8b
+        --model-path /root/autodl-tmp/models/Qwen/Qwen3-8B-Base/Qwen/Qwen3-8B-Base/
+        --input data/openwebtext_seeds.jsonl --shard-id 0 --num-shards 1 --device
+        cuda:0 > /tmp/gen_large_model.log 2>&1 &
+      server: autodl-5090
+      gpu: cuda:0
+      pid: 134817
+      data_path: data/wiki_seed_1000.jsonl
+      data_count: 996
+      model_name: Qwen3-8B-Base
+      seed: all
+      log_path: /tmp/gen_large_model.log
+      checkpoint_path: /root/gen-depth-fingerprint/data/qwen3-8b/generations_shard0.jsonl
+      output_path: data/qwen3-8b/generations_shard0.jsonl
+      estimated_duration_h: 4
+      model_params: 8.2B
+      fp16_vram_gb: 16.1
+    notes: '2026-05-15 04:25: ✅ 完整数据重算完成 (4409 records, 977 seeds)。与 82% 快照差异在统计噪声范围内：LOGO
+      +0.0011, qwen8b held-out -0.0037。最终数字已确认，可用于论文。'
+    conclusion: success
+    metrics:
+      total_records: 4497
+      unique_seeds: 995
+      depth_dist:
+        '0': 995
+        '1': 979
+        '2': 937
+        '3': 831
+        '4': 755
+      logo_6gen_avg_f1: 0.7893
+      logo_per_generator:
+        olmo-2-1b: 0.7635
+        pythia-1b: 0.8562
+        pythia-2.8b: 0.8041
+        qwen3-0.6b: 0.8243
+        qwen3-1.7b: 0.8046
+        qwen3-8b: 0.6832
+      logo_qwen3_8b_held_out_f1: 0.6832
+      logo_5gen_baseline_f1: 0.8
+      spearman:
+        hapax_ratio: -0.5578
+        ttr: -0.5419
+        entropy_mean: -0.4754
+        entropy_min: -0.3029
+        entropy_max: 0.0946
+        tail_decay: -0.0894
+        entropy_std: -0.0755
+      feature_importance:
+        hapax_ratio: 0.269
+        entropy_mean: 0.1637
+        ttr: 0.159
+        entropy_max: 0.0634
+        entropy_std: 0.0463
+        entropy_min: 0.0153
+        tail_decay: 0.0123
+      revalidation_v2_vs_snapshot: LOGO +0.0007 (0.7886→0.7893), qwen8b -0.0054 (0.6886→0.6832)
+      revalidation_v2_conclusion: complete_data_validates_snapshot_robustness
+    completed_at: '2026-05-15T03:47:24.272Z'
+    parent: plan-002
+  plan-004:
+    status: DONE
+    retry_count: 1
+    created_at: '2026-05-15T00:22:57.901Z'
+    updated_at: '2026-05-15T01:02:50.582Z'
+    hypothesis: 'Downstream utility: depth-stratified 数据对 OLMo-2-0425-1B CLM fine-tuning
+      的影响——depth0_only vs depth01 vs all vs size_matched vs binary_filtered，5 variants
+      × 3 seeds'
+    notes: 'FAILED: 根因是 OOM on GPU0（与 Qwen3-8B 共享 16.5GB），非单纯磁盘满。日志有 5 个 OOM Traceback（尝试分配
+      784MiB 但 GPU 仅剩 307MB）。磁盘满是次因（旧 checkpoints 22GB 占满根分区）。已由 plan-004-v2 在 cuda:1/2/3
+      重跑。'
+    completed_at: '2026-05-15T00:44:49.276Z'
+    extra:
+      previous_failure:
+        conclusion: failed
+        notes: '2026-05-15 08:41: Disk crisis resolved (root was 100%, now 25%). Symlinked
+          experiments/downstream → /root/autodl-tmp/gen-depth-fingerprint/experiments/downstream/.
+          Killed old stalled PIDs. Relaunched 3 GPU jobs: GPU1 (depth0_only×3 + depth01×2),
+          GPU2 (waiting for size_matched_seed42 PID 142680, then depth01_seed456 +
+          all×3), GPU3 (size_matched×2 + binary_filtered×3). size_matched uses batch-size
+          2 grad-accum 8, others use batch-size 4 grad-accum 4. All output to data
+          disk. Logs: /tmp/plan004_gpu{1,2,3}.log'
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-15T00:57:02.442369+00:00'
+    spec:
+      command: run_gpu{1,2,3}.sh (3 GPU parallel)
+      server: autodl-5090
+      gpu: cuda:1,cuda:2,cuda:3
+      pid: GPU1:144272, GPU2:145189(waiting for 142680), GPU3:145799
+      data_path: /root/gen-depth-fingerprint/data/downstream/
+      data_count: depth0_only:797, depth01:3951, all:12299, size_matched:3951, binary_filtered:3951
+      model_name: OLMo-2-0425-1B
+      seed: 42,123,456
+      log_path: /tmp/plan004_gpu1.log, /tmp/plan004_gpu2.log, /tmp/plan004_gpu3.log
+      checkpoint_path: /root/autodl-tmp/gen-depth-fingerprint/experiments/downstream/
+    reproduce:
+      finished_at: '2026-05-15T00:57:00.985Z'
+    failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed
+    conclusion: failed
+  plan-004-v2:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T00:45:17.861Z'
+    updated_at: '2026-05-17T02:55:33.296Z'
+    hypothesis: 'Downstream utility (retry): depth-stratified 数据对 OLMo-2-0425-1B CLM
+      fine-tuning 的影响——5 variants × 3 seeds，输出到数据盘'
+    spec:
+      command: run_downstream.sh (3 GPUs parallel, save_strategy=no)
+      server: autodl-5090
+      gpu: cuda:1,cuda:2,cuda:3
+      pid: 143757(cuda:1),145189(cuda:2),145799(cuda:3)
+      data_path: /root/autodl-tmp/gen-depth-fingerprint/experiments/downstream/
+      data_count: depth0_only:797, depth01:3951, all:12299, size_matched:3951, binary_filtered:3951
+      model_name: OLMo-2-0425-1B
+      seed: 42,123,456
+      log_path: /tmp/plan004_gpu1.log, /tmp/plan004_gpu2.log, /tmp/plan004_gpu3.log
+      checkpoint_path: none (save_strategy=no)
+      notes: size_matched_seed42 done (eval_loss=0.8618, ppl=2.367). GPU2 98% VRAM
+        - close to limit.
+    notes: 15/15 runs 全部完成。Claim 3 (Downstream Utility) 负面结果：depth-aware curation
+      不优于随机抽样。排名 all(2.335) < size_matched(2.367) < depth01(2.387) ≈ binary_filtered(2.389)
+      << depth0_only(2.681)。全量数据最优，depth filtering 反而损害 perplexity。跨 seed 方差极小(<0.002)。已由
+      D009 reframe 为 diagnostic-not-curative。
+    conclusion: negative
+    metrics:
+      total_runs: 15
+      completed: 15
+      variants:
+        all:
+          eval_loss_mean: 0.848
+          perplexity_mean: 2.335
+          seeds:
+            '42':
+              eval_loss: 0.848
+              ppl: 2.335
+            '123':
+              eval_loss: 0.848
+              ppl: 2.335
+            '456':
+              eval_loss: 0.8482
+              ppl: 2.3354
+        size_matched:
+          eval_loss_mean: 0.8617
+          perplexity_mean: 2.367
+          seeds:
+            '42':
+              eval_loss: 0.8618
+              ppl: 2.367
+            '123':
+              eval_loss: 0.8615
+              ppl: 2.367
+            '456':
+              eval_loss: 0.8618
+              ppl: 2.367
+        depth01:
+          eval_loss_mean: 0.8701
+          perplexity_mean: 2.387
+          seeds:
+            '42':
+              eval_loss: 0.8703
+              ppl: 2.3877
+            '123':
+              eval_loss: 0.87
+              ppl: 2.3869
+            '456':
+              eval_loss: 0.8699
+              ppl: 2.387
+        binary_filtered:
+          eval_loss_mean: 0.8709
+          perplexity_mean: 2.389
+          seeds:
+            '42':
+              eval_loss: 0.8708
+              ppl: 2.389
+            '123':
+              eval_loss: 0.871
+              ppl: 2.389
+            '456':
+              eval_loss: 0.871
+              ppl: 2.389
+        depth0_only:
+          eval_loss_mean: 0.9864
+          perplexity_mean: 2.681
+          seeds:
+            '42':
+              eval_loss: 0.9865
+              ppl: 2.6818
+            '123':
+              eval_loss: 0.9863
+              ppl: 2.68
+            '456':
+              eval_loss: 0.9865
+              ppl: 2.6817
+      ranking_by_ppl: all(2.335) < size_matched(2.367) < depth01(2.387) ≈ binary_filtered(2.389)
+        << depth0_only(2.681)
+      seed_variance: 极小（同 variant 跨 seed ppl 差 <0.002）
+    completed_at: '2026-05-15T03:09:20.593Z'
+    parent: plan-004
+  plan-015-v2:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T00:56:20.612Z'
+    updated_at: '2026-05-17T02:55:33.529Z'
+    spec:
+      command: PYTHONUNBUFFERED=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 python scripts/ordinal_baseline.py
+        --device cuda:0
+      server: autodl-5090
+      data_path: /root/gen-depth-fingerprint/data/
+      data_count: 0
+      model_name: pythia-410m+pythia-160m
+      seed: 42
+      checkpoint_path: N/A (analysis task)
+      log_path: /tmp/ordinal_baseline_v2.log
+    conclusion: success
+    hypothesis: 'Ordinal baseline bugfix + bootstrap CI: 修复 Binoculars denominator
+      bug，验证 7-feature ensemble 显著优于所有单一检测器'
+    metrics:
+      seven_feature_logo_f1: 0.798
+      seven_feature_ci95:
+      - 0.786
+      - 0.799
+      avg_logprob_logo_f1: 0.7653
+      avg_logprob_ci95:
+      - 0.616
+      - 0.82
+      ld_score_logo_f1: 0.7212
+      ld_score_ci95:
+      - 0.588
+      - 0.77
+      fastdetectgpt_logo_f1: 0.6269
+      fastdetectgpt_ci95:
+      - 0.511
+      - 0.762
+      binoculars_logo_f1: 0.579
+      binoculars_ci95:
+      - 0.405
+      - 0.664
+      binoculars_bug_fixed: true
+      ld_score_corrected_cv_f1: 0.7925
+      bootstrap_7feat_vs_avglogprob:
+        delta: 0.039
+        p: 0
+        significant: true
+      bootstrap_7feat_vs_fastdetectgpt:
+        delta: 0.067
+        p: 0
+        significant: true
+    completed_at: '2026-05-15T01:26:40.380Z'
+    parent: plan-015
+  plan-005:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T03:24:02.435Z'
+    updated_at: '2026-05-15T06:20:59.698Z'
+    hypothesis: 'Prompt type comparison: continuation vs elaboration vs inspired_rewriting
+      链的 depth signal 强度差异。Pythia-2.8B, 1000 seeds, 3 prompt types × 5 depths = 15K
+      texts'
+    spec:
+      command: python scripts/analyze_prompt_types.py
+      server: autodl-5090
+      gpu: cuda:1,cuda:2,cuda:3
+      data_path: data/pythia-2.8b-*/features.jsonl
+      data_count: 14393
+      model_name: pythia-2.8b
+      seed: 42
+      log_path: 'tmux: plan-005-cont, plan-005-elab, plan-005-rewrite'
+    notes: plan-005 完成。3 种 prompt type 全部成功。关键发现：(1) depth signal 跨 prompt type 存在（CV
+      F1 0.73-0.78）；(2) LOPTO 泛化良好（avg 0.7525）；(3) surface features (ttr, hapax) 最稳健；(4)
+      shape features 在非 continuation 中信号消失；(5) continuation 衰减最大（16.9%），elaboration
+      几乎无衰减（1.4%）。
+    failure_reason: 'startup recovery: RUNNING with no cron and no server/pid info'
+    conclusion: success
+    completed_at: '2026-05-15T05:30:39.849Z'
+    metrics:
+      cv_f1:
+        continuation: 0.7806
+        inspired_rewriting: 0.7368
+        elaboration: 0.73
+      lopto_f1:
+        held_out_cont: 0.762
+        held_out_elab: 0.7622
+        held_out_rewrite: 0.7334
+        avg: 0.7525
+      depth_retention_d4_d0:
+        continuation: 0.831
+        inspired_rewriting: 0.939
+        elaboration: 0.986
+      drift_hapax_ratio:
+        continuation: -0.74
+        elaboration: -0.828
+        rewriting: -0.8
+      drift_ttr:
+        continuation: -0.607
+        elaboration: -0.641
+        rewriting: -0.618
+      drift_entropy_mean:
+        continuation: -0.557
+        elaboration: -0.471
+        rewriting: -0.477
+      spearman_ttr:
+        continuation: -0.629
+        elaboration: -0.666
+        rewriting: -0.659
+      spearman_hapax:
+        continuation: -0.651
+        elaboration: -0.674
+        rewriting: -0.67
+      spearman_entropy_mean:
+        continuation: -0.665
+        elaboration: -0.583
+        rewriting: -0.564
+  plan-005-cont:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T03:28:43.383Z'
+    updated_at: '2026-05-17T02:55:14.334Z'
+    spec:
+      command: python generate_chain_prompt.py --model-name pythia-2.8b --prompt-type
+        continuation
+      server: autodl-5090
+      gpu: cuda:1
+      pid: 164658
+      log_path: /root/runs/gen-depth-fingerprint/plan-005-cont.log
+      submitted_at: '2026-05-15T03:28:43.303Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl
+      data_count: 995
+      model_name: pythia-2.8b
+      seed: 0
+      prompt_type: continuation
+      checkpoint_path: /root/gen-depth-fingerprint/data/pythia-2.8b-continuation/generations_shard0.jsonl
+      wall_clock_seconds: 8050.6
+      gpu_hours: 2.24
+    reproduce:
+      finished_at: '2026-05-15T05:40:03.942Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-15T05:40:05.254414+00:00'
+    conclusion: success
+    metrics:
+      total_records: 4620
+      unique_seeds: 995
+      skipped: 168
+      depth_distribution:
+        '0': 995
+        '1': 992
+        '2': 932
+        '3': 874
+        '4': 827
+      output_file: /root/gen-depth-fingerprint/data/pythia-2.8b-continuation/generations_shard0.jsonl
+      file_size_mb: 4.93
+      runtime_seconds: 7760
+      speed_seeds_per_sec: 0.13
+    completed_at: '2026-05-15T05:42:53.944Z'
+    hypothesis: Continuation 链数据生成：Pythia-2.8B 在 continuation prompt 下生成 depth 0-4
+      链，验证递归续写中 entropy/lexical 特征的单调漂移模式是否在 1000 seeds 规模下稳定复现
+    parent: plan-005
+  plan-005-elab:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T03:28:45.680Z'
+    updated_at: '2026-05-17T02:55:17.294Z'
+    spec:
+      command: python generate_chain_prompt.py --model-name pythia-2.8b --prompt-type
+        elaboration --input data/wiki_seed_1000.jsonl --shard-id 0 --num-shards 1
+        --device cuda:0
+      server: autodl-5090
+      gpu: cuda:2
+      pid: 164737
+      log_path: /root/gen-depth-fingerprint/logs/plan-005-elab
+      submitted_at: '2026-05-15T03:28:45.601Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: data/wiki_seed_1000.jsonl
+      data_count: 1000
+      model_name: pythia-2.8b
+      seed: all
+      prompt_type: elaboration
+      checkpoint_path: /root/gen-depth-fingerprint/data/pythia-2.8b-elaboration/generations_shard0.jsonl
+      wall_clock_seconds: 19266.7
+      gpu_hours: 5.35
+    reproduce:
+      finished_at: '2026-05-15T05:58:50.421Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-15T05:58:51.901208+00:00'
+    conclusion: success
+    metrics:
+      total_records: 4946
+      unique_seeds: 995
+      skipped: 14
+      depth_distribution:
+        '0': 995
+        '1': 995
+        '2': 989
+        '3': 986
+        '4': 981
+      output_file: /root/gen-depth-fingerprint/data/pythia-2.8b-elaboration/generations_shard0.jsonl
+      file_size_mb: 5.53
+      runtime_seconds: 8960.2
+      depth_retention_d4_d0: 0.986
+      logo_cv_f1:
+        mean: 0.73
+        std: 0.011
+      lopto_f1: 0.7622
+      feature_drift_entropy_mean: -0.4705
+      feature_drift_ttr: -0.6413
+      feature_drift_hapax: -0.8284
+      vs_continuation: retention 98.6% vs 83.1%; CV F1 0.730 vs 0.781 — elaboration
+        chains more stable but depth signal weaker within-type
+      vs_rewriting: retention 98.6% vs 93.9%; CV F1 0.730 vs 0.737 — similar discriminability,
+        elaboration slightly lower
+    completed_at: '2026-05-15T08:49:52.315Z'
+    hypothesis: Elaboration 链数据生成：elaboration prompt 要求模型展开而非续写，预期 depth signal 因语义锚定更强而衰减更慢（retention
+      > continuation 的 83%）
+    parent: plan-005
+  plan-005-rewrite:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T03:28:47.421Z'
+    updated_at: '2026-05-17T02:55:19.976Z'
+    spec:
+      command: python generate_chain_prompt.py --model-name pythia-2.8b --prompt-type
+        inspired_rewriting --input data/wiki_seed_1000.jsonl --shard-id 0 --num-shards
+        1 --device cuda:0
+      server: autodl-5090
+      gpu: cuda:3
+      pid: 164881
+      log_path: ~/runs/gen-depth-fingerprint/plan-005-rewrite.log
+      submitted_at: '2026-05-15T03:28:47.322Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: data/wiki_seed_1000.jsonl
+      data_count: 1000
+      model_name: pythia-2.8b
+      seed: all
+      prompt_type: inspired_rewriting
+      checkpoint_path: /root/gen-depth-fingerprint/data/pythia-2.8b-inspired_rewriting/generations_shard0.jsonl
+      wall_clock_seconds: 8584
+      gpu_hours: 2.38
+    reproduce:
+      finished_at: '2026-05-15T05:53:16.289Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-15T05:53:17.523804+00:00'
+    metrics:
+      total_records: 4827
+      unique_seeds: 995
+      skipped: 61
+      depth_distribution:
+        '0': 995
+        '1': 995
+        '2': 959
+        '3': 944
+        '4': 934
+      output_file: /root/gen-depth-fingerprint/data/pythia-2.8b-inspired_rewriting/generations_shard0.jsonl
+      file_size_mb: 5.41
+      runtime_seconds: 8584
+      speed_seeds_per_sec: 0.12
+      depth_retention_d4_d0: 0.939
+      vs_continuation: retention 93.9% vs 83.1%, rewriting produces significantly
+        more stable depth chains
+    conclusion: success
+    completed_at: '2026-05-15T06:00:25.058Z'
+    hypothesis: Inspired rewriting 链数据生成：rewriting prompt 要求模型受启发重写而非逐字续写，预期 depth
+      retention 介于 continuation 和 elaboration 之间，因为重写保留主题但改变表达
+    parent: plan-005
+  review-exp-a-baseline-ensemble:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T12:22:30.747Z'
+    updated_at: '2026-05-21T01:46:08.824Z'
+    hypothesis: 审稿回应实验A：4-baseline ensemble + 统一超参对比，验证 7-feature vs 4-baseline vs
+      6-feature 在公平条件下的性能差异
+    conclusion: killed
+    spec:
+      command: N/A (killed before run)
+      server: N/A
+      data_path: N/A
+      data_count: 0
+      model_name: N/A
+      seed: 0
+      checkpoint_path: N/A
+      log_path: N/A
+    completed_at: '2026-05-21T01:46:08.824Z'
+  review-exp-b-topic-drift:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T12:22:34.096Z'
+    updated_at: '2026-05-17T02:56:11.446Z'
+    hypothesis: Depth fingerprint 不仅仅捕捉 topic shift：语义漂移(embedding cosine similarity)与
+      depth 相关性弱(|ρ|<0.3)，而 entropy/lexical features 与 depth 的相关性强(|ρ|>0.5)，证明 depth
+      signal 来自生成过程的统计特性而非内容偏移
+    spec:
+      command: python scripts/review_topic_drift.py
+      server: autodl-5090
+      data_path: /root/gen-depth-fingerprint/data/
+      data_count: 27529
+      model_name: all-MiniLM-L6-v2
+      seed: 0
+    conclusion: success
+    log_path: /tmp/topic_drift.log
+    checkpoint_path: /root/gen-depth-fingerprint/results/review_topic_drift_results.json
+    completed_at: '2026-05-15T12:28:11.624Z'
+    metrics:
+      semantic_similarity_by_transition:
+        0_to_1:
+          mean: 0.622
+          std: 0.1647
+        1_to_2:
+          mean: 0.6829
+          std: 0.1837
+        2_to_3:
+          mean: 0.801
+          std: 0.2012
+        3_to_4:
+          mean: 0.8587
+          std: 0.1895
+      prompt_type_avg_sim:
+        continuation: 0.7168
+        elaboration: 0.8093
+        inspired_rewriting: 0.808
+      shape_feature_correlations:
+        entropy_std_rho: -0.1639
+        tail_decay_rho: 0.0675
+      drifting_feature_correlations:
+        hapax_ratio_rho: -0.1242
+        ttr_rho: -0.1784
+        entropy_mean_rho: -0.2859
+  review-exp-c-overall-ci:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T12:22:37.037Z'
+    updated_at: '2026-05-17T02:56:15.141Z'
+    hypothesis: 6-generator LOGO 的 overall bootstrap CI 窄且不跨越 chance level，entropy_max/entropy_min
+      的个体 Spearman ρ 验证其对 depth 的单调贡献方向（max 正相关因高 depth 分布更尖，min 负相关因低概率 tail 被压缩）
+    spec:
+      command: python scripts/review_overall_ci.py
+      server: autodl-5090
+      data_path: data/features_all_models.csv
+      data_count: 27529
+      model_name: xgboost
+      seed: 42
+      checkpoint_path: n/a
+      log_path: results/review_overall_ci_results.json
+    conclusion: success
+    completed_at: '2026-05-15T12:27:02.426Z'
+    metrics:
+      overall_logo_f1: 0.7879
+      overall_ci95:
+      - 0.783
+      - 0.7929
+      spearman_entropy_max: 0.0503
+      spearman_entropy_min: -0.4061
+      spearman_hapax: -0.6467
+      spearman_ttr: -0.6302
+      spearman_entropy_mean: -0.6098
+      spearman_entropy_std: -0.1996
+      spearman_tail_decay: -0.0403
+  plan-010-robustness:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T22:09:57.049Z'
+    updated_at: '2026-05-16T22:11:48.657Z'
+    hypothesis: 'Human edit robustness: depth fingerprint 在 5-20% random word replacement
+      下的 F1 退化测试，验证实际编辑场景（通常 < 5%）不影响检测'
+    conclusion: success
+    metrics:
+      baseline_binary_f1: 0.695
+      5pct_binary_f1: 0.65
+      10pct_binary_f1: 0.614
+      20pct_binary_f1: 0.591
+      5pct_drop: -0.046
+      10pct_drop: -0.081
+      20pct_drop: -0.104
+    checkpoint_path: /root/gen-depth-fingerprint/experiments/human_edit_robustness/robustness_results.json
+    log_path: /root/gen-depth-fingerprint/experiments/human_edit_robustness/
+    spec:
+      command: python human_edit_robustness.py
+      server: autodl-5090
+      gpu: cuda:0
+      data_path: /root/gen-depth-fingerprint/data/detector_scores_8gen.csv
+      data_count: 5000
+      model_name: Pythia-410M (reference)
+      seed: 42
+      perturbation_rates:
+      - 0.05
+      - 0.1
+      - 0.2
+    completed_at: '2026-05-16T22:11:48.657Z'
+  plan-010-llm-rephrase:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-16T22:26:58.107Z'
+    updated_at: '2026-05-17T02:55:34.090Z'
+    hypothesis: 'LLM-simulated editing robustness: Qwen3-0.6B rephrasing (1-3 sentences)
+      比 random word replacement 更接近真实人类编辑，预期 depth fingerprint 退化更小'
+    spec:
+      command: python llm_rephrase_robustness.py
+      server: autodl-5090
+      gpu: cuda:0
+      data_path: /root/gen-depth-fingerprint/experiments/human_edit_robustness/
+      data_count: 5000
+      model_name: Qwen3-0.6B-Base + Pythia-410M
+      seed: 42
+    conclusion: success
+    notes: v2 修复版：修正 binary task 定义(gen1-vs-gen2+)、3-class mapping、tail_decay 计算(rank
+      100-1000)。Original binary 0.6918 与 Table 3 (0.7014) 一致，确认修复正确。
+    metrics:
+      original_binary_f1: 0.6918
+      original_binary_ci:
+      - 0.6749
+      - 0.7067
+      original_multiclass_f1: 0.7385
+      original_multiclass_ci:
+      - 0.7269
+      - 0.7496
+      rephrased_binary_f1: 0.6471
+      rephrased_binary_ci:
+      - 0.6308
+      - 0.6619
+      rephrased_multiclass_f1: 0.6672
+      rephrased_multiclass_ci:
+      - 0.6548
+      - 0.6796
+      binary_drop: -0.0447
+      multiclass_drop: -0.0713
+      edit_distance_ratio: 0.5071
+      avg_sentences_replaced: 1.69
+      method: 7feature LOGO-CV, binary=gen1-vs-gen2+, 3class=gen0/gen1/gen2+
+      bugs_fixed:
+      - binary_task_gen1_vs_gen2+
+      - 3class_mapping
+      - tail_decay_rank100-1000
+    checkpoint_path: /root/gen-depth-fingerprint/experiments/human_edit_robustness/llm_rephrase_results.json
+    log_path: /root/gen-depth-fingerprint/experiments/human_edit_robustness/llm_rephrase_results.json
+    completed_at: '2026-05-17T01:04:28.657Z'
+    parent: plan-010-robustness
+  plan-008-seed-stratification:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T00:21:12.380Z'
+    updated_at: '2026-05-17T02:56:26.724Z'
+    hypothesis: 'Seed complexity independence: depth fingerprint 的判别能力不依赖 seed 文本的词汇复杂度（按
+      gen-0 TTR terciles 分层验证）'
+    conclusion: success
+    metrics:
+      low_complexity_binary: 0.685
+      medium_binary: 0.695
+      high_complexity_binary: 0.695
+      low_complexity_multi: 0.772
+      medium_multi: 0.778
+      high_complexity_multi: 0.779
+      max_diff_binary_pp: 1.06
+      max_diff_multiclass_pp: 0.68
+      conclusion_label: seed_independent
+    checkpoint_path: /root/gen-depth-fingerprint/experiments/seed_stratification/seed_stratification_results.json
+    log_path: /root/gen-depth-fingerprint/experiments/seed_stratification/
+    spec:
+      command: python seed_stratification.py
+      server: autodl-5090
+      data_path: /root/gen-depth-fingerprint/data/
+      data_count: 37058
+      model_name: XGBoost 200/6
+      seed: 42
+    completed_at: '2026-05-17T00:21:48.235Z'
+    parent: plan-010-robustness
+  multi-domain-seeds:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T03:38:54.349Z'
+    updated_at: '2026-05-17T05:05:40.584Z'
+    hypothesis: 'Domain independence: depth fingerprint 的 differential depth response
+      不依赖 seed domain——在 News/Academic/Code 三个非 Wikipedia 域上，7-feature ensemble 的
+      binary F1 与 Wikipedia baseline 差异 <10pp，证明 DDR 是生成过程的固有特性而非特定域文本属性的 artifact'
+    spec:
+      command: python multi_domain_generation.py + eval
+      server: autodl-5090
+      gpu: cuda:0,1,2,3
+      data_path: /root/gen-depth-fingerprint/data/seeds_{news,academic,code}.jsonl
+      data_count: 600
+      model_name: Pythia-1B + Qwen3-1.7B + Mistral-7B-v0.3
+      seed: 42
+    metrics:
+      news_binary_f1: 0.7459
+      news_binary_ci:
+      - 0.726
+      - 0.764
+      news_multiclass_f1: 0.6516
+      academic_binary_f1: 0.7386
+      academic_binary_ci:
+      - 0.72
+      - 0.757
+      academic_multiclass_f1: 0.6223
+      code_binary_f1: 0.7535
+      code_binary_ci:
+      - 0.737
+      - 0.77
+      code_multiclass_f1: 0.6344
+      wikipedia_baseline_binary_f1: 0.8148
+      wikipedia_baseline_multiclass_f1: 0.8632
+      max_gap_vs_wiki_pp: 7.62
+      worst_domain: academic
+      best_domain: code
+      conclusion_label: domain_independent
+    conclusion: success
+    checkpoint_path: /root/gen-depth-fingerprint/experiments/multi_domain/multi_domain_results.json
+    log_path: /root/gen-depth-fingerprint/experiments/multi_domain/multi_domain_results.json
+    completed_at: '2026-05-17T05:05:40.584Z'
+  exp_047_multi_domain_t07:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T05:51:25.881Z'
+    updated_at: '2026-05-17T07:22:04.483Z'
+    hypothesis: Depth fingerprint generalizes across domains (News, Academic, Code)
+      under standard decoding (t=0.7, top_p=0.9) matching main experiment params,
+      eliminating the temperature confound from t=1.0 results and producing directly
+      comparable domain generalization numbers
+    parent: exp_043_multi_domain_seeds
+    spec:
+      command: python run_multi_domain_t07.py (3 generators x 3 domains parallel in
+        tmux multi_domain_t07)
+      server: autodl-5090
+      data_path: /root/gen-depth-fingerprint/experiments/multi_domain/
+      data_count: 200 seeds x 3 domains x 3 generators x 4 depths = 7200 samples
+      model_name: Pythia-1B, Qwen3-1.7B, Mistral-7B-v0.3 (gen) + Pythia-410M (ref)
+      seed: default
+      gpu: cuda:0,1,2
+      checkpoint_source: N/A (generation + evaluation pipeline, no pretrained checkpoint)
+      eval_data: News/Academic/Code seeds 200 per domain, generated chains depth 0-3
+      checkpoint_path: /root/gen-depth-fingerprint/experiments/multi_domain/multi_domain_results_t07.json
+      log_path: /root/gen-depth-fingerprint/experiments/multi_domain/run_t07.log
+    metrics:
+      news_binary_f1: 0.7119
+      news_binary_ci:
+      - 0.6898
+      - 0.7332
+      news_3class_f1: 0.7149
+      academic_binary_f1: 0.6279
+      academic_binary_ci:
+      - 0.6027
+      - 0.6515
+      academic_3class_f1: 0.6564
+      code_binary_f1: 0.6872
+      code_binary_ci:
+      - 0.6641
+      - 0.71
+      code_3class_f1: 0.6729
+      overall_binary_f1: 0.6757
+      overall_3class_f1: 0.6814
+      delta_vs_t10_news: -0.034
+      delta_vs_t10_academic: -0.1107
+      delta_vs_t10_code: -0.0663
+    conclusion: success
+    completed_at: '2026-05-17T07:22:04.483Z'
+  multi_domain_t07:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T05:54:55.365Z'
+    updated_at: '2026-05-21T01:46:07.252Z'
+    spec:
+      command: N/A (superseded by exp_047)
+      server: autodl-5090
+      gpu:
+      - cuda:0
+      - cuda:1
+      - cuda:2
+      pid: '383695'
+      log_path: N/A
+      submitted_at: '2026-05-17T05:54:55.259Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: N/A
+      data_count: 0
+      model_name: N/A
+      seed: 0
+      checkpoint_path: N/A
+      wall_clock_seconds: 330672.0
+      gpu_hours: 275.56
+    conclusion: killed
+    completed_at: '2026-05-21T01:46:07.252Z'
+  exp_048_cross_temp_transfer:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T12:52:44.889Z'
+    updated_at: '2026-05-17T17:07:19.391Z'
+    hypothesis: 'Cross-temperature transfer: XGBoost 7-feature classifier trained
+      at one sampling temperature (t=0.7 or t=1.0) maintains depth discrimination
+      when tested at a different temperature, demonstrating deployment robustness
+      to unknown decoding parameters'
+    spec:
+      command: python cross_temp_transfer.py
+      server: autodl-5090
+      data_path: /root/gen-depth-fingerprint/data/features_all_models.csv + sampling_ablation
+        features
+      data_count: ~37000
+      model_name: XGBoost 7-feature (est200, md6)
+      seed: '42'
+      checkpoint_path: N/A (CPU-only eval)
+      log_path: /root/gen-depth-fingerprint/results/cross_temp_transfer.json
+    conclusion: success
+    metrics:
+      6gen_logo:
+        within_0.7_binary: 0.9471
+        within_0.7_3class: 0.7888
+        cross_0.7to1.0_binary: 0.9001
+        cross_0.7to1.0_3class: 0.7225
+        within_1.0_binary: 0.9107
+        within_1.0_3class: 0.7257
+        cross_1.0to0.7_binary: 0.9581
+        cross_1.0to0.7_3class: 0.7913
+        caveat: Only Qwen3-1.7B differs between conditions; 5/6 generators share data
+      qwen_only:
+        within_0.7_binary: 0.9262
+        within_0.7_binary_ci:
+        - 0.916
+        - 0.935
+        within_0.7_3class: 0.769
+        within_0.7_3class_ci:
+        - 0.756
+        - 0.781
+        cross_0.7to1.0_binary: 0.7574
+        cross_0.7to1.0_binary_ci:
+        - 0.745
+        - 0.77
+        cross_0.7to1.0_3class: 0.4581
+        cross_0.7to1.0_3class_ci:
+        - 0.445
+        - 0.472
+        within_1.0_binary: 0.8248
+        within_1.0_binary_ci:
+        - 0.81
+        - 0.838
+        within_1.0_3class: 0.5738
+        within_1.0_3class_ci:
+        - 0.56
+        - 0.588
+        cross_1.0to0.7_binary: 0.9443
+        cross_1.0to0.7_binary_ci:
+        - 0.936
+        - 0.953
+        cross_1.0to0.7_3class: 0.6014
+        cross_1.0to0.7_3class_ci:
+        - 0.593
+        - 0.611
+        delta_0.7train_binary_pp: -16.9
+        delta_0.7train_3class_pp: -31.1
+        delta_1.0train_binary_pp: 12
+        delta_1.0train_3class_pp: 2.8
+        asymmetric_transfer: true
+    parent: exp_047_multi_domain_t07
+    completed_at: '2026-05-17T17:07:19.391Z'
+  exp_049_temp_curve_t05:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T22:15:10.383Z'
+    updated_at: '2026-05-18T06:09:22.443Z'
+    hypothesis: DDR signal at t=0.5 should be stronger than t=0.7 (less randomness
+      preserves more distributional structure)
+    spec:
+      command: python generate_chain.py --model-name pythia-2.8b-t05 --temperature
+        0.5 --top-p 0.9 --output-dir data/ --device cuda:0
+      server: autodl-5090
+      data_path: data/pythia-2.8b-t05
+      data_count: 995
+      model_name: pythia-2.8b
+      seed: 0
+      note: 重跑：修复 top_p=0.9（之前错误使用 top_p=0.8）。串行 3 任务的第 1 个。
+      checkpoint_path: N/A (generation only)
+      log_path: /root/gen-depth-fingerprint/logs/tc_fix/
+    failure_reason: 'startup recovery: RUNNING with no cron and no server/pid info'
+    conclusion: success
+    completed_at: '2026-05-18T02:11:23.228Z'
+    notes: Registry 误标 failed（startup recovery 机制）。实际 tmux tc_fix 仍在运行中。Phase 1 (t=0.5
+      generation) 已完成 4708 records。等待 phase 2+3 完成后统一提取特征和评估。
+    metrics:
+      records: 4708
+      skipped: 113
+      seeds: 995
+      model: pythia-2.8b
+      temperature: 0.5
+      top_p: 0.9
+      within_cv_binary_f1: 0.8432
+      within_cv_binary_ci:
+      - 0.8301
+      - 0.8558
+      logo_binary_f1: 0.8136
+      logo_binary_ci:
+      - 0.7984
+      - 0.8282
+      entropy_mean_rho: -0.5844
+  exp_050_temp_curve_t09:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T22:15:11.626Z'
+    updated_at: '2026-05-18T06:09:24.876Z'
+    hypothesis: DDR signal at t=0.9 degrades relative to t=0.7 but less severely than
+      t=1.0, establishing monotonic temperature sensitivity
+    spec:
+      command: 'bash run_temp_curve_fix.sh (jobs 2+3: pythia-2.8b t=0.9 + qwen3-1.7b
+        t=0.9, both top_p=0.9)'
+      server: autodl-5090
+      data_path: data/pythia-2.8b-t09 + data/qwen3-1.7b-t09
+      data_count: 995
+      model_name: pythia-2.8b, qwen3-1.7b
+      seed: 0
+      note: 重跑：修复 top_p=0.9（之前错误使用 top_p=0.95）。串行第 2、3 个任务，排在 exp_049 之后。
+    failure_reason: 'startup recovery: RUNNING with no cron and no server/pid info'
+    conclusion: failed
+    completed_at: '2026-05-18T02:11:24.091Z'
+    notes: Registry 误标 failed（startup recovery 机制）。实际 tmux tc_fix 仍在运行中。Phase 2 (Pythia-2.8B
+      t=0.9) 39% 完成 (392/995 seeds)，预计 ~76min。Phase 3 (Qwen3-1.7B t=0.9) 待执行。总计 ~5-6h
+      完成。
+    metrics:
+      records: 4536
+      model: pythia-2.8b
+      temperature: 0.9
+      top_p: 0.9
+      within_cv_binary_f1: 0.5821
+      within_cv_binary_ci:
+      - 0.5655
+      - 0.5985
+      logo_binary_f1: 0.4804
+      logo_binary_ci:
+      - 0.4645
+      - 0.4976
+      entropy_mean_rho: -0.3016
+      delta_vs_t07_cv: -0.157
+      delta_vs_t07_logo: -0.259
+  exp_051_independent_seed:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T22:38:00.466Z'
+    updated_at: '2026-05-18T02:01:42.126Z'
+    hypothesis: Cross-generator depth classification with non-overlapping seeds achieves
+      comparable F1 to shared-seed LOGO, ruling out topic fingerprint leakage
+    spec:
+      command: generate_chain.py + extract_features.py + eval_independent_seed.py
+      server: autodl-5090
+      data_path: data/independent_seed/
+      data_count: 500 seeds per generator
+      model_name: pythia-2.8b, olmo-2-1b
+      seed: 42
+      device: cuda:3
+      checkpoint_path: N/A (evaluation only)
+      log_path: /root/gen-depth-fingerprint/results/independent_seed_control/
+      results_path: /root/gen-depth-fingerprint/results/independent_seed_results.json
+    conclusion: success
+    completed_at: '2026-05-18T01:59:56.962Z'
+    metrics:
+      pythia_to_olmo_binary_f1: 0.6945
+      pythia_to_olmo_ci:
+      - 0.6727
+      - 0.7167
+      olmo_to_pythia_binary_f1: 0.666
+      olmo_to_pythia_ci:
+      - 0.6429
+      - 0.6893
+      avg_binary_f1: 0.6803
+      shared_seed_logo_ref: 0.694
+      delta_vs_shared: -0.014
+  exp_052_instruct_qwen3_1_7b:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-18T03:06:04.788Z'
+    updated_at: '2026-05-21T01:45:50.088Z'
+    hypothesis: Instruct-tuned Qwen3-1.7B (chat template, thinking=off) shows degraded
+      depth signal vs base Qwen3-1.7B (F1=0.709), quantifying instruction-tuning's
+      impact on DDR
+    spec:
+      checkpoint_path: N/A
+      log_path: N/A
+      command: generate + extract + eval
+      server: bjb2-18868
+      data_path: data/qwen3-1.7b-instruct/
+      data_count: 4963
+      model_name: Qwen3-1.7B-Instruct
+      seed: 42
+    conclusion: success
+    metrics:
+      within_binary_f1: 0.8753
+      within_binary_ci:
+      - 0.8667
+      - 0.8837
+      within_3class_f1: 0.7324
+      within_3class_ci:
+      - 0.7195
+      - 0.745
+      base_binary_f1: 0.8614
+      base_3class_f1: 0.769
+      logo_instruct_binary: 0.658
+      logo_instruct_3class: 0.543
+      logo_base_binary: 0.821
+      logo_base_3class: 0.802
+      gen1_f1_instruct: 0.438
+      gen1_f1_base: 0.579
+      spearman_direction: reversed (instruct ρ>0, base ρ<0)
+      delta_within_binary: 0.014
+      delta_within_3class: -0.037
+      delta_logo_binary: -0.163
+    completed_at: '2026-05-21T01:45:50.088Z'
+  exp_053_instruct_olmo2_1b:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-18T03:06:06.142Z'
+    updated_at: '2026-05-21T01:45:51.119Z'
+    hypothesis: Instruct-tuned OLMo-2-1B-Instruct shows degraded depth signal vs base
+      OLMo-2-1B (F1=0.695), quantifying instruction-tuning's impact on DDR
+    spec:
+      checkpoint_path: N/A
+      log_path: N/A
+      model_name: OLMo-2-0425-1B-Instruct
+      note: Used OLMo-2-0425-1B-Instruct (0725 version does not exist on HF)
+      command: generate + extract + eval
+      server: bjb2-18868
+      data_path: data/olmo-2-1b-instruct/
+      data_count: 4429
+      seed: 42
+    conclusion: success
+    metrics:
+      within_binary_f1: 0.8131
+      within_binary_ci:
+      - 0.8012
+      - 0.8251
+      within_3class_f1: 0.5748
+      within_3class_ci:
+      - 0.5605
+      - 0.5897
+      base_binary_f1: 0.8454
+      base_3class_f1: 0.7538
+      gen1_f1_instruct: 0.256
+      gen1_f1_base: 0.523
+      delta_within_binary: -0.032
+      delta_within_3class: -0.179
+      spearman_instruct:
+        entropy_mean: 0.482
+        entropy_std: 0.296
+        entropy_min: 0.08
+        entropy_max: 0.306
+        tail_decay: 0.228
+        ttr: 0.006
+        hapax_ratio: 0.025
+      spearman_base:
+        entropy_mean: -0.639
+        entropy_std: -0.296
+        entropy_min: -0.387
+        entropy_max: 0.067
+        tail_decay: -0.141
+        ttr: -0.7
+        hapax_ratio: -0.712
+      features_reversed: 6/7
+      model_used: allenai/OLMo-2-0425-1B-Instruct
+    completed_at: '2026-05-21T01:45:51.119Z'
+  exp_054_instruct_llama3_2_3b:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-18T03:06:07.150Z'
+    updated_at: '2026-05-21T01:45:52.335Z'
+    hypothesis: Instruct-tuned Llama-3.2-3B-Instruct shows degraded depth signal vs
+      base Llama-3.2-3B (F1=0.697), quantifying instruction-tuning's impact on DDR
+    notes: '生成 59% (292/497 seeds) 后 Worker 与服务器断连。脚本有 resume 支持。模型已下载到 /root/autodl-tmp/models/Llama-3.2-3B-Instruct-ms/。Eval
+      脚本已准备: eval_exp054_instruct_llama.py'
+    conclusion: success
+    metrics:
+      instruct_binary_f1: 0.8381
+      instruct_binary_ci:
+      - 0.828
+      - 0.847
+      instruct_3class_f1: 0.5437
+      instruct_3class_ci:
+      - 0.53
+      - 0.558
+      base_binary_f1: 0.8488
+      base_3class_f1: 0.7424
+      rho_instruct_entropy_mean: 0.2299
+      rho_instruct_entropy_std: 0.2623
+      rho_instruct_entropy_min: -0.0027
+      rho_instruct_entropy_max: 0.2036
+      rho_instruct_tail_decay: 0.1198
+      rho_instruct_ttr: -0.1411
+      rho_instruct_hapax_ratio: -0.1157
+      rho_base_entropy_mean: -0.627
+      rho_base_ttr: -0.6856
+      rho_base_hapax_ratio: -0.6975
+      direction_reversals: 3
+      reversed_features:
+      - entropy_mean
+      - entropy_std
+      - tail_decay
+      data_count: 4974
+    spec:
+      command: generate + extract + eval
+      server: bjb2-18868
+      data_path: data/llama-3.2-3b-instruct/
+      data_count: 4974
+      model_name: Llama-3.2-3B-Instruct
+      seed: 42
+      checkpoint_path: N/A
+      log_path: N/A
+    completed_at: '2026-05-21T01:45:52.335Z'
+  exp_055_qlora_olmo_instruct:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-19T07:53:14.526Z'
+    updated_at: '2026-05-21T01:45:53.257Z'
+    hypothesis: 'QLoRA end-to-end classifier on OLMo-2-0425-1B-Instruct generation
+      data recovers depth signal partially: 3-class F1 lower than base QLoRA (0.905)
+      due to instruct-tuning compressing depth features, but higher than XGBoost on
+      instruct features (0.575)'
+    spec:
+      command: qlora_instruct.py --generator olmo-2-0425-1b-instruct
+      server: bjb2-18868
+      gpu:
+      - cuda:0
+      pid: '71920'
+      log_path: N/A
+      submitted_at: '2026-05-19T09:02:34.465Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: data/olmo-2-0425-1b-instruct/
+      data_count: 4429
+      model_name: Qwen3-0.6B-Base (backbone)
+      seed: 42
+      checkpoint_path: N/A
+      wall_clock_seconds: 146598.8
+      gpu_hours: 40.72
+    conclusion: success
+    metrics:
+      macro_f1_3class: 0.8881
+      macro_f1_3class_std: 0.0071
+      macro_f1_5class: 0.5976
+      macro_f1_5class_std: 0.0046
+      binary_f1: 0.8363
+      binary_f1_std: 0.0096
+      n_samples: 4429
+      runtime_seconds: 1689.7
+    completed_at: '2026-05-21T01:45:53.257Z'
+  exp_056_qlora_qwen_instruct:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-19T07:53:15.921Z'
+    updated_at: '2026-05-21T01:45:55.602Z'
+    hypothesis: 'QLoRA end-to-end classifier on Qwen3-1.7B-Instruct generation data
+      recovers depth signal partially: 3-class F1 lower than base QLoRA (0.905) due
+      to instruct-tuning compressing depth features, but higher than XGBoost on instruct
+      features (0.732)'
+    spec:
+      command: qlora_instruct.py --generator qwen3-1.7b-instruct
+      server: bjb2-18868
+      gpu:
+      - cuda:1
+      pid: '72065'
+      log_path: N/A
+      submitted_at: '2026-05-19T09:02:37.080Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: data/qwen3-1.7b-instruct/
+      data_count: 4963
+      model_name: Qwen3-0.6B-Base (backbone)
+      seed: 42
+      checkpoint_path: N/A
+      wall_clock_seconds: 146598.5
+      gpu_hours: 40.72
+    conclusion: success
+    metrics:
+      macro_f1_3class: 0.9066
+      macro_f1_3class_std: 0.0082
+      macro_f1_5class: 0.5514
+      macro_f1_5class_std: 0.0031
+      binary_f1: 0.8672
+      binary_f1_std: 0.0137
+      n_samples: 4963
+      runtime_seconds: 1880.5
+    completed_at: '2026-05-21T01:45:55.602Z'
+  exp_055b_qlora_olmo_base:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-19T07:53:17.806Z'
+    updated_at: '2026-05-21T01:45:54.219Z'
+    hypothesis: Within-model QLoRA on OLMo-2-1B base data establishes per-model baseline
+      for instruct comparison; expected 3-class F1 comparable to pooled base QLoRA
+      (0.905) with potential variance from smaller per-model dataset
+    spec:
+      command: qlora_instruct.py --generator olmo-2-1b
+      server: bjb2-18868
+      gpu:
+      - cuda:2
+      pid: '72272'
+      log_path: N/A
+      submitted_at: '2026-05-19T09:02:39.461Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: data/olmo-2-1b/
+      data_count: 2379
+      model_name: Qwen3-0.6B-Base (backbone)
+      seed: 42
+      checkpoint_path: N/A
+      wall_clock_seconds: 146594.8
+      gpu_hours: 40.72
+    conclusion: success
+    metrics:
+      macro_f1_3class: 0.8588
+      macro_f1_3class_std: 0.0036
+      macro_f1_5class: 0.5398
+      macro_f1_5class_std: 0.015
+      binary_f1: 0.7925
+      binary_f1_std: 0.0097
+      n_samples: 2379
+      runtime_seconds: 911.7
+      note: completed before kill signal
+    completed_at: '2026-05-21T01:45:54.219Z'
+  exp_056b_qlora_qwen_base:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-19T07:53:19.069Z'
+    updated_at: '2026-05-21T01:45:56.297Z'
+    hypothesis: Within-model QLoRA on Qwen3-1.7B base data establishes per-model baseline
+      for instruct comparison; expected 3-class F1 comparable to pooled base QLoRA
+      (0.905) with potential variance from smaller per-model dataset
+    spec:
+      command: qlora_instruct.py --generator qwen3-1.7b
+      server: bjb2-18868
+      gpu:
+      - cuda:3
+      pid: '72489'
+      log_path: N/A
+      submitted_at: '2026-05-19T09:02:41.726Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: data/qwen3-1.7b/
+      data_count: 2291
+      model_name: Qwen3-0.6B-Base (backbone)
+      seed: 42
+      checkpoint_path: N/A
+      wall_clock_seconds: 146594.6
+      gpu_hours: 40.72
+    conclusion: success
+    metrics:
+      macro_f1_3class: 0.904
+      macro_f1_3class_std: 0.0094
+      macro_f1_5class: 0.5544
+      macro_f1_5class_std: 0.0068
+      binary_f1: 0.8597
+      binary_f1_std: 0.0123
+      n_samples: 2291
+      runtime_seconds: 880.9
+      note: completed before kill signal
+    completed_at: '2026-05-21T01:45:56.297Z'
+  exp_057_scale_9gen_logo:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-20T07:05:40.222Z'
+    updated_at: '2026-05-20T09:26:35.005Z'
+    hypothesis: 'Depth signal persists at 7B+ scale: Qwen3-8B-Base generation chains
+      exhibit DDR patterns (drifting central-tendency, stationary shape features)
+      comparable to sub-3B models, and adding Qwen3-8B as 9th generator to LOGO evaluation
+      maintains or improves ensemble F1, ruling out scale-dependent signal collapse'
+    notes: 'Feature extraction 不需要——qwen3-8b 7-feature 已在 features_all_models.csv
+      (4497行)。发现 9 generators 可用（含新 gemma-2-2b 1061行）。总计 38119 行。纯 CPU XGBoost ~3min。命令:
+      cd /root/gen-depth-fingerprint && python3 eval_9gen_logo.py → results/9gen_logo_results.json'
+    server: bjb2-18868
+    gpu: cuda:0
+    spec:
+      command: python3 eval_9gen_logo.py
+      server: bjb2-18868
+      gpu:
+      - cuda:0
+      checkpoint_path: results/9gen_logo_results.json
+      log_path: ~/runs/gen-depth-fingerprint/exp_057_scale_9gen_logo.log
+    pid: '179763'
+    log_path: ~/runs/gen-depth-fingerprint/exp_057_scale_9gen_logo.log
+    reproduce:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/gen-depth-fingerprint && python3 eval_9gen_logo.py"
+      finished_at: '2026-05-20T07:35:14.706Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-20T07:35:16.855421+00:00'
+    conclusion: success
+    completed_at: '2026-05-20T07:39:39Z'
+    metrics:
+      note: superseded by exp_057 (rerun with fixed Gemma data)
+      first_run_3class_f1: 0.7516
+      first_run_binary_f1: 0.6842
+      see_exp_057_for_final: true
+  exp_058_ddr_causality:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-20T07:05:46.902Z'
+    updated_at: '2026-05-20T08:00:24.530Z'
+    hypothesis: 'DDR features have causal predictive power for depth beyond correlation:
+      permutation importance confirms each feature group (drifting/stationary) contributes
+      independently, and Granger causality tests show depth-t features predict depth-(t+1)
+      features beyond autoregressive baseline, establishing temporal causal direction
+      in the generation chain'
+    notes: '脚本 444 行，3 模块（permutation/granger/intervention）已实现并 dry-run 验证。全部 CPU-bound，不需要
+      GPU。数据: features_8gen.csv 37058 行。预估: Granger ~2min, Permutation ~15min, Intervention
+      ~45min，可并行。'
+    server: bjb2-18868
+    gpu: cuda:1
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/gen-depth-fingerprint && python3 scripts/ddr_causal_analysis.py
+        --module permutation --n-repeats 50 --output results/ddr_causal_permutation.json
+        && python3 scripts/ddr_causal_analysis.py --module granger --output results/ddr_causal_granger.json
+        && python3 scripts/ddr_causal_analysis.py --module intervention --n-repeats
+        30 --output results/ddr_causal_intervention.json"
+      server: bjb2-18868
+      gpu:
+      - cuda:1
+      pid: '179978'
+      log_path: ~/runs/gen-depth-fingerprint/exp_058_ddr_causality.log
+      submitted_at: '2026-05-20T07:33:06.935Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      wall_clock_seconds: 1636.7
+      gpu_hours: 0.45
+    pid: '179978'
+    log_path: ~/runs/gen-depth-fingerprint/exp_058_ddr_causality.log
+    reproduce:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/gen-depth-fingerprint && python3 scripts/ddr_causal_analysis.py
+        --module permutation --n-repeats 50 --output results/ddr_causal_permutation.json
+        && python3 scripts/ddr_causal_analysis.py --module granger --output results/ddr_causal_granger.json
+        && python3 scripts/ddr_causal_analysis.py --module intervention --n-repeats
+        30 --output results/ddr_causal_intervention.json"
+      finished_at: '2026-05-20T07:50:02.678Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-20T07:50:04.916046+00:00'
+    conclusion: success
+    metrics:
+      permutation_baseline_f1: 0.7714
+      drifting_avg_importance: 0.1578
+      stationary_avg_importance: 0.0297
+      drifting_stationary_ratio: 5.31
+      granger_significant_features: 6/7
+      granger_max_delta_r2: 0.031
+      granger_max_delta_r2_feature: entropy_std
+      granger_nonsig_feature: entropy_min
+      granger_panel_n: 29095
+      intervention_max_f1_drop: 0.0203
+      intervention_max_feature: entropy_max
+      intervention_min_f1_drop: 0.0061
+    checkpoint_path: results/ddr_causal_permutation.json, results/ddr_causal_granger.json,
+      results/ddr_causal_intervention.json
+    completed_at: '2026-05-20T07:52:42Z'
+  exp_059_tost_bootstrap:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-20T07:05:47.426Z'
+    updated_at: '2026-05-20T07:57:14.330Z'
+    hypothesis: 'TOST equivalence conclusions are robust across random seeds: bootstrap
+      resampling (n=1000 iterations) of TOST p-values on stationary features yields
+      consistent rejection of non-equivalence (p &lt; 0.05 in >95% of bootstrap samples),
+      strengthening the shape-feature stationarity claim'
+    notes: 'Dry-run (n=10) 验证通过。entropy_std |d|=0.46 > margin, TOST 不拒绝（符合预期 "intermediate"）。entropy_max/min/tail_decay
+      100% rejection。纯 CPU ~2min。命令: python3 scripts/tost_bootstrap.py --n-bootstrap
+      1000 --base-seed 42 --output results/tost_bootstrap.json'
+    server: bjb2-18868
+    gpu: cuda:2
+    spec:
+      command: python3 scripts/tost_bootstrap.py --n-bootstrap 1000 --base-seed 42
+      server: bjb2-18868
+      gpu:
+      - cuda:2
+      pid: '180192'
+      log_path: ~/runs/gen-depth-fingerprint/exp_059_tost_bootstrap.log
+      submitted_at: '2026-05-20T07:33:09.403Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: data/features_8gen.csv
+      data_count: 37058
+      model_name: N/A (CPU analysis)
+      seed: 42
+      checkpoint_path: N/A
+      wall_clock_seconds: 1444.9
+      gpu_hours: 0.4
+    pid: '180192'
+    log_path: ~/runs/gen-depth-fingerprint/exp_059_tost_bootstrap.log
+    reproduce:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/gen-depth-fingerprint && python3 scripts/tost_bootstrap.py
+        --n-bootstrap 1000 --base-seed 42 --output results/tost_bootstrap.json"
+      finished_at: '2026-05-20T07:35:34.283Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-20T07:35:39.041241+00:00'
+    conclusion: success
+    metrics:
+      n_bootstrap: 1000
+      seed: 42
+      margin_d: 0.2
+      entropy_max:
+        median_p: 0
+        rejection_rate: 1
+        median_d: 0.062
+        d_ci:
+        - 0.037
+        - 0.088
+      entropy_min:
+        median_p: 0
+        rejection_rate: 1
+        median_d: -0.016
+        d_ci:
+        - -0.042
+        - 0.011
+      tail_decay:
+        median_p: 0
+        rejection_rate: 1
+        median_d: 0.088
+        d_ci:
+        - 0.065
+        - 0.111
+      entropy_std:
+        median_p: 1
+        rejection_rate: 0
+        median_d: 0.458
+        d_ci:
+        - 0.435
+        - 0.479
+      stationary_features_robust: true
+    completed_at: '2026-05-20T07:57:14.330Z'
+  exp_057:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-20T07:37:15.230Z'
+    updated_at: '2026-05-20T08:00:40.589Z'
+    metrics:
+      9gen_logo_3class_f1: 0.751
+      9gen_logo_binary_f1: 0.6661
+      8gen_baseline_3class_f1: 0.7698
+      delta_9gen_vs_8gen: -0.0188
+      n_total_rows: 42015
+      n_generators: 9
+      qwen3_8b_3class_f1: 0.6955
+      qwen3_8b_binary_f1: 0.6468
+      gemma_2_2b_3class_f1: 0.6279
+      gemma_2_2b_binary_f1: 0.4402
+      per_gen_3class_f1:
+        pythia-1b: 0.8571
+        qwen3-0.6b: 0.8185
+        pythia-2.8b: 0.8117
+        qwen3-1.7b: 0.8114
+        olmo-2-1b: 0.7732
+        llama-3.2-3b: 0.7591
+        qwen3-8b: 0.6955
+        gemma-2-2b: 0.6279
+        mistral-7b-v0.3: 0.6045
+      tail_decay_consistency: VERIFIED_all_9gen_logprob_slope
+      data_source: features_9gen.csv (42015 rows, Gemma fixed)
+    conclusion: success
+    hypothesis: 'Depth signal persists at 7B+ scale: Qwen3-8B-Base generation chains
+      exhibit DDR patterns (drifting central-tendency, stationary shape features)
+      comparable to sub-3B models, and adding Qwen3-8B as 9th generator to LOGO evaluation
+      maintains or improves ensemble F1, ruling out scale-dependent signal collapse'
+    spec:
+      checkpoint_path: n/a
+      log_path: ~/runs/gen-depth-fingerprint/exp_057_scale_9gen_logo.log
+    completed_at: '2026-05-20T07:38:04.420Z'
+  exp_060_14b_ddr_analysis:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-20T10:51:34.628Z'
+    updated_at: '2026-05-20T14:49:07.813Z'
+    hypothesis: 'DDR pattern (drifting central-tendency, stationary shape features)
+      persists at 14B+ scale: Qwen3-14B-Base generation chains exhibit similar ρ/d
+      decomposition as sub-8B models, with drifting features |ρ|>0.4 and stationary
+      features |d|<0.2, ruling out scale-dependent DDR collapse up to 14.7B parameters'
+    notes: Qwen3-14B-Base (14.7B params, FP16 ~29GB). 单张 RTX 5090 推理。500 seeds × 5
+      depths, continuation prompt, t=0.7. 纯 feature analysis (ρ + d)，不训练分类器。模型下载中
+      (ModelScope/HF CLI, 目标路径 /root/autodl-tmp/models/Qwen3-14B-Base/)。生成用 generate_chain.py。
+    spec:
+      command: python3 generate_chain.py --input data/wiki_seed_1000.jsonl --output-dir
+        data/generations --model-name qwen3-14b-base --model-path /root/autodl-tmp/models/Qwen3-14B-Base
+        --device cuda:0 --temperature 0.7 --top-p 0.9 --shard-id 0 --num-shards 2
+      server: bjb2-18868
+      gpu:
+      - cuda:0
+      data_path: data/wiki_seed_1000.jsonl
+      data_count: 500
+      model_name: Qwen3-14B-Base
+      seed: 42
+      checkpoint_path: results/exp_060_14b_ddr.json
+      log_path: /tmp/gen_14b_full.log
+    metrics:
+      n_samples: 2229
+      n_seeds: 498
+      depth_distribution:
+        '0': 498
+        '1': 488
+        '2': 466
+        '3': 414
+        '4': 363
+      entropy_mean:
+        rho: -0.3877
+        d: 0.7765
+        group: drifting
+      entropy_std:
+        rho: -0.0557
+        d: -0.0223
+        group: stationary
+      entropy_max:
+        rho: 0.0791
+        d: -0.1717
+        group: stationary
+      entropy_min:
+        rho: -0.2471
+        d: -0.1365
+        group: stationary
+      ttr:
+        rho: -0.4916
+        d: 1.0913
+        group: drifting
+      hapax_ratio:
+        rho: -0.5065
+        d: 1.1245
+        group: drifting
+      tail_decay:
+        rho: -0.0637
+        d: 0.1356
+        group: stationary
+      ddr_pattern_match: true
+    conclusion: success
+    completed_at: '2026-05-20T14:49:07.813Z'
+  exp_061_instruct_ref_ddr:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-20T23:18:46.419Z'
+    updated_at: '2026-05-20T23:19:15.822Z'
+    hypothesis: Using an instruct reference model (Qwen3-0.6B-Instruct) instead of
+      base Pythia-410M to compute NLL features can recover DDR signal on instruct-generated
+      chains (Qwen3-1.7B-Instruct, OLMo-2-1B-Instruct), because instruct NLL landscape
+      better matches instruct text distributions
+    spec:
+      command: python scripts/extract_features_instruct_ref.py && python scripts/analyze_instruct_ref_ddr.py
+      server: bjb2-18868
+      gpu:
+      - cuda:0
+      data_path: data/generations/*-instruct/
+      data_count: 9392
+      model_name: Qwen3-0.6B-Instruct (reference) on Qwen3-1.7B-Instruct + OLMo-2-1B-Instruct
+        chains
+      seed: 42
+      checkpoint_path: results/instruct_ref_ddr_comparison.json
+      log_path: data/features_instruct_ref_qwen06b.csv
+    conclusion: negative
+    completed_at: '2026-05-20T23:19:12.892Z'
+    metrics:
+      qwen_instruct:
+        base_ref_rho_entropy_mean: 0.478
+        instruct_ref_rho_entropy_mean: 0.221
+        base_ref_d_entropy_mean: 1.981
+        instruct_ref_d_entropy_mean: 1.022
+      olmo_instruct:
+        base_ref_rho_entropy_mean: 0.482
+        instruct_ref_rho_entropy_mean: -0.113
+        base_ref_d_entropy_mean: 1.33
+        instruct_ref_d_entropy_mean: 0.017
+  decoding_strategy_shape:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-21T06:36:35.954Z'
+    updated_at: '2026-05-21T06:49:17.348Z'
+    hypothesis: DDR shape stability (entropy_max, entropy_min, tail_decay d<0.15)
+      holds under greedy and top-k decoding, not just nucleus sampling — verifying
+      the claim is decoding-strategy-agnostic
+    spec:
+      command: python generate_chain_decoding.py --model {pythia-2.8b,olmo-2-1b,qwen3-1.7b}
+        --decoding {greedy,topk}
+      server: bjb2-18868
+      data_path: /root/gen-depth-fingerprint/data/seeds_1000.txt
+      data_count: 1000
+      model_name: pythia-2.8b, olmo-2-1b, qwen3-1.7b
+      seed: 42
+    conclusion: killed
+    completed_at: '2026-05-21T06:49:17.348Z'
+  exp_062_decoding_strategy_shape:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-21T06:44:08.944Z'
+    updated_at: '2026-05-21T21:26:03.841Z'
+    hypothesis: DDR shape stability (entropy_max, entropy_min, tail_decay near-stationary
+      with d<0.15) holds under greedy (temperature=0) and top-k (k=50, τ=0.7) decoding,
+      not just nucleus sampling — verifying the DDR decomposition is decoding-strategy-agnostic
+    spec:
+      command: python generate_chain_decoding.py --model {pythia-2.8b,olmo-2-1b,qwen3-1.7b}
+        --decoding {greedy,topk}
+      server: bjb2-18868
+      data_path: /root/gen-depth-fingerprint/data/seeds_1000.txt
+      data_count: 1000
+      model_name: pythia-2.8b, olmo-2-1b, qwen3-1.7b
+      seed: 42
+      gpu: cuda:0,1
+      script_path: /root/gen-depth-fingerprint/generate_chain_decoding.py
+      checkpoint_path: /root/gen-depth-fingerprint/data/features_qwen3-8b-topk.csv
+      log_path: /tmp/gen_qwen8b_topk.log
+    conclusion: success
+    completed_at: '2026-05-21T21:26:03.841Z'

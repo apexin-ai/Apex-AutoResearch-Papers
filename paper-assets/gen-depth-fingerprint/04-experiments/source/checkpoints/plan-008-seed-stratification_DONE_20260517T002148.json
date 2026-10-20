@@ -1,0 +1,38 @@
+{
+  "exp_id": "plan-008-seed-stratification",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T00:21:12.380Z",
+    "updated_at": "2026-05-17T00:21:48.235Z",
+    "hypothesis": "Seed complexity independence: depth fingerprint 的判别能力不依赖 seed 文本的词汇复杂度（按 gen-0 TTR terciles 分层验证）",
+    "conclusion": "success",
+    "metrics": {
+      "low_complexity_binary": 0.685,
+      "medium_binary": 0.695,
+      "high_complexity_binary": 0.695,
+      "low_complexity_multi": 0.772,
+      "medium_multi": 0.778,
+      "high_complexity_multi": 0.779,
+      "max_diff_binary_pp": 1.06,
+      "max_diff_multiclass_pp": 0.68,
+      "conclusion_label": "seed_independent"
+    },
+    "checkpoint_path": "/root/gen-depth-fingerprint/experiments/seed_stratification/seed_stratification_results.json",
+    "log_path": "/root/gen-depth-fingerprint/experiments/seed_stratification/",
+    "spec": {
+      "command": "python seed_stratification.py",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/",
+      "data_count": 37058,
+      "model_name": "XGBoost 200/6",
+      "seed": 42
+    },
+    "completed_at": "2026-05-17T00:21:48.235Z"
+  },
+  "timestamp": "2026-05-17T00:21:48.305458+00:00",
+  "trigger": "update_registry"
+}

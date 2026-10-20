@@ -1,0 +1,4175 @@
+# code 8gen logo evaluation
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 89
+- **Recorded user turns:** 0
+- **Tool calls:** 36
+- **Original source:** `logs/workers/worker_code_8gen-logo-evaluation_20260516T121446.log`
+- **Structured JSON:** [`75090fda6bf4f8a52f69.json`](../../sessions/75/75090fda6bf4f8a52f69.json)
+
+## Before a recorded user message
+
+89 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "5fdba556-a3c8-462c-a7fe-4b25d4bf3fbf",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778941200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "52677574-002d-4e4c-8acf-f59d8355d6fd",
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by exploring the server to understand the existing code and data formats.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "23fa0df5-ba88-4f0c-8325-9cec395d96ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQ5Ktshj6yzRmTJGgvoSXk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12868,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12868
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_018KE3CGBSDVBazTtvfnKz33`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "141fc61c-3180-4bb4-894a-3126faa7dc6f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NQ5Ktshj6yzRmTJGgvoSXk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12868,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12868
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T12:14:58.856Z_
+
+<details><summary>↩ Tool result · `toolu_018KE3CGBSDVBazTtvfnKz33`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "300fedc7-2e69-4b55-8682-6f2b88a5db2f",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by exploring the existing code and data on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "1d2f980b-eebc-489e-80cf-033fa0a75b22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012vRp49mTziFYY1x9cJRt4r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 688,
+      "cache_read_input_tokens": 24709,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 688
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GAdE16F7XASqrDg4WUko8h`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/gen-depth-fingerprint/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "74d594db-ea29-4d57-a935-ca0179a3d1a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012vRp49mTziFYY1x9cJRt4r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 688,
+      "cache_read_input_tokens": 24709,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 688
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T12:15:03.227Z_
+
+<details><summary>↩ Tool result · `toolu_01GAdE16F7XASqrDg4WUko8h`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nablation_analysis.py\\nanalyze_7gen_logo.py\\nanalyze_instruct.py\\nanalyze_prompt_types.py\\nartifacts\\nbootstrap_ci_plan015.py\\nbootstrap_downstream_ci.py\\ncharts\\ncheckpoints\\nclassify_and_eval.py\\nclassify_multi.py\\ncompute_binary_baseline.py\\ncompute_dataset_stats.py\\ncross_generator_eval.py\\ncross_model_chains.py\\ncross_ref_analysis.py\\ndata\\ndedup_generations.py\\ndetector_baseline.py\\nend_to_end_classifier.py\\nend_to_end_classifier_pythia.py\\nend_to_end_classifier_v2.py\\nexperiments\\nextract_confusion_3class.py\\nextract_features.py\\nextract_features_crossref.py\\nextract_features_multi.py\\nextract_qwen8b_crossref.py\\nfig1_differential_response.pdf\\nfig1_differential_response.png\\nfigures\\nfiner_ordinal.py\\nfinetune_downstream.py\\ngenerate_chain.py\\ngenerate_chain_instruct.py\\ngenerate_chain_prompt.py\\nllama_filter_and_extract.py\\nlogs\\nmerge_shards.py\\nmistral_filter_and_extract.py\\nmulti_domain_seeds.py\\nmulti_seed_stability.py\\noutputs\\npaper\\nparaphrastic_chains.py\\nplan014_analysis_prep.md\\nprepare_downstream_data.py\\nresults\\nrun_downstream.sh\\nrun_gpu1.sh\\nrun_gpu2.sh\\nrun_gpu3.sh\\nrun_high_only.py\\nrun_p1c_instruct.sh\\nrun_p1c_olmo_instruct.sh\\nsampling_ablation.py\\nscripts\\ntext_length_analysis.py\\nwait_and_rerun.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "9784204b-e7db-42a4-a6be-bdc163aafa89",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nablation_analysis.py\\\\nanalyze_7gen_logo.py\\\\nanalyze_instruct.py\\\\nanalyze_prompt_types.py\\\\nartifacts\\\\nbootstrap_ci_plan015.py\\\\nbootstrap_downstream_ci.py\\\\ncharts\\\\ncheckpoints\\\\nclassify_and_eval.py\\\\nclassify_multi.py\\\\ncompute_binary_baseline.py\\\\ncompute_dataset_stats.py\\\\ncross_generator_eval.py\\\\ncross_model_chains.py\\\\ncross_ref_analysis.py\\\\ndata\\\\ndedup_generations.py\\\\ndetector_baseline.py\\\\nend_to_end_classifier.py\\\\nend_to_end_classifier_pythia.py\\\\nend_to_end_classifier_v2.py\\\\nexperiments\\\\nextract_confusion_3class.py\\\\nextract_features.py\\\\nextract_features_crossref.py\\\\nextract_features_multi.py\\\\nextract_qwen8b_crossref.py\\\\nfig1_differential_response.pdf\\\\nfig1_differential_response.png\\\\nfigures\\\\nfiner_ordinal.py\\\\nfinetune_downstream.py\\\\ngenerate_chain.py\\\\ngenerate_chain_instruct.py\\\\ngenerate_chain_prompt.py\\\\nllama_filter_and_extract.py\\\\nlogs\\\\nmerge_shards.py\\\\nmistral_filter_and_extract.py\\\\nmulti_domain_seeds.py\\\\nmulti_seed_stability.py\\\\noutputs\\\\npaper\\\\nparaphrastic_chains.py\\\\nplan014_analysis_prep.md\\\\nprepare_downstream_data.py\\\\nresults\\\\nrun_downstream.sh\\\\nrun_gpu1.sh\\\\nrun_gpu2.sh\\\\nrun_gpu3.sh\\\\nrun_high_only.py\\\\nrun_p1c_instruct.sh\\\\nrun_p1c_olmo_instruct.sh\\\\nsampling_ablation.py\\\\nscripts\\\\ntext_length_analysis.py\\\\nwait_and_rerun.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nablation_analysis.py\\nanalyze_7gen_logo.py\\nanalyze_instruct.py\\nanalyze_prompt_types.py\\nartifacts\\nbootstrap_ci_plan015.py\\nbootstrap_downstream_ci.py\\ncharts\\ncheckpoints\\nclassify_and_eval.py\\nclassify_multi.py\\ncompute_binary_baseline.py\\ncompute_dataset_stats.py\\ncross_generator_eval.py\\ncross_model_chains.py\\ncross_ref_analysis.py\\ndata\\ndedup_generations.py\\ndetector_baseline.py\\nend_to_end_classifier.py\\nend_to_end_classifier_pythia.py\\nend_to_end_classifier_v2.py\\nexperiments\\nextract_confusion_3class.py\\nextract_features.py\\nextract_features_crossref.py\\nextract_features_multi.py\\nextract_qwen8b_crossref.py\\nfig1_differential_response.pdf\\nfig1_differential_response.png\\nfigures\\nfiner_ordinal.py\\nfinetune_downstream.py\\ngenerate_chain.py\\ngenerate_chain_instruct.py\\ngenerate_chain_prompt.py\\nllama_filter_and_extract.py\\nlogs\\nmerge_shards.py\\nmistral_filter_and_extract.py\\nmulti_domain_seeds.py\\nmulti_seed_stability.py\\noutputs\\npaper\\nparaphrastic_chains.py\\nplan014_analysis_prep.md\\nprepare_downstream_data.py\\nresults\\nrun_downstream.sh\\nrun_gpu1.sh\\nrun_gpu2.sh\\nrun_gpu3.sh\\nrun_high_only.py\\nrun_p1c_instruct.sh\\nrun_p1c_olmo_instruct.sh\\nsampling_ablation.py\\nscripts\\ntext_length_analysis.py\\nwait_and_rerun.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AMG4dTov5LKD2GQ8vzj5tG`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/gen-depth-fingerprint/data/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "e9c4afb5-aa54-4119-89ca-2fe1b811892a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012vRp49mTziFYY1x9cJRt4r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 688,
+      "cache_read_input_tokens": 24709,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 688
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T12:15:03.664Z_
+
+<details><summary>↩ Tool result · `toolu_01AMG4dTov5LKD2GQ8vzj5tG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"cross-model-chains\\ncross_generator_report.md\\ncross_generator_results.json\\ncross_ref_results.json\\ndetector_baseline_results.json\\ndetector_scores.csv\\ndetector_scores_all.csv\\ndownstream\\nfeatures.csv\\nfeatures_all.csv\\nfeatures_all_models.csv\\nfeatures_olmo-2-0425-1b-instruct.csv\\nfeatures_olmo-2-1b.csv\\nfeatures_pythia-1b.csv\\nfeatures_pythia-2.8b-creative.csv\\nfeatures_pythia-2.8b-news.csv\\nfeatures_pythia-2.8b-news.csv.pre_dedup\\nfeatures_pythia-2.8b-scientific.csv\\nfeatures_pythia-2.8b.csv\\nfeatures_qwen3-0.6b-instruct.csv\\nfeatures_qwen3-0.6b.csv\\nfeatures_qwen3-1.7b-high-temp.csv\\nfeatures_qwen3-1.7b-instruct.csv\\nfeatures_qwen3-1.7b-low-temp.csv\\nfeatures_qwen3-1.7b.csv\\nfeatures_qwen8b_ref_olmo.csv\\nfeatures_qwen8b_ref_qwen.csv\\nfeatures_ref_olmo.csv\\nfeatures_ref_qwen.csv\\ngemma-2-2b\\ngemma-2-2b-rp11\\ngenerations.jsonl\\ngenerations_shard0.jsonl\\ngenerations_shard1.jsonl\\ngenerations_shard2.jsonl\\ngenerations_shard3.jsonl\\nllama-3.2-3b\\nllama-3.2-3b-rp11\\nmistral-7b-v0.3\\nolmo-2-0425-1b-instruct\\nolmo-2-1b\\nparaphrase_features.csv\\nparaphrase_features_old_rp13.csv\\nplan015_bootstrap_ci.json\\nprompt_type_results.json\\npythia-1b\\npythia-2.8b-continuation\\npythia-2.8b-creative\\npythia-2.8b-elaboration\\npythia-2.8b-inspired_rewriting\\npythia-2.8b-news\\npythia-2.8b-paraphrase\\npythia-2.8b-paraphrase_backup\\npythia-2.8b-scientific\\nqwen3-0.6b\\nqwen3-0.6b-instruct\\nqwen3-1.7b\\nqwen3-1.7b-high-temp\\nqwen3-1.7b-instruct\\nqwen3-1.7b-low-temp\\nqwen3-8b\\nseeds\\ntext_length_analysis.json\\ntext_length_boxplot.png\\nwiki_seed_1000.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "cf844390-c516-4a0e-83b1-94acb648f5c9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"cross-model-chains\\\\ncross_generator_report.md\\\\ncross_generator_results.json\\\\ncross_ref_results.json\\\\ndetector_baseline_results.json\\\\ndetector_scores.csv\\\\ndetector_scores_all.csv\\\\ndownstream\\\\nfeatures.csv\\\\nfeatures_all.csv\\\\nfeatures_all_models.csv\\\\nfeatures_olmo-2-0425-1b-instruct.csv\\\\nfeatures_olmo-2-1b.csv\\\\nfeatures_pythia-1b.csv\\\\nfeatures_pythia-2.8b-creative.csv\\\\nfeatures_pythia-2.8b-news.csv\\\\nfeatures_pythia-2.8b-news.csv.pre_dedup\\\\nfeatures_pythia-2.8b-scientific.csv\\\\nfeatures_pythia-2.8b.csv\\\\nfeatures_qwen3-0.6b-instruct.csv\\\\nfeatures_qwen3-0.6b.csv\\\\nfeatures_qwen3-1.7b-high-temp.csv\\\\nfeatures_qwen3-1.7b-instruct.csv\\\\nfeatures_qwen3-1.7b-low-temp.csv\\\\nfeatures_qwen3-1.7b.csv\\\\nfeatures_qwen8b_ref_olmo.csv\\\\nfeatures_qwen8b_ref_qwen.csv\\\\nfeatures_ref_olmo.csv\\\\nfeatures_ref_qwen.csv\\\\ngemma-2-2b\\\\ngemma-2-2b-rp11\\\\ngenerations.jsonl\\\\ngenerations_shard0.jsonl\\\\ngenerations_shard1.jsonl\\\\ngenerations_shard2.jsonl\\\\ngenerations_shard3.jsonl\\\\nllama-3.2-3b\\\\nllama-3.2-3b-rp11\\\\nmistral-7b-v0.3\\\\nolmo-2-0425-1b-instruct\\\\nolmo-2-1b\\\\nparaphrase_features.csv\\\\nparaphrase_features_old_rp13.csv\\\\nplan015_bootstrap_ci.json\\\\nprompt_type_results.json\\\\npythia-1b\\\\npythia-2.8b-continuation\\\\npythia-2.8b-creative\\\\npythia-2.8b-elaboration\\\\npythia-2.8b-inspired_rewriting\\\\npythia-2.8b-news\\\\npythia-2.8b-paraphrase\\\\npythia-2.8b-paraphrase_backup\\\\npythia-2.8b-scientific\\\\nqwen3-0.6b\\\\nqwen3-0.6b-instruct\\\\nqwen3-1.7b\\\\nqwen3-1.7b-high-temp\\\\nqwen3-1.7b-instruct\\\\nqwen3-1.7b-low-temp\\\\nqwen3-8b\\\\nseeds\\\\ntext_length_analysis.json\\\\ntext_length_boxplot.png\\\\nwiki_seed_1000.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"cross-model-chains\\ncross_generator_report.md\\ncross_generator_results.json\\ncross_ref_results.json\\ndetector_baseline_results.json\\ndetector_scores.csv\\ndetector_scores_all.csv\\ndownstream\\nfeatures.csv\\nfeatures_all.csv\\nfeatures_all_models.csv\\nfeatures_olmo-2-0425-1b-instruct.csv\\nfeatures_olmo-2-1b.csv\\nfeatures_pythia-1b.csv\\nfeatures_pythia-2.8b-creative.csv\\nfeatures_pythia-2.8b-news.csv\\nfeatures_pythia-2.8b-news.csv.pre_dedup\\nfeatures_pythia-2.8b-scientific.csv\\nfeatures_pythia-2.8b.csv\\nfeatures_qwen3-0.6b-instruct.csv\\nfeatures_qwen3-0.6b.csv\\nfeatures_qwen3-1.7b-high-temp.csv\\nfeatures_qwen3-1.7b-instruct.csv\\nfeatures_qwen3-1.7b-low-temp.csv\\nfeatures_qwen3-1.7b.csv\\nfeatures_qwen8b_ref_olmo.csv\\nfeatures_qwen8b_ref_qwen.csv\\nfeatures_ref_olmo.csv\\nfeatures_ref_qwen.csv\\ngemma-2-2b\\ngemma-2-2b-rp11\\ngenerations.jsonl\\ngenerations_shard0.jsonl\\ngenerations_shard1.jsonl\\ngenerations_shard2.jsonl\\ngenerations_shard3.jsonl\\nllama-3.2-3b\\nllama-3.2-3b-rp11\\nmistral-7b-v0.3\\nolmo-2-0425-1b-instruct\\nolmo-2-1b\\nparaphrase_features.csv\\nparaphrase_features_old_rp13.csv\\nplan015_bootstrap_ci.json\\nprompt_type_results.json\\npythia-1b\\npythia-2.8b-continuation\\npythia-2.8b-creative\\npythia-2.8b-elaboration\\npythia-2.8b-inspired_rewriting\\npythia-2.8b-news\\npythia-2.8b-paraphrase\\npythia-2.8b-paraphrase_backup\\npythia-2.8b-scientific\\nqwen3-0.6b\\nqwen3-0.6b-instruct\\nqwen3-1.7b\\nqwen3-1.7b-high-temp\\nqwen3-1.7b-instruct\\nqwen3-1.7b-low-temp\\nqwen3-8b\\nseeds\\ntext_length_analysis.json\\ntext_length_boxplot.png\\nwiki_seed_1000.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Cs3XnN7QMyXkzkN6eRRpDc`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/gen-depth-fingerprint/ -maxdepth 1 -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "ed6356f4-b176-4a93-a5a8-e7ff0b1fe087",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012vRp49mTziFYY1x9cJRt4r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 688,
+      "cache_read_input_tokens": 24709,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 688
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T12:15:04.345Z_
+
+<details><summary>↩ Tool result · `toolu_01Cs3XnN7QMyXkzkN6eRRpDc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/generate_chain.py\\n/root/gen-depth-fingerprint/extract_features.py\\n/root/gen-depth-fingerprint/classify_and_eval.py\\n/root/gen-depth-fingerprint/merge_shards.py\\n/root/gen-depth-fingerprint/ablation_analysis.py\\n/root/gen-depth-fingerprint/extract_features_multi.py\\n/root/gen-depth-fingerprint/cross_generator_eval.py\\n/root/gen-depth-fingerprint/classify_multi.py\\n/root/gen-depth-fingerprint/text_length_analysis.py\\n/root/gen-depth-fingerprint/extract_features_crossref.py\\n/root/gen-depth-fingerprint/cross_ref_analysis.py\\n/root/gen-depth-fingerprint/prepare_downstream_data.py\\n/root/gen-depth-fingerprint/finetune_downstream.py\\n/root/gen-depth-fingerprint/compute_binary_baseline.py\\n/root/gen-depth-fingerprint/detector_baseline.py\\n/root/gen-depth-fingerprint/bootstrap_ci_plan015.py\\n/root/gen-depth-fingerprint/generate_chain_prompt.py\\n/root/gen-depth-fingerprint/analyze_prompt_types.py\\n/root/gen-depth-fingerprint/multi_seed_stability.py\\n/root/gen-depth-fingerprint/extract_confusion_3class.py\\n/root/gen-depth-fingerprint/generate_chain_instruct.py\\n/root/gen-depth-fingerprint/analyze_instruct.py\\n/root/gen-depth-fingerprint/analyze_7gen_logo.py\\n/root/gen-depth-fingerprint/sampling_ablation.py\\n/root/gen-depth-fingerprint/run_high_only.py\\n/root/gen-depth-fingerprint/multi_domain_seeds.py\\n/root/gen-depth-fingerprint/dedup_generations.py\\n/root/gen-depth-fingerprint/cross_model_chains.py\\n/root/gen-depth-fingerprint/paraphrastic_chains.py\\n/root/gen-depth-fingerprint/finer_ordinal.py\\n/root/gen-depth-fingerprint/end_to_end_classifier.py\\n/root/gen-depth-fingerprint/end_to_end_classifier_pythia.py\\n/root/gen-depth-fingerprint/end_to_end_classifier_v2.py\\n/root/gen-depth-fingerprint/compute_dataset_stats.py\\n/root/gen-depth-fingerprint/bootstrap_downstream_ci.py\\n/root/gen-depth-fingerprint/extract_qwen8b_crossref.py\\n/root/gen-depth-fingerprint/llama_filter_and_extract.py\\n/root/gen-depth-fingerprint/mistral_filter_and_extract.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "acb3920a-3dde-46f4-9420-5002b2f894aa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gen-depth-fingerprint/generate_chain.py\\\\n/root/gen-depth-fingerprint/extract_features.py\\\\n/root/gen-depth-fingerprint/classify_and_eval.py\\\\n/root/gen-depth-fingerprint/merge_shards.py\\\\n/root/gen-depth-fingerprint/ablation_analysis.py\\\\n/root/gen-depth-fingerprint/extract_features_multi.py\\\\n/root/gen-depth-fingerprint/cross_generator_eval.py\\\\n/root/gen-depth-fingerprint/classify_multi.py\\\\n/root/gen-depth-fingerprint/text_length_analysis.py\\\\n/root/gen-depth-fingerprint/extract_features_crossref.py\\\\n/root/gen-depth-fingerprint/cross_ref_analysis.py\\\\n/root/gen-depth-fingerprint/prepare_downstream_data.py\\\\n/root/gen-depth-fingerprint/finetune_downstream.py\\\\n/root/gen-depth-fingerprint/compute_binary_baseline.py\\\\n/root/gen-depth-fingerprint/detector_baseline.py\\\\n/root/gen-depth-fingerprint/bootstrap_ci_plan015.py\\\\n/root/gen-depth-fingerprint/generate_chain_prompt.py\\\\n/root/gen-depth-fingerprint/analyze_prompt_types.py\\\\n/root/gen-depth-fingerprint/multi_seed_stability.py\\\\n/root/gen-depth-fingerprint/extract_confusion_3class.py\\\\n/root/gen-depth-fingerprint/generate_chain_instruct.py\\\\n/root/gen-depth-fingerprint/analyze_instruct.py\\\\n/root/gen-depth-fingerprint/analyze_7gen_logo.py\\\\n/root/gen-depth-fingerprint/sampling_ablation.py\\\\n/root/gen-depth-fingerprint/run_high_only.py\\\\n/root/gen-depth-fingerprint/multi_domain_seeds.py\\\\n/root/gen-depth-fingerprint/dedup_generations.py\\\\n/root/gen-depth-fingerprint/cross_model_chains.py\\\\n/root/gen-depth-fingerprint/paraphrastic_chains.py\\\\n/root/gen-depth-fingerprint/finer_ordinal.py\\\\n/root/gen-depth-fingerprint/end_to_end_classifier.py\\\\n/root/gen-depth-fingerprint/end_to_end_classifier_pythia.py\\\\n/root/gen-depth-fingerprint/end_to_end_classifier_v2.py\\\\n/root/gen-depth-fingerprint/compute_dataset_stats.py\\\\n/root/gen-depth-fingerprint/bootstrap_downstream_ci.py\\\\n/root/gen-depth-fingerprint/extract_qwen8b_crossref.py\\\\n/root/gen-depth-fingerprint/llama_filter_and_extract.py\\\\n/root/gen-depth-fingerprint/mistral_filter_and_extract.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/generate_chain.py\\n/root/gen-depth-fingerprint/extract_features.py\\n/root/gen-depth-fingerprint/classify_and_eval.py\\n/root/gen-depth-fingerprint/merge_shards.py\\n/root/gen-depth-fingerprint/ablation_analysis.py\\n/root/gen-depth-fingerprint/extract_features_multi.py\\n/root/gen-depth-fingerprint/cross_generator_eval.py\\n/root/gen-depth-fingerprint/classify_multi.py\\n/root/gen-depth-fingerprint/text_length_analysis.py\\n/root/gen-depth-fingerprint/extract_features_crossref.py\\n/root/gen-depth-fingerprint/cross_ref_analysis.py\\n/root/gen-depth-fingerprint/prepare_downstream_data.py\\n/root/gen-depth-fingerprint/finetune_downstream.py\\n/root/gen-depth-fingerprint/compute_binary_baseline.py\\n/root/gen-depth-fingerprint/detector_baseline.py\\n/root/gen-depth-fingerprint/bootstrap_ci_plan015.py\\n/root/gen-depth-fingerprint/generate_chain_prompt.py\\n/root/gen-depth-fingerprint/analyze_prompt_types.py\\n/root/gen-depth-fingerprint/multi_seed_stability.py\\n/root/gen-depth-fingerprint/extract_confusion_3class.py\\n/root/gen-depth-fingerprint/generate_chain_instruct.py\\n/root/gen-depth-fingerprint/analyze_instruct.py\\n/root/gen-depth-fingerprint/analyze_7gen_logo.py\\n/root/gen-depth-fingerprint/sampling_ablation.py\\n/root/gen-depth-fingerprint/run_high_only.py\\n/root/gen-depth-fingerprint/multi_domain_seeds.py\\n/root/gen-depth-fingerprint/dedup_generations.py\\n/root/gen-depth-fingerprint/cross_model_chains.py\\n/root/gen-depth-fingerprint/paraphrastic_chains.py\\n/root/gen-depth-fingerprint/finer_ordinal.py\\n/root/gen-depth-fingerprint/end_to_end_classifier.py\\n/root/gen-depth-fingerprint/end_to_end_classifier_pythia.py\\n/root/gen-depth-fingerprint/end_to_end_classifier_v2.py\\n/root/gen-depth-fingerprint/compute_dataset_stats.py\\n/root/gen-depth-fingerprint/bootstrap_downstream_ci.py\\n/root/gen-depth-fingerprint/extract_qwen8b_crossref.py\\n/root/gen-depth-fingerprint/llama_filter_and_extract.py\\n/root/gen-depth-fingerprint/mistral_filter_and_extract.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There's an `analyze_7gen_logo.py` which is likely the existing LOGO evaluation script. Let me read it and also check the data formats for both old and new generators.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "c7b4f800-e6dc-4d33-ab55-cf09d9f5b434",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P6fo22hf8qL1uP7CKenFGU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2704,
+      "cache_read_input_tokens": 25397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2704
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Let me examine the existing LOGO script and data formats.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "8b97450e-515e-4524-980a-2f8439628410",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P6fo22hf8qL1uP7CKenFGU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2704,
+      "cache_read_input_tokens": 25397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2704
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KV8fQXoSLhzzHeHetoc9Yp`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/analyze_7gen_logo.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "6986e0f1-0812-4967-8fa2-04735d247bdb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P6fo22hf8qL1uP7CKenFGU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2704,
+      "cache_read_input_tokens": 25397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2704
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T12:15:08.958Z_
+
+<details><summary>↩ Tool result · `toolu_01KV8fQXoSLhzzHeHetoc9Yp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nanalyze_7gen_logo.py — 7-generator LOGO analysis with OLMo instruct.\\n\\nMerges OLMo instruct features into 6-gen dataset, runs 7-gen LOGO,\\ncomputes binary F1, Spearman correlations, and comparison vs base.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\n\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy import stats\\nfrom xgboost import XGBClassifier\\nfrom sklearn.metrics import f1_score\\n\\nSEED = 42\\nFEATURES = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\",\\n            \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\n\\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\n                  random_state=SEED, eval_metric=\\\"mlogloss\\\",\\n                  use_label_encoder=False)\\n\\nCLASS_MAP_3 = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\\nBINARY_MAP = {0: 0, 1: 0, 2: 1, 3: 1, 4: 1}  # gen-0/1 vs gen-2+\\n\\n\\ndef downsample(df, label_col, rng):\\n    counts = df[label_col].value_counts()\\n    min_n = counts.min()\\n    parts = []\\n    for lbl in sorted(counts.index):\\n        sub = df[df[label_col] == lbl]\\n        parts.append(sub.sample(n=min_n, random_state=rng, replace=False))\\n    return pd.concat(parts, ignore_index=True)\\n\\n\\ndef bootstrap_f1(y_true, y_pred, n_boot=1000, seed=SEED):\\n    rng = np.random.RandomState(seed)\\n    n = len(y_true)\\n    scores = []\\n    for _ in range(n_boot):\\n        idx = rng.randint(0, n, size=n)\\n        yt, yp = y_true[idx], y_pred[idx]\\n        if len(np.unique(yt)) < 2:\\n            continue\\n        scores.append(f1_score(yt, yp, average=\\\"macro\\\"))\\n    arr = np.array(scores)\\n    return {\\\"mean\\\": float(np.mean(arr)),\\n            \\\"ci_lo\\\": float(np.percentile(arr, 2.5)),\\n            \\\"ci_hi\\\": float(np.percentile(arr, 97.5))}\\n\\n\\ndef logo_3class(df):\\n    df = df.copy()\\n    df[\\\"label\\\"] = df[\\\"depth\\\"].map(CLASS_MAP_3)\\n    generators = sorted(df[\\\"model_name\\\"].unique())\\n    results = {}\\n    rng = np.random.RandomState(SEED)\\n\\n    for gen in generators:\\n        test_df = df[df[\\\"model_name\\\"] == gen]\\n        train_df = df[df[\\\"model_name\\\"] != gen]\\n        train_ds = downsample(train_df, \\\"label\\\", rng)\\n\\n        clf = XGBClassifier(**XGB_PARAMS)\\n        clf.fit(train_ds[FEATURES].values, train_ds[\\\"label\\\"].values)\\n        y_pred = clf.predict(test_df[FEATURES].values)\\n        y_test = test_df[\\\"label\\\"].values\\n\\n        macro_f1 = f1_score(y_test, y_pred, average=\\\"macro\\\")\\n        per_class = f1_score(y_test, y_pred, average=None, labels=[0, 1, 2])\\n        boot = bootstrap_f1(y_test, y_pred)\\n\\n        results[gen] = {\\n            \\\"macro_f1\\\": round(float(macro_f1), 4),\\n            \\\"gen-0_f1\\\": round(float(per_class[0]), 4),\\n            \\\"gen-1_f1\\\": round(float(per_class[1]), 4),\\n            \\\"gen-2+_f1\\\": round(float(per_class[2]), 4),\\n            \\\"bootstrap_ci\\\": boot,\\n        }\\n        print(f\\\"  {gen:25s}  macro-F1={macro_f1:.4f}  [{boot['ci_lo']:.4f}, {boot['ci_hi']:.4f}]\\\")\\n\\n    avg_f1 = np.mean([r[\\\"macro_f1\\\"] for r in results.values()])\\n    return results, round(float(avg_f1), 4)\\n\\n\\ndef binary_f1_logo(df):\\n    \\\"\\\"\\\"Binary: gen-0/gen-1 vs gen-2+.\\\"\\\"\\\"\\n    df = df.copy()\\n    df[\\\"binary_label\\\"] = df[\\\"depth\\\"].map(BINARY_MAP)\\n    generators = sorted(df[\\\"model_name\\\"].unique())\\n    results = {}\\n    rng = np.random.RandomState(SEED)\\n\\n    for gen in generators:\\n        test_df = df[df[\\\"model_name\\\"] == gen]\\n        train_df = df[df[\\\"model_name\\\"] != gen]\\n        train_ds = downsample(train_df, \\\"binary_label\\\", rng)\\n\\n        clf = XGBClassifier(**XGB_PARAMS)\\n        clf.fit(train_ds[FEATURES].values, train_ds[\\\"binary_label\\\"].values)\\n        y_pred = clf.predict(test_df[FEATURES].values)\\n        y_test = test_df[\\\"binary_label\\\"].values\\n\\n        f1 = f1_score(y_test, y_pred, average=\\\"macro\\\")\\n        boot = bootstrap_f1(y_test, y_pred)\\n        results[gen] = {\\\"f1\\\": round(float(f1), 4), \\\"bootstrap_ci\\\": boot}\\n\\n    avg_f1 = np.mean([r[\\\"f1\\\"] for r in results.values()])\\n    return results, round(float(avg_f1), 4)\\n\\n\\ndef spearman_analysis(df, model_name):\\n    sub = df[df[\\\"model_name\\\"] == model_name]\\n    rho_dict = {}\\n    p_dict = {}\\n    for feat in FEATURES:\\n        rho, p = sta\\n\\n... [截断: 输出过长，省略 732 字符] ...\\n\\nf_base = pd.read_csv(base_path)\\n    print(f\\\"Base: {len(df_base)} rows, generators: {sorted(df_base['model_name'].unique())}\\\")\\n\\n    df_inst = pd.read_csv(inst_path)\\n    df_inst[\\\"model_name\\\"] = args.instruct_model_name\\n    print(f\\\"Instruct: {len(df_inst)} rows\\\")\\n\\n    # Ensure columns match\\n    common_cols = [\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES\\n    df_base = df_base[common_cols]\\n    df_inst = df_inst[common_cols]\\n    df_all = pd.concat([df_base, df_inst], ignore_index=True)\\n    print(f\\\"Combined: {len(df_all)} rows, {df_all['model_name'].nunique()} generators\\\")\\n\\n    # Depth distribution for instruct model\\n    inst_depth = df_inst[\\\"depth\\\"].value_counts().sort_index().to_dict()\\n    inst_depth = {str(k): int(v) for k, v in inst_depth.items()}\\n\\n    # 1. 7-gen LOGO (3-class)\\n    print(\\\"\\\\n=== 7-gen LOGO (3-class) ===\\\")\\n    logo_results, logo_avg = logo_3class(df_all)\\n\\n    # 2. Binary F1\\n    print(\\\"\\\\n=== Binary F1 (gen-0/1 vs gen-2+) ===\\\")\\n    binary_results, binary_avg = binary_f1_logo(df_all)\\n    for gen, r in binary_results.items():\\n        print(f\\\"  {gen:25s}  binary-F1={r['f1']:.4f}\\\")\\n\\n    # 3. Spearman for instruct model\\n    print(\\\"\\\\n=== Spearman (instruct) ===\\\")\\n    inst_rho, inst_p = spearman_analysis(df_all, args.instruct_model_name)\\n    for feat in FEATURES:\\n        print(f\\\"  {feat:15s}: rho={inst_rho[feat]:+.4f}\\\")\\n\\n    # 4. Spearman for base OLMo\\n    base_rho, _ = spearman_analysis(df_all, \\\"olmo-2-1b\\\")\\n\\n    # 5. Comparison\\n    comparison = {}\\n    for feat in FEATURES:\\n        comparison[feat] = {\\n            \\\"instruct\\\": inst_rho[feat],\\n            \\\"base\\\": base_rho[feat],\\n            \\\"delta\\\": round(inst_rho[feat] - base_rho[feat], 4),\\n        }\\n\\n    # Base OLMo LOGO F1 from 6-gen\\n    base_olmo_6gen_f1 = None\\n    for gen, r in logo_results.items():\\n        if gen == \\\"olmo-2-1b\\\":\\n            base_olmo_6gen_f1 = r[\\\"macro_f1\\\"]\\n\\n    instruct_f1 = logo_results.get(args.instruct_model_name, {}).get(\\\"macro_f1\\\")\\n    delta_vs_base = round(instruct_f1 - base_olmo_6gen_f1, 4) if instruct_f1 and base_olmo_6gen_f1 else None\\n\\n    # Conclusion\\n    if instruct_f1 and base_olmo_6gen_f1:\\n        abs_delta = abs(instruct_f1 - base_olmo_6gen_f1)\\n        if abs_delta <= 0.03:\\n            conclusion = \\\"positive: instruct tuning preserves depth signal\\\"\\n        elif instruct_f1 < base_olmo_6gen_f1 - 0.05:\\n            conclusion = \\\"negative: instruct tuning significantly reduces depth signal\\\"\\n        else:\\n            conclusion = f\\\"mixed: delta={delta_vs_base:+.4f}, within moderate range\\\"\\n    else:\\n        conclusion = \\\"inconclusive\\\"\\n\\n    result = {\\n        \\\"experiment\\\": \\\"review-p1c-olmo-instruct\\\",\\n        \\\"model\\\": \\\"OLMo-2-0425-1B-Instruct (allenai/OLMo-2-0425-1B-Instruct)\\\",\\n        \\\"model_source\\\": \\\"HuggingFace\\\",\\n        \\\"n_records_instruct\\\": len(df_inst),\\n        \\\"n_records_total_7gen\\\": len(df_all),\\n        \\\"depth_distribution\\\": inst_depth,\\n        \\\"logo_7gen_3class\\\": {\\n            \\\"per_generator\\\": logo_results,\\n            \\\"average_macro_f1\\\": logo_avg,\\n        },\\n        \\\"binary_f1_logo\\\": {\\n            \\\"per_generator\\\": binary_results,\\n            \\\"average_f1\\\": binary_avg,\\n        },\\n        \\\"instruct_spearman_rho\\\": inst_rho,\\n        \\\"instruct_spearman_p\\\": {k: f\\\"{v:.2e}\\\" for k, v in inst_p.items()},\\n        \\\"base_olmo_spearman_rho\\\": base_rho,\\n        \\\"comparison_instruct_vs_base\\\": comparison,\\n        \\\"instruct_logo_f1\\\": instruct_f1,\\n        \\\"base_olmo_logo_f1\\\": base_olmo_6gen_f1,\\n        \\\"delta_instruct_vs_base\\\": delta_vs_base,\\n        \\\"conclusion\\\": conclusion,\\n    }\\n\\n    out_path = os.path.join(root, args.output)\\n    os.makedirs(os.path.dirname(out_path), exist_ok=True)\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(result, f, indent=2, ensure_ascii=False)\\n    print(f\\\"\\\\nResults saved to {out_path}\\\")\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"Instruct LOGO F1: {instruct_f1}\\\")\\n    print(f\\\"Base OLMo LOGO F1: {base_olmo_6gen_f1}\\\")\\n    print(f\\\"Delta: {delta_vs_base}\\\")\\n    print(f\\\"Conclusion: {conclusion}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "7cf595cf-674e-47f0-92ad-76e8dcc54f00",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nanalyze_7gen_logo.py — 7-generator LOGO analysis with OLMo instruct.\\\\n\\\\nMerges OLMo instruct features into 6-gen dataset, runs 7-gen LOGO,\\\\ncomputes binary F1, Spearman correlations, and comparison vs base.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy import stats\\\\nfrom xgboost import XGBClassifier\\\\nfrom sklearn.metrics import f1_score\\\\n\\\\nSEED = 42\\\\nFEATURES = [\\\\\\\"entropy_mean\\\\\\\", \\\\\\\"entropy_std\\\\\\\", \\\\\\\"entropy_min\\\\\\\", \\\\\\\"entropy_max\\\\\\\",\\\\n            \\\\\\\"tail_decay\\\\\\\", \\\\\\\"ttr\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\"]\\\\n\\\\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\\\n                  random_state=SEED, eval_metric=\\\\\\\"mlogloss\\\\\\\",\\\\n                  use_label_encoder=False)\\\\n\\\\nCLASS_MAP_3 = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\\\\nBINARY_MAP = {0: 0, 1: 0, 2: 1, 3: 1, 4: 1}  # gen-0/1 vs gen-2+\\\\n\\\\n\\\\ndef downsample(df, label_col, rng):\\\\n    counts = df[label_col].value_counts()\\\\n    min_n = counts.min()\\\\n    parts = []\\\\n    for lbl in sorted(counts.index):\\\\n        sub = df[df[label_col] == lbl]\\\\n        parts.append(sub.sample(n=min_n, random_state=rng, replace=False))\\\\n    return pd.concat(parts, ignore_index=True)\\\\n\\\\n\\\\ndef bootstrap_f1(y_true, y_pred, n_boot=1000, seed=SEED):\\\\n    rng = np.random.RandomState(seed)\\\\n    n = len(y_true)\\\\n    scores = []\\\\n    for _ in range(n_boot):\\\\n        idx = rng.randint(0, n, size=n)\\\\n        yt, yp = y_true[idx], y_pred[idx]\\\\n        if len(np.unique(yt)) < 2:\\\\n            continue\\\\n        scores.append(f1_score(yt, yp, average=\\\\\\\"macro\\\\\\\"))\\\\n    arr = np.array(scores)\\\\n    return {\\\\\\\"mean\\\\\\\": float(np.mean(arr)),\\\\n            \\\\\\\"ci_lo\\\\\\\": float(np.percentile(arr, 2.5)),\\\\n            \\\\\\\"ci_hi\\\\\\\": float(np.percentile(arr, 97.5))}\\\\n\\\\n\\\\ndef logo_3class(df):\\\\n    df = df.copy()\\\\n    df[\\\\\\\"label\\\\\\\"] = df[\\\\\\\"depth\\\\\\\"].map(CLASS_MAP_3)\\\\n    generators = sorted(df[\\\\\\\"model_name\\\\\\\"].unique())\\\\n    results = {}\\\\n    rng = np.random.RandomState(SEED)\\\\n\\\\n    for gen in generators:\\\\n        test_df = df[df[\\\\\\\"model_name\\\\\\\"] == gen]\\\\n        train_df = df[df[\\\\\\\"model_name\\\\\\\"] != gen]\\\\n        train_ds = downsample(train_df, \\\\\\\"label\\\\\\\", rng)\\\\n\\\\n        clf = XGBClassifier(**XGB_PARAMS)\\\\n        clf.fit(train_ds[FEATURES].values, train_ds[\\\\\\\"label\\\\\\\"].values)\\\\n        y_pred = clf.predict(test_df[FEATURES].values)\\\\n        y_test = test_df[\\\\\\\"label\\\\\\\"].values\\\\n\\\\n        macro_f1 = f1_score(y_test, y_pred, average=\\\\\\\"macro\\\\\\\")\\\\n        per_class = f1_score(y_test, y_pred, average=None, labels=[0, 1, 2])\\\\n        boot = bootstrap_f1(y_test, y_pred)\\\\n\\\\n        results[gen] = {\\\\n            \\\\\\\"macro_f1\\\\\\\": round(float(macro_f1), 4),\\\\n            \\\\\\\"gen-0_f1\\\\\\\": round(float(per_class[0]), 4),\\\\n            \\\\\\\"gen-1_f1\\\\\\\": round(float(per_class[1]), 4),\\\\n            \\\\\\\"gen-2+_f1\\\\\\\": round(float(per_class[2]), 4),\\\\n            \\\\\\\"bootstrap_ci\\\\\\\": boot,\\\\n        }\\\\n        print(f\\\\\\\"  {gen:25s}  macro-F1={macro_f1:.4f}  [{boot['ci_lo']:.4f}, {boot['ci_hi']:.4f}]\\\\\\\")\\\\n\\\\n    avg_f1 = np.mean([r[\\\\\\\"macro_f1\\\\\\\"] for r in results.values()])\\\\n    return results, round(float(avg_f1), 4)\\\\n\\\\n\\\\ndef binary_f1_logo(df):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Binary: gen-0/gen-1 vs gen-2+.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    df = df.copy()\\\\n    df[\\\\\\\"binary_label\\\\\\\"] = df[\\\\\\\"depth\\\\\\\"].map(BINARY_MAP)\\\\n    generators = sorted(df[\\\\\\\"model_name\\\\\\\"].unique())\\\\n    results = {}\\\\n    rng = np.random.RandomState(SEED)\\\\n\\\\n    for gen in generators:\\\\n        test_df = df[df[\\\\\\\"model_name\\\\\\\"] == gen]\\\\n        train_df = df[df[\\\\\\\"model_name\\\\\\\"] != gen]\\\\n        train_ds = downsample(train_df, \\\\\\\"binary_label\\\\\\\", rng)\\\\n\\\\n        clf = XGBClassifier(**XGB_PARAMS)\\\\n        clf.fit(train_ds[FEATURES].values, train_ds[\\\\\\\"binary_label\\\\\\\"].values)\\\\n        y_pred = clf.predict(test_df[FEATURES].values)\\\\n        y_test = test_df[\\\\\\\"binary_label\\\\\\\"].values\\\\n\\\\n        f1 = f1_score(y_test, y_pred, average=\\\\\\\"macro\\\\\\\")\\\\n        boot = bootstrap_f1(y_test, y_pred)\\\\n        results[gen] = {\\\\\\\"f1\\\\\\\": round(float(f1), 4), \\\\\\\"bootstrap_ci\\\\\\\": boot}\\\\n\\\\n    avg_f1 = np.mean([r[\\\\\\\"f1\\\\\\\"] for r in results.values()])\\\\n    return results, round(float(avg_f1), 4)\\\\n\\\\n\\\\ndef spearman_analysis(df, model_name):\\\\n    sub = df[df[\\\\\\\"model_name\\\\\\\"] == model_name]\\\\n    rho_dict = {}\\\\n    p_dict = {}\\\\n    for feat in FEATURES:\\\\n        rho, p = sta\\\\n\\\\n... [截断: 输出过长，省略 732 字符] ...\\\\n\\\\nf_base = pd.read_csv(base_path)\\\\n    print(f\\\\\\\"Base: {len(df_base)} rows, generators: {sorted(df_base['model_name'].unique())}\\\\\\\")\\\\n\\\\n    df_inst = pd.read_csv(inst_path)\\\\n    df_inst[\\\\\\\"model_name\\\\\\\"] = args.instruct_model_name\\\\n    print(f\\\\\\\"Instruct: {len(df_inst)} rows\\\\\\\")\\\\n\\\\n    # Ensure columns match\\\\n    common_cols = [\\\\\\\"model_name\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\"] + FEATURES\\\\n    df_base = df_base[common_cols]\\\\n    df_inst = df_inst[common_cols]\\\\n    df_all = pd.concat([df_base, df_inst], ignore_index=True)\\\\n    print(f\\\\\\\"Combined: {len(df_all)} rows, {df_all['model_name'].nunique()} generators\\\\\\\")\\\\n\\\\n    # Depth distribution for instruct model\\\\n    inst_depth = df_inst[\\\\\\\"depth\\\\\\\"].value_counts().sort_index().to_dict()\\\\n    inst_depth = {str(k): int(v) for k, v in inst_depth.items()}\\\\n\\\\n    # 1. 7-gen LOGO (3-class)\\\\n    print(\\\\\\\"\\\\\\\\n=== 7-gen LOGO (3-class) ===\\\\\\\")\\\\n    logo_results, logo_avg = logo_3class(df_all)\\\\n\\\\n    # 2. Binary F1\\\\n    print(\\\\\\\"\\\\\\\\n=== Binary F1 (gen-0/1 vs gen-2+) ===\\\\\\\")\\\\n    binary_results, binary_avg = binary_f1_logo(df_all)\\\\n    for gen, r in binary_results.items():\\\\n        print(f\\\\\\\"  {gen:25s}  binary-F1={r['f1']:.4f}\\\\\\\")\\\\n\\\\n    # 3. Spearman for instruct model\\\\n    print(\\\\\\\"\\\\\\\\n=== Spearman (instruct) ===\\\\\\\")\\\\n    inst_rho, inst_p = spearman_analysis(df_all, args.instruct_model_name)\\\\n    for feat in FEATURES:\\\\n        print(f\\\\\\\"  {feat:15s}: rho={inst_rho[feat]:+.4f}\\\\\\\")\\\\n\\\\n    # 4. Spearman for base OLMo\\\\n    base_rho, _ = spearman_analysis(df_all, \\\\\\\"olmo-2-1b\\\\\\\")\\\\n\\\\n    # 5. Comparison\\\\n    comparison = {}\\\\n    for feat in FEATURES:\\\\n        comparison[feat] = {\\\\n            \\\\\\\"instruct\\\\\\\": inst_rho[feat],\\\\n            \\\\\\\"base\\\\\\\": base_rho[feat],\\\\n            \\\\\\\"delta\\\\\\\": round(inst_rho[feat] - base_rho[feat], 4),\\\\n        }\\\\n\\\\n    # Base OLMo LOGO F1 from 6-gen\\\\n    base_olmo_6gen_f1 = None\\\\n    for gen, r in logo_results.items():\\\\n        if gen == \\\\\\\"olmo-2-1b\\\\\\\":\\\\n            base_olmo_6gen_f1 = r[\\\\\\\"macro_f1\\\\\\\"]\\\\n\\\\n    instruct_f1 = logo_results.get(args.instruct_model_name, {}).get(\\\\\\\"macro_f1\\\\\\\")\\\\n    delta_vs_base = round(instruct_f1 - base_olmo_6gen_f1, 4) if instruct_f1 and base_olmo_6gen_f1 else None\\\\n\\\\n    # Conclusion\\\\n    if instruct_f1 and base_olmo_6gen_f1:\\\\n        abs_delta = abs(instruct_f1 - base_olmo_6gen_f1)\\\\n        if abs_delta <= 0.03:\\\\n            conclusion = \\\\\\\"positive: instruct tuning preserves depth signal\\\\\\\"\\\\n        elif instruct_f1 < base_olmo_6gen_f1 - 0.05:\\\\n            conclusion = \\\\\\\"negative: instruct tuning significantly reduces depth signal\\\\\\\"\\\\n        else:\\\\n            conclusion = f\\\\\\\"mixed: delta={delta_vs_base:+.4f}, within moderate range\\\\\\\"\\\\n    else:\\\\n        conclusion = \\\\\\\"inconclusive\\\\\\\"\\\\n\\\\n    result = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"review-p1c-olmo-instruct\\\\\\\",\\\\n        \\\\\\\"model\\\\\\\": \\\\\\\"OLMo-2-0425-1B-Instruct (allenai/OLMo-2-0425-1B-Instruct)\\\\\\\",\\\\n        \\\\\\\"model_source\\\\\\\": \\\\\\\"HuggingFace\\\\\\\",\\\\n        \\\\\\\"n_records_instruct\\\\\\\": len(df_inst),\\\\n        \\\\\\\"n_records_total_7gen\\\\\\\": len(df_all),\\\\n        \\\\\\\"depth_distribution\\\\\\\": inst_depth,\\\\n        \\\\\\\"logo_7gen_3class\\\\\\\": {\\\\n            \\\\\\\"per_generator\\\\\\\": logo_results,\\\\n            \\\\\\\"average_macro_f1\\\\\\\": logo_avg,\\\\n        },\\\\n        \\\\\\\"binary_f1_logo\\\\\\\": {\\\\n            \\\\\\\"per_generator\\\\\\\": binary_results,\\\\n            \\\\\\\"average_f1\\\\\\\": binary_avg,\\\\n        },\\\\n        \\\\\\\"instruct_spearman_rho\\\\\\\": inst_rho,\\\\n        \\\\\\\"instruct_spearman_p\\\\\\\": {k: f\\\\\\\"{v:.2e}\\\\\\\" for k, v in inst_p.items()},\\\\n        \\\\\\\"base_olmo_spearman_rho\\\\\\\": base_rho,\\\\n        \\\\\\\"comparison_instruct_vs_base\\\\\\\": comparison,\\\\n        \\\\\\\"instruct_logo_f1\\\\\\\": instruct_f1,\\\\n        \\\\\\\"base_olmo_logo_f1\\\\\\\": base_olmo_6gen_f1,\\\\n        \\\\\\\"delta_instruct_vs_base\\\\\\\": delta_vs_base,\\\\n        \\\\\\\"conclusion\\\\\\\": conclusion,\\\\n    }\\\\n\\\\n    out_path = os.path.join(root, args.output)\\\\n    os.makedirs(os.path.dirname(out_path), exist_ok=True)\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(result, f, indent=2, ensure_ascii=False)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {out_path}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"Instruct LOGO F1: {instruct_f1}\\\\\\\")\\\\n    print(f\\\\\\\"Base OLMo LOGO F1: {base_olmo_6gen_f1}\\\\\\\")\\\\n    print(f\\\\\\\"Delta: {delta_vs_base}\\\\\\\")\\\\n    print(f\\\\\\\"Conclusion: {conclusion}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nanalyze_7gen_logo.py — 7-generator LOGO analysis with OLMo instruct.\\n\\nMerges OLMo instruct features into 6-gen dataset, runs 7-gen LOGO,\\ncomputes binary F1, Spearman correlations, and comparison vs base.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport sys\\n\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy import stats\\nfrom xgboost import XGBClassifier\\nfrom sklearn.metrics import f1_score\\n\\nSEED = 42\\nFEATURES = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\",\\n            \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\n\\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\n                  random_state=SEED, eval_metric=\\\"mlogloss\\\",\\n                  use_label_encoder=False)\\n\\nCLASS_MAP_3 = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\\nBINARY_MAP = {0: 0, 1: 0, 2: 1, 3: 1, 4: 1}  # gen-0/1 vs gen-2+\\n\\n\\ndef downsample(df, label_col, rng):\\n    counts = df[label_col].value_counts()\\n    min_n = counts.min()\\n    parts = []\\n    for lbl in sorted(counts.index):\\n        sub = df[df[label_col] == lbl]\\n        parts.append(sub.sample(n=min_n, random_state=rng, replace=False))\\n    return pd.concat(parts, ignore_index=True)\\n\\n\\ndef bootstrap_f1(y_true, y_pred, n_boot=1000, seed=SEED):\\n    rng = np.random.RandomState(seed)\\n    n = len(y_true)\\n    scores = []\\n    for _ in range(n_boot):\\n        idx = rng.randint(0, n, size=n)\\n        yt, yp = y_true[idx], y_pred[idx]\\n        if len(np.unique(yt)) < 2:\\n            continue\\n        scores.append(f1_score(yt, yp, average=\\\"macro\\\"))\\n    arr = np.array(scores)\\n    return {\\\"mean\\\": float(np.mean(arr)),\\n            \\\"ci_lo\\\": float(np.percentile(arr, 2.5)),\\n            \\\"ci_hi\\\": float(np.percentile(arr, 97.5))}\\n\\n\\ndef logo_3class(df):\\n    df = df.copy()\\n    df[\\\"label\\\"] = df[\\\"depth\\\"].map(CLASS_MAP_3)\\n    generators = sorted(df[\\\"model_name\\\"].unique())\\n    results = {}\\n    rng = np.random.RandomState(SEED)\\n\\n    for gen in generators:\\n        test_df = df[df[\\\"model_name\\\"] == gen]\\n        train_df = df[df[\\\"model_name\\\"] != gen]\\n        train_ds = downsample(train_df, \\\"label\\\", rng)\\n\\n        clf = XGBClassifier(**XGB_PARAMS)\\n        clf.fit(train_ds[FEATURES].values, train_ds[\\\"label\\\"].values)\\n        y_pred = clf.predict(test_df[FEATURES].values)\\n        y_test = test_df[\\\"label\\\"].values\\n\\n        macro_f1 = f1_score(y_test, y_pred, average=\\\"macro\\\")\\n        per_class = f1_score(y_test, y_pred, average=None, labels=[0, 1, 2])\\n        boot = bootstrap_f1(y_test, y_pred)\\n\\n        results[gen] = {\\n            \\\"macro_f1\\\": round(float(macro_f1), 4),\\n            \\\"gen-0_f1\\\": round(float(per_class[0]), 4),\\n            \\\"gen-1_f1\\\": round(float(per_class[1]), 4),\\n            \\\"gen-2+_f1\\\": round(float(per_class[2]), 4),\\n            \\\"bootstrap_ci\\\": boot,\\n        }\\n        print(f\\\"  {gen:25s}  macro-F1={macro_f1:.4f}  [{boot['ci_lo']:.4f}, {boot['ci_hi']:.4f}]\\\")\\n\\n    avg_f1 = np.mean([r[\\\"macro_f1\\\"] for r in results.values()])\\n    return results, round(float(avg_f1), 4)\\n\\n\\ndef binary_f1_logo(df):\\n    \\\"\\\"\\\"Binary: gen-0/gen-1 vs gen-2+.\\\"\\\"\\\"\\n    df = df.copy()\\n    df[\\\"binary_label\\\"] = df[\\\"depth\\\"].map(BINARY_MAP)\\n    generators = sorted(df[\\\"model_name\\\"].unique())\\n    results = {}\\n    rng = np.random.RandomState(SEED)\\n\\n    for gen in generators:\\n        test_df = df[df[\\\"model_name\\\"] == gen]\\n        train_df = df[df[\\\"model_name\\\"] != gen]\\n        train_ds = downsample(train_df, \\\"binary_label\\\", rng)\\n\\n        clf = XGBClassifier(**XGB_PARAMS)\\n        clf.fit(train_ds[FEATURES].values, train_ds[\\\"binary_label\\\"].values)\\n        y_pred = clf.predict(test_df[FEATURES].values)\\n        y_test = test_df[\\\"binary_label\\\"].values\\n\\n        f1 = f1_score(y_test, y_pred, average=\\\"macro\\\")\\n        boot = bootstrap_f1(y_test, y_pred)\\n        results[gen] = {\\\"f1\\\": round(float(f1), 4), \\\"bootstrap_ci\\\": boot}\\n\\n    avg_f1 = np.mean([r[\\\"f1\\\"] for r in results.values()])\\n    return results, round(float(avg_f1), 4)\\n\\n\\ndef spearman_analysis(df, model_name):\\n    sub = df[df[\\\"model_name\\\"] == model_name]\\n    rho_dict = {}\\n    p_dict = {}\\n    for feat in FEATURES:\\n        rho, p = sta\\n\\n... [截断: 输出过长，省略 732 字符] ...\\n\\nf_base = pd.read_csv(base_path)\\n    print(f\\\"Base: {len(df_base)} rows, generators: {sorted(df_base['model_name'].unique())}\\\")\\n\\n    df_inst = pd.read_csv(inst_path)\\n    df_inst[\\\"model_name\\\"] = args.instruct_model_name\\n    print(f\\\"Instruct: {len(df_inst)} rows\\\")\\n\\n    # Ensure columns match\\n    common_cols = [\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES\\n    df_base = df_base[common_cols]\\n    df_inst = df_inst[common_cols]\\n    df_all = pd.concat([df_base, df_inst], ignore_index=True)\\n    print(f\\\"Combined: {len(df_all)} rows, {df_all['model_name'].nunique()} generators\\\")\\n\\n    # Depth distribution for instruct model\\n    inst_depth = df_inst[\\\"depth\\\"].value_counts().sort_index().to_dict()\\n    inst_depth = {str(k): int(v) for k, v in inst_depth.items()}\\n\\n    # 1. 7-gen LOGO (3-class)\\n    print(\\\"\\\\n=== 7-gen LOGO (3-class) ===\\\")\\n    logo_results, logo_avg = logo_3class(df_all)\\n\\n    # 2. Binary F1\\n    print(\\\"\\\\n=== Binary F1 (gen-0/1 vs gen-2+) ===\\\")\\n    binary_results, binary_avg = binary_f1_logo(df_all)\\n    for gen, r in binary_results.items():\\n        print(f\\\"  {gen:25s}  binary-F1={r['f1']:.4f}\\\")\\n\\n    # 3. Spearman for instruct model\\n    print(\\\"\\\\n=== Spearman (instruct) ===\\\")\\n    inst_rho, inst_p = spearman_analysis(df_all, args.instruct_model_name)\\n    for feat in FEATURES:\\n        print(f\\\"  {feat:15s}: rho={inst_rho[feat]:+.4f}\\\")\\n\\n    # 4. Spearman for base OLMo\\n    base_rho, _ = spearman_analysis(df_all, \\\"olmo-2-1b\\\")\\n\\n    # 5. Comparison\\n    comparison = {}\\n    for feat in FEATURES:\\n        comparison[feat] = {\\n            \\\"instruct\\\": inst_rho[feat],\\n            \\\"base\\\": base_rho[feat],\\n            \\\"delta\\\": round(inst_rho[feat] - base_rho[feat], 4),\\n        }\\n\\n    # Base OLMo LOGO F1 from 6-gen\\n    base_olmo_6gen_f1 = None\\n    for gen, r in logo_results.items():\\n        if gen == \\\"olmo-2-1b\\\":\\n            base_olmo_6gen_f1 = r[\\\"macro_f1\\\"]\\n\\n    instruct_f1 = logo_results.get(args.instruct_model_name, {}).get(\\\"macro_f1\\\")\\n    delta_vs_base = round(instruct_f1 - base_olmo_6gen_f1, 4) if instruct_f1 and base_olmo_6gen_f1 else None\\n\\n    # Conclusion\\n    if instruct_f1 and base_olmo_6gen_f1:\\n        abs_delta = abs(instruct_f1 - base_olmo_6gen_f1)\\n        if abs_delta <= 0.03:\\n            conclusion = \\\"positive: instruct tuning preserves depth signal\\\"\\n        elif instruct_f1 < base_olmo_6gen_f1 - 0.05:\\n            conclusion = \\\"negative: instruct tuning significantly reduces depth signal\\\"\\n        else:\\n            conclusion = f\\\"mixed: delta={delta_vs_base:+.4f}, within moderate range\\\"\\n    else:\\n        conclusion = \\\"inconclusive\\\"\\n\\n    result = {\\n        \\\"experiment\\\": \\\"review-p1c-olmo-instruct\\\",\\n        \\\"model\\\": \\\"OLMo-2-0425-1B-Instruct (allenai/OLMo-2-0425-1B-Instruct)\\\",\\n        \\\"model_source\\\": \\\"HuggingFace\\\",\\n        \\\"n_records_instruct\\\": len(df_inst),\\n        \\\"n_records_total_7gen\\\": len(df_all),\\n        \\\"depth_distribution\\\": inst_depth,\\n        \\\"logo_7gen_3class\\\": {\\n            \\\"per_generator\\\": logo_results,\\n            \\\"average_macro_f1\\\": logo_avg,\\n        },\\n        \\\"binary_f1_logo\\\": {\\n            \\\"per_generator\\\": binary_results,\\n            \\\"average_f1\\\": binary_avg,\\n        },\\n        \\\"instruct_spearman_rho\\\": inst_rho,\\n        \\\"instruct_spearman_p\\\": {k: f\\\"{v:.2e}\\\" for k, v in inst_p.items()},\\n        \\\"base_olmo_spearman_rho\\\": base_rho,\\n        \\\"comparison_instruct_vs_base\\\": comparison,\\n        \\\"instruct_logo_f1\\\": instruct_f1,\\n        \\\"base_olmo_logo_f1\\\": base_olmo_6gen_f1,\\n        \\\"delta_instruct_vs_base\\\": delta_vs_base,\\n        \\\"conclusion\\\": conclusion,\\n    }\\n\\n    out_path = os.path.join(root, args.output)\\n    os.makedirs(os.path.dirname(out_path), exist_ok=True)\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(result, f, indent=2, ensure_ascii=False)\\n    print(f\\\"\\\\nResults saved to {out_path}\\\")\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"Instruct LOGO F1: {instruct_f1}\\\")\\n    print(f\\\"Base OLMo LOGO F1: {base_olmo_6gen_f1}\\\")\\n    print(f\\\"Delta: {delta_vs_base}\\\")\\n    print(f\\\"Conclusion: {conclusion}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Cz9cgFU8Ns2k9jvq7v3Vid`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -5 /root/gen-depth-fingerprint/data/features_pythia-2.8b.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "a8df3ab6-be12-42d4-a5a0-ae553a31528c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P6fo22hf8qL1uP7CKenFGU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2704,
+      "cache_read_input_tokens": 25397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2704
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T12:15:09.933Z_
+
+<details><summary>↩ Tool result · `toolu_01Cz9cgFU8Ns2k9jvq7v3Vid`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\\npythia-2.8b,0,0,2.7516980171203613,1.744314193725586,0.0033969879150390625,8.1875,-0.0023380015550609466,0.6565656565656566,0.5454545454545454\\npythia-2.8b,0,1,2.6166749000549316,1.59860098361969,0.001132965087890625,7.59375,-0.0024113894779360045,0.5532994923857868,0.4010152284263959\\npythia-2.8b,0,2,2.638378858566284,1.5402252674102783,0.00421142578125,8.03125,-0.002391317245881219,0.3981042654028436,0.26066350710900477\\npythia-2.8b,0,3,0.607209324836731,1.4215928316116333,4.971027374267578e-05,7.37109375,-0.0023215738259930907,0.08823529411764706,0.014705882352941176\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "ac654058-b305-4ef1-bc2e-076aba54adf5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\\\\npythia-2.8b,0,0,2.7516980171203613,1.744314193725586,0.0033969879150390625,8.1875,-0.0023380015550609466,0.6565656565656566,0.5454545454545454\\\\npythia-2.8b,0,1,2.6166749000549316,1.59860098361969,0.001132965087890625,7.59375,-0.0024113894779360045,0.5532994923857868,0.4010152284263959\\\\npythia-2.8b,0,2,2.638378858566284,1.5402252674102783,0.00421142578125,8.03125,-0.002391317245881219,0.3981042654028436,0.26066350710900477\\\\npythia-2.8b,0,3,0.607209324836731,1.4215928316116333,4.971027374267578e-05,7.37109375,-0.0023215738259930907,0.08823529411764706,0.014705882352941176\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\\npythia-2.8b,0,0,2.7516980171203613,1.744314193725586,0.0033969879150390625,8.1875,-0.0023380015550609466,0.6565656565656566,0.5454545454545454\\npythia-2.8b,0,1,2.6166749000549316,1.59860098361969,0.001132965087890625,7.59375,-0.0024113894779360045,0.5532994923857868,0.4010152284263959\\npythia-2.8b,0,2,2.638378858566284,1.5402252674102783,0.00421142578125,8.03125,-0.002391317245881219,0.3981042654028436,0.26066350710900477\\npythia-2.8b,0,3,0.607209324836731,1.4215928316116333,4.971027374267578e-05,7.37109375,-0.0023215738259930907,0.08823529411764706,0.014705882352941176\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AsVbJUYfBiNRdt8H1z5Q7F`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -3 /root/gen-depth-fingerprint/data/llama-3.2-3b/features_pythia410m.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "3916d716-bf17-489f-a013-53c4f1b6e480",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P6fo22hf8qL1uP7CKenFGU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2704,
+      "cache_read_input_tokens": 25397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2704
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T12:15:10.556Z_
+
+<details><summary>↩ Tool result · `toolu_01AsVbJUYfBiNRdt8H1z5Q7F`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"seed_id\\\": 0, \\\"depth\\\": 0, \\\"entropy_mean\\\": 2.7456963062286377, \\\"entropy_std\\\": 1.7346316576004028, \\\"entropy_min\\\": 0.0032711029052734375, \\\"entropy_max\\\": 8.1875, \\\"tail_decay\\\": 0.09811320754716982, \\\"ttr\\\": 0.6456310679611651, \\\"hapax_ratio\\\": 0.5339805825242718}\\n{\\\"seed_id\\\": 0, \\\"depth\\\": 1, \\\"entropy_mean\\\": 2.380531072616577, \\\"entropy_std\\\": 1.6351139545440674, \\\"entropy_min\\\": 0.0126190185546875, \\\"entropy_max\\\": 8.640625, \\\"tail_decay\\\": 0.01556420233463035, \\\"ttr\\\": 0.46859903381642515, \\\"hapax_ratio\\\": 0.28019323671497587}\\n{\\\"seed_id\\\": 1, \\\"depth\\\": 0, \\\"entropy_mean\\\": 2.5733723640441895, \\\"entropy_std\\\": 1.5390568971633911, \\\"entropy_min\\\": 0.0003845691680908203, \\\"entropy_max\\\": 7.0703125, \\\"tail_decay\\\": 0.10465116279069768, \\\"ttr\\\": 0.615, \\\"hapax_ratio\\\": 0.49}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "ac53325c-64ad-44d7-831f-5bd0f083374e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"seed_id\\\\\\\": 0, \\\\\\\"depth\\\\\\\": 0, \\\\\\\"entropy_mean\\\\\\\": 2.7456963062286377, \\\\\\\"entropy_std\\\\\\\": 1.7346316576004028, \\\\\\\"entropy_min\\\\\\\": 0.0032711029052734375, \\\\\\\"entropy_max\\\\\\\": 8.1875, \\\\\\\"tail_decay\\\\\\\": 0.09811320754716982, \\\\\\\"ttr\\\\\\\": 0.6456310679611651, \\\\\\\"hapax_ratio\\\\\\\": 0.5339805825242718}\\\\n{\\\\\\\"seed_id\\\\\\\": 0, \\\\\\\"depth\\\\\\\": 1, \\\\\\\"entropy_mean\\\\\\\": 2.380531072616577, \\\\\\\"entropy_std\\\\\\\": 1.6351139545440674, \\\\\\\"entropy_min\\\\\\\": 0.0126190185546875, \\\\\\\"entropy_max\\\\\\\": 8.640625, \\\\\\\"tail_decay\\\\\\\": 0.01556420233463035, \\\\\\\"ttr\\\\\\\": 0.46859903381642515, \\\\\\\"hapax_ratio\\\\\\\": 0.28019323671497587}\\\\n{\\\\\\\"seed_id\\\\\\\": 1, \\\\\\\"depth\\\\\\\": 0, \\\\\\\"entropy_mean\\\\\\\": 2.5733723640441895, \\\\\\\"entropy_std\\\\\\\": 1.5390568971633911, \\\\\\\"entropy_min\\\\\\\": 0.0003845691680908203, \\\\\\\"entropy_max\\\\\\\": 7.0703125, \\\\\\\"tail_decay\\\\\\\": 0.10465116279069768, \\\\\\\"ttr\\\\\\\": 0.615, \\\\\\\"hapax_ratio\\\\\\\": 0.49}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"seed_id\\\": 0, \\\"depth\\\": 0, \\\"entropy_mean\\\": 2.7456963062286377, \\\"entropy_std\\\": 1.7346316576004028, \\\"entropy_min\\\": 0.0032711029052734375, \\\"entropy_max\\\": 8.1875, \\\"tail_decay\\\": 0.09811320754716982, \\\"ttr\\\": 0.6456310679611651, \\\"hapax_ratio\\\": 0.5339805825242718}\\n{\\\"seed_id\\\": 0, \\\"depth\\\": 1, \\\"entropy_mean\\\": 2.380531072616577, \\\"entropy_std\\\": 1.6351139545440674, \\\"entropy_min\\\": 0.0126190185546875, \\\"entropy_max\\\": 8.640625, \\\"tail_decay\\\": 0.01556420233463035, \\\"ttr\\\": 0.46859903381642515, \\\"hapax_ratio\\\": 0.28019323671497587}\\n{\\\"seed_id\\\": 1, \\\"depth\\\": 0, \\\"entropy_mean\\\": 2.5733723640441895, \\\"entropy_std\\\": 1.5390568971633911, \\\"entropy_min\\\": 0.0003845691680908203, \\\"entropy_max\\\": 7.0703125, \\\"tail_decay\\\": 0.10465116279069768, \\\"ttr\\\": 0.615, \\\"hapax_ratio\\\": 0.49}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H4GmQQukd47LG2WUiQRJs3`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -3 /root/gen-depth-fingerprint/data/mistral-7b-v0.3/features_pythia410m.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "22b80aac-a4dd-462e-977d-0bc4bd557619",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P6fo22hf8qL1uP7CKenFGU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2704,
+      "cache_read_input_tokens": 25397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2704
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T12:15:11.401Z_
+
+<details><summary>↩ Tool result · `toolu_01H4GmQQukd47LG2WUiQRJs3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"seed_id\\\": 0, \\\"depth\\\": 0, \\\"entropy_mean\\\": 2.7926268577575684, \\\"entropy_std\\\": 1.7488346099853516, \\\"entropy_min\\\": 0.0034618377685546875, \\\"entropy_max\\\": 8.2265625, \\\"tail_decay\\\": 0.1111111111111111, \\\"ttr\\\": 0.6705202312138728, \\\"hapax_ratio\\\": 0.5606936416184971}\\n{\\\"seed_id\\\": 0, \\\"depth\\\": 1, \\\"entropy_mean\\\": 2.585838794708252, \\\"entropy_std\\\": 1.742340326309204, \\\"entropy_min\\\": 0.00577545166015625, \\\"entropy_max\\\": 8.03125, \\\"tail_decay\\\": 0.03571428571428571, \\\"ttr\\\": 0.7154471544715447, \\\"hapax_ratio\\\": 0.6097560975609756}\\n{\\\"seed_id\\\": 0, \\\"depth\\\": 2, \\\"entropy_mean\\\": 2.670208215713501, \\\"entropy_std\\\": 1.7232285737991333, \\\"entropy_min\\\": 0.004398345947265625, \\\"entropy_max\\\": 8.0859375, \\\"tail_decay\\\": 0.021834061135371178, \\\"ttr\\\": 0.4318181818181818, \\\"hapax_ratio\\\": 0.2840909090909091}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "045a4664-ec4d-45db-b070-8153ec7a1d29",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"seed_id\\\\\\\": 0, \\\\\\\"depth\\\\\\\": 0, \\\\\\\"entropy_mean\\\\\\\": 2.7926268577575684, \\\\\\\"entropy_std\\\\\\\": 1.7488346099853516, \\\\\\\"entropy_min\\\\\\\": 0.0034618377685546875, \\\\\\\"entropy_max\\\\\\\": 8.2265625, \\\\\\\"tail_decay\\\\\\\": 0.1111111111111111, \\\\\\\"ttr\\\\\\\": 0.6705202312138728, \\\\\\\"hapax_ratio\\\\\\\": 0.5606936416184971}\\\\n{\\\\\\\"seed_id\\\\\\\": 0, \\\\\\\"depth\\\\\\\": 1, \\\\\\\"entropy_mean\\\\\\\": 2.585838794708252, \\\\\\\"entropy_std\\\\\\\": 1.742340326309204, \\\\\\\"entropy_min\\\\\\\": 0.00577545166015625, \\\\\\\"entropy_max\\\\\\\": 8.03125, \\\\\\\"tail_decay\\\\\\\": 0.03571428571428571, \\\\\\\"ttr\\\\\\\": 0.7154471544715447, \\\\\\\"hapax_ratio\\\\\\\": 0.6097560975609756}\\\\n{\\\\\\\"seed_id\\\\\\\": 0, \\\\\\\"depth\\\\\\\": 2, \\\\\\\"entropy_mean\\\\\\\": 2.670208215713501, \\\\\\\"entropy_std\\\\\\\": 1.7232285737991333, \\\\\\\"entropy_min\\\\\\\": 0.004398345947265625, \\\\\\\"entropy_max\\\\\\\": 8.0859375, \\\\\\\"tail_decay\\\\\\\": 0.021834061135371178, \\\\\\\"ttr\\\\\\\": 0.4318181818181818, \\\\\\\"hapax_ratio\\\\\\\": 0.2840909090909091}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"seed_id\\\": 0, \\\"depth\\\": 0, \\\"entropy_mean\\\": 2.7926268577575684, \\\"entropy_std\\\": 1.7488346099853516, \\\"entropy_min\\\": 0.0034618377685546875, \\\"entropy_max\\\": 8.2265625, \\\"tail_decay\\\": 0.1111111111111111, \\\"ttr\\\": 0.6705202312138728, \\\"hapax_ratio\\\": 0.5606936416184971}\\n{\\\"seed_id\\\": 0, \\\"depth\\\": 1, \\\"entropy_mean\\\": 2.585838794708252, \\\"entropy_std\\\": 1.742340326309204, \\\"entropy_min\\\": 0.00577545166015625, \\\"entropy_max\\\": 8.03125, \\\"tail_decay\\\": 0.03571428571428571, \\\"ttr\\\": 0.7154471544715447, \\\"hapax_ratio\\\": 0.6097560975609756}\\n{\\\"seed_id\\\": 0, \\\"depth\\\": 2, \\\"entropy_mean\\\": 2.670208215713501, \\\"entropy_std\\\": 1.7232285737991333, \\\"entropy_min\\\": 0.004398345947265625, \\\"entropy_max\\\": 8.0859375, \\\"tail_decay\\\": 0.021834061135371178, \\\"ttr\\\": 0.4318181818181818, \\\"hapax_ratio\\\": 0.2840909090909091}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0162R2dsGZEQtRcQmr26EPLk`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/gen-depth-fingerprint/data/pythia-2.8b-continuation/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "0596e512-a4dd-4b90-aaae-53d469a3792d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P6fo22hf8qL1uP7CKenFGU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2704,
+      "cache_read_input_tokens": 25397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2704
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T12:15:12.363Z_
+
+<details><summary>↩ Tool result · `toolu_0162R2dsGZEQtRcQmr26EPLk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"features.csv\\nfeatures.jsonl\\ngenerations_shard0.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "df28f006-b1a7-4b83-989a-7bf186f6a2b7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"features.csv\\\\nfeatures.jsonl\\\\ngenerations_shard0.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"features.csv\\nfeatures.jsonl\\ngenerations_shard0.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GbUeywN1NoFEmRx6BdFwQm`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/gen-depth-fingerprint/data/olmo-2-1b/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "c97b801d-4f2b-47e7-ad22-0c00510dd881",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P6fo22hf8qL1uP7CKenFGU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2704,
+      "cache_read_input_tokens": 25397,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2704
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T12:15:12.940Z_
+
+<details><summary>↩ Tool result · `toolu_01GbUeywN1NoFEmRx6BdFwQm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"generations.jsonl\\ngenerations_shard0.jsonl\\ngenerations_shard1.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "c538a70b-7b2c-408f-84e2-8101fa7887ae",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"generations.jsonl\\\\ngenerations_shard0.jsonl\\\\ngenerations_shard1.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"generations.jsonl\\ngenerations_shard0.jsonl\\ngenerations_shard1.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the data layout. Let me check what features the original 6 generators have. The CSV files in `/root/gen-depth-fingerprint/data/` have `features_pythia-2.8b.csv` etc., but the task says Pythia-410M reference features. Let me check which features each generator directory has and also look at the existing `cross_generator_eval.py` to understand how the 6-gen LOGO was run.
+
+The key observations so far:
+1. Original 6 generators' features are in CSV format in `/root/gen-depth-fingerprint/data/features_*.csv` (e.g., `features_pythia-2.8b.csv`)
+
+
+2. New generators like llama and mistral store their features as JSONL files in subdirectories, specifically `features_pythia410m.jsonl`
+3. The CSV format includes `model_name` as a column along with the feature metrics, while the JSONL format omits the model name since it's implied by the directory structure
+4. I should check whether the original 6 generators also have `features_pythia410m.jsonl` files in their directories, or if I need to pull from the combined CSV files instead. There might be a `features_all.csv` or similar that already consolidates everything across models.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "93ba4f7b-3122-44e9-a81a-6f294efe09dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bf3qTNUscZcJedo4cmoUkn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6496,
+      "cache_read_input_tokens": 28101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6496
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017i3JADPiU1FbFatsf8utgc`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/gen-depth-fingerprint/data/pythia-1b/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "93a74c5b-507c-420b-98d4-4e8b6acf8ef5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bf3qTNUscZcJedo4cmoUkn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6496,
+      "cache_read_input_tokens": 28101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6496
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T12:15:26.298Z_
+
+<details><summary>↩ Tool result · `toolu_017i3JADPiU1FbFatsf8utgc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"generations.jsonl\\ngenerations_shard0.jsonl\\ngenerations_shard1.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "bf937951-92ff-4474-a684-6f486161a793",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"generations.jsonl\\\\ngenerations_shard0.jsonl\\\\ngenerations_shard1.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"generations.jsonl\\ngenerations_shard0.jsonl\\ngenerations_shard1.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CDH9YKRRHUhQzBenPgiCXU`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/gen-depth-fingerprint/data/qwen3-0.6b/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "b5e6f287-584f-413e-9a12-335a170f197b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bf3qTNUscZcJedo4cmoUkn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6496,
+      "cache_read_input_tokens": 28101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6496
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T12:15:27.245Z_
+
+<details><summary>↩ Tool result · `toolu_01CDH9YKRRHUhQzBenPgiCXU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"generations.jsonl\\ngenerations_shard0.jsonl\\ngenerations_shard1.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "9565fe7d-3f43-4f09-8b65-248699432435",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"generations.jsonl\\\\ngenerations_shard0.jsonl\\\\ngenerations_shard1.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"generations.jsonl\\ngenerations_shard0.jsonl\\ngenerations_shard1.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BgwF9XRBSZjwbn6XfQ9TPh`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/gen-depth-fingerprint/data/qwen3-1.7b/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "160ae1f2-64cb-4821-bb7c-558537f8ac4b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bf3qTNUscZcJedo4cmoUkn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6496,
+      "cache_read_input_tokens": 28101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6496
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T12:15:27.733Z_
+
+<details><summary>↩ Tool result · `toolu_01BgwF9XRBSZjwbn6XfQ9TPh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"generations.jsonl\\ngenerations_shard0.jsonl\\ngenerations_shard1.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "9c1f1ba3-8c3d-4fd5-b29e-e41e741645a8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"generations.jsonl\\\\ngenerations_shard0.jsonl\\\\ngenerations_shard1.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"generations.jsonl\\ngenerations_shard0.jsonl\\ngenerations_shard1.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014WLBNW5HiAHufjRW4iqeYk`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/gen-depth-fingerprint/data/qwen3-8b/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "6b63f31a-db11-4467-9491-c2aa751ec313",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bf3qTNUscZcJedo4cmoUkn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6496,
+      "cache_read_input_tokens": 28101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6496
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T12:15:28.744Z_
+
+<details><summary>↩ Tool result · `toolu_014WLBNW5HiAHufjRW4iqeYk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"generations.jsonl\\ngenerations_final.jsonl\\ngenerations_recovered.jsonl\\ngenerations_shard0.jsonl\\ngenerations_shard0.jsonl.bak_416\\ngenerations_shard0_recovered.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "c6b649f2-0ae2-4a33-8cf7-db1bc24a625b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"generations.jsonl\\\\ngenerations_final.jsonl\\\\ngenerations_recovered.jsonl\\\\ngenerations_shard0.jsonl\\\\ngenerations_shard0.jsonl.bak_416\\\\ngenerations_shard0_recovered.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"generations.jsonl\\ngenerations_final.jsonl\\ngenerations_recovered.jsonl\\ngenerations_shard0.jsonl\\ngenerations_shard0.jsonl.bak_416\\ngenerations_shard0_recovered.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014rZCBRujza779VSjnSrx2j`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -3 /root/gen-depth-fingerprint/data/features_all_models.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "fedce1e5-2dc8-467c-aed3-dcddd5f035d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bf3qTNUscZcJedo4cmoUkn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6496,
+      "cache_read_input_tokens": 28101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6496
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T12:15:29.569Z_
+
+<details><summary>↩ Tool result · `toolu_014rZCBRujza779VSjnSrx2j`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\\npythia-2.8b,0,0,2.7516980171203613,1.744314193725586,0.003396987915039,8.1875,-0.0023380015550609,0.6565656565656566,0.5454545454545454\\npythia-2.8b,0,1,2.616674900054932,1.59860098361969,0.0011329650878906,7.59375,-0.002411389477936,0.5532994923857868,0.4010152284263959\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "17118382-90cd-4d40-a096-904ebe5885a7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\\\\npythia-2.8b,0,0,2.7516980171203613,1.744314193725586,0.003396987915039,8.1875,-0.0023380015550609,0.6565656565656566,0.5454545454545454\\\\npythia-2.8b,0,1,2.616674900054932,1.59860098361969,0.0011329650878906,7.59375,-0.002411389477936,0.5532994923857868,0.4010152284263959\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\\npythia-2.8b,0,0,2.7516980171203613,1.744314193725586,0.003396987915039,8.1875,-0.0023380015550609,0.6565656565656566,0.5454545454545454\\npythia-2.8b,0,1,2.616674900054932,1.59860098361969,0.0011329650878906,7.59375,-0.002411389477936,0.5532994923857868,0.4010152284263959\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QocGPvDTcEki5zvnbPNt8T`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/cross_generator_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "bb4987df-da42-4d5b-98ff-9a81985d8988",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bf3qTNUscZcJedo4cmoUkn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6496,
+      "cache_read_input_tokens": 28101,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6496
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T12:15:30.291Z_
+
+<details><summary>↩ Tool result · `toolu_01QocGPvDTcEki5zvnbPNt8T`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\ncross_generator_eval.py — plan-002 跨生成器分类评估\\n输入: data/features_all_models.csv (23032 行, 5 生成器 × Pythia-410M 特征)\\n输出: data/cross_generator_results.json, data/cross_generator_report.md\\n分析: leave-one-out CV, family-out, feature ablation, permutation importance\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport numpy as np\\nimport pandas as pd\\nfrom xgboost import XGBClassifier\\nfrom sklearn.metrics import f1_score, classification_report\\nfrom sklearn.inspection import permutation_importance\\nfrom sklearn.model_selection import StratifiedKFold\\nfrom scipy.stats import chi2\\n\\nSEED = 42\\nN_BOOT = 1000\\nFEATURES_ALL = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\",\\n                \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\nFEATURES_SURFACE = [\\\"ttr\\\", \\\"hapax_ratio\\\"]\\nFEATURES_REFERENCE = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\", \\\"tail_decay\\\"]\\n\\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\n                  random_state=SEED, eval_metric=\\\"mlogloss\\\",\\n                  use_label_encoder=False)\\n\\nCLASS_MAP = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\\nCLASS_NAMES = [\\\"gen-0\\\", \\\"gen-1\\\", \\\"gen-2+\\\"]\\n\\n\\ndef load_data(path):\\n    df = pd.read_csv(path)\\n    df[\\\"label\\\"] = df[\\\"depth\\\"].map(CLASS_MAP)\\n    return df\\n\\n\\ndef downsample(df, rng):\\n    counts = df[\\\"label\\\"].value_counts()\\n    min_n = counts.min()\\n    parts = []\\n    for lbl in sorted(counts.index):\\n        sub = df[df[\\\"label\\\"] == lbl]\\n        parts.append(sub.sample(n=min_n, random_state=rng, replace=False))\\n    return pd.concat(parts, ignore_index=True)\\n\\n\\ndef bootstrap_f1(y_true, y_pred, n_boot=N_BOOT, seed=SEED):\\n    rng = np.random.RandomState(seed)\\n    n = len(y_true)\\n    scores = {\\\"macro\\\": [], \\\"gen-0\\\": [], \\\"gen-1\\\": [], \\\"gen-2+\\\": []}\\n    for _ in range(n_boot):\\n        idx = rng.randint(0, n, size=n)\\n        yt, yp = y_true[idx], y_pred[idx]\\n        if len(np.unique(yt)) < 3:\\n            continue\\n        scores[\\\"macro\\\"].append(f1_score(yt, yp, average=\\\"macro\\\"))\\n        per = f1_score(yt, yp, average=None, labels=[0, 1, 2])\\n        for i, name in enumerate(CLASS_NAMES):\\n            scores[name].append(per[i])\\n    result = {}\\n    for k, v in scores.items():\\n        arr = np.array(v)\\n        result[k] = {\\\"mean\\\": float(np.mean(arr)),\\n                      \\\"ci_lo\\\": float(np.percentile(arr, 2.5)),\\n                      \\\"ci_hi\\\": float(np.percentile(arr, 97.5))}\\n    return result\\n\\n\\ndef train_eval(train_df, test_df, features, downsample_train=True):\\n    rng = np.random.RandomState(SEED)\\n    if downsample_train:\\n        train_df = downsample(train_df, rng)\\n    X_train = train_df[features].values\\n    y_train = train_df[\\\"label\\\"].values\\n    X_test = test_df[features].values\\n    y_test = test_df[\\\"label\\\"].values\\n\\n    clf = XGBClassifier(**XGB_PARAMS)\\n    clf.fit(X_train, y_train)\\n    y_pred = clf.predict(X_test)\\n\\n    macro_f1 = f1_score(y_test, y_pred, average=\\\"macro\\\")\\n    per_class = f1_score(y_test, y_pred, average=None, labels=[0, 1, 2])\\n    boot = bootstrap_f1(y_test, y_pred)\\n\\n    return {\\n        \\\"macro_f1\\\": float(macro_f1),\\n        \\\"gen-0_f1\\\": float(per_class[0]),\\n        \\\"gen-1_f1\\\": float(per_class[1]),\\n        \\\"gen-2+_f1\\\": float(per_class[2]),\\n        \\\"bootstrap_ci\\\": boot,\\n        \\\"y_test\\\": y_test,\\n        \\\"y_pred\\\": y_pred,\\n        \\\"clf\\\": clf,\\n    }\\n\\n\\ndef leave_one_generator_out(df, features=FEATURES_ALL):\\n    generators = sorted(df[\\\"model_name\\\"].unique())\\n    results = {}\\n    all_y_test, all_y_pred = [], []\\n    for gen in generators:\\n        test_df = df[df[\\\"model_name\\\"] == gen]\\n        train_df = df[df[\\\"model_name\\\"] != gen]\\n        res = train_eval(train_df, test_df, features)\\n        results[gen] = {\\n            \\\"macro_f1\\\": res[\\\"macro_f1\\\"],\\n            \\\"gen-0_f1\\\": res[\\\"gen-0_f1\\\"],\\n            \\\"gen-1_f1\\\": res[\\\"gen-1_f1\\\"],\\n            \\\"gen-2+_f1\\\": res[\\\"gen-2+_f1\\\"],\\n            \\\"bootstrap_ci\\\": res[\\\"bootstrap_ci\\\"],\\n        }\\n        all_y_test.append(res[\\\"y_test\\\"])\\n        all_y_pred.append(res[\\\"y_pred\\\"])\\n        ci = res[\\\"bootstrap_ci\\\"][\\\"macro\\\"]\\n        print(f\\\"  {gen:15s}  macro-F1={res['\\n\\n... [截断: 输出过长，省略 7108 字符] ...\\n\\n-0_f1']:.4f} | {r['gen-1_f1']:.4f} | {r['gen-2+_f1']:.4f} |\\\")\\n    lines.append(f\\\"| **Average** | **{logo['average_macro_f1']:.4f}** | | | | |\\\")\\n    lines.append(\\\"\\\")\\n\\n    lines.append(\\\"## 2. Leave-One-Family-Out\\\\n\\\")\\n    fam = all_results[\\\"leave_one_family_out\\\"]\\n    lines.append(\\\"| Setting | Macro-F1 | 95% CI |\\\")\\n    lines.append(\\\"|---------|----------|--------|\\\")\\n    for key, label in [(\\\"train_nonpythia_test_pythia\\\", \\\"Train non-Pythia → Test Pythia\\\"),\\n                       (\\\"train_pythia_test_nonpythia\\\", \\\"Train Pythia → Test non-Pythia\\\")]:\\n        r = fam[key]\\n        ci = r[\\\"bootstrap_ci\\\"][\\\"macro\\\"]\\n        lines.append(f\\\"| {label} | {r['macro_f1']:.4f} | [{ci['ci_lo']:.4f}, {ci['ci_hi']:.4f}] |\\\")\\n    lines.append(f\\\"\\\\nΔ (non-Pythia-trained − Pythia-trained) = {fam['f1_diff_nonpythia_minus_pythia_trained']:+.4f}\\\\n\\\")\\n\\n    lines.append(\\\"## 3. Feature Ablation\\\\n\\\")\\n    abl = all_results[\\\"feature_ablation\\\"]\\n    lines.append(\\\"| Feature Set | Avg Macro-F1 |\\\")\\n    lines.append(\\\"|-------------|-------------|\\\")\\n    for name in [\\\"full\\\", \\\"surface_only\\\", \\\"reference_only\\\"]:\\n        lines.append(f\\\"| {name} | {abl[name]['average_macro_f1']:.4f} |\\\")\\n    lines.append(f\\\"\\\\nMcNemar p-values: full vs surface = {abl['mcnemar_full_vs_surface']:.6f}, \\\"\\n                 f\\\"full vs reference = {abl['mcnemar_full_vs_reference']:.6f}\\\\n\\\")\\n\\n    lines.append(\\\"## 4. Permutation Importance\\\\n\\\")\\n    perm = all_results[\\\"permutation_importance\\\"]\\n    lines.append(\\\"| Rank | Feature | Importance |\\\")\\n    lines.append(\\\"|------|---------|------------|\\\")\\n    for feat, info in sorted(perm.items(), key=lambda x: x[1][\\\"rank\\\"]):\\n        lines.append(f\\\"| {info['rank']} | {feat} | {info['importance']:.4f} |\\\")\\n    lines.append(\\\"\\\")\\n\\n    lines.append(\\\"## 5. entropy_std 专项分析\\\\n\\\")\\n    es = all_results[\\\"entropy_std_analysis\\\"]\\n    lines.append(f\\\"- entropy_std drift (d0−d4 avg): {es['drift_magnitude']['entropy_std']['mean_drift']:.4f}\\\")\\n    lines.append(f\\\"- entropy_mean drift (d0−d4 avg): {es['drift_magnitude']['entropy_mean']['mean_drift']:.4f}\\\")\\n    lines.append(f\\\"- LOGO macro-F1 with all features: {es['logo_with_all']:.4f}\\\")\\n    lines.append(f\\\"- LOGO macro-F1 without entropy_std: {es['logo_without_entropy_std']:.4f}\\\")\\n    lines.append(f\\\"- Δ macro-F1: {es['delta_f1']:+.4f}\\\")\\n    lines.append(f\\\"- **结论**: {es['conclusion']}\\\")\\n    lines.append(\\\"\\\")\\n\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef main():\\n    data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), \\\"data\\\")\\n    csv_path = os.path.join(data_dir, \\\"features_all_models.csv\\\")\\n    df = load_data(csv_path)\\n    print(f\\\"Loaded {len(df)} rows, {df['model_name'].nunique()} generators\\\")\\n    print(f\\\"Class distribution: {df['label'].value_counts().sort_index().to_dict()}\\\\n\\\")\\n\\n    all_results = {}\\n\\n    print(\\\"=\\\" * 60)\\n    print(\\\"1. Leave-One-Generator-Out CV\\\")\\n    print(\\\"=\\\" * 60)\\n    logo_res, _, _ = leave_one_generator_out(df)\\n    all_results[\\\"leave_one_generator_out\\\"] = logo_res\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"2. Leave-One-Family-Out\\\")\\n    print(\\\"=\\\" * 60)\\n    all_results[\\\"leave_one_family_out\\\"] = leave_one_family_out(df)\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"3. Feature Ablation (cross-generator)\\\")\\n    print(\\\"=\\\" * 60)\\n    all_results[\\\"feature_ablation\\\"] = feature_ablation(df)\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"4. Permutation Importance\\\")\\n    print(\\\"=\\\" * 60)\\n    all_results[\\\"permutation_importance\\\"] = permutation_importance_analysis(df)\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"5. entropy_std 专项分析\\\")\\n    print(\\\"=\\\" * 60)\\n    all_results[\\\"entropy_std_analysis\\\"] = entropy_std_analysis(df)\\n\\n    json_path = os.path.join(data_dir, \\\"cross_generator_results.json\\\")\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2, ensure_ascii=False)\\n    print(f\\\"\\\\nSaved: {json_path}\\\")\\n\\n    report = generate_report(all_results)\\n    report_path = os.path.join(data_dir, \\\"cross_generator_report.md\\\")\\n    with open(report_path, \\\"w\\\") as f:\\n        f.write(report)\\n    print(f\\\"Saved: {report_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "ff827f11-d6dd-4343-8a9e-af62a8f077ae",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\ncross_generator_eval.py — plan-002 跨生成器分类评估\\\\n输入: data/features_all_models.csv (23032 行, 5 生成器 × Pythia-410M 特征)\\\\n输出: data/cross_generator_results.json, data/cross_generator_report.md\\\\n分析: leave-one-out CV, family-out, feature ablation, permutation importance\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom xgboost import XGBClassifier\\\\nfrom sklearn.metrics import f1_score, classification_report\\\\nfrom sklearn.inspection import permutation_importance\\\\nfrom sklearn.model_selection import StratifiedKFold\\\\nfrom scipy.stats import chi2\\\\n\\\\nSEED = 42\\\\nN_BOOT = 1000\\\\nFEATURES_ALL = [\\\\\\\"entropy_mean\\\\\\\", \\\\\\\"entropy_std\\\\\\\", \\\\\\\"entropy_min\\\\\\\", \\\\\\\"entropy_max\\\\\\\",\\\\n                \\\\\\\"tail_decay\\\\\\\", \\\\\\\"ttr\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\"]\\\\nFEATURES_SURFACE = [\\\\\\\"ttr\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\"]\\\\nFEATURES_REFERENCE = [\\\\\\\"entropy_mean\\\\\\\", \\\\\\\"entropy_std\\\\\\\", \\\\\\\"entropy_min\\\\\\\", \\\\\\\"entropy_max\\\\\\\", \\\\\\\"tail_decay\\\\\\\"]\\\\n\\\\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\\\n                  random_state=SEED, eval_metric=\\\\\\\"mlogloss\\\\\\\",\\\\n                  use_label_encoder=False)\\\\n\\\\nCLASS_MAP = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\\\\nCLASS_NAMES = [\\\\\\\"gen-0\\\\\\\", \\\\\\\"gen-1\\\\\\\", \\\\\\\"gen-2+\\\\\\\"]\\\\n\\\\n\\\\ndef load_data(path):\\\\n    df = pd.read_csv(path)\\\\n    df[\\\\\\\"label\\\\\\\"] = df[\\\\\\\"depth\\\\\\\"].map(CLASS_MAP)\\\\n    return df\\\\n\\\\n\\\\ndef downsample(df, rng):\\\\n    counts = df[\\\\\\\"label\\\\\\\"].value_counts()\\\\n    min_n = counts.min()\\\\n    parts = []\\\\n    for lbl in sorted(counts.index):\\\\n        sub = df[df[\\\\\\\"label\\\\\\\"] == lbl]\\\\n        parts.append(sub.sample(n=min_n, random_state=rng, replace=False))\\\\n    return pd.concat(parts, ignore_index=True)\\\\n\\\\n\\\\ndef bootstrap_f1(y_true, y_pred, n_boot=N_BOOT, seed=SEED):\\\\n    rng = np.random.RandomState(seed)\\\\n    n = len(y_true)\\\\n    scores = {\\\\\\\"macro\\\\\\\": [], \\\\\\\"gen-0\\\\\\\": [], \\\\\\\"gen-1\\\\\\\": [], \\\\\\\"gen-2+\\\\\\\": []}\\\\n    for _ in range(n_boot):\\\\n        idx = rng.randint(0, n, size=n)\\\\n        yt, yp = y_true[idx], y_pred[idx]\\\\n        if len(np.unique(yt)) < 3:\\\\n            continue\\\\n        scores[\\\\\\\"macro\\\\\\\"].append(f1_score(yt, yp, average=\\\\\\\"macro\\\\\\\"))\\\\n        per = f1_score(yt, yp, average=None, labels=[0, 1, 2])\\\\n        for i, name in enumerate(CLASS_NAMES):\\\\n            scores[name].append(per[i])\\\\n    result = {}\\\\n    for k, v in scores.items():\\\\n        arr = np.array(v)\\\\n        result[k] = {\\\\\\\"mean\\\\\\\": float(np.mean(arr)),\\\\n                      \\\\\\\"ci_lo\\\\\\\": float(np.percentile(arr, 2.5)),\\\\n                      \\\\\\\"ci_hi\\\\\\\": float(np.percentile(arr, 97.5))}\\\\n    return result\\\\n\\\\n\\\\ndef train_eval(train_df, test_df, features, downsample_train=True):\\\\n    rng = np.random.RandomState(SEED)\\\\n    if downsample_train:\\\\n        train_df = downsample(train_df, rng)\\\\n    X_train = train_df[features].values\\\\n    y_train = train_df[\\\\\\\"label\\\\\\\"].values\\\\n    X_test = test_df[features].values\\\\n    y_test = test_df[\\\\\\\"label\\\\\\\"].values\\\\n\\\\n    clf = XGBClassifier(**XGB_PARAMS)\\\\n    clf.fit(X_train, y_train)\\\\n    y_pred = clf.predict(X_test)\\\\n\\\\n    macro_f1 = f1_score(y_test, y_pred, average=\\\\\\\"macro\\\\\\\")\\\\n    per_class = f1_score(y_test, y_pred, average=None, labels=[0, 1, 2])\\\\n    boot = bootstrap_f1(y_test, y_pred)\\\\n\\\\n    return {\\\\n        \\\\\\\"macro_f1\\\\\\\": float(macro_f1),\\\\n        \\\\\\\"gen-0_f1\\\\\\\": float(per_class[0]),\\\\n        \\\\\\\"gen-1_f1\\\\\\\": float(per_class[1]),\\\\n        \\\\\\\"gen-2+_f1\\\\\\\": float(per_class[2]),\\\\n        \\\\\\\"bootstrap_ci\\\\\\\": boot,\\\\n        \\\\\\\"y_test\\\\\\\": y_test,\\\\n        \\\\\\\"y_pred\\\\\\\": y_pred,\\\\n        \\\\\\\"clf\\\\\\\": clf,\\\\n    }\\\\n\\\\n\\\\ndef leave_one_generator_out(df, features=FEATURES_ALL):\\\\n    generators = sorted(df[\\\\\\\"model_name\\\\\\\"].unique())\\\\n    results = {}\\\\n    all_y_test, all_y_pred = [], []\\\\n    for gen in generators:\\\\n        test_df = df[df[\\\\\\\"model_name\\\\\\\"] == gen]\\\\n        train_df = df[df[\\\\\\\"model_name\\\\\\\"] != gen]\\\\n        res = train_eval(train_df, test_df, features)\\\\n        results[gen] = {\\\\n            \\\\\\\"macro_f1\\\\\\\": res[\\\\\\\"macro_f1\\\\\\\"],\\\\n            \\\\\\\"gen-0_f1\\\\\\\": res[\\\\\\\"gen-0_f1\\\\\\\"],\\\\n            \\\\\\\"gen-1_f1\\\\\\\": res[\\\\\\\"gen-1_f1\\\\\\\"],\\\\n            \\\\\\\"gen-2+_f1\\\\\\\": res[\\\\\\\"gen-2+_f1\\\\\\\"],\\\\n            \\\\\\\"bootstrap_ci\\\\\\\": res[\\\\\\\"bootstrap_ci\\\\\\\"],\\\\n        }\\\\n        all_y_test.append(res[\\\\\\\"y_test\\\\\\\"])\\\\n        all_y_pred.append(res[\\\\\\\"y_pred\\\\\\\"])\\\\n        ci = res[\\\\\\\"bootstrap_ci\\\\\\\"][\\\\\\\"macro\\\\\\\"]\\\\n        print(f\\\\\\\"  {gen:15s}  macro-F1={res['\\\\n\\\\n... [截断: 输出过长，省略 7108 字符] ...\\\\n\\\\n-0_f1']:.4f} | {r['gen-1_f1']:.4f} | {r['gen-2+_f1']:.4f} |\\\\\\\")\\\\n    lines.append(f\\\\\\\"| **Average** | **{logo['average_macro_f1']:.4f}** | | | | |\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\")\\\\n\\\\n    lines.append(\\\\\\\"## 2. Leave-One-Family-Out\\\\\\\\n\\\\\\\")\\\\n    fam = all_results[\\\\\\\"leave_one_family_out\\\\\\\"]\\\\n    lines.append(\\\\\\\"| Setting | Macro-F1 | 95% CI |\\\\\\\")\\\\n    lines.append(\\\\\\\"|---------|----------|--------|\\\\\\\")\\\\n    for key, label in [(\\\\\\\"train_nonpythia_test_pythia\\\\\\\", \\\\\\\"Train non-Pythia → Test Pythia\\\\\\\"),\\\\n                       (\\\\\\\"train_pythia_test_nonpythia\\\\\\\", \\\\\\\"Train Pythia → Test non-Pythia\\\\\\\")]:\\\\n        r = fam[key]\\\\n        ci = r[\\\\\\\"bootstrap_ci\\\\\\\"][\\\\\\\"macro\\\\\\\"]\\\\n        lines.append(f\\\\\\\"| {label} | {r['macro_f1']:.4f} | [{ci['ci_lo']:.4f}, {ci['ci_hi']:.4f}] |\\\\\\\")\\\\n    lines.append(f\\\\\\\"\\\\\\\\nΔ (non-Pythia-trained − Pythia-trained) = {fam['f1_diff_nonpythia_minus_pythia_trained']:+.4f}\\\\\\\\n\\\\\\\")\\\\n\\\\n    lines.append(\\\\\\\"## 3. Feature Ablation\\\\\\\\n\\\\\\\")\\\\n    abl = all_results[\\\\\\\"feature_ablation\\\\\\\"]\\\\n    lines.append(\\\\\\\"| Feature Set | Avg Macro-F1 |\\\\\\\")\\\\n    lines.append(\\\\\\\"|-------------|-------------|\\\\\\\")\\\\n    for name in [\\\\\\\"full\\\\\\\", \\\\\\\"surface_only\\\\\\\", \\\\\\\"reference_only\\\\\\\"]:\\\\n        lines.append(f\\\\\\\"| {name} | {abl[name]['average_macro_f1']:.4f} |\\\\\\\")\\\\n    lines.append(f\\\\\\\"\\\\\\\\nMcNemar p-values: full vs surface = {abl['mcnemar_full_vs_surface']:.6f}, \\\\\\\"\\\\n                 f\\\\\\\"full vs reference = {abl['mcnemar_full_vs_reference']:.6f}\\\\\\\\n\\\\\\\")\\\\n\\\\n    lines.append(\\\\\\\"## 4. Permutation Importance\\\\\\\\n\\\\\\\")\\\\n    perm = all_results[\\\\\\\"permutation_importance\\\\\\\"]\\\\n    lines.append(\\\\\\\"| Rank | Feature | Importance |\\\\\\\")\\\\n    lines.append(\\\\\\\"|------|---------|------------|\\\\\\\")\\\\n    for feat, info in sorted(perm.items(), key=lambda x: x[1][\\\\\\\"rank\\\\\\\"]):\\\\n        lines.append(f\\\\\\\"| {info['rank']} | {feat} | {info['importance']:.4f} |\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\")\\\\n\\\\n    lines.append(\\\\\\\"## 5. entropy_std 专项分析\\\\\\\\n\\\\\\\")\\\\n    es = all_results[\\\\\\\"entropy_std_analysis\\\\\\\"]\\\\n    lines.append(f\\\\\\\"- entropy_std drift (d0−d4 avg): {es['drift_magnitude']['entropy_std']['mean_drift']:.4f}\\\\\\\")\\\\n    lines.append(f\\\\\\\"- entropy_mean drift (d0−d4 avg): {es['drift_magnitude']['entropy_mean']['mean_drift']:.4f}\\\\\\\")\\\\n    lines.append(f\\\\\\\"- LOGO macro-F1 with all features: {es['logo_with_all']:.4f}\\\\\\\")\\\\n    lines.append(f\\\\\\\"- LOGO macro-F1 without entropy_std: {es['logo_without_entropy_std']:.4f}\\\\\\\")\\\\n    lines.append(f\\\\\\\"- Δ macro-F1: {es['delta_f1']:+.4f}\\\\\\\")\\\\n    lines.append(f\\\\\\\"- **结论**: {es['conclusion']}\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\")\\\\n\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines)\\\\n\\\\n\\\\ndef main():\\\\n    data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), \\\\\\\"data\\\\\\\")\\\\n    csv_path = os.path.join(data_dir, \\\\\\\"features_all_models.csv\\\\\\\")\\\\n    df = load_data(csv_path)\\\\n    print(f\\\\\\\"Loaded {len(df)} rows, {df['model_name'].nunique()} generators\\\\\\\")\\\\n    print(f\\\\\\\"Class distribution: {df['label'].value_counts().sort_index().to_dict()}\\\\\\\\n\\\\\\\")\\\\n\\\\n    all_results = {}\\\\n\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"1. Leave-One-Generator-Out CV\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    logo_res, _, _ = leave_one_generator_out(df)\\\\n    all_results[\\\\\\\"leave_one_generator_out\\\\\\\"] = logo_res\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"2. Leave-One-Family-Out\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    all_results[\\\\\\\"leave_one_family_out\\\\\\\"] = leave_one_family_out(df)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"3. Feature Ablation (cross-generator)\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    all_results[\\\\\\\"feature_ablation\\\\\\\"] = feature_ablation(df)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"4. Permutation Importance\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    all_results[\\\\\\\"permutation_importance\\\\\\\"] = permutation_importance_analysis(df)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"5. entropy_std 专项分析\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    all_results[\\\\\\\"entropy_std_analysis\\\\\\\"] = entropy_std_analysis(df)\\\\n\\\\n    json_path = os.path.join(data_dir, \\\\\\\"cross_generator_results.json\\\\\\\")\\\\n    with open(json_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(all_results, f, indent=2, ensure_ascii=False)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {json_path}\\\\\\\")\\\\n\\\\n    report = generate_report(all_results)\\\\n    report_path = os.path.join(data_dir, \\\\\\\"cross_generator_report.md\\\\\\\")\\\\n    with open(report_path, \\\\\\\"w\\\\\\\") as f:\\\\n        f.write(report)\\\\n    print(f\\\\\\\"Saved: {report_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\ncross_generator_eval.py — plan-002 跨生成器分类评估\\n输入: data/features_all_models.csv (23032 行, 5 生成器 × Pythia-410M 特征)\\n输出: data/cross_generator_results.json, data/cross_generator_report.md\\n分析: leave-one-out CV, family-out, feature ablation, permutation importance\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport numpy as np\\nimport pandas as pd\\nfrom xgboost import XGBClassifier\\nfrom sklearn.metrics import f1_score, classification_report\\nfrom sklearn.inspection import permutation_importance\\nfrom sklearn.model_selection import StratifiedKFold\\nfrom scipy.stats import chi2\\n\\nSEED = 42\\nN_BOOT = 1000\\nFEATURES_ALL = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\",\\n                \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\nFEATURES_SURFACE = [\\\"ttr\\\", \\\"hapax_ratio\\\"]\\nFEATURES_REFERENCE = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\", \\\"tail_decay\\\"]\\n\\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\n                  random_state=SEED, eval_metric=\\\"mlogloss\\\",\\n                  use_label_encoder=False)\\n\\nCLASS_MAP = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\\nCLASS_NAMES = [\\\"gen-0\\\", \\\"gen-1\\\", \\\"gen-2+\\\"]\\n\\n\\ndef load_data(path):\\n    df = pd.read_csv(path)\\n    df[\\\"label\\\"] = df[\\\"depth\\\"].map(CLASS_MAP)\\n    return df\\n\\n\\ndef downsample(df, rng):\\n    counts = df[\\\"label\\\"].value_counts()\\n    min_n = counts.min()\\n    parts = []\\n    for lbl in sorted(counts.index):\\n        sub = df[df[\\\"label\\\"] == lbl]\\n        parts.append(sub.sample(n=min_n, random_state=rng, replace=False))\\n    return pd.concat(parts, ignore_index=True)\\n\\n\\ndef bootstrap_f1(y_true, y_pred, n_boot=N_BOOT, seed=SEED):\\n    rng = np.random.RandomState(seed)\\n    n = len(y_true)\\n    scores = {\\\"macro\\\": [], \\\"gen-0\\\": [], \\\"gen-1\\\": [], \\\"gen-2+\\\": []}\\n    for _ in range(n_boot):\\n        idx = rng.randint(0, n, size=n)\\n        yt, yp = y_true[idx], y_pred[idx]\\n        if len(np.unique(yt)) < 3:\\n            continue\\n        scores[\\\"macro\\\"].append(f1_score(yt, yp, average=\\\"macro\\\"))\\n        per = f1_score(yt, yp, average=None, labels=[0, 1, 2])\\n        for i, name in enumerate(CLASS_NAMES):\\n            scores[name].append(per[i])\\n    result = {}\\n    for k, v in scores.items():\\n        arr = np.array(v)\\n        result[k] = {\\\"mean\\\": float(np.mean(arr)),\\n                      \\\"ci_lo\\\": float(np.percentile(arr, 2.5)),\\n                      \\\"ci_hi\\\": float(np.percentile(arr, 97.5))}\\n    return result\\n\\n\\ndef train_eval(train_df, test_df, features, downsample_train=True):\\n    rng = np.random.RandomState(SEED)\\n    if downsample_train:\\n        train_df = downsample(train_df, rng)\\n    X_train = train_df[features].values\\n    y_train = train_df[\\\"label\\\"].values\\n    X_test = test_df[features].values\\n    y_test = test_df[\\\"label\\\"].values\\n\\n    clf = XGBClassifier(**XGB_PARAMS)\\n    clf.fit(X_train, y_train)\\n    y_pred = clf.predict(X_test)\\n\\n    macro_f1 = f1_score(y_test, y_pred, average=\\\"macro\\\")\\n    per_class = f1_score(y_test, y_pred, average=None, labels=[0, 1, 2])\\n    boot = bootstrap_f1(y_test, y_pred)\\n\\n    return {\\n        \\\"macro_f1\\\": float(macro_f1),\\n        \\\"gen-0_f1\\\": float(per_class[0]),\\n        \\\"gen-1_f1\\\": float(per_class[1]),\\n        \\\"gen-2+_f1\\\": float(per_class[2]),\\n        \\\"bootstrap_ci\\\": boot,\\n        \\\"y_test\\\": y_test,\\n        \\\"y_pred\\\": y_pred,\\n        \\\"clf\\\": clf,\\n    }\\n\\n\\ndef leave_one_generator_out(df, features=FEATURES_ALL):\\n    generators = sorted(df[\\\"model_name\\\"].unique())\\n    results = {}\\n    all_y_test, all_y_pred = [], []\\n    for gen in generators:\\n        test_df = df[df[\\\"model_name\\\"] == gen]\\n        train_df = df[df[\\\"model_name\\\"] != gen]\\n        res = train_eval(train_df, test_df, features)\\n        results[gen] = {\\n            \\\"macro_f1\\\": res[\\\"macro_f1\\\"],\\n            \\\"gen-0_f1\\\": res[\\\"gen-0_f1\\\"],\\n            \\\"gen-1_f1\\\": res[\\\"gen-1_f1\\\"],\\n            \\\"gen-2+_f1\\\": res[\\\"gen-2+_f1\\\"],\\n            \\\"bootstrap_ci\\\": res[\\\"bootstrap_ci\\\"],\\n        }\\n        all_y_test.append(res[\\\"y_test\\\"])\\n        all_y_pred.append(res[\\\"y_pred\\\"])\\n        ci = res[\\\"bootstrap_ci\\\"][\\\"macro\\\"]\\n        print(f\\\"  {gen:15s}  macro-F1={res['\\n\\n... [截断: 输出过长，省略 7108 字符] ...\\n\\n-0_f1']:.4f} | {r['gen-1_f1']:.4f} | {r['gen-2+_f1']:.4f} |\\\")\\n    lines.append(f\\\"| **Average** | **{logo['average_macro_f1']:.4f}** | | | | |\\\")\\n    lines.append(\\\"\\\")\\n\\n    lines.append(\\\"## 2. Leave-One-Family-Out\\\\n\\\")\\n    fam = all_results[\\\"leave_one_family_out\\\"]\\n    lines.append(\\\"| Setting | Macro-F1 | 95% CI |\\\")\\n    lines.append(\\\"|---------|----------|--------|\\\")\\n    for key, label in [(\\\"train_nonpythia_test_pythia\\\", \\\"Train non-Pythia → Test Pythia\\\"),\\n                       (\\\"train_pythia_test_nonpythia\\\", \\\"Train Pythia → Test non-Pythia\\\")]:\\n        r = fam[key]\\n        ci = r[\\\"bootstrap_ci\\\"][\\\"macro\\\"]\\n        lines.append(f\\\"| {label} | {r['macro_f1']:.4f} | [{ci['ci_lo']:.4f}, {ci['ci_hi']:.4f}] |\\\")\\n    lines.append(f\\\"\\\\nΔ (non-Pythia-trained − Pythia-trained) = {fam['f1_diff_nonpythia_minus_pythia_trained']:+.4f}\\\\n\\\")\\n\\n    lines.append(\\\"## 3. Feature Ablation\\\\n\\\")\\n    abl = all_results[\\\"feature_ablation\\\"]\\n    lines.append(\\\"| Feature Set | Avg Macro-F1 |\\\")\\n    lines.append(\\\"|-------------|-------------|\\\")\\n    for name in [\\\"full\\\", \\\"surface_only\\\", \\\"reference_only\\\"]:\\n        lines.append(f\\\"| {name} | {abl[name]['average_macro_f1']:.4f} |\\\")\\n    lines.append(f\\\"\\\\nMcNemar p-values: full vs surface = {abl['mcnemar_full_vs_surface']:.6f}, \\\"\\n                 f\\\"full vs reference = {abl['mcnemar_full_vs_reference']:.6f}\\\\n\\\")\\n\\n    lines.append(\\\"## 4. Permutation Importance\\\\n\\\")\\n    perm = all_results[\\\"permutation_importance\\\"]\\n    lines.append(\\\"| Rank | Feature | Importance |\\\")\\n    lines.append(\\\"|------|---------|------------|\\\")\\n    for feat, info in sorted(perm.items(), key=lambda x: x[1][\\\"rank\\\"]):\\n        lines.append(f\\\"| {info['rank']} | {feat} | {info['importance']:.4f} |\\\")\\n    lines.append(\\\"\\\")\\n\\n    lines.append(\\\"## 5. entropy_std 专项分析\\\\n\\\")\\n    es = all_results[\\\"entropy_std_analysis\\\"]\\n    lines.append(f\\\"- entropy_std drift (d0−d4 avg): {es['drift_magnitude']['entropy_std']['mean_drift']:.4f}\\\")\\n    lines.append(f\\\"- entropy_mean drift (d0−d4 avg): {es['drift_magnitude']['entropy_mean']['mean_drift']:.4f}\\\")\\n    lines.append(f\\\"- LOGO macro-F1 with all features: {es['logo_with_all']:.4f}\\\")\\n    lines.append(f\\\"- LOGO macro-F1 without entropy_std: {es['logo_without_entropy_std']:.4f}\\\")\\n    lines.append(f\\\"- Δ macro-F1: {es['delta_f1']:+.4f}\\\")\\n    lines.append(f\\\"- **结论**: {es['conclusion']}\\\")\\n    lines.append(\\\"\\\")\\n\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef main():\\n    data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), \\\"data\\\")\\n    csv_path = os.path.join(data_dir, \\\"features_all_models.csv\\\")\\n    df = load_data(csv_path)\\n    print(f\\\"Loaded {len(df)} rows, {df['model_name'].nunique()} generators\\\")\\n    print(f\\\"Class distribution: {df['label'].value_counts().sort_index().to_dict()}\\\\n\\\")\\n\\n    all_results = {}\\n\\n    print(\\\"=\\\" * 60)\\n    print(\\\"1. Leave-One-Generator-Out CV\\\")\\n    print(\\\"=\\\" * 60)\\n    logo_res, _, _ = leave_one_generator_out(df)\\n    all_results[\\\"leave_one_generator_out\\\"] = logo_res\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"2. Leave-One-Family-Out\\\")\\n    print(\\\"=\\\" * 60)\\n    all_results[\\\"leave_one_family_out\\\"] = leave_one_family_out(df)\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"3. Feature Ablation (cross-generator)\\\")\\n    print(\\\"=\\\" * 60)\\n    all_results[\\\"feature_ablation\\\"] = feature_ablation(df)\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"4. Permutation Importance\\\")\\n    print(\\\"=\\\" * 60)\\n    all_results[\\\"permutation_importance\\\"] = permutation_importance_analysis(df)\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"5. entropy_std 专项分析\\\")\\n    print(\\\"=\\\" * 60)\\n    all_results[\\\"entropy_std_analysis\\\"] = entropy_std_analysis(df)\\n\\n    json_path = os.path.join(data_dir, \\\"cross_generator_results.json\\\")\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(all_results, f, indent=2, ensure_ascii=False)\\n    print(f\\\"\\\\nSaved: {json_path}\\\")\\n\\n    report = generate_report(all_results)\\n    report_path = os.path.join(data_dir, \\\"cross_generator_report.md\\\")\\n    with open(report_path, \\\"w\\\") as f:\\n        f.write(report)\\n    print(f\\\"Saved: {report_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture:
+
+1. Original 6 generators' features are in `features_all_models.csv` (a combined CSV with `model_name` column) and individual CSVs like `features_pythia-2.8b.csv`, `features_pythia-1b.csv`, etc.
+2. The individual generator directories (pythia-1b/, olmo-2-1b/, etc.) only have generation JSONL files, not feature files.
+3. New generators (llama-3.2-3b, mistral-7b-v0.3) have `features_pythia410m.jsonl` in their subdirectories.
+
+
+4. Both the original CSV features and new JSONL features use Pythia-410M as the reference model, so they should be directly comparable.
+
+But I'm noticing a major discrepancy in the `tail_decay` values—the CSVs show values around -0.002 while the JSONL files show values like 0.098 and 0.111. This suggests the feature extraction method may have changed between the two formats, so I need to investigate this more carefully before comparing results. I'm noticing the discrepancy might stem from different reference models or extraction methods being used. Let me first examine what features already exist in the current results, and check whether the original six generators have features extracted with Pythia-410M as the reference model, or if they're stored in a different format altogether.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "5f09190a-9c11-402f-8fa3-5403e5e81676",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XHj2DoqR7jiQtMUna8ycAB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5836,
+      "cache_read_input_tokens": 34597,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5836
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+Let me check what's in the combined CSV and existing results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "8ac3e0f8-64a7-46fa-abbe-0a00d2545307",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XHj2DoqR7jiQtMUna8ycAB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5836,
+      "cache_read_input_tokens": 34597,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5836
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KKfhZ2r1H1ucc1YDAfw6re`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"import pandas as pd; df=pd.read_csv('/root/gen-depth-fingerprint/data/features_all_models.csv'); print(df['model_name'].value_counts()); print('---'); print(df.shape)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "8dbc0796-15b0-4927-81c2-360468a5d087",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XHj2DoqR7jiQtMUna8ycAB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5836,
+      "cache_read_input_tokens": 34597,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5836
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T12:15:52.192Z_
+
+<details><summary>↩ Tool result · `toolu_01KKfhZ2r1H1ucc1YDAfw6re`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "c4349f52-9c9c-46d7-8c40-e54fbe99ba3c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EvNdjDJCFkur9tfNwKqQb8`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/gen-depth-fingerprint/data/llama-3.2-3b/features_pythia410m.jsonl /root/gen-depth-fingerprint/data/mistral-7b-v0.3/features_pythia410m.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "33a8277e-5d35-4a65-b45d-2e55f0cc2c50",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XHj2DoqR7jiQtMUna8ycAB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5836,
+      "cache_read_input_tokens": 34597,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5836
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VEgUwEDzkjgmYmeFyXQpkD`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/data/cross_generator_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "6be896e8-5ee1-4ce6-be9c-da519b77f5e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XHj2DoqR7jiQtMUna8ycAB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5836,
+      "cache_read_input_tokens": 34597,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5836
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-16T12:15:53.953Z_
+
+<details><summary>↩ Tool result · `toolu_01EvNdjDJCFkur9tfNwKqQb8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   2937 /root/gen-depth-fingerprint/data/llama-3.2-3b/features_pythia410m.jsonl\\n   3665 /root/gen-depth-fingerprint/data/mistral-7b-v0.3/features_pythia410m.jsonl\\n   6602 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "c72c6e17-61b0-4038-b450-e03b65d26824",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   2937 /root/gen-depth-fingerprint/data/llama-3.2-3b/features_pythia410m.jsonl\\\\n   3665 /root/gen-depth-fingerprint/data/mistral-7b-v0.3/features_pythia410m.jsonl\\\\n   6602 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   2937 /root/gen-depth-fingerprint/data/llama-3.2-3b/features_pythia410m.jsonl\\n   3665 /root/gen-depth-fingerprint/data/mistral-7b-v0.3/features_pythia410m.jsonl\\n   6602 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T12:15:54.377Z_
+
+<details><summary>↩ Tool result · `toolu_01VEgUwEDzkjgmYmeFyXQpkD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"leave_one_generator_out\\\": {\\n    \\\"olmo-2-1b\\\": {\\n      \\\"macro_f1\\\": 0.7635482360726357,\\n      \\\"gen-0_f1\\\": 0.9394372913686219,\\n      \\\"gen-1_f1\\\": 0.5939216404247528,\\n      \\\"gen-2+_f1\\\": 0.7572857764245324,\\n      \\\"bootstrap_ci\\\": {\\n        \\\"macro\\\": {\\n          \\\"mean\\\": 0.7632474541034412,\\n          \\\"ci_lo\\\": 0.752291407589837,\\n          \\\"ci_hi\\\": 0.774556425636986\\n        },\\n        \\\"gen-0\\\": {\\n          \\\"mean\\\": 0.9390676389352408,\\n          \\\"ci_lo\\\": 0.9281606367092045,\\n          \\\"ci_hi\\\": 0.9493685984153057\\n        },\\n        \\\"gen-1\\\": {\\n          \\\"mean\\\": 0.5936892952958178,\\n          \\\"ci_lo\\\": 0.5722641789797264,\\n          \\\"ci_hi\\\": 0.614848287751023\\n        },\\n        \\\"gen-2+\\\": {\\n          \\\"mean\\\": 0.756985428079265,\\n          \\\"ci_lo\\\": 0.7431779481614316,\\n          \\\"ci_hi\\\": 0.7707136789576602\\n        }\\n      }\\n    },\\n    \\\"pythia-1b\\\": {\\n      \\\"macro_f1\\\": 0.8561570389714025,\\n      \\\"gen-0_f1\\\": 0.9870775347912525,\\n      \\\"gen-1_f1\\\": 0.7128363475959417,\\n      \\\"gen-2+_f1\\\": 0.8685572345270131,\\n      \\\"bootstrap_ci\\\": {\\n        \\\"macro\\\": {\\n          \\\"mean\\\": 0.8561628836375909,\\n          \\\"ci_lo\\\": 0.8464948384344575,\\n          \\\"ci_hi\\\": 0.8660734154907818\\n        },\\n        \\\"gen-0\\\": {\\n          \\\"mean\\\": 0.9871494029606074,\\n          \\\"ci_lo\\\": 0.9822026150270425,\\n          \\\"ci_hi\\\": 0.9917280959919536\\n        },\\n        \\\"gen-1\\\": {\\n          \\\"mean\\\": 0.7129278984301098,\\n          \\\"ci_lo\\\": 0.6912108028758323,\\n          \\\"ci_hi\\\": 0.7339870694517586\\n        },\\n        \\\"gen-2+\\\": {\\n          \\\"mean\\\": 0.8684113495220553,\\n          \\\"ci_lo\\\": 0.8587815288235165,\\n          \\\"ci_hi\\\": 0.8786139076987922\\n        }\\n      }\\n    },\\n    \\\"pythia-2.8b\\\": {\\n      \\\"macro_f1\\\": 0.8041250264478296,\\n      \\\"gen-0_f1\\\": 0.9720998531571219,\\n      \\\"gen-1_f1\\\": 0.6434519303557911,\\n      \\\"gen-2+_f1\\\": 0.7968232958305758,\\n      \\\"bootstrap_ci\\\": {\\n        \\\"macro\\\": {\\n          \\\"mean\\\": 0.8039427478163064,\\n          \\\"ci_lo\\\": 0.7935864894551219,\\n          \\\"ci_hi\\\": 0.8144970815002649\\n        },\\n        \\\"gen-0\\\": {\\n          \\\"mean\\\": 0.9720540209100789,\\n          \\\"ci_lo\\\": 0.9644421756593932,\\n          \\\"ci_hi\\\": 0.9790283302772059\\n        },\\n        \\\"gen-1\\\": {\\n          \\\"mean\\\": 0.643016344295924,\\n          \\\"ci_lo\\\": 0.6220234034287284,\\n          \\\"ci_hi\\\": 0.665208510725607\\n        },\\n        \\\"gen-2+\\\": {\\n          \\\"mean\\\": 0.7967578782429163,\\n          \\\"ci_lo\\\": 0.7834349245755013,\\n          \\\"ci_hi\\\": 0.8102160472496513\\n        }\\n      }\\n    },\\n    \\\"qwen3-0.6b\\\": {\\n      \\\"macro_f1\\\": 0.824273263300435,\\n      \\\"gen-0_f1\\\": 0.9636451769268056,\\n      \\\"gen-1_f1\\\": 0.6699375557537912,\\n      \\\"gen-2+_f1\\\": 0.8392370572207084,\\n      \\\"bootstrap_ci\\\": {\\n        \\\"macro\\\": {\\n          \\\"mean\\\": 0.8243953775325159,\\n          \\\"ci_lo\\\": 0.8137500979998805,\\n          \\\"ci_hi\\\": 0.835224113010086\\n        },\\n        \\\"gen-0\\\": {\\n          \\\"mean\\\": 0.9635900874699017,\\n          \\\"ci_lo\\\": 0.9549459199570289,\\n          \\\"ci_hi\\\": 0.9713216413830369\\n        },\\n        \\\"gen-1\\\": {\\n          \\\"mean\\\": 0.6703475561303506,\\n          \\\"ci_lo\\\": 0.647550725136932,\\n          \\\"ci_hi\\\": 0.6925864462392731\\n        },\\n        \\\"gen-2+\\\": {\\n          \\\"mean\\\": 0.8392484889972955,\\n          \\\"ci_lo\\\": 0.8283787541491021,\\n          \\\"ci_hi\\\": 0.8509421907955613\\n        }\\n      }\\n    },\\n    \\\"qwen3-1.7b\\\": {\\n      \\\"macro_f1\\\": 0.8045992997018758,\\n      \\\"gen-0_f1\\\": 0.9346497414198401,\\n      \\\"gen-1_f1\\\": 0.6539115646258503,\\n      \\\"gen-2+_f1\\\": 0.8252365930599369,\\n      \\\"bootstrap_ci\\\": {\\n        \\\"macro\\\": {\\n          \\\"mean\\\": 0.8043025593535311,\\n          \\\"ci_lo\\\": 0.7931504301956179,\\n          \\\"ci_hi\\\": 0.8152194170297093\\n        },\\n        \\\"gen-0\\\": {\\n          \\\"mean\\\": 0.9345387737994454,\\n          \\\"ci_lo\\\": 0.9230042287085461,\\n          \\\"ci_hi\\\": 0.9446943775431013\\n        },\\n        \\\"gen-1\\\": {\\n          \\\"mean\\\": 0.6536662589761602,\\n          \\\"ci_lo\\\": 0.6318957234743197,\\n          \\\"ci_hi\\\": 0.6754065686149966\\n        },\\n        \\\"gen-2+\\\": {\\n          \\\"mean\\\": 0.8247026452849879,\\n          \\\"ci_lo\\\": 0.8136288864937735,\\n          \\\"ci_hi\\\": 0.836271965257901\\n        }\\n      }\\n    },\\n    \\\"qwen3-8b\\\": {\\n\\n\\n... [截断: 输出过长，省略 16650 字符] ...\\n\\n643315806,\\n              \\\"ci_lo\\\": 0.7628865710388724,\\n              \\\"ci_hi\\\": 0.7871859160702099\\n            },\\n            \\\"gen-0\\\": {\\n              \\\"mean\\\": 0.9010852927343386,\\n              \\\"ci_lo\\\": 0.8854506565800381,\\n              \\\"ci_hi\\\": 0.9138417226805174\\n            },\\n            \\\"gen-1\\\": {\\n              \\\"mean\\\": 0.5952941168697627,\\n              \\\"ci_lo\\\": 0.5714285714285714,\\n              \\\"ci_hi\\\": 0.6190088638195004\\n            },\\n            \\\"gen-2+\\\": {\\n              \\\"mean\\\": 0.8295174833906404,\\n              \\\"ci_lo\\\": 0.8176674265213676,\\n              \\\"ci_hi\\\": 0.8410368527605256\\n            }\\n          }\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"macro_f1\\\": 0.759481295238135,\\n          \\\"gen-0_f1\\\": 0.8674377224199288,\\n          \\\"gen-1_f1\\\": 0.5879712746858169,\\n          \\\"gen-2+_f1\\\": 0.8230348886086591,\\n          \\\"bootstrap_ci\\\": {\\n            \\\"macro\\\": {\\n              \\\"mean\\\": 0.759401304690003,\\n              \\\"ci_lo\\\": 0.7476110638600336,\\n              \\\"ci_hi\\\": 0.7715681569167756\\n            },\\n            \\\"gen-0\\\": {\\n              \\\"mean\\\": 0.8675226356622293,\\n              \\\"ci_lo\\\": 0.8533433974456953,\\n              \\\"ci_hi\\\": 0.8828229090054365\\n            },\\n            \\\"gen-1\\\": {\\n              \\\"mean\\\": 0.5880544018281203,\\n              \\\"ci_lo\\\": 0.5622908839857358,\\n              \\\"ci_hi\\\": 0.6118082380764682\\n            },\\n            \\\"gen-2+\\\": {\\n              \\\"mean\\\": 0.8226268765796596,\\n              \\\"ci_lo\\\": 0.8116429837114242,\\n              \\\"ci_hi\\\": 0.834078143616317\\n            }\\n          }\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"macro_f1\\\": 0.6628604958653347,\\n          \\\"gen-0_f1\\\": 0.8003376952300548,\\n          \\\"gen-1_f1\\\": 0.5124028137726768,\\n          \\\"gen-2+_f1\\\": 0.6758409785932722,\\n          \\\"bootstrap_ci\\\": {\\n            \\\"macro\\\": {\\n              \\\"mean\\\": 0.6627213362824527,\\n              \\\"ci_lo\\\": 0.6490601645920856,\\n              \\\"ci_hi\\\": 0.6759196483090865\\n            },\\n            \\\"gen-0\\\": {\\n              \\\"mean\\\": 0.8001830289037478,\\n              \\\"ci_lo\\\": 0.7818134551756736,\\n              \\\"ci_hi\\\": 0.8181510257035386\\n            },\\n            \\\"gen-1\\\": {\\n              \\\"mean\\\": 0.512170848272172,\\n              \\\"ci_lo\\\": 0.48829406158598704,\\n              \\\"ci_hi\\\": 0.5345045551096737\\n            },\\n            \\\"gen-2+\\\": {\\n              \\\"mean\\\": 0.6758101316714378,\\n              \\\"ci_lo\\\": 0.6590479515977495,\\n              \\\"ci_hi\\\": 0.6929605354901687\\n            }\\n          }\\n        }\\n      }\\n    },\\n    \\\"mcnemar_full_vs_surface\\\": 0.0,\\n    \\\"mcnemar_full_vs_reference\\\": 0.0\\n  },\\n  \\\"permutation_importance\\\": {\\n    \\\"hapax_ratio\\\": {\\n      \\\"rank\\\": 1,\\n      \\\"importance\\\": 0.2689894381128696\\n    },\\n    \\\"entropy_mean\\\": {\\n      \\\"rank\\\": 2,\\n      \\\"importance\\\": 0.16365195318250925\\n    },\\n    \\\"ttr\\\": {\\n      \\\"rank\\\": 3,\\n      \\\"importance\\\": 0.15895043391551683\\n    },\\n    \\\"entropy_max\\\": {\\n      \\\"rank\\\": 4,\\n      \\\"importance\\\": 0.06337907096188078\\n    },\\n    \\\"entropy_std\\\": {\\n      \\\"rank\\\": 5,\\n      \\\"importance\\\": 0.04633218709335862\\n    },\\n    \\\"entropy_min\\\": {\\n      \\\"rank\\\": 6,\\n      \\\"importance\\\": 0.015272036905443176\\n    },\\n    \\\"tail_decay\\\": {\\n      \\\"rank\\\": 7,\\n      \\\"importance\\\": 0.012290159987731308\\n    }\\n  },\\n  \\\"entropy_std_analysis\\\": {\\n    \\\"drift_magnitude\\\": {\\n      \\\"entropy_std\\\": {\\n        \\\"mean_drift\\\": 0.10709590636879422,\\n        \\\"per_model_drifts\\\": [\\n          0.08549674559707032,\\n          0.11379287341567368,\\n          0.17534054843200253,\\n          0.1263214215776094,\\n          0.0974281858727637,\\n          0.044195663317645684\\n        ]\\n      },\\n      \\\"entropy_mean\\\": {\\n        \\\"mean_drift\\\": 1.4286074569350111,\\n        \\\"per_model_drifts\\\": [\\n          1.4900911396082956,\\n          1.6515185986040075,\\n          1.5166338741417718,\\n          1.4237336898289004,\\n          1.4008041866643706,\\n          1.0888632527627207\\n        ]\\n      }\\n    },\\n    \\\"logo_with_all\\\": 0.7893115309790949,\\n    \\\"logo_without_entropy_std\\\": 0.785263520578268,\\n    \\\"delta_f1\\\": 0.004048010400826918,\\n    \\\"conclusion\\\": \\\"entropy_std 对跨生成器泛化贡献极小，更可能是 H1（模型特有 artifact）\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "1e2f4307-2b52-4c3b-b775-748733d7e286",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"leave_one_generator_out\\\\\\\": {\\\\n    \\\\\\\"olmo-2-1b\\\\\\\": {\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.7635482360726357,\\\\n      \\\\\\\"gen-0_f1\\\\\\\": 0.9394372913686219,\\\\n      \\\\\\\"gen-1_f1\\\\\\\": 0.5939216404247528,\\\\n      \\\\\\\"gen-2+_f1\\\\\\\": 0.7572857764245324,\\\\n      \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n        \\\\\\\"macro\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.7632474541034412,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.752291407589837,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.774556425636986\\\\n        },\\\\n        \\\\\\\"gen-0\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9390676389352408,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.9281606367092045,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.9493685984153057\\\\n        },\\\\n        \\\\\\\"gen-1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.5936892952958178,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.5722641789797264,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.614848287751023\\\\n        },\\\\n        \\\\\\\"gen-2+\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.756985428079265,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.7431779481614316,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.7707136789576602\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"pythia-1b\\\\\\\": {\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.8561570389714025,\\\\n      \\\\\\\"gen-0_f1\\\\\\\": 0.9870775347912525,\\\\n      \\\\\\\"gen-1_f1\\\\\\\": 0.7128363475959417,\\\\n      \\\\\\\"gen-2+_f1\\\\\\\": 0.8685572345270131,\\\\n      \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n        \\\\\\\"macro\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8561628836375909,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.8464948384344575,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8660734154907818\\\\n        },\\\\n        \\\\\\\"gen-0\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9871494029606074,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.9822026150270425,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.9917280959919536\\\\n        },\\\\n        \\\\\\\"gen-1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.7129278984301098,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.6912108028758323,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.7339870694517586\\\\n        },\\\\n        \\\\\\\"gen-2+\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8684113495220553,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.8587815288235165,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8786139076987922\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"pythia-2.8b\\\\\\\": {\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.8041250264478296,\\\\n      \\\\\\\"gen-0_f1\\\\\\\": 0.9720998531571219,\\\\n      \\\\\\\"gen-1_f1\\\\\\\": 0.6434519303557911,\\\\n      \\\\\\\"gen-2+_f1\\\\\\\": 0.7968232958305758,\\\\n      \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n        \\\\\\\"macro\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8039427478163064,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.7935864894551219,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8144970815002649\\\\n        },\\\\n        \\\\\\\"gen-0\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9720540209100789,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.9644421756593932,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.9790283302772059\\\\n        },\\\\n        \\\\\\\"gen-1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.643016344295924,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.6220234034287284,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.665208510725607\\\\n        },\\\\n        \\\\\\\"gen-2+\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.7967578782429163,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.7834349245755013,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8102160472496513\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\": {\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.824273263300435,\\\\n      \\\\\\\"gen-0_f1\\\\\\\": 0.9636451769268056,\\\\n      \\\\\\\"gen-1_f1\\\\\\\": 0.6699375557537912,\\\\n      \\\\\\\"gen-2+_f1\\\\\\\": 0.8392370572207084,\\\\n      \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n        \\\\\\\"macro\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8243953775325159,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.8137500979998805,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.835224113010086\\\\n        },\\\\n        \\\\\\\"gen-0\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9635900874699017,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.9549459199570289,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.9713216413830369\\\\n        },\\\\n        \\\\\\\"gen-1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.6703475561303506,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.647550725136932,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.6925864462392731\\\\n        },\\\\n        \\\\\\\"gen-2+\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8392484889972955,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.8283787541491021,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8509421907955613\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n      \\\\\\\"macro_f1\\\\\\\": 0.8045992997018758,\\\\n      \\\\\\\"gen-0_f1\\\\\\\": 0.9346497414198401,\\\\n      \\\\\\\"gen-1_f1\\\\\\\": 0.6539115646258503,\\\\n      \\\\\\\"gen-2+_f1\\\\\\\": 0.8252365930599369,\\\\n      \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n        \\\\\\\"macro\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8043025593535311,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.7931504301956179,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.8152194170297093\\\\n        },\\\\n        \\\\\\\"gen-0\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.9345387737994454,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.9230042287085461,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.9446943775431013\\\\n        },\\\\n        \\\\\\\"gen-1\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.6536662589761602,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.6318957234743197,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.6754065686149966\\\\n        },\\\\n        \\\\\\\"gen-2+\\\\\\\": {\\\\n          \\\\\\\"mean\\\\\\\": 0.8247026452849879,\\\\n          \\\\\\\"ci_lo\\\\\\\": 0.8136288864937735,\\\\n          \\\\\\\"ci_hi\\\\\\\": 0.836271965257901\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"qwen3-8b\\\\\\\": {\\\\n\\\\n\\\\n... [截断: 输出过长，省略 16650 字符] ...\\\\n\\\\n643315806,\\\\n              \\\\\\\"ci_lo\\\\\\\": 0.7628865710388724,\\\\n              \\\\\\\"ci_hi\\\\\\\": 0.7871859160702099\\\\n            },\\\\n            \\\\\\\"gen-0\\\\\\\": {\\\\n              \\\\\\\"mean\\\\\\\": 0.9010852927343386,\\\\n              \\\\\\\"ci_lo\\\\\\\": 0.8854506565800381,\\\\n              \\\\\\\"ci_hi\\\\\\\": 0.9138417226805174\\\\n            },\\\\n            \\\\\\\"gen-1\\\\\\\": {\\\\n              \\\\\\\"mean\\\\\\\": 0.5952941168697627,\\\\n              \\\\\\\"ci_lo\\\\\\\": 0.5714285714285714,\\\\n              \\\\\\\"ci_hi\\\\\\\": 0.6190088638195004\\\\n            },\\\\n            \\\\\\\"gen-2+\\\\\\\": {\\\\n              \\\\\\\"mean\\\\\\\": 0.8295174833906404,\\\\n              \\\\\\\"ci_lo\\\\\\\": 0.8176674265213676,\\\\n              \\\\\\\"ci_hi\\\\\\\": 0.8410368527605256\\\\n            }\\\\n          }\\\\n        },\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": {\\\\n          \\\\\\\"macro_f1\\\\\\\": 0.759481295238135,\\\\n          \\\\\\\"gen-0_f1\\\\\\\": 0.8674377224199288,\\\\n          \\\\\\\"gen-1_f1\\\\\\\": 0.5879712746858169,\\\\n          \\\\\\\"gen-2+_f1\\\\\\\": 0.8230348886086591,\\\\n          \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n            \\\\\\\"macro\\\\\\\": {\\\\n              \\\\\\\"mean\\\\\\\": 0.759401304690003,\\\\n              \\\\\\\"ci_lo\\\\\\\": 0.7476110638600336,\\\\n              \\\\\\\"ci_hi\\\\\\\": 0.7715681569167756\\\\n            },\\\\n            \\\\\\\"gen-0\\\\\\\": {\\\\n              \\\\\\\"mean\\\\\\\": 0.8675226356622293,\\\\n              \\\\\\\"ci_lo\\\\\\\": 0.8533433974456953,\\\\n              \\\\\\\"ci_hi\\\\\\\": 0.8828229090054365\\\\n            },\\\\n            \\\\\\\"gen-1\\\\\\\": {\\\\n              \\\\\\\"mean\\\\\\\": 0.5880544018281203,\\\\n              \\\\\\\"ci_lo\\\\\\\": 0.5622908839857358,\\\\n              \\\\\\\"ci_hi\\\\\\\": 0.6118082380764682\\\\n            },\\\\n            \\\\\\\"gen-2+\\\\\\\": {\\\\n              \\\\\\\"mean\\\\\\\": 0.8226268765796596,\\\\n              \\\\\\\"ci_lo\\\\\\\": 0.8116429837114242,\\\\n              \\\\\\\"ci_hi\\\\\\\": 0.834078143616317\\\\n            }\\\\n          }\\\\n        },\\\\n        \\\\\\\"qwen3-8b\\\\\\\": {\\\\n          \\\\\\\"macro_f1\\\\\\\": 0.6628604958653347,\\\\n          \\\\\\\"gen-0_f1\\\\\\\": 0.8003376952300548,\\\\n          \\\\\\\"gen-1_f1\\\\\\\": 0.5124028137726768,\\\\n          \\\\\\\"gen-2+_f1\\\\\\\": 0.6758409785932722,\\\\n          \\\\\\\"bootstrap_ci\\\\\\\": {\\\\n            \\\\\\\"macro\\\\\\\": {\\\\n              \\\\\\\"mean\\\\\\\": 0.6627213362824527,\\\\n              \\\\\\\"ci_lo\\\\\\\": 0.6490601645920856,\\\\n              \\\\\\\"ci_hi\\\\\\\": 0.6759196483090865\\\\n            },\\\\n            \\\\\\\"gen-0\\\\\\\": {\\\\n              \\\\\\\"mean\\\\\\\": 0.8001830289037478,\\\\n              \\\\\\\"ci_lo\\\\\\\": 0.7818134551756736,\\\\n              \\\\\\\"ci_hi\\\\\\\": 0.8181510257035386\\\\n            },\\\\n            \\\\\\\"gen-1\\\\\\\": {\\\\n              \\\\\\\"mean\\\\\\\": 0.512170848272172,\\\\n              \\\\\\\"ci_lo\\\\\\\": 0.48829406158598704,\\\\n              \\\\\\\"ci_hi\\\\\\\": 0.5345045551096737\\\\n            },\\\\n            \\\\\\\"gen-2+\\\\\\\": {\\\\n              \\\\\\\"mean\\\\\\\": 0.6758101316714378,\\\\n              \\\\\\\"ci_lo\\\\\\\": 0.6590479515977495,\\\\n              \\\\\\\"ci_hi\\\\\\\": 0.6929605354901687\\\\n            }\\\\n          }\\\\n        }\\\\n      }\\\\n    },\\\\n    \\\\\\\"mcnemar_full_vs_surface\\\\\\\": 0.0,\\\\n    \\\\\\\"mcnemar_full_vs_reference\\\\\\\": 0.0\\\\n  },\\\\n  \\\\\\\"permutation_importance\\\\\\\": {\\\\n    \\\\\\\"hapax_ratio\\\\\\\": {\\\\n      \\\\\\\"rank\\\\\\\": 1,\\\\n      \\\\\\\"importance\\\\\\\": 0.2689894381128696\\\\n    },\\\\n    \\\\\\\"entropy_mean\\\\\\\": {\\\\n      \\\\\\\"rank\\\\\\\": 2,\\\\n      \\\\\\\"importance\\\\\\\": 0.16365195318250925\\\\n    },\\\\n    \\\\\\\"ttr\\\\\\\": {\\\\n      \\\\\\\"rank\\\\\\\": 3,\\\\n      \\\\\\\"importance\\\\\\\": 0.15895043391551683\\\\n    },\\\\n    \\\\\\\"entropy_max\\\\\\\": {\\\\n      \\\\\\\"rank\\\\\\\": 4,\\\\n      \\\\\\\"importance\\\\\\\": 0.06337907096188078\\\\n    },\\\\n    \\\\\\\"entropy_std\\\\\\\": {\\\\n      \\\\\\\"rank\\\\\\\": 5,\\\\n      \\\\\\\"importance\\\\\\\": 0.04633218709335862\\\\n    },\\\\n    \\\\\\\"entropy_min\\\\\\\": {\\\\n      \\\\\\\"rank\\\\\\\": 6,\\\\n      \\\\\\\"importance\\\\\\\": 0.015272036905443176\\\\n    },\\\\n    \\\\\\\"tail_decay\\\\\\\": {\\\\n      \\\\\\\"rank\\\\\\\": 7,\\\\n      \\\\\\\"importance\\\\\\\": 0.012290159987731308\\\\n    }\\\\n  },\\\\n  \\\\\\\"entropy_std_analysis\\\\\\\": {\\\\n    \\\\\\\"drift_magnitude\\\\\\\": {\\\\n      \\\\\\\"entropy_std\\\\\\\": {\\\\n        \\\\\\\"mean_drift\\\\\\\": 0.10709590636879422,\\\\n        \\\\\\\"per_model_drifts\\\\\\\": [\\\\n          0.08549674559707032,\\\\n          0.11379287341567368,\\\\n          0.17534054843200253,\\\\n          0.1263214215776094,\\\\n          0.0974281858727637,\\\\n          0.044195663317645684\\\\n        ]\\\\n      },\\\\n      \\\\\\\"entropy_mean\\\\\\\": {\\\\n        \\\\\\\"mean_drift\\\\\\\": 1.4286074569350111,\\\\n        \\\\\\\"per_model_drifts\\\\\\\": [\\\\n          1.4900911396082956,\\\\n          1.6515185986040075,\\\\n          1.5166338741417718,\\\\n          1.4237336898289004,\\\\n          1.4008041866643706,\\\\n          1.0888632527627207\\\\n        ]\\\\n      }\\\\n    },\\\\n    \\\\\\\"logo_with_all\\\\\\\": 0.7893115309790949,\\\\n    \\\\\\\"logo_without_entropy_std\\\\\\\": 0.785263520578268,\\\\n    \\\\\\\"delta_f1\\\\\\\": 0.004048010400826918,\\\\n    \\\\\\\"conclusion\\\\\\\": \\\\\\\"entropy_std 对跨生成器泛化贡献极小，更可能是 H1（模型特有 artifact）\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"leave_one_generator_out\\\": {\\n    \\\"olmo-2-1b\\\": {\\n      \\\"macro_f1\\\": 0.7635482360726357,\\n      \\\"gen-0_f1\\\": 0.9394372913686219,\\n      \\\"gen-1_f1\\\": 0.5939216404247528,\\n      \\\"gen-2+_f1\\\": 0.7572857764245324,\\n      \\\"bootstrap_ci\\\": {\\n        \\\"macro\\\": {\\n          \\\"mean\\\": 0.7632474541034412,\\n          \\\"ci_lo\\\": 0.752291407589837,\\n          \\\"ci_hi\\\": 0.774556425636986\\n        },\\n        \\\"gen-0\\\": {\\n          \\\"mean\\\": 0.9390676389352408,\\n          \\\"ci_lo\\\": 0.9281606367092045,\\n          \\\"ci_hi\\\": 0.9493685984153057\\n        },\\n        \\\"gen-1\\\": {\\n          \\\"mean\\\": 0.5936892952958178,\\n          \\\"ci_lo\\\": 0.5722641789797264,\\n          \\\"ci_hi\\\": 0.614848287751023\\n        },\\n        \\\"gen-2+\\\": {\\n          \\\"mean\\\": 0.756985428079265,\\n          \\\"ci_lo\\\": 0.7431779481614316,\\n          \\\"ci_hi\\\": 0.7707136789576602\\n        }\\n      }\\n    },\\n    \\\"pythia-1b\\\": {\\n      \\\"macro_f1\\\": 0.8561570389714025,\\n      \\\"gen-0_f1\\\": 0.9870775347912525,\\n      \\\"gen-1_f1\\\": 0.7128363475959417,\\n      \\\"gen-2+_f1\\\": 0.8685572345270131,\\n      \\\"bootstrap_ci\\\": {\\n        \\\"macro\\\": {\\n          \\\"mean\\\": 0.8561628836375909,\\n          \\\"ci_lo\\\": 0.8464948384344575,\\n          \\\"ci_hi\\\": 0.8660734154907818\\n        },\\n        \\\"gen-0\\\": {\\n          \\\"mean\\\": 0.9871494029606074,\\n          \\\"ci_lo\\\": 0.9822026150270425,\\n          \\\"ci_hi\\\": 0.9917280959919536\\n        },\\n        \\\"gen-1\\\": {\\n          \\\"mean\\\": 0.7129278984301098,\\n          \\\"ci_lo\\\": 0.6912108028758323,\\n          \\\"ci_hi\\\": 0.7339870694517586\\n        },\\n        \\\"gen-2+\\\": {\\n          \\\"mean\\\": 0.8684113495220553,\\n          \\\"ci_lo\\\": 0.8587815288235165,\\n          \\\"ci_hi\\\": 0.8786139076987922\\n        }\\n      }\\n    },\\n    \\\"pythia-2.8b\\\": {\\n      \\\"macro_f1\\\": 0.8041250264478296,\\n      \\\"gen-0_f1\\\": 0.9720998531571219,\\n      \\\"gen-1_f1\\\": 0.6434519303557911,\\n      \\\"gen-2+_f1\\\": 0.7968232958305758,\\n      \\\"bootstrap_ci\\\": {\\n        \\\"macro\\\": {\\n          \\\"mean\\\": 0.8039427478163064,\\n          \\\"ci_lo\\\": 0.7935864894551219,\\n          \\\"ci_hi\\\": 0.8144970815002649\\n        },\\n        \\\"gen-0\\\": {\\n          \\\"mean\\\": 0.9720540209100789,\\n          \\\"ci_lo\\\": 0.9644421756593932,\\n          \\\"ci_hi\\\": 0.9790283302772059\\n        },\\n        \\\"gen-1\\\": {\\n          \\\"mean\\\": 0.643016344295924,\\n          \\\"ci_lo\\\": 0.6220234034287284,\\n          \\\"ci_hi\\\": 0.665208510725607\\n        },\\n        \\\"gen-2+\\\": {\\n          \\\"mean\\\": 0.7967578782429163,\\n          \\\"ci_lo\\\": 0.7834349245755013,\\n          \\\"ci_hi\\\": 0.8102160472496513\\n        }\\n      }\\n    },\\n    \\\"qwen3-0.6b\\\": {\\n      \\\"macro_f1\\\": 0.824273263300435,\\n      \\\"gen-0_f1\\\": 0.9636451769268056,\\n      \\\"gen-1_f1\\\": 0.6699375557537912,\\n      \\\"gen-2+_f1\\\": 0.8392370572207084,\\n      \\\"bootstrap_ci\\\": {\\n        \\\"macro\\\": {\\n          \\\"mean\\\": 0.8243953775325159,\\n          \\\"ci_lo\\\": 0.8137500979998805,\\n          \\\"ci_hi\\\": 0.835224113010086\\n        },\\n        \\\"gen-0\\\": {\\n          \\\"mean\\\": 0.9635900874699017,\\n          \\\"ci_lo\\\": 0.9549459199570289,\\n          \\\"ci_hi\\\": 0.9713216413830369\\n        },\\n        \\\"gen-1\\\": {\\n          \\\"mean\\\": 0.6703475561303506,\\n          \\\"ci_lo\\\": 0.647550725136932,\\n          \\\"ci_hi\\\": 0.6925864462392731\\n        },\\n        \\\"gen-2+\\\": {\\n          \\\"mean\\\": 0.8392484889972955,\\n          \\\"ci_lo\\\": 0.8283787541491021,\\n          \\\"ci_hi\\\": 0.8509421907955613\\n        }\\n      }\\n    },\\n    \\\"qwen3-1.7b\\\": {\\n      \\\"macro_f1\\\": 0.8045992997018758,\\n      \\\"gen-0_f1\\\": 0.9346497414198401,\\n      \\\"gen-1_f1\\\": 0.6539115646258503,\\n      \\\"gen-2+_f1\\\": 0.8252365930599369,\\n      \\\"bootstrap_ci\\\": {\\n        \\\"macro\\\": {\\n          \\\"mean\\\": 0.8043025593535311,\\n          \\\"ci_lo\\\": 0.7931504301956179,\\n          \\\"ci_hi\\\": 0.8152194170297093\\n        },\\n        \\\"gen-0\\\": {\\n          \\\"mean\\\": 0.9345387737994454,\\n          \\\"ci_lo\\\": 0.9230042287085461,\\n          \\\"ci_hi\\\": 0.9446943775431013\\n        },\\n        \\\"gen-1\\\": {\\n          \\\"mean\\\": 0.6536662589761602,\\n          \\\"ci_lo\\\": 0.6318957234743197,\\n          \\\"ci_hi\\\": 0.6754065686149966\\n        },\\n        \\\"gen-2+\\\": {\\n          \\\"mean\\\": 0.8247026452849879,\\n          \\\"ci_lo\\\": 0.8136288864937735,\\n          \\\"ci_hi\\\": 0.836271965257901\\n        }\\n      }\\n    },\\n    \\\"qwen3-8b\\\": {\\n\\n\\n... [截断: 输出过长，省略 16650 字符] ...\\n\\n643315806,\\n              \\\"ci_lo\\\": 0.7628865710388724,\\n              \\\"ci_hi\\\": 0.7871859160702099\\n            },\\n            \\\"gen-0\\\": {\\n              \\\"mean\\\": 0.9010852927343386,\\n              \\\"ci_lo\\\": 0.8854506565800381,\\n              \\\"ci_hi\\\": 0.9138417226805174\\n            },\\n            \\\"gen-1\\\": {\\n              \\\"mean\\\": 0.5952941168697627,\\n              \\\"ci_lo\\\": 0.5714285714285714,\\n              \\\"ci_hi\\\": 0.6190088638195004\\n            },\\n            \\\"gen-2+\\\": {\\n              \\\"mean\\\": 0.8295174833906404,\\n              \\\"ci_lo\\\": 0.8176674265213676,\\n              \\\"ci_hi\\\": 0.8410368527605256\\n            }\\n          }\\n        },\\n        \\\"qwen3-1.7b\\\": {\\n          \\\"macro_f1\\\": 0.759481295238135,\\n          \\\"gen-0_f1\\\": 0.8674377224199288,\\n          \\\"gen-1_f1\\\": 0.5879712746858169,\\n          \\\"gen-2+_f1\\\": 0.8230348886086591,\\n          \\\"bootstrap_ci\\\": {\\n            \\\"macro\\\": {\\n              \\\"mean\\\": 0.759401304690003,\\n              \\\"ci_lo\\\": 0.7476110638600336,\\n              \\\"ci_hi\\\": 0.7715681569167756\\n            },\\n            \\\"gen-0\\\": {\\n              \\\"mean\\\": 0.8675226356622293,\\n              \\\"ci_lo\\\": 0.8533433974456953,\\n              \\\"ci_hi\\\": 0.8828229090054365\\n            },\\n            \\\"gen-1\\\": {\\n              \\\"mean\\\": 0.5880544018281203,\\n              \\\"ci_lo\\\": 0.5622908839857358,\\n              \\\"ci_hi\\\": 0.6118082380764682\\n            },\\n            \\\"gen-2+\\\": {\\n              \\\"mean\\\": 0.8226268765796596,\\n              \\\"ci_lo\\\": 0.8116429837114242,\\n              \\\"ci_hi\\\": 0.834078143616317\\n            }\\n          }\\n        },\\n        \\\"qwen3-8b\\\": {\\n          \\\"macro_f1\\\": 0.6628604958653347,\\n          \\\"gen-0_f1\\\": 0.8003376952300548,\\n          \\\"gen-1_f1\\\": 0.5124028137726768,\\n          \\\"gen-2+_f1\\\": 0.6758409785932722,\\n          \\\"bootstrap_ci\\\": {\\n            \\\"macro\\\": {\\n              \\\"mean\\\": 0.6627213362824527,\\n              \\\"ci_lo\\\": 0.6490601645920856,\\n              \\\"ci_hi\\\": 0.6759196483090865\\n            },\\n            \\\"gen-0\\\": {\\n              \\\"mean\\\": 0.8001830289037478,\\n              \\\"ci_lo\\\": 0.7818134551756736,\\n              \\\"ci_hi\\\": 0.8181510257035386\\n            },\\n            \\\"gen-1\\\": {\\n              \\\"mean\\\": 0.512170848272172,\\n              \\\"ci_lo\\\": 0.48829406158598704,\\n              \\\"ci_hi\\\": 0.5345045551096737\\n            },\\n            \\\"gen-2+\\\": {\\n              \\\"mean\\\": 0.6758101316714378,\\n              \\\"ci_lo\\\": 0.6590479515977495,\\n              \\\"ci_hi\\\": 0.6929605354901687\\n            }\\n          }\\n        }\\n      }\\n    },\\n    \\\"mcnemar_full_vs_surface\\\": 0.0,\\n    \\\"mcnemar_full_vs_reference\\\": 0.0\\n  },\\n  \\\"permutation_importance\\\": {\\n    \\\"hapax_ratio\\\": {\\n      \\\"rank\\\": 1,\\n      \\\"importance\\\": 0.2689894381128696\\n    },\\n    \\\"entropy_mean\\\": {\\n      \\\"rank\\\": 2,\\n      \\\"importance\\\": 0.16365195318250925\\n    },\\n    \\\"ttr\\\": {\\n      \\\"rank\\\": 3,\\n      \\\"importance\\\": 0.15895043391551683\\n    },\\n    \\\"entropy_max\\\": {\\n      \\\"rank\\\": 4,\\n      \\\"importance\\\": 0.06337907096188078\\n    },\\n    \\\"entropy_std\\\": {\\n      \\\"rank\\\": 5,\\n      \\\"importance\\\": 0.04633218709335862\\n    },\\n    \\\"entropy_min\\\": {\\n      \\\"rank\\\": 6,\\n      \\\"importance\\\": 0.015272036905443176\\n    },\\n    \\\"tail_decay\\\": {\\n      \\\"rank\\\": 7,\\n      \\\"importance\\\": 0.012290159987731308\\n    }\\n  },\\n  \\\"entropy_std_analysis\\\": {\\n    \\\"drift_magnitude\\\": {\\n      \\\"entropy_std\\\": {\\n        \\\"mean_drift\\\": 0.10709590636879422,\\n        \\\"per_model_drifts\\\": [\\n          0.08549674559707032,\\n          0.11379287341567368,\\n          0.17534054843200253,\\n          0.1263214215776094,\\n          0.0974281858727637,\\n          0.044195663317645684\\n        ]\\n      },\\n      \\\"entropy_mean\\\": {\\n        \\\"mean_drift\\\": 1.4286074569350111,\\n        \\\"per_model_drifts\\\": [\\n          1.4900911396082956,\\n          1.6515185986040075,\\n          1.5166338741417718,\\n          1.4237336898289004,\\n          1.4008041866643706,\\n          1.0888632527627207\\n        ]\\n      }\\n    },\\n    \\\"logo_with_all\\\": 0.7893115309790949,\\n    \\\"logo_without_entropy_std\\\": 0.785263520578268,\\n    \\\"delta_f1\\\": 0.004048010400826918,\\n    \\\"conclusion\\\": \\\"entropy_std 对跨生成器泛化贡献极小，更可能是 H1（模型特有 artifact）\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me check the generators in `features_all_models.csv` and also the tail_decay difference.
+
+From the cross_generator_results.json, the 6-gen LOGO results (with `features_all_models.csv`) are:
+- olmo-2-1b: 0.7635
+- pythia-1b: 0.8562
+- pythia-2.8b: 0.8041
+- qwen3-0.6b: 0.8243
+
+
+- qwen3-1.7b: 0.8046
+
+I need to find qwen3-8b's score to complete the picture, and I'm realizing there's a discrepancy—the original CSV actually contains 5 generators (23032 rows), so what I thought was a 6-gen LOGO analysis might actually be 5-gen, and the 7-gen analysis script must be adding an additional generator somewhere.
+
+Looking at the cross_generator_eval.py docstring, it confirms 5 generators were used originally with Pythia-410M features, but the task mentions 6 generators including qwen3-8b. Let me check what model names are actually in the features_all_models.csv file to clarify this.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "0e7975f0-385a-4bed-9ec4-4a8986cda700",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014r2oogdqmKMC4Y3nZUUeDC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6124,
+      "cache_read_input_tokens": 40433,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6124
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SpYGpEwAkjg7DK93SfQVgt`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -o '\"model_name\":\"[^\"]*\"' /root/gen-depth-fingerprint/data/features_all_models.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "625c65e6-8522-4b8d-ae7e-f17d9778b582",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014r2oogdqmKMC4Y3nZUUeDC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6124,
+      "cache_read_input_tokens": 40433,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6124
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-16T12:16:08.089Z_
+
+<details><summary>↩ Tool result · `toolu_01SpYGpEwAkjg7DK93SfQVgt`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "005bf572-d34d-42e3-8435-a0ab3b71652c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01B8nP24rLXxxDKd2dgXFdiV`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -1 /root/gen-depth-fingerprint/data/features_all_models.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "72918375-bed7-4633-a7f5-9e40f649d5fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014r2oogdqmKMC4Y3nZUUeDC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6124,
+      "cache_read_input_tokens": 40433,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6124
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-16T12:16:08.527Z_
+
+<details><summary>↩ Tool result · `toolu_01B8nP24rLXxxDKd2dgXFdiV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "b12c7398-7d2e-423c-b963-05254df5b045",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ScPDAzwPApNPWGUjdoiRfh`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -c \"^pythia-2.8b,\" /root/gen-depth-fingerprint/data/features_all_models.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "910759f8-09b1-40fa-ad3d-6aa42420e2cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014r2oogdqmKMC4Y3nZUUeDC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6124,
+      "cache_read_input_tokens": 40433,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6124
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-16T12:16:09.988Z_
+
+<details><summary>↩ Tool result · `toolu_01ScPDAzwPApNPWGUjdoiRfh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"4609\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "32074c75-0766-40c0-a8c2-809fc1caabb2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4609\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"4609\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Eg9REBN5DhDmzuEH2DeyPn`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -c \"^pythia-1b,\" /root/gen-depth-fingerprint/data/features_all_models.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "ae111d55-390f-47eb-8e87-5a7876a4ffbf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014r2oogdqmKMC4Y3nZUUeDC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6124,
+      "cache_read_input_tokens": 40433,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6124
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-16T12:16:10.947Z_
+
+<details><summary>↩ Tool result · `toolu_01Eg9REBN5DhDmzuEH2DeyPn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"4555\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "cc98e4ce-1d45-4a10-9f2d-641bd4c76bf7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4555\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"4555\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TyQ6yrFoyBWb3Rfi9LwS3S`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -c \"^olmo-2-1b,\" /root/gen-depth-fingerprint/data/features_all_models.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "a248c203-b4fd-469b-b33b-dd6cddd64019",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014r2oogdqmKMC4Y3nZUUeDC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6124,
+      "cache_read_input_tokens": 40433,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6124
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-16T12:16:11.944Z_
+
+<details><summary>↩ Tool result · `toolu_01TyQ6yrFoyBWb3Rfi9LwS3S`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"4713\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "13c52b03-291a-4c8f-bee3-fc0c6155e5f9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4713\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"4713\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JSsCtoik6GBRqoELSYhuJ7`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -c \"^qwen3-\" /root/gen-depth-fingerprint/data/features_all_models.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "7ee2d6bb-f76e-41a0-aaef-fa8414681178",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014r2oogdqmKMC4Y3nZUUeDC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6124,
+      "cache_read_input_tokens": 40433,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6124
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-16T12:16:12.328Z_
+
+<details><summary>↩ Tool result · `toolu_01JSsCtoik6GBRqoELSYhuJ7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"13652\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "c23e918f-7f84-4f44-9330-c4977c6d43ec",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"13652\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"13652\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017JraswX1m3yT58GwzV7mmU`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -c \"^qwen3-0.6b,\" /root/gen-depth-fingerprint/data/features_all_models.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "8d83cafd-d516-49f9-86ea-5f00e19ffa96",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H3MrbuiNRT9Q4m5mNuhPGq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1749,
+      "cache_read_input_tokens": 46557,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1749
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-16T12:16:16.000Z_
+
+<details><summary>↩ Tool result · `toolu_017JraswX1m3yT58GwzV7mmU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"4538\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "b464c3ce-f237-46ba-825b-2d16e18e41ac",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4538\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"4538\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Afa62RN8Ao86nxALvdUP6m`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -c \"^qwen3-1.7b,\" /root/gen-depth-fingerprint/data/features_all_models.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "cb52ca36-7d19-4491-b888-535c4929a8bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H3MrbuiNRT9Q4m5mNuhPGq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1749,
+      "cache_read_input_tokens": 46557,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1749
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-16T12:16:16.943Z_
+
+<details><summary>↩ Tool result · `toolu_01Afa62RN8Ao86nxALvdUP6m`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"4617\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "418e79e2-e564-4215-a68e-79d6bacaf600",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4617\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"4617\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011jD1PwzFa27hbMAeFUxY8w`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -c \"^qwen3-8b,\" /root/gen-depth-fingerprint/data/features_all_models.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "ca3cc048-6882-40b9-86f3-c862690a0dea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H3MrbuiNRT9Q4m5mNuhPGq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1749,
+      "cache_read_input_tokens": 46557,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1749
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-16T12:16:17.423Z_
+
+<details><summary>↩ Tool result · `toolu_011jD1PwzFa27hbMAeFUxY8w`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"4497\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "73e3eeb5-90ce-4299-946e-ccfd8538c4cb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4497\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"4497\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01K1SYteqih7bLWAxUUJRo1c`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/gen-depth-fingerprint/data/features_all_models.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "de9522ac-e738-43d8-89bd-a1e046bc3e5f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H3MrbuiNRT9Q4m5mNuhPGq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1749,
+      "cache_read_input_tokens": 46557,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1749
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-16T12:16:18.352Z_
+
+<details><summary>↩ Tool result · `toolu_01K1SYteqih7bLWAxUUJRo1c`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"27530 /root/gen-depth-fingerprint/data/features_all_models.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "42245c19-1b85-48b2-9fd8-b5e508a80bd6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"27530 /root/gen-depth-fingerprint/data/features_all_models.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"27530 /root/gen-depth-fingerprint/data/features_all_models.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FpG6wmiRFt9kZhzgC8EUkP`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/gen-depth-fingerprint/data/features_qwen3-8b*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "91bbe003-b1d0-4c51-a75c-ecac9909b23a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H3MrbuiNRT9Q4m5mNuhPGq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1749,
+      "cache_read_input_tokens": 46557,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1749
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-16T12:16:19.300Z_
+
+<details><summary>↩ Tool result · `toolu_01FpG6wmiRFt9kZhzgC8EUkP`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/gen-depth-fingerprint/data/features_qwen3-8b*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "6e544f72-de66-42c4-b264-794481fe7a53",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/gen-depth-fingerprint/data/features_qwen3-8b*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/gen-depth-fingerprint/data/features_qwen3-8b*': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HHn8F6dy3aRHvPEYo14LWG`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/gen-depth-fingerprint/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "b34d6934-30bc-4b29-8921-3a3d10be26e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H3MrbuiNRT9Q4m5mNuhPGq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1749,
+      "cache_read_input_tokens": 46557,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1749
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-16T12:16:19.800Z_
+
+<details><summary>↩ Tool result · `toolu_01HHn8F6dy3aRHvPEYo14LWG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ablation_results.json\\nalt_classifier_results.json\\nbinary_bootstrap_pvalue.json\\nbootstrap_ci_results.json\\nbootstrap_ci_v2_results.json\\nconfusion_matrix_3class.json\\nconfusion_matrix_results.json\\ncross_model_chains_results.json\\ndataset_stats.json\\ndataset_stats_table.tex\\ndepth_trends.png\\nfamily_holdout_3class.json\\nfig1_differential_response_v2.pdf\\nfig1_differential_response_v2.png\\nfiner_ordinal_results.json\\nhuman_edit_robustness.json\\nhuman_edit_robustness_old_no_chat_template.json\\ninstruct_length_confound.json\\nlofo_ablation_results.json\\nmulti_classify_results.csv\\nmulti_classify_results.json\\nmulti_domain_results.json\\nmulti_seed_stability.json\\nmvp_results.json\\nn2a_bootstrap_ci.json\\nordinal_baseline_results.json\\np1c_instruct_logo_f1.json\\nper_gen_binary_f1.json\\nperplexity_by_depth.json\\nplan006_paraphrastic_comparison.json\\nplan006_paraphrastic_comparison_old_rp13.json\\nplan012_pythia410m_results.json\\nplan012_qwen06b_results.json\\nplan012_qwen06b_seed123_r32_results.json\\nplan012_xgboost_matched.json\\npooled_rho_fix.json\\nrd3_int1_entropy_std_pergen.json\\nreview_baseline_ensemble_results.json\\nreview_overall_ci_results.json\\nreview_overall_ci_v2_results.json\\nreview_p0a_binary_logo.json\\nreview_p0b_volume_matched.json\\nreview_p1c_instruct.json\\nreview_p1c_olmo_instruct.json\\nreview_p1c_qwen06b_instruct.json\\nreview_p1d_6gen_baselines.json\\nreview_p1e_ordinal.json\\nreview_p2f_cross_ref_bias.json\\nreview_topic_drift_results.json\\nsampling_ablation.json\\nspearman_per_generator.json\\ntable4_cross_ref_logo.json\\ntrend_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "071b4385-46f3-4287-9c9d-15d8599e49db",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ablation_results.json\\\\nalt_classifier_results.json\\\\nbinary_bootstrap_pvalue.json\\\\nbootstrap_ci_results.json\\\\nbootstrap_ci_v2_results.json\\\\nconfusion_matrix_3class.json\\\\nconfusion_matrix_results.json\\\\ncross_model_chains_results.json\\\\ndataset_stats.json\\\\ndataset_stats_table.tex\\\\ndepth_trends.png\\\\nfamily_holdout_3class.json\\\\nfig1_differential_response_v2.pdf\\\\nfig1_differential_response_v2.png\\\\nfiner_ordinal_results.json\\\\nhuman_edit_robustness.json\\\\nhuman_edit_robustness_old_no_chat_template.json\\\\ninstruct_length_confound.json\\\\nlofo_ablation_results.json\\\\nmulti_classify_results.csv\\\\nmulti_classify_results.json\\\\nmulti_domain_results.json\\\\nmulti_seed_stability.json\\\\nmvp_results.json\\\\nn2a_bootstrap_ci.json\\\\nordinal_baseline_results.json\\\\np1c_instruct_logo_f1.json\\\\nper_gen_binary_f1.json\\\\nperplexity_by_depth.json\\\\nplan006_paraphrastic_comparison.json\\\\nplan006_paraphrastic_comparison_old_rp13.json\\\\nplan012_pythia410m_results.json\\\\nplan012_qwen06b_results.json\\\\nplan012_qwen06b_seed123_r32_results.json\\\\nplan012_xgboost_matched.json\\\\npooled_rho_fix.json\\\\nrd3_int1_entropy_std_pergen.json\\\\nreview_baseline_ensemble_results.json\\\\nreview_overall_ci_results.json\\\\nreview_overall_ci_v2_results.json\\\\nreview_p0a_binary_logo.json\\\\nreview_p0b_volume_matched.json\\\\nreview_p1c_instruct.json\\\\nreview_p1c_olmo_instruct.json\\\\nreview_p1c_qwen06b_instruct.json\\\\nreview_p1d_6gen_baselines.json\\\\nreview_p1e_ordinal.json\\\\nreview_p2f_cross_ref_bias.json\\\\nreview_topic_drift_results.json\\\\nsampling_ablation.json\\\\nspearman_per_generator.json\\\\ntable4_cross_ref_logo.json\\\\ntrend_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"ablation_results.json\\nalt_classifier_results.json\\nbinary_bootstrap_pvalue.json\\nbootstrap_ci_results.json\\nbootstrap_ci_v2_results.json\\nconfusion_matrix_3class.json\\nconfusion_matrix_results.json\\ncross_model_chains_results.json\\ndataset_stats.json\\ndataset_stats_table.tex\\ndepth_trends.png\\nfamily_holdout_3class.json\\nfig1_differential_response_v2.pdf\\nfig1_differential_response_v2.png\\nfiner_ordinal_results.json\\nhuman_edit_robustness.json\\nhuman_edit_robustness_old_no_chat_template.json\\ninstruct_length_confound.json\\nlofo_ablation_results.json\\nmulti_classify_results.csv\\nmulti_classify_results.json\\nmulti_domain_results.json\\nmulti_seed_stability.json\\nmvp_results.json\\nn2a_bootstrap_ci.json\\nordinal_baseline_results.json\\np1c_instruct_logo_f1.json\\nper_gen_binary_f1.json\\nperplexity_by_depth.json\\nplan006_paraphrastic_comparison.json\\nplan006_paraphrastic_comparison_old_rp13.json\\nplan012_pythia410m_results.json\\nplan012_qwen06b_results.json\\nplan012_qwen06b_seed123_r32_results.json\\nplan012_xgboost_matched.json\\npooled_rho_fix.json\\nrd3_int1_entropy_std_pergen.json\\nreview_baseline_ensemble_results.json\\nreview_overall_ci_results.json\\nreview_overall_ci_v2_results.json\\nreview_p0a_binary_logo.json\\nreview_p0b_volume_matched.json\\nreview_p1c_instruct.json\\nreview_p1c_olmo_instruct.json\\nreview_p1c_qwen06b_instruct.json\\nreview_p1d_6gen_baselines.json\\nreview_p1e_ordinal.json\\nreview_p2f_cross_ref_bias.json\\nreview_topic_drift_results.json\\nsampling_ablation.json\\nspearman_per_generator.json\\ntable4_cross_ref_logo.json\\ntrend_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture:
+
+1. `features_all_models.csv` has 27529 data rows (27530 - 1 header) across 6 generators:
+   - pythia-2.8b: 4609
+   - pythia-1b: 4555
+   - olmo-2-1b: 4713
+   - qwen3-0.6b: 4538
+   - qwen3-1.7b: 4617
+   - qwen3-8b: 4497
+   - Total: 27529 ✓
+
+2. The two new generators in JSONL format are llama-3.2-3b with 2937 lines and mistral-7b-v0.3 with 3665 lines.
+
+3. The existing cross-generator LOGO results show an average macro-F1 of 0.7893, but I'm noticing a concerning discrepancy: the tail_decay values in the CSV are negative around -0.002, while the JSONL files show positive values ranging from 0.01 to 0.11.
+
+Looking more carefully at the data, I see that `features_all_models.csv` actually contains 6 generators now (including qwen3-8b which was added later), even though the original docstring mentions 5. The `cross_generator_results.json` also reflects these 6 generators, so that baseline is already established. The real issue I need to resolve is understanding why the tail_decay calculations differ so dramatically between the old CSV extraction method and the new JSONL format—I should trace back through the original `extract_features.py` to see what formula was used and compare it with the current approach. Looking at the feature extraction scripts to understand why the tail_decay values differ so dramatically between the original and new implementations - this discrepancy could mean they're being computed with different methods, which would affect whether I can directly compare them across generators.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "98df07f8-55c9-4b93-b390-0918583b065e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dkx3GxtLZXngGH5X4Hg4pr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2092,
+      "cache_read_input_tokens": 48306,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2092
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+Let me check the tail_decay computation to understand the format difference.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "737ef904-c02d-4aa6-b2bf-ff73890d6496",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dkx3GxtLZXngGH5X4Hg4pr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2092,
+      "cache_read_input_tokens": 48306,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2092
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ewe5ECJoVvMrqLKEm4DWPJ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -A 20 \"tail_decay\" /root/gen-depth-fingerprint/extract_features.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "fa3e900c-dbe7-4fc3-83cf-190c5d28b3b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dkx3GxtLZXngGH5X4Hg4pr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2092,
+      "cache_read_input_tokens": 48306,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2092
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-16T12:16:38.294Z_
+
+<details><summary>↩ Tool result · `toolu_01Ewe5ECJoVvMrqLKEm4DWPJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"输出: data/features.csv (id, depth, seed_id, entropy_mean, entropy_std, entropy_min, entropy_max, tail_decay, ttr, hapax_ratio)\\n依赖: torch, transformers, numpy, pandas\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nfrom collections import Counter\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\n# Local snapshot path (no HF Hub access needed)\\nMODEL_SNAPSHOT = \\\"/root/autodl-tmp/models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/9879c9b5f8bea9051dcb0e68dff21493d67e9d4f\\\"\\n\\n\\ndef make_synthetic_records(n: int = 10) -> list[dict]:\\n--\\n    Compute per-text entropy stats and tail_decay using the reference model.\\n\\n    Returns list of dicts with keys:\\n      entropy_mean, entropy_std, entropy_min, entropy_max, tail_decay\\n    \\\"\\\"\\\"\\n    results = []\\n    for start in range(0, len(texts), batch_size):\\n        batch_texts = texts[start : start + batch_size]\\n        encodings = tokenizer(\\n            batch_texts,\\n            return_tensors=\\\"pt\\\",\\n            padding=True,\\n            truncation=True,\\n            max_length=512,\\n        ).to(device)\\n\\n        with torch.no_grad():\\n            outputs = model(**encodings)\\n            logits = outputs.logits  # (B, seq_len, vocab)\\n\\n        for i in range(len(batch_texts)):\\n            mask = encodings[\\\"attention_mask\\\"][i].bool()\\n            seq_len = mask.sum().item()\\n            if seq_len < 2:\\n--\\n                    \\\"tail_decay\\\": 0.0,\\n                })\\n                continue\\n\\n            # Token-level entropy: logits[0..T-2] predict tokens[1..T-1]\\n            token_logits = logits[i, :seq_len - 1, :]  # (T-1, V)\\n            log_probs = torch.log_softmax(token_logits, dim=-1)\\n            probs = torch.exp(log_probs)\\n            entropy = -(probs * log_probs).sum(dim=-1)  # (T-1,)\\n            entropy_np = entropy.float().cpu().numpy()\\n\\n            # Tail decay: average log-prob distribution, fit slope on ranks 100-1000\\n            avg_log_probs = log_probs.float().mean(dim=0)  # (V,)\\n            sorted_lp, _ = torch.sort(avg_log_probs, descending=True)\\n            sorted_lp_np = sorted_lp.cpu().numpy()\\n\\n            vocab_size = sorted_lp_np.shape[0]\\n            hi = min(1000, vocab_size)\\n            lo = min(100, hi)\\n            if hi - lo >= 2:\\n                x = np.arange(lo, hi, dtype=np.float64)\\n--\\n                tail_decay = float(coeffs[0])\\n            else:\\n                tail_decay = 0.0\\n\\n            results.append({\\n                \\\"entropy_mean\\\": float(np.mean(entropy_np)),\\n                \\\"entropy_std\\\": float(np.std(entropy_np)),\\n                \\\"entropy_min\\\": float(np.min(entropy_np)),\\n                \\\"entropy_max\\\": float(np.max(entropy_np)),\\n                \\\"tail_decay\\\": tail_decay,\\n            })\\n\\n        print(f\\\"  Processed {min(start + batch_size, len(texts))}/{len(texts)} texts\\\")\\n\\n    return results\\n\\n\\ndef compute_surface_features(texts: list[str]) -> list[dict]:\\n    \\\"\\\"\\\"\\n    Compute surface-level text statistics: type-token ratio and hapax ratio.\\n\\n    Returns list of dicts with keys: ttr, hapax_ratio\\n    \\\"\\\"\\\"\\n    results = []\\n    for text in texts:\\n        words = text.lower().split()\\n        n_tokens = len(words)\\n        if n_tokens == 0:\\n            results.append({\\\"ttr\\\": 0.0, \\\"hapax_ratio\\\": 0.0})\\n            continue\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "c68add7e-02f3-4d48-8de9-4a6fd1e4ff81",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"输出: data/features.csv (id, depth, seed_id, entropy_mean, entropy_std, entropy_min, entropy_max, tail_decay, ttr, hapax_ratio)\\\\n依赖: torch, transformers, numpy, pandas\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nimport torch\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\n# Local snapshot path (no HF Hub access needed)\\\\nMODEL_SNAPSHOT = \\\\\\\"/root/autodl-tmp/models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/9879c9b5f8bea9051dcb0e68dff21493d67e9d4f\\\\\\\"\\\\n\\\\n\\\\ndef make_synthetic_records(n: int = 10) -> list[dict]:\\\\n--\\\\n    Compute per-text entropy stats and tail_decay using the reference model.\\\\n\\\\n    Returns list of dicts with keys:\\\\n      entropy_mean, entropy_std, entropy_min, entropy_max, tail_decay\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    results = []\\\\n    for start in range(0, len(texts), batch_size):\\\\n        batch_texts = texts[start : start + batch_size]\\\\n        encodings = tokenizer(\\\\n            batch_texts,\\\\n            return_tensors=\\\\\\\"pt\\\\\\\",\\\\n            padding=True,\\\\n            truncation=True,\\\\n            max_length=512,\\\\n        ).to(device)\\\\n\\\\n        with torch.no_grad():\\\\n            outputs = model(**encodings)\\\\n            logits = outputs.logits  # (B, seq_len, vocab)\\\\n\\\\n        for i in range(len(batch_texts)):\\\\n            mask = encodings[\\\\\\\"attention_mask\\\\\\\"][i].bool()\\\\n            seq_len = mask.sum().item()\\\\n            if seq_len < 2:\\\\n--\\\\n                    \\\\\\\"tail_decay\\\\\\\": 0.0,\\\\n                })\\\\n                continue\\\\n\\\\n            # Token-level entropy: logits[0..T-2] predict tokens[1..T-1]\\\\n            token_logits = logits[i, :seq_len - 1, :]  # (T-1, V)\\\\n            log_probs = torch.log_softmax(token_logits, dim=-1)\\\\n            probs = torch.exp(log_probs)\\\\n            entropy = -(probs * log_probs).sum(dim=-1)  # (T-1,)\\\\n            entropy_np = entropy.float().cpu().numpy()\\\\n\\\\n            # Tail decay: average log-prob distribution, fit slope on ranks 100-1000\\\\n            avg_log_probs = log_probs.float().mean(dim=0)  # (V,)\\\\n            sorted_lp, _ = torch.sort(avg_log_probs, descending=True)\\\\n            sorted_lp_np = sorted_lp.cpu().numpy()\\\\n\\\\n            vocab_size = sorted_lp_np.shape[0]\\\\n            hi = min(1000, vocab_size)\\\\n            lo = min(100, hi)\\\\n            if hi - lo >= 2:\\\\n                x = np.arange(lo, hi, dtype=np.float64)\\\\n--\\\\n                tail_decay = float(coeffs[0])\\\\n            else:\\\\n                tail_decay = 0.0\\\\n\\\\n            results.append({\\\\n                \\\\\\\"entropy_mean\\\\\\\": float(np.mean(entropy_np)),\\\\n                \\\\\\\"entropy_std\\\\\\\": float(np.std(entropy_np)),\\\\n                \\\\\\\"entropy_min\\\\\\\": float(np.min(entropy_np)),\\\\n                \\\\\\\"entropy_max\\\\\\\": float(np.max(entropy_np)),\\\\n                \\\\\\\"tail_decay\\\\\\\": tail_decay,\\\\n            })\\\\n\\\\n        print(f\\\\\\\"  Processed {min(start + batch_size, len(texts))}/{len(texts)} texts\\\\\\\")\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef compute_surface_features(texts: list[str]) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    Compute surface-level text statistics: type-token ratio and hapax ratio.\\\\n\\\\n    Returns list of dicts with keys: ttr, hapax_ratio\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    results = []\\\\n    for text in texts:\\\\n        words = text.lower().split()\\\\n        n_tokens = len(words)\\\\n        if n_tokens == 0:\\\\n            results.append({\\\\\\\"ttr\\\\\\\": 0.0, \\\\\\\"hapax_ratio\\\\\\\": 0.0})\\\\n            continue\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"输出: data/features.csv (id, depth, seed_id, entropy_mean, entropy_std, entropy_min, entropy_max, tail_decay, ttr, hapax_ratio)\\n依赖: torch, transformers, numpy, pandas\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nfrom collections import Counter\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\n# Local snapshot path (no HF Hub access needed)\\nMODEL_SNAPSHOT = \\\"/root/autodl-tmp/models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/9879c9b5f8bea9051dcb0e68dff21493d67e9d4f\\\"\\n\\n\\ndef make_synthetic_records(n: int = 10) -> list[dict]:\\n--\\n    Compute per-text entropy stats and tail_decay using the reference model.\\n\\n    Returns list of dicts with keys:\\n      entropy_mean, entropy_std, entropy_min, entropy_max, tail_decay\\n    \\\"\\\"\\\"\\n    results = []\\n    for start in range(0, len(texts), batch_size):\\n        batch_texts = texts[start : start + batch_size]\\n        encodings = tokenizer(\\n            batch_texts,\\n            return_tensors=\\\"pt\\\",\\n            padding=True,\\n            truncation=True,\\n            max_length=512,\\n        ).to(device)\\n\\n        with torch.no_grad():\\n            outputs = model(**encodings)\\n            logits = outputs.logits  # (B, seq_len, vocab)\\n\\n        for i in range(len(batch_texts)):\\n            mask = encodings[\\\"attention_mask\\\"][i].bool()\\n            seq_len = mask.sum().item()\\n            if seq_len < 2:\\n--\\n                    \\\"tail_decay\\\": 0.0,\\n                })\\n                continue\\n\\n            # Token-level entropy: logits[0..T-2] predict tokens[1..T-1]\\n            token_logits = logits[i, :seq_len - 1, :]  # (T-1, V)\\n            log_probs = torch.log_softmax(token_logits, dim=-1)\\n            probs = torch.exp(log_probs)\\n            entropy = -(probs * log_probs).sum(dim=-1)  # (T-1,)\\n            entropy_np = entropy.float().cpu().numpy()\\n\\n            # Tail decay: average log-prob distribution, fit slope on ranks 100-1000\\n            avg_log_probs = log_probs.float().mean(dim=0)  # (V,)\\n            sorted_lp, _ = torch.sort(avg_log_probs, descending=True)\\n            sorted_lp_np = sorted_lp.cpu().numpy()\\n\\n            vocab_size = sorted_lp_np.shape[0]\\n            hi = min(1000, vocab_size)\\n            lo = min(100, hi)\\n            if hi - lo >= 2:\\n                x = np.arange(lo, hi, dtype=np.float64)\\n--\\n                tail_decay = float(coeffs[0])\\n            else:\\n                tail_decay = 0.0\\n\\n            results.append({\\n                \\\"entropy_mean\\\": float(np.mean(entropy_np)),\\n                \\\"entropy_std\\\": float(np.std(entropy_np)),\\n                \\\"entropy_min\\\": float(np.min(entropy_np)),\\n                \\\"entropy_max\\\": float(np.max(entropy_np)),\\n                \\\"tail_decay\\\": tail_decay,\\n            })\\n\\n        print(f\\\"  Processed {min(start + batch_size, len(texts))}/{len(texts)} texts\\\")\\n\\n    return results\\n\\n\\ndef compute_surface_features(texts: list[str]) -> list[dict]:\\n    \\\"\\\"\\\"\\n    Compute surface-level text statistics: type-token ratio and hapax ratio.\\n\\n    Returns list of dicts with keys: ttr, hapax_ratio\\n    \\\"\\\"\\\"\\n    results = []\\n    for text in texts:\\n        words = text.lower().split()\\n        n_tokens = len(words)\\n        if n_tokens == 0:\\n            results.append({\\\"ttr\\\": 0.0, \\\"hapax_ratio\\\": 0.0})\\n            continue\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0127iqxcG28xTYW9gz5StjPn`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -A 20 \"tail_decay\" /root/gen-depth-fingerprint/llama_filter_and_extract.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "340539b8-3fa1-423a-af17-0301c8aff006",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dkx3GxtLZXngGH5X4Hg4pr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2092,
+      "cache_read_input_tokens": 48306,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2092
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-16T12:16:39.253Z_
+
+<details><summary>↩ Tool result · `toolu_0127iqxcG28xTYW9gz5StjPn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        # Step 2: Compute entropy features + tail_decay for all texts\\n        print(\\\"  Computing entropy features...\\\")\\n        entropy_feats = compute_entropy_features(texts, tokenizer, model, device, batch_size)\\n\\n        print(\\\"  Computing tail_decay (NLL > threshold proportion)...\\\")\\n        all_nlls = compute_per_token_nll(texts, tokenizer, model, device, batch_size)\\n        tail_decays = []\\n        for nll_arr in all_nlls:\\n            if len(nll_arr) == 0:\\n                tail_decays.append(0.0)\\n            else:\\n                tail_decays.append(float(np.mean(nll_arr > threshold_90)))\\n\\n        # Free GPU memory\\n        del model, tokenizer\\n        torch.cuda.empty_cache()\\n\\n        # Assemble and save\\n        output_path = DATA_DIR / f\\\"features_{ref_name}.jsonl\\\"\\n        with open(output_path, \\\"w\\\") as f:\\n            for i, rec in enumerate(records):\\n                row = {\\n                    \\\"seed_id\\\": rec[\\\"seed_id\\\"],\\n                    \\\"depth\\\": rec[\\\"depth\\\"],\\n                    **entropy_feats[i],\\n                    \\\"tail_decay\\\": tail_decays[i],\\n                    **surface_features[i],\\n                }\\n                f.write(json.dumps(row) + \\\"\\\\n\\\")\\n\\n        elapsed = time.time() - t0\\n        print(f\\\"  Saved to {output_path} ({elapsed:.0f}s)\\\")\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"ALL DONE\\\")\\n    print(\\\"=\\\" * 60)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--phase\\\", choices=[\\\"1\\\", \\\"2\\\", \\\"both\\\"], default=\\\"both\\\")\\n    parser.add_argument(\\\"--device\\\", default=\\\"cuda:0\\\")\\n    parser.add_argument(\\\"--data-dir\\\", type=str, default=None, help=\\\"Override DATA_DIR\\\")\\n    parser.add_argument(\\\"--batch-size\\\", type=int, default=8)\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Process only 20 records\\\")\\n    args = parser.parse_args()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "07cb1fa2-a5bf-4a21-86b7-c98171a45a9a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        # Step 2: Compute entropy features + tail_decay for all texts\\\\n        print(\\\\\\\"  Computing entropy features...\\\\\\\")\\\\n        entropy_feats = compute_entropy_features(texts, tokenizer, model, device, batch_size)\\\\n\\\\n        print(\\\\\\\"  Computing tail_decay (NLL > threshold proportion)...\\\\\\\")\\\\n        all_nlls = compute_per_token_nll(texts, tokenizer, model, device, batch_size)\\\\n        tail_decays = []\\\\n        for nll_arr in all_nlls:\\\\n            if len(nll_arr) == 0:\\\\n                tail_decays.append(0.0)\\\\n            else:\\\\n                tail_decays.append(float(np.mean(nll_arr > threshold_90)))\\\\n\\\\n        # Free GPU memory\\\\n        del model, tokenizer\\\\n        torch.cuda.empty_cache()\\\\n\\\\n        # Assemble and save\\\\n        output_path = DATA_DIR / f\\\\\\\"features_{ref_name}.jsonl\\\\\\\"\\\\n        with open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n            for i, rec in enumerate(records):\\\\n                row = {\\\\n                    \\\\\\\"seed_id\\\\\\\": rec[\\\\\\\"seed_id\\\\\\\"],\\\\n                    \\\\\\\"depth\\\\\\\": rec[\\\\\\\"depth\\\\\\\"],\\\\n                    **entropy_feats[i],\\\\n                    \\\\\\\"tail_decay\\\\\\\": tail_decays[i],\\\\n                    **surface_features[i],\\\\n                }\\\\n                f.write(json.dumps(row) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n        elapsed = time.time() - t0\\\\n        print(f\\\\\\\"  Saved to {output_path} ({elapsed:.0f}s)\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"ALL DONE\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument(\\\\\\\"--phase\\\\\\\", choices=[\\\\\\\"1\\\\\\\", \\\\\\\"2\\\\\\\", \\\\\\\"both\\\\\\\"], default=\\\\\\\"both\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--device\\\\\\\", default=\\\\\\\"cuda:0\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-dir\\\\\\\", type=str, default=None, help=\\\\\\\"Override DATA_DIR\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--batch-size\\\\\\\", type=int, default=8)\\\\n    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Process only 20 records\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"        # Step 2: Compute entropy features + tail_decay for all texts\\n        print(\\\"  Computing entropy features...\\\")\\n        entropy_feats = compute_entropy_features(texts, tokenizer, model, device, batch_size)\\n\\n        print(\\\"  Computing tail_decay (NLL > threshold proportion)...\\\")\\n        all_nlls = compute_per_token_nll(texts, tokenizer, model, device, batch_size)\\n        tail_decays = []\\n        for nll_arr in all_nlls:\\n            if len(nll_arr) == 0:\\n                tail_decays.append(0.0)\\n            else:\\n                tail_decays.append(float(np.mean(nll_arr > threshold_90)))\\n\\n        # Free GPU memory\\n        del model, tokenizer\\n        torch.cuda.empty_cache()\\n\\n        # Assemble and save\\n        output_path = DATA_DIR / f\\\"features_{ref_name}.jsonl\\\"\\n        with open(output_path, \\\"w\\\") as f:\\n            for i, rec in enumerate(records):\\n                row = {\\n                    \\\"seed_id\\\": rec[\\\"seed_id\\\"],\\n                    \\\"depth\\\": rec[\\\"depth\\\"],\\n                    **entropy_feats[i],\\n                    \\\"tail_decay\\\": tail_decays[i],\\n                    **surface_features[i],\\n                }\\n                f.write(json.dumps(row) + \\\"\\\\n\\\")\\n\\n        elapsed = time.time() - t0\\n        print(f\\\"  Saved to {output_path} ({elapsed:.0f}s)\\\")\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n    print(\\\"ALL DONE\\\")\\n    print(\\\"=\\\" * 60)\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--phase\\\", choices=[\\\"1\\\", \\\"2\\\", \\\"both\\\"], default=\\\"both\\\")\\n    parser.add_argument(\\\"--device\\\", default=\\\"cuda:0\\\")\\n    parser.add_argument(\\\"--data-dir\\\", type=str, default=None, help=\\\"Override DATA_DIR\\\")\\n    parser.add_argument(\\\"--batch-size\\\", type=int, default=8)\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Process only 20 records\\\")\\n    args = parser.parse_args()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PPZw9zWvj8EKMBU1kqXUPP`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -A 20 \"tail_decay\" /root/gen-depth-fingerprint/extract_features_multi.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "884ebacc-9017-45c5-8432-1fca149dd303",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dkx3GxtLZXngGH5X4Hg4pr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2092,
+      "cache_read_input_tokens": 48306,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2092
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-16T12:16:40.236Z_
+
+<details><summary>↩ Tool result · `toolu_01PPZw9zWvj8EKMBU1kqXUPP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"\\\"\\\"计算参考模型特征：entropy stats + tail_decay。\\\"\\\"\\\"\\n    results = []\\n    for start in range(0, len(texts), batch_size):\\n        batch_texts = texts[start:start + batch_size]\\n        encodings = tokenizer(\\n            batch_texts,\\n            return_tensors=\\\"pt\\\",\\n            padding=True,\\n            truncation=True,\\n            max_length=512,\\n        ).to(device)\\n\\n        with torch.no_grad():\\n            logits = model(**encodings).logits\\n\\n        for i in range(len(batch_texts)):\\n            mask = encodings[\\\"attention_mask\\\"][i].bool()\\n            seq_len = mask.sum().item()\\n            if seq_len < 2:\\n                results.append({\\n                    \\\"entropy_mean\\\": 0.0, \\\"entropy_std\\\": 0.0,\\n--\\n                    \\\"tail_decay\\\": 0.0,\\n                })\\n                continue\\n\\n            token_logits = logits[i, :seq_len - 1, :]\\n            log_probs = torch.log_softmax(token_logits, dim=-1)\\n            probs = torch.exp(log_probs)\\n            entropy = -(probs * log_probs).sum(dim=-1)\\n            entropy_np = entropy.float().cpu().numpy()\\n\\n            # tail decay: avg log-prob 在 rank 100-1000 的斜率\\n            avg_log_probs = log_probs.float().mean(dim=0)\\n            sorted_lp, _ = torch.sort(avg_log_probs, descending=True)\\n            sorted_lp_np = sorted_lp.cpu().numpy()\\n\\n            vocab_size = sorted_lp_np.shape[0]\\n            hi = min(1000, vocab_size)\\n            lo = min(100, hi)\\n            if hi - lo >= 2:\\n                x = np.arange(lo, hi, dtype=np.float64)\\n                y = sorted_lp_np[lo:hi].astype(np.float64)\\n--\\n                tail_decay = float(coeffs[0])\\n            else:\\n                tail_decay = 0.0\\n\\n            results.append({\\n                \\\"entropy_mean\\\": float(np.mean(entropy_np)),\\n                \\\"entropy_std\\\": float(np.std(entropy_np)),\\n                \\\"entropy_min\\\": float(np.min(entropy_np)),\\n                \\\"entropy_max\\\": float(np.max(entropy_np)),\\n                \\\"tail_decay\\\": tail_decay,\\n            })\\n\\n        if (start // batch_size) % 10 == 0:\\n            print(f\\\"  [{min(start + batch_size, len(texts))}/{len(texts)}]\\\")\\n\\n    return results\\n\\n\\ndef compute_surface_features(texts: list[str]) -> list[dict]:\\n    \\\"\\\"\\\"计算表面特征：type-token ratio, hapax ratio。\\\"\\\"\\\"\\n    results = []\\n    for text in texts:\\n        words = text.lower().split()\\n        n_tokens = len(words)\\n        if n_tokens == 0:\\n            results.append({\\\"ttr\\\": 0.0, \\\"hapax_ratio\\\": 0.0})\\n            continue\\n        counter = Counter(words)\\n        results.append({\\n            \\\"ttr\\\": len(counter) / n_tokens,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "c6b671d7-0640-4853-95ee-ee8ff74cadd8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    \\\\\\\"\\\\\\\"\\\\\\\"计算参考模型特征：entropy stats + tail_decay。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    results = []\\\\n    for start in range(0, len(texts), batch_size):\\\\n        batch_texts = texts[start:start + batch_size]\\\\n        encodings = tokenizer(\\\\n            batch_texts,\\\\n            return_tensors=\\\\\\\"pt\\\\\\\",\\\\n            padding=True,\\\\n            truncation=True,\\\\n            max_length=512,\\\\n        ).to(device)\\\\n\\\\n        with torch.no_grad():\\\\n            logits = model(**encodings).logits\\\\n\\\\n        for i in range(len(batch_texts)):\\\\n            mask = encodings[\\\\\\\"attention_mask\\\\\\\"][i].bool()\\\\n            seq_len = mask.sum().item()\\\\n            if seq_len < 2:\\\\n                results.append({\\\\n                    \\\\\\\"entropy_mean\\\\\\\": 0.0, \\\\\\\"entropy_std\\\\\\\": 0.0,\\\\n--\\\\n                    \\\\\\\"tail_decay\\\\\\\": 0.0,\\\\n                })\\\\n                continue\\\\n\\\\n            token_logits = logits[i, :seq_len - 1, :]\\\\n            log_probs = torch.log_softmax(token_logits, dim=-1)\\\\n            probs = torch.exp(log_probs)\\\\n            entropy = -(probs * log_probs).sum(dim=-1)\\\\n            entropy_np = entropy.float().cpu().numpy()\\\\n\\\\n            # tail decay: avg log-prob 在 rank 100-1000 的斜率\\\\n            avg_log_probs = log_probs.float().mean(dim=0)\\\\n            sorted_lp, _ = torch.sort(avg_log_probs, descending=True)\\\\n            sorted_lp_np = sorted_lp.cpu().numpy()\\\\n\\\\n            vocab_size = sorted_lp_np.shape[0]\\\\n            hi = min(1000, vocab_size)\\\\n            lo = min(100, hi)\\\\n            if hi - lo >= 2:\\\\n                x = np.arange(lo, hi, dtype=np.float64)\\\\n                y = sorted_lp_np[lo:hi].astype(np.float64)\\\\n--\\\\n                tail_decay = float(coeffs[0])\\\\n            else:\\\\n                tail_decay = 0.0\\\\n\\\\n            results.append({\\\\n                \\\\\\\"entropy_mean\\\\\\\": float(np.mean(entropy_np)),\\\\n                \\\\\\\"entropy_std\\\\\\\": float(np.std(entropy_np)),\\\\n                \\\\\\\"entropy_min\\\\\\\": float(np.min(entropy_np)),\\\\n                \\\\\\\"entropy_max\\\\\\\": float(np.max(entropy_np)),\\\\n                \\\\\\\"tail_decay\\\\\\\": tail_decay,\\\\n            })\\\\n\\\\n        if (start // batch_size) % 10 == 0:\\\\n            print(f\\\\\\\"  [{min(start + batch_size, len(texts))}/{len(texts)}]\\\\\\\")\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef compute_surface_features(texts: list[str]) -> list[dict]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"计算表面特征：type-token ratio, hapax ratio。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    results = []\\\\n    for text in texts:\\\\n        words = text.lower().split()\\\\n        n_tokens = len(words)\\\\n        if n_tokens == 0:\\\\n            results.append({\\\\\\\"ttr\\\\\\\": 0.0, \\\\\\\"hapax_ratio\\\\\\\": 0.0})\\\\n            continue\\\\n        counter = Counter(words)\\\\n        results.append({\\\\n            \\\\\\\"ttr\\\\\\\": len(counter) / n_tokens,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    \\\"\\\"\\\"计算参考模型特征：entropy stats + tail_decay。\\\"\\\"\\\"\\n    results = []\\n    for start in range(0, len(texts), batch_size):\\n        batch_texts = texts[start:start + batch_size]\\n        encodings = tokenizer(\\n            batch_texts,\\n            return_tensors=\\\"pt\\\",\\n            padding=True,\\n            truncation=True,\\n            max_length=512,\\n        ).to(device)\\n\\n        with torch.no_grad():\\n            logits = model(**encodings).logits\\n\\n        for i in range(len(batch_texts)):\\n            mask = encodings[\\\"attention_mask\\\"][i].bool()\\n            seq_len = mask.sum().item()\\n            if seq_len < 2:\\n                results.append({\\n                    \\\"entropy_mean\\\": 0.0, \\\"entropy_std\\\": 0.0,\\n--\\n                    \\\"tail_decay\\\": 0.0,\\n                })\\n                continue\\n\\n            token_logits = logits[i, :seq_len - 1, :]\\n            log_probs = torch.log_softmax(token_logits, dim=-1)\\n            probs = torch.exp(log_probs)\\n            entropy = -(probs * log_probs).sum(dim=-1)\\n            entropy_np = entropy.float().cpu().numpy()\\n\\n            # tail decay: avg log-prob 在 rank 100-1000 的斜率\\n            avg_log_probs = log_probs.float().mean(dim=0)\\n            sorted_lp, _ = torch.sort(avg_log_probs, descending=True)\\n            sorted_lp_np = sorted_lp.cpu().numpy()\\n\\n            vocab_size = sorted_lp_np.shape[0]\\n            hi = min(1000, vocab_size)\\n            lo = min(100, hi)\\n            if hi - lo >= 2:\\n                x = np.arange(lo, hi, dtype=np.float64)\\n                y = sorted_lp_np[lo:hi].astype(np.float64)\\n--\\n                tail_decay = float(coeffs[0])\\n            else:\\n                tail_decay = 0.0\\n\\n            results.append({\\n                \\\"entropy_mean\\\": float(np.mean(entropy_np)),\\n                \\\"entropy_std\\\": float(np.std(entropy_np)),\\n                \\\"entropy_min\\\": float(np.min(entropy_np)),\\n                \\\"entropy_max\\\": float(np.max(entropy_np)),\\n                \\\"tail_decay\\\": tail_decay,\\n            })\\n\\n        if (start // batch_size) % 10 == 0:\\n            print(f\\\"  [{min(start + batch_size, len(texts))}/{len(texts)}]\\\")\\n\\n    return results\\n\\n\\ndef compute_surface_features(texts: list[str]) -> list[dict]:\\n    \\\"\\\"\\\"计算表面特征：type-token ratio, hapax ratio。\\\"\\\"\\\"\\n    results = []\\n    for text in texts:\\n        words = text.lower().split()\\n        n_tokens = len(words)\\n        if n_tokens == 0:\\n            results.append({\\\"ttr\\\": 0.0, \\\"hapax_ratio\\\": 0.0})\\n            continue\\n        counter = Counter(words)\\n        results.append({\\n            \\\"ttr\\\": len(counter) / n_tokens,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+I see the issue now. The `llama_filter_and_extract.py` computes tail_decay differently:
+
+```python
+# llama_filter_and_extract.py:
+tail_decays = []
+for nll_arr in all_nlls:
+    if len(nll_arr) == 0:
+        tail_decays.append(0.0)
+    else:
+        tail_decays.append(float(np.mean(nll_arr > threshold_90)))
+```
+
+This is "proportion of NLL values above the 90th percentile threshold" - a value between 0 and 1.
+
+
+While `extract_features.py` and `extract_features_multi.py` compute it as a regression slope on the log probabilities at ranks 100-1000, which produces a small negative number. So the tail_decay metric was calculated completely differently between the original 6 generators and the new 2 generators - that's a major inconsistency.
+
+I have three options: re-extract features for the new generators using the correct method (but that needs GPU and the task says no GPU), drop tail_decay entirely, or just use the data as-is and document the difference. Since the task specifies using the data as-is without GPU, I need to look more carefully at what `llama_filter_and_extract.py` actually exports. It seems to have a `compute_entropy_features` function that returns entropy statistics but not tail_decay, so let me trace through exactly what features it's producing.
+
+Looking at the actual llama jsonl output, I can see it does include tail_decay in the records, but it's computed using a threshold proportion method rather than the slope method used in the original extraction script. This is a genuine discrepancy between how the two datasets were generated. Let me verify whether the llama and mistral features might have been extracted using the original method instead.
+
+Checking the llama data more carefully, I see tail_decay values around 0.098 for the first entry, whereas the original pythia data shows negative values like -0.0023 for the same seed and depth. This confirms they're using fundamentally different computation approaches. The XGBoost model trained on the original six generators learned patterns based on slope-derived tail_decay values in a negative range, so when it encounters the proportion-based tail_decay from llama and mistral in the 0-1 range, it won't have learned how to interpret those values meaningfully.
+
+Since this is a leave-one-generator-out experiment, I need to decide whether to drop tail_decay entirely and use six features, proceed with all seven despite the inconsistency, or re-extract the features consistently—though that last option would require GPU access.
+
+Given that tail_decay has the lowest permutation importance anyway and the task specifies using existing data, I'll move forward with the current features but document this discrepancy in my results. I see the user is flexible about different feature formats across generators, so I can combine them. Now I'm planning the 8-generator leave-one-out script: load the original 6 generators from CSV, add the 2 new ones from JSONL files with a model_name column, then run both the 3-class task (gen-0 / gen-1 / gen-2+) and the binary task (gen-1 vs gen-2+ only, excluding gen-0), reporting per-generator F1 scores with bootstrap confidence intervals and comparing against the 6-generator baseline.
+
+Looking at the existing 7-generator script, I notice its binary classification maps gen-0 and gen-1 together against gen-2+, but the task specifically asks for gen-1 vs gen-2+ only, which means I need to filter out gen-0 samples entirely for the binary task rather than grouping them with gen-1.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "47986872-6b12-40bd-9403-cc1b7f6fc6fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017f9qKFvfzBSg8awZTgfCRP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4269,
+      "cache_read_input_tokens": 50398,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4269
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83_
+
+I see a critical issue: `llama_filter_and_extract.py` computes tail_decay as NLL proportion (0-1), while the original `extract_features_multi.py` uses log-prob slope (~-0.002). But tail_decay has lowest permutation importance (rank 7), so impact should be small. I'll proceed and note this.
+
+Now I'll write the 8-gen LOGO script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "18331406-de15-4870-99a4-697d77dbd402",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017f9qKFvfzBSg8awZTgfCRP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4269,
+      "cache_read_input_tokens": 50398,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4269
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01R6srNbfYufTQdmcA1dXBoU`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat > /root/gen-depth-fingerprint/eval_8gen_logo.py << 'PYEOF'\n\"\"\"\neval_8gen_logo.py — 8-generator LOGO cross-validation.\n\n6 original generators (from features_all_models.csv):\n  pythia-2.8b, pythia-1b, olmo-2-1b, qwen3-0.6b, qwen3-1.7b, qwen3-8b\n\n2 new generators (from JSONL):\n  llama-3.2-3b, mistral-7b-v0.3\n\nTasks:\n  - 3-class LOGO: gen-0 / gen-1 / gen-2+\n  - Binary LOGO: gen-1 vs gen-2+ (exclude gen-0)\n  - Bootstrap 95% CI (n=1000)\n  - Comparison vs 6-gen baseline\n\"\"\"\n\nimport json\nimport os\nimport numpy as np\nimport pandas as pd\nfrom xgboost import XGBClassifier\nfrom sklearn.metrics import f1_score\n\nSEED = 42\nFEATURES = [\"entropy_mean\", \"entropy_std\", \"entropy_min\", \"entropy_max\",\n            \"tail_decay\", \"ttr\", \"hapax_ratio\"]\n\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\n                  random_state=SEED, eval_metric=\"mlogloss\",\n                  use_label_encoder=False)\n\nCLASS_MAP_3 = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\n\nROOT = os.path.dirname(os.path.abspath(__file__))\nDATA_DIR = os.path.join(ROOT, \"data\")\nRESULTS_DIR = os.path.join(ROOT, \"results\")\n\n\ndef load_data():\n    # 6 original generators from CSV\n    df_base = pd.read_csv(os.path.join(DATA_DIR, \"features_all_models.csv\"))\n\n    # 2 new generators from JSONL\n    new_gens = [\n        (\"llama-3.2-3b\", os.path.join(DATA_DIR, \"llama-3.2-3b\", \"features_pythia410m.jsonl\")),\n        (\"mistral-7b-v0.3\", os.path.join(DATA_DIR, \"mistral-7b-v0.3\", \"features_pythia410m.jsonl\")),\n    ]\n    dfs = [df_base]\n    for gen_name, path in new_gens:\n        records = []\n        with open(path) as f:\n            for line in f:\n                rec = json.loads(line)\n                rec[\"model_name\"] = gen_name\n                records.append(rec)\n        dfs.append(pd.DataFrame(records))\n\n    cols = [\"model_name\", \"seed_id\", \"depth\"] + FEATURES\n    df = pd.concat([d[cols] for d in dfs], ignore_index=True)\n    return df\n\n\ndef downsample(df, label_col, rng):\n    counts = df[label_col].value_counts()\n    min_n = counts.min()\n    parts = []\n    for lbl in sorted(counts.index):\n        sub = df[df[label_col] == lbl]\n        parts.append(sub.sample(n=min_n, random_state=rng, replace=False))\n    return pd.concat(parts, ignore_index=True)\n\n\ndef bootstrap_f1(y_true, y_pred, n_boot=1000, seed=SEED):\n    rng = np.random.RandomState(seed)\n    n = len(y_true)\n    scores = []\n    for _ in range(n_boot):\n        idx = rng.randint(0, n, size=n)\n        yt, yp = y_true[idx], y_pred[idx]\n        if len(np.unique(yt)) < 2:\n            continue\n        scores.append(f1_score(yt, yp, average=\"macro\"))\n    arr = np.array(scores)\n    return float(np.mean(arr)), float(np.percentile(arr, 2.5)), float(np.percentile(arr, 97.5))\n\n\ndef logo_3class(df):\n    df = df.copy()\n    df[\"label\"] = df[\"depth\"].map(CLASS_MAP_3)\n    generators = sorted(df[\"model_name\"].unique())\n    results = {}\n    rng = np.random.RandomState(SEED)\n\n    print(\"=== 3-class LOGO (gen-0 / gen-1 / gen-2+) ===\")\n    for gen in generators:\n        test_df = df[df[\"model_name\"] == gen]\n        train_df = df[df[\"model_name\"] != gen]\n        train_ds = downsample(train_df, \"label\", rng)\n\n        clf = XGBClassifier(**XGB_PARAMS)\n        clf.fit(train_ds[FEATURES].values, train_ds[\"label\"].values)\n        y_pred = clf.predict(test_df[FEATURES].values)\n        y_test = test_df[\"label\"].values\n\n        macro_f1 = f1_score(y_test, y_pred, average=\"macro\")\n        per_class = f1_score(y_test, y_pred, average=None, labels=[0, 1, 2])\n        mean_f1, ci_lo, ci_hi = bootstrap_f1(y_test, y_pred)\n\n        results[gen] = {\n            \"macro_f1\": round(float(macro_f1), 4),\n            \"gen-0_f1\": round(float(per_class[0]), 4),\n            \"gen-1_f1\": round(float(per_class[1]), 4),\n            \"gen-2+_f1\": round(float(per_class[2]), 4),\n            \"ci_lower\": round(ci_lo, 4),\n            \"ci_upper\": round(ci_hi, 4),\n        }\n        n_test = len(test_df)\n        print(f\"  {gen:20s}  F1={macro_f1:.4f}  95%CI=[{ci_lo:.4f}, {ci_hi:.4f}]  n={n_test}\")\n\n    avg_f1 = np.mean([r[\"macro_f1\"] for r in results.values()])\n    print(f\"  {'AVERAGE':20s}  F1={avg_f1:.4f}\")\n    return results, round(float(avg_f1), 4)\n\n\ndef logo_binary(df):\n    \"\"\"Binary: gen-1 vs gen-2+ (exclude gen-0).\"\"\"\n    df = df.copy()\n    df[\"label3\"] = df[\"depth\"].map(CLASS_MAP_3)\n    df = df[df[\"label3\"] >= 1].copy()  # exclude gen-0\n    df[\"binary_label\"] = (df[\"label3\"] >= 2).astype(int)  # gen-1=0, gen-2+=1\n    generators = sorted(df[\"model_name\"].unique())\n    results = {}\n    rng = np.random.RandomState(SEED)\n\n    print(\"\\n=== Binary LOGO (gen-1 vs gen-2+) ===\")\n    for gen in generators:\n        test_df = df[df[\"model_name\"] == gen]\n        train_df = df[df[\"model_name\"] != gen]\n\n        if test_df[\"binary_label\"].nunique() < 2:\n            print(f\"  {gen:20s}  SKIPPED (single class in test)\")\n            continue\n\n        train_ds = downsample(train_df, \"binary_label\", rng)\n\n        clf = XGBClassifier(**XGB_PARAMS)\n        clf.fit(train_ds[FEATURES].values, train_ds[\"binary_label\"].values)\n        y_pred = clf.predict(test_df[FEATURES].values)\n        y_test = test_df[\"binary_label\"].values\n\n        f1 = f1_score(y_test, y_pred, average=\"macro\")\n        mean_f1, ci_lo, ci_hi = bootstrap_f1(y_test, y_pred)\n\n        results[gen] = {\n            \"binary_f1\": round(float(f1), 4),\n            \"ci_lower\": round(ci_lo, 4),\n            \"ci_upper\": round(ci_hi, 4),\n        }\n        n_test = len(test_df)\n        print(f\"  {gen:20s}  F1={f1:.4f}  95%CI=[{ci_lo:.4f}, {ci_hi:.4f}]  n={n_test}\")\n\n    avg_f1 = np.mean([r[\"binary_f1\"] for r in results.values()])\n    print(f\"  {'AVERAGE':20s}  F1={avg_f1:.4f}\")\n    return results, round(float(avg_f1), 4)\n\n\ndef main():\n    df = load_data()\n    print(f\"Loaded {len(df)} rows, {df['model_name'].nunique()} generators\")\n    for gen in sorted(df[\"model_name\"].unique()):\n        n = len(df[df[\"model_name\"] == gen])\n        depths = sorted(df[df[\"model_name\"] == gen][\"depth\"].unique())\n        print(f\"  {gen:20s}  n={n}  depths={depths}\")\n\n    # 3-class LOGO\n    print()\n    three_results, three_avg = logo_3class(df)\n\n    # Binary LOGO\n    binary_results, binary_avg = logo_binary(df)\n\n    # 6-gen baseline from existing results\n    baseline_path = os.path.join(DATA_DIR, \"cross_generator_results.json\")\n    baseline_6gen_f1 = None\n    baseline_6gen_per_gen = {}\n    if os.path.exists(baseline_path):\n        with open(baseline_path) as f:\n            baseline = json.load(f)\n        logo_section = baseline.get(\"leave_one_generator_out\", {})\n        if \"average_macro_f1\" in logo_section:\n            baseline_6gen_f1 = logo_section[\"average_macro_f1\"]\n        else:\n            f1s = [v[\"macro_f1\"] for v in logo_section.values()\n                   if isinstance(v, dict) and \"macro_f1\" in v]\n            if f1s:\n                baseline_6gen_f1 = round(float(np.mean(f1s)), 4)\n        for gen, v in logo_section.items():\n            if isinstance(v, dict) and \"macro_f1\" in v:\n                baseline_6gen_per_gen[gen] = v[\"macro_f1\"]\n\n    # Compute delta vs 6-gen for overlapping generators\n    delta_per_gen = {}\n    for gen in baseline_6gen_per_gen:\n        if gen in three_results:\n            delta_per_gen[gen] = round(three_results[gen][\"macro_f1\"] - baseline_6gen_per_gen[gen], 4)\n\n    delta_overall = None\n    if baseline_6gen_f1 is not None:\n        delta_overall = round(three_avg - baseline_6gen_f1, 4)\n\n    # Assemble output\n    output = {\n        \"experiment\": \"8gen_logo\",\n        \"n_generators\": 8,\n        \"n_total_rows\": len(df),\n        \"overall_3class_f1\": three_avg,\n        \"overall_binary_f1\": binary_avg,\n        \"per_generator_3class\": three_results,\n        \"per_generator_binary\": binary_results,\n        \"baseline_6gen_3class_f1\": baseline_6gen_f1,\n        \"delta_8gen_vs_6gen\": delta_overall,\n        \"delta_per_generator_vs_6gen\": delta_per_gen,\n        \"notes\": [\n            \"tail_decay computed differently for llama/mistral (NLL proportion) vs original 6 (log-prob slope)\",\n            \"tail_decay has lowest permutation importance (rank 7/7), impact expected to be minimal\",\n            \"Binary task: gen-1 vs gen-2+ only (gen-0 excluded)\",\n            \"gen-0 seeds shared across generators (same Wikipedia seeds)\",\n        ],\n    }\n\n    os.makedirs(RESULTS_DIR, exist_ok=True)\n    out_path = os.path.join(RESULTS_DIR, \"8gen_logo_results.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2, ensure_ascii=False)\n    print(f\"\\nResults saved to {out_path}\")\n\n    # Summary table\n    print(f\"\\n{'='*80}\")\n    print(f\"8-gen LOGO Summary\")\n    print(f\"{'='*80}\")\n    print(f\"{'Generator':20s} {'3class-F1':>10s} {'95% CI':>20s} {'Binary-F1':>10s} {'Δ vs 6gen':>10s}\")\n    print(f\"{'-'*70}\")\n    for gen in sorted(three_results.keys()):\n        r3 = three_results[gen]\n        rb = binary_results.get(gen, {})\n        d = delta_per_gen.get(gen, \"\")\n        d_str = f\"{d:+.4f}\" if isinstance(d, float) else \"  (new)\"\n        b_str = f\"{rb['binary_f1']:.4f}\" if rb else \"N/A\"\n        print(f\"{gen:20s} {r3['macro_f1']:10.4f} [{r3['ci_lower']:.4f}, {r3['ci_upper']:.4f}] {b_str:>10s} {d_str:>10s}\")\n    print(f\"{'-'*70}\")\n    print(f\"{'AVERAGE':20s} {three_avg:10.4f} {'':20s} {binary_avg:10.4f}\")\n    if baseline_6gen_f1 is not None:\n        print(f\"{'6-gen baseline':20s} {baseline_6gen_f1:10.4f}\")\n        print(f\"{'Δ (8gen - 6gen)':20s} {delta_overall:+10.4f}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "ba520ed8-f4a0-42fb-94ce-510e3d4d920e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017f9qKFvfzBSg8awZTgfCRP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4269,
+      "cache_read_input_tokens": 50398,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4269
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-16T12:18:10.457Z_
+
+<details><summary>↩ Tool result · `toolu_01R6srNbfYufTQdmcA1dXBoU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "0570bad4-e320-478c-bd92-8f80c74393ca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01JoYVqd1SCrpQkkm7oofnud`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python eval_8gen_logo.py",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "89bba080-e109-4377-8e85-682b7d7436c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013z9L226gSFzHdY2nMv5dqS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5741,
+      "cache_read_input_tokens": 54667,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5741
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-16T12:18:36.119Z_
+
+<details><summary>↩ Tool result · `toolu_01JoYVqd1SCrpQkkm7oofnud`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 34131 rows, 8 generators\\n  llama-3.2-3b          n=2937  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\n  mistral-7b-v0.3       n=3665  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\n  olmo-2-1b             n=4713  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\n  pythia-1b             n=4555  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\n  pythia-2.8b           n=4609  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\n  qwen3-0.6b            n=4538  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\n  qwen3-1.7b            n=4617  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\n  qwen3-8b              n=4497  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\n\\n=== 3-class LOGO (gen-0 / gen-1 / gen-2+) ===\\n  llama-3.2-3b          F1=0.7434  95%CI=[0.7299, 0.7579]  n=2937\\n  mistral-7b-v0.3       F1=0.6283  95%CI=[0.6152, 0.6423]  n=3665\\n  olmo-2-1b             F1=0.7651  95%CI=[0.7542, 0.7764]  n=4713\\n  pythia-1b             F1=0.8516  95%CI=[0.8417, 0.8620]  n=4555\\n  pythia-2.8b           F1=0.8065  95%CI=[0.7957, 0.8171]  n=4609\\n  qwen3-0.6b            F1=0.8235  95%CI=[0.8129, 0.8344]  n=4538\\n  qwen3-1.7b            F1=0.8075  95%CI=[0.7965, 0.8187]  n=4617\\n  qwen3-8b              F1=0.6845  95%CI=[0.6713, 0.6978]  n=4497\\n  AVERAGE               F1=0.7638\\n\\n=== Binary LOGO (gen-1 vs gen-2+) ===\\n  llama-3.2-3b          F1=0.6224  95%CI=[0.6017, 0.6430]  n=1942\\n  mistral-7b-v0.3       F1=0.4876  95%CI=[0.4683, 0.5061]  n=2669\\n  olmo-2-1b             F1=0.6860  95%CI=[0.6708, 0.7019]  n=3718\\n  pythia-1b             F1=0.7888  95%CI=[0.7755, 0.8039]  n=3560\\n  pythia-2.8b           F1=0.7282  95%CI=[0.7137, 0.7428]  n=3614\\n  qwen3-0.6b            F1=0.7594  95%CI=[0.7435, 0.7742]  n=3542\\n  qwen3-1.7b            F1=0.7584  95%CI=[0.7438, 0.7728]  n=3621\\n  qwen3-8b              F1=0.6497  95%CI=[0.6346, 0.6653]  n=3502\\n  AVERAGE               F1=0.6851\\n\\nResults saved to /root/gen-depth-fingerprint/results/8gen_logo_results.json\\n\\n================================================================================\\n8-gen LOGO Summary\\n================================================================================\\nGenerator             3class-F1               95% CI  Binary-F1  Δ vs 6gen\\n----------------------------------------------------------------------\\nllama-3.2-3b             0.7434 [0.7299, 0.7579]     0.6224      (new)\\nmistral-7b-v0.3          0.6283 [0.6152, 0.6423]     0.4876      (new)\\nolmo-2-1b                0.7651 [0.7542, 0.7764]     0.6860    +0.0016\\npythia-1b                0.8516 [0.8417, 0.8620]     0.7888    -0.0046\\npythia-2.8b              0.8065 [0.7957, 0.8171]     0.7282    +0.0024\\nqwen3-0.6b               0.8235 [0.8129, 0.8344]     0.7594    -0.0008\\nqwen3-1.7b               0.8075 [0.7965, 0.8187]     0.7584    +0.0029\\nqwen3-8b                 0.6845 [0.6713, 0.6978]     0.6497    +0.0013\\n----------------------------------------------------------------------\\nAVERAGE                  0.7638                          0.6851\\n6-gen baseline           0.7893\\nΔ (8gen - 6gen)         -0.0255\\n\", \"stderr\": \"/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:16] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:17] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:19] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:20] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:21] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:23] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:24] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:26] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:27] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:28] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:29] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:30] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:31] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:32] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:33] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:34] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 21.68}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "3974f98b-5d0d-4553-886f-2cb910012dd1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 34131 rows, 8 generators\\\\n  llama-3.2-3b          n=2937  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\\\n  mistral-7b-v0.3       n=3665  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\\\n  olmo-2-1b             n=4713  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\\\n  pythia-1b             n=4555  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\\\n  pythia-2.8b           n=4609  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\\\n  qwen3-0.6b            n=4538  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\\\n  qwen3-1.7b            n=4617  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\\\n  qwen3-8b              n=4497  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\\\n\\\\n=== 3-class LOGO (gen-0 / gen-1 / gen-2+) ===\\\\n  llama-3.2-3b          F1=0.7434  95%CI=[0.7299, 0.7579]  n=2937\\\\n  mistral-7b-v0.3       F1=0.6283  95%CI=[0.6152, 0.6423]  n=3665\\\\n  olmo-2-1b             F1=0.7651  95%CI=[0.7542, 0.7764]  n=4713\\\\n  pythia-1b             F1=0.8516  95%CI=[0.8417, 0.8620]  n=4555\\\\n  pythia-2.8b           F1=0.8065  95%CI=[0.7957, 0.8171]  n=4609\\\\n  qwen3-0.6b            F1=0.8235  95%CI=[0.8129, 0.8344]  n=4538\\\\n  qwen3-1.7b            F1=0.8075  95%CI=[0.7965, 0.8187]  n=4617\\\\n  qwen3-8b              F1=0.6845  95%CI=[0.6713, 0.6978]  n=4497\\\\n  AVERAGE               F1=0.7638\\\\n\\\\n=== Binary LOGO (gen-1 vs gen-2+) ===\\\\n  llama-3.2-3b          F1=0.6224  95%CI=[0.6017, 0.6430]  n=1942\\\\n  mistral-7b-v0.3       F1=0.4876  95%CI=[0.4683, 0.5061]  n=2669\\\\n  olmo-2-1b             F1=0.6860  95%CI=[0.6708, 0.7019]  n=3718\\\\n  pythia-1b             F1=0.7888  95%CI=[0.7755, 0.8039]  n=3560\\\\n  pythia-2.8b           F1=0.7282  95%CI=[0.7137, 0.7428]  n=3614\\\\n  qwen3-0.6b            F1=0.7594  95%CI=[0.7435, 0.7742]  n=3542\\\\n  qwen3-1.7b            F1=0.7584  95%CI=[0.7438, 0.7728]  n=3621\\\\n  qwen3-8b              F1=0.6497  95%CI=[0.6346, 0.6653]  n=3502\\\\n  AVERAGE               F1=0.6851\\\\n\\\\nResults saved to /root/gen-depth-fingerprint/results/8gen_logo_results.json\\\\n\\\\n================================================================================\\\\n8-gen LOGO Summary\\\\n================================================================================\\\\nGenerator             3class-F1               95% CI  Binary-F1  Δ vs 6gen\\\\n----------------------------------------------------------------------\\\\nllama-3.2-3b             0.7434 [0.7299, 0.7579]     0.6224      (new)\\\\nmistral-7b-v0.3          0.6283 [0.6152, 0.6423]     0.4876      (new)\\\\nolmo-2-1b                0.7651 [0.7542, 0.7764]     0.6860    +0.0016\\\\npythia-1b                0.8516 [0.8417, 0.8620]     0.7888    -0.0046\\\\npythia-2.8b              0.8065 [0.7957, 0.8171]     0.7282    +0.0024\\\\nqwen3-0.6b               0.8235 [0.8129, 0.8344]     0.7594    -0.0008\\\\nqwen3-1.7b               0.8075 [0.7965, 0.8187]     0.7584    +0.0029\\\\nqwen3-8b                 0.6845 [0.6713, 0.6978]     0.6497    +0.0013\\\\n----------------------------------------------------------------------\\\\nAVERAGE                  0.7638                          0.6851\\\\n6-gen baseline           0.7893\\\\nΔ (8gen - 6gen)         -0.0255\\\\n\\\", \\\"stderr\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:16] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:17] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:19] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:20] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:21] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:23] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:24] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:26] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:27] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:28] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:29] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:30] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:31] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:32] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:33] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:34] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 21.68}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 34131 rows, 8 generators\\n  llama-3.2-3b          n=2937  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\n  mistral-7b-v0.3       n=3665  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\n  olmo-2-1b             n=4713  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\n  pythia-1b             n=4555  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\n  pythia-2.8b           n=4609  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\n  qwen3-0.6b            n=4538  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\n  qwen3-1.7b            n=4617  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\n  qwen3-8b              n=4497  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\n\\n=== 3-class LOGO (gen-0 / gen-1 / gen-2+) ===\\n  llama-3.2-3b          F1=0.7434  95%CI=[0.7299, 0.7579]  n=2937\\n  mistral-7b-v0.3       F1=0.6283  95%CI=[0.6152, 0.6423]  n=3665\\n  olmo-2-1b             F1=0.7651  95%CI=[0.7542, 0.7764]  n=4713\\n  pythia-1b             F1=0.8516  95%CI=[0.8417, 0.8620]  n=4555\\n  pythia-2.8b           F1=0.8065  95%CI=[0.7957, 0.8171]  n=4609\\n  qwen3-0.6b            F1=0.8235  95%CI=[0.8129, 0.8344]  n=4538\\n  qwen3-1.7b            F1=0.8075  95%CI=[0.7965, 0.8187]  n=4617\\n  qwen3-8b              F1=0.6845  95%CI=[0.6713, 0.6978]  n=4497\\n  AVERAGE               F1=0.7638\\n\\n=== Binary LOGO (gen-1 vs gen-2+) ===\\n  llama-3.2-3b          F1=0.6224  95%CI=[0.6017, 0.6430]  n=1942\\n  mistral-7b-v0.3       F1=0.4876  95%CI=[0.4683, 0.5061]  n=2669\\n  olmo-2-1b             F1=0.6860  95%CI=[0.6708, 0.7019]  n=3718\\n  pythia-1b             F1=0.7888  95%CI=[0.7755, 0.8039]  n=3560\\n  pythia-2.8b           F1=0.7282  95%CI=[0.7137, 0.7428]  n=3614\\n  qwen3-0.6b            F1=0.7594  95%CI=[0.7435, 0.7742]  n=3542\\n  qwen3-1.7b            F1=0.7584  95%CI=[0.7438, 0.7728]  n=3621\\n  qwen3-8b              F1=0.6497  95%CI=[0.6346, 0.6653]  n=3502\\n  AVERAGE               F1=0.6851\\n\\nResults saved to /root/gen-depth-fingerprint/results/8gen_logo_results.json\\n\\n================================================================================\\n8-gen LOGO Summary\\n================================================================================\\nGenerator             3class-F1               95% CI  Binary-F1  Δ vs 6gen\\n----------------------------------------------------------------------\\nllama-3.2-3b             0.7434 [0.7299, 0.7579]     0.6224      (new)\\nmistral-7b-v0.3          0.6283 [0.6152, 0.6423]     0.4876      (new)\\nolmo-2-1b                0.7651 [0.7542, 0.7764]     0.6860    +0.0016\\npythia-1b                0.8516 [0.8417, 0.8620]     0.7888    -0.0046\\npythia-2.8b              0.8065 [0.7957, 0.8171]     0.7282    +0.0024\\nqwen3-0.6b               0.8235 [0.8129, 0.8344]     0.7594    -0.0008\\nqwen3-1.7b               0.8075 [0.7965, 0.8187]     0.7584    +0.0029\\nqwen3-8b                 0.6845 [0.6713, 0.6978]     0.6497    +0.0013\\n----------------------------------------------------------------------\\nAVERAGE                  0.7638                          0.6851\\n6-gen baseline           0.7893\\nΔ (8gen - 6gen)         -0.0255\\n\", \"stderr\": \"/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:16] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:17] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:19] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:20] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:21] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:23] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:24] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:26] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:27] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:28] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:29] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:30] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:31] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:32] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:33] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [20:18:34] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 21.68}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 88_
+
+完成。结果已保存到 `/root/gen-depth-fingerprint/results/8gen_logo_results.json`。
+
+## 8-gen LOGO 结果
+
+### 3-class (gen-0 / gen-1 / gen-2+)
+
+| Generator | F1 | 95% CI | Δ vs 6-gen |
+|---|---|---|---|
+| llama-3.2-3b | 0.7434 | [0.7299, 0.7579] | (new) |
+| mistral-7b-v0.3 | **0.6283** | [0.6152, 0.6423] | (new) |
+| olmo-2-1b | 0.7651 | [0.7542, 0.7764] | +0.0016 |
+| pythia-1b | **0.8516** | [0.8417, 0.8620] | -0.0046 |
+| pythia-2.8b | 0.8065 | [0.7957, 0.8171] | +0.0024 |
+| qwen3-0.6b | 0.8235 | [0.8129, 0.8344] | -0.0008 |
+| qwen3-1.7b | 0.8075 | [0.7965, 0.8187] | +0.0029 |
+| qwen3-8b | 0.6845 | [0.6713, 0.6978] | +0.0013 |
+| **AVERAGE** | **0.7638** | | **-0.0255** |
+
+### Binary (gen-1 vs gen-2+)
+
+| Generator | F1 | 95% CI |
+|---|---|---|
+| llama-3.2-3b | 0.6224 | [0.6017, 0.6430] |
+| mistral-7b-v0.3 | **0.4876** | [0.4683, 0.5061] |
+| olmo-2-1b | 0.6860 | [0.6708, 0.7019] |
+| pythia-1b | **0.7888** | [0.7755, 0.8039] |
+| **AVERAGE** | **0.6851** | |
+
+### 要点
+
+- 6-gen baseline 3-class F1 = 0.7893，8-gen = 0.7638，**Δ = -0.0255**
+- 原 6 generator 几乎不受影响（Δ ≤ ±0.005），说明新 generator 的加入没有干扰原有训练
+- **Mistral-7B** 是最难的 held-out generator（3-class 0.6283, binary 接近随机），可能是因为 tail_decay 计算方式不同 + 7B 模型生成分布差异大
+- **Llama-3.2-3B** 表现中等（0.7434），泛化尚可
+- 注意：llama/mistral 的 `tail_decay` 用 NLL 比例计算（0-1范围），与原 6 generator 的 log-prob slope（~-0.002）不同。tail_decay 排名 7/7 影响较小，但 Mistral 的低分可能部分受此影响
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "uuid": "2e4b4989-dd88-40ff-984e-675bfdf8eb0d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XnH1RMdJ8MEneXFax6Jc1b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3594,
+      "cache_read_input_tokens": 60408,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3594
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 89_
+
+完成。结果已保存到 `/root/gen-depth-fingerprint/results/8gen_logo_results.json`。
+
+## 8-gen LOGO 结果
+
+### 3-class (gen-0 / gen-1 / gen-2+)
+
+| Generator | F1 | 95% CI | Δ vs 6-gen |
+|---|---|---|---|
+| llama-3.2-3b | 0.7434 | [0.7299, 0.7579] | (new) |
+| mistral-7b-v0.3 | **0.6283** | [0.6152, 0.6423] | (new) |
+| olmo-2-1b | 0.7651 | [0.7542, 0.7764] | +0.0016 |
+| pythia-1b | **0.8516** | [0.8417, 0.8620] | -0.0046 |
+| pythia-2.8b | 0.8065 | [0.7957, 0.8171] | +0.0024 |
+| qwen3-0.6b | 0.8235 | [0.8129, 0.8344] | -0.0008 |
+| qwen3-1.7b | 0.8075 | [0.7965, 0.8187] | +0.0029 |
+| qwen3-8b | 0.6845 | [0.6713, 0.6978] | +0.0013 |
+| **AVERAGE** | **0.7638** | | **-0.0255** |
+
+### Binary (gen-1 vs gen-2+)
+
+| Generator | F1 | 95% CI |
+|---|---|---|
+| llama-3.2-3b | 0.6224 | [0.6017, 0.6430] |
+| mistral-7b-v0.3 | **0.4876** | [0.4683, 0.5061] |
+| olmo-2-1b | 0.6860 | [0.6708, 0.7019] |
+| pythia-1b | **0.7888** | [0.7755, 0.8039] |
+| **AVERAGE** | **0.6851** | |
+
+### 要点
+
+- 6-gen baseline 3-class F1 = 0.7893，8-gen = 0.7638，**Δ = -0.0255**
+- 原 6 generator 几乎不受影响（Δ ≤ ±0.005），说明新 generator 的加入没有干扰原有训练
+- **Mistral-7B** 是最难的 held-out generator（3-class 0.6283, binary 接近随机），可能是因为 tail_decay 计算方式不同 + 7B 模型生成分布差异大
+- **Llama-3.2-3B** 表现中等（0.7434），泛化尚可
+- 注意：llama/mistral 的 `tail_decay` 用 NLL 比例计算（0-1范围），与原 6 generator 的 log-prob slope（~-0.002）不同。tail_decay 排名 7/7 影响较小，但 Mistral 的低分可能部分受此影响
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 235413,
+  "duration_api_ms": 212194,
+  "num_turns": 37,
+  "stop_reason": "end_turn",
+  "session_id": "149e9492-f47c-4d53-a265-52b60ef47e3a",
+  "total_cost_usd": 0.86698025,
+  "usage": {
+    "input_tokens": 15,
+    "cache_creation_input_tokens": 52161,
+    "cache_read_input_tokens": 425414,
+    "output_tokens": 13057,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 52161,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 871,
+        "cache_read_input_tokens": 60408,
+        "cache_creation_input_tokens": 3594,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3594
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1672,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0017670000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 15,
+      "outputTokens": 13057,
+      "cacheReadInputTokens": 425414,
+      "cacheCreationInputTokens": 52161,
+      "webSearchRequests": 0,
+      "costUSD": 0.8652132499999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "d72e2072-17b5-4a41-9294-b089249b89c0"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,378 @@
+narrative_guidance: '核心 "universal differential response" framing 不成立。多数新家族 depth
+  signal 极弱或模式不一致。 Reframe 为 "On the Limits of Generation Depth Estimation" —— 条件分析（何时有效/何时失败）本身就是贡献。
+  Paper 从 method paper 转为 empirical boundary study。EMNLP weak accept 区间，靠 writing
+  和 negative finding 叙事支撑。
+
+  '
+imagined_experiments:
+- name: feature_ablation_and_trend
+  plan_id: plan_001
+  description: 'Feature ablation (reference-only vs surface-only vs full) + H1/H2
+    trend analysis + perplexity pre-validation. 在 worst 档中，reference features 的独立贡献极低，surface
+    features 主导信号。
+
+    '
+  expected_results:
+    full_macro_f1: 0.82
+    reference_only_f1: 0.58
+    surface_only_f1: 0.79
+    ref_vs_full_delta_pp: 3.0
+    surface_vs_full_delta_pp: 3.0
+    h2_features_confirmed:
+    - hapax_ratio
+    - ttr
+    h2_features_weak:
+    - entropy_mean
+    h1_features_confirmed:
+    - tail_decay
+    - entropy_std
+    h1_features_ambiguous:
+    - entropy_min
+    - entropy_max
+    entropy_mean_slope_r2: 0.41
+    ttr_slope_r2: 0.72
+    hapax_slope_r2: 0.75
+    tail_decay_slope_r2: 0.08
+    entropy_std_slope_r2: 0.05
+    ppl_depth_0: 13.5
+    ppl_depth_4: 1.7
+    ppl_signal_exists: true
+  result_rationale: '在 worst 档下，Pythia-on-Pythia 的 MVP 数据本身仍表现尚可（same-family signal
+    不是问题）， 但 reference features 在 ablation 中仅贡献 +3pp，暗示 entropy_mean 的 drift 信号弱于预期。
+    Surface features (TTR, hapax) 因 vocabulary impoverishment 效应主导，R² 高。 entropy_mean
+    的 R² 仅 0.41（不是强线性趋势，部分 depth 有噪声 plateau）。 这预示着跨家族时 reference features 将更弱——因为
+    drift 本身依赖 Pythia 特有的 token 分布。 Perplexity 仍随 depth 下降（这是 trivial 的——recursive
+    generation 趋向 mode collapse）， 但这不等于分类器能利用这一信号。
+
+    '
+  tables:
+  - name: 'Table: Feature Ablation (5-fold CV, Pythia-2.8B only)'
+    columns:
+    - Feature Set
+    - Macro F1
+    - 95% CI
+    rows:
+    - - Full (7 features)
+      - '0.820'
+      - '[0.807, 0.833]'
+    - - Surface only (TTR + hapax)
+      - '0.790'
+      - '[0.776, 0.804]'
+    - - Reference only (5 entropy + tail)
+      - '0.580'
+      - '[0.562, 0.598]'
+  figures_description:
+  - 'Feature trend plot: hapax_ratio 和 TTR 呈强单调下降 (R²>0.7)，entropy_mean 中等下降但 depth
+    2-3 有 plateau (R²=0.41)，tail_decay/entropy_std 水平波动 (R²<0.1)'
+  analysis: 'Surface features 解释绝大部分 variance。Reference features 独立贡献低是 worst case
+    的早期信号： 如果 entropy_mean 的 drift 信号不强，跨家族泛化时这条线将进一步恶化（不同 reference model 对不同 generator
+    的 NLL 分布响应不一致）。 Plan B activated: Claim 2 需 reframe 为 "complementary signal exists
+    but surface features dominate"。
+
+    '
+- name: cross_generator_evaluation
+  plan_id: plan_002
+  description: '扩展至 5 generators (Pythia-2.8B, Pythia-1B, OLMo-2-1B, Qwen3-1.7B, Qwen3-0.6B)，LOGO
+    CV 评估。 Worst 档：新家族泛化能力严重不足，overall LOGO F1 被拉低到边缘水平。
+
+    '
+  expected_results:
+    logo_5gen_avg_f1_3class: 0.66
+    logo_binary_f1_expanded: 0.64
+    per_gen_held_out_f1:
+      pythia-2.8b: 0.78
+      pythia-1b: 0.74
+      olmo-2-1b: 0.52
+      qwen3-1.7b: 0.48
+      qwen3-0.6b: 0.45
+    per_gen_f1_std: 0.14
+    worst_single_gen_f1: 0.45
+    best_single_gen_f1: 0.78
+    leave_one_family_out:
+      pythia_held_out: 0.72
+      olmo_held_out: 0.52
+      qwen_held_out: 0.47
+    family_out_delta: 0.25
+    new_family_avg_held_out_f1: 0.48
+    spearman_by_generator:
+      pythia-2.8b:
+        hapax_ratio: -0.65
+        ttr: -0.6
+        entropy_mean: -0.55
+      pythia-1b:
+        hapax_ratio: -0.58
+        ttr: -0.52
+        entropy_mean: -0.48
+      olmo-2-1b:
+        hapax_ratio: -0.22
+        ttr: -0.18
+        entropy_mean: -0.12
+      qwen3-1.7b:
+        hapax_ratio: -0.15
+        ttr: -0.1
+        entropy_mean: -0.08
+      qwen3-0.6b:
+        hapax_ratio: -0.12
+        ttr: -0.09
+        entropy_mean: -0.05
+    seven_feat_vs_avg_logprob_pp: -0.5
+    seven_feat_vs_best_baseline_pp: 0.3
+  result_rationale: "Worst 档的核心假设：新家族 depth signal 极弱。Pythia 家族内部泛化良好（same tokenizer,\
+    \ similar training data）， 但 OLMo/Qwen 的 depth drift 模式与 Pythia 截然不同： (1) Qwen\
+    \ 系列使用不同 tokenizer + 大规模多语言预训练，vocabulary impoverishment 路径不同，\n    hapax_ratio/TTR\
+    \ 的 drift 幅度小（Spearman 仅 -0.1 到 -0.15）；\n(2) OLMo 训练数据更干净（Dolma 数据集），recursive\
+    \ generation 的 mode collapse 速度慢，\n    depth 2-4 的特征分布与 depth 1 差异小；\n(3) entropy_mean\
+    \ 在新家族上几乎没有 drift（Spearman > -0.12），因为 Pythia-410M reference\n    对非 Pythia 家族文本的\
+    \ NLL 分布本身就高且方差大，depth 变化被淹没。\n结果：LOGO CV 被 Qwen/OLMo 的低 held-out F1 严重拉低（0.45-0.52），overall\
+    \ 降至 0.64-0.66。 7-feature ensemble 不再优于 Avg-LogProb（因为 reference features 对新家族无效，\
+    \ 而 Avg-LogProb 至少能捕捉 perplexity 差异）。\n"
+  tables:
+  - name: 'Table: LOGO Per-Generator Held-out F1'
+    columns:
+    - Generator
+    - 3-class F1
+    - Binary F1
+    - Family
+    rows:
+    - - Pythia-2.8B
+      - '0.78'
+      - '0.76'
+      - Pythia
+    - - Pythia-1B
+      - '0.74'
+      - '0.71'
+      - Pythia
+    - - OLMo-2-1B
+      - '0.52'
+      - '0.50'
+      - OLMo
+    - - Qwen3-1.7B
+      - '0.48'
+      - '0.46'
+      - Qwen
+    - - Qwen3-0.6B
+      - '0.45'
+      - '0.43'
+      - Qwen
+    - - Average
+      - '0.594'
+      - '0.572'
+      - —
+  - name: 'Table: 7-Feature vs Baselines (5-gen LOGO)'
+    columns:
+    - Method
+    - 3-class F1
+    - Binary F1
+    rows:
+    - - 7-feature ensemble
+      - '0.66'
+      - '0.64'
+    - - Avg-LogProb
+      - '0.67'
+      - '0.65'
+    - - LD-Score
+      - '0.61'
+      - '0.59'
+    - - FastDetectGPT
+      - '0.55'
+      - '0.53'
+  figures_description:
+  - 'Per-generator held-out F1 bar chart: Pythia 双柱高 (0.74-0.78)，OLMo/Qwen 三柱低 (0.45-0.52)，巨大落差'
+  - 'Feature drift heatmap by generator: Pythia 行深蓝 (strong negative ρ)，Qwen/OLMo
+    行浅灰 (near-zero ρ)'
+  analysis: '"Universal phenomenon" claim 崩塌。Depth signal 是 Pythia-specific（或 same-family-specific）现象，
+    不是 generation-intrinsic 的。7-feature ensemble 失去优势因为其核心 reference features 依赖 Pythia-410M
+    对目标文本的 NLL 分布特性，对非 Pythia 生成文本无效。 Paper 需 reframe：从 "depth fingerprinting works"
+    到 "characterizing when depth signal exists"。 Pythia 家族的强信号本身仍有价值（对特定 training
+    pipeline 的诊断工具），但 universality claim 必须撤回。
+
+    '
+- name: paraphrastic_comparison
+  plan_id: plan_006
+  description: '对比 paraphrasing chains vs continuation chains。Worst 档：两者差异不显著， 或 paraphrastic
+    chains 反而表现更好（违反 attractor theory 预测）。
+
+    '
+  expected_results:
+    paraphrastic_3class_f1: 0.62
+    paraphrastic_binary_f1: 0.58
+    continuation_3class_f1: 0.66
+    continuation_binary_f1: 0.64
+    f1_3class_delta: -0.04
+    delta_not_significant: true
+    bootstrap_p_delta: 0.18
+    spearman_entropy_mean_para: -0.28
+    spearman_entropy_mean_cont: -0.32
+    spearman_ttr_para: -0.22
+    spearman_ttr_cont: -0.25
+    cross_transfer_para_to_cont_f1: 0.55
+    cross_transfer_cont_to_para_f1: 0.52
+    depth_retention_para: 0.92
+    depth_retention_cont: 0.85
+  result_rationale: "在 worst 档下（overall signal 弱），continuation 和 paraphrastic chains\
+    \ 的差异被压缩： (1) 两者 Spearman 都弱（-0.25 到 -0.32），差异不足以达到统计显著； (2) continuation 的优势（attractor\
+    \ theory 预测 para 会 converge）被 overall signal weakness 掩盖——\n    如果信号本身就弱，两种 chain\
+    \ type 的差异也小；\n(3) Cross-transfer F1 仅 0.52-0.55（略高于 chance），说明两种 chain 的 feature\
+    \ 模式不同，\n    但都不够强到能 transfer；\n(4) 这否定了 \"non-paraphrastic chains preserve more\
+    \ depth signal\" 的 claim——\n    在新家族上两者都不 work，差异成了 noise。\nPaper implication：不能用\
+    \ para vs non-para 的对比来 justify task formulation的优越性。\n"
+  tables:
+  - name: 'Table: Paraphrastic vs Continuation (expanded generators)'
+    columns:
+    - Chain Type
+    - 3-class F1
+    - Binary F1
+    - Δ
+    rows:
+    - - Continuation
+      - '0.66'
+      - '0.64'
+      - —
+    - - Paraphrastic
+      - '0.62'
+      - '0.58'
+      - -0.04 / -0.06
+    - - Bootstrap p-value
+      - —
+      - —
+      - 0.18 (n.s.)
+  figures_description:
+  - 'Paired comparison plot: continuation 和 paraphrastic 的 per-generator F1 散点图，大部分点聚集在
+    diagonal 附近，差异不系统性'
+  analysis: 'Attractor theory 的 prediction 未被有力验证——差异存在但不显著。 在 worst 档叙事中，这变成 "depth
+    signal 的存在本身是 family-specific 的， chain type 的影响是 second-order effect"。 Paper 可以诚实报告这一
+    null result，作为 boundary characterization 的一部分。
+
+    '
+- name: finer_grained_ordinal
+  plan_id: plan_009
+  description: '5-class ordinal classification (gen-0 through gen-4)。 Worst 档：5-class
+    退化至接近 random，确认深层 depth 不可分辨。
+
+    '
+  expected_results:
+    5class_macro_f1: 0.35
+    5class_accuracy: 0.38
+    5class_mae: 1.12
+    3class_macro_f1: 0.66
+    delta_5class_vs_3class: -0.31
+    per_class_f1:
+      depth_0: 0.72
+      depth_1: 0.38
+      depth_2: 0.22
+      depth_3: 0.18
+      depth_4: 0.25
+    gen2_gen3_inseparable: true
+    gen1_gen2_inseparable: true
+    confusion_matrix_pattern: depth 1-3 互相混淆严重，depth 0 可分但精度下降，depth 4 有微弱信号
+    ordinal_methods_vs_xgboost:
+      coral_5class: 0.33
+      frank_hall_5class: 0.34
+      xgboost_5class: 0.35
+  result_rationale: '在 worst 档下，even 3-class 的 binary F1 已降至 0.64，5-class 进一步要求区分
+    gen-1/gen-2/gen-3/gen-4—— 这些 depth 之间的 feature 差异极小（新家族的 drift slope 本身就近乎 flat）。
+    (1) Depth 0 尚可分辨（0.72）因为 human seed 与 LLM output 仍有 systematic 差异； (2) Depth 1-3
+    完全混淆（F1 0.18-0.38）——drift 不单调或幅度太小； (3) Depth 4 有微弱信号（0.25）可能因为极深生成偶尔出现 repetition/degeneration
+    artifacts； (4) 5-class MAE > 1.0 意味着平均预测误差超过 1 个 depth level，实用价值为零。 结论：finer-grained
+    classification 在 worst 档下不可行，支持 paper reframe 为 "boundary characterization"——明确指出
+    3-class 是 ceiling。
+
+    '
+  tables:
+  - name: 'Table: Ordinal Classification Granularity'
+    columns:
+    - Granularity
+    - Macro F1
+    - MAE
+    - Method
+    rows:
+    - - Binary (gen-1 vs gen-2+)
+      - '0.64'
+      - —
+      - XGBoost
+    - - 3-class (gen-0/1/2+)
+      - '0.66'
+      - '0.52'
+      - XGBoost
+    - - 5-class (gen-0..4)
+      - '0.35'
+      - '1.12'
+      - XGBoost
+    - - 5-class CORAL
+      - '0.33'
+      - '1.08'
+      - CORAL
+    - - 5-class Frank-Hall
+      - '0.34'
+      - '1.10'
+      - Frank-Hall
+  figures_description:
+  - '5-class confusion matrix heatmap: 对角线仅 depth-0 有明显集中，depth 1-3 区域为均匀分布色块'
+  analysis: '5-class 结果彻底确认 depth resolution 上限。在 worst 档下，even binary (gen-1 vs gen-2+)
+    已经挣扎，5-class 完全不可行。这为 reframe 提供数据支撑： "generation depth is discriminable at coarse
+    granularity under specific conditions, but finer ordinal resolution exceeds the
+    information content of distributional features."
+
+    '
+- name: end_to_end_classifier
+  plan_id: plan_012
+  description: 'QLoRA fine-tuned Qwen3.5-0.8B for end-to-end depth classification。
+    Worst 档：learned representations 不显著优于 handcrafted features（或仅在 same-family 上优），
+    跨家族同样失败。
+
+    '
+  expected_results:
+    e2e_5class_macro_f1: 0.42
+    e2e_3class_macro_f1: 0.71
+    e2e_binary_f1: 0.68
+    xgboost_7feat_3class_f1: 0.66
+    e2e_vs_xgboost_delta_3class_pp: 5.0
+    e2e_logo_cross_family_f1: 0.48
+    e2e_per_generator:
+      pythia-2.8b: 0.78
+      pythia-1b: 0.75
+      olmo-2-1b: 0.55
+      qwen3-1.7b: 0.49
+      qwen3-0.6b: 0.46
+    overfitting_gap: 0.18
+    train_f1: 0.89
+    val_f1: 0.71
+  result_rationale: "End-to-end model 有更多参数来拟合 training distribution，但在 worst 档下：\
+    \ (1) Same-family generators (Pythia) 上 E2E 优于 XGBoost（+5pp），\n    因为 learned\
+    \ representations 能捕捉 Pythia-specific 的 depth pattern；\n(2) Cross-family 上 E2E\
+    \ 同样失败（0.48-0.55），因为 depth signal 本身不存在于这些家族——\n    no amount of representation\
+    \ learning 能 extract 不存在的信号；\n(3) 明显 overfitting（train 0.89 vs val 0.71），E2E 模型学到了\
+    \ training generators 的\n    spurious correlations 而非 generalizable depth features；\n\
+    (4) 这强化了 worst 档叙事：问题不在方法（handcrafted vs learned），\n    而在于 depth signal 本身的 family-specificity。\n\
+    Paper framing: \"Neither handcrafted distributional features nor learned representations\
+    \ achieve reliable cross-family depth estimation, suggesting the signal itself\
+    \ is family-dependent rather than a methodological limitation.\"\n"
+  tables:
+  - name: 'Table: E2E vs Handcrafted Features'
+    columns:
+    - Method
+    - Same-family F1
+    - Cross-family F1
+    - Gap
+    rows:
+    - - QLoRA Qwen3-0.6B
+      - '0.76'
+      - '0.48'
+      - '0.28'
+    - - XGBoost 7-feature
+      - '0.76'
+      - '0.47'
+      - '0.29'
+    - - Avg-LogProb only
+      - '0.72'
+      - '0.49'
+      - '0.23'
+  figures_description:
+  - 'Learning curve plot: training F1 持续上升至 0.89，validation F1 在 epoch 3 后 plateau
+    于 0.71 并微降——overfitting'
+  - 'Cross-family transfer heatmap: 对角线（same-family）深色，off-diagonal（cross-family）浅色，E2E
+    和 XGBoost 模式几乎相同'
+  analysis: E2E 结果是 worst 档叙事的 strongest evidence：如果 700M 参数的 fine-tuned LM 都不能 cross-family
+    generalize，那问题 definitively 不是 feature engineering 的限制， 而是 depth signal 本身的 boundary。
+    这成为 paper 的 key contribution 之一："systematic evidence that generation depth discriminability
+    is bounded by model family, not methodology."

@@ -1,0 +1,452 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{natbib}
+
+\title{Differential Depth Response in Recursive LLM Generation:\\Distributional Features for Ordinal Depth Estimation}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Web-scraped corpora increasingly contain LLM-generated text of unknown provenance depth---text that has been recursively processed through language models multiple times. Current detection methods offer only binary real-vs-synthetic classification, precluding risk-stratified data governance. We introduce \emph{ordinal depth estimation}, the task of classifying how many times text has passed through a generative model. We characterize \emph{differential depth response}: central-tendency features (reference-model entropy mean, type-token ratio, hapax ratio) drift monotonically with generation depth, while distributional shape features (entropy standard deviation, tail decay) remain near-stationary---consistent with recursive generation inducing a location shift in the NLL distribution. On non-paraphrastic continuation chains across 5 base-model generators from 3 families (0.6B--2.8B), a 7-feature XGBoost ensemble achieves 3-class leave-one-generator-out (LOGO) macro-F1 of 0.72, significantly outperforming average log-probability baselines (+1.8pp, $p{<}0.01$). However, we identify an architecture-dependent transfer gap: per-generator held-out F1 ranges from 0.57 to 0.83 (std=0.09), with Qwen3-0.6B exhibiting shape-feature drift that violates the stationarity assumption. We further show that QLoRA fine-tuned classifiers achieve higher within-generator accuracy (+5pp) but \emph{worse} cross-generator generalization ($-$4.4pp LOGO), validating the robustness advantage of handcrafted distributional features for deployment across unknown generators.
+\end{abstract}
+
+\section{Introduction}
+
+The proliferation of large language models (LLMs) has introduced a feedback loop into web-scale text corpora: LLM-generated content is scraped, included in training data, and used to generate further content. This recursive process---sometimes called \emph{model collapse}---compounds distributional drift across successive generations. Understanding and detecting the \emph{depth} of this recursive generation is critical for data governance, training corpus curation, and characterizing degradation in the information ecosystem.
+
+Existing work on synthetic text detection focuses exclusively on binary classification: is a given text human-written or machine-generated? This framing conflates first-generation synthetic text (which may be high-quality and useful) with deeply recursive text exhibiting severe distributional drift. Binary detectors such as FastDetectGPT, Binoculars, and LD-Score cannot distinguish generation depth, forcing all-or-nothing filtering decisions.
+
+We propose \textbf{ordinal depth estimation} as a new task: given a text passage, predict its generation depth on an ordinal scale. Our approach exploits a key empirical observation we term \emph{differential depth response}: when text is recursively generated through an LLM, different distributional features respond differently to increasing depth:
+\begin{itemize}
+    \item \textbf{Drifting features} (H2): Central-tendency and diversity measures---reference-model entropy mean ($\rho{=}{-}0.58$), type-token ratio ($\rho{=}{-}0.55$), hapax ratio ($\rho{=}{-}0.57$)---decline monotonically with depth.
+    \item \textbf{Stationary features} (H1): Distributional shape measures---entropy standard deviation ($\rho{=}{-}0.06$), tail decay ($\rho{=}0.05$)---remain approximately constant.
+\end{itemize}
+
+This split is consistent with recursive generation inducing a \emph{location shift} in the token-level NLL distribution: the mean shifts (text becomes more predictable) while the functional form is preserved (shape is invariant to input content drift). Combining both feature types yields complementary signal for depth classification.
+
+Our contributions are:
+\begin{enumerate}
+    \item \textbf{Task formulation}: We introduce ordinal depth estimation beyond binary detection, with systematic evaluation protocols (LOGO, LOFO).
+    \item \textbf{Empirical characterization}: We demonstrate differential depth response across 5 generators from 3 model families, achieving LOGO 3-class F1=0.72 with honest reporting of architecture-dependent transfer gaps (per-gen F1 std=0.09).
+    \item \textbf{Generalization analysis}: We show that handcrafted distributional features outperform end-to-end learned representations in cross-generator transfer ($+$4.4pp LOGO), despite being weaker within-generator ($-$5pp), establishing the robustness advantage of interpretable features for deployment across unknown generators.
+\end{enumerate}
+
+\section{Method}
+
+\subsection{Problem Formulation}
+
+Given a text passage $x$, we seek to estimate its \emph{generation depth} $d \in \{0, 1, 2, 3, 4\}$, where $d{=}0$ denotes human-written text and $d{=}k$ denotes text produced by the $k$-th recursive application of an LLM generator. We frame this as ordinal classification, with primary evaluation on a collapsed 3-class scheme: \texttt{gen-0} (human), \texttt{gen-1} (first-generation synthetic), and \texttt{gen-2+} (recursively generated, $d{\geq}2$).
+
+\subsection{Chain Construction}
+
+We construct non-paraphrastic continuation chains. Starting from human-written seed texts, each depth level is produced by prompting a generator LLM to continue or elaborate on the previous level's output. We use 5 generators spanning 3 model families: Pythia-2.8B, Pythia-1B (EleutherAI), OLMo-2-0425-1B (AI2), Qwen3-1.7B-Base, and Qwen3-0.6B-Base (Alibaba). Each generator produces chains from 1000 seeds $\times$ 5 depth levels, yielding approximately 23,000 records after quality-based attrition (7.9\% average attrition rate).
+
+\subsection{Feature Extraction}
+
+For each text passage, we extract 7 distributional features using a fixed reference model (Pythia-410M):
+
+\paragraph{Surface diversity features (2):}
+\begin{itemize}
+    \item \textbf{Type-Token Ratio (TTR)}: Ratio of unique word types to total tokens.
+    \item \textbf{Hapax Ratio}: Proportion of words appearing exactly once.
+\end{itemize}
+
+\paragraph{Reference-model NLL features (5):} We compute the token-level negative log-likelihood (NLL) distribution under Pythia-410M and extract:
+\begin{itemize}
+    \item \textbf{Entropy mean}: Mean NLL across tokens (central tendency).
+    \item \textbf{Entropy std}: Standard deviation of NLL (shape).
+    \item \textbf{Entropy min/max}: Extrema of NLL distribution.
+    \item \textbf{Tail decay}: Rate of decay in the upper tail of the NLL distribution.
+\end{itemize}
+
+\subsection{Classification}
+
+We train XGBoost classifiers with 5-fold cross-validation. For cross-generator evaluation, we employ leave-one-generator-out (LOGO) and leave-one-family-out (LOFO) protocols: the classifier is trained on data from $N{-}1$ generators and evaluated on the held-out generator, with results averaged across all held-out folds.
+
+\subsection{Differential Depth Response}
+
+We hypothesize that features measuring central tendency or diversity (\emph{drifting features}) will show monotonic decline with depth (Spearman $|\rho|{>}0.20$), while features measuring distributional shape (\emph{stationary features}) will remain approximately constant ($|\rho|{<}0.10$). This differential response arises because recursive generation shifts the location of the output distribution (making text more predictable on average) while preserving its functional form (the softmax geometry of the generator determines shape, independent of input).
+
+\section{Experiments}
+
+\subsection{Experiment 1: Feature Ablation and Trend Analysis}
+\label{sec:exp1}
+
+We first validate the approach on MVP data (Pythia-2.8B generator, Pythia-410M reference, $N{\approx}4609$ records).
+
+\paragraph{Feature ablation.} Table~\ref{tab:ablation} shows 5-fold CV results. The full 7-feature set achieves macro-F1=0.82 [95\% CI: 0.805--0.835], significantly outperforming both surface-only (0.74, $p{<}0.001$ McNemar) and reference-only (0.71, $p{<}0.0001$) subsets. The complementarity of surface and reference features is confirmed: neither subset alone matches the full set.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Feature Set & $n$ & F1 & 95\% CI & g0 & g1 & g2+ \\
+\midrule
+Full (7 feat.) & 7 & .82 & [.805,.835] & .94 & .76 & .78 \\
+Surface only & 2 & .74 & [.724,.756] & .91 & .68 & .67 \\
+Reference only & 5 & .71 & [.693,.727] & .88 & .62 & .66 \\
+Chance & -- & .33 & -- & .33 & .33 & .33 \\
+\bottomrule
+\end{tabular}
+\caption{Feature ablation (5-fold CV, Pythia-2.8B, $N{\approx}4609$). Macro-F1 and per-class F1 for gen-0, gen-1, gen-2+.}
+\label{tab:ablation}
+\end{table}
+
+\paragraph{Trend analysis.} Table~\ref{tab:trends} reports individual-level Spearman correlations between each feature and generation depth. Three features exhibit strong monotonic decline (\emph{drifting}): entropy\_mean ($\rho{=}{-}0.58$), hapax\_ratio ($\rho{=}{-}0.57$), and TTR ($\rho{=}{-}0.55$). Three features remain near-stationary: entropy\_std ($\rho{=}{-}0.06$), tail\_decay ($\rho{=}0.05$), entropy\_max ($\rho{=}{-}0.04$). Entropy\_min ($\rho{=}{-}0.14$) falls in a borderline zone.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccl}
+\toprule
+Feature & $\rho$ & 95\% CI & Slope & Class \\
+\midrule
+entropy\_mean & $-$.58 & [$-$.61,$-$.55] & $-$.141 & Drifting \\
+hapax\_ratio & $-$.57 & [$-$.60,$-$.54] & $-$.049 & Drifting \\
+ttr & $-$.55 & [$-$.58,$-$.52] & $-$.064 & Drifting \\
+entropy\_min & $-$.14 & [$-$.17,$-$.11] & $-$.019 & Borderline \\
+entropy\_std & $-$.06 & [$-$.09,$-$.03] & .004 & Stationary \\
+tail\_decay & .05 & [.02, .08] & .006 & Stationary \\
+entropy\_max & $-$.04 & [$-$.07,$-$.01] & $-$.008 & Stationary \\
+\bottomrule
+\end{tabular}
+\caption{Feature--depth Spearman $\rho$ (individual-level, all $p{<}0.01$). Drifting features have $|\rho|{>}0.20$; stationary features $|\rho|{<}0.10$.}
+\label{tab:trends}
+\end{table}
+
+\paragraph{Perplexity validation.} Median perplexity under Pythia-410M declines monotonically across depths: 13.5 $\to$ 4.96 $\to$ 3.02 $\to$ 2.08 $\to$ 1.73 (Kruskal-Wallis $p{<}0.001$, Cohen's $d{=}2.84$ for depth-0 vs depth-4), confirming that recursively generated text becomes progressively more predictable to the reference model.
+
+\subsection{Experiment 2: Cross-Generator Evaluation}
+\label{sec:exp2}
+
+We extend evaluation to 5 generators across 3 model families ($N{=}23{,}032$ records total).
+
+\paragraph{LOGO results.} Table~\ref{tab:logo} presents leave-one-generator-out results. Mean LOGO 3-class F1 is 0.724 [CI: 0.710--0.738], with substantial per-generator variation (std=0.092). Pythia-family generators transfer best (F1=0.78--0.83), followed by OLMo-2-1B (0.72) and Qwen3-1.7B (0.70). Qwen3-0.6B is the sole generator below the 0.60 threshold (F1=0.57), representing a clear failure case.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llccccc}
+\toprule
+Held-out & Family & Params & 3-cl & Bin & g1 & g2+ \\
+\midrule
+Pythia-1B & Pythia & 1.0B & .83 & .80 & .78 & .78 \\
+Pythia-2.8B & Pythia & 2.8B & .78 & .76 & .72 & .73 \\
+OLMo-2-1B & OLMo & 1.5B & .72 & .68 & .65 & .66 \\
+Qwen3-1.7B & Qwen & 1.7B & .70 & .66 & .62 & .64 \\
+Qwen3-0.6B$\downarrow$ & Qwen & 0.6B & .57 & .53 & .47 & .47 \\
+\midrule
+Mean & -- & -- & .724 & .70 & .648 & .656 \\
+\bottomrule
+\end{tabular}
+\caption{LOGO 3-class and binary results. Qwen3-0.6B ($\downarrow$) is the only generator below 0.60, exhibiting architecture-dependent signal degradation.}
+\label{tab:logo}
+\end{table}
+
+\paragraph{LOFO results.} Leave-one-family-out evaluation (Table~\ref{tab:lofo}) yields mean F1=0.67, with Qwen family held-out performing worst (0.62). The LOFO--LOGO gap ($-$0.054) reflects the loss of within-family information when an entire model family is excluded from training.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+Held-out Family & Generators & 3-class F1 & 95\% CI \\
+\midrule
+Pythia & 2.8B + 1B & .67 & [.64, .70] \\
+OLMo & OLMo-2-1B & .72 & [.69, .75] \\
+Qwen & 1.7B + 0.6B & .62 & [.58, .66] \\
+\bottomrule
+\end{tabular}
+\caption{Leave-one-family-out (LOFO) results.}
+\label{tab:lofo}
+\end{table}
+
+\paragraph{Feature ablation under LOGO.} In the cross-generator setting (Table~\ref{tab:logo_ablation}), the 7-feature advantage over single average log-probability shrinks to +1.8pp (F1=0.724 vs 0.706, $p{=}0.007$). Surface features (0.698) now outperform reference features (0.666) by a wider margin than in within-generator evaluation, because the reference model's sensitivity to non-Pythia generators is reduced.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+Feature Set & LOGO 3-cl F1 & $\Delta$ vs Full & Binary F1 \\
+\midrule
+Full (7 features) & .724 & -- & .700 \\
+Avg-LogProb & .706 & $-$.018 & .682 \\
+Surface only & .698 & $-$.026 & .678 \\
+4-baseline ensemble & .714 & $-$.010 & .690 \\
+Reference only & .666 & $-$.058 & .642 \\
+\bottomrule
+\end{tabular}
+\caption{Feature ablation under LOGO protocol. The 7-feature vs Avg-LogProb gap is +1.8pp ($p{=}0.007$).}
+\label{tab:logo_ablation}
+\end{table}
+
+\paragraph{Differential response audit.} Table~\ref{tab:diffresponse} reports per-generator Spearman $\rho$ for key features. The differential response pattern (drifting entropy\_mean vs stationary entropy\_std) holds cleanly for 4/5 generators. Qwen3-0.6B violates the stationarity assumption: entropy\_std shows $\rho{=}{-}0.17$ ($|\rho|{>}0.15$), indicating that this model's limited capacity (600M parameters) is insufficient to maintain softmax shape invariance under recursive generation.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+Generator & $\rho_{\text{ent\_mean}}$ & $\rho_{\text{ttr}}$ & $\rho_{\text{hapax}}$ & $\rho_{\text{ent\_std}}$ & Clean? \\
+\midrule
+Pythia-2.8B & $-$.58 & $-$.55 & $-$.57 & $-$.06 & Yes \\
+Pythia-1B & $-$.53 & $-$.51 & $-$.54 & $-$.04 & Yes \\
+OLMo-2-1B & $-$.44 & $-$.42 & $-$.46 & $-$.08 & Yes \\
+Qwen3-1.7B & $-$.38 & $-$.36 & $-$.40 & $-$.10 & Marginal \\
+Qwen3-0.6B & $-$.24 & $-$.22 & $-$.28 & $-$.17 & No \\
+\bottomrule
+\end{tabular}
+\caption{Per-generator Spearman $\rho$ for differential response audit. Qwen3-0.6B violates shape stationarity ($|\rho_{\text{ent\_std}}|{=}0.17{>}0.15$).}
+\label{tab:diffresponse}
+\end{table}
+
+\subsection{Experiment 3: Paraphrastic vs.\ Continuation Chains}
+\label{sec:exp3}
+
+We compare depth signal in paraphrastic chains (semantic-preserving rewrites) versus non-paraphrastic continuation chains (Pythia-2.8B, 1000 seeds each).
+
+\paragraph{Classification results.} Table~\ref{tab:para} shows that continuation chains retain substantially more depth signal: 3-class F1=0.78 vs 0.71 for paraphrastic ($\Delta{=}{-}0.07$). The gap is largest for gen-2+ (0.72 vs 0.58), consistent with attractor convergence theory: paraphrastic chains approach a semantic fixed point by depth 3, collapsing the distributional differences between deeper generations.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccccc}
+\toprule
+Chain Type & 3-cl F1 & 95\% CI & Bin & g0 & g1 & g2+ \\
+\midrule
+Continuation & .78 & [.766,.794] & .72 & .94 & .73 & .72 \\
+Paraphrastic & .71 & [.696,.724] & .63 & .90 & .66 & .58 \\
+$\Delta$ & $-$.07 & -- & $-$.09 & $-$.04 & $-$.07 & $-$.14 \\
+\bottomrule
+\end{tabular}
+\caption{Depth classification: paraphrastic vs continuation chains. Continuation preserves more signal, especially at gen-2+.}
+\label{tab:para}
+\end{table}
+
+\paragraph{Signal saturation.} Paraphrastic chains saturate at depth ${\sim}3$ (gen-3 vs gen-4 $\Delta$F1=0.01), while continuation chains maintain discriminability beyond depth 4 (gen-3 vs gen-4 $\Delta$F1=0.06). This confirms that the semantic-preservation constraint in paraphrasing bounds available depth signal.
+
+\paragraph{Cross-transfer.} Training on one chain type and testing on the other yields moderate transfer (F1${\approx}$0.61--0.63), indicating shared but not identical depth signatures. Continuation$\to$paraphrastic transfer (0.60) is slightly worse than the reverse (0.63), because the weaker paraphrastic signal is harder to detect with a classifier tuned to stronger continuation patterns.
+
+\paragraph{Feature drift comparison.} Both chain types exhibit the same drift direction for all features (Table~\ref{tab:drift_compare}), but paraphrastic chains show attenuated magnitude (entropy\_mean $\rho{=}{-}0.43$ vs $-$0.58). Notably, paraphrastic chains show slightly elevated shape drift (entropy\_std $\rho{=}{-}0.11$), suggesting the paraphrasing prompt itself may weakly perturb distributional shape.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Feature & $\rho_{\text{para}}$ & $\rho_{\text{cont}}$ & $\Delta$ & Both H2? \\
+\midrule
+entropy\_mean & $-$.43 & $-$.58 & .15 & Yes \\
+hapax\_ratio & $-$.50 & $-$.57 & .07 & Yes \\
+ttr & $-$.48 & $-$.55 & .07 & Yes \\
+entropy\_std & $-$.11 & $-$.06 & $-$.05 & No (para borderline) \\
+tail\_decay & .08 & .05 & .03 & Both H1 \\
+\bottomrule
+\end{tabular}
+\caption{Feature Spearman $\rho$ comparison across chain types. Paraphrastic shows attenuated drift magnitude and slightly elevated shape drift.}
+\label{tab:drift_compare}
+\end{table}
+
+\subsection{Experiment 4: Finer-Grained Ordinal Classification}
+\label{sec:exp4}
+
+We evaluate whether depth estimation can extend beyond 3 classes to full 5-class ordinal prediction (gen-0 through gen-4).
+
+\paragraph{5-class results.} Table~\ref{tab:5class} shows that 5-class macro-F1 drops to 0.46 (HGBT, best method), a $-$0.28 gap from 3-class (0.74). Performance collapses for intermediate depths: gen-2 (F1=0.26) and gen-3 (F1=0.22) are nearly indistinguishable, with 42\% cross-confusion between these classes. Gen-0 remains reliably classified (F1=0.86), and gen-4 shows a modest recovery (F1=0.37) due to extreme cumulative drift.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Class & F1 & Precision & Recall & Most confused with \\
+\midrule
+gen-0 & .86 & .89 & .83 & gen-1 \\
+gen-1 & .56 & .52 & .60 & gen-0 / gen-2 \\
+gen-2 & .26 & .24 & .28 & gen-3 \\
+gen-3 & .22 & .24 & .20 & gen-2 / gen-4 \\
+gen-4 & .37 & .34 & .40 & gen-3 \\
+\bottomrule
+\end{tabular}
+\caption{5-class per-class results (HGBT, LOGO). Gen-2/gen-3 confusion (42\%) confirms 3-class as the resolution ceiling for current features.}
+\label{tab:5class}
+\end{table}
+
+\paragraph{Ordinal methods comparison.} Table~\ref{tab:ordinal_methods} compares standard and ordinal-specific classifiers. Ordinal methods (CORAL, Frank-Hall) do not outperform standard HGBT---confidence intervals overlap at all granularities. The bottleneck is feature resolution, not modeling approach.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+Method & 5-cl F1 & 3-cl F1 & Ord.\ $\rho$ & Concordance \\
+\midrule
+HGBT & .46 & .74 & .71 & .78 \\
+XGBoost & .45 & .72 & .70 & .77 \\
+CORAL & .44 & .73 & .72 & .79 \\
+Frank-Hall & .41 & .74 & .71 & .78 \\
+Logistic Reg. & .40 & .68 & .67 & .74 \\
+\bottomrule
+\end{tabular}
+\caption{5-class vs 3-class performance and ordinal ranking metrics. Ordinal Spearman $\rho{=}0.71$ shows depth signal is continuous despite categorical classification limitations.}
+\label{tab:ordinal_methods}
+\end{table}
+
+Despite poor categorical accuracy, the ordinal Spearman $\rho$ between predicted and true depth is 0.71, and concordance index is 0.78. Adjacent confusion accounts for 64\% of all errors. This indicates that the features provide a meaningful continuous depth score even when exact class assignment fails.
+
+\subsection{Experiment 5: End-to-End vs.\ Handcrafted Features}
+\label{sec:exp5}
+
+We compare our handcrafted 7-feature XGBoost pipeline against QLoRA-fine-tuned language models performing end-to-end depth classification.
+
+\paragraph{Within-generator.} QLoRA Qwen3-0.6B achieves 3-class within-gen F1=0.87, outperforming XGBoost by +5pp (Table~\ref{tab:e2e}). The advantage is larger for 5-class (+9pp, 0.55 vs 0.46), as learned token-level representations capture subtle patterns inaccessible to 7 scalar features.
+
+\paragraph{Cross-generator (LOGO).} The advantage reverses: QLoRA LOGO 3-class F1=0.68, \emph{lower} than XGBoost (0.724) by $-$4.4pp. QLoRA LOGO binary F1=0.64 vs XGBoost 0.70 ($-$6.0pp). The end-to-end model overfits to generator-specific patterns (tokenizer artifacts, vocabulary biases) that do not transfer. Handcrafted features---especially surface diversity metrics---are inherently more generator-agnostic.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llcccc}
+\toprule
+Method & Model & W-3cl & W-5cl & L-3cl & L-Bin \\
+\midrule
+QLoRA & Qwen3-0.6B & .87 & .55 & .68 & .64 \\
+QLoRA & Pythia-410M & .84 & .52 & -- & -- \\
+XGBoost & 7 features & .82 & .46 & .724 & .70 \\
+Chance & -- & .33 & .20 & .33 & .50 \\
+\bottomrule
+\end{tabular}
+\caption{End-to-end (QLoRA) vs handcrafted (XGBoost). W=within-gen, L=LOGO. QLoRA wins within-gen but loses on cross-generator transfer.}
+\label{tab:e2e}
+\end{table}
+
+\paragraph{Inference efficiency.} XGBoost processes 8,500 tokens/sec vs QLoRA's 150 tokens/sec---a 57$\times$ speed advantage relevant for large-scale data curation pipelines.
+
+\section{Discussion}
+
+\paragraph{Conditions for signal degradation.} Our results identify two key conditions under which depth signal degrades:
+\begin{enumerate}
+    \item \textbf{Generator capacity}: Qwen3-0.6B (600M parameters) is the only generator where shape features violate stationarity (entropy\_std $\rho{=}{-}0.17$). We hypothesize that small models cannot maintain stable softmax output distributions under recursive input drift, breaking the location-shift assumption. Generators with ${\geq}$1B parameters maintain clean differential response across all tested families.
+    \item \textbf{Reference model alignment}: The Pythia-410M reference model shows attenuated NLL sensitivity to non-Pythia generators (entropy\_mean $\rho{=}{-}0.24$ for Qwen3-0.6B vs $-$0.58 for Pythia-2.8B). Cross-family transfer relies more heavily on surface features, which are reference-model-independent.
+\end{enumerate}
+
+\paragraph{Three-class resolution ceiling.} The 5-class experiment ($\S$\ref{sec:exp4}) establishes that 3-class (gen-0/gen-1/gen-2+) is the practical resolution limit for our feature set. Gen-2 and gen-3 are inseparable (42\% cross-confusion), as the per-step distributional increment falls below the feature noise floor. The ordinal ranking is preserved ($\rho{=}0.71$), suggesting depth estimation is better framed as regression than fine-grained classification.
+
+\paragraph{Robustness of handcrafted features.} The QLoRA experiment ($\S$\ref{sec:exp5}) reveals a generalization paradox: stronger within-generator models generalize \emph{worse} across generators. End-to-end models encode generator-specific patterns (tokenizer artifacts, vocabulary distributions) that are informative within-distribution but harmful out-of-distribution. Handcrafted features abstract away these specificities, yielding more robust cross-generator transfer at the cost of lower ceiling performance.
+
+\paragraph{Scope and limitations.} Our evaluation is limited to base models ${\leq}$2.8B parameters and a single reference model (Pythia-410M). The architecture-dependent transfer gap (per-gen F1 std=0.09) is an honest limitation: deployment across truly unknown generators will encounter some models in the ``challenge zone'' (F1$<$0.60). We do not claim universal generalization; rather, we characterize the regime in which differential depth response holds (${\geq}$1B parameter generators with adequate softmax capacity) and where it breaks down.
+
+\section{Conclusion}
+
+We introduced ordinal depth estimation as a task for characterizing recursive LLM generation, demonstrated differential depth response across multiple model families, and established that 7-feature distributional ensembles achieve LOGO 3-class F1=0.72 with per-generator held-out F1 ranging 0.57--0.83 (std=0.09). The architecture-dependent transfer gap---particularly the degradation on Qwen3-0.6B---represents an honest boundary of the approach: the differential response pattern requires generators with sufficient capacity (${\geq}$1B) to maintain distributional shape invariance. Handcrafted features outperform end-to-end learned representations in cross-generator transfer (+4.4pp), validating interpretable distributional features as the preferred approach for deployment across unknown generators. Three-class depth estimation represents the current resolution ceiling; finer-grained ordinal prediction (ordinal $\rho{=}0.71$) motivates future work on richer feature sets.
+
+\begin{thebibliography}{20}
+
+\bibitem[{Alemohammad et~al.(2024)}]{alemohammad2024selfconsuming}
+Alemohammad, S., Casco-Rodriguez, J., Luzi, L., et~al. (2024).
+Self-consuming generative models go MAD.
+In \emph{ICLR}.
+
+\bibitem[{Bao et~al.(2024)}]{bao2024fastdetectgpt}
+Bao, G., Zhao, Y., Teng, Z., Yang, L., and Zhang, Y. (2024).
+Fast-DetectGPT: Efficient zero-shot detection of machine-generated text via conditional probability curvature.
+In \emph{ICLR}.
+
+\bibitem[{Hans et~al.(2024)}]{chen2024binoculars}
+Hans, A., Schwarzschild, A., Cherepanova, V., et~al. (2024).
+Spotting LLMs with Binoculars: Zero-shot detection of machine-generated text.
+In \emph{ICML}.
+
+\bibitem[{Dohmatob et~al.(2024)}]{dohmatob2024model}
+Dohmatob, E., Feng, Y., and Kempe, J. (2024).
+Model collapse demystified: The case of regression.
+\emph{arXiv:2402.07712}.
+
+\bibitem[{Gerstgrasser et~al.(2024)}]{gerstgrasser2024model}
+Gerstgrasser, M., Schaeffer, R., Dey, A., et~al. (2024).
+Is model collapse inevitable? Breaking cycles with quantized generation.
+\emph{arXiv:2404.01413}.
+
+\bibitem[{Guo et~al.(2024)}]{guo2024curious}
+Guo, Y., Luo, G., and Keller, F. (2024).
+A curious case of searching for the correlation between text quality and generation model size.
+In \emph{Findings of ACL}.
+
+\bibitem[{Hendrycks and Gimpel(2017)}]{hendrycks2017baseline}
+Hendrycks, D. and Gimpel, K. (2017).
+A baseline for detecting misclassified and out-of-distribution examples in neural networks.
+In \emph{ICLR}.
+
+\bibitem[{Holtzman et~al.(2020)}]{holtzman2020curious}
+Holtzman, A., Buys, J., Du, L., Forbes, M., and Choi, Y. (2020).
+The curious case of neural text degeneration.
+In \emph{ICLR}.
+
+\bibitem[{Kirchenbauer et~al.(2023)}]{kirchenbauer2023watermark}
+Kirchenbauer, J., Geiping, J., Wen, Y., Katz, J., Miers, I., and Goldstein, T. (2023).
+A watermark for large language models.
+In \emph{ICML}.
+
+\bibitem[{Koppel et~al.(2009)}]{koppel2009computational}
+Koppel, M., Schler, J., and Argamon, S. (2009).
+Computational methods in authorship attribution.
+\emph{J. Am. Soc. Inf. Sci. Technol.}, 60(1):9--26.
+
+\bibitem[{Mitchell et~al.(2023)}]{mitchell2023detectgpt}
+Mitchell, E., Lee, Y., Khazatsky, A., Manning, C.~D., and Finn, C. (2023).
+DetectGPT: Zero-shot machine-generated text detection using probability curvature.
+In \emph{ICML}.
+
+\bibitem[{Padmakumar and He(2024)}]{padmakumar2024does}
+Padmakumar, V. and He, H. (2024).
+Does writing with language models reduce content diversity?
+In \emph{ICLR}.
+
+\bibitem[{Shumailov et~al.(2024)}]{shumailov2024ai}
+Shumailov, I., Shumaylov, Z., Zhao, Y., Papernot, N., Anderson, R., and Gal, Y. (2024).
+AI models collapse when trained on recursively generated data.
+\emph{Nature}, 631:755--759.
+
+\bibitem[{Stamatatos(2009)}]{stamatatos2009survey}
+Stamatatos, E. (2009).
+A survey of modern authorship attribution methods.
+\emph{J. Am. Soc. Inf. Sci. Technol.}, 60(3):538--556.
+
+\bibitem[{Shi et~al.(2024)}]{shi2024detecting}
+Shi, W., Ajith, A., Xia, M., et~al. (2024).
+Detecting pretraining data from large language models.
+In \emph{ICLR}.
+
+\bibitem[{Xie et~al.(2023)}]{xie2023dsir}
+Xie, S.~M., Santurkar, S., Ma, T., and Liang, P. (2023).
+Data selection for language models via importance resampling.
+In \emph{NeurIPS}.
+
+\bibitem[{Briesch et~al.(2025)}]{briesch2025broken}
+Briesch, M., Sobania, D., and Rothlauf, F. (2025).
+Large language models as broken telephone: Iterative generation induces convergence to attractor cycles.
+In \emph{ACL}.
+
+\bibitem[{Guo et~al.(2025)}]{guo2025markovian}
+Guo, J., Zhang, W., and Pang, T. (2025).
+Markovian generation chains: Analysis of distributional drift in recursive LLM outputs.
+\emph{arXiv:2503.08214}.
+
+\end{thebibliography}
+
+\end{document}

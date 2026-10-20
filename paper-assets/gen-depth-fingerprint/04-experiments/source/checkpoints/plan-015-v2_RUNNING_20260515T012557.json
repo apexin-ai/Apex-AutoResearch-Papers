@@ -1,0 +1,23 @@
+{
+  "exp_id": "plan-015-v2",
+  "project": "gen-depth-fingerprint",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T00:56:20.612Z",
+    "updated_at": "2026-05-15T01:25:57.686Z",
+    "spec": {
+      "command": "PYTHONUNBUFFERED=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 python scripts/ordinal_baseline.py --device cuda:0",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/",
+      "data_count": 0,
+      "model_name": "pythia-410m+pythia-160m",
+      "seed": 42
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T01:25:57.757828+00:00",
+  "trigger": "update_registry"
+}

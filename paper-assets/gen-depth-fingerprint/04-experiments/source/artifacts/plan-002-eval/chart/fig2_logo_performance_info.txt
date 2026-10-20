@@ -1,0 +1,1 @@
+Figure 2: LOGO Cross-Generator Performance\nServer path: /root/gen-depth-fingerprint/figures/paper/fig2_logo_performance.{pdf,png}\nData source: cross_generator_results.json\nPythia-1B: 0.853, OLMo-2-1B: 0.752, Qwen3-0.6B: best, Qwen3-1.7B: mid, Pythia-2.8B: mid, Qwen3-8B: 0.689\n6-gen LOGO mean: 0.789

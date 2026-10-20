@@ -1,0 +1,27 @@
+paper_key: "ood_baseline"
+title: "A Baseline for Detecting Misclassified and Out-of-Distribution Examples in Neural Networks"
+venue: "ICLR 2017"
+full_text_available: false
+
+research:
+  baselines: []
+  metrics:
+    - {name: "maximum softmax probability", direction: "higher_better"}
+    - {name: "detection performance (AUROC implied)", direction: "higher_better"}
+  datasets:
+    - {name: "computer vision benchmarks (unspecified)", size: "unknown"}
+    - {name: "NLP benchmarks (unspecified)", size: "unknown"}
+    - {name: "ASR benchmarks (unspecified)", size: "unknown"}
+  ablation_dimensions: ["task domain (CV, NLP, ASR)", "misclassification vs OOD detection"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "softmax probability baseline for OOD detection"
+
+positioning:
+  core_claim: "Establishes a simple maximum softmax probability baseline for detecting misclassified and out-of-distribution examples across CV, NLP, and ASR, demonstrating the task is underexplored despite the baseline's effectiveness."
+  key_results: "N/A - abstract only"
+  limitations: ["N/A"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

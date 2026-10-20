@@ -1,0 +1,105 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{mitchell2023detectgpt}
+\citation{hans2024binoculars}
+\citation{bao2024fastdetectgpt}
+\citation{yang2024dnagpt}
+\citation{shumailov2024model,alemohammad2023selfconsuming,dohmatob2024model,gerstgrasser2024model}
+\citation{brokentel2025}
+\citation{attractor2025}
+\citation{xie2023dsir}
+\citation{wettig2024qurating}
+\citation{wenzek2020ccnet}
+\citation{kirchenbauer2023watermark}
+\citation{stamatatos2009survey,koppel2009computational}
+\citation{guo2024vocabulary,padmakumar2024writing,holtzman2020curious}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Binary AI text detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model collapse and iterative generation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data quality and provenance.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stylometry and vocabulary diversity.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Generation Chain Construction}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Distributional Feature Extraction}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Drifting features (central-tendency/diversity).}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stationary features (distributional shape).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Classification}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Feature Ablation and Depth Trend Analysis}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:ablation}{{4.1}{3}{Feature Ablation and Depth Trend Analysis}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Feature ablation (5-fold CV, Pythia-2.8B). Full ensemble significantly outperforms both subsets.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:ablation}{{1}{4}{Feature ablation (5-fold CV, Pythia-2.8B). Full ensemble significantly outperforms both subsets}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Per-feature depth trend via linear regression. Drifting features show strong monotonic decrease ($R^2 > 0.88$); stationary features are invariant ($R^2 < 0.20$).}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:trends}{{2}{4}{Per-feature depth trend via linear regression. Drifting features show strong monotonic decrease ($R^2 > 0.88$); stationary features are invariant ($R^2 < 0.20$)}{table.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Feature set ablation.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-feature depth trends.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Perplexity validation.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Generator Evaluation}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:cross_gen}{{4.2}{4}{Cross-Generator Evaluation}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Leave-one-generator-out (LOGO).}{4}{section*.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Leave-one-generator-out macro-F1. Depth signal generalizes across 5 generators from 3 families.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:logo_gen}{{3}{5}{Leave-one-generator-out macro-F1. Depth signal generalizes across 5 generators from 3 families}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Leave-one-family-out macro-F1. Cross-family generalization degrades only 1.5pp beyond generator-level holdout.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:logo_fam}{{4}{5}{Leave-one-family-out macro-F1. Cross-family generalization degrades only 1.5pp beyond generator-level holdout}{table.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Leave-one-family-out.}{5}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Feature ablation under LOGO.}{5}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Paraphrastic vs.\ Continuation Chains}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:para}{{4.3}{5}{Paraphrastic vs.\ Continuation Chains}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Classification performance.}{5}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Feature-level drift comparison.}{5}{section*.14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Paraphrastic vs.\ continuation chains. Continuation chains retain stronger depth signal.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:para_cont}{{5}{6}{Paraphrastic vs.\ continuation chains. Continuation chains retain stronger depth signal}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Feature drift comparison (Spearman $\rho $). Same direction in both chain types; stronger in continuation.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:drift_comparison}{{6}{6}{Feature drift comparison (Spearman $\rho $). Same direction in both chain types; stronger in continuation}{table.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-transfer.}{6}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Finer-Grained Ordinal Classification}{6}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:ordinal}{{4.4}{6}{Finer-Grained Ordinal Classification}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Granularity comparison.}{6}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-depth analysis.}{6}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ordinal methods.}{6}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}End-to-End Neural Classifier}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:e2e}{{4.5}{6}{End-to-End Neural Classifier}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Granularity comparison. 5-class classification degrades substantially, but ordinal ranking is preserved (concordance 0.82).}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:granularity}{{7}{7}{Granularity comparison. 5-class classification degrades substantially, but ordinal ranking is preserved (concordance 0.82)}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces 5-class per-depth F1. Middle depths (2--3) are nearly indistinguishable.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:perclass}{{8}{7}{5-class per-depth F1. Middle depths (2--3) are nearly indistinguishable}{table.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Within-generator performance.}{7}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Generalization gap.}{7}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-class gains.}{7}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Differential depth response as location shift.}{7}{section*.22}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces End-to-end vs.\ feature-based comparison. E2E achieves higher within-generator accuracy but degrades more under LOGO.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:e2e}{{9}{8}{End-to-end vs.\ feature-based comparison. E2E achieves higher within-generator accuracy but degrades more under LOGO}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Per-depth F1 comparison (5-class). E2E gains concentrate at shallow depths.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:e2e_perclass}{{10}{8}{Per-depth F1 comparison (5-class). E2E gains concentrate at shallow depths}{table.10}{}}
+\@writefile{toc}{\contentsline {paragraph}{Architecture invariance.}{8}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical resolution ceiling.}{8}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Interpretability vs.\ accuracy tradeoff.}{8}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Paraphrastic vs.\ continuation chains.}{8}{section*.26}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{alemohammad2023selfconsuming}{{1}{2023}{{Alemohammad et~al.}}{{}}}
+\bibcite{bao2024fastdetectgpt}{{2}{2024}{{Bao et~al.}}{{}}}
+\bibcite{dohmatob2024model}{{3}{2024}{{Dohmatob et~al.}}{{}}}
+\bibcite{gerstgrasser2024model}{{4}{2024}{{Gerstgrasser et~al.}}{{}}}
+\bibcite{guo2024vocabulary}{{5}{2024}{{Guo et~al.}}{{}}}
+\bibcite{hans2024binoculars}{{6}{2024}{{Hans et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Limitations}{9}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{9}{section.7}\protected@file@percent }
+\bibcite{holtzman2020curious}{{7}{2020}{{Holtzman et~al.}}{{}}}
+\bibcite{kirchenbauer2023watermark}{{8}{2023}{{Kirchenbauer et~al.}}{{}}}
+\bibcite{koppel2009computational}{{9}{2009}{{Koppel et~al.}}{{}}}
+\bibcite{mitchell2023detectgpt}{{10}{2023}{{Mitchell et~al.}}{{}}}
+\bibcite{padmakumar2024writing}{{11}{2024}{{Padmakumar and He}}{{}}}
+\bibcite{shumailov2024model}{{12}{2024}{{Shumailov et~al.}}{{}}}
+\bibcite{stamatatos2009survey}{{13}{2009}{{Stamatatos}}{{}}}
+\bibcite{wenzek2020ccnet}{{14}{2020}{{Wenzek et~al.}}{{}}}
+\bibcite{wettig2024qurating}{{15}{2024}{{Wettig et~al.}}{{}}}
+\bibcite{xie2023dsir}{{16}{2023}{{Xie et~al.}}{{}}}
+\bibcite{yang2024dnagpt}{{17}{2024}{{Yang et~al.}}{{}}}
+\bibcite{brokentel2025}{{18}{2025}{{Brokentel et~al.}}{{}}}
+\bibcite{attractor2025}{{19}{2025}{{Attractor Authors}}{{}}}
+\gdef \@abspage@last{10}

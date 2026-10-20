@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan-004-v2",
+  "project": "gen-depth-fingerprint",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T00:45:17.861Z",
+    "updated_at": "2026-05-15T00:45:27.380Z",
+    "hypothesis": "Downstream utility (retry): depth-stratified 数据对 OLMo-2-0425-1B CLM fine-tuning 的影响——5 variants × 3 seeds，输出到数据盘"
+  },
+  "timestamp": "2026-05-15T00:45:27.433152+00:00",
+  "trigger": "update_registry"
+}

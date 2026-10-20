@@ -1,0 +1,45 @@
+{
+  "exp_id": "plan-016-llama32-3b",
+  "project": "gen-depth-fingerprint",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-16T07:18:05.319Z",
+    "updated_at": "2026-05-16T10:58:51.084Z",
+    "hypothesis": "Scope expansion: Llama-3.2-3B (Meta/Llama family) continuation chains — extend depth fingerprinting from 3 to 6 model families",
+    "reproduce": {
+      "finished_at": "2026-05-16T10:58:05.733Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-16T10:58:06.525Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T10:58:10.516720+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "python generate_chains.py --model llama-3.2-3b --seeds 995 --depths 5",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/llama-3.2-3b/generations_shard0.jsonl",
+      "data_count": 4975,
+      "model_name": "meta-llama/Llama-3.2-3B",
+      "seed": 42,
+      "gpu": "cuda:0",
+      "pid": 299448,
+      "log_path": "/tmp/llama_generate.log",
+      "repetition_penalty": 1,
+      "note": "Retry after false-positive failure (cron monitored old killed PID 291137, new PID 299448 still running at 83%)"
+    }
+  },
+  "timestamp": "2026-05-16T10:58:51.195439+00:00",
+  "trigger": "update_registry"
+}

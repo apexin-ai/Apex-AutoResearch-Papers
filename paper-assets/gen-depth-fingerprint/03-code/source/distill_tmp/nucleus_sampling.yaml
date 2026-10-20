@@ -1,0 +1,26 @@
+paper_key: "nucleus_sampling"
+title: "The Curious Case of Neural Text Degeneration"
+venue: "ICLR 2020"
+full_text_available: false
+
+research:
+  baselines: ["beam search", "top-k sampling", "temperature sampling", "greedy decoding"]
+  metrics:
+    - {name: "text quality (human evaluation)", direction: "higher_better"}
+    - {name: "text diversity", direction: "higher_better"}
+    - {name: "distributional similarity to human text", direction: "higher_better"}
+  datasets:
+    - {name: "open-ended text generation benchmarks (unspecified)", size: "unknown"}
+  ablation_dimensions: ["decoding strategy", "nucleus threshold p", "text length"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "decoding strategy (nucleus/top-p sampling)"
+
+positioning:
+  core_claim: "Reveals distributional disparities between human and machine text under likelihood-based decoding, and proposes Nucleus Sampling (top-p) that dynamically truncates the unreliable tail of the probability distribution to generate diverse yet coherent text."
+  key_results: "N/A - abstract only"
+  limitations: ["N/A"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

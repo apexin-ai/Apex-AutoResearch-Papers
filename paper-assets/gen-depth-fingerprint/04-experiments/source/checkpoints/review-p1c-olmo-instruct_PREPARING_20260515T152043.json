@@ -1,0 +1,14 @@
+{
+  "exp_id": "review-p1c-olmo-instruct",
+  "project": "gen-depth-fingerprint",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:20:43.541Z",
+    "updated_at": "2026-05-15T15:20:43.541Z"
+  },
+  "timestamp": "2026-05-15T15:20:43.644893+00:00",
+  "trigger": "update_registry"
+}

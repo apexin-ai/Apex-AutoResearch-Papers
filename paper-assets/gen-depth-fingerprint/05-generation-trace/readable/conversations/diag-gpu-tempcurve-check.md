@@ -1,0 +1,804 @@
+# diag gpu tempcurve check
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 25
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/chats/worker_diag_gpu-tempcurve-check_20260518T024351.jsonl`
+- **Structured JSON:** [`35e279cc64003639ab24.json`](../../sessions/35/35e279cc64003639ab24.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+25 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T02:45:01.678138+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T02:45:01.678443+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T02:45:01.678648+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "nvidia-smi",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "nvidia-smi",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-18T02:45:01.678819+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Mon May 18 10:44:09 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.76.05              Driver Version: 580.76.05      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 5090        On  |   00000000:50:00.0 Off |                  N/A |\\n| 41%   51C    P1            278W /  575W |    6193MiB /  32607MiB |     64%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A           45500      C   python                                 6184MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T02:45:01.678961+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tmux ls 2>&1; echo \"===CAPTURE===\"; tmux capture-pane -t tc_fix -p -S -100 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tmux ls 2>&1; echo \"===CAPTURE===\"; tmux capture-pane -t tc_fix -p -S -100 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T02:45:01.679180+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"tc_fix: 1 windows (created Mon May 18 06:33:41 2026)\\n===CAPTURE===\\nWARNING: Skipping seed 172 at depth 2: empty output\\nWARNING: Skipping seed 177 at depth 4: empty output\\nWARNING: Skipping seed 180 at depth 3: empty output\\nWARNING: Skipping seed 184 at depth 2: empty output\\nWARNING: Skipping seed 186 at depth 2: empty output\\n[200/995] 2455s elapsed, 0.08 seeds/s\\nWARNING: Skipping seed 207 at depth 2: empty output\\nWARNING: Skipping seed 222 at depth 2: empty output\\n[250/995] 3143s elapsed, 0.08 seeds/s\\nWARNING: Skipping seed 254 at depth 3: empty output\\nWARNING: Skipping seed 267 at depth 4: empty output\\nWARNING: Skipping seed 272 at depth 2: empty output\\nWARNING: Skipping seed 279 at depth 2: empty output\\nWARNING: Skipping seed 280 at depth 4: empty output\\nWARNING: Skipping seed 284 at depth 2: empty output\\n[300/995] 3816s elapsed, 0.08 seeds/s\\nWARNING: Skipping seed 303 at depth 2: empty output\\nWARNING: Skipping seed 315 at depth 2: empty output\\nWARNING: Skipping seed 322 at depth 4: empty output\\nWARNING: Skipping seed 329 at depth 4: empty output\\nWARNING: Skipping seed 337 at depth 2: empty output\\nWARNING: Skipping seed 341 at depth 4: empty output\\nWARNING: Skipping seed 343 at depth 3: empty output\\nWARNING: Skipping seed 345 at depth 3: empty output\\nWARNING: Skipping seed 349 at depth 2: empty output\\n[350/995] 4448s elapsed, 0.08 seeds/s\\nWARNING: Skipping seed 362 at depth 3: empty output\\nWARNING: Skipping seed 371 at depth 2: empty output\\nWARNING: Skipping seed 374 at depth 2: empty output\\nWARNING: Skipping seed 376 at depth 2: empty output\\nWARNING: Skipping seed 378 at depth 3: empty output\\nWARNING: Skipping seed 379 at depth 3: empty output\\nWARNING: Skipping seed 389 at depth 2: empty output\\n[400/995] 5082s elapsed, 0.08 seeds/s\\nWARNING: Skipping seed 400 at depth 4: empty output\\nWARNING: Skipping seed 414 at depth 4: empty output\\
+…[truncated 4766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T02:45:01.679352+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/gen-depth-fingerprint/results/ -name \"*temp*\" -o -name \"*t05*\" -o -name \"*t09*\" -o -name \"*t0.5*\" -o -name \"*t0.9*\" -o -name \"*temp_curve*\" 2>/dev/null; echo \"===SCRIPTS===\"; find /root/gen-depth-fingerprint/ -name \"run_temp_curve*\" 2>/dev/null; echo \"===LOGS===\"; find /root/gen-depth-fingerprint/logs/ -name \"*temp*\" -o -name \"*tc_fix*\" 2>/dev/null; echo \"===RECENT_LOGS===\"; ls -la /root/gen-depth-fingerprint/logs/ 2>/dev/null | tail -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/gen-depth-fingerprint/results/ -name \"*temp*\" -o -name \"*t05*\" -o -name \"*t09*\" -o -name \"*t0.5*\" -o -name \"*t0.9*\" -o -name \"*temp_curve*\" 2>/dev/null; echo \"===SCRIPTS===\"; find /root/gen-depth-fingerprint/ -name \"run_temp_curve*\" 2>/dev/null; echo \"===LOGS===\"; find /root/gen-depth-fingerprint/logs/ -name \"*temp*\" -o -name \"*tc_fix*\" 2>/dev/null; echo \"===RECENT_LOGS===\"; ls -la /root/gen-depth-fingerprint/logs/ 2>/dev/null | tail -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T02:45:01.679510+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/results/human_edit_robustness_old_no_chat_template.json\\n/root/gen-depth-fingerprint/results/cross_temp_transfer.json\\n/root/gen-depth-fingerprint/results/cross_temp_transfer_qwen_only.json\\n/root/gen-depth-fingerprint/results/temp_curve_binary_logo.json\\n===SCRIPTS===\\n/root/gen-depth-fingerprint/run_temp_curve.sh\\n/root/gen-depth-fingerprint/run_temp_curve_fix.sh\\n===LOGS===\\n/root/gen-depth-fingerprint/logs/high_temp_cuda2.log\\n/root/gen-depth-fingerprint/logs/temp_curve_20260518_061706.log\\n/root/gen-depth-fingerprint/logs/tc_fix.log\\n===RECENT_LOGS===\\ntotal 4520\\ndrwxr-xr-x  2 root root    4096 May 18 08:11 .\\ndrwxr-xr-x 15 root root    4096 May 18 09:26 ..\\n-rw-r--r--  1 root root   12025 May 18 07:01 bootstrap_seed_variance.log\\n-rw-r--r--  1 root root   14797 May 18 07:29 corpus_prevalence_demo.log\\n-rw-r--r--  1 root root    2272 May 18 08:10 eval_5gen_logo.log\\n-rw-r--r--  1 root root    7295 May 18 07:21 feature_importance_stability.log\\n-rw-r--r--  1 root root    1616 May 18 07:22 gen1_subclass_analysis.log\\n-rw-r--r--  1 root root    3464 May 15 01:04 generate_chain.log\\n-rw-r--r--  1 root root   87520 May 16 04:22 high_temp_cuda2.log\\n-rw-r--r--  1 root root  108640 May 18 09:57 indep_seed.log\\n-rw-r--r--  1 root root   25849 May 16 19:26 llama_rp1.0_resume.log\\n-rw-r--r--  1 root root 2019097 May 16 08:29 plan012_pythia410m.log\\n-rw-r--r--  1 root root 2163882 May 16 09:05 plan012_qwen06b.log\\n-rw-r--r--  1 root root    4470 May 15 21:51 review_p1d_6gen_baselines.log\\n-rw-r--r--  1 root root    3761 May 18 08:14 roc_auc_baselines.log\\n-rw-r--r--  1 root root    3504 May 18 07:51 seed_demeaning_logo.log\\n-rw-r--r--  1 root root    3376 May 17 19:56 table4_grid.log\\n-rw-r--r--  1 root root  116531 May 18 10:44 tc_fix.log\\n-rw-r--r--  1 root root    7629 May 18 06:32 temp_curve_20260518_061706.log\\n\", \"stderr\": \"\", \"return_code\": 0}
+…[truncated 63 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T02:45:01.679680+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/gen-depth-fingerprint/results/independent_seed*/ 2>/dev/null; echo \"===JSON===\"; cat /root/gen-depth-fingerprint/results/independent_seed_results.json 2>/dev/null; echo \"===END===\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/gen-depth-fingerprint/results/independent_seed*/ 2>/dev/null; echo \"===JSON===\"; cat /root/gen-depth-fingerprint/results/independent_seed_results.json 2>/dev/null; echo \"===END===\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T02:45:01.679830+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"===JSON===\\n{\\n  \\\"experiment\\\": \\\"independent_seed_control\\\",\\n  \\\"description\\\": \\\"Cross-generator depth classification with non-overlapping Wikipedia seeds\\\",\\n  \\\"results\\\": [\\n    {\\n      \\\"train\\\": \\\"Pythia-2.8B (SetA)\\\",\\n      \\\"test\\\": \\\"OLMo-2-1B (SetB)\\\",\\n      \\\"binary_f1\\\": 0.6945,\\n      \\\"ci_lower\\\": 0.6727,\\n      \\\"ci_upper\\\": 0.7167,\\n      \\\"n_train\\\": 996,\\n      \\\"n_test\\\": 1842\\n    },\\n    {\\n      \\\"train\\\": \\\"OLMo-2-1B (SetB)\\\",\\n      \\\"test\\\": \\\"Pythia-2.8B (SetA)\\\",\\n      \\\"binary_f1\\\": 0.666,\\n      \\\"ci_lower\\\": 0.6429,\\n      \\\"ci_upper\\\": 0.6893,\\n      \\\"n_train\\\": 980,\\n      \\\"n_test\\\": 1838\\n    }\\n  ],\\n  \\\"average_binary_f1\\\": 0.6803,\\n  \\\"shared_seed_logo_binary_f1_ref\\\": 0.694,\\n  \\\"delta_vs_shared\\\": -0.0137\\n}===END===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T02:45:01.679990+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/temp_curve_binary_logo.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/gen-depth-fingerprint/results/temp_curve_binary_logo.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T02:45:01.680132+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia-2.8b\\\": {\\n    \\\"0.7\\\": {\\n      \\\"binary_f1\\\": 0.7395,\\n      \\\"ci_95\\\": [\\n        0.7254,\\n        0.7548\\n      ],\\n      \\\"n_test\\\": 3614\\n    }\\n  },\\n  \\\"qwen3-1.7b\\\": {\\n    \\\"0.5\\\": {\\n      \\\"binary_f1\\\": 0.7506,\\n      \\\"ci_95\\\": [\\n        0.7348,\\n        0.7656\\n      ],\\n      \\\"n_test\\\": 3814\\n    },\\n    \\\"0.7\\\": {\\n      \\\"binary_f1\\\": 0.7505,\\n      \\\"ci_95\\\": [\\n        0.7345,\\n        0.7664\\n      ],\\n      \\\"n_test\\\": 3621\\n    },\\n    \\\"1.0\\\": {\\n      \\\"binary_f1\\\": 0.367,\\n      \\\"ci_95\\\": [\\n        0.3525,\\n        0.3813\\n      ],\\n      \\\"n_test\\\": 3706\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T02:45:01.680264+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/cross_temp_transfer.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/gen-depth-fingerprint/results/cross_temp_transfer.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T02:45:01.680492+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"cross_temperature_transfer\\\",\\n  \\\"date\\\": \\\"2026-05-17\\\",\\n  \\\"model\\\": \\\"XGBoost\\\",\\n  \\\"hyperparams\\\": {\\n    \\\"n_estimators\\\": 200,\\n    \\\"max_depth\\\": 6\\n  },\\n  \\\"features\\\": [\\n    \\\"entropy_mean\\\",\\n    \\\"entropy_std\\\",\\n    \\\"entropy_min\\\",\\n    \\\"entropy_max\\\",\\n    \\\"tail_decay\\\",\\n    \\\"ttr\\\",\\n    \\\"hapax_ratio\\\"\\n  ],\\n  \\\"method\\\": \\\"LOGO-CV: hold out one generator, train on remaining five from training-temp dataset (class-balanced), test on held-out generator from test-temp dataset. D_0.7 = features_all_models.csv (6 gens). D_1.0 = same 5 generators + qwen3-1.7b at t=1.0.\\\",\\n  \\\"results\\\": {\\n    \\\"0.7_to_0.7\\\": {\\n      \\\"binary_f1\\\": 0.9471,\\n      \\\"three_class_f1\\\": 0.7888,\\n      \\\"per_class\\\": {\\n        \\\"gen0\\\": {\\n          \\\"precision\\\": 0.8778,\\n          \\\"recall\\\": 0.9958,\\n          \\\"f1\\\": 0.9331\\n        },\\n        \\\"gen1\\\": {\\n          \\\"precision\\\": 0.5274,\\n          \\\"recall\\\": 0.7966,\\n          \\\"f1\\\": 0.6346\\n        },\\n        \\\"gen2+\\\": {\\n          \\\"precision\\\": 0.9281,\\n          \\\"recall\\\": 0.7012,\\n          \\\"f1\\\": 0.7989\\n        }\\n      },\\n      \\\"per_generator_3class\\\": {\\n        \\\"olmo-2-1b\\\": 0.7635,\\n        \\\"pythia-1b\\\": 0.8536,\\n        \\\"pythia-2.8b\\\": 0.8045,\\n        \\\"qwen3-0.6b\\\": 0.8199,\\n        \\\"qwen3-1.7b\\\": 0.81,\\n        \\\"qwen3-8b\\\": 0.6875\\n      },\\n      \\\"per_generator_binary\\\": {\\n        \\\"olmo-2-1b\\\": 0.9493,\\n        \\\"pythia-1b\\\": 0.9898,\\n        \\\"pythia-2.8b\\\": 0.9757,\\n        \\\"qwen3-0.6b\\\": 0.9707,\\n        \\\"qwen3-1.7b\\\": 0.9484,\\n        \\\"qwen3-8b\\\": 0.8597\\n      }\\n    },\\n    \\\"0.7_to_1.0\\\": {\\n      \\\"binary_f1\\\": 0.9001,\\n      \\
+…[truncated 4419 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T02:45:01.680661+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -50 /root/gen-depth-fingerprint/logs/tc_fix.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -50 /root/gen-depth-fingerprint/logs/tc_fix.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T02:45:01.680869+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"WARNING: Skipping seed 634 at depth 2: empty output\\nWARNING: Skipping seed 637 at depth 2: empty output\\nWARNING: Skipping seed 643 at depth 2: empty output\\n[650/995] 8037s elapsed, 0.08 seeds/s\\nWARNING: Skipping seed 656 at depth 4: empty output\\nWARNING: Skipping seed 667 at depth 2: empty output\\nWARNING: Skipping seed 680 at depth 2: empty output\\nWARNING: Skipping seed 684 at depth 2: empty output\\nWARNING: Skipping seed 689 at depth 4: empty output\\nWARNING: Skipping seed 690 at depth 2: empty output\\n[700/995] 8611s elapsed, 0.08 seeds/s\\nWARNING: Skipping seed 711 at depth 3: empty output\\nWARNING: Skipping seed 718 at depth 3: empty output\\nWARNING: Skipping seed 722 at depth 4: empty output\\nWARNING: Skipping seed 732 at depth 2: empty output\\nWARNING: Skipping seed 733 at depth 4: empty output\\nWARNING: Skipping seed 734 at depth 2: empty output\\nWARNING: Skipping seed 740 at depth 3: empty output\\n[750/995] 9151s elapsed, 0.08 seeds/s\\nWARNING: Skipping seed 765 at depth 3: empty output\\nWARNING: Skipping seed 768 at depth 2: empty output\\nWARNING: Skipping seed 773 at depth 2: empty output\\n[800/995] 9760s elapsed, 0.08 seeds/s\\nWARNING: Skipping seed 822 at depth 3: empty output\\nWARNING: Skipping seed 831 at depth 2: empty output\\nWARNING: Skipping seed 838 at depth 4: empty output\\nWARNING: Skipping seed 839 at depth 1: empty output\\n[850/995] 10350s elapsed, 0.08 seeds/s\\nWARNING: Skipping seed 856 at depth 2: empty output\\nWARNING: Skipping seed 874 at depth 4: empty output\\nWARNING: Skipping seed 880 at depth 2: empty output\\nWARNING: Skipping seed 884 at depth 2: empty output\\nWARNING: Skipping seed 897 at depth 2: empty output\\n[900/995] 10933s elapsed, 0.08 seeds/s\\nWARNING: Skipping seed 919 at depth 4: empty output\\nWARNING: Skipping seed 930 at depth 2: empty output\\nWARNING: Skipping seed 937 at depth 3: empty output\\nWARNING: Skipping seed 949 a
+…[truncated 6456 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T02:45:01.681024+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/gen-depth-fingerprint/data/pythia-2.8b-t05/ /root/gen-depth-fingerprint/data/pythia-2.8b-t09/ 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/gen-depth-fingerprint/data/pythia-2.8b-t05/ /root/gen-depth-fingerprint/data/pythia-2.8b-t09/ 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T02:45:01.681150+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T02:45:01.681265+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -30 /root/gen-depth-fingerprint/logs/tc_fix.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -30 /root/gen-depth-fingerprint/logs/tc_fix.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T02:45:01.681453+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Temperature Curve Generation (FIXED: all top_p=0.9) ===\\nStart: Mon May 18 06:33:41 CST 2026\\n\\n>>> [1/3] Pythia-2.8B t=0.5 top_p=0.9\\nLoading model 'pythia-2.8b-t05' from /root/autodl-tmp/.hf_cache/EleutherAI/pythia-2___8b ...\\nModel loaded on cuda:0, dtype=torch.float16, vocab=50304\\nLoaded 995 seeds from /root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl\\nShard 0/1: seeds [0:995] (995 seeds)\\n\\rSeeds (shard 0):   0%|          | 0/995 [00:00<?, ?it/s]The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\n\\rSeeds (shard 0):   0%|          | 1/995 [00:10<2:52:51, 10.43s/it]\\rSeeds (shard 0):   0%|          | 2/995 [00:20<2:47:08, 10.10s/it]\\rSeeds (shard 0):   0%|          | 3/995 [00:30<2:45:28, 10.01s/it]\\rSeeds (shard 0):   0%|          | 4/995 [00:39<2:43:34,  9.90s/it]\\rSeeds (shard 0):   1%|          | 5/995 [00:49<2:42:09,  9.83s/it]\\rSeeds (shard 0):   1%|          | 6/995 [00:59<2:41:36,  9.80s/it]\\rSeeds (shard 0):   1%|          | 7/995 [01:09<2:41:25,  9.80s/it]\\rSeeds (shard 0):   1%|          | 8/995 [01:17<2:32:54,  9.29s/it]\\rSeeds (shard 0):   1%|          | 9/995 [01:27<2:35:12,  9.44s/it]\\rSeeds (shard 0):   1%|          | 10/995 [01:36<2:36:32,  9.54s/it]\\rSeeds (shard 0):   1%|          | 11/995 [01:43<2:19:48,  8.52s/it]\\rSeeds (shard 0):   1%|          | 12/995 [01:52<2:25:42,  8.89s/it]\\rSeeds (shard 0):   1%|▏         | 13/995 [02:02<2:29:42,  9.15s/it]\\rSeeds (shard 0):   1%|▏         | 14/995 [02:12<2:32:27,  9.32s/it]\\rSeeds (shard 0):   2%|▏         | 15/995 [02:22<2:34:12,  9.44s/it]\\rSeeds (shard 0):   2%|▏         | 16/995 [02:31<2:35:44,  9.54s/it]\\rSeeds (shard 0):   2%|▏         | 17/995 [02:41<2:36:26,  9.60s/it]\\rSeeds (shard 0):   2%|▏         | 18/995 [02:51<2:37:09,
+…[truncated 6447 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T02:45:01.681648+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/gen-depth-fingerprint/results/independent_seed*/ 2>/dev/null; ls -la /root/gen-depth-fingerprint/results/independent_seed* 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/gen-depth-fingerprint/results/independent_seed*/ 2>/dev/null; ls -la /root/gen-depth-fingerprint/results/independent_seed* 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T02:45:01.681784+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 674 May 18 09:57 /root/gen-depth-fingerprint/results/independent_seed_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T02:45:01.681903+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/run_temp_curve_fix.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/gen-depth-fingerprint/run_temp_curve_fix.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T02:45:01.682049+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -e\\nsource /root/miniconda3/bin/activate\\ncd /root/gen-depth-fingerprint\\n\\necho \\\"=== Temperature Curve Generation (FIXED: all top_p=0.9) ===\\\"\\necho \\\"Start: $(date)\\\"\\n\\n# Job 1: Pythia-2.8B, t=0.5, top_p=0.9\\necho \\\"\\\"\\necho \\\">>> [1/3] Pythia-2.8B t=0.5 top_p=0.9\\\"\\npython generate_chain.py \\\\\\n    --model-name pythia-2.8b-t05 \\\\\\n    --temperature 0.5 --top-p 0.9 \\\\\\n    --output-dir data/ --device cuda:0\\n\\n# Job 2: Pythia-2.8B, t=0.9, top_p=0.9\\necho \\\"\\\"\\necho \\\">>> [2/3] Pythia-2.8B t=0.9 top_p=0.9\\\"\\npython generate_chain.py \\\\\\n    --model-name pythia-2.8b-t09 \\\\\\n    --temperature 0.9 --top-p 0.9 \\\\\\n    --output-dir data/ --device cuda:0\\n\\n# Job 3: Qwen3-1.7B, t=0.9, top_p=0.9\\necho \\\"\\\"\\necho \\\">>> [3/3] Qwen3-1.7B t=0.9 top_p=0.9\\\"\\npython generate_chain.py \\\\\\n    --model-name qwen3-1.7b-t09 \\\\\\n    --model-path /root/autodl-tmp/models/Qwen/Qwen3-1___7B-Base \\\\\\n    --temperature 0.9 --top-p 0.9 \\\\\\n    --output-dir data/ --device cuda:0\\n\\necho \\\"\\\"\\necho \\\"=== All generation done. Starting feature extraction ===\\\"\\n\\necho \\\">>> Extracting features: pythia-2.8b-t05\\\"\\npython extract_features.py \\\\\\n    --input data/pythia-2.8b-t05/generations_shard0.jsonl \\\\\\n    --output data/features_pythia-2.8b-t05.csv \\\\\\n    --device cuda:0\\n\\necho \\\">>> Extracting features: pythia-2.8b-t09\\\"\\npython extract_features.py \\\\\\n    --input data/pythia-2.8b-t09/generations_shard0.jsonl \\\\\\n    --output data/features_pythia-2.8b-t09.csv \\\\\\n    --device cuda:0\\n\\necho \\\">>> Extracting features: qwen3-1.7b-t09\\\"\\npython extract_features.py \\\\\\n    --input data/qwen3-1.7b-t09/generations_shard0.jsonl \\\\\\n    --output data/features_qwen3-1.7b-t09.csv \\\\\\n    --device cuda:0\\n\\necho \\\"\\\"\\necho \\\"=== All done ===\\\"\\necho \\\"End: $(date)\\\"\\n\",
+…[truncated 101 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-18T02:45:01.682240+00:00_
+
+汇总如下：
+
+---
+
+## 1. GPU 状态
+
+| GPU | 型号 | 显存占用 | 利用率 | 进程 |
+|-----|------|---------|--------|------|
+| 0 | RTX 5090 | 6193 / 32607 MiB | 64% | python (PID 45500) |
+
+GPU 正在跑温度曲线生成任务。
+
+## 2. tmux session
+
+```
+tc_fix: 1 windows (created Mon May 18 06:33:41 2026)
+```
+
+tc_fix 存在且正在运行。
+
+## 3. tc_fix 进度
+
+脚本 `run_temp_curve_fix.sh` 有 3 个串行阶段（生成）+ 3 个特征提取：
+
+| 阶段 | 状态 | 详情 |
+|------|------|------|
+| [1/3] Pythia-2.8B t=0.5 | **完成** | 4708 records, 12064.7s, skipped 113 |
+| [2/3] Pythia-2.8B t=0.9 | **运行中** | 392/995 seeds (39%), ~7.6s/it |
+| [3/3] Qwen3-1.7B t=0.9 | 等待中 | — |
+| 特征提取 (×3) | 等待中 | — |
+
+**预计完成时间**：t=0.9 剩余 ~603 seeds × 7.6s ≈ 76 min。之后 Qwen3-1.7B t=0.9 约 3h，特征提取约 30 min。总计约 **5-6 小时后全部完成**。
+
+## 4. 已有温度曲线结果 (temp_curve_binary_logo.json)
+
+已完成的 LOGO-CV 评估（单模型温度变化）：
+
+| 模型 | 温度 | Binary F1 | 95% CI |
+|------|------|-----------|--------|
+| **Pythia-2.8B** | 0.7 | 0.7395 | [0.7254, 0.7548] |
+| **Qwen3-1.7B** | 0.5 | 0.7506 | [0.7348, 0.7656] |
+| **Qwen3-1.7B** | 0.7 | 0.7505 | [0.7345, 0.7664] |
+| **Qwen3-1.7B** | 1.0 | 0.3670 | [0.3525, 0.3813] |
+
+Qwen3-1.7B 在 t=0.5 和 t=0.7 几乎相同，t=1.0 断崖式下降。Pythia t=0.5 和 t=0.9 的结果需等当前生成完成后才能评估。
+
+## 5. Cross-temperature transfer (cross_temp_transfer.json)
+
+| Train→Test | Binary F1 | 3-class F1 |
+|------------|-----------|------------|
+| 0.7→0.7 | 0.9471 | 0.7888 |
+| 0.7→1.0 | 0.9001 | 0.7225 |
+| 1.0→1.0 | 0.9107 | 0.7257 |
+| 1.0→0.7 | 0.9581 | 0.7913 |
+
+跨温度转移 delta：0.7 训练到 1.0 测试 binary F1 下降 4.7pp，反向提升 4.7pp。
+
+## 6. Independent-seed 实验结果
+
+| 训练集 | 测试集 | Binary F1 | 95% CI |
+|--------|--------|-----------|--------|
+| Pythia-2.8B (SetA) | OLMo-2-1B (SetB) | 0.6945 | [0.6727, 0.7167] |
+| OLMo-2-1B (SetB) | Pythia-2.8B (SetA) | 0.6660 | [0.6429, 0.6893] |
+
+平均 binary F1 = 0.6803，vs 共享 seed LOGO 参考值 0.694，差距仅 -0.0137。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diag_gpu-tempcurve-check_20260518T024351"
+}
+```
+
+</details>
+
+---

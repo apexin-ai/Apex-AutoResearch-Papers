@@ -1,0 +1,27 @@
+% Appendix — Length Confound Analysis
+% Data source: 8-generator LOGO corpus (37,058 samples)
+
+Surface diversity features (TTR, hapax ratio) mechanically depend on text length:
+shorter texts yield higher type-token ratios by construction.
+If generation depth systematically shortens text, observed depth trends could be length artifacts rather than genuine distributional shifts.
+We investigate with three complementary analyses.
+
+\paragraph{(a) Length--depth correlation.}
+Spearman rank correlation between word count and generation depth is weak across all eight generators ($|\rho| < 0.14$); depth does not systematically shorten or lengthen text in our corpus.
+
+\paragraph{(b) Length--feature correlations.}
+While length--depth correlation is weak, individual features show moderate length dependence:
+tail\_decay ($|\rho| = 0.38$), hapax\_ratio ($|\rho| = 0.30$), and TTR ($|\rho| = 0.29$).
+Reference-model features show weaker length correlations (entropy\_mean $|\rho| = 0.09$, entropy\_std $|\rho| = 0.18$).
+This motivates the length-matched evaluation below: if length mediates some depth--feature association, controlling for length will reduce classification performance.
+
+\paragraph{(c) Length-matched classification.}
+We subsample the dataset so that word-count distributions are equalized across depth classes (gen-0\,/\,gen-1\,/\,gen-2+), then retrain the binary XGBoost classifier under pooled LOGO (8-fold).
+Length-matched binary F1\,=\,0.724, down from 0.770 on the unmatched set ($\Delta$\,=\,$-$0.046).
+The matched subset is smaller than the full corpus; a random-subsample control at equal $N$ (below) isolates the deconfounding effect from the sample-size reduction.
+To distinguish this from a sample-size effect, we run a random-subsample control at equal $N$ without length matching: F1\,=\,0.767, which confirms that the 0.046 drop reflects genuine length deconfounding rather than reduced data.
+
+\paragraph{Conclusion.}
+Length accounts for approximately 6\% of discriminative performance ($\Delta$\,=\,0.046 out of 0.770).
+The majority of the depth signal is length-independent: length-matched F1 (0.724) remains far above chance and substantially above all individual detection baselines (\S\ref{sec:results-baselines}).
+Surface features (TTR, hapax\_ratio) partially co-vary with length, but their depth-discriminative contribution persists after length control, consistent with generation-induced vocabulary compression operating independently of text truncation.

@@ -1,0 +1,33 @@
+{
+  "exp_id": "plan-005-cont",
+  "project": "gen-depth-fingerprint",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:28:43.383Z",
+    "updated_at": "2026-05-15T05:40:04.147Z",
+    "spec": {
+      "command": "python generate_chain_prompt.py --model-name pythia-2.8b --prompt-type continuation --input data/wiki_seed_1000.jsonl --shard-id 0 --num-shards 1 --device cuda:0",
+      "server": "autodl-5090",
+      "gpu": "cuda:1",
+      "pid": 164658,
+      "log_path": "~/runs/gen-depth-fingerprint/plan-005-cont.log",
+      "submitted_at": "2026-05-15T03:28:43.303Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wiki_seed_1000.jsonl",
+      "data_count": 1000,
+      "model_name": "pythia-2.8b",
+      "seed": "all",
+      "prompt_type": "continuation"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T05:40:03.942Z"
+    }
+  },
+  "timestamp": "2026-05-15T05:40:04.258119+00:00",
+  "trigger": "update_registry"
+}

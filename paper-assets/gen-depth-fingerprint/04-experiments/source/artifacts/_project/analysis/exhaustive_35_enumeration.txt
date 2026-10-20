@@ -1,0 +1,61 @@
+Exhaustive C(7,3)=35 Feature Partition Enumeration
+===================================================
+
+Paper partition: entropy_mean, ttr, hapax_ratio (drifting) vs entropy_std, entropy_min, entropy_max, tail_decay (non-drifting)
+Rank: 1/35
+Silhouette: 0.6603
+
+Feature coordinates (|Spearman rho| pooled, Cohen's d gen-1 vs gen-2+):
+  entropy_mean     |rho|=0.5978  d=1.1360
+  entropy_std      |rho|=0.1567  d=0.4914
+  entropy_min      |rho|=0.4037  d=0.0156
+  entropy_max      |rho|=0.0608  d=0.0629
+  tail_decay       |rho|=0.0413  d=0.0905
+  ttr              |rho|=0.6249  d=0.8815
+  hapax_ratio      |rho|=0.6405  d=0.7833
+
+Standardization: StandardScaler (zero-mean, unit-variance) on (|rho|, d) coordinates.
+Consistent with permutation_test_ddr.py.
+
+All 35 partitions ranked by silhouette score:
+  1. ['entropy_mean', 'ttr', 'hapax_ratio']               sil=0.6603  <-- PAPER
+  2. ['entropy_std', 'entropy_max', 'tail_decay']          sil=0.4806
+  3. ['entropy_min', 'entropy_max', 'tail_decay']          sil=0.4510
+  4. ['entropy_std', 'entropy_min', 'entropy_max']         sil=0.2461
+  5. ['entropy_std', 'entropy_min', 'tail_decay']          sil=0.2432
+  6. ['entropy_min', 'ttr', 'hapax_ratio']                 sil=0.1655
+  7. ['entropy_mean', 'entropy_std', 'ttr']                sil=0.1283
+  8. ['entropy_mean', 'entropy_min', 'ttr']                sil=0.1282
+  9. ['entropy_mean', 'entropy_min', 'hapax_ratio']        sil=0.1105
+ 10. ['entropy_std', 'ttr', 'hapax_ratio']                 sil=0.1020
+ 11. ['entropy_mean', 'entropy_std', 'hapax_ratio']        sil=0.0898
+ 12. ['entropy_mean', 'entropy_max', 'tail_decay']         sil=0.0374
+ 13. ['entropy_max', 'tail_decay', 'hapax_ratio']          sil=-0.0012
+ 14. ['entropy_max', 'tail_decay', 'ttr']                  sil=-0.0154
+ 15. ['entropy_mean', 'tail_decay', 'ttr']                 sil=-0.0339
+ 16. ['entropy_mean', 'entropy_max', 'ttr']                sil=-0.0377
+ 17. ['tail_decay', 'ttr', 'hapax_ratio']                  sil=-0.0641
+ 18. ['entropy_max', 'ttr', 'hapax_ratio']                 sil=-0.0650
+ 19. ['entropy_mean', 'tail_decay', 'hapax_ratio']         sil=-0.0743
+ 20. ['entropy_mean', 'entropy_max', 'hapax_ratio']        sil=-0.0771
+ 21. ['entropy_mean', 'entropy_std', 'tail_decay']         sil=-0.1010
+ 22. ['entropy_mean', 'entropy_std', 'entropy_max']        sil=-0.1139
+ 23. ['entropy_min', 'entropy_max', 'hapax_ratio']         sil=-0.1220
+ 24. ['entropy_min', 'tail_decay', 'hapax_ratio']          sil=-0.1333
+ 25. ['entropy_mean', 'entropy_min', 'entropy_max']        sil=-0.1353
+ 26. ['entropy_std', 'entropy_min', 'hapax_ratio']         sil=-0.1365
+ 27. ['entropy_mean', 'entropy_std', 'entropy_min']        sil=-0.1404
+ 28. ['entropy_mean', 'entropy_min', 'tail_decay']         sil=-0.1422
+ 29. ['entropy_std', 'tail_decay', 'hapax_ratio']          sil=-0.1554
+ 30. ['entropy_min', 'entropy_max', 'ttr']                 sil=-0.1575
+ 31. ['entropy_std', 'entropy_min', 'ttr']                 sil=-0.1616
+ 32. ['entropy_std', 'entropy_max', 'hapax_ratio']         sil=-0.1637
+ 33. ['entropy_std', 'tail_decay', 'ttr']                  sil=-0.1653
+ 34. ['entropy_min', 'tail_decay', 'ttr']                  sil=-0.1677
+ 35. ['entropy_std', 'entropy_max', 'ttr']                 sil=-0.1750
+
+Notes:
+- The paper's DDR partition is the global optimum among all C(7,3)=35 possible 3-vs-4 splits.
+- Gap to #2 is 0.1797 (0.6603 vs 0.4806), substantial separation.
+- #2 and #3 are the complement view (non-drifting features selected as the 3-group).
+- 20 of 35 partitions have negative silhouette, indicating poor cluster structure.

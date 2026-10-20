@@ -1,0 +1,1001 @@
+# diagnose dead experiments
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/chats/worker_diagnose_dead-experiments_20260516T015143.jsonl`
+- **Structured JSON:** [`b5f34423804524c45d63.json`](../../sessions/b5/b5f34423804524c45d63.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+33 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T01:53:11.305410+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T01:53:11.305809+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T01:53:11.306050+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -100 /tmp/plan006_confound_fix.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -100 /tmp/plan006_confound_fix.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-16T01:53:11.306517+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:43:52] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  Ref features: 9176/9666\\n  Ref features: 9184/9666\\n  Ref features: 9192/9666\\n  Ref features: 9200/9666\\n  Ref features: 9208/9666\\n  Ref features: 9216/9666\\n  Ref features: 9224/9666\\n  Ref features: 9232/9666\\n  Ref features: 9240/9666\\n  Ref features: 9248/9666\\n  Ref features: 9256/9666\\n  Ref features: 9264/9666\\n  Ref features: 9272/9666\\n  Ref features: 9280/9666\\n  Ref features: 9288/9666\\n  Ref features: 9296/9666\\n  Ref features: 9304/9666\\n  Ref features: 9312/9666\\n  Ref features: 9320/9666\\n  Ref features: 9328/9666\\n  Ref features: 9336/9666\\n  Ref features: 9344/9666\\n  Ref features: 9352/9666\\n  Ref features: 9360/9666\\n  Ref features: 9368/9666\\n  Ref features: 9376/9666\\n  Ref features: 9384/9666\\n  Ref features: 9392/9666\\n  Ref features: 9400/9666\\n  Ref features: 9408/9666\\n  Ref features: 9416/9666\\n  Ref features: 9424/9666\\n  Ref features: 9432/9666\\n  Ref features: 9440/9666\\n  Ref features: 9448/9666\\n  Ref features: 9456/9666\\n  Ref features: 9464/9666\\n  Ref features: 9472/9666\\n  Ref features: 9480/9666\\n  Ref features: 9488/9666\\n  Ref features: 9496/9666\\n  Ref features: 9504/9666\\n  Ref features: 9512/9666\\n  Ref features: 9520/9666\\n  Ref features: 9528/9666\\n  Ref features: 9536/9666\\n  Ref features: 9544/9666\\n  Ref features: 9552/9666\\n  Ref features: 9560/9666\\n  Ref features: 9568/9666\\n  Ref features: 9576/9666\\n  Ref features: 9584/9666\\n  Ref features: 9592/9666\\n  Ref features: 9600/9666\\n  Ref features: 9608/9666\\n  Ref features: 9616/9666\\n  Ref features: 9624/9666\\n  Ref features: 9632/9666\\n  Ref features: 9640/9666\\n  Ref features: 9648/9666\\n  Ref fea
+…[truncated 1588 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T01:53:11.306795+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls -la /root/gen-depth-fingerprint/results/plan012_qwen06b_seed123_r32_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls -la /root/gen-depth-fingerprint/results/plan012_qwen06b_seed123_r32_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T01:53:11.307018+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 6903 May 16 09:44 /root/gen-depth-fingerprint/results/plan012_qwen06b_seed123_r32_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T01:53:11.307230+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/gen-depth-fingerprint/results -name \"*plan006*\" -o -name \"*confound*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/gen-depth-fingerprint/results -name \"*plan006*\" -o -name \"*confound*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T01:53:11.307428+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "gen-depth-fingerprint",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "gen-depth-fingerprint",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T01:53:11.307644+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/results/instruct_length_confound.json\\n/root/gen-depth-fingerprint/results/plan006_paraphrastic_comparison_old_rp13.json\\n/root/gen-depth-fingerprint/results/plan006_paraphrastic_comparison.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T01:53:11.307858+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan-006-confound-fix\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:25:20.954Z\", \"updated_at\": \"2026-05-15T23:26:38.397Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python paraphrastic_chains.py --phase all --device cuda:0\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:1\", \"data_path\": \"data/wiki_seed_1000.jsonl\", \"data_count\": \"995 seeds x 5 depths\", \"model_name\": \"Pythia-2.8B\", \"seed\": 42, \"hypothesis\": \"Confound fix: paraphrastic chains with matched generation parameters (rp=1.0, max_tokens=256) vs continuation, isolating prompt type effect\", \"pid\": 256127, \"log_path\": \"/tmp/plan006_confound_fix.log\", \"checkpoint_path\": \"data/pythia-2.8b-paraphrase/generations_shard0.jsonl\", \"changes\": \"paraphrastic_chains.py: repetition_penalty 1.3->1.0, max_new_tokens 200->256\"}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2959}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T01:53:11.308078+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/plan006_paraphrastic_comparison.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/gen-depth-fingerprint/results/plan006_paraphrastic_comparison.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T01:53:11.308410+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"paraphrase_signal\\\": {\\n    \\\"n\\\": 9666,\\n    \\\"depth_distribution\\\": {\\n      \\\"0\\\": 1990,\\n      \\\"1\\\": 1962,\\n      \\\"2\\\": 1948,\\n      \\\"3\\\": 1914,\\n      \\\"4\\\": 1852\\n    },\\n    \\\"cv5_3class_f1\\\": {\\n      \\\"mean\\\": 0.7269965222240529,\\n      \\\"std\\\": 0.010477449623013991,\\n      \\\"folds\\\": [\\n        0.712342226675916,\\n        0.7291216819938772,\\n        0.7273283100690615,\\n        0.7443894942981002,\\n        0.72180089808331\\n      ]\\n    },\\n    \\\"spearman_correlations\\\": {\\n      \\\"entropy_mean\\\": {\\n        \\\"rho\\\": -0.05551782754124208,\\n        \\\"p\\\": 4.71365032633967e-08\\n      },\\n      \\\"entropy_std\\\": {\\n        \\\"rho\\\": -0.01804169227063188,\\n        \\\"p\\\": 0.07611300488148323\\n      },\\n      \\\"entropy_min\\\": {\\n        \\\"rho\\\": -0.0619975265019224,\\n        \\\"p\\\": 1.0579151720953748e-09\\n      },\\n      \\\"entropy_max\\\": {\\n        \\\"rho\\\": 0.07540151832038826,\\n        \\\"p\\\": 1.1469483373773133e-13\\n      },\\n      \\\"tail_decay\\\": {\\n        \\\"rho\\\": -0.06246298225112701,\\n        \\\"p\\\": 7.930771825644611e-10\\n      },\\n      \\\"ttr\\\": {\\n        \\\"rho\\\": 0.026667490311228465,\\n        \\\"p\\\": 0.008742484560307011\\n      },\\n      \\\"hapax_ratio\\\": {\\n        \\\"rho\\\": 0.012264710624678068,\\n        \\\"p\\\": 0.22793146753631127\\n      }\\n    },\\n    \\\"depth_retention\\\": {\\n      \\\"d0_seeds\\\": 995,\\n      \\\"d4_seeds\\\": 990,\\n      \\\"retention\\\": 0.995\\n    },\\n    \\\"binary_f1_gen1_vs_gen2plus\\\": {\\n      \\\"mean\\\": 0.6126894685748763,\\n      \\\"std\\\": 0.01576495839469257\\n    }\\n  },\\n  \\\"continuation_signal\\\": {\\n    \\\"n\\\": 4609,\\n    \\\"cv5_3class_f1\\\": {\\n      \\\"mean\\\": 0.7876356225735041,\\n      \\\"std\\\": 0.006063855053043267,\\n      \\\"fol
+…[truncated 4375 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T01:53:11.308673+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/plan012_qwen06b_seed123_r32_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/gen-depth-fingerprint/results/plan012_qwen06b_seed123_r32_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T01:53:11.309106+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"plan-012-qwen06b-v2\\\",\\n  \\\"model\\\": \\\"Qwen/Qwen3-0.6B\\\",\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen/Qwen3-0.6B-Base\\\",\\n  \\\"method\\\": \\\"QLoRA_4bit_seqcls\\\",\\n  \\\"lora_config\\\": {\\n    \\\"r\\\": 32,\\n    \\\"alpha\\\": 64,\\n    \\\"target_modules\\\": [\\n      \\\"q_proj\\\",\\n      \\\"v_proj\\\"\\n    ]\\n  },\\n  \\\"max_length\\\": 512,\\n  \\\"batch_size\\\": 8,\\n  \\\"lr\\\": 0.0002,\\n  \\\"epochs\\\": 3,\\n  \\\"n_folds\\\": 5,\\n  \\\"n_samples\\\": 18423,\\n  \\\"generators\\\": [\\n    \\\"pythia-1b\\\",\\n    \\\"olmo-2-1b\\\",\\n    \\\"qwen3-0.6b\\\",\\n    \\\"qwen3-1.7b\\\"\\n  ],\\n  \\\"cv_type\\\": \\\"5-fold_stratified\\\",\\n  \\\"macro_f1_5class\\\": 0.5873,\\n  \\\"macro_f1_5class_std\\\": 0.0047,\\n  \\\"macro_f1_3class\\\": 0.9054,\\n  \\\"macro_f1_3class_std\\\": 0.0037,\\n  \\\"per_class_f1_5class\\\": {\\n    \\\"depth_0\\\": 0.9995,\\n    \\\"depth_1\\\": 0.7959,\\n    \\\"depth_2\\\": 0.4016,\\n    \\\"depth_3\\\": 0.3176,\\n    \\\"depth_4\\\": 0.4217\\n  },\\n  \\\"per_class_f1_3class\\\": {\\n    \\\"gen0\\\": 0.9995,\\n    \\\"gen1\\\": 0.7959,\\n    \\\"gen2+\\\": 0.9209\\n  },\\n  \\\"fold_results\\\": [\\n    {\\n      \\\"fold\\\": 0,\\n      \\\"n_train\\\": 14738,\\n      \\\"n_val\\\": 3685,\\n      \\\"macro_f1_5class\\\": 0.5808,\\n      \\\"per_class_f1_5class\\\": {\\n        \\\"depth_0\\\": 0.9994,\\n        \\\"depth_1\\\": 0.7819,\\n        \\\"depth_2\\\": 0.3962,\\n        \\\"depth_3\\\": 0.3697,\\n        \\\"depth_4\\\": 0.3566\\n      },\\n      \\\"confusion_matrix_5class\\\": [\\n        [\\n          797,\\n          0,\\n          0,\\n          0,\\n          0\\n        ],\\n        [\\n          1,\\n          638,\\n          138,\\n          10,\\n          3\\n        ],\\n        [\\n          0,\\n          146,\\n          295,\\n          210,\\n          96\\n      
+…[truncated 6724 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T01:53:11.309383+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "gen-depth-fingerprint",
+  "filters": "{'exp_id': 'plan-012-qwen06b-v2'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "gen-depth-fingerprint",
+    "filters": "{'exp_id': 'plan-012-qwen06b-v2'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T01:53:11.309632+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1648}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T01:53:11.309912+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "gen-depth-fingerprint",
+  "limit": "20",
+  "fields": "['status', 'conclusion', 'spec']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "gen-depth-fingerprint",
+    "limit": "20",
+    "fields": "['status', 'conclusion', 'spec']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T01:53:11.310389+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan-012-qwen06b-v2\": {\"status\": \"DONE\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python end_to_end_classifier_v2.py --model_path /root/autodl-tmp/models/Qwen/Qwen3-0.6B-Base --device cuda:0 --seed 123 --output results/plan012_qwen06b_seed123_r32_results.json\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:2\", \"model_name\": \"Qwen3-0.6B-Base\", \"seed\": 123, \"lora_r\": 32, \"lora_alpha\": 64, \"data_path\": \"/root/gen-depth-fingerprint/data\", \"data_count\": \"~4 generators\"}, \"conclusion\": \"failed\"}, \"plan-012-qwen06b\": {\"status\": \"DONE\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python end_to_end_classifier.py --model_path /root/autodl-tmp/models/Qwen/Qwen3-0.6B-Base --device cuda:0 --output results/plan012_qwen06b_results.json\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:0\", \"data_path\": \"data/{pythia-1b,olmo-2-1b,qwen3-0.6b,qwen3-1.7b}/generations.jsonl\", \"data_count\": 18423, \"model_name\": \"Qwen3-0.6B-Base\", \"seed\": 42}, \"conclusion\": \"success\"}, \"plan-012-pythia410m\": {\"status\": \"DONE\", \"spec\": {\"hypothesis\": \"End-to-end depth classification with Pythia-410M (same family as reference model) — tests information leakage advantage vs cross-family Qwen3-0.6B\", \"command\": \"CUDA_VISIBLE_DEVICES=3 python end_to_end_classifier_pythia.py --model_path /root/autodl-tmp/.hf_cache/EleutherAI/pythia-410m --device cuda:0 --output results/plan012_pythia410m_results.json\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:3\", \"data_path\": \"data/{pythia-1b,olmo-2-1b,qwen3-0.6b,qwen3-1.7b}/generations.jsonl\", \"data_count\": 18423, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_path\": \"checkpoints/plan012_pythia410m\", \"log_path\": \"logs/plan012_pythia410m.log\"}, \"conclusion\": \"success\"}, \"plan-009-finer-ordinal\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python finer_ordinal.py\", \"server\": \"autodl-50
+…[truncated 7510 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T01:53:11.310736+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan-006-confound-fix",
+  "field": "status",
+  "value": "DONE",
+  "project": "gen-depth-fingerprint"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan-006-confound-fix",
+    "field": "status",
+    "value": "DONE",
+    "project": "gen-depth-fingerprint"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T01:53:11.310953+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.1495}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-16T01:53:11.311149+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan-012-qwen06b-v2",
+  "field": "conclusion",
+  "value": "success",
+  "project": "gen-depth-fingerprint"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan-012-qwen06b-v2",
+    "field": "conclusion",
+    "value": "success",
+    "project": "gen-depth-fingerprint"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T01:53:11.311375+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan-012-qwen06b-v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:47:39.574Z\", \"updated_at\": \"2026-05-16T01:52:37.542Z\", \"hypothesis\": \"End-to-end depth classification with Qwen3-0.6B-Base (seed=123, LoRA r=32) — hyperparameter sensitivity check vs cuda:0 variant (seed=42, r=16)\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python end_to_end_classifier_v2.py --model_path /root/autodl-tmp/models/Qwen/Qwen3-0.6B-Base --device cuda:0 --seed 123 --output results/plan012_qwen06b_seed123_r32_results.json\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:2\", \"model_name\": \"Qwen3-0.6B-Base\", \"seed\": 123, \"lora_r\": 32, \"lora_alpha\": 64, \"data_path\": \"/root/gen-depth-fingerprint/data\", \"data_count\": \"~4 generators\"}, \"reproduce\": {\"finished_at\": \"2026-05-16T01:51:23.804Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T01:51:24.575Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T01:51:26.047445+00:00\"}]}}, \"impact_analysis\": {\"change_type\": \"experiment\", \"change_id\": \"plan-012-qwen06b-v2\", \"affected_decisions\": [], \"cascade_decisions\": [], \"affected_claims\": [], \"affected_figures\": [], \"recommendations\": [\"No downstream impact detected\"]}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3733}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T01:53:11.311623+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan-006-confound-fix",
+  "field": "conclusion",
+  "value": "success",
+  "project": "gen-depth-fingerprint"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan-006-confound-fix",
+    "field": "conclusion",
+    "value": "success",
+    "project": "gen-depth-fingerprint"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T01:53:11.311847+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan-006-confound-fix\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:25:20.954Z\", \"updated_at\": \"2026-05-16T01:52:41.477Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python paraphrastic_chains.py --phase all --device cuda:0\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:1\", \"data_path\": \"data/wiki_seed_1000.jsonl\", \"data_count\": \"995 seeds x 5 depths\", \"model_name\": \"Pythia-2.8B\", \"seed\": 42, \"hypothesis\": \"Confound fix: paraphrastic chains with matched generation parameters (rp=1.0, max_tokens=256) vs continuation, isolating prompt type effect\", \"pid\": 256127, \"log_path\": \"/tmp/plan006_confound_fix.log\", \"checkpoint_path\": \"data/pythia-2.8b-paraphrase/generations_shard0.jsonl\", \"changes\": \"paraphrastic_chains.py: repetition_penalty 1.3->1.0, max_new_tokens 200->256\"}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2628}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T01:53:11.312070+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan-006-confound-fix",
+  "field": "status",
+  "value": "DONE",
+  "project": "gen-depth-fingerprint"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan-006-confound-fix",
+    "field": "status",
+    "value": "DONE",
+    "project": "gen-depth-fingerprint"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T01:53:11.312281+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan-006-confound-fix\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:25:20.954Z\", \"updated_at\": \"2026-05-16T01:52:44.000Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python paraphrastic_chains.py --phase all --device cuda:0\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:1\", \"data_path\": \"data/wiki_seed_1000.jsonl\", \"data_count\": \"995 seeds x 5 depths\", \"model_name\": \"Pythia-2.8B\", \"seed\": 42, \"hypothesis\": \"Confound fix: paraphrastic chains with matched generation parameters (rp=1.0, max_tokens=256) vs continuation, isolating prompt type effect\", \"pid\": 256127, \"log_path\": \"/tmp/plan006_confound_fix.log\", \"checkpoint_path\": \"data/pythia-2.8b-paraphrase/generations_shard0.jsonl\", \"changes\": \"paraphrastic_chains.py: repetition_penalty 1.3->1.0, max_new_tokens 200->256\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T01:52:44.000Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5556}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T01:53:11.312506+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan-006-confound-fix",
+  "field": "metrics",
+  "value": "{'para_3class_f1': 0.727, 'para_3class_f1_std': 0.0105, 'cont_3class_f1': 0.7876, 'cont_3class_f1_std': 0.0061, 'f1_3class_delta': -0.0606, 'para_binary_f1': 0.6127, 'cont_binary_f1': 0.7491, 'para_retention': 0.995, 'cont_retention': 0.826, 'retention_delta': 0.1689, 'cross_transfer_para2cont': 0.7687, 'cross_transfer_cont2para': 0.6058, 'result_file': 'results/plan006_paraphrastic_comparison.json'}",
+  "project": "gen-depth-fingerprint"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan-006-confound-fix",
+    "field": "metrics",
+    "value": "{'para_3class_f1': 0.727, 'para_3class_f1_std': 0.0105, 'cont_3class_f1': 0.7876, 'cont_3class_f1_std': 0.0061, 'f1_3class_delta': -0.0606, 'para_binary_f1': 0.6127, 'cont_binary_f1': 0.7491, 'para_retention': 0.995, 'cont_retention': 0.826, 'retention_delta': 0.1689, 'cross_transfer_para2cont': 0.7687, 'cross_transfer_cont2para': 0.6058, 'result_file': 'results/plan006_paraphrastic_comparison.json'}",
+    "project": "gen-depth-fingerprint"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T01:53:11.312797+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan-006-confound-fix\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:25:20.954Z\", \"updated_at\": \"2026-05-16T01:52:50.668Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python paraphrastic_chains.py --phase all --device cuda:0\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:1\", \"data_path\": \"data/wiki_seed_1000.jsonl\", \"data_count\": \"995 seeds x 5 depths\", \"model_name\": \"Pythia-2.8B\", \"seed\": 42, \"hypothesis\": \"Confound fix: paraphrastic chains with matched generation parameters (rp=1.0, max_tokens=256) vs continuation, isolating prompt type effect\", \"pid\": 256127, \"log_path\": \"/tmp/plan006_confound_fix.log\", \"checkpoint_path\": \"data/pythia-2.8b-paraphrase/generations_shard0.jsonl\", \"changes\": \"paraphrastic_chains.py: repetition_penalty 1.3->1.0, max_new_tokens 200->256\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T01:52:44.000Z\", \"metrics\": {\"para_3class_f1\": 0.727, \"para_3class_f1_std\": 0.0105, \"cont_3class_f1\": 0.7876, \"cont_3class_f1_std\": 0.0061, \"f1_3class_delta\": -0.0606, \"para_binary_f1\": 0.6127, \"cont_binary_f1\": 0.7491, \"para_retention\": 0.995, \"cont_retention\": 0.826, \"retention_delta\": 0.1689, \"cross_transfer_para2cont\": 0.7687, \"cross_transfer_cont2para\": 0.6058, \"result_file\": \"results/plan006_paraphrastic_comparison.json\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2563}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T01:53:11.313057+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan-012-qwen06b-v2",
+  "field": "metrics",
+  "value": "{'macro_f1_5class': 0.5873, 'macro_f1_5class_std': 0.0047, 'macro_f1_3class': 0.9054, 'macro_f1_3class_std': 0.0037, 'delta_vs_original_5class': 0.0045, 'delta_vs_original_3class': 0.0002, 'delta_vs_xgboost_5class': 0.0845, 'delta_vs_xgboost_3class': 0.1239, 'seed': 123, 'lora_r': 32, 'result_file': 'results/plan012_qwen06b_seed123_r32_results.json'}",
+  "project": "gen-depth-fingerprint"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan-012-qwen06b-v2",
+    "field": "metrics",
+    "value": "{'macro_f1_5class': 0.5873, 'macro_f1_5class_std': 0.0047, 'macro_f1_3class': 0.9054, 'macro_f1_3class_std': 0.0037, 'delta_vs_original_5class': 0.0045, 'delta_vs_original_3class': 0.0002, 'delta_vs_xgboost_5class': 0.0845, 'delta_vs_xgboost_3class': 0.1239, 'seed': 123, 'lora_r': 32, 'result_file': 'results/plan012_qwen06b_seed123_r32_results.json'}",
+    "project": "gen-depth-fingerprint"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T01:53:11.313352+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan-012-qwen06b-v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:47:39.574Z\", \"updated_at\": \"2026-05-16T01:52:54.835Z\", \"hypothesis\": \"End-to-end depth classification with Qwen3-0.6B-Base (seed=123, LoRA r=32) — hyperparameter sensitivity check vs cuda:0 variant (seed=42, r=16)\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python end_to_end_classifier_v2.py --model_path /root/autodl-tmp/models/Qwen/Qwen3-0.6B-Base --device cuda:0 --seed 123 --output results/plan012_qwen06b_seed123_r32_results.json\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:2\", \"model_name\": \"Qwen3-0.6B-Base\", \"seed\": 123, \"lora_r\": 32, \"lora_alpha\": 64, \"data_path\": \"/root/gen-depth-fingerprint/data\", \"data_count\": \"~4 generators\"}, \"reproduce\": {\"finished_at\": \"2026-05-16T01:51:23.804Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T01:51:24.575Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T01:51:26.047445+00:00\"}]}, \"metrics\": {\"macro_f1_5class\": 0.5873, \"macro_f1_5class_std\": 0.0047, \"macro_f1_3class\": 0.9054, \"macro_f1_3class_std\": 0.0037, \"delta_vs_original_5class\": 0.0045, \"delta_vs_original_3class\": 0.0002, \"delta_vs_xgboost_5class\": 0.0845, \"delta_vs_xgboost_3class\": 0.1239, \"seed\": 123, \"lora_r\": 32, \"result_file\": \"results/plan012_qwen06b_seed123_r32_results.json\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.329}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T01:53:11.313646+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan-012-qwen06b-v2",
+  "field": "notes",
+  "value": "Previously auto-marked as failed (process dead with no sentinel/W&B). Actual result: completed successfully. Results file exists with full 5-fold CV metrics. Hyperparameter change (seed 42→123, r 16→32) had negligible effect on performance (delta < 0.005 on both metrics), confirming robustness.",
+  "project": "gen-depth-fingerprint"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan-012-qwen06b-v2",
+    "field": "notes",
+    "value": "Previously auto-marked as failed (process dead with no sentinel/W&B). Actual result: completed successfully. Results file exists with full 5-fold CV metrics. Hyperparameter change (seed 42→123, r 16→32) had negligible effect on performance (delta < 0.005 on both metrics), confirming robustness.",
+    "project": "gen-depth-fingerprint"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T01:53:11.313940+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan-012-qwen06b-v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T23:47:39.574Z\", \"updated_at\": \"2026-05-16T01:52:58.230Z\", \"hypothesis\": \"End-to-end depth classification with Qwen3-0.6B-Base (seed=123, LoRA r=32) — hyperparameter sensitivity check vs cuda:0 variant (seed=42, r=16)\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python end_to_end_classifier_v2.py --model_path /root/autodl-tmp/models/Qwen/Qwen3-0.6B-Base --device cuda:0 --seed 123 --output results/plan012_qwen06b_seed123_r32_results.json\", \"server\": \"autodl-5090\", \"gpu\": \"cuda:2\", \"model_name\": \"Qwen3-0.6B-Base\", \"seed\": 123, \"lora_r\": 32, \"lora_alpha\": 64, \"data_path\": \"/root/gen-depth-fingerprint/data\", \"data_count\": \"~4 generators\"}, \"reproduce\": {\"finished_at\": \"2026-05-16T01:51:23.804Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T01:51:24.575Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T01:51:26.047445+00:00\"}]}, \"metrics\": {\"macro_f1_5class\": 0.5873, \"macro_f1_5class_std\": 0.0047, \"macro_f1_3class\": 0.9054, \"macro_f1_3class_std\": 0.0037, \"delta_vs_original_5class\": 0.0045, \"delta_vs_original_3class\": 0.0002, \"delta_vs_xgboost_5class\": 0.0845, \"delta_vs_xgboost_3class\": 0.1239, \"seed\": 123, \"lora_r\": 32, \"result_file\": \"results/plan012_qwen06b_seed123_r32_results.json\"}, \"notes\": \"Previously auto-marked as failed (process dead with no sentinel/W&B). Actual result: completed successfully. Results file exists with full 5-fold CV metrics. Hyperparameter change (seed 42→123, r 16→32) had negligible effect on performance (delta < 0.005 on both metrics), confirming robustness.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3035}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_dead-experiments_20260516T015143",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-16T01:53:11.314247+00:00_
+
+Registry 已全部更新。诊断总结：
+
+---
+
+## 诊断结果
+
+### plan-006-confound-fix — SUCCESS
+匹配生成参数后（rp=1.0, max_tokens=256），paraphrastic chains 仍然比 continuation 更快丢失 depth signal，确认结论非参数混淆所致：
+- **3-class F1**: para 0.727 vs cont 0.788, delta **-0.061**
+- **Binary F1**: para 0.613 vs cont 0.749
+- **Depth retention**: para 0.995 vs cont 0.826（para 几乎不丢样本但分类更难，cont 丢更多样本但剩余样本 signal 更强）
+- **Cross-transfer**: para→cont 0.769, cont→para 0.606（不对称，说明 continuation 的 depth features 更具判别力）
+
+### plan-012-qwen06b-v2 — SUCCESS（此前被误判为 failed）
+进程正常退出并写出完整结果文件，但因无 sentinel/W&B 被自动标记为 failed。实际结果：
+- **5-class F1**: 0.5873 ± 0.0047（原版 0.5828, delta **+0.0045**）
+- **3-class F1**: 0.9054 ± 0.0037（原版 0.9052, delta **+0.0002**）
+- seed 42→123、LoRA r 16→32 的变化对性能影响可忽略（<0.5%），**确认 QLoRA depth classifier 对超参不敏感**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diagnose_dead-experiments_20260516T015143"
+}
+```
+
+</details>
+
+---

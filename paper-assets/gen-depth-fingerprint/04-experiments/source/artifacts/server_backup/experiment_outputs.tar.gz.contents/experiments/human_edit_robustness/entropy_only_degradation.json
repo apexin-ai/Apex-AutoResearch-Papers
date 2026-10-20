@@ -1,0 +1,84 @@
+{
+  "results": {
+    "0.00": {
+      "binary_f1": 0.8325,
+      "binary_ci": [
+        0.8202,
+        0.8447
+      ],
+      "multiclass_f1": 0.6875,
+      "multiclass_ci": [
+        0.6743,
+        0.7005
+      ]
+    },
+    "0.05": {
+      "binary_f1": 0.7358,
+      "binary_ci": [
+        0.7206,
+        0.749
+      ],
+      "multiclass_f1": 0.5422,
+      "multiclass_ci": [
+        0.5287,
+        0.556
+      ]
+    },
+    "0.10": {
+      "binary_f1": 0.6566,
+      "binary_ci": [
+        0.6419,
+        0.6714
+      ],
+      "multiclass_f1": 0.4248,
+      "multiclass_ci": [
+        0.4112,
+        0.4392
+      ]
+    },
+    "0.20": {
+      "binary_f1": 0.5659,
+      "binary_ci": [
+        0.5504,
+        0.5813
+      ],
+      "multiclass_f1": 0.3156,
+      "multiclass_ci": [
+        0.3022,
+        0.3291
+      ]
+    }
+  },
+  "degradation_binary": {
+    "0.05": -0.0967,
+    "0.10": -0.1759,
+    "0.20": -0.2666
+  },
+  "comparison_with_7feature": {
+    "note": "7-feature binary drops: 5%=-0.046, 10%=-0.081, 20%=-0.104",
+    "entropy_only_drops": {
+      "0.05": -0.0967,
+      "0.10": -0.1759,
+      "0.20": -0.2666
+    },
+    "entropy_only_more_robust": false
+  },
+  "meta": {
+    "features": [
+      "entropy_mean",
+      "entropy_std",
+      "entropy_min",
+      "entropy_max",
+      "tail_decay"
+    ],
+    "n_features": 5,
+    "xgb_params": {
+      "n_estimators": 200,
+      "max_depth": 6
+    },
+    "class_balanced": true,
+    "protocol": "pooled LOGO 8-fold",
+    "seed": 42,
+    "n_samples": 5000
+  }
+}

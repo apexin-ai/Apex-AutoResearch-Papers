@@ -1,0 +1,26 @@
+{
+  "exp_id": "plan-003-olmo2ref",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T00:09:31.145Z",
+    "updated_at": "2026-05-15T00:10:00.971Z",
+    "spec": {
+      "command": "python extract_features_crossref.py --reference-model /root/autodl-tmp/models/olmo-2-1b-hf/allenai/OLMo-2-0425-1B --output data/features_ref_olmo.csv --device cuda:0",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/",
+      "data_count": 23032,
+      "model_name": "OLMo-2-1B (reference)",
+      "seed": 42
+    },
+    "checkpoint_path": "/root/gen-depth-fingerprint/data/features_ref_olmo.csv",
+    "log_path": "/root/gen-depth-fingerprint/data/features_ref_olmo.csv",
+    "conclusion": "success",
+    "completed_at": "2026-05-15T00:10:00.971Z"
+  },
+  "timestamp": "2026-05-15T00:10:01.019238+00:00",
+  "trigger": "update_registry"
+}

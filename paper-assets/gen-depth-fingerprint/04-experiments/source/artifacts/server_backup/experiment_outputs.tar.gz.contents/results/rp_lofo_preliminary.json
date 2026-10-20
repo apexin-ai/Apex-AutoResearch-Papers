@@ -1,0 +1,90 @@
+{
+  "experiment": "rp_lofo_preliminary",
+  "description": "Train on 7 generators (rp=1.0), test on Llama rp=1.1",
+  "train_generators": [
+    "pythia-2.8b",
+    "pythia-1b",
+    "olmo-2-1b",
+    "qwen3-0.6b",
+    "qwen3-1.7b",
+    "qwen3-8b",
+    "mistral-7b-v0.3"
+  ],
+  "test_generator": "llama-3.2-3b-rp11",
+  "train_size": 31194,
+  "test_size": 4386,
+  "three_class": {
+    "macro_f1": 0.5287,
+    "weighted_f1": 0.5491,
+    "per_class_f1": {
+      "gen-0": 0.668,
+      "gen-1": 0.3289,
+      "gen-2+": 0.5891
+    },
+    "confusion_matrix": [
+      [
+        979,
+        5,
+        11
+      ],
+      [
+        331,
+        319,
+        325
+      ],
+      [
+        626,
+        641,
+        1149
+      ]
+    ],
+    "labels": [
+      "gen-0",
+      "gen-1",
+      "gen-2+"
+    ]
+  },
+  "binary_gen1_vs_gen2plus": {
+    "macro_f1": 0.5201,
+    "per_class_f1": {
+      "gen-1": 0.4495,
+      "gen-2+": 0.5907
+    },
+    "confusion_matrix": [
+      [
+        650,
+        325
+      ],
+      [
+        1267,
+        1149
+      ]
+    ],
+    "labels": [
+      "gen-1",
+      "gen-2+"
+    ]
+  },
+  "gate_d036": {
+    "criterion": "binary_f1 > 0.70",
+    "binary_f1": 0.5201,
+    "pass": false
+  },
+  "xgb_params": {
+    "n_estimators": 200,
+    "max_depth": 6,
+    "learning_rate": 0.1,
+    "random_state": 42,
+    "eval_metric": "mlogloss",
+    "verbosity": 0
+  },
+  "features": [
+    "entropy_mean",
+    "entropy_std",
+    "entropy_max",
+    "entropy_min",
+    "tail_decay",
+    "ttr",
+    "hapax_ratio"
+  ]
+}

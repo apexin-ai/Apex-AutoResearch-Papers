@@ -1,0 +1,92 @@
+We assess robustness to post-generation text modification by randomly replacing words at varying rates and re-evaluating the 8-generator LOGO pipeline (Table~\ref{tab:human-edit}).
+Random word replacement represents a worst-case perturbation: real human editing preserves semantic coherence, so practical degradation is expected to be substantially lower than these estimates.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Robustness to random word replacement under 8-gen LOGO evaluation (binary: gen-1 vs.\ gen-2+). Bootstrap 95\% CIs on binary F1 ($n$\,=\,1000).}
+\label{tab:human-edit}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lccc}
+\toprule
+\textbf{Perturbation rate} & \textbf{Binary F1} & \textbf{95\% CI} & \textbf{3-class F1} \\
+\midrule
+0\% (baseline) & 0.695 & [0.680, 0.710] & 0.737 \\
+5\%            & 0.650 & [0.635, 0.666] & 0.641 \\
+10\%           & 0.614 & [0.599, 0.629] & 0.492 \\
+20\%           & 0.591 & [0.576, 0.605] & 0.367 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Binary depth discrimination (gen-1 vs.\ gen-2+) degrades sublinearly: the first 5\% replacement causes the largest drop ($-$4.6\,pp), with diminishing marginal impact thereafter ($-$3.6\,pp for 5\%$\to$10\%, $-$2.3\,pp for 10\%$\to$20\%).
+At 10\% replacement, binary F1 remains 0.614, well above the 0.50 random baseline, which indicates that depth signal survives moderate perturbation.
+
+Three-class classification is more sensitive (0.737$\to$0.367 at 20\%), because distinguishing gen-0 from gen-1 relies heavily on lexical diversity features (TTR, hapax ratio) that are directly disrupted by word replacement.
+The binary metric, which excludes gen-0, is inherently more robust since it depends primarily on reference-model entropy features distributed across many tokens.
+
+\paragraph{Feature subset degradation.}
+Table~\ref{tab:feature-degrade} compares perturbation robustness of the full 7-feature ensemble against an entropy-only subset (5 reference-model features).
+The higher unperturbed binary F1 of the entropy-only subset (0.833 vs.\ 0.695) reflects the strong discriminability of reference-model features for the coarse binary task (gen-1 vs.\ gen-2+); however, lexical features are essential for the finer-grained ordinal task (3-class F1: 0.737 vs.\ 0.688) and provide greater robustness under perturbation.
+At 20\% replacement, the 7-feature ensemble surpasses entropy-only on binary F1 (0.591 vs.\ 0.566), despite starting from a lower baseline.
+Random word replacement drastically alters per-token context and makes entropy features (computed over the full token sequence) extremely sensitive to noise.
+Lexical features (TTR, hapax ratio), as document-level summary statistics, are more stable under per-word perturbation and act as stabilizers in the full ensemble.
+The crossover confirms that degradation in the full feature set reflects genuine signal disruption rather than a lexical-feature artifact.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Feature subset degradation under random word replacement (8-gen LOGO). Entropy-only: 5 reference-model features; 7-feature: full ensemble including lexical features.}
+\label{tab:feature-degrade}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Perturb.} & \textbf{Ent-only Bin} & \textbf{7-feat Bin} & \textbf{Ent-only 3-cl} & \textbf{7-feat 3-cl} \\
+\midrule
+0\%  & 0.833 & 0.695 & 0.688 & 0.737 \\
+5\%  & 0.736 & 0.650 & 0.539 & 0.641 \\
+10\% & 0.657 & 0.614 & 0.427 & 0.492 \\
+20\% & 0.566 & 0.591 & 0.314 & 0.367 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\paragraph{Baseline comparison.}
+Table~\ref{tab:baseline-robustness} compares robustness across detection methods under identical perturbation conditions (8-gen LOGO, binary: gen-1 vs.\ gen-2+).
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate. (Baseline scores use default XGBoost settings; trends are consistent with the unified configuration in Table~\ref{tab:baselines}.)}
+\label{tab:baseline-robustness}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{0\%} & \textbf{5\%} & \textbf{10\%} & \textbf{20\%} \\
+\midrule
+7-feature ensemble & \textbf{0.695} & 0.650 & 0.614 & 0.591 \\
+LD-Score           & 0.677 & \textbf{0.673} & \textbf{0.677} & \textbf{0.671} \\
+Avg-LogProb        & 0.682 & 0.419 & 0.335 & 0.375 \\
+FastDetectGPT      & 0.571 & 0.437 & 0.468 & 0.514 \\
+Binoculars\textsuperscript{\dag}         & 0.500 & 0.461 & 0.446 & 0.425 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize \textsuperscript{\dag}Binoculars operates at chance level on this binary task; its degradation figures are not meaningful.}
+\end{table}
+
+The 7-feature ensemble achieves the highest unperturbed binary F1 (0.695), but LD-Score surpasses it under perturbation due to near-zero degradation ($-$0.6\,pp across the full 0\%$\to$20\% range).
+FastDetectGPT and Avg-LogProb exhibit non-monotonic degradation at higher perturbation rates, likely because severe perturbation introduces distributional artifacts that these token-level methods detect as anomalous.
+Avg-LogProb is the most fragile overall ($-$34.7\,pp at 10\%), while FastDetectGPT drops sharply at 5\% ($-$13.4\,pp) before partially recovering.
+LD-Score is nearly invariant to perturbation, consistent with its reliance on corpus-level distributional divergence rather than per-token likelihoods.
+The 7-feature ensemble offers the highest starting performance among single-reference methods, with sublinear degradation ($-$10.4\,pp at 20\%).
+
+\paragraph{LLM-simulated sentence regeneration.}
+To test robustness under semantically coherent editing, we use Qwen3-0.6B-Base to randomly regenerate 1--3 sentences per passage (avg 1.69 sentences, ${\sim}$50\% edit distance) and re-evaluate the 8-gen LOGO pipeline.
+Binary F1 drops from 0.692 to 0.647 ($-$4.5\,pp, 6.5\% relative); 3-class F1 drops from 0.739 to 0.667 ($-$7.1\,pp, 9.7\% relative).
+The binary degradation ($-$4.5\,pp) is nearly identical to that caused by 5\% random word replacement ($-$4.6\,pp), despite the LLM rephrase altering ${\sim}$50\% of characters.
+This asymmetry arises because LLM-generated replacements preserve the underlying statistical signature of the generation process (entropy dynamics, depth-accumulated distributional drift), whereas random word substitution directly destroys local statistical signals.
+Depth profiling thus captures deep generative structure that survives semantic-preserving edits.
+
+\paragraph{Seed complexity.}
+Performance is stable across seed text complexity: stratifying seeds by vocabulary richness (TTR terciles) yields maximum F1 variation of 1.1\,pp across groups.

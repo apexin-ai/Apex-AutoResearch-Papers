@@ -1,0 +1,113 @@
+{
+  "semantic_similarity_by_transition": {
+    "0_to_1": {
+      "mean": 0.622,
+      "std": 0.1647,
+      "n": 5921
+    },
+    "1_to_2": {
+      "mean": 0.6829,
+      "std": 0.1837,
+      "n": 5607
+    },
+    "2_to_3": {
+      "mean": 0.801,
+      "std": 0.2012,
+      "n": 5176
+    },
+    "3_to_4": {
+      "mean": 0.8587,
+      "std": 0.1895,
+      "n": 4864
+    }
+  },
+  "prompt_type_comparison": {
+    "continuation": {
+      "avg_sim": 0.7168,
+      "sim_by_transition": {
+        "0_to_1": {
+          "mean": 0.6274,
+          "std": 0.1604
+        },
+        "1_to_2": {
+          "mean": 0.6712,
+          "std": 0.1703
+        },
+        "2_to_3": {
+          "mean": 0.7595,
+          "std": 0.1994
+        },
+        "3_to_4": {
+          "mean": 0.8304,
+          "std": 0.1911
+        }
+      }
+    },
+    "elaboration": {
+      "avg_sim": 0.8093,
+      "sim_by_transition": {
+        "0_to_1": {
+          "mean": 0.7282,
+          "std": 0.1811
+        },
+        "1_to_2": {
+          "mean": 0.797,
+          "std": 0.1948
+        },
+        "2_to_3": {
+          "mean": 0.8471,
+          "std": 0.1921
+        },
+        "3_to_4": {
+          "mean": 0.8658,
+          "std": 0.194
+        }
+      }
+    },
+    "inspired_rewriting": {
+      "avg_sim": 0.808,
+      "sim_by_transition": {
+        "0_to_1": {
+          "mean": 0.7432,
+          "std": 0.2358
+        },
+        "1_to_2": {
+          "mean": 0.7732,
+          "std": 0.2506
+        },
+        "2_to_3": {
+          "mean": 0.8427,
+          "std": 0.2225
+        },
+        "3_to_4": {
+          "mean": 0.8778,
+          "std": 0.2047
+        }
+      }
+    }
+  },
+  "shape_feature_correlations": {
+    "entropy_std_vs_semantic_drift": {
+      "rho": -0.1639,
+      "p": 0.0
+    },
+    "tail_decay_vs_semantic_drift": {
+      "rho": 0.0675,
+      "p": 0.0
+    }
+  },
+  "drifting_feature_correlations": {
+    "hapax_ratio_vs_semantic_drift": {
+      "rho": -0.1242,
+      "p": 0.0
+    },
+    "ttr_vs_semantic_drift": {
+      "rho": -0.1784,
+      "p": 0.0
+    },
+    "entropy_mean_vs_semantic_drift": {
+      "rho": -0.2859,
+      "p": 0.0
+    }
+  }
+}

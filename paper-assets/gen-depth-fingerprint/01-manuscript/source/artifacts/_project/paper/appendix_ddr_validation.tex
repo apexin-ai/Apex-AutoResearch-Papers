@@ -1,0 +1,213 @@
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\columnwidth]{fig_ddr_scatter.pdf}
+\caption{DDR partition in pooled ($|\rho|$, Cohen's $d$) space. Drifting features (red) cluster at high $|\rho|$ and $d$; near-stationary features (blue) cluster near the origin; entropy std (purple) occupies a sole intermediate position. Dashed lines: TOST equivalence bound ($d{=}0.20$) and $|\rho|{=}0.30$. Diamond marker: entropy min (pooled $|\rho|{=}0.40$ reflects the gen-0/gen-1 boundary; gen-1 vs.\ gen-2+ $d{=}0.03$).}
+\label{fig:ddr-scatter}
+\end{figure}
+
+\subsection*{Data-Driven Clustering}
+
+To assess the DDR partition structure and determine whether the drifting/non-drifting split is data-driven, we apply $k$-means clustering ($k \in \{2,3,4,5\}$) to the seven features in standardized $(|\rho|, d)$ space (Table~\ref{tab:clustering}).
+
+\begin{table}[ht]
+\centering
+\small
+\caption{$k$-means clustering of 7 features in $(|\rho|, d)$ space.}
+\label{tab:clustering}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{ccp{5.5cm}}
+\toprule
+$k$ & Silhouette & Clusters \\
+\midrule
+2 & \textbf{0.660} & \{$\bar{H}$, TTR, hapax\} $\mid$ \{$\sigma_H$, $H_{\min}$, $H_{\max}$, tail\} \\
+3 & 0.532 & \{$\bar{H}$, TTR, hapax\} $\mid$ \{$\sigma_H$, $H_{\max}$, tail\} $\mid$ \{$H_{\min}$\} \\
+4 & 0.527 & \{$\bar{H}$, TTR, hapax\} $\mid$ \{$H_{\max}$, tail\} $\mid$ \{$\sigma_H$\} $\mid$ \{$H_{\min}$\} \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+The primary drifting/non-drifting split ($k{=}2$, silhouette\,=\,0.660) is the strongest cluster structure.
+At $k{=}3$, entropy min forms its own cluster rather than joining the near-stationary group because its pooled $|\rho|{=}0.40$ (driven by the gen-0/gen-1 boundary) places it far from other near-stationary features in $\rho$ space.
+The 3/1/3 DDR partition resolves this by using the gen-1 vs.\ gen-2+ Cohen's $d$ ($d{=}0.03$) to place entropy min in the near-stationary group, a domain-informed refinement that unsupervised clustering cannot recover from pooled statistics alone.
+At $k{=}4$ (silhouette\,=\,0.527), entropy std separates from the near-stationary group, consistent with its intermediate DDR classification.
+
+\paragraph{Exhaustive partition enumeration.}
+To confirm that the three-vs-four split is optimal rather than incidental, we enumerate all $\binom{7}{3}{=}35$ possible ways to assign three features to a ``drifting'' group and the remaining four to ``non-drifting,'' computing the silhouette score for each partition in standardized $(|\rho|, d)$ space.
+The observed DDR partition (\{entropy mean, TTR, hapax ratio\}) achieves the highest silhouette (0.660), with a gap of 0.18 to the second-ranked split; 20 of 35 partitions produce negative silhouette scores.
+
+\paragraph{Per-generator replication.}
+To rule out the possibility that the pooled silhouette is an artifact of mixing heterogeneous generators, we repeat the $(|\rho|, d)$ clustering independently for each of the eight generators.
+Every generator recovers the identical \{$\bar{H}$, TTR, hapax\} vs.\ \{$\sigma_H$, $H_{\min}$, $H_{\max}$, tail\} partition, with silhouette scores ranging from 0.505 (Pythia-1B) to 0.760 (Mistral-7B-v0.3; mean\,=\,0.651).
+No generator falls below the 0.50 moderate-structure threshold. The two-cluster structure is a per-generator property rather than a pooling artifact.
+
+\subsection*{TOST Equivalence Bound Sensitivity}
+\label{app:tost-sensitivity}
+
+Table~\ref{tab:tost-sensitivity} shows the fraction of generators for which each feature passes the TOST equivalence test (gen-1 vs.\ gen-2+, $\alpha{=}0.05$) at three equivalence bounds $\varepsilon$.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{TOST equivalence pass rate across 8 generators at varying $\varepsilon$.}
+\label{tab:tost-sensitivity}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llccc}
+\toprule
+\textbf{DDR Zone} & \textbf{Feature} & $\boldsymbol{\varepsilon{=}0.15}$ & $\boldsymbol{\varepsilon{=}0.20}$ & $\boldsymbol{\varepsilon{=}0.25}$ \\
+\midrule
+\multirow{3}{*}{Drifting} & $\bar{H}$ (ent.\ mean) & 0/8 & 0/8 & 0/8 \\
+ & TTR & 0/8 & 0/8 & 0/8 \\
+ & hapax ratio & 0/8 & 0/8 & 0/8 \\
+\midrule
+Intermediate & $\sigma_H$ (ent.\ std) & 0/8 & 0/8 & 0/8 \\
+\midrule
+\multirow{3}{*}{Near-stat.} & $H_{\min}$ (ent.\ min) & 7/8 & 8/8 & 8/8 \\
+ & $H_{\max}$ (ent.\ max) & 6/8 & 6/8 & 6/8 \\
+ & tail decay & 4/8 & 4/8 & 7/8 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+The partition is robust to the equivalence bound: drifting features reject equivalence at all $\varepsilon$ for all generators, while entropy min passes even at the stricter bound $\varepsilon{=}0.15$ (7/8 generators).
+Tail decay is the most $\varepsilon$-sensitive near-stationary feature, passing 4/8 at $\varepsilon{=}0.20$ but 7/8 at $\varepsilon{=}0.25$; the four non-passing generators show $|d|{=}0.15$--$0.22$, still well below the drifting threshold ($d > 0.50$).
+Entropy max is stable across all three bounds (6/8), with the two failures (Pythia-1B $d{=}0.21$, Pythia-2.8B $d{=}0.25$) reflecting same-family reference affinity with the Pythia-410M reference model.
+
+\paragraph{TOST margin rationale.}
+We adopt $\varepsilon{=}0.20$ as the primary equivalence bound, corresponding to Cohen's ``small effect'' threshold ($d{=}0.20$; \citealp{cohen1988statistical}).
+This choice reflects a principled smallest effect size of interest (SESOI): effects below $d{=}0.20$ are conventionally negligible and unlikely to carry practical discriminative value for depth classification.
+The bound is conservative relative to the drifting--stationary gap ($d_{\min}^{\text{drift}}{=}0.74$ vs.\ $\varepsilon{=}0.20$, a $3.7{\times}$ margin); the equivalence test thus has adequate power to confirm near-stationarity without risk of misclassifying genuinely drifting features.
+As Table~\ref{tab:tost-sensitivity} shows, conclusions are qualitatively identical at $\varepsilon{=}0.15$ and $\varepsilon{=}0.25$; the partition is insensitive to the specific bound choice.
+LOFO analysis independently corroborates this boundary: near-stationary features contribute ${<}2$\,pp marginal importance (Appendix~\ref{app:lofo}), empirically validating $\varepsilon{=}0.20$ as a task-relevant threshold.
+
+\paragraph{Threshold sensitivity.}
+To address concerns about the sensitivity of the drifting-boundary threshold,
+we sweep $|d|$ from $0.10$ to $0.80$ in increments of $0.05$ and record the
+resulting binary partition (drifting vs.\ stationary) along with the silhouette
+score in standardized $(|\rho|, d)$ space.
+Across the entire range, only \emph{three} distinct partitions emerge,
+reflecting natural gaps between feature clusters rather than threshold artifacts.
+The three-feature drifting set (entropy mean, TTR, hapax ratio)
+is stable across $|d| \in [0.50,\, 0.75]$ with a silhouette of $0.660$ (the
+peak value in the sweep).
+Including the intermediate feature entropy std ($d{=}0.46$) yields a
+4/3 partition stable across $|d| \in [0.10,\, 0.45]$ (silhouette\,=\,0.451).
+The partition used in our analysis corresponds to the peak-silhouette region,
+confirming that the drifting/stationary boundary reflects a natural gap in the
+$(|\rho|, d)$ landscape rather than an artifact of a particular
+threshold choice.
+
+\paragraph{Partition stability across $\varepsilon$ thresholds.}
+\label{app:epsilon-sweep}
+
+The DDR partition classifies features as non-stationary ($d \geq \varepsilon$) or stationary ($d < \varepsilon$) based on pooled Cohen's $d$ (\S\ref{sec:results-differential}).
+Table~\ref{tab:epsilon-sweep} reports the critical $\varepsilon$ at which each feature's classification changes; the three drifting and three near-stationary features maintain their classification for all $\varepsilon \in [0.10, 0.75]$.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Partition stability under varying $\varepsilon$. Critical threshold: the $\varepsilon$ above which a feature is reclassified as stationary. The drifting/near-stationary split is invariant for $\varepsilon \in [0.10, 0.75]$; only entropy std ($d{=}0.46$) changes at $\varepsilon > 0.46$.}
+\label{tab:epsilon-sweep}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llcc}
+\toprule
+\textbf{DDR Zone} & \textbf{Feature} & \textbf{Pooled $d$} & \textbf{Stationary at $\varepsilon >$} \\
+\midrule
+\multirow{3}{*}{Drifting} & $\bar{H}$ (ent.\ mean) & 1.05 & 1.05 \\
+ & TTR & 0.81 & 0.81 \\
+ & hapax ratio & 0.74 & 0.74 \\
+\midrule
+Intermediate & $\sigma_H$ (ent.\ std) & 0.46 & 0.46 \\
+\midrule
+\multirow{3}{*}{Near-stat.} & $H_{\max}$ (ent.\ max) & 0.06 & 0.06 \\
+ & tail decay & 0.09 & 0.09 \\
+ & $H_{\min}$ (ent.\ min) & 0.016 & 0.016 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\noindent The 3/1/3 partition is stable across $\varepsilon \in [0.10, 0.75]$: the three drifting features remain non-stationary at all $\varepsilon < 0.74$, the three near-stationary features remain stationary at all $\varepsilon > 0.09$, and only entropy std changes classification (becoming stationary at $\varepsilon > 0.46$). It is the sole threshold-sensitive feature.
+The minimum gap between adjacent zone boundaries ($d_{\text{hapax}} - d_{\sigma_H} = 0.28$) exceeds typical effect-size estimation uncertainty and provides a margin against sampling noise.
+
+\subsection*{Holdout Generator Split Validation}
+\label{app:holdout-split}
+
+To confirm the DDR partition is not an artifact of the specific generator pool, we split the eight generators into disjoint selection (4) and validation (4) sets, compute per-subset pooled $(|\rho|, d)$, and check whether all seven features receive the same zone assignment in both subsets.
+We evaluate two complementary splits to avoid dependence on a single partition:
+Split~A selects \{Pythia-2.8B, Qwen3-1.7B, OLMo, Mistral\} (validation: Pythia-1B, Qwen3-0.6B, Qwen3-8B, Llama);
+Split~B selects \{Pythia-1B, Qwen3-0.6B, OLMo, Mistral\} (validation: Pythia-2.8B, Qwen3-1.7B, Qwen3-8B, Llama).
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Holdout split validation of the DDR partition. Selection (sel) and validation (val) $|\rho|$ and $d$ for two disjoint 4/4 generator splits. Zone assignment is identical across all four subsets for every feature.}
+\label{tab:holdout-split}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llcccccc}
+\toprule
+& & \multicolumn{3}{c}{\textbf{Split A}} & \multicolumn{3}{c}{\textbf{Split B}} \\
+\cmidrule(lr){3-5} \cmidrule(lr){6-8}
+\textbf{Zone} & \textbf{Feature} & sel $|\rho|$ & val $|\rho|$ & $\Delta|\rho|$ & sel $|\rho|$ & val $|\rho|$ & $\Delta|\rho|$ \\
+\midrule
+\multirow{3}{*}{Drifting} & $\bar{H}$ (ent.\ mean) & 0.60 & 0.58 & 0.02 & 0.60 & 0.58 & 0.02 \\
+ & TTR & 0.61 & 0.59 & 0.02 & 0.60 & 0.59 & 0.01 \\
+ & hapax ratio & 0.62 & 0.60 & 0.02 & 0.62 & 0.61 & 0.01 \\
+\midrule
+Intermediate & $\sigma_H$ (ent.\ std) & 0.19 & 0.21 & 0.02 & 0.22 & 0.17 & 0.05 \\
+\midrule
+\multirow{3}{*}{Near-stat.} & $H_{\min}$ (ent.\ min) & 0.39 & 0.36 & 0.03 & 0.38 & 0.37 & 0.01 \\
+ & $H_{\max}$ (ent.\ max) & 0.05 & 0.05 & 0.00 & 0.04 & 0.06 & 0.02 \\
+ & tail decay & 0.10 & 0.08 & 0.02 & 0.11 & 0.07 & 0.04 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Under simple joint $(|\rho|, d)$ thresholds, both splits produce a 3/2/2 partition: entropy min is classified as a second intermediate feature due to its elevated pooled $|\rho|$ (0.36--0.39).
+However, entropy min's binary (gen-1 vs.\ gen-2+) $d$ values are uniformly below 0.06 across all four split${\times}$subset combinations, consistent with near-stationarity on the task-relevant metric; its pooled $|\rho|$ reflects change concentrated at the gen-0/gen-1 boundary rather than sustained drift.
+Five of seven features are unambiguously classified under any reasonable criterion; entropy min's boundary status is resolved by the binary-task $d$ criterion.
+
+Selection and validation subsets produce identical partitions in both splits (Table~\ref{tab:holdout-split}; Figure~\ref{fig:holdout-scatter}).
+The maximum $\Delta|\rho|$ between selection and validation is 0.05 (entropy std, Split~B), and the minimum gap between adjacent zones remains $>$0.15 in all subsets.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig_ddr_holdout_split.pdf}
+\caption{Holdout split validation in $(|\rho|, d)$ space. Filled markers: selection set; hollow: validation set. Zone assignments are identical across subsets; selection/validation pairs cluster tightly for all features.}
+\label{fig:holdout-scatter}
+\end{figure}
+
+\subsection*{Heteroscedasticity Sensitivity}
+\label{app:heteroscedasticity}
+
+Levene tests reject equal variance between gen-1 and gen-2+ for drifting features ($p < 10^{-10}$; variance ratios 1.86--2.21).
+To verify that the DDR partition is robust to this heteroscedasticity, we supplement pooled Cohen's $d$ with Glass's $\Delta$ (using the gen-1 standard deviation as denominator) and Cliff's $\delta$ (a non-parametric ordinal effect size; Table~\ref{tab:effect-sizes}).
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Effect size comparison (gen-1 vs.\ gen-2+, $N$\,=\,29{,}095). Glass's $\Delta$ uses the gen-1 SD as denominator; Cliff's $\delta$ thresholds follow Romano et al.\ (2006): $|\delta| < 0.147$ negligible, $< 0.33$ small, $< 0.474$ medium, otherwise large.}
+\label{tab:effect-sizes}
+\begin{tabular}{llrrr}
+\toprule
+\textbf{Zone} & \textbf{Feature} & \textbf{$|d|$} & \textbf{$|\Delta|$} & \textbf{$|\delta|$} \\
+\midrule
+\multirow{3}{*}{Drifting} & ent.\ mean & 1.054 & 1.410 & 0.587 \\
+ & TTR & 0.814 & 1.116 & 0.510 \\
+ & hapax ratio & 0.735 & 0.936 & 0.528 \\
+\midrule
+Intermediate & ent.\ std & 0.457 & 0.605 & 0.295 \\
+\midrule
+\multirow{3}{*}{Near-stat.} & tail decay & 0.087 & 0.099 & 0.072 \\
+ & ent.\ max & 0.062 & 0.065 & 0.021 \\
+ & ent.\ min & 0.016 & 0.015 & 0.354$^{\dagger}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent Effect sizes in Table~\ref{tab:effect-sizes} are computed on the binary task (gen-1 vs.\ gen-2+); the main text (\S\ref{sec:results-differential}) reports 3-class pooled $d$ values (e.g., hapax ratio $d{=}0.74$), which are slightly larger because the gen-0/gen-1 contrast contributes additional separation.
+Glass's $\Delta$ amplifies drifting effects (1.41 vs.\ 1.05 for entropy mean) because gen-2+ variance exceeds gen-1 variance (ratio 2.08); pooled Cohen's $d$ is therefore conservative.
+Near-stationary features remain negligible under both parametric metrics ($|\Delta| \leq 0.099$).
+The minimum drifting-to-maximum-near-stationary gap is $9.5\times$ under Glass's $\Delta$ (0.936\,/\,0.099); heteroscedasticity does not erode the partition.
+Cliff's $\delta$ classifies all drifting features as ``large'' ($|\delta| > 0.474$) and entropy std as ``small'' ($|\delta|{=}0.295$), consistent with the parametric partition.
+
+\noindent $^{\dagger}$Entropy min's elevated Cliff's $\delta$ (0.354, ``medium'') reflects distributional shape asymmetry between gen-1 and gen-2+ that rank-based statistics detect but location measures do not (Cohen's $d{=}0.016$, Glass's $\Delta{=}0.015$).
+This is consistent with its documented boundary status (\S\ref{sec:results-differential}): the gen-0/gen-1 transition produces rank-order shifts that persist into deeper generations without affecting the mean.

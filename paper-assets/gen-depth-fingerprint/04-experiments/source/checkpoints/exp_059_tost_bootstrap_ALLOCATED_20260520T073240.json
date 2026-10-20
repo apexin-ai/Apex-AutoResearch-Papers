@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_059_tost_bootstrap",
+  "project": "gen-depth-fingerprint",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:05:47.426Z",
+    "updated_at": "2026-05-20T07:32:39.933Z",
+    "hypothesis": "TOST equivalence conclusions are robust across random seeds: bootstrap resampling (n=1000 iterations) of TOST p-values on stationary features yields consistent rejection of non-equivalence (p &lt; 0.05 in >95% of bootstrap samples), strengthening the shape-feature stationarity claim",
+    "notes": "Dry-run (n=10) 验证通过。entropy_std |d|=0.46 > margin, TOST 不拒绝（符合预期 \"intermediate\"）。entropy_max/min/tail_decay 100% rejection。纯 CPU ~2min。命令: python3 scripts/tost_bootstrap.py --n-bootstrap 1000 --base-seed 42 --output results/tost_bootstrap.json"
+  },
+  "timestamp": "2026-05-20T07:32:40.033456+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,20 @@
+{
+  "exp_id": "plan-002-qwen17b-retry-s1",
+  "project": "gen-depth-fingerprint",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:25:19.756Z",
+    "updated_at": "2026-05-14T21:56:46.310Z",
+    "spec": {
+      "data_path": "/root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl",
+      "data_count": 1000,
+      "model_name": "Qwen/Qwen3-1.7B-Base",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-14T21:56:46.339406+00:00",
+  "trigger": "update_registry"
+}

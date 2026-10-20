@@ -1,0 +1,164 @@
+{
+  "Pythia-2.8B": {
+    "total": 4609,
+    "filtered": 1683,
+    "rate_pct": 36.5155,
+    "by_depth": {
+      "0": {
+        "total": 995,
+        "filtered": 0
+      },
+      "1": {
+        "total": 989,
+        "filtered": 91
+      },
+      "2": {
+        "total": 924,
+        "filtered": 406
+      },
+      "3": {
+        "total": 879,
+        "filtered": 558
+      },
+      "4": {
+        "total": 822,
+        "filtered": 628
+      }
+    }
+  },
+  "Pythia-1B": {
+    "total": 4555,
+    "filtered": 2022,
+    "rate_pct": 44.3908,
+    "by_depth": {
+      "0": {
+        "total": 995,
+        "filtered": 0
+      },
+      "1": {
+        "total": 993,
+        "filtered": 173
+      },
+      "2": {
+        "total": 912,
+        "filtered": 543
+      },
+      "3": {
+        "total": 851,
+        "filtered": 640
+      },
+      "4": {
+        "total": 804,
+        "filtered": 666
+      }
+    }
+  },
+  "OLMo-2-1B": {
+    "total": 4713,
+    "filtered": 1913,
+    "rate_pct": 40.5899,
+    "by_depth": {
+      "0": {
+        "total": 995,
+        "filtered": 0
+      },
+      "1": {
+        "total": 988,
+        "filtered": 130
+      },
+      "2": {
+        "total": 947,
+        "filtered": 456
+      },
+      "3": {
+        "total": 905,
+        "filtered": 626
+      },
+      "4": {
+        "total": 878,
+        "filtered": 701
+      }
+    }
+  },
+  "Qwen3-0.6B": {
+    "total": 4538,
+    "filtered": 2059,
+    "rate_pct": 45.3724,
+    "by_depth": {
+      "0": {
+        "total": 996,
+        "filtered": 0
+      },
+      "1": {
+        "total": 986,
+        "filtered": 232
+      },
+      "2": {
+        "total": 938,
+        "filtered": 588
+      },
+      "3": {
+        "total": 840,
+        "filtered": 613
+      },
+      "4": {
+        "total": 778,
+        "filtered": 626
+      }
+    }
+  },
+  "Qwen3-1.7B": {
+    "total": 4617,
+    "filtered": 2050,
+    "rate_pct": 44.4011,
+    "by_depth": {
+      "0": {
+        "total": 996,
+        "filtered": 0
+      },
+      "1": {
+        "total": 983,
+        "filtered": 144
+      },
+      "2": {
+        "total": 941,
+        "filtered": 576
+      },
+      "3": {
+        "total": 875,
+        "filtered": 662
+      },
+      "4": {
+        "total": 822,
+        "filtered": 668
+      }
+    }
+  },
+  "Qwen3-8B": {
+    "total": 4497,
+    "filtered": 1382,
+    "rate_pct": 30.7316,
+    "by_depth": {
+      "0": {
+        "total": 995,
+        "filtered": 0
+      },
+      "1": {
+        "total": 979,
+        "filtered": 84
+      },
+      "2": {
+        "total": 937,
+        "filtered": 348
+      },
+      "3": {
+        "total": 831,
+        "filtered": 465
+      },
+      "4": {
+        "total": 755,
+        "filtered": 485
+      }
+    }
+  }
+}

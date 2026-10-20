@@ -1,0 +1,25 @@
+paper_key: "curse_of_recursion"
+title: "The Curse of Recursion: Training on Generated Data Makes Models Forget"
+venue: "Nature 2024"
+full_text_available: false
+
+research:
+  baselines: ["models trained on original (non-synthetic) data"]
+  metrics:
+    - {name: "distribution tail preservation", direction: "higher_better"}
+    - {name: "model quality degradation", direction: "descriptive"}
+  datasets:
+    - {name: "recursively generated training data", size: "unknown"}
+  ablation_dimensions: ["model architecture (VAE, GMM, LLM)", "generation recursion depth", "synthetic data fraction"]
+  training_recipe: {optimizer: "unknown", lr: "unknown", hardware: "unknown"}
+  method_family: "model collapse analysis (recursive training on synthetic data)"
+
+positioning:
+  core_claim: "Demonstrates 'Model Collapse' — training on model-generated content causes irreversible distribution tail loss, shown across VAEs, GMMs, and LLMs, with implications for web-scraped training data as LLM content proliferates."
+  key_results: "N/A - abstract only"
+  limitations: ["N/A"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

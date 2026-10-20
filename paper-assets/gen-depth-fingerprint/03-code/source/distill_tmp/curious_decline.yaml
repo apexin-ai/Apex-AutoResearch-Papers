@@ -1,0 +1,182 @@
+paper_key: "curious_decline"
+title: "The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text"
+venue: "NAACL 2024 Findings"
+full_text_available: true
+
+research:
+  baselines:
+    - "Human-generated text (ground truth baseline)"
+    - "OPT-350M finetuned on human data only (Iteration 0)"
+  metrics:
+    - {name: "Type-Token Ratio (TTR)", direction: "higher_better"}
+    - {name: "Distinct-2", direction: "higher_better"}
+    - {name: "Distinct-3", direction: "higher_better"}
+    - {name: "1-Self-BLEU", direction: "higher_better"}
+    - {name: "Syntactic Diversity (Div_syn)", direction: "higher_better"}
+    - {name: "Semantic Diversity (Div_sem)", direction: "higher_better"}
+    - {name: "Perplexity", direction: "lower_better"}
+  datasets:
+    - {name: "XL-SUM", size: "306,522 train / 11,535 test", task: "news summarization"}
+    - {name: "ACL Anthology bibliography", size: "40,512 train / 2,132 test", task: "scientific abstract generation"}
+    - {name: "WritingPrompts", size: "272,600 train / 15,138 test", task: "story generation"}
+  ablation_dimensions:
+    - "Task entropy level (low/medium/high creativity demands)"
+    - "Synthetic data filtering (RoBERTa-CoLA acceptability filter, bottom 20% discarded)"
+    - "Human data mixing (60% human held out, 10% injected per iteration)"
+    - "Number of recursive iterations (1-6)"
+  training_recipe:
+    model: "OPT-350M (fresh instance per iteration)"
+    optimizer: "AdamW"
+    epochs: 5
+    hardware: "2x NVIDIA RTX A6000"
+    decoding_news: "p=0.1, tau=0.3, max_new_tokens=50"
+    decoding_abstract: "p=0.5, tau=0.5, max_new_tokens=300"
+    decoding_story: "p=0.9, tau=0.7, max_new_tokens=500"
+    total_compute: "~700 GPU hours for story generation alone"
+  method_family: "Recursive finetuning on self-generated synthetic data (model collapse investigation)"
+
+positioning:
+  core_claim: "Recursive training on synthetic data causes a remarkable, consistent decline in linguistic diversity—particularly syntactic diversity—even when task performance (perplexity) appears to improve, revealing that standard metrics mask a fundamental quality degradation."
+  key_results: >
+    Story generation TTR: Human 2.23% -> Iter1 0.84% -> Iter6 0.61%;
+    Story Distinct-3: Human 70.6% -> Iter1 44.2% -> Iter6 38.6%;
+    Story syntactic diversity: Human 4.84 -> Iter1 4.23 -> Iter6 1.96;
+    Perplexity drops (improves) from 14.1 to 2.70 despite diversity collapse;
+    Filtering synthetic data amplifies decline; mixing 10% human data per iteration insufficient to prevent it.
+  limitations:
+    - "Monolingual (English only); metrics rely on language-specific tools"
+    - "OPT-350M only; larger models unexplored due to 700 GPU-hour cost"
+    - "Cannot access real LM-generated web content; no reliable LM detection for web data"
+    - "Single architecture (decoder-only); encoder-decoder unexplored"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: >
+    Opens with scaling laws' promise of predictable improvement, then pivots sharply:
+    high-quality data is running out (17 trillion tokens, 4-5% annual growth),
+    and Meta's Llama 2 already consumed ~2 trillion—we are within an order of magnitude of exhaustion.
+    This data scarcity frames synthetic data as simultaneously necessary and dangerous.
+  tension: >
+    Prior work on model collapse focused on task performance degradation (distribution tails disappearing,
+    converging to uniform behaviors). But no one has systematically measured LINGUISTIC diversity—
+    the quality dimension that matters for creative and varied text generation.
+    The gap: we know synthetic training hurts performance, but we don't know how it reshapes language itself.
+  key_insight: >
+    Revealed through the three-task experimental ladder (Section 4): higher-entropy tasks
+    (story generation) suffer the MOST diversity loss, and syntactic diversity collapses
+    the fastest while semantic diversity stays deceptively stable. The counterintuitive finding
+    is in Section 4.3—filtering synthetic data for quality AMPLIFIES diversity loss
+    (because filters favor common patterns, removing diverse samples).
+  argument_chain: >
+    Data exhaustion crisis → synthetic data as inevitable supplement →
+    prior work shows model collapse in performance → but what about linguistic diversity? →
+    develop comprehensive diversity metrics (lexical + semantic + syntactic) →
+    recursive finetuning across 3 tasks with varying entropy →
+    diversity consistently declines, worst for creative tasks →
+    syntactic diversity most vulnerable, semantic deceptively stable →
+    mitigation attempts (filtering, mixing) fail → call for diversity-aware training
+  contribution_framing: >
+    Framed as two research questions rather than numbered contributions:
+    (1) "How can linguistic diversity be quantified effectively?"
+    (2) "Does recursive training on synthetic text reduce linguistic diversity?"
+    Novel syntactic diversity metric via Weisfeiler-Lehman graph kernels on dependency trees
+    is presented as a methodological contribution. The empirical finding is the main result.
+  intro_structure: >
+    4 paragraphs:
+    P1 (Hook): Data exhaustion + scaling laws create tension
+    P2 (Context): Three modes of synthetic data contamination (pretraining, finetuning, single-task)
+    P3 (Gap): Model collapse known, but linguistic diversity unexamined
+    P4 (This work): Metrics + experiments + key finding summary
+  notable_technique: >
+    The three-task design with explicitly varying "entropy levels" (low/medium/high creativity)
+    creates a natural experimental gradient that makes the diversity-entropy interaction
+    visible without additional analysis. The qualitative example in Table 1 (scientific abstracts
+    progressively fixating on URLs and licensing statements) is a memorable illustration
+    that makes the abstract metric decline tangible.
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "method_overview"
+    description: >
+      Diagram of the recursive tuning-generation process across 6 iterations.
+      Shows Data(0) -> Base(1) -> Model(1) -> Data(1) -> Base(2) -> Model(2) -> ... chain.
+      Each Base is a fresh OPT-350M instance finetuned on the previous iteration's data.
+    narrative_role: >
+      Establishes the experimental protocol immediately—readers understand the recursive
+      pipeline before any results are presented. Critical for grasping why diversity degrades:
+      each iteration's training data is entirely synthetic from the prior model.
+    design_elements:
+      - "Sequential flow diagram with numbered iterations"
+      - "Clear Base/Model/Data distinction"
+      - "Arrow-based pipeline showing data flow"
+    visual_style: >
+      Linear left-to-right pipeline diagram. Clean boxes for each component
+      (Base, Model, Data) connected by arrows. Iteration numbers as labels.
+      Minimal color, focuses on structural clarity.
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: >
+        Lexical diversity (Distinct-3) and syntactic diversity across iterations 1-6
+        under three conditions: pure synthetic, with filtering, with mixed human data.
+        Story generation task.
+      how_gain_highlighted: >
+        Human baseline shown as reference level; all three conditions decline below it.
+        The counterintuitive finding (filtering amplifies decline) is visually striking
+        as the filtered line drops faster than pure synthetic.
+      design_note: >
+        Two-panel layout (a: lexical, b: syntactic). Lines with markers for each condition.
+        Human baseline as horizontal reference. The visual immediately communicates
+        that all mitigation attempts fail—powerful for the paper's pessimistic message.
+  ablation_figures:
+    - figure_id: "Figure 2 (serves dual purpose)"
+      viz_type: "line_plot"
+      dimensions_varied:
+        - "Data regime (pure synthetic vs. filtered vs. mixed human)"
+        - "Iteration number (1-6)"
+      design_note: >
+        Ablation is embedded in the main result figure rather than separated,
+        making the comparison immediate. Three lines per panel keeps it readable.
+  figure_narrative_role: >
+    Figure 1 (method overview) → Table 1 (qualitative degradation example) →
+    Table 2 (comprehensive quantitative results) → Figure 2 (mitigation failure visualization).
+    Appendix: Figure 3 (word frequency histograms), Figure 4 (t-SNE syntactic embeddings),
+    Figure 5 (t-SNE semantic embeddings)—supporting evidence for mechanisms.
+
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods (iterations 1-6 + human baseline)"
+    col_axis: "metrics (Perplexity, TTR, Distinct-2, Distinct-3, 1-Self-BLEU, Div_syn, Div_sem)"
+    row_organization: "by_iteration"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "No bold/underline; human baseline as separate row for visual comparison"
+    statistical_reporting: "Single run values (no std reported for main table)"
+    num_baselines: 1
+    design_note: >
+      Three task panels (News, Abstract, Story) stacked vertically within one table.
+      The table's power is in showing perplexity IMPROVING (2.48 → lower) while all diversity
+      metrics worsen—the mismatch between standard evaluation and diversity is the visual punch.
+      7 columns x ~24 rows, dense but organized by task sections.
+  ablation_tables:
+    - table_id: "Table 1"
+      what_varied: ["Recursive iteration number (Human, Iter 1, 3, 5)"]
+      variation_style: "full_numbers"
+      design_note: >
+        Qualitative example table showing actual generated abstract text across iterations.
+        Not a metrics table—a TEXT table showing progressive fixation on URLs and
+        licensing statements. Powerful because it makes the metric decline visceral.
+        Functions as both example and ablation over iterations.
+  supplementary_tables:
+    in_appendix: true
+    content: >
+      Table 3: Average text lengths post-truncation (verifying fair comparison across iterations).
+      Appendix also contains Figures 3-5 (word frequency histograms, t-SNE plots for
+      syntactic and semantic embeddings).
+    reason: >
+      Length verification is a methodological detail; t-SNE plots support mechanistic
+      claims but aren't essential for the main argument. Main text keeps only the
+      metrics table and mitigation figure.

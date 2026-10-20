@@ -1,0 +1,75 @@
+{
+  "config": {
+    "n_bootstrap": 1000,
+    "base_seed": 42,
+    "margin_d": 0.2,
+    "alpha": 0.05,
+    "dry_run": false
+  },
+  "features": {
+    "entropy_std": {
+      "n_bootstrap": 1000,
+      "median_p": 1.0,
+      "mean_p": 1.0,
+      "p_ci_95": [
+        1.0,
+        1.0
+      ],
+      "rejection_rate": 0.0,
+      "median_d": 0.4576,
+      "d_ci_95": [
+        0.4351,
+        0.4794
+      ],
+      "margin_d": 0.2
+    },
+    "entropy_max": {
+      "n_bootstrap": 1000,
+      "median_p": 0.0,
+      "mean_p": 0.0,
+      "p_ci_95": [
+        0.0,
+        0.0
+      ],
+      "rejection_rate": 1.0,
+      "median_d": 0.062,
+      "d_ci_95": [
+        0.0372,
+        0.0875
+      ],
+      "margin_d": 0.2
+    },
+    "entropy_min": {
+      "n_bootstrap": 1000,
+      "median_p": 0.0,
+      "mean_p": 0.0,
+      "p_ci_95": [
+        0.0,
+        0.0
+      ],
+      "rejection_rate": 1.0,
+      "median_d": -0.0164,
+      "d_ci_95": [
+        -0.0416,
+        0.0111
+      ],
+      "margin_d": 0.2
+    },
+    "tail_decay": {
+      "n_bootstrap": 1000,
+      "median_p": 0.0,
+      "mean_p": 0.0,
+      "p_ci_95": [
+        0.0,
+        0.0
+      ],
+      "rejection_rate": 1.0,
+      "median_d": 0.0878,
+      "d_ci_95": [
+        0.0647,
+        0.1108
+      ],
+      "margin_d": 0.2
+    }
+  }
+}

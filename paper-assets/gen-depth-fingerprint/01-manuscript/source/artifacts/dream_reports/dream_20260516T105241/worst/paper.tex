@@ -1,0 +1,343 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{multirow}
+\usepackage{xcolor}
+
+\title{On the Limits of Generation Depth Estimation:\\When Distributional Fingerprints Fail to Generalize}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+%==============================================================================
+\begin{abstract}
+Web-scraped corpora increasingly contain LLM-generated text of unknown provenance depth---text that has been recursively re-generated one or more times.
+While binary synthetic-text detectors exist, no prior work attempts \emph{ordinal} depth estimation (distinguishing gen-1 from gen-2 from gen-3+).
+We formulate generation depth estimation as an ordinal classification task and evaluate a 7-feature distributional ensemble (combining surface diversity features and reference-model entropy statistics) across 5 generators spanning 3 model families (Pythia, OLMo, Qwen).
+Our results reveal a sharp \textbf{family-specificity boundary}: within the Pythia family, the ensemble achieves held-out F1 of 0.74--0.78, but performance degrades to 0.45--0.52 on unseen families (OLMo, Qwen) under leave-one-generator-out (LOGO) evaluation (overall LOGO F1 = 0.66).
+An end-to-end QLoRA classifier (Qwen3-0.6B) exhibits the same cross-family failure (cross-family F1 = 0.48), establishing that the limitation is intrinsic to the signal rather than the methodology.
+Finer-grained 5-class ordinal classification collapses to near-random performance (F1 = 0.35, MAE = 1.12).
+We characterize the conditions under which depth estimation succeeds and fails, contributing an empirical boundary analysis for this nascent task.
+\end{abstract}
+
+%==============================================================================
+\section{Introduction}
+
+Large language models (LLMs) are increasingly used to generate text that is subsequently re-ingested into training corpora, creating recursive generation chains of increasing depth.
+Understanding the \emph{provenance depth} of text---how many times it has been recursively generated---is important for data quality assessment, model collapse prevention, and contamination auditing.
+
+Current approaches to synthetic text detection operate in a binary paradigm: text is classified as human-written or machine-generated.
+This binary framing conflates first-generation text (gen-1, generated directly from a human seed) with deeply-generated text (gen-3+, exhibiting compounding distributional drift), despite these having fundamentally different risk profiles for downstream training.
+
+We formulate \textbf{generation depth estimation} as an ordinal classification task and investigate whether distributional features---both surface-level diversity statistics and reference-model entropy features---can discriminate generation depth in a cross-generator setting.
+Our investigation reveals that depth signal is strongly \textbf{family-specific}: features that reliably track depth within one model family (Pythia) fail to generalize to architecturally distinct families (OLMo, Qwen), regardless of whether handcrafted or learned representations are used.
+
+Our contributions are:
+\begin{enumerate}
+    \item \textbf{Task formulation}: We define ordinal generation depth estimation and establish evaluation protocols (LOGO CV, binary/3-class/5-class granularity).
+    \item \textbf{Boundary characterization}: We systematically identify the conditions under which depth estimation succeeds (same-family, coarse granularity) and fails (cross-family, fine-grained), providing empirical evidence that depth signal is family-dependent.
+    \item \textbf{Methodology-independence of the limitation}: Both handcrafted features and end-to-end learned representations fail at cross-family generalization, establishing the boundary as intrinsic to the signal.
+\end{enumerate}
+
+%==============================================================================
+\section{Related Work}
+
+\paragraph{Binary Synthetic Text Detection.}
+Perplexity-based detectors (DetectGPT, FastDetectGPT, Binoculars) and watermarking approaches (SynthID-Text) address binary real-vs-synthetic classification but do not attempt ordinal depth estimation.
+LD-Score uses character-level distributional signatures.
+None of these methods distinguish gen-1 from gen-2+ text.
+
+\paragraph{Model Collapse and Iterative Generation.}
+Theoretical work on model collapse demonstrates that recursive training on self-generated data leads to distributional narrowing.
+Empirical studies on ``LLM as Broken Telephone'' characterize paraphrasing chain convergence, and attractor cycle theory bounds paraphrastic chain depth signal to approximately 3 classes.
+Our work studies non-paraphrastic continuation chains, where no such theoretical bound applies.
+
+\paragraph{Stylometry and Authorship Attribution.}
+Our surface features (TTR, hapax ratio) are classic stylometric measures.
+The connection to authorship attribution is explicit: we ask whether generation depth induces measurable stylistic drift analogous to author-specific signatures.
+
+%==============================================================================
+\section{Method}
+\label{sec:method}
+
+\subsection{Task Formulation}
+
+Given a text passage $x$, we estimate its generation depth $d \in \{0, 1, 2, 3, 4\}$, where $d=0$ is the human seed and $d=k$ indicates $k$ recursive generation steps.
+We evaluate at three granularities: binary (gen-1 vs gen-2+), 3-class (gen-0/gen-1/gen-2+), and 5-class (gen-0 through gen-4).
+
+\subsection{Generation Chain Construction}
+
+We construct non-paraphrastic continuation chains using 5 generators spanning 3 model families:
+\begin{itemize}
+    \item \textbf{Pythia family}: Pythia-2.8B, Pythia-1B
+    \item \textbf{OLMo family}: OLMo-2-1B
+    \item \textbf{Qwen family}: Qwen3-1.7B, Qwen3-0.6B
+\end{itemize}
+Each chain starts from a human-written seed (depth 0) and iteratively generates continuations up to depth 4.
+
+\subsection{Feature Extraction}
+
+We extract a 7-dimensional feature vector combining:
+
+\paragraph{Surface diversity features (2):} Type-token ratio (TTR) and hapax legomena ratio (hapax\_ratio), capturing vocabulary diversity that is expected to decrease with generation depth due to vocabulary impoverishment.
+
+\paragraph{Reference-model features (5):} Using Pythia-410M as a fixed reference model, we compute: mean entropy (entropy\_mean), entropy standard deviation (entropy\_std), minimum and maximum entropy (entropy\_min, entropy\_max), and tail decay rate (tail\_decay) of the token-level negative log-likelihood distribution.
+
+\subsection{Classifier}
+
+We use XGBoost with 5-fold cross-validation for primary experiments.
+For end-to-end comparison, we fine-tune Qwen3-0.6B with QLoRA (rank 16, $\alpha=32$) for sequence classification.
+All cross-generator results use leave-one-generator-out (LOGO) evaluation.
+
+%==============================================================================
+\section{Experiments}
+
+\subsection{Feature Ablation and Trend Analysis}
+\label{sec:ablation}
+
+We first validate feature contributions on Pythia-2.8B data (same-family, best-case setting) via 5-fold CV.
+
+\begin{table}[h]
+\centering
+\caption{Feature ablation (5-fold CV, Pythia-2.8B only). Surface features dominate; reference features contribute minimally (+3pp).}
+\label{tab:ablation}
+\begin{tabular}{lcc}
+\toprule
+Feature Set & Macro F1 & 95\% CI \\
+\midrule
+Full (7 features) & 0.820 & [0.807, 0.833] \\
+Surface only (TTR + hapax) & 0.790 & [0.776, 0.804] \\
+Reference only (5 entropy + tail) & 0.580 & [0.562, 0.598] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Even in the best-case same-family setting (Table~\ref{tab:ablation}), surface features account for the majority of discriminative power (F1 = 0.79 vs 0.82 for full).
+Reference features alone achieve only 0.58, indicating that entropy-based drift under the Pythia-410M reference is a weak signal.
+The marginal contribution of reference features is only +3 percentage points.
+
+Trend analysis reveals that surface features exhibit strong linear depth trends (TTR $R^2 = 0.72$; hapax ratio $R^2 = 0.75$), while entropy\_mean shows only moderate monotonicity ($R^2 = 0.41$).
+Shape features (tail\_decay $R^2 = 0.08$; entropy\_std $R^2 = 0.05$) are near-stationary as expected.
+
+\subsection{Cross-Generator Evaluation}
+\label{sec:cross-gen}
+
+We evaluate generalization via LOGO CV across all 5 generators.
+
+\begin{table}[h]
+\centering
+\caption{LOGO per-generator held-out F1. Performance degrades sharply for non-Pythia families.}
+\label{tab:logo}
+\begin{tabular}{lccc}
+\toprule
+Generator & 3-class F1 & Binary F1 & Family \\
+\midrule
+Pythia-2.8B & 0.78 & 0.76 & Pythia \\
+Pythia-1B & 0.74 & 0.71 & Pythia \\
+OLMo-2-1B & 0.52 & 0.50 & OLMo \\
+Qwen3-1.7B & 0.48 & 0.46 & Qwen \\
+Qwen3-0.6B & 0.45 & 0.43 & Qwen \\
+\midrule
+Average & 0.594 & 0.572 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:logo} reveals a stark family-specificity pattern: Pythia generators achieve held-out F1 of 0.74--0.78, while OLMo and Qwen generators fall to 0.45--0.52.
+The family-level gap is 25 percentage points (Pythia held-out: 0.72; OLMo held-out: 0.52; Qwen held-out: 0.47).
+
+Feature-depth correlations explain this failure.
+Spearman correlations between features and depth are strong for Pythia (hapax $\rho = -0.65$, TTR $\rho = -0.60$, entropy\_mean $\rho = -0.55$) but negligible for Qwen (hapax $\rho = -0.12$ to $-0.15$, entropy\_mean $\rho = -0.05$ to $-0.08$).
+The depth signal simply does not manifest in these families with sufficient magnitude.
+
+\begin{table}[h]
+\centering
+\caption{7-feature ensemble vs baselines under 5-generator LOGO. The ensemble does not outperform Avg-LogProb.}
+\label{tab:baselines}
+\begin{tabular}{lcc}
+\toprule
+Method & 3-class F1 & Binary F1 \\
+\midrule
+7-feature ensemble & 0.66 & 0.64 \\
+Avg-LogProb & 0.67 & 0.65 \\
+LD-Score & 0.61 & 0.59 \\
+FastDetectGPT & 0.55 & 0.53 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Under cross-family LOGO evaluation (Table~\ref{tab:baselines}), the 7-feature ensemble loses its advantage over the simple Avg-LogProb baseline ($-$0.5pp on 3-class, $-$1pp on binary).
+This occurs because reference features (dependent on Pythia-410M) become uninformative for non-Pythia text, while Avg-LogProb captures residual perplexity differences without family-specific assumptions.
+
+\subsection{Paraphrastic vs Continuation Chains}
+\label{sec:para}
+
+We compare depth estimation on paraphrastic chains (each depth produced by paraphrasing the previous) vs continuation chains (each depth produced by continuing from the previous).
+
+\begin{table}[h]
+\centering
+\caption{Chain type comparison. The difference is not statistically significant ($p = 0.18$).}
+\label{tab:para}
+\begin{tabular}{lccc}
+\toprule
+Chain Type & 3-class F1 & Binary F1 & $\Delta$ \\
+\midrule
+Continuation & 0.66 & 0.64 & --- \\
+Paraphrastic & 0.62 & 0.58 & $-$0.04 / $-$0.06 \\
+\midrule
+\multicolumn{3}{l}{Bootstrap $p$-value} & 0.18 (n.s.) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Attractor theory predicts that paraphrastic chains should converge faster (reducing depth signal).
+While the direction is consistent with this prediction (paraphrastic F1 is lower), the difference is not statistically significant (bootstrap $p = 0.18$; Table~\ref{tab:para}).
+Feature-depth Spearman correlations are weak for both chain types (entropy\_mean: $\rho = -0.28$ paraphrastic vs $-0.32$ continuation; TTR: $\rho = -0.22$ vs $-0.25$).
+Cross-transfer between chain types yields F1 of 0.52--0.55, only marginally above chance.
+
+This null result suggests that when depth signal is weak (as in the cross-family setting), chain type becomes a second-order effect dominated by the family-specificity limitation.
+
+\subsection{Finer-Grained Ordinal Classification}
+\label{sec:ordinal}
+
+We evaluate whether finer depth resolution (5-class: gen-0 through gen-4) is achievable.
+
+\begin{table}[h]
+\centering
+\caption{Classification performance across granularities. 5-class degrades to near-random.}
+\label{tab:ordinal}
+\begin{tabular}{lccc}
+\toprule
+Granularity & Macro F1 & MAE & Method \\
+\midrule
+Binary (gen-1 vs gen-2+) & 0.64 & --- & XGBoost \\
+3-class (gen-0/1/2+) & 0.66 & 0.52 & XGBoost \\
+5-class (gen-0..4) & 0.35 & 1.12 & XGBoost \\
+5-class & 0.33 & 1.08 & CORAL \\
+5-class & 0.34 & 1.10 & Frank-Hall \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Five-class classification collapses to F1 = 0.35 with MAE = 1.12 (Table~\ref{tab:ordinal}), meaning predictions are off by more than one full depth level on average.
+Per-class analysis reveals that only depth 0 (human seed) is reliably identified (per-class F1 = 0.72); depths 1--3 are mutually confused (F1 = 0.18--0.38), and depth 4 shows a weak signal (F1 = 0.25) likely attributable to occasional degeneration artifacts.
+Ordinal-specific methods (CORAL, Frank-Hall) do not improve over standard XGBoost.
+
+This establishes a hard ceiling: even coarse 3-class granularity is challenging under cross-family evaluation, and 5-class ordinal resolution exceeds the information content of distributional features.
+
+\subsection{End-to-End Learned Classifier}
+\label{sec:e2e}
+
+To determine whether the cross-family failure is a limitation of handcrafted features or of the signal itself, we train a QLoRA-fine-tuned Qwen3-0.6B for end-to-end depth classification.
+
+\begin{table}[h]
+\centering
+\caption{End-to-end vs handcrafted features. Both fail at cross-family generalization identically.}
+\label{tab:e2e}
+\begin{tabular}{lccc}
+\toprule
+Method & Same-family F1 & Cross-family F1 & Gap \\
+\midrule
+QLoRA Qwen3-0.6B & 0.76 & 0.48 & 0.28 \\
+XGBoost 7-feature & 0.76 & 0.47 & 0.29 \\
+Avg-LogProb only & 0.72 & 0.49 & 0.23 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The end-to-end model achieves 3-class F1 = 0.71 overall but mirrors the family-specificity pattern exactly (Table~\ref{tab:e2e}): same-family F1 = 0.76, cross-family F1 = 0.48.
+The 28pp generalization gap matches XGBoost's 29pp gap.
+The model exhibits substantial overfitting (train F1 = 0.89 vs val F1 = 0.71), learning generator-specific spurious correlations rather than generalizable depth features.
+
+Per-generator breakdown confirms identical structure: Pythia generators achieve 0.75--0.78, while OLMo (0.55) and Qwen (0.46--0.49) remain at or below the handcrafted feature baseline.
+This rules out feature engineering as the bottleneck---the limitation is intrinsic to the depth signal across families.
+
+%==============================================================================
+\section{Discussion}
+
+Our results establish that generation depth estimation faces a fundamental \textbf{family-specificity barrier}.
+The depth-dependent distributional drift that enables classification within one model family (vocabulary impoverishment tracked by TTR/hapax, predictability increase tracked by entropy) manifests at different rates and magnitudes across architecturally distinct families.
+
+Three factors explain cross-family failure:
+(1) Different tokenizers produce incomparable vocabulary diversity trajectories---Qwen's multilingual BPE yields different hapax/TTR dynamics than Pythia's GPT-NeoX tokenizer.
+(2) Training data quality affects mode-collapse speed---OLMo's cleaner Dolma pretraining produces slower depth drift than Pythia's Pile-based training.
+(3) Reference-model entropy is inherently family-biased: Pythia-410M's NLL distribution responds differently to in-family vs out-of-family text, making entropy\_mean essentially a family detector rather than a depth detector for novel generators.
+
+The practical implication is that depth estimation systems would require family-specific calibration or training data from the target generator family---undermining the original goal of provenance-agnostic depth assessment.
+
+%==============================================================================
+\section{Conclusion}
+
+We introduced generation depth estimation as a task and systematically characterized its feasibility boundaries.
+Within-family depth discrimination is achievable at coarse granularity (3-class F1 up to 0.82 for Pythia), but cross-family generalization degrades to 0.45--0.52 for unseen families.
+The limitation is methodology-independent: both handcrafted features and 700M-parameter end-to-end models fail identically at cross-family transfer.
+Finer-grained (5-class) ordinal resolution is not achievable with current approaches (F1 = 0.35).
+
+These negative findings establish empirical boundaries for the nascent task of generation depth estimation and identify family-specificity as the primary obstacle to practical deployment.
+Future work should explore family-adaptive approaches, multi-reference ensembles, or meta-learning strategies to bridge the cross-family gap.
+
+%==============================================================================
+\bibliographystyle{plain}
+\begin{thebibliography}{10}
+
+\bibitem{mitchell2023detectgpt}
+E.~Mitchell, Y.~Lee, A.~Khazatsky, C.~D. Manning, and C.~Finn.
+\newblock DetectGPT: Zero-shot machine-generated text detection using random perturbations.
+\newblock In \emph{ICML}, 2023.
+
+\bibitem{hans2024binoculars}
+A.~Hans, A.~Schwarzschild, V.~Cherepanova, H.~Kazemi, A.~Saha, M.~Goldblum, J.~Geiping, and T.~Goldstein.
+\newblock Spotting LLMs with Binoculars: Zero-shot detection of machine-generated text.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem{alemohammad2023selfconsuming}
+S.~Alemohammad, J.~Casco-Rodriguez, L.~Luber, A.~G. Babaei, D.~Dobriban, R.~Baraniuk, and R.~Ward.
+\newblock Self-consuming generative models go MAD.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem{dohmatob2024modelcollapse}
+E.~Dohmatob, Y.~Feng, P.~Hilton, and J.~Niu.
+\newblock A tale of tails: Model collapse as a change of scaling laws.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem{guo2024curious}
+Z.~Guo, M.~Yang, L.~Huang, D.~Roth, and H.~Ji.
+\newblock Curious decline of linguistic diversity: A large-scale analysis of LLM-generated text.
+\newblock \emph{arXiv preprint arXiv:2311.09807}, 2024.
+
+\bibitem{holtzman2020curious}
+A.~Holtzman, J.~Buys, L.~Du, M.~Forbes, and Y.~Choi.
+\newblock The curious case of neural text degeneration.
+\newblock In \emph{ICLR}, 2020.
+
+\bibitem{bao2024broken}
+G.~Bao, T.~Zhao, and S.~Tong.
+\newblock LLM as broken telephone: Iterative text generation beyond attractor cycles.
+\newblock In \emph{ACL}, 2025.
+
+\bibitem{stamatatos2009survey}
+E.~Stamatatos.
+\newblock A survey of modern authorship attribution methods.
+\newblock \emph{Journal of the American Society for Information Science and Technology}, 60(3):538--556, 2009.
+
+\bibitem{biderman2023pythia}
+S.~Biderman, H.~Schoelkopf, Q.~Anthony, H.~Bradley, K.~O'Brien, E.~Hallahan, M.~A. Khan, S.~Purohit, U.~S. Prashanth, E.~Raff, et~al.
+\newblock Pythia: A suite for analyzing large language models across training and scaling.
+\newblock In \emph{ICML}, 2023.
+
+\bibitem{groeneveld2024olmo}
+D.~Groeneveld, I.~Beltagy, P.~Walsh, A.~Bhagia, R.~Kinney, O.~Tafjord, A.~Jha, H.~Ivison, I.~Magnusson, Y.~Wang, et~al.
+\newblock OLMo: Accelerating the science of language models.
+\newblock In \emph{ACL}, 2024.
+
+\end{thebibliography}
+
+\end{document}

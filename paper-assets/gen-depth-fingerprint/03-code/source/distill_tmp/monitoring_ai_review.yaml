@@ -1,0 +1,27 @@
+paper_key: "monitoring_ai_review"
+title: "Monitoring AI-Modified Content at Scale: A Case Study on the Impact of ChatGPT on AI Conference Peer Reviews"
+venue: "ICML 2024"
+full_text_available: false
+
+research:
+  baselines: ["expert-written reference texts", "AI-generated reference texts"]
+  metrics:
+    - {name: "estimated LLM-modified fraction", direction: "descriptive"}
+  datasets:
+    - {name: "ICLR 2024 peer reviews", size: "unknown"}
+    - {name: "NeurIPS 2023 peer reviews", size: "unknown"}
+    - {name: "CoRL 2023 peer reviews", size: "unknown"}
+    - {name: "EMNLP 2023 peer reviews", size: "unknown"}
+  ablation_dimensions: ["reviewer confidence level", "submission deadline proximity", "rebuttal engagement"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "corpus-level statistical estimation (maximum likelihood)"
+
+positioning:
+  core_claim: "Develops a maximum likelihood approach to estimate the fraction of LLM-modified text in large corpora, finding 6.5-16.9% of AI conference peer reviews are substantially LLM-modified."
+  key_results: "N/A - abstract only"
+  limitations: ["N/A"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,146 @@
+{
+  "qwen3-1.7b-instruct": {
+    "entropy_mean": {
+      "base_ref_rho": 0.4779,
+      "base_ref_rho_p": 0.0,
+      "base_ref_d": 1.9811,
+      "instruct_ref_rho": 0.2206,
+      "instruct_ref_rho_p": 0.0,
+      "instruct_ref_d": 1.0218,
+      "rho_delta": -0.2573,
+      "d_delta": -0.9592
+    },
+    "entropy_std": {
+      "base_ref_rho": 0.3009,
+      "base_ref_rho_p": 0.0,
+      "base_ref_d": 1.0697,
+      "instruct_ref_rho": 0.2991,
+      "instruct_ref_rho_p": 0.0,
+      "instruct_ref_d": 1.5086,
+      "rho_delta": -0.0018,
+      "d_delta": 0.4389
+    },
+    "entropy_max": {
+      "base_ref_rho": 0.1874,
+      "base_ref_rho_p": 0.0,
+      "base_ref_d": 0.5143,
+      "instruct_ref_rho": -0.1345,
+      "instruct_ref_rho_p": 0.0,
+      "instruct_ref_d": 0.0791,
+      "rho_delta": -0.3219,
+      "d_delta": -0.4353
+    },
+    "entropy_min": {
+      "base_ref_rho": 0.337,
+      "base_ref_rho_p": 0.0,
+      "base_ref_d": 0.4836,
+      "instruct_ref_rho": 0.2834,
+      "instruct_ref_rho_p": 0.0,
+      "instruct_ref_d": 0.3285,
+      "rho_delta": -0.0536,
+      "d_delta": -0.1551
+    },
+    "tail_decay": {
+      "base_ref_rho": 0.1831,
+      "base_ref_rho_p": 0.0,
+      "base_ref_d": 0.4599,
+      "instruct_ref_rho": 0.1169,
+      "instruct_ref_rho_p": 0.0,
+      "instruct_ref_d": 0.4489,
+      "rho_delta": -0.0662,
+      "d_delta": -0.011
+    },
+    "ttr": {
+      "base_ref_rho": 0.4801,
+      "base_ref_rho_p": 0.0,
+      "base_ref_d": 1.7468,
+      "instruct_ref_rho": 0.4801,
+      "instruct_ref_rho_p": 0.0,
+      "instruct_ref_d": 1.7468,
+      "rho_delta": 0.0,
+      "d_delta": 0.0
+    },
+    "hapax_ratio": {
+      "base_ref_rho": 0.4766,
+      "base_ref_rho_p": 0.0,
+      "base_ref_d": 1.6803,
+      "instruct_ref_rho": 0.4766,
+      "instruct_ref_rho_p": 0.0,
+      "instruct_ref_d": 1.6803,
+      "rho_delta": 0.0,
+      "d_delta": 0.0
+    }
+  },
+  "olmo-2-0425-1b-instruct": {
+    "entropy_mean": {
+      "base_ref_rho": 0.4822,
+      "base_ref_rho_p": 0.0,
+      "base_ref_d": 1.3295,
+      "instruct_ref_rho": -0.113,
+      "instruct_ref_rho_p": 0.0,
+      "instruct_ref_d": -0.0173,
+      "rho_delta": -0.5952,
+      "d_delta": -1.3122
+    },
+    "entropy_std": {
+      "base_ref_rho": 0.2955,
+      "base_ref_rho_p": 0.0,
+      "base_ref_d": 0.7574,
+      "instruct_ref_rho": 0.0155,
+      "instruct_ref_rho_p": 0.3012,
+      "instruct_ref_d": 0.1592,
+      "rho_delta": -0.28,
+      "d_delta": -0.5982
+    },
+    "entropy_max": {
+      "base_ref_rho": 0.3055,
+      "base_ref_rho_p": 0.0,
+      "base_ref_d": 0.8094,
+      "instruct_ref_rho": 0.1514,
+      "instruct_ref_rho_p": 0.0,
+      "instruct_ref_d": 0.6104,
+      "rho_delta": -0.1541,
+      "d_delta": -0.199
+    },
+    "entropy_min": {
+      "base_ref_rho": 0.0796,
+      "base_ref_rho_p": 0.0,
+      "base_ref_d": 0.1698,
+      "instruct_ref_rho": -0.0342,
+      "instruct_ref_rho_p": 0.0228,
+      "instruct_ref_d": 0.1413,
+      "rho_delta": -0.1138,
+      "d_delta": -0.0285
+    },
+    "tail_decay": {
+      "base_ref_rho": 0.2276,
+      "base_ref_rho_p": 0.0,
+      "base_ref_d": 0.5999,
+      "instruct_ref_rho": -0.0103,
+      "instruct_ref_rho_p": 0.4952,
+      "instruct_ref_d": 0.0585,
+      "rho_delta": -0.2378,
+      "d_delta": -0.5414
+    },
+    "ttr": {
+      "base_ref_rho": 0.0057,
+      "base_ref_rho_p": 0.7046,
+      "base_ref_d": 0.1339,
+      "instruct_ref_rho": 0.0057,
+      "instruct_ref_rho_p": 0.7046,
+      "instruct_ref_d": 0.1339,
+      "rho_delta": 0.0,
+      "d_delta": 0.0
+    },
+    "hapax_ratio": {
+      "base_ref_rho": 0.0253,
+      "base_ref_rho_p": 0.0928,
+      "base_ref_d": 0.1408,
+      "instruct_ref_rho": 0.0253,
+      "instruct_ref_rho_p": 0.0928,
+      "instruct_ref_d": 0.1408,
+      "rho_delta": 0.0,
+      "d_delta": 0.0
+    }
+  }
+}

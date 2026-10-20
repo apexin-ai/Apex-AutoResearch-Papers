@@ -1,0 +1,28 @@
+To verify that the seven retained features are not an arbitrary subset, we screened six additional NLL-distributional statistics as candidate features: median, 90th percentile (p90), interquartile range (IQR), coefficient of variation (CV), skewness, and kurtosis.
+Table~\ref{tab:candidate-features} reports their DDR coordinates, classification impact, and correlation with retained features.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Candidate feature screening. All six candidates fall in the drifting DDR zone and correlate strongly ($|r| > 0.65$) with existing features. Adding any combination to the baseline degrades or leaves unchanged LOGO 3-class F1; LOFO $\Delta > 0$ indicates that removing the candidate \emph{improves} classification.}
+\label{tab:candidate-features}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lccccl}
+\toprule
+\textbf{Candidate} & $|\rho|$ & $d$ & \textbf{LOFO} $\Delta$\textbf{F1} & $|r|_{\max}$ & \textbf{Most correlated} \\
+\midrule
+median    & 0.685 & 0.794 & $+$0.008 & 0.960 & entropy\_mean \\
+p90       & 0.693 & 0.960 & $+$0.000 & 0.937 & entropy\_mean \\
+IQR       & 0.708 & 1.079 & $+$0.007 & 0.908 & entropy\_std \\
+CV        & 0.633 & 0.980 & $-$0.000 & 0.761 & entropy\_mean \\
+skewness  & 0.651 & 0.940 & $+$0.010 & 0.780 & entropy\_mean \\
+kurtosis  & 0.635 & 0.769 & $-$0.003 & 0.650 & entropy\_mean \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\looseness=-1 All six candidates occupy the drifting zone ($|\rho| > 0.63$, $d > 0.77$), overlapping with entropy mean, TTR, and hapax ratio; none introduces a new axis of depth-dependent variation.
+Three candidates (median, $r{=}0.96$; p90, $r{=}0.94$; IQR, $r{=}0.91$) are near-perfect linear proxies of existing features.
+Adding all six to the 6-feature baseline\footnote{Tail decay requires full-vocabulary logits unavailable in the token-NLL subset used for this analysis; we report 6-feature baselines for fair comparison.} reduces 3-class LOGO F1 from 0.733 to 0.722, consistent with overfitting from redundant inputs.
+LOFO analysis on the extended 12-feature set confirms that removing skewness ($+$0.010), median ($+$0.008), or IQR ($+$0.007) \emph{improves} classification; these features inject noise rather than signal.
+The retained seven features span three complementary DDR zones (drifting, intermediate, near-stationary) and two modalities (reference-model NLL, surface lexical diversity); additional distributional statistics provide no incremental information.

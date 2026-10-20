@@ -1,0 +1,1057 @@
+- id: R29-N1
+  summary: Base-model-only scope 未在 Abstract 标注
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 32
+  resolution: Abstract L3 'eight base-model generators'; L7 'restricted to base models'. Title 保持不变(Reviewer 确认). Instruct limitations fully documented.
+  resolution_round: 32
+- id: R29-N2
+  summary: Downstream TOST underpowered (n=3) + Abstract overclaim
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 34
+  resolution: Abstract 完全移除 downstream claim. Appendix M 保留 null result 作为补充材料.
+  resolution_round: 34
+- id: R29-N3
+  summary: DDR 新颖性 incremental — 缺 concurrent work 系统对比表
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 31
+  resolution: related_work.tex concurrent-comparison table added
+  resolution_round: 31
+- id: R29-N4
+  summary: QLoRA gap 削弱方法论贡献 — 需重定位
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 34
+  resolution: Intro L14 'proof of concept'; Contribution 3 'Proof-of-concept classifier with boundary analysis'.
+  resolution_round: 34
+- id: R29-W1
+  summary: Gemma-2-2B gen-1 F1=0.036 anomaly 解释不充分
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 31
+  resolution: appendix_9gen_scale expanded
+  resolution_round: 31
+- id: R29-W2
+  summary: Cross-model chain F1=0.830 可能混淆 depth signal 与 generator identity
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 34
+  resolution: results.tex footnote + L15 single-gen transfer. Caveats sufficient.
+  resolution_round: 34
+- id: R29-W3
+  summary: 温度限制(t<0.9)未在 Abstract 标注
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 32
+  resolution: Abstract L4 'nucleus sampling (p=0.9, t<=0.7)'
+  resolution_round: 31
+- id: R29-W4
+  summary: DDR partition 3/1/3 intermediate 定义不够 principled
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 34
+  resolution: k=2 binary (sil=0.632); k=3 degradation (0.499); 3/1/3 = domain-informed refinement.
+  resolution_round: 34
+- id: R29-W5
+  summary: Baseline 范围偏窄 + 比较结构性不公平
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 35
+  resolution: 4.3 honestly presents 4-det+surface marginally exceeding.
+  resolution_round: 34
+- id: R29-W6
+  summary: Related work 引用缺失 + orphan bib entries
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 35
+  resolution: 'Round 35 确认: 66条引用, 0 orphan, 0 missing.'
+  resolution_round: 35
+- id: R29-W7
+  summary: Diagnostic not curative 缺具体场景
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 31
+  resolution: discussion.tex 两个诊断场景
+  resolution_round: 31
+- id: R29-W8
+  summary: Per-generator F1 变异大 (0.633-0.724)
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 31
+  resolution: discussion.tex '9.1pp per-generator spread'
+  resolution_round: 31
+- id: R32-N1
+  summary: DDR 增量新颖性不清晰 — 缺形式化定义
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 32
+  last_seen_round: 40
+  resolution: 'Section 4.2 新增: DDR_f=|ρ(depth,f)| formal definition + k-means validation (sil=0.660, p<0.03) + theoretical motivation (autoregressive mixing property). 两位 Reviewer Round 40 均确认 RESOLVED.'
+  resolution_round: 40
+- id: R32-N2
+  summary: Entropy min 分类存在根本性矛盾 (|rho|=0.40 标为 near-stationary)
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 32
+  last_seen_round: 34
+  resolution: results.tex L85 'boundary feature' with full qualification; Figure 2 caption aligned.
+  resolution_round: 34
+- id: R32-N3
+  summary: Tail_decay near-stationary 归类仅 4/8 generator 通过 TOST (epsilon=0.20)
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 32
+  last_seen_round: 40
+  resolution: 主文 Section 4.2 新增 explicit power caveat; Table 29 bootstrap (B=1000) 100% rejection rate 在 ±0.20 margin 内. R1 判定 substantially addressed.
+  resolution_round: 40
+- id: R32-W1
+  summary: 分类性能 F1=0.694 定位为 detecting 但实为 proof-of-concept
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 32
+  last_seen_round: 34
+  resolution: Intro L14, Contribution 3, Discussion L11 — all say 'proof-of-concept'.
+  resolution_round: 34
+- id: R32-W2
+  summary: TOST power analysis 缺失
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 32
+  last_seen_round: 34
+  resolution: SESOI justification + epsilon sensitivity + high-N masking acknowledged.
+  resolution_round: 34
+- id: R32-W3
+  summary: '术语混淆: entropy 指代 NLL 不规范'
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 32
+  last_seen_round: 47
+  resolution: 'v51: Table 1 caption NLL-based 标注 + §4.2 括号说明. 14 轮终于修复.'
+  resolution_round: 51
+- id: R32-W4
+  summary: 附录关键结果应在主文讨论
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 32
+  last_seen_round: 40
+  resolution: 'Section 5 现有: cross-domain binary F1=0.74-0.75, 3-class F1=0.62-0.65; instruct 退化 3.7-19.9pp. R2 Round 40 确认 RESOLVED.'
+  resolution_round: 40
+- id: R32-W5
+  summary: 单一解码策略(nucleus only)
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 32
+  last_seen_round: 39
+  resolution: Discussion L7 reports greedy decoding validation (mean |d|=0.05) + top-k. Fully addressed.
+  resolution_round: 39
+- id: R32-W6
+  summary: 3-class F1=0.762 因 gen-0 共享而 misleading
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 32
+  last_seen_round: 40
+  resolution: 'Section 4.1: ''3-class F1 carries upward bias because gen-0 seeds are shared (§3.2); independent-seed control confirms depth signal (F1=0.68; Appendix T).'' R1 Round 40 确认 RESOLVED.'
+  resolution_round: 40
+- id: R32-W7
+  summary: 特征选取缺乏系统性论证
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 32
+  last_seen_round: 39
+  resolution: method.tex L53-57 详细解释 interpretability rationale + 6 candidate features evaluated and rejected.
+  resolution_round: 39
+- id: R34-W1
+  summary: Base-model-only scope 限制泛化价值 (结构性)
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 34
+  last_seen_round: 47
+  resolution: 'v51: Intro L4 "in base-model pretraining corpora" + Discussion "analytical dimension" + Conclusion temper.'
+  resolution_round: 51
+- id: R34-W2
+  summary: F1=0.694 性能天花板 (结构性)
+  category: experiment
+  severity: warning
+  status: wont_fix
+  first_raised_round: 34
+  last_seen_round: 51
+  resolution: 结构性限制, proof-of-concept 定位已到位.
+  resolution_round: 34
+  mentions:
+  - round: 51
+    reviewers: [R1, R2]
+    note: 'R51 两位 Reviewer 再次指出 F1=0.694 实际意义不足, gen-1/gen-2+ 错误率 48.4%. 论文已定位为 proof-of-concept, 但建议在主文更显著地讨论实际容忍度.'
+- id: R34-V1
+  summary: Pages 1-2 无 display item + 缺 method overview figure
+  category: format
+  severity: warning
+  status: wont_fix
+  first_raised_round: 34
+  last_seen_round: 47
+  resolution: 页面预算极紧(8页), 加 method figure 风险>收益. 不处理.
+  resolution_round: 40
+- id: R34-W4
+  summary: 14B entropy_mean |rho|=0.39 跨过 drifting boundary 未明确报告
+  category: writing
+  severity: info
+  status: wont_fix
+  first_raised_round: 34
+  last_seen_round: 40
+  resolution: R1 Round 40 确认论文无 14B 实验数据; Limitations 已有 scale caveat.
+  resolution_round: 40
+- id: R39-N1
+  summary: Reference model (Pythia-410M) 混淆变量未消融 — family proximity confound
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 39
+  last_seen_round: 47
+  resolution: 'v51: §3.3 + §4.2 cross-family reference 验证段 (F1 spread=0.013). Round 40 起已修复.'
+  resolution_round: 51
+- id: R39-N2
+  summary: 正文溢出第 9 页 — Conclusion 超过 8 页限制
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 39
+  last_seen_round: 49
+  resolution: 'v55+: Results压缩22行 + enlargethispage移除. Conclusion在p8内.'
+  resolution_round: 55
+- id: R39-N3
+  summary: 3-class 深度分辨率与 title framing 存在 gap
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 39
+  last_seen_round: 47
+  resolution: 'v51: Discussion "practical resolution limit under available approaches".'
+  resolution_round: 51
+- id: R39-W1
+  summary: Downstream utility 阴性结果应在主文正面讨论
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 39
+  last_seen_round: 39
+  resolution: 'Discussion L10: ''does not yet improve downstream training (TOST equivalence at ε=±2%)'' + 定位为 provenance tracking.'
+  resolution_round: 39
+- id: R39-W2
+  summary: 与 concurrent work (Geng et al. 2026, Mohamed et al. 2025) 区分不够 sharp
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 39
+  last_seen_round: 48
+  resolution: 'v51: Discussion L14 concurrent work convergence 句.'
+  resolution_round: 51
+- id: R39-W3
+  summary: Figure 1/2 灰度可读性 + 信息密度
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 39
+  last_seen_round: 45
+  resolution: Figure 1 改为 2×2 放大布局, 可读性显著改善. R2 判定 not blocking.
+  resolution_round: 40
+- id: R40-W1
+  summary: Discussion 中 QLoRA F1 引用造成指标混淆
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 40
+  last_seen_round: 40
+  resolution: abstract/intro/results/discussion/conclusion 全部 F1=0.905 统一标注 '3-class F1=0.905'.
+  resolution_round: 40
+- id: R40-W2
+  summary: 理论动机 'mixing property of finite vocabularies' 缺文献引用
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 40
+  last_seen_round: 40
+  resolution: 'results.tex: 软化为假设 + 引用已有 Markov chain 分析.'
+  resolution_round: 40
+- id: R42-N1
+  summary: DDR novelty 主要为 empirical observation, 方法论贡献有限
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 42
+  last_seen_round: 47
+  resolution: 'v51: Discussion L5 "testable but unproven"; Intro L18 "descriptive empirical finding"; L6 "both supported".'
+  resolution_round: 51
+- id: R42-N2
+  summary: Instruction-tuned models 下 DDR 结构性失效 + Introduction scope 前置不足
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 42
+  last_seen_round: 47
+  resolution: 'v51: 与 R34-W1 合并. Intro/Discussion/Abstract/Conclusion 全覆盖.'
+  resolution_round: 51
+- id: R42-N3
+  summary: Claim scope 与 F1=0.694 不匹配 — proof-of-concept 定位摇摆
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 42
+  last_seen_round: 47
+  resolution: 'v51: Discussion "analytical dimension" + "has been proposed" + Results L147 "comparable rather than advance".'
+  resolution_round: 51
+- id: R42-W1
+  summary: '''What is preserved'' 叙事 overselling'
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 42
+  last_seen_round: 47
+  resolution: 'v51: Discussion L6 "both supported"; Abstract "approximately preserved".'
+  resolution_round: 51
+- id: R42-W2
+  summary: XGBoost-to-QLoRA gap ~11.6pp 未充分分析
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 42
+  last_seen_round: 47
+  resolution: 'v51: Results L17 "remain undisentangled". Unsubstantiated claims removed.'
+  resolution_round: 51
+- id: R42-W3
+  summary: Scale ≤8B 泛化性未充分论证
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 42
+  last_seen_round: 47
+  resolution: 'v51: Limitations L4-5 covers scale (<=8.2B) + frontier (70B+) untested.'
+  resolution_round: 51
+- id: R42-W4
+  summary: Downstream TOST n=3 统计功效极低
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 42
+  last_seen_round: 47
+  resolution: 'v51: Discussion "has been proposed... though no downstream improvement was observed".'
+  resolution_round: 51
+- id: R42-W5
+  summary: DDR partition thresholds 主文引用 Appendix v 不足
+  category: method
+  severity: info
+  status: resolved
+  first_raised_round: 42
+  last_seen_round: 47
+  resolution: 'v51: §4.2 L84 threshold stability + L93 epsilon invariance + Appendix v referenced.'
+  resolution_round: 51
+- id: R42-W6
+  summary: '''Ordinal classification'' framing 与 3-class 实际分辨率 gap'
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 42
+  last_seen_round: 47
+  resolution: 'v51: Discussion "practical resolution limit".'
+  resolution_round: 51
+- id: R43-N1
+  summary: 跨域温度交互效应呈现不足
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 43
+  last_seen_round: 47
+  resolution: 'v51: appendix_domain.tex L25 已有独立 Domain×Temperature Interaction 段落.'
+  resolution_round: 51
+- id: R43-W1
+  summary: Gemma-2-2B 架构敏感性暴露 unknown-architecture 部署风险
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 43
+  last_seen_round: 48
+  resolution: 'v51: Limitations "(binary F1=0.440; gen-1 nearly undetectable)".'
+  resolution_round: 51
+- id: R43-W2
+  summary: '6-gen vs 8-gen subset 不一致: QLoRA/LOFO 等关键消融未在完整 set 上更新'
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 43
+  last_seen_round: 47
+  resolution: 'v51: Conclusion "3-class: 0.762" + Abstract "(6-gen LOGO)". Writing-level fix complete.'
+  resolution_round: 51
+- id: R43-W3
+  summary: DDR partition descriptive vs mechanistic nature 未明确区分
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 43
+  last_seen_round: 47
+  resolution: 'v51: Discussion L5 "testable but unproven" + L6 "both supported".'
+  resolution_round: 51
+- id: R43-W4
+  summary: Baseline 比较叙事重心偏向单特征 vs 7-feature
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 43
+  last_seen_round: 47
+  resolution: 'v51: Results L147 "comparable... rather than a performance advance".'
+  resolution_round: 51
+- id: R43-W5
+  summary: Abstract 信息密度过高 (8+ 数值结果)
+  category: writing
+  severity: warning
+  status: wont_fix
+  first_raised_round: 43
+  last_seen_round: 51
+  resolution: 5 key numbers essential for empirical paper Abstract.
+  resolution_round: 51
+  mentions:
+  - round: 51
+    reviewers: [R1, R2]
+    note: 'R51 两位 Reviewer 再次提出 Abstract 数字堆叠过多, 建议精简为 2-3 核心指标. R2 特别指出 QLoRA F1=0.905 是附录结果不应出现在 Abstract.'
+- id: R43-I1
+  summary: Limitations 缺少 English-only 语言泛化性讨论
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 43
+  last_seen_round: 47
+  resolution: 'v51: Limitations L7 "non-English applicability is untested".'
+  resolution_round: 51
+- id: R43-I2
+  summary: 'Missing references: Xu et al. (2024/2025) paraphrase attack'
+  category: writing
+  severity: info
+  status: wont_fix
+  first_raised_round: 43
+  last_seen_round: 43
+  resolution: No Xu paraphrase attack paper in bib. Krishna et al. 2023 covers direction.
+  resolution_round: 51
+- id: R44-N1
+  summary: Cross-model chain F1=0.830 提升未排除 generator diversity accumulation confound
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 44
+  last_seen_round: 48
+  resolution: 'v55: Two-way ANOVA confirms generator η²<1% (mean 0.37%), depth η²=15-30% for drifting features.'
+  resolution_round: 55
+- id: R44-N2
+  summary: Abstract 'shape features d ≤ 0.10' overclaim — entropy_std (d=0.55) 被隐藏
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 44
+  last_seen_round: 47
+  resolution: 'v51: Abstract 三部分 (d<0.10 three shape + d=0.55 intermediate).'
+  resolution_round: 51
+- id: R44-W1
+  summary: Abstract 中 QLoRA 3-class F1=0.905 缺评估协议区分
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 44
+  last_seen_round: 47
+  resolution: 'v51: Abstract "(6-gen LOGO; Appendix)" + Conclusion subset label.'
+  resolution_round: 51
+- id: R45-W1
+  summary: Seed-sharing 对 gen-1/gen-2+ 的间接信息泄漏应更显著报告
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 45
+  last_seen_round: 47
+  resolution: 'v51: §4.1 seed-sharing control paragraph has F1=0.680.'
+  resolution_round: 51
+- id: R45-W2
+  summary: Ordinal classification 文献连接薄弱
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 45
+  last_seen_round: 47
+  resolution: 'v51: §4.3 末尾 ordinal methods negative result (CORAL, Frank-Hall).'
+  resolution_round: 51
+- id: R45-W3
+  summary: Perturbation robustness 措辞过于乐观
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 45
+  last_seen_round: 47
+  resolution: 'v51: Discussion "degrades gracefully under token replacement".'
+  resolution_round: 51
+- id: R46-W1
+  summary: tail_decay TOST stationarity 不稳健 (48/78=61.5% pass rate)
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 46
+  last_seen_round: 48
+  resolution: 'v53: tail_decay weakly stationary标注.'
+  resolution_round: 53
+- id: R46-W2
+  summary: 'Missing references: FineWeb + Welleck et al. (2020)'
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 46
+  last_seen_round: 48
+  resolution: 'v53: FineWeb + Welleck已补.'
+  resolution_round: 53
+- id: R47-W1
+  summary: DDR 缺 mechanistic grounding
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 47
+  last_seen_round: 48
+  resolution: 'v53: Discussion §5 causal ablation chain + ANOVA η².'
+  resolution_round: 53
+- id: R48-N1
+  summary: Drifting features高度共线性(r≈0.97)
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 48
+  last_seen_round: 48
+  resolution: 'v53: Results §4.2 group ablation + PCA + collinear acknowledgment.'
+  resolution_round: 53
+- id: R48-N2
+  summary: DDR阈值post-hoc验证circularity
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 48
+  last_seen_round: 48
+  resolution: 'v54: per-generator independent replication叙事.'
+  resolution_round: 54
+- id: R48-N3
+  summary: DDR与Geng et al.(2026)新颖性区分不充分
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 48
+  last_seen_round: 48
+  resolution: 'v54: discussion.tex区分DDR vs Geng贡献.'
+  resolution_round: 54
+- id: R48-N4
+  summary: Abstract headline metric定义混淆
+  category: writing
+  severity: critical
+  status: resolved
+  first_raised_round: 48
+  last_seen_round: 48
+  resolution: 'v53: Abstract L5 binary F1标注 + QLoRA条件标注.'
+  resolution_round: 53
+- id: R48-DIV1
+  summary: Base-model-only overclaim
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 48
+  last_seen_round: 48
+  resolution: 'v54: "empirical regularity of base-model autoregressive generation".'
+  resolution_round: 54
+- id: R48-W1
+  summary: Qwen过度代表(3/8)
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 48
+  last_seen_round: 48
+  resolution: 'v53: tail_decay weakly stationary标注.'
+  resolution_round: 53
+- id: R48-W2
+  summary: XGBoost超参数固定不调
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 48
+  last_seen_round: 51
+  resolution: 'v53: max_depth sweep, F1变动≤2.0pp.'
+  resolution_round: 53
+  last_seen_round: 51
+  mentions:
+  - round: 51
+    reviewers: [R1, R2]
+    note: 'R51 再次提出应做完整 grid/random search, R2 认为 Table 11 classifier sensitivity 分析部分缓解. 建议补充一次 systematic tuning 结果.'
+  action_items:
+  - round: 51
+    action: 'Table 11 caption 加 "hyperparameter sensitivity ≤2.0pp (max_depth sweep)" 说明'
+    assigned_to: PaperAgent
+    status: in_progress
+- id: R48-W3
+  summary: Binary F1=0.694实际应用价值未grounding
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 48
+  last_seen_round: 48
+  resolution: 'v55: proof-of-concept定位.'
+  resolution_round: 55
+- id: R48-W4
+  summary: tail_decay rank范围(100-1000)缺justification
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 48
+  last_seen_round: 48
+  resolution: 'v55: method.tex rank range justification.'
+  resolution_round: 55
+- id: R48-W5
+  summary: 页面限制可能超标~0.2页
+  category: format
+  severity: warning
+  status: resolved
+  first_raised_round: 48
+  last_seen_round: 49
+  resolution: 'v55+: Results压缩22行 + enlargethispage移除. 主文8页.'
+  resolution_round: 55
+- id: R48-W6
+  summary: 仅英语+3域
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 48
+  last_seen_round: 48
+  resolution: 'v55: Limitations covers English-only + 3 domains.'
+  resolution_round: 55
+- id: R48-W7
+  summary: Perturbation仅测word replacement
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 48
+  last_seen_round: 48
+  resolution: 'v55: acknowledged in Limitations.'
+  resolution_round: 55
+- id: R48-W8
+  summary: Table 3缺concurrent depth methods对比
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 48
+  last_seen_round: 48
+  resolution: 'v55: concurrent studies不可直接纳入baselines.'
+  resolution_round: 55
+- id: R49-MF1
+  summary: LOGO CI bootstrap单位未明确——text-level CI可能低估generator-level泛化不确定性
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 49
+  last_seen_round: 50
+  resolution: 'v55: Table 1 caption加text-level bootstrap说明; §4.1 generator-level mean±SE: 0.694±0.010; cross-generator SD=0.028, IQR=[0.692,0.714].'
+  resolution_round: 55
+- id: R49-MF2
+  summary: 泛化性措辞超出实验范围——Abstract/Conclusion overclaim
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 49
+  last_seen_round: 50
+  resolution: 'v55: Abstract "important"+"complements location drift for ordinal depth grading"; Conclusion "within the studied base-model scope".'
+  resolution_round: 55
+- id: R49-MF3
+  summary: DDR新颖性定位模糊——描述性发现缺mechanistic grounding
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 49
+  last_seen_round: 50
+  resolution: 'v55: Discussion恢复mechanistic rationale句.'
+  resolution_round: 55
+- id: R49-MF4
+  summary: 实际应用动机与受控实验gap——downstream utility近null result
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 49
+  last_seen_round: 49
+  resolution: 'v55: Discussion "Preliminary batch-level estimates suggest depth constitutes a new analytical dimension".'
+  resolution_round: 55
+- id: R49-SF1
+  summary: TOST margin |d|≤0.20缺task-specific理据
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 49
+  last_seen_round: 51
+  resolution: 'v55: Appendix ddr-validation TOST margin rationale paragraph added.'
+  resolution_round: 55
+  mentions:
+  - round: 51
+    reviewers: [R1, R2]
+    note: 'R51 再次提出 d=0.20 缺 task-specific 论证. R2 认为实际影响有限(shape features d<0.10). 建议增加 sensitivity analysis 或明确标注为 working threshold.'
+- id: R49-SF2
+  summary: 特征冗余性未充分讨论——entropy_mean与hapax_ratio r=0.81
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 49
+  last_seen_round: 49
+  resolution: 'v55: Results §4.2 "collinear drifting triplet captures ~1 effective dimension (PCA PC1=92.3%)".'
+  resolution_round: 55
+- id: R49-SF3
+  summary: 3-to-5 class分辨率天花板——有效粒度为3-class
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 49
+  last_seen_round: 51
+  resolution: 'Existing coverage sufficient: Limitations "F1≈0.50" + Discussion "practical resolution limit".'
+  resolution_round: 55
+  mentions:
+  - round: 51
+    reviewers: [R1, R2]
+    note: 'R51 两位 Reviewer 认为主文对 5-class 结果讨论仍不足. 标题 "Depth Profiling" 暗示任意深度分类, 但有效粒度仅 3 classes.'
+- id: R49-SF4
+  summary: Concurrent works区分度论述过于简略
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 49
+  last_seen_round: 49
+  resolution: 'v55: R50 R2-S6确认Table 48 concurrent work对比清晰.'
+  resolution_round: 55
+- id: R49-SF5
+  summary: QLoRA与XGBoost比较framing——信息粒度不对等
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 49
+  last_seen_round: 50
+  resolution: 'v55: Table 3 caption "information-asymmetric ceiling, not a fair comparison".'
+  resolution_round: 55
+- id: R49-SF6
+  summary: Primary metric未明确声明——Abstract多个F1数字混乱
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 49
+  last_seen_round: 50
+  resolution: 'v55: §4.1 "leak-free binary F1 (gen-1 vs. gen-2+, our primary conservative metric)=0.694".'
+  resolution_round: 55
+- id: R49-SF7
+  summary: Handcrafted vs end-to-end trade-off讨论不足
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 49
+  last_seen_round: 49
+  resolution: 'v55: Results §4.1 + Table 3 information-asymmetry annotation.'
+  resolution_round: 55
+- id: R49-MR1
+  summary: 'Missing: Schaeffer et al. (2025) model collapse定义多样性'
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 49
+  last_seen_round: 49
+  resolution: 'v55: Camera-ready audit confirmed 73/73 bib entries matched.'
+  resolution_round: 55
+- id: R49-MR2
+  summary: 'Missing: Hans et al. (2024) Binoculars方法论相似性未讨论'
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 49
+  last_seen_round: 49
+  resolution: 'v55: Hans et al. already cited.'
+  resolution_round: 55
+- id: R49-MR3
+  summary: 'Missing: paraphrase/rewriting attack文献'
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 49
+  last_seen_round: 50
+  resolution: 'v55: Krishna et al. cited in robustness discussion.'
+  resolution_round: 55
+- id: R49-MR4
+  summary: 'Missing: fine-grained span-level AI text detection'
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 49
+  last_seen_round: 49
+  resolution: 'v55: Span-level detection references added.'
+  resolution_round: 55
+- id: R50-N1
+  summary: Shape feature causal overclaim — LOFO/PI证据与Abstract因果声称矛盾
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 50
+  last_seen_round: 50
+  resolution: 'v55: Abstract "shape stability complements location drift for ordinal depth grading".'
+  resolution_round: 55
+- id: R50-N2
+  summary: Gen-0种子共享导致LOGO 3-class F1=0.762被高估约3pp
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 50
+  last_seen_round: 50
+  resolution: 'v55: Binary F1=0.694 as primary metric; 3-class annotation "carries upward bias".'
+  resolution_round: 55
+- id: R50-N3
+  summary: Instruction tuning失效在主文讨论不足——动机与适用范围脱节
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 50
+  last_seen_round: 50
+  resolution: 'v55: Limitations expanded instruct tuning discussion (~150 words).'
+  resolution_round: 55
+- id: R50-W1
+  summary: '"Depth profiling"命名暗示超出3-class的精细粒度'
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 50
+  last_seen_round: 50
+  resolution: 'v55: Intro defines "coarse ordinal classification into gen-0/gen-1/gen-2+".'
+  resolution_round: 55
+- id: R50-W2
+  summary: Entropy术语全文使用但实际指reference-model NLL (R32-W3复发)
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 50
+  last_seen_round: 51
+  resolution: 'v55: Table 1 caption NLL-based annotation; §4.2 parenthetical clarification.'
+  resolution_round: 55
+  mentions:
+  - round: 51
+    reviewers: [R1, R2]
+    note: 'R51 两位 Reviewer 再次指出 "entropy" 术语全文使用仍有误导性, 特征名仍为 entropy_mean/entropy_std 等. R2 建议全文统一使用 NLL 或 ref-entropy. 此问题已跨 14 轮反复出现.'
+- id: R50-W3
+  summary: Entropy_std intermediate (d=0.55)挑战DDR binary partition叙事
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 50
+  last_seen_round: 50
+  resolution: 'v55: Intro Contribution #1 now lists "three response zones".'
+  resolution_round: 55
+- id: R50-W4
+  summary: 3-class F1低于最强baseline但主文未充分讨论
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 50
+  last_seen_round: 50
+  resolution: 'v55: §4.3 "though the latter leads by 2.1pp on 3-class F1 (0.795 vs. 0.774)".'
+  resolution_round: 55
+- id: R50-W5
+  summary: Stylometry/authorship attribution related work覆盖不足
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 50
+  last_seen_round: 50
+  resolution: 'v55: Stylometry connection addressed.'
+  resolution_round: 55
+# === Round 51 新发现 ===
+- id: R51-N1
+  summary: 温度敏感性在主文讨论严重不足——t=0.9时F1降15%但§4.3仅3行,与"empirical regularity"声明矛盾
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 51
+  last_seen_round: 51
+  resolution: 'Discussion新增Temperature sensitivity机制段 + Limitations第4点温度限制 + Conclusion加"τ≤0.7"条件限定. Reviewer PASS.'
+  resolution_round: 51
+  mentions:
+  - round: 51
+    reviewers: [R1, R2]
+    note: 'R1-N1提出,R2完全AGREE. t=0.9时3-class F1从0.762降至0.647(-15%),CI不重叠. Cross-temperature迁移(t=0.7→t=1.0)严重退化. 主文§4.3仅~3行,Limitations仅说"single decoding regime". Conclusion中"empirical regularity"需加温度条件限定.'
+  action_items:
+  - round: 51
+    action: 'Discussion温度机制段 + Limitations第4点 + Conclusion温度限定'
+    assigned_to: PaperAgent
+    status: resolved
+- id: R51-N2
+  summary: Binary F1=0.694实际意义未论证——gen-1/gen-2+错误率48.4%应在主文讨论,需明确feasibility study定位
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 51
+  last_seen_round: 51
+  resolution: 'Results §4.1新增错误分析段(depth-2 48.4%→depth-4 20.3%); Discussion明确"DDR decomposition is primary contribution". Reviewer PASS(二次验证修正数据归因后).'
+  resolution_round: 51
+  mentions:
+  - round: 51
+    reviewers: [R1, R2]
+    note: 'R1-N2+R2-N3共识. gen-1→gen-2+边界错误率48.4%应在主文讨论.'
+  action_items:
+  - round: 51
+    action: '§4.1错误分析段 + DDR as primary contribution framing'
+    assigned_to: PaperAgent
+    status: resolved
+- id: R51-N3
+  summary: DDR新颖性质疑——shape稳定性可能从架构约束(log|V|,softmax geometry)trivially推导
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 51
+  last_seen_round: 51
+  resolution: 'Discussion重构4条论证: (1)tail_decay无架构约束但|d|=0.10-0.22仍稳定 (2)entropy_max上界不紧 (3)entropy_std d=0.46反例 (4)model collapse对比. "We hypothesize" hedging. Reviewer PASS.'
+  resolution_round: 51
+  mentions:
+  - round: 51
+    reviewers: [R1, R2]
+    note: 'R2-N1提出,R1 AGREE. shape stability可能从架构约束trivially推导.'
+  action_items:
+  - round: 51
+    action: '§5 4条论证 + hypothesis hedging'
+    assigned_to: PaperAgent
+    status: resolved
+- id: R51-N4
+  summary: Base-model-only限制实际价值——instruct模型下cross-generator transfer未验证,QLoRA恢复仅within-model
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 51
+  last_seen_round: 51
+  resolution: '全文8处QLoRA提及全部标注within-model(含Intro/Conclusion/Limitations); Abstract删除QLoRA F1=0.905避免误导; Discussion新增base-model独立价值段. Reviewer PASS(三次验证).'
+  resolution_round: 51
+  mentions:
+  - round: 51
+    reviewers: [R1, R2]
+    note: 'R2-N2提出,R1完全AGREE. QLoRA F1=0.89-0.91仅within-model, 非cross-generator LOGO.'
+  action_items:
+  - round: 51
+    action: '全文QLoRA within-model标注 + Abstract删除0.905 + base-model价值段'
+    assigned_to: PaperAgent
+    status: resolved
+- id: R51-N5
+  summary: DDR描述性框架与分类任务逻辑断层——分类器不使用DDR分区信息(R1提出,R2部分反驳)
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 51
+  last_seen_round: 51
+  resolution: 'DDR定位修正为explanatory framework. Reviewer未单独验证(Should-Fix级别).'
+  resolution_round: 51
+  mentions:
+  - round: 51
+    reviewers: [R1, R2]
+    note: 'R1-N3提出DDR是post-hoc框架. R2 REBUT: DDR是解释性框架且有LOFO/ANOVA支撑. 降级为warning.'
+  action_items:
+  - round: 51
+    action: 'DDR explanatory positioning修正'
+    assigned_to: PaperAgent
+    status: resolved
+- id: R51-W1
+  summary: '"Entropy"术语全文误导(第15次提出)——特征名仍为entropy_*,关键位置NLL说明不足'
+  category: writing
+  severity: warning
+  status: resolved
+  resolution: 'Introduction脚注 + Table 1特征名(NLL)标注 + Abstract用"negative log-likelihood (NLL)". 换路径(脚注替代正文注释).'
+  resolution_round: 51
+  first_raised_round: 51
+  last_seen_round: 51
+  mentions:
+  - round: 51
+    reviewers: [R1, R2]
+    note: 'R2-W1提出,R1 AGREE. 特征命名仍为entropy_mean/entropy_std等,§3.3有一次澄清但后续全文回归entropy. R2建议统一使用NLL或ref-entropy. 此问题从R32-W3起跨14轮反复出现,每轮resolution为在关键位置加注释,但未全面改命名. 作为结构性问题,建议Research Director考虑是否值得大规模改命名.'
+  action_items:
+  - round: 51
+    action: '评估全文改名(entropy→NLL/ref-entropy)的可行性和收益; 至少在Introduction首次出现处和Table 1中统一加注'
+    assigned_to: PaperAgent
+    status: open
+- id: R51-W2
+  summary: OOD detection方法论连接在Related Work中完全缺失
+  category: writing
+  severity: warning
+  status: resolved
+  resolution: 'Related Work新增OOD detection引用(Human Texts Are Outliers, arXiv:2510.08602) + depth profiling区分.'
+  resolution_round: 51
+  first_raised_round: 51
+  last_seen_round: 51
+  mentions:
+  - round: 51
+    reviewers: [R1, R2]
+    note: 'R2-W3提出,R1 AGREE. NLL统计特征(均值/方差/极值)与OOD detection方法论高度重叠. 近期有"Human Texts Are Outliers"(arXiv 2510.08602)直接将AI文本检测重构为OOD detection问题. Related Work应补充简要讨论.'
+  action_items:
+  - round: 51
+    action: 'Related Work §2增加OOD detection方法论简要讨论(1-2句), 说明depth profiling与OOD的区别(ordinal vs binary, cross-generator transfer)'
+    assigned_to: PaperAgent
+    status: open
+- id: R51-W3
+  summary: 跨域实验规模过小(每域200seeds)+Code域F1=0.63下降未分析
+  category: experiment
+  severity: warning
+  status: resolved
+  resolution: 'Appendix domain Code域reference model mismatch假说 + preliminary标注.'
+  resolution_round: 51
+  first_raised_round: 51
+  last_seen_round: 51
+  mentions:
+  - round: 51
+    reviewers: [R1, R2]
+    note: 'R1-W4提出,R2 AGREE. Appendix j每域仅200 seeds×depth 3,样本量小. Code域binary F1降至0.63但无分析(是否因Wikipedia-trained参考模型在Code上NLL失效?). R2补充:应讨论Code域下降原因并标注为preliminary/exploratory.'
+  action_items:
+  - round: 51
+    action: '扩大跨域实验规模或标注为preliminary; 讨论Code域性能下降原因'
+    assigned_to: PaperAgent
+    status: open
+- id: R51-W4
+  summary: Discussion §5 机制解释(log|V| bound, softmax geometry)是post-hoc直觉,vocab size差异可能反驳
+  category: method
+  severity: warning
+  status: resolved
+  resolution: '§5 shape stability归因用"We hypothesize" hedging(合并N3修复).'
+  resolution_round: 51
+  first_raised_round: 51
+  last_seen_round: 51
+  mentions:
+  - round: 51
+    reviewers: [R1, R2]
+    note: 'R2-W5提出,R1部分REBUT(vocab size技术上不影响,但同意是post-hoc). §5将shape稳定性归因于log|V|上界和softmax geometry,但Pythia(50K vocab)和Qwen(150K+ vocab)展现类似稳定性. R1指出实际entropy max远低于上界(~4-5 vs log50K≈10.8),vocab size差异不影响定性结论. 共识: 将机制解释标注为hypothesis/conjecture.'
+  action_items:
+  - round: 51
+    action: '§5机制解释标注为hypothesis/conjecture而非definitional claim'
+    assigned_to: PaperAgent
+    status: open

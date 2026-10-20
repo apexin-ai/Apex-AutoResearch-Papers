@@ -1,0 +1,114 @@
+{
+  "classifiers": {
+    "xgboost": {
+      "3class_f1": 0.7698,
+      "3class_ci95": [
+        0.7636,
+        0.7715
+      ],
+      "binary_f1": 0.7014,
+      "binary_ci95": [
+        0.6943,
+        0.7057
+      ],
+      "per_gen_3class": {
+        "llama-3.2-3b": 0.7621,
+        "mistral-7b-v0.3": 0.6159,
+        "olmo-2-1b": 0.7742,
+        "pythia-1b": 0.8564,
+        "pythia-2.8b": 0.8169,
+        "qwen3-0.6b": 0.8224,
+        "qwen3-1.7b": 0.8098,
+        "qwen3-8b": 0.7009
+      },
+      "per_gen_binary": {
+        "llama-3.2-3b": 0.6845,
+        "mistral-7b-v0.3": 0.5476,
+        "olmo-2-1b": 0.6946,
+        "pythia-1b": 0.7899,
+        "pythia-2.8b": 0.7393,
+        "qwen3-0.6b": 0.7573,
+        "qwen3-1.7b": 0.7479,
+        "qwen3-8b": 0.6501
+      }
+    },
+    "random_forest": {
+      "3class_f1": 0.7244,
+      "3class_ci95": [
+        0.7168,
+        0.7258
+      ],
+      "binary_f1": 0.6965,
+      "binary_ci95": [
+        0.6902,
+        0.7008
+      ],
+      "per_gen_3class": {
+        "llama-3.2-3b": 0.7193,
+        "mistral-7b-v0.3": 0.5388,
+        "olmo-2-1b": 0.7354,
+        "pythia-1b": 0.8231,
+        "pythia-2.8b": 0.7766,
+        "qwen3-0.6b": 0.7846,
+        "qwen3-1.7b": 0.774,
+        "qwen3-8b": 0.6436
+      },
+      "per_gen_binary": {
+        "llama-3.2-3b": 0.6823,
+        "mistral-7b-v0.3": 0.5194,
+        "olmo-2-1b": 0.6912,
+        "pythia-1b": 0.7976,
+        "pythia-2.8b": 0.7395,
+        "qwen3-0.6b": 0.7431,
+        "qwen3-1.7b": 0.7562,
+        "qwen3-8b": 0.6427
+      }
+    },
+    "logistic_regression": {
+      "3class_f1": 0.7081,
+      "3class_ci95": [
+        0.7014,
+        0.7108
+      ],
+      "binary_f1": 0.7009,
+      "binary_ci95": [
+        0.6951,
+        0.7058
+      ],
+      "per_gen_3class": {
+        "llama-3.2-3b": 0.7202,
+        "mistral-7b-v0.3": 0.5902,
+        "olmo-2-1b": 0.7219,
+        "pythia-1b": 0.7761,
+        "pythia-2.8b": 0.7403,
+        "qwen3-0.6b": 0.7408,
+        "qwen3-1.7b": 0.7421,
+        "qwen3-8b": 0.6331
+      },
+      "per_gen_binary": {
+        "llama-3.2-3b": 0.715,
+        "mistral-7b-v0.3": 0.5913,
+        "olmo-2-1b": 0.706,
+        "pythia-1b": 0.7679,
+        "pythia-2.8b": 0.7374,
+        "qwen3-0.6b": 0.707,
+        "qwen3-1.7b": 0.7362,
+        "qwen3-8b": 0.6467
+      }
+    }
+  },
+  "best_classifier": "xgboost",
+  "config": {
+    "n_generators": 8,
+    "n_features": 7,
+    "feature_names": [
+      "entropy_mean",
+      "entropy_std",
+      "entropy_min",
+      "entropy_max",
+      "tail_decay",
+      "ttr",
+      "hapax_ratio"
+    ]
+  }
+}

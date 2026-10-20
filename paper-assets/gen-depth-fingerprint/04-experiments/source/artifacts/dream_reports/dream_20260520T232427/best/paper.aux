@@ -1,0 +1,126 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{liang2024monitoring}
+\citation{shumailov2024model}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{gehrmann2019gltr}
+\citation{mitchell2023detectgpt}
+\citation{bao2024fast}
+\citation{hans2024spotting}
+\citation{yang2024dna}
+\citation{shumailov2024model}
+\citation{dohmatob2024tale}
+\citation{briakou2025llm}
+\citation{mccarthy2010mtld}
+\citation{tulchinskii2024intrinsic}
+\citation{wenzek2020ccnet}
+\citation{neal2017surveying}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{AI text detection.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model collapse \& iterative generation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data quality \& provenance.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stylometry \& authorship.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Generation Chain Construction}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Feature Extraction}{2}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:features}{{3.3}{2}{Feature Extraction}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Surface features}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reference features}{2}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Differential Depth Response (DDR)}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Evaluation Protocol}{3}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LOGO}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LOFO}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Generators.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Seeds.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reference model.}{3}{section*.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Feature ablation (5-fold CV). Full set significantly outperforms both subsets (McNemar $p < 0.001$), confirming surface--reference complementarity.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:ablation}{{1}{3}{Feature ablation (5-fold CV). Full set significantly outperforms both subsets (McNemar $p < 0.001$), confirming surface--reference complementarity}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Per-feature linear trend across depths 0--4. Drifting features exhibit strong monotonic decrease ($R^2 > 0.89$); tail decay is effectively flat.}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:trends}{{2}{3}{Per-feature linear trend across depths 0--4. Drifting features exhibit strong monotonic decrease ($R^2 > 0.89$); tail decay is effectively flat}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Feature Ablation \& Trend Analysis}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:ablation}{{4.2}{3}{Feature Ablation \& Trend Analysis}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{DDR trend analysis.}{3}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Cross-Generator Generalization}{3}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:crossgen}{{4.3}{3}{Cross-Generator Generalization}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Per-generator LOGO evaluation (5-gen subset). Binary F1 variance across generators is 5.4 pp, confirming cross-generator robustness.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:crossgen}{{3}{4}{Per-generator LOGO evaluation (5-gen subset). Binary F1 variance across generators is 5.4 pp, confirming cross-generator robustness}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces LOGO macro F1 and representative Spearman $\rho $ by reference model. DDR pattern (drifting vs.\ stationary split) is consistent across all three reference families. Surface features are identical by construction.}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:crossref}{{4}{4}{LOGO macro F1 and representative Spearman $\rho $ by reference model. DDR pattern (drifting vs.\ stationary split) is consistent across all three reference families. Surface features are identical by construction}{table.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-family transfer.}{4}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Cross-Reference-Model Robustness}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:crossref}{{4.4}{4}{Cross-Reference-Model Robustness}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces LOGO macro F1 for ordinal depth classification. 7-feature ensemble significantly outperforms all baselines (bootstrap $p < 0.01$). CI for avg-logprob is wide: [0.616, 0.820], reflecting high cross-generator variance.}}{4}{table.5}\protected@file@percent }
+\newlabel{tab:baseline}{{5}{4}{LOGO macro F1 for ordinal depth classification. 7-feature ensemble significantly outperforms all baselines (bootstrap $p < 0.01$). CI for avg-logprob is wide: [0.616, 0.820], reflecting high cross-generator variance}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Baseline Comparison}{4}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:baseline}{{4.5}{4}{Baseline Comparison}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Cross-Model Chains}{4}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:crossmodel}{{4.6}{4}{Cross-Model Chains}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-model chains (5-gen, generator-level LOGO) vs.\ single-model LOGO. Generator heterogeneity \emph  {amplifies} depth signal ($+$13.6 pp binary F1).}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:crossmodel}{{6}{5}{Cross-model chains (5-gen, generator-level LOGO) vs.\ single-model LOGO. Generator heterogeneity \emph {amplifies} depth signal ($+$13.6 pp binary F1)}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Downstream CLM perplexity (3 seeds). Depth-aware curation (depth 0--1, binary-filtered) does not outperform random subsampling at equal sample count.}}{5}{table.7}\protected@file@percent }
+\newlabel{tab:downstream}{{7}{5}{Downstream CLM perplexity (3 seeds). Depth-aware curation (depth 0--1, binary-filtered) does not outperform random subsampling at equal sample count}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Downstream Utility (Negative Finding)}{5}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:downstream}{{4.7}{5}{Downstream Utility (Negative Finding)}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{5}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DDR as location shift.}{5}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Entropy std as intermediate case.}{5}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{5}{section*.17}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{bao2024fast}{{1}{2024}{{Bao et~al.}}{{}}}
+\bibcite{briakou2025llm}{{2}{2025}{{Briakou et~al.}}{{}}}
+\bibcite{dohmatob2024tale}{{3}{2024}{{Dohmatob et~al.}}{{}}}
+\bibcite{gehrmann2019gltr}{{4}{2019}{{Gehrmann et~al.}}{{}}}
+\bibcite{hans2024spotting}{{5}{2024}{{Hans et~al.}}{{}}}
+\bibcite{liang2024monitoring}{{6}{2024}{{Liang et~al.}}{{}}}
+\bibcite{mccarthy2010mtld}{{7}{2010}{{McCarthy and Jarvis}}{{}}}
+\bibcite{mitchell2023detectgpt}{{8}{2023}{{Mitchell et~al.}}{{}}}
+\bibcite{neal2017surveying}{{9}{2017}{{Neal and Woodard}}{{}}}
+\bibcite{shumailov2024model}{{10}{2024}{{Shumailov et~al.}}{{}}}
+\bibcite{tulchinskii2024intrinsic}{{11}{2024}{{Tulchinskii et~al.}}{{}}}
+\bibcite{wenzek2020ccnet}{{12}{2020}{{Wenzek et~al.}}{{}}}
+\bibcite{yang2024dna}{{13}{2024}{{Yang et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{6}{section.6}\protected@file@percent }
+\citation{briakou2025llm}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Prompt-Type Comparison}{7}{appendix.A}\protected@file@percent }
+\newlabel{sec:prompttype}{{A}{7}{Prompt-Type Comparison}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Per-prompt-type classification (CV = within-type, LOPTO = leave-one-prompt-type-out). Continuation is strongest (5.1 pp gap) because unconstrained generation maximizes distributional drift. LOPTO average 0.753 confirms cross-prompt-type deployment is viable.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:prompttype}{{8}{7}{Per-prompt-type classification (CV = within-type, LOPTO = leave-one-prompt-type-out). Continuation is strongest (5.1 pp gap) because unconstrained generation maximizes distributional drift. LOPTO average 0.753 confirms cross-prompt-type deployment is viable}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Spearman $\rho $ by feature and prompt type. DDR pattern is preserved across all types.}}{7}{table.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B}Paraphrastic vs.\ Non-Paraphrastic Chains}{7}{appendix.B}\protected@file@percent }
+\newlabel{sec:paraphrastic}{{B}{7}{Paraphrastic vs.\ Non-Paraphrastic Chains}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Paraphrastic vs.\ continuation chains. The 16.3 pp binary gap reflects attractor convergence in paraphrastic chains.}}{7}{table.10}\protected@file@percent }
+\newlabel{tab:para}{{10}{7}{Paraphrastic vs.\ continuation chains. The 16.3 pp binary gap reflects attractor convergence in paraphrastic chains}{table.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Multi-Domain Evaluation}{7}{appendix.C}\protected@file@percent }
+\newlabel{sec:multidomain}{{C}{7}{Multi-Domain Evaluation}{appendix.C}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Per-domain evaluation. DDR pattern is qualitatively consistent (all drifting $|\rho | > 0.52$). Academic domain is weakest due to formulaic genre conventions limiting distributional drift.}}{8}{table.11}\protected@file@percent }
+\newlabel{tab:domain}{{11}{8}{Per-domain evaluation. DDR pattern is qualitatively consistent (all drifting $|\rho | > 0.52$). Academic domain is weakest due to formulaic genre conventions limiting distributional drift}{table.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Finer-Grained Ordinal Classification}{8}{appendix.D}\protected@file@percent }
+\newlabel{sec:ordinal}{{D}{8}{Finer-Grained Ordinal Classification}{appendix.D}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces 5-class ordinal classification. All methods perform comparably ($<$1 pp spread). 3-class reference included for comparison.}}{8}{table.12}\protected@file@percent }
+\newlabel{tab:ordinal}{{12}{8}{5-class ordinal classification. All methods perform comparably ($<$1 pp spread). 3-class reference included for comparison}{table.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Human Edit Robustness}{8}{appendix.E}\protected@file@percent }
+\newlabel{sec:edit}{{E}{8}{Human Edit Robustness}{appendix.E}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Binary F1 under simulated editing. Degradation is graceful: LLM rephrase ($\sim $50\% edit distance, $\sim $1.7 sentences replaced) causes only 4.5 pp drop.}}{9}{table.13}\protected@file@percent }
+\newlabel{tab:edit}{{13}{9}{Binary F1 under simulated editing. Degradation is graceful: LLM rephrase ($\sim $50\% edit distance, $\sim $1.7 sentences replaced) causes only 4.5 pp drop}{table.13}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {F}LD-Score as Additional Feature}{9}{appendix.F}\protected@file@percent }
+\newlabel{sec:ldscore}{{F}{9}{LD-Score as Additional Feature}{appendix.F}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Adding LD-Score to the 7-feature ensemble yields only 0.3 pp improvement. LD-Score correlates heavily with surface features (hapax $r = 0.72$, TTR $r = 0.68$).}}{9}{table.14}\protected@file@percent }
+\newlabel{tab:ldscore}{{14}{9}{Adding LD-Score to the 7-feature ensemble yields only 0.3 pp improvement. LD-Score correlates heavily with surface features (hapax $r = 0.72$, TTR $r = 0.68$)}{table.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {G}End-to-End Neural Classifier}{9}{appendix.G}\protected@file@percent }
+\newlabel{sec:qlora}{{G}{9}{End-to-End Neural Classifier}{appendix.G}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces QLoRA vs.\ 7-feature ensemble. QLoRA achieves substantially higher within-distribution F1 but at 3.4$\times $ GPU memory and 6.5$\times $ inference time.}}{9}{table.15}\protected@file@percent }
+\newlabel{tab:qlora}{{15}{9}{QLoRA vs.\ 7-feature ensemble. QLoRA achieves substantially higher within-distribution F1 but at 3.4$\times $ GPU memory and 6.5$\times $ inference time}{table.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {H}Text Length Confound Control}{10}{appendix.H}\protected@file@percent }
+\newlabel{sec:length}{{H}{10}{Text Length Confound Control}{appendix.H}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Length confound analysis. Of the 4.6 pp drop from length matching, 2.9 pp is attributable to sample-size reduction and only 1.7 pp to deconfounding.}}{10}{table.16}\protected@file@percent }
+\newlabel{tab:length}{{16}{10}{Length confound analysis. Of the 4.6 pp drop from length matching, 2.9 pp is attributable to sample-size reduction and only 1.7 pp to deconfounding}{table.16}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Large-Scale Generator}{10}{appendix.I}\protected@file@percent }
+\newlabel{sec:scale}{{I}{10}{Large-Scale Generator}{appendix.I}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Scale effect: 8B generator shows moderate degradation ($-1.7$ pp binary F1) with attenuated drifting $|\rho |$ ($\sim $85\% of $<$3B average). DDR pattern (drifting vs.\ stationary split) is qualitatively preserved.}}{10}{table.17}\protected@file@percent }
+\newlabel{tab:scale}{{17}{10}{Scale effect: 8B generator shows moderate degradation ($-1.7$ pp binary F1) with attenuated drifting $|\rho |$ ($\sim $85\% of $<$3B average). DDR pattern (drifting vs.\ stationary split) is qualitatively preserved}{table.17}{}}
+\gdef \@abspage@last{10}

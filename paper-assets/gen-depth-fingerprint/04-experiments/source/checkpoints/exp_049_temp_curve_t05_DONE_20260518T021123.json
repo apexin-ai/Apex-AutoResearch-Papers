@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_049_temp_curve_t05",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T22:15:10.383Z",
+    "updated_at": "2026-05-18T02:11:23.228Z",
+    "hypothesis": "DDR signal at t=0.5 should be stronger than t=0.7 (less randomness preserves more distributional structure)",
+    "spec": {
+      "command": "python generate_chain.py --model-name pythia-2.8b-t05 --temperature 0.5 --top-p 0.9 --output-dir data/ --device cuda:0",
+      "server": "autodl-5090",
+      "data_path": "data/pythia-2.8b-t05",
+      "data_count": 995,
+      "model_name": "pythia-2.8b",
+      "seed": 0,
+      "note": "重跑：修复 top_p=0.9（之前错误使用 top_p=0.8）。串行 3 任务的第 1 个。"
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "failed",
+    "completed_at": "2026-05-18T02:11:23.228Z"
+  },
+  "timestamp": "2026-05-18T02:11:23.309233+00:00",
+  "trigger": "update_registry"
+}

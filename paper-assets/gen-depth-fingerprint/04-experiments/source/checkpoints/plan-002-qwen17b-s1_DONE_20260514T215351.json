@@ -1,0 +1,50 @@
+{
+  "exp_id": "plan-002-qwen17b-s1",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:53:21.708Z",
+    "updated_at": "2026-05-14T21:53:51.130Z",
+    "spec": {
+      "command": "python generate_chain.py --model-name qwen3-1.7b --shard-id 1 --num-shards 2",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "112264",
+      "log_path": "~/runs/gen-depth-fingerprint/plan-002-qwen17b-s1.log",
+      "submitted_at": "2026-05-14T20:53:21.683Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl",
+      "data_count": 1000,
+      "model_name": "Qwen/Qwen3-1.7B-Base",
+      "seed": 42,
+      "wall_clock_seconds": 332.0,
+      "gpu_hours": 0.09,
+      "checkpoint_path": "N/A - killed duplicate"
+    },
+    "conclusion": "failed",
+    "notes": "重复提交（与 plan-002-qwen3-1_7b-s1 冲突），争抢 cuda:1 + 写同一输出文件。已 kill。",
+    "reproduce": {
+      "finished_at": "2026-05-14T20:58:53.002Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "completed_at": "2026-05-14T20:58:53.722Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T20:58:54.655352+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-14T21:53:51.157854+00:00",
+  "trigger": "update_registry"
+}

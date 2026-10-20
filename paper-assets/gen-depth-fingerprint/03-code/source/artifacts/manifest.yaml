@@ -1,0 +1,1067 @@
+- created_at: '2026-05-14T17:02:24.958998+00:00'
+  description: 'Continuation depth chain generation script: 1000 Wikipedia seeds →
+    gen-0 to gen-4 via Pythia-2.8B'
+  exp_id: null
+  id: art_20260514_cd6c89
+  name: generate_chain.py
+  path: projects/gen-depth-fingerprint/artifacts/_project/data/generate_chain.py
+  project: gen-depth-fingerprint
+  skill: ''
+  tags:
+  - pipeline
+  - data-generation
+  - pythia-2.8b
+  type: data
+  url: null
+- created_at: '2026-05-14T18:07:07.594509+00:00'
+  description: 'MVP evaluation pipeline results: macro-F1=0.8408, binary F1=0.8653,
+    PASS'
+  exp_id: mvp-001
+  id: art_20260514_a36431
+  name: MVP Results
+  path: projects/gen-depth-fingerprint/artifacts/mvp-001/data/mvp_results_pointer.txt
+  project: gen-depth-fingerprint
+  skill: ''
+  tags: []
+  type: data
+  url: null
+- created_at: '2026-05-14T18:08:55.382668+00:00'
+  description: MVP-001 实验完整结果：3-class macro-F1=0.8408, binary F1=0.8653, PASS
+  exp_id: mvp-001
+  id: art_20260514_09d6fc
+  name: MVP-001 Results
+  path: null
+  project: gen-depth-fingerprint
+  skill: ''
+  tags:
+  - mvp
+  - classification
+  - xgboost
+  type: report
+  url: autodl-5090:/root/gen-depth-fingerprint/results/mvp_results.json
+- created_at: '2026-05-14T19:14:01.928355+00:00'
+  description: 'Feature ablation analysis for plan-001-fix: Part A (ablation), Part
+    B (H1/H2 trends), Part C (perplexity), Claim 2 assessment'
+  exp_id: plan-001-fix
+  id: art_20260514_fbe6c6
+  name: plan-001-fix analysis report
+  path: projects/gen-depth-fingerprint/artifacts/plan-001-fix/report/analysis_report.md
+  project: gen-depth-fingerprint
+  skill: ''
+  tags:
+  - ablation
+  - claim-2
+  - feature-complementarity
+  type: report
+  url: null
+- created_at: '2026-05-14T23:32:15.795177+00:00'
+  description: 5 个生成器的 Pythia-410M 参考模型特征，23032 条记录，10 列
+  exp_id: plan-002
+  id: art_20260514_7e995f
+  name: features_all_models
+  path: projects/gen-depth-fingerprint/artifacts/plan-002/data/features_all_models_manifest.txt
+  project: gen-depth-fingerprint
+  skill: ''
+  tags:
+  - features
+  - cross-model
+  - plan-002
+  type: data
+  url: null
+- created_at: '2026-05-14T23:41:39.463840+00:00'
+  description: plan-002 跨生成器分类评估结果：leave-one-out CV, family-out, feature ablation,
+    permutation importance
+  exp_id: plan-002-eval
+  id: art_20260514_80b197
+  name: cross_generator_results
+  path: projects/gen-depth-fingerprint/artifacts/plan-002-eval/data/cross_generator_results_manifest.txt
+  project: gen-depth-fingerprint
+  skill: ''
+  tags:
+  - classification
+  - cross-generator
+  - plan-002-eval
+  type: data
+  url: null
+- created_at: '2026-05-14T23:53:42.119127+00:00'
+  description: plan-013 文本长度混淆控制分析：长度分布/相关性/归一化特征/长度匹配分类/dropout 分析
+  exp_id: plan-013
+  id: art_20260514_d15f81
+  name: text_length_analysis
+  path: projects/gen-depth-fingerprint/artifacts/plan-013/data/text_length_analysis_manifest.txt
+  project: gen-depth-fingerprint
+  skill: ''
+  tags:
+  - text-length
+  - confound-control
+  - plan-013
+  type: data
+  url: null
+- created_at: '2026-05-15T00:10:25.096065+00:00'
+  description: 'Cross-ref features: OLMo-2-1B as reference model, 23032 rows across
+    5 generators'
+  exp_id: plan-003-olmo2ref
+  id: art_20260515_d7c290
+  name: features_ref_olmo
+  path: projects/gen-depth-fingerprint/artifacts/plan-003-olmo2ref/data/features_ref_olmo_pointer.txt
+  project: gen-depth-fingerprint
+  skill: ''
+  tags:
+  - plan-003
+  - cross-ref
+  - features
+  type: data
+  url: null
+- created_at: '2026-05-15T00:10:26.981016+00:00'
+  description: 'Cross-ref features: Qwen3-0.6B as reference model, 23032 rows across
+    5 generators'
+  exp_id: plan-003-qwen06bref
+  id: art_20260515_38f90d
+  name: features_ref_qwen
+  path: projects/gen-depth-fingerprint/artifacts/plan-003-qwen06bref/data/features_ref_qwen_pointer.txt
+  project: gen-depth-fingerprint
+  skill: ''
+  tags:
+  - plan-003
+  - cross-ref
+  - features
+  type: data
+  url: null
+- created_at: '2026-05-15T00:10:28.600114+00:00'
+  description: 'Plan-003 cross-reference analysis: Spearman, entropy drift, LOGO F1
+    for 3 reference models'
+  exp_id: null
+  id: art_20260515_1b8a37
+  name: cross_ref_analysis_results
+  path: projects/gen-depth-fingerprint/artifacts/_project/data/cross_ref_results_pointer.txt
+  project: gen-depth-fingerprint
+  skill: ''
+  tags:
+  - plan-003
+  - cross-ref
+  - analysis
+  type: data
+  url: null
+- created_at: '2026-05-15T00:11:02.877023+00:00'
+  description: plan-003 跨参考模型特征：OLMo-2-1B ref (features_ref_olmo.csv) + Qwen3-0.6B
+    ref (features_ref_qwen.csv) + 分析结果
+  exp_id: plan-003
+  id: art_20260515_480bae
+  name: cross_ref_features
+  path: projects/gen-depth-fingerprint/artifacts/plan-003/data/cross_ref_manifest.txt
+  project: gen-depth-fingerprint
+  skill: ''
+  tags:
+  - cross-reference
+  - plan-003
+  - falsification
+  type: data
+  url: null
+- created_at: '2026-05-15T00:19:09.665878+00:00'
+  description: 'Depth-stratified training datasets for downstream utility experiment:
+    depth0_only (797), depth01 (3951), all (12299), size_matched (3951), binary_filtered
+    (3951), test (3138)'
+  exp_id: null
+  id: art_20260515_12c203
+  name: plan-004-downstream-datasets
+  path: projects/gen-depth-fingerprint/artifacts/_project/data/plan-004-downstream-datasets.md
+  project: gen-depth-fingerprint
+  skill: ''
+  tags:
+  - plan-004
+  - downstream
+  - depth-stratified
+  type: data
+  url: null
+- created_at: '2026-05-15T00:19:16.593022+00:00'
+  description: 'Fine-tuning scripts for downstream utility experiment: finetune_downstream.py,
+    run_downstream.sh, prepare_downstream_data.py, compute_binary_baseline.py'
+  exp_id: null
+  id: art_20260515_e99ee1
+  name: plan-004-finetune-scripts
+  path: projects/gen-depth-fingerprint/artifacts/_project/intermediate/plan-004-finetune-scripts.md
+  project: gen-depth-fingerprint
+  skill: ''
+  tags:
+  - plan-004
+  - downstream
+  - finetune
+  type: intermediate
+  url: null
+- created_at: '2026-05-15T00:25:51.122960+00:00'
+  description: 'Ordinal baseline comparison: FastDetectGPT/Binoculars/LD-Score/Avg-LogProb
+    vs 7-feature ensemble. Best single: Avg-LogProb 0.76 LOGO F1. 7-feat: 0.80.'
+  exp_id: plan-015
+  id: art_20260515_d6927a
+  name: ordinal-baseline-results
+  path: projects/gen-depth-fingerprint/artifacts/plan-015/report/ordinal_baseline_results.txt
+  project: gen-depth-fingerprint
+  skill: ''
+  tags:
+  - baseline
+  - ordinal
+  - detection
+  - evaluation
+  type: report
+  url: null
+- created_at: '2026-05-15T00:41:54.666830+00:00'
+  description: 'Bootstrap CI significance test: 7-feature (F1=0.798 [0.793,0.803])
+    vs Avg-LogProb (F1=0.759 [0.753,0.764]), paired bootstrap p=0.000, diff=+3.9pp
+    [3.4,4.4]'
+  exp_id: plan-015
+  id: art_20260515_954741
+  name: plan-015-bootstrap-ci
+  path: projects/gen-depth-fingerprint/artifacts/plan-015/data/bootstrap_ci_results.txt
+  project: gen-depth-fingerprint
+  skill: ''
+  tags: []
+  type: data
+  url: null
+- created_at: '2026-05-15T03:12:56.393189+00:00'
+  description: 'Plan-004-v2 downstream perplexity statistical analysis: bootstrap
+    CI, paired significance tests, effect sizes across 5 variants x 3 seeds. Key finding:
+    depth-aware curation does NOT help — random sampling beats both filtering strategies
+    at same data size.'
+  exp_id: null
+  id: art_20260515_7a23fb
+  name: plan-004-v2-downstream-analysis
+  path: projects/gen-depth-fingerprint/artifacts/_project/report/downstream_analysis.txt
+  project: gen-depth-fingerprint
+  skill: ''
+  tags:
+  - plan-004-v2
+  - downstream
+  - statistics
+  - perplexity
+  type: report
+  url: null
+- created_at: '2026-05-15T04:01:10.021179+00:00'
+  description: 'Fig 1: Differential Depth Response — 2×2 multi-panel line plot showing
+    4 distributional features (entropy_mean, hapax_ratio, entropy_std, tail_decay)
+    across generation depth 0-4 for 6 generators. Panels A/B show drifting features,
+    C/D show stationary features. With 95% CI error bands and Okabe-Ito color scheme.'
+  exp_id: null
+  id: art_20260515_09cd7f
+  name: fig1_differential_response
+  path: projects/gen-depth-fingerprint/artifacts/_project/chart/fig1_differential_response.pdf
+  project: gen-depth-fingerprint
+  skill: ''
+  tags:
+  - paper
+  - figure
+  - results
+  - section5.2
+  type: chart
+  url: null
+- created_at: '2026-05-15T04:20:05.641918+00:00'
+  description: 'Figure 2: Leave-One-Generator-Out Classification Performance — 分组柱状图，6个held-out
+    generators按家族分组(Pythia/OLMo/Qwen)，含95% CI error bars和平均线(0.789)'
+  exp_id: null
+  id: art_20260515_42e48d
+  name: fig2_logo_performance
+  path: projects/gen-depth-fingerprint/artifacts/_project/chart/fig2_logo_performance.png
+  project: gen-depth-fingerprint
+  skill: ''
+  tags:
+  - paper
+  - figure
+  - logo
+  - cross-generator
+  type: chart
+  url: null
+- created_at: '2026-05-15T04:21:10.854937+00:00'
+  description: LOGO cross-generator performance bar chart (6 generators macro-F1 +
+    95% CI). Pythia-1B highest (0.853), Qwen3-8B lowest (0.689), mean 0.789.
+  exp_id: plan-002-eval
+  id: art_20260515_a11f0b
+  name: fig2_logo_performance
+  path: projects/gen-depth-fingerprint/artifacts/plan-002-eval/chart/fig2_logo_performance_info.txt
+  project: gen-depth-fingerprint
+  skill: ''
+  tags:
+  - paper
+  - figure
+  - logo
+  - cross-generator
+  type: chart
+  url: null
+- created_at: '2026-05-15T04:36:00.714527+00:00'
+  description: 'Method section (Section 3) for EMNLP 2026 ARR submission: task formulation,
+    generation chain construction, feature extraction, evaluation protocol'
+  exp_id: null
+  id: art_20260515_01fe38
+  name: method-section
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/method_01fe38.tex
+  project: gen-depth-fingerprint
+  skill: ''
+  tags:
+  - paper
+  - method
+  - emnlp2026
+  type: paper
+  url: null
+- created_at: '2026-05-15T04:36:24.322863+00:00'
+  description: 'Figure 3: Forest plot comparing 7-Feature Ensemble vs 4 single-detector
+    baselines (Macro-F1 with 95% bootstrap CI). Shows ensemble''s narrow CI (0.013)
+    vs single detectors (0.18-0.26), all p<0.001.'
+  exp_id: null
+  id: art_20260515_8b005a
+  name: fig3_baseline_comparison
+  path: projects/gen-depth-fingerprint/artifacts/_project/chart/fig3_baseline_comparison.png
+  project: gen-depth-fingerprint
+  skill: draw-paper-figure
+  tags:
+  - figure
+  - paper
+  - forest-plot
+  - baseline-comparison
+  - plan-015-v2
+  type: chart
+  url: null
+- created_at: '2026-05-15T04:36:55.320662+00:00'
+  description: Related Work section (§2) for EMNLP 2026 ARR submission — 4 subsections,
+    39 citations, ~716 words
+  exp_id: null
+  id: art_20260515_2ce9dd
+  name: related_work.tex
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/related_work_2ce9dd.tex
+  project: gen-depth-fingerprint
+  skill: ''
+  tags:
+  - paper
+  - related-work
+  - emnlp2026
+  type: paper
+  url: null
+- created_at: '2026-05-15T04:37:04.169951+00:00'
+  description: 'Method section (§3) draft for Depth Fingerprinting paper, 4 subsections:
+    Task Formulation, Generation Chain Construction, Feature Extraction, Evaluation
+    Protocol'
+  exp_id: null
+  id: art_20260515_e59d28
+  name: method-section-draft
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/method_e59d28.tex
+  project: gen-depth-fingerprint
+  skill: ''
+  tags:
+  - paper
+  - method
+  - latex
+  - emnlp2026
+  type: paper
+  url: null
+- created_at: '2026-05-15T04:37:11.154196+00:00'
+  description: Forest plot comparing 7-Feature Ensemble vs baselines (LOGO macro-F1
+    with 95% CI). Shows ensemble tight CI vs wide single-detector CI.
+  exp_id: null
+  id: art_20260515_9591c4
+  name: Fig3 Baseline Comparison Forest Plot
+  path: projects/gen-depth-fingerprint/figures/paper/fig3_baseline_comparison.pdf
+  project: gen-depth-fingerprint
+  skill: ''
+  tags:
+  - figure
+  - paper
+  - forest-plot
+  - baseline-comparison
+  type: figure
+  url: null
+- id: art_20260515_b30771
+  name: results-section-draft
+  type: paper
+  description: Results §5 draft (LaTeX) for EMNLP 2026 submission — 4 subsections
+    covering classification, differential depth response, baselines, downstream utility
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/results_b30771.tex
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:38:26.423522+00:00'
+  tags:
+  - paper
+  - results
+  - emnlp2026
+- id: art_20260515_1effa6
+  name: fig4_downstream_negative
+  type: chart
+  description: 'Fig 4: Bar chart showing depth-aware curation does not improve downstream
+    LM perplexity vs size-matched random baseline. 5 strategies, 3-seed error bars,
+    Okabe-Ito colors.'
+  path: projects/gen-depth-fingerprint/artifacts/_project/chart/fig4_downstream_negative.png
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:39:19.852604+00:00'
+  tags:
+  - paper
+  - fig4
+  - downstream
+  - negative-result
+  - plan-004
+- id: art_20260515_ae265d
+  name: fig4_downstream_negative_pdf
+  type: chart
+  description: 'Fig 4 (PDF vector): Depth-aware curation negative result bar chart
+    for paper submission.'
+  path: projects/gen-depth-fingerprint/artifacts/_project/chart/fig4_downstream_negative.pdf
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:39:21.911039+00:00'
+  tags:
+  - paper
+  - fig4
+  - downstream
+  - negative-result
+  - plan-004
+  - pdf
+- id: art_20260515_20bbd0
+  name: fig4_downstream_negative
+  type: chart
+  description: 'Figure 4: Downstream CLM Perplexity by Data Curation Strategy — bar
+    chart showing depth-aware curation does NOT improve downstream LM quality. all(2.335)
+    &lt; size_matched(2.367) &lt; depth01(2.387) ≈ binary_filtered(2.389) &lt;&lt;
+    depth0_only(2.681). Data from plan-004-v2, OLMo-2-0425-1B, 3 seeds.'
+  path: projects/gen-depth-fingerprint/artifacts/_project/chart/fig4_downstream_negative_20bbd0.pdf
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-15T04:39:49.530189+00:00'
+  tags:
+  - paper
+  - figure
+  - downstream
+  - negative-finding
+  - plan-004-v2
+  - results-5.4
+- id: art_20260515_4bbcfd
+  name: introduction.tex
+  type: paper
+  description: Introduction section (§1) draft for EMNLP 2026 submission — covers
+    motivation, problem definition, differential depth response finding, negative
+    downstream result, 3 contributions
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/introduction_4bbcfd.tex
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:42:02.217964+00:00'
+  tags:
+  - paper
+  - introduction
+  - emnlp2026
+- id: art_20260515_c98572
+  name: discussion.tex
+  type: paper
+  description: 'Discussion section: shape stationarity hypothesis, practical implications,
+    C3 negative finding information value, model collapse connection'
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/discussion_c98572.tex
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:50:10.450630+00:00'
+  tags:
+  - paper
+  - discussion
+  - emnlp2026
+- id: art_20260515_69ebec
+  name: limitations.tex
+  type: paper
+  description: 'Limitations section (EMNLP mandatory): scale ceiling, prompt type,
+    chain realism, downstream task scope, class granularity'
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/limitations_69ebec.tex
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:50:12.988357+00:00'
+  tags:
+  - paper
+  - limitations
+  - emnlp2026
+- id: art_20260515_014854
+  name: abstract
+  type: paper
+  description: 'EMNLP 2026 ARR abstract (~200 words, Farquhar five-sentence structure):
+    ordinal depth estimation formulation, differential depth response, 7-feature ensemble
+    LOGO F1=0.79, honest negative on downstream curation'
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/abstract_014854.tex
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:50:13.107863+00:00'
+  tags:
+  - paper
+  - abstract
+  - emnlp2026
+- id: art_20260515_70534e
+  name: conclusion.tex
+  type: paper
+  description: 'Conclusion section: restates 3 contributions, realistic performance
+    range 0.69-0.86, future directions'
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/conclusion_70534e.tex
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:50:14.801818+00:00'
+  tags:
+  - paper
+  - conclusion
+  - emnlp2026
+- id: art_20260515_7f2659
+  name: ethics.tex
+  type: paper
+  description: 'Ethics statement: no personal data, provenance not censorship, dual-use
+    acknowledgment'
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/ethics_7f2659.tex
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:50:16.471010+00:00'
+  tags:
+  - paper
+  - ethics
+  - emnlp2026
+- id: art_20260515_53f11a
+  name: main.tex
+  type: paper
+  description: EMNLP 2026 ARR main compilation file — integrates introduction, related
+    work, method, results sections with ACL 2023 template
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/main_53f11a.tex
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:53:17.770036+00:00'
+  tags:
+  - paper
+  - latex
+- id: art_20260515_a33072
+  name: build.sh
+  type: paper
+  description: LaTeX build script — pdflatex + bibtex + pdflatex ×2, copies bib file
+    automatically
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/build_a33072.sh
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:53:20.638361+00:00'
+  tags:
+  - paper
+  - build
+- id: art_20260515_329527
+  name: Table 1 - LOGO Depth Classification Results
+  type: paper
+  description: 'LaTeX table: Leave-one-generator-out depth classification results
+    (6 generators, 3 families)'
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/table1_329527.tex
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:53:36.144935+00:00'
+  tags:
+  - table
+  - latex
+  - results
+- id: art_20260515_373612
+  name: Table 2 - Feature Group Ablation
+  type: paper
+  description: 'LaTeX table: Feature group ablation and complementarity (6-gen LOGO)'
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/table2_373612.tex
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:53:37.446909+00:00'
+  tags:
+  - table
+  - latex
+  - results
+- id: art_20260515_fc4017
+  name: Table 3 - Downstream CLM Fine-tuning
+  type: paper
+  description: 'LaTeX table: Downstream CLM fine-tuning by depth curation strategy
+    (negative finding)'
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/table3_fc4017.tex
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:53:39.347350+00:00'
+  tags:
+  - table
+  - latex
+  - results
+- id: art_20260515_49aebb
+  name: Table 4 - Cross-Family Reference Model Validation
+  type: paper
+  description: 'LaTeX table: Cross-family reference model validation (3 ref models,
+    drift consistency)'
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/table4_49aebb.tex
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:53:40.697952+00:00'
+  tags:
+  - table
+  - latex
+  - results
+- id: art_20260515_d3a579
+  name: discussion.tex
+  type: paper
+  description: 'Discussion section: OOD detection connection (RC8), 3-class granularity
+    (RC3), shape stationarity, practical implications, C3 negative framing'
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/discussion_d3a579.tex
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:55:40.964152+00:00'
+  tags:
+  - paper
+  - discussion
+  - EMNLP
+- id: art_20260515_b3d194
+  name: limitations.tex
+  type: paper
+  description: 'Limitations section: scale (8B tested, 70B+ untested), single prompt
+    type, lab chains, CLM-only downstream, 3-class granularity, human editing'
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/limitations_b3d194.tex
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:55:43.859000+00:00'
+  tags:
+  - paper
+  - limitations
+  - EMNLP
+- id: art_20260515_b5f10d
+  name: conclusion.tex
+  type: paper
+  description: 'Conclusion section: three contributions restated, performance range
+    0.68-0.86, diagnostic-not-curative framing'
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/conclusion_b5f10d.tex
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:55:46.221180+00:00'
+  tags:
+  - paper
+  - conclusion
+  - EMNLP
+- id: art_20260515_25b81b
+  name: ethics.tex
+  type: paper
+  description: 'Ethics statement: depth detection not authorship, privacy minimal,
+    dual-use considerations'
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/ethics_25b81b.tex
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T04:55:47.694391+00:00'
+  tags:
+  - paper
+  - ethics
+  - EMNLP
+- id: art_20260515_205e9a
+  name: paper-audit-report
+  type: report
+  description: 论文编译测试 + 数字一致性审计报告：发现 results.tex 内联表 6/7 个 LOGO 数字与 registry 不一致，feature
+    importance 和 Spearman 四舍五入错误，acl.sty 缺失等问题
+  path: projects/gen-depth-fingerprint/artifacts/_project/report/audit_report.md
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T05:02:33.329042+00:00'
+  tags:
+  - paper
+  - audit
+  - quality-check
+- id: art_20260515_2cddf2
+  name: plan-005-cont features
+  type: data
+  description: 'Pythia-2.8B continuation prompt 7-feature depth fingerprint (4620
+    records, 995 seeds, depth 0-4), extracted with Pythia-410M reference model. Path
+    on server: /root/gen-depth-fingerprint/data/pythia-2.8b-continuation/features.jsonl'
+  path: projects/gen-depth-fingerprint/artifacts/plan-005-cont/data/plan-005-cont-features-info.txt
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: plan-005-cont
+  skill: ''
+  created_at: '2026-05-15T05:47:21.877155+00:00'
+  tags:
+  - features
+  - continuation
+  - pythia-2.8b
+  - plan-005
+- id: art_20260515_872226
+  name: plan-005-prompt-type-results
+  type: data
+  description: Plan-005 三种 prompt type 全面对比分析结果：CV F1、LOPTO F1、depth decay、feature
+    drift rate。服务器路径：/root/gen-depth-fingerprint/data/prompt_type_results.json
+  path: null
+  url: ssh://autodl-5090/root/gen-depth-fingerprint/data/prompt_type_results.json
+  project: gen-depth-fingerprint
+  exp_id: plan-005
+  skill: ''
+  created_at: '2026-05-15T06:02:44.625747+00:00'
+  tags:
+  - analysis
+  - prompt-type
+  - classification
+  - feature-drift
+- id: art_20260515_307740
+  name: review_overall_ci_results
+  type: data
+  description: 6-gen overall bootstrap CI + 7-feature Spearman rho for review response
+  path: projects/gen-depth-fingerprint/artifacts/review-exp-c-overall-ci/data/review_overall_ci_results.txt
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: review-exp-c-overall-ci
+  skill: ''
+  created_at: '2026-05-15T12:27:52.975796+00:00'
+  tags: []
+- id: art_20260517_52da72
+  name: submission_prep_checklist
+  type: report
+  description: EMNLP 2026 ARR 投稿材料准备检查清单：编译、匿名化、Checklist、supplementary materials、OpenReview
+    字段
+  path: projects/gen-depth-fingerprint/artifacts/_project/report/submission_prep_checklist.md
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T12:49:01.870333+00:00'
+  tags:
+  - submission
+  - emnlp2026
+  - checklist
+- id: art_20260517_cb14e5
+  name: experiment_coverage_assessment
+  type: report
+  description: '49 experiments coverage assessment: 8/10 overall. Key gaps: all base
+    models (instruct preliminary only), max 8.2B scale, sampling ablation on 1 generator.
+    All gaps disclosed in Limitations. No new experiments recommended before EMNLP
+    DDL.'
+  path: projects/gen-depth-fingerprint/artifacts/_project/report/experiment_coverage_assessment.md
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T12:49:24.166664+00:00'
+  tags:
+  - coverage
+  - assessment
+  - review-prep
+- id: art_20260517_ebc951
+  name: cross_temp_transfer_results
+  type: data
+  description: 'Cross-temperature transfer evaluation: XGBoost LOGO-CV trained at
+    t=0.7 or t=1.0, tested at both temperatures. Shows classifier robustness to unknown
+    sampling temperature.'
+  path: projects/gen-depth-fingerprint/artifacts/_project/data/cross_temp_transfer.json
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T12:50:59.678026+00:00'
+  tags:
+  - cross-temperature
+  - sampling-ablation
+  - xgboost
+  - logo-cv
+- id: art_20260517_dc38f5
+  name: experiment_coverage_assessment
+  type: report
+  description: 49 个实验的覆盖度评估：13 维度分析，优先级排序，rebuttal 准备建议
+  path: projects/gen-depth-fingerprint/artifacts/_project/report/experiment_coverage_assessment_dc38f5.md
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T12:51:18.480212+00:00'
+  tags:
+  - coverage
+  - review
+  - emnlp2026
+- id: art_20260517_6425a8
+  name: code_supplement
+  type: data
+  description: EMNLP 2026 匿名化代码 supplement：21 个文件，含生成/特征提取/评估/绘图脚本 + requirements.txt
+    + README
+  path: projects/gen-depth-fingerprint/artifacts/_project/data/README.md
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T13:08:12.803629+00:00'
+  tags:
+  - submission
+  - emnlp2026
+  - code
+  - supplement
+- id: art_20260517_72539c
+  name: data_supplement
+  type: data
+  description: EMNLP 2026 匿名化数据 supplement：17 个文件（36MB），含特征 CSV + seed JSONL + README
+  path: projects/gen-depth-fingerprint/artifacts/_project/data/README_72539c.md
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T13:08:14.503410+00:00'
+  tags:
+  - submission
+  - emnlp2026
+  - data
+  - supplement
+- id: art_20260517_9d5918
+  name: ARR May 2026 Submission Checklist
+  type: report
+  description: EMNLP 2026 ARR May cycle submission requirements checklist with satisfied/unsatisfied
+    items, timeline, and reference links
+  path: projects/gen-depth-fingerprint/artifacts/_project/report/arr_submission_checklist.md
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T20:54:33.484049+00:00'
+  tags:
+  - submission
+  - emnlp2026
+  - checklist
+  - arr
+- id: art_20260517_9346e5
+  name: appendix_feature_correlation
+  type: paper
+  description: Pearson correlation matrix of 7 depth features (entropy_mean/std/min/max,
+    tail_decay, ttr, hapax_ratio), LaTeX appendix table
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_feature_correlation_9346e5.tex
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T21:11:52.592313+00:00'
+  tags:
+  - paper
+  - appendix
+  - correlation
+  - features
+- id: art_20260517_d5ac22
+  name: supplementary_code
+  type: paper
+  description: 'EMNLP 2026 ARR anonymized supplementary code package: 26 Python scripts
+    (feature extraction, XGBoost LOGO/LOFO eval, baseline comparison, figure generation,
+    downstream utility) + README + requirements.txt. 77KB, zero PII leakage verified.'
+  path: projects/gen-depth-fingerprint/artifacts/_project/paper/supplementary_code.zip
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T21:25:02.174832+00:00'
+  tags:
+  - emnlp2026
+  - supplementary
+  - anonymized
+- id: art_20260518_90498d
+  name: independent_seed_results
+  type: data
+  description: 'Cross-generator depth classification with non-overlapping Wikipedia
+    seeds: binary F1 = 0.680, comparable to shared-seed LOGO (0.694)'
+  path: projects/gen-depth-fingerprint/artifacts/exp_051_independent_seed/data/independent_seed_results.txt
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: exp_051_independent_seed
+  skill: ''
+  created_at: '2026-05-18T02:00:33.133377+00:00'
+  tags:
+  - independent-seed
+  - topic-fingerprint
+  - control-experiment
+- id: art_20260518_9b1fcd
+  name: exp053_instruct_olmo_eval
+  type: data
+  description: OLMo-2-0425-1B-Instruct vs Base within-model CV evaluation with Spearman
+    rho direction reversal
+  path: projects/gen-depth-fingerprint/artifacts/exp_053/data/exp053_instruct_olmo_eval.json
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: exp_053
+  skill: ''
+  created_at: '2026-05-18T03:34:32.978179+00:00'
+  tags:
+  - instruct
+  - olmo
+  - evaluation
+  - spearman
+  - direction-reversal
+- id: art_20260518_eaebda
+  name: tc_phase3_qwen_t09_generation
+  type: intermediate
+  description: 'Phase 3 temperature curve: Qwen3-1.7B t=0.9 generation, resuming from
+    341/996 seeds. tmux=tc_phase3, PID=2067, GPU=cuda:0 on bjb2-18868.'
+  path: projects/gen-depth-fingerprint/artifacts/_project/intermediate/tc_phase3_status.txt
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T05:26:31.874668+00:00'
+  tags:
+  - temperature-curve
+  - generation
+  - qwen3-1.7b
+  - phase3
+- id: art_20260519_c6f4f0
+  name: fig_ddr_holdout_split
+  type: chart
+  description: DDR holdout split validation scatter plots (Split A/B) showing selection
+    vs validation generator subsets in (|ρ|, d) space. All 7 features receive identical
+    zone assignments across subsets.
+  path: projects/gen-depth-fingerprint/artifacts/_project/chart/fig_ddr_holdout_split_c6f4f0.pdf
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T01:02:39.565724+00:00'
+  tags:
+  - ddr
+  - holdout
+  - validation
+  - R20
+- id: art_20260519_23a7b0
+  name: holdout_split_results
+  type: data
+  description: 'Holdout split validation results: per-feature (ρ, d, zone) for two
+    4/4 generator splits. Both splits show 100% partition consistency.'
+  path: projects/gen-depth-fingerprint/artifacts/_project/data/holdout_split_results.json
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T01:02:41.882862+00:00'
+  tags:
+  - ddr
+  - holdout
+  - validation
+  - R20
+- id: art_20260519_9e6ccc
+  name: r25_instruct_analysis
+  type: data
+  description: 'R25 review response: instruct retrain classification recovery, DDR
+    structure on instruct, cross-condition transfer, feature ablation. Full JSON results.'
+  path: projects/gen-depth-fingerprint/artifacts/_project/data/r25_instruct_results.json
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T05:13:44.380322+00:00'
+  tags:
+  - R25
+  - instruct
+  - retrain
+  - ablation
+- id: art_20260519_38638f
+  name: fig_convergence_dynamics
+  type: chart
+  description: 'Per-feature convergence dynamics (2×1 subplot): drifting features
+    with exponential fits (top) and near-stationary features (bottom), across generation
+    depths 0-4, averaged over 8 generators.'
+  path: projects/gen-depth-fingerprint/artifacts/_project/chart/fig_convergence_dynamics_38638f.pdf
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T12:03:58.684332+00:00'
+  tags:
+  - convergence
+  - per-feature
+  - exponential-fit
+  - figure
+- id: art_20260520_7b6701
+  name: rebuttal_w1_crossmodel_cv
+  type: report
+  description: Cross-model chain CV方式修复报告：sample-level 5-fold CV → LOGO，binary F1
+    0.764→0.830
+  path: projects/gen-depth-fingerprint/artifacts/_project/report/rebuttal_w1_crossmodel_cv.md
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T03:16:48.984782+00:00'
+  tags:
+  - rebuttal
+  - cross-model
+  - LOGO
+  - CV-fix
+- id: art_20260520_ca3eda
+  name: ddr_causal_analysis
+  type: intermediate
+  description: DDR causal analysis script - permutation importance + Granger causality
+  path: projects/gen-depth-fingerprint/artifacts/exp_058_ddr_causality/intermediate/ddr_causal_analysis.py
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: exp_058_ddr_causality
+  skill: ''
+  created_at: '2026-05-20T07:22:46.285916+00:00'
+  tags: []
+- id: art_20260520_849ad9
+  name: tail_decay_fix_report
+  type: report
+  description: 'tail_decay inconsistency fix report: two implementations compared,
+    all 9 generators now unified on log-prob slope'
+  path: projects/gen-depth-fingerprint/artifacts/_project/report/tail_decay_fix_report.md
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:45:33.725409+00:00'
+  tags:
+  - tail_decay
+  - fix
+  - report
+- id: art_20260521_9bbea7
+  name: threshold_sweep_results
+  type: report
+  description: 'Drifting boundary threshold sweep |d|∈[0.10,0.80]: only 3 distinct
+    partitions, paper''s 3-drifting = peak silhouette 0.660'
+  path: projects/gen-depth-fingerprint/artifacts/_project/report/threshold_sweep_results.txt
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T06:27:04.801795+00:00'
+  tags:
+  - ddr
+  - threshold
+  - sensitivity
+  - reviewer-response
+- id: art_20260521_fb8ea2
+  name: skewness_kurtosis_ablation
+  type: report
+  description: 'Feature ablation: 6 candidates (skewness/kurtosis/IQR/median/p90/cv)
+    all redundant with existing 7 features, no classification gain'
+  path: projects/gen-depth-fingerprint/artifacts/_project/report/skewness_kurtosis_ablation.txt
+  url: null
+  project: gen-depth-fingerprint
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T06:37:57.064599+00:00'
+  tags:
+  - feature-selection
+  - ablation
+  - reviewer-response
+  - R32-W7

@@ -1,0 +1,327 @@
+{
+  "phase_a": {
+    "f1_7_3class": 0.7698246542557419,
+    "f1_7_binary": 0.7013936250014119,
+    "f1_8_3class": 0.7711370901230856,
+    "f1_8_binary": 0.702552864068273,
+    "pg_7_3c": {
+      "llama-3.2-3b": 0.7620749890231838,
+      "mistral-7b-v0.3": 0.6159142430829326,
+      "olmo-2-1b": 0.7741617973356014,
+      "pythia-1b": 0.8564435220691978,
+      "pythia-2.8b": 0.816854429550331,
+      "qwen3-0.6b": 0.8224441574875034,
+      "qwen3-1.7b": 0.8098211606570794,
+      "qwen3-8b": 0.7008829348401059
+    },
+    "pg_7_bin": {
+      "llama-3.2-3b": 0.6844962343307568,
+      "mistral-7b-v0.3": 0.5475545973602134,
+      "olmo-2-1b": 0.6945977043384145,
+      "pythia-1b": 0.7898709428954831,
+      "pythia-2.8b": 0.7392811789728472,
+      "qwen3-0.6b": 0.757328432307959,
+      "qwen3-1.7b": 0.7479300719394928,
+      "qwen3-8b": 0.6500898378661284
+    },
+    "pg_8_3c": {
+      "llama-3.2-3b": 0.7656833390019591,
+      "mistral-7b-v0.3": 0.6177912524883101,
+      "olmo-2-1b": 0.7755631069283107,
+      "pythia-1b": 0.8576050686274498,
+      "pythia-2.8b": 0.8166182493126583,
+      "qwen3-0.6b": 0.8225482763150964,
+      "qwen3-1.7b": 0.8080918494028037,
+      "qwen3-8b": 0.7051955789080963
+    },
+    "pg_8_bin": {
+      "llama-3.2-3b": 0.6850442184005958,
+      "mistral-7b-v0.3": 0.5431014381943488,
+      "olmo-2-1b": 0.6965788652182097,
+      "pythia-1b": 0.7981304823843983,
+      "pythia-2.8b": 0.7370815912120021,
+      "qwen3-0.6b": 0.7539539775497415,
+      "qwen3-1.7b": 0.7482924463588546,
+      "qwen3-8b": 0.6582398932280331
+    },
+    "ddr_cv": {
+      "abs_rho": 0.6341360465637513,
+      "d": 1.0725597939903881
+    },
+    "corr_cv": {
+      "entropy_mean": -0.9042,
+      "entropy_std": -0.5021,
+      "entropy_min": -0.1128,
+      "entropy_max": 0.0345,
+      "tail_decay": -0.003,
+      "ttr": -0.7952,
+      "hapax_ratio": -0.7033
+    }
+  },
+  "phase_b": {
+    "logo": {
+      "6-feat baseline (no tail_decay)": {
+        "3class": 0.7333508222026326,
+        "binary": 0.6775969711909287,
+        "per_gen_3c": {
+          "llama-3.2-3b": 0.7187485653950328,
+          "mistral-7b-v0.3": 0.5846234714836807,
+          "olmo-2-1b": 0.7465764031769209,
+          "pythia-1b": 0.8342868381219293,
+          "pythia-2.8b": 0.7638502673796791,
+          "qwen3-0.6b": 0.7258348668874984,
+          "qwen3-1.7b": 0.8245449444506789,
+          "qwen3-8b": 0.6683412207256402
+        }
+      },
+      "6 + skew + kurt": {
+        "3class": 0.7271752698524943,
+        "binary": 0.6932533766447351,
+        "per_gen_3c": {
+          "llama-3.2-3b": 0.6862945162367593,
+          "mistral-7b-v0.3": 0.6019745477372596,
+          "olmo-2-1b": 0.7713252554542943,
+          "pythia-1b": 0.8185256187475943,
+          "pythia-2.8b": 0.7697063554408409,
+          "qwen3-0.6b": 0.7175540342156136,
+          "qwen3-1.7b": 0.8154505888376856,
+          "qwen3-8b": 0.6365712421499062
+        }
+      },
+      "6 + IQR + median": {
+        "3class": 0.7364748473242352,
+        "binary": 0.6855877618357747,
+        "per_gen_3c": {
+          "llama-3.2-3b": 0.7404874400087017,
+          "mistral-7b-v0.3": 0.5933061501868843,
+          "olmo-2-1b": 0.7465764031769209,
+          "pythia-1b": 0.8188374016581067,
+          "pythia-2.8b": 0.7137971747838922,
+          "qwen3-0.6b": 0.7365493983141042,
+          "qwen3-1.7b": 0.8465149994423999,
+          "qwen3-8b": 0.6957298110228719
+        }
+      },
+      "6 + p90 + cv": {
+        "3class": 0.7247343509752842,
+        "binary": 0.6904819553352941,
+        "per_gen_3c": {
+          "llama-3.2-3b": 0.7306959706959707,
+          "mistral-7b-v0.3": 0.5870822041553749,
+          "olmo-2-1b": 0.7339056703762585,
+          "pythia-1b": 0.7990168051211337,
+          "pythia-2.8b": 0.7383906796998619,
+          "qwen3-0.6b": 0.738028770830366,
+          "qwen3-1.7b": 0.8030140593407626,
+          "qwen3-8b": 0.6677406475825448
+        }
+      },
+      "6 + all 6 candidates": {
+        "3class": 0.7215573270762405,
+        "binary": 0.6799830086073184,
+        "per_gen_3c": {
+          "llama-3.2-3b": 0.7178787733303073,
+          "mistral-7b-v0.3": 0.5707290368860195,
+          "olmo-2-1b": 0.7302330902330904,
+          "pythia-1b": 0.8113465004229652,
+          "pythia-2.8b": 0.7206040340847805,
+          "qwen3-0.6b": 0.7244444444444444,
+          "qwen3-1.7b": 0.8279365079365079,
+          "qwen3-8b": 0.6692862292718097
+        }
+      }
+    },
+    "lofo_candidates": {
+      "skewness": {
+        "f1": 0.7314,
+        "delta": 0.0099
+      },
+      "kurtosis": {
+        "f1": 0.7189,
+        "delta": -0.0027
+      },
+      "iqr": {
+        "f1": 0.7282,
+        "delta": 0.0067
+      },
+      "median": {
+        "f1": 0.7296,
+        "delta": 0.008
+      },
+      "p90": {
+        "f1": 0.7219,
+        "delta": 0.0004
+      },
+      "cv": {
+        "f1": 0.7214,
+        "delta": -0.0002
+      }
+    },
+    "lofo_original": {
+      "entropy_mean": {
+        "f1": 0.7264,
+        "delta": 0.0049
+      },
+      "entropy_std": {
+        "f1": 0.7237,
+        "delta": 0.0022
+      },
+      "entropy_min": {
+        "f1": 0.7238,
+        "delta": 0.0022
+      },
+      "entropy_max": {
+        "f1": 0.7256,
+        "delta": 0.0041
+      },
+      "ttr": {
+        "f1": 0.7159,
+        "delta": -0.0057
+      },
+      "hapax_ratio": {
+        "f1": 0.723,
+        "delta": 0.0014
+      }
+    },
+    "ddr_candidates": {
+      "skewness": {
+        "abs_rho": NaN,
+        "d": 0.0,
+        "zone": "stationary"
+      },
+      "kurtosis": {
+        "abs_rho": NaN,
+        "d": 0.0,
+        "zone": "stationary"
+      },
+      "iqr": {
+        "abs_rho": 0.708,
+        "d": 1.0791,
+        "zone": "drifting"
+      },
+      "median": {
+        "abs_rho": 0.6848,
+        "d": 0.794,
+        "zone": "drifting"
+      },
+      "p90": {
+        "abs_rho": 0.6933,
+        "d": 0.9599,
+        "zone": "drifting"
+      },
+      "cv": {
+        "abs_rho": 0.6326,
+        "d": 0.9799,
+        "zone": "drifting"
+      }
+    },
+    "ddr_original": {
+      "entropy_mean": {
+        "abs_rho": 0.6962,
+        "d": 0.8465,
+        "zone": "drifting"
+      },
+      "entropy_std": {
+        "abs_rho": 0.653,
+        "d": 0.7527,
+        "zone": "drifting"
+      },
+      "entropy_min": {
+        "abs_rho": 0.4216,
+        "d": 0.0522,
+        "zone": "drifting"
+      },
+      "entropy_max": {
+        "abs_rho": 0.3807,
+        "d": 0.2537,
+        "zone": "drifting"
+      },
+      "ttr": {
+        "abs_rho": 0.6203,
+        "d": 0.8462,
+        "zone": "drifting"
+      },
+      "hapax_ratio": {
+        "abs_rho": 0.6414,
+        "d": 0.8042,
+        "zone": "drifting"
+      }
+    },
+    "correlations": {
+      "skewness": {
+        "correlations": {
+          "entropy_mean": NaN,
+          "entropy_std": NaN,
+          "entropy_min": NaN,
+          "entropy_max": NaN,
+          "ttr": NaN,
+          "hapax_ratio": NaN
+        },
+        "max_corr_feat": "entropy_mean",
+        "max_corr_val": NaN
+      },
+      "kurtosis": {
+        "correlations": {
+          "entropy_mean": NaN,
+          "entropy_std": NaN,
+          "entropy_min": NaN,
+          "entropy_max": NaN,
+          "ttr": NaN,
+          "hapax_ratio": NaN
+        },
+        "max_corr_feat": "entropy_mean",
+        "max_corr_val": NaN
+      },
+      "iqr": {
+        "correlations": {
+          "entropy_mean": 0.875,
+          "entropy_std": 0.9078,
+          "entropy_min": -0.0397,
+          "entropy_max": 0.4261,
+          "ttr": 0.8886,
+          "hapax_ratio": 0.8447
+        },
+        "max_corr_feat": "entropy_std",
+        "max_corr_val": 0.9078
+      },
+      "median": {
+        "correlations": {
+          "entropy_mean": 0.9601,
+          "entropy_std": 0.6542,
+          "entropy_min": 0.4712,
+          "entropy_max": 0.3473,
+          "ttr": 0.7851,
+          "hapax_ratio": 0.7912
+        },
+        "max_corr_feat": "entropy_mean",
+        "max_corr_val": 0.9601
+      },
+      "p90": {
+        "correlations": {
+          "entropy_mean": 0.9365,
+          "entropy_std": 0.9174,
+          "entropy_min": 0.1462,
+          "entropy_max": 0.4492,
+          "ttr": 0.8866,
+          "hapax_ratio": 0.8388
+        },
+        "max_corr_feat": "entropy_mean",
+        "max_corr_val": 0.9365
+      },
+      "cv": {
+        "correlations": {
+          "entropy_mean": -0.7611,
+          "entropy_std": -0.6962,
+          "entropy_min": -0.0598,
+          "entropy_max": -0.2213,
+          "ttr": -0.7574,
+          "hapax_ratio": -0.6514
+        },
+        "max_corr_feat": "entropy_mean",
+        "max_corr_val": -0.7611
+      }
+    },
+    "full_f1_extended": 0.7216,
+    "n_samples": 1000
+  }
+}

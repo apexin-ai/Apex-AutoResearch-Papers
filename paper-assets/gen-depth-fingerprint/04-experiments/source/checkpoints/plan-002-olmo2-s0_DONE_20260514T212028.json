@@ -1,0 +1,63 @@
+{
+  "exp_id": "plan-002-olmo2-s0",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:09:45.173Z",
+    "updated_at": "2026-05-14T21:20:28.747Z",
+    "spec": {
+      "command": "python generate_chain.py --model-name olmo-2-1b --shard-id 0 --num-shards 2",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "108242",
+      "log_path": "~/runs/gen-depth-fingerprint/plan-002-olmo2-s0.log",
+      "submitted_at": "2026-05-14T20:09:45.156Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl",
+      "data_count": 1000,
+      "model_name": "allenai/OLMo-2-0425-1B",
+      "seed": 42,
+      "wall_clock_seconds": 4243.6,
+      "gpu_hours": 1.18
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T21:17:49.730Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T21:17:50.547144+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "records": 2379,
+      "seeds": 497,
+      "skipped": 47,
+      "wall_time_s": 3885.2,
+      "depth_dist": {
+        "gen0": 497,
+        "gen1": 494,
+        "gen2": 477,
+        "gen3": 461,
+        "gen4": 450
+      },
+      "file": "generations_shard0.jsonl",
+      "file_size_mb": 2.68
+    },
+    "checkpoint_path": "/root/gen-depth-fingerprint/data/olmo-2-1b/generations_shard0.jsonl",
+    "completed_at": "2026-05-14T21:20:28.747Z"
+  },
+  "timestamp": "2026-05-14T21:20:28.774900+00:00",
+  "trigger": "update_registry"
+}

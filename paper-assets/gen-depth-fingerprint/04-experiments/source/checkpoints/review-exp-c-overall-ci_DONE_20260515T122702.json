@@ -1,0 +1,27 @@
+{
+  "exp_id": "review-exp-c-overall-ci",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:22:37.037Z",
+    "updated_at": "2026-05-15T12:27:02.426Z",
+    "hypothesis": "审稿回应实验C：6-gen overall bootstrap CI + entropy_max/min 个体 Spearman ρ，补全统计报告",
+    "spec": {
+      "command": "python scripts/review_overall_ci.py",
+      "server": "autodl-5090",
+      "data_path": "data/features_all_models.csv",
+      "data_count": 27529,
+      "model_name": "xgboost",
+      "seed": 42,
+      "checkpoint_path": "n/a",
+      "log_path": "results/review_overall_ci_results.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T12:27:02.426Z"
+  },
+  "timestamp": "2026-05-15T12:27:02.493616+00:00",
+  "trigger": "update_registry"
+}

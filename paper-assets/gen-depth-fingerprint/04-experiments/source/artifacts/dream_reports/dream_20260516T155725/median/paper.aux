@@ -1,0 +1,60 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024model}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{shumailov2024model}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Synthetic Text Detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model Collapse and Iterative Generation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data Quality and Curation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stylometry and Authorship Attribution.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Feature Extraction}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Central-tendency / Diversity features (drifting):}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Shape features (stationary):}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Classifier}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Evaluation Protocol}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Feature Ablation and Trend Analysis}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:ablation}{{4.1}{3}{Feature Ablation and Trend Analysis}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Feature ablation on Pythia-2.8B data (5-fold CV). Full ensemble outperforms both subgroups, confirming partial complementarity (+6pp over best single group).}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:ablation}{{1}{3}{Feature ablation on Pythia-2.8B data (5-fold CV). Full ensemble outperforms both subgroups, confirming partial complementarity (+6pp over best single group)}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Per-feature Spearman correlation with depth. Diversity features (top) drift monotonically; shape features (bottom) remain stationary.}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:trends}{{2}{3}{Per-feature Spearman correlation with depth. Diversity features (top) drift monotonically; shape features (bottom) remain stationary}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Generator Evaluation}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:cross_gen}{{4.2}{4}{Cross-Generator Evaluation}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces LOGO 3-class macro-F1. Same-family generators (Pythia) transfer best; cross-family (OLMo) shows the largest gap.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:logo}{{3}{4}{LOGO 3-class macro-F1. Same-family generators (Pythia) transfer best; cross-family (OLMo) shows the largest gap}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Leave-one-family-out F1. Pythia removal penalizes most due to losing 2/5 training generators.}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:family_out}{{4}{4}{Leave-one-family-out F1. Pythia removal penalizes most due to losing 2/5 training generators}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Paraphrastic vs.\ Continuation Chains}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:para}{{4.3}{4}{Paraphrastic vs.\ Continuation Chains}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Chain type comparison. Continuation chains exhibit stronger depth signal due to weaker semantic constraints.}}{4}{table.5}\protected@file@percent }
+\newlabel{tab:para}{{5}{4}{Chain type comparison. Continuation chains exhibit stronger depth signal due to weaker semantic constraints}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Finer-Grained Ordinal Classification}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:ordinal}{{4.4}{5}{Finer-Grained Ordinal Classification}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces 5-class ordinal classification. All methods show dramatic degradation from 3-class, supporting a $\sim $3-class resolution ceiling.}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:5class}{{6}{5}{5-class ordinal classification. All methods show dramatic degradation from 3-class, supporting a $\sim $3-class resolution ceiling}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}End-to-End Neural Classifier}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:neural}{{4.5}{5}{End-to-End Neural Classifier}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces 3-class comparison. The neural model achieves higher in-distribution performance but suffers a much larger LOGO generalization gap.}}{5}{table.7}\protected@file@percent }
+\newlabel{tab:neural}{{7}{5}{3-class comparison. The neural model achieves higher in-distribution performance but suffers a much larger LOGO generalization gap}{table.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{5}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Architecture-dependent transfer gap.}{5}{section*.7}\protected@file@percent }
+\bibcite{shumailov2024model}{{1}{2024}{{Shumailov et~al.}}{{}}}
+\bibcite{mitchell2023detectgpt}{{2}{2023}{{Mitchell et~al.}}{{}}}
+\bibcite{hans2024binoculars}{{3}{2024}{{Hans et~al.}}{{}}}
+\bibcite{kirchenbauer2023watermark}{{4}{2023}{{Kirchenbauer et~al.}}{{}}}
+\bibcite{alemohammad2024selfconsuming}{{5}{2024}{{Alemohammad et~al.}}{{}}}
+\bibcite{guo2024curious}{{6}{2024}{{Guo et~al.}}{{}}}
+\bibcite{stamatatos2009survey}{{7}{2009}{{Stamatatos}}{{}}}
+\bibcite{holtzman2020curious}{{8}{2020}{{Holtzman et~al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{The 3-class ceiling.}{6}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Diagnostic, not curative.}{6}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{6}{section.6}\protected@file@percent }
+\bibcite{bao2024fastdetectgpt}{{9}{2024}{{Bao et~al.}}{{}}}
+\bibcite{dohmatob2024model}{{10}{2024}{{Dohmatob et~al.}}{{}}}
+\gdef \@abspage@last{7}

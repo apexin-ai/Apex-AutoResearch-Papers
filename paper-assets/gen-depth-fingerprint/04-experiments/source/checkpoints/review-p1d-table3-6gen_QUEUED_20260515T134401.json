@@ -1,0 +1,15 @@
+{
+  "exp_id": "review-p1d-table3-6gen",
+  "project": "gen-depth-fingerprint",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:39:11.673Z",
+    "updated_at": "2026-05-15T13:44:01.568Z",
+    "hypothesis": "P1-D: Table 3 统一为 6-gen LOGO + M6 超参对比——single baselines 用 6-gen 口径 + 100/3 vs 200/6 比较"
+  },
+  "timestamp": "2026-05-15T13:44:01.828912+00:00",
+  "trigger": "update_registry"
+}

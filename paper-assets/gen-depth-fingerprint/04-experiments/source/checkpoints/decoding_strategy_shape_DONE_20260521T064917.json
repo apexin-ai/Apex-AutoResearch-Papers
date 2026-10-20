@@ -1,0 +1,25 @@
+{
+  "exp_id": "decoding_strategy_shape",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T06:36:35.954Z",
+    "updated_at": "2026-05-21T06:49:17.348Z",
+    "hypothesis": "DDR shape stability (entropy_max, entropy_min, tail_decay d<0.15) holds under greedy and top-k decoding, not just nucleus sampling — verifying the claim is decoding-strategy-agnostic",
+    "spec": {
+      "command": "python generate_chain_decoding.py --model {pythia-2.8b,olmo-2-1b,qwen3-1.7b} --decoding {greedy,topk}",
+      "server": "bjb2-18868",
+      "data_path": "/root/gen-depth-fingerprint/data/seeds_1000.txt",
+      "data_count": 1000,
+      "model_name": "pythia-2.8b, olmo-2-1b, qwen3-1.7b",
+      "seed": 42
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-21T06:49:17.348Z"
+  },
+  "timestamp": "2026-05-21T06:49:17.463454+00:00",
+  "trigger": "update_registry"
+}

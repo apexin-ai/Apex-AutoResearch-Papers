@@ -1,0 +1,29 @@
+{
+  "exp_id": "plan-002-qwen06b-r2-s1",
+  "project": "gen-depth-fingerprint",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:35:11.142Z",
+    "updated_at": "2026-05-14T23:01:26.118Z",
+    "hypothesis": "跨模型泛化数据生成：Qwen3-0.6B continuation 链 shard1（orphan 进程恢复）",
+    "spec": {
+      "command": "python generate_chain.py --model-name qwen3-0.6b --model-path /root/autodl-tmp/models/Qwen/Qwen3-0___6B-Base --input data/wiki_seed_1000.jsonl --shard-id 1 --num-shards 2 --device cuda:0",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/qwen3-0.6b/generations_shard1.jsonl",
+      "data_count": 2500,
+      "model_name": "Qwen3-0.6B",
+      "seed": "500-999",
+      "pid": "118126",
+      "gpu": [
+        "cuda:3"
+      ]
+    },
+    "notes": "Orphan 进程 PID 118126 存活，shard1 进度 340/500 seeds (68%)，当前 1542 行，预计 ~23:00 UTC 完成。GPU cuda:3 利用率 33%。",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T23:01:26.174543+00:00",
+  "trigger": "update_registry"
+}

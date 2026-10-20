@@ -1,0 +1,643 @@
+paper:
+  title: Depth Fingerprinting of Recursive LLM Generation Chains
+  version: 24
+  generated_at: '2026-05-15T06:50:53.958448+00:00'
+  source: auto-bootstrap from existing tex files
+claims:
+- text: We formulate ordinal depth estimation---classifying text into generation depth
+    classes (gen-0\,/\,gen-1\,/\,gen-2+)---and study distributional drift in non-paraphrastic
+    LLM generation chains across si
+  type: quantitative
+  location:
+    section: abstract
+    context: result_statement
+  id: C001
+  evidence: []
+  deprecated: false
+- text: A 7-feature ensemble combining both types achieves leave-one-generator-out
+    macro-F1 of 0.79 (per-generator range 0.68--0.86), significantly outperforming
+    all single-detector baselines ($p < 0.001$) wi
+  type: quantitative
+  location:
+    section: abstract
+    context: result_statement
+  id: C002
+  evidence: []
+  deprecated: false
+- text: However, depth-aware data curation does not improve downstream language model
+    quality over random subsampling at equal data budgets (perplexity 2.387 vs.\ 2.367),
+    positioning depth estimation as a dia
+  type: quantitative
+  location:
+    section: abstract
+    context: result_statement
+  id: C003
+  evidence: []
+  deprecated: false
+- text: 'We find that distributional features exhibit differential depth response:
+    central-tendency and diversity features (entropy mean, type-token ratio, hapa'
+  type: methodological
+  location:
+    section: abstract
+    context: finding_statement
+  id: C004
+  evidence: []
+  deprecated: false
+- text: 'We evaluate depth fingerprinting across three prompt types using Pythia-2.8B
+    (${$1{,000 seeds each, depths 0--4): continuation (``Continue the following text:''''),
+    elaboration (``Elaborate on the follo'
+  type: quantitative
+  location:
+    section: appendix_prompt_type
+    context: result_statement
+  id: C005
+  evidence: []
+  deprecated: false
+- text: 'All three prompt types exhibit the same differential depth response: hapax\_ratio,
+    TTR, and entropy\_mean drift monotonically with depth (negative direction), while
+    shape features (entropy\_std, tail\'
+  type: quantitative
+  location:
+    section: appendix_prompt_type
+    context: result_statement
+  id: C006
+  evidence: []
+  deprecated: false
+- text: 'Cross-prompt generalization is strong: the LOPTO average F1 of 0.753 indicates
+    that a classifier trained on two prompt types transfers well to the third. Rewriting
+    chains are the hardest to predict fr'
+  type: quantitative
+  location:
+    section: appendix_prompt_type
+    context: result_statement
+  id: C007
+  evidence: []
+  deprecated: false
+- text: The sole feature-level exception is entropy\_min, whose drift direction reverses
+    under elaboration ($-$47\% vs.\ $+$291\% for continuation). However, entropy\_min
+    has the lowest feature importance (0.
+  type: quantitative
+  location:
+    section: appendix_prompt_type
+    context: result_statement
+  id: C008
+  evidence: []
+  deprecated: false
+- text: 'Our empirical study across six generators from three model families (0.6B--8.2B
+    parameters) documents differential depth response: central-tendency and diversity
+    features drift monotonically with genera'
+  type: quantitative
+  location:
+    section: conclusion
+    context: result_statement
+  id: C009
+  evidence: []
+  deprecated: false
+- text: 'A 7-feature ensemble combining both feature types achieves leave-one-generator-out
+    macro-F1 of 0.79 (per-generator range: 0.68--0.86), with tight cross-generator
+    consistency that single detection scor'
+  type: quantitative
+  location:
+    section: conclusion
+    context: result_statement
+  id: C010
+  evidence: []
+  deprecated: false
+- text: Future work should address the cross-scale transfer gap observed at 8B (held-out
+    F1 0.68 vs.\ $$2.8B average 0.81), evaluate robustness to mixed-generator chains
+    that better reflect real web contamina
+  type: quantitative
+  location:
+    section: conclusion
+    context: result_statement
+  id: C011
+  evidence: []
+  deprecated: false
+- text: 3-class granularity.
+  type: quantitative
+  location:
+    section: discussion
+    context: bold
+  id: C012
+  evidence: []
+  deprecated: false
+- text: Generator scale. Our largest generator is Qwen3-8B. Depth signal exists at
+    this scale but transfers less reliably from sub-2B training generators (held-out
+    F1\,=\,0.683 vs.\ 0.76--0.86 for ${$2.8B mod
+  type: quantitative
+  location:
+    section: discussion
+    context: result_statement
+  id: C013
+  evidence: []
+  deprecated: false
+- text: This suggests that the drift is a property of the text itself---an accumulation
+    of sampling bias across serial generation steps---rather than a side effect of
+    retra
+  type: methodological
+  location:
+    section: discussion
+    context: finding_statement
+  id: C014
+  evidence: []
+  deprecated: false
+- text: When repurposed as ordinal depth predictors, individual detection scores exhibit
+    high cross-generator variance---CI spans of up to 0.26 F1 points (sec:baselines)---making
+    any single detector unreliabl
+  type: quantitative
+  location:
+    section: introduction
+    context: result_statement
+  id: C015
+  evidence: []
+  deprecated: false
+- text: We study distributional drift in non-paraphrastic LLM generation chains across
+    six generators from three model families (Pythia, OLMo, Qwen; 0.6B--8.2B parameters).
+  type: quantitative
+  location:
+    section: introduction
+    context: result_statement
+  id: C016
+  evidence: []
+  deprecated: false
+- text: The combination of drifting and stationary features yields a 7-feature ensemble
+    that achieves leave-one-generator-out (LOGO) macro-F1 of 0.79, with per-generator
+    held-out F1 ranging from 0.68 to 0.86.
+  type: quantitative
+  location:
+    section: introduction
+    context: result_statement
+  id: C017
+  evidence: []
+  deprecated: false
+- text: This ensemble maintains tight cross-generator consistency (CI width 1.3\,pp),
+    whereas the best single detector spans over 20\,pp.
+  type: quantitative
+  location:
+    section: introduction
+    context: result_statement
+  id: C018
+  evidence: []
+  deprecated: false
+- text: Depth-aware data curation---selecting training data based on estimated generation
+    depth---does not improve downstream language model quality compared to random
+    subsampling at equal sample count (perpl
+  type: quantitative
+  location:
+    section: introduction
+    context: result_statement
+  id: C019
+  evidence: []
+  deprecated: false
+- text: 'Empirical characterization. We document differential depth response across
+    six generators spanning three model families (0.6B--8.2B): a 7-feature ensemble
+    combining drifting and stationary features achi'
+  type: quantitative
+  location:
+    section: introduction
+    context: result_statement
+  id: C020
+  evidence: []
+  deprecated: false
+- text: Negative finding. Depth-aware data curation does not outperform random subsampling
+    for downstream CLM quality (size-matched 2.367 vs.\ depth-stratified 2.387), establishing
+    depth fingerprinting as dia
+  type: quantitative
+  location:
+    section: introduction
+    context: result_statement
+  id: C021
+  evidence: []
+  deprecated: false
+- text: 'We construct non-paraphrastic generation chains using 6 generators spanning
+    3 model families: Pythia pythia (Pythia-2.8B, Pythia-1B), OLMo olmo (OLMo-2-1B),
+    and Qwen qwen3 (Qwen3-1.7B, Qwen3-0.6B, Qwe'
+  type: quantitative
+  location:
+    section: method
+    context: result_statement
+  id: C022
+  evidence: []
+  deprecated: false
+- text: 'For each generator, we sample ${$1{,000 seed passages from English Wikipedia
+    as depth-0 (human-written) text. Each seed is extended through a 4-step continuation
+    chain: the prompt "Continue the follow'
+  type: quantitative
+  location:
+    section: method
+    context: result_statement
+  id: C023
+  evidence: []
+  deprecated: false
+- text: 'The choice of reference model is not critical: replacing Pythia-410M with
+    OLMo-2-1B or Qwen3-0.6B as alternative reference models yields comparable cross-generator
+    performance (LOGO macro-F1 0.80--0.8'
+  type: quantitative
+  location:
+    section: method
+    context: result_statement
+  id: C024
+  evidence: []
+  deprecated: false
+- text: 'entropy\_min: $_t _t$, the minimum token-level NLL. entropy\_min empirically
+    behaves as a surface diversity proxy but is computed via the reference model;
+    in ablation (sec:differential), we group it w'
+  type: quantitative
+  location:
+    section: method
+    context: result_statement
+  id: C025
+  evidence: []
+  deprecated: false
+- text: All reported metrics include 95\% bootstrap confidence intervals ($n{=1{,000$
+    resamples). Pairwise comparisons between the full feature set and ablated subsets
+    use McNemar's test with significance thr
+  type: quantitative
+  location:
+    section: method
+    context: result_statement
+  id: C026
+  evidence: []
+  deprecated: false
+- text: 'We repurpose four established detection scores as ordinal depth estimators
+    by training an XGBoost classifier on each single score under the same LOGO protocol:
+    Avg-LogProb gltr, FastDetectGPT fast_det'
+  type: quantitative
+  location:
+    section: method
+    context: result_statement
+  id: C027
+  evidence: []
+  deprecated: false
+- text: 'Even when detection scores correlate with generation depth, they exhibit
+    high cross-generator variance when repurposed as ordinal predictors (CI spans
+    of up to 0.26 F1 points; sec:baselines), because '
+  type: quantitative
+  location:
+    section: related_work
+    context: result_statement
+  id: C028
+  evidence: []
+  deprecated: false
+- text: we show monotonic diversity decline across generation depths without any model
+    retraining.
+  type: methodological
+  location:
+    section: related_work
+    context: finding_statement
+  id: C029
+  evidence: []
+  deprecated: false
+- text: our results demonstrate that diversity still declines monotonically across
+    recursive application of the same sampling procedure.
+  type: methodological
+  location:
+    section: related_work
+    context: finding_statement
+  id: C030
+  evidence: []
+  deprecated: false
+- text: Average (6-gen)
+  type: quantitative
+  location:
+    section: results
+    context: bold
+  id: C031
+  evidence: []
+  deprecated: false
+- text: Average (5-gen, ${\leq
+  type: quantitative
+  location:
+    section: results
+    context: bold
+  id: C032
+  evidence: []
+  deprecated: false
+- text: '{ Family-out $$: training without any same-family generator reduces average
+    F1 by only 0.011, indicating that depth signal transfers across model families.
+    The 5-gen average is the LOGO F1 from a sepa'
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C033
+  evidence: []
+  deprecated: false
+- text: 'The 6-generator LOGO average macro-F1 is 0.789, with per-generator scores
+    ranging from 0.683 to 0.856. Five of six folds exceed 0.76, and the within-family
+    pair Pythia-2.8B / Pythia-1B shows that the '
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C034
+  evidence: []
+  deprecated: false
+- text: The clear outlier is Qwen3-8B (8.2B parameters), whose held-out F1 of 0.683
+    falls well below the 5-generator average of 0.800 obtained before adding this
+    generator to the pool. This cross-scale transf
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C035
+  evidence: []
+  deprecated: false
+- text: Per-class analysis reveals that gen-0 is classified near-perfectly (F1\,=\,0.94),
+    gen-2+ reliably (0.80), while gen-1 remains the most challenging class (0.64).
+    The gen-0 result is consistent with the
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C036
+  evidence: []
+  deprecated: false
+- text: 'Per-generator LOGO macro-F1 with class-level breakdowns. Generators are grouped
+    by family; the dashed line marks the 6-generator average (0.789). Qwen3-8B exhibits
+    a cross-scale transfer gap relative '
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C037
+  evidence: []
+  deprecated: false
+- text: 'Drifting features. Three features exhibit strong monotonic trends: hapax\_ratio
+    ($ = -0.558$), TTR ($ = -0.543$), and entropy\_mean ($ = -0.476$). These correlations
+    confirm that recursive generation '
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C038
+  evidence: []
+  deprecated: false
+- text: 'Feature importance scores from the XGBoost ensemble align with this decomposition:
+    hapax\_ratio (0.269) $>$ entropy\_mean (0.164) $>$ TTR (0.159), with the three
+    drifting features collectively account'
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C039
+  evidence: []
+  deprecated: false
+- text: Table~tab:ablation isolates the contribution of each feature group. Both surface-only
+    and reference-only subsets degrade performance relative to the full set (McNemar's
+    test $p < 0.001$), confirming t
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C040
+  evidence: []
+  deprecated: false
+- text: 'Feature ablation under the LOGO protocol. Surface features: TTR, hapax\_ratio.
+    Reference features: entropy\_mean, entropy\_std, entropy\_max, tail\_decay, entropy\_min.$^{$
+    $^{$entropy\_min empiricall'
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C041
+  evidence: []
+  deprecated: false
+- text: 'To confirm that the features capture properties of the text rather than artifacts
+    of the reference model, we repeat the LOGO evaluation with three reference models
+    from different families:'
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C042
+  evidence: []
+  deprecated: false
+- text: 'Baseline comparison on the 5-generator (${$2.8B) LOGO pool. 95\% bootstrap
+    CIs ($n{=1{,000$). CI span measures cross-generator reliability: narrower is more
+    stable.'
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C043
+  evidence: []
+  deprecated: false
+- text: 7-feature ensemble & 0.798 & [0.786, 0.799] & 0.013 \\
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C044
+  evidence: []
+  deprecated: false
+- text: LD-Score & 0.721 & [0.588, 0.770] & 0.182 \\
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C045
+  evidence: []
+  deprecated: false
+- text: Table~tab:baselines reports the results. The 7-feature ensemble achieves a
+    LOGO F1 of 0.798, with bootstrap improvements of $+0.039$ over Avg-LogProb and
+    $+0.067$ over FastDetectGPT (both $p < 0.001$)
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C046
+  evidence: []
+  deprecated: false
+- text: 'Recursive generation could produce systematically shorter or longer texts,
+    introducing a length confound. We verify that length is not a primary driver of
+    classification performance: the absolute Spea'
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C047
+  evidence: []
+  deprecated: false
+- text: We additionally verify that the differential depth response generalizes beyond
+    continuation chains. Elaboration and inspired-rewriting chains (Pythia-2.8B, ${$1K
+    seeds each) exhibit the same drifting-
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C048
+  evidence: []
+  deprecated: false
+- text: We test whether depth-aware data curation improves downstream language model
+    quality. Specifically, we fine-tune OLMo-2-0425-1B on subsets of our generation
+    chain data curated by depth, evaluating per
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C049
+  evidence: []
+  deprecated: false
+- text: Downstream fine-tuning perplexity (OLMo-2-0425-1B). Lower is better. $$ is
+    relative to the size-matched baseline. Cross-seed std $< 0.002$ for all strategies.
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C050
+  evidence: []
+  deprecated: false
+- text: Size-matched     & 3{,951  & 2.367 & baseline \\
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C051
+  evidence: []
+  deprecated: false
+- text: 'Depth-aware curation does not improve downstream quality. At equal training
+    set sizes (3,951 samples), depth-based filtering strategies (depth 0+1: PPL 2.387;
+    binary filtered: PPL 2.389) slightly unde'
+  type: quantitative
+  location:
+    section: results
+    context: result_statement
+  id: C052
+  evidence: []
+  deprecated: false
+- id: C053
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'Cross-family LOFO: non-Pythia→Pythia F1=0.772, Pythia→non-Pythia F1=0.761,
+    Δ=0.011'
+  type: quantitative
+  evidence:
+  - exp_id: plan-002-eval
+    metric: family_out_delta
+    value: 0.011
+  decisions: []
+  deprecated: false
+- id: C054
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Shape stationarity is continuation-specific; elaboration/rewriting show near-zero
+    shape correlation due to prompt template stabilization
+  type: methodological
+  evidence:
+  - exp_id: plan-005
+    metric: shape_features_prompt_type_dependence
+  decisions: []
+  deprecated: false
+- id: C055
+  location:
+    section: results
+    paragraph: 0
+    sentence: 0
+  text: 'Per-class 6-gen LOGO F1: gen-0=0.94, gen-1=0.64, gen-2+=0.80'
+  type: quantitative
+  evidence:
+  - exp_id: plan-014
+    metric: per_class_f1_6gen_avg
+    value:
+      gen0: 0.937
+      gen1: 0.636
+      gen2plus: 0.795
+  decisions: []
+  deprecated: false
+tables:
+- caption: 'Prompt type comparison (Pythia-2.8B). CV F1: within-type cross-validation.
+    LOPTO F1: trained on two prompt types, tested on the third. Retention: fraction
+    of seeds surviving to depth 4. Drift: relative change from depth 0 to depth 4.'
+  label: tab:prompt_type
+  location:
+    section: appendix_prompt_type
+  cells: []
+  id: T001
+  deprecated: false
+- caption: Leave-one-generator-out (LOGO) macro-F1 for 3-class depth classification
+    (gen-0 / gen-1 / gen-2+). Each row holds out the listed generator at test time;
+    the classifier trains on the remaining 5. 95\% bootstrap CIs ($n{=
+  label: tab:logo
+  location:
+    section: results
+  cells: []
+  id: T002
+  deprecated: false
+- caption: 'Feature ablation under the LOGO protocol. Surface features: TTR, hapax\_ratio.
+    Reference features: entropy\_mean, entropy\_std, entropy\_max, tail\_decay, entropy\_min.$^{\dagger'
+  label: tab:ablation
+  location:
+    section: results
+  cells: []
+  id: T003
+  deprecated: false
+- caption: Baseline comparison on the 5-generator (${\leq
+  label: tab:baselines
+  location:
+    section: results
+  cells: []
+  id: T004
+  deprecated: false
+- caption: Downstream fine-tuning perplexity (OLMo-2-0425-1B). Lower is better. $\Delta$
+    is relative to the size-matched baseline. Cross-seed std $< 0.002$ for all strategies.
+  label: tab:downstream
+  location:
+    section: results
+  cells: []
+  id: T005
+  deprecated: false
+figures:
+- caption: Per-generator LOGO macro-F1 with class-level breakdowns. Generators are
+    grouped by family; the dashed line marks the 6-generator average (0.789). Qwen3-8B
+    exhibits a cross-scale transfer gap relative to sub-2B generators.
+  label: fig:logo_performance
+  source_path: figures/paper/fig2_logo_performance.pdf
+  location:
+    section: results
+  type: result
+  id: F001
+  deprecated: false
+- caption: Differential depth response across generation depths 0--4. \textbf{Left
+  label: fig:differential
+  source_path: figures/paper/fig1_differential_response.pdf
+  location:
+    section: results
+  type: result
+  id: F002
+  deprecated: false
+- caption: LOGO macro-F1 with 95\% bootstrap CIs. The 7-feature ensemble (leftmost)
+    achieves the highest average and the narrowest CI, indicating stable cross-generator
+    transfer. Single detection scores show high variance across held-out generators.
+  label: fig:baselines
+  source_path: figures/paper/fig3_baseline_comparison.pdf
+  location:
+    section: results
+  type: result
+  id: F003
+  deprecated: false
+- caption: Downstream evaluation perplexity across curation strategies (3 seeds each).
+    Training set size, not depth composition, is the primary driver. Depth-aware filtering
+    provides no measurable benefit at equal data budgets.
+  label: fig:downstream
+  source_path: figures/paper/fig4_downstream_negative.pdf
+  location:
+    section: results
+  type: result
+  id: F004
+  deprecated: false
+_completeness:
+  coverage: 3/59
+  claims: 55
+  tables: 5
+  figures: 4
+  tier_counts:
+    tier1: 0
+    tier2: 3
+    tier3: 56
+    tierX: 0
+  last_checked: '2026-05-15T06:50:53.958487+00:00'

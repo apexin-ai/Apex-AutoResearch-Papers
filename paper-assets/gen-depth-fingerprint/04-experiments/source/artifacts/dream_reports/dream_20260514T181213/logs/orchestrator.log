@@ -1,0 +1,3 @@
+2026-05-14 18:40:49,545 INFO    core.tools.feishu  create_chat: name='审稿-gen-depth-fingerprint' → chat_id=oc_999770e4e57bfc6eabd12fc1f64af1ef
+2026-05-14 18:40:49,548 INFO    core.tools.dream  [dream] auto-created Group C for project=gen-depth-fingerprint: oc_999770e4e57bfc6eabd12fc1f64af1ef
+2026-05-14 18:40:49,681 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-idea_gen_0514_3/config/mcp_config_dream_review_director.json

@@ -1,0 +1,98 @@
+{
+  "3class": {
+    "f1_observed": 0.762,
+    "ci_lower": 0.7577,
+    "ci_upper": 0.7664,
+    "n_samples": 37058,
+    "per_generator": {
+      "llama-3.2-3b": {
+        "f1": 0.7753,
+        "ci_lower": 0.7634,
+        "ci_upper": 0.788
+      },
+      "mistral-7b-v0.3": {
+        "f1": 0.6815,
+        "ci_lower": 0.6694,
+        "ci_upper": 0.695
+      },
+      "olmo-2-1b": {
+        "f1": 0.781,
+        "ci_lower": 0.7695,
+        "ci_upper": 0.7931
+      },
+      "pythia-1b": {
+        "f1": 0.8064,
+        "ci_lower": 0.7946,
+        "ci_upper": 0.8177
+      },
+      "pythia-2.8b": {
+        "f1": 0.7983,
+        "ci_lower": 0.7865,
+        "ci_upper": 0.8097
+      },
+      "qwen3-0.6b": {
+        "f1": 0.7795,
+        "ci_lower": 0.7677,
+        "ci_upper": 0.7925
+      },
+      "qwen3-1.7b": {
+        "f1": 0.7717,
+        "ci_lower": 0.7585,
+        "ci_upper": 0.7844
+      },
+      "qwen3-8b": {
+        "f1": 0.7143,
+        "ci_lower": 0.7007,
+        "ci_upper": 0.7286
+      }
+    }
+  },
+  "binary": {
+    "f1_observed": 0.6944,
+    "ci_lower": 0.6883,
+    "ci_upper": 0.7004,
+    "n_samples": 29095,
+    "per_generator": {
+      "llama-3.2-3b": {
+        "f1": 0.6968,
+        "ci_lower": 0.6798,
+        "ci_upper": 0.7129
+      },
+      "mistral-7b-v0.3": {
+        "f1": 0.6327,
+        "ci_lower": 0.6172,
+        "ci_upper": 0.6482
+      },
+      "olmo-2-1b": {
+        "f1": 0.6954,
+        "ci_lower": 0.6788,
+        "ci_upper": 0.7114
+      },
+      "pythia-1b": {
+        "f1": 0.7175,
+        "ci_lower": 0.6998,
+        "ci_upper": 0.735
+      },
+      "pythia-2.8b": {
+        "f1": 0.7243,
+        "ci_lower": 0.7068,
+        "ci_upper": 0.7417
+      },
+      "qwen3-0.6b": {
+        "f1": 0.6911,
+        "ci_lower": 0.6733,
+        "ci_upper": 0.7086
+      },
+      "qwen3-1.7b": {
+        "f1": 0.7093,
+        "ci_lower": 0.6925,
+        "ci_upper": 0.7259
+      },
+      "qwen3-8b": {
+        "f1": 0.6918,
+        "ci_lower": 0.6738,
+        "ci_upper": 0.7077
+      }
+    }
+  }
+}

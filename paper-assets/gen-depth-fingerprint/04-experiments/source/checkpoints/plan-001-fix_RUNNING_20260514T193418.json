@@ -1,0 +1,25 @@
+{
+  "exp_id": "plan-001-fix",
+  "project": "gen-depth-fingerprint",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:50:14.620Z",
+    "updated_at": "2026-05-14T19:34:18.636Z",
+    "spec": {
+      "command": "python ablation_analysis.py --parts A B C --device cuda:0",
+      "server": "autodl-5090",
+      "data_path": "data/features.csv + data/generations.jsonl",
+      "data_count": 4609,
+      "model_name": "pythia-410m",
+      "seed": 42,
+      "pid": 101585,
+      "log_path": "/tmp/plan-001-fix.log"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T19:34:18.650872+00:00",
+  "trigger": "update_registry"
+}

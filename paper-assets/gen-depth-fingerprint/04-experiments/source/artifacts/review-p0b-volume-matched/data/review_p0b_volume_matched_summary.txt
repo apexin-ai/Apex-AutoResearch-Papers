@@ -1,0 +1,18 @@
+Volume-matched 5-gen LOGO control experiment results.
+
+5-gen original avg F1:       0.8019
+5-gen volume-matched avg F1: 0.8024  (+0.05pp from volume)
+6-gen excl qwen3-8b avg F1:  0.8102  (+0.83pp total improvement)
+
+Decomposition:
+  Volume effect:      +0.0005 (6%)
+  Diversity residual: +0.0078 (94%)
+
+Conclusion: Bootstrap upsampling 5-gen train data to match 6-gen volume contributes only +0.05pp. Nearly all of the +0.83pp improvement when adding Qwen3-8B comes from generator diversity, not data volume.
+
+Per-generator F1 (volume-matched, 3-seed avg):
+  olmo-2-1b: 0.7518, pythia-1b: 0.8513, pythia-2.8b: 0.7963
+  qwen3-0.6b: 0.8175, qwen3-1.7b: 0.7950
+
+Script: scripts/review_p0b_volume_matched.py
+Full results: results/review_p0b_volume_matched.json

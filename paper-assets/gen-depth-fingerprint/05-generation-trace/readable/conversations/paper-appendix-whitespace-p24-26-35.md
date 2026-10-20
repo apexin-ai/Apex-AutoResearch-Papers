@@ -1,0 +1,3584 @@
+# paper appendix whitespace p24 26 35
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 115
+- **Recorded user turns:** 0
+- **Tool calls:** 57
+- **Original source:** `logs/chats/worker_paper_appendix-whitespace-p24-26-35_20260522T041552.jsonl`
+- **Structured JSON:** [`2e8546fad0471bc165d0.json`](../../sessions/2e/2e8546fad0471bc165d0.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+115 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-22T04:24:50.284748+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-22T04:24:50.285083+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-22T04:24:50.285255+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "python3 -c \"\nimport subprocess\nr = subprocess.run(['pdftotext', '/root/gen-depth-fingerprint/paper/main.pdf', '-'], capture_output=True, text=True)\npages = r.stdout.split('\\x0c')\nprint(f'Total pages: {len(pages)}')\nfor i in [23, 25, 34]:\n    if i < len(pages):\n        lines = [l for l in pages[i].split('\\n') if l.strip()]\n        print(f'Page {i+1}: {len(lines)} non-empty lines')\n        print(f'  First 300 chars: {pages[i][:300]}')\n        print('---')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "python3 -c \"\nimport subprocess\nr = subprocess.run(['pdftotext', '/root/gen-depth-fingerprint/paper/main.pdf', '-'], capture_output=True, text=True)\npages = r.stdout.split('\\x0c')\nprint(f'Total pages: {len(pages)}')\nfor i in [23, 25, 34]:\n    if i < len(pages):\n        lines = [l for l in pages[i].split('\\n') if l.strip()]\n        print(f'Page {i+1}: {len(lines)} non-empty lines')\n        print(f'  First 300 chars: {pages[i][:300]}')\n        print('---')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-22T04:24:50.285389+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '<' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-22T04:24:50.285525+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint/paper && python3 -c \"\nimport subprocess\nr = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = r.stdout.split('\\x0c')\nprint(f'Total pages: {len(pages)}')\nfor i in [23, 25, 34]:\n    if i < len(pages):\n        lines = [l for l in pages[i].split('\\n') if l.strip()]\n        print(f'Page {i+1}: {len(lines)} non-empty lines')\n        print(f'  Content preview:')\n        for line in lines[:10]:\n            print(f'    {line.strip()}')\n        print('---')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint/paper && python3 -c \"\nimport subprocess\nr = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = r.stdout.split('\\x0c')\nprint(f'Total pages: {len(pages)}')\nfor i in [23, 25, 34]:\n    if i < len(pages):\n        lines = [l for l in pages[i].split('\\n') if l.strip()]\n        print(f'Page {i+1}: {len(lines)} non-empty lines')\n        print(f'  Content preview:')\n        for line in lines[:10]:\n            print(f'    {line.strip()}')\n        print('---')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T04:24:50.285693+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total pages: 37\\nPage 24: 123 non-empty lines\\n  Content preview:\\n    Rec.\\n    F1\\n    95% CI\\n    gen-0\\n    gen-1\\n    gen-2+\\n    0.921\\n    0.737\\n    0.842\\n    0.948\\n---\\nPage 26: 179 non-empty lines\\n  Content preview:\\n    Feature set\\n    F1\\n    Top feature (imp.)\\n    Full (7 features)\\n    Surface only (2)\\n    Reference only (5)\\n    0.773\\n    0.688\\n    0.713\\n    hapax_ratio (0.35)\\n---\\nPage 35: 30 non-empty lines\\n  Content preview:\\n    2354\\n    is consistent with larger models producing more\\n    self-typical outputs that narrow inter-depth contrasts; the partition structure is preserved even as\\n    absolute effect sizes compress.\\n    2355\\n    aa.6\\n    2351\\n    2352\\n    2353\\n    2356\\n---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-22T04:24:50.285824+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -n \"clearpage\\|newpage\\|FloatBarrier\" /root/gen-depth-fingerprint/paper/appendix_*.tex /root/gen-depth-fingerprint/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -n \"clearpage\\|newpage\\|FloatBarrier\" /root/gen-depth-fingerprint/paper/appendix_*.tex /root/gen-depth-fingerprint/paper/main.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T04:24:50.285952+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T04:24:50.286069+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rn \"begin{figure\" /root/gen-depth-fingerprint/paper/appendix_*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rn \"begin{figure\" /root/gen-depth-fingerprint/paper/appendix_*.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-22T04:24:50.286184+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rn \"begin{table\" /root/gen-depth-fingerprint/paper/appendix_*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rn \"begin{table\" /root/gen-depth-fingerprint/paper/appendix_*.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T04:24:50.286311+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/paper/appendix_classifier.tex:84:\\\\begin{figure}[H]\\n/root/gen-depth-fingerprint/paper/appendix_confusion_matrix.tex:24:\\\\begin{figure}[H]\\n/root/gen-depth-fingerprint/paper/appendix_convergence.tex:3:\\\\begin{figure}[H]\\n/root/gen-depth-fingerprint/paper/appendix_cross_temp.tex:4:\\\\begin{figure}[H]\\n/root/gen-depth-fingerprint/paper/appendix_dataset_stats.tex:35:\\\\begin{figure*}[!htbp]\\n/root/gen-depth-fingerprint/paper/appendix_ddr_validation.tex:157:\\\\begin{figure}[H]\\n/root/gen-depth-fingerprint/paper/appendix_feature_distributions.tex:8:\\\\begin{figure*}[t]\\n/root/gen-depth-fingerprint/paper/appendix_feature_distributions.tex:21:\\\\begin{figure}[H]\\n/root/gen-depth-fingerprint/paper/appendix_instruct.tex:58:\\\\begin{figure}[ht]\\n/root/gen-depth-fingerprint/paper/appendix_nll_distribution.tex:3:\\\\begin{figure}[h!]\\n/root/gen-depth-fingerprint/paper/appendix_tost.tex:41:\\\\begin{figure}[H]\\n/root/gen-depth-fingerprint/paper/appendix_transfer.tex:28:\\\\begin{figure}[!htbp]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T04:24:50.286491+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/paper/appendix_9gen_scale.tex:7:\\\\begin{table}[ht]\\n/root/gen-depth-fingerprint/paper/appendix_ablation.tex:3:\\\\begin{table}[t]\\n/root/gen-depth-fingerprint/paper/appendix_classifier.tex:7:\\\\begin{table}[ht]\\n/root/gen-depth-fingerprint/paper/appendix_classifier.tex:38:\\\\begin{table}[ht]\\n/root/gen-depth-fingerprint/paper/appendix_confusion_matrix.tex:4:\\\\begin{table}[ht]\\n/root/gen-depth-fingerprint/paper/appendix_cross_model_detail.tex:3:\\\\begin{table}[ht]\\n/root/gen-depth-fingerprint/paper/appendix_dataset_stats.tex:8:\\\\begin{table}[t]\\n/root/gen-depth-fingerprint/paper/appendix_ddr_causality.tex:7:\\\\begin{table}[ht]\\n/root/gen-depth-fingerprint/paper/appendix_ddr_causality.tex:33:\\\\begin{table}[ht]\\n/root/gen-depth-fingerprint/paper/appendix_ddr_validation.tex:5:\\\\begin{table}[ht]\\n/root/gen-depth-fingerprint/paper/appendix_ddr_validation.tex:41:\\\\begin{table}[ht]\\n/root/gen-depth-fingerprint/paper/appendix_ddr_validation.tex:91:\\\\begin{table}[ht]\\n/root/gen-depth-fingerprint/paper/appendix_ddr_validation.tex:125:\\\\begin{table}[ht]\\n/root/gen-depth-fingerprint/paper/appendix_ddr_validation.tex:170:\\\\begin{table}[ht]\\n/root/gen-depth-fingerprint/paper/appendix_decoding_strategy.tex:11:\\\\begin{table}[ht]\\n/root/gen-depth-fingerprint/paper/appendix_decoding_strategy.tex:39:\\\\begin{table}[ht]\\n/root/gen-depth-fingerprint/paper/appendix_domain.tex:7:\\\\begin{table}[ht]\\n/root/gen-depth-fingerprint/paper/appendix_downstream.tex:4:\\\\begin{table}[ht]\\n/root/gen-depth-fingerprint/paper/appendix_downstream.tex:43:\\\\begin{table}[ht]\\n/root/gen-depth-fingerprint/paper/appendix_error_analysis.tex:15:\\\\begin{table}[ht]\\n/root/gen-depth-fingerprint/paper/appendix_feature_candidates.tex:4:\\\\begin{table}[ht]\\n/root/gen-depth-fingerprint/paper/appendix_feature_correlation.tex:6:\\\\begin{table}[t]\\n/root/gen-depth-fingerprint/paper/app
+…[truncated 1680 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-22T04:24:50.286659+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rn \"clearpage\\|newpage\\|FloatBarrier\" /root/gen-depth-fingerprint/paper/appendix_*.tex /root/gen-depth-fingerprint/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rn \"clearpage\\|newpage\\|FloatBarrier\" /root/gen-depth-fingerprint/paper/appendix_*.tex /root/gen-depth-fingerprint/paper/main.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T04:24:50.286817+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/paper/main.tex:54:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:59:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:64:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:69:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:74:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:79:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:84:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:89:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:94:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:99:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:104:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:109:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:119:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:124:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:129:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:134:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:139:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:144:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:147:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:154:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:157:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:160:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:165:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:176:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:184:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:189:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:194:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:199:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.tex:202:\\\\FloatBarrier\\n/root/gen-depth-fingerprint/paper/main.t
+…[truncated 196 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-22T04:24:50.286989+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint/paper && python3 -c \"\nimport subprocess\nr = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = r.stdout.split('\\x0c')\n# Show pages 22-36 to understand context around problem pages\nfor i in range(21, min(36, len(pages))):\n    lines = [l for l in pages[i].split('\\n') if l.strip()]\n    print(f'=== Page {i+1}: {len(lines)} lines ===')\n    # show first 5 and last 5 lines\n    for line in lines[:5]:\n        print(f'  {line.strip()[:80]}')\n    if len(lines) > 10:\n        print(f'  ...')\n        for line in lines[-3:]:\n            print(f'  {line.strip()[:80]}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint/paper && python3 -c \"\nimport subprocess\nr = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = r.stdout.split('\\x0c')\n# Show pages 22-36 to understand context around problem pages\nfor i in range(21, min(36, len(pages))):\n    lines = [l for l in pages[i].split('\\n') if l.strip()]\n    print(f'=== Page {i+1}: {len(lines)} lines ===')\n    # show first 5 and last 5 lines\n    for line in lines[:5]:\n        print(f'  {line.strip()[:80]}')\n    if len(lines) > 10:\n        print(f'  ...')\n        for line in lines[-3:]:\n            print(f'  {line.strip()[:80]}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-22T04:24:50.287177+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Page 22: 195 lines ===\\n  1652\\n  than signal absence. Note that instruct samples are\\n  approximately twice the base count used here (Table 19), so the instruct-vs-base\\n  is confounded by training set size; the meaningful\\n  comparison is QLoRA-vs-XGBoost on the same instruct data. All results use within\\n  ...\\n  1709\\n  1710\\n  1711\\n=== Page 23: 173 lines ===\\n  n\\n  Variant\\n  All depths\\n  Size-matched (random)\\n  Depth 0–1 only\\n  ...\\n  1772\\n  1775\\n  1776\\n=== Page 24: 123 lines ===\\n  Rec.\\n  F1\\n  95% CI\\n  gen-0\\n  gen-1\\n  ...\\n  consistent with the high false-negative rate at the gen1/gen-2+ boundary.\\n  Feature Distribution Analysis\\n  24\\n=== Page 25: 256 lines ===\\n  Entropy Mean\\n  [DRIFTING]\\n  Entropy Std\\n  [INTERMEDIATE]\\n  Entropy Min\\n  ...\\n  1838\\n  1839\\n  1840\\n=== Page 26: 179 lines ===\\n  Feature set\\n  F1\\n  Top feature (imp.)\\n  Full (7 features)\\n  Surface only (2)\\n  ...\\n  1894\\n  1895\\n  1896\\n=== Page 27: 256 lines ===\\n  Reference\\n  Family\\n  Params\\n  LOGO F1\\n  Ent. Drift\\n  ...\\n  1941\\n  1942\\n  1943\\n=== Page 28: 202 lines ===\\n  \\u0001\\n  incidental, we enumerate all 73 =35 possible ways\\n  to assign three features to a “drifting” group and\\n  the remaining four to “non-drifting,” computing\\n  the silhouette score for each partition in standardized (|ρ|, d) space. The obse\\n  ...\\n  2010\\n  2011\\n  2012\\n=== Page 29: 216 lines ===\\n  2013\\n  2014\\n  2015\\n  2016\\n  2017\\n  ...\\n  2079\\n  2080\\n  2081\\n=== Page 30: 246 lines ===\\n  Split B\\n  1.4\\n  1.2\\n  1.2\\n  H\\n  ...\\n  2142\\n  2143\\n  2144\\n=== Page 31: 280 lines ===\\n  Table 36: Example text chain from seed 120 (Pythia2.8B, continuation prompt). Ge\\n  Wikipedia passage; gen-1 and gen-2 are successive LLM\\n  continuations. Text is truncated for space.\\n  Table 37: Feature values for the chain in Table 36. Driftin
+…[truncated 1554 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-22T04:24:50.287341+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/paper/main.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T04:24:50.287563+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"% EMNLP 2026 ARR Submission — ACL 2023 Template\\n\\\\documentclass[11pt]{article}\\n\\\\usepackage[review]{acl}\\n\\\\usepackage{times}\\n\\\\usepackage{latexsym}\\n\\\\usepackage[T1]{fontenc}\\n\\\\usepackage[utf8]{inputenc}\\n\\\\usepackage{microtype}\\n\\\\usepackage{graphicx}\\n\\\\usepackage{booktabs}\\n\\\\usepackage{enumitem}\\n\\\\usepackage{amsmath}\\n\\\\usepackage{amssymb}\\n\\\\usepackage{placeins}\\n\\\\usepackage{multirow}\\n\\\\usepackage{float}\\n\\\\usepackage{dblfloatfix}\\n\\\\usepackage{alphalph}\\n\\n\\\\graphicspath{{../chart/}}\\n\\n\\\\title{Depth Fingerprinting: Classifying Recursive Generation Depth\\\\\\\\in Base-Model LLM Text}\\n\\n\\\\author{Anonymous}\\n\\n\\\\begin{document}\\n\\\\maketitle\\n\\n\\\\input{abstract}\\n\\n\\\\input{introduction}\\n\\\\input{related_work}\\n\\\\input{method}\\n\\\\input{results}\\n\\n\\\\input{discussion}\\n\\\\input{conclusion}\\n\\\\input{limitations}\\n\\\\input{ethics}\\n\\n\\\\bibliography{references}\\n\\n\\\\appendix\\n\\\\renewcommand{\\\\thesection}{\\\\alphalph{\\\\value{section}}}\\n\\n\\\\noindent\\\\textbf{Note:} Unless otherwise stated, appendix experiments use the original six-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-1.7B/0.6B/8B).\\nMain paper results (\\\\S\\\\ref{sec:results}) use the full eight-generator set (adding Llama-3.2-3B and Mistral-7B-v0.3).\\n\\n\\\\input{appendix_dataset_stats}\\n\\n\\\\section{Length Confound Analysis}\\n\\\\label{app:length}\\n\\\\input{appendix_length}\\n\\\\FloatBarrier\\n\\n\\\\section{Prompt Type Generalization}\\n\\\\label{app:prompt-type}\\n\\\\input{appendix_prompt_type}\\n\\\\FloatBarrier\\n\\n\\\\section{Finer-Grained Depth Classification}\\n\\\\label{app:finer-depth}\\n\\\\input{appendix_finer_depth}\\n\\\\FloatBarrier\\n\\n\\\\section{End-to-End Depth Classification (QLoRA)}\\n\\\\label{app:qlora}\\n\\\\input{appendix_qlora}\\n\\\\FloatBarrier\\n\\n\\\\section{Leave-One-Feature-O
+…[truncated 4144 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-22T04:24:50.287774+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint/paper && python3 -c \"\nimport subprocess\nr = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = r.stdout.split('\\x0c')\n# Show full content of problem pages\nfor i in [23, 25, 34]:\n    lines = pages[i].split('\\n')\n    print(f'=== PAGE {i+1} FULL CONTENT ===')\n    for line in lines:\n        if line.strip():\n            print(f'  {line.strip()[:100]}')\n    print()\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint/paper && python3 -c \"\nimport subprocess\nr = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = r.stdout.split('\\x0c')\n# Show full content of problem pages\nfor i in [23, 25, 34]:\n    lines = pages[i].split('\\n')\n    print(f'=== PAGE {i+1} FULL CONTENT ===')\n    for line in lines:\n        if line.strip():\n            print(f'  {line.strip()[:100]}')\n    print()\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-22T04:24:50.287994+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== PAGE 24 FULL CONTENT ===\\n  Rec.\\n  F1\\n  95% CI\\n  gen-0\\n  gen-1\\n  gen-2+\\n  0.921\\n  0.737\\n  0.842\\n  0.948\\n  0.803\\n  0.742\\n  0.935\\n  0.768\\n  0.789\\n  [.923, .946]\\n  [.748, .788]\\n  [.768, .809]\\n  Macro\\n  —\\n  —\\n  0.831\\n  (a) UMAP by Generation Depth\\n  10\\n  8\\n  6\\n  4\\n  2\\n  1777\\n  p\\n  1778\\n  DDR Trend Lines\\n  1779\\n  1791\\n  Figure 8 shows the per-feature depth trend (mean\\n  across all samples at each depth) with individual\\n  generator traces overlaid. The consistent downward trajectories for drifting features across all\\n  generators confirm that DDR is a universal property of recursive generation. Shape features exhibit \\n  near-zero R2 for the linear fit. R2 values are computed from ordinary least-squares regression on\\n  depth-level means (five points per generator, one\\n  per depth 0–4), not per-sample regression; the annotated Spearman ρ provides the complementary\\n  per-sample monotonicity measure.\\n  1792\\n  UMAP Embedding\\n  1793\\n  Figure 9 shows a 2D UMAP projection of\\n  the 7-feature space (7,500 stratified samples,\\n  StandardScaler normalization, k = 30 neighbors,\\n  min_dist = 0.3). Panel (a) reveals a depth gradient from gen-0 through gen-4, with progressive\\n  overlap at deeper generations consistent with the\\n  convergence that motivates the gen-2+ class collapse. Panel (b) shows the 3-class view: gen-0\\n  forms a separable cluster, while gen-1 and gen-2+\\n  overlap substantially, explaining the classification\\n  difficulty at this boundary.\\n  1780\\n  1781\\n  1782\\n  1783\\n  1784\\n  1785\\n  1786\\n  1787\\n  1788\\n  1789\\n  1790\\n  1794\\n  1795\\n  1796\\n  1797\\n  1798\\n  1799\\n  1800\\n  1801\\n  1802\\n  1803\\n  4\\n  2\\n  0\\n  0\\n  2.5\\n  Table 23: Cross-model chain per-class performance (generator-level leave-one-out, N = 2,964,\\n  ngenerators = 5: Pythia-2.8B/1B, OLMo-2-1B, Qwen30.6B
+…[truncated 6034 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-22T04:24:50.288182+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/paper/appendix_feature_distributions.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/paper/appendix_feature_distributions.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T04:24:50.288338+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\subsection*{DDR Trend Lines}\\n\\nFigure~\\\\ref{fig:ddr-trends} shows the per-feature depth trend (mean across all samples at each depth) with individual generator traces overlaid.\\nThe consistent downward trajectories for drifting features across all generators confirm that DDR is a universal property of recursive generation.\\nShape features exhibit flat trajectories regardless of generator, with near-zero $R^2$ for the linear fit.\\n$R^2$ values are computed from ordinary least-squares regression on depth-level means (five points per generator, one per depth 0--4), not per-sample regression; the annotated Spearman $\\\\rho$ provides the complementary per-sample monotonicity measure.\\n\\n\\\\begin{figure*}[t]\\n\\\\centering\\n\\\\includegraphics[width=\\\\textwidth]{fig_appendix_ddr_trends.pdf}\\n\\\\caption{Per-feature depth trends. Bold line: pooled mean ($\\\\pm$1.96\\\\,SE shading) across all generators, colored by DDR zone (blue: drifting, wine: intermediate, amber: near-stationary). Thin traces: individual generators. Spearman $\\\\rho$ and linear $R^2$ are annotated per panel.}\\n\\\\label{fig:ddr-trends}\\n\\\\end{figure*}\\n\\n\\\\subsection*{UMAP Embedding}\\n\\nFigure~\\\\ref{fig:umap} shows a 2D UMAP projection of the 7-feature space (7{,}500 stratified samples, StandardScaler normalization, $k$\\\\,=\\\\,30 neighbors, min\\\\_dist\\\\,=\\\\,0.3).\\nPanel~(a) reveals a depth gradient from gen-0 through gen-4, with progressive overlap at deeper generations consistent with the convergence that motivates the gen-2+ class collapse.\\nPanel~(b) shows the 3-class view: gen-0 forms a separable cluster, while gen-1 and gen-2+ overlap substantially, explaining the classification difficulty at this boundary.\\n\\n\\\\begin{figure}[H]\\n\\\\centering\\n\\\\includegraphics[width=\\\\columnwidth]{fig_appendix_umap.pdf}\\n\\\\caption{UMAP 2D projection of the 7-feature space ($N$\\\\,=\\\\,7{,}500 strat
+…[truncated 423 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-22T04:24:50.288483+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/paper/appendix_ablation.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/paper/appendix_ablation.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-22T04:24:50.288621+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/paper/appendix_feature_correlation.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/paper/appendix_feature_correlation.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-22T04:24:50.288756+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"This appendix presents feature ablation results supporting the complementarity analysis in \\\\S\\\\ref{sec:results-differential}.\\n\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\footnotesize\\n\\\\begin{tabular}{lcc}\\n\\\\toprule\\n\\\\textbf{Feature set} & \\\\textbf{F1} & \\\\textbf{Top feature (imp.)} \\\\\\\\\\n\\\\midrule\\nFull (7 features)     & 0.773 & hapax\\\\_ratio (0.35) \\\\\\\\\\nSurface only (2)      & 0.688 & hapax\\\\_ratio (0.41) \\\\\\\\\\nReference only (5)    & 0.713 & entropy\\\\_mean (0.27) \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\caption{Feature ablation (8-gen, 10-fold stratified CV, 3-class). Full $>$ surface (+8.5\\\\,pp) and Full $>$ reference (+6.0\\\\,pp) confirms complementarity.}\\n\\\\label{tab:ablation}\\n\\\\end{table}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.29}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T04:24:50.288907+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Feature Correlation Matrix}\\n\\\\label{sec:appendix-feature-correlation}\\n\\nThis appendix documents inter-feature correlations and the PCA analysis referenced in \\\\S\\\\ref{sec:results-differential}.\\n\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\caption{Pearson correlation matrix of the seven depth features ($N=27{,}529$).}\\n\\\\label{tab:feature-corr}\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{lrrrrrrr}\\n\\\\toprule\\n & $\\\\bar{H}$ & $\\\\sigma_H$ & $H_{\\\\min}$ & $H_{\\\\max}$ & $\\\\tau$ & TTR & Hapax \\\\\\\\\\n\\\\midrule\\n$\\\\bar{H}$ & \\\\textemdash & 0.49 & 0.31 & 0.01 & 0.07 & \\\\textbf{0.86} & \\\\textbf{0.81} \\\\\\\\\\n$\\\\sigma_H$ & 0.49 & \\\\textemdash & $-$0.15 & 0.16 & 0.26 & 0.43 & 0.34 \\\\\\\\\\n$H_{\\\\min}$ & 0.31 & $-$0.15 & \\\\textemdash & $-$0.04 & 0.01 & 0.20 & 0.23 \\\\\\\\\\n$H_{\\\\max}$ & 0.01 & 0.16 & $-$0.04 & \\\\textemdash & $-$0.08 & $-$0.13 & $-$0.15 \\\\\\\\\\n$\\\\tau$ & 0.07 & 0.26 & 0.01 & $-$0.08 & \\\\textemdash & 0.13 & 0.14 \\\\\\\\\\nTTR & \\\\textbf{0.86} & 0.43 & 0.20 & $-$0.13 & 0.13 & \\\\textemdash & \\\\textbf{0.97} \\\\\\\\\\nHapax & \\\\textbf{0.81} & 0.34 & 0.23 & $-$0.15 & 0.14 & \\\\textbf{0.97} & \\\\textemdash \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\\\end{table}\\n\\nTTR and hapax ratio are near-perfectly correlated ($r=0.97$), and both correlate strongly with mean entropy ($r=0.86$ and $0.81$).\\nThese three drifting features form a tightly coupled cluster: PCA on the standardized drifting-feature subset shows that a single principal component explains 92.3\\\\% of their joint variance, with near-uniform loadings (0.56--0.59). These three features thus share a single latent dimension.\\nFull 7-feature PCA yields PC1 (44.4\\\\% variance) loading on the drifting triplet (0.53--0.55) and PC2 (18.3\\\\% variance) capturing entropy distributional shape (entropy std vs.\\\\ entropy min contrast).\\nIn cont
+…[truncated 323 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-22T04:24:50.289088+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/paper/appendix_9gen_scale.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/paper/appendix_9gen_scale.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-22T04:24:50.289211+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/paper/appendix_iterative_comparison.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/paper/appendix_iterative_comparison.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-22T04:24:50.289376+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\subsection{9-Generator Scale Evaluation}\\\\label{app:9gen-scale}\\n\\nThis analysis extends the 8-generator LOGO evaluation to nine generators by adding Gemma-2-2B, a model from a previously unrepresented architecture family (Gemma).\\nAll results use class-balanced LOGO; the 8-gen averages here (0.770/0.701) differ slightly from Table~\\\\ref{tab:logo-results} (0.762/0.694), which uses an unfiltered protocol.\\nTable~\\\\ref{tab:9gen-logo} reports per-generator LOGO performance under this expanded set.\\n\\n\\\\begin{table}[ht]\\n\\\\centering\\n\\\\caption{9-generator LOGO evaluation. Each row holds out the listed generator at test time. 3-class: gen-0\\\\,/\\\\,gen-1\\\\,/\\\\,gen-2+; binary: gen-1 vs.\\\\ gen-2+. 95\\\\% bootstrap CIs in brackets.}\\n\\\\label{tab:9gen-logo}\\n\\\\small\\n\\\\resizebox{\\\\linewidth}{!}{%\\n\\\\begin{tabular}{llr cc cc}\\n\\\\toprule\\n\\\\textbf{Generator} & \\\\textbf{Family} & \\\\textbf{Params} & \\\\textbf{3-class F1} & \\\\textbf{95\\\\% CI} & \\\\textbf{Binary F1} & \\\\textbf{95\\\\% CI} \\\\\\\\\\n\\\\midrule\\nPythia-1B       & Pythia  & 1.0B & 0.857 & [0.848, 0.866] & 0.785 & --- \\\\\\\\\\nQwen3-0.6B      & Qwen    & 0.6B & 0.819 & [0.807, 0.830] & 0.743 & --- \\\\\\\\\\nPythia-2.8B     & Pythia  & 2.8B & 0.812 & [0.801, 0.822] & 0.728 & --- \\\\\\\\\\nQwen3-1.7B      & Qwen    & 1.7B & 0.811 & [0.800, 0.823] & 0.746 & --- \\\\\\\\\\nOLMo-2-1B       & OLMo    & 1.5B & 0.773 & [0.762, 0.784] & 0.692 & --- \\\\\\\\\\nLlama-3.2-3B    & Llama   & 3.2B & 0.759 & [0.748, 0.770] & 0.680 & --- \\\\\\\\\\nQwen3-8B        & Qwen    & 8.2B & 0.696 & [0.683, 0.709] & 0.647 & [0.631, 0.664] \\\\\\\\\\nGemma-2-2B      & Gemma   & 2.6B & 0.628 & [0.622, 0.634] & 0.440 & [0.432, 0.449] \\\\\\\\\\nMistral-7B      & Mistral & 7.0B & 0.605 & [0.593, 0.617] & 0.534 & --- \\\\\\\\\\n\\\\midrule\\n\\\\textbf{Average (9-gen)} & & & \\\\textbf{0.751} & & \\\\textbf{0.666} & \\\\\\
+…[truncated 3158 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-22T04:24:50.289548+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\begin{table*}[t]\\n\\\\centering\\n\\\\small\\n\\\\caption{Comparison with concurrent iterative-generation studies. All three examine how repeated LLM inference transforms text, but differ in chain operator, analytic lens, and downstream goal.}\\n\\\\label{tab:iterative-comparison}\\n\\\\resizebox{\\\\textwidth}{!}{%\\n\\\\begin{tabular}{@{}l p{2.2cm} p{2.4cm} p{2.4cm} p{2.0cm} c p{3.4cm}@{}}\\n\\\\toprule\\n\\\\textbf{Study} & \\\\textbf{Chain Type} & \\\\textbf{Feature Space} & \\\\textbf{Analysis Goal} & \\\\textbf{Generator Scale} & \\\\textbf{Steps} & \\\\textbf{Core Insight} \\\\\\\\\\n\\\\midrule\\n\\\\citet{broken_telephone}\\n  & Back-translation (6 bridge langs); rephrasing (ablation)\\n  & Surface overlap (BLEU, ROUGE, METEOR, ChrF, BERTScore) + atomic factuality (FActScore)\\n  & Factuality degradation rate across iterations\\n  & 7--9B (3 open models)\\n  & 100\\n  & Factual accuracy decays progressively; rate governed by source--bridge linguistic distance \\\\\\\\\\n\\\\addlinespace\\n\\\\citet{markovian_chains}\\n  & Rephrasing + round-trip translation\\n  & String recurrence time, distinct-output count, similarity plateau (METEOR), KL contraction\\n  & Convergence \\\\& diversity dynamics of inference-time Markov chains\\n  & 7--8B (3 open + GPT-4o-mini)\\n  & 50\\n  & Greedy decoding collapses to 1--4 recurrent outputs; sampling sustains 10--20\\\\,+ realizations \\\\\\\\\\n\\\\addlinespace\\n\\\\textbf{Ours}\\n  & Open-ended continuation (no meaning-preserving constraint)\\n  & Token-level NLL statistics (location, scale, shape) + lexical diversity\\n  & Depth classification + DDR decomposition into generator \\\\& depth effects\\n  & 0.6--8B (8 models)\\n  & 5\\n  & NLL location drifts monotonically with depth while shape remains invariant---enabling per-generator depth fingerprinting \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\\\end{table*}\\n\\nTable~\\\\ref{tab:iterative-comparis
+…[truncated 619 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-22T04:24:50.289719+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/paper/appendix_cross_temp.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/paper/appendix_cross_temp.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T04:24:50.289871+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Figure~\\\\ref{fig:cross-temp} shows cross-temperature transfer results for the 6-generator LOGO pipeline.\\nWe evaluate four train$\\\\rightarrow$test temperature conditions using Qwen3-1.7B data regenerated at $t{=}1.0$ (remaining five generators retain $t{=}0.7$).\\\\footnote{The $t{=}1.0$ data uses top-$p{=}0.95$ (vs.\\\\ $p{=}0.9$ for other configurations); this difference may contribute to the observed degradation beyond the temperature effect alone.}\\n\\n\\\\begin{figure}[H]\\n\\\\centering\\n\\\\includegraphics[width=\\\\columnwidth]{fig_appendix_cross_temp.pdf}\\n\\\\caption{Cross-temperature transfer evaluation (6-gen LOGO). (a) Overall F1 by train$\\\\rightarrow$test temperature condition. Matched conditions (0.7$\\\\rightarrow$0.7, 1.0$\\\\rightarrow$1.0) outperform cross-temperature transfer, with 0.7$\\\\rightarrow$1.0 showing the largest degradation ($-6.6$\\\\,pp in 3-class F1). (b) Per-generator 3-class F1 heatmap: Qwen3-1.7B shows dramatic degradation under cross-temperature conditions (0.418) while other generators remain stable. The temperature mismatch disproportionately affects the generator whose data was regenerated.}\\n\\\\label{fig:cross-temp}\\n\\\\end{figure}\\n\\nKey observations from the cross-temperature analysis:\\n\\n\\\\begin{enumerate}[nosep]\\n\\\\item \\\\textbf{Matched-temperature robustness}: Both $t{=}0.7$ and $t{=}1.0$ matched conditions yield comparable performance (3-class F1: 0.789 vs.\\\\ 0.726), with the gap attributable to weaker depth signal at high temperature rather than classifier degradation.\\n\\n\\\\item \\\\textbf{Asymmetric transfer}: Training at $t{=}1.0$ and testing at $t{=}0.7$ (F1\\\\,=\\\\,0.791) transfers well, but the reverse (0.7$\\\\rightarrow$1.0, F1\\\\,=\\\\,0.723) degrades. This asymmetry reflects the information structure: features learned from high-variance (high-temperature) data generalize to low-variance settings, but not vice versa.\\n\
+…[truncated 901 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-22T04:24:50.290057+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/paper/appendix_cross_model_detail.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/paper/appendix_cross_model_detail.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-22T04:24:50.290196+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/paper/appendix_seed_control.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/paper/appendix_seed_control.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-22T04:24:50.290309+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/paper/table4.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/paper/table4.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-22T04:24:50.290441+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"This appendix reports per-generator breakdowns for the cross-model chain evaluation described in \\\\S\\\\ref{sec:results-classification}.\\n\\n\\\\begin{table}[ht]\\n\\\\centering\\n\\\\footnotesize\\n\\\\begin{tabular}{lcccc}\\n\\\\toprule\\n\\\\textbf{Class} & \\\\textbf{Prec.} & \\\\textbf{Rec.} & \\\\textbf{F1} & \\\\textbf{95\\\\% CI} \\\\\\\\\\n\\\\midrule\\ngen-0   & 0.921 & 0.948 & 0.935 & [.923, .946] \\\\\\\\\\ngen-1   & 0.737 & 0.803 & 0.768 & [.748, .788] \\\\\\\\\\ngen-2+  & 0.842 & 0.742 & 0.789 & [.768, .809] \\\\\\\\\\n\\\\midrule\\n\\\\textbf{Macro} & --- & --- & \\\\textbf{0.831} & [.817, .844] \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\caption{Cross-model chain per-class performance (generator-level leave-one-out, $N$\\\\,=\\\\,2{,}964, $n_{\\\\text{generators}}$\\\\,=\\\\,5: Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B). Macro F1\\\\,=\\\\,0.831 under class balancing; under natural class distribution, macro F1\\\\,=\\\\,0.789. Binary F1 (gen-1 vs.\\\\ gen-2+)\\\\,=\\\\,0.830 (95\\\\% CI [.818, .841], case-level bootstrap, $n$\\\\,=\\\\,2{,}000). Cross-model chains avoid the gen-0 seed sharing issue present in single-generator LOGO.}\\n\\\\label{tab:cross-model-perclass}\\n\\\\end{table}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.29}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-22T04:24:50.290609+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Independent-Seed Control}\\n\\\\label{app:seed-control}\\n\\nTo test for topic-level leakage from shared seeds across generators, we construct an independent-seed evaluation where Pythia-2.8B and OLMo-2-1B use completely disjoint Wikipedia seed pools (500 seeds each, zero overlap).\\nEach generator produces depth-0 through depth-4 chains on its own seed pool; features are extracted with the same Pythia-410M reference model.\\nWe then train a 7-feature XGBoost classifier on one generator's data and test on the other, in both directions.\\n\\n\\\\begin{table}[ht]\\n\\\\centering\\n\\\\small\\n\\\\resizebox{\\\\linewidth}{!}{%\\n\\\\begin{tabular}{lcc}\\n\\\\toprule\\n\\\\textbf{Setting} & \\\\textbf{Binary F1} & \\\\textbf{95\\\\% CI} \\\\\\\\\\n\\\\midrule\\nPythia-2.8B $\\\\rightarrow$ OLMo-2-1B & 0.695 & [0.673, 0.717] \\\\\\\\\\nOLMo-2-1B $\\\\rightarrow$ Pythia-2.8B & 0.666 & [0.643, 0.689] \\\\\\\\\\n\\\\midrule\\nIndependent-seed average & 0.680 & --- \\\\\\\\\\nShared-seed LOGO (reference) & 0.694 & [0.688, 0.700] \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\\\caption{Independent-seed cross-generator evaluation (binary: gen-1 vs.\\\\ gen-2+). Disjoint seed pools eliminate any possibility of topic-based leakage. The average independent-seed F1 (0.680) is within 1.4\\\\,pp of the shared-seed LOGO baseline (0.694). The classifier thus captures generative degradation patterns rather than seed-specific topic content.}\\n\\\\label{tab:seed-control}\\n\\\\end{table}\\n\\nThe small gap ($-$1.4\\\\,pp) between independent-seed and shared-seed evaluation falls within bootstrap confidence intervals, and both directions individually exceed 0.66.\\nCombined with the seed-level demeaning control (\\\\S\\\\ref{sec:results-classification}), these results provide converging evidence that depth classification is driven by distributional properties of recursive generation, not topic identity.\\n\\n\\\\parag
+…[truncated 823 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-22T04:24:50.290773+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\begin{table}[t]\\n\\\\centering\\n\\\\footnotesize\\n\\\\resizebox{\\\\linewidth}{!}{%\\n\\\\begin{tabular}{llccc}\\n\\\\toprule\\n\\\\textbf{Reference} & \\\\textbf{Family} & \\\\textbf{Params} & \\\\textbf{LOGO F1} & \\\\textbf{Ent.\\\\ Drift} \\\\\\\\\\n\\\\midrule\\nPythia-410M & Pythia & 410M & 0.803 & [$-$1.19, $-$1.40] \\\\\\\\\\nOLMo-2-1B  & OLMo   & 1.5B & 0.807 & [$-$0.61, $-$0.91] \\\\\\\\\\nQwen3-0.6B & Qwen   & 0.6B & 0.816 & [$-$0.96, $-$1.35] \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\\\caption{Cross-family reference model validation (5-gen LOGO subset). Drift direction is consistent (negative) across all three references; magnitude varies with capacity. Spread in LOGO F1 is 0.013.}\\n\\\\label{tab:cross-ref}\\n\\\\end{table}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-22T04:24:50.290921+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/paper/appendix_decoding_strategy.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/paper/appendix_decoding_strategy.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-22T04:24:50.291144+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"% Decoding Strategy Robustness\\nTo verify that DDR shape stability is not an artifact of nucleus sampling ($p{=}0.9$, $\\\\tau{=}0.7$),\\nwe repeat the generation chain experiment under two alternative decoding strategies:\\ngreedy decoding ($\\\\tau{=}0$) and top-$k$ sampling ($k{=}50$, $\\\\tau{=}0.7$).\\nAll eight generators spanning five architectural families produce ${\\\\sim}$1{,}000 chains of depth 0--4 per strategy,\\nyielding ${\\\\sim}$5{,}000 texts per generator--strategy combination.\\n\\nTable~\\\\ref{tab:decoding-shape} reports Cohen's $d$ (gen-1 vs.\\\\ gen-2+) for the three shape features across strategies;\\nTable~\\\\ref{tab:decoding-drift} provides the corresponding values for drifting and intermediate features.\\n\\n\\\\begin{table}[ht]\\n\\\\centering\\n\\\\small\\n\\\\caption{Shape-feature Cohen's $d$ (gen-1 vs.\\\\ gen-2+) under three decoding strategies per generator.\\nValues below 0.20 indicate negligible drift.\\nShape features are expected to remain near-stationary across strategies if DDR is decoding-agnostic.}\\n\\\\label{tab:decoding-shape}\\n\\\\resizebox{\\\\linewidth}{!}{%\\n\\\\begin{tabular}{ll ccc ccc ccc}\\n\\\\toprule\\n& & \\\\multicolumn{3}{c}{entropy\\\\_max} & \\\\multicolumn{3}{c}{entropy\\\\_min} & \\\\multicolumn{3}{c}{tail\\\\_decay} \\\\\\\\\\n\\\\cmidrule(lr){3-5} \\\\cmidrule(lr){6-8} \\\\cmidrule(lr){9-11}\\nFamily & Generator & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ & Nuc. & Gr. & Top-$k$ \\\\\\\\\\n\\\\midrule\\nPythia  & 2.8B    & 0.25 & 0.09 & 0.26 & 0.03 & 0.08 & 0.04 & 0.07 & 0.07 & 0.12 \\\\\\\\\\n        & 1B      & 0.21 & 0.12 & 0.27 & 0.02 & 0.04 & 0.04 & 0.08 & 0.04 & 0.18 \\\\\\\\\\nOLMo    & 2-1B    & 0.06 & 0.03 & 0.01 & 0.07 & 0.03 & 0.01 & 0.22 & 0.03 & 0.22 \\\\\\\\\\nQwen3   & 0.6B    & 0.01 & 0.09 & 0.02 & 0.10 & 0.02 & 0.10 & 0.08 & 0.03 & 0.13 \\\\\\\\\\n        & 1.7B    & 0.02 & 0.08 & 0.03 & 0.05 & 0.01 & 0.03 & 0.09 & 0.04 & 0.14
+…[truncated 6184 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-22T04:24:50.291297+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/paper/appendix_nll_distribution.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/paper/appendix_nll_distribution.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-22T04:24:50.291434+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"% section header and label in main.tex\\n\\n\\\\begin{figure}[h!]\\n\\\\centering\\n\\\\includegraphics[width=\\\\columnwidth]{fig_appendix_nll_distribution.pdf}\\n\\\\caption{Token-level NLL distribution by generation depth, aggregated across all 8 generators (Pythia-410M reference model). Dashed lines indicate median NLL per depth. The systematic leftward shift demonstrates that deeper-generation text is increasingly predictable.}\\n\\\\label{fig:nll-dist}\\n\\\\end{figure}\\n\\nTo visualize how the reference-model surprisal landscape shifts with generation depth, we plot the kernel density estimate of per-token negative log-likelihood (NLL) across depths~0--4 in Figure~\\\\ref{fig:nll-dist}.\\nFor each of the 8 base generators, we sample 25 texts per depth (1{,}000 texts total, $\\\\sim$236k tokens) and compute token-level NLL under the Pythia-410M reference model.\\nThe distributions exhibit a pronounced leftward shift as depth increases: gen-0 text (human-written seed) has a median NLL of 1.64~nats, dropping to 0.96 at depth~1 and reaching 0.02 at depth~4, confirming that recursively generated text becomes increasingly predictable to the reference model.\\nThe monotonic compression of the NLL distribution provides a mechanistic explanation for the entropy-based features that drive our depth classifier.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.29}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-22T04:24:50.291650+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/paper/appendix_iterative_comparison.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/paper/appendix_iterative_comparison.tex",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-22T04:24:50.291789+00:00_
+
+artifacts/_project/paper/appendix_iterative_comparison.tex
+docs/paper/appendix_iterative_comparison.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-22T04:24:50.291906+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/paper/appendix_feature_distributions.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/paper/appendix_feature_distributions.tex",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-22T04:24:50.292039+00:00_
+
+artifacts/_project/paper/appendix_feature_distributions.tex
+docs/paper/appendix_feature_distributions.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-22T04:24:50.292150+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/paper/main.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/paper/main.tex",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-22T04:24:50.292262+00:00_
+
+artifacts/_project/paper/main.tex
+docs/paper/main.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Glob",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-22T04:24:50.292370+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_iterative_comparison.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_iterative_comparison.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-22T04:24:50.292499+00:00_
+
+1	\begin{table*}[t]
+2	\centering
+3	\small
+4	\caption{Comparison with concurrent iterative-generation studies. All three examine how repeated LLM inference transforms text, but differ in chain operator, analytic lens, and downstream goal.}
+5	\label{tab:iterative-comparison}
+6	\resizebox{\textwidth}{!}{%
+7	\begin{tabular}{@{}l p{2.2cm} p{2.4cm} p{2.4cm} p{2.0cm} c p{3.4cm}@{}}
+8	\toprule
+9	\textbf{Study} & \textbf{Chain Type} & \textbf{Feature Space} & \textbf{Analysis Goal} & \textbf{Generator Scale} & \textbf{Steps} & \textbf{Core Insight} \\
+10	\midrule
+11	\citet{broken_telephone}
+12	  & Back-translation (6 bridge langs); rephrasing (ablation)
+13	  & Surface overlap (BLEU, ROUGE, METEOR, ChrF, BERTScore) + atomic factuality (FActScore)
+14	  & Factuality degradation rate across iterations
+15	  & 7--9B (3 open models)
+16	  & 100
+17	  & Factual accuracy decays progressively; rate governed by source--bridge linguistic distance \\
+18	\addlinespace
+19	\citet{markovian_chains}
+20	  & Rephrasing + round-trip translation
+21	  & String recurrence time, distinct-output count, similarity plateau (METEOR), KL contraction
+22	  & Convergence \& diversity dynamics of inference-time Markov chains
+23	  & 7--8B (3 open + GPT-4o-mini)
+24	  & 50
+25	  & Greedy decoding collapses to 1--4 recurrent outputs; sampling sustains 10--20\,+ realizations \\
+26	\addlinespace
+27	\textbf{Ours}
+28	  & Open-ended continuation (no meaning-preserving constraint)
+29	  & Token-level NLL statistics (location, scale, shape) + lexical diversity
+30	  & Depth classification + DDR decomposition into generator \& depth effects
+31	  & 0.6--8B (8 models)
+32	  & 5
+33	  & NLL location drifts monotonically with depth while shape remains invariant---enabling per-generator depth fingerprinting \\
+34	\bottomrule
+35	\end{tabular}}
+36	\end{table*}
+37	
+38	Table~\ref{tab:iterative-comparison} compares this work with two concurrent studies on iterative LLM generation.
+39	All three examine how repeated inference transforms t
+…[truncated 376 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-22T04:24:50.292662+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_feature_distributions.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_feature_distributions.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-22T04:24:50.292799+00:00_
+
+1	\subsection*{DDR Trend Lines}
+2	
+3	Figure~\ref{fig:ddr-trends} shows the per-feature depth trend (mean across all samples at each depth) with individual generator traces overlaid.
+4	The consistent downward trajectories for drifting features across all generators confirm that DDR is a universal property of recursive generation.
+5	Shape features exhibit flat trajectories regardless of generator, with near-zero $R^2$ for the linear fit.
+6	$R^2$ values are computed from ordinary least-squares regression on depth-level means (five points per generator, one per depth 0--4), not per-sample regression; the annotated Spearman $\rho$ provides the complementary per-sample monotonicity measure.
+7	
+8	\begin{figure*}[t]
+9	\centering
+10	\includegraphics[width=\textwidth]{fig_appendix_ddr_trends.pdf}
+11	\caption{Per-feature depth trends. Bold line: pooled mean ($\pm$1.96\,SE shading) across all generators, colored by DDR zone (blue: drifting, wine: intermediate, amber: near-stationary). Thin traces: individual generators. Spearman $\rho$ and linear $R^2$ are annotated per panel.}
+12	\label{fig:ddr-trends}
+13	\end{figure*}
+14	
+15	\subsection*{UMAP Embedding}
+16	
+17	Figure~\ref{fig:umap} shows a 2D UMAP projection of the 7-feature space (7{,}500 stratified samples, StandardScaler normalization, $k$\,=\,30 neighbors, min\_dist\,=\,0.3).
+18	Panel~(a) reveals a depth gradient from gen-0 through gen-4, with progressive overlap at deeper generations consistent with the convergence that motivates the gen-2+ class collapse.
+19	Panel~(b) shows the 3-class view: gen-0 forms a separable cluster, while gen-1 and gen-2+ overlap substantially, explaining the classification difficulty at this boundary.
+20	
+21	\begin{figure}[H]
+22	\centering
+23	\includegraphics[width=\columnwidth]{fig_appendix_umap.pdf}
+24	\caption{UMAP 2D projection of the 7-feature space ($N$\,=\,7{,}500 stratified sample). (a) Colored by raw generation depth (0--4): a gradient structure emerges, with deeper depths converging. 
+…[truncated 196 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-22T04:24:50.292942+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-22T04:24:50.293109+00:00_
+
+1	% EMNLP 2026 ARR Submission — ACL 2023 Template
+2	\documentclass[11pt]{article}
+3	\usepackage[review]{acl}
+4	\usepackage{times}
+5	\usepackage{latexsym}
+6	\usepackage[T1]{fontenc}
+7	\usepackage[utf8]{inputenc}
+8	\usepackage{microtype}
+9	\usepackage{graphicx}
+10	\usepackage{booktabs}
+11	\usepackage{enumitem}
+12	\usepackage{amsmath}
+13	\usepackage{amssymb}
+14	\usepackage{placeins}
+15	\usepackage{multirow}
+16	\usepackage{float}
+17	\usepackage{dblfloatfix}
+18	\usepackage{alphalph}
+19	\usepackage{tcolorbox}
+20	\tcbuselibrary{breakable}
+21	
+22	\graphicspath{{../chart/}}
+23	
+24	\title{Depth Fingerprinting: Classifying Recursive Generation Depth\\in Base-Model LLM Text}
+25	
+26	\author{Anonymous}
+27	
+28	\begin{document}
+29	\maketitle
+30	
+31	\input{abstract}
+32	
+33	\input{introduction}
+34	\input{related_work}
+35	\input{method}
+36	\input{results}
+37	
+38	\input{discussion}
+39	\input{conclusion}
+40	\input{limitations}
+41	\input{ethics}
+42	
+43	\bibliography{references}
+44	
+45	\appendix
+46	\renewcommand{\thesection}{\alphalph{\value{section}}}
+47	
+48	\noindent\textbf{Note:} Unless otherwise stated, appendix experiments use the original six-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-1.7B/0.6B/8B).
+49	Main paper results (\S\ref{sec:results}) use the full eight-generator set (adding Llama-3.2-3B and Mistral-7B-v0.3).
+50	
+51	\input{appendix_dataset_stats}
+52	
+53	\section{Length Confound Analysis}
+54	\label{app:length}
+55	\input{appendix_length}
+56	\FloatBarrier
+57	
+58	\section{Prompt Type Generalization}
+59	\label{app:prompt-type}
+60	\input{appendix_prompt_type}
+61	\FloatBarrier
+62	
+63	\section{Finer-Grained Depth Classification}
+64	\label{app:finer-depth}
+65	\input{appendix_finer_depth}
+66	\FloatBarrier
+67	
+68	\section{End-to-End Depth Classification (QLoRA)}
+69	\label{app:qlora}
+70	\input{appendix_qlora}
+71	\FloatBarrier
+72	
+73	\section{Leave-One-Feature-Out Analysis}
+74	\label{app:lofo}
+75	\input{appendix_lofo}
+76	\FloatBarrier
+77	
+78	\subsection{Candidate Feature Screenin
+…[truncated 3266 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-22T04:24:50.293301+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_iterative_comparison.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_iterative_comparison.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-22T04:24:50.293444+00:00_
+
+1	\begin{table*}[t]
+2	\centering
+3	\small
+4	\caption{Comparison with concurrent iterative-generation studies. All three examine how repeated LLM inference transforms text, but differ in chain operator, analytic lens, and downstream goal.}
+5	\label{tab:iterative-comparison}
+6	\resizebox{\textwidth}{!}{%
+7	\begin{tabular}{@{}l p{2.2cm} p{2.4cm} p{2.4cm} p{2.0cm} c p{3.4cm}@{}}
+8	\toprule
+9	\textbf{Study} & \textbf{Chain Type} & \textbf{Feature Space} & \textbf{Analysis Goal} & \textbf{Generator Scale} & \textbf{Steps} & \textbf{Core Insight} \\
+10	\midrule
+11	\citet{broken_telephone}
+12	  & Back-translation (6 bridge langs); rephrasing (ablation)
+13	  & Surface overlap (BLEU, ROUGE, METEOR, ChrF, BERTScore) + atomic factuality (FActScore)
+14	  & Factuality degradation rate across iterations
+15	  & 7--9B (3 open models)
+16	  & 100
+17	  & Factual accuracy decays progressively; rate governed by source--bridge linguistic distance \\
+18	\addlinespace
+19	\citet{markovian_chains}
+20	  & Rephrasing + round-trip translation
+21	  & String recurrence time, distinct-output count, similarity plateau (METEOR), KL contraction
+22	  & Convergence \& diversity dynamics of inference-time Markov chains
+23	  & 7--8B (3 open + GPT-4o-mini)
+24	  & 50
+25	  & Greedy decoding collapses to 1--4 recurrent outputs; sampling sustains 10--20\,+ realizations \\
+26	\addlinespace
+27	\textbf{Ours}
+28	  & Open-ended continuation (no meaning-preserving constraint)
+29	  & Token-level NLL statistics (location, scale, shape) + lexical diversity
+30	  & Depth classification + DDR decomposition into generator \& depth effects
+31	  & 0.6--8B (8 models)
+32	  & 5
+33	  & NLL location drifts monotonically with depth while shape remains invariant---enabling per-generator depth fingerprinting \\
+34	\bottomrule
+35	\end{tabular}}
+36	\end{table*}
+37	
+38	Table~\ref{tab:iterative-comparison} compares this work with two concurrent studies on iterative LLM generation.
+39	All three examine how repeated inference transforms t
+…[truncated 376 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-22T04:24:50.293607+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_feature_distributions.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_feature_distributions.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-22T04:24:50.293752+00:00_
+
+1	\subsection*{DDR Trend Lines}
+2	
+3	Figure~\ref{fig:ddr-trends} shows the per-feature depth trend (mean across all samples at each depth) with individual generator traces overlaid.
+4	The consistent downward trajectories for drifting features across all generators confirm that DDR is a universal property of recursive generation.
+5	Shape features exhibit flat trajectories regardless of generator, with near-zero $R^2$ for the linear fit.
+6	$R^2$ values are computed from ordinary least-squares regression on depth-level means (five points per generator, one per depth 0--4), not per-sample regression; the annotated Spearman $\rho$ provides the complementary per-sample monotonicity measure.
+7	
+8	\begin{figure*}[t]
+9	\centering
+10	\includegraphics[width=\textwidth]{fig_appendix_ddr_trends.pdf}
+11	\caption{Per-feature depth trends. Bold line: pooled mean ($\pm$1.96\,SE shading) across all generators, colored by DDR zone (blue: drifting, wine: intermediate, amber: near-stationary). Thin traces: individual generators. Spearman $\rho$ and linear $R^2$ are annotated per panel.}
+12	\label{fig:ddr-trends}
+13	\end{figure*}
+14	
+15	\subsection*{UMAP Embedding}
+16	
+17	Figure~\ref{fig:umap} shows a 2D UMAP projection of the 7-feature space (7{,}500 stratified samples, StandardScaler normalization, $k$\,=\,30 neighbors, min\_dist\,=\,0.3).
+18	Panel~(a) reveals a depth gradient from gen-0 through gen-4, with progressive overlap at deeper generations consistent with the convergence that motivates the gen-2+ class collapse.
+19	Panel~(b) shows the 3-class view: gen-0 forms a separable cluster, while gen-1 and gen-2+ overlap substantially, explaining the classification difficulty at this boundary.
+20	
+21	\begin{figure}[H]
+22	\centering
+23	\includegraphics[width=\columnwidth]{fig_appendix_umap.pdf}
+24	\caption{UMAP 2D projection of the 7-feature space ($N$\,=\,7{,}500 stratified sample). (a) Colored by raw generation depth (0--4): a gradient structure emerges, with deeper depths converging. 
+…[truncated 196 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-22T04:24:50.293891+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/main.tex",
+  "offset": "120",
+  "limit": "90"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/main.tex",
+    "offset": "120",
+    "limit": "90"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-22T04:24:50.294029+00:00_
+
+120	\label{app:cross-model-detail}
+121	\input{appendix_cross_model_detail}
+122	\FloatBarrier
+123	
+124	\section{Feature Distribution Analysis}
+125	\label{app:feature-distributions}
+126	\input{appendix_feature_distributions}
+127	\FloatBarrier
+128	
+129	\section{Cross-Temperature Transfer}
+130	\label{app:cross-temp}
+131	\input{appendix_cross_temp}
+132	\FloatBarrier
+133	
+134	\section{Feature Ablation}
+135	\label{app:ablation-table}
+136	\input{appendix_ablation}
+137	\FloatBarrier
+138	
+139	\input{appendix_feature_correlation}
+140	\FloatBarrier
+141	
+142	\section{Cross-Family Reference Models}
+143	\label{app:cross-ref}
+144	\input{table4}
+145	
+146	\input{appendix_seed_control}
+147	\FloatBarrier
+148	
+149	\input{appendix_tost}
+150	\FloatBarrier
+151	
+152	\input{appendix_tost_bootstrap}
+153	\FloatBarrier
+154	
+155	\section{DDR Partition Validation}
+156	\label{app:ddr-validation}
+157	\input{appendix_ddr_validation}
+158	\FloatBarrier
+159	
+160	\section{Generator Subset Summary}
+161	\label{app:gen-subsets-section}
+162	\input{appendix_generator_subsets}
+163	
+164	\input{appendix_qualitative_examples}
+165	
+166	\section{Cross-Generator Transfer Analysis}
+167	\label{app:transfer}
+168	\input{appendix_transfer}
+169	\FloatBarrier
+170	
+171	\section{Supplementary DDR Characterization}
+172	\label{app:ddr-supplement}
+173	
+174	\subsection{Partition Stability Across Temperatures}
+175	\label{app:ddr-temp-stability}
+176	\input{appendix_temperature_stability}
+177	\FloatBarrier
+178	
+179	\subsection{Per-Feature Convergence Dynamics}
+180	\label{app:convergence}
+181	\input{appendix_convergence}
+182	\FloatBarrier
+183	
+184	\subsection{DDR Causality Analysis}
+185	\label{app:ddr-causality}
+186	\input{appendix_ddr_causality}
+187	\FloatBarrier
+188	
+189	\subsection{Decoding Strategy Robustness}
+190	\label{app:decoding-strategy}
+191	\input{appendix_decoding_strategy}
+192	\FloatBarrier
+193	
+194	\input{appendix_9gen_scale}
+195	\FloatBarrier
+196	
+197	\subsection{Comparison with Concurrent Iterative-Generation Studie
+…[truncated 268 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-22T04:24:50.294214+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_iterative_comparison.tex",
+  "old_string": "\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Comparison with concurrent iterative-generation studies. All three examine how repeated LLM inference transforms text, but differ in chain operator, analytic lens, and downstream goal.}\n\\label{tab:iterative-comparison}\n\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}{@{}l p{2.2cm} p{2.4cm} p{2.4cm} p{2.0cm} c p{3.4cm}@{}}\n\\toprule\n\\textbf{Study} & \\textbf{Chain Type} & \\textbf{Feature Space} & \\textbf{Analysis Goal} & \\textbf{Generator Scale} & \\textbf{Steps} & \\textbf{Core Insight} \\\\\n\\midrule\n\\citet{broken_telephone}\n  & Back-translation (6 bridge langs); rephrasing (ablation)\n  & Surface overlap (BLEU, ROUGE, METEOR, ChrF, BERTScore) + atomic factuality (FActScore)\n  & Factuality degradation rate across iterations\n  & 7--9B (3 open models)\n  & 100\n  & Factual accuracy decays progressively; rate governed by source--bridge linguistic distance \\\\\n\\addlinespace\n\\citet{markovian_chains}\n  & Rephrasing + round-trip translation\n  & String recurrence time, distinct-output count, similarity plateau (METEOR), KL contraction\n  & Convergence \\& diversity dynamics of inference-time Markov chains\n  & 7--8B (3 open + GPT-4o-mini)\n  & 50\n  & Greedy decoding collapses to 1--4 recurrent outputs; sampling sustains 10--20\\,+ realizations \\\\\n\\addlinespace\n\\textbf{Ours}\n  & Open-ended continuation (no meaning-preserving constraint)\n  & Token-level NLL statistics (location, scale, shape) + lexical diversity\n  & Depth classification + DDR decomposition into generator \\& depth effects\n  & 0.6--8B (8 models)\n  & 5\n  & NLL location drifts monotonically with depth while shape remains invariant---enabling per-generator depth fingerprinting \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table*}\n\nTable~\\ref{tab:iterative-comparison} compares this work with two concurrent studies on iterative LLM generation.\nAll three examine how repeated inference transforms text, but differ in the chain operator (meaning-preserving vs.\\ open-ended), the analytic lens (factuality decay, convergence dynamics, vs.\\ distributional decomposition), and the downstream goal.\nOur continuation-chain setting, which imposes no semantic-preservation constraint, permits richer depth signal and enables the location/shape decomposition that defines DDR.",
+  "new_string": "Table~\\ref{tab:iterative-comparison} compares this work with two concurrent studies on iterative LLM generation.\nAll three examine how repeated inference transforms text, but differ in the chain operator (meaning-preserving vs.\\ open-ended), the analytic lens (factuality decay, convergence dynamics, vs.\\ distributional decomposition), and the downstream goal.\nOur continuation-chain setting, which imposes no semantic-preservation constraint, permits richer depth signal and enables the location/shape decomposition that defines DDR.\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Comparison with concurrent iterative-generation studies. All three examine how repeated LLM inference transforms text, but differ in chain operator, analytic lens, and downstream goal.}\n\\label{tab:iterative-comparison}\n\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}{@{}l p{2.2cm} p{2.4cm} p{2.4cm} p{2.0cm} c p{3.4cm}@{}}\n\\toprule\n\\textbf{Study} & \\textbf{Chain Type} & \\textbf{Feature Space} & \\textbf{Analysis Goal} & \\textbf{Generator Scale} & \\textbf{Steps} & \\textbf{Core Insight} \\\\\n\\midrule\n\\citet{broken_telephone}\n  & Back-translation (6 bridge langs); rephrasing (ablation)\n  & Surface overlap (BLEU, ROUGE, METEOR, ChrF, BERTScore) + atomic factuality (FActScore)\n  & Factuality degradation rate across iterations\n  & 7--9B (3 open models)\n  & 100\n  & Factual accuracy decays progressively; rate governed by source--bridge linguistic distance \\\\\n\\addlinespace\n\\citet{markovian_chains}\n  & Rephrasing + round-trip translation\n  & String recurrence time, distinct-output count, similarity plateau (METEOR), KL contraction\n  & Convergence \\& diversity dynamics of inference-time Markov chains\n  & 7--8B (3 open + GPT-4o-mini)\n  & 50\n  & Greedy decoding collapses to 1--4 recurrent outputs; sampling sustains 10--20\\,+ realizations \\\\\n\\addlinespace\n\\textbf{Ours}\n  & Open-ended continuation (no meaning-preserving constraint)\n  & Token-level NLL statistics (location, scale, shape) + lexical diversity\n  & Depth classification + DDR decomposition into generator \\& depth effects\n  & 0.6--8B (8 models)\n  & 5\n  & NLL location drifts monotonically with depth while shape remains invariant---enabling per-generator depth fingerprinting \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table*}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_iterative_comparison.tex",
+    "old_string": "\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Comparison with concurrent iterative-generation studies. All three examine how repeated LLM inference transforms text, but differ in chain operator, analytic lens, and downstream goal.}\n\\label{tab:iterative-comparison}\n\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}{@{}l p{2.2cm} p{2.4cm} p{2.4cm} p{2.0cm} c p{3.4cm}@{}}\n\\toprule\n\\textbf{Study} & \\textbf{Chain Type} & \\textbf{Feature Space} & \\textbf{Analysis Goal} & \\textbf{Generator Scale} & \\textbf{Steps} & \\textbf{Core Insight} \\\\\n\\midrule\n\\citet{broken_telephone}\n  & Back-translation (6 bridge langs); rephrasing (ablation)\n  & Surface overlap (BLEU, ROUGE, METEOR, ChrF, BERTScore) + atomic factuality (FActScore)\n  & Factuality degradation rate across iterations\n  & 7--9B (3 open models)\n  & 100\n  & Factual accuracy decays progressively; rate governed by source--bridge linguistic distance \\\\\n\\addlinespace\n\\citet{markovian_chains}\n  & Rephrasing + round-trip translation\n  & String recurrence time, distinct-output count, similarity plateau (METEOR), KL contraction\n  & Convergence \\& diversity dynamics of inference-time Markov chains\n  & 7--8B (3 open + GPT-4o-mini)\n  & 50\n  & Greedy decoding collapses to 1--4 recurrent outputs; sampling sustains 10--20\\,+ realizations \\\\\n\\addlinespace\n\\textbf{Ours}\n  & Open-ended continuation (no meaning-preserving constraint)\n  & Token-level NLL statistics (location, scale, shape) + lexical diversity\n  & Depth classification + DDR decomposition into generator \\& depth effects\n  & 0.6--8B (8 models)\n  & 5\n  & NLL location drifts monotonically with depth while shape remains invariant---enabling per-generator depth fingerprinting \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table*}\n\nTable~\\ref{tab:iterative-comparison} compares this work with two concurrent studies on iterative LLM generation.\nAll three examine how repeated inference transforms text, but differ in the chain operator (meaning-preserving vs.\\ open-ended), the analytic lens (factuality decay, convergence dynamics, vs.\\ distributional decomposition), and the downstream goal.\nOur continuation-chain setting, which imposes no semantic-preservation constraint, permits richer depth signal and enables the location/shape decomposition that defines DDR.",
+    "new_string": "Table~\\ref{tab:iterative-comparison} compares this work with two concurrent studies on iterative LLM generation.\nAll three examine how repeated inference transforms text, but differ in the chain operator (meaning-preserving vs.\\ open-ended), the analytic lens (factuality decay, convergence dynamics, vs.\\ distributional decomposition), and the downstream goal.\nOur continuation-chain setting, which imposes no semantic-preservation constraint, permits richer depth signal and enables the location/shape decomposition that defines DDR.\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Comparison with concurrent iterative-generation studies. All three examine how repeated LLM inference transforms text, but differ in chain operator, analytic lens, and downstream goal.}\n\\label{tab:iterative-comparison}\n\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}{@{}l p{2.2cm} p{2.4cm} p{2.4cm} p{2.0cm} c p{3.4cm}@{}}\n\\toprule\n\\textbf{Study} & \\textbf{Chain Type} & \\textbf{Feature Space} & \\textbf{Analysis Goal} & \\textbf{Generator Scale} & \\textbf{Steps} & \\textbf{Core Insight} \\\\\n\\midrule\n\\citet{broken_telephone}\n  & Back-translation (6 bridge langs); rephrasing (ablation)\n  & Surface overlap (BLEU, ROUGE, METEOR, ChrF, BERTScore) + atomic factuality (FActScore)\n  & Factuality degradation rate across iterations\n  & 7--9B (3 open models)\n  & 100\n  & Factual accuracy decays progressively; rate governed by source--bridge linguistic distance \\\\\n\\addlinespace\n\\citet{markovian_chains}\n  & Rephrasing + round-trip translation\n  & String recurrence time, distinct-output count, similarity plateau (METEOR), KL contraction\n  & Convergence \\& diversity dynamics of inference-time Markov chains\n  & 7--8B (3 open + GPT-4o-mini)\n  & 50\n  & Greedy decoding collapses to 1--4 recurrent outputs; sampling sustains 10--20\\,+ realizations \\\\\n\\addlinespace\n\\textbf{Ours}\n  & Open-ended continuation (no meaning-preserving constraint)\n  & Token-level NLL statistics (location, scale, shape) + lexical diversity\n  & Depth classification + DDR decomposition into generator \\& depth effects\n  & 0.6--8B (8 models)\n  & 5\n  & NLL location drifts monotonically with depth while shape remains invariant---enabling per-generator depth fingerprinting \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table*}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-22T04:24:50.294403+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_iterative_comparison.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-22T04:24:50.294536+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_iterative_comparison.tex",
+  "old_string": "\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Comparison with concurrent iterative-generation studies. All three examine how repeated LLM inference transforms text, but differ in chain operator, analytic lens, and downstream goal.}\n\\label{tab:iterative-comparison}\n\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}{@{}l p{2.2cm} p{2.4cm} p{2.4cm} p{2.0cm} c p{3.4cm}@{}}\n\\toprule\n\\textbf{Study} & \\textbf{Chain Type} & \\textbf{Feature Space} & \\textbf{Analysis Goal} & \\textbf{Generator Scale} & \\textbf{Steps} & \\textbf{Core Insight} \\\\\n\\midrule\n\\citet{broken_telephone}\n  & Back-translation (6 bridge langs); rephrasing (ablation)\n  & Surface overlap (BLEU, ROUGE, METEOR, ChrF, BERTScore) + atomic factuality (FActScore)\n  & Factuality degradation rate across iterations\n  & 7--9B (3 open models)\n  & 100\n  & Factual accuracy decays progressively; rate governed by source--bridge linguistic distance \\\\\n\\addlinespace\n\\citet{markovian_chains}\n  & Rephrasing + round-trip translation\n  & String recurrence time, distinct-output count, similarity plateau (METEOR), KL contraction\n  & Convergence \\& diversity dynamics of inference-time Markov chains\n  & 7--8B (3 open + GPT-4o-mini)\n  & 50\n  & Greedy decoding collapses to 1--4 recurrent outputs; sampling sustains 10--20\\,+ realizations \\\\\n\\addlinespace\n\\textbf{Ours}\n  & Open-ended continuation (no meaning-preserving constraint)\n  & Token-level NLL statistics (location, scale, shape) + lexical diversity\n  & Depth classification + DDR decomposition into generator \\& depth effects\n  & 0.6--8B (8 models)\n  & 5\n  & NLL location drifts monotonically with depth while shape remains invariant---enabling per-generator depth fingerprinting \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table*}\n\nTable~\\ref{tab:iterative-comparison} compares this work with two concurrent studies on iterative LLM generation.\nAll three examine how repeated inference transforms text, but differ in the chain operator (meaning-preserving vs.\\ open-ended), the analytic lens (factuality decay, convergence dynamics, vs.\\ distributional decomposition), and the downstream goal.\nOur continuation-chain setting, which imposes no semantic-preservation constraint, permits richer depth signal and enables the location/shape decomposition that defines DDR.",
+  "new_string": "Table~\\ref{tab:iterative-comparison} compares this work with two concurrent studies on iterative LLM generation.\nAll three examine how repeated inference transforms text, but differ in the chain operator (meaning-preserving vs.\\ open-ended), the analytic lens (factuality decay, convergence dynamics, vs.\\ distributional decomposition), and the downstream goal.\nOur continuation-chain setting, which imposes no semantic-preservation constraint, permits richer depth signal and enables the location/shape decomposition that defines DDR.\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Comparison with concurrent iterative-generation studies. All three examine how repeated LLM inference transforms text, but differ in chain operator, analytic lens, and downstream goal.}\n\\label{tab:iterative-comparison}\n\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}{@{}l p{2.2cm} p{2.4cm} p{2.4cm} p{2.0cm} c p{3.4cm}@{}}\n\\toprule\n\\textbf{Study} & \\textbf{Chain Type} & \\textbf{Feature Space} & \\textbf{Analysis Goal} & \\textbf{Generator Scale} & \\textbf{Steps} & \\textbf{Core Insight} \\\\\n\\midrule\n\\citet{broken_telephone}\n  & Back-translation (6 bridge langs); rephrasing (ablation)\n  & Surface overlap (BLEU, ROUGE, METEOR, ChrF, BERTScore) + atomic factuality (FActScore)\n  & Factuality degradation rate across iterations\n  & 7--9B (3 open models)\n  & 100\n  & Factual accuracy decays progressively; rate governed by source--bridge linguistic distance \\\\\n\\addlinespace\n\\citet{markovian_chains}\n  & Rephrasing + round-trip translation\n  & String recurrence time, distinct-output count, similarity plateau (METEOR), KL contraction\n  & Convergence \\& diversity dynamics of inference-time Markov chains\n  & 7--8B (3 open + GPT-4o-mini)\n  & 50\n  & Greedy decoding collapses to 1--4 recurrent outputs; sampling sustains 10--20\\,+ realizations \\\\\n\\addlinespace\n\\textbf{Ours}\n  & Open-ended continuation (no meaning-preserving constraint)\n  & Token-level NLL statistics (location, scale, shape) + lexical diversity\n  & Depth classification + DDR decomposition into generator \\& depth effects\n  & 0.6--8B (8 models)\n  & 5\n  & NLL location drifts monotonically with depth while shape remains invariant---enabling per-generator depth fingerprinting \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table*}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_iterative_comparison.tex",
+    "old_string": "\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Comparison with concurrent iterative-generation studies. All three examine how repeated LLM inference transforms text, but differ in chain operator, analytic lens, and downstream goal.}\n\\label{tab:iterative-comparison}\n\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}{@{}l p{2.2cm} p{2.4cm} p{2.4cm} p{2.0cm} c p{3.4cm}@{}}\n\\toprule\n\\textbf{Study} & \\textbf{Chain Type} & \\textbf{Feature Space} & \\textbf{Analysis Goal} & \\textbf{Generator Scale} & \\textbf{Steps} & \\textbf{Core Insight} \\\\\n\\midrule\n\\citet{broken_telephone}\n  & Back-translation (6 bridge langs); rephrasing (ablation)\n  & Surface overlap (BLEU, ROUGE, METEOR, ChrF, BERTScore) + atomic factuality (FActScore)\n  & Factuality degradation rate across iterations\n  & 7--9B (3 open models)\n  & 100\n  & Factual accuracy decays progressively; rate governed by source--bridge linguistic distance \\\\\n\\addlinespace\n\\citet{markovian_chains}\n  & Rephrasing + round-trip translation\n  & String recurrence time, distinct-output count, similarity plateau (METEOR), KL contraction\n  & Convergence \\& diversity dynamics of inference-time Markov chains\n  & 7--8B (3 open + GPT-4o-mini)\n  & 50\n  & Greedy decoding collapses to 1--4 recurrent outputs; sampling sustains 10--20\\,+ realizations \\\\\n\\addlinespace\n\\textbf{Ours}\n  & Open-ended continuation (no meaning-preserving constraint)\n  & Token-level NLL statistics (location, scale, shape) + lexical diversity\n  & Depth classification + DDR decomposition into generator \\& depth effects\n  & 0.6--8B (8 models)\n  & 5\n  & NLL location drifts monotonically with depth while shape remains invariant---enabling per-generator depth fingerprinting \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table*}\n\nTable~\\ref{tab:iterative-comparison} compares this work with two concurrent studies on iterative LLM generation.\nAll three examine how repeated inference transforms text, but differ in the chain operator (meaning-preserving vs.\\ open-ended), the analytic lens (factuality decay, convergence dynamics, vs.\\ distributional decomposition), and the downstream goal.\nOur continuation-chain setting, which imposes no semantic-preservation constraint, permits richer depth signal and enables the location/shape decomposition that defines DDR.",
+    "new_string": "Table~\\ref{tab:iterative-comparison} compares this work with two concurrent studies on iterative LLM generation.\nAll three examine how repeated inference transforms text, but differ in the chain operator (meaning-preserving vs.\\ open-ended), the analytic lens (factuality decay, convergence dynamics, vs.\\ distributional decomposition), and the downstream goal.\nOur continuation-chain setting, which imposes no semantic-preservation constraint, permits richer depth signal and enables the location/shape decomposition that defines DDR.\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Comparison with concurrent iterative-generation studies. All three examine how repeated LLM inference transforms text, but differ in chain operator, analytic lens, and downstream goal.}\n\\label{tab:iterative-comparison}\n\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}{@{}l p{2.2cm} p{2.4cm} p{2.4cm} p{2.0cm} c p{3.4cm}@{}}\n\\toprule\n\\textbf{Study} & \\textbf{Chain Type} & \\textbf{Feature Space} & \\textbf{Analysis Goal} & \\textbf{Generator Scale} & \\textbf{Steps} & \\textbf{Core Insight} \\\\\n\\midrule\n\\citet{broken_telephone}\n  & Back-translation (6 bridge langs); rephrasing (ablation)\n  & Surface overlap (BLEU, ROUGE, METEOR, ChrF, BERTScore) + atomic factuality (FActScore)\n  & Factuality degradation rate across iterations\n  & 7--9B (3 open models)\n  & 100\n  & Factual accuracy decays progressively; rate governed by source--bridge linguistic distance \\\\\n\\addlinespace\n\\citet{markovian_chains}\n  & Rephrasing + round-trip translation\n  & String recurrence time, distinct-output count, similarity plateau (METEOR), KL contraction\n  & Convergence \\& diversity dynamics of inference-time Markov chains\n  & 7--8B (3 open + GPT-4o-mini)\n  & 50\n  & Greedy decoding collapses to 1--4 recurrent outputs; sampling sustains 10--20\\,+ realizations \\\\\n\\addlinespace\n\\textbf{Ours}\n  & Open-ended continuation (no meaning-preserving constraint)\n  & Token-level NLL statistics (location, scale, shape) + lexical diversity\n  & Depth classification + DDR decomposition into generator \\& depth effects\n  & 0.6--8B (8 models)\n  & 5\n  & NLL location drifts monotonically with depth while shape remains invariant---enabling per-generator depth fingerprinting \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table*}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-22T04:24:50.294742+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/appendix_iterative_comparison.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-22T04:24:50.294884+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex",
+  "old_string": "\\input{appendix_feature_distributions}\n\\FloatBarrier\n\n\\section{Cross-Temperature Transfer}",
+  "new_string": "\\input{appendix_feature_distributions}\n\n\\section{Cross-Temperature Transfer}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex",
+    "old_string": "\\input{appendix_feature_distributions}\n\\FloatBarrier\n\n\\section{Cross-Temperature Transfer}",
+    "new_string": "\\input{appendix_feature_distributions}\n\n\\section{Cross-Temperature Transfer}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-22T04:24:50.295030+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-22T04:24:50.295147+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/main.tex",
+  "old_string": "\\input{appendix_feature_distributions}\n\\FloatBarrier\n\n\\section{Cross-Temperature Transfer}",
+  "new_string": "\\input{appendix_feature_distributions}\n\n\\section{Cross-Temperature Transfer}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/main.tex",
+    "old_string": "\\input{appendix_feature_distributions}\n\\FloatBarrier\n\n\\section{Cross-Temperature Transfer}",
+    "new_string": "\\input{appendix_feature_distributions}\n\n\\section{Cross-Temperature Transfer}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-22T04:24:50.295287+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/main.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-22T04:24:50.295402+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex",
+  "old_string": "\\input{appendix_ablation}\n\\FloatBarrier\n\n\\input{appendix_feature_correlation}",
+  "new_string": "\\input{appendix_ablation}\n\n\\input{appendix_feature_correlation}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex",
+    "old_string": "\\input{appendix_ablation}\n\\FloatBarrier\n\n\\input{appendix_feature_correlation}",
+    "new_string": "\\input{appendix_ablation}\n\n\\input{appendix_feature_correlation}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-22T04:24:50.295558+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-22T04:24:50.295700+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/main.tex",
+  "old_string": "\\input{appendix_ablation}\n\\FloatBarrier\n\n\\input{appendix_feature_correlation}",
+  "new_string": "\\input{appendix_ablation}\n\n\\input{appendix_feature_correlation}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/main.tex",
+    "old_string": "\\input{appendix_ablation}\n\\FloatBarrier\n\n\\input{appendix_feature_correlation}",
+    "new_string": "\\input{appendix_ablation}\n\n\\input{appendix_feature_correlation}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-22T04:24:50.295845+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/main.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-22T04:24:50.295973+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex",
+  "old_string": "\\input{appendix_9gen_scale}\n\\FloatBarrier\n\n\\subsection{Comparison with Concurrent Iterative-Generation Studies}",
+  "new_string": "\\input{appendix_9gen_scale}\n\n\\subsection{Comparison with Concurrent Iterative-Generation Studies}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex",
+    "old_string": "\\input{appendix_9gen_scale}\n\\FloatBarrier\n\n\\subsection{Comparison with Concurrent Iterative-Generation Studies}",
+    "new_string": "\\input{appendix_9gen_scale}\n\n\\subsection{Comparison with Concurrent Iterative-Generation Studies}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-22T04:24:50.296118+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-22T04:24:50.296233+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/main.tex",
+  "old_string": "\\input{appendix_9gen_scale}\n\\FloatBarrier\n\n\\subsection{Comparison with Concurrent Iterative-Generation Studies}",
+  "new_string": "\\input{appendix_9gen_scale}\n\n\\subsection{Comparison with Concurrent Iterative-Generation Studies}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/main.tex",
+    "old_string": "\\input{appendix_9gen_scale}\n\\FloatBarrier\n\n\\subsection{Comparison with Concurrent Iterative-Generation Studies}",
+    "new_string": "\\input{appendix_9gen_scale}\n\n\\subsection{Comparison with Concurrent Iterative-Generation Studies}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-22T04:24:50.296372+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/main.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-22T04:24:50.296506+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat > /root/gen-depth-fingerprint/paper/appendix_iterative_comparison.tex << 'TEXEOF'\nTable~\\ref{tab:iterative-comparison} compares this work with two concurrent studies on iterative LLM generation.\nAll three examine how repeated inference transforms text, but differ in the chain operator (meaning-preserving vs.\\ open-ended), the analytic lens (factuality decay, convergence dynamics, vs.\\ distributional decomposition), and the downstream goal.\nOur continuation-chain setting, which imposes no semantic-preservation constraint, permits richer depth signal and enables the location/shape decomposition that defines DDR.\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Comparison with concurrent iterative-generation studies. All three examine how repeated LLM inference transforms text, but differ in chain operator, analytic lens, and downstream goal.}\n\\label{tab:iterative-comparison}\n\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}{@{}l p{2.2cm} p{2.4cm} p{2.4cm} p{2.0cm} c p{3.4cm}@{}}\n\\toprule\n\\textbf{Study} & \\textbf{Chain Type} & \\textbf{Feature Space} & \\textbf{Analysis Goal} & \\textbf{Generator Scale} & \\textbf{Steps} & \\textbf{Core Insight} \\\\\n\\midrule\n\\citet{broken_telephone}\n  & Back-translation (6 bridge langs); rephrasing (ablation)\n  & Surface overlap (BLEU, ROUGE, METEOR, ChrF, BERTScore) + atomic factuality (FActScore)\n  & Factuality degradation rate across iterations\n  & 7--9B (3 open models)\n  & 100\n  & Factual accuracy decays progressively; rate governed by source--bridge linguistic distance \\\\\n\\addlinespace\n\\citet{markovian_chains}\n  & Rephrasing + round-trip translation\n  & String recurrence time, distinct-output count, similarity plateau (METEOR), KL contraction\n  & Convergence \\& diversity dynamics of inference-time Markov chains\n  & 7--8B (3 open + GPT-4o-mini)\n  & 50\n  & Greedy decoding collapses to 1--4 recurrent outputs; sampling sustains 10--20\\,+ realizations \\\\\n\\addlinespace\n\\textbf{Ours}\n  & Open-ended continuation (no meaning-preserving constraint)\n  & Token-level NLL statistics (location, scale, shape) + lexical diversity\n  & Depth classification + DDR decomposition into generator \\& depth effects\n  & 0.6--8B (8 models)\n  & 5\n  & NLL location drifts monotonically with depth while shape remains invariant---enabling per-generator depth fingerprinting \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table*}\nTEXEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat > /root/gen-depth-fingerprint/paper/appendix_iterative_comparison.tex << 'TEXEOF'\nTable~\\ref{tab:iterative-comparison} compares this work with two concurrent studies on iterative LLM generation.\nAll three examine how repeated inference transforms text, but differ in the chain operator (meaning-preserving vs.\\ open-ended), the analytic lens (factuality decay, convergence dynamics, vs.\\ distributional decomposition), and the downstream goal.\nOur continuation-chain setting, which imposes no semantic-preservation constraint, permits richer depth signal and enables the location/shape decomposition that defines DDR.\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Comparison with concurrent iterative-generation studies. All three examine how repeated LLM inference transforms text, but differ in chain operator, analytic lens, and downstream goal.}\n\\label{tab:iterative-comparison}\n\\resizebox{\\textwidth}{!}{%\n\\begin{tabular}{@{}l p{2.2cm} p{2.4cm} p{2.4cm} p{2.0cm} c p{3.4cm}@{}}\n\\toprule\n\\textbf{Study} & \\textbf{Chain Type} & \\textbf{Feature Space} & \\textbf{Analysis Goal} & \\textbf{Generator Scale} & \\textbf{Steps} & \\textbf{Core Insight} \\\\\n\\midrule\n\\citet{broken_telephone}\n  & Back-translation (6 bridge langs); rephrasing (ablation)\n  & Surface overlap (BLEU, ROUGE, METEOR, ChrF, BERTScore) + atomic factuality (FActScore)\n  & Factuality degradation rate across iterations\n  & 7--9B (3 open models)\n  & 100\n  & Factual accuracy decays progressively; rate governed by source--bridge linguistic distance \\\\\n\\addlinespace\n\\citet{markovian_chains}\n  & Rephrasing + round-trip translation\n  & String recurrence time, distinct-output count, similarity plateau (METEOR), KL contraction\n  & Convergence \\& diversity dynamics of inference-time Markov chains\n  & 7--8B (3 open + GPT-4o-mini)\n  & 50\n  & Greedy decoding collapses to 1--4 recurrent outputs; sampling sustains 10--20\\,+ realizations \\\\\n\\addlinespace\n\\textbf{Ours}\n  & Open-ended continuation (no meaning-preserving constraint)\n  & Token-level NLL statistics (location, scale, shape) + lexical diversity\n  & Depth classification + DDR decomposition into generator \\& depth effects\n  & 0.6--8B (8 models)\n  & 5\n  & NLL location drifts monotonically with depth while shape remains invariant---enabling per-generator depth fingerprinting \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table*}\nTEXEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-22T04:24:50.296668+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.29}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-22T04:24:50.296787+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint/paper && sed -i '/\\\\\\\\input{appendix_feature_distributions}/{n;/\\\\\\\\FloatBarrier/{s/\\\\\\\\FloatBarrier//}}' main.tex && sed -i '/\\\\\\\\input{appendix_ablation}/{n;/\\\\\\\\FloatBarrier/{s/\\\\\\\\FloatBarrier//}}' main.tex && sed -i '/\\\\\\\\input{appendix_9gen_scale}/{n;/\\\\\\\\FloatBarrier/{s/\\\\\\\\FloatBarrier//}}' main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint/paper && sed -i '/\\\\\\\\input{appendix_feature_distributions}/{n;/\\\\\\\\FloatBarrier/{s/\\\\\\\\FloatBarrier//}}' main.tex && sed -i '/\\\\\\\\input{appendix_ablation}/{n;/\\\\\\\\FloatBarrier/{s/\\\\\\\\FloatBarrier//}}' main.tex && sed -i '/\\\\\\\\input{appendix_9gen_scale}/{n;/\\\\\\\\FloatBarrier/{s/\\\\\\\\FloatBarrier//}}' main.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-22T04:24:50.296905+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.29}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-22T04:24:50.297058+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint/paper && grep -n -A1 \"appendix_feature_distributions\\|appendix_ablation\\|appendix_9gen_scale\\|appendix_iterative\" main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint/paper && grep -n -A1 \"appendix_feature_distributions\\|appendix_ablation\\|appendix_9gen_scale\\|appendix_iterative\" main.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-22T04:24:50.297235+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"126:\\\\input{appendix_feature_distributions}\\n127-\\\\FloatBarrier\\n--\\n136:\\\\input{appendix_ablation}\\n137-\\\\FloatBarrier\\n--\\n194:\\\\input{appendix_9gen_scale}\\n195-\\\\FloatBarrier\\n--\\n199:\\\\input{appendix_iterative_comparison}\\n200-\\\\FloatBarrier\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.29}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-22T04:24:50.297402+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "head -200 /root/gen-depth-fingerprint/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "head -200 /root/gen-depth-fingerprint/paper/main.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-22T04:24:50.297628+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"% EMNLP 2026 ARR Submission — ACL 2023 Template\\n\\\\documentclass[11pt]{article}\\n\\\\usepackage[review]{acl}\\n\\\\usepackage{times}\\n\\\\usepackage{latexsym}\\n\\\\usepackage[T1]{fontenc}\\n\\\\usepackage[utf8]{inputenc}\\n\\\\usepackage{microtype}\\n\\\\usepackage{graphicx}\\n\\\\usepackage{booktabs}\\n\\\\usepackage{enumitem}\\n\\\\usepackage{amsmath}\\n\\\\usepackage{amssymb}\\n\\\\usepackage{placeins}\\n\\\\usepackage{multirow}\\n\\\\usepackage{float}\\n\\\\usepackage{dblfloatfix}\\n\\\\usepackage{alphalph}\\n\\\\usepackage{tcolorbox}\\n\\\\tcbuselibrary{breakable}\\n\\n\\\\graphicspath{{../chart/}}\\n\\n\\\\title{Depth Fingerprinting: Classifying Recursive Generation Depth\\\\\\\\in Base-Model LLM Text}\\n\\n\\\\author{Anonymous}\\n\\n\\\\begin{document}\\n\\\\maketitle\\n\\n\\\\input{abstract}\\n\\n\\\\input{introduction}\\n\\\\input{related_work}\\n\\\\input{method}\\n\\\\input{results}\\n\\n\\\\input{discussion}\\n\\\\input{conclusion}\\n\\\\input{limitations}\\n\\\\input{ethics}\\n\\n\\\\bibliography{references}\\n\\n\\\\appendix\\n\\\\renewcommand{\\\\thesection}{\\\\alphalph{\\\\value{section}}}\\n\\n\\\\noindent\\\\textbf{Note:} Unless otherwise stated, appendix experiments use the original six-generator subset (Pythia-2.8B/1B, OLMo-2-1B, Qwen3-1.7B/0.6B/8B).\\nMain paper results (\\\\S\\\\ref{sec:results}) use the full eight-generator set (adding Llama-3.2-3B and Mistral-7B-v0.3).\\n\\n\\\\input{appendix_dataset_stats}\\n\\n\\\\section{Length Confound Analysis}\\n\\\\label{app:length}\\n\\\\input{appendix_length}\\n\\\\FloatBarrier\\n\\n\\\\section{Prompt Type Generalization}\\n\\\\label{app:prompt-type}\\n\\\\input{appendix_prompt_type}\\n\\\\FloatBarrier\\n\\n\\\\section{Finer-Grained Depth Classification}\\n\\\\label{app:finer-depth}\\n\\\\input{appendix_finer_depth}\\n\\\\FloatBarrier\\n\\n\\\\section{End-to-End Depth Classification (QLoRA)}\\n\\\\label{app:qlora}\\n\\\\input{appendix_qlo
+…[truncated 3449 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-22T04:24:50.297811+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint/paper && python3 -c \"\nwith open('main.tex', 'r') as f:\n    content = f.read()\n\n# Fix 1: Remove FloatBarrier between feature_distributions and Cross-Temperature Transfer\ncontent = content.replace(\n    '\\\\\\\\input{appendix_feature_distributions}\\n\\\\\\\\FloatBarrier\\n\\n\\\\\\\\section{Cross-Temperature Transfer}',\n    '\\\\\\\\input{appendix_feature_distributions}\\n\\n\\\\\\\\section{Cross-Temperature Transfer}'\n)\n\n# Fix 2: Remove FloatBarrier between ablation and feature_correlation\ncontent = content.replace(\n    '\\\\\\\\input{appendix_ablation}\\n\\\\\\\\FloatBarrier\\n\\n\\\\\\\\input{appendix_feature_correlation}',\n    '\\\\\\\\input{appendix_ablation}\\n\\n\\\\\\\\input{appendix_feature_correlation}'\n)\n\n# Fix 3: Remove FloatBarrier between 9gen_scale and iterative comparison\ncontent = content.replace(\n    '\\\\\\\\input{appendix_9gen_scale}\\n\\\\\\\\FloatBarrier\\n\\n\\\\\\\\subsection{Comparison with Concurrent',\n    '\\\\\\\\input{appendix_9gen_scale}\\n\\n\\\\\\\\subsection{Comparison with Concurrent'\n)\n\nwith open('main.tex', 'w') as f:\n    f.write(content)\n\nprint('Done')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint/paper && python3 -c \"\nwith open('main.tex', 'r') as f:\n    content = f.read()\n\n# Fix 1: Remove FloatBarrier between feature_distributions and Cross-Temperature Transfer\ncontent = content.replace(\n    '\\\\\\\\input{appendix_feature_distributions}\\n\\\\\\\\FloatBarrier\\n\\n\\\\\\\\section{Cross-Temperature Transfer}',\n    '\\\\\\\\input{appendix_feature_distributions}\\n\\n\\\\\\\\section{Cross-Temperature Transfer}'\n)\n\n# Fix 2: Remove FloatBarrier between ablation and feature_correlation\ncontent = content.replace(\n    '\\\\\\\\input{appendix_ablation}\\n\\\\\\\\FloatBarrier\\n\\n\\\\\\\\input{appendix_feature_correlation}',\n    '\\\\\\\\input{appendix_ablation}\\n\\n\\\\\\\\input{appendix_feature_correlation}'\n)\n\n# Fix 3: Remove FloatBarrier between 9gen_scale and iterative comparison\ncontent = content.replace(\n    '\\\\\\\\input{appendix_9gen_scale}\\n\\\\\\\\FloatBarrier\\n\\n\\\\\\\\subsection{Comparison with Concurrent',\n    '\\\\\\\\input{appendix_9gen_scale}\\n\\n\\\\\\\\subsection{Comparison with Concurrent'\n)\n\nwith open('main.tex', 'w') as f:\n    f.write(content)\n\nprint('Done')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-22T04:24:50.297948+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Done\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-22T04:24:50.298208+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint/paper && grep -n -B1 -A1 \"appendix_feature_distributions\\|appendix_ablation\\|appendix_9gen_scale\" main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint/paper && grep -n -B1 -A1 \"appendix_feature_distributions\\|appendix_ablation\\|appendix_9gen_scale\" main.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-22T04:24:50.298412+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"125-\\\\label{app:feature-distributions}\\n126:\\\\input{appendix_feature_distributions}\\n127-\\n--\\n134-\\\\label{app:ablation-table}\\n135:\\\\input{appendix_ablation}\\n136-\\n--\\n191-\\n192:\\\\input{appendix_9gen_scale}\\n193-\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.29}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-22T04:24:50.298648+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "head -5 /root/gen-depth-fingerprint/paper/appendix_iterative_comparison.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "head -5 /root/gen-depth-fingerprint/paper/appendix_iterative_comparison.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-22T04:24:50.298856+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Table~\\\\ref{tab:iterative-comparison} compares this work with two concurrent studies on iterative LLM generation.\\nAll three examine how repeated inference transforms text, but differ in the chain operator (meaning-preserving vs.\\\\ open-ended), the analytic lens (factuality decay, convergence dynamics, vs.\\\\ distributional decomposition), and the downstream goal.\\nOur continuation-chain setting, which imposes no semantic-preservation constraint, permits richer depth signal and enables the location/shape decomposition that defines DDR.\\n\\n\\\\begin{table*}[t]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.29}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-22T04:24:50.299057+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -5",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -5",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-22T04:24:50.299236+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== TeX engine is 'pdfTeX'\\nLatexmk: Found bibliography file(s) [references.bib]\\nLatexmk: Summary of warnings from last run of *latex:\\n  Latex failed to resolve 3 reference(s)\\nLatexmk: All targets (main.pdf) are up-to-date\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.2}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-22T04:24:50.299466+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint/paper && latexmk -pdf -interaction=nonstopmode -f main.tex 2>&1 | tail -10",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint/paper && latexmk -pdf -interaction=nonstopmode -f main.tex 2>&1 | tail -10",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-22T04:24:50.299701+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Rc files read:\\n  /etc/LatexMk\\nLatexmk: This is Latexmk, John Collins, 20 November 2021, version: 4.76.\\nNothing to do\\nLatexmk: All targets (main.pdf) are up-to-date\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-22T04:24:50.299901+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint/paper && rm -f main.aux main.fls main.fdb_latexmk && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint/paper && rm -f main.aux main.fls main.fdb_latexmk && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-22T04:24:50.300130+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"fonts/type1/urw/helvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/\\nurw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8\\na.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\nOutput written on main.pdf (35 pages, 2560900 bytes).\\nTranscript written on main.log.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-22T04:24:50.300397+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && bibtex main > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && bibtex main > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-22T04:24:50.300555+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\nOutput written on main.pdf (35 pages, 2578666 bytes).\\nTranscript written on main.log.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.56}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-22T04:24:50.300740+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint/paper && python3 -c \"\nimport subprocess\nr = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = r.stdout.split('\\x0c')\nprint(f'Total pages: {len(pages)}')\n# Check all pages for sparse content\nfor i in range(len(pages)-1):\n    lines = [l for l in pages[i].split('\\n') if l.strip()]\n    marker = ' <<<SPARSE' if len(lines) < 50 else ''\n    print(f'Page {i+1}: {len(lines)} lines{marker}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint/paper && python3 -c \"\nimport subprocess\nr = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = r.stdout.split('\\x0c')\nprint(f'Total pages: {len(pages)}')\n# Check all pages for sparse content\nfor i in range(len(pages)-1):\n    lines = [l for l in pages[i].split('\\n') if l.strip()]\n    marker = ' <<<SPARSE' if len(lines) < 50 else ''\n    print(f'Page {i+1}: {len(lines)} lines{marker}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-22T04:24:50.300883+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total pages: 36\\nPage 1: 141 lines\\nPage 2: 182 lines\\nPage 3: 178 lines\\nPage 4: 165 lines\\nPage 5: 178 lines\\nPage 6: 181 lines\\nPage 7: 174 lines\\nPage 8: 189 lines\\nPage 9: 175 lines\\nPage 10: 196 lines\\nPage 11: 199 lines\\nPage 12: 199 lines\\nPage 13: 186 lines\\nPage 14: 107 lines\\nPage 15: 194 lines\\nPage 16: 181 lines\\nPage 17: 250 lines\\nPage 18: 273 lines\\nPage 19: 192 lines\\nPage 20: 195 lines\\nPage 21: 179 lines\\nPage 22: 202 lines\\nPage 23: 191 lines\\nPage 24: 276 lines\\nPage 25: 221 lines\\nPage 26: 252 lines\\nPage 27: 203 lines\\nPage 28: 224 lines\\nPage 29: 246 lines\\nPage 30: 281 lines\\nPage 31: 169 lines\\nPage 32: 429 lines\\nPage 33: 232 lines\\nPage 34: 30 lines <<<SPARSE\\nPage 35: 132 lines\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-22T04:24:50.301083+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint/paper && python3 -c \"\nimport subprocess\nr = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = r.stdout.split('\\x0c')\nfor i in [32, 33, 34]:\n    lines = [l for l in pages[i].split('\\n') if l.strip()]\n    print(f'=== PAGE {i+1} ({len(lines)} lines) ===')\n    for line in lines:\n        if line.strip():\n            print(f'  {line.strip()[:100]}')\n    print()\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint/paper && python3 -c \"\nimport subprocess\nr = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = r.stdout.split('\\x0c')\nfor i in [32, 33, 34]:\n    lines = [l for l in pages[i].split('\\n') if l.strip()]\n    print(f'=== PAGE {i+1} ({len(lines)} lines) ===')\n    for line in lines:\n        if line.strip():\n            print(f'  {line.strip()[:100]}')\n    print()\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-22T04:24:50.301343+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== PAGE 33 (232 lines) ===\\n  2286\\n  violations in 4/8 generators under top-k; however,\\n  these generators exhibit comparable or higher violations under nucleus sampling (Pythia entropy_max:\\n  0.21–0.25 nucleus vs. 0.26–0.27 top-k; OLMo\\n  tail_decay: 0.22 under both), indicating modelintrinsic boundary effects rather than strategyinduced\\n  weaken (mean d=0.67 vs. 0.90 under nucleus).\\n  This modulation is consistent with the mechanistic\\n  account in §5: top-k truncation introduces a fixedwidth selection window that interacts differently\\n  with depth-compressed distributions than nucleus\\n  sampling’s probability-mass truncation, partially\\n  blurring the location/shape boundary. The core\\n  DDR partition—drifting features carrying depth\\n  signal while shape features provide cross-generator\\n  reference—remains intact under both greedy and\\n  nucleus sampling and is attenuated but recognizable under top-k. Notably, entropy_std exhibits\\n  strong strategy dependence (greedy mean d=0.83;\\n  nucleus 0.46; top-k 0.23), suggesting its depth\\n  sensitivity is modulated by the token-selection\\n  mechanism—deterministic greedy selection amplifies entropy variance across depths, while top-k’s\\n  fixed window compresses it—further supporting\\n  its classification as an intermediate rather than core\\n  feature.\\n  2287\\n  z.5\\n  2288\\n  This analysis extends the 8-generator LOGO evaluation to nine generators by adding Gemma-2-2B, a\\n  model from a previously unrepresented architecture\\n  family (Gemma). All results use class-balanced\\n  LOGO; the 8-gen averages here (0.770/0.701) differ slightly from Table 2 (0.762/0.694), which\\n  uses an unfiltered protocol. Table 44 reports pergenerator LOGO performance under this expanded\\n  set.\\n  2260\\n  2261\\n  2262\\n  2263\\n  2264\\n  2265\\n  2266\\n  2267\\n  2268\\n  2269\\n  2270\\n  2271\\n  2272\\n  2273\\n  2274\\n  2275\\n  2276
+…[truncated 6931 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-22T04:24:50.301679+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex",
+  "old_string": "\\input{appendix_iterative_comparison}\n\\FloatBarrier\n\n\\subsection{Token-Level NLL Distribution}",
+  "new_string": "\\input{appendix_iterative_comparison}\n\n\\subsection{Token-Level NLL Distribution}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex",
+    "old_string": "\\input{appendix_iterative_comparison}\n\\FloatBarrier\n\n\\subsection{Token-Level NLL Distribution}",
+    "new_string": "\\input{appendix_iterative_comparison}\n\n\\subsection{Token-Level NLL Distribution}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-22T04:24:50.301900+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/main.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-22T04:24:50.302046+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/main.tex",
+  "old_string": "\\input{appendix_iterative_comparison}\n\\FloatBarrier\n\n\\subsection{Token-Level NLL Distribution}",
+  "new_string": "\\input{appendix_iterative_comparison}\n\n\\subsection{Token-Level NLL Distribution}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/main.tex",
+    "old_string": "\\input{appendix_iterative_comparison}\n\\FloatBarrier\n\n\\subsection{Token-Level NLL Distribution}",
+    "new_string": "\\input{appendix_iterative_comparison}\n\n\\subsection{Token-Level NLL Distribution}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-22T04:24:50.302213+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/main.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-22T04:24:50.302335+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint/paper && python3 -c \"\nwith open('main.tex', 'r') as f:\n    content = f.read()\ncontent = content.replace(\n    '\\\\\\\\input{appendix_iterative_comparison}\\n\\\\\\\\FloatBarrier\\n\\n\\\\\\\\subsection{Token-Level NLL Distribution}',\n    '\\\\\\\\input{appendix_iterative_comparison}\\n\\n\\\\\\\\subsection{Token-Level NLL Distribution}'\n)\nwith open('main.tex', 'w') as f:\n    f.write(content)\nprint('Done')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint/paper && python3 -c \"\nwith open('main.tex', 'r') as f:\n    content = f.read()\ncontent = content.replace(\n    '\\\\\\\\input{appendix_iterative_comparison}\\n\\\\\\\\FloatBarrier\\n\\n\\\\\\\\subsection{Token-Level NLL Distribution}',\n    '\\\\\\\\input{appendix_iterative_comparison}\\n\\n\\\\\\\\subsection{Token-Level NLL Distribution}'\n)\nwith open('main.tex', 'w') as f:\n    f.write(content)\nprint('Done')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-22T04:24:50.302500+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Done\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-22T04:24:50.302653+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && bibtex main > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint/paper && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && bibtex main > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex > /dev/null 2>&1 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-22T04:24:50.302791+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\nOutput written on main.pdf (35 pages, 2578662 bytes).\\nTranscript written on main.log.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.55}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-22T04:24:50.302912+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint/paper && python3 -c \"\nimport subprocess\nr = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = r.stdout.split('\\x0c')\nprint(f'Total pages: {len(pages)}')\nfor i in range(len(pages)-1):\n    lines = [l for l in pages[i].split('\\n') if l.strip()]\n    marker = ' <<<SPARSE' if len(lines) < 80 else ''\n    print(f'Page {i+1}: {len(lines)} lines{marker}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint/paper && python3 -c \"\nimport subprocess\nr = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = r.stdout.split('\\x0c')\nprint(f'Total pages: {len(pages)}')\nfor i in range(len(pages)-1):\n    lines = [l for l in pages[i].split('\\n') if l.strip()]\n    marker = ' <<<SPARSE' if len(lines) < 80 else ''\n    print(f'Page {i+1}: {len(lines)} lines{marker}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-22T04:24:50.303043+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total pages: 36\\nPage 1: 141 lines\\nPage 2: 182 lines\\nPage 3: 178 lines\\nPage 4: 165 lines\\nPage 5: 178 lines\\nPage 6: 181 lines\\nPage 7: 174 lines\\nPage 8: 189 lines\\nPage 9: 175 lines\\nPage 10: 196 lines\\nPage 11: 199 lines\\nPage 12: 199 lines\\nPage 13: 186 lines\\nPage 14: 107 lines\\nPage 15: 194 lines\\nPage 16: 181 lines\\nPage 17: 250 lines\\nPage 18: 273 lines\\nPage 19: 192 lines\\nPage 20: 195 lines\\nPage 21: 179 lines\\nPage 22: 202 lines\\nPage 23: 191 lines\\nPage 24: 276 lines\\nPage 25: 221 lines\\nPage 26: 252 lines\\nPage 27: 203 lines\\nPage 28: 224 lines\\nPage 29: 246 lines\\nPage 30: 281 lines\\nPage 31: 169 lines\\nPage 32: 429 lines\\nPage 33: 232 lines\\nPage 34: 90 lines\\nPage 35: 72 lines <<<SPARSE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-22T04:24:50.303194+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint/paper && python3 -c \"\nimport subprocess\nr = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = r.stdout.split('\\x0c')\nfor i in [33, 34]:\n    lines = [l for l in pages[i].split('\\n') if l.strip()]\n    print(f'=== PAGE {i+1} ({len(lines)} lines) ===')\n    for line in lines:\n        if line.strip():\n            print(f'  {line.strip()[:100]}')\n    print()\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint/paper && python3 -c \"\nimport subprocess\nr = subprocess.run(['pdftotext', 'main.pdf', '-'], capture_output=True, text=True)\npages = r.stdout.split('\\x0c')\nfor i in [33, 34]:\n    lines = [l for l in pages[i].split('\\n') if l.strip()]\n    print(f'=== PAGE {i+1} ({len(lines)} lines) ===')\n    for line in lines:\n        if line.strip():\n            print(f'  {line.strip()[:100]}')\n    print()\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-22T04:24:50.303380+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== PAGE 34 (90 lines) ===\\n  2352\\n  is consistent with larger models producing more\\n  self-typical outputs that narrow inter-depth contrasts; the partition structure is preserved even as\\n  absolute effect sizes compress.\\n  2353\\n  z.6\\n  2349\\n  2350\\n  2351\\n  2354\\n  Comparison with Concurrent\\n  Iterative-Generation Studies\\n  2365\\n  Table 45 compares this work with two concurrent studies on iterative LLM generation. All\\n  three examine how repeated inference transforms\\n  text, but differ in the chain operator (meaningpreserving vs. open-ended), the analytic lens (factua\\n  Our continuation-chain setting, which imposes no\\n  semantic-preservation constraint, permits richer\\n  depth signal and enables the location/shape decomposition that defines DDR.\\n  2366\\n  z.7\\n  2355\\n  2356\\n  2357\\n  2358\\n  2359\\n  2360\\n  2361\\n  2362\\n  2363\\n  2364\\n  Token-Level NLL Distribution\\n  1.2\\n  Depth 0 (med=1.64)\\n  Depth 1 (med=0.96)\\n  Depth 2 (med=0.24)\\n  Depth 3 (med=0.04)\\n  Depth 4 (med=0.02)\\n  1.0\\n  Density\\n  ated text becomes increasingly predictable to the\\n  reference model. The monotonic compression of\\n  the NLL distribution provides a mechanistic explanation for the entropy-based features that drive ou\\n  depth classifier.\\n  0.8\\n  0.6\\n  0.4\\n  0.2\\n  0.0\\n  0\\n  1\\n  2\\n  3\\n  4\\n  5\\n  6\\n  Token-level NLL (nats)\\n  7\\n  8\\n  Figure 14: Token-level NLL distribution by generation\\n  depth, aggregated across all 8 generators (Pythia-410M\\n  reference model). Dashed lines indicate median NLL\\n  per depth. The systematic leftward shift demonstrates\\n  that deeper-generation text is increasingly predictable.\\n  2367\\n  2368\\n  2369\\n  2370\\n  2371\\n  2372\\n  2373\\n  2374\\n  2375\\n  2376\\n  2377\\n  2378\\n  To visualize how the reference-model surprisal\\n  landscape shifts with generation depth, we plot the\\n  kernel d
+…[truncated 2255 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 115 · 2026-05-22T04:24:50.303622+00:00_
+
+Results look good. Page 34 now has the iterative comparison text + NLL distribution section with figure (90 lines, well-filled). Page 35 is the last page with just the comparison table, which is acceptable.
+
+**Summary of fixes:**
+
+| Original Page | Issue | Fix | Result |
+|---|---|---|---|
+| **p.24** (123 lines) | `figure*[t]` in feature_distributions floated to next page; `\FloatBarrier` blocked cross-temp content from flowing up | Removed `\FloatBarrier` after `appendix_feature_distributions` | **276 lines** |
+| **p.26** (179 lines) | `\FloatBarrier` between small ablation and correlation sections created artificial gaps | Removed `\FloatBarrier` after `appendix_ablation` | **252 lines** |
+| **p.35** (30 lines) | `table*[t]` in iterative_comparison floated away; `\FloatBarrier` blocked NLL content from filling gap | (1) Moved text before `table*[t]` in `appendix_iterative_comparison.tex`; (2) Removed `\FloatBarrier` after `appendix_9gen_scale` and after `appendix_iterative_comparison` | Content absorbed into **p.34 (90 lines)** + table on last page |
+
+**Total pages**: 37 → 35 (net reduction of 2 pages). All three local copies (artifacts, docs, remote) synced.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_paper_appendix-whitespace-p24-26-35_20260522T041552"
+}
+```
+
+</details>
+
+---

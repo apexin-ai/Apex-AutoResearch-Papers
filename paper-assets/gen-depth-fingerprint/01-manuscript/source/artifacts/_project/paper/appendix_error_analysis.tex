@@ -1,0 +1,94 @@
+We analyze misclassification patterns in the binary LOGO task (gen-1 vs.\ gen-2+) across 29,095 test samples (overall error rate 28.1\%).
+
+\paragraph{Error asymmetry.}
+The error distribution is highly asymmetric: 86.2\% of errors are false negatives (gen-2+ predicted as gen-1), while only 13.8\% are false positives (Table~\ref{tab:error-analysis}).
+The classifier systematically under-predicts depth, consistent with the DDR pattern: shallow gen-2+ samples that have not yet accumulated sufficient distributional drift are indistinguishable from gen-1.
+Among generators, Mistral-7B shows the highest error rate (45.0\%), while Pythia-1B is easiest (18.2\%). Larger models produce gen-2+ text closer to the gen-1 distribution.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Binary classification error analysis (gen-1 vs.\ gen-2+) under LOGO cross-validation. FP: gen-1 misclassified as gen-2+; FN: gen-2+ misclassified as gen-1. Errors are dominated by false negatives (86.2\%).}
+\label{tab:error-analysis}
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Generator} & $N$ & \textbf{FP} & \textbf{FN} & \textbf{Err.\%} \\
+\midrule
+Pythia-1B & 3560 & 188 & 460 & 18.2 \\
+Pythia-2.8B & 3614 & 129 & 737 & 24.0 \\
+OLMo-2-1B & 3718 & 154 & 900 & 28.3 \\
+Qwen3-0.6B & 3542 & 234 & 511 & 21.0 \\
+Qwen3-1.7B & 3621 & 175 & 639 & 22.5 \\
+Qwen3-8B & 3502 & 93 & 1104 & 34.2 \\
+Llama-3.2-3B & 3685 & 82 & 1030 & 30.2 \\
+Mistral-7B & 3853 & 75 & 1659 & 45.0 \\
+\midrule
+\textbf{Overall} & 29095 & 1130 & 7040 & 28.1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Per-depth error rates.}
+Error rates decrease monotonically with depth (Table~\ref{tab:error-depth}): depth-2 samples are the primary failure point (48.4\% error rate), followed by depth-3 (29.2\%) and depth-4 (20.3\%).
+The monotonic decrease confirms that deeper generations accumulate progressively stronger depth signatures; the gen-1$\to$gen-2 transition is the hardest boundary.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Error rate by generation depth in binary classification. Depth-2 exhibits the highest misclassification rate (48.4\%); the gen-1$\to$gen-2 transition is the primary confusion boundary.}
+\label{tab:error-depth}
+\begin{tabular}{crrrl}
+\toprule
+\textbf{Depth} & $N$ & \textbf{Errors} & \textbf{Rate (\%)} & \textbf{Type} \\
+\midrule
+1 & 7896 & 1130 & 14.3 & FP \\
+2 & 7512 & 3637 & 48.4 & FN \\
+3 & 7032 & 2051 & 29.2 & FN \\
+4 & 6655 & 1352 & 20.3 & FN \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Feature-level explanation.}
+Misclassified samples occupy the overlap zone between gen-1 and gen-2+ distributions (Table~\ref{tab:error-features}): they exhibit elevated entropy ($\bar{H}$: 2.26 vs.\ 1.57, $p<10^{-300}$) and lexical diversity (TTR: 0.464 vs.\ 0.302), retaining gen-1-like characteristics.
+In contrast, shape features show no discriminating power: entropy max ($p = \text{n.s.}$) and tail decay ($p = \text{n.s.}$), consistent with the DDR pattern (\S\ref{sec:results-differential}).
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Feature comparison between correctly and incorrectly classified samples. Misclassified samples show substantially higher entropy and lexical diversity but no difference in shape features.}
+\label{tab:error-features}
+\begin{tabular}{lcccl}
+\toprule
+\textbf{Feature} & \textbf{Correct} & \textbf{Incorrect} & $\Delta$ & $p$ \\
+\midrule
+$\bar{H}$ & 1.5700 & 2.2618 & +0.6918 & $<10^{-300}$ $^{***}$ \\
+$\sigma_H$ & 1.6227 & 1.7413 & +0.1186 & $<10^{-300}$ $^{***}$ \\
+$H_{\min}$ & 0.0281 & 0.0330 & +0.0049 & 1.0e-294 $^{***}$ \\
+$H_{\max}$ & 7.5255 & 7.5251 & -0.0004 & n.s. \\
+$\beta_{\mathrm{tail}}$ & -0.0023 & -0.0023 & +0.0000 & n.s. \\
+TTR & 0.3024 & 0.4635 & +0.1612 & $<10^{-300}$ $^{***}$ \\
+Hapax & 0.1760 & 0.3131 & +0.1371 & $<10^{-300}$ $^{***}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{3-class confusion matrix.}
+Table~\ref{tab:confusion-3class} shows the aggregated confusion matrix: gen-0 is near-perfectly classified ($>$99\%), while gen-1 and gen-2+ exhibit substantial cross-contamination (30.2\% of gen-2+ predicted as gen-1), consistent with the binary error analysis.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Aggregated 3-class confusion matrix (\%) across 8-fold LOGO. Gen-0 is near-perfectly classified, while gen-2+ is frequently confused with gen-1.}
+\label{tab:confusion-3class}
+\begin{tabular}{l|ccc}
+\toprule
+ & \multicolumn{3}{c}{\textbf{Predicted}} \\
+\textbf{True} & gen-0 & gen-1 & gen-2+ \\
+\midrule
+gen-0 & 99.2 & 0.8 & 0.1 \\
+gen-1 & 7.3 & 78.4 & 14.3 \\
+gen-2+ & 3.0 & 30.2 & 66.7 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,51 @@
+GPU Diagnosis Report — 2026-05-21 14:45 CST
+=============================================
+
+## GPU Status
+  GPU 0: 66% util, 6193/32607 MiB — pythia-2.8b (cuda:0)
+  GPU 1: 46% util, 3623/32607 MiB — olmo-2-1b (cuda:1)
+  GPU 2: idle (0%)
+  GPU 3: idle (0%)
+
+## Running Processes
+
+1. pythia-2.8b-greedy (PID 283041, cuda:0) — ALIVE
+   - Progress: 72/995 seeds (greedy phase, 1st of 2 strategies)
+   - Speed: ~9.07 s/it
+   - Output: 360 lines in generations_shard0.jsonl (~5 lines/seed = chain depth)
+   - Started: 14:29
+
+2. olmo-2-1b-greedy (PID 283607, cuda:1) — ALIVE
+   - Progress: 97/995 seeds (greedy phase, 1st of 2 strategies)
+   - Speed: ~8.65 s/it
+   - Output: 484 lines in generations_shard0.jsonl (~5 lines/seed)
+   - Started: 14:29
+
+3. start_qwen_after_olmo.sh (PID 336696) — WAITING for OLMo to finish
+4. extract_after_pythia.sh (PID 336886) — WAITING for Pythia to finish
+
+5. [zombie] old temp_qwen06 (PID 27228) — defunct, harmless
+
+## ETA
+
+Pythia (cuda:0):
+  Greedy remaining: (995-72) * 9.07s = 8371s ≈ 2h 20m
+  Topk phase:        995 * 9.07s     = 9025s ≈ 2h 30m
+  Total Pythia remaining: ~4h 50m → finish ~19:35
+
+OLMo (cuda:1):
+  Greedy remaining: (995-97) * 8.65s = 7768s ≈ 2h 10m
+  Topk phase:        995 * 8.65s     = 8607s ≈ 2h 23m
+  Total OLMo remaining: ~4h 33m → finish ~19:18
+
+Qwen: blocked on OLMo; will start ~19:18 + model load time
+
+## Chained Tasks
+  - After Pythia completes → extract_after_pythia.sh runs feature extraction on cuda:0
+  - After OLMo completes → start_qwen_after_olmo.sh starts Qwen generation
+
+## Errors
+  None. Both generation processes running normally. No errors in logs.
+
+## Summary
+  All processes ALIVE and progressing. No action needed.

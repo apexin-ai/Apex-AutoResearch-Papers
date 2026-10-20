@@ -1,0 +1,14 @@
+{
+  "exp_id": "review-p1c-qwen06b-instruct",
+  "project": "gen-depth-fingerprint",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:20:44.483Z",
+    "updated_at": "2026-05-15T15:20:44.483Z"
+  },
+  "timestamp": "2026-05-15T15:20:44.556909+00:00",
+  "trigger": "update_registry"
+}

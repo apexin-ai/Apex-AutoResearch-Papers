@@ -1,0 +1,33 @@
+{
+  "pooled": {
+    "entropy_mean": -0.5978,
+    "entropy_std": -0.1567,
+    "entropy_min": -0.4037,
+    "entropy_max": 0.0608,
+    "tail_decay": -0.0413,
+    "ttr": -0.6249,
+    "hapax_ratio": -0.6405
+  },
+  "pooled_balanced": {
+    "entropy_mean": -0.5954,
+    "entropy_std": -0.1692,
+    "entropy_min": -0.3992,
+    "entropy_max": 0.0595,
+    "tail_decay": -0.0422,
+    "ttr": -0.613,
+    "hapax_ratio": -0.6288
+  },
+  "n_samples_pooled": 37058,
+  "n_samples_balanced": 33275,
+  "n_per_depth_balanced": 6655,
+  "generators": [
+    "pythia-2.8b",
+    "pythia-1b",
+    "olmo-2-1b",
+    "qwen3-0.6b",
+    "qwen3-1.7b",
+    "qwen3-8b",
+    "llama-3.2-3b",
+    "mistral-7b-v0.3"
+  ]
+}

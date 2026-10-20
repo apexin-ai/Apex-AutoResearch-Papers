@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan-002",
+  "project": "gen-depth-fingerprint",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:08:55.258Z",
+    "updated_at": "2026-05-14T20:09:09.950Z",
+    "hypothesis": "跨模型泛化：Pythia-410M 参考模型下的深度特征能否区分不同架构/规模生成器（Pythia-1B, OLMo-2-1B, Qwen3-1.7B, Qwen3-0.6B）的 continuation 链"
+  },
+  "timestamp": "2026-05-14T20:09:09.983719+00:00",
+  "trigger": "update_registry"
+}

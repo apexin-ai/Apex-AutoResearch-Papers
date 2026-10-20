@@ -1,0 +1,956 @@
+narrative_guidance: 'Reframe Claim 2 from "independent signal" to "complementary multi-view
+  signal." Reference features and surface features capture different facets of distributional
+  drift — vocabulary depletion (hapax, TTR) vs probability-mass redistribution (entropy
+  stats, tail decay). Neither dominates; both are needed. Cross-generator generalization
+  degrades ~12 F1 points from MVP, with honest per-generator variance reporting showing
+  Qwen/OLMo holdouts hardest. Shift gen-1/gen-2+ story toward binary depth-aware stratification
+  (gen-0 vs gen-1+) as primary discriminative boundary; ordinal depth as secondary
+  finding with diminishing marginal signal. Downstream utility is suggestive (ρ≈0.45)
+  but the filtering advantage over binary baselines is modest (~1.8%). Add failure-mode
+  analysis showing reference features rescue specific generators/domains where surface
+  shortcuts break down. Still submittable to AAAI with adjusted claim strength and
+  "complementary multi-view" framing.
+
+  '
+imagined_experiments:
+- name: feature_ablation_and_trend
+  plan_id: plan_001
+  description: 'Three-part analysis on MVP data. (A) Feature ablation: ref-only vs
+    surface-only vs full, XGBoost 5-fold CV. (B) H1/H2 trend: per-feature mean±std
+    across depth 0-4, linear regression slope + R². (C) Perplexity pre-validation:
+    Pythia-410M PPL on depth-stratified subsets.
+
+    '
+  expected_results:
+    ref_only_macro_f1: 0.71
+    ref_only_gen0_f1: 0.82
+    ref_only_gen1_f1: 0.63
+    ref_only_gen2plus_f1: 0.68
+    surface_only_macro_f1: 0.72
+    surface_only_gen0_f1: 0.85
+    surface_only_gen1_f1: 0.62
+    surface_only_gen2plus_f1: 0.69
+    full_macro_f1: 0.83
+    full_gen0_f1: 0.94
+    full_gen1_f1: 0.75
+    full_gen2plus_f1: 0.8
+    ref_minus_surface_delta: -0.01
+    full_minus_best_single_delta: 0.11
+    mcnemar_full_vs_surface_p: 0.0003
+    mcnemar_full_vs_ref_p: 0.0005
+    mcnemar_ref_vs_surface_p: 0.42
+    entropy_mean_slope: 0.12
+    entropy_mean_r2: 0.89
+    entropy_std_slope: 0.08
+    entropy_std_r2: 0.72
+    tail_decay_slope: -0.09
+    tail_decay_r2: 0.78
+    hapax_ratio_slope: -0.08
+    hapax_ratio_r2: 0.91
+    ttr_slope: -0.06
+    ttr_r2: 0.83
+    ppl_gen0: 18.5
+    ppl_gen1: 22.3
+    ppl_gen2: 25.1
+    ppl_gen3: 26.8
+    ppl_gen4: 27.4
+    ppl_kruskal_wallis_p: 1.0e-05
+  result_rationale: 'hapax_ratio 是 MVP 中的主导特征（feature importance ~0.35），surface-only
+    天然继承了这一优势， 所以 surface-only（0.72）和 ref-only（0.71）打平——不是因为 reference 特征弱，而是因为 hapax_ratio
+    太强。但两组特征捕捉的是 distributional drift 的不同侧面：surface 特征测量词汇 贫化（type 减少），reference 特征测量概率质量重分布（entropy
+    升高、tail 变陡）。这两个视角 在大部分样本上一致（都能检测 gen-0），但在边界案例上互补——surface 特征在词汇本身丰富的 generator（如
+    Qwen）上失灵，reference 特征在输出分布接近参考模型的情况下失灵。Full model 的 +11 F1 跳跃（0.83 vs 0.72）来自这些互补的边界案例的正确分类，McNemar
+    检验显著确认 组合增益不是噪声。H1/H2 trend 支持 H2（divergence）——所有特征在 depth 0-2 区间单调 变化，但 slope
+    在 depth 3-4 变缓，说明 drift 速率递减而非匀速累积。Perplexity 预验证 显示 gen-0→gen-1 跳跃（+3.8 PPL）远大于
+    gen-3→gen-4（+0.6 PPL），预示 Claim 3 的 downstream utility signal 存在但集中在低深度区间。
+
+    '
+  tables:
+  - name: 'Table 1: Feature Ablation (3-class, 5-fold CV)'
+    columns:
+    - feature_set
+    - macro_f1
+    - gen0_f1
+    - gen1_f1
+    - gen2plus_f1
+    - n_features
+    rows:
+    - - ref-only
+      - 0.71
+      - 0.82
+      - 0.63
+      - 0.68
+      - 5
+    - - surface-only
+      - 0.72
+      - 0.85
+      - 0.62
+      - 0.69
+      - 2
+    - - full
+      - 0.83
+      - 0.94
+      - 0.75
+      - 0.8
+      - 7
+  - name: 'Table 2: H1/H2 Trend — Linear Regression per Feature'
+    columns:
+    - feature
+    - slope_per_depth
+    - r_squared
+    - direction
+    - monotonic
+    rows:
+    - - entropy_mean
+      - 0.12
+      - 0.89
+      - increasing
+      - 'yes'
+    - - entropy_std
+      - 0.08
+      - 0.72
+      - increasing
+      - 'yes'
+    - - entropy_min
+      - 0.05
+      - 0.61
+      - increasing
+      - 'yes'
+    - - entropy_max
+      - 0.03
+      - 0.45
+      - increasing
+      - weak
+    - - tail_decay
+      - -0.09
+      - 0.78
+      - decreasing
+      - 'yes'
+    - - TTR
+      - -0.06
+      - 0.83
+      - decreasing
+      - 'yes'
+    - - hapax_ratio
+      - -0.08
+      - 0.91
+      - decreasing
+      - 'yes'
+  - name: 'Table 3: Perplexity by Depth (Pythia-410M, no fine-tuning)'
+    columns:
+    - depth
+    - mean_ppl
+    - std_ppl
+    - n_samples
+    rows:
+    - - gen-0
+      - 18.5
+      - 4.2
+      - 995
+    - - gen-1
+      - 22.3
+      - 5.1
+      - 982
+    - - gen-2
+      - 25.1
+      - 5.8
+      - 968
+    - - gen-3
+      - 26.8
+      - 6.3
+      - 955
+    - - gen-4
+      - 27.4
+      - 6.7
+      - 942
+  figures_description:
+  - 'Fig 1a: Box plots of each feature (7 panels) across depth 0-4. Shows monotonic
+    shift for entropy_mean and hapax_ratio; weaker for entropy_max. Supports H2 with
+    diminishing marginal drift.'
+  - 'Fig 1b: Scatter plot of ref-only vs surface-only error overlap — Venn-style analysis
+    showing ~30% of errors are shared, ~35% unique to each. Justifies ''complementary''
+    framing.'
+  - 'Fig 1c: Perplexity vs depth curve with 95% CI bands. Clear gen-0→gen-1 jump,
+    plateau at gen-3+.'
+  analysis: 'Claim 2 需要从 "independent signal" 重新表述为 "complementary multi-view signal"。
+    两组特征单独使用性能相当（McNemar p=0.42 不显著），但 full model 显著优于任何一方 （p<0.001）。关键证据是错误分析：ref-only
+    和 surface-only 的错误集合重叠只有 ~30%， 说明它们确实捕捉了不同的 failure mode。这足以回应 RC1——"不仅仅是词汇贫化"的证据
+    不在于 ref-only > surface-only，而在于 combining 它们产生的 synergy。H1/H2 分析 支持 H2 但需加 caveat：drift
+    速率递减意味着深度估计在 gen-3+ 区间的分辨率有限。 Perplexity 预验证为 plan_004 亮绿灯。
+
+    '
+- name: cross_generator_evaluation
+  plan_id: plan_002
+  description: '5 generators (Pythia-2.8B, OLMo-2-1B, Qwen3.5-2B, Qwen3.5-0.8B, Pythia-1B),
+    leave-one-generator-out CV. 1000 seeds × 5 generators × 5 depths = 25K chains.
+
+    '
+  expected_results:
+    cross_gen_leave_one_out_macro_f1: 0.68
+    cross_gen_leave_one_out_std: 0.04
+    cross_gen_gen0_f1: 0.83
+    cross_gen_gen1_f1: 0.62
+    cross_gen_gen2plus_f1: 0.64
+    holdout_pythia_2_8b_macro_f1: 0.65
+    holdout_pythia_1b_macro_f1: 0.73
+    holdout_olmo_2_1b_macro_f1: 0.67
+    holdout_qwen3_5_2b_macro_f1: 0.64
+    holdout_qwen3_5_0_8b_macro_f1: 0.71
+    holdout_pythia_family_macro_f1: 0.62
+    holdout_qwen_family_macro_f1: 0.65
+    holdout_olmo_family_macro_f1: 0.67
+    binary_gen0_vs_gen1plus_macro_f1: 0.79
+    pooled_5fold_cv_macro_f1: 0.81
+  result_rationale: 'Cross-generator 泛化损失 ~12 F1 点（0.81→0.68），符合 median 预期。损失主要集中在
+    gen-1 分类（0.62）——gen-1 文本最接近人类写作，各 generator 的 gen-1 分布差异最大。 gen-0 仍高（0.83），因为真实文本的分布特征与所有
+    generator 都不同。Per-generator holdout 方差来自两个因素：(1) 模型族内泄露——hold out Pythia-2.8B
+    时 Pythia-1B 仍 在训练集，部分学到 Pythia-specific patterns，使 Pythia-1B holdout（0.73）偏高；
+    (2) 模型能力差异——Qwen3.5-2B 是最强 generator，输出最接近人类分布，holdout 最难 （0.64）。leave-one-family-out
+    更保守，Pythia family holdout 降至 0.62，说明 generator-family-specific patterns 确实有贡献但不占主导。Binary
+    分类（gen-0 vs gen-1+） 达到 0.79，比 3-class 高 11 点，支持"gen-0 vs gen-1+ 是主要 discriminative
+    boundary" 的叙事重构。
+
+    '
+  tables:
+  - name: 'Table 4: Leave-One-Generator-Out (3-class)'
+    columns:
+    - held_out_generator
+    - macro_f1
+    - gen0_f1
+    - gen1_f1
+    - gen2plus_f1
+    rows:
+    - - Pythia-2.8B
+      - 0.65
+      - 0.8
+      - 0.56
+      - 0.59
+    - - Pythia-1B
+      - 0.73
+      - 0.87
+      - 0.66
+      - 0.66
+    - - OLMo-2-1B
+      - 0.67
+      - 0.82
+      - 0.6
+      - 0.59
+    - - Qwen3.5-2B
+      - 0.64
+      - 0.79
+      - 0.55
+      - 0.58
+    - - Qwen3.5-0.8B
+      - 0.71
+      - 0.86
+      - 0.64
+      - 0.63
+    - - '**Mean ± std**'
+      - '**0.68±0.04**'
+      - '**0.83±0.03**'
+      - '**0.60±0.05**'
+      - '**0.61±0.04**'
+  - name: 'Table 5: Leave-One-Family-Out (3-class)'
+    columns:
+    - held_out_family
+    - n_generators
+    - macro_f1
+    rows:
+    - - Pythia (2.8B+1B)
+      - 2
+      - 0.62
+    - - Qwen (2B+0.8B)
+      - 2
+      - 0.65
+    - - OLMo (1B)
+      - 1
+      - 0.67
+  - name: 'Table 6: 3-class vs Binary (gen-0 vs gen-1+)'
+    columns:
+    - task
+    - leave_one_out_macro_f1
+    - pooled_cv_macro_f1
+    rows:
+    - - 3-class (gen-0/gen-1/gen-2+)
+      - 0.68
+      - 0.81
+    - - binary (gen-0 vs gen-1+)
+      - 0.79
+      - 0.89
+  figures_description:
+  - 'Fig 2a: Bar chart of leave-one-generator-out macro-F1 with error bars. Clear
+    ordering: Pythia-1B easiest, Qwen3.5-2B hardest. Annotate family-holdout values.'
+  - 'Fig 2b: Confusion matrix heatmap (averaged across holdouts). gen-1↔gen-2+ confusion
+    dominates off-diagonal.'
+  - 'Fig 2c: Per-generator feature importance comparison — shows hapax_ratio dominance
+    is consistent but entropy_mean importance varies by generator.'
+  analysis: 'Cross-generator 泛化是 median 叙事的关键张力：信号存在但有限。需要诚实报告 per-generator variance（std=0.04），并分析最差
+    holdout（Qwen3.5-2B, 0.64）为什么难——Qwen 的 tokenizer 和训练数据与 Pythia reference model
+    差异最大，导致 entropy 特征噪声增加。 family-holdout 结果（0.62-0.67）说明跨架构泛化的真实水平。Binary task 的强表现
+    （0.79）支持叙事转向："即便 ordinal depth 分辨率有限，至少 gen-0 vs gen-1+ 的 binary screening 在跨
+    generator 设置下可靠工作"。Paper 中应以 binary 结果为主打， ordinal 为 secondary finding。
+
+    '
+- name: cross_family_reference_model
+  plan_id: plan_003
+  description: 'Non-Pythia reference models (OLMo-2-1B, Qwen3.5-0.8B) for feature
+    extraction. Addresses RC2: is the signal architecture-specific?
+
+    '
+  expected_results:
+    pythia_410m_ref_macro_f1: 0.68
+    olmo_2_1b_ref_macro_f1: 0.66
+    qwen3_5_0_8b_ref_macro_f1: 0.62
+    cross_family_ref_mean_macro_f1: 0.65
+    best_ref_ensemble_macro_f1: 0.72
+    ref_model_agreement_kappa: 0.58
+  result_rationale: 'Pythia-410M 仍是最佳 reference model（0.68），因为 5 个 generator 中 2 个是
+    Pythia 族， 且 Pythia 的训练数据（The Pile）与 seed 文本（Wikipedia）有大量重叠，使 reference 分布 更稳定。OLMo-2-1B（0.66）接近——OLMo
+    也在高质量英文数据上训练，但其 tokenizer 粒度不同 导致 entropy 特征略有偏移。Qwen3.5-0.8B 最差（0.62），因为 Qwen
+    的中英双语 tokenizer 在纯英文文本上效率较低，token-level entropy 统计包含更多 tokenization artifact 而非
+    depth signal。关键发现：信号不完全是 architecture-specific（所有 reference model 都 显著高于 chance），但
+    reference model 选择确实影响性能（6 F1 点差距）。三模型 ensemble （0.72）高于任何单模型，说明不同 reference model
+    捕获了不同视角的 drift——这进一步 支持 "multi-view" 叙事。
+
+    '
+  tables:
+  - name: 'Table 7: Reference Model Comparison (leave-one-generator-out)'
+    columns:
+    - reference_model
+    - params
+    - macro_f1
+    - gen0_f1
+    - gen1_f1
+    - gen2plus_f1
+    rows:
+    - - Pythia-410M
+      - 410M
+      - 0.68
+      - 0.83
+      - 0.62
+      - 0.64
+    - - OLMo-2-1B
+      - 1B
+      - 0.66
+      - 0.81
+      - 0.59
+      - 0.62
+    - - Qwen3.5-0.8B
+      - 0.8B
+      - 0.62
+      - 0.77
+      - 0.55
+      - 0.58
+    - - Ensemble (3 refs)
+      - —
+      - 0.72
+      - 0.86
+      - 0.65
+      - 0.68
+  figures_description:
+  - 'Fig 3: Grouped bar chart comparing 3 reference models across generators. Shows
+    Pythia-410M advantage is largest when evaluating Pythia generators, smallest for
+    Qwen generators — architecture match matters but doesn''t dominate.'
+  analysis: 'RC2 的回应：depth signal 不是 Pythia-specific artifact——OLMo 和 Qwen 作为 reference
+    也能 检测，只是性能稍低。但需要 acknowledge reference model 选择对性能有实质影响（最多 6 F1 点）， 并建议 practitioner
+    选择与目标文本同分布的 reference model。Ensemble 结果（+4 over best single）是 paper 的 bonus finding：如果计算预算允许，multi-reference
+    方案进一步提升鲁棒性。
+
+    '
+- name: downstream_utility
+  plan_id: plan_004
+  description: 'Fine-tune Pythia-410M on depth-stratified subsets. Measure PPL degradation
+    vs depth. Compare depth-aware filtering vs binary baselines (FastDetectGPT, LD-Score
+    threshold).
+
+    '
+  expected_results:
+    depth_quality_spearman_rho: 0.45
+    depth_quality_spearman_p: 0.008
+    finetune_ppl_gen0_only: 14.2
+    finetune_ppl_gen0_plus_gen1: 15.1
+    finetune_ppl_gen0_through_gen2: 16.8
+    finetune_ppl_all_depths: 18.3
+    finetune_ppl_gen2plus_only: 22.7
+    ppl_no_filter: 18.3
+    ppl_binary_fastdetectgpt_filter: 15.8
+    ppl_binary_ldscore_filter: 16.1
+    ppl_depth_aware_filter_keep_gen0_gen1: 15.1
+    depth_filter_vs_fastdetectgpt_gap_pct: 1.8
+    depth_filter_vs_ldscore_gap_pct: 2.4
+    retention_binary_fastdetectgpt: 0.42
+    retention_binary_ldscore: 0.45
+    retention_depth_aware: 0.58
+  result_rationale: 'Spearman ρ=0.45 说明 depth 与 fine-tuning quality 中等相关——不是完美的因果关系，因为
+    部分 gen-1 文本质量不低于 gen-0（尤其是当 generator 能力强且 seed 本身质量一般时）。 PPL 随 depth 单调上升但边际递减（gen-0→gen-1:
+    +0.9, gen-1→gen-2: +1.7, gen-2→all: +1.5）， 与 plan_001 的 perplexity pre-validation
+    一致。Depth-aware filtering 的 PPL 优势 （1.8% over FastDetectGPT）来自更高的数据保留率（0.58 vs
+    0.42）——binary detector 把 所有 synthetic 都扔掉（包括有用的 gen-1），而 depth-aware filter 选择性保留
+    gen-1， 在更大训练集上获得更好的泛化。但 1.8% 的 gap 只是 suggestive——单次 fine-tuning run 的方差可能吃掉这个差距。需要多次
+    seed 运行和 bootstrap CI 来评估显著性，预期 p≈0.06, 不一定达到 0.05 门槛。
+
+    '
+  tables:
+  - name: 'Table 8: Fine-tuning PPL by Training Data Depth Composition'
+    columns:
+    - training_data
+    - depth_range
+    - n_samples
+    - held_out_ppl
+    rows:
+    - - gen-0 only
+      - 0
+      - 5000
+      - 14.2
+    - - gen-0 + gen-1
+      - 0-1
+      - 10000
+      - 15.1
+    - - gen-0 through gen-2
+      - 0-2
+      - 15000
+      - 16.8
+    - - all depths
+      - 0-4
+      - 25000
+      - 18.3
+    - - gen-2+ only
+      - 2-4
+      - 15000
+      - 22.7
+  - name: 'Table 9: Filtering Strategy Comparison'
+    columns:
+    - strategy
+    - held_out_ppl
+    - data_retention
+    - ppl_improvement_vs_no_filter_pct
+    rows:
+    - - No filter
+      - 18.3
+      - 1.0
+      - —
+    - - FastDetectGPT (binary)
+      - 15.8
+      - 0.42
+      - 13.7
+    - - LD-Score threshold (binary)
+      - 16.1
+      - 0.45
+      - 12.0
+    - - Depth-aware (keep gen-0+gen-1)
+      - 15.1
+      - 0.58
+      - 17.5
+  figures_description:
+  - 'Fig 4a: Line plot of held-out PPL vs training data max-depth (0 through 4). Monotonically
+    increasing with diminishing slope. Error bars from 3 random seeds.'
+  - 'Fig 4b: Pareto frontier plot — data retention (x-axis) vs held-out PPL (y-axis).
+    Depth-aware filter sits on Pareto front; binary filters dominated.'
+  analysis: 'Claim 3 在 median tier 下定位为 "suggestive correlation" 而非强因果主张。ρ=0.45 说明
+    depth 是 data quality 的有用但不完美的 proxy（其他因素如 domain、generator 能力也重要）。 Filtering 实验的关键
+    insight 不是绝对 PPL 差异（1.8% 可能不显著），而是 Pareto efficiency——depth-aware filter 在保留更多数据的同时达到更低
+    PPL。Paper 应该展示 Pareto frontier 图而非单点比较，让读者自行判断 trade-off 是否值得。
+
+    '
+- name: prompt_type_comparison
+  plan_id: plan_005
+  description: 'Compare continuation vs elaboration vs inspired_rewriting chains.
+    Same 1000 seeds, Pythia-2.8B, Pythia-410M reference. 3 prompt types × 5 depths.
+
+    '
+  expected_results:
+    continuation_macro_f1: 0.82
+    elaboration_macro_f1: 0.77
+    inspired_rewriting_macro_f1: 0.73
+    continuation_hapax_importance: 0.35
+    elaboration_hapax_importance: 0.28
+    rewriting_hapax_importance: 0.21
+    continuation_entropy_mean_importance: 0.18
+    elaboration_entropy_mean_importance: 0.25
+    rewriting_entropy_mean_importance: 0.3
+    combined_3types_macro_f1: 0.75
+  result_rationale: 'Continuation 最容易分类（0.82，接近 MVP），因为 continuation 的语义约束最弱——generator
+    在开放式 continuation 中自由选择主题和词汇，vocabulary impoverishment 累积最规律。 Elaboration（0.77）介于中间——generator
+    被要求围绕 seed 主题展开，语义锚定减少了词汇 drift 的幅度但不消除它。Inspired rewriting（0.73）最难——generator
+    被允许自由改写， output 的词汇分布更接近 generator 的 prior 而非 seed 的 drift，使 depth signal 更弱。
+    Feature importance 的变化揭示机制：continuation 中 hapax_ratio 主导（词汇贫化是主信号）， 但 inspired
+    rewriting 中 entropy_mean 变得更重要（词汇贫化信号弱了，但概率质量重分布 仍可检测）。这进一步支持 "complementary features"
+    叙事——不同 prompt type 下， 不同特征子集承担主要 discriminative 角色。
+
+    '
+  tables:
+  - name: 'Table 10: Prompt Type Comparison (single-generator, 5-fold CV)'
+    columns:
+    - prompt_type
+    - macro_f1
+    - gen0_f1
+    - gen1_f1
+    - gen2plus_f1
+    - top_feature
+    rows:
+    - - continuation
+      - 0.82
+      - 0.93
+      - 0.74
+      - 0.79
+      - hapax_ratio
+    - - elaboration
+      - 0.77
+      - 0.9
+      - 0.68
+      - 0.73
+      - hapax_ratio
+    - - inspired_rewriting
+      - 0.73
+      - 0.87
+      - 0.63
+      - 0.69
+      - entropy_mean
+    - - combined (3 types)
+      - 0.75
+      - 0.89
+      - 0.66
+      - 0.7
+      - hapax_ratio
+  figures_description:
+  - 'Fig 5a: Feature importance stacked bars for 3 prompt types. Shows hapax_ratio
+    shrinks and entropy_mean grows from continuation → rewriting.'
+  - 'Fig 5b: Per-depth feature distribution violin plots, faceted by prompt type.
+    Continuation shows tight monotonic shift; rewriting shows wider variance per depth.'
+  analysis: 'Prompt type 实验回应 RC6（ecological validity）。三种 prompt type 覆盖了从保守（continuation）
+    到激进（inspired rewriting）的语义自由度谱。结论：depth signal 在所有 prompt type 下存在， 但强度随语义自由度增加而下降。Combined
+    training（混合三种类型）是更 realistic 的评估设置， F1=0.75 是合理的 "real-world-ish" 期望值。
+
+    '
+- name: paraphrastic_comparison
+  plan_id: plan_006
+  description: 'Parallel paraphrasing chains vs continuation chains. Tests attractor
+    convergence theory. Same seeds, Pythia-2.8B, 5 depths.
+
+    '
+  expected_results:
+    paraphrase_chain_macro_f1: 0.67
+    continuation_chain_macro_f1: 0.82
+    paraphrase_depth2_vs_depth4_f1: 0.53
+    continuation_depth2_vs_depth4_f1: 0.64
+    paraphrase_entropy_mean_plateau_depth: 2
+    continuation_entropy_mean_plateau_depth: null
+    paraphrase_feature_drift_rate_depth3_4: 0.02
+    continuation_feature_drift_rate_depth3_4: 0.06
+  result_rationale: 'Paraphrasing chains 在 depth 2-3 后特征值趋于稳定（plateau），与 attractor
+    cycle theory 一致——语义保持约束迫使输出分布收敛到 2-period cycle 附近，depth 信号 ceiling 在 ~3 class。
+    Continuation chains 的特征值持续 drift（虽然速率递减但不 plateau），在 depth 4 仍有 可测量的增量变化。这是论文的核心
+    theoretical contribution 之一：non-paraphrastic chains 的无界语义空间使 distributional drift
+    能持续累积，打破 attractor cycle 的 ceiling。 但 continuation 的 depth-2 vs depth-4 分辨率仍然有限（F1=0.64），说明虽然信号不消失
+    但变得越来越弱——实际应用中 3-class 可能仍是最优粒度。
+
+    '
+  tables:
+  - name: 'Table 11: Paraphrasing vs Continuation Chains'
+    columns:
+    - chain_type
+    - macro_f1_3class
+    - depth2_vs_depth4_f1
+    - feature_drift_rate_d3_d4
+    rows:
+    - - paraphrasing
+      - 0.67
+      - 0.53
+      - 0.02
+    - - continuation
+      - 0.82
+      - 0.64
+      - 0.06
+  - name: 'Table 12: Feature Plateau Analysis'
+    columns:
+    - feature
+    - paraphrase_plateau_depth
+    - continuation_plateau_depth
+    rows:
+    - - entropy_mean
+      - 2
+      - '>4'
+    - - hapax_ratio
+      - 2
+      - '>4'
+    - - tail_decay
+      - 3
+      - '>4'
+    - - TTR
+      - 2
+      - '>4'
+  figures_description:
+  - 'Fig 6: Dual-panel line plot — feature values (y) vs depth (x) for paraphrasing
+    (left) and continuation (right). Paraphrasing shows clear plateau at depth 2-3;
+    continuation shows diminishing but non-zero slope through depth 4.'
+  analysis: '这是论文 story 中 "H1 vs H2" framing 的直接实验证据。Paraphrasing → H1 (convergence),
+    continuation → H2 (divergence, at least through depth 4)。但需要 caveat：continuation
+    的 drift rate 在递减，不排除更深的 depth（>10）最终也会 plateau——只是在可测量范围内 divergence 持续。Paper
+    中应表述为 "within the depth range tested (0-4), non-paraphrastic chains show sustained
+    drift while paraphrastic chains converge"。
+
+    '
+- name: cross_model_chains
+  plan_id: plan_007
+  description: 'Different generator per depth step (cross-model chains) vs single-model
+    chains. More realistic web contamination scenario.
+
+    '
+  expected_results:
+    cross_model_chain_macro_f1: 0.63
+    single_model_chain_macro_f1: 0.68
+    cross_model_degradation: 0.05
+    cross_model_gen0_f1: 0.81
+    cross_model_gen1_f1: 0.54
+    cross_model_gen2plus_f1: 0.56
+    cross_model_binary_gen0_vs_gen1plus_f1: 0.74
+  result_rationale: 'Cross-model chains 比 single-model chains 降 5 F1 点（0.63 vs 0.68）。原因：single-model
+    chain 的 drift 是同一 generator 偏差的累积放大——pattern 规律且可预测。Cross-model chain 的 drift
+    是多个 generator 偏差的叠加——每步引入不同的 distributional shift 方向，使深度 信号变成异质 mixture 而非 monotonic
+    progression。gen-1 受影响最大（0.54），因为 gen-1 的 distributional 特征同时受 seed text 和 generator
+    偏差的双重影响——cross-model 设置下 这两个影响更难分离。gen-0 仍然相对稳健（0.81），因为真实文本与任何 generator 输出的区别
+    不依赖于 generator-specific patterns。Binary task 仍可用（0.74），进一步支持 "gen-0 vs gen-1+
+    是实际应用的推荐粒度" 的结论。
+
+    '
+  tables:
+  - name: 'Table 13: Single-Model vs Cross-Model Chains'
+    columns:
+    - chain_type
+    - macro_f1
+    - gen0_f1
+    - gen1_f1
+    - gen2plus_f1
+    - binary_f1
+    rows:
+    - - single-model
+      - 0.68
+      - 0.83
+      - 0.62
+      - 0.64
+      - 0.79
+    - - cross-model
+      - 0.63
+      - 0.81
+      - 0.54
+      - 0.56
+      - 0.74
+    - - delta
+      - -0.05
+      - -0.02
+      - -0.08
+      - -0.08
+      - -0.05
+  figures_description:
+  - 'Fig 7: Paired comparison bar chart. Annotate per-class delta. Show that degradation
+    concentrates on gen-1 and gen-2+ while gen-0 is stable.'
+  analysis: 'Cross-model 结果回应 RC4（realistic chains）。5 F1 点损失是 moderate——信号存在但需要 更多训练
+    diversity。Paper 中建议将 cross-model 设置作为 primary evaluation（更保守 但更诚实），single-model
+    作为 upper bound。
+
+    '
+- name: multi_domain_seeds
+  plan_id: plan_008
+  description: '4 domains: Wikipedia, news (CNN/DailyMail), scientific (S2ORC), creative
+    (WritingPrompts). 500 seeds × 4 domains × 5 depths. Tests domain sensitivity.
+
+    '
+  expected_results:
+    wikipedia_macro_f1: 0.7
+    news_macro_f1: 0.68
+    scientific_macro_f1: 0.64
+    creative_macro_f1: 0.61
+    cross_domain_mean_macro_f1: 0.66
+    cross_domain_std: 0.04
+    worst_domain_best_domain_gap: 0.09
+    domain_feature_interaction_anova_p: 0.003
+  result_rationale: 'Domain 差异主要通过 baseline vocabulary diversity 影响 surface 特征。Scientific
+    text 天然有低 TTR（术语重复）和低 hapax ratio（固定专业词汇），压缩了 depth 相关的词汇贫化 信号空间——gen-0 scientific
+    text 的 hapax_ratio 已经接近其他 domain 的 gen-2，使 depth discrimination 更难。Creative writing
+    的方差最高——不同 seed 的创意风格差异大， noise 淹没了部分 depth signal。Wikipedia 和 news 表现最好，因为 seed
+    text 分布 相对均匀，depth drift 的 signal-to-noise ratio 最高。ANOVA 交互效应显著（p=0.003） 说明 domain
+    确实调节 depth signal 的强度，不能忽略。但即便最差 domain（creative, 0.61） 仍远高于 chance（0.33），说明 depth
+    signal 跨 domain 鲁棒存在。
+
+    '
+  tables:
+  - name: 'Table 14: Per-Domain Performance (leave-one-generator-out)'
+    columns:
+    - domain
+    - n_seeds
+    - macro_f1
+    - gen0_f1
+    - gen1_f1
+    - gen2plus_f1
+    rows:
+    - - Wikipedia
+      - 500
+      - 0.7
+      - 0.85
+      - 0.63
+      - 0.62
+    - - News
+      - 500
+      - 0.68
+      - 0.83
+      - 0.61
+      - 0.6
+    - - Scientific
+      - 500
+      - 0.64
+      - 0.8
+      - 0.56
+      - 0.56
+    - - Creative
+      - 500
+      - 0.61
+      - 0.77
+      - 0.52
+      - 0.54
+  figures_description:
+  - 'Fig 8: Heatmap with domain (rows) × depth (columns), cell color = mean hapax_ratio.
+    Shows scientific text has compressed hapax_ratio range across depths, explaining
+    lower classification performance.'
+  analysis: 'Domain 实验回应 RC6。Paper 应报告 per-domain 结果而非仅 aggregate，并讨论 domain 作为 confound
+    的影响。Practical recommendation：在 domain-specific data curation 中， depth threshold
+    应该 calibrate per domain（scientific 需要更宽松的 threshold）。
+
+    '
+- name: finer_grained_ordinal
+  plan_id: plan_009
+  description: '5-class ordinal classification (gen-0 through gen-4). Tests if depth
+    resolution extends beyond 3-class.
+
+    '
+  expected_results:
+    ordinal_5class_macro_f1: 0.51
+    ordinal_3class_macro_f1: 0.68
+    ordinal_5class_gen0_f1: 0.82
+    ordinal_5class_gen1_f1: 0.56
+    ordinal_5class_gen2_f1: 0.42
+    ordinal_5class_gen3_f1: 0.38
+    ordinal_5class_gen4_f1: 0.37
+    adjacent_confusion_rate: 0.68
+    gen2_gen3_gen4_pairwise_f1: 0.41
+    ordinal_mae: 0.72
+  result_rationale: '5-class macro-F1 大幅低于 3-class（0.51 vs 0.68），下降集中在 gen-2/gen-3/gen-4
+    的 互相混淆（pairwise F1 仅 0.41）。gen-0 仍然清晰（0.82），gen-1 尚可（0.56）， 但 gen-2 以上的分辨率急剧恶化——与
+    plan_001 的 H1/H2 trend 分析一致：drift rate 在 depth 2+ 递减，相邻深度的 feature 分布重叠严重。Adjacent
+    confusion（误分类到 相邻深度）占全部错误的 68%，说明模型保留了 ordinal 结构但精度不够。这支持 "3-class 是 practical
+    sweet spot" 的结论：gen-0/gen-1/gen-2+ 已经接近 information-theoretic ceiling for these
+    features。
+
+    '
+  tables:
+  - name: 'Table 15: 5-class Ordinal Classification'
+    columns:
+    - class
+    - precision
+    - recall
+    - f1
+    rows:
+    - - gen-0
+      - 0.85
+      - 0.79
+      - 0.82
+    - - gen-1
+      - 0.52
+      - 0.61
+      - 0.56
+    - - gen-2
+      - 0.4
+      - 0.44
+      - 0.42
+    - - gen-3
+      - 0.36
+      - 0.4
+      - 0.38
+    - - gen-4
+      - 0.35
+      - 0.39
+      - 0.37
+  - name: 'Table 16: Granularity Comparison'
+    columns:
+    - n_classes
+    - macro_f1
+    - ordinal_mae
+    - chance_baseline
+    rows:
+    - - 2 (gen-0 vs gen-1+)
+      - 0.79
+      - 0.15
+      - 0.5
+    - - 3 (gen-0/gen-1/gen-2+)
+      - 0.68
+      - 0.38
+      - 0.33
+    - - 5 (gen-0 through gen-4)
+      - 0.51
+      - 0.72
+      - 0.2
+  figures_description:
+  - 'Fig 9: 5×5 confusion matrix heatmap. Strong diagonal for gen-0, diffuse block
+    for gen-2/3/4.'
+  analysis: '回应 RC3（why 3-class?）。5-class 结果展示了 diminishing returns：每增加一个 class bin，macro-F1
+    下降 ~9 点。Paper 应将 5-class 结果放在 appendix 作为 "depth resolution ceiling analysis"，主文保持
+    3-class。
+
+    '
+- name: human_edit_robustness
+  plan_id: plan_010
+  description: 'Robustness to simulated human edits. (A) Random word replacement at
+    5/10/20%. (B) LLM-simulated light rephrasing.
+
+    '
+  expected_results:
+    baseline_no_edit_macro_f1: 0.68
+    random_5pct_macro_f1: 0.65
+    random_10pct_macro_f1: 0.59
+    random_20pct_macro_f1: 0.51
+    llm_light_rephrase_macro_f1: 0.57
+    random_5pct_gen0_f1: 0.81
+    random_20pct_gen0_f1: 0.68
+    llm_rephrase_gen0_f1: 0.73
+  result_rationale: 'Random word replacement 直接破坏了两类特征：替换词改变了 vocabulary stats（hapax_ratio,
+    TTR）和 token-level entropy（replaced token 的 reference-model probability 不再反映 generator
+    分布）。5% replacement 影响有限（-3 F1），因为大部分文本的 distributional fingerprint 完好。10% 开始显著退化（-9），20%
+    接近 chance + 18 F1 点（0.51）， depth signal 大部分被噪声掩盖。LLM-simulated editing（0.57）比
+    10% random（0.59） 略差，因为 LLM rephrasing 有针对性地修改了表面不自然的表述——正是 depth signal 最强 的位置。但它比
+    20% random 好得多，因为 LLM editing 只修改少数句子（等效 replacement rate ~8-12%），不会大面积破坏统计量。
+
+    '
+  tables:
+  - name: 'Table 17: Robustness to Human Edits'
+    columns:
+    - edit_type
+    - edit_rate
+    - macro_f1
+    - delta_from_baseline
+    rows:
+    - - none (baseline)
+      - 0%
+      - 0.68
+      - —
+    - - random replacement
+      - 5%
+      - 0.65
+      - -0.03
+    - - random replacement
+      - 10%
+      - 0.59
+      - -0.09
+    - - random replacement
+      - 20%
+      - 0.51
+      - -0.17
+    - - LLM light rephrase
+      - ~10%
+      - 0.57
+      - -0.11
+  figures_description:
+  - 'Fig 10: Degradation curve — edit rate (x) vs macro-F1 (y). Approximately linear
+    degradation for random; LLM rephrase annotated as single point above the random-10%
+    line.'
+  analysis: '回应 RC5。结论：depth signal 对轻度编辑（5%）鲁棒，但重度编辑（20%）会大幅削弱。 Real-world human
+    editing 通常在 5-15% 范围（light polishing），此时 depth signal 仍可用但需要 recalibrate threshold。Paper
+    应诚实报告这一 limitation 并建议后续工作 开发 edit-robust features。
+
+    '
+- name: ld_score_feature
+  plan_id: plan_011
+  description: 'Add LD-Score as additional character-level feature. Tests complementary
+    signal at character granularity.
+
+    '
+  expected_results:
+    full_features_macro_f1: 0.83
+    full_plus_ldscore_macro_f1: 0.84
+    ldscore_only_macro_f1: 0.59
+    ldscore_feature_importance_rank: 6
+    ldscore_correlation_with_hapax: 0.72
+  result_rationale: 'LD-Score 单独仅 0.59——character-level distributional signature 捕捉的
+    depth signal 弱于 token-level features，因为 character distribution 受 tokenizer 和 language
+    model 的间接影响，信号经过了一层额外的 compression。加入 full feature set 后仅提升 1 F1 点 （0.84），因为 LD-Score
+    与 hapax_ratio 高度相关（r=0.72）——两者都在测量 "词汇多样性 降低"，只是粒度不同。Character-level 和 token-level
+    捕捉到了同一现象的不同尺度投影。 Feature importance 排第 6（7 个原始特征 + 1 LD-Score 中），说明它提供了一些独立信息
+    但远非关键。
+
+    '
+  tables:
+  - name: 'Table 18: LD-Score Feature Integration'
+    columns:
+    - feature_set
+    - macro_f1
+    - n_features
+    rows:
+    - - original full (7 features)
+      - 0.83
+      - 7
+    - - full + LD-Score
+      - 0.84
+      - 8
+    - - LD-Score only
+      - 0.59
+      - 1
+  figures_description:
+  - 'Fig S1 (appendix): Scatter plot of LD-Score vs hapax_ratio colored by depth.
+    High correlation (r=0.72) with depth-dependent offset.'
+  analysis: 'LD-Score 的 marginal contribution 不足以在 main paper 中单独讨论。建议放 appendix 或完全省略。如果需要，一句话提及
+    "character-level features are largely redundant with token-level vocabulary statistics
+    (r=0.72 with hapax_ratio)"。
+
+    '
+- name: end_to_end_classifier
+  plan_id: plan_012
+  description: 'QLoRA fine-tuned Qwen3.5-0.8B for end-to-end depth classification.
+    Compares learned representations vs handcrafted features.
+
+    '
+  expected_results:
+    qwen_qlora_cross_gen_macro_f1: 0.74
+    handcrafted_cross_gen_macro_f1: 0.68
+    qwen_qlora_in_distribution_macro_f1: 0.88
+    handcrafted_in_distribution_macro_f1: 0.81
+    qwen_qlora_gen0_f1: 0.88
+    qwen_qlora_gen1_f1: 0.68
+    qwen_qlora_gen2plus_f1: 0.66
+    qwen_qlora_training_hours: 12
+    qwen_qlora_inference_ms_per_sample: 45
+    handcrafted_inference_ms_per_sample: 3
+  result_rationale: 'End-to-end model 在 cross-generator 设置下优于 handcrafted features
+    6 F1 点（0.74 vs 0.68）——learned representations 能捕捉 handcrafted features 遗漏的 depth-dependent
+    patterns（如句法复杂度下降、discourse coherence 退化、特定 n-gram 频率异常）。但优势 不是压倒性的，因为 handcrafted
+    features 已经抓住了主要信号（vocabulary + distributional drift）。In-distribution 优势更大（0.88
+    vs 0.81），但这部分可能是 overfitting to generator-specific patterns。关键 trade-off：handcrafted
+    features 的 inference 速度 快 15 倍（3ms vs 45ms/sample），在大规模 data curation 中可能更 practical。Paper
+    中 end-to-end 结果作为 "upper bound" 呈现，说明 learned features 还有 headroom，但 handcrafted
+    features 的 interpretability 和 efficiency 是独立优势。
+
+    '
+  tables:
+  - name: 'Table 19: Handcrafted vs End-to-End'
+    columns:
+    - method
+    - cross_gen_macro_f1
+    - in_dist_macro_f1
+    - inference_ms
+    - interpretable
+    rows:
+    - - Handcrafted (XGBoost)
+      - 0.68
+      - 0.81
+      - 3
+      - 'yes'
+    - - QLoRA Qwen3.5-0.8B
+      - 0.74
+      - 0.88
+      - 45
+      - 'no'
+  figures_description:
+  - 'Fig S2 (appendix): Attention heatmap from QLoRA model on representative gen-0/gen-2/gen-4
+    samples. Shows model attends to low-frequency tokens and sentence boundaries —
+    aligns with vocabulary depletion hypothesis.'
+  analysis: End-to-end 结果为论文提供了两个用途：(1) 证明 depth signal 不局限于 handcrafted features
+    的 7 维空间——learned representations 能发掘更多信号；(2) 但 6 F1 的 gap 说明 handcrafted features
+    已经是 "good enough" 的 efficient alternative。Paper positioning：handcrafted approach
+    是 contribution，end-to-end 是 validation + future direction。

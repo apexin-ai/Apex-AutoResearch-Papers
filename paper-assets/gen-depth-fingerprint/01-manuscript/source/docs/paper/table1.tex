@@ -1,0 +1,24 @@
+%% NOTE: this standalone file is NOT \input'd by main.tex; the inline table in results.tex is authoritative.
+\begin{table}[t]
+\centering
+\small
+\caption{Leave-one-generator-out (LOGO) depth classification results (3-class).
+Each row holds out one generator for testing and trains on the remaining seven.}
+\label{tab:logo-results}
+\begin{tabular}{llccc}
+\toprule
+\textbf{Held-out Generator} & \textbf{Family} & \textbf{Params} & \textbf{Macro-F1} & \textbf{95\% CI} \\
+\midrule
+Pythia-2.8B   & Pythia  & 2.8B & ---   & --- \\
+Pythia-1B     & Pythia  & 1.0B & 0.806 & --- \\
+Qwen3-1.7B   & Qwen    & 1.7B & ---   & --- \\
+Llama-3.2-3B & Llama   & 3.2B & ---   & --- \\
+OLMo-2-1B    & OLMo    & 1.0B & ---   & --- \\
+Qwen3-8B     & Qwen    & 8.0B & ---   & --- \\
+Qwen3-0.6B   & Qwen    & 0.6B & ---   & --- \\
+Mistral-7B   & Mistral & 7.0B & 0.681 & --- \\
+\midrule
+\textbf{Average (8-gen)} & & & \textbf{0.762} & [0.758, 0.766] \\
+\bottomrule
+\end{tabular}
+\end{table}

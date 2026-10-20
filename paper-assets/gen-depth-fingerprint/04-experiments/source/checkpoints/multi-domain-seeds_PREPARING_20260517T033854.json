@@ -1,0 +1,14 @@
+{
+  "exp_id": "multi-domain-seeds",
+  "project": "gen-depth-fingerprint",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:38:54.349Z",
+    "updated_at": "2026-05-17T03:38:54.349Z"
+  },
+  "timestamp": "2026-05-17T03:38:54.425629+00:00",
+  "trigger": "update_registry"
+}

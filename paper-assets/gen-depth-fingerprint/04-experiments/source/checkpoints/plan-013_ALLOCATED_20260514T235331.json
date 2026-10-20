@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan-013",
+  "project": "gen-depth-fingerprint",
+  "state": "ALLOCATED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:33:25.590Z",
+    "updated_at": "2026-05-14T23:53:31.341Z",
+    "hypothesis": "文本长度混淆控制：深度特征的区分力是否独立于文本长度变化（长度归一化后趋势是否保持）",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T23:53:31.381286+00:00",
+  "trigger": "update_registry"
+}

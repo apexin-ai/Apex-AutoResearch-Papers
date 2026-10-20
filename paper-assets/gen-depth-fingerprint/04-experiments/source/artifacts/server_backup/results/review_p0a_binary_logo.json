@@ -1,0 +1,302 @@
+{
+  "task": "binary (gen-1 vs gen-2+), gen-0 excluded",
+  "n_generators": 6,
+  "generators": [
+    "olmo-2-1b",
+    "pythia-1b",
+    "pythia-2.8b",
+    "qwen3-0.6b",
+    "qwen3-1.7b",
+    "qwen3-8b"
+  ],
+  "n_samples": 21557,
+  "methods": {
+    "7_feature": {
+      "f1": 0.7233,
+      "ci95": [
+        0.7174,
+        0.7292
+      ],
+      "per_gen": {
+        "olmo-2-1b": {
+          "f1": 0.6765,
+          "ci_lower": 0.6602,
+          "ci_upper": 0.6919
+        },
+        "pythia-1b": {
+          "f1": 0.7946,
+          "ci_lower": 0.7799,
+          "ci_upper": 0.8085
+        },
+        "pythia-2.8b": {
+          "f1": 0.7234,
+          "ci_lower": 0.7085,
+          "ci_upper": 0.7389
+        },
+        "qwen3-0.6b": {
+          "f1": 0.756,
+          "ci_lower": 0.7423,
+          "ci_upper": 0.7718
+        },
+        "qwen3-1.7b": {
+          "f1": 0.7483,
+          "ci_lower": 0.7323,
+          "ci_upper": 0.7623
+        },
+        "qwen3-8b": {
+          "f1": 0.6413,
+          "ci_lower": 0.6249,
+          "ci_upper": 0.6569
+        }
+      },
+      "per_gen_std": 0.0511,
+      "per_gen_range": 0.1533
+    },
+    "avg_logprob": {
+      "f1": 0.7124,
+      "ci95": [
+        0.706,
+        0.7189
+      ],
+      "per_gen": {
+        "olmo-2-1b": {
+          "f1": 0.6991,
+          "ci_lower": 0.6833,
+          "ci_upper": 0.713
+        },
+        "pythia-1b": {
+          "f1": 0.7622,
+          "ci_lower": 0.7475,
+          "ci_upper": 0.777
+        },
+        "pythia-2.8b": {
+          "f1": 0.7179,
+          "ci_lower": 0.703,
+          "ci_upper": 0.7329
+        },
+        "qwen3-0.6b": {
+          "f1": 0.7302,
+          "ci_lower": 0.7162,
+          "ci_upper": 0.746
+        },
+        "qwen3-1.7b": {
+          "f1": 0.7412,
+          "ci_lower": 0.726,
+          "ci_upper": 0.7559
+        },
+        "qwen3-8b": {
+          "f1": 0.6238,
+          "ci_lower": 0.6076,
+          "ci_upper": 0.6403
+        }
+      },
+      "per_gen_std": 0.0441,
+      "per_gen_range": 0.1384
+    },
+    "ld_score": {
+      "f1": 0.7009,
+      "ci95": [
+        0.6942,
+        0.7073
+      ],
+      "per_gen": {
+        "olmo-2-1b": {
+          "f1": 0.6665,
+          "ci_lower": 0.6514,
+          "ci_upper": 0.6813
+        },
+        "pythia-1b": {
+          "f1": 0.7669,
+          "ci_lower": 0.7514,
+          "ci_upper": 0.7821
+        },
+        "pythia-2.8b": {
+          "f1": 0.7172,
+          "ci_lower": 0.7016,
+          "ci_upper": 0.7329
+        },
+        "qwen3-0.6b": {
+          "f1": 0.7204,
+          "ci_lower": 0.7062,
+          "ci_upper": 0.7352
+        },
+        "qwen3-1.7b": {
+          "f1": 0.7117,
+          "ci_lower": 0.6952,
+          "ci_upper": 0.7281
+        },
+        "qwen3-8b": {
+          "f1": 0.6229,
+          "ci_lower": 0.6067,
+          "ci_upper": 0.6392
+        }
+      },
+      "per_gen_std": 0.0454,
+      "per_gen_range": 0.144
+    },
+    "fastdetectgpt": {
+      "f1": 0.6155,
+      "ci95": [
+        0.6086,
+        0.6222
+      ],
+      "per_gen": {
+        "olmo-2-1b": {
+          "f1": 0.5833,
+          "ci_lower": 0.566,
+          "ci_upper": 0.5996
+        },
+        "pythia-1b": {
+          "f1": 0.6936,
+          "ci_lower": 0.6775,
+          "ci_upper": 0.7089
+        },
+        "pythia-2.8b": {
+          "f1": 0.6409,
+          "ci_lower": 0.625,
+          "ci_upper": 0.6588
+        },
+        "qwen3-0.6b": {
+          "f1": 0.6408,
+          "ci_lower": 0.6244,
+          "ci_upper": 0.6579
+        },
+        "qwen3-1.7b": {
+          "f1": 0.6211,
+          "ci_lower": 0.6049,
+          "ci_upper": 0.6376
+        },
+        "qwen3-8b": {
+          "f1": 0.5132,
+          "ci_lower": 0.4954,
+          "ci_upper": 0.5301
+        }
+      },
+      "per_gen_std": 0.0562,
+      "per_gen_range": 0.1804
+    },
+    "binoculars": {
+      "f1": 0.524,
+      "ci95": [
+        0.5167,
+        0.5306
+      ],
+      "per_gen": {
+        "olmo-2-1b": {
+          "f1": 0.5087,
+          "ci_lower": 0.4932,
+          "ci_upper": 0.5248
+        },
+        "pythia-1b": {
+          "f1": 0.5374,
+          "ci_lower": 0.5205,
+          "ci_upper": 0.5541
+        },
+        "pythia-2.8b": {
+          "f1": 0.5332,
+          "ci_lower": 0.516,
+          "ci_upper": 0.5488
+        },
+        "qwen3-0.6b": {
+          "f1": 0.5439,
+          "ci_lower": 0.5274,
+          "ci_upper": 0.5609
+        },
+        "qwen3-1.7b": {
+          "f1": 0.5389,
+          "ci_lower": 0.5232,
+          "ci_upper": 0.5549
+        },
+        "qwen3-8b": {
+          "f1": 0.4818,
+          "ci_lower": 0.4666,
+          "ci_upper": 0.4975
+        }
+      },
+      "per_gen_std": 0.022,
+      "per_gen_range": 0.0621
+    },
+    "4_baseline": {
+      "f1": 0.7118,
+      "ci95": [
+        0.7052,
+        0.7182
+      ],
+      "per_gen": {
+        "olmo-2-1b": {
+          "f1": 0.6874,
+          "ci_lower": 0.6711,
+          "ci_upper": 0.7024
+        },
+        "pythia-1b": {
+          "f1": 0.7598,
+          "ci_lower": 0.7453,
+          "ci_upper": 0.7752
+        },
+        "pythia-2.8b": {
+          "f1": 0.7069,
+          "ci_lower": 0.6914,
+          "ci_upper": 0.7235
+        },
+        "qwen3-0.6b": {
+          "f1": 0.7452,
+          "ci_lower": 0.7312,
+          "ci_upper": 0.7606
+        },
+        "qwen3-1.7b": {
+          "f1": 0.7403,
+          "ci_lower": 0.725,
+          "ci_upper": 0.7545
+        },
+        "qwen3-8b": {
+          "f1": 0.6309,
+          "ci_lower": 0.6153,
+          "ci_upper": 0.6471
+        }
+      },
+      "per_gen_std": 0.0436,
+      "per_gen_range": 0.1289
+    },
+    "4_baseline_surface": {
+      "f1": 0.7239,
+      "ci95": [
+        0.7179,
+        0.7303
+      ],
+      "per_gen": {
+        "olmo-2-1b": {
+          "f1": 0.6841,
+          "ci_lower": 0.6684,
+          "ci_upper": 0.6985
+        },
+        "pythia-1b": {
+          "f1": 0.7813,
+          "ci_lower": 0.7667,
+          "ci_upper": 0.7963
+        },
+        "pythia-2.8b": {
+          "f1": 0.716,
+          "ci_lower": 0.7008,
+          "ci_upper": 0.7319
+        },
+        "qwen3-0.6b": {
+          "f1": 0.7607,
+          "ci_lower": 0.7461,
+          "ci_upper": 0.776
+        },
+        "qwen3-1.7b": {
+          "f1": 0.7597,
+          "ci_lower": 0.7454,
+          "ci_upper": 0.7738
+        },
+        "qwen3-8b": {
+          "f1": 0.6414,
+          "ci_lower": 0.6264,
+          "ci_upper": 0.6572
+        }
+      },
+      "per_gen_std": 0.049,
+      "per_gen_range": 0.1399
+    }
+  }
+}

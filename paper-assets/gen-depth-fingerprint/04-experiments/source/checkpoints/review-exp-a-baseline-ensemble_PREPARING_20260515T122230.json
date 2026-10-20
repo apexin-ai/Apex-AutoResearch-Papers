@@ -1,0 +1,14 @@
+{
+  "exp_id": "review-exp-a-baseline-ensemble",
+  "project": "gen-depth-fingerprint",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:22:30.747Z",
+    "updated_at": "2026-05-15T12:22:30.747Z"
+  },
+  "timestamp": "2026-05-15T12:22:30.812756+00:00",
+  "trigger": "update_registry"
+}

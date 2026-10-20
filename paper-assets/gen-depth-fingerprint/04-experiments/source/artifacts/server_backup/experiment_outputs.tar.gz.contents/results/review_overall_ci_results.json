@@ -1,0 +1,47 @@
+{
+  "n_generators": 6,
+  "overall_logo_f1": 0.7879,
+  "overall_ci95": [
+    0.783,
+    0.7929
+  ],
+  "bootstrap_n": 1000,
+  "per_generator_f1": {
+    "olmo-2-1b": 0.7861,
+    "pythia-1b": 0.8282,
+    "pythia-2.8b": 0.8168,
+    "qwen3-0.6b": 0.7998,
+    "qwen3-1.7b": 0.7928,
+    "qwen3-8b": 0.7079
+  },
+  "spearman_rho": {
+    "entropy_mean": {
+      "rho": -0.6098,
+      "p": 0.0
+    },
+    "entropy_std": {
+      "rho": -0.1996,
+      "p": 2.34e-245
+    },
+    "entropy_min": {
+      "rho": -0.4061,
+      "p": 0.0
+    },
+    "entropy_max": {
+      "rho": 0.0503,
+      "p": 6.45e-17
+    },
+    "tail_decay": {
+      "rho": -0.0403,
+      "p": 2.24e-11
+    },
+    "ttr": {
+      "rho": -0.6302,
+      "p": 0.0
+    },
+    "hapax_ratio": {
+      "rho": -0.6467,
+      "p": 0.0
+    }
+  }
+}

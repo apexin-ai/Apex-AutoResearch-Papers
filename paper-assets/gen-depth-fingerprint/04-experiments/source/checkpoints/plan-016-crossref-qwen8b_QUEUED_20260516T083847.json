@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan-016-crossref-qwen8b",
+  "project": "gen-depth-fingerprint",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T08:30:05.531Z",
+    "updated_at": "2026-05-16T08:38:47.287Z",
+    "hypothesis": "Table 4 cross-ref 补数据: Qwen3-8B chains 用 OLMo-2-1B 和 Qwen3-0.6B reference model 提取特征，完善 6-gen × 3-ref LOGO 矩阵"
+  },
+  "timestamp": "2026-05-16T08:38:47.413275+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,49 @@
+exp_062 cron exit diagnosis — 2026-05-21 23:35 CST
+==================================================
+
+## 1. PID 344399 退出原因：正常完成
+
+日志末尾：
+  qwen3-1.7b-topk: 100%|██████████| 996/996 [3:16:21<00:00, 11.83s/it]
+  [topk] Done: 4624 records in 11781.9s (skipped 194)
+  All strategies complete.
+
+进程在完成 greedy + topk 两个策略后正常退出，return_code=0。
+
+## 2. qwen3-1.7b 数据完整性
+
+- greedy: data/qwen3-1.7b-greedy/generations_shard0.jsonl — 4864 行 ✓
+- topk:   data/qwen3-1.7b-topk/generations_shard0.jsonl  — 4624 行 ✓
+  (996 seeds × ~5 depths/chain，减去 skipped seeds，行数合理)
+
+## 3. Qwen3-8B watcher 已成功接管
+
+- Watcher PID 356867 仍在运行（uptime 3h25m）
+- 23:22:31 检测到 cuda:1 空闲，启动 Qwen3-8B greedy+topk
+- Qwen3-8B 进程 PID 369104 运行中，greedy 阶段 36/996（~4%），~17.9s/it
+- GPU 1: 77% util, 16469 MiB — 符合 8B 模型 FP16 显存占用
+
+## 4. 全 GPU 进程状态
+
+| GPU | Util | VRAM | PID    | Model          | Phase       | Progress    |
+|-----|------|------|--------|----------------|-------------|-------------|
+| 0   | 62%  | 6.7G | 347968 | llama-3.2-3b   | topk        | 818/995 82% |
+| 1   | 77%  | 16.1G| 369104 | qwen3-8b       | greedy      | 36/996  4%  |
+| 2   | 88%  | 14.3G| 349080 | mistral-7b-v0.3| topk        | 562/996 56% |
+| 3   | 33%  | 1.8G | 357811 | qwen3-0.6b     | greedy+topk | running ~3h |
+
+辅助进程：
+- extract_after_pythia watcher (PID 336886): 等待 pythia generation 完成
+- pythia-1b-topk feature watcher (PID 357045): 等待 pythia-1b 完成
+
+## 5. 建议
+
+**删除针对 PID 344399 的 cron 监控。** qwen3-1.7b 已正常完成，该 cron 已无监控对象。
+
+实验整体仍在 4 GPU 并行运行，预计剩余：
+- llama-3.2-3b topk: ~35 min（177 seeds × ~11.5s）
+- mistral-7b-v0.3 topk: ~1h35m（434 seeds × ~13.5s）
+- qwen3-0.6b: 进度未知，模型小，速度快
+- qwen3-8b greedy+topk: ~10h（960 seeds × 17.9s greedy + topk）
+
+如需继续监控，建议改为监控 qwen3-8b（PID 369104）—— 它是最后完成的。

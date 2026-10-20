@@ -1,0 +1,175 @@
+{
+  "fastdetectgpt": {
+    "0.00": {
+      "binary_f1": 0.5713,
+      "multiclass_f1": 0.6611,
+      "binary_ci": [
+        0.5567,
+        0.5874
+      ]
+    },
+    "0.05": {
+      "binary_f1": 0.4368,
+      "multiclass_f1": 0.2068,
+      "binary_ci": [
+        0.4222,
+        0.4513
+      ]
+    },
+    "0.10": {
+      "binary_f1": 0.4678,
+      "multiclass_f1": 0.1235,
+      "binary_ci": [
+        0.4527,
+        0.4826
+      ]
+    },
+    "0.20": {
+      "binary_f1": 0.5136,
+      "multiclass_f1": 0.1314,
+      "binary_ci": [
+        0.4974,
+        0.5284
+      ]
+    }
+  },
+  "binoculars": {
+    "0.00": {
+      "binary_f1": 0.4996,
+      "multiclass_f1": 0.3651,
+      "binary_ci": [
+        0.4828,
+        0.5149
+      ]
+    },
+    "0.05": {
+      "binary_f1": 0.4613,
+      "multiclass_f1": 0.3439,
+      "binary_ci": [
+        0.4461,
+        0.4782
+      ]
+    },
+    "0.10": {
+      "binary_f1": 0.4464,
+      "multiclass_f1": 0.3355,
+      "binary_ci": [
+        0.4295,
+        0.4628
+      ]
+    },
+    "0.20": {
+      "binary_f1": 0.4251,
+      "multiclass_f1": 0.3022,
+      "binary_ci": [
+        0.4093,
+        0.4406
+      ]
+    }
+  },
+  "ld_score": {
+    "0.00": {
+      "binary_f1": 0.6771,
+      "multiclass_f1": 0.6278,
+      "binary_ci": [
+        0.6622,
+        0.692
+      ]
+    },
+    "0.05": {
+      "binary_f1": 0.6728,
+      "multiclass_f1": 0.6313,
+      "binary_ci": [
+        0.6572,
+        0.6874
+      ]
+    },
+    "0.10": {
+      "binary_f1": 0.6765,
+      "multiclass_f1": 0.6234,
+      "binary_ci": [
+        0.6618,
+        0.6915
+      ]
+    },
+    "0.20": {
+      "binary_f1": 0.6708,
+      "multiclass_f1": 0.6028,
+      "binary_ci": [
+        0.6555,
+        0.6854
+      ]
+    }
+  },
+  "avg_logprob": {
+    "0.00": {
+      "binary_f1": 0.6821,
+      "multiclass_f1": 0.7052,
+      "binary_ci": [
+        0.6672,
+        0.6965
+      ]
+    },
+    "0.05": {
+      "binary_f1": 0.4187,
+      "multiclass_f1": 0.3082,
+      "binary_ci": [
+        0.4038,
+        0.4343
+      ]
+    },
+    "0.10": {
+      "binary_f1": 0.3345,
+      "multiclass_f1": 0.1231,
+      "binary_ci": [
+        0.3199,
+        0.3491
+      ]
+    },
+    "0.20": {
+      "binary_f1": 0.3754,
+      "multiclass_f1": 0.1738,
+      "binary_ci": [
+        0.3605,
+        0.3899
+      ]
+    }
+  },
+  "comparison_with_7feature": {
+    "7feature": {
+      "0.00": 0.6953,
+      "0.05": 0.6496,
+      "0.10": 0.6139,
+      "0.20": 0.5912
+    },
+    "most_robust": "ld_score",
+    "least_robust": "avg_logprob",
+    "degradation_at_20pct": {
+      "fastdetectgpt": 0.0577,
+      "binoculars": 0.0745,
+      "ld_score": 0.0063,
+      "avg_logprob": 0.3067,
+      "7feature": 0.1041
+    }
+  },
+  "meta": {
+    "n_samples": 5000,
+    "perturbation_rates": [
+      0.0,
+      0.05,
+      0.1,
+      0.2
+    ],
+    "xgb_params": {
+      "n_estimators": 100,
+      "max_depth": 3
+    },
+    "protocol": "pooled LOGO 8-fold, class-balanced, seed=42",
+    "perturbation_method": "random word replacement from same-text vocabulary",
+    "models": {
+      "observer": "Pythia-410M",
+      "performer": "Pythia-1B"
+    },
+    "total_time_seconds": 631.1
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "exp_id": "review-sampling-ablation",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:51:28.351Z",
+    "updated_at": "2026-05-15T20:27:16.632Z",
+    "hypothesis": "Sampling strategy ablation: 不同 temperature/top-p 配置对 depth signal 的影响，验证 robustness（低温 0.5/0.8、默认 0.7/0.9、高温 1.0/0.95）",
+    "notes": "Pipeline split: cuda:3 (PID 222783) runs low+default configs, cuda:2 (PID 226113) runs high_t10_p095. Checkpoint mechanism ensures no duplicate work. cuda:3 will auto-skip high phase. Total ETA ~5.5h (was 11.3h). tmux: high_temp (cuda:2). Log: /root/gen-depth-fingerprint/logs/high_temp_cuda2.log",
+    "spec": {
+      "command": "python sampling_ablation.py --phase all (cuda:3) + python run_high_only.py (cuda:2)",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/",
+      "data_count": 2988,
+      "model_name": "Pythia-2.8B (3 sampling configs)",
+      "seed": 42,
+      "checkpoint_path": "N/A (evaluation experiment, no model checkpoint)",
+      "log_path": "/root/gen-depth-fingerprint/logs/high_temp_cuda2.log",
+      "result_path": "/root/gen-depth-fingerprint/results/sampling_ablation.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "low_t05_p08": {
+        "3class_f1": 0.785,
+        "binary_f1": 0.797,
+        "spearman_entropy_mean": -0.694
+      },
+      "default_t07_p09": {
+        "3class_f1": 0.788,
+        "binary_f1": 0.799,
+        "spearman_entropy_mean": -0.602
+      },
+      "high_t10_p095": {
+        "3class_f1": 0.726,
+        "binary_f1": 0.733,
+        "spearman_entropy_mean": -0.002
+      },
+      "f1_range_pp": 6.19,
+      "robust": false,
+      "finding": "Low/default configs robust (<0.3pp diff). High temp (t=1.0) degrades depth signal ~6pp; entropy correlation drops to ~0. Qwen3-1.7B per-gen F1 collapses to 0.418 at high temp."
+    },
+    "completed_at": "2026-05-15T20:27:16.632Z"
+  },
+  "timestamp": "2026-05-15T20:27:16.722792+00:00",
+  "trigger": "update_registry"
+}

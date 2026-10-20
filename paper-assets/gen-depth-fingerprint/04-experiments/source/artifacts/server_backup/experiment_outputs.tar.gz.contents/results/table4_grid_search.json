@@ -1,0 +1,344 @@
+{
+  "methods": {
+    "avg_logprob": {
+      "features": [
+        "avg_logprob"
+      ],
+      "configs": {
+        "est100_md3": {
+          "n_estimators": 100,
+          "max_depth": 3,
+          "binary_f1": 0.6746,
+          "multiclass_f1": 0.7091
+        },
+        "est100_md6": {
+          "n_estimators": 100,
+          "max_depth": 6,
+          "binary_f1": 0.6736,
+          "multiclass_f1": 0.707
+        },
+        "est200_md3": {
+          "n_estimators": 200,
+          "max_depth": 3,
+          "binary_f1": 0.6746,
+          "multiclass_f1": 0.7091
+        },
+        "est200_md6": {
+          "n_estimators": 200,
+          "max_depth": 6,
+          "binary_f1": 0.6734,
+          "multiclass_f1": 0.7072
+        }
+      },
+      "best_multiclass": {
+        "config": "est100_md3",
+        "multiclass_f1": 0.7091,
+        "binary_f1": 0.6746
+      },
+      "best_binary": {
+        "config": "est100_md3",
+        "binary_f1": 0.6746,
+        "multiclass_f1": 0.7091
+      }
+    },
+    "fastdetectgpt": {
+      "features": [
+        "fastdetectgpt"
+      ],
+      "configs": {
+        "est100_md3": {
+          "n_estimators": 100,
+          "max_depth": 3,
+          "binary_f1": 0.5823,
+          "multiclass_f1": 0.6646
+        },
+        "est100_md6": {
+          "n_estimators": 100,
+          "max_depth": 6,
+          "binary_f1": 0.5768,
+          "multiclass_f1": 0.6626
+        },
+        "est200_md3": {
+          "n_estimators": 200,
+          "max_depth": 3,
+          "binary_f1": 0.5785,
+          "multiclass_f1": 0.6644
+        },
+        "est200_md6": {
+          "n_estimators": 200,
+          "max_depth": 6,
+          "binary_f1": 0.5688,
+          "multiclass_f1": 0.6599
+        }
+      },
+      "best_multiclass": {
+        "config": "est100_md3",
+        "multiclass_f1": 0.6646,
+        "binary_f1": 0.5823
+      },
+      "best_binary": {
+        "config": "est100_md3",
+        "binary_f1": 0.5823,
+        "multiclass_f1": 0.6646
+      }
+    },
+    "binoculars": {
+      "features": [
+        "binoculars"
+      ],
+      "configs": {
+        "est100_md3": {
+          "n_estimators": 100,
+          "max_depth": 3,
+          "binary_f1": 0.5315,
+          "multiclass_f1": 0.409
+        },
+        "est100_md6": {
+          "n_estimators": 100,
+          "max_depth": 6,
+          "binary_f1": 0.5334,
+          "multiclass_f1": 0.4082
+        },
+        "est200_md3": {
+          "n_estimators": 200,
+          "max_depth": 3,
+          "binary_f1": 0.5325,
+          "multiclass_f1": 0.4101
+        },
+        "est200_md6": {
+          "n_estimators": 200,
+          "max_depth": 6,
+          "binary_f1": 0.5391,
+          "multiclass_f1": 0.411
+        }
+      },
+      "best_multiclass": {
+        "config": "est200_md6",
+        "multiclass_f1": 0.411,
+        "binary_f1": 0.5391
+      },
+      "best_binary": {
+        "config": "est200_md6",
+        "binary_f1": 0.5391,
+        "multiclass_f1": 0.411
+      }
+    },
+    "ld_score": {
+      "features": [
+        "ld_score"
+      ],
+      "configs": {
+        "est100_md3": {
+          "n_estimators": 100,
+          "max_depth": 3,
+          "binary_f1": 0.6752,
+          "multiclass_f1": 0.632
+        },
+        "est100_md6": {
+          "n_estimators": 100,
+          "max_depth": 6,
+          "binary_f1": 0.6752,
+          "multiclass_f1": 0.6298
+        },
+        "est200_md3": {
+          "n_estimators": 200,
+          "max_depth": 3,
+          "binary_f1": 0.6753,
+          "multiclass_f1": 0.6318
+        },
+        "est200_md6": {
+          "n_estimators": 200,
+          "max_depth": 6,
+          "binary_f1": 0.675,
+          "multiclass_f1": 0.63
+        }
+      },
+      "best_multiclass": {
+        "config": "est100_md3",
+        "multiclass_f1": 0.632,
+        "binary_f1": 0.6752
+      },
+      "best_binary": {
+        "config": "est200_md3",
+        "binary_f1": 0.6753,
+        "multiclass_f1": 0.6318
+      }
+    },
+    "4det_ensemble": {
+      "features": [
+        "avg_logprob",
+        "fastdetectgpt",
+        "binoculars",
+        "ld_score"
+      ],
+      "configs": {
+        "est100_md3": {
+          "n_estimators": 100,
+          "max_depth": 3,
+          "binary_f1": 0.6943,
+          "multiclass_f1": 0.7784
+        },
+        "est100_md6": {
+          "n_estimators": 100,
+          "max_depth": 6,
+          "binary_f1": 0.7019,
+          "multiclass_f1": 0.7851
+        },
+        "est200_md3": {
+          "n_estimators": 200,
+          "max_depth": 3,
+          "binary_f1": 0.6982,
+          "multiclass_f1": 0.7826
+        },
+        "est200_md6": {
+          "n_estimators": 200,
+          "max_depth": 6,
+          "binary_f1": 0.7,
+          "multiclass_f1": 0.7852
+        }
+      },
+      "best_multiclass": {
+        "config": "est200_md6",
+        "multiclass_f1": 0.7852,
+        "binary_f1": 0.7
+      },
+      "best_binary": {
+        "config": "est100_md6",
+        "binary_f1": 0.7019,
+        "multiclass_f1": 0.7851
+      }
+    },
+    "4det_surface": {
+      "features": [
+        "avg_logprob",
+        "fastdetectgpt",
+        "binoculars",
+        "ld_score",
+        "ttr",
+        "hapax_ratio"
+      ],
+      "configs": {
+        "est100_md3": {
+          "n_estimators": 100,
+          "max_depth": 3,
+          "binary_f1": 0.7031,
+          "multiclass_f1": 0.7826
+        },
+        "est100_md6": {
+          "n_estimators": 100,
+          "max_depth": 6,
+          "binary_f1": 0.7091,
+          "multiclass_f1": 0.7938
+        },
+        "est200_md3": {
+          "n_estimators": 200,
+          "max_depth": 3,
+          "binary_f1": 0.7075,
+          "multiclass_f1": 0.7894
+        },
+        "est200_md6": {
+          "n_estimators": 200,
+          "max_depth": 6,
+          "binary_f1": 0.7082,
+          "multiclass_f1": 0.7951
+        }
+      },
+      "best_multiclass": {
+        "config": "est200_md6",
+        "multiclass_f1": 0.7951,
+        "binary_f1": 0.7082
+      },
+      "best_binary": {
+        "config": "est100_md6",
+        "binary_f1": 0.7091,
+        "multiclass_f1": 0.7938
+      }
+    },
+    "7feature_ours": {
+      "features": [
+        "entropy_mean",
+        "entropy_std",
+        "entropy_max",
+        "entropy_min",
+        "ttr",
+        "hapax_ratio",
+        "tail_decay"
+      ],
+      "configs": {
+        "est100_md3": {
+          "n_estimators": 100,
+          "max_depth": 3,
+          "binary_f1": 0.704,
+          "multiclass_f1": 0.748
+        },
+        "est100_md6": {
+          "n_estimators": 100,
+          "max_depth": 6,
+          "binary_f1": 0.7072,
+          "multiclass_f1": 0.768
+        },
+        "est200_md3": {
+          "n_estimators": 200,
+          "max_depth": 3,
+          "binary_f1": 0.7066,
+          "multiclass_f1": 0.7621
+        },
+        "est200_md6": {
+          "n_estimators": 200,
+          "max_depth": 6,
+          "binary_f1": 0.7052,
+          "multiclass_f1": 0.774
+        }
+      },
+      "best_multiclass": {
+        "config": "est200_md6",
+        "multiclass_f1": 0.774,
+        "binary_f1": 0.7052
+      },
+      "best_binary": {
+        "config": "est100_md6",
+        "binary_f1": 0.7072,
+        "multiclass_f1": 0.768
+      }
+    }
+  },
+  "meta": {
+    "protocol": "pooled LOGO 8-fold, per-fold class-balanced training",
+    "binary_task": "depth>=1, y=(depth>=2)",
+    "multiclass_task": "depth clipped to {0,1,2}",
+    "grid": [
+      {
+        "n_estimators": 100,
+        "max_depth": 3
+      },
+      {
+        "n_estimators": 100,
+        "max_depth": 6
+      },
+      {
+        "n_estimators": 200,
+        "max_depth": 3
+      },
+      {
+        "n_estimators": 200,
+        "max_depth": 6
+      }
+    ],
+    "learning_rate": 0.1,
+    "seed": 42,
+    "generators": [
+      "llama-3.2-3b",
+      "mistral-7b-v0.3",
+      "olmo-2-1b",
+      "pythia-1b",
+      "pythia-2.8b",
+      "qwen3-0.6b",
+      "qwen3-1.7b",
+      "qwen3-8b"
+    ],
+    "n_rows": 34131,
+    "ld_score_note": "per-fold ref: train depth-1 (binary) / depth-0 (3class)",
+    "timestamp": "2026-05-17 19:56:35",
+    "total_time_s": 108.9
+  }
+}

@@ -1,0 +1,1342 @@
+# code 8gen finer depth
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 0
+- **Tool calls:** 22
+- **Original source:** `logs/chats/worker_code_8gen-finer-depth_20260516T145933.jsonl`
+- **Structured JSON:** [`8afda97b2c0d1601ee1b.json`](../../sessions/8a/8afda97b2c0d1601ee1b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+45 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T15:02:38.819666+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T15:02:38.819957+00:00_
+
+chart
+data
+intermediate
+paper
+report
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T15:02:38.820114+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-16T15:02:38.820248+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T15:02:38.820380+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/gen-depth-fingerprint/*.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/gen-depth-fingerprint/*.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T15:02:38.820532+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/ablation_analysis.py\\n/root/gen-depth-fingerprint/analyze_7gen_logo.py\\n/root/gen-depth-fingerprint/analyze_instruct.py\\n/root/gen-depth-fingerprint/analyze_prompt_types.py\\n/root/gen-depth-fingerprint/bootstrap_ci_plan015.py\\n/root/gen-depth-fingerprint/bootstrap_downstream_ci.py\\n/root/gen-depth-fingerprint/classify_and_eval.py\\n/root/gen-depth-fingerprint/classify_multi.py\\n/root/gen-depth-fingerprint/compute_binary_baseline.py\\n/root/gen-depth-fingerprint/compute_dataset_stats.py\\n/root/gen-depth-fingerprint/cross_generator_eval.py\\n/root/gen-depth-fingerprint/cross_model_chains.py\\n/root/gen-depth-fingerprint/cross_ref_analysis.py\\n/root/gen-depth-fingerprint/dedup_generations.py\\n/root/gen-depth-fingerprint/detector_baseline.py\\n/root/gen-depth-fingerprint/end_to_end_classifier.py\\n/root/gen-depth-fingerprint/end_to_end_classifier_pythia.py\\n/root/gen-depth-fingerprint/end_to_end_classifier_v2.py\\n/root/gen-depth-fingerprint/eval_8gen_baselines.py\\n/root/gen-depth-fingerprint/eval_8gen_baselines_pooled.py\\n/root/gen-depth-fingerprint/eval_8gen_logo.py\\n/root/gen-depth-fingerprint/extract_confusion_3class.py\\n/root/gen-depth-fingerprint/extract_features.py\\n/root/gen-depth-fingerprint/extract_features_crossref.py\\n/root/gen-depth-fingerprint/extract_features_multi.py\\n/root/gen-depth-fingerprint/extract_qwen8b_crossref.py\\n/root/gen-depth-fingerprint/finer_ordinal.py\\n/root/gen-depth-fingerprint/finetune_downstream.py\\n/root/gen-depth-fingerprint/fix_artifacts.py\\n/root/gen-depth-fingerprint/fix_tail_decay_and_eval.py\\n/root/gen-depth-fingerprint/generate_artifacts_d038.py\\n/root/gen-depth-fingerprint/generate_chain.py\\n/root/gen-depth-fingerprint/generate_chain_instruct.py\\n/root/gen-depth-fingerprint/generate_chain_prompt.py\\n/root/gen-depth-fingerprint/llama_filter_and_extract.py\\n/root/gen-depth-fingerprint/merge_shards.py\\n/root/gen-depth
+…[truncated 569 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T15:02:38.820728+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/eval_8gen_logo.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/gen-depth-fingerprint/eval_8gen_logo.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T15:02:38.820854+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/finer_ordinal.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/gen-depth-fingerprint/finer_ordinal.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T15:02:38.821117+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\neval_8gen_logo.py — 8-generator LOGO cross-validation.\\n\\n6 original generators (from features_all_models.csv):\\n  pythia-2.8b, pythia-1b, olmo-2-1b, qwen3-0.6b, qwen3-1.7b, qwen3-8b\\n\\n2 new generators (from JSONL):\\n  llama-3.2-3b, mistral-7b-v0.3\\n\\nTasks:\\n  - 3-class LOGO: gen-0 / gen-1 / gen-2+\\n  - Binary LOGO: gen-1 vs gen-2+ (exclude gen-0)\\n  - Bootstrap 95% CI (n=1000)\\n  - Comparison vs 6-gen baseline\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport numpy as np\\nimport pandas as pd\\nfrom xgboost import XGBClassifier\\nfrom sklearn.metrics import f1_score\\n\\nSEED = 42\\nFEATURES = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\",\\n            \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\n\\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\n                  random_state=SEED, eval_metric=\\\"mlogloss\\\",\\n                  use_label_encoder=False)\\n\\nCLASS_MAP_3 = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\\n\\nROOT = os.path.dirname(os.path.abspath(__file__))\\nDATA_DIR = os.path.join(ROOT, \\\"data\\\")\\nRESULTS_DIR = os.path.join(ROOT, \\\"results\\\")\\n\\n\\ndef load_data():\\n    # 6 original generators from CSV\\n    df_base = pd.read_csv(os.path.join(DATA_DIR, \\\"features_all_models.csv\\\"))\\n\\n    # 2 new generators from JSONL\\n    new_gens = [\\n        (\\\"llama-3.2-3b\\\", os.path.join(DATA_DIR, \\\"llama-3.2-3b\\\", \\\"features_pythia410m.jsonl\\\")),\\n        (\\\"mistral-7b-v0.3\\\", os.path.join(DATA_DIR, \\\"mistral-7b-v0.3\\\", \\\"features_pythia410m.jsonl\\\")),\\n    ]\\n    dfs = [df_base]\\n    for gen_name, path in new_gens:\\n        records = []\\n        with open(path) as f:\\n            for line in f:\\n                rec = json.loads(line)\\n                rec[\\\"model_name\\\"] = gen_name\\n                records.append(rec)\\n        dfs.append(pd.DataFrame(recor
+…[truncated 7219 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T15:02:38.821408+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import json\\nimport numpy as np\\nimport pandas as pd\\nfrom sklearn.ensemble import HistGradientBoostingClassifier, RandomForestClassifier\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.preprocessing import StandardScaler\\nfrom sklearn.metrics import f1_score, confusion_matrix, accuracy_score\\nimport warnings, os, sys\\nwarnings.filterwarnings(\\\"ignore\\\")\\nsys.stdout.reconfigure(line_buffering=True)\\n\\nDATA_PATH = \\\"data/features_all_models.csv\\\"\\nFEATURES = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\",\\n            \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\nOUT_PATH = \\\"results/finer_ordinal_results.json\\\"\\n\\ndef frank_hall_predict(X_train, y_train, X_test, n_classes=5):\\n    probs = np.zeros((len(X_test), n_classes))\\n    cum_probs = []\\n    for k in range(n_classes - 1):\\n        y_bin = (y_train > k).astype(int)\\n        clf = LogisticRegression(max_iter=1000, C=1.0)\\n        clf.fit(X_train, y_bin)\\n        p = clf.predict_proba(X_test)[:, 1]\\n        cum_probs.append(p)\\n    for k in range(n_classes):\\n        if k == 0:\\n            probs[:, k] = 1 - cum_probs[0]\\n        elif k == n_classes - 1:\\n            probs[:, k] = cum_probs[k - 1]\\n        else:\\n            probs[:, k] = cum_probs[k - 1] - cum_probs[k]\\n    probs = np.clip(probs, 0, 1)\\n    row_sums = probs.sum(axis=1, keepdims=True)\\n    row_sums[row_sums == 0] = 1\\n    probs /= row_sums\\n    return np.argmax(probs, axis=1)\\n\\ndef mae_ordinal(y_true, y_pred):\\n    return np.mean(np.abs(y_true - y_pred))\\n\\ndef bootstrap_ci(y_true, y_pred, metric_fn, n_boot=2000, ci=0.95):\\n    rng = np.random.RandomState(42)\\n    scores = []\\n    n = len(y_true)\\n    for _ in range(n_boot):\\n        idx = rng.randint(0, n, n)\\n        scores.append(metric_fn(y_true[idx], y_pred[idx]))\\n    lo = np.percentile(scores, (1 - ci) / 2 * 1
+…[truncated 7059 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T15:02:38.821610+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -3 /root/gen-depth-fingerprint/data/llama-3.2-3b/features_pythia410m.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -3 /root/gen-depth-fingerprint/data/llama-3.2-3b/features_pythia410m.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T15:02:38.821765+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"seed_id\\\": 0, \\\"depth\\\": 0, \\\"entropy_mean\\\": 2.7453513145446777, \\\"entropy_std\\\": 1.735993504524231, \\\"entropy_min\\\": 0.0035419464111328125, \\\"entropy_max\\\": 8.1875, \\\"tail_decay\\\": -0.0023374667077454914, \\\"ttr\\\": 0.6456310679611651, \\\"hapax_ratio\\\": 0.5339805825242718}\\n{\\\"seed_id\\\": 0, \\\"depth\\\": 1, \\\"entropy_mean\\\": 2.38156795501709, \\\"entropy_std\\\": 1.6355879306793213, \\\"entropy_min\\\": 0.0125885009765625, \\\"entropy_max\\\": 8.6484375, \\\"tail_decay\\\": -0.0024045302575814533, \\\"ttr\\\": 0.46859903381642515, \\\"hapax_ratio\\\": 0.28019323671497587}\\n{\\\"seed_id\\\": 0, \\\"depth\\\": 2, \\\"entropy_mean\\\": 0.8420177698135376, \\\"entropy_std\\\": 1.569454550743103, \\\"entropy_min\\\": 0.00020635128021240234, \\\"entropy_max\\\": 8.3125, \\\"tail_decay\\\": -0.0024865263796816665, \\\"ttr\\\": 0.15639810426540285, \\\"hapax_ratio\\\": 0.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T15:02:38.821895+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"import pandas as pd; df=pd.read_csv('/root/gen-depth-fingerprint/data/features_all_models.csv'); print(df['depth'].value_counts().sort_index()); print(); print(df['model_name'].unique())\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "python3 -c \"import pandas as pd; df=pd.read_csv('/root/gen-depth-fingerprint/data/features_all_models.csv'); print(df['depth'].value_counts().sort_index()); print(); print(df['model_name'].unique())\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T15:02:38.822016+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T15:02:38.822131+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"import pandas as pd; df=pd.read_csv('/root/gen-depth-fingerprint/data/features_all_models.csv'); print(df['depth'].value_counts().sort_index())\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "python3 -c \"import pandas as pd; df=pd.read_csv('/root/gen-depth-fingerprint/data/features_all_models.csv'); print(df['depth'].value_counts().sort_index())\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T15:02:38.822251+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T15:02:38.822363+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"import pandas as pd; df=pd.read_csv('/root/gen-depth-fingerprint/data/features_all_models.csv'); print(list(df['model_name'].unique()))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "python3 -c \"import pandas as pd; df=pd.read_csv('/root/gen-depth-fingerprint/data/features_all_models.csv'); print(list(df['model_name'].unique()))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T15:02:38.822475+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T15:02:38.822599+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"import json; depths=set(); [depths.add(json.loads(l)['depth']) for l in open('/root/gen-depth-fingerprint/data/llama-3.2-3b/features_pythia410m.jsonl')]; print('llama depths:', sorted(depths))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "python3 -c \"import json; depths=set(); [depths.add(json.loads(l)['depth']) for l in open('/root/gen-depth-fingerprint/data/llama-3.2-3b/features_pythia410m.jsonl')]; print('llama depths:', sorted(depths))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T15:02:38.822719+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-16T15:02:38.822829+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"import json; depths=set(); [depths.add(json.loads(l)['depth']) for l in open('/root/gen-depth-fingerprint/data/mistral-7b-v0.3/features_pythia410m.jsonl')]; print('mistral depths:', sorted(depths))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "python3 -c \"import json; depths=set(); [depths.add(json.loads(l)['depth']) for l in open('/root/gen-depth-fingerprint/data/mistral-7b-v0.3/features_pythia410m.jsonl')]; print('mistral depths:', sorted(depths))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T15:02:38.822941+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T15:02:38.823105+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat << 'PYEOF' > /root/gen-depth-fingerprint/eval_8gen_finer_depth.py\n\"\"\"\n8-gen 5-class finer depth LOGO experiment.\nCompares 5-class (gen-0/1/2/3/4) vs 3-class (gen-0/1/2+) on all 8 generators.\n\"\"\"\nimport json, os, sys\nimport numpy as np\nimport pandas as pd\nfrom xgboost import XGBClassifier\nfrom sklearn.metrics import f1_score, confusion_matrix\n\nsys.stdout.reconfigure(line_buffering=True)\n\nSEED = 42\nFEATURES = [\"entropy_mean\", \"entropy_std\", \"entropy_min\", \"entropy_max\",\n            \"tail_decay\", \"ttr\", \"hapax_ratio\"]\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\n                  random_state=SEED, eval_metric=\"mlogloss\",\n                  use_label_encoder=False)\n\nROOT = os.path.dirname(os.path.abspath(__file__))\nDATA_DIR = os.path.join(ROOT, \"data\")\nRESULTS_DIR = os.path.join(ROOT, \"results\")\n\n\ndef load_8gen():\n    df_base = pd.read_csv(os.path.join(DATA_DIR, \"features_all_models.csv\"))\n    new_gens = [\n        (\"llama-3.2-3b\", os.path.join(DATA_DIR, \"llama-3.2-3b\", \"features_pythia410m.jsonl\")),\n        (\"mistral-7b-v0.3\", os.path.join(DATA_DIR, \"mistral-7b-v0.3\", \"features_pythia410m.jsonl\")),\n    ]\n    dfs = [df_base]\n    for gen_name, path in new_gens:\n        records = []\n        with open(path) as f:\n            for line in f:\n                rec = json.loads(line)\n                rec[\"model_name\"] = gen_name\n                records.append(rec)\n        dfs.append(pd.DataFrame(records))\n    cols = [\"model_name\", \"seed_id\", \"depth\"] + FEATURES\n    df = pd.concat([d[cols] for d in dfs], ignore_index=True)\n    return df\n\n\ndef downsample(df, label_col, rng):\n    counts = df[label_col].value_counts()\n    min_n = counts.min()\n    parts = []\n    for lbl in sorted(counts.index):\n        sub = df[df[label_col] == lbl]\n        parts.append(sub.sample(n=min_n, random_state=rng, replace=False))\n    return pd.concat(parts, ignore_index=True)\n\n\ndef bootstrap_f1(y_true, y_pred, n_boot=1000, seed=SEED):\n    rng = np.random.RandomState(seed)\n    n = len(y_true)\n    scores = []\n    for _ in range(n_boot):\n        idx = rng.randint(0, n, size=n)\n        yt, yp = y_true[idx], y_pred[idx]\n        if len(np.unique(yt)) < 2:\n            continue\n        scores.append(f1_score(yt, yp, average=\"macro\", zero_division=0))\n    arr = np.array(scores)\n    return float(np.percentile(arr, 2.5)), float(np.percentile(arr, 97.5))\n\n\ndef logo_5class(df):\n    generators = sorted(df[\"model_name\"].unique())\n    rng = np.random.RandomState(SEED)\n    per_gen = {}\n    all_y_true, all_y_pred = [], []\n    # For per-gen confusion matrices (to average later)\n    n_classes = 5\n    cm_sum = np.zeros((n_classes, n_classes), dtype=float)\n\n    print(\"=== 5-class LOGO (gen-0/1/2/3/4) ===\")\n    for gen in generators:\n        test_df = df[df[\"model_name\"] == gen]\n        train_df = df[df[\"model_name\"] != gen]\n        train_ds = downsample(train_df, \"depth\", rng)\n\n        clf = XGBClassifier(**XGB_PARAMS)\n        clf.fit(train_ds[FEATURES].values, train_ds[\"depth\"].values)\n        y_pred = clf.predict(test_df[FEATURES].values)\n        y_test = test_df[\"depth\"].values\n\n        macro_f1 = f1_score(y_test, y_pred, average=\"macro\", zero_division=0)\n        per_gen[gen] = round(float(macro_f1), 4)\n        all_y_true.extend(y_test)\n        all_y_pred.extend(y_pred)\n\n        cm = confusion_matrix(y_test, y_pred, labels=list(range(n_classes)))\n        # Row-normalize for this fold\n        row_sums = cm.sum(axis=1, keepdims=True)\n        row_sums[row_sums == 0] = 1\n        cm_norm = cm / row_sums\n        cm_sum += cm_norm\n\n        print(f\"  {gen:20s}  F1={macro_f1:.4f}  n={len(test_df)}\")\n\n    all_y_true = np.array(all_y_true)\n    all_y_pred = np.array(all_y_pred)\n\n    avg_f1 = round(float(np.mean(list(per_gen.values()))), 4)\n    ci_lo, ci_hi = bootstrap_f1(all_y_true, all_y_pred)\n\n    per_class = f1_score(all_y_true, all_y_pred, average=None,\n                         labels=list(range(n_classes)), zero_division=0)\n    per_class_dict = {f\"gen{i}\": round(float(per_class[i]), 4) for i in range(n_classes)}\n\n    cm_avg = cm_sum / len(generators)\n    cm_avg = np.round(cm_avg, 2).tolist()\n\n    print(f\"  {'AVERAGE':20s}  F1={avg_f1:.4f}  95%CI=[{ci_lo:.4f}, {ci_hi:.4f}]\")\n    print(f\"  Per-class F1: {per_class_dict}\")\n\n    return {\n        \"logo_avg_f1\": avg_f1,\n        \"ci95\": [round(ci_lo, 4), round(ci_hi, 4)],\n        \"per_gen\": per_gen,\n        \"per_class_f1\": per_class_dict,\n        \"confusion_matrix_avg\": cm_avg,\n    }\n\n\ndef logo_3class(df):\n    df = df.copy()\n    df[\"label\"] = df[\"depth\"].clip(upper=2)\n    generators = sorted(df[\"model_name\"].unique())\n    rng = np.random.RandomState(SEED)\n    per_gen = {}\n    all_y_true, all_y_pred = [], []\n\n    print(\"\\n=== 3-class LOGO (gen-0/1/2+) ===\")\n    for gen in generators:\n        test_df = df[df[\"model_name\"] == gen]\n        train_df = df[df[\"model_name\"] != gen]\n        train_ds = downsample(train_df, \"label\", rng)\n\n        clf = XGBClassifier(**XGB_PARAMS)\n        clf.fit(train_ds[FEATURES].values, train_ds[\"label\"].values)\n        y_pred = clf.predict(test_df[FEATURES].values)\n        y_test = test_df[\"label\"].values\n\n        macro_f1 = f1_score(y_test, y_pred, average=\"macro\", zero_division=0)\n        per_gen[gen] = round(float(macro_f1), 4)\n        all_y_true.extend(y_test)\n        all_y_pred.extend(y_pred)\n        print(f\"  {gen:20s}  F1={macro_f1:.4f}  n={len(test_df)}\")\n\n    all_y_true = np.array(all_y_true)\n    all_y_pred = np.array(all_y_pred)\n\n    avg_f1 = round(float(np.mean(list(per_gen.values()))), 4)\n    ci_lo, ci_hi = bootstrap_f1(all_y_true, all_y_pred)\n    print(f\"  {'AVERAGE':20s}  F1={avg_f1:.4f}  95%CI=[{ci_lo:.4f}, {ci_hi:.4f}]\")\n\n    return {\n        \"logo_avg_f1\": avg_f1,\n        \"ci95\": [round(ci_lo, 4), round(ci_hi, 4)],\n    }\n\n\ndef main():\n    os.makedirs(RESULTS_DIR, exist_ok=True)\n    df = load_8gen()\n    print(f\"Loaded {len(df)} rows, {df['model_name'].nunique()} generators\")\n    print(f\"Depth distribution:\\n{df['depth'].value_counts().sort_index()}\\n\")\n    for gen in sorted(df[\"model_name\"].unique()):\n        sub = df[df[\"model_name\"] == gen]\n        depths = sorted(sub[\"depth\"].unique())\n        print(f\"  {gen:20s}  n={len(sub):5d}  depths={depths}\")\n    print()\n\n    res_5 = logo_5class(df)\n    res_3 = logo_3class(df)\n\n    delta = round(res_5[\"logo_avg_f1\"] - res_3[\"logo_avg_f1\"], 4)\n\n    output = {\n        \"5class\": res_5,\n        \"3class_control\": res_3,\n        \"delta_5class_vs_3class\": delta,\n        \"config\": {\n            \"n_generators\": int(df[\"model_name\"].nunique()),\n            \"n_features\": len(FEATURES),\n            \"features\": FEATURES,\n            \"xgb_params\": {k: v for k, v in XGB_PARAMS.items() if k != \"use_label_encoder\"},\n            \"bootstrap_B\": 1000,\n            \"downsampling\": \"per-class balance in train set\",\n        },\n    }\n\n    out_path = os.path.join(RESULTS_DIR, \"8gen_finer_depth.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2, ensure_ascii=False)\n    print(f\"\\nResults saved to {out_path}\")\n\n    print(f\"\\n{'='*60}\")\n    print(f\"SUMMARY\")\n    print(f\"  5-class avg F1: {res_5['logo_avg_f1']:.4f}  CI={res_5['ci95']}\")\n    print(f\"  3-class avg F1: {res_3['logo_avg_f1']:.4f}  CI={res_3['ci95']}\")\n    print(f\"  Delta (5c - 3c): {delta:+.4f}\")\n    print(f\"  Per-class F1: {res_5['per_class_f1']}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat << 'PYEOF' > /root/gen-depth-fingerprint/eval_8gen_finer_depth.py\n\"\"\"\n8-gen 5-class finer depth LOGO experiment.\nCompares 5-class (gen-0/1/2/3/4) vs 3-class (gen-0/1/2+) on all 8 generators.\n\"\"\"\nimport json, os, sys\nimport numpy as np\nimport pandas as pd\nfrom xgboost import XGBClassifier\nfrom sklearn.metrics import f1_score, confusion_matrix\n\nsys.stdout.reconfigure(line_buffering=True)\n\nSEED = 42\nFEATURES = [\"entropy_mean\", \"entropy_std\", \"entropy_min\", \"entropy_max\",\n            \"tail_decay\", \"ttr\", \"hapax_ratio\"]\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\n                  random_state=SEED, eval_metric=\"mlogloss\",\n                  use_label_encoder=False)\n\nROOT = os.path.dirname(os.path.abspath(__file__))\nDATA_DIR = os.path.join(ROOT, \"data\")\nRESULTS_DIR = os.path.join(ROOT, \"results\")\n\n\ndef load_8gen():\n    df_base = pd.read_csv(os.path.join(DATA_DIR, \"features_all_models.csv\"))\n    new_gens = [\n        (\"llama-3.2-3b\", os.path.join(DATA_DIR, \"llama-3.2-3b\", \"features_pythia410m.jsonl\")),\n        (\"mistral-7b-v0.3\", os.path.join(DATA_DIR, \"mistral-7b-v0.3\", \"features_pythia410m.jsonl\")),\n    ]\n    dfs = [df_base]\n    for gen_name, path in new_gens:\n        records = []\n        with open(path) as f:\n            for line in f:\n                rec = json.loads(line)\n                rec[\"model_name\"] = gen_name\n                records.append(rec)\n        dfs.append(pd.DataFrame(records))\n    cols = [\"model_name\", \"seed_id\", \"depth\"] + FEATURES\n    df = pd.concat([d[cols] for d in dfs], ignore_index=True)\n    return df\n\n\ndef downsample(df, label_col, rng):\n    counts = df[label_col].value_counts()\n    min_n = counts.min()\n    parts = []\n    for lbl in sorted(counts.index):\n        sub = df[df[label_col] == lbl]\n        parts.append(sub.sample(n=min_n, random_state=rng, replace=False))\n    return pd.concat(parts, ignore_index=True)\n\n\ndef bootstrap_f1(y_true, y_pred, n_boot=1000, seed=SEED):\n    rng = np.random.RandomState(seed)\n    n = len(y_true)\n    scores = []\n    for _ in range(n_boot):\n        idx = rng.randint(0, n, size=n)\n        yt, yp = y_true[idx], y_pred[idx]\n        if len(np.unique(yt)) < 2:\n            continue\n        scores.append(f1_score(yt, yp, average=\"macro\", zero_division=0))\n    arr = np.array(scores)\n    return float(np.percentile(arr, 2.5)), float(np.percentile(arr, 97.5))\n\n\ndef logo_5class(df):\n    generators = sorted(df[\"model_name\"].unique())\n    rng = np.random.RandomState(SEED)\n    per_gen = {}\n    all_y_true, all_y_pred = [], []\n    # For per-gen confusion matrices (to average later)\n    n_classes = 5\n    cm_sum = np.zeros((n_classes, n_classes), dtype=float)\n\n    print(\"=== 5-class LOGO (gen-0/1/2/3/4) ===\")\n    for gen in generators:\n        test_df = df[df[\"model_name\"] == gen]\n        train_df = df[df[\"model_name\"] != gen]\n        train_ds = downsample(train_df, \"depth\", rng)\n\n        clf = XGBClassifier(**XGB_PARAMS)\n        clf.fit(train_ds[FEATURES].values, train_ds[\"depth\"].values)\n        y_pred = clf.predict(test_df[FEATURES].values)\n        y_test = test_df[\"depth\"].values\n\n        macro_f1 = f1_score(y_test, y_pred, average=\"macro\", zero_division=0)\n        per_gen[gen] = round(float(macro_f1), 4)\n        all_y_true.extend(y_test)\n        all_y_pred.extend(y_pred)\n\n        cm = confusion_matrix(y_test, y_pred, labels=list(range(n_classes)))\n        # Row-normalize for this fold\n        row_sums = cm.sum(axis=1, keepdims=True)\n        row_sums[row_sums == 0] = 1\n        cm_norm = cm / row_sums\n        cm_sum += cm_norm\n\n        print(f\"  {gen:20s}  F1={macro_f1:.4f}  n={len(test_df)}\")\n\n    all_y_true = np.array(all_y_true)\n    all_y_pred = np.array(all_y_pred)\n\n    avg_f1 = round(float(np.mean(list(per_gen.values()))), 4)\n    ci_lo, ci_hi = bootstrap_f1(all_y_true, all_y_pred)\n\n    per_class = f1_score(all_y_true, all_y_pred, average=None,\n                         labels=list(range(n_classes)), zero_division=0)\n    per_class_dict = {f\"gen{i}\": round(float(per_class[i]), 4) for i in range(n_classes)}\n\n    cm_avg = cm_sum / len(generators)\n    cm_avg = np.round(cm_avg, 2).tolist()\n\n    print(f\"  {'AVERAGE':20s}  F1={avg_f1:.4f}  95%CI=[{ci_lo:.4f}, {ci_hi:.4f}]\")\n    print(f\"  Per-class F1: {per_class_dict}\")\n\n    return {\n        \"logo_avg_f1\": avg_f1,\n        \"ci95\": [round(ci_lo, 4), round(ci_hi, 4)],\n        \"per_gen\": per_gen,\n        \"per_class_f1\": per_class_dict,\n        \"confusion_matrix_avg\": cm_avg,\n    }\n\n\ndef logo_3class(df):\n    df = df.copy()\n    df[\"label\"] = df[\"depth\"].clip(upper=2)\n    generators = sorted(df[\"model_name\"].unique())\n    rng = np.random.RandomState(SEED)\n    per_gen = {}\n    all_y_true, all_y_pred = [], []\n\n    print(\"\\n=== 3-class LOGO (gen-0/1/2+) ===\")\n    for gen in generators:\n        test_df = df[df[\"model_name\"] == gen]\n        train_df = df[df[\"model_name\"] != gen]\n        train_ds = downsample(train_df, \"label\", rng)\n\n        clf = XGBClassifier(**XGB_PARAMS)\n        clf.fit(train_ds[FEATURES].values, train_ds[\"label\"].values)\n        y_pred = clf.predict(test_df[FEATURES].values)\n        y_test = test_df[\"label\"].values\n\n        macro_f1 = f1_score(y_test, y_pred, average=\"macro\", zero_division=0)\n        per_gen[gen] = round(float(macro_f1), 4)\n        all_y_true.extend(y_test)\n        all_y_pred.extend(y_pred)\n        print(f\"  {gen:20s}  F1={macro_f1:.4f}  n={len(test_df)}\")\n\n    all_y_true = np.array(all_y_true)\n    all_y_pred = np.array(all_y_pred)\n\n    avg_f1 = round(float(np.mean(list(per_gen.values()))), 4)\n    ci_lo, ci_hi = bootstrap_f1(all_y_true, all_y_pred)\n    print(f\"  {'AVERAGE':20s}  F1={avg_f1:.4f}  95%CI=[{ci_lo:.4f}, {ci_hi:.4f}]\")\n\n    return {\n        \"logo_avg_f1\": avg_f1,\n        \"ci95\": [round(ci_lo, 4), round(ci_hi, 4)],\n    }\n\n\ndef main():\n    os.makedirs(RESULTS_DIR, exist_ok=True)\n    df = load_8gen()\n    print(f\"Loaded {len(df)} rows, {df['model_name'].nunique()} generators\")\n    print(f\"Depth distribution:\\n{df['depth'].value_counts().sort_index()}\\n\")\n    for gen in sorted(df[\"model_name\"].unique()):\n        sub = df[df[\"model_name\"] == gen]\n        depths = sorted(sub[\"depth\"].unique())\n        print(f\"  {gen:20s}  n={len(sub):5d}  depths={depths}\")\n    print()\n\n    res_5 = logo_5class(df)\n    res_3 = logo_3class(df)\n\n    delta = round(res_5[\"logo_avg_f1\"] - res_3[\"logo_avg_f1\"], 4)\n\n    output = {\n        \"5class\": res_5,\n        \"3class_control\": res_3,\n        \"delta_5class_vs_3class\": delta,\n        \"config\": {\n            \"n_generators\": int(df[\"model_name\"].nunique()),\n            \"n_features\": len(FEATURES),\n            \"features\": FEATURES,\n            \"xgb_params\": {k: v for k, v in XGB_PARAMS.items() if k != \"use_label_encoder\"},\n            \"bootstrap_B\": 1000,\n            \"downsampling\": \"per-class balance in train set\",\n        },\n    }\n\n    out_path = os.path.join(RESULTS_DIR, \"8gen_finer_depth.json\")\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2, ensure_ascii=False)\n    print(f\"\\nResults saved to {out_path}\")\n\n    print(f\"\\n{'='*60}\")\n    print(f\"SUMMARY\")\n    print(f\"  5-class avg F1: {res_5['logo_avg_f1']:.4f}  CI={res_5['ci95']}\")\n    print(f\"  3-class avg F1: {res_3['logo_avg_f1']:.4f}  CI={res_3['ci95']}\")\n    print(f\"  Delta (5c - 3c): {delta:+.4f}\")\n    print(f\"  Per-class F1: {res_5['per_class_f1']}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T15:02:38.823302+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T15:02:38.823433+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python eval_8gen_finer_depth.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python eval_8gen_finer_depth.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T15:02:38.823584+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python eval_8gen_finer_depth.py'\\n\\nStdout:\\n\\n  pythia-2.8b           n= 4609  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\n  qwen3-0.6b            n= 4538  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\n  qwen3-1.7b            n= 4617  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\n  qwen3-8b              n= 4497  depths=[np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\n\\n=== 5-class LOGO (gen-0/1/2/3/4) ===\\n  llama-3.2-3b          F1=0.4926  n=4680\\n  mistral-7b-v0.3       F1=0.3934  n=4849\\n  olmo-2-1b             F1=0.5046  n=4713\\n  pythia-1b             F1=0.5341  n=4555\\n\\nStderr:\\n\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:01:02] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:01:17] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T15:02:38.823743+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && nohup python eval_8gen_finer_depth.py > /tmp/finer_depth.log 2>&1 &\necho \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && nohup python eval_8gen_finer_depth.py > /tmp/finer_depth.log 2>&1 &\necho \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T15:02:38.823870+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && nohup python eval_8gen_finer_depth.py > /tmp/finer_depth.log 2>&1 &\\\\necho \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=321713\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.87}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T15:02:38.824007+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -30 /tmp/finer_depth.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -30 /tmp/finer_depth.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T15:02:38.824143+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:01] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  olmo-2-1b             F1=0.5046  n=4713\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:02] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  pythia-1b             F1=0.5341  n=4555\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:03] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  pythia-2.8b           F1=0.5318  n=4609\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:03] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  qwen3-0.6b            F1=0.4954  n=4538\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:04] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  qwen3-1.7b            F1=0.5047  n=4617\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:05] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  qwen3-8b              F1=0.4456  n=4497\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T15:02:38.824286+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -40 /tmp/finer_depth.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -40 /tmp/finer_depth.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T15:02:38.824430+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  bst.update(dtrain, iteration=i, fobj=obj)\\n  mistral-7b-v0.3       F1=0.3934  n=4849\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:01] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  olmo-2-1b             F1=0.5046  n=4713\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:02] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  pythia-1b             F1=0.5341  n=4555\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:03] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  pythia-2.8b           F1=0.5318  n=4609\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:03] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  qwen3-0.6b            F1=0.4954  n=4538\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:04] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  qwen3-1.7b            F1=0.5047  n=4617\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:05] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  qwen3-8b              F1=0.4456  n=4497\\n  AVERAGE               F1=0.4878  95%CI=[0.4825, 0.4912]\\n
+…[truncated 497 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-16T15:02:38.824598+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -c \"Results saved\" /tmp/finer_depth.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -c \"Results saved\" /tmp/finer_depth.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T15:02:38.824729+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-16T15:02:38.824844+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -20 /tmp/finer_depth.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -20 /tmp/finer_depth.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T15:02:38.824972+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  bst.update(dtrain, iteration=i, fobj=obj)\\n  qwen3-1.7b            F1=0.5047  n=4617\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:05] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  qwen3-8b              F1=0.4456  n=4497\\n  AVERAGE               F1=0.4878  95%CI=[0.4825, 0.4912]\\n  Per-class F1: {'gen0': 0.9173, 'gen1': 0.5931, 'gen2': 0.2395, 'gen3': 0.2337, 'gen4': 0.4506}\\n\\n=== 3-class LOGO (gen-0/1/2+) ===\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:09] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  llama-3.2-3b          F1=0.7621  n=4680\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:14] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T15:02:38.825106+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -25 /tmp/finer_depth.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -25 /tmp/finer_depth.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T15:02:38.825237+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  bst.update(dtrain, iteration=i, fobj=obj)\\n  qwen3-8b              F1=0.4456  n=4497\\n  AVERAGE               F1=0.4878  95%CI=[0.4825, 0.4912]\\n  Per-class F1: {'gen0': 0.9173, 'gen1': 0.5931, 'gen2': 0.2395, 'gen3': 0.2337, 'gen4': 0.4506}\\n\\n=== 3-class LOGO (gen-0/1/2+) ===\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:09] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  llama-3.2-3b          F1=0.7621  n=4680\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:14] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  mistral-7b-v0.3       F1=0.6159  n=4849\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:18] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  olmo-2-1b             F1=0.7742  n=4713\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:19] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-16T15:02:38.825367+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -15 /tmp/finer_depth.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -15 /tmp/finer_depth.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T15:02:38.825493+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:20] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  qwen3-0.6b            F1=0.8224  n=4538\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:21] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  qwen3-1.7b            F1=0.8098  n=4617\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:21] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  qwen3-8b              F1=0.7009  n=4497\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-16T15:02:38.825644+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -15 /tmp/finer_depth.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "tail -15 /tmp/finer_depth.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T15:02:38.825776+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [23:02:21] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n  qwen3-8b              F1=0.7009  n=4497\\n  AVERAGE               F1=0.7698  95%CI=[0.7636, 0.7715]\\n\\nResults saved to /root/gen-depth-fingerprint/results/8gen_finer_depth.json\\n\\n============================================================\\nSUMMARY\\n  5-class avg F1: 0.4878  CI=[0.4825, 0.4912]\\n  3-class avg F1: 0.7698  CI=[0.7636, 0.7715]\\n  Delta (5c - 3c): -0.2820\\n  Per-class F1: {'gen0': 0.9173, 'gen1': 0.5931, 'gen2': 0.2395, 'gen3': 0.2337, 'gen4': 0.4506}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-16T15:02:38.825911+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/8gen_finer_depth.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/gen-depth-fingerprint/results/8gen_finer_depth.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T15:02:38.826071+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"5class\\\": {\\n    \\\"logo_avg_f1\\\": 0.4878,\\n    \\\"ci95\\\": [\\n      0.4825,\\n      0.4912\\n    ],\\n    \\\"per_gen\\\": {\\n      \\\"llama-3.2-3b\\\": 0.4926,\\n      \\\"mistral-7b-v0.3\\\": 0.3934,\\n      \\\"olmo-2-1b\\\": 0.5046,\\n      \\\"pythia-1b\\\": 0.5341,\\n      \\\"pythia-2.8b\\\": 0.5318,\\n      \\\"qwen3-0.6b\\\": 0.4954,\\n      \\\"qwen3-1.7b\\\": 0.5047,\\n      \\\"qwen3-8b\\\": 0.4456\\n    },\\n    \\\"per_class_f1\\\": {\\n      \\\"gen0\\\": 0.9173,\\n      \\\"gen1\\\": 0.5931,\\n      \\\"gen2\\\": 0.2395,\\n      \\\"gen3\\\": 0.2337,\\n      \\\"gen4\\\": 0.4506\\n    },\\n    \\\"confusion_matrix_avg\\\": [\\n      [\\n        0.98,\\n        0.01,\\n        0.0,\\n        0.0,\\n        0.0\\n      ],\\n      [\\n        0.08,\\n        0.7,\\n        0.14,\\n        0.04,\\n        0.03\\n      ],\\n      [\\n        0.04,\\n        0.37,\\n        0.19,\\n        0.15,\\n        0.25\\n      ],\\n      [\\n        0.03,\\n        0.2,\\n        0.16,\\n        0.18,\\n        0.43\\n      ],\\n      [\\n        0.02,\\n        0.14,\\n        0.13,\\n        0.19,\\n        0.52\\n      ]\\n    ]\\n  },\\n  \\\"3class_control\\\": {\\n    \\\"logo_avg_f1\\\": 0.7698,\\n    \\\"ci95\\\": [\\n      0.7636,\\n      0.7715\\n    ]\\n  },\\n  \\\"delta_5class_vs_3class\\\": -0.282,\\n  \\\"config\\\": {\\n    \\\"n_generators\\\": 8,\\n    \\\"n_features\\\": 7,\\n    \\\"features\\\": [\\n      \\\"entropy_mean\\\",\\n      \\\"entropy_std\\\",\\n      \\\"entropy_min\\\",\\n      \\\"entropy_max\\\",\\n      \\\"tail_decay\\\",\\n      \\\"ttr\\\",\\n      \\\"hapax_ratio\\\"\\n    ],\\n    \\\"xgb_params\\\": {\\n      \\\"n_estimators\\\": 200,\\n      \\\"max_depth\\\": 6,\\n      \\\"learning_rate\\\": 0.1,\\n      \\\"random_state\\\": 42,\\n      \\\"eval_metric\\\": \\\"mlogloss\\\"\\n    },\\n    \\\"bootstrap_B\\\": 1000,\\n    \\\"downsampling\\
+…[truncated 156 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_8gen-finer-depth_20260516T145933",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-16T15:02:38.826248+00:00_
+
+实验完成。结果保存到 `results/8gen_finer_depth.json`。
+
+**结果摘要：**
+
+| 指标 | 5-class | 3-class |
+|------|---------|---------|
+| LOGO avg F1 | **0.4878** | **0.7698** |
+| 95% CI | [0.4825, 0.4912] | [0.7636, 0.7715] |
+| Delta | **-0.2820** | — |
+
+**Per-class F1 (5-class)：**
+| Class | F1 |
+|-------|-----|
+| gen-0 | 0.9173 |
+| gen-1 | 0.5931 |
+| gen-2 | **0.2395** |
+| gen-3 | **0.2337** |
+| gen-4 | 0.4506 |
+
+**验证通过：**
+- 5-class F1 (0.49) 显著低于 3-class (0.77)，符合预期
+- gen-2 和 gen-3 的 per-class F1 最低（~0.24），确认了 6-gen 实验中观察到的 gen-2/gen-3 难以区分的现象
+- 混淆矩阵显示 gen-2 和 gen-3 互相混淆严重，且都大量被误分为 gen-4
+- gen-0 几乎完美分类 (0.98 recall)，gen-1 次之 (0.70 recall)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_8gen-finer-depth_20260516T145933"
+}
+```
+
+</details>
+
+---

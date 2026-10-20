@@ -1,0 +1,119 @@
+{
+  "methods": {
+    "avg_logprob": {
+      "binary_f1": 0.6735,
+      "binary_ci_lo": 0.6673,
+      "binary_ci_hi": 0.6792,
+      "multiclass_f1": 0.7071,
+      "multiclass_ci_lo": 0.7023,
+      "multiclass_ci_hi": 0.7119,
+      "n_test_binary": 26168,
+      "n_test_multiclass": 34131
+    },
+    "fastdetectgpt": {
+      "binary_f1": 0.576,
+      "binary_ci_lo": 0.57,
+      "binary_ci_hi": 0.5819,
+      "multiclass_f1": 0.6637,
+      "multiclass_ci_lo": 0.6592,
+      "multiclass_ci_hi": 0.6683,
+      "n_test_binary": 26168,
+      "n_test_multiclass": 34131
+    },
+    "binoculars": {
+      "binary_f1": 0.5336,
+      "binary_ci_lo": 0.5278,
+      "binary_ci_hi": 0.5393,
+      "multiclass_f1": 0.4105,
+      "multiclass_ci_lo": 0.4052,
+      "multiclass_ci_hi": 0.4158,
+      "n_test_binary": 26168,
+      "n_test_multiclass": 34131
+    },
+    "ld_score": {
+      "binary_f1": 0.6756,
+      "binary_ci_lo": 0.6699,
+      "binary_ci_hi": 0.6814,
+      "multiclass_f1": 0.6306,
+      "multiclass_ci_lo": 0.6255,
+      "multiclass_ci_hi": 0.6357,
+      "n_test_binary": 26168,
+      "n_test_multiclass": 34131
+    },
+    "entropy_mean": {
+      "binary_f1": 0.7006,
+      "binary_ci_lo": 0.6946,
+      "binary_ci_hi": 0.7059,
+      "multiclass_f1": 0.5556,
+      "multiclass_ci_lo": 0.5506,
+      "multiclass_ci_hi": 0.5607,
+      "n_test_binary": 26168,
+      "n_test_multiclass": 34131
+    },
+    "4det_ensemble": {
+      "binary_f1": 0.6975,
+      "binary_ci_lo": 0.6914,
+      "binary_ci_hi": 0.703,
+      "multiclass_f1": 0.7843,
+      "multiclass_ci_lo": 0.7801,
+      "multiclass_ci_hi": 0.7884,
+      "n_test_binary": 26168,
+      "n_test_multiclass": 34131
+    },
+    "4det_surface": {
+      "binary_f1": 0.707,
+      "binary_ci_lo": 0.701,
+      "binary_ci_hi": 0.7121,
+      "multiclass_f1": 0.7923,
+      "multiclass_ci_lo": 0.7884,
+      "multiclass_ci_hi": 0.7961,
+      "n_test_binary": 26168,
+      "n_test_multiclass": 34131
+    },
+    "7feature_ours": {
+      "binary_f1": 0.7014,
+      "binary_ci_lo": 0.6957,
+      "binary_ci_hi": 0.7066,
+      "multiclass_f1": 0.7762,
+      "multiclass_ci_lo": 0.7722,
+      "multiclass_ci_hi": 0.7802,
+      "n_test_binary": 26168,
+      "n_test_multiclass": 34131
+    }
+  },
+  "meta": {
+    "protocol": "pooled LOGO 8-fold, per-fold class-balanced training",
+    "binary_task": "gen_depth==1 vs gen_depth>=2 (exclude depth=0)",
+    "multiclass_task": "gen_depth==0 vs gen_depth==1 vs gen_depth>=2",
+    "seed": 42,
+    "bootstrap_n": 1000,
+    "bootstrap_method": "percentile (2.5%, 97.5%)",
+    "n_total_rows": 34131,
+    "n_binary_rows": 26168,
+    "generators": [
+      "llama-3.2-3b",
+      "mistral-7b-v0.3",
+      "olmo-2-1b",
+      "pythia-1b",
+      "pythia-2.8b",
+      "qwen3-0.6b",
+      "qwen3-1.7b",
+      "qwen3-8b"
+    ],
+    "class_balancing": "per-fold downsample to min class in train set",
+    "hyperparams": {
+      "7feature_ours": {
+        "n_estimators": 200,
+        "max_depth": 6
+      },
+      "others": {
+        "n_estimators": 100,
+        "max_depth": 3
+      }
+    },
+    "ld_score_impl": "char trigram JSD (sparse CSR, full vocab, no truncation). Per-fold ref = training depth-1 (binary) / depth-0 (3class).",
+    "trigram_vocab_size": 50778,
+    "xgb_eval_metric": "logloss",
+    "timestamp": "2026-05-17 05:01:06"
+  }
+}

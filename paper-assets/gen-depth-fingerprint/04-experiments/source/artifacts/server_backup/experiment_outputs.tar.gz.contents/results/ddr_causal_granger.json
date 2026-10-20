@@ -1,0 +1,419 @@
+{
+  "granger": {
+    "hapax_ratio": {
+      "F_stat": 270.5989,
+      "p_value": 0.0,
+      "p_value_str": "0.00e+00",
+      "r2_restricted": 0.3817,
+      "r2_full": 0.3874,
+      "delta_r2": 0.0057,
+      "significant_005": true,
+      "depth_coefficient": 0.019137,
+      "n_obs": 29095
+    },
+    "ttr": {
+      "F_stat": 515.9977,
+      "p_value": 0.0,
+      "p_value_str": "0.00e+00",
+      "r2_restricted": 0.4808,
+      "r2_full": 0.4899,
+      "delta_r2": 0.009,
+      "significant_005": true,
+      "depth_coefficient": 0.024931,
+      "n_obs": 29095
+    },
+    "entropy_mean": {
+      "F_stat": 399.6411,
+      "p_value": 0.0,
+      "p_value_str": "0.00e+00",
+      "r2_restricted": 0.4373,
+      "r2_full": 0.4449,
+      "delta_r2": 0.0076,
+      "significant_005": true,
+      "depth_coefficient": -0.088874,
+      "n_obs": 29095
+    },
+    "entropy_std": {
+      "F_stat": 1338.3466,
+      "p_value": 0.0,
+      "p_value_str": "0.00e+00",
+      "r2_restricted": 0.2952,
+      "r2_full": 0.3262,
+      "delta_r2": 0.031,
+      "significant_005": true,
+      "depth_coefficient": -0.041391,
+      "n_obs": 29095
+    },
+    "entropy_min": {
+      "F_stat": 0.3788,
+      "p_value": 0.5382264300966464,
+      "p_value_str": "5.38e-01",
+      "r2_restricted": 0.0107,
+      "r2_full": 0.0107,
+      "delta_r2": 0.0,
+      "significant_005": false,
+      "depth_coefficient": -0.000974,
+      "n_obs": 29095
+    },
+    "entropy_max": {
+      "F_stat": 22.9668,
+      "p_value": 1.6563317931650445e-06,
+      "p_value_str": "1.66e-06",
+      "r2_restricted": 0.0212,
+      "r2_full": 0.022,
+      "delta_r2": 0.0008,
+      "significant_005": true,
+      "depth_coefficient": -0.018769,
+      "n_obs": 29095
+    },
+    "tail_decay": {
+      "F_stat": 17.8141,
+      "p_value": 2.443049842892897e-05,
+      "p_value_str": "2.44e-05",
+      "r2_restricted": 0.4888,
+      "r2_full": 0.4891,
+      "delta_r2": 0.0003,
+      "significant_005": true,
+      "depth_coefficient": -4e-06,
+      "n_obs": 29095
+    },
+    "_per_generator": {
+      "llama-3.2-3b": {
+        "hapax_ratio": {
+          "F_stat": 1.94,
+          "p_value": 0.16427933866968358,
+          "depth_coef": 0.004548
+        },
+        "ttr": {
+          "F_stat": 9.46,
+          "p_value": 0.0021208233106398966,
+          "depth_coef": 0.009579
+        },
+        "entropy_mean": {
+          "F_stat": 107.53,
+          "p_value": 0.0,
+          "depth_coef": -0.128191
+        },
+        "entropy_std": {
+          "F_stat": 256.9,
+          "p_value": 0.0,
+          "depth_coef": -0.049618
+        },
+        "entropy_min": {
+          "F_stat": 0.48,
+          "p_value": 0.48646931570332996,
+          "depth_coef": 0.003045
+        },
+        "entropy_max": {
+          "F_stat": 0.16,
+          "p_value": 0.6884198874752802,
+          "depth_coef": -0.004177
+        },
+        "tail_decay": {
+          "F_stat": 14.05,
+          "p_value": 0.0001808363972928273,
+          "depth_coef": -9e-06
+        }
+      },
+      "mistral-7b-v0.3": {
+        "hapax_ratio": {
+          "F_stat": 0.55,
+          "p_value": 0.457063602130659,
+          "depth_coef": -0.002014
+        },
+        "ttr": {
+          "F_stat": 0.66,
+          "p_value": 0.4156133060519742,
+          "depth_coef": 0.002022
+        },
+        "entropy_mean": {
+          "F_stat": 143.37,
+          "p_value": 0.0,
+          "depth_coef": -0.112877
+        },
+        "entropy_std": {
+          "F_stat": 180.82,
+          "p_value": 0.0,
+          "depth_coef": -0.033479
+        },
+        "entropy_min": {
+          "F_stat": 0.23,
+          "p_value": 0.6332957107884496,
+          "depth_coef": -0.000896
+        },
+        "entropy_max": {
+          "F_stat": 0.07,
+          "p_value": 0.7963860790374504,
+          "depth_coef": -0.002392
+        },
+        "tail_decay": {
+          "F_stat": 21.43,
+          "p_value": 3.7828767363023985e-06,
+          "depth_coef": -1e-05
+        }
+      },
+      "olmo-2-1b": {
+        "hapax_ratio": {
+          "F_stat": 8.02,
+          "p_value": 0.004653601382184069,
+          "depth_coef": 0.008645
+        },
+        "ttr": {
+          "F_stat": 18.65,
+          "p_value": 1.60935169294385e-05,
+          "depth_coef": 0.012992
+        },
+        "entropy_mean": {
+          "F_stat": 121.03,
+          "p_value": 0.0,
+          "depth_coef": -0.135649
+        },
+        "entropy_std": {
+          "F_stat": 209.8,
+          "p_value": 0.0,
+          "depth_coef": -0.04717
+        },
+        "entropy_min": {
+          "F_stat": 3.9,
+          "p_value": 0.04822509126354446,
+          "depth_coef": -0.008525
+        },
+        "entropy_max": {
+          "F_stat": 1.39,
+          "p_value": 0.2383641702233683,
+          "depth_coef": -0.013563
+        },
+        "tail_decay": {
+          "F_stat": 0.46,
+          "p_value": 0.4983390983881347,
+          "depth_coef": -2e-06
+        }
+      },
+      "pythia-1b": {
+        "hapax_ratio": {
+          "F_stat": 36.5,
+          "p_value": 1.6853958229035015e-09,
+          "depth_coef": 0.021632
+        },
+        "ttr": {
+          "F_stat": 76.88,
+          "p_value": 0.0,
+          "depth_coef": 0.029782
+        },
+        "entropy_mean": {
+          "F_stat": 134.52,
+          "p_value": 0.0,
+          "depth_coef": -0.156681
+        },
+        "entropy_std": {
+          "F_stat": 200.38,
+          "p_value": 0.0,
+          "depth_coef": -0.053746
+        },
+        "entropy_min": {
+          "F_stat": 1.74,
+          "p_value": 0.18691584078518586,
+          "depth_coef": -0.005162
+        },
+        "entropy_max": {
+          "F_stat": 18.69,
+          "p_value": 1.581953687479487e-05,
+          "depth_coef": -0.050751
+        },
+        "tail_decay": {
+          "F_stat": 22.54,
+          "p_value": 2.1440264421634936e-06,
+          "depth_coef": -1.2e-05
+        }
+      },
+      "pythia-2.8b": {
+        "hapax_ratio": {
+          "F_stat": 52.99,
+          "p_value": 4.0956127378422025e-13,
+          "depth_coef": 0.024297
+        },
+        "ttr": {
+          "F_stat": 85.95,
+          "p_value": 0.0,
+          "depth_coef": 0.0282
+        },
+        "entropy_mean": {
+          "F_stat": 160.32,
+          "p_value": 0.0,
+          "depth_coef": -0.160579
+        },
+        "entropy_std": {
+          "F_stat": 201.92,
+          "p_value": 0.0,
+          "depth_coef": -0.051808
+        },
+        "entropy_min": {
+          "F_stat": 1.2,
+          "p_value": 0.2732051029252649,
+          "depth_coef": 0.005618
+        },
+        "entropy_max": {
+          "F_stat": 44.47,
+          "p_value": 2.9806934698228815e-11,
+          "depth_coef": -0.076829
+        },
+        "tail_decay": {
+          "F_stat": 9.17,
+          "p_value": 0.0024731361332952506,
+          "depth_coef": -8e-06
+        }
+      },
+      "qwen3-0.6b": {
+        "hapax_ratio": {
+          "F_stat": 66.1,
+          "p_value": 5.551115123125783e-16,
+          "depth_coef": 0.0301
+        },
+        "ttr": {
+          "F_stat": 116.71,
+          "p_value": 0.0,
+          "depth_coef": 0.038577
+        },
+        "entropy_mean": {
+          "F_stat": 3.9,
+          "p_value": 0.04837385831713148,
+          "depth_coef": -0.02887
+        },
+        "entropy_std": {
+          "F_stat": 111.4,
+          "p_value": 0.0,
+          "depth_coef": -0.034964
+        },
+        "entropy_min": {
+          "F_stat": 0.36,
+          "p_value": 0.5501874626604764,
+          "depth_coef": 0.002932
+        },
+        "entropy_max": {
+          "F_stat": 0.08,
+          "p_value": 0.7801113263981189,
+          "depth_coef": -0.003301
+        },
+        "tail_decay": {
+          "F_stat": 4.41,
+          "p_value": 0.03576937487800591,
+          "depth_coef": 5e-06
+        }
+      },
+      "qwen3-1.7b": {
+        "hapax_ratio": {
+          "F_stat": 111.56,
+          "p_value": 0.0,
+          "depth_coef": 0.036602
+        },
+        "ttr": {
+          "F_stat": 159.76,
+          "p_value": 0.0,
+          "depth_coef": 0.042325
+        },
+        "entropy_mean": {
+          "F_stat": 2.07,
+          "p_value": 0.1500323490505837,
+          "depth_coef": -0.019842
+        },
+        "entropy_std": {
+          "F_stat": 109.21,
+          "p_value": 0.0,
+          "depth_coef": -0.031455
+        },
+        "entropy_min": {
+          "F_stat": 0.04,
+          "p_value": 0.8504469337108311,
+          "depth_coef": 0.000977
+        },
+        "entropy_max": {
+          "F_stat": 0.06,
+          "p_value": 0.8134627852718922,
+          "depth_coef": 0.002609
+        },
+        "tail_decay": {
+          "F_stat": 1.95,
+          "p_value": 0.1623739283708533,
+          "depth_coef": 4e-06
+        }
+      },
+      "qwen3-8b": {
+        "hapax_ratio": {
+          "F_stat": 25.68,
+          "p_value": 4.2312361858698466e-07,
+          "depth_coef": 0.0168
+        },
+        "ttr": {
+          "F_stat": 58.31,
+          "p_value": 2.864375403532904e-14,
+          "depth_coef": 0.023269
+        },
+        "entropy_mean": {
+          "F_stat": 29.97,
+          "p_value": 4.6967770339634285e-08,
+          "depth_coef": -0.066569
+        },
+        "entropy_std": {
+          "F_stat": 122.23,
+          "p_value": 0.0,
+          "depth_coef": -0.03097
+        },
+        "entropy_min": {
+          "F_stat": 0.4,
+          "p_value": 0.5279170108422805,
+          "depth_coef": -0.003171
+        },
+        "entropy_max": {
+          "F_stat": 0.04,
+          "p_value": 0.8416294919525352,
+          "depth_coef": 0.002229
+        },
+        "tail_decay": {
+          "F_stat": 0.08,
+          "p_value": 0.7738831420796691,
+          "depth_coef": -1e-06
+        }
+      }
+    },
+    "_fisher_combined": {
+      "hapax_ratio": {
+        "chi2": 1594.53,
+        "combined_p": 0.0,
+        "n_generators": 8
+      },
+      "ttr": {
+        "chi2": 5624.71,
+        "combined_p": 0.0,
+        "n_generators": 8
+      },
+      "entropy_mean": {
+        "chi2": 6951.35,
+        "combined_p": 0.0,
+        "n_generators": 8
+      },
+      "entropy_std": {
+        "chi2": 11052.41,
+        "combined_p": 0.0,
+        "n_generators": 8
+      },
+      "entropy_min": {
+        "chi2": 17.16,
+        "combined_p": 0.3750354897731508,
+        "n_generators": 8
+      },
+      "entropy_max": {
+        "chi2": 75.91,
+        "combined_p": 9.020235669510157e-10,
+        "n_generators": 8
+      },
+      "tail_decay": {
+        "chi2": 92.52,
+        "combined_p": 8.574252419180084e-13,
+        "n_generators": 8
+      }
+    },
+    "_panel_size": 29095,
+    "_effective_lag": 1,
+    "_power_warning": "Per-seed depth chains have only T=5 points. Pooled panel regression aggregates across ~995 seeds per generator, providing adequate power for the overall test. Individual per-seed Granger tests are infeasible (df_residual ~ 1)."
+  }
+}

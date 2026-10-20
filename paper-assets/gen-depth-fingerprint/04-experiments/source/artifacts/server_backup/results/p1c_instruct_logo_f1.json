@@ -1,0 +1,62 @@
+{
+  "7gen_logo_avg_f1": 0.7498,
+  "7gen_binary_f1": 0.768,
+  "per_generator": {
+    "olmo-2-1b": {
+      "3class_f1": 0.759,
+      "gen0_f1": 0.9328,
+      "gen1_f1": 0.5925,
+      "gen2p_f1": 0.7517,
+      "binary_f1": 0.7479
+    },
+    "pythia-1b": {
+      "3class_f1": 0.8484,
+      "gen0_f1": 0.9831,
+      "gen1_f1": 0.7013,
+      "gen2p_f1": 0.8607,
+      "binary_f1": 0.8615
+    },
+    "pythia-2.8b": {
+      "3class_f1": 0.7975,
+      "gen0_f1": 0.9687,
+      "gen1_f1": 0.6378,
+      "gen2p_f1": 0.786,
+      "binary_f1": 0.7906
+    },
+    "qwen3-0.6b": {
+      "3class_f1": 0.8162,
+      "gen0_f1": 0.9679,
+      "gen1_f1": 0.657,
+      "gen2p_f1": 0.8238,
+      "binary_f1": 0.8241
+    },
+    "qwen3-1.7b": {
+      "3class_f1": 0.8023,
+      "gen0_f1": 0.9312,
+      "gen1_f1": 0.6548,
+      "gen2p_f1": 0.821,
+      "binary_f1": 0.8208
+    },
+    "qwen3-1.7b-instruct": {
+      "3class_f1": 0.5434,
+      "gen0_f1": 0.7033,
+      "gen1_f1": 0.3293,
+      "gen2p_f1": 0.5976,
+      "binary_f1": 0.6582
+    },
+    "qwen3-8b": {
+      "3class_f1": 0.6817,
+      "gen0_f1": 0.8246,
+      "gen1_f1": 0.5437,
+      "gen2p_f1": 0.6768,
+      "binary_f1": 0.6729
+    }
+  },
+  "vs_base_comparison": {
+    "instruct_held_out_f1": 0.5434,
+    "base_held_out_f1": 0.8023,
+    "delta": -0.2589,
+    "reference_6gen_base_held_out_f1": 0.805
+  },
+  "note": "instruct depth-response direction is reversed (diversity increases with depth) vs base (decreases). XGBoost handles both directions."
+}

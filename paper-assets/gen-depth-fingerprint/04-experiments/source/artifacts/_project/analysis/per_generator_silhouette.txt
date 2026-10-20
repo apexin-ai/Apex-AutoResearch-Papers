@@ -1,0 +1,27 @@
+Per-Generator Silhouette Analysis for DDR/DDI Partition Validation
+==================================================================
+
+Pooled silhouette: 0.663
+Pooled DDR (depth-responsive):  {entropy_mean, ttr, hapax_ratio}
+Pooled DDI (depth-invariant):   {entropy_std, entropy_max, entropy_min, tail_decay}
+
+Per-Generator Results
+---------------------
+Generator            Silhouette  Partition Consistent?
+------------------------------------------------------
+llama-3.2-3b              0.731  Yes
+mistral-7b-v0.3           0.760  Yes
+olmo-2-1b                 0.694  Yes
+pythia-1b                 0.505  Yes
+pythia-2.8b               0.596  Yes
+qwen3-0.6b                0.532  Yes
+qwen3-1.7b                0.675  Yes
+qwen3-8b                  0.714  Yes
+
+Summary: Min=0.505, Max=0.760, Mean=0.651
+All silhouette >= 0.5: YES
+All partitions match pooled: YES (8/8)
+
+Conclusion: The DDR/DDI partition is not a pooled artifact.
+Every generator individually recovers the same {entropy_mean, ttr, hapax_ratio}
+vs {entropy_std, entropy_max, entropy_min, tail_decay} split with silhouette >= 0.5.

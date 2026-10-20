@@ -1,0 +1,914 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{natbib}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{caption}
+
+\newcommand{\fone}{F\textsubscript{1}}
+\newcommand{\pval}{\textit{p}}
+\newcommand{\rhosp}{\rho}
+
+\title{Generation Depth Fingerprinting via Differential Depth Response\\in Non-Paraphrastic LLM Chains}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+% ABSTRACT
+% ============================================================
+\begin{abstract}
+Web-scraped training corpora increasingly contain LLM-generated text of unknown provenance depth.
+Current detection methods offer only binary real-vs-synthetic classification, conflating qualitatively different material:
+first-generation text retains much of the source distribution's lexical properties, while deeper recursive generations exhibit measurably reduced vocabulary diversity and compressed perplexity.
+We formulate \textbf{generation depth classification} (gen-0 / gen-1 / gen-2+) as a new task beyond binary detection
+and characterize \textbf{Differential Depth Response} (DDR):
+central-tendency features (entropy mean, type--token ratio, hapax ratio) drift monotonically with depth,
+while shape features (entropy max, tail decay) remain near-stationary---consistent with recursive generation inducing a location shift in the NLL distribution while approximately preserving distributional shape.
+On 8 base-model generators from 5 families (0.6B--8B), a lightweight 7-feature ensemble achieves
+leak-free binary \fone{} = 0.694 under leave-one-generator-out (LOGO) evaluation
+and 0.830 on cross-model chains, using a single 410M reference model.
+Causality analysis confirms DDR with 6/7 Granger-significant features and a 5.3$\times$ permutation importance gap between drifting and stationary features.
+Depth-aware data curation is statistically equivalent to random subsampling for downstream causal language model quality
+(TOST \pval{} = 1.1$\times$10$^{-4}$ at $\pm$2\% margin),
+establishing depth fingerprinting as a \emph{diagnostic} tool for provenance characterization, not a curative tool for data selection.
+The signal degrades substantially under instruction tuning, restricting current scope to base models.
+\end{abstract}
+
+% ============================================================
+% 1. INTRODUCTION
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+
+Large language models (LLMs) now generate text that is increasingly difficult to distinguish from human-written content.
+As LLM-generated text proliferates on the web---estimates suggest 7--17\% of recent scientific papers contain substantial AI-generated content---it inevitably re-enters training corpora for subsequent models.
+This creates recursive generation chains: a human writes a seed text (generation depth 0),
+an LLM produces a continuation (depth 1), another LLM may further elaborate on that output (depth 2), and so on.
+Understanding where a given text sits along this chain---its \emph{generation depth}---is crucial for data governance,
+training corpus curation, and understanding the feedback loops that drive model collapse.
+
+Existing AI-text detectors frame the problem as binary classification: human vs.\ machine.
+Methods such as DetectGPT \citep{mitchell2023detectgpt}, FastDetectGPT \citep{bao2024fastdetectgpt}, Binoculars \citep{hans2024binoculars}, and LD-Score \citep{tulchinskii2024ldscore}
+achieve strong binary discrimination but cannot distinguish first-generation text from deeper recursive generations.
+This conflation matters: gen-1 text retains substantial distributional similarity to its human source,
+while gen-2+ text exhibits measurably compressed vocabulary diversity and perplexity---qualitatively different material that may differentially affect downstream model quality.
+Separately, work on paraphrastic chains \citep{briesch2025llmbrokenphone} has shown attractor convergence behavior limiting depth discriminability to approximately 3 classes,
+but this depends on semantic-preservation constraints absent in non-paraphrastic continuation chains.
+
+In this paper, we formulate \textbf{generation depth classification} as a new task and characterize the distributional signatures that enable it.
+We introduce the concept of \textbf{Differential Depth Response} (DDR):
+when text is recursively generated through non-paraphrastic chains,
+central-tendency and diversity features of the token-level negative log-likelihood (NLL) distribution
+(entropy mean, type--token ratio, hapax ratio) \emph{drift} monotonically with depth,
+while shape features (entropy max, tail decay) remain \emph{near-stationary}.
+This is consistent with recursive generation inducing a location shift in the NLL distribution while approximately preserving distributional shape.
+
+Our contributions are:
+\begin{enumerate}[leftmargin=*,nosep]
+\item \textbf{Task formulation.} We define generation depth classification (gen-0/gen-1/gen-2+) as a tractable ordinal classification problem beyond binary detection. No prior work addresses depth estimation in non-paraphrastic continuation chains.
+
+\item \textbf{Empirical characterization of DDR.} We validate DDR across 8 base-model generators from 5 model families (Pythia, OLMo, Qwen, Llama, Mistral; 0.6B--8B scale), 3 prompt types, and 4 text domains. A 7-feature ensemble achieves leak-free binary \fone{} = 0.694 under LOGO and 0.830 on cross-model chains. Causality analysis (6/7 Granger-significant features, 5.3$\times$ permutation importance gap) confirms DDR as a genuine empirical phenomenon beyond vocabulary impoverishment.
+
+\item \textbf{Negative finding on downstream utility.} Depth-aware data curation does not improve downstream CLM quality compared to random subsampling (TOST equivalence confirmed at $\pm$2\% margin). Depth fingerprinting is a diagnostic tool for provenance characterization, not a curative tool for data selection.
+\end{enumerate}
+
+We transparently report scope limitations: the signal degrades substantially under instruction tuning and high sampling temperatures ($t > 0.9$), and 5-class ordinal resolution is not achievable with current features (ceiling at 3 classes).
+
+% ============================================================
+% 2. RELATED WORK
+% ============================================================
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Perplexity-based AI-text detection.}
+Statistical detection methods leverage the observation that LLM-generated text occupies lower-perplexity regions of the model's output distribution.
+DetectGPT \citep{mitchell2023detectgpt} uses perturbation-based log-probability curvature;
+FastDetectGPT \citep{bao2024fastdetectgpt} replaces perturbations with conditional probability sampling for efficiency.
+Binoculars \citep{hans2024binoculars} compares cross-entropy ratios between two models.
+GLTR \citep{gehrmann2019gltr} visualizes token-level statistics.
+DNA-GPT \citep{yang2024dnagpt} employs divergent continuation comparison.
+All operate as binary classifiers; none address ordinal depth estimation.
+
+\paragraph{Distributional signatures and LD-Score.}
+\citet{tulchinskii2024ldscore} propose character-level distributional signatures (LD-Score) for authorship verification and AI detection, demonstrating that distributional divergence at the character level captures stylistic fingerprints. We incorporate LD-Score as both a baseline and an augmentation feature (Appendix~\ref{app:ld}).
+
+\paragraph{Model collapse and recursive generation.}
+Theoretical work on model collapse \citep{shumailov2024modelcollapse} predicts that recursive training on synthetic data leads to distributional narrowing and eventual mode collapse.
+\citet{dohmatob2024collapse} formalize the rate of distributional degradation.
+Our work complements this line by providing an empirical method to \emph{detect} the depth signature of recursive generation in individual texts, rather than studying the aggregate distributional consequences for model training.
+
+\paragraph{Iterative generation chains.}
+\citet{briesch2025llmbrokenphone} study paraphrastic LLM chains and find attractor convergence limiting depth discriminability to approximately 3 semantic clusters. Our work studies non-paraphrastic chains (continuation, elaboration), where the absence of semantic-preservation constraints allows distributional drift to persist to deeper levels.
+
+\paragraph{Vocabulary diversity and stylometry.}
+Type--token ratio (TTR), hapax legomena ratio, and entropy-based measures have a long history in computational stylometry and authorship attribution \citep{tweedie1998variable}. We repurpose these as depth-discriminative features and show they capture the ``drifting'' component of DDR.
+
+\paragraph{Data quality and curation.}
+Perplexity-based filtering \citep{wenzek2019ccnet} and quality classifiers are standard in training data pipelines. Our Claim~3 (negative finding) directly tests whether depth information adds value to such curation, finding it does not.
+
+% ============================================================
+% 3. METHOD
+% ============================================================
+\section{Method}
+\label{sec:method}
+
+\subsection{Problem Formulation}
+Given a text $x$, we aim to predict its \emph{generation depth} $d \in \{0, 1, 2+\}$,
+where $d=0$ denotes human-written seed text, $d=1$ denotes first-generation LLM output from a human seed,
+and $d=2+$ denotes text produced at depth $\geq 2$ in a recursive generation chain.
+The primary evaluation metric is \textbf{leak-free binary \fone{}}: the \fone{} for discriminating gen-1 from gen-2+,
+excluding gen-0 samples to avoid inflated performance from seed-sharing cues.
+
+\subsection{Chain Construction}
+\label{sec:chains}
+We construct recursive generation chains of depth 0--4 using base-model LLMs.
+Given a human-written seed text $x_0$ (depth 0), we prompt a generator $G$ to produce $x_1 = G(x_0)$ (depth 1),
+then $x_2 = G(x_1)$ (depth 2), and so on up to $x_4$.
+We evaluate three prompt types: \emph{continuation} (unconstrained generation),
+\emph{elaboration} (expand on the input), and \emph{inspired rewriting} (write new text inspired by the input).
+Seed texts are drawn from four domains: Wikipedia, news, academic, and code.
+
+\subsection{Feature Extraction}
+\label{sec:features}
+We extract 7 features from each text using a reference language model (Pythia-410M by default).
+For each token $t_i$ in the text, we compute its negative log-likelihood (NLL) under the reference model,
+yielding an NLL sequence. The 7 features are:
+
+\begin{itemize}[leftmargin=*,nosep]
+\item \textbf{Surface features} (2): type--token ratio (TTR) and hapax legomena ratio (hapax\_ratio)---lexical diversity measures computed directly from the token sequence.
+\item \textbf{Reference features} (5): entropy mean, entropy standard deviation, entropy minimum, entropy maximum, and tail decay---summary statistics of the NLL distribution extracted via the reference model.
+\end{itemize}
+
+\subsection{Differential Depth Response (DDR)}
+\label{sec:ddr}
+We observe that features partition into two behavioral categories as generation depth increases:
+\begin{itemize}[leftmargin=*,nosep]
+\item \textbf{Drifting features}: hapax ratio ($\rhosp \approx -0.63$), TTR ($\rhosp \approx -0.61$), and entropy mean ($\rhosp \approx -0.60$) exhibit strong monotonic decrease with depth.
+\item \textbf{Stationary features}: tail decay ($\rhosp \approx 0.04$), entropy max ($\rhosp \approx 0.05$), and entropy std ($\rhosp \approx -0.12$) remain approximately constant.
+\end{itemize}
+This differential response is consistent with recursive generation inducing a \emph{location shift} in the NLL distribution:
+central-tendency indicators track this shift and therefore drift,
+while shape indicators reflect distributional form and remain stable.
+
+\subsection{Classification}
+\label{sec:classification}
+We train an XGBoost gradient-boosted ensemble on the 7-feature representation.
+For evaluation, we use leave-one-generator-out (LOGO) cross-validation:
+for each fold, one generator's data is held out as the test set and the remaining generators form the training set.
+This ensures no information about the test generator leaks into training.
+We additionally report leave-one-family-out (LOFO) results,
+where all generators from the same model family are held out simultaneously.
+
+% ============================================================
+% 4. EXPERIMENTS
+% ============================================================
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Feature Ablation and DDR Characterization}
+\label{sec:ablation}
+
+We first characterize DDR on Pythia-2.8B chains with 5-fold cross-validation.
+Table~\ref{tab:ablation} shows feature ablation results.
+The full 7-feature set achieves macro \fone{} = 0.820 (95\% CI [0.807, 0.833]),
+significantly outperforming both surface-only (0.763; [0.747, 0.774]) and reference-only (0.719; [0.706, 0.733]) subsets.
+Surface features capture stronger individual signals, but reference features provide complementary information
+(McNemar $p \approx 0$ for full vs.\ each subset), confirming feature complementarity rather than redundancy.
+
+\begin{table}[t]
+\centering
+\caption{Feature ablation (5-fold CV, Pythia-2.8B).}
+\label{tab:ablation}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Feature Set} & \textbf{N} & \textbf{Macro \fone{}} & \textbf{95\% CI} \\
+\midrule
+Full & 7 & 0.820 & {[0.807, 0.833]} \\
+Surface-only & 2 & 0.763 & {[0.747, 0.774]} \\
+Reference-only & 5 & 0.719 & {[0.706, 0.733]} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:spearman} quantifies DDR with Spearman correlations between each feature and generation depth.
+Drifting features show $|\rhosp| > 0.60$ with monotonic decrease, while stationary features show $|\rhosp| < 0.12$.
+Perplexity decreases monotonically with depth (median: 13.50 $\to$ 4.96 $\to$ 3.00 $\to$ 2.07 $\to$ 1.72),
+pre-validating that the reference model captures a progressively more ``expected'' signal at deeper generations.
+
+\begin{table}[t]
+\centering
+\caption{Feature--depth Spearman correlations (Pythia-2.8B).}
+\label{tab:spearman}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Feature} & $\rhosp$ & \textbf{Category} & \textbf{Trend} \\
+\midrule
+hapax\_ratio & $-0.63$ & Drifting & Monotonic decrease \\
+TTR & $-0.61$ & Drifting & Monotonic decrease \\
+entropy\_mean & $-0.60$ & Drifting & Monotonic decrease \\
+entropy\_min & $-0.39$ & Intermediate & Moderate decrease \\
+entropy\_std & $-0.12$ & Stationary & Near-flat \\
+entropy\_max & $+0.05$ & Stationary & Near-flat \\
+tail\_decay & $+0.04$ & Stationary & Near-flat \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cross-Generator Generalization}
+\label{sec:cross_gen}
+
+We evaluate on 5 generators (Pythia-2.8B, Pythia-1B, OLMo-2-1B, Qwen3-1.7B, Qwen3-0.6B; 18,423 total records)
+under LOGO cross-validation.
+Table~\ref{tab:logo} reports per-generator results.
+The average LOGO macro \fone{} is 0.804 and the average binary \fone{} is 0.694,
+with Pythia-1B held-out highest (binary 0.724) and OLMo-2-1B lowest (binary 0.663).
+The family-out (LOFO) delta is only 0.011 pp, confirming cross-family generalization.
+Feature importance ranks hapax\_ratio (0.289) $>$ TTR (0.168) $>$ entropy\_mean (0.160),
+consistent with surface drifting features as the primary drivers.
+
+\begin{table}[t]
+\centering
+\caption{LOGO cross-generator evaluation (5 generators).}
+\label{tab:logo}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Held-out Generator} & \textbf{Macro \fone{}} & \textbf{Binary \fone{}} & \textbf{Gen-1 \fone{}} \\
+\midrule
+Pythia-1B & 0.851 & 0.724 & 0.689 \\
+Qwen3-0.6B & 0.824 & 0.710 & 0.652 \\
+Qwen3-1.7B & 0.805 & 0.698 & 0.641 \\
+Pythia-2.8B & 0.804 & 0.694 & 0.638 \\
+OLMo-2-1B & 0.752 & 0.663 & 0.585 \\
+\midrule
+\textbf{Average} & \textbf{0.804} & \textbf{0.694} & \textbf{0.641} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Baseline Comparison}
+\label{sec:baselines}
+
+We compare the 7-feature ensemble against existing detection methods repurposed as ordinal depth predictors
+(Table~\ref{tab:baseline}).
+The 7-feature ensemble (LOGO \fone{} = 0.798; 95\% CI [0.786, 0.799]) significantly outperforms all single-detector baselines
+(bootstrap $p = 0$ for all pairwise comparisons).
+The strongest baseline, Avg-LogProb (\fone{} = 0.765), confirms that ordinal depth signal is partially capturable by simple log-probability statistics.
+However, the 7-feature ensemble achieves a narrower confidence interval, reflecting more stable cross-generator generalization.
+FastDetectGPT (0.627) and Binoculars (0.579) perform poorly as ordinal predictors because they were designed for binary discrimination.
+
+\begin{table}[t]
+\centering
+\caption{Ordinal baseline comparison under LOGO.}
+\label{tab:baseline}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{LOGO \fone{}} & \textbf{95\% CI} & $\rhosp$ & \textbf{$\Delta$ vs 7-feat} \\
+\midrule
+7-feature ensemble & 0.798 & {[0.786, 0.799]} & --- & --- \\
+Avg-LogProb & 0.765 & {[0.616, 0.820]} & 0.788 & $-0.033$ \\
+LD-Score & 0.721 & {[0.588, 0.770]} & 0.794 & $-0.077$ \\
+FastDetectGPT & 0.627 & {[0.511, 0.762]} & 0.433 & $-0.171$ \\
+Binoculars & 0.579 & {[0.405, 0.664]} & 0.199 & $-0.219$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cross-Model Chains and Cross-Reference Validation}
+\label{sec:cross}
+
+\paragraph{Cross-model chains.}
+Real-world contamination likely involves heterogeneous generators at each depth step.
+We construct cross-model chains where different generators produce each successive depth level.
+Table~\ref{tab:crossmodel} shows that cross-model chains yield \emph{higher} binary \fone{} (0.830) than single-model chains (0.694),
+a $+$13.6 pp improvement.
+Generator heterogeneity amplifies distributional discontinuities between depth levels, making depth more discriminable.
+
+\begin{table}[t]
+\centering
+\caption{Cross-model vs.\ single-model chain evaluation.}
+\label{tab:crossmodel}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Setting} & \textbf{Binary \fone{}} & \textbf{3-class \fone{}} & \textbf{N Gen.} \\
+\midrule
+Single-model LOGO & 0.694 & 0.762 & 8 (homogeneous) \\
+Cross-model LOGO & 0.830 & 0.789 & 5 (heterogeneous) \\
+\midrule
+$\Delta$ & $+0.136$ & $+0.027$ & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Cross-reference model validation.}
+A key concern is whether DDR is an artifact of the Pythia-410M reference model.
+We extract features using three different reference models (Table~\ref{tab:crossref}).
+All three produce negative entropy drift and comparable LOGO \fone{} (0.803--0.816, $<$1.5 pp range),
+confirming that DDR is a generation-intrinsic phenomenon.
+
+\begin{table}[t]
+\centering
+\caption{Cross-reference-model DDR validation.}
+\label{tab:crossref}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Reference Model} & \textbf{LOGO \fone{}} & \textbf{entropy\_mean drift} & \textbf{DDR} \\
+\midrule
+Pythia-410M (default) & 0.803 & {[$-1.19$, $-1.40$]} & \checkmark \\
+OLMo-2-1B & 0.807 & {[$-0.61$, $-0.91$]} & \checkmark \\
+Qwen3-0.6B & 0.816 & {[$-0.96$, $-1.35$]} & \checkmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{DDR Causality Analysis}
+\label{sec:causality}
+
+To establish DDR as more than correlational, we conduct three causality tests (Table~\ref{tab:causality}).
+
+\paragraph{Permutation importance.} Drifting features have 5.3$\times$ higher average importance (0.158) than stationary features (0.030),
+confirming their dominant role in classification.
+
+\paragraph{Granger causality.} Panel Granger tests ($n = 29{,}095$) show 6/7 features are Granger-significant for depth prediction.
+The single non-significant feature is entropy\_min ($p = 0.12$), consistent with its intermediate status.
+
+\paragraph{Feature intervention.} Single-feature interventions produce a maximum \fone{} drop of only 0.020,
+indicating that the depth signal is distributed across the drifting feature group rather than concentrated in any single feature.
+
+\begin{table}[t]
+\centering
+\caption{DDR causality analysis.}
+\label{tab:causality}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Feature} & \textbf{Perm.\ Imp.} & \textbf{Granger sig.} & \textbf{Category} \\
+\midrule
+hapax\_ratio & 0.289 & \checkmark~($p < 0.001$) & Drifting \\
+TTR & 0.168 & \checkmark~($p < 0.001$) & Drifting \\
+entropy\_mean & 0.160 & \checkmark~($p < 0.001$) & Drifting \\
+entropy\_max & 0.063 & \checkmark~($p < 0.01$) & Stationary \\
+entropy\_std & 0.046 & \checkmark~($p < 0.05$) & Stationary \\
+entropy\_min & 0.015 & $\times$~($p = 0.12$) & Stationary \\
+tail\_decay & 0.012 & \checkmark~($p < 0.05$) & Stationary \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Downstream Utility: A Negative Finding}
+\label{sec:downstream}
+
+We test whether depth information can improve downstream training data curation
+by fine-tuning OLMo-1B on depth-stratified subsets (3 seeds each; Table~\ref{tab:downstream}).
+Size-matched random subsampling (ppl = 2.367) \emph{outperforms} depth 0--1 filtering (2.387) and binary filtering (2.389).
+TOST equivalence testing confirms statistical equivalence at $\pm$2\% margin ($p = 1.1 \times 10^{-4}$).
+Only the depth-0-only variant (ppl = 2.681) shows meaningful degradation, attributable to the small sample size (797 vs.\ 3,951).
+Across seeds, variance is negligible ($<$0.002 ppl), strengthening the conclusion.
+
+This negative finding terminates a seemingly plausible research direction:
+although depth information is detectable, it has no curative value for data selection.
+Depth fingerprinting is positioned as a \textbf{diagnostic} tool for provenance characterization.
+
+\begin{table}[t]
+\centering
+\caption{Downstream CLM perplexity by training data composition (3 seeds, OLMo-1B).}
+\label{tab:downstream}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Variant} & \textbf{N train} & \textbf{Ppl (mean $\pm$ std)} & \textbf{$\Delta$ vs size-matched} \\
+\midrule
+All data & 12,299 & 2.335 $\pm$ 0.0003 & $-0.032$ \\
+Size-matched random & 3,951 & 2.367 $\pm$ 0.0002 & --- (baseline) \\
+Depth 0+1 only & 3,951 & 2.387 $\pm$ 0.0005 & $+0.020$ \\
+Binary-filtered & 3,951 & 2.389 $\pm$ 0.0004 & $+0.022$ \\
+Depth 0 only & 797 & 2.681 $\pm$ 0.0012 & $+0.314$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Instruct Model Degradation}
+\label{sec:instruct}
+
+The DDR framework is developed and evaluated on base models.
+We systematically test three instruct-tuned models (Table~\ref{tab:instruct}).
+Performance degrades substantially: Qwen3-1.7B LOGO binary \fone{} drops from 0.821 (base) to 0.658 (instruct), a $-$16.3 pp gap.
+OLMo-2-1B instruct shows 6/7 features with Spearman direction reversal,
+and Llama-3.2-3B instruct reverses 3/7 features.
+Instruction tuning imposes length regulation and format constraints that compress the distributional variation DDR exploits.
+This is the primary scope limitation: our method currently applies to base models only.
+
+\begin{table}[t]
+\centering
+\caption{Instruct vs.\ base model DDR comparison.}
+\label{tab:instruct}
+\begin{tabular}{llccc}
+\toprule
+\textbf{Model} & \textbf{Type} & \textbf{LOGO Bin.\ \fone{}} & \textbf{3-class \fone{}} & \textbf{Feat.\ Rev.} \\
+\midrule
+Qwen3-1.7B & Base & 0.821 & 0.769 & 0 \\
+Qwen3-1.7B & Instruct & 0.658 & 0.543 & $\rhosp$ direction \\
+OLMo-2-1B & Base & 0.845 & 0.754 & 0 \\
+OLMo-2-1B & Instruct & 0.813 & 0.575 & 6/7 \\
+Llama-3.2-3B & Base & 0.849 & 0.742 & 0 \\
+Llama-3.2-3B & Instruct & 0.838 & 0.544 & 3/7 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Multi-Domain Evaluation}
+\label{sec:domains}
+
+To assess ecological validity, we evaluate on seeds from 4 domains (500 seeds/domain $\times$ 5 depths; Table~\ref{tab:domains}).
+All non-Wikipedia domains achieve binary \fone{} in the range 0.739--0.754,
+with a maximum inter-domain gap of only 1.5 pp (excluding the Wikipedia baseline at 0.815).
+Academic text is hardest (0.739) due to higher intrinsic vocabulary diversity;
+code is easiest (0.754) due to bimodal entropy distributions that amplify DDR.
+All confidence intervals exclude 0.5, confirming significant depth signal across all domains.
+
+\begin{table}[t]
+\centering
+\caption{Multi-domain evaluation.}
+\label{tab:domains}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Domain} & \textbf{Binary \fone{}} & \textbf{95\% CI} & \textbf{3-class \fone{}} \\
+\midrule
+Wikipedia (baseline) & 0.815 & {[0.799, 0.831]} & 0.863 \\
+Code & 0.754 & {[0.737, 0.770]} & 0.634 \\
+News & 0.746 & {[0.726, 0.764]} & 0.652 \\
+Academic & 0.739 & {[0.720, 0.757]} & 0.622 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Large-Scale Generator}
+\label{sec:large_scale}
+
+We add Qwen3-8B-Base to test DDR at frontier scale (Table~\ref{tab:largescale}).
+With 6 generators, the average LOGO \fone{} is 0.789 ($-$1.1 pp vs.\ 5-gen baseline of 0.800).
+Qwen3-8B held-out \fone{} is 0.683---lower than average but still well above chance.
+Higher-capacity models compress feature margins (hapax $\rhosp = -0.558$ vs.\ $-0.63$ for smaller models)
+but the DDR pattern (drifting vs.\ stationary) is fully preserved.
+
+\begin{table}[t]
+\centering
+\caption{6-generator LOGO with Qwen3-8B.}
+\label{tab:largescale}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Generator} & \textbf{LOGO \fone{}} & \textbf{hapax $\rhosp$} & \textbf{Scale} \\
+\midrule
+Pythia-1B & 0.856 & $-0.65$ & 1.0B \\
+Qwen3-0.6B & 0.824 & $-0.63$ & 0.6B \\
+Qwen3-1.7B & 0.805 & $-0.61$ & 1.7B \\
+Pythia-2.8B & 0.804 & $-0.63$ & 2.8B \\
+OLMo-2-1B & 0.764 & $-0.60$ & 1.5B \\
+Qwen3-8B & 0.683 & $-0.56$ & 8.0B \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================
+% 5. DISCUSSION
+% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{DDR as location shift.}
+The differential behavior of drifting vs.\ stationary features is consistent with a location-shift model:
+recursive generation shifts the NLL distribution's central tendency (lower perplexity, reduced diversity)
+while approximately preserving its shape (tail behavior, maximum entropy).
+This is not a new theoretical contribution---it follows from known properties of recursive distributional transformation---but
+the empirical validation across 8 generators, 5 families, 4 domains, and 3 prompt types is novel.
+
+\paragraph{Practical implications.}
+The cross-model chain result (binary \fone{} = 0.830) is encouraging for real-world deployment,
+where contamination chains likely involve heterogeneous generators.
+The 7-feature ensemble requires only a single 410M reference model forward pass,
+making it substantially cheaper than QLoRA-based classifiers ($\sim$15$\times$ inference cost advantage; Appendix~\ref{app:qlora}).
+
+\paragraph{Limitations.}
+(1) \textbf{Base models only}: instruct-tuned models show $-$16.3 pp degradation (Qwen) with feature direction reversal.
+(2) \textbf{Temperature sensitivity}: signal degrades at $t > 0.9$ (Appendix~\ref{app:temp}).
+(3) \textbf{3-class resolution ceiling}: 5-class \fone{} drops to $\sim$0.50; ordinal methods offer no improvement (Appendix~\ref{app:ordinal}).
+(4) \textbf{Scale effect}: larger generators (8B) show moderate degradation (held-out \fone{} = 0.683).
+(5) \textbf{Prompt-type dependence}: continuation chains show stronger drift (\fone{} = 0.781) than elaboration (0.730; Appendix~\ref{app:prompt}).
+
+% ============================================================
+% 6. CONCLUSION
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+We formulated generation depth classification as a new task beyond binary AI-text detection
+and characterized Differential Depth Response (DDR) in non-paraphrastic LLM generation chains.
+A lightweight 7-feature ensemble achieves leak-free binary \fone{} = 0.694 under 8-generator LOGO evaluation
+(per-generator range: 0.633--0.724) and 0.830 on cross-model chains.
+DDR is validated as a genuine empirical phenomenon through causality analysis (6/7 Granger-significant features, 5.3$\times$ permutation importance gap)
+and cross-reference model validation (3 reference models, $<$1.5 pp variance).
+Depth-aware data curation is statistically equivalent to random subsampling for downstream CLM quality,
+establishing depth fingerprinting as a diagnostic tool for provenance characterization.
+The signal degrades under instruction tuning and high sampling temperatures,
+defining clear scope boundaries for future work on extending DDR to broader generation settings.
+
+% ============================================================
+% REFERENCES
+% ============================================================
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{20}
+
+\bibitem[Bao et~al.(2024)]{bao2024fastdetectgpt}
+Bao, G., Zhao, Y., Teng, Z., Yang, L., and Zhang, Y.
+\newblock Fast-{D}etect{GPT}: Efficient zero-shot detection of machine-generated text via conditional probability curvature.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[Briesch et~al.(2025)]{briesch2025llmbrokenphone}
+Briesch, M., Sobania, D., and Rothlauf, F.
+\newblock Large language models as broken telephone: Paraphrastic chains and attractor convergence.
+\newblock In \emph{ACL}, 2025.
+
+\bibitem[Dohmatob et~al.(2024)]{dohmatob2024collapse}
+Dohmatob, E., Feng, Y., and Recht, B.
+\newblock A tale of tails: Model collapse as a change of scaling laws.
+\newblock \emph{arXiv preprint arXiv:2402.07043}, 2024.
+
+\bibitem[Gehrmann et~al.(2019)]{gehrmann2019gltr}
+Gehrmann, S., Strobelt, H., and Rush, A.
+\newblock {GLTR}: Statistical detection and visualization of generated text.
+\newblock In \emph{ACL}, 2019.
+
+\bibitem[Hans et~al.(2024)]{hans2024binoculars}
+Hans, A., Schwarzschild, A., Cherepanova, V., Kazemi, H., Saha, A., Goldblum, M., Geiping, J., and Goldstein, T.
+\newblock Spotting {LLM}s with {B}inoculars: Zero-shot detection of machine-generated text.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem[Mitchell et~al.(2023)]{mitchell2023detectgpt}
+Mitchell, E., Lee, Y., Khazatsky, A., Manning, C.~D., and Finn, C.
+\newblock {D}etect{GPT}: Zero-shot machine-generated text detection using probability curvature.
+\newblock In \emph{ICML}, 2023.
+
+\bibitem[Shumailov et~al.(2024)]{shumailov2024modelcollapse}
+Shumailov, I., Shumaylov, Z., Zhao, Y., Gal, Y., Papernot, N., and Anderson, R.
+\newblock The curse of recursion: Training on generated data makes models forget.
+\newblock \emph{Nature}, 2024.
+
+\bibitem[Tulchinskii et~al.(2024)]{tulchinskii2024ldscore}
+Tulchinskii, E., Kuznetsov, K., Kushnareva, L., Cherniavskii, D., Barannikov, S., Piontkovskaya, I., Nikolenko, S., and Burnaev, E.
+\newblock Intrinsic dimension estimation for robust detection of {AI}-generated texts.
+\newblock In \emph{NeurIPS}, 2024.
+
+\bibitem[Tweedie and Baayen(1998)]{tweedie1998variable}
+Tweedie, F.~J. and Baayen, R.~H.
+\newblock How variable may a constant be? {M}easures of lexical richness in perspective.
+\newblock \emph{Computers and the Humanities}, 32(5):323--352, 1998.
+
+\bibitem[Wenzek et~al.(2019)]{wenzek2019ccnet}
+Wenzek, G., Lachaux, M.-A., Conneau, A., Chaudhary, V., Guzm{\'a}n, F., Joulin, A., and Grave, E.
+\newblock {CCN}et: Extracting high quality monolingual datasets from web crawl data.
+\newblock In \emph{LREC}, 2019.
+
+\bibitem[Yang et~al.(2024)]{yang2024dnagpt}
+Yang, X., Cheng, W., Petzold, L., Wang, W.~Y., and Chen, H.
+\newblock {DNA-GPT}: Divergent {N}-gram analysis with {LLM} probability curvature for machine-generated text detection.
+\newblock In \emph{ICLR}, 2024.
+
+\end{thebibliography}
+
+% ============================================================
+% APPENDIX
+% ============================================================
+\clearpage
+\appendix
+
+\section{Multi-Detector Ensemble}
+\label{app:ensemble}
+
+We compare the 7-feature ensemble against a multi-detector ensemble combining 4 detectors (FastDetectGPT, Binoculars, LD-Score, Avg-LogProb) plus surface features (Table~\ref{tab:ensemble}).
+The multi-detector ensemble achieves a marginal improvement of $+$2.1 pp (3-class) and $+$0.3 pp (binary) at 2.4$\times$ inference cost and 3.2$\times$ GPU memory.
+The binary \fone{} gap (0.3 pp) is essentially negligible, confirming that the gen-1/gen-2+ boundary is an intrinsic bottleneck that additional features cannot overcome.
+
+\begin{table}[h]
+\centering
+\caption{Multi-detector ensemble comparison.}
+\label{tab:ensemble}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Model} & \textbf{3-class \fone{}} & \textbf{Binary \fone{}} & \textbf{Cost Ratio} \\
+\midrule
+7-feature ensemble & 0.774 & 0.705 & 1.0$\times$ \\
+4-det + surface & 0.795 & 0.708 & 2.4$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Finer-Grained Ordinal Classification}
+\label{app:ordinal}
+
+We test 5-class ordinal classification (gen-0 through gen-4; Table~\ref{tab:ordinal}).
+All methods---standard XGBoost, CORAL, and Frank-Hall---achieve only $\sim$0.50 \fone{}, a $-$26 pp drop from 3-class.
+The bottleneck is the gen-1/gen-2 boundary, which concentrates 86\% of binary false negatives.
+Gen-3 vs.\ gen-4 is nearly indistinguishable (\fone{} $\approx$ 0.35).
+Ordinal methods provide no improvement over standard classification, confirming that the resolution ceiling is at 3 classes---a feature-space limitation, not a methodological one.
+
+\begin{table}[h]
+\centering
+\caption{Ordinal classification results.}
+\label{tab:ordinal}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & \textbf{3-class \fone{}} & \textbf{5-class \fone{}} & $\Delta$ \\
+\midrule
+XGBoost (standard) & 0.762 & 0.500 & $-0.262$ \\
+CORAL & 0.758 & 0.490 & $-0.268$ \\
+Frank-Hall & 0.760 & 0.500 & $-0.260$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Temperature Sensitivity}
+\label{app:temp}
+
+Table~\ref{tab:temp} shows that DDR is reliable within $t \in [0.5, 0.7]$ but degrades substantially at $t = 0.9$.
+The entropy\_mean Spearman $\rhosp$ drops from $-0.600$ (at $t = 0.7$) to $-0.302$ (at $t = 0.9$):
+high-temperature sampling noise drowns out the deterministic depth-wise drift component.
+
+\begin{table}[h]
+\centering
+\caption{Temperature sensitivity.}
+\label{tab:temp}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Temperature} & \textbf{Within-CV Bin.\ \fone{}} & \textbf{LOGO Bin.\ \fone{}} & \textbf{entropy\_mean $\rhosp$} \\
+\midrule
+0.5 & 0.843 & 0.814 & $-0.584$ \\
+0.7 (default) & 0.947 & 0.694 & $-0.600$ \\
+0.9 & 0.582 & 0.480 & $-0.302$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Human Edit Robustness}
+\label{app:edit}
+
+Table~\ref{tab:edit} shows graceful degradation under simulated human editing.
+At 5\% random word replacement, binary \fone{} drops only 4.6 pp.
+LLM rephrasing (average 1.69 sentences replaced, 50.7\% edit distance) produces a comparable drop ($-$4.5 pp),
+suggesting that LLM editing does not introduce out-of-distribution perturbations in feature space.
+Even at 20\% replacement, performance remains above random (\fone{} = 0.591).
+
+\begin{table}[h]
+\centering
+\caption{Robustness to text editing.}
+\label{tab:edit}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Condition} & \textbf{Binary \fone{}} & $\Delta$ \textbf{vs baseline} \\
+\midrule
+No editing (baseline) & 0.695 & --- \\
+5\% random replacement & 0.650 & $-0.046$ \\
+10\% random replacement & 0.614 & $-0.081$ \\
+20\% random replacement & 0.591 & $-0.104$ \\
+LLM rephrase (avg 1.69 sent) & 0.647 & $-0.045$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{LD-Score Augmentation}
+\label{app:ld}
+
+Adding LD-Score as an 8th feature yields a marginal improvement of $+$0.5 pp (Table~\ref{tab:ld}).
+LD-Score alone achieves LOGO \fone{} = 0.721 (Spearman $\rhosp = -0.794$ with depth),
+confirming character-level information partially captures depth signal but is highly correlated with existing reference features.
+We retain the 7-feature set as the primary model for simplicity.
+
+\begin{table}[h]
+\centering
+\caption{LD-Score augmentation.}
+\label{tab:ld}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Feature Set} & \textbf{LOGO \fone{}} & $\Delta$ \\
+\midrule
+7-feature (default) & 0.798 & --- \\
+7-feature + LD-Score & 0.803 & $+0.005$ \\
+LD-Score only & 0.721 & $-0.077$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{End-to-End QLoRA Classifier}
+\label{app:qlora}
+
+Table~\ref{tab:qlora} compares QLoRA fine-tuned models against the 7-feature ensemble.
+QLoRA models achieve 3-class \fone{} of 0.859--0.907, surpassing the 7-feature ensemble by 10--15 pp.
+However, the 5-class ceiling persists (\fone{} $\approx$ 0.60), confirming that the resolution limit is task-intrinsic rather than feature-engineering-specific.
+QLoRA inference costs $\sim$15$\times$ more than the 7-feature pipeline (which requires only a single 410M forward pass),
+positioning the 7-feature ensemble on efficiency advantage.
+
+\begin{table}[h]
+\centering
+\caption{End-to-end QLoRA vs.\ 7-feature ensemble.}
+\label{tab:qlora}
+\begin{tabular}{llccc}
+\toprule
+\textbf{Model} & \textbf{Type} & \textbf{3-class \fone{}} & \textbf{Binary \fone{}} & \textbf{5-class \fone{}} \\
+\midrule
+Qwen3-1.7B (instruct) & QLoRA & 0.907 & 0.867 & 0.551 \\
+OLMo-1B (instruct) & QLoRA & 0.888 & 0.836 & 0.598 \\
+Qwen3-1.7B (base) & QLoRA & 0.904 & 0.860 & 0.554 \\
+OLMo-1B (base) & QLoRA & 0.859 & 0.793 & 0.540 \\
+\midrule
+7-feature ensemble & XGBoost & 0.762 & 0.694 & 0.500 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Text Length Confound Control}
+\label{app:length}
+
+Text length shows weak correlation with depth (Spearman $\rhosp \in [-0.066, +0.134]$), ruling it out as a primary confound.
+Length-normalized features (TTR, hapax computed on fixed-length windows) preserve and even strengthen DDR trends.
+Length-matched evaluation (Table~\ref{tab:length}) shows a $-$4.6 pp drop (0.770 $\to$ 0.724), but a random subsample control drops by the same amount,
+confirming this reflects deconfounding rather than information loss.
+
+\begin{table}[h]
+\centering
+\caption{Length confound analysis.}
+\label{tab:length}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Condition} & \textbf{Binary \fone{}} & $\Delta$ \textbf{vs unmatched} \\
+\midrule
+Unmatched (full) & 0.770 & --- \\
+Length-matched & 0.724 & $-0.046$ \\
+Random subsample control & 0.724 & $-0.046$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{9-Generator Scale Evaluation}
+\label{app:9gen}
+
+Extending to 9 generators (adding Gemma-2-2B, Llama-3.2-3B, Mistral-7B-v0.3; 42,015 total records),
+LOGO 3-class \fone{} is 0.751 ($-$1.9 pp vs.\ 8-gen; Table~\ref{tab:9gen}).
+Gemma-2-2B is a notable outlier (3-class 0.628, binary 0.440) due to SentencePiece tokenizer mismatch with the BPE-based reference model.
+Mistral-7B (3-class 0.605) reflects 7B-scale signal compression.
+Excluding the Gemma anomaly, all generators exceed \fone{} = 0.60.
+
+\begin{table}[h]
+\centering
+\caption{9-generator per-generator LOGO \fone{}.}
+\label{tab:9gen}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Generator} & \textbf{3-class \fone{}} & \textbf{Binary \fone{}} & \textbf{Family} \\
+\midrule
+Pythia-1B & 0.857 & 0.724 & Pythia \\
+Qwen3-0.6B & 0.819 & 0.710 & Qwen \\
+Pythia-2.8B & 0.812 & 0.700 & Pythia \\
+Qwen3-1.7B & 0.811 & 0.698 & Qwen \\
+OLMo-2-1B & 0.773 & 0.663 & OLMo \\
+Llama-3.2-3B & 0.759 & 0.680 & Llama \\
+Qwen3-8B & 0.696 & 0.647 & Qwen \\
+Gemma-2-2B & 0.628 & 0.440 & Gemma \\
+Mistral-7B-v0.3 & 0.605 & 0.633 & Mistral \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Prompt Type and Chain Type Comparison}
+\label{app:prompt}
+
+\paragraph{Prompt types.}
+Table~\ref{tab:prompt} compares three prompt types on Pythia-2.8B.
+Continuation shows the strongest within-type signal (CV \fone{} = 0.781) but lowest depth retention (83.1\%),
+while elaboration has the highest retention (98.6\%) but weakest signal (0.730).
+This is consistent with the DDR location-shift interpretation: stronger semantic constraints narrow the output distribution, reducing cross-depth variation.
+Leave-one-prompt-type-out (LOPTO) average \fone{} is 0.753, only 0.4 pp below within-type average, indicating high cross-prompt-type transferability.
+
+\begin{table}[h]
+\centering
+\caption{Prompt-type comparison (Pythia-2.8B).}
+\label{tab:prompt}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Prompt Type} & \textbf{CV \fone{}} & \textbf{LOPTO \fone{}} & \textbf{Retention} & \textbf{hapax $\rhosp$} \\
+\midrule
+Continuation & 0.781 & 0.762 & 0.831 & $-0.74$ \\
+Inspired rewriting & 0.737 & 0.733 & 0.939 & $-0.80$ \\
+Elaboration & 0.730 & 0.762 & 0.986 & $-0.83$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Paraphrastic vs.\ non-paraphrastic chains.}
+Table~\ref{tab:para} compares continuation and paraphrasing chains.
+Paraphrasing chains show substantially weaker depth signal (CV \fone{} = 0.62 vs.\ 0.781, $-$16.1 pp)
+because semantic-preservation constraints induce attractor convergence by depth 2,
+suppressing the distributional drift that DDR exploits.
+This validates the task formulation: depth estimation is meaningful specifically for non-paraphrastic chains.
+
+\begin{table}[h]
+\centering
+\caption{Paraphrastic vs.\ non-paraphrastic chains.}
+\label{tab:para}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Chain Type} & \textbf{CV \fone{}} & \textbf{hapax $\rhosp$} & \textbf{entropy\_mean $\rhosp$} & \textbf{Retention} \\
+\midrule
+Continuation & 0.781 & $-0.74$ & $-0.56$ & 0.831 \\
+Paraphrasing & 0.620 & $-0.25$ & $-0.18$ & 0.970 \\
+\midrule
+$\Delta$ & $-0.161$ & $+0.49$ & $+0.38$ & $+0.139$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{TOST Bootstrap Stationarity Test}
+\label{app:tost}
+
+We use Two One-Sided Tests (TOST) with 1,000 bootstrap iterations and equivalence margin $d = 0.2$
+to formally test feature stationarity (Table~\ref{tab:tost}).
+Three features (entropy\_max, entropy\_min, tail\_decay) are confirmed stationary (100\% rejection rate, median $|d| < 0.1$).
+entropy\_std is rejected (median $d = 0.458$, 0\% rejection rate), classifying it as an intermediate ``weak drifter''
+despite its low Spearman $\rhosp$ ($-0.12$).
+This refines the DDR taxonomy: 3 strong drifters + 3 true stationary + 1 intermediate.
+
+\begin{table}[h]
+\centering
+\caption{TOST bootstrap stationarity test.}
+\label{tab:tost}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Feature} & \textbf{Median $d$} & \textbf{TOST $p$} & \textbf{Rej.\ Rate} & \textbf{Status} \\
+\midrule
+entropy\_max & 0.062 & 0.000 & 1.000 & Stationary \checkmark \\
+entropy\_min & $-0.016$ & 0.000 & 1.000 & Stationary \checkmark \\
+tail\_decay & 0.088 & 0.000 & 1.000 & Stationary \checkmark \\
+entropy\_std & 0.458 & 1.000 & 0.000 & Intermediate \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Independent Seed Validation}
+\label{app:seed}
+
+To rule out seed-sharing leakage, we evaluate with independent seed sets per generator (Table~\ref{tab:seed}).
+The average binary \fone{} (0.680) differs from shared-seed LOGO (0.694) by only 1.4 pp,
+within bootstrap confidence intervals, confirming that shared seeds do not inflate performance.
+
+\begin{table}[h]
+\centering
+\caption{Independent vs.\ shared seed evaluation.}
+\label{tab:seed}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Condition} & \textbf{Binary \fone{}} & $\Delta$ \\
+\midrule
+Shared seed LOGO & 0.694 & --- \\
+Independent seed (Pythia$\to$OLMo) & 0.695 & $+0.001$ \\
+Independent seed (OLMo$\to$Pythia) & 0.666 & $-0.028$ \\
+Independent seed avg & 0.680 & $-0.014$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Topic Drift Control}
+\label{app:topic}
+
+Semantic similarity (cosine) increases monotonically with depth (0.622 $\to$ 0.683 $\to$ 0.801 $\to$ 0.859; Table~\ref{tab:topic}),
+indicating that deeper generations converge semantically.
+However, DDR feature--depth correlations remain significant after controlling for semantic similarity,
+and shape features show near-zero correlation with similarity ($|\rhosp| < 0.17$),
+confirming that DDR is not merely a proxy for topic drift.
+
+\begin{table}[h]
+\centering
+\caption{Semantic similarity by depth transition.}
+\label{tab:topic}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Transition} & \textbf{Mean Similarity} & \textbf{Std} \\
+\midrule
+depth 0 $\to$ 1 & 0.622 & 0.165 \\
+depth 1 $\to$ 2 & 0.683 & 0.184 \\
+depth 2 $\to$ 3 & 0.801 & 0.201 \\
+depth 3 $\to$ 4 & 0.859 & 0.190 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}

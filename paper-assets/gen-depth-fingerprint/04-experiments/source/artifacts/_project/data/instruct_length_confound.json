@@ -1,0 +1,1 @@
+See results/instruct_length_confound.json on autodl-5090. Key findings: length confound confirmed (rho=-0.58 for 0.6B, -0.52 for 1.7B). Length-matched subset: 0.6B surface rho drops to ~0, 1.7B drops 60-90%. Partial correlations: residual 0.10-0.17. Binary gen-1 vs gen-2+ LOGO F1: 0.55 (0.6B), 0.51 (1.7B) = near chance.

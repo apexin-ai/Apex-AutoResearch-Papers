@@ -1,0 +1,26 @@
+Table~\ref{tab:gen-subsets} summarizes the generator subsets used across experiments.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Generator subsets by experiment type.}
+\label{tab:gen-subsets}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lcl}
+\toprule
+\textbf{Experiment} & $\boldsymbol{N}$ & \textbf{Generators} \\
+\midrule
+Main LOGO (Table~\ref{tab:logo-results}) & 8 & All: Py-2.8B/1B, OLMo, Qw-1.7B/0.6B/8B, Llama, Mistral \\
+Cross-model chains (Table~\ref{tab:cross-ref}) & 5 & Py-2.8B/1B, OLMo, Qw-1.7B/0.6B \\
+QLoRA (Table~\ref{tab:qlora}) & 6 & Py-2.8B/1B, OLMo, Qw-1.7B/0.6B/8B \\
+Temperature ablation (Table~\ref{tab:sampling-ablation}) & 4 & Py-2.8B, OLMo, Qw-1.7B/0.6B \\
+Prompt-type (Appendix~\ref{app:prompt-type}) & 1 & Py-2.8B only \\
+Cross-domain (Table~\ref{tab:domain}) & 3 & Py-1B, Qw-1.7B, Mistral \\
+Instruct (Table~\ref{tab:instruct}) & 3 & OLMo, Qw-1.7B, Llama \\
+Downstream (Appendix~\ref{app:downstream}) & 5 & Py-2.8B/1B, OLMo, Qw-1.7B/0.6B \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+The 5-generator set was the initial development subset; Qwen3-8B was added for scale evaluation, and Llama-3.2-3B and Mistral-7B-v0.3 were added last for family-diversity testing.
+Subset differences reflect chronological expansion rather than selective reporting.

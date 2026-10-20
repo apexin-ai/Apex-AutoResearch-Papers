@@ -1,0 +1,59 @@
+{
+  "pythia": {
+    "macro_f1": 0.7717,
+    "train_gens": [
+      "olmo-2-1b",
+      "qwen3-0.6b",
+      "qwen3-1.7b",
+      "qwen3-8b"
+    ],
+    "test_gens": [
+      "pythia-1b",
+      "pythia-2.8b"
+    ],
+    "train_size": 11808,
+    "test_size": 9164,
+    "per_generator_f1": {
+      "pythia-1b": 0.7932,
+      "pythia-2.8b": 0.7506
+    }
+  },
+  "olmo": {
+    "macro_f1": 0.7616,
+    "train_gens": [
+      "pythia-1b",
+      "pythia-2.8b",
+      "qwen3-0.6b",
+      "qwen3-1.7b",
+      "qwen3-8b"
+    ],
+    "test_gens": [
+      "olmo-2-1b"
+    ],
+    "train_size": 14790,
+    "test_size": 4713,
+    "per_generator_f1": {
+      "olmo-2-1b": 0.7616
+    }
+  },
+  "qwen": {
+    "macro_f1": 0.7544,
+    "train_gens": [
+      "olmo-2-1b",
+      "pythia-1b",
+      "pythia-2.8b"
+    ],
+    "test_gens": [
+      "qwen3-0.6b",
+      "qwen3-1.7b",
+      "qwen3-8b"
+    ],
+    "train_size": 8910,
+    "test_size": 13652,
+    "per_generator_f1": {
+      "qwen3-0.6b": 0.8033,
+      "qwen3-1.7b": 0.7885,
+      "qwen3-8b": 0.673
+    }
+  }
+}

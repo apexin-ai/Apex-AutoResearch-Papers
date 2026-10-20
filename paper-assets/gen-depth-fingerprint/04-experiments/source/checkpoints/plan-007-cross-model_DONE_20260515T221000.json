@@ -1,0 +1,55 @@
+{
+  "exp_id": "plan-007-cross-model",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:41:08.851Z",
+    "updated_at": "2026-05-15T22:10:00.047Z",
+    "hypothesis": "Cross-model chains (different generator per depth step) vs single-model chains: depth signal 在更真实的多生成器场景下是否保持",
+    "spec": {
+      "command": "python cross_model_chains.py --phase generate --device cuda:X --shard Y --num-shards 2",
+      "server": "autodl-5090",
+      "gpu": "cuda:2 (shard0 PID 241978), cuda:3 (shard1 PID 242205)",
+      "data_path": "data/cross-model-chains/",
+      "data_count": "995 seeds x 5 depths, each depth uses random generator from pool of 5",
+      "model_name": "Cross-model: Pythia-2.8B, Pythia-1B, OLMo-2-1B, Qwen3-0.6B, Qwen3-1.7B (random per depth). Reference: Pythia-410M",
+      "seed": "deterministic per seed_id",
+      "pid": "241978 (shard0), 242205 (shard1)"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "3class_macro_f1": 0.8089,
+      "3class_f1_std": 0.0166,
+      "binary_f1_gen1_vs_gen2plus": 0.7635,
+      "binary_f1_gen0_vs_gen2plus": 0.8372,
+      "per_class_f1": {
+        "gen0": 0.9285,
+        "gen1": 0.7367,
+        "gen2plus": 0.7614
+      },
+      "n_samples": 4773,
+      "avg_generators_per_chain": 3,
+      "feature_importance": {
+        "hapax_ratio": 0.357,
+        "entropy_mean": 0.204,
+        "ttr": 0.202
+      },
+      "vs_single_model": {
+        "pythia-1b": 0.8622,
+        "qwen3-0.6b": 0.8354,
+        "pythia-2.8b": 0.8156,
+        "qwen3-1.7b": 0.8106,
+        "olmo-2-1b": 0.7801,
+        "cross-model": 0.8089
+      }
+    },
+    "checkpoint_path": "/root/gen-depth-fingerprint/results/cross_model_chains_results.json",
+    "log_path": "/tmp/plan007_shard0.log",
+    "completed_at": "2026-05-15T22:10:00.047Z"
+  },
+  "timestamp": "2026-05-15T22:10:00.155661+00:00",
+  "trigger": "update_registry"
+}

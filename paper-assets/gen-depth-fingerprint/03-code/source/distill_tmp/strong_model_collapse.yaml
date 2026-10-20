@@ -1,0 +1,96 @@
+paper_key: "strong_model_collapse"
+title: "Strong Model Collapse"
+venue: "ICLR 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "Training on real data only (p₂=0)"
+    - "Theoretical predictions from Theorems 1-2"
+    - "Weighted single-step mixing (Jain et al. 2024)"
+    - "Dynamic multi-step mixing (Ferbach et al. 2024)"
+  metrics:
+    - {name: "Test Error (MSE)", direction: "lower_better"}
+    - {name: "Collapse term ζ", direction: "lower_better", note: "additional error from synthetic data"}
+  datasets:
+    - {name: "Synthetic Gaussian data", size: "d=600, n=500", domain: "toy/theoretical validation"}
+    - {name: "MNIST", size: "standard", domain: "image classification with two-layer networks"}
+    - {name: "BabiStories (TinyStories reproduction)", size: "generated via Mixtral-8x7B", domain: "language modeling with GPT-2"}
+  ablation_dimensions:
+    - synthetic_data_fraction (p₂ from 0 to 1)
+    - synthetic_data_quality (c² ∈ {0, 0.1, 0.5, 1})
+    - model_size (width m, varying m/n ratio)
+    - interpolation_threshold (underparametrized vs overparametrized)
+    - regularization_strength (ridge parameter λ)
+    - mitigation_strategy (weighted mixing vs multi-step distillation)
+  training_recipe:
+    optimizer: "Ridge regression (closed-form); GPT-2 standard training for LM experiments"
+    lr: "N/A for ridge; standard for GPT-2"
+    hardware: "Not specified"
+    statistical_runs: "5 runs with error bars for random projections experiments"
+  method_family: "theoretical analysis of model collapse (bias-variance decomposition with collapse term)"
+
+positioning:
+  core_claim: "Even the smallest fraction of synthetic data (as little as 1%) causes irreversible model collapse—an additional error term ζ proportional to p₂² that persists regardless of dataset size, model scaling, or mixing strategy, unless synthetic data is completely removed."
+  key_results: "Test error decomposes as B + V + ζ where ζ = Ω(p₂²c²) is the collapse term; larger models amplify collapse below interpolation threshold but may recover beyond it; weighted mixing and multi-step distillation cannot prevent collapse."
+  limitations:
+    - "Analysis restricted to linear models and random projections approximation (neural tangent kernel proxy)"
+    - "Gaussian data assumption for theoretical results"
+    - "Does not cover sophisticated mitigation strategies like data curation/filtering"
+    - "Language modeling experiments on small scale (TinyStories/GPT-2) rather than full LLM systems"
+    - "Label shift model (δ = w*₂ - w*₁) may not capture all forms of distribution mismatch in practice"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "'Model Collapse refers to a critical degradation in the performance of AI models, particularly when a significant portion of their training data consists of synthetic data'—immediately framing a crisis relevant to all modern LLM training pipelines."
+  tension: "Prior work showed collapse in iterative retraining loops, but practitioners assumed mixing real and synthetic data would be safe. The paper challenges this assumption: even 1% synthetic data breaks scaling laws."
+  key_insight: "Formalized in Theorem 1 and Corollary 1 (Section 2-3)—the collapse term ζ = Ω(p₂²c²) is structurally irreducible. It emerges from a rigorous bias-variance decomposition where ζ is a third, previously unrecognized component. The insight is that collapse is not a finite-sample artifact but a fundamental property of mixed-distribution learning."
+  argument_chain: "Model collapse is a real crisis → prior work studied iterative loops but not realistic mixing → two key questions (is collapse inevitable with mixing? do larger models suffer more?) → formal bias-variance-collapse decomposition → Theorem 1 (linear model) + Theorem 2 (random projections) → even 1% synthetic data creates persistent ζ → larger models amplify collapse below interpolation threshold → weighted/multi-step mixing cannot prevent collapse → validated on MNIST and GPT-2/BabiStories"
+  contribution_framing: "Three contributions under Section 1.1 'Main Contributions': Result #1 (strong collapse persists with mixed data), Result #2 (model size amplifies collapse), Experimental Validation. Uses formal 'Result' numbering emphasizing theoretical novelty."
+  intro_structure: "5 paragraphs: P1=definition+framing (model collapse as crisis), P2=problem context (empirical observations, scaling laws), P3=motivation (why this matters for ChatGPT/Llama-scale systems), P4=research questions (Q1: inevitable? Q2: model size effect?), P5=main contributions (three numbered results)"
+  notable_technique: "Posing two sharp research questions (Q1, Q2) in the intro that structure the entire paper. Each theorem directly answers one question, making the paper's logic feel inevitable. Also the naming choice 'Strong Model Collapse' (vs implicit 'weak') creates a memorable taxonomy."
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "teaser_result"
+    description: "Pareto diagram showing test error with mixed real+synthetic data vs real-only data. Points colored by synthetic data quality (squares=very high, diamonds=high, triangles=low, stars=very low). Colorbar shows m/n ratio (model size relative to data)."
+    narrative_role: "Immediately conveys the main result visually—no amount of mixing avoids the collapse penalty. Points above the diagonal = worse than real-only training."
+    design_elements: ["Pareto frontier", "shape encoding for quality levels", "colorbar for model size ratio", "diagonal reference line (real-only baseline)"]
+    visual_style: "Scatter plot with multiple shape markers encoding categorical variable (data quality) and continuous colorbar encoding model size ratio. Clean 2D layout showing trade-off between real-only and mixed performance."
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Theoretical predictions (dashed) vs empirical results (solid) for test error vs sample count across multiple synthetic data quality levels c²"
+      how_gain_highlighted: "Perfect theory-experiment alignment validates the theoretical framework; multiple c² curves show collapse severity scales with quality"
+      design_note: "Theory-experiment overlay (solid vs dashed) is the key design choice—demonstrates theoretical rigor. Multiple curves for c² ∈ {0, 0.1, 0.5, 1} show parametric dependence."
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Test error vs model size (m) for varying synthetic fractions p₂ across four data quality levels"
+      how_gain_highlighted: "Darker lines (higher p₂) show worse performance; visible divergence from p₂=0 baseline; double-descent visible at m≈n"
+      design_note: "Four subplots for quality levels; color gradient for p₂; error bars over 5 runs; vertical line at interpolation threshold m=n."
+  ablation_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      dimensions_varied: ["model size m", "decomposition components (B, V, ζ)"]
+      design_note: "Illustrates the B+V+ζ decomposition across model sizes. Shows classical double-descent in bias curve; vertical line at m=n interpolation threshold; ζ term (collapse) shown in distinct color (red). Pedagogical figure explaining the theoretical framework."
+  figure_narrative_role: "Figure 1 (teaser: collapse shown via Pareto diagram) → Figure 2 (framework: B+V+ζ decomposition illustrated) → Figure 3 (validation: theory matches experiment for linear model) → Figure 4 (extension: model size effects with double-descent) → Figure 5 (extension: additional model size analysis). Flow: claim → framework → validate → extend."
+
+tables:
+  table_count: 0
+  main_result_table:
+    table_id: "N/A"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A"
+    statistical_reporting: "N/A"
+    num_baselines: 0
+    design_note: "Notably, this theory-heavy paper uses NO tables in the main text. All results are communicated through figures (theory-experiment overlay plots) and theorem statements. This is typical for theoretical ML papers where the primary 'results' are theorems rather than benchmark numbers."
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Appendix contains experimental details (A.1-A.3) for toy, MNIST, and GPT-2 settings, but results are presented as figures rather than tables."
+    reason: "Theory paper convention: theorems are the main results; figures validate theory vs experiment; tables would not add value since comparisons are between theoretical predictions and empirical measurements rather than between competing methods."

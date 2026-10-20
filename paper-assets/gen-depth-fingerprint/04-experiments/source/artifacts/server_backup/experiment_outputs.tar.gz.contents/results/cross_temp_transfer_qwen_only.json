@@ -1,0 +1,136 @@
+{
+  "experiment": "cross_temperature_transfer_qwen3-1.7b",
+  "generator": "qwen3-1.7b",
+  "date": "2026-05-17",
+  "hyperparams": {
+    "n_estimators": 200,
+    "max_depth": 6,
+    "lr": 0.1
+  },
+  "features": [
+    "entropy_mean",
+    "entropy_std",
+    "entropy_min",
+    "entropy_max",
+    "tail_decay",
+    "ttr",
+    "hapax_ratio"
+  ],
+  "method": "Single-generator cross-temperature transfer. Within-temp: 5-fold stratified CV. Cross-temp: train on all source-temp data, test on all target-temp data. Bootstrap CI: n=1000, 95%.",
+  "data_info": {
+    "t07": {
+      "path": "data/features_qwen3-1.7b.csv",
+      "n_samples": 4617,
+      "depth_dist": {
+        "0": 996,
+        "1": 983,
+        "2": 941,
+        "3": 875,
+        "4": 822
+      }
+    },
+    "t10": {
+      "path": "data/features_qwen3-1.7b-high-temp.csv",
+      "n_samples": 4702,
+      "depth_dist": {
+        "0": 996,
+        "1": 987,
+        "2": 958,
+        "3": 907,
+        "4": 854
+      }
+    }
+  },
+  "results": {
+    "0.7_to_0.7": {
+      "binary_f1": 0.9262,
+      "binary_ci95": [
+        0.9161,
+        0.9352
+      ],
+      "per_class_binary": {
+        "0": 0.8846,
+        "1": 0.9677
+      },
+      "three_class_f1": 0.769,
+      "three_class_ci95": [
+        0.7562,
+        0.7812
+      ],
+      "per_class_three_class": {
+        "0": 0.8835,
+        "1": 0.5789,
+        "2": 0.8447
+      }
+    },
+    "1.0_to_1.0": {
+      "binary_f1": 0.8248,
+      "binary_ci95": [
+        0.81,
+        0.8376
+      ],
+      "per_class_binary": {
+        "0": 0.7188,
+        "1": 0.9308
+      },
+      "three_class_f1": 0.5738,
+      "three_class_ci95": [
+        0.5603,
+        0.5877
+      ],
+      "per_class_three_class": {
+        "0": 0.7324,
+        "1": 0.2147,
+        "2": 0.7744
+      }
+    },
+    "0.7_to_1.0": {
+      "binary_f1": 0.7574,
+      "binary_ci95": [
+        0.7445,
+        0.7697
+      ],
+      "per_class_binary": {
+        "0": 0.6676,
+        "1": 0.8473
+      },
+      "three_class_f1": 0.4581,
+      "three_class_ci95": [
+        0.4449,
+        0.4724
+      ],
+      "per_class_three_class": {
+        "0": 0.6348,
+        "1": 0.2702,
+        "2": 0.4693
+      }
+    },
+    "1.0_to_0.7": {
+      "binary_f1": 0.9443,
+      "binary_ci95": [
+        0.9361,
+        0.9525
+      ],
+      "per_class_binary": {
+        "0": 0.9116,
+        "1": 0.9771
+      },
+      "three_class_f1": 0.6014,
+      "three_class_ci95": [
+        0.5927,
+        0.6109
+      ],
+      "per_class_three_class": {
+        "0": 0.9273,
+        "1": 0.0497,
+        "2": 0.8273
+      }
+    }
+  },
+  "cross_temp_delta": {
+    "0.7_train_binary_delta_pp": -0.1688,
+    "0.7_train_3class_delta_pp": -0.3109,
+    "1.0_train_binary_delta_pp": 0.1195,
+    "1.0_train_3class_delta_pp": 0.0276
+  }
+}

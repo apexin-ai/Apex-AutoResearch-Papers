@@ -1,0 +1,10 @@
+{
+  "6gen_unfiltered_3class": 0.7879,
+  "6gen_unfiltered_binary": 0.7215,
+  "6gen_filtered_3class": 0.7226,
+  "6gen_filtered_binary": 0.6386,
+  "8gen_unfiltered_3class": 0.762,
+  "8gen_unfiltered_binary": 0.6944,
+  "8gen_filtered_3class": 0.7108,
+  "8gen_filtered_binary": 0.6183
+}

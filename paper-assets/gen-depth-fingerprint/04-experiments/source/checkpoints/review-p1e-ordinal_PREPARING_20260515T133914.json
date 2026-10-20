@@ -1,0 +1,14 @@
+{
+  "exp_id": "review-p1e-ordinal",
+  "project": "gen-depth-fingerprint",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:39:14.393Z",
+    "updated_at": "2026-05-15T13:39:14.393Z"
+  },
+  "timestamp": "2026-05-15T13:39:14.478333+00:00",
+  "trigger": "update_registry"
+}

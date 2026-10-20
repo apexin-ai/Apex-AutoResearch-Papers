@@ -1,0 +1,73 @@
+Can depth-aware data curation improve downstream language model quality?
+We fine-tune OLMo-2-0425-1B on five data variants (3 seeds each) and evaluate perplexity on a held-out test set (Table~\ref{tab:downstream}).
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Downstream fine-tuning perplexity (OLMo-2-0425-1B, mean $\pm$ std across 3 seeds). At equal sample count, random subsampling (2.367) outperforms depth-aware curation (depth 0--1: 2.387, binary-filtered: 2.389).}
+\label{tab:downstream}
+\begin{tabular}{lrc}
+\toprule
+\textbf{Variant} & \textbf{$n$} & \textbf{Test PPL} \\
+\midrule
+All depths            & 12{,}299 & 2.335 $\pm$ 0.000 \\
+Size-matched (random) & 3{,}951  & 2.367 $\pm$ 0.000 \\
+Depth 0--1 only       & 3{,}951  & 2.387 $\pm$ 0.001 \\
+Binary-filtered       & 3{,}951  & 2.389 $\pm$ 0.000 \\
+Depth 0 only          & 797      & 2.681 $\pm$ 0.001 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The results are unambiguous: data quantity dominates depth composition.
+Training on all 12{,}299 samples yields the lowest perplexity (2.335).
+At equal sample count ($n$\,=\,3{,}951), random subsampling (2.367) \emph{outperforms} both depth-stratified selection (depth 0--1: 2.387) and binary detection filtering (2.389).
+Cross-seed variance is below 0.002 across all variants, which confirms the robustness of this null result.
+
+Restricting training to human-only text (depth 0, $n$\,=\,797) produces a sharp perplexity increase to 2.681, driven primarily by the 5$\times$ reduction in data volume rather than depth composition per se.
+
+\paragraph{Equivalence testing.}
+We apply a two one-sided $t$-test (TOST) with a $\pm$2\% relative margin (equivalence bounds $\pm$0.047 on the ppl scale) to formally assess whether the depth-aware and random subsampling conditions produce practically indistinguishable perplexity.
+At equal sample count ($n$\,=\,3{,}951): size-matched (random) ppl\,=\,2.367 vs.\ depth 0--1 ppl\,=\,2.387, $\Delta$\,=\,0.020.
+TOST confirms equivalence ($p = 1.1 \times 10^{-4}$); the two curation strategies yield practically indistinguishable downstream quality within the $\pm$2\% margin.
+Cross-seed standard deviation is below 0.001 for both variants.
+
+Comparing the full dataset ($n$\,=\,12{,}299, ppl\,=\,2.335) against the depth-filtered subset ($n$\,=\,3{,}951, ppl\,=\,2.387): TOST \emph{rejects} equivalence (minimum equivalence margin\,=\,0.053, exceeding the $\pm$2\% bound), which confirms that data quantity drives perplexity reduction beyond what depth-aware selection can recover.
+
+Knowing the generation depth of a document does not, by itself, make it more or less useful for training; at fixed sample count, depth-aware curation is statistically equivalent to uninformed random subsampling.
+
+\subsection*{Margin Sensitivity Analysis}
+
+To assess the robustness of the equivalence conclusion to margin choice, we repeat the TOST procedure across multiple equivalence margins \cite{lakens_equivalence}, following the recommendation to report sensitivity across plausible bounds rather than relying on a single threshold (Table~\ref{tab:tost-margins}).
+
+\begin{table}[ht]
+\centering
+\small
+\caption{TOST equivalence testing across multiple margins. ``Equiv?'' indicates whether equivalence is established at $\alpha = 0.05$.}
+\label{tab:tost-margins}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llcc}
+\toprule
+\textbf{Comparison} & \textbf{Margin} & \textbf{Equiv?} & \textbf{TOST $p$} \\
+\midrule
+Full (12{,}299) vs.\ Random (3{,}951) & $\pm$1\% & No & 1.0 \\
+                                        & $\pm$2\% & Yes & $1 \times 10^{-6}$ \\
+                                        & $\pm$3\% & Yes & $< 10^{-10}$ \\
+                                        & $\pm$5\% & Yes & $< 10^{-10}$ \\
+\midrule
+Full (12{,}299) vs.\ Depth 0--1 (3{,}951) & $\pm$1\% & No & 1.0 \\
+                                            & $\pm$2\% & No & 1.0 \\
+                                            & $\pm$3\% & Yes & $< 10^{-10}$ \\
+                                            & $\pm$5\% & Yes & $< 10^{-10}$ \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+The full dataset vs.\ random subsample comparison passes equivalence at the $\pm$2\% margin ($p = 10^{-6}$), while the full vs.\ depth 0--1 comparison requires a $\pm$3\% margin.
+In absolute terms, perplexity differences are small: $\Delta$\,=\,0.032 (full vs.\ random, 1.4\% of baseline) and $\Delta$\,=\,0.052 (full vs.\ depth 0--1, 2.2\% of baseline).
+
+Cohen's $d$ values are 86.0 (full vs.\ random) and 119.7 (full vs.\ depth 0--1).
+These appear large but are unreliable: with only $n$\,=\,3 seeds per condition, the pooled standard deviation is extremely small ($<$0.001), artificially inflating $d$.
+The inflated effect sizes reflect low seed-level variance (confirming reproducibility) rather than practically meaningful perplexity differences.
+The TOST framework with pre-specified relative margins provides a more appropriate assessment than Cohen's $d$ in this low-seed regime.
+However, with only $n{=}3$ seeds per condition, the TOST results have limited generalizability: the test is valid given observed variance but the conclusion generalizes over only three random seeds. We characterize this as a preliminary observation rather than a definitive null result.

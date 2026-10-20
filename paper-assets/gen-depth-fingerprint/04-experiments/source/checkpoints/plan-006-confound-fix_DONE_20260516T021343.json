@@ -1,0 +1,53 @@
+{
+  "exp_id": "plan-006-confound-fix",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:25:20.954Z",
+    "updated_at": "2026-05-16T02:13:43.706Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python paraphrastic_chains.py --phase all --device cuda:0",
+      "server": "autodl-5090",
+      "gpu": "cuda:1",
+      "data_path": "data/wiki_seed_1000.jsonl",
+      "data_count": "995 seeds x 5 depths",
+      "model_name": "Pythia-2.8B",
+      "seed": 42,
+      "hypothesis": "Confound fix: paraphrastic chains with matched generation parameters (rp=1.0, max_tokens=256) vs continuation, isolating prompt type effect",
+      "pid": 256127,
+      "log_path": "/tmp/plan006_confound_fix.log",
+      "checkpoint_path": "data/pythia-2.8b-paraphrase/generations_shard0.jsonl",
+      "changes": "paraphrastic_chains.py: repetition_penalty 1.3->1.0, max_new_tokens 200->256"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-16T01:52:44.000Z",
+    "metrics": {
+      "n_paraphrastic_clean": 4912,
+      "n_paraphrastic_contaminated_removed": 4754,
+      "paraphrastic_3class_f1": 0.742,
+      "paraphrastic_binary_f1": 0.671,
+      "continuation_3class_f1": 0.788,
+      "continuation_binary_f1": 0.749,
+      "f1_3class_delta": -0.046,
+      "spearman_entropy_mean_para": -0.533,
+      "spearman_entropy_mean_cont": -0.675,
+      "entropy_reversal_was_artifact": true,
+      "cross_transfer_para_to_cont_f1": 0.77,
+      "cross_transfer_cont_to_para_f1": 0.743,
+      "depth_retention_para": 0.97,
+      "vs_contaminated": {
+        "old_3class_f1": 0.68,
+        "new_3class_f1": 0.742,
+        "old_binary_f1": 0.539,
+        "new_binary_f1": 0.671,
+        "old_entropy_rho": 0.394,
+        "new_entropy_rho": -0.533
+      }
+    }
+  },
+  "timestamp": "2026-05-16T02:13:43.810920+00:00",
+  "trigger": "update_registry"
+}

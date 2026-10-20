@@ -1,0 +1,156 @@
+[
+  {
+    "name": "feature_ablation_and_trend",
+    "description": "Feature ablation (full vs surface-only vs reference-only) + per-feature trend analysis + perplexity pre-validation on existing MVP data.",
+    "results": {
+      "full_macro_f1": 0.81,
+      "surface_only_f1": 0.75,
+      "reference_only_f1": 0.71,
+      "ref_vs_surf_bootstrap_ci_overlap": false,
+      "h2_features": "entropy_mean, ttr, hapax_ratio",
+      "h1_features": "tail_decay, entropy_std",
+      "h1_borderline": "entropy_min (weak drift ρ≈-0.15, not cleanly stationary)",
+      "entropy_mean_slope_per_depth": -0.28,
+      "ttr_slope_per_depth": -0.05,
+      "hapax_slope_per_depth": -0.04,
+      "tail_decay_slope_per_depth": -0.005,
+      "entropy_std_slope_per_depth": -0.02,
+      "median_ppl_by_depth": [
+        13.5,
+        5.0,
+        3.1,
+        2.2,
+        1.8
+      ],
+      "ppl_depth_spearman": -0.92
+    },
+    "tables": [
+      "Table: Ablation 3-class macro F1 (5-fold CV on Pythia-2.8B MVP data) — Full: 0.81, Surface: 0.75, Reference: 0.71, Chance: 0.33",
+      "Table: Per-feature Spearman ρ with depth — hapax_ratio: -0.65, ttr: -0.63, entropy_mean: -0.55, entropy_min: -0.15, entropy_std: -0.08, tail_decay: -0.04, entropy_max: +0.05"
+    ],
+    "figures": [],
+    "analysis": "Ablation 确认 complementarity 但 gap 不 dramatic（full vs best-single-group 仅 +6pp）。这在 median 档意味着 Claim 2 需从 'independent signals' 调整为 'partially complementary signals with shared variance'。entropy_min 的 borderline 行为预示跨架构不一致性。perplexity 趋势支持 Claim 3 hypothesis 但后续 plan_004 将显示 quantity > composition。\n\n在 median 档，differential response 模式真实存在但不完美 clean。surface features 因直接捕获 vocabulary impoverishment（depth 增加→词汇多样性下降）而有不错的独立信号（0.75）。reference features 略弱（0.71）因为 shape features 贡献有限——entropy_std 在 MVP 数据上呈微弱漂移而非完美平稳。full model 通过 complementarity 获得 ~6pp 增益但不足以 claim 'dramatically different signals'。entropy_min 处于 H1/H2 边界，这在后续跨生成器实验中会成为 architecture-dependent 不一致性的来源。perplexity 按 depth 显著递减确认 Claim 3 信号存在但不保证 filtering 有效。"
+  },
+  {
+    "name": "cross_generator_evaluation",
+    "description": "5-generator LOGO evaluation: Pythia-2.8B, Pythia-1B, OLMo-2-1B, Qwen3-1.7B, Qwen3-0.6B. Leave-one-generator-out + leave-one-family-out.",
+    "results": {
+      "logo_avg_3class_f1": 0.78,
+      "logo_avg_binary_f1": 0.71,
+      "per_generator_held_out": {
+        "pythia-1b": 0.84,
+        "pythia-2.8b": 0.8,
+        "qwen3-0.6b": 0.79,
+        "qwen3-1.7b": 0.76,
+        "olmo-2-1b": 0.73
+      },
+      "per_gen_f1_std": 0.042,
+      "leave_one_family_out": {
+        "pythia_family_out": 0.74,
+        "qwen_family_out": 0.78,
+        "olmo_family_out": 0.8
+      },
+      "family_out_avg_delta_vs_logo": -0.02,
+      "ablation_full_f1": 0.78,
+      "ablation_surface_only_f1": 0.74,
+      "ablation_reference_only_f1": 0.73,
+      "top_features": [
+        "hapax_ratio_0.28",
+        "ttr_0.17",
+        "entropy_mean_0.16"
+      ],
+      "seven_feat_vs_avg_logprob_pp": 3.0
+    },
+    "tables": [
+      "Table: LOGO per-generator held-out 3-class F1 — Pythia-1B: 0.84, Pythia-2.8B: 0.80, Qwen3-0.6B: 0.79, Qwen3-1.7B: 0.76, OLMo-2-1B: 0.73",
+      "Table: Leave-one-family-out comparison — Pythia-out: 0.74, Qwen-out: 0.78, OLMo-out: 0.80 (Pythia penalized most because 2 generators removed)"
+    ],
+    "figures": [],
+    "analysis": "5-gen LOGO 结果 positive 但 per-gen variance（0.73-0.84）已暗示 architecture matters。OLMo 的 0.73 是预警信号——不同 training data distribution 导致 depth response 幅度不同。Leave-one-family-out 显示 Pythia-out drop 最大（-4pp），因为 2 个 Pythia 生成器移除后 training diversity 下降。7-feature vs Avg-LogProb 优势约 3pp，在 CI 内 significant 但不 overwhelming。这与 median 定义的 'complementarity 在部分生成器上弱化' 一致——OLMo held-out 时 7-feat vs AvgLogProb 差距仅 1.5pp。\n\n在 median 档，5 个 ≤2.8B 生成器（3 family）的 LOGO 表现 reasonably strong（0.78 3-class）。cross-family gap 存在但 moderate（~2pp），因为这些生成器都在 ≤2.8B 范围，共享基本的 autoregressive generation 特征。Pythia-1B 因与 Pythia-2.8B 同 family 且与 reference model（Pythia-410M）同源，held-out F1 最高。OLMo-2-1B 最低因架构差异最大（不同 tokenizer、不同训练数据分布）。per_gen_std=0.042 在 5-gen 设置下低于 median 定义的 0.06-0.09 range，但这是 ≤2.8B 同质性导致——median 档的 high std 主要来自后续加入的 8B+ 生成器。这一阶段结果会让人乐观地认为 generalization 很强，直到 plan_014 加入 Qwen3-8B 暴露 scale gap。"
+  },
+  {
+    "name": "paraphrastic_comparison",
+    "description": "Parallel paraphrasing chains vs continuation chains. Direct comparison of depth signal preservation. Tests attractor convergence theory predictions.",
+    "results": {
+      "paraphrastic_3class_f1": 0.72,
+      "paraphrastic_binary_f1": 0.64,
+      "continuation_3class_f1": 0.78,
+      "continuation_binary_f1": 0.72,
+      "f1_3class_delta": -0.06,
+      "f1_binary_delta": -0.08,
+      "depth_retention_para": 0.92,
+      "depth_retention_cont": 0.83,
+      "spearman_entropy_mean_para": -0.42,
+      "spearman_entropy_mean_cont": -0.6,
+      "spearman_ttr_para": -0.48,
+      "spearman_ttr_cont": -0.63,
+      "cross_transfer_para_to_cont_f1": 0.68,
+      "cross_transfer_cont_to_para_f1": 0.65,
+      "feature_drift_magnitude_ratio_para_vs_cont": 0.65
+    },
+    "tables": [
+      "Table: Chain type comparison — Continuation 3-class: 0.78, Binary: 0.72 | Paraphrastic 3-class: 0.72, Binary: 0.64 | Delta: -0.06, -0.08",
+      "Table: Feature-depth Spearman ρ by chain type — entropy_mean: -0.60/-0.42, ttr: -0.63/-0.48, hapax: -0.65/-0.50, tail_decay: -0.04/-0.03"
+    ],
+    "figures": [],
+    "analysis": "Paraphrastic 对比结果支持论文 framing 但力度 moderate。在 median 档这意味着 Section 中需要 nuanced discussion：非 paraphrastic chains 的优势不是因为 'completely different mechanism' 而是因为 'weaker semantic constraint allows faster distributional drift'。这一结果足以写一个 informative paragraph 但不足以作为 independent contribution point。cross-transfer 的 0.65-0.68 表明两种 chain type 可 partial 互换使用，减弱了 'must distinguish chain type' 的实际需求。\n\n在 median 档，paraphrastic chains 确实展现更弱的 depth signal（-6pp 3-class），支持 attractor convergence theory 的定性预测。但差距不如理论预期那么大——non-paraphrastic chains 也非完全 'free' generation（prompt structure 引入部分 semantic constraint）。paraphrastic chains 的 depth retention 反而更高（0.92 vs 0.83）因为 paraphrasing 不会丢 token（terminate less），但 feature drift 幅度更小（ratio 0.65×）因为 content preservation 约束限制了 vocabulary impoverishment 的速度。entropy_mean drift 在 paraphrastic 中弱化（-0.42 vs -0.60）因为 semantic preservation 部分抵消了 location shift。cross-transfer 表现中等（0.65-0.68），说明两种 chain type 的 depth signal 有 shared component 但 mapping 不同。这支持论文的 'non-paraphrastic chains preserve more depth signal' claim 但程度是 moderate，不构成 dramatic contrast。"
+  },
+  {
+    "name": "finer_grained_ordinal",
+    "description": "5-class ordinal classification (gen-0 through gen-4). Tests whether depth signal extends beyond 3-class granularity.",
+    "results": {
+      "5class_macro_f1": 0.49,
+      "5class_accuracy": 0.53,
+      "5class_mae": 0.72,
+      "3class_baseline_f1": 0.78,
+      "delta_5class_vs_3class": -0.29,
+      "per_class_f1": {
+        "depth_0": 0.88,
+        "depth_1": 0.58,
+        "depth_2": 0.3,
+        "depth_3": 0.28,
+        "depth_4": 0.42
+      },
+      "gen2_gen3_confusion_rate": 0.45,
+      "ordinal_coral_5class_f1": 0.51,
+      "ordinal_frankhall_5class_f1": 0.5,
+      "ordinal_vs_flat_delta": "+1-2pp",
+      "spearman_predicted_vs_true_depth": 0.72
+    },
+    "tables": [
+      "Table: 5-class per-depth F1 — D0: 0.88, D1: 0.58, D2: 0.30, D3: 0.28, D4: 0.42",
+      "Table: Method comparison at 5-class — XGBoost: 0.49, CORAL: 0.51, Frank-Hall: 0.50, LR-ordinal: 0.44"
+    ],
+    "figures": [],
+    "analysis": "5-class 结果是 informative negative finding。在 median 档，它确认了论文的 3-class 选择是 principled 而非 arbitrary。gen2-gen3 的不可分性与 attractor theory 一致：distributional drift 的 marginal signal per step 递减。depth_4 的 slight recovery 是 interesting observation——可能因为多次递归后 vocabulary 极度收窄形成可识别 signature。这一实验主要价值是 defensive（回应 reviewer 'why only 3 class'）而非 additive。在 EMNLP paper 中放 supplementary material。\n\n在 median 档，5-class 分类 dramatically worse（0.49 vs 3-class 0.78），-29pp 的 drop 说明 depth signal 在 gen-2/gen-3/gen-4 之间高度混淆。depth_0 仍然容易识别（0.88）因为 human-written seed 与 LLM output 有 qualitative difference。depth_1 moderate（0.58）因为 first-generation 文本与 deeper generations 有可检测差异。但 gen-2/gen-3 几乎不可分（confusion rate 0.45）——distributional drift 的 per-step increment 太小，且 individual sample noise 远大于 systematic depth difference。depth_4 的 F1 反弹（0.42 > gen2/gen3 的 0.28-0.30）因为最深层有更极端的 vocabulary collapse 可作为 anchor point。ordinal methods（CORAL）仅微弱优于 flat XGBoost（+1-2pp），说明 ordinal structure 的 inductive bias 帮助有限。这一 negative-ish result 实际支持论文的 3-class framing 并与 attractor theory 的 ~3 class bound 一致。"
+  },
+  {
+    "name": "end_to_end_classifier",
+    "description": "QLoRA fine-tuned small LM (Qwen3-0.6B) for end-to-end depth classification. Compares learned representations vs handcrafted 7-feature ensemble.",
+    "results": {
+      "5class_macro_f1": 0.57,
+      "5class_f1_std": 0.012,
+      "3class_macro_f1": 0.89,
+      "3class_f1_std": 0.005,
+      "per_class_5class": {
+        "depth_0": 0.99,
+        "depth_1": 0.78,
+        "depth_2": 0.38,
+        "depth_3": 0.29,
+        "depth_4": 0.43
+      },
+      "vs_xgboost_7feat_3class_delta_pp": "+11",
+      "vs_xgboost_7feat_5class_delta_pp": "+8",
+      "inference_cost_ratio_vs_7feat": 50,
+      "logo_generalization_3class_f1": 0.72,
+      "logo_generalization_gap_vs_cv": -0.17,
+      "training_time_minutes": 120
+    },
+    "tables": [
+      "Table: Method comparison — XGBoost-7feat CV: 0.81/LOGO: 0.78 | QLoRA-Qwen0.6B CV: 0.89/LOGO: 0.72 | Generalization gap: 3pp vs 17pp",
+      "Table: QLoRA 5-class per-depth F1 — D0: 0.99, D1: 0.78, D2: 0.38, D3: 0.29, D4: 0.43 (vs XGBoost: 0.88, 0.58, 0.30, 0.28, 0.42)"
+    ],
+    "figures": [],
+    "analysis": "End-to-end 结果在 median 档有双重价值：(1) 证明 depth signal 确实比 7 features 更丰富（upper bound 存在），(2) 但 generalization gap 证明 handcrafted features 的 architecture-agnostic 设计是优势而非限制。这支持论文的 contribution positioning：我们的 7-feature ensemble 不是 SOTA methodology，而是 interpretable + robust 的 diagnostic tool。LOGO gap（-17pp）直接对应 median 档的 'architecture-dependent transfer gap' narrative。在 paper 中报告为 'complementary result' 而非 main finding——feature engineering 在 low-data cross-architecture 场景下优于 neural，但 neural 提供 upper bound 估计。\n\n在 median 档，end-to-end QLoRA 模型在 in-distribution（5-fold CV）大幅优于 handcrafted features（3-class +11pp, 5-class +8pp），证明文本中存在比 7 features 更丰富的 depth signal。但 LOGO 泛化能力显著下降（CV 0.89 → LOGO 0.72，-17pp gap），说明 neural model 容易 overfit 到 generator-specific patterns 而非 universal depth signal。这恰好是 median 档 narrative 的核心论点：depth signal 存在且丰富，但 cross-architecture transfer 是真实挑战。handcrafted features 虽 ceiling 较低但 generalization gap 小得多（CV 0.81 → LOGO 0.78，仅 -3pp），展现 interpretability + robustness trade-off。5-class 中 gen2/gen3 分离仍然困难（0.29-0.38），即使 neural model 也无法打破这个 fundamental limit。推理成本 50× higher 使得 7-feature approach 在实际应用中仍有优势。"
+  }
+]

@@ -1,0 +1,37 @@
+\subsection{Variance Decomposition}
+\label{app:variance-decomposition}
+
+To quantify the mechanistic structure underlying DDR, we decompose each feature's variance into depth, generator, interaction, and residual components via two-way ANOVA (Type~II; Table~\ref{tab:anova_decomposition}).
+
+\begin{table}[ht]
+\centering
+\caption{Two-way ANOVA variance decomposition (classical $\eta^2$; proportions of total SS) for depth $\times$ generator ($N$\,=\,37{,}058). Location features show dominant depth effects ($\eta^2_{\text{depth}} {=} 0.34$--$0.37$); shape features are depth-invariant ($\eta^2_{\text{depth}} < 0.01$). All effects $p < 10^{-6}$.}
+\label{tab:anova_decomposition}
+\small
+\begin{tabular}{@{}l cccc@{}}
+\toprule
+Feature & $\eta^2_{\text{depth}}$ & $\eta^2_{\text{gen}}$ & $\eta^2_{\text{int}}$ & $\eta^2_{\text{resid}}$ \\
+\midrule
+\multicolumn{5}{@{}l}{\textit{Location (drifting)}} \\
+\quad Ent.\ Mean & \textbf{0.341} & 0.022 & 0.010 & 0.627 \\
+\quad TTR & \textbf{0.370} & 0.024 & 0.007 & 0.599 \\
+\quad Hapax Ratio & \textbf{0.364} & 0.017 & 0.006 & 0.612 \\
+\addlinespace
+\multicolumn{5}{@{}l}{\textit{Shape (near-stationary)}} \\
+\quad Ent.\ Max & 0.007 & 0.002 & 0.003 & 0.988 \\
+\quad Ent.\ Min & 0.002 & 0.001 & 0.001 & 0.996 \\
+\quad Tail Decay & 0.002 & 0.023 & 0.009 & 0.967 \\
+\addlinespace
+\multicolumn{5}{@{}l}{\textit{Intermediate}} \\
+\quad Ent.\ Std & 0.054 & 0.020 & 0.011 & 0.915 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Figure moved to main text (Figure~\ref{fig:variance-decomp} in \S\ref{sec:discussion})
+
+The depth factor explains 34--37\% of location-feature variance but $<$1\% of shape-feature variance, a ${>}48\times$ ratio that quantifies the DDR partition as a systematic depth$\times$feature-type interaction rather than a post-hoc grouping.
+Generator identity contributes comparably across both groups ($\eta^2_{\text{gen}} {=} 0.02$); the asymmetry is specific to depth, not generator.
+Interaction terms are uniformly small ($\eta^2_{\text{int}} < 0.011$); the depth effect on location features operates consistently across generators.
+
+Exponential convergence fitting ($f(d) {=} a \cdot e^{-\lambda d} + c$) on per-generator depth trajectories corroborates this: location features converge with moderate rates ($\lambda {=} 0.40 \pm 0.26$, $R^2 {=} 0.99$), consistent with contraction toward a generator-specific fixed point under iterated autoregressive generation, while shape features show degenerate fits ($\lambda {=} 5.3 \pm 8.4$, $R^2 {=} 0.73$) reflecting their flat trajectories.

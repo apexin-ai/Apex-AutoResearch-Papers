@@ -1,0 +1,147 @@
+{
+  "experiment": "9gen_logo",
+  "n_generators": 9,
+  "n_total_rows": 42015,
+  "overall_3class_f1": 0.751,
+  "overall_binary_f1": 0.6661,
+  "per_generator_3class": {
+    "gemma-2-2b": {
+      "macro_f1": 0.6279,
+      "gen-0_f1": 0.9914,
+      "gen-1_f1": 0.0363,
+      "gen-2+_f1": 0.856,
+      "ci_lower": 0.6218,
+      "ci_upper": 0.6342
+    },
+    "llama-3.2-3b": {
+      "macro_f1": 0.7591,
+      "gen-0_f1": 0.9417,
+      "gen-1_f1": 0.5901,
+      "gen-2+_f1": 0.7455,
+      "ci_lower": 0.7479,
+      "ci_upper": 0.7701
+    },
+    "mistral-7b-v0.3": {
+      "macro_f1": 0.6045,
+      "gen-0_f1": 0.8253,
+      "gen-1_f1": 0.4382,
+      "gen-2+_f1": 0.55,
+      "ci_lower": 0.5929,
+      "ci_upper": 0.6169
+    },
+    "olmo-2-1b": {
+      "macro_f1": 0.7732,
+      "gen-0_f1": 0.9465,
+      "gen-1_f1": 0.5975,
+      "gen-2+_f1": 0.7758,
+      "ci_lower": 0.7618,
+      "ci_upper": 0.784
+    },
+    "pythia-1b": {
+      "macro_f1": 0.8571,
+      "gen-0_f1": 0.988,
+      "gen-1_f1": 0.7104,
+      "gen-2+_f1": 0.8728,
+      "ci_lower": 0.848,
+      "ci_upper": 0.8664
+    },
+    "pythia-2.8b": {
+      "macro_f1": 0.8117,
+      "gen-0_f1": 0.9778,
+      "gen-1_f1": 0.6499,
+      "gen-2+_f1": 0.8075,
+      "ci_lower": 0.8013,
+      "ci_upper": 0.822
+    },
+    "qwen3-0.6b": {
+      "macro_f1": 0.8185,
+      "gen-0_f1": 0.9688,
+      "gen-1_f1": 0.65,
+      "gen-2+_f1": 0.8366,
+      "ci_lower": 0.8071,
+      "ci_upper": 0.8297
+    },
+    "qwen3-1.7b": {
+      "macro_f1": 0.8114,
+      "gen-0_f1": 0.9359,
+      "gen-1_f1": 0.6658,
+      "gen-2+_f1": 0.8324,
+      "ci_lower": 0.8003,
+      "ci_upper": 0.8228
+    },
+    "qwen3-8b": {
+      "macro_f1": 0.6955,
+      "gen-0_f1": 0.8335,
+      "gen-1_f1": 0.5531,
+      "gen-2+_f1": 0.6999,
+      "ci_lower": 0.6826,
+      "ci_upper": 0.7091
+    }
+  },
+  "per_generator_binary": {
+    "gemma-2-2b": {
+      "binary_f1": 0.4402,
+      "ci_lower": 0.432,
+      "ci_upper": 0.4488
+    },
+    "llama-3.2-3b": {
+      "binary_f1": 0.6797,
+      "ci_lower": 0.6651,
+      "ci_upper": 0.6945
+    },
+    "mistral-7b-v0.3": {
+      "binary_f1": 0.5338,
+      "ci_lower": 0.5184,
+      "ci_upper": 0.55
+    },
+    "olmo-2-1b": {
+      "binary_f1": 0.6917,
+      "ci_lower": 0.6756,
+      "ci_upper": 0.7064
+    },
+    "pythia-1b": {
+      "binary_f1": 0.785,
+      "ci_lower": 0.77,
+      "ci_upper": 0.7998
+    },
+    "pythia-2.8b": {
+      "binary_f1": 0.7281,
+      "ci_lower": 0.7136,
+      "ci_upper": 0.7435
+    },
+    "qwen3-0.6b": {
+      "binary_f1": 0.7432,
+      "ci_lower": 0.7272,
+      "ci_upper": 0.7575
+    },
+    "qwen3-1.7b": {
+      "binary_f1": 0.746,
+      "ci_lower": 0.7301,
+      "ci_upper": 0.7608
+    },
+    "qwen3-8b": {
+      "binary_f1": 0.6468,
+      "ci_lower": 0.6314,
+      "ci_upper": 0.664
+    }
+  },
+  "baseline_8gen_3class_f1": 0.7698,
+  "delta_9gen_vs_8gen": -0.0188,
+  "delta_per_generator_vs_8gen": {
+    "llama-3.2-3b": -0.003,
+    "mistral-7b-v0.3": -0.0114,
+    "olmo-2-1b": -0.001,
+    "pythia-1b": 0.0007,
+    "pythia-2.8b": -0.0052,
+    "qwen3-0.6b": -0.0039,
+    "qwen3-1.7b": 0.0016,
+    "qwen3-8b": -0.0054
+  },
+  "notes": [
+    "9 generators: 6 CSV-based + llama-3.2-3b + mistral-7b-v0.3 + gemma-2-2b",
+    "tail_decay now unified: all 9 generators use log-prob slope (ranks 100-1000). Llama/Mistral fixed by fix_tail_decay_and_eval.py; Gemma re-extracted 2026-05-20.",
+    "tail_decay has lowest permutation importance (rank 7/7), impact expected to be minimal",
+    "Binary task: gen-1 vs gen-2+ only (gen-0 excluded)",
+    "gen-0 seeds shared across generators (same Wikipedia seeds)"
+  ]
+}

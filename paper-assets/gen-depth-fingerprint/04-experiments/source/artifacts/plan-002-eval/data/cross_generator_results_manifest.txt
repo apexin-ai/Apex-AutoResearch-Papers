@@ -1,0 +1,2 @@
+Remote: autodl-5090:/root/gen-depth-fingerprint/data/cross_generator_results.json + cross_generator_report.md
+Key results: leave-one-out avg macro-F1=0.8037, family-out delta=0.0107, feature complementarity confirmed

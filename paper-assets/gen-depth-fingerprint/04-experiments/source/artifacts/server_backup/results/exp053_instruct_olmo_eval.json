@@ -1,0 +1,52 @@
+{
+  "instruct": {
+    "model": "OLMo-2-0425-1B-Instruct",
+    "n_records": 4429,
+    "binary_f1": 0.8131,
+    "binary_ci95": [
+      0.8012,
+      0.8251
+    ],
+    "3class_f1": 0.5748,
+    "3class_ci95": [
+      0.5605,
+      0.5897
+    ],
+    "spearman_rho": {
+      "entropy_mean": 0.4822,
+      "entropy_std": 0.2955,
+      "entropy_min": 0.0796,
+      "entropy_max": 0.3055,
+      "tail_decay": 0.2276,
+      "ttr": 0.0057,
+      "hapax_ratio": 0.0253
+    }
+  },
+  "base": {
+    "model": "OLMo-2-1B-Base",
+    "n_records": 4713,
+    "binary_f1": 0.8454,
+    "binary_ci95": [
+      0.8358,
+      0.8554
+    ],
+    "3class_f1": 0.7538,
+    "3class_ci95": [
+      0.7412,
+      0.7662
+    ],
+    "spearman_rho": {
+      "entropy_mean": -0.6386,
+      "entropy_std": -0.2958,
+      "entropy_min": -0.3874,
+      "entropy_max": 0.0672,
+      "tail_decay": -0.1411,
+      "ttr": -0.6996,
+      "hapax_ratio": -0.7124
+    }
+  },
+  "delta": {
+    "binary_f1": -0.0323,
+    "3class_f1": -0.179
+  }
+}

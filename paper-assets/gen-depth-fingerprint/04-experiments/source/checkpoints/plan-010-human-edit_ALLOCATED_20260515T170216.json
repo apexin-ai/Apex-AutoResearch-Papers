@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan-010-human-edit",
+  "project": "gen-depth-fingerprint",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:53:51.598Z",
+    "updated_at": "2026-05-15T17:02:16.608Z",
+    "hypothesis": "RC5 Human edit robustness: depth signal 在模拟人类编辑（random word replacement 5/10/20% + LLM light rephrasing）下的存活率"
+  },
+  "timestamp": "2026-05-15T17:02:16.690524+00:00",
+  "trigger": "update_registry"
+}

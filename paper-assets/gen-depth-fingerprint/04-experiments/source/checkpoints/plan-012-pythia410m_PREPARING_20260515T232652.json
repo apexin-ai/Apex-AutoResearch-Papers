@@ -1,0 +1,17 @@
+{
+  "exp_id": "plan-012-pythia410m",
+  "project": "gen-depth-fingerprint",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:26:52.465Z",
+    "updated_at": "2026-05-15T23:26:52.466Z",
+    "spec": {
+      "hypothesis": "End-to-end depth classification with Pythia-410M (same family as reference model) — tests information leakage advantage vs cross-family Qwen3-0.6B"
+    }
+  },
+  "timestamp": "2026-05-15T23:26:52.563154+00:00",
+  "trigger": "update_registry"
+}

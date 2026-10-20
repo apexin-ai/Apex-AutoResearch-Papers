@@ -1,0 +1,373 @@
+# paper p1c instruct writeup
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 11
+- **Recorded user turns:** 0
+- **Tool calls:** 5
+- **Original source:** `logs/chats/worker_paper_p1c-instruct-writeup_20260515T175016.jsonl`
+- **Structured JSON:** [`66fe8b1e2634c46694e1.json`](../../sessions/66/66fe8b1e2634c46694e1.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+11 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T17:51:00.383777+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_p1c-instruct-writeup_20260515T175016",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T17:51:00.384076+00:00_
+
+1	\section{Discussion}
+2	\label{sec:discussion}
+3	
+4	\paragraph{Why are shape features stationary?}
+5	Distributional shape features (entropy standard deviation, tail decay) remain near-stationary across generation depths, while central-tendency features drift monotonically (\S\ref{sec:results-differential}).
+6	One \emph{speculative} explanation is that shape is primarily determined by the sampling mechanism (temperature, top-$p$ truncation) and the model's architecture-level output distribution, both of which are fixed across generation steps.
+7	Recursive generation shifts \emph{what} the model talks about---steering toward higher-probability vocabulary regions---but does not alter \emph{how} the model distributes probability mass around its predictions.
+8	If this account is correct, shape features should remain stationary even at much greater depths and across different prompt types, while level features should continue to drift until reaching a fixed point.
+9	We flag this as a hypothesis for future investigation, not a conclusion supported by our current experiments.
+10	
+11	\paragraph{Relation to OOD detection.}
+12	Reference-model entropy features are functionally NLL-based out-of-distribution scores---the same signal backbone underlying DetectGPT \cite{detectgpt}, GLTR \cite{gltr}, and Binoculars \cite{binoculars}.
+13	Our contribution is not these features per se, but the \emph{ordinal} depth formulation and the empirical finding that they exhibit differential depth response under recursive generation.
+14	This connection also offers a lens on shape stationarity: in the OOD detection literature, distributional location statistics (mean log-likelihood) shift under domain drift, while shape statistics (variance, tail behavior) are more robust \cite{ood_baseline}.
+15	Recursive generation chains produce an analogous effect---progressive drift away from human text that manifests primarily as a location shift in the NLL distribution.
+16	
+17	\paragraph{Practical implicat
+…[truncated 4299 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_p1c-instruct-writeup_20260515T175016",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T17:51:00.384254+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_p1c-instruct-writeup_20260515T175016",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T17:51:00.384402+00:00_
+
+1	\section*{Limitations}
+2	\label{sec:limitations}
+3	
+4	All six generators are base (pretrained) models.
+5	Web text is predominantly produced by instruction-tuned and RLHF-aligned models, whose generation distributions differ from base model continuations.
+6	Validating that differential depth response persists under instruction tuning is a critical direction for future work.
+7	
+8	Our experiments include generators up to 8.2B parameters (Qwen3-8B).
+9	Depth signal persists at this scale, but cross-scale classifier transfer incurs a moderate gap (held-out F1\,=\,0.683 vs.\ 0.76--0.86 for $\leq$2.8B generators).
+10	Frontier models (70B+) remain untested; their higher fluency may further compress feature margins.
+11	
+12	We evaluate three prompt types (continuation, elaboration, rewriting; Appendix~\ref{app:prompt-type}) but all share the same Pythia-2.8B generator.
+13	Cross-prompt-type transfer (LOPTO F1\,=\,0.753) confirms the depth signal generalizes, yet additional prompt types (e.g., summarization, instruction following) and cross-generator $\times$ cross-prompt interactions remain untested.
+14	
+15	Chains are constructed with a single generator model per step.
+16	Real-world web contamination likely involves heterogeneous generators at each depth, which could attenuate or alter the depth signal we observe.
+17	We also do not evaluate robustness to human editing or post-processing of generated text, which is common in practice and may disrupt distributional features.
+18	
+19	The reference model is fixed to Pythia-410M throughout, although cross-family reference experiments (\S\ref{sec:results-differential}) suggest the phenomenon is not reference-specific.
+20	All seed texts are English Wikipedia excerpts; generalization to other languages and domains remains untested.
+21	
+22	The negative downstream result (\S\ref{sec:results-downstream}) is evaluated on causal language modeling only.
+23	Other downstream tasks (classification, summarization, instruction following) may res
+…[truncated 486 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_p1c-instruct-writeup_20260515T175016",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T17:51:00.384609+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex",
+  "old_string": "\\paragraph{Same-family reference bias.}\nPythia-1B achieves the highest held-out F1 (0.856) despite using a same-family reference model (Pythia-410M).\nCross-family references (OLMo-2-1B, Qwen3-0.6B) yield nearly identical Pythia-1B F1 (0.845--0.848), confirming that this generator's high detectability reflects its intrinsic generation patterns rather than reference-model family bias.",
+  "new_string": "\\paragraph{Same-family reference bias.}\nPythia-1B achieves the highest held-out F1 (0.856) despite using a same-family reference model (Pythia-410M).\nCross-family references (OLMo-2-1B, Qwen3-0.6B) yield nearly identical Pythia-1B F1 (0.845--0.848), confirming that this generator's high detectability reflects its intrinsic generation patterns rather than reference-model family bias.\n\n\\paragraph{Instruct tuning degrades depth signal.}\nPreliminary experiments with instruction-tuned models show substantially weaker depth fingerprints: OLMo-2-1B-Instruct achieves 3-class LOGO F1\\,=\\,0.338 (vs.\\ 0.763 for base OLMo-2-1B), and Qwen3-0.6B with chat template yields F1\\,=\\,0.667 (vs.\\ 0.816 for the base model).\nInstruction tuning likely reshapes the token-level distribution in ways that obscure the depth-dependent features our method relies on, though the precise mechanism remains unclear.\nThese preliminary observations justify restricting our current scope to base models and motivate dedicated investigation of depth fingerprinting under instruction-tuned generation as future work."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_p1c-instruct-writeup_20260515T175016",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex",
+    "old_string": "\\paragraph{Same-family reference bias.}\nPythia-1B achieves the highest held-out F1 (0.856) despite using a same-family reference model (Pythia-410M).\nCross-family references (OLMo-2-1B, Qwen3-0.6B) yield nearly identical Pythia-1B F1 (0.845--0.848), confirming that this generator's high detectability reflects its intrinsic generation patterns rather than reference-model family bias.",
+    "new_string": "\\paragraph{Same-family reference bias.}\nPythia-1B achieves the highest held-out F1 (0.856) despite using a same-family reference model (Pythia-410M).\nCross-family references (OLMo-2-1B, Qwen3-0.6B) yield nearly identical Pythia-1B F1 (0.845--0.848), confirming that this generator's high detectability reflects its intrinsic generation patterns rather than reference-model family bias.\n\n\\paragraph{Instruct tuning degrades depth signal.}\nPreliminary experiments with instruction-tuned models show substantially weaker depth fingerprints: OLMo-2-1B-Instruct achieves 3-class LOGO F1\\,=\\,0.338 (vs.\\ 0.763 for base OLMo-2-1B), and Qwen3-0.6B with chat template yields F1\\,=\\,0.667 (vs.\\ 0.816 for the base model).\nInstruction tuning likely reshapes the token-level distribution in ways that obscure the depth-dependent features our method relies on, though the precise mechanism remains unclear.\nThese preliminary observations justify restricting our current scope to base models and motivate dedicated investigation of depth fingerprinting under instruction-tuned generation as future work."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T17:51:00.384782+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_p1c-instruct-writeup_20260515T175016",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T17:51:00.384904+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex",
+  "old_string": "All six generators are base (pretrained) models.\nWeb text is predominantly produced by instruction-tuned and RLHF-aligned models, whose generation distributions differ from base model continuations.\nValidating that differential depth response persists under instruction tuning is a critical direction for future work.",
+  "new_string": "All six generators are base (pretrained) models.\nWeb text is predominantly produced by instruction-tuned and RLHF-aligned models, whose generation distributions differ from base model continuations.\nPreliminary instruct experiments show substantial depth-signal degradation: OLMo-2-1B-Instruct drops to 3-class LOGO F1\\,=\\,0.338 (vs.\\ 0.763 for base OLMo-2-1B) and Qwen3-0.6B with chat template to F1\\,=\\,0.667 (vs.\\ 0.816 base), with length confounds dominating the residual signal.\nExtending depth fingerprinting to instruction-tuned generators is a critical direction for future work."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_p1c-instruct-writeup_20260515T175016",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex",
+    "old_string": "All six generators are base (pretrained) models.\nWeb text is predominantly produced by instruction-tuned and RLHF-aligned models, whose generation distributions differ from base model continuations.\nValidating that differential depth response persists under instruction tuning is a critical direction for future work.",
+    "new_string": "All six generators are base (pretrained) models.\nWeb text is predominantly produced by instruction-tuned and RLHF-aligned models, whose generation distributions differ from base model continuations.\nPreliminary instruct experiments show substantial depth-signal degradation: OLMo-2-1B-Instruct drops to 3-class LOGO F1\\,=\\,0.338 (vs.\\ 0.763 for base OLMo-2-1B) and Qwen3-0.6B with chat template to F1\\,=\\,0.667 (vs.\\ 0.816 base), with length confounds dominating the residual signal.\nExtending depth fingerprinting to instruction-tuned generators is a critical direction for future work."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T17:51:00.385045+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_p1c-instruct-writeup_20260515T175016",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T17:51:00.385170+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/discussion.tex && cp /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/limitations.tex",
+  "description": "Sync discussion.tex and limitations.tex to docs/paper/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_p1c-instruct-writeup_20260515T175016",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/discussion.tex && cp /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/limitations.tex /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/limitations.tex",
+    "description": "Sync discussion.tex and limitations.tex to docs/paper/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T17:51:00.385283+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_p1c-instruct-writeup_20260515T175016",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-15T17:51:00.385422+00:00_
+
+完成。变更内容：
+
+**discussion.tex** — 新增 `\paragraph{Instruct tuning degrades depth signal.}` (3句)：
+- OLMo-2-1B-Instruct LOGO F1=0.338 vs base 0.763；Qwen3-0.6B chat F1=0.667 vs base 0.816
+- 推测 instruct tuning 改变 token 分布使 depth features 失效，机制待明确
+- 以此 justify scope 限定为 base model
+
+**limitations.tex** — 第一段补充了 OLMo instruct 和 Qwen3 chat 的具体 F1 数值及 length confound 问题，替换了原来纯定性的表述。
+
+两个文件已同步到 `docs/paper/`。未在 results 主文中添加内容，未使用 "inverted DDR"/"significantly" 措辞。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_paper_p1c-instruct-writeup_20260515T175016"
+}
+```
+
+</details>
+
+---

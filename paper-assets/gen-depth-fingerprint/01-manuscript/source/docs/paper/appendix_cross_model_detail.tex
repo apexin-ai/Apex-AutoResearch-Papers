@@ -1,0 +1,24 @@
+This appendix reports per-generator breakdowns for the cross-model chain evaluation described in \S\ref{sec:results-classification}.
+
+\begin{table}[ht]
+\centering
+\footnotesize
+\caption{Cross-model chain per-class performance (generator-level leave-one-out, $N$\,=\,2{,}964, $n_{\text{generators}}$\,=\,5: Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B). Macro F1\,=\,0.831 under class balancing; under natural class distribution, macro F1\,=\,0.789. Binary F1 (gen-1 vs.\ gen-2+)\,=\,0.830 (95\% CI [.818, .841], case-level bootstrap, $n$\,=\,2{,}000). Cross-model chains avoid the gen-0 seed sharing issue present in single-generator LOGO.}
+\label{tab:cross-model-perclass}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Class} & \textbf{Prec.} & \textbf{Rec.} & \textbf{F1} & \textbf{95\% CI} \\
+\midrule
+gen-0   & 0.921 & 0.948 & 0.935 & [.923, .946] \\
+gen-1   & 0.737 & 0.803 & 0.768 & [.748, .788] \\
+gen-2+  & 0.842 & 0.742 & 0.789 & [.768, .809] \\
+\midrule
+\textbf{Macro} & --- & --- & \textbf{0.831} & [.817, .844] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Variance decomposition.}
+A two-way ANOVA (generator $\times$ depth) on cross-model chain features ($n{=}3{,}778$, depths 1--4) confirms that generator identity contributes negligible variance: partial $\eta^2_{\text{gen}} < 1\%$ for all seven features (range 0.05\%--0.90\%, mean 0.37\%), while depth accounts for 15.3\%--29.9\% of variance in drifting features.
+The generator$\times$depth interaction is also $< 1\%$.
+This confirms that the F1\,=\,0.830 cross-model advantage reflects depth signal rather than generator diversity accumulation: mixing generators across chain steps does not introduce a confounding generator-identity cue.

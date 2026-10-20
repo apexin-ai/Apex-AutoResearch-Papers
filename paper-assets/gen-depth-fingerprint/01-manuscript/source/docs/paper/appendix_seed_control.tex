@@ -1,0 +1,45 @@
+\section{Independent-Seed Control}
+\label{app:seed-control}
+
+\begingroup\setlength{\parskip}{2pt plus 1pt}
+
+To test for topic-level leakage from shared seeds across generators, we construct an independent-seed evaluation where Pythia-2.8B and OLMo-2-1B use completely disjoint Wikipedia seed pools (500 seeds each, zero overlap).
+Each generator produces depth-0 through depth-4 chains on its own seed pool; features are extracted with the same Pythia-410M reference model.
+We then train a 7-feature XGBoost classifier on one generator's data and test on the other, in both directions.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Independent-seed cross-generator evaluation (binary: gen-1 vs.\ gen-2+). Disjoint seed pools eliminate any possibility of topic-based leakage. The average independent-seed F1 (0.680) is within 1.4\,pp of the shared-seed LOGO baseline (0.694). The classifier thus captures generative degradation patterns rather than seed-specific topic content.}
+\label{tab:seed-control}
+\resizebox{\linewidth}{!}{%
+\renewcommand{\arraystretch}{1.15}%
+\begin{tabular}{lcc}
+\toprule
+\textbf{Setting} & \textbf{Binary F1} & \textbf{95\% CI} \\
+\midrule
+Pythia-2.8B $\rightarrow$ OLMo-2-1B & 0.695 & [0.673, 0.717] \\
+OLMo-2-1B $\rightarrow$ Pythia-2.8B & 0.666 & [0.643, 0.689] \\
+\midrule
+Independent-seed average & 0.680 & --- \\
+Shared-seed LOGO (reference) & 0.694 & [0.688, 0.700] \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+The small gap ($-$1.4\,pp) between independent-seed and shared-seed evaluation falls within bootstrap confidence intervals, and both directions individually exceed 0.66.
+Combined with the seed-level demeaning control (\S\ref{sec:results-classification}), these results provide converging evidence that depth classification is driven by distributional properties of recursive generation, not topic identity.
+
+\paragraph{Semantic similarity analysis.}
+Embedding cosine similarity between consecutive depth steps increases monotonically (Figure~\ref{fig:semantic-sim}): 0$\rightarrow$1 (0.622), 1$\rightarrow$2 (0.683), 2$\rightarrow$3 (0.801), 3$\rightarrow$4 (0.859).
+Deeper generations are thus \emph{more} semantically similar to their inputs, yet the classifier still distinguishes depth classes. The depth signal resides in distributional rather than topical properties.
+Prompt type modulates the baseline similarity level (continuation 0.717 $<$ elaboration 0.809 $\approx$ rewriting 0.808), plausibly because semantic-preservation constraints reduce topic drift while leaving the distributional location shift intact.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\columnwidth]{fig_appendix_semantic_sim.pdf}
+\caption{Embedding cosine similarity between consecutive depth steps. Deeper generations become increasingly similar to their inputs, yet the classifier still distinguishes depth classes. Dotted lines: prompt-type baselines.}
+\label{fig:semantic-sim}
+\end{figure}
+
+\endgroup

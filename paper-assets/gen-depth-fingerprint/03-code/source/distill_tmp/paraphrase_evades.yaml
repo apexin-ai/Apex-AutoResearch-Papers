@@ -1,0 +1,26 @@
+paper_key: "paraphrase_evades"
+title: "Paraphrasing evades detectors of AI-generated text, but retrieval is an effective defense"
+venue: "NeurIPS 2023"
+full_text_available: false
+
+research:
+  baselines: ["watermarking detectors", "GPTZero", "DetectGPT", "OpenAI text classifier"]
+  metrics:
+    - {name: "detection accuracy", direction: "higher_better"}
+    - {name: "false positive rate", direction: "lower_better"}
+  datasets:
+    - {name: "GPT3.5-davinci-003 generations", size: "unknown"}
+    - {name: "T5-XXL fine-tuned generations", size: "15M generations"}
+  ablation_dimensions: ["lexical diversity", "content reordering", "paraphrase strength"]
+  training_recipe: {optimizer: "unknown", lr: "unknown", hardware: "unknown"}
+  method_family: "adversarial paraphrasing attack + retrieval-based defense"
+
+positioning:
+  core_claim: "Builds DIPPER (11B paraphraser) that drops DetectGPT accuracy from 70.3% to 4.6% at 1% FPR, and proposes a retrieval-based defense that searches previously generated sequences for semantic similarity, significantly outperforming existing detectors on paraphrased text."
+  key_results: "N/A - abstract only"
+  limitations: ["N/A"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

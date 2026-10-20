@@ -1,0 +1,383 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{natbib}
+\usepackage{hyperref}
+
+\title{When Depth Signals Collapse: Architecture-Conditional Response\\in Recursive LLM Generation Chains}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Recursive LLM generation---where model outputs are fed as inputs to subsequent generation steps---creates text of varying provenance depth. We investigate whether distributional features can estimate generation depth beyond binary real-vs-synthetic classification. Through experiments across 5 generators from 3 model families (Pythia, OLMo, Qwen), we find that depth signal is \emph{not} a universal property of recursive generation but is strongly \textbf{architecture-conditional}: Pythia-family generators exhibit robust depth-correlated feature drift (Spearman $\rho=-0.61$ for entropy\_mean), while OLMo and Qwen generators show weak or absent signal ($\rho=-0.22$ and $-0.18$ respectively). Surface diversity features (TTR, hapax ratio) dominate reference-model entropy features across all architectures, and fine-grained ordinal classification (5-class) is infeasible beyond the gen-0 boundary (macro F1=0.38). Paraphrastic and continuation chains exhibit sign-reversed depth responses with near-zero cross-transfer (F1=0.38--0.42), demonstrating that ``depth signal'' is process-specific rather than unified. We argue that the \emph{pattern of signal presence and absence} itself constitutes a second-order generator fingerprint, and establish empirical boundaries on when depth estimation is feasible. We position these findings as a characterization study with implications for data provenance research.
+\end{abstract}
+
+\section{Introduction}
+
+Large language models are increasingly used to generate training data, summaries, and web content, creating feedback loops where model outputs become inputs to subsequent generation~\cite{shumailov2024model,alemohammad2024selfconsuming}. Understanding the \emph{depth} of such recursive generation---how many times text has been processed through LLMs---is important for data governance and contamination assessment.
+
+Prior work on LLM-generated text detection has focused exclusively on binary classification: real vs.\ synthetic~\cite{mitchell2023detectgpt,hans2024binoculars}. The question of \emph{ordinal depth estimation}---distinguishing gen-1 from gen-2 from gen-3+---remains unexplored. A natural hypothesis is that recursive generation induces monotonic distributional drift detectable via reference-model statistics, enabling depth estimation as a general-purpose tool.
+
+In this work, we test this hypothesis and find it \textbf{does not hold universally}. Through systematic experiments across 5 generators from 3 architectural families, we demonstrate that:
+
+\begin{enumerate}
+    \item Depth signal strength is \textbf{architecture-conditional}: strongly present for Pythia-family models (binary LOGO F1=0.78--0.80) but near-chance for OLMo and Qwen (F1=0.57--0.62).
+    \item Surface diversity features (TTR, hapax ratio) carry most of the discriminative signal; reference-model entropy features add negligible value in cross-family settings (McNemar $p=0.12$, NS).
+    \item Fine-grained depth estimation (5-class) is infeasible: macro F1=0.38, with depths 2--4 nearly indistinguishable (Cohen's $d<0.12$).
+    \item Paraphrastic and continuation chains exhibit \textbf{sign-reversed} feature-depth correlations with near-zero cross-transfer, precluding a unified depth model.
+\end{enumerate}
+
+Rather than viewing these as purely negative results, we reframe them as \emph{characterization findings}: the pattern of where depth signal emerges versus collapses constitutes an architecture-conditional fingerprint. A generator's depth response profile---whether features drift, remain stationary, or reverse direction---encodes information about the generator's architecture and training even when absolute depth estimation fails.
+
+Our contributions are: (1) the first systematic study of ordinal depth estimation feasibility across diverse LLM architectures; (2) empirical identification of conditions under which depth signal exists vs.\ collapses; (3) evidence that signal absence patterns function as second-order generator fingerprints; (4) practical boundaries on depth estimation granularity.
+
+\section{Method}
+
+\subsection{Generation Chain Construction}
+
+We construct recursive generation chains of depth 0--4 using 5 base-model generators: Pythia-2.8B, Pythia-1B, OLMo-2-1B, Qwen3-1.7B, and Qwen3-0.6B. Each chain starts from a human-written seed (gen-0) and iteratively produces continuations. We construct both \emph{continuation chains} (open-ended generation) and \emph{paraphrastic chains} (meaning-preserving rewrites) to compare depth dynamics under different generation regimes.
+
+\subsection{Feature Extraction}
+
+We extract 7 features per text using Pythia-410M as a reference model:
+
+\paragraph{Surface diversity features (2):} Type-token ratio (TTR) and hapax legomena ratio (hapax\_ratio), measuring lexical diversity without reference-model dependence.
+
+\paragraph{Reference-model entropy features (5):} Mean, standard deviation, minimum, and maximum of per-token log-probability under the reference model, plus tail decay rate (tail\_decay) measuring the heaviness of the low-probability tail.
+
+\subsection{Depth Classification}
+
+We evaluate classification at two granularities:
+\begin{itemize}
+    \item \textbf{3-class}: gen-0 / gen-1 / gen-2+ (coarse provenance)
+    \item \textbf{5-class}: gen-0 / gen-1 / gen-2 / gen-3 / gen-4 (fine ordinal)
+\end{itemize}
+
+Primary classifier: XGBoost with 5-fold cross-validation. Generalization is measured via Leave-One-Generator-Out (LOGO) evaluation. We additionally evaluate ordinal-specific methods (CORAL, Frank-Hall) and an end-to-end QLoRA fine-tuned Qwen3-0.6B classifier.
+
+\subsection{Feature Dynamics Classification}
+
+For each feature, we compute Spearman $\rho$ between feature value and generation depth across all samples. Features are classified as:
+\begin{itemize}
+    \item \textbf{Drifting}: $R^2 \geq 0.85$ on aggregated depth means (strong monotonic trend)
+    \item \textbf{Stationary}: $R^2 < 0.35$ (no systematic depth dependence)
+    \item \textbf{Ambiguous}: $0.35 \leq R^2 < 0.85$
+\end{itemize}
+
+\section{Experiments}
+
+\subsection{Experiment 1: Feature Ablation and Trend Analysis (Pythia-only)}
+\label{sec:exp1}
+
+We first establish baseline depth signal on same-family data (Pythia-2.8B generator, Pythia-410M reference).
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Feature Set} & \textbf{Macro F1} & \textbf{95\% CI} \\
+\midrule
+Full 7-feature & 0.81 & [0.79, 0.83] \\
+Surface only (TTR + hapax) & 0.77 & [0.75, 0.79] \\
+Reference only (5 entropy) & 0.68 & [0.65, 0.71] \\
+entropy\_mean alone & 0.64 & [0.61, 0.67] \\
+\bottomrule
+\end{tabular}
+\caption{Feature ablation on Pythia-2.8B (5-fold CV, 3-class). Surface features alone achieve 0.77 F1, outperforming reference-only by 9pp (bootstrap $p=0.003$).}
+\label{tab:ablation_pythia}
+\end{table}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Feature} & \textbf{Slope} & \textbf{$R^2$} & \textbf{Class} \\
+\midrule
+hapax\_ratio & $-0.14$ & 0.93 & Drifting \\
+ttr & $-0.11$ & 0.91 & Drifting \\
+entropy\_mean & $-0.42$ & 0.88 & Drifting \\
+entropy\_min & $-0.09$ & 0.42 & Ambiguous \\
+entropy\_max & $-0.06$ & 0.31 & Stationary \\
+tail\_decay & $-0.02$ & 0.15 & Stationary \\
+entropy\_std & $+0.01$ & 0.08 & Stationary \\
+\bottomrule
+\end{tabular}
+\caption{Linear trend per feature across depths 0--4 (Pythia-only). Drifting features show strong monotonic decline; stationary features show negligible depth dependence.}
+\label{tab:trend}
+\end{table}
+
+On same-family data, depth signal is clearly present. Three features exhibit strong monotonic drift with depth (hapax\_ratio, TTR, entropy\_mean; $R^2 \geq 0.88$), while three remain stationary (entropy\_max, tail\_decay, entropy\_std; $R^2 \leq 0.31$). Notably, surface features alone (0.77) outperform reference features (0.68) by 9pp ($p=0.003$), indicating that vocabulary impoverishment---not distributional structure shift---is the primary signal carrier even in this best-case scenario. Perplexity shows strong negative correlation with depth (Spearman $\rho=-0.95$), confirming that deeper generations are more predictable to the reference model.
+
+\subsection{Experiment 2: Cross-Generator Evaluation}
+\label{sec:exp2}
+
+We evaluate generalization across 5 generators via LOGO cross-validation on 18,200 total samples.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Held-out Generator} & \textbf{3-class F1} & \textbf{Binary F1} & \textbf{Family} \\
+\midrule
+Pythia-2.8B & 0.82 & 0.78 & Pythia \\
+Pythia-1B & 0.84 & 0.80 & Pythia \\
+OLMo-2-1B & 0.63 & 0.58 & OLMo \\
+Qwen3-1.7B & 0.67 & 0.62 & Qwen \\
+Qwen3-0.6B & 0.64 & 0.57 & Qwen \\
+\midrule
+\textbf{Average} & \textbf{0.72} & \textbf{0.67} & --- \\
+\bottomrule
+\end{tabular}
+\caption{LOGO cross-generator results. A clear two-tier pattern emerges: Pythia generators (F1$\geq$0.78) vs.\ non-Pythia (F1$\leq$0.62). Per-generator F1 std=0.11.}
+\label{tab:logo}
+\end{table}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Feature Set} & \textbf{Avg LOGO F1} & \textbf{$p$ vs Full} \\
+\midrule
+Full 7-feature & 0.72 & --- \\
+Surface only & 0.70 & 0.12 (NS) \\
+Reference only & 0.61 & $<0.001$ \\
+\bottomrule
+\end{tabular}
+\caption{Feature ablation under LOGO. Full features do not significantly outperform surface-only (McNemar $p=0.12$), but both significantly outperform reference-only.}
+\label{tab:ablation_logo}
+\end{table}
+
+The universality hypothesis collapses: a stark two-tier pattern emerges. Pythia-family generators show strong depth signal (held-out binary F1=0.78--0.80), while OLMo and Qwen generators fall near chance (F1=0.57--0.62). Leave-one-family-out confirms this: held-out Pythia achieves 0.79, held-out OLMo 0.58, held-out Qwen 0.60.
+
+Feature-level analysis reveals the mechanism: entropy\_mean Spearman correlation with depth is $-0.61$ for Pythia-2.8B but only $-0.22$ for OLMo-2-1B and $-0.18$ for Qwen3-0.6B---a 2.8$\times$ effect size reduction. The full 7-feature set provides no significant advantage over surface features alone (0.72 vs 0.70, $p=0.12$), indicating that reference-model entropy features---computed under Pythia-410M---fail to capture cross-family depth dynamics.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lccl}
+\toprule
+\textbf{Generator} & \textbf{$\rho$} & \textbf{$p$-value} & \textbf{Effect} \\
+\midrule
+Pythia-2.8B & $-0.61$ & $<0.001$ & Strong \\
+Pythia-1B & $-0.55$ & $<0.001$ & Moderate-Strong \\
+Qwen3-1.7B & $-0.31$ & $<0.001$ & Weak-Moderate \\
+OLMo-2-1B & $-0.22$ & $<0.001$ & Weak \\
+Qwen3-0.6B & $-0.18$ & $<0.001$ & Weak \\
+\bottomrule
+\end{tabular}
+\caption{Spearman $\rho$ between entropy\_mean and depth by generator. Despite statistical significance (large $N$), non-Pythia effect sizes are too small for practical discrimination.}
+\label{tab:spearman}
+\end{table}
+
+\subsection{Experiment 3: Paraphrastic vs.\ Continuation Chains}
+\label{sec:exp3}
+
+We compare depth signal properties across two generation regimes: paraphrastic chains ($N=4800$) and continuation chains ($N=4600$).
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{Para.} & \textbf{Cont.} & \textbf{$\Delta$} \\
+\midrule
+3-class LOGO F1 & 0.60 & 0.72 & $-0.12$ \\
+Binary LOGO F1 & 0.53 & 0.67 & $-0.14$ \\
+$\rho$(entropy\_mean, depth) & $+0.15$ & $-0.42$ & reversed \\
+$\rho$(TTR, depth) & $+0.31$ & $-0.48$ & reversed \\
+$\rho$(hapax, depth) & $+0.28$ & $-0.51$ & reversed \\
+Depth retention & 0.92 & 0.83 & $+0.09$ \\
+\bottomrule
+\end{tabular}
+\caption{Paraphrastic vs.\ continuation chains. Sign reversal across all features demonstrates fundamentally different depth dynamics.}
+\label{tab:para_cont}
+\end{table}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Train $\rightarrow$ Test} & \textbf{Test set} & \textbf{F1} \\
+\midrule
+Continuation $\rightarrow$ Cont. & Continuation & 0.72 \\
+Paraphrastic $\rightarrow$ Para. & Paraphrastic & 0.60 \\
+Continuation $\rightarrow$ Para. & Paraphrastic & 0.42 \\
+Para. $\rightarrow$ Continuation & Continuation & 0.38 \\
+\bottomrule
+\end{tabular}
+\caption{Cross-transfer between chain types. Near-chance performance demonstrates no unified depth signal exists across generation regimes.}
+\label{tab:cross_transfer}
+\end{table}
+
+The two chain types exhibit \textbf{sign-reversed} feature-depth correlations: continuation chains show monotonic feature decline with depth (as expected from distributional drift), while paraphrastic chains show weak positive correlations consistent with attractor convergence theory~\cite{bertrand2025llm}. Paraphrastic features converge by generation 3.
+
+Cross-transfer F1 is near chance (0.38--0.42), demonstrating that models trained on one chain type cannot classify the other. This rules out any unified ``depth signal'' and establishes that depth dynamics are fundamentally process-dependent. Paraphrastic binary F1 of 0.53 is effectively random for practical purposes---depth estimation is infeasible for paraphrastic chains under these conditions.
+
+\subsection{Experiment 4: Fine-Grained Ordinal Classification}
+\label{sec:exp4}
+
+We test whether depth discrimination extends beyond 3-class to full 5-class ordinal classification (gen-0 through gen-4).
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Granularity} & \textbf{Method} & \textbf{Macro F1} & \textbf{MAE} \\
+\midrule
+3-class & XGBoost & 0.72 & 0.31 \\
+5-class & XGBoost & 0.38 & 0.95 \\
+5-class & CORAL & 0.36 & 0.98 \\
+5-class & Frank-Hall & 0.39 & 0.92 \\
+\bottomrule
+\end{tabular}
+\caption{Ordinal classification results. 5-class is infeasible regardless of method, with 34pp degradation from 3-class.}
+\label{tab:ordinal}
+\end{table}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Depth} & \textbf{F1} & \textbf{Support} & \textbf{Confused with} \\
+\midrule
+gen-0 & 0.85 & 4950 & gen-1 (10\%) \\
+gen-1 & 0.45 & 4900 & gen-2 (28\%) \\
+gen-2 & 0.22 & 4600 & gen-3 (35\%), gen-1 (22\%) \\
+gen-3 & 0.18 & 4200 & gen-2 (33\%), gen-4 (30\%) \\
+gen-4 & 0.20 & 3800 & gen-3 (38\%), gen-2 (21\%) \\
+\bottomrule
+\end{tabular}
+\caption{Per-depth F1 for 5-class classification. Depths 2--4 are mutually indistinguishable (F1$\leq$0.22), with 72\% of off-diagonal confusion concentrated in this block.}
+\label{tab:per_depth}
+\end{table}
+
+Five-class ordinal classification is infeasible: macro F1=0.38 with MAE=0.95. The performance degradation from 3-class (34pp drop) is catastrophic and consistent across methods---ordinal-specific approaches (CORAL, Frank-Hall) provide no benefit over standard XGBoost.
+
+The per-depth breakdown reveals that classification performance is driven almost entirely by gen-0 detection (F1=0.85). Depths 2--4 are mutually indistinguishable: Cohen's $d=0.08$ for entropy\_mean and 0.12 for hapax\_ratio between adjacent deep generations. This pattern is architecture-conditional: Pythia-held-out achieves 5-class F1=0.48, while OLMo and Qwen held-out drop to 0.28--0.31 (near 5-class random baseline of 0.20).
+
+\subsection{Experiment 5: End-to-End Neural Classifier}
+\label{sec:exp5}
+
+We evaluate whether a QLoRA fine-tuned Qwen3-0.6B model can learn depth representations beyond handcrafted features.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & \textbf{5-class F1} & \textbf{3-class F1} & \textbf{LOGO 5-class} \\
+\midrule
+XGBoost 7-feature & 0.38 & 0.72 & 0.34 \\
+QLoRA Qwen3-0.6B & 0.44 & 0.76 & 0.38 \\
+$\Delta$ & $+0.06$ & $+0.04$ & $+0.04$ \\
+\bottomrule
+\end{tabular}
+\caption{End-to-end vs.\ handcrafted features. QLoRA provides modest improvement but does not resolve the fundamental architecture-conditional limitation.}
+\label{tab:e2e}
+\end{table}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Held-out Family} & \textbf{5-class F1} & \textbf{Overfit gap} \\
+\midrule
+Pythia (2.8B + 1B) & 0.52 & 0.10 \\
+OLMo-2-1B & 0.35 & 0.27 \\
+Qwen (1.7B + 0.6B) & 0.38 & 0.24 \\
+\bottomrule
+\end{tabular}
+\caption{QLoRA LOGO by held-out family. The overfitting gap (train F1 $-$ val F1) is large for non-Pythia families, indicating generator-specific memorization rather than generalizable depth learning.}
+\label{tab:e2e_logo}
+\end{table}
+
+The QLoRA model achieves 5-class F1=0.44 (vs.\ XGBoost 0.38, $+$6pp), suggesting that learned representations capture some signal beyond handcrafted features. However, this improvement does not resolve the fundamental problem: LOGO generalization remains architecture-conditional (Pythia held-out 0.52, OLMo 0.35, Qwen 0.38).
+
+The overfitting pattern is diagnostic: the model achieves train F1=0.62 but val F1=0.44 (gap=0.18), with the largest overfitting gaps on non-Pythia families (0.24--0.27). This indicates the model learns \emph{generator-specific} patterns rather than a universal depth representation---it memorizes per-generator artifacts that do not transfer across architectures. This directly supports our architecture-conditional framing.
+
+\section{Discussion}
+
+\subsection{Why Depth Signal is Architecture-Conditional}
+
+Our results reveal two mechanisms driving the architecture-conditional pattern:
+
+\paragraph{Reference model mismatch.} Pythia-410M as the reference model creates a same-family advantage for Pythia generators. The reference model's vocabulary and training distribution align with Pythia generators, making entropy statistics sensitive to their depth-induced drift. For OLMo and Qwen---trained on different corpora with different tokenizers---the reference model's entropy measurements are noisy proxies at best.
+
+\paragraph{Generator-specific drift dynamics.} Even surface features (which do not depend on the reference model) show weaker depth correlations for non-Pythia generators (TTR $\rho$: Pythia $-0.58$, OLMo $-0.35$, Qwen3-0.6B $-0.33$). This suggests that some architectures produce more uniform lexical distributions across depths, compressing the dynamic range available for drift detection.
+
+\subsection{Signal Absence as Fingerprint}
+
+A generator's depth response profile---which features drift, which remain stationary, and by how much---encodes architectural information even when absolute depth estimation fails. The contrast between Pythia (strong drift, $\rho\approx-0.6$) and OLMo/Qwen (weak drift, $\rho\approx-0.2$) is itself discriminative: one could identify the generator family from the \emph{pattern} of depth response without needing to solve the depth estimation problem.
+
+This second-order signal has practical implications: in scenarios where generator identification is the goal (rather than depth estimation), measuring how a text's features respond to chain depth provides an orthogonal signal to traditional stylometric approaches.
+
+\subsection{Implications for Depth Estimation Research}
+
+Our findings establish several practical boundaries:
+
+\begin{enumerate}
+    \item \textbf{Granularity ceiling}: $\leq$3 classes is the practical maximum for cross-generator depth estimation. Fine-grained ordinal approaches (5+ classes) require generator-specific models.
+    \item \textbf{Architecture scope}: depth estimation is feasible primarily within the same model family as the reference model. Cross-family generalization requires family-matched reference models or fundamentally different features.
+    \item \textbf{Process specificity}: depth models are not transferable across generation regimes (continuation vs.\ paraphrastic). Any practical system must identify the chain type before attempting depth estimation.
+\end{enumerate}
+
+\subsection{Limitations}
+
+Several limitations constrain the generalizability of our findings. First, we use only Pythia-410M as the reference model; family-matched reference models (e.g., OLMo-based for OLMo generators) might recover signal for non-Pythia families. Second, our generators are limited to $\leq$2.8B parameters---larger models may exhibit different depth dynamics. Third, we evaluate only base models; instruction-tuned models with their modified sampling distributions may show different patterns. Fourth, chain construction uses single-model continuation, while real-world contamination involves heterogeneous generator sequences.
+
+\section{Conclusion}
+
+We present the first systematic study of ordinal depth estimation in recursive LLM generation chains and demonstrate that depth signal is fundamentally \textbf{architecture-conditional}. Rather than a universal property of recursive generation, depth-correlated feature drift depends on the alignment between generator architecture, training data, and the reference model used for feature extraction. This finding has direct implications for data provenance research: depth estimation systems require architecture-aware design rather than one-size-fits-all approaches.
+
+Our key quantitative findings: (1) Cross-generator LOGO binary F1 ranges from 0.57 (Qwen3-0.6B) to 0.80 (Pythia-1B) with per-generator std=0.11; (2) surface features provide statistically indistinguishable performance from the full 7-feature set in cross-family settings ($p=0.12$); (3) 5-class ordinal estimation achieves only F1=0.38 with depths 2--4 mutually indistinguishable; (4) paraphrastic and continuation chains have reversed depth dynamics with cross-transfer F1=0.38--0.42.
+
+We propose that the \emph{pattern of signal presence and absence} constitutes a second-order generator fingerprint, opening a new direction for generator characterization research that leverages depth response profiles rather than absolute depth estimation.
+
+\begin{thebibliography}{5}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[Shumailov et~al.(2024)]{shumailov2024model}
+Shumailov, I., Shumaylov, Z., Zhao, Y., Gal, Y., Papernot, N., and Anderson, R.
+\newblock The curse of recursion: Training on generated data makes models forget.
+\newblock \emph{arXiv preprint arXiv:2305.17493}, 2024.
+
+\bibitem[Alemohammad et~al.(2024)]{alemohammad2024selfconsuming}
+Alemohammad, S., Casco-Rodriguez, J., Luzi, L., Humayun, A.~I., Babaei, H., LeJeune, D., Siahkoohi, A., and Baraniuk, R.~G.
+\newblock Self-consuming generative models go {MAD}.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[Mitchell et~al.(2023)]{mitchell2023detectgpt}
+Mitchell, E., Lee, Y., Khazatsky, A., Manning, C.~D., and Finn, C.
+\newblock {DetectGPT}: Zero-shot machine-generated text detection using probability curvature.
+\newblock In \emph{ICML}, 2023.
+
+\bibitem[Hans et~al.(2024)]{hans2024binoculars}
+Hans, A., Schwarzschild, A., Cherepanova, V., Kazemi, H., Ruoss, A., Sharma, R., and Goldstein, T.
+\newblock Spotting {LLMs} with {Binoculars}: Zero-shot detection of machine-generated text.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem[Bertrand et~al.(2025)]{bertrand2025llm}
+Bertrand, Q. et~al.
+\newblock {LLM} as broken telephone: Iterative generation creates an attractor cycle.
+\newblock In \emph{ACL}, 2025.
+
+\end{thebibliography}
+
+\end{document}

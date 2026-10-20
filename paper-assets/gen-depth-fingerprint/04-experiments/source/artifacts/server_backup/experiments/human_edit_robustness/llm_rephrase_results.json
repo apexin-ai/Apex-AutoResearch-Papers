@@ -1,0 +1,39 @@
+{
+  "original": {
+    "binary_f1": 0.6918,
+    "binary_ci": [
+      0.6749,
+      0.7067
+    ],
+    "multiclass_f1": 0.7385,
+    "multiclass_ci": [
+      0.7269,
+      0.7496
+    ]
+  },
+  "rephrased": {
+    "binary_f1": 0.6471,
+    "binary_ci": [
+      0.6308,
+      0.6619
+    ],
+    "multiclass_f1": 0.6672,
+    "multiclass_ci": [
+      0.6548,
+      0.6796
+    ]
+  },
+  "drop": {
+    "binary": -0.0447,
+    "multiclass": -0.0713
+  },
+  "edit_distance_ratio": 0.5071,
+  "n_samples": 5000,
+  "method": "7feature LOGO-CV, binary=gen1-vs-gen2+, 3class=gen0/gen1/gen2+",
+  "meta": {
+    "avg_sentences_replaced": 1.69,
+    "rephrase_model": "Qwen3-0.6B-Base",
+    "reference_model": "Pythia-410M",
+    "elapsed_seconds": 35.9
+  }
+}

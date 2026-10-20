@@ -1,0 +1,65 @@
+{
+  "exp_id": "plan-014",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T00:12:01.909Z",
+    "updated_at": "2026-05-15T03:47:24.272Z",
+    "hypothesis": "大模型生成器：Qwen3-8B-Base (7B+) 的 continuation 链是否展现同样的 depth dynamics",
+    "spec": {
+      "command": "nohup /root/miniconda3/bin/python generate_chain.py --model-name qwen3-8b --model-path /root/autodl-tmp/models/Qwen/Qwen3-8B-Base/Qwen/Qwen3-8B-Base/ --input data/openwebtext_seeds.jsonl --shard-id 0 --num-shards 1 --device cuda:0 > /tmp/gen_large_model.log 2>&1 &",
+      "server": "autodl-5090",
+      "gpu": "cuda:0",
+      "pid": 134817,
+      "data_path": "data/wiki_seed_1000.jsonl",
+      "data_count": 996,
+      "model_name": "Qwen3-8B-Base",
+      "seed": "all",
+      "log_path": "/tmp/gen_large_model.log",
+      "checkpoint_path": "/root/gen-depth-fingerprint/data/qwen3-8b/generations_shard0.jsonl",
+      "output_path": "data/qwen3-8b/generations_shard0.jsonl",
+      "estimated_duration_h": 4,
+      "model_params": "8.2B",
+      "fp16_vram_gb": 16.1
+    },
+    "notes": "2026-05-15 03:28: PID 134817 存活 (3h08m), 767/996 seeds (77%), ~13s/seed, ETA ~50min。recovered 文件 3460 行。GPU0 92% util, 22664 MiB。进程正常推进，完成后需用 recovered 文件覆盖 shard0 再做后处理。",
+    "conclusion": "success",
+    "metrics": {
+      "total_records": 3702,
+      "unique_seeds": 820,
+      "depth_dist": {
+        "0": 820,
+        "1": 806,
+        "2": 774,
+        "3": 684,
+        "4": 618
+      },
+      "features_extracted": 3728,
+      "logo_6gen_avg_f1": 0.7886,
+      "logo_qwen3_8b_held_out_f1": 0.6886,
+      "logo_qwen3_8b_ci95": [
+        0.675,
+        0.703
+      ],
+      "logo_5gen_subset_avg_f1": 0.8086,
+      "logo_5gen_baseline_f1": 0.8,
+      "spearman_hapax_ratio": -0.5683,
+      "spearman_ttr": -0.553,
+      "spearman_entropy_mean": -0.475,
+      "spearman_entropy_min": -0.314,
+      "feature_importance_top3": "hapax_ratio(0.271), ttr(0.165), entropy_mean(0.156)",
+      "ablation_full_f1": 0.7886,
+      "ablation_surface_only_f1": 0.7293,
+      "ablation_reference_only_f1": 0.7451,
+      "classify_5class_logo_avg": 0.5058,
+      "classify_5class_qwen8b_held_out": 0.4368,
+      "rc9_conclusion": "depth_signal_exists_at_8B_scale_but_transfer_gap_from_smaller_models"
+    },
+    "completed_at": "2026-05-15T03:47:24.272Z"
+  },
+  "timestamp": "2026-05-15T03:47:24.338168+00:00",
+  "trigger": "update_registry"
+}

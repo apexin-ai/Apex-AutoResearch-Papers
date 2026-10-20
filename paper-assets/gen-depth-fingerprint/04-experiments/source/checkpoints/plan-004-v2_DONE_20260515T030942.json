@@ -1,0 +1,129 @@
+{
+  "exp_id": "plan-004-v2",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T00:45:17.861Z",
+    "updated_at": "2026-05-15T03:09:42.335Z",
+    "hypothesis": "Downstream utility (retry): depth-stratified 数据对 OLMo-2-0425-1B CLM fine-tuning 的影响——5 variants × 3 seeds，输出到数据盘",
+    "spec": {
+      "command": "run_downstream.sh (3 GPUs parallel, save_strategy=no)",
+      "server": "autodl-5090",
+      "gpu": "cuda:1,cuda:2,cuda:3",
+      "pid": "143757(cuda:1),145189(cuda:2),145799(cuda:3)",
+      "data_path": "/root/autodl-tmp/gen-depth-fingerprint/experiments/downstream/",
+      "data_count": "depth0_only:797, depth01:3951, all:12299, size_matched:3951, binary_filtered:3951",
+      "model_name": "OLMo-2-0425-1B",
+      "seed": "42,123,456",
+      "log_path": "/tmp/plan004_gpu1.log, /tmp/plan004_gpu2.log, /tmp/plan004_gpu3.log",
+      "checkpoint_path": "none (save_strategy=no)",
+      "notes": "size_matched_seed42 done (eval_loss=0.8618, ppl=2.367). GPU2 98% VRAM - close to limit."
+    },
+    "notes": "GPU2 正常完成 (GPU2 ALL DONE). 14/15 results ready, missing depth01_seed123. Results summary (eval_loss / ppl): all=0.8480/2.335, binary_filtered=0.8709/2.389, depth01=0.8701/2.387, depth0_only=0.9864/2.682, size_matched=0.8617/2.367",
+    "conclusion": "success",
+    "metrics": {
+      "total_runs": 15,
+      "completed": 15,
+      "variants": {
+        "all": {
+          "eval_loss_mean": 0.848,
+          "perplexity_mean": 2.335,
+          "seeds": {
+            "42": {
+              "eval_loss": 0.848,
+              "ppl": 2.335
+            },
+            "123": {
+              "eval_loss": 0.848,
+              "ppl": 2.335
+            },
+            "456": {
+              "eval_loss": 0.8482,
+              "ppl": 2.3354
+            }
+          }
+        },
+        "size_matched": {
+          "eval_loss_mean": 0.8617,
+          "perplexity_mean": 2.367,
+          "seeds": {
+            "42": {
+              "eval_loss": 0.8618,
+              "ppl": 2.367
+            },
+            "123": {
+              "eval_loss": 0.8615,
+              "ppl": 2.367
+            },
+            "456": {
+              "eval_loss": 0.8618,
+              "ppl": 2.367
+            }
+          }
+        },
+        "depth01": {
+          "eval_loss_mean": 0.8701,
+          "perplexity_mean": 2.387,
+          "seeds": {
+            "42": {
+              "eval_loss": 0.8703,
+              "ppl": 2.3877
+            },
+            "123": {
+              "eval_loss": 0.87,
+              "ppl": 2.3869
+            },
+            "456": {
+              "eval_loss": 0.8699,
+              "ppl": 2.387
+            }
+          }
+        },
+        "binary_filtered": {
+          "eval_loss_mean": 0.8709,
+          "perplexity_mean": 2.389,
+          "seeds": {
+            "42": {
+              "eval_loss": 0.8708,
+              "ppl": 2.389
+            },
+            "123": {
+              "eval_loss": 0.871,
+              "ppl": 2.389
+            },
+            "456": {
+              "eval_loss": 0.871,
+              "ppl": 2.389
+            }
+          }
+        },
+        "depth0_only": {
+          "eval_loss_mean": 0.9864,
+          "perplexity_mean": 2.681,
+          "seeds": {
+            "42": {
+              "eval_loss": 0.9865,
+              "ppl": 2.6818
+            },
+            "123": {
+              "eval_loss": 0.9863,
+              "ppl": 2.68
+            },
+            "456": {
+              "eval_loss": 0.9865,
+              "ppl": 2.6817
+            }
+          }
+        }
+      },
+      "ranking_by_ppl": "all(2.335) < size_matched(2.367) < depth01(2.387) ≈ binary_filtered(2.389) << depth0_only(2.681)",
+      "seed_variance": "极小（同 variant 跨 seed ppl 差 <0.002）"
+    },
+    "completed_at": "2026-05-15T03:09:20.593Z"
+  },
+  "timestamp": "2026-05-15T03:09:42.393773+00:00",
+  "trigger": "update_registry"
+}

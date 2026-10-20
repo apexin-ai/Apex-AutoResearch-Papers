@@ -1,0 +1,532 @@
+tier: best
+narrative_guidance: 'Plan-016 三个新家族（Llama-3.2-3B / Gemma-2-2B / Mistral-7B-v0.3）全部确认显著
+  depth signal， differential response pattern（drift vs stationary）在所有新家族中完整复现，无逆转。
+  9 generators / 6 families 的 binary LOGO F1 达 0.73，7-feature 优势 vs best single detector
+  扩大至 +3.0pp。 原始论文叙事完全成立，Claims 无需降级： Claim 1 扩展为 "across 9 base-model generators
+  from 6 model families (0.6B–7.6B scale)"； Claim 2 differential response 在所有家族复现（包括
+  rp=1.1 的 Gemma）； Claim 3 negative finding 不变。 Instruct limitation 作为 scope boundary
+  清晰界定。 EMNLP 投稿强度：strong accept 可能——9-gen/6-family 的 empirical breadth 在同类工作中罕见，
+  novel task formulation + honest negative finding + robust cross-family generalization
+  构成完整贡献。
+
+  '
+imagined_experiments:
+- name: feature_ablation_and_trend
+  plan_id: plan_001
+  description: 'MVP 数据上的三部分分析：(A) 特征消融——reference-only vs surface-only vs full 7-feature；
+    (B) 每特征 depth trend（Spearman ρ + bootstrap CI）；(C) Pythia-410M perplexity 随 depth
+    变化。
+
+    '
+  expected_results:
+    full_macro_f1: 0.82
+    surface_only_f1: 0.76
+    reference_only_f1: 0.72
+    full_vs_surface_bootstrap_p: <0.001
+    full_vs_reference_bootstrap_p: <0.001
+    spearman_entropy_mean: -0.68
+    spearman_ttr: -0.63
+    spearman_hapax_ratio: -0.65
+    spearman_entropy_min: -0.31
+    spearman_entropy_std: -0.08
+    spearman_tail_decay: -0.09
+    spearman_entropy_max: 0.05
+    h2_features: entropy_mean, ttr, hapax_ratio (|ρ|>0.35, monotonic drift)
+    h1_features: tail_decay, entropy_std, entropy_max (|ρ|<0.12, near-stationary)
+    median_ppl_by_depth:
+    - 13.5
+    - 5.0
+    - 3.0
+    - 2.1
+    - 1.7
+    ppl_monotonic_decline: true
+  result_rationale: 'Location-shift model 预测 NLL 分布的位置参数（均值）随 depth 单调递减——递归生成选择高概率
+    token， 使文本逐步变得更可预测。entropy_mean 直接测量该均值，ρ=-0.68 反映强单调漂移。 TTR 和 hapax_ratio 是 vocabulary
+    diversity 指标，随 entropy_mean 下降而同步收缩（ρ≈-0.63/-0.65）， 因为可预测文本使用更窄的词汇集。 Shape 特征（entropy_std,
+    tail_decay）测量 NLL 分布的形状——方差和尾部衰减率。 Location shift 不改变分布形状（类比正态分布平移不改变方差）， 因此 shape
+    特征 |ρ|<0.12，几乎不随 depth 变化。 Full 7-feature (0.82) 显著优于 surface-only (0.76) 和 reference-only
+    (0.72)， 因为 drifting features 提供主要判别力，shape features 提供互补的 decision boundary 微调——
+    它们在 depth 维度上稳定，但跨 generator 有差异，帮助 XGBoost 校正 generator-specific biases。 Perplexity
+    单调递减（13.5→1.7）直接验证 location shift： 每一代的文本对参考模型更可预测，因为递归生成积累了 mode collapse。
+
+    '
+  tables:
+  - 'Table 1: Feature-depth Spearman ρ (个体水平, bootstrap 95% CI)'
+  - 'Table S1: 消融对比 — Full vs Surface-only vs Reference-only macro F1'
+  figures_description:
+  - 'Figure 1A: 7 features × depth 0-4 mean±std trend plot, drifting features 用实线标红,
+    stationary 用虚线标灰'
+  - 'Figure 1B: Perplexity by depth (box plot), 显示单调递减'
+  analysis: '消融确认特征互补性而非冗余性：surface 特征捕获 vocabulary impoverishment（词汇贫化）， reference
+    特征捕获 predictability increase（可预测性增加），两者是同一 location shift 的不同投影。 Claim 2 的 differential
+    response 在 MVP 单生成器上首次确立—— 后续 9-gen 扩展将测试这一模式的跨家族泛化性。
+
+    '
+- name: cross_generator_evaluation
+  plan_id: plan_002
+  description: '9 generators / 6 families LOGO 评估：Pythia-2.8B, Pythia-1B, OLMo-2-1B,
+    Qwen3-0.6B, Qwen3-1.7B, Qwen3-8B, Llama-3.2-3B, Gemma-2-2B (rp=1.1), Mistral-7B-v0.3。
+    Binary (gen-1 vs gen-2+) 和 3-class (gen-0/gen-1/gen-2+) 两种评估。
+
+    '
+  expected_results:
+    binary_logo_f1_9gen: 0.73
+    binary_logo_ci95:
+    - 0.718
+    - 0.742
+    three_class_logo_f1_9gen: 0.78
+    three_class_logo_ci95:
+    - 0.773
+    - 0.787
+    per_gen_3class_f1:
+      pythia-1b: 0.86
+      qwen3-0.6b: 0.83
+      pythia-2.8b: 0.81
+      qwen3-1.7b: 0.81
+      olmo-2-1b: 0.77
+      mistral-7b: 0.74
+      llama-3.2-3b: 0.72
+      qwen3-8b: 0.7
+      gemma-2-2b: 0.69
+    per_gen_f1_std: 0.056
+    per_gen_f1_range:
+    - 0.69
+    - 0.86
+    worst_single_gen_f1: 0.69
+    new_family_avg_held_out_f1: 0.717
+    seven_feat_binary_logo: 0.73
+    avg_logprob_binary_logo: 0.7
+    ld_score_binary_logo: 0.68
+    fastdetectgpt_binary_logo: 0.6
+    binoculars_binary_logo: 0.52
+    four_baseline_ensemble_binary: 0.71
+    seven_feat_vs_best_single_pp: 3.0
+    seven_feat_vs_four_baseline_pp: 2.0
+    bootstrap_7feat_vs_avglogprob_p: <0.001
+    leave_one_family_out_avg_f1: 0.72
+    total_records_9gen: ~40000
+    pooled_spearman:
+      hapax_ratio: -0.54
+      ttr: -0.51
+      entropy_mean: -0.46
+      entropy_min: -0.29
+      entropy_std: -0.07
+      tail_decay: -0.05
+      entropy_max: 0.06
+  result_rationale: '9-gen binary LOGO F1 从 6-gen 的 0.723 提升至 0.73（+0.7pp），原因是训练集多样性增加：
+    8 个训练 generator 覆盖 5 个家族（vs 之前的 4-5 个），提供更丰富的 feature-depth mapping， 使分类器学到更通用的
+    depth 边界而非 family-specific 模式。 Per-generator F1 分布（std=0.056, range=0.69-0.86）呈现清晰的
+    scale gradient： ≤1B generators（Pythia-1B 0.86, Qwen3-0.6B 0.83）F1 最高，因为小模型生成文本
+    diversity 低， depth drift 更显著；3B-8B generators（0.69-0.74）F1 较低但仍显著高于 chance（binary
+    0.50）， 因为更大模型的词汇空间更丰富、drift 更渐进。 Gemma-2-2B（0.69）是 worst case，因为 rp=1.1 抑制了 token-level
+    repetition， 部分削弱了 hapax_ratio/TTR 测量的 vocabulary impoverishment signal—— 但 entropy_mean
+    drift 不受 rp 影响（reference model 的评分与 generator 的 sampling 策略无关）， 提供了 rp-invariant
+    的 depth signal floor。 7-feature 优势 vs best single detector 从 6-gen 的 +1.1pp 扩大至
+    +3.0pp， 因为 AvgLogProb 作为单一 NLL 特征在更大 generator diversity 下泛化能力下降更快 （每个 generator
+    的 NLL 分布 range 不同），而 7-feature ensemble 通过多角度特征互补 更好地适应 unseen generators。
+
+    '
+  tables:
+  - 'Table 2: 9-gen LOGO per-generator held-out F1（binary + 3-class）'
+  - 'Table 3: 7-feature vs baseline detectors（binary LOGO F1, bootstrap 95% CI, paired
+    bootstrap p-value）'
+  figures_description:
+  - 'Figure 2: Per-generator held-out F1 bar chart（9 bars, colored by family, annotated
+    with scale）'
+  - 'Figure 3: 9-gen pooled Spearman ρ heatmap（7 features × 9 generators, 红蓝色阶）'
+  - 'Figure S1: Binary confusion matrices for best/median/worst held-out generator'
+  analysis: '9-gen/6-family 结果是论文的 headline evidence。Binary LOGO F1=0.73 在 LOGO 严格评估下
+    （test generator 完全 unseen）显著高于所有 single-detector baselines（p<0.001 vs AvgLogProb）。
+    Scale gradient（small models 更易分类）与 location-shift theory 一致—— 小模型 generation diversity
+    低，drift 更剧烈。 Leave-one-family-out F1=0.72 确认跨家族泛化，消除 intra-family leakage 担忧。
+    Per-gen std=0.056 远低于 AvgLogProb 的 std≈0.09，说明 7-feature ensemble 跨 generator
+    更稳定。
+
+    '
+- name: paraphrastic_comparison
+  plan_id: plan_006
+  description: 'RQ2: 平行构建 paraphrastic chains vs continuation chains。测试非改写链是否保留更多
+    depth signal。
+
+    '
+  expected_results:
+    continuation_3class_f1: 0.79
+    continuation_binary_f1: 0.75
+    paraphrastic_3class_f1: 0.74
+    paraphrastic_binary_f1: 0.67
+    f1_3class_delta: -0.05
+    f1_binary_delta: -0.08
+    spearman_entropy_mean_cont: -0.68
+    spearman_entropy_mean_para: -0.53
+    spearman_ttr_cont: -0.63
+    spearman_ttr_para: -0.55
+    spearman_hapax_cont: -0.65
+    spearman_hapax_para: -0.56
+    spearman_signs_consistent: true
+    cross_transfer_cont_to_para_f1: 0.74
+    cross_transfer_para_to_cont_f1: 0.77
+    depth_retention_para: 0.97
+    depth_retention_cont: 0.83
+    n_paraphrastic_clean: 4900
+  result_rationale: 'Paraphrastic chains 在 semantic-preservation 约束下生成：每步输出是前一步的改写而非延续。
+    Attractor convergence theory（ACL 2025）证明改写链在 ~3 步后收敛到 2-period cycle， 压缩了 depth
+    信号空间。因此 paraphrastic 3-class F1（0.74）低于 continuation（0.79）—— depth-2 和 depth-3
+    的改写文本已非常相似，分类器难以区分。 Continuation chains 无此约束：每步生成全新内容，drift 持续积累，depth signal
+    在更多 class 间保持可分。 Depth retention（para 0.97 vs cont 0.83）看似矛盾——改写链 retention 更高——
+    实际反映了 attractor 稳定性：改写链不会因长文本退化（degenerate）而截断， 但这种 retention 代价是 depth-discriminative
+    information 被压缩。 Spearman ρ 符号一致（均为负漂移）确认 drift 方向不因链类型逆转—— 改写和延续都使文本变得更可预测、更贫化，只是速率不同。
+    Cross-transfer viable（0.74-0.77）说明两种链类型共享底层 depth response 结构， 差异仅在量级，不在方向。
+
+    '
+  tables:
+  - 'Table S2: Continuation vs Paraphrastic chains — F1, Spearman ρ, cross-transfer'
+  figures_description:
+  - 'Figure S2: Feature-depth trend comparison (continuation vs paraphrastic, 3 drifting
+    features)'
+  analysis: 'Continuation chains 保留显著更多 depth signal（+5pp 3-class, +8pp binary）， 支持论文选择
+    continuation 作为 primary evaluation setting。 Paraphrastic chains 的较弱 signal 与 attractor
+    theory 一致，而非矛盾—— 这一比较将在论文 Discussion 中用于界定方法的适用范围： depth fingerprinting 最适用于非改写型递归生成（web
+    scraping 的典型场景）， 而非刻意改写场景。
+
+    '
+- name: finer_grained_ordinal
+  plan_id: plan_009
+  description: '5-class ordinal 分类（gen-0 至 gen-4）。测试是否存在超越 3-class 的更细粒度 depth signal。
+
+    '
+  expected_results:
+    five_class_macro_f1: 0.51
+    five_class_ci95:
+    - 0.5
+    - 0.52
+    five_class_accuracy: 0.54
+    five_class_mae: 0.66
+    three_class_macro_f1: 0.78
+    delta_5class_vs_3class: -0.27
+    per_class_f1:
+      depth_0: 0.91
+      depth_1: 0.63
+      depth_2: 0.27
+      depth_3: 0.27
+      depth_4: 0.44
+    gen2_gen3_inseparable: true
+    best_ordinal_method: HGBT (Frank-Hall close second)
+    coral_5class_f1: 0.45
+    frankhall_5class_f1: 0.45
+  result_rationale: '5-class 性能显著低于 3-class（-27pp），核心原因是 gen-2/gen-3 在特征空间中不可分： location
+    shift 在 depth-2 后边际变化递减——从 depth-0 到 depth-1 的 entropy_mean 下降约 0.5 nats， depth-1
+    到 depth-2 约 0.3 nats，depth-2 到 depth-3 仅约 0.1 nats。 这一递减遵循指数衰减模式：每步 drift 是前一步的
+    ~60%，使 depth-2+ 的特征值聚集在 converged region。 Gen-0 保持高 F1（0.91）因为 human-written seed
+    text 与 LLM 生成文本存在本质分布差异 （不仅是 depth drift，还有 sampling artifact 差异）。 Gen-4 F1（0.44）略高于
+    gen-2/gen-3（0.27），因为极端 depth 的文本偶尔出现 超低 TTR/hapax 值（vocabulary 极度贫化），形成可识别的 "extreme
+    drift" 模式。 Ordinal methods（CORAL, Frank-Hall）未优于 XGBoost/HGBT，因为 ordinal 假设（depth
+    等间距） 与实际非线性 drift 不匹配。
+
+    '
+  tables:
+  - 'Table S3: 5-class per-depth F1 + confusion matrix'
+  figures_description:
+  - 'Figure S3: 5-class confusion matrix heatmap, 显示 gen-2/gen-3 混淆带'
+  analysis: '3-class 是当前特征集的实际 ceiling，与 attractor theory 的预测一致。 论文将此作为 supplementary
+    result 报告，支持 "depth estimation 有自然上限" 的 framing—— 这不是方法缺陷，而是物理限制（drift 饱和）。 不建议在
+    main claims 中追求 finer ordinal resolution。
+
+    '
+- name: end_to_end_classifier
+  plan_id: plan_012
+  description: 'QLoRA fine-tuned LM（Qwen3-0.6B-Base）进行端到端 depth 分类。 对比 learned representations
+    vs handcrafted features。
+
+    '
+  expected_results:
+    three_class_macro_f1: 0.905
+    three_class_f1_std: 0.004
+    five_class_macro_f1: 0.59
+    five_class_f1_std: 0.01
+    per_class_5class:
+      depth_0: 0.999
+      depth_1: 0.8
+      depth_2: 0.4
+      depth_3: 0.32
+      depth_4: 0.42
+    vs_xgboost_3class_delta_pp: 12.4
+    vs_xgboost_5class_delta_pp: 8.5
+    lora_rank: 32
+    training_time_minutes: 117
+  result_rationale: 'QLoRA fine-tuned LM（0.905 3-class）大幅超越 XGBoost（0.79），原因有三： (1)
+    Token-level representations 捕获 handcrafted features 无法编码的 fine-grained patterns——
+    如句法结构变化、特定 n-gram 频率偏移、段落层级的 coherence drift； (2) LM 可以建模 feature interactions（如
+    entropy_mean × TTR 的非线性组合）， XGBoost 虽有 tree splits 但受限于 7 维特征空间； (3) LM 隐式学习了
+    generator-specific signatures，在 within-generator evaluation 中获得额外优势。 但 5-class
+    仍较低（0.59），说明 gen-2/gen-3 的不可分性不仅是特征工程问题， 更是信号层面的 fundamental limit——即使全 token
+    序列也无法可靠区分连续深度。 Gen-0 接近 1.0（0.999）因为 human vs LLM 的分布差异对 LM 而言是 trivial classification。
+
+    '
+  tables:
+  - 'Table S4: QLoRA vs XGBoost (3-class, 5-class F1, 训练成本对比)'
+  figures_description:
+  - 'Figure S4: 5-class QLoRA confusion matrix, 对比 XGBoost confusion matrix'
+  analysis: 'QLoRA 结果作为 Appendix supplementary analysis 报告（D027 决策）。 论文定位：更多 depth
+    signal 存在于 raw text 中超出 7 handcrafted features 的范围， 但本文的贡献在于 interpretable characterization（differential
+    response） 而非追求最高分类精度。 QLoRA 的 3-class 优势（+12.4pp）证明 depth estimation 作为 task 有更大上升空间，
+    激励未来工作探索 end-to-end approaches。
+
+    '
+- name: plan-016 Llama-3.2-3B generation + feature extraction
+  plan_id: plan-016-llama32-3b
+  description: 'Meta/Llama 家族扩展：Llama-3.2-3B (3B params) continuation chains， 995
+    seeds × 5 depths, rp=1.0, 三个 reference model feature extraction。
+
+    '
+  expected_results:
+    total_records: 4480
+    unique_seeds: 993
+    degenerate_rate_pct: 2.5
+    depth_dist:
+      '0': 993
+      '1': 978
+      '2': 942
+      '3': 872
+      '4': 695
+    depth_retention_d4_d0: 0.7
+    spearman:
+      hapax_ratio: -0.53
+      ttr: -0.49
+      entropy_mean: -0.44
+      entropy_min: -0.28
+      entropy_std: -0.06
+      tail_decay: -0.04
+      entropy_max: 0.07
+    drifting_features_all_significant: true
+    stationary_features_all_nonsignificant: true
+    differential_response_replicated: true
+    held_out_3class_f1: 0.72
+    held_out_binary_f1: 0.69
+    feature_importance_top3:
+    - hapax_ratio
+    - entropy_mean
+    - ttr
+  result_rationale: 'Llama-3.2-3B 是 Meta 家族的 3B 模型，与训练集中所有 generator 完全不同的架构（LLaMA
+    架构 vs Pythia/OLMo 的 GPT-NeoX/OLMo 架构、Qwen 的 Qwen 架构）。 Depth signal 存在且 differential
+    response 复现，原因是 depth drift 是递归生成的固有属性， 与模型架构无关：任何 autoregressive LM 在递归生成下都会选择高概率
+    token， 导致 output distribution 的 location parameter 单调移位。 Spearman ρ 量级（hapax -0.53,
+    entropy_mean -0.44）略弱于 ≤1B 模型（Pythia-1B hapax -0.70）， 因为 3B 模型 vocabulary 更丰富、generation
+    diversity 更高，drift 速率更慢—— 但仍远超 |ρ|>0.35 阈值。 Shape features 保持 |ρ|<0.12：entropy_std
+    (-0.06) 和 tail_decay (-0.04) 几乎不变， 确认 distributional shape invariance 跨 Llama
+    家族成立。 Degenerate rate 2.5% 在可接受范围（<5%），rp=1.0 无需调整。 Depth retention 0.70 低于 ≤1B
+    模型（~0.80-0.85），反映 3B 模型更长文本中偶尔出现的 off-topic drift 导致 chain 提前截断，但不影响已完成 samples
+    的 depth signal 质量。 Held-out F1 0.72 表明 other 8 generators 的训练数据成功泛化至 Llama 家族。
+
+    '
+  tables:
+  - 'Table 2 (扩展): Llama-3.2-3B row in 9-gen LOGO table'
+  - 'Table 1 (扩展): Llama Spearman ρ column'
+  figures_description:
+  - 'Figure 3 新 column: Llama-3.2-3B Spearman ρ heatmap strip'
+  - 'Figure 2 新 bar: Llama held-out F1 in per-generator chart'
+  analysis: 'Llama 家族确认 depth signal 跨 Meta 架构成立。 Held-out F1 0.72 高于 Qwen3-8B（0.70），与
+    scale gradient 一致（3B < 8B → easier to classify）。 Feature importance 排序（hapax >
+    entropy_mean > ttr）与 pooled 结果一致， 无 family-specific anomaly。
+
+    '
+- name: plan-016 Gemma-2-2B generation + feature extraction
+  plan_id: plan-016-gemma2-2b
+  description: 'Google/Gemma 家族扩展：Gemma-2-2B (2B params) continuation chains， rp=1.1（因
+    rp=1.0 degenerate rate 10% 超限），994 seeds × 5 depths。
+
+    '
+  expected_results:
+    total_records: 4300
+    unique_seeds: 990
+    degenerate_rate_rp10_pct: 10.0
+    degenerate_rate_rp11_pct: 3.8
+    depth_dist:
+      '0': 990
+      '1': 972
+      '2': 925
+      '3': 848
+      '4': 565
+    depth_retention_d4_d0: 0.57
+    spearman:
+      hapax_ratio: -0.48
+      ttr: -0.45
+      entropy_mean: -0.4
+      entropy_min: -0.24
+      entropy_std: -0.04
+      tail_decay: 0.02
+      entropy_max: 0.06
+    drifting_features_all_significant: true
+    stationary_features_all_nonsignificant: true
+    differential_response_replicated: true
+    held_out_3class_f1: 0.69
+    held_out_binary_f1: 0.66
+    rp_lofo_f1: 0.7
+    rp_lofo_gate: PASS (>0.70 → main results)
+  result_rationale: 'Gemma-2-2B 是唯一需要 rp=1.1 的 generator（rp=1.0 下 degenerate rate
+    10%）。 rp=1.1 抑制了 token-level repetition，因此 surface features（hapax, TTR）的 drift
+    magnitude 略弱于其他 generator（hapax ρ=-0.48 vs pooled -0.54），因为 repetition penalty
+    人为维持了 vocabulary diversity，减缓了自然的 vocabulary impoverishment 过程。 但 entropy_mean（-0.40）不受
+    rp 影响——reference model 的 surprise score 取决于文本的内容分布，与 generator 的 sampling 策略解耦——
+    这为 differential response 提供了 rp-invariant 的 "anchor feature"。 Depth retention
+    较低（0.57）因为 Gemma-2-2B 的 architecture 在深层生成时 更容易产生 off-topic 或 truncated outputs，即使
+    rp=1.1 后 degenerate rate 降至 3.8%。 Held-out F1 0.69 是所有 generator 中最低的，有两个原因： (1)
+    rp=1.1 引入 distributional shift，训练集中 8 个 rp=1.0 generator 的 feature 分布 与 Gemma
+    的 rp=1.1 分布不完全匹配； (2) 2B scale 的 Gemma 架构特有的 generation pattern（如 local attention
+    结构） 产生与其他家族略有不同的 depth signature。 rp-LOFO test F1=0.70 通过 gate（≥0.70），证明 rp mismatch
+    的影响有限， Gemma 有资格进入 main results（9-gen/6-family scope）。
+
+    '
+  tables:
+  - 'Table 2 (扩展): Gemma-2-2B row in 9-gen LOGO table'
+  - 'Table S5: rp-LOFO diagnostic (train rp=1.0, test rp=1.1)'
+  figures_description:
+  - 'Figure 3 新 column: Gemma-2-2B Spearman ρ heatmap strip, 标注 rp=1.1'
+  - 'Figure S5: rp=1.0 vs rp=1.1 feature distribution comparison (Gemma)'
+  analysis: 'Gemma 作为 worst-case generator（F1=0.69）仍显著高于 chance， 且 differential response
+    完整复现。rp=1.1 的影响 confined to surface features 的量级， 不改变 drift 方向或 shape stationarity。
+    论文在 Methodology 中注明 Gemma 使用 rp=1.1 及原因， rp-LOFO 结果在 Appendix 中报告以确认 rp 鲁棒性。 这是
+    best tier 中最弱的环节，但仍满足所有 gate criteria。
+
+    '
+- name: plan-016 Mistral-7B-v0.3 generation + feature extraction
+  plan_id: plan-016-mistral-7b
+  description: 'Mistral 家族扩展：Mistral-7B-v0.3 (7.2B params) continuation chains， 996
+    seeds × 5 depths, rp=1.0。
+
+    '
+  expected_results:
+    total_records: 4450
+    unique_seeds: 994
+    degenerate_rate_pct: 1.2
+    depth_dist:
+      '0': 994
+      '1': 984
+      '2': 950
+      '3': 865
+      '4': 657
+    depth_retention_d4_d0: 0.66
+    spearman:
+      hapax_ratio: -0.5
+      ttr: -0.47
+      entropy_mean: -0.42
+      entropy_min: -0.26
+      entropy_std: -0.05
+      tail_decay: -0.03
+      entropy_max: 0.07
+    drifting_features_all_significant: true
+    stationary_features_all_nonsignificant: true
+    differential_response_replicated: true
+    held_out_3class_f1: 0.74
+    held_out_binary_f1: 0.71
+    cross_scale_note: 7B scale, comparable to Qwen3-8B but higher F1 (0.74 vs 0.70)
+  result_rationale: 'Mistral-7B-v0.3 是 Mistral AI 的 7B base model，使用 sliding window
+    attention。 与 Qwen3-8B（另一个 7B+ generator）对比：Mistral held-out F1 更高（0.74 vs 0.70），
+    原因是 Mistral 的 generation 特征更接近 smaller models 的分布—— Mistral 的 sliding window attention
+    使 long-range coherence 较弱， 导致 depth drift 在 shallow depths 就更明显，产生更可分的 feature
+    distributions。 Qwen3-8B 的 full attention + larger context window 使生成文本更 coherent，
+    drift 更渐进，分类更困难。 Degenerate rate 极低（1.2%），rp=1.0 足够。 Spearman ρ pattern 完全符合 differential
+    response： drifting features（hapax -0.50, ttr -0.47, entropy_mean -0.42）全部 |ρ|>0.35，
+    shape features（entropy_std -0.05, tail_decay -0.03）全部 |ρ|<0.12。 7B scale 确认 depth
+    signal 的 scale-invariance： 现象存在于 0.6B-7.6B 全 scale range，虽然 magnitude 与 scale
+    负相关。
+
+    '
+  tables:
+  - 'Table 2 (扩展): Mistral-7B row in 9-gen LOGO table'
+  - 'Table 1 (扩展): Mistral Spearman ρ column'
+  figures_description:
+  - 'Figure 3 新 column: Mistral-7B Spearman ρ heatmap strip'
+  - 'Figure S6: Scale vs held-out F1 scatter (9 generators, x=log(params), y=F1)'
+  analysis: 'Mistral 是三个新家族中表现最好的（0.74），与 scale gradient 趋势一致。 Sliding window attention
+    的架构差异没有破坏 depth signal—— 进一步支持 differential response 是 autoregressive generation
+    的固有属性， 不依赖特定 attention 机制。 与 Qwen3-8B 的对比（同 scale 不同架构，F1 差 4pp）提供了 architecture
+    effect 的初步证据，可在 Discussion 中简要讨论。
+
+    '
+- name: plan-016 cross-reference Qwen3-8B feature completion
+  plan_id: plan-016-crossref-qwen8b
+  description: '补全 Table 4 cross-reference LOGO 矩阵： Qwen3-8B chains 用 OLMo-2-1B 和
+    Qwen3-0.6B reference model 提取特征， 完成 6-gen × 3-ref 的完整评估矩阵。
+
+    '
+  expected_results:
+    logo_avg_pythia_ref: 0.789
+    logo_avg_olmo_ref: 0.795
+    logo_avg_qwen_ref: 0.814
+    qwen8b_pythia_ref: 0.685
+    qwen8b_olmo_ref: 0.696
+    qwen8b_qwen_ref: 0.757
+    ci95_pythia:
+    - 0.747
+    - 0.824
+    ci95_olmo:
+    - 0.757
+    - 0.828
+    ci95_qwen:
+    - 0.785
+    - 0.842
+    all_entropy_drift_negative: true
+    spread_across_refs: 0.024
+    same_family_bias: false
+    best_ref_overall: Qwen3-0.6B (0.814)
+  result_rationale: 'Cross-reference 结果确认 reference model 选择不改变结论方向： 三个 reference
+    model（Pythia-410M, OLMo-2-1B, Qwen3-0.6B）的 LOGO F1 spread 仅 0.024（2.4pp）， 且排序一致（Qwen
+    > OLMo > Pythia）。 Qwen-ref 最高（0.814）因为 Qwen3-0.6B 的 tokenizer 与 Qwen3-8B 共享相同
+    vocabulary， 提取的 entropy features 对 Qwen generators 有更精确的 calibration—— 但关键是这个
+    same-family advantage 没有 inflate cross-generator generalization， 因为 LOGO 中 Qwen3-8B
+    被 held out 时，Qwen-ref 仍仅用其他 5 个 generator 训练。 ALL configurations 显示 negative entropy
+    drift， 说明 drift 现象是 generation-intrinsic 而非 reference-model artifact。 Qwen3-8B
+    在 Pythia-ref 下 F1=0.685（最低），在 Qwen-ref 下 0.757（最高）—— 7.2pp gap 来自 tokenizer alignment，但即使最差的
+    Pythia-ref 配置下 Qwen3-8B 的 F1 仍显著高于 chance。
+
+    '
+  tables:
+  - 'Table 4: 6-gen × 3-ref LOGO F1 matrix (完整版)'
+  figures_description:
+  - 'Figure S7: Cross-reference LOGO F1 heatmap (6 generators × 3 reference models)'
+  analysis: 'Cross-reference 完整矩阵是 Claim 2 的关键支撑： differential depth response 不依赖特定
+    reference model。 论文推荐 Pythia-410M 作为默认 reference（最小、最快、结果 competitive）， 但 Qwen3-0.6B
+    可作为 best-performance 选项供实际应用参考。 Same-family advantage（Qwen-ref 对 Qwen generators
+    略好） 在 Discussion 中注明为 tokenizer alignment effect。
+
+    '
+- name: plan-016 Llama-3.2-3B rp=1.1 diagnostic
+  plan_id: plan-016-llama32-3b-rp11
+  description: 'Llama-3.2-3B with rp=1.1 的 backup/diagnostic run。 用于 rp-LOFO analysis：train
+    8×rp=1.0, test Llama rp=1.1 和 Gemma rp=1.1。
+
+    '
+  expected_results:
+    total_records: 4550
+    unique_seeds: 993
+    degenerate_rate_pct: 1.0
+    spearman:
+      hapax_ratio: -0.5
+      ttr: -0.46
+      entropy_mean: -0.43
+      entropy_std: -0.05
+      tail_decay: -0.03
+    rp_lofo_llama_rp11_f1: 0.7
+    rp10_vs_rp11_spearman_delta:
+      hapax_ratio: 0.03
+      entropy_mean: 0.01
+    rp_effect_on_surface: mild suppression (-0.03 ρ on hapax/ttr)
+    rp_effect_on_reference: negligible (<0.01 ρ on entropy_mean)
+  result_rationale: 'Llama rp=1.1 是 diagnostic run，不进入 main results（D036 决策：Llama
+    用 rp=1.0）。 其价值在于 rp-LOFO 分析：train on 8 rp=1.0 generators → test on Llama rp=1.1
+    → F1=0.70， 与 Gemma rp=1.1 的 rp-LOFO F1=0.70 一致。 这证明 rp=1.1 的 distributional shift
+    是 systematic 且 bounded 的： rp 对 surface features（hapax, ttr）产生 mild suppression（ρ
+    减少 ~0.03）， 对 reference features（entropy_mean）几乎无影响（ρ 减少 <0.01）。 因此，即使训练集全部为 rp=1.0，分类器仍能以
+    F1≥0.70 识别 rp=1.1 生成文本的 depth—— 因为 depth signal 的主要载体 entropy_mean 不受 rp 影响。 Llama
+    rp=1.0 vs rp=1.1 的 paired comparison 将在 Appendix 提供 rp sensitivity analysis，支撑
+    Gemma rp=1.1 纳入 main results 的合理性。
+
+    '
+  tables:
+  - 'Table S5 (扩展): rp-LOFO diagnostic — Llama rp=1.1 + Gemma rp=1.1 对比'
+  figures_description:
+  - 'Figure S8: rp=1.0 vs rp=1.1 Spearman ρ comparison (Llama paired, 7 features)'
+  analysis: rp-LOFO 双重验证（Llama + Gemma 均 F1≥0.70）建立了对 Gemma rp=1.1 纳入 main results
+    的 statistical justification。Reference features 的 rp-invariance 是关键理论洞见： depth
+    signal 的 robust component 不依赖 generator 的 sampling hyperparameters， 因为它由 recursive
+    generation 的 information-theoretic 属性（而非 token-level 选择策略）决定。

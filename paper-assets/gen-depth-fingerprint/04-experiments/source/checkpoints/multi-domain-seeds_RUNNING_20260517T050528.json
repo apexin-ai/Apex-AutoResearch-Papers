@@ -1,0 +1,51 @@
+{
+  "exp_id": "multi-domain-seeds",
+  "project": "gen-depth-fingerprint",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:38:54.349Z",
+    "updated_at": "2026-05-17T05:05:28.485Z",
+    "hypothesis": "Domain independence: depth fingerprint 的 differential depth response 不依赖 seed domain——在 News/Academic/Code 三个非 Wikipedia 域上，7-feature ensemble 的 binary F1 与 Wikipedia baseline 差异 <10pp，证明 DDR 是生成过程的固有特性而非特定域文本属性的 artifact",
+    "spec": {
+      "command": "python multi_domain_generation.py + eval",
+      "server": "autodl-5090",
+      "gpu": "cuda:0,1,2,3",
+      "data_path": "/root/gen-depth-fingerprint/data/seeds_{news,academic,code}.jsonl",
+      "data_count": 600,
+      "model_name": "Pythia-1B + Qwen3-1.7B + Mistral-7B-v0.3",
+      "seed": 42
+    },
+    "metrics": {
+      "news_binary_f1": 0.7459,
+      "news_binary_ci": [
+        0.726,
+        0.764
+      ],
+      "news_multiclass_f1": 0.6516,
+      "academic_binary_f1": 0.7386,
+      "academic_binary_ci": [
+        0.72,
+        0.757
+      ],
+      "academic_multiclass_f1": 0.6223,
+      "code_binary_f1": 0.7535,
+      "code_binary_ci": [
+        0.737,
+        0.77
+      ],
+      "code_multiclass_f1": 0.6344,
+      "wikipedia_baseline_binary_f1": 0.8148,
+      "wikipedia_baseline_multiclass_f1": 0.8632,
+      "max_gap_vs_wiki_pp": 7.62,
+      "worst_domain": "academic",
+      "best_domain": "code",
+      "conclusion_label": "domain_independent"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T05:05:28.562636+00:00",
+  "trigger": "update_registry"
+}

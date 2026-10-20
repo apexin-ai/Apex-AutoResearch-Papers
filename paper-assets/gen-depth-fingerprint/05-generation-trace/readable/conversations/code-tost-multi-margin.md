@@ -1,0 +1,525 @@
+# code tost multi margin
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 17
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/chats/worker_code_tost-multi-margin_20260517T144211.jsonl`
+- **Structured JSON:** [`d558baccb4539d31b40d.json`](../../sessions/d5/d558baccb4539d31b40d.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+17 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T14:43:46.863656+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tost-multi-margin_20260517T144211",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T14:43:46.863958+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tost-multi-margin_20260517T144211",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T14:43:46.864115+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/tost_equivalence.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tost-multi-margin_20260517T144211",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/gen-depth-fingerprint/results/tost_equivalence.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T14:43:46.864246+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/gen-depth-fingerprint/results/*downstream* /root/gen-depth-fingerprint/results/*finetune* 2>/dev/null; echo \"---\"; ls /root/gen-depth-fingerprint/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tost-multi-margin_20260517T144211",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/gen-depth-fingerprint/results/*downstream* /root/gen-depth-fingerprint/results/*finetune* 2>/dev/null; echo \"---\"; ls /root/gen-depth-fingerprint/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-17T14:43:46.864455+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"all_data\\\": {\\n      \\\"mean\\\": 2.3350560526734903,\\n      \\\"std\\\": 0.00026857326633185504,\\n      \\\"values\\\": [\\n        2.3348388849917665,\\n        2.3349729068924905,\\n        2.335356366136214\\n      ]\\n    },\\n    \\\"size_matched\\\": {\\n      \\\"mean\\\": 2.367131138394797,\\n      \\\"std\\\": 0.00045400534884847344,\\n      \\\"values\\\": [\\n        2.367420224547984,\\n        2.366607856947016,\\n        2.367365333689391\\n      ]\\n    },\\n    \\\"depth01\\\": {\\n      \\\"mean\\\": 2.3870903655052262,\\n      \\\"std\\\": 0.0005532019036586094,\\n      \\\"values\\\": [\\n        2.3877152582337495,\\n        2.3868926542907234,\\n        2.386663183991205\\n      ]\\n    }\\n  },\\n  \\\"comparisons\\\": {\\n    \\\"all_data_vs_size_matched\\\": {\\n      \\\"absolute_margin_0.05\\\": {\\n        \\\"mean_diff\\\": -0.032075085721306795,\\n        \\\"se\\\": 0.00030455019081216897,\\n        \\\"df\\\": 2,\\n        \\\"t_upper\\\": -269.49609029116164,\\n        \\\"p_upper\\\": 6.884241496428082e-06,\\n        \\\"t_lower\\\": 58.85701214269927,\\n        \\\"p_lower\\\": 0.00014427317141196827,\\n        \\\"p_tost\\\": 0.00014427317141196827,\\n        \\\"equivalent_at_alpha_0.05\\\": true,\\n        \\\"ci_90_lower\\\": -0.0329643678869723,\\n        \\\"ci_90_upper\\\": -0.031185803555641288\\n      },\\n      \\\"relative_margin_2pct\\\": {\\n        \\\"margin_value\\\": 0.0467011210534698,\\n        \\\"mean_diff\\\": -0.032075085721306795,\\n        \\\"se\\\": 0.00030455019081216897,\\n        \\\"df\\\": 2,\\n        \\\"t_upper\\\": -258.6641189246923,\\n        \\\"p_upper\\\": 7.472877964885029e-06,\\n        \\\"t_lower\\\": 48.025040776229886,\\n        \\\"p_lower\\\": 0.00021664675226784613,\\n        \\\"p_tost\\\": 0.00021664675226784613,\\n        \\\"equivalent_at_alpha_0.05\\\": true,\\n        \\\"ci_90_low
+…[truncated 3042 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tost-multi-margin_20260517T144211",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T14:43:46.864663+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---\\n8gen_baselines.json\\n8gen_classifier_comparison.json\\n8gen_cross_model_chains.json\\n8gen_feature_ablation.json\\n8gen_finer_depth.json\\n8gen_ldscore_sparse_fixed.json\\n8gen_length_confound.json\\n8gen_lofo_family.json\\n8gen_logo_baselines.json\\n8gen_logo_results_BUGGY_DO_NOT_USE.json\\n8gen_logo_unfiltered.json\\n8gen_per_gen_spearman.json\\n8gen_pooled_rho.json\\n8gen_sampling_ablation.json\\n8gen_table3_unified.json\\n8gen_table3_v5_unified.json\\n8gen_table3_v6_unified.json\\nREADME.md\\nablation_results.json\\nalt_classifier_results.json\\nbinary_bootstrap_pvalue.json\\nbootstrap_ci_results.json\\nbootstrap_ci_v2_results.json\\nconfusion_matrix_3class.json\\nconfusion_matrix_results.json\\ncross_model_chains_results.json\\ncross_temp_transfer.json\\ncross_temp_transfer_qwen_only.json\\ndataset_stats.json\\ndataset_stats_table.tex\\ndegeneration_rates.json\\ndepth_trends.png\\ndistributional_tests.json\\nefficiency_comparison.json\\nfamily_holdout_3class.json\\nfig1_differential_response_v2.pdf\\nfig1_differential_response_v2.png\\nfilter_diagnostic.json\\nfiner_ordinal_results.json\\ngemma_cross_rp_comparison.json\\ngemma_rp11_held_out_logo.json\\nhuman_edit_robustness.json\\nhuman_edit_robustness_old_no_chat_template.json\\ninstruct_length_confound.json\\nlofo_ablation_results.json\\nmulti_classify_results.csv\\nmulti_classify_results.json\\nmulti_domain_results.json\\nmulti_seed_stability.json\\nmvp_results.json\\nn2a_bootstrap_ci.json\\nordinal_baseline_results.json\\noriginal_6gen_filter_stats.json\\np1c_instruct_logo_f1.json\\nper_gen_binary_f1.json\\nperplexity_by_depth.json\\nplan006_paraphrastic_comparison.json\\nplan006_paraphrastic_comparison_old_rp13.json\\nplan012_pythia410m_results.json\\nplan012_qwen06b_results.json\\nplan012_qwen06b_seed123_r32_results.json\\nplan012_xgboost_matched.json\\npooled_rho_fix.json\\nrd3_int1_entropy_std_pergen.json\\nreview_baseline_ensemble_results.j
+…[truncated 693 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tost-multi-margin_20260517T144211",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T14:43:46.864876+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat << 'PYEOF' > /root/gen-depth-fingerprint/tost_multi_margin.py\n\"\"\"TOST multi-margin equivalence test for downstream fine-tuning experiment.\"\"\"\n\nimport json\nimport math\nfrom scipy import stats\n\n# Per-seed perplexity values from plan-004-v2\ndata = {\n    \"all_data\": [2.3348388849917665, 2.3349729068924905, 2.335356366136214],\n    \"size_matched\": [2.367420224547984, 2.366607856947016, 2.367365333689391],\n    \"depth01\": [2.3877152582337495, 2.3868926542907234, 2.386663183991205],\n}\n\nMARGINS_PCT = [1, 2, 3, 5]\nALPHA = 0.05\n\ndef compute_stats(vals):\n    n = len(vals)\n    m = sum(vals) / n\n    s = math.sqrt(sum((x - m) ** 2 for x in vals) / (n - 1))\n    return m, s, n\n\ndef pooled_std(s1, n1, s2, n2):\n    return math.sqrt(((n1 - 1) * s1**2 + (n2 - 1) * s2**2) / (n1 + n2 - 2))\n\ndef cohens_d(m1, m2, sp):\n    return (m1 - m2) / sp if sp > 0 else float(\"inf\")\n\ndef tost(vals1, vals2, margin):\n    m1, s1, n1 = compute_stats(vals1)\n    m2, s2, n2 = compute_stats(vals2)\n    se = math.sqrt(s1**2 / n1 + s2**2 / n2)\n    df = n1 + n2 - 2\n    diff = m1 - m2\n\n    t_upper = (diff - margin) / se\n    t_lower = (diff + margin) / se\n    p_upper = stats.t.cdf(t_upper, df)\n    p_lower = 1 - stats.t.cdf(t_lower, df)\n    p_tost = max(p_upper, p_lower)\n    return {\n        \"t_upper\": t_upper,\n        \"p_upper\": p_upper,\n        \"t_lower\": t_lower,\n        \"p_lower\": p_lower,\n        \"p_tost\": round(p_tost, 6),\n        \"equivalent\": p_tost < ALPHA,\n    }\n\ndef run_comparison(name, vals1, vals2, baseline_mean):\n    m1, s1, n1 = compute_stats(vals1)\n    m2, s2, n2 = compute_stats(vals2)\n    sp = pooled_std(s1, n1, s2, n2)\n    d = cohens_d(m1, m2, sp)\n    diff = m1 - m2\n\n    margins = {}\n    for pct in MARGINS_PCT:\n        margin_abs = baseline_mean * pct / 100.0\n        result = tost(vals1, vals2, margin_abs)\n        margins[f\"{pct}pct\"] = {\n            \"margin_pct\": pct,\n            \"margin_abs\": round(margin_abs, 6),\n            \"tost_p\": result[\"p_tost\"],\n            \"equivalent\": result[\"equivalent\"],\n        }\n\n    return {\n        \"mean1\": round(m1, 6),\n        \"mean2\": round(m2, 6),\n        \"mean_diff\": round(diff, 6),\n        \"cohens_d\": round(d, 4),\n        \"pooled_std\": round(sp, 6),\n        \"n_per_group\": n1,\n        \"margins\": margins,\n    }\n\nbaseline_mean = compute_stats(data[\"all_data\"])[0]\n\ncomparisons = {\n    \"all_vs_size_matched\": run_comparison(\n        \"all_vs_size_matched\", data[\"all_data\"], data[\"size_matched\"], baseline_mean\n    ),\n    \"all_vs_depth01\": run_comparison(\n        \"all_vs_depth01\", data[\"all_data\"], data[\"depth01\"], baseline_mean\n    ),\n}\n\noutput = {\n    \"experiment\": \"tost_multi_margin_s3\",\n    \"date\": \"2026-05-17\",\n    \"baseline_mean\": round(baseline_mean, 6),\n    \"alpha\": ALPHA,\n    \"comparisons\": comparisons,\n}\n\nwith open(\"/root/gen-depth-fingerprint/results/tost_multi_margin.json\", \"w\") as f:\n    json.dump(output, f, indent=2)\n\n# Print summary\nprint(\"=\" * 65)\nprint(\"TOST Multi-Margin Equivalence Test Results\")\nprint(\"=\" * 65)\nprint(f\"Baseline (all_data) mean PPL: {baseline_mean:.4f}\")\nprint()\n\nfor cname, cdata in comparisons.items():\n    print(f\"--- {cname} ---\")\n    print(f\"  mean diff = {cdata['mean_diff']:.6f}, Cohen's d = {cdata['cohens_d']:.4f}\")\n    for mname, mdata in cdata[\"margins\"].items():\n        eq = \"YES\" if mdata[\"equivalent\"] else \"NO\"\n        print(f\"  {mname}: margin={mdata['margin_abs']:.4f} ({mdata['margin_pct']}%), \"\n              f\"p={mdata['tost_p']:.6f}, equivalent={eq}\")\n    print()\n\nprint(\"Output: results/tost_multi_margin.json\")\nPYEOF\ncd /root/gen-depth-fingerprint && source /root/miniconda3/bin/activate && python tost_multi_margin.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tost-multi-margin_20260517T144211",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat << 'PYEOF' > /root/gen-depth-fingerprint/tost_multi_margin.py\n\"\"\"TOST multi-margin equivalence test for downstream fine-tuning experiment.\"\"\"\n\nimport json\nimport math\nfrom scipy import stats\n\n# Per-seed perplexity values from plan-004-v2\ndata = {\n    \"all_data\": [2.3348388849917665, 2.3349729068924905, 2.335356366136214],\n    \"size_matched\": [2.367420224547984, 2.366607856947016, 2.367365333689391],\n    \"depth01\": [2.3877152582337495, 2.3868926542907234, 2.386663183991205],\n}\n\nMARGINS_PCT = [1, 2, 3, 5]\nALPHA = 0.05\n\ndef compute_stats(vals):\n    n = len(vals)\n    m = sum(vals) / n\n    s = math.sqrt(sum((x - m) ** 2 for x in vals) / (n - 1))\n    return m, s, n\n\ndef pooled_std(s1, n1, s2, n2):\n    return math.sqrt(((n1 - 1) * s1**2 + (n2 - 1) * s2**2) / (n1 + n2 - 2))\n\ndef cohens_d(m1, m2, sp):\n    return (m1 - m2) / sp if sp > 0 else float(\"inf\")\n\ndef tost(vals1, vals2, margin):\n    m1, s1, n1 = compute_stats(vals1)\n    m2, s2, n2 = compute_stats(vals2)\n    se = math.sqrt(s1**2 / n1 + s2**2 / n2)\n    df = n1 + n2 - 2\n    diff = m1 - m2\n\n    t_upper = (diff - margin) / se\n    t_lower = (diff + margin) / se\n    p_upper = stats.t.cdf(t_upper, df)\n    p_lower = 1 - stats.t.cdf(t_lower, df)\n    p_tost = max(p_upper, p_lower)\n    return {\n        \"t_upper\": t_upper,\n        \"p_upper\": p_upper,\n        \"t_lower\": t_lower,\n        \"p_lower\": p_lower,\n        \"p_tost\": round(p_tost, 6),\n        \"equivalent\": p_tost < ALPHA,\n    }\n\ndef run_comparison(name, vals1, vals2, baseline_mean):\n    m1, s1, n1 = compute_stats(vals1)\n    m2, s2, n2 = compute_stats(vals2)\n    sp = pooled_std(s1, n1, s2, n2)\n    d = cohens_d(m1, m2, sp)\n    diff = m1 - m2\n\n    margins = {}\n    for pct in MARGINS_PCT:\n        margin_abs = baseline_mean * pct / 100.0\n        result = tost(vals1, vals2, margin_abs)\n        margins[f\"{pct}pct\"] = {\n            \"margin_pct\": pct,\n            \"margin_abs\": round(margin_abs, 6),\n            \"tost_p\": result[\"p_tost\"],\n            \"equivalent\": result[\"equivalent\"],\n        }\n\n    return {\n        \"mean1\": round(m1, 6),\n        \"mean2\": round(m2, 6),\n        \"mean_diff\": round(diff, 6),\n        \"cohens_d\": round(d, 4),\n        \"pooled_std\": round(sp, 6),\n        \"n_per_group\": n1,\n        \"margins\": margins,\n    }\n\nbaseline_mean = compute_stats(data[\"all_data\"])[0]\n\ncomparisons = {\n    \"all_vs_size_matched\": run_comparison(\n        \"all_vs_size_matched\", data[\"all_data\"], data[\"size_matched\"], baseline_mean\n    ),\n    \"all_vs_depth01\": run_comparison(\n        \"all_vs_depth01\", data[\"all_data\"], data[\"depth01\"], baseline_mean\n    ),\n}\n\noutput = {\n    \"experiment\": \"tost_multi_margin_s3\",\n    \"date\": \"2026-05-17\",\n    \"baseline_mean\": round(baseline_mean, 6),\n    \"alpha\": ALPHA,\n    \"comparisons\": comparisons,\n}\n\nwith open(\"/root/gen-depth-fingerprint/results/tost_multi_margin.json\", \"w\") as f:\n    json.dump(output, f, indent=2)\n\n# Print summary\nprint(\"=\" * 65)\nprint(\"TOST Multi-Margin Equivalence Test Results\")\nprint(\"=\" * 65)\nprint(f\"Baseline (all_data) mean PPL: {baseline_mean:.4f}\")\nprint()\n\nfor cname, cdata in comparisons.items():\n    print(f\"--- {cname} ---\")\n    print(f\"  mean diff = {cdata['mean_diff']:.6f}, Cohen's d = {cdata['cohens_d']:.4f}\")\n    for mname, mdata in cdata[\"margins\"].items():\n        eq = \"YES\" if mdata[\"equivalent\"] else \"NO\"\n        print(f\"  {mname}: margin={mdata['margin_abs']:.4f} ({mdata['margin_pct']}%), \"\n              f\"p={mdata['tost_p']:.6f}, equivalent={eq}\")\n    print()\n\nprint(\"Output: results/tost_multi_margin.json\")\nPYEOF\ncd /root/gen-depth-fingerprint && source /root/miniconda3/bin/activate && python tost_multi_margin.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T14:43:46.865121+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat << \\\\'PYEOF\\\\' > /root/gen-depth-fingerprint/tost_multi_margin.py\\\\n\\\"\\\"\\\"TOST multi-margin equivalence test for downstream fine-tuning experiment.\\\"\\\"\\\"\\\\n\\\\nimport json\\\\nimport math\\\\nfrom scipy import stats\\\\n\\\\n# Per-seed perplexity values from plan-004-v2\\\\ndata = {\\\\n    \\\"all_data\\\": [2.3348388849917665, 2.3349729068924905, 2.335356366136214],\\\\n    \\\"size_matched\\\": [2.367420224547984, 2.366607856947016, 2.367365333689391],\\\\n    \\\"depth01\\\": [2.3877152582337495, 2.3868926542907234, 2.386663183991205],\\\\n}\\\\n\\\\nMARGINS_PCT = [1, 2, 3, 5]\\\\nALPHA = 0.05\\\\n\\\\ndef compute_stats(vals):\\\\n    n = len(vals)\\\\n    m = sum(vals) / n\\\\n    s = math.sqrt(sum((x - m) ** 2 for x in vals) / (n - 1))\\\\n    return m, s, n\\\\n\\\\ndef pooled_std(s1, n1, s2, n2):\\\\n    return math.sqrt(((n1 - 1) * s1**2 + (n2 - 1) * s2**2) / (n1 + n2 - 2))\\\\n\\\\ndef cohens_d(m1, m2, sp):\\\\n    return (m1 - m2) / sp if sp > 0 else float(\\\"inf\\\")\\\\n\\\\ndef tost(vals1, vals2, margin):\\\\n    m1, s1, n1 = compute_stats(vals1)\\\\n    m2, s2, n2 = compute_stats(vals2)\\\\n    se = math.sqrt(s1**2 / n1 + s2**2 / n2)\\\\n    df = n1 + n2 - 2\\\\n    diff = m1 - m2\\\\n\\\\n    t_upper = (diff - margin) / se\\\\n    t_lower = (diff + margin) / se\\\\n    p_upper = stats.t.cdf(t_upper, df)\\\\n    p_lower = 1 - stats.t.cdf(t_lower, df)\\\\n    p_tost = max(p_upper, p_lower)\\\\n    return {\\\\n        \\\"t_upper\\\": t_upper,\\\\n        \\\"p_upper\\\": p_upper,\\\\n        \\\"t_lower\\\": t_lower,\\\\n        \\\"p_lower\\\": p_lower,\\\\n        \\\"p_tost\\\": round(p_tost, 6),\\\\n        \\\"equivalent\\\": p_tost < ALPHA,\\\\n    }\\\\n\\\\ndef run_comparison(name, vals1, vals2, baseline_mean):\\\\n    m1, s1, n1 = compute_stats(vals1)\\\\n    m2, s2, n2 = compute_stats(vals2)\\\\n    sp = po
+…[truncated 3254 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tost-multi-margin_20260517T144211",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T14:43:46.865320+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/gen-depth-fingerprint && python -c \"\nimport json, math\nfrom scipy import stats\n\ndata = {\n    'all_data': [2.3348388849917665, 2.3349729068924905, 2.335356366136214],\n    'size_matched': [2.367420224547984, 2.366607856947016, 2.367365333689391],\n    'depth01': [2.3877152582337495, 2.3868926542907234, 2.386663183991205],\n}\nMARGINS_PCT = [1, 2, 3, 5]\nALPHA = 0.05\n\ndef compute_stats(vals):\n    n = len(vals)\n    m = sum(vals) / n\n    s = math.sqrt(sum((x - m) ** 2 for x in vals) / (n - 1))\n    return m, s, n\n\ndef pooled_std(s1, n1, s2, n2):\n    return math.sqrt(((n1 - 1) * s1**2 + (n2 - 1) * s2**2) / (n1 + n2 - 2))\n\ndef tost(vals1, vals2, margin):\n    m1, s1, n1 = compute_stats(vals1)\n    m2, s2, n2 = compute_stats(vals2)\n    se = math.sqrt(s1**2 / n1 + s2**2 / n2)\n    df = n1 + n2 - 2\n    diff = m1 - m2\n    t_upper = (diff - margin) / se\n    t_lower = (diff + margin) / se\n    p_upper = float(stats.t.cdf(t_upper, df))\n    p_lower = float(1 - stats.t.cdf(t_lower, df))\n    p_tost = max(p_upper, p_lower)\n    return round(p_tost, 6), bool(p_tost < ALPHA)\n\ndef run_comparison(vals1, vals2, baseline_mean):\n    m1, s1, n1 = compute_stats(vals1)\n    m2, s2, n2 = compute_stats(vals2)\n    sp = pooled_std(s1, n1, s2, n2)\n    d = (m1 - m2) / sp if sp > 0 else float('inf')\n    margins = {}\n    for pct in MARGINS_PCT:\n        margin_abs = baseline_mean * pct / 100.0\n        p, eq = tost(vals1, vals2, margin_abs)\n        margins[f'{pct}pct'] = {\n            'margin_pct': pct,\n            'margin_abs': round(margin_abs, 6),\n            'tost_p': p,\n            'equivalent': eq,\n        }\n    return {\n        'mean1': round(m1, 6),\n        'mean2': round(m2, 6),\n        'mean_diff': round(m1 - m2, 6),\n        'cohens_d': round(d, 4),\n        'pooled_std': round(sp, 6),\n        'n_per_group': n1,\n        'margins': margins,\n    }\n\nbaseline_mean = compute_stats(data['all_data'])[0]\ncomparisons = {\n    'all_vs_size_matched': run_comparison(data['all_data'], data['size_matched'], baseline_mean),\n    'all_vs_depth01': run_comparison(data['all_data'], data['depth01'], baseline_mean),\n}\noutput = {\n    'experiment': 'tost_multi_margin_s3',\n    'date': '2026-05-17',\n    'baseline_mean': round(baseline_mean, 6),\n    'alpha': ALPHA,\n    'comparisons': comparisons,\n}\nwith open('results/tost_multi_margin.json', 'w') as f:\n    json.dump(output, f, indent=2)\n\nprint('=' * 65)\nprint('TOST Multi-Margin Equivalence Test Results')\nprint('=' * 65)\nprint(f'Baseline (all_data) mean PPL: {baseline_mean:.4f}')\nprint()\nfor cname, cdata in comparisons.items():\n    print(f'--- {cname} ---')\n    print(f'  mean diff = {cdata[\\\"mean_diff\\\"]:.6f}, Cohens d = {cdata[\\\"cohens_d\\\"]:.4f}')\n    for mname, mdata in cdata['margins'].items():\n        eq = 'YES' if mdata['equivalent'] else 'NO'\n        print(f'  {mname}: margin={mdata[\\\"margin_abs\\\"]:.4f} ({mdata[\\\"margin_pct\\\"]}%), p={mdata[\\\"tost_p\\\"]:.6f}, equivalent={eq}')\n    print()\nprint('Output: results/tost_multi_margin.json')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tost-multi-margin_20260517T144211",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cd /root/gen-depth-fingerprint && python -c \"\nimport json, math\nfrom scipy import stats\n\ndata = {\n    'all_data': [2.3348388849917665, 2.3349729068924905, 2.335356366136214],\n    'size_matched': [2.367420224547984, 2.366607856947016, 2.367365333689391],\n    'depth01': [2.3877152582337495, 2.3868926542907234, 2.386663183991205],\n}\nMARGINS_PCT = [1, 2, 3, 5]\nALPHA = 0.05\n\ndef compute_stats(vals):\n    n = len(vals)\n    m = sum(vals) / n\n    s = math.sqrt(sum((x - m) ** 2 for x in vals) / (n - 1))\n    return m, s, n\n\ndef pooled_std(s1, n1, s2, n2):\n    return math.sqrt(((n1 - 1) * s1**2 + (n2 - 1) * s2**2) / (n1 + n2 - 2))\n\ndef tost(vals1, vals2, margin):\n    m1, s1, n1 = compute_stats(vals1)\n    m2, s2, n2 = compute_stats(vals2)\n    se = math.sqrt(s1**2 / n1 + s2**2 / n2)\n    df = n1 + n2 - 2\n    diff = m1 - m2\n    t_upper = (diff - margin) / se\n    t_lower = (diff + margin) / se\n    p_upper = float(stats.t.cdf(t_upper, df))\n    p_lower = float(1 - stats.t.cdf(t_lower, df))\n    p_tost = max(p_upper, p_lower)\n    return round(p_tost, 6), bool(p_tost < ALPHA)\n\ndef run_comparison(vals1, vals2, baseline_mean):\n    m1, s1, n1 = compute_stats(vals1)\n    m2, s2, n2 = compute_stats(vals2)\n    sp = pooled_std(s1, n1, s2, n2)\n    d = (m1 - m2) / sp if sp > 0 else float('inf')\n    margins = {}\n    for pct in MARGINS_PCT:\n        margin_abs = baseline_mean * pct / 100.0\n        p, eq = tost(vals1, vals2, margin_abs)\n        margins[f'{pct}pct'] = {\n            'margin_pct': pct,\n            'margin_abs': round(margin_abs, 6),\n            'tost_p': p,\n            'equivalent': eq,\n        }\n    return {\n        'mean1': round(m1, 6),\n        'mean2': round(m2, 6),\n        'mean_diff': round(m1 - m2, 6),\n        'cohens_d': round(d, 4),\n        'pooled_std': round(sp, 6),\n        'n_per_group': n1,\n        'margins': margins,\n    }\n\nbaseline_mean = compute_stats(data['all_data'])[0]\ncomparisons = {\n    'all_vs_size_matched': run_comparison(data['all_data'], data['size_matched'], baseline_mean),\n    'all_vs_depth01': run_comparison(data['all_data'], data['depth01'], baseline_mean),\n}\noutput = {\n    'experiment': 'tost_multi_margin_s3',\n    'date': '2026-05-17',\n    'baseline_mean': round(baseline_mean, 6),\n    'alpha': ALPHA,\n    'comparisons': comparisons,\n}\nwith open('results/tost_multi_margin.json', 'w') as f:\n    json.dump(output, f, indent=2)\n\nprint('=' * 65)\nprint('TOST Multi-Margin Equivalence Test Results')\nprint('=' * 65)\nprint(f'Baseline (all_data) mean PPL: {baseline_mean:.4f}')\nprint()\nfor cname, cdata in comparisons.items():\n    print(f'--- {cname} ---')\n    print(f'  mean diff = {cdata[\\\"mean_diff\\\"]:.6f}, Cohens d = {cdata[\\\"cohens_d\\\"]:.4f}')\n    for mname, mdata in cdata['margins'].items():\n        eq = 'YES' if mdata['equivalent'] else 'NO'\n        print(f'  {mname}: margin={mdata[\\\"margin_abs\\\"]:.4f} ({mdata[\\\"margin_pct\\\"]}%), p={mdata[\\\"tost_p\\\"]:.6f}, equivalent={eq}')\n    print()\nprint('Output: results/tost_multi_margin.json')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T14:43:46.865537+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/gen-depth-fingerprint && python -c \\\"\\\\nimport json, math\\\\nfrom scipy import stats\\\\n\\\\ndata = {\\\\n    \\\\'all_data\\\\': [2.3348388849917665, 2.3349729068924905, 2.335356366136214],\\\\n    \\\\'size_matched\\\\': [2.367420224547984, 2.366607856947016, 2.367365333689391],\\\\n    \\\\'depth01\\\\': [2.3877152582337495, 2.3868926542907234, 2.386663183991205],\\\\n}\\\\nMARGINS_PCT = [1, 2, 3, 5]\\\\nALPHA = 0.05\\\\n\\\\ndef compute_stats(vals):\\\\n    n = len(vals)\\\\n    m = sum(vals) / n\\\\n    s = math.sqrt(sum((x - m) ** 2 for x in vals) / (n - 1))\\\\n    return m, s, n\\\\n\\\\ndef pooled_std(s1, n1, s2, n2):\\\\n    return math.sqrt(((n1 - 1) * s1**2 + (n2 - 1) * s2**2) / (n1 + n2 - 2))\\\\n\\\\ndef tost(vals1, vals2, margin):\\\\n    m1, s1, n1 = compute_stats(vals1)\\\\n    m2, s2, n2 = compute_stats(vals2)\\\\n    se = math.sqrt(s1**2 / n1 + s2**2 / n2)\\\\n    df = n1 + n2 - 2\\\\n    diff = m1 - m2\\\\n    t_upper = (diff - margin) / se\\\\n    t_lower = (diff + margin) / se\\\\n    p_upper = float(stats.t.cdf(t_upper, df))\\\\n    p_lower = float(1 - stats.t.cdf(t_lower, df))\\\\n    p_tost = max(p_upper, p_lower)\\\\n    return round(p_tost, 6), bool(p_tost < ALPHA)\\\\n\\\\ndef run_comparison(vals1, vals2, baseline_mean):\\\\n    m1, s1, n1 = compute_stats(vals1)\\\\n    m2, s2, n2 = compute_stats(vals2)\\\\n    sp = pooled_std(s1, n1, s2, n2)\\\\n    d = (m1 - m2) / sp if sp > 0 else float(\\\\'inf\\\\')\\\\n    margins = {}\\\\n    for pct in MARGINS_PCT:\\\\n        margin_abs = baseline_mean * pct / 100.0\\\\n        p, eq = tost(vals1, vals2, margin_abs)\\\\n        margins[f\\\\'{pct}pct\\\\'] = {\\\\n            \\\\'margin_pct\\\\': pct,\\\\n            \\\\'margin_abs\\\\': round(margin_abs, 6),\\\\n            \\\\'tost_p\\\\': p,\\\\n            \\\\'equivalent\\\\': eq,\\\\n        }\\\\n    return {\\\\
+…[truncated 2056 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tost-multi-margin_20260517T144211",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T14:43:46.865750+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat > /root/gen-depth-fingerprint/tost_multi_margin.py << 'PYEOF'\nimport json, math\nfrom scipy import stats\n\ndata = {\n    \"all_data\": [2.3348388849917665, 2.3349729068924905, 2.335356366136214],\n    \"size_matched\": [2.367420224547984, 2.366607856947016, 2.367365333689391],\n    \"depth01\": [2.3877152582337495, 2.3868926542907234, 2.386663183991205],\n}\nMARGINS_PCT = [1, 2, 3, 5]\nALPHA = 0.05\n\ndef compute_stats(vals):\n    n = len(vals)\n    m = sum(vals) / n\n    s = math.sqrt(sum((x - m) ** 2 for x in vals) / (n - 1))\n    return m, s, n\n\ndef pooled_std(s1, n1, s2, n2):\n    return math.sqrt(((n1 - 1) * s1**2 + (n2 - 1) * s2**2) / (n1 + n2 - 2))\n\ndef tost(vals1, vals2, margin):\n    m1, s1, n1 = compute_stats(vals1)\n    m2, s2, n2 = compute_stats(vals2)\n    se = math.sqrt(s1**2 / n1 + s2**2 / n2)\n    df = n1 + n2 - 2\n    diff = m1 - m2\n    t_upper = (diff - margin) / se\n    t_lower = (diff + margin) / se\n    p_upper = float(stats.t.cdf(t_upper, df))\n    p_lower = float(1 - stats.t.cdf(t_lower, df))\n    p_tost = max(p_upper, p_lower)\n    return round(p_tost, 6), bool(p_tost < ALPHA)\n\ndef run_comparison(vals1, vals2, baseline_mean):\n    m1, s1, n1 = compute_stats(vals1)\n    m2, s2, n2 = compute_stats(vals2)\n    sp = pooled_std(s1, n1, s2, n2)\n    d = (m1 - m2) / sp if sp > 0 else float(\"inf\")\n    margins = {}\n    for pct in MARGINS_PCT:\n        margin_abs = baseline_mean * pct / 100.0\n        p, eq = tost(vals1, vals2, margin_abs)\n        margins[str(pct) + \"pct\"] = {\n            \"margin_pct\": pct,\n            \"margin_abs\": round(margin_abs, 6),\n            \"tost_p\": p,\n            \"equivalent\": eq,\n        }\n    return {\n        \"mean1\": round(m1, 6),\n        \"mean2\": round(m2, 6),\n        \"mean_diff\": round(m1 - m2, 6),\n        \"cohens_d\": round(d, 4),\n        \"pooled_std\": round(sp, 6),\n        \"n_per_group\": n1,\n        \"margins\": margins,\n    }\n\nbaseline_mean = compute_stats(data[\"all_data\"])[0]\ncomparisons = {\n    \"all_vs_size_matched\": run_comparison(data[\"all_data\"], data[\"size_matched\"], baseline_mean),\n    \"all_vs_depth01\": run_comparison(data[\"all_data\"], data[\"depth01\"], baseline_mean),\n}\noutput = {\n    \"experiment\": \"tost_multi_margin_s3\",\n    \"date\": \"2026-05-17\",\n    \"baseline_mean\": round(baseline_mean, 6),\n    \"alpha\": ALPHA,\n    \"comparisons\": comparisons,\n}\nwith open(\"results/tost_multi_margin.json\", \"w\") as f:\n    json.dump(output, f, indent=2)\n\nprint(\"=\" * 65)\nprint(\"TOST Multi-Margin Equivalence Test Results\")\nprint(\"=\" * 65)\nprint(\"Baseline (all_data) mean PPL: %.4f\" % baseline_mean)\nprint()\nfor cname, cdata in comparisons.items():\n    print(\"--- %s ---\" % cname)\n    print(\"  mean diff = %.6f, Cohens d = %.4f\" % (cdata[\"mean_diff\"], cdata[\"cohens_d\"]))\n    for mname, mdata in cdata[\"margins\"].items():\n        eq = \"YES\" if mdata[\"equivalent\"] else \"NO\"\n        print(\"  %s: margin=%.4f (%d%%), p=%.6f, equivalent=%s\" % (\n            mname, mdata[\"margin_abs\"], mdata[\"margin_pct\"], mdata[\"tost_p\"], eq))\n    print()\nprint(\"Output: results/tost_multi_margin.json\")\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tost-multi-margin_20260517T144211",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat > /root/gen-depth-fingerprint/tost_multi_margin.py << 'PYEOF'\nimport json, math\nfrom scipy import stats\n\ndata = {\n    \"all_data\": [2.3348388849917665, 2.3349729068924905, 2.335356366136214],\n    \"size_matched\": [2.367420224547984, 2.366607856947016, 2.367365333689391],\n    \"depth01\": [2.3877152582337495, 2.3868926542907234, 2.386663183991205],\n}\nMARGINS_PCT = [1, 2, 3, 5]\nALPHA = 0.05\n\ndef compute_stats(vals):\n    n = len(vals)\n    m = sum(vals) / n\n    s = math.sqrt(sum((x - m) ** 2 for x in vals) / (n - 1))\n    return m, s, n\n\ndef pooled_std(s1, n1, s2, n2):\n    return math.sqrt(((n1 - 1) * s1**2 + (n2 - 1) * s2**2) / (n1 + n2 - 2))\n\ndef tost(vals1, vals2, margin):\n    m1, s1, n1 = compute_stats(vals1)\n    m2, s2, n2 = compute_stats(vals2)\n    se = math.sqrt(s1**2 / n1 + s2**2 / n2)\n    df = n1 + n2 - 2\n    diff = m1 - m2\n    t_upper = (diff - margin) / se\n    t_lower = (diff + margin) / se\n    p_upper = float(stats.t.cdf(t_upper, df))\n    p_lower = float(1 - stats.t.cdf(t_lower, df))\n    p_tost = max(p_upper, p_lower)\n    return round(p_tost, 6), bool(p_tost < ALPHA)\n\ndef run_comparison(vals1, vals2, baseline_mean):\n    m1, s1, n1 = compute_stats(vals1)\n    m2, s2, n2 = compute_stats(vals2)\n    sp = pooled_std(s1, n1, s2, n2)\n    d = (m1 - m2) / sp if sp > 0 else float(\"inf\")\n    margins = {}\n    for pct in MARGINS_PCT:\n        margin_abs = baseline_mean * pct / 100.0\n        p, eq = tost(vals1, vals2, margin_abs)\n        margins[str(pct) + \"pct\"] = {\n            \"margin_pct\": pct,\n            \"margin_abs\": round(margin_abs, 6),\n            \"tost_p\": p,\n            \"equivalent\": eq,\n        }\n    return {\n        \"mean1\": round(m1, 6),\n        \"mean2\": round(m2, 6),\n        \"mean_diff\": round(m1 - m2, 6),\n        \"cohens_d\": round(d, 4),\n        \"pooled_std\": round(sp, 6),\n        \"n_per_group\": n1,\n        \"margins\": margins,\n    }\n\nbaseline_mean = compute_stats(data[\"all_data\"])[0]\ncomparisons = {\n    \"all_vs_size_matched\": run_comparison(data[\"all_data\"], data[\"size_matched\"], baseline_mean),\n    \"all_vs_depth01\": run_comparison(data[\"all_data\"], data[\"depth01\"], baseline_mean),\n}\noutput = {\n    \"experiment\": \"tost_multi_margin_s3\",\n    \"date\": \"2026-05-17\",\n    \"baseline_mean\": round(baseline_mean, 6),\n    \"alpha\": ALPHA,\n    \"comparisons\": comparisons,\n}\nwith open(\"results/tost_multi_margin.json\", \"w\") as f:\n    json.dump(output, f, indent=2)\n\nprint(\"=\" * 65)\nprint(\"TOST Multi-Margin Equivalence Test Results\")\nprint(\"=\" * 65)\nprint(\"Baseline (all_data) mean PPL: %.4f\" % baseline_mean)\nprint()\nfor cname, cdata in comparisons.items():\n    print(\"--- %s ---\" % cname)\n    print(\"  mean diff = %.6f, Cohens d = %.4f\" % (cdata[\"mean_diff\"], cdata[\"cohens_d\"]))\n    for mname, mdata in cdata[\"margins\"].items():\n        eq = \"YES\" if mdata[\"equivalent\"] else \"NO\"\n        print(\"  %s: margin=%.4f (%d%%), p=%.6f, equivalent=%s\" % (\n            mname, mdata[\"margin_abs\"], mdata[\"margin_pct\"], mdata[\"tost_p\"], eq))\n    print()\nprint(\"Output: results/tost_multi_margin.json\")\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T14:43:46.865910+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tost-multi-margin_20260517T144211",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T14:43:46.866031+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/bin/activate && cd /root/gen-depth-fingerprint && python tost_multi_margin.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tost-multi-margin_20260517T144211",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/bin/activate && cd /root/gen-depth-fingerprint && python tost_multi_margin.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T14:43:46.866161+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=================================================================\\nTOST Multi-Margin Equivalence Test Results\\n=================================================================\\nBaseline (all_data) mean PPL: 2.3351\\n\\n--- all_vs_size_matched ---\\n  mean diff = -0.032075, Cohens d = -85.9930\\n  1pct: margin=0.0234 (1%), p=0.999996, equivalent=NO\\n  2pct: margin=0.0467 (2%), p=0.000001, equivalent=YES\\n  3pct: margin=0.0701 (3%), p=0.000000, equivalent=YES\\n  5pct: margin=0.1168 (5%), p=0.000000, equivalent=YES\\n\\n--- all_vs_depth01 ---\\n  mean diff = -0.052034, Cohens d = -119.6643\\n  1pct: margin=0.0234 (1%), p=1.000000, equivalent=NO\\n  2pct: margin=0.0467 (2%), p=0.999943, equivalent=NO\\n  3pct: margin=0.0701 (3%), p=0.000000, equivalent=YES\\n  5pct: margin=0.1168 (5%), p=0.000000, equivalent=YES\\n\\nOutput: results/tost_multi_margin.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tost-multi-margin_20260517T144211",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T14:43:46.866298+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/tost_multi_margin.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_tost-multi-margin_20260517T144211",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/gen-depth-fingerprint/results/tost_multi_margin.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T14:43:46.866467+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"tost_multi_margin_s3\\\",\\n  \\\"date\\\": \\\"2026-05-17\\\",\\n  \\\"baseline_mean\\\": 2.335056,\\n  \\\"alpha\\\": 0.05,\\n  \\\"comparisons\\\": {\\n    \\\"all_vs_size_matched\\\": {\\n      \\\"mean1\\\": 2.335056,\\n      \\\"mean2\\\": 2.367131,\\n      \\\"mean_diff\\\": -0.032075,\\n      \\\"cohens_d\\\": -85.993,\\n      \\\"pooled_std\\\": 0.000373,\\n      \\\"n_per_group\\\": 3,\\n      \\\"margins\\\": {\\n        \\\"1pct\\\": {\\n          \\\"margin_pct\\\": 1,\\n          \\\"margin_abs\\\": 0.023351,\\n          \\\"tost_p\\\": 0.999996,\\n          \\\"equivalent\\\": false\\n        },\\n        \\\"2pct\\\": {\\n          \\\"margin_pct\\\": 2,\\n          \\\"margin_abs\\\": 0.046701,\\n          \\\"tost_p\\\": 1e-06,\\n          \\\"equivalent\\\": true\\n        },\\n        \\\"3pct\\\": {\\n          \\\"margin_pct\\\": 3,\\n          \\\"margin_abs\\\": 0.070052,\\n          \\\"tost_p\\\": 0.0,\\n          \\\"equivalent\\\": true\\n        },\\n        \\\"5pct\\\": {\\n          \\\"margin_pct\\\": 5,\\n          \\\"margin_abs\\\": 0.116753,\\n          \\\"tost_p\\\": 0.0,\\n          \\\"equivalent\\\": true\\n        }\\n      }\\n    },\\n    \\\"all_vs_depth01\\\": {\\n      \\\"mean1\\\": 2.335056,\\n      \\\"mean2\\\": 2.38709,\\n      \\\"mean_diff\\\": -0.052034,\\n      \\\"cohens_d\\\": -119.6643,\\n      \\\"pooled_std\\\": 0.000435,\\n      \\\"n_per_group\\\": 3,\\n      \\\"margins\\\": {\\n        \\\"1pct\\\": {\\n          \\\"margin_pct\\\": 1,\\n          \\\"margin_abs\\\": 0.023351,\\n          \\\"tost_p\\\": 1.0,\\n          \\\"equivalent\\\": false\\n        },\\n        \\\"2pct\\\": {\\n          \\\"margin_pct\\\": 2,\\n          \\\"margin_abs\\\": 0.046701,\\n          \\\"tost_p\\\": 0.999943,\\n          \\\"equivalent\\\": false\\n        },\\n        \\\"3pct\\\": {\\n          \\\"margin_pct\\\": 3,\\n       
+…[truncated 432 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_tost-multi-margin_20260517T144211",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-17T14:43:46.866664+00:00_
+
+完成。结果摘要：
+
+**all_vs_size_matched** (diff = -0.032, Cohen's d = -86.0):
+| Margin | Equivalent? |
+|--------|------------|
+| 1% (0.023) | NO (p=1.00) |
+| 2% (0.047) | YES (p<0.001) |
+| 3% (0.070) | YES (p<0.001) |
+| 5% (0.117) | YES (p<0.001) |
+
+**all_vs_depth01** (diff = -0.052, Cohen's d = -119.7):
+| Margin | Equivalent? |
+|--------|------------|
+| 1% (0.023) | NO (p=1.00) |
+| 2% (0.047) | NO (p=1.00) |
+| 3% (0.070) | YES (p<0.001) |
+| 5% (0.117) | YES (p<0.001) |
+
+size_matched 在 2% margin 即达等价；depth01 需要 3% margin。脚本写入 `tost_multi_margin.py`，结果写入 `results/tost_multi_margin.json`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_tost-multi-margin_20260517T144211"
+}
+```
+
+</details>
+
+---

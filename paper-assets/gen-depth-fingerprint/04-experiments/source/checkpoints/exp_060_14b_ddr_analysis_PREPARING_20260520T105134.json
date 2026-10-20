@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_060_14b_ddr_analysis",
+  "project": "gen-depth-fingerprint",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:51:34.628Z",
+    "updated_at": "2026-05-20T10:51:34.628Z"
+  },
+  "timestamp": "2026-05-20T10:51:34.740728+00:00",
+  "trigger": "update_registry"
+}

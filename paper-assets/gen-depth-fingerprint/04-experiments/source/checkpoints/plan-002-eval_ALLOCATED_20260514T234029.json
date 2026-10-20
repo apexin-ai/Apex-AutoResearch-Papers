@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan-002-eval",
+  "project": "gen-depth-fingerprint",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:33:25.348Z",
+    "updated_at": "2026-05-14T23:40:29.040Z",
+    "hypothesis": "跨生成器泛化评估：Pythia-410M 深度特征在 leave-one-generator-out 设置下能否泛化到未见过的生成器"
+  },
+  "timestamp": "2026-05-14T23:40:29.079637+00:00",
+  "trigger": "update_registry"
+}

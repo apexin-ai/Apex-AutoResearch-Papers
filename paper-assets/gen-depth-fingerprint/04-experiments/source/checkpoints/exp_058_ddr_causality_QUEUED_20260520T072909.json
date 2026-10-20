@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_058_ddr_causality",
+  "project": "gen-depth-fingerprint",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:05:46.902Z",
+    "updated_at": "2026-05-20T07:29:09.032Z",
+    "hypothesis": "DDR features have causal predictive power for depth beyond correlation: permutation importance confirms each feature group (drifting/stationary) contributes independently, and Granger causality tests show depth-t features predict depth-(t+1) features beyond autoregressive baseline, establishing temporal causal direction in the generation chain"
+  },
+  "timestamp": "2026-05-20T07:29:09.151505+00:00",
+  "trigger": "update_registry"
+}

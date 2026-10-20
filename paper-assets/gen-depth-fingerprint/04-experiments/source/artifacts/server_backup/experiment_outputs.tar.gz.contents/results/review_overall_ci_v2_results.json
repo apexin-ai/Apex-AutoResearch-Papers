@@ -1,0 +1,19 @@
+{
+  "pipeline": "bootstrap_ci_v2.py (class-balanced downsample)",
+  "overall_f1": 0.7878,
+  "overall_ci95": [
+    0.783,
+    0.792
+  ],
+  "ci_width": 0.009,
+  "n_bootstrap": 1000,
+  "n_samples": 27529,
+  "per_gen_sanity_check": {
+    "olmo-2-1b": 0.7649,
+    "pythia-1b": 0.8528,
+    "pythia-2.8b": 0.8037,
+    "qwen3-0.6b": 0.8231,
+    "qwen3-1.7b": 0.8064,
+    "qwen3-8b": 0.6815
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "exp_id": "plan-002-pythia1b-s0",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:09:40.947Z",
+    "updated_at": "2026-05-14T20:57:23.757Z",
+    "spec": {
+      "command": "python generate_chain.py --model-name pythia-1b --shard-id 0 --num-shards 2",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "108021",
+      "log_path": "~/runs/gen-depth-fingerprint/plan-002-pythia1b-s0.log",
+      "submitted_at": "2026-05-14T20:09:40.932Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl",
+      "data_count": 1000,
+      "model_name": "EleutherAI/pythia-1b",
+      "seed": 42,
+      "checkpoint_path": "/root/gen-depth-fingerprint/data/pythia-1b/generations_shard0.jsonl",
+      "wall_clock_seconds": 2862.8,
+      "gpu_hours": 0.8
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T20:50:12.706Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T20:50:13.422601+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "records": 2286,
+      "seeds": 497,
+      "skipped": 91,
+      "wall_time_s": 2296.7,
+      "depth_dist": {
+        "gen0": 497,
+        "gen1": 497,
+        "gen2": 457,
+        "gen3": 429,
+        "gen4": 406
+      },
+      "file": "data/pythia-1b/generations_shard0.jsonl",
+      "file_size_mb": 2.5
+    },
+    "completed_at": "2026-05-14T20:57:23.757Z"
+  },
+  "timestamp": "2026-05-14T20:57:23.795890+00:00",
+  "trigger": "update_registry"
+}

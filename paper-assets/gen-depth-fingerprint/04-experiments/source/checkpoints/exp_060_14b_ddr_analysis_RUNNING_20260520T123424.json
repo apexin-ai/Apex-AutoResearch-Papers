@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_060_14b_ddr_analysis",
+  "project": "gen-depth-fingerprint",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:51:34.628Z",
+    "updated_at": "2026-05-20T12:34:24.241Z",
+    "hypothesis": "DDR pattern (drifting central-tendency, stationary shape features) persists at 14B+ scale: Qwen3-14B-Base generation chains exhibit similar ρ/d decomposition as sub-8B models, with drifting features |ρ|>0.4 and stationary features |d|<0.2, ruling out scale-dependent DDR collapse up to 14.7B parameters",
+    "notes": "Qwen3-14B-Base (14.7B params, FP16 ~29GB). 单张 RTX 5090 推理。500 seeds × 5 depths, continuation prompt, t=0.7. 纯 feature analysis (ρ + d)，不训练分类器。模型下载中 (ModelScope/HF CLI, 目标路径 /root/autodl-tmp/models/Qwen3-14B-Base/)。生成用 generate_chain.py。",
+    "spec": {
+      "command": "python3 generate_chain.py --input data/wiki_seed_1000.jsonl --output-dir data/generations --model-name qwen3-14b-base --model-path /root/autodl-tmp/models/Qwen3-14B-Base --device cuda:0 --temperature 0.7 --top-p 0.9 --shard-id 0 --num-shards 2",
+      "server": "bjb2-18868",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "data/wiki_seed_1000.jsonl",
+      "data_count": 500,
+      "model_name": "Qwen3-14B-Base",
+      "seed": 42,
+      "checkpoint_path": "results/exp_060_14b_ddr.json",
+      "log_path": "/tmp/gen_14b_full.log"
+    }
+  },
+  "timestamp": "2026-05-20T12:34:24.436948+00:00",
+  "trigger": "update_registry"
+}

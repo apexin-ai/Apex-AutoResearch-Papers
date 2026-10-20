@@ -1,0 +1,88 @@
+{
+  "exp_id": "exp_048_cross_temp_transfer",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T12:52:44.889Z",
+    "updated_at": "2026-05-17T17:07:19.391Z",
+    "hypothesis": "Cross-temperature transfer: XGBoost 7-feature classifier trained at one sampling temperature (t=0.7 or t=1.0) maintains depth discrimination when tested at a different temperature, demonstrating deployment robustness to unknown decoding parameters",
+    "spec": {
+      "command": "python cross_temp_transfer.py",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/features_all_models.csv + sampling_ablation features",
+      "data_count": "~37000",
+      "model_name": "XGBoost 7-feature (est200, md6)",
+      "seed": "42",
+      "checkpoint_path": "N/A (CPU-only eval)",
+      "log_path": "/root/gen-depth-fingerprint/results/cross_temp_transfer.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "6gen_logo": {
+        "within_0.7_binary": 0.9471,
+        "within_0.7_3class": 0.7888,
+        "cross_0.7to1.0_binary": 0.9001,
+        "cross_0.7to1.0_3class": 0.7225,
+        "within_1.0_binary": 0.9107,
+        "within_1.0_3class": 0.7257,
+        "cross_1.0to0.7_binary": 0.9581,
+        "cross_1.0to0.7_3class": 0.7913,
+        "caveat": "Only Qwen3-1.7B differs between conditions; 5/6 generators share data"
+      },
+      "qwen_only": {
+        "within_0.7_binary": 0.9262,
+        "within_0.7_binary_ci": [
+          0.916,
+          0.935
+        ],
+        "within_0.7_3class": 0.769,
+        "within_0.7_3class_ci": [
+          0.756,
+          0.781
+        ],
+        "cross_0.7to1.0_binary": 0.7574,
+        "cross_0.7to1.0_binary_ci": [
+          0.745,
+          0.77
+        ],
+        "cross_0.7to1.0_3class": 0.4581,
+        "cross_0.7to1.0_3class_ci": [
+          0.445,
+          0.472
+        ],
+        "within_1.0_binary": 0.8248,
+        "within_1.0_binary_ci": [
+          0.81,
+          0.838
+        ],
+        "within_1.0_3class": 0.5738,
+        "within_1.0_3class_ci": [
+          0.56,
+          0.588
+        ],
+        "cross_1.0to0.7_binary": 0.9443,
+        "cross_1.0to0.7_binary_ci": [
+          0.936,
+          0.953
+        ],
+        "cross_1.0to0.7_3class": 0.6014,
+        "cross_1.0to0.7_3class_ci": [
+          0.593,
+          0.611
+        ],
+        "delta_0.7train_binary_pp": -16.9,
+        "delta_0.7train_3class_pp": -31.1,
+        "delta_1.0train_binary_pp": 12,
+        "delta_1.0train_3class_pp": 2.8,
+        "asymmetric_transfer": true
+      }
+    },
+    "parent": "exp_047_multi_domain_t07",
+    "completed_at": "2026-05-17T17:07:19.391Z"
+  },
+  "timestamp": "2026-05-17T17:07:19.496926+00:00",
+  "trigger": "update_registry"
+}

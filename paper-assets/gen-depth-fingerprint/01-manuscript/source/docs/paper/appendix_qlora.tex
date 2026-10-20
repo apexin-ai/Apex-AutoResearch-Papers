@@ -1,0 +1,36 @@
+To assess whether depth signal extends beyond handcrafted features, we fine-tune a pretrained language model end-to-end as a depth classifier using QLoRA \cite{qlora}.
+
+\paragraph{Setup.}
+We fine-tune Qwen3-0.6B-Base with LoRA rank 16, learning rate $2 \times 10^{-4}$, and 3 epochs, framing depth estimation as 5-class sequence classification (gen-0 through gen-4).\footnote{Evaluated on a 4-generator subset (Pythia-1B, OLMo-2-1B, Qwen3-0.6B, Qwen3-1.7B) using 5-fold stratified CV; XGBoost 3-class F1\,=\,0.805 under the same protocol. We expect 8-generator training to further improve given additional diversity; the comparison direction is preserved.}
+For 3-class evaluation, we collapse predictions into gen-0\,/\,gen-1\,/\,gen-2+ post hoc.
+All results use 5-fold stratified cross-validation on the 4-generator subset.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{QLoRA end-to-end depth classification vs.\ XGBoost on handcrafted features, under 5-fold stratified CV (4-generator subset).}
+\label{tab:qlora}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & \textbf{5-class F1} & \textbf{3-class F1} & \textbf{Per-class F1 (5-class)} \\
+\midrule
+XGBoost (7 features) & 0.497 $\pm$ 0.008 & 0.805 $\pm$ 0.008 & --- \\
+QLoRA (Qwen3-0.6B)   & 0.583 $\pm$ 0.010 & 0.905 $\pm$ 0.003 & 0.999\,/\,0.796\,/\,0.413\,/\,0.259\,/\,0.447 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\paragraph{Results.}
+QLoRA achieves 3-class F1\,=\,0.905 ($\pm$0.003) under 5-fold stratified CV on a 4-generator subset, a +10.0\,pp improvement over the same-subset XGBoost baseline (0.805).
+On 5-class evaluation, QLoRA reaches F1\,=\,0.583 ($\pm$0.010) vs.\ 0.497 for XGBoost (+8.6\,pp), with the largest gains at gen-1 (0.796 vs.\ 0.650) and gen-2 (0.413 vs.\ 0.267).
+The gen-2/gen-3 boundary remains the primary failure mode (gen-3 F1\,=\,0.259), consistent with the feature-level analysis in \S\ref{sec:discussion}.
+
+\paragraph{Hyperparameter robustness.}
+A second run with LoRA rank 32 and seed 123 yields 5-class F1\,=\,0.587 ($\pm$0.005) and 3-class F1\,=\,0.905 ($\pm$0.004), which confirms stability across hyperparameter and seed variation ($\Delta < 1$\,pp on both metrics).
+
+\paragraph{Implications.}
+The substantial 3-class improvement demonstrates that raw token embeddings contain depth signal beyond what summary statistics capture; the seven handcrafted features are a strong but lossy compression of the full distributional information.
+End-to-end fine-tuning exploits token-level patterns (e.g., positional regularities, n-gram repetitions) that aggregate features cannot represent.
+This confirms that the depth signal documented in our main analysis is real and exploitable beyond engineered features, while the handcrafted approach retains practical advantages: interpretability, computational efficiency (no GPU inference), and the ability to reveal the differential depth response pattern that motivates the task formulation.
+The QLoRA ceiling thus represents an information-asymmetric upper bound rather than a competing method: it consumes the full token sequence (0.6B parameters, GPU inference) whereas the 7-feature ensemble distills the signal into interpretable scalars that expose \emph{why} depth is detectable, a decomposition that end-to-end models cannot provide.

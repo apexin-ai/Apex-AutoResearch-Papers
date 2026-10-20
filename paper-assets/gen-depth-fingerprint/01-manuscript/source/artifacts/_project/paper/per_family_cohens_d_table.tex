@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering
+\caption{Intra-family consistency of Cohen's $d$ (depth-0 vs.\ depth-1+). Format matches Table~\ref{tab:family_ddr_consistency}.}
+\label{tab:family_cohens_d}
+\small
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{l c ccc c ccc}
+\toprule
+ & & \multicolumn{3}{c}{\textsc{Drifting}} & \textsc{Int.} & \multicolumn{3}{c}{\textsc{Near-Stationary}} \\
+\cmidrule(lr){3-5} \cmidrule(lr){6-6} \cmidrule(lr){7-9}
+Family & $n$ & $H_{\mathrm{mean}}$ & TTR & Hapax & $H_{\mathrm{std}}$ & $H_{\mathrm{max}}$ & $H_{\mathrm{min}}$ & $\beta_{\mathrm{tail}}$ \\
+\midrule
+Pythia & 2 & 1.29\tiny{$\pm$0.17} & 1.48\tiny{$\pm$0.13} & 1.50\tiny{$\pm$0.13} & 0.04\tiny{$\pm$0.01} & 0.10\tiny{$\pm$0.03} & 0.06\tiny{$\pm$0.01} & 0.27\tiny{$\pm$0.05} \\
+OLMo & 1 & 1.13 & 1.72 & 1.83 & 0.29 & 0.19 & 0.08 & 0.24 \\
+Qwen & 3 & 0.99\tiny{$\pm$0.18} & 1.49\tiny{$\pm$0.28} & 1.55\tiny{$\pm$0.29} & 0.13\tiny{$\pm$0.06} & 0.22\tiny{$\pm$0.01} & 0.12\tiny{$\pm$0.02} & 0.17\tiny{$\pm$0.04} \\
+Llama & 1 & 1.05 & 1.56 & 1.67 & 0.02 & 0.24 & 0.08 & 0.07 \\
+Mistral & 1 & 0.86 & 1.27 & 1.35 & 0.40 & 0.30 & 0.05 & 0.03 \\
+\midrule
+\rowcolor{gray!10}
+All 8 gen. & 8 & 1.08\tiny{$\pm$0.19} & 1.50\tiny{$\pm$0.20} & 1.56\tiny{$\pm$0.21} & 0.15\tiny{$\pm$0.14} & 0.20\tiny{$\pm$0.07} & 0.09\tiny{$\pm$0.03} & 0.17\tiny{$\pm$0.09} \\
+\bottomrule
+\end{tabular}
+\end{table}

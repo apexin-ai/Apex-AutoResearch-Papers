@@ -1,0 +1,28 @@
+Permutation Test: DDR 3/1/3 Partition Significance
+===================================================
+Date: 2026-05-21
+Data: features_8gen.csv (37058 rows, 8 generators, depth 0-4)
+
+Feature Metrics (|Spearman rho| with depth, Cohen's d gen-1 vs gen-2+):
+  entropy_mean     |rho|=0.5978  d=1.1360
+  entropy_std      |rho|=0.1567  d=0.4914
+  entropy_min      |rho|=0.4037  d=0.0156
+  entropy_max      |rho|=0.0608  d=0.0629
+  tail_decay       |rho|=0.0413  d=0.0905
+  ttr              |rho|=0.6249  d=0.8815
+  hapax_ratio      |rho|=0.6405  d=0.7833
+
+Partition (k=2: drifting vs non-drifting):
+  Drifting (cluster 0):       entropy_mean, ttr, hapax_ratio
+  Non-drifting (cluster 1):   entropy_std, entropy_min, entropy_max, tail_decay
+
+True k=2 silhouette: 0.6603
+
+Permutation Test (n=10000, seed=42):
+  p-value:            0.0304
+  Null mean:          0.0114
+  Null std:           0.2048
+  Z-score:            3.2 SDs above null mean
+
+Conclusion: SIGNIFICANT at alpha=0.05
+The 3/1/3 DDR partition is unlikely to arise by chance (p=0.030).

@@ -1,0 +1,480 @@
+# Literature Map for gen-depth-fingerprint
+# 递归 LLM 生成链深度指纹识别
+# Updated: 2026-05-15
+# Categories: detection, model-collapse, data-quality, stylometry,
+#             iterative-generation, watermarking, vocabulary-diversity,
+#             membership-inference, ood-detection, survey
+# Total: 39 papers
+
+##############################################################################
+# 1. Perplexity-based / Zero-shot Detection
+##############################################################################
+
+- id: detectgpt
+  title: "DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature"
+  authors: "Mitchell et al."
+  year: 2023
+  venue: "ICML 2023"
+  arxiv: "2301.11305"
+  category: detection
+  role: background
+  relevance: "基础检测方法，用 log-probability curvature 区分人/机文本；本项目的 depth fingerprint 可与之互补"
+  key_finding: "机器生成文本倾向于占据模型 log-probability 函数的负曲率区域"
+
+- id: gltr
+  title: "GLTR: Statistical Detection and Visualization of Generated Text"
+  authors: "Gehrmann et al."
+  year: 2019
+  venue: "ACL 2019"
+  arxiv: "1906.04043"
+  category: detection
+  role: background
+  relevance: "早期统计检测工具，使用 token rank/entropy 等特征；本项目可对比其特征在不同生成深度下的变化"
+  key_finding: "使用 token 概率排名和熵的可视化方案将人类检测准确率从 54% 提升到 72%"
+
+- id: dna_gpt
+  title: "DNA-GPT: Divergent N-Gram Analysis for Training-Free Detection of GPT-Generated Text"
+  authors: "Yang et al."
+  year: 2024
+  venue: "ICLR 2024"
+  arxiv: "2305.17359"
+  category: detection
+  role: background
+  relevance: "通过 n-gram 发散度做 zero-shot 检测；本项目 depth fingerprint 中的 diversity 指标可借鉴其 n-gram 分析"
+  key_finding: "截断文本后让 LLM 重新生成，通过 n-gram 差异实现零样本检测"
+
+- id: binoculars
+  title: "Spotting LLMs With Binoculars: Zero-Shot Detection of Machine-Generated Text"
+  authors: "Hans et al."
+  year: 2024
+  venue: "ICML 2024"
+  arxiv: "2401.12070"
+  category: detection
+  role: background
+  relevance: "双模型对比打分检测法；depth fingerprint 需要验证与 Binoculars score 在不同深度下的相关性"
+  key_finding: "对比两个近似 LLM 的 perplexity 比值可在 0.01% FPR 下检测 90%+ 的 ChatGPT 输出"
+
+- id: fast_detectgpt
+  title: "Fast-DetectGPT: Efficient Zero-Shot Detection of Machine-Generated Text via Conditional Probability Curvature"
+  authors: "Bao et al."
+  year: 2024
+  venue: "ICLR 2024"
+  arxiv: "2310.05130"
+  category: detection
+  role: background
+  relevance: "DetectGPT 加速版，用采样替代扰动；可作为 depth fingerprint pipeline 中的快速 baseline"
+  key_finding: "用条件概率曲率替代扰动步骤，检测速度提升 340 倍，性能相对提升 75%"
+
+- id: ld_score
+  title: "Beyond Perplexity: Character Distribution Signatures and the MDTA Benchmark for AI Text Detection"
+  authors: "Narayanasamy et al."
+  year: 2026
+  venue: "arXiv preprint"
+  arxiv: "2605.01647"
+  category: detection
+  role: method-component
+  relevance: "字符级分布特征 (LD-Score) 与 perplexity 正交（r=0.08-0.13）；可作为 depth fingerprint 的互补信号"
+  key_finding: "LLM 近似全局字符分布而人类展示领域特化分布，形成可检测的 Wall of Separation"
+
+- id: intrinsic_dimension
+  title: "Intrinsic Dimension Estimation for Robust Detection of AI-Generated Texts"
+  authors: "Tulchinskii et al."
+  year: 2023
+  venue: "NeurIPS 2023"
+  arxiv: "2306.04723"
+  category: detection
+  role: method-component
+  relevance: "用嵌入空间内在维度做检测；depth fingerprint 可探索内在维度随生成深度的变化趋势"
+  key_finding: "人类文本嵌入的内在维度约 9（字母语言），AI 文本约低 1.5；跨域/跨模型稳定"
+
+- id: diveye
+  title: "Diversity Boosts AI-Generated Text Detection"
+  authors: "Basani & Chen"
+  year: 2026
+  venue: "TMLR 2026"
+  arxiv: "2509.18880"
+  category: detection
+  role: method-component
+  relevance: "用 surprisal diversity 特征检测 AI 文本——人类文本 surprisal 分布离散度更高、尾部更重；与本项目 shape 特征（entropy_std, tail_decay）直接可比"
+  key_finding: "DivEye 框架捕捉 token surprisal 的波动模式，zero-shot 检测超现有方法最多 33.2%，对改写鲁棒"
+
+- id: generator_barrier
+  title: "Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection"
+  authors: "Pu et al."
+  year: 2026
+  venue: "arXiv preprint"
+  arxiv: "2604.13692"
+  category: detection
+  role: background
+  relevance: "通过解耦表征实现跨生成器泛化检测（MAGE 20 个 LLM），与本项目 LOGO 跨生成器评估目标一致；不同方法论（表征学习 vs 特征工程）"
+  key_finding: "解耦 AI 检测语义与生成器特有伪影，在未见生成器上准确率提升 24.2%、F1 提升 26.2%"
+
+- id: feat_aug_transformer
+  title: "Feature-Augmented Transformers for Robust AI-Text Detection Across Domains and Generators"
+  authors: "Mady et al."
+  year: 2026
+  venue: "arXiv preprint"
+  arxiv: "2605.03969"
+  category: detection
+  role: background
+  relevance: "语言特征增强 Transformer 做跨域/跨生成器检测（DeBERTa+FeatAttn 85.9% bal-acc on M4）；验证了语言特征对泛化性的价值，支撑本项目特征工程路线"
+  key_finding: "基模型域内近满分但迁移脆弱；attention-based 语言特征融合显著提升跨分布迁移能力"
+
+##############################################################################
+# 2. Model Collapse Theory
+##############################################################################
+
+- id: self_consuming_mad
+  title: "Self-Consuming Generative Models Go MAD"
+  authors: "Alemohammad et al."
+  year: 2023
+  venue: "arXiv preprint"
+  arxiv: "2307.01850"
+  category: model-collapse
+  role: background
+  relevance: "定义 autophagous loop 三种模式并证明精度/多样性递减；本项目的 depth fingerprint 可量化此递减"
+  key_finding: "无足够新鲜真实数据时，自噬循环导致生成质量（精度）或多样性（召回）逐步下降"
+
+- id: curse_of_recursion
+  title: "The Curse of Recursion: Training on Generated Data Makes Models Forget"
+  authors: "Shumailov et al."
+  year: 2024
+  venue: "Nature 2024"
+  arxiv: "2305.17493"
+  category: model-collapse
+  role: background
+  relevance: "Nature 发表的 model collapse 里程碑论文；本项目关注推理链（非训练循环）的类似退化现象"
+  key_finding: "递归训练导致不可逆缺陷——原始分布的尾部消失，在 VAE/GMM/LLM 中普遍存在"
+
+- id: strong_model_collapse
+  title: "Strong Model Collapse"
+  authors: "Dohmatob et al."
+  year: 2024
+  venue: "ICLR 2025"
+  arxiv: "2410.04840"
+  category: model-collapse
+  role: background
+  relevance: "证明即使 1% 合成数据也会导致 collapse，更大模型可能放大效应；支撑 depth fingerprint 的理论动机"
+  key_finding: "最小比例合成数据即可导致 strong collapse；更大模型在简化体制下可放大此效应"
+
+- id: model_collapse_avoidable
+  title: "Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data"
+  authors: "Gerstgrasser et al."
+  year: 2024
+  venue: "arXiv preprint"
+  arxiv: "2404.01413"
+  category: model-collapse
+  role: background
+  relevance: "证明累积数据时 collapse 可避免；本项目的生成链场景是纯推理无累积，collapse 更难避免"
+  key_finding: "当数据累积而非替换时，混合真实与合成数据可避免 model collapse"
+
+##############################################################################
+# 3. OOD Detection
+##############################################################################
+
+- id: ood_baseline
+  title: "A Baseline for Detecting Misclassified and Out-of-Distribution Examples in Neural Networks"
+  authors: "Hendrycks & Gimpel"
+  year: 2017
+  venue: "ICLR 2017"
+  arxiv: "1610.02136"
+  category: ood-detection
+  role: background
+  relevance: "OOD 检测基线方法；depth fingerprint 可视为 OOD scoring 的一种特殊形式——检测偏离人类分布的程度"
+  key_finding: "正确分类样本的最大 softmax 概率高于错误分类和 OOD 样本"
+
+##############################################################################
+# 4. Data Quality Scoring
+##############################################################################
+
+- id: dsir
+  title: "Data Selection for Language Models via Importance Resampling"
+  authors: "Xie et al."
+  year: 2023
+  venue: "NeurIPS 2023"
+  arxiv: "2302.03169"
+  category: data-quality
+  role: background
+  relevance: "数据质量筛选框架；depth fingerprint 可作为 DSIR 类 pipeline 中合成数据污染度的质量信号"
+  key_finding: "用 n-gram 特征空间的重要性权重做数据选择，100M 文档 4.5 小时处理"
+
+- id: qurating
+  title: "QuRating: Selecting High-Quality Data for Training Language Models"
+  authors: "Wettig et al."
+  year: 2024
+  venue: "ICML 2024"
+  arxiv: "2402.09739"
+  category: data-quality
+  role: background
+  relevance: "LLM 成对判断的数据质量评分；depth fingerprint 类似地为文本分配生成深度分数"
+  key_finding: "LLM 可准确判断文本的写作风格/专业性/教育价值等质量维度，用于预训练数据选择"
+
+- id: ccnet
+  title: "CCNet: Extracting High Quality Monolingual Datasets from Web Crawl Data"
+  authors: "Wenzek et al."
+  year: 2020
+  venue: "LREC 2020"
+  arxiv: "1911.00359"
+  category: data-quality
+  role: background
+  relevance: "基于 perplexity 的 web 数据过滤 pipeline；depth fingerprint 可集成为额外的质量过滤维度"
+  key_finding: "用语言模型 perplexity 过滤 Common Crawl 数据，接近维基百科质量水平"
+
+##############################################################################
+# 5. Watermarking
+##############################################################################
+
+- id: watermark_llm
+  title: "A Watermark for Large Language Models"
+  authors: "Kirchenbauer et al."
+  year: 2023
+  venue: "ICML 2023"
+  arxiv: "2301.10226"
+  category: watermarking
+  role: background
+  relevance: "绿色 token 列表 watermark 方案；depth fingerprint 检测非水印场景下的生成痕迹，形成互补"
+  key_finding: "通过在采样前划分 green/red token 列表实现不可见水印，短文本即可检测"
+
+- id: synthid_text
+  title: "Scalable Watermarking for Identifying Large Language Model Outputs"
+  authors: "Dathathri et al."
+  year: 2024
+  venue: "Nature 2024"
+  arxiv: ""
+  category: watermarking
+  role: background
+  relevance: "生产级 LLM 水印方案（Google Gemini 部署）；depth fingerprint 面向无水印的 post-hoc 检测"
+  key_finding: "Tournament Sampling 算法实现生产级文本水印，Google Gemini 实际部署"
+
+- id: aaronson_watermark
+  title: "Watermarking GPT Outputs"
+  authors: "Aaronson & Kirchner"
+  year: 2022
+  venue: "Technical Talk"
+  arxiv: ""
+  category: watermarking
+  role: background
+  relevance: "LLM 文本水印的原始提案；depth fingerprint 定位为不依赖水印的被动检测方案"
+  key_finding: "用伪随机函数选择 next token，对短文本即可检测，对轻微编辑鲁棒"
+
+- id: chainwash
+  title: "Chainwash: Multi-Step Rewriting Attacks on Diffusion Language Model Watermarks"
+  authors: "Ameen et al."
+  year: 2026
+  venue: "arXiv preprint"
+  arxiv: "2605.05503"
+  category: watermarking
+  role: background
+  relevance: "多步重写链攻击水印（5 hop 后检测率从 87.9% 降到 4.86%）；证明生成链深度影响水印信号，支撑 depth fingerprint 的动机——被动检测不依赖水印"
+  key_finding: "链式重写（chainwash）通过生成式多步改写有效消除扩散语言模型水印，5 步后 94.76% 原可检测文本不再被标记"
+
+##############################################################################
+# 6. Vocabulary Diversity
+##############################################################################
+
+- id: curious_decline
+  title: "The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text"
+  authors: "Guo et al."
+  year: 2024
+  venue: "NAACL 2024 Findings"
+  arxiv: "2311.09807"
+  category: vocabulary-diversity
+  role: direct-competitor
+  relevance: "直接相关：量化递归微调导致的词汇/句法/语义多样性下降；本项目扩展到推理链场景"
+  key_finding: "递归微调导致词汇/句法/语义多样性持续下降，创意任务尤为显著"
+
+- id: writing_diversity
+  title: "Does Writing with Language Models Reduce Content Diversity?"
+  authors: "Padmakumar & He"
+  year: 2024
+  venue: "ICLR 2024"
+  arxiv: "2309.05196"
+  category: vocabulary-diversity
+  role: background
+  relevance: "实验证明 InstructGPT 协写降低多样性；支撑 depth fingerprint 中 diversity 随深度递减的假设"
+  key_finding: "InstructGPT 协写显著降低不同作者间的文本相似度和词汇多样性"
+
+- id: nucleus_sampling
+  title: "The Curious Case of Neural Text Degeneration"
+  authors: "Holtzman et al."
+  year: 2020
+  venue: "ICLR 2020"
+  arxiv: "1904.09751"
+  category: vocabulary-diversity
+  role: background
+  relevance: "定义了 neural text degeneration 和 nucleus sampling；depth fingerprint 中的 shape 特征与采样策略相关"
+  key_finding: "最大化解码导致退化；Nucleus Sampling 截断不可靠尾部，生成质量接近人类"
+
+- id: mapping_llm_science
+  title: "Mapping the Increasing Use of LLMs in Scientific Papers"
+  authors: "Liang et al."
+  year: 2024
+  venue: "arXiv preprint"
+  arxiv: "2404.01268"
+  category: vocabulary-diversity
+  role: background
+  relevance: "大规模量化科学论文中 LLM 修改内容的比例；depth fingerprint 可检测多轮修改的深度"
+  key_finding: "95 万篇论文分析显示 CS 领域 LLM 修改率最高达 17.5%"
+
+- id: monitoring_ai_review
+  title: "Monitoring AI-Modified Content at Scale: A Case Study on the Impact of ChatGPT on AI Conference Peer Reviews"
+  authors: "Liang et al."
+  year: 2024
+  venue: "ICML 2024"
+  arxiv: "2403.07183"
+  category: vocabulary-diversity
+  role: background
+  relevance: "检测同行评审中 LLM 修改内容；depth fingerprint 提供互补的深度维度信号"
+  key_finding: "6.5-16.9% 的 AI 会议 peer review 可能被 LLM 实质性修改"
+
+##############################################################################
+# 7. Stylometry / Authorship Attribution
+##############################################################################
+
+- id: stamatatos_survey
+  title: "A Survey of Modern Authorship Attribution Methods"
+  authors: "Stamatatos"
+  year: 2009
+  venue: "JASIST 2009"
+  arxiv: ""
+  category: stylometry
+  role: background
+  relevance: "风格计量学经典综述；depth fingerprint 的特征工程可借鉴 stylometric 特征体系"
+  key_finding: "综述词汇/字符/句法等多层次文体特征在作者归属中的应用"
+
+- id: koppel_authorship
+  title: "Computational Methods in Authorship Attribution"
+  authors: "Koppel et al."
+  year: 2009
+  venue: "JASIST 2009"
+  arxiv: ""
+  category: stylometry
+  role: background
+  relevance: "开放集作者归属方法；depth fingerprint 可视为 LLM 生成深度的归属问题"
+  key_finding: "解决大规模候选集和开放集场景下的作者归属问题"
+
+- id: uchendu_attribution
+  title: "Authorship Attribution for Neural Text Generation"
+  authors: "Uchendu et al."
+  year: 2020
+  venue: "EMNLP 2020"
+  arxiv: ""
+  category: stylometry
+  role: background
+  relevance: "将作者归属扩展到 neural text 生成源识别；depth fingerprint 进一步细化到生成深度维度"
+  key_finding: "可区分不同神经文本生成器的多类归属，超越二分类人/机检测"
+
+##############################################################################
+# 8. Iterative Generation
+##############################################################################
+
+- id: broken_telephone
+  title: "LLM as a Broken Telephone: Iterative Generation Distorts Information"
+  authors: "Mohamed et al."
+  year: 2025
+  venue: "ACL 2025"
+  arxiv: "2502.20258"
+  category: iterative-generation
+  role: direct-competitor
+  relevance: "最直接相关：通过翻译链研究 LLM 迭代生成的信息失真；本项目扩展到非改写式生成链"
+  key_finding: "LLM 迭代翻译链中失真随深度累积，语言相似度和提示策略影响退化速率"
+
+- id: markovian_chains
+  title: "Markovian Generation Chains in Large Language Models"
+  authors: "Geng et al."
+  year: 2026
+  venue: "arXiv preprint"
+  arxiv: "2603.11228"
+  category: iterative-generation
+  role: direct-competitor
+  relevance: "定义 Markovian generation chains 并研究收敛/发散行为；本项目关注非改写链的 depth fingerprint"
+  key_finding: "迭代重述/翻译中输出或收敛到小循环集，或继续产生新句子，取决于温度和初始输入"
+
+##############################################################################
+# 9. Membership Inference
+##############################################################################
+
+- id: min_k_percent
+  title: "Detecting Pretraining Data from Large Language Models"
+  authors: "Shi et al."
+  year: 2024
+  venue: "ICLR 2024"
+  arxiv: "2310.16789"
+  category: membership-inference
+  role: method-component
+  relevance: "Min-K% 用最低概率 token 做成员推断；depth fingerprint 可借鉴其概率分布分析思路"
+  key_finding: "未见过的文本更可能包含低概率离群 token；Min-K% Prob 在 WikiMIA 上提升 7.4%"
+
+##############################################################################
+# 10. Robustness / Adversarial / Theoretical
+##############################################################################
+
+- id: reliable_detection
+  title: "Can AI-Generated Text be Reliably Detected?"
+  authors: "Sadasivan et al."
+  year: 2024
+  venue: "ICLR 2024"
+  arxiv: "2303.11156"
+  category: detection
+  role: background
+  relevance: "递归改写攻击显著降低检测率；depth fingerprint 面向非改写链，攻击面不同"
+  key_finding: "递归改写可将 DetectGPT 从 70.3% 降到 4.6%；检测上界与分布 TV 距离相关"
+
+- id: paraphrase_evades
+  title: "Paraphrasing Evades Detectors of AI-Generated Text, but Retrieval is an Effective Defense"
+  authors: "Krishna et al."
+  year: 2023
+  venue: "NeurIPS 2023"
+  arxiv: "2303.13408"
+  category: detection
+  role: background
+  relevance: "改写攻击 vs 检索防御；depth fingerprint 检测非改写链，与此正交但需考虑改写鲁棒性"
+  key_finding: "DIPPER 改写器将 DetectGPT 准确率从 70.3% 降到 4.6%；检索方法是有效防御"
+
+- id: detection_possibilities
+  title: "Position: On the Possibilities of AI-Generated Text Detection"
+  authors: "Chakraborty et al."
+  year: 2024
+  venue: "ICML 2024"
+  arxiv: "2304.04736"
+  category: detection
+  role: background
+  relevance: "理论证明 AI 文本检测在分布可区分时始终可行；支撑 depth fingerprint 的可行性"
+  key_finding: "信息论证明：除非人/机分布完全不可分，检测始终可行；给出样本复杂度下界"
+
+##############################################################################
+# 11. Surveys / Early Detection
+##############################################################################
+
+- id: jawahar_survey
+  title: "Automatic Detection of Machine Generated Text: A Critical Survey"
+  authors: "Jawahar et al."
+  year: 2020
+  venue: "COLING 2020"
+  arxiv: "2011.01314"
+  category: survey
+  role: background
+  relevance: "机器文本检测早期综述；depth fingerprint 定位在该领域的新维度"
+  key_finding: "系统梳理统计方法和神经方法在机器文本检测中的应用与局限"
+
+- id: grover
+  title: "Defending Against Neural Fake News"
+  authors: "Zellers et al."
+  year: 2019
+  venue: "NeurIPS 2019"
+  arxiv: "1905.12616"
+  category: detection
+  role: background
+  relevance: "生成器即最佳检测器的早期发现；depth fingerprint 不依赖生成器 access"
+  key_finding: "Grover 自身是检测 Grover 生成假新闻的最佳检测器（92% vs 73% baseline）"
+
+- id: release_strategies
+  title: "Release Strategies and the Social Impacts of Language Models"
+  authors: "Solaiman et al."
+  year: 2019
+  venue: "arXiv preprint"
+  arxiv: "1908.09203"
+  category: detection
+  role: background
+  relevance: "GPT-2 分阶段发布策略和检测工具；depth fingerprint 面向更复杂的生成链场景"
+  key_finding: "分阶段发布 GPT-2 允许在模型升级间进行风险/收益分析和检测器开发"

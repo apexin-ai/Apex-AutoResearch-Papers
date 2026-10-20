@@ -1,0 +1,64 @@
+{
+  "exp_id": "plan-001",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:25:29.824Z",
+    "updated_at": "2026-05-14T18:54:01.340Z",
+    "hypothesis": "Feature ablation: 模型级特征（entropy系列+tail_decay）独立于表面特征仍能区分生成深度；H1/H2趋势分析确认特征随depth的变化模式；perplexity随depth显著变化",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python ablation_analysis.py --parts A B C --device cuda:0\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "98324",
+      "log_path": "/tmp/plan-001-fix.log",
+      "submitted_at": "2026-05-14T18:25:56.326Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/gen-depth-fingerprint/results/ablation_results.json",
+      "wall_clock_seconds": 1685.0,
+      "gpu_hours": 0.47
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T18:51:40.563Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T18:51:41.308501+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "ablation_full_macro_f1": 0.82,
+      "ablation_surface_only_f1": 0.76,
+      "ablation_reference_only_f1": 0.72,
+      "trend_h2_features": [
+        "entropy_mean",
+        "ttr",
+        "hapax_ratio"
+      ],
+      "trend_h1_features": [
+        "tail_decay",
+        "entropy_std",
+        "entropy_max"
+      ],
+      "ppl_gen0_median": 13.5,
+      "ppl_gen4_median": 1.72,
+      "degenerate_ratio": "<1%",
+      "key_finding": "effect_size_decreasing_drift_deceleration"
+    },
+    "completed_at": "2026-05-14T18:54:01.340Z"
+  },
+  "timestamp": "2026-05-14T18:54:01.375694+00:00",
+  "trigger": "update_registry"
+}

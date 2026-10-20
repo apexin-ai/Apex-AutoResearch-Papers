@@ -1,0 +1,140 @@
+{
+  "task": "downstream_bootstrap_ci",
+  "n_seeds": 3,
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "n_bootstrap": 10000,
+  "n_permutation": 10000,
+  "variants": {
+    "all": {
+      "perplexities": [
+        2.3348388849917665,
+        2.3349729068924905,
+        2.335356366136214
+      ],
+      "mean": 2.335056,
+      "std": 0.000269
+    },
+    "size_matched": {
+      "perplexities": [
+        2.367420224547984,
+        2.366607856947016,
+        2.367365333689391
+      ],
+      "mean": 2.367131,
+      "std": 0.000454
+    },
+    "depth01": {
+      "perplexities": [
+        2.3877152582337495,
+        2.3868926542907234,
+        2.386663183991205
+      ],
+      "mean": 2.38709,
+      "std": 0.000553
+    },
+    "binary_filtered": {
+      "perplexities": [
+        2.388830017839211,
+        2.389073082021744,
+        2.3894329535501626
+      ],
+      "mean": 2.389112,
+      "std": 0.000303
+    },
+    "depth0_only": {
+      "perplexities": [
+        2.681795557018443,
+        2.6812647561024354,
+        2.6817028470874846
+      ],
+      "mean": 2.681588,
+      "std": 0.000284
+    }
+  },
+  "comparisons": {
+    "size_matched_vs_all": {
+      "paired_diffs": [
+        0.032581,
+        0.031635,
+        0.032009
+      ],
+      "mean_diff": 0.032075,
+      "bootstrap_ci_95": [
+        0.031635,
+        0.032581
+      ],
+      "permutation_p_value": 0.259,
+      "cohens_d": 67.2932,
+      "cohens_d_interpretation": "large",
+      "paired_t_test": {
+        "t_statistic": 116.5553,
+        "p_value": 0.0001
+      },
+      "note": "n=3 seeds \u2014 limited statistical power"
+    },
+    "depth01_vs_all": {
+      "paired_diffs": [
+        0.052876,
+        0.05192,
+        0.051307
+      ],
+      "mean_diff": 0.052034,
+      "bootstrap_ci_95": [
+        0.051307,
+        0.052876
+      ],
+      "permutation_p_value": 0.2428,
+      "cohens_d": 65.7809,
+      "cohens_d_interpretation": "large",
+      "paired_t_test": {
+        "t_statistic": 113.9359,
+        "p_value": 0.0001
+      },
+      "note": "n=3 seeds \u2014 limited statistical power"
+    },
+    "binary_filtered_vs_all": {
+      "paired_diffs": [
+        0.053991,
+        0.0541,
+        0.054077
+      ],
+      "mean_diff": 0.054056,
+      "bootstrap_ci_95": [
+        0.053991,
+        0.0541
+      ],
+      "permutation_p_value": 0.2526,
+      "cohens_d": 942.2058,
+      "cohens_d_interpretation": "large",
+      "paired_t_test": {
+        "t_statistic": 1631.9484,
+        "p_value": 0.0
+      },
+      "note": "n=3 seeds \u2014 limited statistical power"
+    },
+    "depth0_only_vs_all": {
+      "paired_diffs": [
+        0.346957,
+        0.346292,
+        0.346346
+      ],
+      "mean_diff": 0.346532,
+      "bootstrap_ci_95": [
+        0.346292,
+        0.346957
+      ],
+      "permutation_p_value": 0.2512,
+      "cohens_d": 938.9142,
+      "cohens_d_interpretation": "large",
+      "paired_t_test": {
+        "t_statistic": 1626.2471,
+        "p_value": 0.0
+      },
+      "note": "n=3 seeds \u2014 limited statistical power"
+    }
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "experiment": "distributional_tests_s2",
+  "date": "2026-05-17",
+  "n_samples": {
+    "gen0": 5972,
+    "gen1": 5918,
+    "gen2plus": 15639
+  },
+  "ks_tests": {
+    "entropy_mean": {
+      "gen0_vs_gen1": {
+        "statistic": 0.27739,
+        "p_value": 8.196864e-202,
+        "p_corrected": 1.721341e-200,
+        "significant": true
+      },
+      "gen0_vs_gen2plus": {
+        "statistic": 0.721492,
+        "p_value": 0.0,
+        "p_corrected": 0.0,
+        "significant": true
+      },
+      "gen1_vs_gen2plus": {
+        "statistic": 0.53693,
+        "p_value": 0.0,
+        "p_corrected": 0.0,
+        "significant": true
+      }
+    },
+    "entropy_std": {
+      "gen0_vs_gen1": {
+        "statistic": 0.225514,
+        "p_value": 6.002941e-133,
+        "p_corrected": 1.260618e-131,
+        "significant": true
+      },
+      "gen0_vs_gen2plus": {
+        "statistic": 0.231006,
+        "p_value": 2.936677e-203,
+        "p_corrected": 6.167021e-202,
+        "significant": true
+      },
+      "gen1_vs_gen2plus": {
+        "statistic": 0.285028,
+        "p_value": 3.783257e-309,
+        "p_corrected": 7.94484e-308,
+        "significant": true
+      }
+    },
+    "entropy_min": {
+      "gen0_vs_gen1": {
+        "statistic": 0.153032,
+        "p_value": 3.473572e-61,
+        "p_corrected": 7.2945e-60,
+        "significant": true
+      },
+      "gen0_vs_gen2plus": {
+        "statistic": 0.442532,
+        "p_value": 0.0,
+        "p_corrected": 0.0,
+        "significant": true
+      },
+      "gen1_vs_gen2plus": {
+        "statistic": 0.307025,
+        "p_value": 0.0,
+        "p_corrected": 0.0,
+        "significant": true
+      }
+    },
+    "entropy_max": {
+      "gen0_vs_gen1": {
+        "statistic": 0.204166,
+        "p_value": 6.985685e-109,
+        "p_corrected": 1.466994e-107,
+        "significant": true
+      },
+      "gen0_vs_gen2plus": {
+        "statistic": 0.183264,
+        "p_value": 1.635535e-127,
+        "p_corrected": 3.434623e-126,
+        "significant": true
+      },
+      "gen1_vs_gen2plus": {
+        "statistic": 0.043415,
+        "p_value": 1.809825e-07,
+        "p_corrected": 3.800632e-06,
+        "significant": true
+      }
+    },
+    "tail_decay": {
+      "gen0_vs_gen1": {
+        "statistic": 0.050678,
+        "p_value": 4.434965e-07,
+        "p_corrected": 9.313428e-06,
+        "significant": true
+      },
+      "gen0_vs_gen2plus": {
+        "statistic": 0.079033,
+        "p_value": 6.281147e-24,
+        "p_corrected": 1.319041e-22,
+        "significant": true
+      },
+      "gen1_vs_gen2plus": {
+        "statistic": 0.052088,
+        "p_value": 1.456378e-10,
+        "p_corrected": 3.058394e-09,
+        "significant": true
+      }
+    },
+    "ttr": {
+      "gen0_vs_gen1": {
+        "statistic": 0.713496,
+        "p_value": 0.0,
+        "p_corrected": 0.0,
+        "significant": true
+      },
+      "gen0_vs_gen2plus": {
+        "statistic": 0.804466,
+        "p_value": 0.0,
+        "p_corrected": 0.0,
+        "significant": true
+      },
+      "gen1_vs_gen2plus": {
+        "statistic": 0.517494,
+        "p_value": 0.0,
+        "p_corrected": 0.0,
+        "significant": true
+      }
+    },
+    "hapax_ratio": {
+      "gen0_vs_gen1": {
+        "statistic": 0.704228,
+        "p_value": 0.0,
+        "p_corrected": 0.0,
+        "significant": true
+      },
+      "gen0_vs_gen2plus": {
+        "statistic": 0.814805,
+        "p_value": 0.0,
+        "p_corrected": 0.0,
+        "significant": true
+      },
+      "gen1_vs_gen2plus": {
+        "statistic": 0.515951,
+        "p_value": 0.0,
+        "p_corrected": 0.0,
+        "significant": true
+      }
+    }
+  },
+  "levene_tests": {
+    "entropy_mean": {
+      "statistic": 1739.513704,
+      "p_value": 0.0,
+      "significant": true
+    },
+    "entropy_std": {
+      "statistic": 1222.688109,
+      "p_value": 0.0,
+      "significant": true
+    },
+    "entropy_min": {
+      "statistic": 23.999868,
+      "p_value": 3.855379e-11,
+      "significant": true
+    },
+    "entropy_max": {
+      "statistic": 39.686757,
+      "p_value": 6.152665e-18,
+      "significant": true
+    },
+    "tail_decay": {
+      "statistic": 178.757837,
+      "p_value": 7.350175e-78,
+      "significant": true
+    },
+    "ttr": {
+      "statistic": 1623.164387,
+      "p_value": 0.0,
+      "significant": true
+    },
+    "hapax_ratio": {
+      "statistic": 707.246545,
+      "p_value": 3.008132e-300,
+      "significant": true
+    }
+  },
+  "summary": {
+    "location_shift_shape_preserved": [],
+    "location_shift_shape_shift": [
+      "entropy_mean",
+      "entropy_std",
+      "entropy_min",
+      "entropy_max",
+      "tail_decay",
+      "ttr",
+      "hapax_ratio"
+    ],
+    "no_shift": []
+  }
+}

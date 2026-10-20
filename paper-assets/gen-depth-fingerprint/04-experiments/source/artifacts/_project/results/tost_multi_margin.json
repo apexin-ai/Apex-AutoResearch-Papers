@@ -1,0 +1,76 @@
+{
+  "experiment": "tost_multi_margin_s3",
+  "date": "2026-05-17",
+  "baseline_mean": 2.335056,
+  "alpha": 0.05,
+  "comparisons": {
+    "all_vs_size_matched": {
+      "mean1": 2.335056,
+      "mean2": 2.367131,
+      "mean_diff": -0.032075,
+      "cohens_d": -85.993,
+      "pooled_std": 0.000373,
+      "n_per_group": 3,
+      "margins": {
+        "1pct": {
+          "margin_pct": 1,
+          "margin_abs": 0.023351,
+          "tost_p": 0.999996,
+          "equivalent": false
+        },
+        "2pct": {
+          "margin_pct": 2,
+          "margin_abs": 0.046701,
+          "tost_p": 1e-06,
+          "equivalent": true
+        },
+        "3pct": {
+          "margin_pct": 3,
+          "margin_abs": 0.070052,
+          "tost_p": 0.0,
+          "equivalent": true
+        },
+        "5pct": {
+          "margin_pct": 5,
+          "margin_abs": 0.116753,
+          "tost_p": 0.0,
+          "equivalent": true
+        }
+      }
+    },
+    "all_vs_depth01": {
+      "mean1": 2.335056,
+      "mean2": 2.38709,
+      "mean_diff": -0.052034,
+      "cohens_d": -119.6643,
+      "pooled_std": 0.000435,
+      "n_per_group": 3,
+      "margins": {
+        "1pct": {
+          "margin_pct": 1,
+          "margin_abs": 0.023351,
+          "tost_p": 1.0,
+          "equivalent": false
+        },
+        "2pct": {
+          "margin_pct": 2,
+          "margin_abs": 0.046701,
+          "tost_p": 0.999943,
+          "equivalent": false
+        },
+        "3pct": {
+          "margin_pct": 3,
+          "margin_abs": 0.070052,
+          "tost_p": 0.0,
+          "equivalent": true
+        },
+        "5pct": {
+          "margin_pct": 5,
+          "margin_abs": 0.116753,
+          "tost_p": 0.0,
+          "equivalent": true
+        }
+      }
+    }
+  }
+}

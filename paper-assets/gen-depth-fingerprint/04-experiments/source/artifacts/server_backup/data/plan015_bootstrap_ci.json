@@ -1,0 +1,76 @@
+{
+  "n_samples": 23032,
+  "n_bootstrap": 1000,
+  "seed": 42,
+  "avg_logprob_logo_f1": {
+    "point": 0.7586,
+    "ci_95": [
+      0.753,
+      0.764
+    ],
+    "std": 0.0029
+  },
+  "fastdetectgpt_logo_f1": {
+    "point": 0.731,
+    "ci_95": [
+      0.7252,
+      0.7366
+    ],
+    "std": 0.003
+  },
+  "seven_feature_logo_f1": {
+    "point": 0.7977,
+    "ci_95": [
+      0.7925,
+      0.8031
+    ],
+    "std": 0.0027
+  },
+  "seven_feature_vs_avg_logprob": {
+    "delta_f1": 0.0391,
+    "ci_95": [
+      0.0333,
+      0.0442
+    ],
+    "p_value": 0.0,
+    "significant_005": true
+  },
+  "seven_feature_vs_fastdetectgpt": {
+    "delta_f1": 0.0667,
+    "ci_95": [
+      0.0606,
+      0.073
+    ],
+    "p_value": 0.0,
+    "significant_005": true
+  },
+  "avg_logprob_spearman_label": {
+    "point": 0.7279,
+    "ci_95": [
+      0.7202,
+      0.7347
+    ]
+  },
+  "avg_logprob_spearman_raw_depth": {
+    "point": 0.7246,
+    "ci_95": [
+      0.7167,
+      0.7323
+    ]
+  },
+  "fastdetectgpt_spearman_label": {
+    "point": 0.3434,
+    "ci_95": [
+      0.3296,
+      0.3575
+    ]
+  },
+  "fastdetectgpt_spearman_raw_depth": {
+    "point": 0.2531,
+    "ci_95": [
+      0.2394,
+      0.2677
+    ]
+  },
+  "_note": "avg_logprob = log_likelihood column in detector_scores.csv"
+}

@@ -1,0 +1,99 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{mitchell2023detectgpt}
+\citation{bao2024fast}
+\citation{hans2024binoculars}
+\citation{gehrmann2019gltr}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{AI text detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model collapse \& iterative generation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data quality \& provenance.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Vocabulary diversity \& stylometry.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Generation Pipeline}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Differential Depth Response (DDR) Features}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Per-feature depth trend (linear regression, depths 0--4, Pythia-2.8B).}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:feature_trend}{{1}{3}{Per-feature depth trend (linear regression, depths 0--4, Pythia-2.8B)}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Surface features (2).}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reference features (5).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DDR dichotomy.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Classifier}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation protocol.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{3}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}DDR Characterization and Feature Ablation}{3}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Feature ablation: 5-fold CV macro F1 (Pythia-2.8B, ${\sim }4{,}600$ records).}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:ablation}{{2}{4}{Feature ablation: 5-fold CV macro F1 (Pythia-2.8B, ${\sim }4{,}600$ records)}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Leave-one-generator-out (LOGO) binary F1 (gen-1 vs.\ gen-2+).}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:logo}{{3}{4}{Leave-one-generator-out (LOGO) binary F1 (gen-1 vs.\ gen-2+)}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Cross-Generator Generalization}{4}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:cross_gen}{{5.2}{4}{Cross-Generator Generalization}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Comparison with Existing Detectors}{4}{subsection.5.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Leave-one-family-out (LOFO) binary F1.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:lofo}{{4}{5}{Leave-one-family-out (LOFO) binary F1}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Ordinal depth classification: 7-feature vs.\ existing detectors (LOGO). Bootstrap $p$ tests 7-feature vs.\ each baseline.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:baseline}{{5}{5}{Ordinal depth classification: 7-feature vs.\ existing detectors (LOGO). Bootstrap $p$ tests 7-feature vs.\ each baseline}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cross-Model Chains}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Downstream Utility (Negative Finding)}{5}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Analysis}{5}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Depth Resolution Limits}{5}{subsection.6.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-model vs.\ single-model chain classification.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:cross_model}{{6}{6}{Cross-model vs.\ single-model chain classification}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Downstream CLM perplexity by training data depth composition (3 seeds, OLMo-1B).}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:downstream}{{7}{6}{Downstream CLM perplexity by training data depth composition (3 seeds, OLMo-1B)}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Scale Effects}{6}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Reference Model Independence}{6}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{6}{section.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Ordinal depth classification resolution.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:ordinal}{{8}{7}{Ordinal depth classification resolution}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Scale effect: depth signal degradation with generator size.}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:scale}{{9}{7}{Scale effect: depth signal degradation with generator size}{table.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}Prompt Type Sensitivity}{7}{appendix.A}\protected@file@percent }
+\newlabel{app:prompt}{{A}{7}{Prompt Type Sensitivity}{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Paraphrastic vs.\ Non-Paraphrastic Chains}{7}{appendix.B}\protected@file@percent }
+\newlabel{app:para}{{B}{7}{Paraphrastic vs.\ Non-Paraphrastic Chains}{appendix.B}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Multi-Domain Evaluation}{7}{appendix.C}\protected@file@percent }
+\newlabel{app:domain}{{C}{7}{Multi-Domain Evaluation}{appendix.C}{}}
+\bibcite{mitchell2023detectgpt}{{1}{}{{}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Cross-reference-model DDR comparison.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:ref_model}{{10}{8}{Cross-reference-model DDR comparison}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Per-prompt-type classification and drift statistics (Pythia-2.8B).}}{8}{table.11}\protected@file@percent }
+\newlabel{tab:prompt_type}{{11}{8}{Per-prompt-type classification and drift statistics (Pythia-2.8B)}{table.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Robustness to Human Edits}{8}{appendix.D}\protected@file@percent }
+\newlabel{app:edits}{{D}{8}{Robustness to Human Edits}{appendix.D}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {E}LD-Score Feature Extension}{8}{appendix.E}\protected@file@percent }
+\newlabel{app:ld}{{E}{8}{LD-Score Feature Extension}{appendix.E}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {F}End-to-End QLoRA Classifier}{8}{appendix.F}\protected@file@percent }
+\newlabel{app:qlora}{{F}{8}{End-to-End QLoRA Classifier}{appendix.F}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {G}Text Length Control}{8}{appendix.G}\protected@file@percent }
+\newlabel{app:length}{{G}{8}{Text Length Control}{appendix.G}{}}
+\bibcite{bao2024fast}{{2}{}{{}}{{}}}
+\bibcite{hans2024binoculars}{{3}{}{{}}{{}}}
+\bibcite{gehrmann2019gltr}{{4}{}{{}}{{}}}
+\bibcite{shumailov2024curse}{{5}{}{{}}{{}}}
+\bibcite{dohmatob2024tale}{{6}{}{{}}{{}}}
+\bibcite{briesch2025broken}{{7}{}{{}}{{}}}
+\bibcite{penedo2024fineweb}{{8}{}{{}}{{}}}
+\bibcite{wettig2024qurating}{{9}{}{{}}{{}}}
+\bibcite{tulchinskii2024ld}{{10}{}{{}}{{}}}
+\providecommand\NAT@force@numbers{}\NAT@force@numbers
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Paraphrastic vs.\ non-paraphrastic chain comparison (Pythia-2.8B).}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:para}{{12}{9}{Paraphrastic vs.\ non-paraphrastic chain comparison (Pythia-2.8B)}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Per-domain binary F1 (LOGO across generators).}}{9}{table.13}\protected@file@percent }
+\newlabel{tab:domain}{{13}{9}{Per-domain binary F1 (LOGO across generators)}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Robustness to simulated human edits.}}{10}{table.14}\protected@file@percent }
+\newlabel{tab:edits}{{14}{10}{Robustness to simulated human edits}{table.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces LD-Score feature addition (3-class LOGO).}}{10}{table.15}\protected@file@percent }
+\newlabel{tab:ld}{{15}{10}{LD-Score feature addition (3-class LOGO)}{table.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces End-to-end (QLoRA) vs.\ 7-feature ensemble.}}{10}{table.16}\protected@file@percent }
+\newlabel{tab:qlora}{{16}{10}{End-to-end (QLoRA) vs.\ 7-feature ensemble}{table.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Length control analysis.}}{10}{table.17}\protected@file@percent }
+\newlabel{tab:length}{{17}{10}{Length control analysis}{table.17}{}}
+\gdef \@abspage@last{10}

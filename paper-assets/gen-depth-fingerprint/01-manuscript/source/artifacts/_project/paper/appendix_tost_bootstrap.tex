@@ -1,0 +1,27 @@
+\subsection{TOST Bootstrap Stability}\label{app:tost-bootstrap}
+
+To verify that the equivalence conclusions in \S\ref{app:tost} are not sensitive to sample composition, we assess their stability under bootstrap resampling.
+For each of four representative features, we run 1{,}000 bootstrap iterations (base seed\,=\,42): each iteration independently resamples with replacement from the gen-1 and gen-2+ pools, recomputes Cohen's $d$ and the TOST $p$-value (equivalence margin $|d| < 0.20$).
+
+\begin{table}[ht]
+\centering
+\footnotesize
+\caption{Bootstrap stability of TOST equivalence ($B{=}1{,}000$, margin $|d|{<}0.20$). Rejection rate = fraction of bootstrap iterations where TOST rejects non-equivalence at $\alpha{=}0.05$.}
+\label{tab:tost-bootstrap}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{l c c c}
+\toprule
+\textbf{Feature} & \textbf{Rejection rate} & \textbf{Median $d$} & \textbf{$d$ 95\% CI} \\
+\midrule
+entropy\_max  & 100\% (1000/1000) & 0.062  & [0.037, 0.088] \\
+entropy\_min  & 100\% (1000/1000) & $-$0.016 & [$-$0.042, 0.011] \\
+tail\_decay   & 100\% (1000/1000) & 0.088  & [0.065, 0.111] \\
+\midrule
+entropy\_std  & 0\% (0/1000)      & 0.458  & [0.435, 0.479] \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+All three near-stationary features achieve a 100\% rejection rate across 1{,}000 bootstrap iterations, and their effect-size 95\% CIs fall entirely within the $\pm 0.20$ equivalence margin.
+Entropy std, included as an intermediate control, is never rejected (0\%), with its CI $[0.435, 0.479]$ lying entirely outside the margin.
+No feature exhibits boundary-crossing: the classification of each feature is unanimous across all bootstrap samples. The equivalence conclusions are robust to resampling variability.

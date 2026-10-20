@@ -1,0 +1,27 @@
+======================================================================
+Plan-004-v2 Downstream Perplexity Analysis
+======================================================================
+
+1. PERPLEXITY RANKING WITH 95% BOOTSTRAP CI
+--------------------------------------------------
+Rank  Variant              Mean PPL     95% CI                   Seeds
+------------------------------------------------------------------------------------------
+1     all                  2.3351       [2.3348, 2.3354]     2.3348, 2.3350, 2.3354
+2     size_matched         2.3671       [2.3666, 2.3674]     2.3674, 2.3666, 2.3674
+3     depth01              2.3871       [2.3867, 2.3877]     2.3877, 2.3869, 2.3867
+4     binary_filtered      2.3891       [2.3888, 2.3894]     2.3888, 2.3891, 2.3894
+5     depth0_only          2.6816       [2.6813, 2.6818]     2.6818, 2.6813, 2.6817
+
+Sample sizes: all=12299, size_matched=3951, depth01=3951, binary_filtered=3951, depth0_only=797
+
+2. PAIRED BOOTSTRAP SIGNIFICANCE TESTS (n=3 seeds, 1000 resamples)
+--------------------------------------------------
+size_matched − depth01:        -0.0200  CI [-0.0203, -0.0193]  → size_matched BETTER
+size_matched − binary_filtered: -0.0220  CI [-0.0225, -0.0214]  → size_matched BETTER
+depth01 − binary_filtered:     -0.0020  CI [-0.0028, -0.0011]  → depth01 slightly better
+all − size_matched:            -0.0321  CI [-0.0326, -0.0316]  → all BETTER (data volume)
+
+3. EFFECT SIZES: All "large" but Cohen's d values (34-67) are inflated by near-zero seed variance.
+
+4. VERDICT: "Depth-aware curation helps" is NOT supported. Random sampling beats both filtering
+strategies. Dominant factor is data quantity, not filtering quality.

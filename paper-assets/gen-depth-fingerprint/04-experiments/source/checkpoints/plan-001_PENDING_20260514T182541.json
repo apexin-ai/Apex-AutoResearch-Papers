@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan-001",
+  "project": "gen-depth-fingerprint",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:25:29.824Z",
+    "updated_at": "2026-05-14T18:25:41.604Z",
+    "hypothesis": "Feature ablation: 模型级特征（entropy系列+tail_decay）独立于表面特征仍能区分生成深度；H1/H2趋势分析确认特征随depth的变化模式；perplexity随depth显著变化"
+  },
+  "timestamp": "2026-05-14T18:25:41.634659+00:00",
+  "trigger": "update_registry"
+}

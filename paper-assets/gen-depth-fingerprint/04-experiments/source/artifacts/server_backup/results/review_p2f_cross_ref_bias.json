@@ -1,0 +1,78 @@
+{
+  "analysis": "P2-F Cross-reference-model bias check for Pythia-1B same-family advantage",
+  "per_reference_logo": {
+    "pythia-410m": {
+      "avg_macro_f1": 0.8034,
+      "ci": [
+        0.7722,
+        0.8322
+      ],
+      "per_generator_f1": {
+        "olmo-2-1b": 0.7501,
+        "pythia-1b": 0.8555,
+        "pythia-2.8b": 0.8009,
+        "qwen3-0.6b": 0.8166,
+        "qwen3-1.7b": 0.7939
+      }
+    },
+    "olmo-2-1b": {
+      "avg_macro_f1": 0.8072,
+      "ci": [
+        0.7802,
+        0.8309
+      ],
+      "per_generator_f1": {
+        "olmo-2-1b": 0.761,
+        "pythia-1b": 0.8454,
+        "pythia-2.8b": 0.79,
+        "qwen3-0.6b": 0.8282,
+        "qwen3-1.7b": 0.8114
+      }
+    },
+    "qwen3-0.6b": {
+      "avg_macro_f1": 0.8158,
+      "ci": [
+        0.7862,
+        0.8411
+      ],
+      "per_generator_f1": {
+        "olmo-2-1b": 0.7677,
+        "pythia-1b": 0.8483,
+        "pythia-2.8b": 0.7895,
+        "qwen3-0.6b": 0.8383,
+        "qwen3-1.7b": 0.8354
+      }
+    }
+  },
+  "pythia1b_bias_table": [
+    {
+      "reference_model": "pythia-410m",
+      "pythia1b_held_out_f1": 0.8555,
+      "other_4gen_avg_f1": 0.7904,
+      "pythia1b_delta_vs_avg": 0.0651,
+      "pythia1b_rank_among_5": 1
+    },
+    {
+      "reference_model": "olmo-2-1b",
+      "pythia1b_held_out_f1": 0.8454,
+      "other_4gen_avg_f1": 0.7977,
+      "pythia1b_delta_vs_avg": 0.0477,
+      "pythia1b_rank_among_5": 1
+    },
+    {
+      "reference_model": "qwen3-0.6b",
+      "pythia1b_held_out_f1": 0.8483,
+      "other_4gen_avg_f1": 0.8077,
+      "pythia1b_delta_vs_avg": 0.0406,
+      "pythia1b_rank_among_5": 1
+    }
+  ],
+  "conclusion": {
+    "pythia1b_f1_same_family_ref": 0.8555,
+    "pythia1b_f1_cross_family_avg": 0.8468,
+    "f1_drop_cross_family": 0.0086,
+    "pythia1b_always_rank1": true,
+    "verdict": "same-family bias NOT confirmed",
+    "reasoning": "Pythia-1B ranks #1 across ALL three reference models (same-family Pythia-410M, cross-family OLMo-2-1B, cross-family Qwen3-0.6B). F1 drop from same-family to cross-family reference is only 0.009 (0.855 -> 0.847), well within CI. Its high detectability is intrinsic (likely due to distinctive generation patterns), not an artifact of same-family reference model bias."
+  }
+}

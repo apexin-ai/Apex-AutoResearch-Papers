@@ -1,0 +1,152 @@
+{
+  "overall": {
+    "3class_f1": 0.7638,
+    "binary_f1": 0.6851
+  },
+  "per_generator": {
+    "pythia-2.8b": {
+      "3class_f1": 0.8065,
+      "3class_ci": [
+        0.7957,
+        0.8171
+      ],
+      "binary_f1": 0.7282,
+      "binary_ci": [
+        0.7137,
+        0.7428
+      ],
+      "per_class_f1": {
+        "gen-0": 0.9715,
+        "gen-1": 0.6464,
+        "gen-2+": 0.8018
+      }
+    },
+    "pythia-1b": {
+      "3class_f1": 0.8516,
+      "3class_ci": [
+        0.8417,
+        0.862
+      ],
+      "binary_f1": 0.7888,
+      "binary_ci": [
+        0.7755,
+        0.8039
+      ],
+      "per_class_f1": {
+        "gen-0": 0.9806,
+        "gen-1": 0.7047,
+        "gen-2+": 0.8696
+      }
+    },
+    "olmo-2-1b": {
+      "3class_f1": 0.7651,
+      "3class_ci": [
+        0.7542,
+        0.7764
+      ],
+      "binary_f1": 0.686,
+      "binary_ci": [
+        0.6708,
+        0.7019
+      ],
+      "per_class_f1": {
+        "gen-0": 0.9394,
+        "gen-1": 0.5912,
+        "gen-2+": 0.7647
+      }
+    },
+    "qwen3-0.6b": {
+      "3class_f1": 0.8235,
+      "3class_ci": [
+        0.8129,
+        0.8344
+      ],
+      "binary_f1": 0.7594,
+      "binary_ci": [
+        0.7435,
+        0.7742
+      ],
+      "per_class_f1": {
+        "gen-0": 0.9616,
+        "gen-1": 0.6685,
+        "gen-2+": 0.8405
+      }
+    },
+    "qwen3-1.7b": {
+      "3class_f1": 0.8075,
+      "3class_ci": [
+        0.7965,
+        0.8187
+      ],
+      "binary_f1": 0.7584,
+      "binary_ci": [
+        0.7438,
+        0.7728
+      ],
+      "per_class_f1": {
+        "gen-0": 0.9274,
+        "gen-1": 0.6615,
+        "gen-2+": 0.8335
+      }
+    },
+    "qwen3-8b": {
+      "3class_f1": 0.6845,
+      "3class_ci": [
+        0.6713,
+        0.6978
+      ],
+      "binary_f1": 0.6497,
+      "binary_ci": [
+        0.6346,
+        0.6653
+      ],
+      "per_class_f1": {
+        "gen-0": 0.8175,
+        "gen-1": 0.5431,
+        "gen-2+": 0.693
+      }
+    },
+    "llama-3.2-3b": {
+      "3class_f1": 0.7434,
+      "3class_ci": [
+        0.7299,
+        0.7579
+      ],
+      "binary_f1": 0.6224,
+      "binary_ci": [
+        0.6017,
+        0.643
+      ],
+      "per_class_f1": {
+        "gen-0": 0.9771,
+        "gen-1": 0.6292,
+        "gen-2+": 0.6239
+      }
+    },
+    "mistral-7b-v0.3": {
+      "3class_f1": 0.6283,
+      "3class_ci": [
+        0.6152,
+        0.6423
+      ],
+      "binary_f1": 0.4876,
+      "binary_ci": [
+        0.4683,
+        0.5061
+      ],
+      "per_class_f1": {
+        "gen-0": 0.9066,
+        "gen-1": 0.5266,
+        "gen-2+": 0.4516
+      }
+    }
+  },
+  "metadata": {
+    "n_generators": 8,
+    "n_total_rows": 34131,
+    "xgb_params": "n_estimators=200, max_depth=6, lr=0.1, 7 features",
+    "binary_definition": "gen-1 vs gen-2+ only (gen-0 excluded)",
+    "baseline_6gen_3class_f1": 0.7893115309790949,
+    "delta_8gen_vs_6gen": -0.0255
+  }
+}

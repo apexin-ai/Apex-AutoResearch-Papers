@@ -1,0 +1,19 @@
+{
+  "exp_id": "plan-006-paraphrastic",
+  "project": "gen-depth-fingerprint",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:44:53.232Z",
+    "updated_at": "2026-05-15T21:45:05.094Z",
+    "spec": {
+      "plan_id": "plan_006",
+      "hypothesis": "Paraphrastic chains converge faster than continuation chains, preserving less depth signal — tests attractor convergence theory",
+      "gpu": "cuda:1"
+    }
+  },
+  "timestamp": "2026-05-15T21:45:05.181077+00:00",
+  "trigger": "update_registry"
+}

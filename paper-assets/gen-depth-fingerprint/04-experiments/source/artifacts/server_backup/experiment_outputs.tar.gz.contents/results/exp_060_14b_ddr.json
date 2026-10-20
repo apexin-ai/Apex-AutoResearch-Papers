@@ -1,0 +1,52 @@
+{
+  "generator": "qwen3-14b-base",
+  "params_b": 14.7,
+  "n_seeds": 498,
+  "n_samples": 2229,
+  "features": {
+    "entropy_mean": {
+      "rho": -0.3877,
+      "rho_p": 7.06e-81,
+      "d_gen0_vs_gen2p": 0.7765,
+      "group": "drifting"
+    },
+    "entropy_std": {
+      "rho": -0.0557,
+      "rho_p": 0.00851,
+      "d_gen0_vs_gen2p": -0.0223,
+      "group": "stationary"
+    },
+    "entropy_max": {
+      "rho": 0.0791,
+      "rho_p": 0.000186,
+      "d_gen0_vs_gen2p": -0.1717,
+      "group": "stationary"
+    },
+    "entropy_min": {
+      "rho": -0.2471,
+      "rho_p": 2.27e-32,
+      "d_gen0_vs_gen2p": -0.1365,
+      "group": "stationary"
+    },
+    "ttr": {
+      "rho": -0.4916,
+      "rho_p": 5.48e-136,
+      "d_gen0_vs_gen2p": 1.0913,
+      "group": "drifting"
+    },
+    "hapax_ratio": {
+      "rho": -0.5065,
+      "rho_p": 1.52e-145,
+      "d_gen0_vs_gen2p": 1.1245,
+      "group": "drifting"
+    },
+    "tail_decay": {
+      "rho": -0.0637,
+      "rho_p": 0.00262,
+      "d_gen0_vs_gen2p": 0.1356,
+      "group": "stationary"
+    }
+  },
+  "ddr_pattern_match": true,
+  "summary": "DDR pattern CONFIRMED at 14.7B scale"
+}

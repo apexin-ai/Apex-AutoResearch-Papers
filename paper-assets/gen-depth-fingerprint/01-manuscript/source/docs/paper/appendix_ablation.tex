@@ -1,0 +1,20 @@
+This appendix presents feature ablation results supporting the complementarity analysis in \S\ref{sec:results-differential}.
+
+\begin{table}[t]
+\centering
+\footnotesize
+\caption{Feature ablation (8-gen, 10-fold stratified CV, 3-class). Full $>$ surface (+8.5\,pp) and Full $>$ reference (+6.0\,pp) confirms complementarity.}
+\label{tab:ablation}
+\begingroup
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Feature set} & \textbf{F1} & \textbf{Top feature (imp.)} \\
+\midrule
+Full (7 features)     & 0.773 & hapax\_ratio (0.35) \\
+Surface only (2)      & 0.688 & hapax\_ratio (0.41) \\
+Reference only (5)    & 0.713 & entropy\_mean (0.27) \\
+\bottomrule
+\end{tabular}
+\endgroup
+\end{table}

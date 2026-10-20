@@ -1,0 +1,37 @@
+{
+  "exp_id": "plan-013",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:33:25.590Z",
+    "updated_at": "2026-05-14T23:53:38.901Z",
+    "hypothesis": "文本长度混淆控制：深度特征的区分力是否独立于文本长度变化（长度归一化后趋势是否保持）",
+    "conclusion": "success",
+    "metrics": {
+      "spearman_rho_range": "[-0.066, +0.134]",
+      "length_depth_correlation": "weak (|ρ|<0.14)",
+      "normalized_ttr_trend_preserved": true,
+      "normalized_hapax_trend_preserved": true,
+      "normalized_rho_stronger": true,
+      "length_matched_f1_delta": "+0.041",
+      "length_is_confound": false,
+      "dropout_short_text_bias": true
+    },
+    "spec": {
+      "command": "python text_length_analysis.py",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/features_all_models.csv",
+      "data_count": 23032,
+      "model_name": "text length analysis",
+      "seed": 42,
+      "checkpoint_path": "/root/gen-depth-fingerprint/data/text_length_analysis.json",
+      "log_path": "/root/gen-depth-fingerprint/data/text_length_boxplot.png"
+    },
+    "completed_at": "2026-05-14T23:53:38.902Z"
+  },
+  "timestamp": "2026-05-14T23:53:38.942493+00:00",
+  "trigger": "update_registry"
+}

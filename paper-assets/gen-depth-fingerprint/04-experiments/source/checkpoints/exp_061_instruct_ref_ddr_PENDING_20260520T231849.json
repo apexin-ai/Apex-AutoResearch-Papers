@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_061_instruct_ref_ddr",
+  "project": "gen-depth-fingerprint",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T23:18:46.419Z",
+    "updated_at": "2026-05-20T23:18:49.745Z",
+    "hypothesis": "Using an instruct reference model (Qwen3-0.6B-Instruct) instead of base Pythia-410M to compute NLL features can recover DDR signal on instruct-generated chains (Qwen3-1.7B-Instruct, OLMo-2-1B-Instruct), because instruct NLL landscape better matches instruct text distributions"
+  },
+  "timestamp": "2026-05-20T23:18:49.870464+00:00",
+  "trigger": "update_registry"
+}

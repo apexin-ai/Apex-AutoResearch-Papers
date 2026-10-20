@@ -1,0 +1,24 @@
+exp062 Cohen's d summary — 15/16 combos (gen-1 vs gen-2+)
+=========================================================
+
+llama-3.2-3b     greedy  d_mean=1.46  d_ttr=1.27  d_hapax=1.26  Shape=YES  Drift=YES  ★ strongest
+llama-3.2-3b     topk    d_mean=0.77  d_ttr=0.73  d_hapax=0.71  Shape=YES  Drift=YES
+mistral-7b-v0.3  greedy  d_mean=1.31  d_ttr=1.04  d_hapax=1.03  Shape=YES  Drift=YES
+mistral-7b-v0.3  topk    d_mean=0.70  d_ttr=0.64  d_hapax=0.67  Shape=YES  Drift=YES
+pythia-2.8b      greedy  d_mean=1.43  d_ttr=0.98  d_hapax=0.87  Shape=YES  Drift=YES
+olmo-2-1b        greedy  d_mean=1.29  d_ttr=0.89  d_hapax=0.80  Shape=YES  Drift=YES
+qwen3-0.6b      greedy  d_mean=0.82  d_ttr=0.51  d_hapax=0.46  Shape=YES  Drift=NO   (hapax=0.46)
+qwen3-0.6b      topk    d_mean=0.80  d_ttr=0.58  d_hapax=0.52  Shape=YES  Drift=YES  ★ NEW
+qwen3-1.7b      greedy  d_mean=1.03  d_ttr=0.74  d_hapax=0.68  Shape=YES  Drift=YES
+qwen3-1.7b      topk    d_mean=0.99  d_ttr=0.84  d_hapax=0.80  Shape=YES  Drift=YES
+qwen3-8b        greedy  d_mean=0.98  d_ttr=0.76  d_hapax=0.76  Shape=YES  Drift=YES  ★ NEW
+pythia-1b        greedy  d_mean=0.98  d_ttr=0.64  d_hapax=0.53  Shape=YES  Drift=YES  (weakest greedy)
+olmo-2-1b        topk    d_mean=0.73  d_ttr=0.70  d_hapax=0.69  Shape=NO   Drift=YES  (tail_decay=0.22)
+pythia-1b        topk    d_mean=0.83  d_ttr=0.41  d_hapax=0.34  Shape=NO   Drift=NO
+pythia-2.8b      topk    d_mean=0.70  d_ttr=0.41  d_hapax=0.37  Shape=NO   Drift=NO
+
+Bottom line: greedy 7/8 pass both (Qwen3-0.6B fails hapax); topk 4/7
+pass Shape, 5/7 pass Drift. Greedy generally preserves the depth
+fingerprint; top-k attenuates it, but LLaMA-3.2-3B, Mistral-7B,
+Qwen3-1.7B, and Qwen3-0.6B retain the full signal even under top-k.
+Remaining: Qwen3-8B top-k (1/16).

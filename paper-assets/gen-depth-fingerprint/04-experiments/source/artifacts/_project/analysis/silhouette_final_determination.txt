@@ -1,0 +1,118 @@
+FINAL DETERMINATION
+===================
+Recommended silhouette value: 0.660
+Method: k=2 KMeans on standardized (|rho|, d) from features_8gen.csv, gen-1 vs gen-2+ Cohen's d baseline
+Can 0.632 be reproduced: NO
+Closest match: 0.6239 (Test 1: 3-class pooled d values with hardcoded rho, StandardScaler, KMeans k=2)
+
+PROVENANCE OF 0.632
+====================
+- Only appears in initial commit ac60b7e ("initial: snapshot before review revisions", May 15 2026)
+- No git repo on server (cannot search server-side git history)
+- Hardcoded in plot_instruct_ddr_comparison.py:96 (no computation)
+- silhouette_audit.py exhaustively tested ALL combinations of baselines, d formulas, data modes: NONE reproduce 0.632
+- Conclusion: likely from an earlier data snapshot (pre-8gen expansion) that no longer exists
+
+CORRECT VALUE FROM DATA
+========================
+Source: features_8gen.csv (37058 rows, 8 models, depths 0-4)
+Models: llama-3.2-3b, mistral-7b-v0.3, olmo-2-1b, pythia-1b, pythia-2.8b, qwen3-0.6b, qwen3-1.7b, qwen3-8b
+Baseline: gen-1 vs gen-2+ weighted pooled Cohen's d + pooled |Spearman rho|
+Scaler: StandardScaler
+Cluster: KMeans k=2, n_init=10
+
+Feature metrics (|rho|, d):
+  entropy_mean     |rho|=0.5978  d=1.1360
+  entropy_std      |rho|=0.1567  d=0.4914
+  entropy_min      |rho|=0.4037  d=0.0156
+  entropy_max      |rho|=0.0608  d=0.0629
+  tail_decay       |rho|=0.0413  d=0.0905
+  ttr              |rho|=0.6249  d=0.8815
+  hapax_ratio      |rho|=0.6405  d=0.7833
+
+KMeans k=2 silhouette: 0.6603
+Fixed labels k=2 silhouette: 0.6603 (identical — KMeans converges to paper's partition)
+Labels: [drifting, non-drifting, non-drifting, non-drifting, non-drifting, drifting, drifting]
+        (entropy_mean, ttr, hapax_ratio = drifting; rest = non-drifting)
+Rank: #1 out of 35 possible 3-vs-4 binary splits — OPTIMAL partition
+
+ALL TESTED COMBINATIONS
+========================
+
+--- From user-specified hardcoded coordinate values ---
+
+Test 1 (3-class pooled d + rho, StandardScaler, KMeans k=2):
+  rho = [0.5978, 0.6249, 0.6405, 0.1567, 0.4037, 0.0608, 0.0413]
+  d   = [1.17, 0.88, 0.76, 0.55, 0.08, 0.08, 0.016]
+  silhouette = 0.6239, labels = [0,0,0,1,1,1,1]
+
+Test 2 (binary d + rho, StandardScaler, KMeans k=2):
+  d   = [1.136, 0.8815, 0.7833, 0.4914, 0.0156, 0.0629, 0.0905]
+  silhouette = 0.6603, labels = [0,0,0,1,1,1,1]
+
+Test 3 (3-class pooled d, NO standardization, KMeans k=2):
+  silhouette = 0.6002, labels = [1,1,1,0,0,0,0]
+
+Test 4 (binary d, NO standardization, KMeans k=2):
+  silhouette = 0.6494, labels = [0,0,0,1,1,1,1]
+
+Test 5 (1D, 3-class d only, KMeans k=2):
+  silhouette = 0.7147, labels = [0,0,0,0,1,1,1]
+
+Test 6 (1D, |rho| only, KMeans k=2):
+  silhouette = 0.7575, labels = [0,0,0,1,0,1,1]
+
+Test 7 (effect-size table d + rho, StandardScaler, KMeans k=2):
+  d   = [1.054, 0.814, 0.735, 0.457, 0.016, 0.062, 0.087]
+  silhouette = 0.6629, labels = [0,0,0,1,1,1,1]
+
+Test 8 (random_state sensitivity for Test 1):
+  random_state=0:   0.6239
+  random_state=1:   0.6239
+  random_state=42:  0.6239
+  random_state=123: 0.6239
+  random_state=456: 0.6239
+  (invariant — single global optimum for k=2)
+
+--- From features_8gen.csv actual data ---
+
+Test 9 (gen-1 vs gen-2+ baseline, StandardScaler, KMeans k=2):
+  silhouette = 0.6603 (RECOMMENDED)
+
+Test 10 (gen-0 vs gen-1+ baseline, StandardScaler, KMeans k=2):
+  silhouette = 0.7352
+
+Test 11 (gen-1 vs gen-2+, fixed labels k=2):
+  silhouette = 0.6603
+
+Test 12 (gen-1 vs gen-2+, fixed labels 3/1/3):
+  silhouette = 0.4089
+
+Test 13 (gen-1 vs gen-2+, fixed labels 3/2/2):
+  silhouette = 0.2530
+
+SUMMARY TABLE
+==============
+Test  | Method                          | Silhouette | Match 0.632?
+------|---------------------------------|------------|-------------
+  1   | 3-class d, hardcoded, scaled    |   0.6239   | NO (closest)
+  2   | binary d, hardcoded, scaled     |   0.6603   | NO
+  3   | 3-class d, hardcoded, unscaled  |   0.6002   | NO
+  4   | binary d, hardcoded, unscaled   |   0.6494   | NO
+  5   | 1D d only                       |   0.7147   | NO
+  6   | 1D rho only                     |   0.7575   | NO
+  7   | effect-size d, scaled           |   0.6629   | NO
+  9   | data gen1v2+, scaled (CORRECT)  |   0.6603   | NO
+ 10   | data gen0v1+, scaled            |   0.7352   | NO
+
+CONCLUSION
+==========
+0.632 is irreproducible with current data. The correct value is 0.660 (k=2, gen-1 vs gen-2+,
+StandardScaler, features_8gen.csv). This partition is rank #1 among all 35 possible binary splits,
+confirming it is the strongest cluster structure.
+
+Replace 0.632 -> 0.660 in:
+  - results.tex (lines 55, 71)
+  - appendix_ddr_validation.tex (lines 14, 21)
+  - appendix_instruct.tex (line 53: "vs. 0.632" -> "vs. 0.660")
+  - plot_instruct_ddr_comparison.py (line 96: hardcoded 0.632)

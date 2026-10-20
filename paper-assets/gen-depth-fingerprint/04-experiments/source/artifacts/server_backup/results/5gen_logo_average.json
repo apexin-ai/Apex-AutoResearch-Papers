@@ -1,0 +1,49 @@
+{
+  "experiment": "5gen_logo_binary",
+  "n_generators": 5,
+  "generators": [
+    "pythia-2.8b",
+    "pythia-1b",
+    "olmo-2-1b",
+    "qwen3-1.7b",
+    "qwen3-0.6b"
+  ],
+  "n_total_rows": 23032,
+  "overall_binary_f1": 0.7335,
+  "per_generator_binary": {
+    "olmo-2-1b": {
+      "binary_f1": 0.6754,
+      "ci_lower": 0.6601,
+      "ci_upper": 0.6905
+    },
+    "pythia-1b": {
+      "binary_f1": 0.7833,
+      "ci_lower": 0.7688,
+      "ci_upper": 0.7971
+    },
+    "pythia-2.8b": {
+      "binary_f1": 0.7149,
+      "ci_lower": 0.6999,
+      "ci_upper": 0.7305
+    },
+    "qwen3-0.6b": {
+      "binary_f1": 0.7439,
+      "ci_lower": 0.7285,
+      "ci_upper": 0.7583
+    },
+    "qwen3-1.7b": {
+      "binary_f1": 0.7499,
+      "ci_lower": 0.7348,
+      "ci_upper": 0.7644
+    }
+  },
+  "reference": {
+    "8gen_logo_binary_f1": 0.694,
+    "cross_model_chains_binary_f1": 0.764
+  },
+  "notes": [
+    "Binary task: gen-1 vs gen-2+ only (gen-0 excluded)",
+    "5 generators = cross-model chains subset",
+    "XGBoost params identical to 8-gen LOGO"
+  ]
+}

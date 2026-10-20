@@ -1,0 +1,58 @@
+{
+  "fastdetectgpt": {
+    "binary_f1": 0.5805,
+    "roc_auc": 0.5796,
+    "roc_auc_ci": [
+      0.5717,
+      0.5873
+    ]
+  },
+  "binoculars": {
+    "binary_f1": 0.5327,
+    "roc_auc": 0.6203,
+    "roc_auc_ci": [
+      0.6133,
+      0.6271
+    ]
+  },
+  "avg_logprob": {
+    "binary_f1": 0.6785,
+    "roc_auc": 0.7844,
+    "roc_auc_ci": [
+      0.778,
+      0.7906
+    ]
+  },
+  "ld_score": {
+    "binary_f1": 0.6758,
+    "roc_auc": 0.7507,
+    "roc_auc_ci": [
+      0.7422,
+      0.7584
+    ]
+  },
+  "4det_ensemble": {
+    "binary_f1": 0.6983,
+    "roc_auc": 0.8175,
+    "roc_auc_ci": [
+      0.8116,
+      0.8234
+    ]
+  },
+  "7feature_ours": {
+    "binary_f1": 0.6935,
+    "roc_auc": 0.8111,
+    "roc_auc_ci": [
+      0.805,
+      0.8169
+    ]
+  },
+  "combined": {
+    "binary_f1": 0.7127,
+    "roc_auc": 0.8304,
+    "roc_auc_ci": [
+      0.8248,
+      0.8358
+    ]
+  }
+}

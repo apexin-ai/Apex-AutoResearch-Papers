@@ -1,0 +1,24 @@
+paper_key: "detectgpt"
+title: "DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature"
+venue: "ICML 2023"
+full_text_available: false
+
+research:
+  baselines: ["zero-shot detection baselines (unspecified)"]
+  metrics:
+    - {name: "AUROC", direction: "higher_better"}
+  datasets:
+    - {name: "fake news articles (GPT-NeoX 20B)", size: "unknown"}
+  ablation_dimensions: ["perturbation model choice (T5)", "source model"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "zero-shot detection via log-probability curvature (perturbation-based)"
+
+positioning:
+  core_claim: "Discovers that LLM-sampled text occupies negative curvature regions of the model's log probability function, and leverages this via random perturbations for zero-shot detection, achieving 0.95 AUROC vs 0.81 for the strongest baseline."
+  key_results: "N/A - abstract only"
+  limitations: ["N/A"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

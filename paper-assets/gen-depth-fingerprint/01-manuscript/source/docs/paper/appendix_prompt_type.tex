@@ -1,0 +1,13 @@
+We evaluate depth profiling under three prompt types using Pythia-2.8B. Each uses 995 seeds $\times$ 5 depths. The exact templates are:
+
+\begin{tcolorbox}[colback=yellow!5!white, colframe=gray!50, title=Prompt Templates, breakable, fonttitle=\bfseries\small]
+\textbf{Continuation:} \texttt{Continue the following text: \{text\}}\\[4pt]
+\textbf{Elaboration:} \texttt{Elaborate on the following text: \{text\}}\\[4pt]
+\textbf{Inspired rewriting:} \texttt{Write a new passage inspired by the following text: \{text\}}
+\end{tcolorbox}
+
+\paragraph{Within-prompt-type classification.}
+5-fold CV macro-F1: continuation 0.78, rewriting 0.74, elaboration 0.73. All three prompt types exhibit the same differential depth response pattern: drifting features (hapax ratio, TTR, entropy mean) show consistent monotonic trends, while near-stationary features (entropy max, tail decay) change by less than 5\%.
+
+\paragraph{Cross-prompt-type transfer (LOPTO).}
+Leave-one-prompt-type-out evaluation yields average F1\,=\,0.753, which confirms that depth signal transfers across prompt types. Feature decay rates differ: continuation shows the strongest drift (16.9\% per depth step), followed by rewriting (6.1\%) and elaboration (1.4\%), consistent with continuation chains applying less semantic constraint on the output.

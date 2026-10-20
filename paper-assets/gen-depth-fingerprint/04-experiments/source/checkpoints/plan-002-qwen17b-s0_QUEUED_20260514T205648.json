@@ -1,0 +1,27 @@
+{
+  "exp_id": "plan-002-qwen17b-s0",
+  "project": "gen-depth-fingerprint",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:53:19.356Z",
+    "updated_at": "2026-05-14T20:56:48.913Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python generate_chain.py --model-name qwen3-1.7b --model-path /root/autodl-tmp/models/Qwen/Qwen3-1___7B-Base --input data/wiki_seed_1000.jsonl --shard-id 0 --num-shards 2 --device cuda:0\"",
+      "server": "autodl-5090",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "112179",
+      "log_path": "~/runs/gen-depth-fingerprint/plan-002-qwen17b-s0.log",
+      "submitted_at": "2026-05-14T20:53:19.334Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-14T20:56:48.936417+00:00",
+  "trigger": "update_registry"
+}

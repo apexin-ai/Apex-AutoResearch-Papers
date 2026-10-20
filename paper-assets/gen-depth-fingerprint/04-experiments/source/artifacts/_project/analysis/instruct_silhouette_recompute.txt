@@ -1,0 +1,37 @@
+INSTRUCT SILHOUETTE RECOMPUTE
+=============================
+Method: k=2 k-means, gen-1 vs gen-2+ Cohen's d, pooled |Spearman rho|, StandardScaler
+Data: features_qwen3-1.7b-instruct.csv + features_olmo-2-0425-1b-instruct.csv + features_llama-3.2-3b-instruct.csv (pooled, 14366 rows)
+Result: silhouette = 0.372
+Old value: 0.338
+Change needed: YES (0.338 -> 0.372)
+
+DETAILS
+-------
+Pooled data: 14366 rows (gen-1: 2956, gen-2+: 8424)
+k-means discovered partition:
+  Cluster 0 (5 features): entropy_min, entropy_max, tail_decay, ttr, hapax_ratio
+  Cluster 1 (2 features): entropy_mean, entropy_std
+
+NOTE: This partition differs from base models' k-means partition:
+  Base: {entropy_mean, ttr, hapax_ratio} vs {entropy_std, entropy_min, entropy_max, tail_decay}
+  Instruct: {entropy_mean, entropy_std} vs {entropy_min, entropy_max, tail_decay, ttr, hapax_ratio}
+
+Fixed-label silhouette (using base model's partition): -0.105 (poor fit, confirms structural difference)
+
+PER-FEATURE DDR COORDINATES
+----------------------------
+Feature          |rho|    Cohen's d
+entropy_mean    0.3848     0.1284
+entropy_std     0.2896     0.1066
+entropy_min     0.1459     0.0610
+entropy_max     0.2272     0.2707
+tail_decay      0.1699     0.1919
+ttr             0.1221     0.1179
+hapax_ratio     0.1342     0.1369
+
+PER-GENERATOR MEAN |rho|
+------------------------
+Qwen3-1.7B-Instruct:        0.3490
+OLMo-2-0425-1B-Instruct:    0.2030
+Llama-3.2-3B-Instruct:      0.1536

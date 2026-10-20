@@ -1,0 +1,66 @@
+{
+  "exp_id": "plan-008-multi-domain",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:31:52.426Z",
+    "updated_at": "2026-05-15T22:14:06.460Z",
+    "hypothesis": "Multi-domain seeds: depth signal 在 news/scientific/creative 三种域的 seeds 上是否一致，验证 domain robustness",
+    "spec": {
+      "server": "autodl-5090",
+      "gpu": "cuda:0",
+      "account": "root",
+      "model_name": "Pythia-2.8B (generator) + Pythia-410M (reference)",
+      "data_path": "3 domains: news (abisee/cnn_dailymail), scientific (ccdv/arxiv-summarization), creative (euclaise/writingprompts)",
+      "data_count": "500 seeds × 3 domains × 5 depths = 7500 target texts",
+      "seed": "not set (sequential seed_ids 0-499 per domain)",
+      "command": "python multi_domain_seeds.py --phase all --device cuda:0",
+      "pid": 234066
+    },
+    "notes": "PID 234066 完成。--phase all 跑完 generate→extract→evaluate，但 ⚠️ 未执行 dedup（前 ~45 seeds 可能有重复）。当前结果为脏数据版本，如需精确数字需补跑 dedup→re-extract→re-evaluate。Per-domain signal 差异大：wiki 最强 (0.79)、news 最弱 (0.57)。跨域 transfer 很差 (0.22-0.34)。",
+    "checkpoint_path": "/root/gen-depth-fingerprint/results/multi_domain_results.json",
+    "log_path": "/tmp/plan008_full.log",
+    "metrics": {
+      "per_domain": {
+        "news": {
+          "3class_f1": 0.5742,
+          "binary_f1": 0.6266
+        },
+        "scientific": {
+          "3class_f1": 0.7049,
+          "binary_f1": 0.7701
+        },
+        "creative": {
+          "3class_f1": 0.6275,
+          "binary_f1": 0.731
+        },
+        "wikipedia": {
+          "3class_f1": 0.7928,
+          "binary_f1": 0.8224
+        }
+      },
+      "cross_domain_pooled": {
+        "3class_f1": 0.478,
+        "binary_f1": 0.6742
+      },
+      "wiki_transfer": {
+        "news": 0.2254,
+        "scientific": 0.3351,
+        "creative": 0.2319
+      },
+      "n_records": {
+        "news": 3115,
+        "scientific": 2316,
+        "creative": 2466
+      },
+      "caveat": "dedup NOT run before extract/evaluate — first ~45 seeds may have duplicates"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T22:14:06.460Z"
+  },
+  "timestamp": "2026-05-15T22:14:06.636868+00:00",
+  "trigger": "update_registry"
+}

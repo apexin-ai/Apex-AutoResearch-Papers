@@ -1,0 +1,225 @@
+{
+  "experiment": "review-p1c-olmo-instruct",
+  "model": "OLMo-2-0425-1B-Instruct (allenai/OLMo-2-0425-1B-Instruct)",
+  "model_source": "HuggingFace",
+  "n_records_instruct": 4429,
+  "n_records_total_7gen": 31958,
+  "depth_distribution": {
+    "0": 995,
+    "1": 965,
+    "2": 884,
+    "3": 817,
+    "4": 768
+  },
+  "logo_7gen_3class": {
+    "per_generator": {
+      "olmo-2-0425-1b-instruct": {
+        "macro_f1": 0.3379,
+        "gen-0_f1": 0.526,
+        "gen-1_f1": 0.3339,
+        "gen-2+_f1": 0.1539,
+        "bootstrap_ci": {
+          "mean": 0.3380736841172507,
+          "ci_lo": 0.3250174612221341,
+          "ci_hi": 0.3514903698562415
+        }
+      },
+      "olmo-2-1b": {
+        "macro_f1": 0.7633,
+        "gen-0_f1": 0.9444,
+        "gen-1_f1": 0.5922,
+        "gen-2+_f1": 0.7534,
+        "bootstrap_ci": {
+          "mean": 0.7631399495937501,
+          "ci_lo": 0.7520292422892575,
+          "ci_hi": 0.7737292561178561
+        }
+      },
+      "pythia-1b": {
+        "macro_f1": 0.8451,
+        "gen-0_f1": 0.9805,
+        "gen-1_f1": 0.6962,
+        "gen-2+_f1": 0.8587,
+        "bootstrap_ci": {
+          "mean": 0.845025541189118,
+          "ci_lo": 0.834841912039178,
+          "ci_hi": 0.8556018014634915
+        }
+      },
+      "pythia-2.8b": {
+        "macro_f1": 0.7971,
+        "gen-0_f1": 0.9708,
+        "gen-1_f1": 0.6364,
+        "gen-2+_f1": 0.7839,
+        "bootstrap_ci": {
+          "mean": 0.7967881333324128,
+          "ci_lo": 0.7864447883881671,
+          "ci_hi": 0.8080238077410145
+        }
+      },
+      "qwen3-0.6b": {
+        "macro_f1": 0.8209,
+        "gen-0_f1": 0.9665,
+        "gen-1_f1": 0.6621,
+        "gen-2+_f1": 0.8342,
+        "bootstrap_ci": {
+          "mean": 0.8210767908166986,
+          "ci_lo": 0.8100506278392143,
+          "ci_hi": 0.8319175240261408
+        }
+      },
+      "qwen3-1.7b": {
+        "macro_f1": 0.8136,
+        "gen-0_f1": 0.9455,
+        "gen-1_f1": 0.6658,
+        "gen-2+_f1": 0.8294,
+        "bootstrap_ci": {
+          "mean": 0.8133538950834234,
+          "ci_lo": 0.8026746268951767,
+          "ci_hi": 0.824418063400238
+        }
+      },
+      "qwen3-8b": {
+        "macro_f1": 0.6938,
+        "gen-0_f1": 0.843,
+        "gen-1_f1": 0.5496,
+        "gen-2+_f1": 0.6888,
+        "bootstrap_ci": {
+          "mean": 0.693704175291729,
+          "ci_lo": 0.6805743340306835,
+          "ci_hi": 0.7073756594044247
+        }
+      }
+    },
+    "average_macro_f1": 0.7245
+  },
+  "binary_f1_logo": {
+    "per_generator": {
+      "olmo-2-0425-1b-instruct": {
+        "f1": 0.4255,
+        "bootstrap_ci": {
+          "mean": 0.4256789837352178,
+          "ci_lo": 0.41275103521847256,
+          "ci_hi": 0.43901739690483443
+        }
+      },
+      "olmo-2-1b": {
+        "f1": 0.7944,
+        "bootstrap_ci": {
+          "mean": 0.7943162140516657,
+          "ci_lo": 0.7823468480563879,
+          "ci_hi": 0.8054289093942969
+        }
+      },
+      "pythia-1b": {
+        "f1": 0.8667,
+        "bootstrap_ci": {
+          "mean": 0.8664143036854169,
+          "ci_lo": 0.8562783501162508,
+          "ci_hi": 0.8764623427338004
+        }
+      },
+      "pythia-2.8b": {
+        "f1": 0.8252,
+        "bootstrap_ci": {
+          "mean": 0.8251696743463415,
+          "ci_lo": 0.8141114062948446,
+          "ci_hi": 0.8356442740447173
+        }
+      },
+      "qwen3-0.6b": {
+        "f1": 0.8267,
+        "bootstrap_ci": {
+          "mean": 0.8265540679746043,
+          "ci_lo": 0.815052948985976,
+          "ci_hi": 0.8373768596739709
+        }
+      },
+      "qwen3-1.7b": {
+        "f1": 0.8322,
+        "bootstrap_ci": {
+          "mean": 0.8318341461340308,
+          "ci_lo": 0.8211362470846085,
+          "ci_hi": 0.8428181649432273
+        }
+      },
+      "qwen3-8b": {
+        "f1": 0.7579,
+        "bootstrap_ci": {
+          "mean": 0.7578849497768999,
+          "ci_lo": 0.7448943520442451,
+          "ci_hi": 0.7702532826313947
+        }
+      }
+    },
+    "average_f1": 0.7612
+  },
+  "instruct_spearman_rho": {
+    "entropy_mean": 0.4822,
+    "entropy_std": 0.2955,
+    "entropy_min": 0.0796,
+    "entropy_max": 0.3055,
+    "tail_decay": 0.2276,
+    "ttr": 0.0057,
+    "hapax_ratio": 0.0253
+  },
+  "instruct_spearman_p": {
+    "entropy_mean": "1.07e-256",
+    "entropy_std": "5.65e-90",
+    "entropy_min": "1.15e-07",
+    "entropy_max": "2.44e-96",
+    "tail_decay": "3.93e-53",
+    "ttr": "7.05e-01",
+    "hapax_ratio": "9.28e-02"
+  },
+  "base_olmo_spearman_rho": {
+    "entropy_mean": -0.6386,
+    "entropy_std": -0.2958,
+    "entropy_min": -0.3874,
+    "entropy_max": 0.0672,
+    "tail_decay": -0.1411,
+    "ttr": -0.6996,
+    "hapax_ratio": -0.7124
+  },
+  "comparison_instruct_vs_base": {
+    "entropy_mean": {
+      "instruct": 0.4822,
+      "base": -0.6386,
+      "delta": 1.1208
+    },
+    "entropy_std": {
+      "instruct": 0.2955,
+      "base": -0.2958,
+      "delta": 0.5913
+    },
+    "entropy_min": {
+      "instruct": 0.0796,
+      "base": -0.3874,
+      "delta": 0.467
+    },
+    "entropy_max": {
+      "instruct": 0.3055,
+      "base": 0.0672,
+      "delta": 0.2383
+    },
+    "tail_decay": {
+      "instruct": 0.2276,
+      "base": -0.1411,
+      "delta": 0.3687
+    },
+    "ttr": {
+      "instruct": 0.0057,
+      "base": -0.6996,
+      "delta": 0.7053
+    },
+    "hapax_ratio": {
+      "instruct": 0.0253,
+      "base": -0.7124,
+      "delta": 0.7377
+    }
+  },
+  "instruct_logo_f1": 0.3379,
+  "base_olmo_logo_f1": 0.7633,
+  "delta_instruct_vs_base": -0.4254,
+  "conclusion": "negative: instruct tuning significantly reduces depth signal"
+}

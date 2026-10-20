@@ -1,0 +1,1 @@
+Phase 3: Qwen3-1.7B t=0.9 top_p=0.9 generation\nServer: bjb2-18868\ntmux session: tc_phase3\nPID: 2067\nGPU: cuda:0 (RTX 5090, 3968 MiB)\nProgress: 341/996 seeds completed (resuming)\nOutput: /root/gen-depth-fingerprint/data/qwen3-1.7b-t09/generations_shard0.jsonl\nStarted: 2026-05-18 13:25

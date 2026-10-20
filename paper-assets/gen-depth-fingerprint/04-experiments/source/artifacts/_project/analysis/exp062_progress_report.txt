@@ -1,0 +1,47 @@
+=== exp_062 Progress Report (2026-05-21 ~20:00 CST) ===
+
+GPU Status:
+  cuda:0: [running] — llama-3.2-3b greedy+topk (PID 347968, 6846 MiB, util 61%)
+  cuda:1: [running] — qwen3-1.7b greedy+topk (PID 344399, 3964 MiB, util 41%)
+  cuda:2: [running] — mistral-7b-v0.3 greedy+topk (PID 349080, 14636 MiB, util 88%)
+  cuda:3: [running] — pythia-1b greedy+topk (PID 349387, 2640 MiB, util 48%)
+
+Completed combos (no active process, lines ≥ 4500):
+  - pythia-2.8b_greedy:  4854 lines (last modified 16:58)
+  - pythia-2.8b_topk:    4527 lines (last modified 19:52)
+  - olmo-2-1b_greedy:    4879 lines (last modified 16:54)
+  - olmo-2-1b_topk:      4641 lines (last modified 19:22)
+  - pythia-1b_greedy:    4867 lines (last modified 19:15)
+
+In-progress combos:
+  - qwen3-1.7b_greedy:       4751 lines, 971/996 seeds (97%), ~14s/it, ETA ~6 min
+  - pythia-1b_topk:           3105 lines, 667/995 seeds (67%), ~4s/it, ETA ~22 min
+  - llama-3.2-3b_greedy:     2823 lines, 571/995 seeds (57%), ~11.5s/it, ETA ~1.4h
+  - mistral-7b-v0.3_greedy:  2802 lines, 564/996 seeds (57%), ~13.7s/it, ETA ~1.6h
+
+Not started (pending greedy completion on same GPU):
+  - qwen3-1.7b_topk      (starts after greedy on cuda:1)
+  - llama-3.2-3b_topk     (starts after greedy on cuda:0)
+  - mistral-7b-v0.3_topk  (starts after greedy on cuda:2)
+
+Not started (chained via start_cuda3_chain.sh after pythia-1b):
+  - qwen3-0.6b_greedy     (cuda:3, queued)
+  - qwen3-0.6b_topk       (cuda:3, queued)
+  - qwen3-8b_greedy       (cuda:3, queued after qwen3-0.6b)
+  - qwen3-8b_topk         (cuda:3, queued after qwen3-0.6b)
+
+Nucleus (existing baseline) data:
+  - pythia-1b:        2286 lines
+  - olmo-2-1b:        2379 lines
+  - qwen3-0.6b:       2270 lines
+  - qwen3-1.7b:       2291 lines
+  - qwen3-8b:         4497 lines
+  - llama-3.2-3b:     4680 lines
+  - mistral-7b-v0.3:  4849 lines
+
+Watcher scripts:
+  - extract_after_pythia.sh (PID 336886): waiting for all pythia processes to finish before extracting features
+  - start_cuda3_chain.sh (PID 349616): waiting for pythia-1b to finish, then runs qwen3-0.6b → qwen3-8b on cuda:3
+
+Summary: 5/16 combos complete, 4/16 in progress, 7/16 not started
+ETA for all 16 combos: cuda:3 is bottleneck (pythia-1b topk ~22min + qwen3-0.6b ~2h + qwen3-8b ~4h ≈ ~6-7h total)

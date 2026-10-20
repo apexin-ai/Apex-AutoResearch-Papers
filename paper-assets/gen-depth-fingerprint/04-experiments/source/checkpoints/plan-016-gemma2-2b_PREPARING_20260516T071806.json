@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan-016-gemma2-2b",
+  "project": "gen-depth-fingerprint",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T07:18:06.285Z",
+    "updated_at": "2026-05-16T07:18:06.285Z"
+  },
+  "timestamp": "2026-05-16T07:18:06.390501+00:00",
+  "trigger": "update_registry"
+}

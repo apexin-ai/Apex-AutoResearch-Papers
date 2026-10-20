@@ -1,0 +1,15 @@
+Bootstrap CI Results (plan-015)
+================================
+n_samples=23032, n_boot=1000, seed=42
+
+Individual model CIs:
+  7-feature:     F1=0.7977 [0.7925, 0.8031]
+  Avg-LogProb:   F1=0.7586 [0.7530, 0.7640]
+  FastDetectGPT: F1=0.7310 [0.7251, 0.7369]
+
+Paired bootstrap tests:
+  7-feat vs Avg-LogProb:   dF1=+0.0390 [+0.0335, +0.0441] p=0.0000 SIGNIFICANT
+  7-feat vs FastDetectGPT: dF1=+0.0666 [+0.0604, +0.0729] p=0.0000 SIGNIFICANT
+
+Conclusion: 7-feature ensemble is significantly better than all single detectors (p<0.001).
+The 3.9pp advantage over Avg-LogProb is statistically significant with non-overlapping CIs.

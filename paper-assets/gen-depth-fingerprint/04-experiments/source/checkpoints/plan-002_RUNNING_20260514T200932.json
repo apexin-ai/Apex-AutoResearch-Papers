@@ -1,0 +1,29 @@
+{
+  "exp_id": "plan-002",
+  "project": "gen-depth-fingerprint",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:08:55.258Z",
+    "updated_at": "2026-05-14T20:09:32.140Z",
+    "hypothesis": "跨模型泛化：Pythia-410M 参考模型下的深度特征能否区分不同架构/规模生成器（Pythia-1B, OLMo-2-1B, Qwen3-1.7B, Qwen3-0.6B）的 continuation 链",
+    "spec": {
+      "command": "generate_chain.py --model-name {X} --model-path {path} --shard-id {0,1} --num-shards 2 --device cuda:0",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl",
+      "data_count": 1000,
+      "model_name": "pythia-1b, olmo-2-1b, qwen3-1.7b, qwen3-0.6b (+ pythia-2.8b from MVP)",
+      "seed": 42,
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_new_tokens": 256,
+      "reference_model": "EleutherAI/pythia-410m",
+      "round1": "pythia-1b (cuda:0,1) + olmo-2-1b (cuda:2,3)",
+      "round2": "qwen3-1.7b (cuda:0,1) + qwen3-0.6b (cuda:2,3)"
+    }
+  },
+  "timestamp": "2026-05-14T20:09:32.157273+00:00",
+  "trigger": "update_registry"
+}

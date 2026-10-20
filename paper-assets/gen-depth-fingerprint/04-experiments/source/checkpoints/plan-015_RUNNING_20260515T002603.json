@@ -1,0 +1,25 @@
+{
+  "exp_id": "plan-015",
+  "project": "gen-depth-fingerprint",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:58:41.890Z",
+    "updated_at": "2026-05-15T00:26:03.574Z",
+    "hypothesis": "现有检测器 ordinal baseline：FastDetectGPT/LD-Score 等检测器的连续分数是否已提供 ordinal depth signal",
+    "spec": {
+      "command": "python detector_baseline.py (log_likelihood + fast_detect_gpt + entropy_mean)",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/features_all_models.csv",
+      "data_count": 23032,
+      "model_name": "Pythia-410M (log_likelihood, FastDetectGPT, entropy_mean baselines)",
+      "seed": 42,
+      "checkpoint_path": "/root/gen-depth-fingerprint/data/detector_baseline_results.json",
+      "log_path": "/root/gen-depth-fingerprint/data/"
+    }
+  },
+  "timestamp": "2026-05-15T00:26:03.628119+00:00",
+  "trigger": "update_registry"
+}

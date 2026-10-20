@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2025/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: acl_natbib.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: references.bib
+You've used 49 entries,
+            3764 wiz_defined-function locations,
+            944 strings with 18269 characters,
+and the built_in function-call counts, 43257 in all, are:
+= -- 3279
+> -- 3240
+< -- 10
++ -- 1344
+- -- 1031
+* -- 3162
+:= -- 6570
+add.period$ -- 196
+call.type$ -- 49
+change.case$ -- 657
+chr.to.int$ -- 52
+cite$ -- 49
+duplicate$ -- 2396
+empty$ -- 2502
+format.name$ -- 1172
+if$ -- 8895
+int.to.chr$ -- 2
+int.to.str$ -- 6
+missing$ -- 629
+newline$ -- 249
+num.names$ -- 196
+pop$ -- 1761
+preamble$ -- 1
+purify$ -- 552
+quote$ -- 0
+skip$ -- 2091
+stack$ -- 0
+substring$ -- 716
+swap$ -- 1252
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 438
+warning$ -- 0
+while$ -- 161
+width$ -- 0
+write$ -- 599

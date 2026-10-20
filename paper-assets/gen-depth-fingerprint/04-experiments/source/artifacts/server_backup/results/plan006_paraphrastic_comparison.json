@@ -1,0 +1,205 @@
+{
+  "paraphrase_signal": {
+    "n": 4912,
+    "depth_distribution": {
+      "0": 995,
+      "1": 994,
+      "2": 985,
+      "3": 973,
+      "4": 965
+    },
+    "cv5_3class_f1": {
+      "mean": 0.7423219083281771,
+      "std": 0.006590124467863398,
+      "folds": [
+        0.7418000314961587,
+        0.7467068335462965,
+        0.7522976604355701,
+        0.7364926796862347,
+        0.7343123364766257
+      ]
+    },
+    "spearman_correlations": {
+      "entropy_mean": {
+        "rho": -0.5331923045089481,
+        "p": 0.0
+      },
+      "entropy_std": {
+        "rho": -0.056324040369681416,
+        "p": 7.826934910627552e-05
+      },
+      "entropy_min": {
+        "rho": -0.3780489375865218,
+        "p": 1.1078951989744697e-166
+      },
+      "entropy_max": {
+        "rho": 0.022984415610487537,
+        "p": 0.10724932158233998
+      },
+      "tail_decay": {
+        "rho": 0.12461242736636605,
+        "p": 1.859397338628754e-18
+      },
+      "ttr": {
+        "rho": -0.5303452554977235,
+        "p": 0.0
+      },
+      "hapax_ratio": {
+        "rho": -0.5580819153985356,
+        "p": 0.0
+      }
+    },
+    "depth_retention": {
+      "d0_seeds": 995,
+      "d4_seeds": 965,
+      "retention": 0.9698
+    },
+    "binary_f1_gen1_vs_gen2plus": {
+      "mean": 0.6710696917059812,
+      "std": 0.018154861545909493
+    }
+  },
+  "continuation_signal": {
+    "n": 4609,
+    "cv5_3class_f1": {
+      "mean": 0.7876356225735041,
+      "std": 0.006063855053043267,
+      "folds": [
+        0.7876570946393064,
+        0.7905299145299146,
+        0.7797293869117604,
+        0.7830416645882047,
+        0.7972200521983339
+      ]
+    },
+    "spearman_correlations": {
+      "entropy_mean": {
+        "rho": -0.6753679945788368,
+        "p": 0.0
+      },
+      "entropy_std": {
+        "rho": -0.15302196411682306,
+        "p": 1.5064979201600526e-25
+      },
+      "entropy_min": {
+        "rho": -0.4796955643778703,
+        "p": 6.028401711425074e-264
+      },
+      "entropy_max": {
+        "rho": -0.03506661693935034,
+        "p": 0.0172776398107996
+      },
+      "tail_decay": {
+        "rho": 0.063284718763189,
+        "p": 1.7116852290707346e-05
+      },
+      "ttr": {
+        "rho": -0.6333076420636782,
+        "p": 0.0
+      },
+      "hapax_ratio": {
+        "rho": -0.6553235076818699,
+        "p": 0.0
+      }
+    },
+    "depth_retention": {
+      "d0_seeds": 995,
+      "d4_seeds": 822,
+      "retention": 0.8261
+    },
+    "binary_f1_gen1_vs_gen2plus": {
+      "mean": 0.7490591990561987,
+      "std": 0.01083482606507949
+    }
+  },
+  "comparison": {
+    "f1_3class_delta": -0.0453,
+    "retention_delta": 0.1437,
+    "spearman_comparison": {
+      "entropy_mean": {
+        "paraphrase_rho": -0.5332,
+        "continuation_rho": -0.6754,
+        "delta": 0.1422,
+        "para_stronger": false
+      },
+      "entropy_std": {
+        "paraphrase_rho": -0.0563,
+        "continuation_rho": -0.153,
+        "delta": 0.0967,
+        "para_stronger": false
+      },
+      "entropy_min": {
+        "paraphrase_rho": -0.378,
+        "continuation_rho": -0.4797,
+        "delta": 0.1016,
+        "para_stronger": false
+      },
+      "entropy_max": {
+        "paraphrase_rho": 0.023,
+        "continuation_rho": -0.0351,
+        "delta": 0.0581,
+        "para_stronger": false
+      },
+      "tail_decay": {
+        "paraphrase_rho": 0.1246,
+        "continuation_rho": 0.0633,
+        "delta": 0.0613,
+        "para_stronger": true
+      },
+      "ttr": {
+        "paraphrase_rho": -0.5303,
+        "continuation_rho": -0.6333,
+        "delta": 0.103,
+        "para_stronger": false
+      },
+      "hapax_ratio": {
+        "paraphrase_rho": -0.5581,
+        "continuation_rho": -0.6553,
+        "delta": 0.0972,
+        "para_stronger": false
+      }
+    },
+    "feature_slopes": {
+      "entropy_mean": {
+        "paraphrase": -0.308039,
+        "continuation": -0.397207,
+        "delta": 0.089168
+      },
+      "entropy_std": {
+        "paraphrase": -0.009157,
+        "continuation": -0.028483,
+        "delta": 0.019326
+      },
+      "entropy_min": {
+        "paraphrase": 0.005892,
+        "continuation": 0.006733,
+        "delta": -0.000841
+      },
+      "entropy_max": {
+        "paraphrase": 0.015136,
+        "continuation": -0.027014,
+        "delta": 0.04215
+      },
+      "tail_decay": {
+        "paraphrase": 2.1e-05,
+        "continuation": 1.4e-05,
+        "delta": 7e-06
+      },
+      "ttr": {
+        "paraphrase": -0.081008,
+        "continuation": -0.096058,
+        "delta": 0.01505
+      },
+      "hapax_ratio": {
+        "paraphrase": -0.079062,
+        "continuation": -0.092304,
+        "delta": 0.013242
+      }
+    },
+    "cross_transfer": {
+      "para_train_cont_test_f1": 0.7695,
+      "cont_train_para_test_f1": 0.7431
+    }
+  },
+  "conclusion": "similar: paraphrastic and continuation chains retain comparable depth signal"
+}

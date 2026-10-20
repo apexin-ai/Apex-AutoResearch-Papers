@@ -1,0 +1,4375 @@
+# paper entropy std d trace
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 147
+- **Recorded user turns:** 0
+- **Tool calls:** 73
+- **Original source:** `logs/chats/worker_paper_entropy-std-d-trace_20260523T103849.jsonl`
+- **Structured JSON:** [`e458d6f265b3ef7b90c1.json`](../../sessions/e4/e458d6f265b3ef7b90c1.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+147 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-23T10:48:08.849636+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-23T10:48:08.849934+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-23T10:48:08.850108+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -r '0\\.55' /root/gen-depth-fingerprint/results/ 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -r '0\\.55' /root/gen-depth-fingerprint/results/ 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-23T10:48:08.850249+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-23T10:48:08.850374+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "find /root/gen-depth-fingerprint/ -name '*.json' -path '*/results/*'"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "find /root/gen-depth-fingerprint/ -name '*.json' -path '*/results/*'"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-23T10:48:08.850561+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/results/human_edit_robustness.json\\n/root/gen-depth-fingerprint/results/5gen_logo_average.json\\n/root/gen-depth-fingerprint/results/review_p1c_instruct.json\\n/root/gen-depth-fingerprint/results/8gen_baselines.json\\n/root/gen-depth-fingerprint/results/exp052_instruct_eval.json\\n/root/gen-depth-fingerprint/results/8gen_classifier_comparison.json\\n/root/gen-depth-fingerprint/results/independent_seed_results.json\\n/root/gen-depth-fingerprint/results/8gen_cross_model_chains.json\\n/root/gen-depth-fingerprint/results/instruct_length_confound.json\\n/root/gen-depth-fingerprint/results/8gen_feature_ablation.json\\n/root/gen-depth-fingerprint/results/8gen_finer_depth.json\\n/root/gen-depth-fingerprint/results/exp053_instruct_olmo_eval.json\\n/root/gen-depth-fingerprint/results/8gen_ldscore_sparse_fixed.json\\n/root/gen-depth-fingerprint/results/lofo_ablation_results.json\\n/root/gen-depth-fingerprint/results/8gen_length_confound.json\\n/root/gen-depth-fingerprint/results/multi_classify_results.json\\n/root/gen-depth-fingerprint/results/8gen_lofo_family.json\\n/root/gen-depth-fingerprint/results/multi_domain_results.json\\n/root/gen-depth-fingerprint/results/8gen_logo_baselines.json\\n/root/gen-depth-fingerprint/results/multi_seed_stability.json\\n/root/gen-depth-fingerprint/results/8gen_logo_results.json\\n/root/gen-depth-fingerprint/results/human_edit_robustness_old_no_chat_template.json\\n/root/gen-depth-fingerprint/results/8gen_logo_results_BUGGY_DO_NOT_USE.json\\n/root/gen-depth-fingerprint/results/mvp_results.json\\n/root/gen-depth-fingerprint/results/8gen_logo_unfiltered.json\\n/root/gen-depth-fingerprint/results/n2a_bootstrap_ci.json\\n/root/gen-depth-fingerprint/results/8gen_per_gen_spearman.json\\n/root/gen-depth-fingerprint/results/review_p1e_ordinal.json\\n/root/gen-depth-fingerprint/results/8gen_pooled_rho.json\\n/root/gen-depth-fingerprint/results/original_6gen_filter_stat
+…[truncated 5793 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-23T10:48:08.850739+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "find /root/gen-depth-fingerprint/ -name '*.py' -exec grep -l 'cohen\\|effect_size\\|entropy_std' {} \\;"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "find /root/gen-depth-fingerprint/ -name '*.py' -exec grep -l 'cohen\\|effect_size\\|entropy_std' {} \\;"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T10:48:08.850875+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-23T10:48:08.850997+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "0\\.55",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+  "glob": "*.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "0\\.55",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+    "glob": "*.tex",
+    "output_mode": "content"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-23T10:48:08.851189+00:00_
+
+artifacts/dream_reports/dream_20260514T221538/best/paper.tex:425:Paraphrastic chains show weak depth signal (macro-F1 0.55) with minimal entropy drift at depth 3 (0.05 nats vs.\ 0.48 nats for continuation).
+artifacts/dream_reports/dream_20260514T221538/best/paper.tex:439:Paraphrasing & 0.55 & 0.05 nats & 64\% & --- \\
+artifacts/dream_reports/dream_20260514T221538/best/paper.tex:553:LD-Score alone achieves only F1 0.55.
+artifacts/dream_reports/dream_20260514T221538/worst/paper.tex:232:Reference-model entropy\_mean is less affected (19\% explained by length, $\rho$: $-0.68 \to -0.55$), confirming it carries genuine depth signal beyond the length confound.
+artifacts/dream_reports/dream_20260514T221538/worst/paper.tex:244:entropy\_mean & $-0.68$ & $-0.55$ & 19\% \\
+artifacts/dream_reports/dream_20260514T221538/worst/paper.tex:378:Pythia-1B & 1B & 0.71 & 0.89 & 0.62 & 0.62 & $-0.55$ \\
+artifacts/dream_reports/dream_20260514T221538/worst/paper.tex:429:Elaboration & 0.55 & $-0.38$ & $-0.16$ & 0.44 \\
+artifacts/dream_reports/dream_20260514T221538/worst/paper.tex:437:Elaboration reduces this to F1=0.55, and inspired rewriting yields near-chance F1=0.47 because the semantic departure partially resets distributional state at each step.
+artifacts/dream_reports/dream_20260514T221538/worst/paper.tex:516:Scientific & 500 & 0.55 & 0.78 & 0.44 & 0.43 \\
+artifacts/dream_reports/dream_20260514T221538/worst/paper.tex:600:Qwen3.5-0.8B QLoRA & 0.83 & 0.55 & 15 \\
+artifacts/dream_reports/dream_20260514T221538/worst/paper.tex:608:However, it shares the same cross-generator failure (LOGO F1=0.55 vs.\ 0.52), suggesting that the generalization barrier is fundamental to the depth estimation task, not an artifact of our feature engineering.
+artifacts/dream_reports/dream_20260514T221538/median/paper.tex:209:Qwen3-1.7B & Qwen & 0.62 & 0.82 & 0.53 & 0.55 \\
+artifacts/dream_reports/dream_20260514T221538/median/paper.tex:218:LOFO evaluates generalization when no same-family generator remains in trai
+…[truncated 14053 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-23T10:48:08.851334+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "entropy_std",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+  "glob": "*.tex",
+  "output_mode": "content"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "entropy_std",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+    "glob": "*.tex",
+    "output_mode": "content"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T10:48:08.851455+00:00_
+
+artifacts/dream_reports/dream_20260520T100349/median/paper.tex:853:\label{app:entropy_std}
+artifacts/dream_reports/dream_20260520T100349/median/paper.tex:868:\label{tab:entropy_std_cross}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-23T10:48:08.851642+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/results/tost_equivalence.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/results/tost_equivalence.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-23T10:48:08.851875+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"equivalence_bound_d\\\": 0.2,\\n  \\\"alpha\\\": 0.05,\\n  \\\"features\\\": {\\n    \\\"entropy_mean\\\": {\\n      \\\"group\\\": \\\"drifting\\\",\\n      \\\"n_gen1\\\": 7896,\\n      \\\"n_gen2p\\\": 21199,\\n      \\\"mean_gen1\\\": 2.405806,\\n      \\\"mean_gen2p\\\": 1.525337,\\n      \\\"mean_diff\\\": 0.88047,\\n      \\\"pooled_sd\\\": 0.835039,\\n      \\\"observed_d\\\": 1.0544,\\n      \\\"delta_raw\\\": 0.167008,\\n      \\\"t_lower\\\": 95.1459,\\n      \\\"p_lower\\\": 0.0,\\n      \\\"t_upper\\\": 64.8061,\\n      \\\"p_upper\\\": 1.0,\\n      \\\"p_tost\\\": 1.0,\\n      \\\"equivalent_at_alpha_005\\\": false\\n    },\\n    \\\"entropy_std\\\": {\\n      \\\"group\\\": \\\"intermediate\\\",\\n      \\\"n_gen1\\\": 7896,\\n      \\\"n_gen2p\\\": 21199,\\n      \\\"mean_gen1\\\": 1.741032,\\n      \\\"mean_gen2p\\\": 1.624322,\\n      \\\"mean_diff\\\": 0.11671,\\n      \\\"pooled_sd\\\": 0.255351,\\n      \\\"observed_d\\\": 0.4571,\\n      \\\"delta_raw\\\": 0.05107,\\n      \\\"t_lower\\\": 49.8374,\\n      \\\"p_lower\\\": 0.0,\\n      \\\"t_upper\\\": 19.4977,\\n      \\\"p_upper\\\": 1.0,\\n      \\\"p_tost\\\": 1.0,\\n      \\\"equivalent_at_alpha_005\\\": false\\n    },\\n    \\\"entropy_max\\\": {\\n      \\\"group\\\": \\\"near-stationary\\\",\\n      \\\"n_gen1\\\": 7896,\\n      \\\"n_gen2p\\\": 21199,\\n      \\\"mean_gen1\\\": 7.559449,\\n      \\\"mean_gen2p\\\": 7.512676,\\n      \\\"mean_diff\\\": 0.046773,\\n      \\\"pooled_sd\\\": 0.751956,\\n      \\\"observed_d\\\": 0.0622,\\n      \\\"delta_raw\\\": 0.150391,\\n      \\\"t_lower\\\": 19.8879,\\n      \\\"p_lower\\\": 0.0,\\n      \\\"t_upper\\\": -10.4519,\\n      \\\"p_upper\\\": 7.971553542441683e-26,\\n      \\\"p_tost\\\": 7.971553542441683e-26,\\n      \\\"equivalent_at_alpha_005\\\": true\\n    },\\n    \\\"entropy_min\\\": {\\n      \\\"group\\\": \\\"intermediate\\\",\\n      \\\"n_gen1\\\": 7896,\\n   
+…[truncated 2344 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-23T10:48:08.852028+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/results/tost_bootstrap.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/results/tost_bootstrap.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T10:48:08.852188+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"config\\\": {\\n    \\\"n_bootstrap\\\": 1000,\\n    \\\"base_seed\\\": 42,\\n    \\\"margin_d\\\": 0.2,\\n    \\\"alpha\\\": 0.05,\\n    \\\"dry_run\\\": false\\n  },\\n  \\\"features\\\": {\\n    \\\"entropy_std\\\": {\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"median_p\\\": 1.0,\\n      \\\"mean_p\\\": 1.0,\\n      \\\"p_ci_95\\\": [\\n        1.0,\\n        1.0\\n      ],\\n      \\\"rejection_rate\\\": 0.0,\\n      \\\"median_d\\\": 0.4576,\\n      \\\"d_ci_95\\\": [\\n        0.4351,\\n        0.4794\\n      ],\\n      \\\"margin_d\\\": 0.2\\n    },\\n    \\\"entropy_max\\\": {\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"median_p\\\": 0.0,\\n      \\\"mean_p\\\": 0.0,\\n      \\\"p_ci_95\\\": [\\n        0.0,\\n        0.0\\n      ],\\n      \\\"rejection_rate\\\": 1.0,\\n      \\\"median_d\\\": 0.062,\\n      \\\"d_ci_95\\\": [\\n        0.0372,\\n        0.0875\\n      ],\\n      \\\"margin_d\\\": 0.2\\n    },\\n    \\\"entropy_min\\\": {\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"median_p\\\": 0.0,\\n      \\\"mean_p\\\": 0.0,\\n      \\\"p_ci_95\\\": [\\n        0.0,\\n        0.0\\n      ],\\n      \\\"rejection_rate\\\": 1.0,\\n      \\\"median_d\\\": -0.0164,\\n      \\\"d_ci_95\\\": [\\n        -0.0416,\\n        0.0111\\n      ],\\n      \\\"margin_d\\\": 0.2\\n    },\\n    \\\"tail_decay\\\": {\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"median_p\\\": 0.0,\\n      \\\"mean_p\\\": 0.0,\\n      \\\"p_ci_95\\\": [\\n        0.0,\\n        0.0\\n      ],\\n      \\\"rejection_rate\\\": 1.0,\\n      \\\"median_d\\\": 0.0878,\\n      \\\"d_ci_95\\\": [\\n        0.0647,\\n        0.1108\\n      ],\\n      \\\"margin_d\\\": 0.2\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-23T10:48:08.852332+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/results/table4_cross_ref_logo.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/results/table4_cross_ref_logo.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-23T10:48:08.852452+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/results/trend_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/results/trend_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-23T10:48:08.852627+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia-410m\\\": {\\n    \\\"per_fold_f1\\\": {\\n      \\\"olmo-2-1b\\\": 0.7656517592255256,\\n      \\\"pythia-1b\\\": 0.8515334527273226,\\n      \\\"pythia-2.8b\\\": 0.8018512469309496,\\n      \\\"qwen3-0.6b\\\": 0.8239738884074295,\\n      \\\"qwen3-1.7b\\\": 0.8063120362523518,\\n      \\\"qwen3-8b\\\": 0.6854132548969515\\n    },\\n    \\\"avg_macro_f1\\\": 0.789122606406755,\\n    \\\"ci_low\\\": 0.7473019447680967,\\n    \\\"ci_high\\\": 0.8235860188829546\\n  },\\n  \\\"olmo-2-1b\\\": {\\n    \\\"per_fold_f1\\\": {\\n      \\\"olmo-2-1b\\\": 0.7775448573126313,\\n      \\\"pythia-1b\\\": 0.8431530014346734,\\n      \\\"pythia-2.8b\\\": 0.7967040279505352,\\n      \\\"qwen3-0.6b\\\": 0.8354268173566431,\\n      \\\"qwen3-1.7b\\\": 0.819490110434835,\\n      \\\"qwen3-8b\\\": 0.696211036269113\\n    },\\n    \\\"avg_macro_f1\\\": 0.7947549751264051,\\n    \\\"ci_low\\\": 0.7566613733142259,\\n    \\\"ci_high\\\": 0.8274600991863632\\n  },\\n  \\\"qwen3-0.6b\\\": {\\n    \\\"per_fold_f1\\\": {\\n      \\\"olmo-2-1b\\\": 0.7773079724115076,\\n      \\\"pythia-1b\\\": 0.8467902620113607,\\n      \\\"pythia-2.8b\\\": 0.7997260687875999,\\n      \\\"qwen3-0.6b\\\": 0.844585478258896,\\n      \\\"qwen3-1.7b\\\": 0.8555684728797764,\\n      \\\"qwen3-8b\\\": 0.7568159144555894\\n    },\\n    \\\"avg_macro_f1\\\": 0.8134656948007882,\\n    \\\"ci_low\\\": 0.7854265534634483,\\n    \\\"ci_high\\\": 0.841514022737097\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-23T10:48:08.852906+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"depth_stats\\\": {\\n    \\\"0\\\": {\\n      \\\"entropy_mean\\\": {\\n        \\\"mean\\\": 2.6374087816506773,\\n        \\\"std\\\": 0.27717613092527676\\n      },\\n      \\\"entropy_std\\\": {\\n        \\\"mean\\\": 1.6609960075598866,\\n        \\\"std\\\": 0.1256674729733904\\n      },\\n      \\\"entropy_min\\\": {\\n        \\\"mean\\\": 0.005803041422187348,\\n        \\\"std\\\": 0.008763921722661955\\n      },\\n      \\\"entropy_max\\\": {\\n        \\\"mean\\\": 7.378588253768844,\\n        \\\"std\\\": 0.7282325159568803\\n      },\\n      \\\"tail_decay\\\": {\\n        \\\"mean\\\": -0.002292841542423794,\\n        \\\"std\\\": 0.00017396749401778864\\n      },\\n      \\\"ttr\\\": {\\n        \\\"mean\\\": 0.6425738249946202,\\n        \\\"std\\\": 0.06037126185913722\\n      },\\n      \\\"hapax_ratio\\\": {\\n        \\\"mean\\\": 0.5162570657200536,\\n        \\\"std\\\": 0.07531405822138115\\n      }\\n    },\\n    \\\"1\\\": {\\n      \\\"entropy_mean\\\": {\\n        \\\"mean\\\": 2.384188446978105,\\n        \\\"std\\\": 0.5987833102638476\\n      },\\n      \\\"entropy_std\\\": {\\n        \\\"mean\\\": 1.7540577414423921,\\n        \\\"std\\\": 0.1999193360550864\\n      },\\n      \\\"entropy_min\\\": {\\n        \\\"mean\\\": 0.017137494439181916,\\n        \\\"std\\\": 0.2524072618482429\\n      },\\n      \\\"entropy_max\\\": {\\n        \\\"mean\\\": 7.583895506825076,\\n        \\\"std\\\": 0.7277124417265177\\n      },\\n      \\\"tail_decay\\\": {\\n        \\\"mean\\\": -0.002249432088791551,\\n        \\\"std\\\": 0.00022264791276626985\\n      },\\n      \\\"ttr\\\": {\\n        \\\"mean\\\": 0.47646453941724204,\\n        \\\"std\\\": 0.1512107980163041\\n      },\\n      \\\"hapax_ratio\\\": {\\n        \\\"mean\\\": 0.32954094427005726,\\n        \\\"std\\\": 0.16611899615573963\\n      }\\n    },\\n    \\\"2\\\": {\\n      \\\"entropy_mean\\\": {\\n        \
+…[truncated 6531 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-23T10:48:08.853115+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rl \"cohen\\|effect_size\" /root/gen-depth-fingerprint/scripts/ /root/gen-depth-fingerprint/src/ /root/gen-depth-fingerprint/*.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rl \"cohen\\|effect_size\" /root/gen-depth-fingerprint/scripts/ /root/gen-depth-fingerprint/src/ /root/gen-depth-fingerprint/*.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-23T10:48:08.853248+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-23T10:48:08.853374+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "find /root/gen-depth-fingerprint/ -name '*ddr*' -name '*.py'"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "find /root/gen-depth-fingerprint/ -name '*ddr*' -name '*.py'"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-23T10:48:08.853509+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/scripts/plot_instruct_ddr_comparison.py\\n/root/gen-depth-fingerprint/scripts/analyze_instruct_ref_ddr.py\\n/root/gen-depth-fingerprint/scripts/plot_appendix_ddr_trends_v2.py\\n/root/gen-depth-fingerprint/scripts/permutation_test_ddr.py\\n/root/gen-depth-fingerprint/scripts/plot_appendix_ddr_trends_v3.py\\n/root/gen-depth-fingerprint/scripts/fix_fig_ddr_scatter.py\\n/root/gen-depth-fingerprint/scripts/fix_ddr_trajectory.py\\n/root/gen-depth-fingerprint/scripts/fix_ddr_holdout_split.py\\n/root/gen-depth-fingerprint/scripts/plot_appendix_ddr_trends.py\\n/root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py\\n/root/gen-depth-fingerprint/scripts/exp060_ddr_analysis.py\\n/root/gen-depth-fingerprint/scripts/plot_fig_ddr_trajectory.py\\n/root/gen-depth-fingerprint/scripts/plot_fig_ddr_trajectory_v3.py\\n/root/gen-depth-fingerprint/ddr_temp_analysis.py\\n/root/gen-depth-fingerprint/analyze_exp060_ddr.py\\n/root/gen-depth-fingerprint/fig1_ddr_vertical.py\\n/root/gen-depth-fingerprint/per_family_ddr_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-23T10:48:08.853673+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "Table 4|cross.ref|table4",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+  "glob": "*.tex",
+  "output_mode": "files_with_matches"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "Table 4|cross.ref|table4",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+    "glob": "*.tex",
+    "output_mode": "files_with_matches"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-23T10:48:08.853807+00:00_
+
+Found 20 files
+artifacts/_project/paper/results.tex
+docs/paper/results.tex
+artifacts/_project/paper/main.tex
+docs/paper/main.tex
+artifacts/_project/paper/method.tex
+docs/paper/method.tex
+artifacts/_project/paper/table4.tex
+artifacts/_project/paper/appendix_generator_subsets.tex
+docs/paper/table4.tex
+docs/paper/appendix_generator_subsets.tex
+artifacts/dream_reports/dream_20260521T213023/median/paper.tex
+artifacts/dream_reports/dream_20260520T232427/median/paper.tex
+artifacts/dream_reports/dream_20260520T232427/best/paper.tex
+artifacts/dream_reports/dream_20260520T100349/worst/paper.tex
+artifacts/dream_reports/dream_20260520T100349/median/paper.tex
+artifacts/dream_reports/dream_20260520T100349/best/paper.tex
+artifacts/dream_reports/dream_20260516T105241/best/paper.tex
+artifacts/dream_reports/dream_20260514T221538/worst/paper.tex
+artifacts/dream_reports/dream_20260514T221538/median/paper.tex
+artifacts/dream_reports/dream_20260514T181213/best/paper.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-23T10:48:08.853932+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/appendix_ddr_validation.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-23T10:48:08.854143+00:00_
+
+1	\subsection*{Data-Driven Clustering}
+2	
+3	To assess the DDR partition structure and determine whether the drifting/non-drifting split is data-driven, we apply $k$-means clustering ($k \in \{2,3,4,5\}$) to the seven features in standardized $(|\rho|, d)$ space (Table~\ref{tab:clustering}).
+4	
+5	\begin{table}[ht]
+6	\centering
+7	\small
+8	\caption{$k$-means clustering of 7 features in $(|\rho|, d)$ space.}
+9	\label{tab:clustering}
+10	\resizebox{\linewidth}{!}{%
+11	\begin{tabular}{ccp{5.5cm}}
+12	\toprule
+13	$k$ & Silhouette & Clusters \\
+14	\midrule
+15	2 & \textbf{0.660} & \{$\bar{H}$, TTR, hapax\} $\mid$ \{$\sigma_H$, $H_{\min}$, $H_{\max}$, tail\} \\
+16	3 & 0.532 & \{$\bar{H}$, TTR, hapax\} $\mid$ \{$\sigma_H$, $H_{\max}$, tail\} $\mid$ \{$H_{\min}$\} \\
+17	4 & 0.527 & \{$\bar{H}$, TTR, hapax\} $\mid$ \{$H_{\max}$, tail\} $\mid$ \{$\sigma_H$\} $\mid$ \{$H_{\min}$\} \\
+18	\bottomrule
+19	\end{tabular}}
+20	\end{table}
+21	
+22	The primary drifting/non-drifting split ($k{=}2$, silhouette\,=\,0.660) is the strongest cluster structure.
+23	At $k{=}3$, entropy min forms its own cluster rather than joining the near-stationary group because its pooled $|\rho|{=}0.40$ (driven by the gen-0/gen-1 boundary) places it far from other near-stationary features in $\rho$ space.
+24	The 3/1/3 DDR partition resolves this by using the gen-1 vs.\ gen-2+ Cohen's $d$ ($d{=}0.03$) to place entropy min in the near-stationary group, a domain-informed refinement that unsupervised clustering cannot recover from pooled statistics alone.
+25	At $k{=}4$ (silhouette\,=\,0.571), entropy std separates from the near-stationary group, consistent with its intermediate DDR classification.
+26	
+27	\paragraph{Exhaustive partition enumeration.}
+28	To confirm that the three-vs-four split is optimal rather than incidental, we enumerate all $\binom{7}{3}{=}35$ possible ways to assign three features to a ``drifting'' group and the remaining four to ``non-drifting,'' computing the silhouette score for each partition in
+…[truncated 13308 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-23T10:48:08.854345+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rn \"pooled.*d\\|3.class\\|three.class\\|cohen\" /root/gen-depth-fingerprint/scripts/permutation_test_ddr.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rn \"pooled.*d\\|3.class\\|three.class\\|cohen\" /root/gen-depth-fingerprint/scripts/permutation_test_ddr.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-23T10:48:08.854476+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-23T10:48:08.854614+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rn \"cohen\\|effect_size\\|pooled_d\\|entropy_std\" /root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rn \"cohen\\|effect_size\\|pooled_d\\|entropy_std\" /root/gen-depth-fingerprint/scripts/ddr_causal_analysis.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-23T10:48:08.854740+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-23T10:48:08.854855+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rn \"cohen\\|effect_size\\|pooled_d\" /root/gen-depth-fingerprint/scripts/fix_fig_ddr_scatter.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rn \"cohen\\|effect_size\\|pooled_d\" /root/gen-depth-fingerprint/scripts/fix_fig_ddr_scatter.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-23T10:48:08.854975+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-23T10:48:08.855091+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rn \"cohen\\|effect_size\\|pooled_d\" /root/gen-depth-fingerprint/scripts/fix_ddr_trajectory.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rn \"cohen\\|effect_size\\|pooled_d\" /root/gen-depth-fingerprint/scripts/fix_ddr_trajectory.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-23T10:48:08.855205+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-23T10:48:08.855316+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rl \"cohen\\|effect_size\" /root/gen-depth-fingerprint/scripts/ /root/gen-depth-fingerprint/src/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rl \"cohen\\|effect_size\" /root/gen-depth-fingerprint/scripts/ /root/gen-depth-fingerprint/src/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-23T10:48:08.855427+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-23T10:48:08.855551+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rln \"cohen\\|effect_size\" /root/gen-depth-fingerprint/scripts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rln \"cohen\\|effect_size\" /root/gen-depth-fingerprint/scripts/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-23T10:48:08.855686+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-23T10:48:08.855797+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rln \"cohen\\|effect_size\" /root/gen-depth-fingerprint/src/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rln \"cohen\\|effect_size\" /root/gen-depth-fingerprint/src/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-23T10:48:08.855907+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-23T10:48:08.856037+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rln -e \"cohen\" -e \"effect_size\" /root/gen-depth-fingerprint/scripts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rln -e \"cohen\" -e \"effect_size\" /root/gen-depth-fingerprint/scripts/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-23T10:48:08.856161+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/scripts/tost_equivalence.py\\n/root/gen-depth-fingerprint/scripts/instruct_analysis.py\\n/root/gen-depth-fingerprint/scripts/cross_rp_comparison.py\\n/root/gen-depth-fingerprint/scripts/plot_instruct_ddr_comparison.py\\n/root/gen-depth-fingerprint/scripts/analyze_instruct_ref_ddr.py\\n/root/gen-depth-fingerprint/scripts/fix_convergence_dynamics.py\\n/root/gen-depth-fingerprint/scripts/round3_computations.py\\n/root/gen-depth-fingerprint/scripts/tost_per_generator.py\\n/root/gen-depth-fingerprint/scripts/tost_bootstrap.py\\n/root/gen-depth-fingerprint/scripts/exp060_ddr_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-23T10:48:08.856276+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rln -e \"cohen\" -e \"effect_size\" /root/gen-depth-fingerprint/src/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rln -e \"cohen\" -e \"effect_size\" /root/gen-depth-fingerprint/src/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-23T10:48:08.856399+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/gen-depth-fingerprint/src/: No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-23T10:48:08.856509+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/scripts/round3_computations.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/scripts/round3_computations.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-23T10:48:08.856768+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Round 3 reviewer response computations — all 4 tasks.\\\"\\\"\\\"\\nimport json, os, sys\\nimport numpy as np\\nimport pandas as pd\\nfrom pathlib import Path\\nfrom scipy import stats\\n\\nROOT = Path(\\\"/root/gen-depth-fingerprint\\\")\\nDATA = ROOT / \\\"data\\\"\\nRESULTS = ROOT / \\\"results\\\"\\nRESULTS.mkdir(exist_ok=True)\\nFIGURES = ROOT / \\\"figures\\\"\\nFIGURES.mkdir(exist_ok=True)\\n\\n# ============================================================\\n# TASK 1: N2a — Downstream Bootstrap CI + Effect Size\\n# ============================================================\\ndef task1_downstream_bootstrap():\\n    print(\\\"=\\\" * 60)\\n    print(\\\"TASK 1: Downstream Bootstrap CI + Effect Size\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    base = Path(\\\"/root/autodl-tmp/gen-depth-fingerprint/experiments/downstream\\\")\\n    \\n    variants = {\\n        \\\"all\\\": [],\\n        \\\"size_matched\\\": [],\\n        \\\"depth01\\\": [],\\n        \\\"binary_filtered\\\": [],\\n        \\\"depth0_only\\\": [],\\n    }\\n    seeds = [42, 123, 456]\\n    \\n    for var in variants:\\n        for seed in seeds:\\n            rpath = base / f\\\"{var}_seed{seed}\\\" / \\\"results.json\\\"\\n            with open(rpath) as f:\\n                r = json.load(f)\\n            variants[var].append(r[\\\"eval_perplexity\\\"])\\n    \\n    for var, vals in variants.items():\\n        print(f\\\"  {var}: {[f'{v:.4f}' for v in vals]} mean={np.mean(vals):.4f}\\\")\\n    \\n    rng = np.random.RandomState(42)\\n    n_boot = 10000\\n    n_perm = 10000\\n    \\n    results = {\\\"task\\\": \\\"downstream_bootstrap_ci\\\", \\\"n_seeds\\\": 3, \\\"seeds\\\": seeds,\\n               \\\"n_bootstrap\\\": n_boot, \\\"n_permutation\\\": n_perm, \\\"variants\\\": {}}\\n    \\n    for var, vals in variants.items():\\n        results[\\\"variants\\\"][var] = {\\n            \\\"perplexities\
+…[truncated 7373 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-23T10:48:08.856943+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -n \"pooled\" /root/gen-depth-fingerprint/scripts/tost_equivalence.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -n \"pooled\" /root/gen-depth-fingerprint/scripts/tost_equivalence.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-23T10:48:08.857079+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"59:    pooled_sd = np.sqrt(((n1-1)*s1**2 + (n2-1)*s2**2) / (n1+n2-2))\\n61:    delta = d_bound * pooled_sd\\n63:    se = pooled_sd * np.sqrt(1/n1 + 1/n2)\\n65:    cohens_d = diff / pooled_sd\\n82:        \\\"pooled_sd\\\": round(float(pooled_sd), 6),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-23T10:48:08.857201+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rn \"0.55\" /root/gen-depth-fingerprint/results/trend_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rn \"0.55\" /root/gen-depth-fingerprint/results/trend_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-23T10:48:08.857322+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"9:        \\\"mean\\\": 1.6609960075598866,\\n174:        0.557627059553444,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-23T10:48:08.857460+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rn \"1.17\" /root/gen-depth-fingerprint/results/trend_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rn \"1.17\" /root/gen-depth-fingerprint/results/trend_analysis.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-23T10:48:08.857595+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-23T10:48:08.857719+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rln \"epsilon_sweep\\|ddr_partition\\|pooled_d\\|3class.*d\\|three.*class.*d\" /root/gen-depth-fingerprint/results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rln \"epsilon_sweep\\|ddr_partition\\|pooled_d\\|3class.*d\\|three.*class.*d\" /root/gen-depth-fingerprint/results/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-23T10:48:08.857841+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-23T10:48:08.857955+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rln \"epsilon_sweep\\|ddr_partition\\|pooled_d\\|three_class\" /root/gen-depth-fingerprint/scripts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rln \"epsilon_sweep\\|ddr_partition\\|pooled_d\\|three_class\" /root/gen-depth-fingerprint/scripts/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-23T10:48:08.858067+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-23T10:48:08.858178+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/scripts/tost_equivalence.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/scripts/tost_equivalence.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-23T10:48:08.858341+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"TOST equivalence test: gen-1 vs gen-2+ for all 7 features.\\\"\\\"\\\"\\nimport argparse\\nimport json, numpy as np, pandas as pd\\nfrom scipy import stats\\n\\n\\ndef parse_args():\\n    parser = argparse.ArgumentParser(description=\\\"TOST equivalence test: gen-1 vs gen-2+ for all 7 features.\\\")\\n    parser.add_argument(\\\"--data-path\\\", default=\\\"/root/gen-depth-fingerprint/data/features_8gen.csv\\\")\\n    parser.add_argument(\\\"--margin\\\", type=float, default=0.20, help=\\\"Cohen's d equivalence bound\\\")\\n    parser.add_argument(\\\"--alpha\\\", type=float, default=0.05)\\n    parser.add_argument(\\\"--output\\\", default=\\\"/root/gen-depth-fingerprint/results/tost_equivalence.json\\\")\\n    return parser.parse_args()\\n\\nargs = parse_args()\\ndf = pd.read_csv(args.data_path)\\n\\ndepth_col = 'depth' if 'depth' in df.columns else 'generation'\\nprint(f\\\"Depth column: {depth_col}\\\")\\nprint(f\\\"Value counts:\\\\n{df[depth_col].value_counts().sort_index()}\\\")\\n\\ngen1 = df[df[depth_col] == 1]\\ngen2p = df[df[depth_col] >= 2]\\nprint(f\\\"gen-1: {len(gen1)}, gen-2+: {len(gen2p)}\\\")\\n\\nfeatures = {\\n    'entropy_mean': 'drifting',\\n    'entropy_std': 'intermediate',\\n    'entropy_max': 'near-stationary',\\n    'entropy_min': 'intermediate',\\n    'tail_decay': 'near-stationary',\\n    'ttr': 'drifting',\\n    'hapax_ratio': 'drifting',\\n}\\n\\nd_bound = args.margin\\nresults = {\\\"equivalence_bound_d\\\": d_bound, \\\"alpha\\\": args.alpha, \\\"features\\\": {}}\\n\\nprint(f\\\"\\\\n{'Feature':20s} | {'Group':16s} | {'d':>8s} | {'p_TOST':>12s} | Result\\\")\\nprint(\\\"-\\\" * 80)\\n\\nfor feat, group in features.items():\\n    col = feat\\n    if col not in df.columns:\\n        for v in [feat, feat.replace('_', ''), feat.replace('_', '-')]:\\n            if v in df.columns:\\n                col = v\\n                break\\n        else:
+…[truncated 1938 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-23T10:48:08.858513+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rn \"1.17\" /root/gen-depth-fingerprint/results/distributional_tests.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rn \"1.17\" /root/gen-depth-fingerprint/results/distributional_tests.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-23T10:48:08.858660+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-23T10:48:08.858777+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rn \"0.55\" /root/gen-depth-fingerprint/results/distributional_tests.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rn \"0.55\" /root/gen-depth-fingerprint/results/distributional_tests.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-23T10:48:08.858890+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/results/distributional_tests.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/results/distributional_tests.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-23T10:48:08.859002+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-23T10:48:08.859212+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"distributional_tests_s2\\\",\\n  \\\"date\\\": \\\"2026-05-17\\\",\\n  \\\"n_samples\\\": {\\n    \\\"gen0\\\": 5972,\\n    \\\"gen1\\\": 5918,\\n    \\\"gen2plus\\\": 15639\\n  },\\n  \\\"ks_tests\\\": {\\n    \\\"entropy_mean\\\": {\\n      \\\"gen0_vs_gen1\\\": {\\n        \\\"statistic\\\": 0.27739,\\n        \\\"p_value\\\": 8.196864e-202,\\n        \\\"p_corrected\\\": 1.721341e-200,\\n        \\\"significant\\\": true\\n      },\\n      \\\"gen0_vs_gen2plus\\\": {\\n        \\\"statistic\\\": 0.721492,\\n        \\\"p_value\\\": 0.0,\\n        \\\"p_corrected\\\": 0.0,\\n        \\\"significant\\\": true\\n      },\\n      \\\"gen1_vs_gen2plus\\\": {\\n        \\\"statistic\\\": 0.53693,\\n        \\\"p_value\\\": 0.0,\\n        \\\"p_corrected\\\": 0.0,\\n        \\\"significant\\\": true\\n      }\\n    },\\n    \\\"entropy_std\\\": {\\n      \\\"gen0_vs_gen1\\\": {\\n        \\\"statistic\\\": 0.225514,\\n        \\\"p_value\\\": 6.002941e-133,\\n        \\\"p_corrected\\\": 1.260618e-131,\\n        \\\"significant\\\": true\\n      },\\n      \\\"gen0_vs_gen2plus\\\": {\\n        \\\"statistic\\\": 0.231006,\\n        \\\"p_value\\\": 2.936677e-203,\\n        \\\"p_corrected\\\": 6.167021e-202,\\n        \\\"significant\\\": true\\n      },\\n      \\\"gen1_vs_gen2plus\\\": {\\n        \\\"statistic\\\": 0.285028,\\n        \\\"p_value\\\": 3.783257e-309,\\n        \\\"p_corrected\\\": 7.94484e-308,\\n        \\\"significant\\\": true\\n      }\\n    },\\n    \\\"entropy_min\\\": {\\n      \\\"gen0_vs_gen1\\\": {\\n        \\\"statistic\\\": 0.153032,\\n        \\\"p_value\\\": 3.473572e-61,\\n        \\\"p_corrected\\\": 7.2945e-60,\\n        \\\"significant\\\": true\\n      },\\n      \\\"gen0_vs_gen2plus\\\": {\\n        \\\"statistic\\\": 0.442532,\\n        \\\"p_value\\\": 0.0,\\n        \\\"p_corrected\\\": 0.0,\\n        \\\"significant\\\": true\\n      },\\n  
+…[truncated 4226 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-23T10:48:08.859378+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rn \"pooled_d\" /root/gen-depth-fingerprint/scripts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rn \"pooled_d\" /root/gen-depth-fingerprint/scripts/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-23T10:48:08.859506+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/scripts/fix_ddr_holdout_split.py:57:        pooled_rho, pooled_d = np.mean(rho_vals), np.mean(d_vals)\\n/root/gen-depth-fingerprint/scripts/fix_ddr_holdout_split.py:58:        result[feat] = {\\\"rho\\\": pooled_rho, \\\"d\\\": pooled_d, \\\"zone\\\": classify_zone(pooled_rho, pooled_d)}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-23T10:48:08.859647+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rn \"0.55\" /root/gen-depth-fingerprint/results/ddr_causal_permutation.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rn \"0.55\" /root/gen-depth-fingerprint/results/ddr_causal_permutation.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-23T10:48:08.859770+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-23T10:48:08.859883+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/results/candidate_feature_ablation.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/results/candidate_feature_ablation.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-23T10:48:08.860191+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"phase_a\\\": {\\n    \\\"f1_7_3class\\\": 0.7698246542557419,\\n    \\\"f1_7_binary\\\": 0.7013936250014119,\\n    \\\"f1_8_3class\\\": 0.7711370901230856,\\n    \\\"f1_8_binary\\\": 0.702552864068273,\\n    \\\"pg_7_3c\\\": {\\n      \\\"llama-3.2-3b\\\": 0.7620749890231838,\\n      \\\"mistral-7b-v0.3\\\": 0.6159142430829326,\\n      \\\"olmo-2-1b\\\": 0.7741617973356014,\\n      \\\"pythia-1b\\\": 0.8564435220691978,\\n      \\\"pythia-2.8b\\\": 0.816854429550331,\\n      \\\"qwen3-0.6b\\\": 0.8224441574875034,\\n      \\\"qwen3-1.7b\\\": 0.8098211606570794,\\n      \\\"qwen3-8b\\\": 0.7008829348401059\\n    },\\n    \\\"pg_7_bin\\\": {\\n      \\\"llama-3.2-3b\\\": 0.6844962343307568,\\n      \\\"mistral-7b-v0.3\\\": 0.5475545973602134,\\n      \\\"olmo-2-1b\\\": 0.6945977043384145,\\n      \\\"pythia-1b\\\": 0.7898709428954831,\\n      \\\"pythia-2.8b\\\": 0.7392811789728472,\\n      \\\"qwen3-0.6b\\\": 0.757328432307959,\\n      \\\"qwen3-1.7b\\\": 0.7479300719394928,\\n      \\\"qwen3-8b\\\": 0.6500898378661284\\n    },\\n    \\\"pg_8_3c\\\": {\\n      \\\"llama-3.2-3b\\\": 0.7656833390019591,\\n      \\\"mistral-7b-v0.3\\\": 0.6177912524883101,\\n      \\\"olmo-2-1b\\\": 0.7755631069283107,\\n      \\\"pythia-1b\\\": 0.8576050686274498,\\n      \\\"pythia-2.8b\\\": 0.8166182493126583,\\n      \\\"qwen3-0.6b\\\": 0.8225482763150964,\\n      \\\"qwen3-1.7b\\\": 0.8080918494028037,\\n      \\\"qwen3-8b\\\": 0.7051955789080963\\n    },\\n    \\\"pg_8_bin\\\": {\\n      \\\"llama-3.2-3b\\\": 0.6850442184005958,\\n      \\\"mistral-7b-v0.3\\\": 0.5431014381943488,\\n      \\\"olmo-2-1b\\\": 0.6965788652182097,\\n      \\\"pythia-1b\\\": 0.7981304823843983,\\n      \\\"pythia-2.8b\\\": 0.7370815912120021,\\n      \\\"qwen3-0.6b\\\": 0.7539539775497415,\\n      \\\"qwen3-1.7b\\\": 0.7482924463588546,\\n      \\\"qwen3-8b\\\": 0.6582398932280331\\n    },\\n    \\\"ddr_cv\\\": {\\n      \\\"abs_rho\\\":
+…[truncated 8379 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-23T10:48:08.860367+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/fig1_ddr_vertical.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/fig1_ddr_vertical.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-23T10:48:08.860492+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/per_family_ddr_analysis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/per_family_ddr_analysis.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-23T10:48:08.860688+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Figure 1: Differential Depth Response — vertical strip plot.\\nWong colorblind-safe palette, per-feature marker shapes, diamond grand means.\\\"\\\"\\\"\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport json\\n\\nmatplotlib.rcParams['pdf.fonttype'] = 42\\nmatplotlib.rcParams['ps.fonttype'] = 42\\n\\n# ── Data ──\\nwith open('/root/gen-depth-fingerprint/spearman_per_generator.json') as f:\\n    data = json.load(f)\\n\\n# Feature order: user-specified |rho| descending\\nfeatures = [\\n    ('hapax_ratio',  'Hapax\\\\nratio',  'drifting',     'o'),\\n    ('ttr',          'TTR',           'drifting',     's'),\\n    ('entropy_mean', r'$\\\\bar{H}$',   'drifting',     '^'),\\n    ('entropy_std',  r'$\\\\sigma_H$',  'intermediate', 'D'),\\n    ('entropy_min',  r'$H_{\\\\min}$',  'near-stat',    'v'),\\n    ('entropy_max',  r'$H_{\\\\max}$',  'near-stat',    'h'),\\n    ('tail_decay',   'Tail\\\\ndecay',  'near-stat',    'p'),\\n]\\n\\ngenerators = list(data.keys())\\nn = len(features)\\nx_pos = np.arange(n)\\n\\n# ── Colors (Wong / Tol colorblind-safe) ──\\nC_DRIFT  = '#0072B2'\\nC_INTERM = '#882255'\\nC_STAT   = '#E69F00'\\nzone_color = {'drifting': C_DRIFT, 'intermediate': C_INTERM, 'near-stat': C_STAT}\\n\\nplt.rcParams.update({\\n    'font.family': 'serif',\\n    'font.serif': ['DejaVu Serif'],\\n    'font.size': 8,\\n    'axes.labelsize': 9,\\n    'xtick.labelsize': 7,\\n    'ytick.labelsize': 8,\\n    'figure.dpi': 300,\\n    'savefig.dpi': 300,\\n    'savefig.bbox': 'tight',\\n    'savefig.pad_inches': 0.04,\\n    'mathtext.fontset': 'cm',\\n})\\n\\nfig, ax = plt.subplots(figsize=(3.25, 2.6))\\n\\n# ── Zone background shading (vertical bands) ──\\nax.axvspan(-0.42, 2.42, color=C_DRIFT,  alpha=0.045, zorder=0)\\nax.axvspan(2.58,  3.42, color=C_INTERM, alpha=0.045, zorder=0)\\nax.axvspan(3.58,  6.42, color=C_STAT,   alpha=0.045, zorder=0)\\n\\n
+…[truncated 3197 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-23T10:48:08.860983+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import pandas as pd\\nimport numpy as np\\nfrom scipy import stats\\n\\ndf = pd.read_csv('/root/gen-depth-fingerprint/data/features_8gen.csv')\\n\\nFAMILY_MAP = {\\n    'pythia-2.8b': 'Pythia',\\n    'pythia-1b': 'Pythia',\\n    'olmo-2-1b': 'OLMo',\\n    'qwen3-0.6b': 'Qwen',\\n    'qwen3-1.7b': 'Qwen',\\n    'qwen3-8b': 'Qwen',\\n    'llama-3.2-3b': 'Llama',\\n    'mistral-7b-v0.3': 'Mistral',\\n}\\n\\nFEATURES = ['entropy_mean', 'ttr', 'hapax_ratio', 'entropy_std', 'entropy_max', 'entropy_min', 'tail_decay']\\nFEAT_LABELS = {\\n    'entropy_mean': r'$H_{\\\\mathrm{mean}}$',\\n    'ttr': 'TTR',\\n    'hapax_ratio': 'Hapax',\\n    'entropy_std': r'$H_{\\\\mathrm{std}}$',\\n    'entropy_max': r'$H_{\\\\mathrm{max}}$',\\n    'entropy_min': r'$H_{\\\\mathrm{min}}$',\\n    'tail_decay': r'$\\\\beta_{\\\\mathrm{tail}}$',\\n}\\n\\nPARTITION = {\\n    'entropy_mean': 'Drifting',\\n    'ttr': 'Drifting',\\n    'hapax_ratio': 'Drifting',\\n    'entropy_std': 'Intermediate',\\n    'entropy_max': 'Near-stationary',\\n    'entropy_min': 'Near-stationary',\\n    'tail_decay': 'Near-stationary',\\n}\\n\\nFAMILY_ORDER = ['Pythia', 'OLMo', 'Qwen', 'Llama', 'Mistral']\\n\\ndf['family'] = df['model_name'].map(FAMILY_MAP)\\n\\n# --- Compute per-generator Spearman |rho| and Cohen's d ---\\nrecords = []\\nfor gen, gdf in df.groupby('model_name'):\\n    family = FAMILY_MAP[gen]\\n    for feat in FEATURES:\\n        rho, p_rho = stats.spearmanr(gdf['depth'], gdf[feat])\\n        # Cohen's d: depth-0 vs depth >= 1\\n        d0 = gdf.loc[gdf['depth'] == 0, feat].values\\n        d1plus = gdf.loc[gdf['depth'] >= 1, feat].values\\n        if len(d0) > 1 and len(d1plus) > 1:\\n            pooled_std = np.sqrt(((len(d0)-1)*np.var(d0, ddof=1) + (len(d1plus)-1)*np.var(d1plus, ddof=1)) / (len(d0)+len(d1plus)-2))\\n            cohens_d = (np.mean(d0) - np.mean(d1plus)) / pooled_std if pooled_std > 0 else 0.0\\n        else:\\n            cohe
+…[truncated 7067 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-23T10:48:08.861188+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint && python3 -c \"\nimport pandas as pd, numpy as np\ndf = pd.read_csv('data/features_8gen.csv')\n\n# Method 1: gen-0 vs gen-1+ (per_family_ddr_analysis style)\nd0 = df[df['depth'] == 0]['entropy_std'].values\nd1p = df[df['depth'] >= 1]['entropy_std'].values\nn0, n1 = len(d0), len(d1p)\nps = np.sqrt(((n0-1)*np.var(d0,ddof=1) + (n1-1)*np.var(d1p,ddof=1)) / (n0+n1-2))\nd_0v1p = abs(np.mean(d0) - np.mean(d1p)) / ps\nprint(f'gen-0 vs gen-1+: d = {d_0v1p:.4f}  (n0={n0}, n1p={n1})')\n\n# Method 2: gen-1 vs gen-2+ (tost_equivalence style)  \ng1 = df[df['depth'] == 1]['entropy_std'].values\ng2p = df[df['depth'] >= 2]['entropy_std'].values\nn1_, n2 = len(g1), len(g2p)\nps2 = np.sqrt(((n1_-1)*np.var(g1,ddof=1) + (n2-1)*np.var(g2p,ddof=1)) / (n1_+n2-2))\nd_1v2p = abs(np.mean(g1) - np.mean(g2p)) / ps2\nprint(f'gen-1 vs gen-2+: d = {d_1v2p:.4f}  (n1={n1_}, n2p={n2})')\n\n# Method 3: per-generator gen-0 vs gen-1+, then average |d|\nper_gen_d = []\nfor gen, gdf in df.groupby('model_name'):\n    d0g = gdf[gdf['depth'] == 0]['entropy_std'].values\n    d1pg = gdf[gdf['depth'] >= 1]['entropy_std'].values\n    if len(d0g)>1 and len(d1pg)>1:\n        ps3 = np.sqrt(((len(d0g)-1)*np.var(d0g,ddof=1)+(len(d1pg)-1)*np.var(d1pg,ddof=1))/(len(d0g)+len(d1pg)-2))\n        cd = abs(np.mean(d0g)-np.mean(d1pg))/ps3 if ps3>0 else 0\n        per_gen_d.append(cd)\n        print(f'  {gen}: d = {cd:.4f}')\nprint(f'Mean per-gen d (gen-0 vs gen-1+): {np.mean(per_gen_d):.4f}')\n\n# Also check all 7 features with gen-0 vs gen-1+ pooled\nprint()\nfeats = ['entropy_mean', 'ttr', 'hapax_ratio', 'entropy_std', 'entropy_max', 'tail_decay', 'entropy_min']\nfor feat in feats:\n    d0f = df[df['depth']==0][feat].values\n    d1pf = df[df['depth']>=1][feat].values\n    n0f, n1f = len(d0f), len(d1pf)\n    psf = np.sqrt(((n0f-1)*np.var(d0f,ddof=1)+(n1f-1)*np.var(d1pf,ddof=1))/(n0f+n1f-2))\n    df_ = abs(np.mean(d0f)-np.mean(d1pf))/psf\n    print(f'{feat}: pooled gen-0 vs gen-1+ d = {df_:.4f}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint && python3 -c \"\nimport pandas as pd, numpy as np\ndf = pd.read_csv('data/features_8gen.csv')\n\n# Method 1: gen-0 vs gen-1+ (per_family_ddr_analysis style)\nd0 = df[df['depth'] == 0]['entropy_std'].values\nd1p = df[df['depth'] >= 1]['entropy_std'].values\nn0, n1 = len(d0), len(d1p)\nps = np.sqrt(((n0-1)*np.var(d0,ddof=1) + (n1-1)*np.var(d1p,ddof=1)) / (n0+n1-2))\nd_0v1p = abs(np.mean(d0) - np.mean(d1p)) / ps\nprint(f'gen-0 vs gen-1+: d = {d_0v1p:.4f}  (n0={n0}, n1p={n1})')\n\n# Method 2: gen-1 vs gen-2+ (tost_equivalence style)  \ng1 = df[df['depth'] == 1]['entropy_std'].values\ng2p = df[df['depth'] >= 2]['entropy_std'].values\nn1_, n2 = len(g1), len(g2p)\nps2 = np.sqrt(((n1_-1)*np.var(g1,ddof=1) + (n2-1)*np.var(g2p,ddof=1)) / (n1_+n2-2))\nd_1v2p = abs(np.mean(g1) - np.mean(g2p)) / ps2\nprint(f'gen-1 vs gen-2+: d = {d_1v2p:.4f}  (n1={n1_}, n2p={n2})')\n\n# Method 3: per-generator gen-0 vs gen-1+, then average |d|\nper_gen_d = []\nfor gen, gdf in df.groupby('model_name'):\n    d0g = gdf[gdf['depth'] == 0]['entropy_std'].values\n    d1pg = gdf[gdf['depth'] >= 1]['entropy_std'].values\n    if len(d0g)>1 and len(d1pg)>1:\n        ps3 = np.sqrt(((len(d0g)-1)*np.var(d0g,ddof=1)+(len(d1pg)-1)*np.var(d1pg,ddof=1))/(len(d0g)+len(d1pg)-2))\n        cd = abs(np.mean(d0g)-np.mean(d1pg))/ps3 if ps3>0 else 0\n        per_gen_d.append(cd)\n        print(f'  {gen}: d = {cd:.4f}')\nprint(f'Mean per-gen d (gen-0 vs gen-1+): {np.mean(per_gen_d):.4f}')\n\n# Also check all 7 features with gen-0 vs gen-1+ pooled\nprint()\nfeats = ['entropy_mean', 'ttr', 'hapax_ratio', 'entropy_std', 'entropy_max', 'tail_decay', 'entropy_min']\nfor feat in feats:\n    d0f = df[df['depth']==0][feat].values\n    d1pf = df[df['depth']>=1][feat].values\n    n0f, n1f = len(d0f), len(d1pf)\n    psf = np.sqrt(((n0f-1)*np.var(d0f,ddof=1)+(n1f-1)*np.var(d1pf,ddof=1))/(n0f+n1f-2))\n    df_ = abs(np.mean(d0f)-np.mean(d1pf))/psf\n    print(f'{feat}: pooled gen-0 vs gen-1+ d = {df_:.4f}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-23T10:48:08.861350+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"gen-0 vs gen-1+: d = 0.0243  (n0=7963, n1p=29095)\\ngen-1 vs gen-2+: d = 0.4571  (n1=7896, n2p=21199)\\n  llama-3.2-3b: d = 0.0210\\n  mistral-7b-v0.3: d = 0.3997\\n  olmo-2-1b: d = 0.2928\\n  pythia-1b: d = 0.0302\\n  pythia-2.8b: d = 0.0437\\n  qwen3-0.6b: d = 0.1859\\n  qwen3-1.7b: d = 0.1326\\n  qwen3-8b: d = 0.0570\\nMean per-gen d (gen-0 vs gen-1+): 0.1453\\n\\nentropy_mean: pooled gen-0 vs gen-1+ d = 1.0571\\nttr: pooled gen-0 vs gen-1+ d = 1.4684\\nhapax_ratio: pooled gen-0 vs gen-1+ d = 1.5300\\nentropy_std: pooled gen-0 vs gen-1+ d = 0.0243\\nentropy_max: pooled gen-0 vs gen-1+ d = 0.1958\\ntail_decay: pooled gen-0 vs gen-1+ d = 0.0262\\nentropy_min: pooled gen-0 vs gen-1+ d = 0.0879\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-23T10:48:08.861521+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint && python3 -c \"\nimport pandas as pd, numpy as np\nfrom scipy import stats\ndf = pd.read_csv('data/features_8gen.csv')\n\nfeats = ['entropy_mean', 'ttr', 'hapax_ratio', 'entropy_std', 'entropy_max', 'tail_decay', 'entropy_min']\n\n# Method A: per-generator gen-1 vs gen-2+ d, then average |d|\nprint('=== Method A: per-gen gen-1 vs gen-2+ d, then mean ===')\nfor feat in feats:\n    ds = []\n    for gen, gdf in df.groupby('model_name'):\n        g1 = gdf[gdf['depth']==1][feat].values\n        g2p = gdf[gdf['depth']>=2][feat].values\n        if len(g1)>1 and len(g2p)>1:\n            ps = np.sqrt(((len(g1)-1)*np.var(g1,ddof=1)+(len(g2p)-1)*np.var(g2p,ddof=1))/(len(g1)+len(g2p)-2))\n            d = abs(np.mean(g1)-np.mean(g2p))/ps if ps>0 else 0\n            ds.append(d)\n    print(f'{feat}: mean={np.mean(ds):.4f}, median={np.median(ds):.4f}')\n\n# Method B: one-way ANOVA-style Cohen's f across 3 classes (gen-0, gen-1, gen-2+)\nprint()\nprint('=== Method B: gen-0 vs gen-2+ (skipping gen-1) ===')\nfor feat in feats:\n    g0 = df[df['depth']==0][feat].values\n    g2p = df[df['depth']>=2][feat].values\n    n0, n2 = len(g0), len(g2p)\n    ps = np.sqrt(((n0-1)*np.var(g0,ddof=1)+(n2-1)*np.var(g2p,ddof=1))/(n0+n2-2))\n    d = abs(np.mean(g0)-np.mean(g2p))/ps\n    print(f'{feat}: d = {d:.4f}')\n\n# Method C: per-generator Spearman rho and d from the spearman_per_generator.json\nprint()\nprint('=== Spearman rho per gen (from file) ===')\nimport json\nwith open('spearman_per_generator.json') as f:\n    spg = json.load(f)\nfor feat in feats:\n    vals = [spg[g][feat] for g in spg]\n    print(f'{feat}: mean_rho={np.mean(vals):.4f}, mean_abs_rho={np.mean(np.abs(vals)):.4f}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint && python3 -c \"\nimport pandas as pd, numpy as np\nfrom scipy import stats\ndf = pd.read_csv('data/features_8gen.csv')\n\nfeats = ['entropy_mean', 'ttr', 'hapax_ratio', 'entropy_std', 'entropy_max', 'tail_decay', 'entropy_min']\n\n# Method A: per-generator gen-1 vs gen-2+ d, then average |d|\nprint('=== Method A: per-gen gen-1 vs gen-2+ d, then mean ===')\nfor feat in feats:\n    ds = []\n    for gen, gdf in df.groupby('model_name'):\n        g1 = gdf[gdf['depth']==1][feat].values\n        g2p = gdf[gdf['depth']>=2][feat].values\n        if len(g1)>1 and len(g2p)>1:\n            ps = np.sqrt(((len(g1)-1)*np.var(g1,ddof=1)+(len(g2p)-1)*np.var(g2p,ddof=1))/(len(g1)+len(g2p)-2))\n            d = abs(np.mean(g1)-np.mean(g2p))/ps if ps>0 else 0\n            ds.append(d)\n    print(f'{feat}: mean={np.mean(ds):.4f}, median={np.median(ds):.4f}')\n\n# Method B: one-way ANOVA-style Cohen's f across 3 classes (gen-0, gen-1, gen-2+)\nprint()\nprint('=== Method B: gen-0 vs gen-2+ (skipping gen-1) ===')\nfor feat in feats:\n    g0 = df[df['depth']==0][feat].values\n    g2p = df[df['depth']>=2][feat].values\n    n0, n2 = len(g0), len(g2p)\n    ps = np.sqrt(((n0-1)*np.var(g0,ddof=1)+(n2-1)*np.var(g2p,ddof=1))/(n0+n2-2))\n    d = abs(np.mean(g0)-np.mean(g2p))/ps\n    print(f'{feat}: d = {d:.4f}')\n\n# Method C: per-generator Spearman rho and d from the spearman_per_generator.json\nprint()\nprint('=== Spearman rho per gen (from file) ===')\nimport json\nwith open('spearman_per_generator.json') as f:\n    spg = json.load(f)\nfor feat in feats:\n    vals = [spg[g][feat] for g in spg]\n    print(f'{feat}: mean_rho={np.mean(vals):.4f}, mean_abs_rho={np.mean(np.abs(vals)):.4f}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-23T10:48:08.861700+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Method A: per-gen gen-1 vs gen-2+ d, then mean ===\\nentropy_mean: mean=1.0907, median=1.1313\\nttr: mean=0.8456, median=0.8091\\nhapax_ratio: mean=0.7643, median=0.7443\\nentropy_std: mean=0.4626, median=0.5069\\nentropy_max: mean=0.0755, median=0.0301\\ntail_decay: mean=0.1311, median=0.1211\\nentropy_min: mean=0.0404, median=0.0348\\n\\n=== Method B: gen-0 vs gen-2+ (skipping gen-1) ===\\nentropy_mean: d = 1.4241\\nttr: d = 1.7291\\nhapax_ratio: d = 1.7706\\nentropy_std: d = 0.1538\\nentropy_max: d = 0.1774\\ntail_decay: d = 0.0503\\nentropy_min: d = 0.0973\\n\\n=== Spearman rho per gen (from file) ===\\nentropy_mean: mean_rho=-0.5899, mean_abs_rho=0.5899\\nttr: mean_rho=-0.5966, mean_abs_rho=0.5966\\nhapax_ratio: mean_rho=-0.6120, mean_abs_rho=0.6120\\nentropy_std: mean_rho=-0.1985, mean_abs_rho=0.1985\\nentropy_max: mean_rho=0.0367, mean_abs_rho=0.0502\\ntail_decay: mean_rho=-0.0525, mean_abs_rho=0.0909\\nentropy_min: mean_rho=-0.3758, mean_abs_rho=0.3758\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-23T10:48:08.861853+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "ls /root/gen-depth-fingerprint/data/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "ls /root/gen-depth-fingerprint/data/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-23T10:48:08.862014+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"cross-model-chains\\ncross_generator_report.md\\ncross_generator_results.json\\ncross_ref_results.json\\ndetector_baseline_results.json\\ndetector_scores.csv\\ndetector_scores_8gen.csv\\ndetector_scores_all.csv\\ndownstream\\nfeatures.csv\\nfeatures_8gen.csv\\nfeatures_9gen.csv\\nfeatures_all.csv\\nfeatures_all_models.csv\\nfeatures_indep_olmo-2-1b.csv\\nfeatures_indep_pythia-2.8b.csv\\nfeatures_instruct_ref_qwen06b.csv\\nfeatures_llama-3.2-3b-greedy.csv\\nfeatures_llama-3.2-3b-instruct.csv\\nfeatures_llama-3.2-3b-topk.csv\\nfeatures_mistral-7b-v0.3-greedy.csv\\nfeatures_mistral-7b-v0.3-topk.csv\\nfeatures_olmo-2-0425-1b-instruct.csv\\nfeatures_olmo-2-1b-greedy.csv\\nfeatures_olmo-2-1b-t05.csv\\nfeatures_olmo-2-1b-t09.csv\\nfeatures_olmo-2-1b-topk.csv\\nfeatures_olmo-2-1b.csv\\nfeatures_pythia-1b-greedy.csv\\nfeatures_pythia-1b-topk.csv\\nfeatures_pythia-1b.csv\\nfeatures_pythia-2.8b-creative.csv\\nfeatures_pythia-2.8b-greedy.csv\\nfeatures_pythia-2.8b-news.csv\\nfeatures_pythia-2.8b-news.csv.pre_dedup\\nfeatures_pythia-2.8b-scientific.csv\\nfeatures_pythia-2.8b-t05.csv\\nfeatures_pythia-2.8b-t09.csv\\nfeatures_pythia-2.8b-topk.csv\\nfeatures_pythia-2.8b.csv\\nfeatures_qwen3-0.6b-greedy.csv\\nfeatures_qwen3-0.6b-instruct.csv\\nfeatures_qwen3-0.6b-t05.csv\\nfeatures_qwen3-0.6b-t09.csv\\nfeatures_qwen3-0.6b-topk.csv\\nfeatures_qwen3-0.6b.csv\\nfeatures_qwen3-1.7b-greedy.csv\\nfeatures_qwen3-1.7b-high-temp.csv\\nfeatures_qwen3-1.7b-instruct.csv\\nfeatures_qwen3-1.7b-low-temp.csv\\nfeatures_qwen3-1.7b-t09.csv\\nfeatures_qwen3-1.7b-topk.csv\\nfeatures_qwen3-1.7b.csv\\nfeatures_qwen3-14b-base.csv\\nfeatures_qwen3-8b-greedy.csv\\nfeatures_qwen3-8b-topk.csv\\nfeatures_qwen8b_ref_olmo.csv\\nfeatures_qwen8b_ref_qwen.csv\\nfeatures_ref_olmo.csv\\nfeatures_ref_qwen.csv\\ngemma-2-2b\\ngemma-2-2b-rp11\\ngenerations\\ngenerations.jsonl\\ngenerations_shard0.jsonl\\ngenerations_shard1.jsonl\\ngenerations_shard2.jsonl\\ngenerati
+…[truncated 1314 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-23T10:48:08.862158+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/results/original_6gen_filter_stats.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/results/original_6gen_filter_stats.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-23T10:48:08.862350+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"Pythia-2.8B\\\": {\\n    \\\"total\\\": 4609,\\n    \\\"filtered\\\": 1683,\\n    \\\"rate_pct\\\": 36.5155,\\n    \\\"by_depth\\\": {\\n      \\\"0\\\": {\\n        \\\"total\\\": 995,\\n        \\\"filtered\\\": 0\\n      },\\n      \\\"1\\\": {\\n        \\\"total\\\": 989,\\n        \\\"filtered\\\": 91\\n      },\\n      \\\"2\\\": {\\n        \\\"total\\\": 924,\\n        \\\"filtered\\\": 406\\n      },\\n      \\\"3\\\": {\\n        \\\"total\\\": 879,\\n        \\\"filtered\\\": 558\\n      },\\n      \\\"4\\\": {\\n        \\\"total\\\": 822,\\n        \\\"filtered\\\": 628\\n      }\\n    }\\n  },\\n  \\\"Pythia-1B\\\": {\\n    \\\"total\\\": 4555,\\n    \\\"filtered\\\": 2022,\\n    \\\"rate_pct\\\": 44.3908,\\n    \\\"by_depth\\\": {\\n      \\\"0\\\": {\\n        \\\"total\\\": 995,\\n        \\\"filtered\\\": 0\\n      },\\n      \\\"1\\\": {\\n        \\\"total\\\": 993,\\n        \\\"filtered\\\": 173\\n      },\\n      \\\"2\\\": {\\n        \\\"total\\\": 912,\\n        \\\"filtered\\\": 543\\n      },\\n      \\\"3\\\": {\\n        \\\"total\\\": 851,\\n        \\\"filtered\\\": 640\\n      },\\n      \\\"4\\\": {\\n        \\\"total\\\": 804,\\n        \\\"filtered\\\": 666\\n      }\\n    }\\n  },\\n  \\\"OLMo-2-1B\\\": {\\n    \\\"total\\\": 4713,\\n    \\\"filtered\\\": 1913,\\n    \\\"rate_pct\\\": 40.5899,\\n    \\\"by_depth\\\": {\\n      \\\"0\\\": {\\n        \\\"total\\\": 995,\\n        \\\"filtered\\\": 0\\n      },\\n      \\\"1\\\": {\\n        \\\"total\\\": 988,\\n        \\\"filtered\\\": 130\\n      },\\n      \\\"2\\\": {\\n        \\\"total\\\": 947,\\n        \\\"filtered\\\": 456\\n      },\\n      \\\"3\\\": {\\n        \\\"total\\\": 905,\\n        \\\"filtered\\\": 626\\n      },\\n      \\\"4\\\": {\\n        \\\"total\\\": 878,\\n        \\\"filtered\\\": 701\\n      }\\n    }\\n  },\\n  \\\"Qwen3-0.6B\\\": {\\n    \\\"total\\\": 4538,\\n    \\\"filtered\
+…[truncated 1902 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-23T10:48:08.862517+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint && python3 -c \"\nimport pandas as pd, numpy as np\n\n# Check 6-gen features\ndf6 = pd.read_csv('data/features.csv')\nprint(f'features.csv: {len(df6)} rows, generators: {sorted(df6[\\\"model_name\\\"].unique())}')\n\nfeats = ['entropy_mean', 'ttr', 'hapax_ratio', 'entropy_std', 'entropy_max', 'tail_decay', 'entropy_min']\n\n# gen-1 vs gen-2+ on 6-gen data\nprint()\nprint('=== 6-gen: gen-1 vs gen-2+ ===')\nfor feat in feats:\n    g1 = df6[df6['depth']==1][feat].values\n    g2p = df6[df6['depth']>=2][feat].values\n    n1, n2 = len(g1), len(g2p)\n    ps = np.sqrt(((n1-1)*np.var(g1,ddof=1)+(n2-1)*np.var(g2p,ddof=1))/(n1+n2-2))\n    d = abs(np.mean(g1)-np.mean(g2p))/ps\n    print(f'{feat}: d = {d:.4f}  (n1={n1}, n2p={n2})')\n\n# Also check features_all.csv\ndf_all = pd.read_csv('data/features_all.csv')\nprint(f'\\\\nfeatures_all.csv: {len(df_all)} rows, generators: {sorted(df_all[\\\"model_name\\\"].unique())}')\nprint()\nprint('=== features_all: gen-1 vs gen-2+ ===')\nfor feat in feats:\n    g1 = df_all[df_all['depth']==1][feat].values\n    g2p = df_all[df_all['depth']>=2][feat].values\n    n1, n2 = len(g1), len(g2p)\n    ps = np.sqrt(((n1-1)*np.var(g1,ddof=1)+(n2-1)*np.var(g2p,ddof=1))/(n1+n2-2))\n    d = abs(np.mean(g1)-np.mean(g2p))/ps\n    print(f'{feat}: d = {d:.4f}  (n1={n1}, n2p={n2})')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint && python3 -c \"\nimport pandas as pd, numpy as np\n\n# Check 6-gen features\ndf6 = pd.read_csv('data/features.csv')\nprint(f'features.csv: {len(df6)} rows, generators: {sorted(df6[\\\"model_name\\\"].unique())}')\n\nfeats = ['entropy_mean', 'ttr', 'hapax_ratio', 'entropy_std', 'entropy_max', 'tail_decay', 'entropy_min']\n\n# gen-1 vs gen-2+ on 6-gen data\nprint()\nprint('=== 6-gen: gen-1 vs gen-2+ ===')\nfor feat in feats:\n    g1 = df6[df6['depth']==1][feat].values\n    g2p = df6[df6['depth']>=2][feat].values\n    n1, n2 = len(g1), len(g2p)\n    ps = np.sqrt(((n1-1)*np.var(g1,ddof=1)+(n2-1)*np.var(g2p,ddof=1))/(n1+n2-2))\n    d = abs(np.mean(g1)-np.mean(g2p))/ps\n    print(f'{feat}: d = {d:.4f}  (n1={n1}, n2p={n2})')\n\n# Also check features_all.csv\ndf_all = pd.read_csv('data/features_all.csv')\nprint(f'\\\\nfeatures_all.csv: {len(df_all)} rows, generators: {sorted(df_all[\\\"model_name\\\"].unique())}')\nprint()\nprint('=== features_all: gen-1 vs gen-2+ ===')\nfor feat in feats:\n    g1 = df_all[df_all['depth']==1][feat].values\n    g2p = df_all[df_all['depth']>=2][feat].values\n    n1, n2 = len(g1), len(g2p)\n    ps = np.sqrt(((n1-1)*np.var(g1,ddof=1)+(n2-1)*np.var(g2p,ddof=1))/(n1+n2-2))\n    d = abs(np.mean(g1)-np.mean(g2p))/ps\n    print(f'{feat}: d = {d:.4f}  (n1={n1}, n2p={n2})')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-23T10:48:08.862713+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/gen-depth-fingerprint && python3 -c \\\"\\\\nimport pandas as pd, numpy as np\\\\n\\\\n# Check 6-gen features\\\\ndf6 = pd.read_csv(\\\\'data/features.csv\\\\')\\\\nprint(f\\\\'features.csv: {len(df6)} rows, generators: {sorted(df6[\\\\\\\\\\\"model_name\\\\\\\\\\\"].unique())}\\\\')\\\\n\\\\nfeats = [\\\\'entropy_mean\\\\', \\\\'ttr\\\\', \\\\'hapax_ratio\\\\', \\\\'entropy_std\\\\', \\\\'entropy_max\\\\', \\\\'tail_decay\\\\', \\\\'entropy_min\\\\']\\\\n\\\\n# gen-1 vs gen-2+ on 6-gen data\\\\nprint()\\\\nprint(\\\\'=== 6-gen: gen-1 vs gen-2+ ===\\\\')\\\\nfor feat in feats:\\\\n    g1 = df6[df6[\\\\'depth\\\\']==1][feat].values\\\\n    g2p = df6[df6[\\\\'depth\\\\']>=2][feat].values\\\\n    n1, n2 = len(g1), len(g2p)\\\\n    ps = np.sqrt(((n1-1)*np.var(g1,ddof=1)+(n2-1)*np.var(g2p,ddof=1))/(n1+n2-2))\\\\n    d = abs(np.mean(g1)-np.mean(g2p))/ps\\\\n    print(f\\\\'{feat}: d = {d:.4f}  (n1={n1}, n2p={n2})\\\\')\\\\n\\\\n# Also check features_all.csv\\\\ndf_all = pd.read_csv(\\\\'data/features_all.csv\\\\')\\\\nprint(f\\\\'\\\\\\\\\\\\\\\\nfeatures_all.csv: {len(df_all)} rows, generators: {sorted(df_all[\\\\\\\\\\\"model_name\\\\\\\\\\\"].unique())}\\\\')\\\\nprint()\\\\nprint(\\\\'=== features_all: gen-1 vs gen-2+ ===\\\\')\\\\nfor feat in feats:\\\\n    g1 = df_all[df_all[\\\\'depth\\\\']==1][feat].values\\\\n    g2p = df_all[df_all[\\\\'depth\\\\']>=2][feat].values\\\\n    n1, n2 = len(g1), len(g2p)\\\\n    ps = np.sqrt(((n1-1)*np.var(g1,ddof=1)+(n2-1)*np.var(g2p,ddof=1))/(n1+n2-2))\\\\n    d = abs(np.mean(g1)-np.mean(g2p))/ps\\\\n    print(f\\\\'{feat}: d = {d:.4f}  (n1={n1}, n2p={n2})\\\\')\\\\n\\\"\\\\n'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 6, in &lt;module>\\n  File \\\"/usr/local/lib
+…[truncated 341 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-23T10:48:08.862861+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint && python3 -c \"\nimport pandas as pd\ndf = pd.read_csv('data/features.csv')\nprint('columns:', list(df.columns))\nprint('shape:', df.shape)\nprint(df.head(2))\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint && python3 -c \"\nimport pandas as pd\ndf = pd.read_csv('data/features.csv')\nprint('columns:', list(df.columns))\nprint('shape:', df.shape)\nprint(df.head(2))\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-23T10:48:08.862997+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"columns: ['id', 'depth', 'seed_id', 'entropy_mean', 'entropy_std', 'entropy_min', 'entropy_max', 'tail_decay', 'ttr', 'hapax_ratio']\\nshape: (4609, 10)\\n   id  depth  seed_id  ...  tail_decay       ttr  hapax_ratio\\n0   0      0        0  ...   -0.002338  0.656566     0.545455\\n1   1      1        0  ...   -0.002411  0.553299     0.401015\\n\\n[2 rows x 10 columns]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-23T10:48:08.863143+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint && python3 -c \"\nimport pandas as pd, numpy as np\n\nfeats = ['entropy_mean', 'ttr', 'hapax_ratio', 'entropy_std', 'entropy_max', 'tail_decay', 'entropy_min']\n\n# Original single-gen features.csv (likely Pythia-2.8B)\ndf = pd.read_csv('data/features.csv')\nprint(f'features.csv: {len(df)} rows (single generator)')\nprint('gen-1 vs gen-2+:')\nfor feat in feats:\n    g1 = df[df['depth']==1][feat].values\n    g2p = df[df['depth']>=2][feat].values\n    n1, n2 = len(g1), len(g2p)\n    ps = np.sqrt(((n1-1)*np.var(g1,ddof=1)+(n2-1)*np.var(g2p,ddof=1))/(n1+n2-2))\n    d = abs(np.mean(g1)-np.mean(g2p))/ps\n    print(f'  {feat}: d = {d:.4f}')\n\n# Now check features_all.csv\nprint()\ndf_all = pd.read_csv('data/features_all.csv')\nprint(f'features_all.csv: {len(df_all)} rows')\nprint('columns:', list(df_all.columns)[:15])\n# Check what columns identify the generator\nif 'model' in df_all.columns:\n    print('models:', sorted(df_all['model'].unique()))\nelif 'generator' in df_all.columns:\n    print('generators:', sorted(df_all['generator'].unique()))\nelse:\n    print('No model column, checking depth distribution:')\n    print(df_all['depth'].value_counts().sort_index())\n    print()\n    print('gen-1 vs gen-2+:')\n    for feat in feats:\n        if feat in df_all.columns:\n            g1 = df_all[df_all['depth']==1][feat].values\n            g2p = df_all[df_all['depth']>=2][feat].values\n            n1, n2 = len(g1), len(g2p)\n            ps = np.sqrt(((n1-1)*np.var(g1,ddof=1)+(n2-1)*np.var(g2p,ddof=1))/(n1+n2-2))\n            d = abs(np.mean(g1)-np.mean(g2p))/ps\n            print(f'  {feat}: d = {d:.4f}  (n1={n1}, n2p={n2})')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint && python3 -c \"\nimport pandas as pd, numpy as np\n\nfeats = ['entropy_mean', 'ttr', 'hapax_ratio', 'entropy_std', 'entropy_max', 'tail_decay', 'entropy_min']\n\n# Original single-gen features.csv (likely Pythia-2.8B)\ndf = pd.read_csv('data/features.csv')\nprint(f'features.csv: {len(df)} rows (single generator)')\nprint('gen-1 vs gen-2+:')\nfor feat in feats:\n    g1 = df[df['depth']==1][feat].values\n    g2p = df[df['depth']>=2][feat].values\n    n1, n2 = len(g1), len(g2p)\n    ps = np.sqrt(((n1-1)*np.var(g1,ddof=1)+(n2-1)*np.var(g2p,ddof=1))/(n1+n2-2))\n    d = abs(np.mean(g1)-np.mean(g2p))/ps\n    print(f'  {feat}: d = {d:.4f}')\n\n# Now check features_all.csv\nprint()\ndf_all = pd.read_csv('data/features_all.csv')\nprint(f'features_all.csv: {len(df_all)} rows')\nprint('columns:', list(df_all.columns)[:15])\n# Check what columns identify the generator\nif 'model' in df_all.columns:\n    print('models:', sorted(df_all['model'].unique()))\nelif 'generator' in df_all.columns:\n    print('generators:', sorted(df_all['generator'].unique()))\nelse:\n    print('No model column, checking depth distribution:')\n    print(df_all['depth'].value_counts().sort_index())\n    print()\n    print('gen-1 vs gen-2+:')\n    for feat in feats:\n        if feat in df_all.columns:\n            g1 = df_all[df_all['depth']==1][feat].values\n            g2p = df_all[df_all['depth']>=2][feat].values\n            n1, n2 = len(g1), len(g2p)\n            ps = np.sqrt(((n1-1)*np.var(g1,ddof=1)+(n2-1)*np.var(g2p,ddof=1))/(n1+n2-2))\n            d = abs(np.mean(g1)-np.mean(g2p))/ps\n            print(f'  {feat}: d = {d:.4f}  (n1={n1}, n2p={n2})')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-23T10:48:08.863289+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"features.csv: 4609 rows (single generator)\\ngen-1 vs gen-2+:\\n  entropy_mean: d = 1.1971\\n  ttr: d = 0.7689\\n  hapax_ratio: d = 0.6680\\n  entropy_std: d = 0.3885\\n  entropy_max: d = 0.2531\\n  tail_decay: d = 0.0673\\n  entropy_min: d = 0.0319\\n\\nfeatures_all.csv: 20 rows\\ncolumns: ['model_name', 'seed_id', 'depth', 'entropy_mean', 'entropy_std', 'entropy_min', 'entropy_max', 'tail_decay', 'ttr', 'hapax_ratio']\\nNo model column, checking depth distribution:\\ndepth\\n0    4\\n1    4\\n2    4\\n3    4\\n4    4\\nName: count, dtype: int64\\n\\ngen-1 vs gen-2+:\\n  entropy_mean: d = 2.7252  (n1=4, n2p=12)\\n  ttr: d = 2.8197  (n1=4, n2p=12)\\n  hapax_ratio: d = 2.8843  (n1=4, n2p=12)\\n  entropy_std: d = 1.0847  (n1=4, n2p=12)\\n  entropy_max: d = 0.1520  (n1=4, n2p=12)\\n  tail_decay: d = 1.7288  (n1=4, n2p=12)\\n  entropy_min: d = 1.1260  (n1=4, n2p=12)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-23T10:48:08.863443+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rn \"3.class\\|three.class\\|pooled.*d\\|0.55\" /root/gen-depth-fingerprint/scripts/fix_convergence_dynamics.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rn \"3.class\\|three.class\\|pooled.*d\\|0.55\" /root/gen-depth-fingerprint/scripts/fix_convergence_dynamics.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-23T10:48:08.863566+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-23T10:48:08.863728+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rn \"cohen\\|effect\" /root/gen-depth-fingerprint/scripts/fix_convergence_dynamics.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rn \"cohen\\|effect\" /root/gen-depth-fingerprint/scripts/fix_convergence_dynamics.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-23T10:48:08.863847+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-23T10:48:08.863963+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rn \"cohen\" /root/gen-depth-fingerprint/scripts/fix_convergence_dynamics.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rn \"cohen\" /root/gen-depth-fingerprint/scripts/fix_convergence_dynamics.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-23T10:48:08.864076+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rn \"effect\" /root/gen-depth-fingerprint/scripts/fix_convergence_dynamics.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rn \"effect\" /root/gen-depth-fingerprint/scripts/fix_convergence_dynamics.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 97 · 2026-05-23T10:48:08.864192+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"33:            cohens_d = (np.mean(sd) - np.mean(s0)) / pooled_sd if pooled_sd > 0 else 0.0\\n34:            per_gen_d.append(cohens_d)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-23T10:48:08.864306+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-23T10:48:08.864414+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rn \"effect\" /root/gen-depth-fingerprint/scripts/cross_rp_comparison.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rn \"effect\" /root/gen-depth-fingerprint/scripts/cross_rp_comparison.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-23T10:48:08.864528+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-23T10:48:08.864665+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/scripts/fix_convergence_dynamics.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/scripts/fix_convergence_dynamics.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-23T10:48:08.864831+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Convergence dynamics with fonttype fix.\\\"\\\"\\\"\\nimport matplotlib\\nmatplotlib.use('Agg')\\nmatplotlib.rcParams['pdf.fonttype'] = 42\\nmatplotlib.rcParams['ps.fonttype'] = 42\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nimport pandas as pd\\nfrom scipy.optimize import curve_fit\\n\\nDATA = '/root/gen-depth-fingerprint/data/features_all_models.csv'\\nOUT_DIR = '/root/gen-depth-fingerprint/chart'\\n\\ndf = pd.read_csv(DATA)\\nfeatures = ['entropy_mean', 'entropy_std', 'entropy_min', 'entropy_max',\\n            'tail_decay', 'ttr', 'hapax_ratio']\\ndepths = sorted(df['depth'].unique())\\ngenerators = sorted(df['model_name'].unique())\\n\\nsummary = {}\\nfor feat in features:\\n    feat_data = {}\\n    for d in depths:\\n        per_gen_d = []\\n        for gen in generators:\\n            s0 = df[(df['model_name'] == gen) & (df['depth'] == 0)][feat].values\\n            sd = df[(df['model_name'] == gen) & (df['depth'] == d)][feat].values\\n            n0, nd = len(s0), len(sd)\\n            pooled_sd = np.sqrt(\\n                (np.var(s0, ddof=1) * (n0 - 1) + np.var(sd, ddof=1) * (nd - 1))\\n                / (n0 + nd - 2)\\n            )\\n            cohens_d = (np.mean(sd) - np.mean(s0)) / pooled_sd if pooled_sd > 0 else 0.0\\n            per_gen_d.append(cohens_d)\\n        feat_data[d] = (np.mean(per_gen_d), np.std(per_gen_d, ddof=1))\\n    summary[feat] = feat_data\\n\\ndrifting = ['hapax_ratio', 'ttr', 'entropy_mean']\\nintermediate = ['entropy_std']\\nnear_stationary = ['entropy_min', 'entropy_max', 'tail_decay']\\n\\nCOLORS = {\\n    'hapax_ratio': '#c0392b', 'ttr': '#e74c3c', 'entropy_mean': '#f1948a',\\n    'entropy_std': '#e67e22', 'entropy_min': '#2980b9', 'entropy_max': '#3498db',\\n    'tail_decay': '#85c1e9',\\n}\\nMARKERS = {\\n    'hapax_ratio': 'o', 'ttr': 's', 'entropy_mean': '^',\\n    'entropy_std': 'D', 'entropy_min': 'v', 'entropy_max': 'p', 'tail_decay': 'X
+…[truncated 3127 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-23T10:48:08.865017+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint && python3 -c \"\nimport pandas as pd, numpy as np\n\n# Check features_all_models.csv\ndf = pd.read_csv('data/features_all_models.csv')\nprint(f'features_all_models.csv: {len(df)} rows')\nprint(f'generators: {sorted(df[\\\"model_name\\\"].unique())}')\nprint(f'depths: {sorted(df[\\\"depth\\\"].unique())}')\nprint(f'depth counts: {df[\\\"depth\\\"].value_counts().sort_index().to_dict()}')\n\nfeats = ['entropy_mean', 'ttr', 'hapax_ratio', 'entropy_std', 'entropy_max', 'tail_decay', 'entropy_min']\n\n# Method: per-gen Cohen's d (depth vs depth-0), then pooled across generators\n# This is what fix_convergence_dynamics.py does\ngenerators = sorted(df['model_name'].unique())\nprint()\nprint('=== Per-gen d (each depth vs depth-0), averaged across generators ===')\nfor feat in feats:\n    all_d = []\n    for gen in generators:\n        gdf = df[df['model_name']==gen]\n        s0 = gdf[gdf['depth']==0][feat].values\n        for d in range(1, 5):\n            sd = gdf[gdf['depth']==d][feat].values\n            if len(s0)>1 and len(sd)>1:\n                ps = np.sqrt(((len(s0)-1)*np.var(s0,ddof=1)+(len(sd)-1)*np.var(sd,ddof=1))/(len(s0)+len(sd)-2))\n                cd = abs(np.mean(sd)-np.mean(s0))/ps if ps>0 else 0\n                all_d.append(cd)\n    print(f'{feat}: grand_mean_d = {np.mean(all_d):.4f}')\n\n# Also: average of depth-1 d only (gen-0 vs gen-1, per generator)\nprint()\nprint('=== Per-gen d (gen-0 vs gen-1), averaged across generators ===')\nfor feat in feats:\n    ds = []\n    for gen in generators:\n        gdf = df[df['model_name']==gen]\n        s0 = gdf[gdf['depth']==0][feat].values\n        s1 = gdf[gdf['depth']==1][feat].values\n        if len(s0)>1 and len(s1)>1:\n            ps = np.sqrt(((len(s0)-1)*np.var(s0,ddof=1)+(len(s1)-1)*np.var(s1,ddof=1))/(len(s0)+len(s1)-2))\n            cd = abs(np.mean(s1)-np.mean(s0))/ps if ps>0 else 0\n            ds.append(cd)\n    print(f'{feat}: mean_d = {np.mean(ds):.4f}')\n\n# gen-1 vs gen-2+ on features_all_models\nprint()\nprint('=== Pooled gen-1 vs gen-2+ on features_all_models ===')\nfor feat in feats:\n    g1 = df[df['depth']==1][feat].values\n    g2p = df[df['depth']>=2][feat].values\n    n1, n2 = len(g1), len(g2p)\n    ps = np.sqrt(((n1-1)*np.var(g1,ddof=1)+(n2-1)*np.var(g2p,ddof=1))/(n1+n2-2))\n    d = abs(np.mean(g1)-np.mean(g2p))/ps\n    print(f'{feat}: d = {d:.4f}  (n1={n1}, n2p={n2})')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint && python3 -c \"\nimport pandas as pd, numpy as np\n\n# Check features_all_models.csv\ndf = pd.read_csv('data/features_all_models.csv')\nprint(f'features_all_models.csv: {len(df)} rows')\nprint(f'generators: {sorted(df[\\\"model_name\\\"].unique())}')\nprint(f'depths: {sorted(df[\\\"depth\\\"].unique())}')\nprint(f'depth counts: {df[\\\"depth\\\"].value_counts().sort_index().to_dict()}')\n\nfeats = ['entropy_mean', 'ttr', 'hapax_ratio', 'entropy_std', 'entropy_max', 'tail_decay', 'entropy_min']\n\n# Method: per-gen Cohen's d (depth vs depth-0), then pooled across generators\n# This is what fix_convergence_dynamics.py does\ngenerators = sorted(df['model_name'].unique())\nprint()\nprint('=== Per-gen d (each depth vs depth-0), averaged across generators ===')\nfor feat in feats:\n    all_d = []\n    for gen in generators:\n        gdf = df[df['model_name']==gen]\n        s0 = gdf[gdf['depth']==0][feat].values\n        for d in range(1, 5):\n            sd = gdf[gdf['depth']==d][feat].values\n            if len(s0)>1 and len(sd)>1:\n                ps = np.sqrt(((len(s0)-1)*np.var(s0,ddof=1)+(len(sd)-1)*np.var(sd,ddof=1))/(len(s0)+len(sd)-2))\n                cd = abs(np.mean(sd)-np.mean(s0))/ps if ps>0 else 0\n                all_d.append(cd)\n    print(f'{feat}: grand_mean_d = {np.mean(all_d):.4f}')\n\n# Also: average of depth-1 d only (gen-0 vs gen-1, per generator)\nprint()\nprint('=== Per-gen d (gen-0 vs gen-1), averaged across generators ===')\nfor feat in feats:\n    ds = []\n    for gen in generators:\n        gdf = df[df['model_name']==gen]\n        s0 = gdf[gdf['depth']==0][feat].values\n        s1 = gdf[gdf['depth']==1][feat].values\n        if len(s0)>1 and len(s1)>1:\n            ps = np.sqrt(((len(s0)-1)*np.var(s0,ddof=1)+(len(s1)-1)*np.var(s1,ddof=1))/(len(s0)+len(s1)-2))\n            cd = abs(np.mean(s1)-np.mean(s0))/ps if ps>0 else 0\n            ds.append(cd)\n    print(f'{feat}: mean_d = {np.mean(ds):.4f}')\n\n# gen-1 vs gen-2+ on features_all_models\nprint()\nprint('=== Pooled gen-1 vs gen-2+ on features_all_models ===')\nfor feat in feats:\n    g1 = df[df['depth']==1][feat].values\n    g2p = df[df['depth']>=2][feat].values\n    n1, n2 = len(g1), len(g2p)\n    ps = np.sqrt(((n1-1)*np.var(g1,ddof=1)+(n2-1)*np.var(g2p,ddof=1))/(n1+n2-2))\n    d = abs(np.mean(g1)-np.mean(g2p))/ps\n    print(f'{feat}: d = {d:.4f}  (n1={n1}, n2p={n2})')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-23T10:48:08.865187+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"features_all_models.csv: 27529 rows\\ngenerators: ['olmo-2-1b', 'pythia-1b', 'pythia-2.8b', 'qwen3-0.6b', 'qwen3-1.7b', 'qwen3-8b']\\ndepths: [np.int64(0), np.int64(1), np.int64(2), np.int64(3), np.int64(4)]\\ndepth counts: {0: 5972, 1: 5918, 2: 5599, 3: 5181, 4: 4859}\\n\\n=== Per-gen d (each depth vs depth-0), averaged across generators ===\\nentropy_mean: grand_mean_d = 1.6110\\nttr: grand_mean_d = 2.0839\\nhapax_ratio: grand_mean_d = 2.0807\\nentropy_std: grand_mean_d = 0.3512\\nentropy_max: grand_mean_d = 0.1808\\ntail_decay: grand_mean_d = 0.2376\\nentropy_min: grand_mean_d = 0.1308\\n\\n=== Per-gen d (gen-0 vs gen-1), averaged across generators ===\\nentropy_mean: mean_d = 0.5210\\nttr: mean_d = 1.5615\\nhapax_ratio: mean_d = 1.6116\\nentropy_std: mean_d = 0.4345\\nentropy_max: mean_d = 0.2424\\ntail_decay: mean_d = 0.1462\\nentropy_min: mean_d = 0.0972\\n\\n=== Pooled gen-1 vs gen-2+ on features_all_models ===\\nentropy_mean: d = 1.0858  (n1=5918, n2p=15639)\\nttr: d = 0.8006  (n1=5918, n2p=15639)\\nhapax_ratio: d = 0.6999  (n1=5918, n2p=15639)\\nentropy_std: d = 0.4928  (n1=5918, n2p=15639)\\nentropy_max: d = 0.0812  (n1=5918, n2p=15639)\\ntail_decay: d = 0.0624  (n1=5918, n2p=15639)\\nentropy_min: d = 0.0189  (n1=5918, n2p=15639)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-23T10:48:08.865344+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "git log --all --oneline --follow -p -- artifacts/_project/paper/appendix_ddr_validation.tex 2>/dev/null | grep -B5 \"0\\.55\" | head -40",
+  "description": "Search git history for when d=0.55 was introduced in DDR validation appendix"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "git log --all --oneline --follow -p -- artifacts/_project/paper/appendix_ddr_validation.tex 2>/dev/null | grep -B5 \"0\\.55\" | head -40",
+    "description": "Search git history for when d=0.55 was introduced in DDR validation appendix"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-23T10:48:08.865466+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-23T10:48:08.865596+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "git log --all --oneline --follow -- artifacts/_project/paper/appendix_ddr_validation.tex 2>/dev/null | head -20",
+  "description": "List commits modifying the DDR validation appendix"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "git log --all --oneline --follow -- artifacts/_project/paper/appendix_ddr_validation.tex 2>/dev/null | head -20",
+    "description": "List commits modifying the DDR validation appendix"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-23T10:48:08.865722+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-23T10:48:08.865834+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "git log --all --oneline -- \"artifacts/_project/paper/appendix_ddr_validation.tex\" | head -20",
+  "description": "List commits for DDR validation appendix"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "git log --all --oneline -- \"artifacts/_project/paper/appendix_ddr_validation.tex\" | head -20",
+    "description": "List commits for DDR validation appendix"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-23T10:48:08.865944+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-23T10:48:08.866054+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "git log --all --oneline -- \"**/appendix_ddr_validation.tex\" | head -20",
+  "description": "List commits for DDR validation appendix (any path)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "git log --all --oneline -- \"**/appendix_ddr_validation.tex\" | head -20",
+    "description": "List commits for DDR validation appendix (any path)"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-23T10:48:08.866162+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-23T10:48:08.866269+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "git log --all --oneline | head -20",
+  "description": "Show recent git history"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "git log --all --oneline | head -20",
+    "description": "Show recent git history"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-23T10:48:08.866390+00:00_
+
+26731b8 paper: Round 4 polish — rebuttal notes, TODO markers, generator bib entries
+38384e7 paper: add dataset statistics table (M6)
+e24a2eb fix appendix_classifier: correct sampling ablation scope description + sync captions
+2a649bd fix appendix downstream: correct minimum p-value (0.25→0.125) and CI reporting (N2a)
+8746954 fig: redraw Figure 1 as strip plot with per-generator variation (M4)
+d8f6a27 fix paper: add binary F1 column to Table 1 (N3a+N3b)
+0b508aa reframe paper: controlled scientific study of recursive base-model generation
+79c5909 chore: fit paper to 8-page limit — move downstream table to appendix, compress related work, restore paraphrastic discussion
+f26a6c3 fix discussion: restore Qwen3-0.6B 0.816/0.824 clarification lost in trim
+76ba2c6 chore: clean submission package — remove _backup + unused charts, trim Discussion
+4f2f712 fix paper: sync instruct paragraphs to cautious interpretation + add ordinal cross-ref in appendix
+f98cd85 fix paper: clarify Qwen3-0.6B base F1 discrepancy (0.816 vs 0.824) in discussion+limitations
+d379bf0 add plan-012 QLoRA end-to-end depth classifier script
+84c70bc fix docs/paper abstract+intro: replace 3-class per-gen range with CI+std
+e746557 fix artifacts paper: correct sampling variation bound (< → ≤) in two files
+0bb0699 fix table2: correct feature group labels in ablation table
+f7efa9a paper: fix critical number errors + add human-edit robustness appendix
+1b68000 fix multi_domain_seeds.py: correct arxiv dataset name + error handling
+28d4ab3 add multi-domain seeds experiment script (plan_008)
+bb7d476 paper: sync multi-detector + discussion changes to docs/paper/
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-23T10:48:08.866520+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "git log --all --oneline -p -- \"docs/paper/appendix_ddr_validation.tex\" 2>/dev/null | grep -B3 \"0\\.55\" | head -30",
+  "description": "Search git history for d=0.55 in DDR validation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "git log --all --oneline -p -- \"docs/paper/appendix_ddr_validation.tex\" 2>/dev/null | grep -B3 \"0\\.55\" | head -30",
+    "description": "Search git history for d=0.55 in DDR validation"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-23T10:48:08.866650+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-23T10:48:08.866765+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "git log --all --oneline -- docs/paper/ | head -10",
+  "description": "Check if docs/paper is tracked"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "git log --all --oneline -- docs/paper/ | head -10",
+    "description": "Check if docs/paper is tracked"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-23T10:48:08.866886+00:00_
+
+26731b8 paper: Round 4 polish — rebuttal notes, TODO markers, generator bib entries
+38384e7 paper: add dataset statistics table (M6)
+e24a2eb fix appendix_classifier: correct sampling ablation scope description + sync captions
+2a649bd fix appendix downstream: correct minimum p-value (0.25→0.125) and CI reporting (N2a)
+8746954 fig: redraw Figure 1 as strip plot with per-generator variation (M4)
+d8f6a27 fix paper: add binary F1 column to Table 1 (N3a+N3b)
+0b508aa reframe paper: controlled scientific study of recursive base-model generation
+79c5909 chore: fit paper to 8-page limit — move downstream table to appendix, compress related work, restore paraphrastic discussion
+f26a6c3 fix discussion: restore Qwen3-0.6B 0.816/0.824 clarification lost in trim
+76ba2c6 chore: clean submission package — remove _backup + unused charts, trim Discussion
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-23T10:48:08.867007+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "git log --all --oneline -p -S \"0.55\" -- docs/paper/appendix_ddr_validation.tex | head -50",
+  "description": "Search for commits introducing d=0.55"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "git log --all --oneline -p -S \"0.55\" -- docs/paper/appendix_ddr_validation.tex | head -50",
+    "description": "Search for commits introducing d=0.55"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-23T10:48:08.867116+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121 · 2026-05-23T10:48:08.867223+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "git log --all --oneline -p -S \"entropy std\" -- docs/paper/abstract.tex | head -80",
+  "description": "Search for commits with entropy_std in abstract"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "git log --all --oneline -p -S \"entropy std\" -- docs/paper/abstract.tex | head -80",
+    "description": "Search for commits with entropy_std in abstract"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-23T10:48:08.867330+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-23T10:48:08.867435+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "git log --all -p -S \"d{=}0.55\" -- \"*.tex\" | head -60",
+  "description": "Search for commits introducing d=0.55 in any tex file"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "git log --all -p -S \"d{=}0.55\" -- \"*.tex\" | head -60",
+    "description": "Search for commits introducing d=0.55 in any tex file"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-23T10:48:08.867542+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-23T10:48:08.867671+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "git log --all -p -S \"0.55\" | head -100",
+  "description": "Search all commits that introduced string 0.55"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "git log --all -p -S \"0.55\" | head -100",
+    "description": "Search all commits that introduced string 0.55"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-23T10:48:08.867826+00:00_
+
+commit 76ba2c6841c690418b05da4c1ab428bab840685d
+Author: Ubuntu &lt;ubuntu@ip-172-31-15-53.ap-northeast-1.compute.internal>
+Date:   Sat May 16 03:20:58 2026 +0000
+
+    chore: clean submission package — remove _backup + unused charts, trim Discussion
+    
+    - Delete 24 hash-suffixed backup .tex files and build_a33072.sh from artifacts/
+    - Remove 4 unreferenced chart images (fig2, fig4 variants)
+    - Trim Discussion from 86→19 lines: cut speculative/redundant paragraphs,
+      merge model-collapse + topic-drift, condense instruct-model analysis
+    - Body pages: 11→9 (8-page limit requires further cuts to Results or other sections)
+    
+    Co-Authored-By: Claude Opus 4.6 &lt;noreply@anthropic.com>
+
+diff --git a/artifacts/_project/paper/results_b30771.tex b/artifacts/_project/paper/results_b30771.tex
+deleted file mode 100644
+index 50df770..0000000
+--- a/artifacts/_project/paper/results_b30771.tex
++++ /dev/null
+@@ -1,155 +0,0 @@
+-\section{Results}
+-\label{sec:results}
+-
+-We evaluate depth fingerprinting along four axes: cross-generator classification (\S\ref{sec:results-classification}), differential depth response of individual features (\S\ref{sec:results-differential}), comparison with existing detection baselines (\S\ref{sec:results-baselines}), and downstream utility for data curation (\S\ref{sec:results-downstream}).
+-
+-\subsection{Depth Classification Performance}
+-\label{sec:results-classification}
+-
+-Table~\ref{tab:logo-results} reports leave-one-generator-out (LOGO) macro-F1 for 3-class depth estimation (gen-0\,/\,gen-1\,/\,gen-2+) across six generators spanning three model families and parameter counts from 0.6B to 8.2B.
+-
+-The 7-feature ensemble achieves LOGO F1\,=\,0.789, significantly outperforming all single-detector baselines ($p<0.001$; \S\ref{sec:results-baselines}).
+-Per-generator held-out F1 ranges from 0.683 (Qwen3-8B) to 0.856 (Pythia-1B).
+-Gen-0 classification is near-perfect (per-class F1\,$\approx$\,0.95); the primary difficulty lies in distingu
+…[truncated 4194 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127 · 2026-05-23T10:48:08.867980+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "git log --all --diff-filter=A -p -- \"docs/paper/appendix_ddr_validation.tex\" | head -150",
+  "description": "Find when DDR validation was first added"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "git log --all --diff-filter=A -p -- \"docs/paper/appendix_ddr_validation.tex\" | head -150",
+    "description": "Find when DDR validation was first added"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-23T10:48:08.868094+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-23T10:48:08.868203+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "git log --all -p -- \"docs/paper/appendix_ddr_validation.tex\" | head -20",
+  "description": "Check if this file is tracked in docs/paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "git log --all -p -- \"docs/paper/appendix_ddr_validation.tex\" | head -20",
+    "description": "Check if this file is tracked in docs/paper"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-23T10:48:08.868310+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131 · 2026-05-23T10:48:08.868417+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "git log --all --oneline -- \"*ddr*\" | head -10",
+  "description": "Find DDR-related commits"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "git log --all --oneline -- \"*ddr*\" | head -10",
+    "description": "Find DDR-related commits"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-23T10:48:08.868524+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-23T10:48:08.868664+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "grep -rn \"0.55\" /root/gen-depth-fingerprint/results/8gen_table3_v7_unified.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "grep -rn \"0.55\" /root/gen-depth-fingerprint/results/8gen_table3_v7_unified.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-23T10:48:08.868785+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"47:      \\\"multiclass_f1\\\": 0.5545,\\n49:      \\\"multiclass_ci_hi\\\": 0.5596,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135 · 2026-05-23T10:48:08.868901+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cd /root/gen-depth-fingerprint && python3 -c \"\nimport pandas as pd, numpy as np\n\n# Try with 6-gen features_all_models.csv, per-gen d (gen-1 vs gen-2+), then average\ndf = pd.read_csv('data/features_all_models.csv')\nfeats = ['entropy_mean', 'ttr', 'hapax_ratio', 'entropy_std', 'entropy_max', 'tail_decay', 'entropy_min']\n\n# per-generator: gen-1 vs gen-2+\nprint('=== 6-gen (features_all_models): per-gen gen-1 vs gen-2+ d ===')\nfor feat in feats:\n    ds = []\n    for gen, gdf in df.groupby('model_name'):\n        g1 = gdf[gdf['depth']==1][feat].values\n        g2p = gdf[gdf['depth']>=2][feat].values\n        if len(g1)>1 and len(g2p)>1:\n            ps = np.sqrt(((len(g1)-1)*np.var(g1,ddof=1)+(len(g2p)-1)*np.var(g2p,ddof=1))/(len(g1)+len(g2p)-2))\n            d = abs(np.mean(g1)-np.mean(g2p))/ps if ps>0 else 0\n            ds.append(d)\n            if feat == 'entropy_std':\n                print(f'  {gen}: d={d:.4f}')\n    print(f'{feat}: mean={np.mean(ds):.4f}, median={np.median(ds):.4f}')\n\n# Also: weighted average by sample count\nprint()\nprint('=== 6-gen: weighted per-gen gen-1 vs gen-2+ d ===')\nfor feat in feats:\n    ds = []\n    ns = []\n    for gen, gdf in df.groupby('model_name'):\n        g1 = gdf[gdf['depth']==1][feat].values\n        g2p = gdf[gdf['depth']>=2][feat].values\n        if len(g1)>1 and len(g2p)>1:\n            ps = np.sqrt(((len(g1)-1)*np.var(g1,ddof=1)+(len(g2p)-1)*np.var(g2p,ddof=1))/(len(g1)+len(g2p)-2))\n            d = abs(np.mean(g1)-np.mean(g2p))/ps if ps>0 else 0\n            ds.append(d)\n            ns.append(len(g1)+len(g2p))\n    wavg = np.average(ds, weights=ns)\n    print(f'{feat}: weighted_mean={wavg:.4f}')\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cd /root/gen-depth-fingerprint && python3 -c \"\nimport pandas as pd, numpy as np\n\n# Try with 6-gen features_all_models.csv, per-gen d (gen-1 vs gen-2+), then average\ndf = pd.read_csv('data/features_all_models.csv')\nfeats = ['entropy_mean', 'ttr', 'hapax_ratio', 'entropy_std', 'entropy_max', 'tail_decay', 'entropy_min']\n\n# per-generator: gen-1 vs gen-2+\nprint('=== 6-gen (features_all_models): per-gen gen-1 vs gen-2+ d ===')\nfor feat in feats:\n    ds = []\n    for gen, gdf in df.groupby('model_name'):\n        g1 = gdf[gdf['depth']==1][feat].values\n        g2p = gdf[gdf['depth']>=2][feat].values\n        if len(g1)>1 and len(g2p)>1:\n            ps = np.sqrt(((len(g1)-1)*np.var(g1,ddof=1)+(len(g2p)-1)*np.var(g2p,ddof=1))/(len(g1)+len(g2p)-2))\n            d = abs(np.mean(g1)-np.mean(g2p))/ps if ps>0 else 0\n            ds.append(d)\n            if feat == 'entropy_std':\n                print(f'  {gen}: d={d:.4f}')\n    print(f'{feat}: mean={np.mean(ds):.4f}, median={np.median(ds):.4f}')\n\n# Also: weighted average by sample count\nprint()\nprint('=== 6-gen: weighted per-gen gen-1 vs gen-2+ d ===')\nfor feat in feats:\n    ds = []\n    ns = []\n    for gen, gdf in df.groupby('model_name'):\n        g1 = gdf[gdf['depth']==1][feat].values\n        g2p = gdf[gdf['depth']>=2][feat].values\n        if len(g1)>1 and len(g2p)>1:\n            ps = np.sqrt(((len(g1)-1)*np.var(g1,ddof=1)+(len(g2p)-1)*np.var(g2p,ddof=1))/(len(g1)+len(g2p)-2))\n            d = abs(np.mean(g1)-np.mean(g2p))/ps if ps>0 else 0\n            ds.append(d)\n            ns.append(len(g1)+len(g2p))\n    wavg = np.average(ds, weights=ns)\n    print(f'{feat}: weighted_mean={wavg:.4f}')\n\"\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-23T10:48:08.869053+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== 6-gen (features_all_models): per-gen gen-1 vs gen-2+ d ===\\nentropy_mean: mean=1.1143, median=1.1519\\nttr: mean=0.8180, median=0.7837\\nhapax_ratio: mean=0.7184, median=0.6629\\n  olmo-2-1b: d=0.6086\\n  pythia-1b: d=0.5320\\n  pythia-2.8b: d=0.3885\\n  qwen3-0.6b: d=0.5569\\n  qwen3-1.7b: d=0.5155\\n  qwen3-8b: d=0.3717\\nentropy_std: mean=0.4955, median=0.5238\\nentropy_max: mean=0.0987, median=0.0502\\ntail_decay: mean=0.1168, median=0.0862\\nentropy_min: mean=0.0465, median=0.0405\\n\\n=== 6-gen: weighted per-gen gen-1 vs gen-2+ d ===\\nentropy_mean: weighted_mean=1.1159\\nttr: weighted_mean=0.8205\\nhapax_ratio: weighted_mean=0.7210\\nentropy_std: weighted_mean=0.4964\\nentropy_max: weighted_mean=0.0988\\ntail_decay: weighted_mean=0.1173\\nentropy_min: weighted_mean=0.0467\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-23T10:48:08.869202+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/results/8gen_table3_v7_unified.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/results/8gen_table3_v7_unified.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-23T10:48:08.869390+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"methods\\\": {\\n    \\\"avg_logprob\\\": {\\n      \\\"binary_f1\\\": 0.6734,\\n      \\\"binary_ci_lo\\\": 0.6672,\\n      \\\"binary_ci_hi\\\": 0.6788,\\n      \\\"multiclass_f1\\\": 0.7072,\\n      \\\"multiclass_ci_lo\\\": 0.7023,\\n      \\\"multiclass_ci_hi\\\": 0.712,\\n      \\\"n_test_binary\\\": 26168,\\n      \\\"n_test_multiclass\\\": 34131\\n    },\\n    \\\"fastdetectgpt\\\": {\\n      \\\"binary_f1\\\": 0.5688,\\n      \\\"binary_ci_lo\\\": 0.5628,\\n      \\\"binary_ci_hi\\\": 0.5745,\\n      \\\"multiclass_f1\\\": 0.6599,\\n      \\\"multiclass_ci_lo\\\": 0.6552,\\n      \\\"multiclass_ci_hi\\\": 0.6644,\\n      \\\"n_test_binary\\\": 26168,\\n      \\\"n_test_multiclass\\\": 34131\\n    },\\n    \\\"binoculars\\\": {\\n      \\\"binary_f1\\\": 0.5391,\\n      \\\"binary_ci_lo\\\": 0.5336,\\n      \\\"binary_ci_hi\\\": 0.5447,\\n      \\\"multiclass_f1\\\": 0.411,\\n      \\\"multiclass_ci_lo\\\": 0.4058,\\n      \\\"multiclass_ci_hi\\\": 0.4162,\\n      \\\"n_test_binary\\\": 26168,\\n      \\\"n_test_multiclass\\\": 34131\\n    },\\n    \\\"ld_score\\\": {\\n      \\\"binary_f1\\\": 0.675,\\n      \\\"binary_ci_lo\\\": 0.6691,\\n      \\\"binary_ci_hi\\\": 0.6808,\\n      \\\"multiclass_f1\\\": 0.63,\\n      \\\"multiclass_ci_lo\\\": 0.6248,\\n      \\\"multiclass_ci_hi\\\": 0.6348,\\n      \\\"n_test_binary\\\": 26168,\\n      \\\"n_test_multiclass\\\": 34131\\n    },\\n    \\\"entropy_mean\\\": {\\n      \\\"binary_f1\\\": 0.6986,\\n      \\\"binary_ci_lo\\\": 0.6927,\\n      \\\"binary_ci_hi\\\": 0.7041,\\n      \\\"multiclass_f1\\\": 0.5545,\\n      \\\"multiclass_ci_lo\\\": 0.5498,\\n      \\\"multiclass_ci_hi\\\": 0.5596,\\n      \\\"n_test_binary\\\": 26168,\\n      \\\"n_test_multiclass\\\": 34131\\n    },\\n    \\\"4det_ensemble\\\": {\\n      \\\"binary_f1\\\": 0.7,\\n      \\\"binary_ci_lo\\\": 0.694,\\n      \\\"binary_ci_hi\\\": 0.7056,\\n      \\\"multiclass_f1\\\": 0
+…[truncated 2445 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 139 · 2026-05-23T10:48:08.869593+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/table4.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/table4.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-23T10:48:08.869739+00:00_
+
+1	To isolate reference-model bias, we replace Pythia-410M with two alternative references from different families and evaluate on a 5-generator subset excluding all Pythia generators.
+2	Table~\ref{tab:cross-ref} shows that performance spread across references is only 0.013 F1, confirming the DDR partition is reference-model agnostic.
+3	
+4	\begin{table}[t]
+5	\centering
+6	\footnotesize
+7	\renewcommand{\arraystretch}{1.3}
+8	\caption{Cross-family reference model validation (5-gen LOGO subset). Drift direction is consistent (negative) across all three references; magnitude varies with capacity. Spread in LOGO F1 is 0.013.}
+9	\label{tab:cross-ref}
+10	\resizebox{\linewidth}{!}{%
+11	\begin{tabular}{llccc}
+12	\toprule
+13	\textbf{Reference} & \textbf{Family} & \textbf{Params} & \textbf{LOGO F1} & \textbf{Ent.\ Drift} \\
+14	\midrule
+15	Pythia-410M & Pythia & 410M & 0.803 & [$-$1.19, $-$1.40] \\
+16	OLMo-2-1B  & OLMo   & 1.5B & 0.807 & [$-$0.61, $-$0.91] \\
+17	Qwen3-0.6B & Qwen   & 0.6B & 0.816 & [$-$0.96, $-$1.35] \\
+18	\bottomrule
+19	\end{tabular}}
+20	\end{table}
+21	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 141 · 2026-05-23T10:48:08.869870+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 142 · 2026-05-23T10:48:08.870065+00:00_
+
+1	\vspace{-1mm}
+2	\section{Results}
+3	\label{sec:results}
+4	\vspace{-1mm}
+5	
+6	\begin{figure}[t]
+7	\centering
+8	\includegraphics[width=\columnwidth]{fig_transfer_heatmap.pdf}
+9	\caption{Cross-generator depth classification: $8{\times}8$ transfer matrix (binary F1, gen-1 vs.\ gen-2+). Each cell shows F1 when training on one generator (row) and testing on another (column). Mean cross-generator F1\,=\,0.810 [95\% CI: 0.796, 0.822]; uniformly high off-diagonal values demonstrate that depth signal transfers robustly across five architectural families without per-generator calibration.}
+10	\label{fig:transfer-heatmap}
+11	\end{figure}
+12	
+13	\subsection{Depth Classification Performance}
+14	\label{sec:results-classification}
+15	
+16	The 7-feature ensemble achieves 3-class LOGO F1\,=\,0.762 (95\% CI [0.758, 0.766]; $N$\,=\,37{,}058) across eight generators from five families (Table~\ref{tab:logo-results}), with cross-generator F1 spread of 9.1\,pp capturing generator selection uncertainty.
+17	This 3-class metric is inflated by shared gen-0 seeds across generators (per-class gen-0 F1\,$\approx$\,0.94; \S\ref{sec:generation}); we therefore report \textbf{leak-free binary F1} (gen-1 vs.\ gen-2+, our primary conservative metric)\,=\,0.694 (CI [0.688, 0.700]; generator-level mean${\pm}$SE: $0.694{\pm}0.010$) throughout, excluding gen-0 entirely.
+18	Per-generator binary F1 ranges from 0.633 (Mistral-7B) to 0.724 (Pythia-2.8B; SD\,=\,0.028), with the primary difficulty at the gen-1\,/\,gen-2+ boundary (Appendix~\ref{app:confusion}).
+19	
+20	\paragraph{Cross-model generalization.}
+21	Cross-model chains (randomly selected generator per step) yield binary F1\,=\,0.830 (95\% CI [.818, .841]; Appendix~\ref{app:cross-model-detail}) under 5-generator LOGO.\footnote{Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B; generator-level LOGO with bootstrap CIs ($n$\,=\,1{,}000). Not directly comparable to 8-generator LOGO due to differing subsets.}
+22	Single-generator transfer (Appendix~\ref{app:transfe
+…[truncated 12127 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 143 · 2026-05-23T10:48:08.870247+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/results/review_p2f_cross_ref_bias.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/results/review_p2f_cross_ref_bias.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 144 · 2026-05-23T10:48:08.870424+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"analysis\\\": \\\"P2-F Cross-reference-model bias check for Pythia-1B same-family advantage\\\",\\n  \\\"per_reference_logo\\\": {\\n    \\\"pythia-410m\\\": {\\n      \\\"avg_macro_f1\\\": 0.8034,\\n      \\\"ci\\\": [\\n        0.7722,\\n        0.8322\\n      ],\\n      \\\"per_generator_f1\\\": {\\n        \\\"olmo-2-1b\\\": 0.7501,\\n        \\\"pythia-1b\\\": 0.8555,\\n        \\\"pythia-2.8b\\\": 0.8009,\\n        \\\"qwen3-0.6b\\\": 0.8166,\\n        \\\"qwen3-1.7b\\\": 0.7939\\n      }\\n    },\\n    \\\"olmo-2-1b\\\": {\\n      \\\"avg_macro_f1\\\": 0.8072,\\n      \\\"ci\\\": [\\n        0.7802,\\n        0.8309\\n      ],\\n      \\\"per_generator_f1\\\": {\\n        \\\"olmo-2-1b\\\": 0.761,\\n        \\\"pythia-1b\\\": 0.8454,\\n        \\\"pythia-2.8b\\\": 0.79,\\n        \\\"qwen3-0.6b\\\": 0.8282,\\n        \\\"qwen3-1.7b\\\": 0.8114\\n      }\\n    },\\n    \\\"qwen3-0.6b\\\": {\\n      \\\"avg_macro_f1\\\": 0.8158,\\n      \\\"ci\\\": [\\n        0.7862,\\n        0.8411\\n      ],\\n      \\\"per_generator_f1\\\": {\\n        \\\"olmo-2-1b\\\": 0.7677,\\n        \\\"pythia-1b\\\": 0.8483,\\n        \\\"pythia-2.8b\\\": 0.7895,\\n        \\\"qwen3-0.6b\\\": 0.8383,\\n        \\\"qwen3-1.7b\\\": 0.8354\\n      }\\n    }\\n  },\\n  \\\"pythia1b_bias_table\\\": [\\n    {\\n      \\\"reference_model\\\": \\\"pythia-410m\\\",\\n      \\\"pythia1b_held_out_f1\\\": 0.8555,\\n      \\\"other_4gen_avg_f1\\\": 0.7904,\\n      \\\"pythia1b_delta_vs_avg\\\": 0.0651,\\n      \\\"pythia1b_rank_among_5\\\": 1\\n    },\\n    {\\n      \\\"reference_model\\\": \\\"olmo-2-1b\\\",\\n      \\\"pythia1b_held_out_f1\\\": 0.8454,\\n      \\\"other_4gen_avg_f1\\\": 0.7977,\\n      \\\"pythia1b_delta_vs_avg\\\": 0.0477,\\n      \\\"pythia1b_rank_among_5\\\": 1\\n    },\\n    {\\n      \\\"reference_model\\\": \\\"qwen3-0.6b\\\",\\n      \\\"pythia1b_held_out_f1\\\": 0.8483,\\n      \\\"other_4gen_avg_f1\\\"
+…[truncated 903 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 145 · 2026-05-23T10:48:08.870591+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "bjb2-18868",
+  "command": "cat /root/gen-depth-fingerprint/results/cross_model_logo_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "bjb2-18868",
+    "command": "cat /root/gen-depth-fingerprint/results/cross_model_logo_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 146 · 2026-05-23T10:48:08.870786+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"cross_model_chains_logo\\\",\\n  \\\"method\\\": \\\"leave-one-generator-out (LOGO)\\\",\\n  \\\"description\\\": \\\"Each fold holds out all samples produced by one generator. Depth-0 (wikipedia) samples split equally across folds. Training set balanced per fold.\\\",\\n  \\\"logo\\\": {\\n    \\\"3class_f1\\\": 0.7887,\\n    \\\"binary_f1\\\": 0.8296,\\n    \\\"n_samples\\\": 4773,\\n    \\\"confusion_matrix\\\": [\\n      [\\n        948,\\n        44,\\n        3\\n      ],\\n      [\\n        74,\\n        757,\\n        157\\n      ],\\n      [\\n        54,\\n        647,\\n        2089\\n      ]\\n    ],\\n    \\\"per_class\\\": {\\n      \\\"gen-0\\\": {\\n        \\\"precision\\\": 0.881,\\n        \\\"recall\\\": 0.9528,\\n        \\\"f1\\\": 0.9155\\n      },\\n      \\\"gen-1\\\": {\\n        \\\"precision\\\": 0.5228,\\n        \\\"recall\\\": 0.7662,\\n        \\\"f1\\\": 0.6215\\n      },\\n      \\\"gen-2+\\\": {\\n        \\\"precision\\\": 0.9289,\\n        \\\"recall\\\": 0.7487,\\n        \\\"f1\\\": 0.8291\\n      }\\n    },\\n    \\\"per_generator\\\": {\\n      \\\"olmo-2-1b\\\": {\\n        \\\"3class_f1\\\": 0.7683,\\n        \\\"binary_f1\\\": 0.8099,\\n        \\\"n_test\\\": 982,\\n        \\\"n_train_balanced\\\": 2331\\n      },\\n      \\\"pythia-1b\\\": {\\n        \\\"3class_f1\\\": 0.8098,\\n        \\\"binary_f1\\\": 0.8321,\\n        \\\"n_test\\\": 928,\\n        \\\"n_train_balanced\\\": 2388\\n      },\\n      \\\"pythia-2.8b\\\": {\\n        \\\"3class_f1\\\": 0.791,\\n        \\\"binary_f1\\\": 0.8185,\\n        \\\"n_test\\\": 950,\\n        \\\"n_train_balanced\\\": 2355\\n      },\\n      \\\"qwen3-0.6b\\\": {\\n        \\\"3class_f1\\\": 0.7802,\\n        \\\"binary_f1\\\": 0.8151,\\n        \\\"n_test\\\": 968,\\n        \\\"n_train_balanced\\\": 2352\\n      },\\n      \\\"qwen3-1.7b\\\": {\\n        \\\"3class_f1\\\": 0.7953,\\n     
+…[truncated 1529 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 147 · 2026-05-23T10:48:08.871009+00:00_
+
+数据溯源完成。以下是完整汇报。
+
+---
+
+## 任务 1：entropy_std d=0.55 溯源
+
+### 结论：**d=0.55 无法精确追溯到任何现存数据或计算脚本**
+
+所有可复现的计算结果：
+
+| 数据集/方法 | d 值 |
+|---|---|
+| 8-gen pooled (gen-1 vs gen-2+, `tost_equivalence.json`) | **0.457** [CI: 0.435, 0.479] |
+| 8-gen bootstrap (`tost_bootstrap.json`) | 0.458 |
+| 6-gen pooled (gen-1 vs gen-2+, `features_all_models.csv`) | 0.493 |
+| 8-gen per-generator avg (gen-1 vs gen-2+) | mean=0.463, median=0.507 |
+| 6-gen per-generator avg (gen-1 vs gen-2+) | mean=0.496, median=0.524 |
+| gen-0→gen-1 step d (`trend_analysis.json`) | 0.558 |
+| Single-gen Pythia-2.8B (gen-1 vs gen-2+) | 0.389 |
+
+**最可能来源**：gen-0→gen-1 步长 d=0.558（来自 `trend_analysis.json`），四舍五入后被误用为 "pooled d=0.55"，但这个值仅代表首步变化，不是论文声称的整体 effect size。
+
+### 内部矛盾
+
+同一个 `appendix_ddr_validation.tex` 中存在两个不同值：
+- **第85行**: `entropy std ($d{=}0.49$)` ← 接近实际 6-gen 数据 0.493
+- **第101/112行**: `entropy std ($d{=}0.55$)` ← 无数据支撑
+
+### 当前正确值
+
+应使用 **d = 0.46**（8-gen, gen-1 vs gen-2+, 95% CI [0.44, 0.48]）。
+
+论文中需要修正的位置（均写 d=0.55）：
+- `abstract.tex:4`
+- `introduction.tex:9, 25`
+- `results.tex:71, 76`
+- `appendix_ddr_validation.tex:101, 112, 121`
+
+同时 `appendix_ddr_validation.tex:85` 的 d=0.49 虽更接近但也应统一修正。
+
+---
+
+## 任务 2：Table 4 (cross-ref) 校验
+
+**Table 4 值与服务器数据一致**（数据源：`review_p2f_cross_ref_bias.json`，5-gen LOGO 子集）：
+
+| Reference | 论文值 | 服务器值 | 匹配 |
+|---|---|---|---|
+| Pythia-410M | 0.803 | 0.8034 | ✓ |
+| OLMo-2-1B | 0.807 | 0.8072 | ✓ |
+| Qwen3-0.6B | 0.816 | 0.8158 | ✓ |
+| Spread | 0.013 | 0.0124 | ✓ (rounded) |
+
+**注意事项**：Table 4 使用 5-gen 子集（olmo-2-1b, pythia-1b, pythia-2.8b, qwen3-0.6b, qwen3-1.7b），不包含 Llama、Mistral、Qwen3-8B。论文其他表格均使用 8-gen 配置，需评估是否更新 Table 4 到 8-gen。
+
+---
+
+### 总结
+
+- **d=0.55**：**陈旧值，无数据支撑**。正确值为 d=0.46（8-gen）或 d=0.49（6-gen）。涉及 abstract、intro、results、appendix 共 ~9 处需修正。
+- **Table 4**：数据正确，无需修正内容值。但注意其使用 5-gen 子集与其他表格的 8-gen 不一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_paper_entropy-std-d-trace_20260523T103849"
+}
+```
+
+</details>
+
+---

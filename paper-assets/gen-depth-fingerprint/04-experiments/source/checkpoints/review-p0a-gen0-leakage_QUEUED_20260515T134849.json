@@ -1,0 +1,15 @@
+{
+  "exp_id": "review-p0a-gen0-leakage",
+  "project": "gen-depth-fingerprint",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:39:03.555Z",
+    "updated_at": "2026-05-15T13:48:49.060Z",
+    "hypothesis": "P0-A: Gen-0 数据泄露修复——排除 gen-0 后 binary (gen-1 vs gen-2+) LOGO 评估，计算所有方法的 leak-free F1"
+  },
+  "timestamp": "2026-05-15T13:48:49.159411+00:00",
+  "trigger": "update_registry"
+}

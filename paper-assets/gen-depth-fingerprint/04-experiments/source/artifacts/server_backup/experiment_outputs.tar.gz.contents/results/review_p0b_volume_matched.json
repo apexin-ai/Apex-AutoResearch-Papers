@@ -1,0 +1,70 @@
+{
+  "experiment": "P0-B volume-matched 5-gen control",
+  "5gen_original": {
+    "olmo-2-1b": 0.7524,
+    "pythia-1b": 0.854,
+    "pythia-2.8b": 0.7935,
+    "qwen3-0.6b": 0.8156,
+    "qwen3-1.7b": 0.7942,
+    "avg": 0.8019
+  },
+  "5gen_volume_matched_per_seed": {
+    "42": {
+      "olmo-2-1b": 0.7526,
+      "pythia-1b": 0.8512,
+      "pythia-2.8b": 0.7972,
+      "qwen3-0.6b": 0.8174,
+      "qwen3-1.7b": 0.796,
+      "avg": 0.8029
+    },
+    "123": {
+      "olmo-2-1b": 0.749,
+      "pythia-1b": 0.8503,
+      "pythia-2.8b": 0.7961,
+      "qwen3-0.6b": 0.8191,
+      "qwen3-1.7b": 0.798,
+      "avg": 0.8025
+    },
+    "456": {
+      "olmo-2-1b": 0.7539,
+      "pythia-1b": 0.8523,
+      "pythia-2.8b": 0.7956,
+      "qwen3-0.6b": 0.8159,
+      "qwen3-1.7b": 0.7911,
+      "avg": 0.8018
+    }
+  },
+  "5gen_volume_matched_avg": {
+    "olmo-2-1b": 0.7518,
+    "pythia-1b": 0.8513,
+    "pythia-2.8b": 0.7963,
+    "qwen3-0.6b": 0.8175,
+    "qwen3-1.7b": 0.795,
+    "avg": 0.8024
+  },
+  "6gen_excl_qwen3_8b": {
+    "olmo-2-1b": 0.7649,
+    "pythia-1b": 0.8528,
+    "pythia-2.8b": 0.8037,
+    "qwen3-0.6b": 0.8231,
+    "qwen3-1.7b": 0.8064,
+    "avg": 0.8102
+  },
+  "decomposition": {
+    "volume_effect": 0.0005,
+    "total_effect": 0.0083,
+    "diversity_residual": 0.0078
+  },
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "xgb_params": {
+    "n_estimators": 200,
+    "max_depth": 6,
+    "learning_rate": 0.1,
+    "random_state": 789,
+    "eval_metric": "mlogloss"
+  }
+}

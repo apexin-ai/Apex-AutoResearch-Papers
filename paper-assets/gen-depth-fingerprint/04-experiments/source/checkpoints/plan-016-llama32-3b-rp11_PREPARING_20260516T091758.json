@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan-016-llama32-3b-rp11",
+  "project": "gen-depth-fingerprint",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T09:17:58.838Z",
+    "updated_at": "2026-05-16T09:17:58.838Z"
+  },
+  "timestamp": "2026-05-16T09:17:58.944325+00:00",
+  "trigger": "update_registry"
+}

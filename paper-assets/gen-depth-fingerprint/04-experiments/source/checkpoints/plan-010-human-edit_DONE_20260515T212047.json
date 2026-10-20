@@ -1,0 +1,70 @@
+{
+  "exp_id": "plan-010-human-edit",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:53:51.598Z",
+    "updated_at": "2026-05-15T21:20:47.338Z",
+    "hypothesis": "RC5 Human edit robustness: depth signal 在模拟人类编辑（random word replacement 5/10/20% + LLM light rephrasing）下的存活率",
+    "spec": {
+      "command": "python human_edit_robustness.py",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/",
+      "data_count": 21557,
+      "model_name": "Qwen3-0.6B (rephrase needs fix to Instruct)",
+      "seed": 42,
+      "checkpoint_path": "N/A (evaluation experiment)",
+      "log_path": "/tmp/human_edit_robustness.log",
+      "result_path": "/root/gen-depth-fingerprint/results/human_edit_robustness.json"
+    },
+    "notes": "Bug fix: llm_rephrase_batch 原始代码用 raw text prompt 而非 chat template，导致 Qwen3-0.6B 做 continuation 而非 rephrase。已改用 apply_chat_template(enable_thinking=False)。3-seed 验证通过：100% 文本有变化，23% fallback（合理）。重跑 PID 228872 等待旧进程 223500 结束后自动在 cuda:1 执行全部条件，ETA ~90 min。旧结果备份到 human_edit_robustness_old_no_chat_template.json。",
+    "conclusion": "success",
+    "metrics": {
+      "baseline": {
+        "3class_f1": 0.7889,
+        "binary_f1": 0.7241,
+        "ci_3class": [
+          0.787,
+          0.798
+        ],
+        "ci_binary": [
+          0.719,
+          0.734
+        ]
+      },
+      "random_5pct": {
+        "3class_f1": 0.7538,
+        "binary_f1": 0.7182,
+        "delta_3class": -0.0351,
+        "delta_binary": -0.0059
+      },
+      "random_10pct": {
+        "3class_f1": 0.7425,
+        "binary_f1": 0.7168,
+        "delta_3class": -0.0464,
+        "delta_binary": -0.0073
+      },
+      "random_20pct": {
+        "3class_f1": 0.7292,
+        "binary_f1": 0.7165,
+        "delta_3class": -0.0597,
+        "delta_binary": -0.0076
+      },
+      "llm_rephrase": {
+        "3class_f1": 0.7549,
+        "binary_f1": 0.6615,
+        "delta_3class": -0.034,
+        "delta_binary": -0.0626
+      },
+      "degradation_curve": "robust",
+      "llm_rephrase_robust": true,
+      "finding": "Graceful degradation: 5-20% random replacement drops 3-class F1 by 3.5-6.0pp. LLM rephrase: 3-class robust (-3.4pp) but binary degrades more (-6.3pp)."
+    },
+    "completed_at": "2026-05-15T21:20:47.338Z"
+  },
+  "timestamp": "2026-05-15T21:20:47.427300+00:00",
+  "trigger": "update_registry"
+}

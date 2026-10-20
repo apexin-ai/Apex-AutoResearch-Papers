@@ -1,0 +1,5 @@
+Remote: autodl-5090:/root/gen-depth-fingerprint/data/
+- features_ref_olmo.csv (23032 rows, OLMo-2-1B reference)
+- features_ref_qwen.csv (23032 rows, Qwen3-0.6B reference)  
+- cross_ref_results.json (structured analysis)
+Key: Dual dynamics confirmed across all 3 reference models. LOGO F1: 0.80-0.82.

@@ -1,0 +1,2 @@
+Remote: autodl-5090:/root/gen-depth-fingerprint/data/text_length_analysis.json + text_length_boxplot.png
+Key finding: text length is NOT a confounding factor. Normalized features preserve depth trends. Length-matched classifier F1 increases +0.041.

@@ -1,0 +1,16 @@
+{
+  "exp_id": "review-exp-a-baseline-ensemble",
+  "project": "gen-depth-fingerprint",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:22:30.747Z",
+    "updated_at": "2026-05-21T01:42:58.930Z",
+    "hypothesis": "审稿回应实验A：4-baseline ensemble + 统一超参对比，验证 7-feature vs 4-baseline vs 6-feature 在公平条件下的性能差异",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-21T01:42:59.037244+00:00",
+  "trigger": "update_registry"
+}

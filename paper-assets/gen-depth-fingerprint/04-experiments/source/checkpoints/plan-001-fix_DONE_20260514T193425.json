@@ -1,0 +1,36 @@
+{
+  "exp_id": "plan-001-fix",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:50:14.620Z",
+    "updated_at": "2026-05-14T19:34:25.973Z",
+    "spec": {
+      "command": "python ablation_analysis.py --parts A B C --device cuda:0",
+      "server": "autodl-5090",
+      "data_path": "data/features.csv + data/generations.jsonl",
+      "data_count": 4609,
+      "model_name": "pythia-410m",
+      "seed": 42,
+      "pid": 101585,
+      "log_path": "/tmp/plan-001-fix.log",
+      "checkpoint_path": "/root/gen-depth-fingerprint/results/ablation_results.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "full_macro_f1": 0.8204,
+      "reference_only_f1": 0.7187,
+      "surface_only_f1": 0.7628,
+      "ref_vs_surf_bootstrap_ci": "[0.706,0.733] vs [0.747,0.774]",
+      "h2_features": "entropy_mean, ttr, hapax_ratio",
+      "h1_features": "tail_decay, entropy_std, entropy_max, entropy_min",
+      "median_ppl_by_depth": "13.50, 4.96, 3.00, 2.07, 1.72"
+    },
+    "completed_at": "2026-05-14T19:34:25.973Z"
+  },
+  "timestamp": "2026-05-14T19:34:25.988991+00:00",
+  "trigger": "update_registry"
+}

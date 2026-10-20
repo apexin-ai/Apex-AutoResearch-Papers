@@ -1,0 +1,23 @@
+\begin{table}[H]
+\centering
+\caption{Intra-family consistency of DDR patterns. Each cell shows the mean Spearman $|\rho|$(depth, feature) across generators within a family ($\pm$ SD for multi-generator families). Drifting features exhibit consistently high $|\rho|$ while near-stationary features remain low across all families. $H_{\mathrm{min}}$ is a \emph{boundary feature}: its elevated $|\rho| \approx 0.40$ reflects a large gen-0$\to$gen-1 transition, whereas its Cohen's $d \approx 0$ for gen-1\,/\,gen-2+ confirms near-stationarity within the binary classification scope (\S\ref{sec:results-differential}).}
+\label{tab:family_ddr_consistency}
+\small
+\setlength{\tabcolsep}{3.5pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{l c ccc c ccc}
+\toprule
+ & & \multicolumn{3}{c}{\textsc{Drifting}} & \textsc{Int.} & \multicolumn{3}{c}{\textsc{Near-Stationary}} \\
+\cmidrule(lr){3-5} \cmidrule(lr){6-6} \cmidrule(lr){7-9}
+Family & $n$ & $H_{\mathrm{mean}}$ & TTR & Hapax & $H_{\mathrm{std}}$ & $H_{\mathrm{max}}$ & $H_{\mathrm{min}}$ & $\beta_{\mathrm{tail}}$ \\
+\midrule
+Pythia & 2 & 0.69\tiny{$\pm$0.03} & 0.65\tiny{$\pm$0.02} & 0.66\tiny{$\pm$0.01} & 0.20\tiny{$\pm$0.06} & 0.02\tiny{$\pm$0.02} & 0.49\tiny{$\pm$0.02} & 0.08\tiny{$\pm$0.02} \\
+OLMo & 1 & 0.64 & 0.70 & 0.71 & 0.30 & 0.07 & 0.39 & 0.14 \\
+Qwen & 3 & 0.55\tiny{$\pm$0.07} & 0.60\tiny{$\pm$0.06} & 0.62\tiny{$\pm$0.06} & 0.16\tiny{$\pm$0.08} & 0.09\tiny{$\pm$0.00} & 0.36\tiny{$\pm$0.05} & 0.08\tiny{$\pm$0.01} \\
+Llama & 1 & 0.63 & 0.69 & 0.70 & 0.16 & 0.09 & 0.40 & 0.06 \\
+Mistral & 1 & 0.54 & 0.60 & 0.61 & 0.06 & 0.09 & 0.40 & 0.03 \\
+\midrule
+All 8 gen. & 8 & 0.60\tiny{$\pm$0.08} & 0.63\tiny{$\pm$0.05} & 0.65\tiny{$\pm$0.05} & 0.18\tiny{$\pm$0.08} & 0.07\tiny{$\pm$0.03} & 0.40\tiny{$\pm$0.06} & 0.08\tiny{$\pm$0.03} \\
+\bottomrule
+\end{tabular}}
+\end{table}

@@ -1,0 +1,63 @@
+This appendix validates the causal predictive power of DDR features through three complementary analyses: permutation importance, Granger causality, and feature intervention.
+
+\paragraph{Permutation Importance.}
+Table~\ref{tab:perm-importance} reports the mean F1 drop when each feature's values are randomly shuffled across the test set (baseline F1\,=\,0.771).
+Drifting features dominate: their average F1 drop (0.187) is $5.5\times$ larger than the near-stationary average (0.034). Location-shift features, not shape features, drive depth classification.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Permutation importance (8-gen LOGO). Each feature is shuffled independently; the resulting F1 drop quantifies marginal importance. Drifting features average $0.187$ vs.\ near-stationary $0.034$ ($5.5\times$).}
+\label{tab:perm-importance}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llcr}
+\toprule
+\textbf{Feature} & \textbf{Group} & \textbf{Mean F1 Drop} & \textbf{Rank} \\
+\midrule
+hapax\_ratio  & Drifting      & 0.235 & 1 \\
+entropy\_mean & Drifting      & 0.170 & 2 \\
+ttr           & Drifting      & 0.156 & 3 \\
+entropy\_max  & Near-stat.    & 0.070 & 4 \\
+entropy\_std  & Intermediate  & 0.057 & 5 \\
+entropy\_min  & Near-stat.    & 0.019 & 6 \\
+tail\_decay   & Near-stat.    & 0.014 & 7 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\paragraph{Granger Causality.}
+Table~\ref{tab:granger} reports Fisher-combined $p$-values from panel Granger causality tests (lag\,=\,1) across 8 generators ($N$\,=\,29{,}095).
+Six of seven features exhibit significant Granger causality ($p < 0.001$), meaning past feature values predict future depth beyond what past depth alone explains.
+The sole exception is entropy\_min ($p$\,=\,0.375). This provides additional evidence for its near-stationary classification: it carries neither large marginal importance (Table~\ref{tab:perm-importance}, rank 7) nor temporal predictive direction.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Granger causality (Fisher combined across 8 generators, lag\,=\,1, $N$\,=\,29{,}095). $\Delta R^2$ is reported where available.}
+\label{tab:granger}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lccc}
+\toprule
+\textbf{Feature} & \textbf{Combined $p$} & $\boldsymbol{\Delta R^2}$ & \textbf{Significant} \\
+\midrule
+entropy\_std  & $< 0.001$ & 0.031 & Yes \\
+hapax\_ratio  & $< 0.001$ & ---   & Yes \\
+ttr           & $< 0.001$ & ---   & Yes \\
+entropy\_mean & $< 0.001$ & ---   & Yes \\
+entropy\_max  & $< 0.001$ & ---   & Yes \\
+tail\_decay   & $< 0.001$ & ---   & Yes \\
+entropy\_min  & $0.375$   & ---   & No  \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\paragraph{Key Findings.}
+\begin{enumerate}[nosep,leftmargin=*]
+\item \textbf{Drifting dominance.} The $5.5\times$ permutation-importance gap confirms that drifting features (entropy\_mean, ttr, hapax\_ratio) are the primary depth signal carriers, consistent with the DDR partition derived from convergence analysis (\S\ref{sec:results-differential}).
+
+\item \textbf{Entropy\_min lacks causal direction.} Beyond its small effect size (F1 drop\,=\,0.019), entropy\_min is the only feature without significant Granger causality ($p$\,=\,0.375). This strengthens the near-stationary classification: the feature is neither marginally important nor temporally predictive.
+
+\item \textbf{Entropy\_max asymmetry.} Entropy\_max ranks fourth in permutation importance (F1 drop\,=\,0.070) but produces the largest degradation in the counterfactual intervention ($-$2.0\,pp). It provides unique signal not redundant with other features; its causal contribution exceeds its marginal importance.
+
+\item \textbf{Mistral heterogeneity.} In per-generator Granger tests, Mistral-7B shows non-significant hapax\_ratio and ttr ($p > 0.4$), though Fisher combination across generators remains significant. This generator-specific attenuation partly explains Mistral's lowest LOGO F1 (0.605) and suggests that DDR depth signatures are weaker in models with heavier repetition penalties.
+\end{enumerate}

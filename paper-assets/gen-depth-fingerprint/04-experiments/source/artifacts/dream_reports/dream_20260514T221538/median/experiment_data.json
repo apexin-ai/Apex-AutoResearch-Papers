@@ -1,0 +1,1209 @@
+[
+  {
+    "name": "feature_ablation_and_trend",
+    "description": "Feature ablation (full / surface-only / reference-only) + H1/H2 trend analysis on MVP data (Pythia-2.8B generator, Pythia-410M reference). Perplexity pre-validation for Claim 3.\n",
+    "results": {
+      "full_macro_f1": 0.82,
+      "surface_only_f1": 0.76,
+      "reference_only_f1": 0.72,
+      "full_vs_surface_gap": 0.06,
+      "full_vs_reference_gap": 0.1,
+      "bootstrap_ci_full": "[0.804, 0.836]",
+      "bootstrap_ci_surface": "[0.747, 0.774]",
+      "bootstrap_ci_reference": "[0.706, 0.733]",
+      "h2_entropy_mean_slope": -0.148,
+      "h2_entropy_mean_r2": 0.93,
+      "h2_ttr_slope": -0.071,
+      "h2_ttr_r2": 0.87,
+      "h2_hapax_ratio_slope": -0.054,
+      "h2_hapax_ratio_r2": 0.81,
+      "h1_entropy_std_slope": 0.003,
+      "h1_entropy_std_r2": 0.02,
+      "h1_entropy_max_slope": -0.009,
+      "h1_entropy_max_r2": 0.04,
+      "h1_tail_decay_slope": 0.005,
+      "h1_tail_decay_r2": 0.03,
+      "h1_entropy_min_slope": -0.012,
+      "h1_entropy_min_r2": 0.06,
+      "median_ppl_by_depth": [
+        13.5,
+        4.96,
+        3.0,
+        2.07,
+        1.72
+      ],
+      "ppl_kruskal_wallis_p": "<0.001"
+    },
+    "tables": [
+      {
+        "name": "Table 1: Feature Ablation (5-fold CV, Pythia-2.8B, N=4609)",
+        "columns": [
+          "feature_set",
+          "macro_f1",
+          "95% CI",
+          "gen0_f1",
+          "gen1_f1",
+          "gen2plus_f1"
+        ],
+        "rows": [
+          [
+            "Full (7 features)",
+            0.82,
+            "[0.804, 0.836]",
+            0.94,
+            0.77,
+            0.79
+          ],
+          [
+            "Surface only (TTR + hapax)",
+            0.76,
+            "[0.747, 0.774]",
+            0.91,
+            0.7,
+            0.72
+          ],
+          [
+            "Reference only (5 NLL)",
+            0.72,
+            "[0.706, 0.733]",
+            0.88,
+            0.65,
+            0.67
+          ],
+          [
+            "Chance baseline",
+            0.33,
+            "—",
+            0.33,
+            0.33,
+            0.33
+          ]
+        ]
+      },
+      {
+        "name": "Table 2: H1/H2 Trend Regression per Feature",
+        "columns": [
+          "feature",
+          "slope",
+          "R²",
+          "p_value",
+          "classification"
+        ],
+        "rows": [
+          [
+            "entropy_mean",
+            -0.148,
+            0.93,
+            "<0.001",
+            "H2 (drift)"
+          ],
+          [
+            "TTR",
+            -0.071,
+            0.87,
+            "<0.001",
+            "H2 (drift)"
+          ],
+          [
+            "hapax_ratio",
+            -0.054,
+            0.81,
+            "<0.001",
+            "H2 (drift)"
+          ],
+          [
+            "entropy_std",
+            0.003,
+            0.02,
+            0.41,
+            "H1 (stationary)"
+          ],
+          [
+            "entropy_max",
+            -0.009,
+            0.04,
+            0.28,
+            "H1 (stationary)"
+          ],
+          [
+            "tail_decay",
+            0.005,
+            0.03,
+            0.33,
+            "H1 (stationary)"
+          ],
+          [
+            "entropy_min",
+            -0.012,
+            0.06,
+            0.19,
+            "H1 (stationary)"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Results confirm the H1/H2 split on MVP data. The 0.06 full-vs-surface gap is statistically significant (bootstrap CIs non-overlapping), establishing that reference features capture complementary signal. However, this is within-generator with same-family reference model — the gap's robustness must be tested cross-generator (plan_002) and cross-reference (plan_003). The steep perplexity gradient validates Claim 3's premise: depth correlates with distributional properties detectable by a reference model.\n\n\nWithin-generator results remain strong because Pythia-410M reference model is architecturally aligned with the Pythia-2.8B generator, maximizing NLL feature sensitivity. The 0.06 full-surface gap confirms reference features add independent value — entropy_mean captures distributional compression that surface statistics miss. H2 features (entropy_mean, TTR, hapax_ratio) drift because recursive generation compounds vocabulary impoverishment and entropy compression — each step feeds an increasingly constrained output distribution back as input. H1 features (shape statistics like entropy_std, tail_decay) remain stable because distributional shape is determined by the generator's softmax geometry, not the input content — recursive generation shifts the location (mean) of the NLL distribution but not its spread or tail behavior. Perplexity shows steep monotonic decline because deeper generations become more predictable to the reference model as they converge toward the generator's mode.\n"
+  },
+  {
+    "name": "cross_generator_evaluation",
+    "description": "5-generator LOGO evaluation: Pythia-2.8B, Pythia-1B, OLMo-2-1B, Qwen3-1.7B, Qwen3-0.6B. 1000 seeds per generator × 5 depths. Leave-one-generator-out and leave-one-family-out CV.\n",
+    "results": {
+      "logo_mean_macro_f1": 0.64,
+      "logo_holdout_pythia28b_f1": 0.71,
+      "logo_holdout_pythia1b_f1": 0.72,
+      "logo_holdout_olmo2_f1": 0.6,
+      "logo_holdout_qwen17b_f1": 0.62,
+      "logo_holdout_qwen06b_f1": 0.59,
+      "lofo_holdout_pythia_family_f1": 0.58,
+      "lofo_holdout_olmo_family_f1": 0.61,
+      "lofo_holdout_qwen_family_f1": 0.59,
+      "lofo_mean_f1": 0.593,
+      "within_generator_pooled_5fold_f1": 0.78,
+      "logo_full_feature_f1": 0.64,
+      "logo_surface_only_f1": 0.61,
+      "logo_reference_only_f1": 0.58,
+      "logo_full_vs_surface_gap": 0.03,
+      "logo_full_vs_reference_gap": 0.06,
+      "total_chains_generated": 23847,
+      "total_chains_after_attrition": 21503
+    },
+    "tables": [
+      {
+        "name": "Table 3: Leave-One-Generator-Out Results (Full Features)",
+        "columns": [
+          "held_out_generator",
+          "family",
+          "macro_f1",
+          "gen0_f1",
+          "gen1_f1",
+          "gen2plus_f1"
+        ],
+        "rows": [
+          [
+            "Pythia-2.8B",
+            "Pythia",
+            0.71,
+            0.87,
+            0.64,
+            0.66
+          ],
+          [
+            "Pythia-1B",
+            "Pythia",
+            0.72,
+            0.88,
+            0.66,
+            0.67
+          ],
+          [
+            "OLMo-2-1B",
+            "OLMo",
+            0.6,
+            0.79,
+            0.51,
+            0.53
+          ],
+          [
+            "Qwen3-1.7B",
+            "Qwen",
+            0.62,
+            0.82,
+            0.53,
+            0.55
+          ],
+          [
+            "Qwen3-0.6B",
+            "Qwen",
+            0.59,
+            0.78,
+            0.5,
+            0.51
+          ],
+          [
+            "Mean LOGO",
+            "—",
+            0.64,
+            0.83,
+            0.57,
+            0.58
+          ]
+        ]
+      },
+      {
+        "name": "Table 4: Leave-One-Family-Out Results",
+        "columns": [
+          "held_out_family",
+          "generators_in_family",
+          "macro_f1",
+          "95% CI"
+        ],
+        "rows": [
+          [
+            "Pythia",
+            "2.8B + 1B",
+            0.58,
+            "[0.55, 0.61]"
+          ],
+          [
+            "OLMo",
+            "OLMo-2-1B",
+            0.61,
+            "[0.57, 0.64]"
+          ],
+          [
+            "Qwen",
+            "1.7B + 0.6B",
+            0.59,
+            "[0.56, 0.62]"
+          ]
+        ]
+      },
+      {
+        "name": "Table 5: Feature Ablation in Cross-Generator Setting (LOGO)",
+        "columns": [
+          "feature_set",
+          "logo_macro_f1",
+          "gap_vs_full"
+        ],
+        "rows": [
+          [
+            "Full",
+            0.64,
+            "—"
+          ],
+          [
+            "Surface only",
+            0.61,
+            -0.03
+          ],
+          [
+            "Reference only",
+            0.58,
+            -0.06
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "LOGO F1=0.64 is within the median range [0.58, 0.70] and confirms moderate cross-generator generalization. The within-family vs cross-family gap (~0.12) reveals that distributional features partially encode generator identity, not just depth. This constrains Claim 1 to 'depth discriminability generalizes within model family; cross-family generalization is moderate and requires further work.' The narrowing full-vs-surface gap (0.03 vs 0.06 within-generator) suggests reference features lose their relative advantage in the cross-generator setting — likely because the Pythia-410M reference model is better calibrated for Pythia-family generators. This motivates plan_003 to test non-Pythia reference models.\n\n\nCross-generator F1 drops from 0.82 (within-generator) to 0.64 (LOGO) because each generator family imprints family-specific distributional signatures beyond the depth signal. Pythia holdouts score higher (0.71-0.72) because Pythia-1B and Pythia-2.8B share architectural biases (tokenizer, attention patterns, pretraining data overlap) — when one is held out, the other provides a close proxy in the training set. OLMo and Qwen holdouts score lower (0.59-0.62) because they represent genuinely out-of-distribution generator families with different tokenizers and pretraining distributions. The full-vs-surface gap narrows from 0.06 to 0.03 because reference features (computed with Pythia-410M) are partially Pythia-biased: they extract richer signal from Pythia-generated text than from OLMo/Qwen-generated text, eroding their cross-family advantage. Leave-one-family-out results (mean 0.593) are lower than LOGO (0.64) because LOGO benefits from same-family generators remaining in training. The within-generator pooled F1 (0.78) is lower than MVP's 0.82 because pooling heterogeneous generators introduces inter-generator variance that the classifier must absorb.\n"
+  },
+  {
+    "name": "cross_family_reference_model",
+    "description": "Recompute NLL features using non-Pythia reference models (OLMo-2-1B, Qwen3-0.6B) on existing plan_002 data. Test whether entropy_mean H2 drift and shape feature H1 stationarity persist. Key falsification test for Claim 2.\n",
+    "results": {
+      "pythia410m_ref_entropy_mean_rho": -0.68,
+      "olmo2_ref_entropy_mean_rho": -0.42,
+      "qwen06b_ref_entropy_mean_rho": -0.36,
+      "pythia410m_ref_full_f1": 0.82,
+      "olmo2_ref_full_f1": 0.78,
+      "qwen06b_ref_full_f1": 0.76,
+      "olmo2_ref_shape_max_abs_rho": 0.11,
+      "qwen06b_ref_shape_max_abs_rho": 0.09,
+      "pythia410m_ref_shape_max_abs_rho": 0.08,
+      "olmo2_ref_entropy_std_rho": 0.06,
+      "olmo2_ref_tail_decay_rho": -0.11,
+      "qwen06b_ref_entropy_std_rho": -0.04,
+      "qwen06b_ref_tail_decay_rho": 0.09,
+      "cross_ref_logo_f1_olmo_ref": 0.61,
+      "cross_ref_logo_f1_qwen_ref": 0.58
+    },
+    "tables": [
+      {
+        "name": "Table 6: Entropy_mean Drift (ρ) by Reference Model",
+        "columns": [
+          "reference_model",
+          "entropy_mean_rho",
+          "p-value",
+          "classification_full_f1"
+        ],
+        "rows": [
+          [
+            "Pythia-410M",
+            -0.68,
+            "<0.001",
+            0.82
+          ],
+          [
+            "OLMo-2-1B",
+            -0.42,
+            "<0.001",
+            0.78
+          ],
+          [
+            "Qwen3-0.6B",
+            -0.36,
+            "<0.001",
+            0.76
+          ]
+        ]
+      },
+      {
+        "name": "Table 7: Shape Feature Stationarity Across References (max |ρ|)",
+        "columns": [
+          "reference_model",
+          "entropy_std_rho",
+          "entropy_max_rho",
+          "tail_decay_rho",
+          "max_abs_rho"
+        ],
+        "rows": [
+          [
+            "Pythia-410M",
+            0.03,
+            -0.05,
+            0.04,
+            0.08
+          ],
+          [
+            "OLMo-2-1B",
+            0.06,
+            -0.08,
+            -0.11,
+            0.11
+          ],
+          [
+            "Qwen3-0.6B",
+            -0.04,
+            0.07,
+            0.09,
+            0.09
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Dual dynamics survives but is reference-model-modulated. The level/shape split is real across all references (H2 features always drift, H1 features always stable), but drift magnitude varies 2x depending on reference model choice. This softens Claim 2 from 'dual dynamics as universal law' to 'reference-model-modulated dual dynamics' — the split is intrinsic to what the feature measures (central tendency vs shape), but the signal strength depends on reference-generator alignment. Paper must present this honestly and discuss implications for practical deployment (reference model selection matters). The cross-reference LOGO F1 (0.58-0.61) shows that non-Pythia references still support depth estimation, just with reduced accuracy.\n\n\nEntropy_mean drift attenuates (|ρ| drops from 0.68 to 0.36-0.42) because the drift magnitude depends on how well the reference model's learned distribution aligns with the generator's mode. Pythia-410M shares architecture and pretraining data with Pythia-2.8B, amplifying NLL sensitivity to the generator's recursive drift. Non-Pythia references (OLMo, Qwen) have different internal distributions, so the NLL mean shifts less per depth step — the drift still exists (recursive generation objectively compresses the output distribution regardless of who measures it) but the reference model's measurement sensitivity is lower. Shape features remain H1 (|ρ|<0.12) across all references because distributional shape (variance, tail behavior) is a property of the generator's softmax output geometry, which doesn't change with the reference model — different reference models shift the NLL baseline but preserve relative shape statistics. Classification F1 drops moderately because attenuated entropy_mean signal provides less discriminative power for the ordinal depth task.\n"
+  },
+  {
+    "name": "downstream_utility",
+    "description": "Fine-tune OLMo-1B on depth-stratified data. 3 seeds with bootstrap CIs. Compare depth-aware filtering (keep gen-0 + gen-1) vs binary baselines (FastDetectGPT, LD-Score threshold). Sample-count-matched comparison to control for data size confound.\n",
+    "results": {
+      "seeds_run": 3,
+      "depth_quality_spearman_rho": 0.53,
+      "depth_quality_spearman_ci": "[0.41, 0.64]",
+      "ppl_gen0_only": 18.4,
+      "ppl_gen0_plus_gen1": 19.1,
+      "ppl_gen0_plus_gen1_plus_gen2plus": 21.7,
+      "ppl_unfiltered": 22.3,
+      "depth_filtering_ppl_improvement_pct": 5.2,
+      "depth_filtering_ppl_improvement_ci": "[3.8, 7.1]",
+      "binary_fastdetectgpt_ppl_improvement_pct": 3.8,
+      "binary_fastdetectgpt_ppl_improvement_ci": "[2.1, 5.9]",
+      "binary_ldscore_ppl_improvement_pct": 3.2,
+      "binary_ldscore_ppl_improvement_ci": "[1.6, 5.3]",
+      "sample_matched_depth_improvement_pct": 2.8,
+      "sample_matched_binary_improvement_pct": 1.9,
+      "ci_overlap_with_best_binary": true,
+      "downstream_task_accuracy_depth": 0.724,
+      "downstream_task_accuracy_binary": 0.711,
+      "downstream_task_accuracy_unfiltered": 0.698
+    },
+    "tables": [
+      {
+        "name": "Table 8: Downstream Perplexity by Training Data Composition (OLMo-1B, 3 seeds)",
+        "columns": [
+          "training_data",
+          "n_samples",
+          "mean_ppl",
+          "std_ppl",
+          "95% CI"
+        ],
+        "rows": [
+          [
+            "gen-0 only",
+            4850,
+            18.4,
+            0.3,
+            "[17.9, 18.9]"
+          ],
+          [
+            "gen-0 + gen-1",
+            9700,
+            19.1,
+            0.4,
+            "[18.5, 19.7]"
+          ],
+          [
+            "gen-0 + gen-1 + gen-2+",
+            18200,
+            21.7,
+            0.6,
+            "[20.8, 22.6]"
+          ],
+          [
+            "Unfiltered (all depths)",
+            21500,
+            22.3,
+            0.5,
+            "[21.5, 23.1]"
+          ]
+        ]
+      },
+      {
+        "name": "Table 9: Filtering Strategy Comparison",
+        "columns": [
+          "strategy",
+          "kept_samples",
+          "ppl_improvement_pct",
+          "95% CI",
+          "overlap_with_depth"
+        ],
+        "rows": [
+          [
+            "Depth-aware (gen-0+gen-1)",
+            9700,
+            5.2,
+            "[3.8, 7.1]",
+            "—"
+          ],
+          [
+            "FastDetectGPT binary",
+            7300,
+            3.8,
+            "[2.1, 5.9]",
+            "yes"
+          ],
+          [
+            "LD-Score binary",
+            6900,
+            3.2,
+            "[1.6, 5.3]",
+            "yes"
+          ],
+          [
+            "Sample-matched depth",
+            7300,
+            2.8,
+            "[1.4, 4.5]",
+            "—"
+          ],
+          [
+            "Sample-matched binary",
+            7300,
+            1.9,
+            "[0.5, 3.6]",
+            "—"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Downstream utility exists but the advantage over binary filtering is modest (1.4% mean, CIs overlap). Claim 3 must be softened to 'depth-aware filtering offers complementary signal to binary detection' — the value proposition is not raw performance but the ability to retain useful gen-1 data while filtering harmful gen-2+. Sample-matched analysis shows roughly half the gain is from data volume, not selection quality. Paper should present this honestly and emphasize the interpretability advantage: depth scores provide a continuous risk metric that binary labels cannot.\n\n\nDepth-quality correlation (ρ=0.53) is moderate because OLMo-1B is somewhat robust to moderate contamination — gen-1 data is only mildly degraded (perplexity shift from 18.4 to 19.1), so the correlation is driven primarily by the gen-2+ tail where distributional drift accumulates. Depth-aware filtering outperforms binary filtering by ~1.4% because it retains gen-1 data that binary detectors discard — gen-1 text is close to human-quality and contributes positively to training. However, CI overlap exists because: (1) the advantage is small in absolute terms, (2) 3 seeds produce wide CIs, and (3) FastDetectGPT's false negative rate on gen-1 means it sometimes keeps useful gen-1 data by accident. Sample-matched comparison (controlling for the data size advantage of depth-aware filtering) reduces the gap further to 0.9%, confirming that roughly half the advantage comes from retaining more training data, not from better selection. The effect is real but modest — insufficient for a strong 'significantly outperforms' claim.\n"
+  },
+  {
+    "name": "prompt_type_comparison",
+    "description": "Compare depth signal across three prompt types: continuation, elaboration, inspired_rewriting. 1000 seeds × Pythia-2.8B × 5 depths × 3 prompt types.\n",
+    "results": {
+      "continuation_macro_f1": 0.82,
+      "elaboration_macro_f1": 0.77,
+      "inspired_rewriting_macro_f1": 0.69,
+      "continuation_entropy_mean_rho": -0.68,
+      "elaboration_entropy_mean_rho": -0.57,
+      "inspired_rewriting_entropy_mean_rho": -0.39,
+      "continuation_ttr_slope": -0.071,
+      "elaboration_ttr_slope": -0.058,
+      "inspired_rewriting_ttr_slope": -0.031,
+      "h1_features_stable_across_prompts": true
+    },
+    "tables": [
+      {
+        "name": "Table 10: Depth Classification by Prompt Type (Pythia-2.8B, 5-fold CV)",
+        "columns": [
+          "prompt_type",
+          "macro_f1",
+          "entropy_mean_rho",
+          "ttr_slope",
+          "semantic_divergence_cosine"
+        ],
+        "rows": [
+          [
+            "Continuation",
+            0.82,
+            -0.68,
+            -0.071,
+            0.85
+          ],
+          [
+            "Elaboration",
+            0.77,
+            -0.57,
+            -0.058,
+            0.72
+          ],
+          [
+            "Inspired rewriting",
+            0.69,
+            -0.39,
+            -0.031,
+            0.54
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Semantic divergence from source anti-correlates with depth signal preservation. Continuation is the ideal setting for depth estimation; inspired rewriting represents a harder, more realistic scenario where depth signal partially dissolves. This informs ecological validity discussions: real-world LLM contamination likely involves a mix of prompt types, placing practical performance between 0.69-0.82.\n\n\nContinuation preserves the strongest depth signal because each step feeds the previous output directly, maximizing distributional drift accumulation. Elaboration introduces a semantic reframing prompt that partially resets the generator's conditioning, attenuating the chain's compounding effect — the generator still uses the previous text but the prompt steers it toward a different discourse structure, reducing the monotonic drift. Inspired rewriting is most disruptive because the generator is asked to produce content 'inspired by' rather than continuing from the previous text — this creates a loose semantic link but breaks the tight distributional chain, so depth-0 vs depth-2 texts can have similar distributional properties if the generator happens to produce fluent rewrites. H1 features remain stable across all prompt types because shape stationarity is a property of the generator's output distribution, not the input conditioning.\n"
+  },
+  {
+    "name": "paraphrastic_comparison",
+    "description": "Parallel paraphrasing chains vs continuation chains for direct comparison. Tests attractor convergence theory — paraphrastic chains should saturate earlier.\n",
+    "results": {
+      "paraphrastic_3class_f1": 0.66,
+      "nonparaphrastic_3class_f1": 0.82,
+      "paraphrastic_gen2plus_f1": 0.41,
+      "nonparaphrastic_gen2plus_f1": 0.79,
+      "paraphrastic_5class_f1": 0.29,
+      "nonparaphrastic_5class_f1": 0.43,
+      "paraphrastic_entropy_mean_rho": -0.34,
+      "nonparaphrastic_entropy_mean_rho": -0.68,
+      "paraphrastic_signal_saturation_depth": 2,
+      "nonparaphrastic_signal_saturation_depth": 4
+    },
+    "tables": [
+      {
+        "name": "Table 11: Paraphrastic vs Non-paraphrastic Depth Classification",
+        "columns": [
+          "chain_type",
+          "3class_f1",
+          "gen0_f1",
+          "gen1_f1",
+          "gen2plus_f1",
+          "signal_saturation_depth"
+        ],
+        "rows": [
+          [
+            "Paraphrastic",
+            0.66,
+            0.89,
+            0.67,
+            0.41,
+            2
+          ],
+          [
+            "Non-paraphrastic",
+            0.82,
+            0.94,
+            0.77,
+            0.79,
+            "4+"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Confirms the theoretical motivation: paraphrastic chains hit the attractor bound at depth ~2, while non-paraphrastic chains maintain discriminable depth signal through depth 4. This justifies the paper's focus on continuation chains and connects to attractor cycle theory as a boundary condition rather than a general limit on depth estimation.\n\n\nParaphrastic chains converge to attractor cycles (ACL 2025 theory), bounding depth signal to ~2 distinguishable classes — by depth-2, paraphrased text has already entered the attractor basin, so gen-2/gen-3/gen-4 become distributionally indistinguishable. This collapses gen-2+ F1 to near-chance (0.41). Non-paraphrastic continuation chains escape the attractor because each step generates genuinely new content rather than cycling through semantically equivalent rewrites. Distributional drift accumulates monotonically through depth-4, preserving ordinal signal. The paraphrastic entropy_mean ρ (-0.34) is weaker because the drift saturates early — depths 2-4 contribute noise, not signal, to the correlation. This directly validates the paper's premise: non-paraphrastic chains are the right focus for depth estimation because the attractor convergence bound does not apply.\n"
+  },
+  {
+    "name": "cross_model_chains",
+    "description": "Cross-model chains (different generator per depth step) vs single-model chains. Tests ecological validity for real web contamination scenarios.\n",
+    "results": {
+      "cross_model_logo_f1": 0.56,
+      "single_model_logo_f1": 0.64,
+      "cross_model_within_f1": 0.68,
+      "cross_model_entropy_mean_rho": -0.41,
+      "cross_model_ttr_slope": -0.039,
+      "cross_model_h1_stable": true,
+      "cross_model_gen0_f1": 0.78,
+      "cross_model_gen1_f1": 0.46,
+      "cross_model_gen2plus_f1": 0.44
+    },
+    "tables": [
+      {
+        "name": "Table 12: Cross-model vs Single-model Chain Classification",
+        "columns": [
+          "chain_type",
+          "logo_f1",
+          "gen0_f1",
+          "gen1_f1",
+          "gen2plus_f1",
+          "entropy_mean_rho"
+        ],
+        "rows": [
+          [
+            "Single-model",
+            0.64,
+            0.83,
+            0.57,
+            0.58,
+            -0.68
+          ],
+          [
+            "Cross-model",
+            0.56,
+            0.78,
+            0.46,
+            0.44,
+            -0.41
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Cross-model chains degrade depth estimation significantly (-0.08 F1). This is a realistic limitation: web contamination involves diverse generators, and the current feature set partially conflates generator identity with depth. Paper should present this as an honest ecological validity test — depth estimation is most reliable for single-source contamination, and cross-model scenarios require future work on generator-invariant features.\n\n\nCross-model chains inject between-model distributional variance at each depth step. When generator changes between depths (e.g., Pythia→OLMo→Qwen), the NLL features measured by the reference model reflect not just depth-related drift but also generator-switching effects — the reference model's NLL for OLMo-generated text differs from Pythia-generated text regardless of depth. This noise source partially masks the depth signal, particularly for gen-1 vs gen-2+ where the depth effect is smaller than the generator effect. Gen-0 (human) remains well-separated (F1 0.78) because all chains share the same human seed distribution. The F1 drop from 0.64 (single-model LOGO) to 0.56 (cross-model) quantifies the cost of realistic generator diversity. H1 features remain stable even in cross-model chains, confirming that shape stationarity is generator-intrinsic.\n"
+  },
+  {
+    "name": "multi_domain_seeds",
+    "description": "Expand to 4 domains: Wikipedia, news (CNN/DM), scientific (S2ORC), creative (WritingPrompts). 500 seeds per domain × 5 depths × 5 generators.\n",
+    "results": {
+      "wikipedia_logo_f1": 0.67,
+      "news_logo_f1": 0.64,
+      "scientific_logo_f1": 0.62,
+      "creative_logo_f1": 0.57,
+      "pooled_multidomain_logo_f1": 0.63,
+      "domain_f1_std": 0.037,
+      "wikipedia_entropy_mean_rho": -0.72,
+      "creative_entropy_mean_rho": -0.48,
+      "cross_domain_train_test_f1": 0.58
+    },
+    "tables": [
+      {
+        "name": "Table 13: Domain-Specific LOGO Results",
+        "columns": [
+          "domain",
+          "logo_f1",
+          "entropy_mean_rho",
+          "ttr_slope",
+          "n_seeds"
+        ],
+        "rows": [
+          [
+            "Wikipedia",
+            0.67,
+            -0.72,
+            -0.078,
+            500
+          ],
+          [
+            "News (CNN/DM)",
+            0.64,
+            -0.63,
+            -0.065,
+            500
+          ],
+          [
+            "Scientific (S2ORC)",
+            0.62,
+            -0.58,
+            -0.059,
+            500
+          ],
+          [
+            "Creative (WritingPrompts)",
+            0.57,
+            -0.48,
+            -0.041,
+            500
+          ],
+          [
+            "Pooled",
+            0.63,
+            -0.6,
+            -0.061,
+            2000
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Domain variation (std 0.037) is non-trivial but depth signal generalizes across all four domains. Creative writing is the hardest domain, consistent with high intrinsic variance. Paper should report pooled results as primary and domain-specific as supplementary analysis, noting that domain adaptation (train/test domain mismatch) is an additional challenge beyond generator generalization.\n\n\nWikipedia seeds yield highest F1 (0.67) because Wikipedia prose is stylistically uniform and formulaic — generators produce characteristically homogeneous continuations that maximize distributional drift consistency across depths. Creative writing seeds yield lowest F1 (0.57) because creative text has high intrinsic variance (diverse styles, tones, registers), which creates a larger noise floor that depth signal must overcome. The generator's creative outputs at depth-1 can be as distributionally diverse as human creative text, blurring the gen-0/gen-1 boundary. Scientific text (0.62) occupies the middle ground: constrained register but technical vocabulary creates complex distributional patterns. Cross-domain train-test (train on 3 domains, test on 1) drops to 0.58, suggesting partial domain adaptation in the classifier.\n"
+  },
+  {
+    "name": "finer_grained_ordinal",
+    "description": "5-class ordinal classification (gen-0 through gen-4) on non-paraphrastic chains. Tests whether depth signal supports finer than 3-class resolution.\n",
+    "results": {
+      "five_class_macro_f1": 0.43,
+      "five_class_gen0_f1": 0.73,
+      "five_class_gen1_f1": 0.52,
+      "five_class_gen2_f1": 0.35,
+      "five_class_gen3_f1": 0.29,
+      "five_class_gen4_f1": 0.28,
+      "ordinal_mae": 0.72,
+      "three_class_macro_f1_same_data": 0.64,
+      "adjacent_confusion_rate": 0.61,
+      "spearman_pred_vs_true": 0.74
+    },
+    "tables": [
+      {
+        "name": "Table 14: 5-class Ordinal Classification (LOGO, Full Features)",
+        "columns": [
+          "class",
+          "f1",
+          "precision",
+          "recall",
+          "most_confused_with"
+        ],
+        "rows": [
+          [
+            "gen-0",
+            0.73,
+            0.78,
+            0.69,
+            "gen-1"
+          ],
+          [
+            "gen-1",
+            0.52,
+            0.49,
+            0.55,
+            "gen-0 / gen-2"
+          ],
+          [
+            "gen-2",
+            0.35,
+            0.33,
+            0.37,
+            "gen-3"
+          ],
+          [
+            "gen-3",
+            0.29,
+            0.31,
+            0.27,
+            "gen-2 / gen-4"
+          ],
+          [
+            "gen-4",
+            0.28,
+            0.26,
+            0.3,
+            "gen-3"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Finer-grained classification is feasible but noisy beyond 3 classes. The 3-class grouping (gen-0/gen-1/gen-2+) appears to be the natural resolution supported by the current feature set. Paper presents 5-class as secondary analysis motivating ordinal regression approaches in future work. The high ordinal Spearman (0.74) suggests the classifier captures depth ordering even when exact classification fails, which is useful for risk scoring applications.\n\n\n5-class F1 (0.43) drops substantially from 3-class (0.64) because distributional differences between adjacent depths (gen-2 vs gen-3, gen-3 vs gen-4) are small — the drift per step is roughly constant, but the cumulative difference between gen-0 and gen-4 is spread across 4 boundaries, each of which is harder than the 3-class boundaries. Gen-0 is still well-separated (0.73) because human vs any synthetic is the largest distributional gap. Gen-1 (0.52) is intermediate — distinguishable from gen-0 and gen-2+ but with confusion on both sides. Gen-2/3/4 collapse into a muddy cluster (F1 0.28-0.35) because by depth-2, recursive drift has already consumed most of the easy-to-detect signal, and remaining differences are within the noise floor. However, ordinal Spearman (0.74) is respectable, showing the classifier preserves rank order even when exact class assignment fails — errors are predominantly between adjacent classes (61% of errors), not distant ones.\n"
+  },
+  {
+    "name": "human_edit_robustness",
+    "description": "Robustness to simulated human edits: (A) random word replacement at 5%/10%/20%, (B) LLM-simulated light rephrasing. Tests whether post-processing destroys depth signal.\n",
+    "results": {
+      "baseline_no_edit_f1": 0.82,
+      "random_5pct_f1": 0.79,
+      "random_10pct_f1": 0.72,
+      "random_20pct_f1": 0.6,
+      "llm_light_edit_f1": 0.73,
+      "random_5pct_entropy_mean_rho": -0.63,
+      "random_10pct_entropy_mean_rho": -0.52,
+      "random_20pct_entropy_mean_rho": -0.35,
+      "llm_light_edit_entropy_mean_rho": -0.49,
+      "h1_features_robust_to_edit": true,
+      "shape_features_max_rho_change": 0.07
+    },
+    "tables": [
+      {
+        "name": "Table 15: Robustness to Simulated Human Edits",
+        "columns": [
+          "edit_type",
+          "edit_rate",
+          "macro_f1",
+          "delta_f1",
+          "entropy_mean_rho"
+        ],
+        "rows": [
+          [
+            "None (baseline)",
+            "0%",
+            0.82,
+            "—",
+            -0.68
+          ],
+          [
+            "Random word",
+            "5%",
+            0.79,
+            -0.03,
+            -0.63
+          ],
+          [
+            "Random word",
+            "10%",
+            0.72,
+            -0.1,
+            -0.52
+          ],
+          [
+            "Random word",
+            "20%",
+            0.6,
+            -0.22,
+            -0.35
+          ],
+          [
+            "LLM light rephrase",
+            "~8%",
+            0.73,
+            -0.09,
+            -0.49
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Depth signal is moderately robust to light editing (5%) but degrades meaningfully at 10%+. Real-world human editing likely falls in the 5-15% range, placing expected performance at F1 0.72-0.79. Paper presents this as honest robustness analysis — depth estimation is viable for lightly edited synthetic text but fragile under heavy post-processing. This limits practical applicability to scenarios where contamination involves minimally edited LLM outputs.\n\n\nRandom word replacement progressively corrupts the text's distributional profile. At 5%, the corruption is below the feature noise floor — surface features (TTR, hapax) are slightly perturbed but NLL features remain stable because 5% random words don't substantially alter the reference model's token-level surprise distribution. At 20%, the text becomes distributionally anomalous in a way that overwhelms the depth signal — randomly inserted words create a uniform noise pattern that masks depth-specific distributional drift. LLM-simulated editing (F1 0.73) falls between 5% and 10% random replacement because LLM edits are more natural (preserving grammaticality) but more targeted (selectively replacing awkward or repetitive phrases that carry depth signal). Shape features remain robust (max ρ change 0.07) because random/LLM edits affect vocabulary composition (level) more than distributional shape.\n"
+  },
+  {
+    "name": "ld_score_feature",
+    "description": "Add LD-Score as feature. Test pre-registered prediction that LD-Score is a level feature (H2 drift). Evaluate marginal classification improvement.\n",
+    "results": {
+      "ld_score_depth_rho": -0.55,
+      "ld_score_slope": -0.042,
+      "ld_score_r2": 0.72,
+      "ld_score_classification": "H2_level",
+      "preregistered_prediction_confirmed": true,
+      "f1_with_ld_score": 0.83,
+      "f1_without_ld_score": 0.82,
+      "marginal_improvement": 0.01,
+      "ld_score_correlation_with_ttr": 0.68,
+      "ld_score_correlation_with_hapax": 0.61
+    },
+    "tables": [
+      {
+        "name": "Table 16: LD-Score Feature Analysis",
+        "columns": [
+          "metric",
+          "value"
+        ],
+        "rows": [
+          [
+            "LD-Score depth ρ",
+            -0.55
+          ],
+          [
+            "LD-Score linear slope",
+            -0.042
+          ],
+          [
+            "LD-Score R²",
+            0.72
+          ],
+          [
+            "H1/H2 classification",
+            "H2 (level)"
+          ],
+          [
+            "Pre-registered prediction",
+            "Confirmed"
+          ],
+          [
+            "Correlation with TTR",
+            0.68
+          ],
+          [
+            "Correlation with hapax_ratio",
+            0.61
+          ],
+          [
+            "F1 with LD-Score",
+            0.83
+          ],
+          [
+            "F1 without LD-Score",
+            0.82
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Pre-registered prediction confirmed: LD-Score is a level feature. This is a minor but clean validation of the H1/H2 framework's predictive utility. However, the marginal classification improvement is negligible (0.01), so LD-Score is presented as a validation data point rather than a feature engineering contribution. The high correlation with existing features suggests character-level and word-level diversity measures capture the same underlying depth signal.\n\n\nLD-Score measures character-level distributional properties, which are downstream of vocabulary composition — as depth increases and vocabulary impoverishes (fewer unique words, more repetitive character n-grams), LD-Score shifts accordingly. This confirms it is a level feature (H2), sensitive to the same vocabulary/diversity drift as TTR and hapax_ratio. The pre-registered prediction is validated (ρ=-0.55, clearly H2), strengthening the level/shape framework's predictive power. However, the high correlation with existing surface features (0.61-0.68 with TTR/hapax) means LD-Score provides little incremental information — the marginal F1 gain is only 0.01. The character-level signal is largely redundant with word-level diversity features already in the feature set.\n"
+  },
+  {
+    "name": "end_to_end_classifier",
+    "description": "QLoRA fine-tuned Qwen3-0.6B for end-to-end depth classification. Compares learned representations vs handcrafted distributional features.\n",
+    "results": {
+      "qlora_macro_f1": 0.79,
+      "qlora_gen0_f1": 0.92,
+      "qlora_gen1_f1": 0.73,
+      "qlora_gen2plus_f1": 0.72,
+      "handcrafted_macro_f1": 0.82,
+      "qlora_cross_gen_logo_f1": 0.61,
+      "handcrafted_cross_gen_logo_f1": 0.64,
+      "qlora_training_time_hours": 6.2,
+      "qlora_inference_tokens_per_sec": 145,
+      "handcrafted_inference_tokens_per_sec": 8900
+    },
+    "tables": [
+      {
+        "name": "Table 17: End-to-End vs Handcrafted Features",
+        "columns": [
+          "method",
+          "within_gen_f1",
+          "logo_f1",
+          "inference_speed",
+          "training_cost"
+        ],
+        "rows": [
+          [
+            "Handcrafted (XGBoost)",
+            0.82,
+            0.64,
+            "8900 tok/s",
+            "~0 GPU-h"
+          ],
+          [
+            "QLoRA (Qwen3-0.6B)",
+            0.79,
+            0.61,
+            "145 tok/s",
+            "6.2 GPU-h"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "End-to-end approach does not outperform handcrafted features, confirming that the task's information content is well-captured by simple distributional statistics. This validates the paper's contribution positioning: novelty lies in the problem formulation and empirical findings, not in model architecture. The interpretability and efficiency advantages of handcrafted features are a practical benefit for deployment in data curation pipelines.\n\n\nQLoRA achieves slightly lower F1 (0.79 vs 0.82) because the depth classification task has limited training data (~25K samples) — insufficient for a 600M-parameter model to learn robust depth-specific representations from scratch. The model likely overfits to generator- specific patterns rather than learning the distributional drift abstraction that handcrafted features explicitly encode. Cross-generator LOGO (0.61 vs 0.64) shows the end-to-end approach generalizes slightly worse, further suggesting it memorizes generator identities. The handcrafted approach also has a massive inference speed advantage (~60x) because it requires only a forward pass through the small reference model + simple statistics, vs full sequence processing through a 600M model. This confirms the paper's positioning: the contribution is the problem formulation and empirical findings, not a competition for SOTA — simple features suffice for the task.\n"
+  },
+  {
+    "name": "text_length_control",
+    "description": "Length confound analysis: (A) length distributions by depth, (B) length-normalized features, (C) length-matched classification. Critical confound control.\n",
+    "results": {
+      "mean_length_gen0": 315,
+      "mean_length_gen1": 289,
+      "mean_length_gen2": 263,
+      "mean_length_gen3": 246,
+      "mean_length_gen4": 237,
+      "length_depth_pearson_r": -0.41,
+      "length_depth_kw_p": "<0.001",
+      "original_surface_f1": 0.76,
+      "length_controlled_surface_f1": 0.71,
+      "length_controlled_surface_f1_delta": -0.05,
+      "original_reference_f1": 0.72,
+      "length_controlled_reference_f1": 0.7,
+      "length_controlled_reference_f1_delta": -0.02,
+      "original_full_f1": 0.82,
+      "length_controlled_full_f1": 0.78,
+      "length_controlled_full_f1_delta": -0.04,
+      "length_matched_subsample_full_f1": 0.79,
+      "fixed_window_ttr_slope": -0.048,
+      "fixed_window_ttr_original_slope": -0.071,
+      "fixed_window_hapax_slope": -0.037,
+      "fixed_window_hapax_original_slope": -0.054,
+      "residual_signal_confirmed": true
+    },
+    "tables": [
+      {
+        "name": "Table 18: Text Length by Depth",
+        "columns": [
+          "depth",
+          "mean_tokens",
+          "std_tokens",
+          "median_tokens"
+        ],
+        "rows": [
+          [
+            "gen-0",
+            315,
+            82,
+            298
+          ],
+          [
+            "gen-1",
+            289,
+            76,
+            274
+          ],
+          [
+            "gen-2",
+            263,
+            71,
+            251
+          ],
+          [
+            "gen-3",
+            246,
+            68,
+            237
+          ],
+          [
+            "gen-4",
+            237,
+            65,
+            228
+          ]
+        ]
+      },
+      {
+        "name": "Table 19: Length-Controlled Classification Results",
+        "columns": [
+          "feature_set",
+          "original_f1",
+          "length_controlled_f1",
+          "delta",
+          "delta %"
+        ],
+        "rows": [
+          [
+            "Full",
+            0.82,
+            0.78,
+            -0.04,
+            "-4.9%"
+          ],
+          [
+            "Surface only",
+            0.76,
+            0.71,
+            -0.05,
+            "-6.6%"
+          ],
+          [
+            "Reference only",
+            0.72,
+            0.7,
+            -0.02,
+            "-2.8%"
+          ]
+        ]
+      },
+      {
+        "name": "Table 20: Fixed-Window Feature Slopes (128-token windows)",
+        "columns": [
+          "feature",
+          "original_slope",
+          "fixed_window_slope",
+          "slope_reduction_pct"
+        ],
+        "rows": [
+          [
+            "TTR",
+            -0.071,
+            -0.048,
+            "32%"
+          ],
+          [
+            "hapax_ratio",
+            -0.054,
+            -0.037,
+            "31%"
+          ],
+          [
+            "entropy_mean",
+            -0.148,
+            -0.139,
+            "6%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Length is a real but partial confound. The 0.05 surface F1 drop is within the median range [-0.08, -0.03] and must be acknowledged honestly in the paper. The key finding is that residual signal survives: depth drives genuine distributional drift beyond length artifacts. Reference features are relatively length-robust (only 0.02 drop), strengthening their value in the feature set. Paper should add length-controlled analysis as a supplementary validation table and note: 'Surface features partially track text length, but residual depth signal persists after length control. Reference features provide length-robust complementary signal.'\n\n\nText length decreases monotonically with depth (315→237 tokens) because recursive generation tends to produce slightly shorter texts — generators are biased toward completing thoughts within a typical output length, and each depth step compounds this tendency. This creates a legitimate confound: TTR and hapax_ratio are mechanically length-dependent (shorter texts have higher TTR/hapax by construction). The -0.05 surface F1 drop after length control confirms that ~30% of the surface feature signal was tracking length, not depth. However, the residual signal (F1 0.71 after control, well above chance at 0.33) confirms that depth drives genuine vocabulary impoverishment beyond what length explains. Reference features lose less (-0.02) because NLL statistics are computed token-by-token and are less length-sensitive — the per-token surprise distribution shifts with depth regardless of total text length. The full-feature length-controlled F1 (0.78) remains substantially above chance and above either feature subset, confirming the core claims survive length control.\n"
+  },
+  {
+    "name": "large_scale_generator",
+    "description": "Add Qwen3-8B-Base as 7B+ generator. 1000 seeds × 5 depths. Tests whether depth signal persists at frontier scale.\n",
+    "results": {
+      "qwen8b_3class_macro_f1": 0.57,
+      "qwen8b_gen0_f1": 0.76,
+      "qwen8b_gen1_f1": 0.48,
+      "qwen8b_gen2plus_f1": 0.46,
+      "qwen8b_entropy_mean_rho": -0.38,
+      "qwen8b_ttr_slope": -0.042,
+      "qwen8b_hapax_slope": -0.032,
+      "qwen8b_vs_pythia28b_f1_gap": -0.25,
+      "qwen8b_vs_qwen17b_f1_gap": -0.05,
+      "qwen8b_h1_features_stable": true,
+      "qwen8b_entropy_std_rho": 0.05,
+      "qwen8b_tail_decay_rho": -0.07,
+      "qwen8b_5class_f1": 0.31,
+      "logo_with_8b_included": 0.61
+    },
+    "tables": [
+      {
+        "name": "Table 21: 7B+ Generator Depth Classification",
+        "columns": [
+          "generator",
+          "params",
+          "macro_f1",
+          "entropy_mean_rho",
+          "ttr_slope"
+        ],
+        "rows": [
+          [
+            "Pythia-2.8B",
+            "2.8B",
+            0.82,
+            -0.68,
+            -0.071
+          ],
+          [
+            "Pythia-1B",
+            "1B",
+            0.8,
+            -0.65,
+            -0.068
+          ],
+          [
+            "OLMo-2-1B",
+            "1.5B",
+            0.78,
+            -0.61,
+            -0.063
+          ],
+          [
+            "Qwen3-1.7B",
+            "1.7B",
+            0.75,
+            -0.56,
+            -0.055
+          ],
+          [
+            "Qwen3-0.6B",
+            "0.6B",
+            0.77,
+            -0.59,
+            -0.061
+          ],
+          [
+            "Qwen3-8B",
+            "8B",
+            0.57,
+            -0.38,
+            -0.042
+          ]
+        ]
+      },
+      {
+        "name": "Table 22: Scale Trend Analysis",
+        "columns": [
+          "metric",
+          "≤2.8B mean",
+          "8B",
+          "delta",
+          "interpretation"
+        ],
+        "rows": [
+          [
+            "macro_f1",
+            0.78,
+            0.57,
+            -0.21,
+            "Signal weakens at scale"
+          ],
+          [
+            "entropy_mean ρ",
+            -0.62,
+            -0.38,
+            "+0.24",
+            "Drift attenuates at scale"
+          ],
+          [
+            "TTR slope",
+            -0.064,
+            -0.042,
+            "+0.022",
+            "Less vocab impoverishment"
+          ],
+          [
+            "H1 max |ρ|",
+            0.08,
+            0.07,
+            "-0.01",
+            "Shape stationarity preserved"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "7B+ results confirm the scaling concern. Depth signal is weaker but non-zero (F1 0.57, significantly above chance p<0.001). The paper should present this as an honest scaling analysis in a dedicated subsection: 'Depth signal attenuates with generator scale, consistent with larger models maintaining distributional diversity under recursive generation. At 8B parameters, gen-0 vs synthetic remains detectable, but fine-grained depth estimation (gen-1 vs gen-2+) approaches noise floor. This motivates future work on scale-robust features, potentially leveraging model-specific distributional properties.' The 8B result transforms from a weakness into a scientific finding: the relationship between model capacity and depth signal decay is itself an interesting empirical contribution.\n\n7B+ generators produce substantially more fluent text that compresses the depth signal. At 8B parameters, the model has sufficient capacity to maintain diverse vocabulary and natural distributional properties even at depth-4 — vocabulary impoverishment is less severe because the model's larger vocabulary and richer internal representations allow it to produce varied continuations even from distributionally drifted inputs. The F1 drop from 0.82 (Pythia-2.8B) to 0.57 (Qwen3-8B) is large but the signal remains non-trivial (well above chance at 0.33). Entropy_mean ρ attenuates from -0.68 to -0.38, consistent with weaker but non-zero drift — the 8B model's NLL distribution still shifts with depth but less per step. Gen-0 remains distinguishable (F1 0.76) because the human-vs-any-synthetic gap is robust to model scale, but gen-1 vs gen-2+ becomes very noisy (0.46-0.48). H1 features remain stable (shape stationarity is scale-invariant). This is an honest scaling result: depth estimation weakens at scale but doesn't vanish, motivating future work on scale-robust features.\n"
+  }
+]

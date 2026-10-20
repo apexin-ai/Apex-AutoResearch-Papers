@@ -1,0 +1,4 @@
+Remote path: autodl-5090:/root/gen-depth-fingerprint/data/features_all_models.csv
+Per-model files: features_pythia-2.8b.csv, features_pythia-1b.csv, features_olmo-2-1b.csv, features_qwen3-0.6b.csv, features_qwen3-1.7b.csv
+Columns: model_name, seed_id, depth, entropy_mean, entropy_std, entropy_min, entropy_max, tail_decay, ttr, hapax_ratio
+Total rows: 23032

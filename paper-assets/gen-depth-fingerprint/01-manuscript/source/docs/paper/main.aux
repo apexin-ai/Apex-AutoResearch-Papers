@@ -1,0 +1,2767 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{mapping_llm_science,monitoring_ai_review}
+\citation{dolma,fineweb}
+\citation{ccnet,dsir}
+\citation{curse_of_recursion,strong_model_collapse}
+\citation{detectgpt,fast_detectgpt,binoculars,ld_score}
+\citation{curious_decline,broken_telephone,markovian_chains}
+\citation{curse_of_recursion}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@LN{28}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{1}{1}{Introduction}{section.1}{}}
+\@LN{29}{0}
+\@LN{30}{0}
+\@LN{31}{0}
+\@LN{32}{0}
+\@LN{33}{0}
+\@LN{34}{0}
+\@LN{35}{0}
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN{38}{0}
+\@LN@col{2}
+\@LN{39}{0}
+\@LN{40}{0}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\@LN{69}{0}
+\@LN{70}{0}
+\@LN{71}{0}
+\@LN{72}{0}
+\@LN{73}{0}
+\@LN{74}{0}
+\@LN{75}{0}
+\@LN{76}{0}
+\@LN{77}{0}
+\@LN{78}{0}
+\@LN{79}{0}
+\citation{qlora}
+\citation{curious_decline,markovian_chains}
+\citation{detectgpt,fast_detectgpt,binoculars,dna_gpt}
+\citation{ghostbuster,ld_score,reliable_detection}
+\citation{diveye,xu_spectrum_detection}
+\citation{wu_survey_2025}
+\citation{semeval2024_task8}
+\citation{beyond_binary}
+\citation{two_birds}
+\citation{human_texts_outliers}
+\citation{gutierrez_ordinal_survey,coral_ordinal}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Feature trajectories across generation depth ($y$-axis: $z$-scored feature values). \textbf  {Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\rho | > 0.59$). \textbf  {Bottom row (stationary)}: entropy max and tail decay remain flat ($|\rho | < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (red for drifting, blue for stationary). This dichotomy defines the DDR.}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:ddr-trajectory}{{1}{2}{Feature trajectories across generation depth ($y$-axis: $z$-scored feature values). \textbf {Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\rho | > 0.59$). \textbf {Bottom row (stationary)}: entropy max and tail decay remain flat ($|\rho | < 0.07$). Colored lines: individual generators; diamonds: cross-generator mean (red for drifting, blue for stationary). This dichotomy defines the DDR}{figure.caption.1}{}}
+\@LN@col{1}
+\@LN{80}{1}
+\@LN{81}{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN{105}{1}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN{108}{1}
+\@LN{109}{1}
+\@LN@col{2}
+\@LN{110}{1}
+\@LN{111}{1}
+\@LN{112}{1}
+\@LN{113}{1}
+\@LN{114}{1}
+\@LN{115}{1}
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@LN{119}{1}
+\@LN{120}{1}
+\@LN{121}{1}
+\@LN{122}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{AI-generated text detection.}{2}{section*.3}\protected@file@percent }
+\@LN{123}{1}
+\@LN{124}{1}
+\@LN{125}{1}
+\@LN{126}{1}
+\@LN{127}{1}
+\@LN{128}{1}
+\@LN{129}{1}
+\@LN{130}{1}
+\@LN{131}{1}
+\@LN{132}{1}
+\@LN{133}{1}
+\@LN{134}{1}
+\@LN{135}{1}
+\@LN{136}{1}
+\@LN{137}{1}
+\@LN{138}{1}
+\citation{self_consuming_mad,curse_of_recursion,strong_model_collapse,dohmatob_tale_of_tails,schaeffer_collapse_position}
+\citation{broken_telephone}
+\citation{markovian_chains}
+\citation{attractor_cycles}
+\citation{curious_decline,writing_diversity}
+\citation{stamatatos_survey}
+\citation{dsir,ccnet}
+\citation{watermark_llm,synthid_text}
+\citation{chainwash}
+\citation{min_k_percent,koike_mia_detection}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Depth profiling pipeline. (a)~Human seeds are iteratively fed through generator $G$ to produce chains of increasing depth. (b)~Seven features extracted from NLL distributions group into three DDR zones: drifting (red), intermediate (purple), near-stationary (blue). (c)~LOGO evaluation holds out one generator for testing.}}{3}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:framework}{{2}{3}{Depth profiling pipeline. (a)~Human seeds are iteratively fed through generator $G$ to produce chains of increasing depth. (b)~Seven features extracted from NLL distributions group into three DDR zones: drifting (red), intermediate (purple), near-stationary (blue). (c)~LOGO evaluation holds out one generator for testing}{figure.caption.2}{}}
+\@LN@col{1}
+\@LN{139}{2}
+\@LN{140}{2}
+\@LN{141}{2}
+\@LN{142}{2}
+\@LN{143}{2}
+\@LN{144}{2}
+\@writefile{toc}{\contentsline {paragraph}{Model collapse and iterative generation.}{3}{section*.4}\protected@file@percent }
+\@LN{145}{2}
+\@LN{146}{2}
+\@LN{147}{2}
+\@LN{148}{2}
+\@LN{149}{2}
+\@LN{150}{2}
+\@LN{151}{2}
+\@LN{152}{2}
+\@LN{153}{2}
+\@LN{154}{2}
+\@LN{155}{2}
+\@LN{156}{2}
+\@LN{157}{2}
+\@LN{158}{2}
+\@LN{159}{2}
+\@LN{160}{2}
+\@LN{161}{2}
+\@LN{162}{2}
+\@LN{163}{2}
+\@writefile{toc}{\contentsline {paragraph}{Diversity, stylometry, and provenance.}{3}{section*.5}\protected@file@percent }
+\@LN{164}{2}
+\@LN{165}{2}
+\@LN@col{2}
+\@LN{166}{2}
+\@LN{167}{2}
+\@LN{168}{2}
+\@LN{169}{2}
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@LN{173}{2}
+\@LN{174}{2}
+\@LN{175}{2}
+\@LN{176}{2}
+\@LN{177}{2}
+\@LN{178}{2}
+\@LN{179}{2}
+\@LN{180}{2}
+\@LN{181}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@LN{182}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task Formulation}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:task}{{3.1}{3}{Task Formulation}{subsection.3.1}{}}
+\@LN{183}{2}
+\@LN{184}{2}
+\@LN{185}{2}
+\@LN{186}{2}
+\@LN{187}{2}
+\@LN{188}{2}
+\@LN{189}{2}
+\@LN{190}{2}
+\@LN{191}{2}
+\@LN{192}{2}
+\citation{pythia}
+\citation{olmo}
+\citation{qwen3}
+\citation{llama3}
+\citation{mistral7b}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Seven distributional features. ``Entropy'' features are per-token NLL under Pythia-410M (\S  \ref {sec:features}); surface features require no reference model. DDR analysis (\S  \ref {sec:results-differential}) reveals entropy mean, TTR, and hapax ratio drift with depth while entropy max, min, and tail decay remain near-stationary; entropy std is intermediate.}}{4}{table.caption.6}\protected@file@percent }
+\newlabel{tab:features}{{1}{4}{Seven distributional features. ``Entropy'' features are per-token NLL under Pythia-410M (\S \ref {sec:features}); surface features require no reference model. DDR analysis (\S \ref {sec:results-differential}) reveals entropy mean, TTR, and hapax ratio drift with depth while entropy max, min, and tail decay remain near-stationary; entropy std is intermediate}{table.caption.6}{}}
+\@LN{193}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Generation Chain Construction}{4}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:generation}{{3.2}{4}{Generation Chain Construction}{subsection.3.2}{}}
+\@LN{194}{3}
+\@LN{195}{3}
+\@LN{196}{3}
+\@LN{197}{3}
+\@LN{198}{3}
+\@LN{199}{3}
+\@LN{200}{3}
+\@LN{201}{3}
+\@LN{202}{3}
+\@LN{203}{3}
+\@LN{204}{3}
+\@LN{205}{3}
+\@LN{206}{3}
+\@LN{207}{3}
+\@LN{208}{3}
+\@LN{209}{3}
+\@LN{210}{3}
+\@LN{211}{3}
+\@LN{212}{3}
+\@LN{213}{3}
+\@LN{214}{3}
+\@LN{215}{3}
+\@LN{216}{3}
+\@LN{217}{3}
+\@LN{218}{3}
+\@LN{219}{3}
+\@LN{220}{3}
+\@LN{221}{3}
+\@LN{222}{3}
+\@LN{223}{3}
+\@LN{224}{3}
+\@LN{225}{3}
+\@LN@col{2}
+\@LN{226}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Feature Extraction}{4}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:features}{{3.3}{4}{Feature Extraction}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Terminology.}{4}{section*.7}\protected@file@percent }
+\@LN{227}{3}
+\@LN{228}{3}
+\@LN{229}{3}
+\@LN{230}{3}
+\@LN{231}{3}
+\@LN{232}{3}
+\@LN{233}{3}
+\@LN{234}{3}
+\@LN{235}{3}
+\@LN{236}{3}
+\@LN{237}{3}
+\@LN{238}{3}
+\@LN{239}{3}
+\@LN{240}{3}
+\@LN{241}{3}
+\@LN{242}{3}
+\@LN{243}{3}
+\@writefile{toc}{\contentsline {paragraph}{Reference-model features.}{4}{section*.8}\protected@file@percent }
+\@LN{244}{3}
+\@LN{245}{3}
+\@LN{246}{3}
+\@LN{247}{3}
+\@LN{248}{3}
+\@LN{249}{3}
+\@LN{250}{3}
+\@LN{251}{3}
+\@LN{252}{3}
+\@LN{253}{3}
+\@LN{254}{3}
+\@LN{255}{3}
+\@LN{256}{3}
+\@LN{257}{3}
+\@LN{258}{3}
+\@writefile{toc}{\contentsline {paragraph}{Surface features.}{4}{section*.9}\protected@file@percent }
+\@LN{259}{3}
+\@LN{260}{3}
+\@LN{261}{3}
+\@LN{262}{3}
+\@writefile{toc}{\contentsline {paragraph}{Feature complementarity.}{4}{section*.10}\protected@file@percent }
+\@LN{263}{3}
+\@LN{264}{3}
+\@LN{265}{3}
+\@LN{266}{3}
+\@LN{267}{3}
+\@LN{268}{3}
+\@LN{269}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Evaluation Protocol}{4}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:evaluation}{{3.4}{4}{Evaluation Protocol}{subsection.3.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-validation.}{4}{section*.11}\protected@file@percent }
+\@LN{270}{3}
+\@LN{271}{3}
+\@LN{272}{3}
+\@LN{273}{3}
+\@LN{274}{3}
+\citation{xgboost}
+\citation{coral_ordinal}
+\citation{corn_ordinal}
+\citation{frank_hall_ordinal}
+\citation{fast_detectgpt}
+\citation{binoculars}
+\citation{ld_score}
+\@LN@col{1}
+\@LN{275}{4}
+\@LN{276}{4}
+\@LN{277}{4}
+\@LN{278}{4}
+\@LN{279}{4}
+\@writefile{toc}{\contentsline {paragraph}{Classifier.}{5}{section*.12}\protected@file@percent }
+\@LN{280}{4}
+\@LN{281}{4}
+\@LN{282}{4}
+\@LN{283}{4}
+\@LN{284}{4}
+\@LN{285}{4}
+\@LN{286}{4}
+\@LN{287}{4}
+\@LN{288}{4}
+\@LN{289}{4}
+\@LN{290}{4}
+\@writefile{toc}{\contentsline {paragraph}{Metrics and statistical testing.}{5}{section*.13}\protected@file@percent }
+\@LN{291}{4}
+\@LN{292}{4}
+\@LN{293}{4}
+\@LN{294}{4}
+\@LN{295}{4}
+\@LN{296}{4}
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{5}{section*.14}\protected@file@percent }
+\@LN{297}{4}
+\@LN{298}{4}
+\@LN{299}{4}
+\@LN{300}{4}
+\@LN{301}{4}
+\@LN{302}{4}
+\@LN{303}{4}
+\@LN{304}{4}
+\@writefile{toc}{\contentsline {paragraph}{Length confound control.}{5}{section*.15}\protected@file@percent }
+\@LN{305}{4}
+\@LN{306}{4}
+\@LN{307}{4}
+\@LN{308}{4}
+\@LN{309}{4}
+\@LN{310}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{5}{section.4}\protected@file@percent }
+\newlabel{sec:results}{{4}{5}{Results}{section.4}{}}
+\@LN{311}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Depth Classification Performance}{5}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:results-classification}{{4.1}{5}{Depth Classification Performance}{subsection.4.1}{}}
+\@LN{312}{4}
+\@LN{313}{4}
+\@LN{314}{4}
+\@LN{315}{4}
+\@LN{316}{4}
+\@LN{317}{4}
+\@LN{318}{4}
+\@LN{319}{4}
+\@LN{320}{4}
+\@LN{321}{4}
+\@LN{322}{4}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Cross-generator $8{\times }8$ transfer matrix (binary F1, gen-1 vs.\ gen-2+). Mean cross-generator F1\,=\,0.810 [95\% CI: 0.796, 0.822]; uniformly high off-diagonal values confirm depth signal transfers across five families without calibration.}}{5}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:transfer-heatmap}{{3}{5}{Cross-generator $8{\times }8$ transfer matrix (binary F1, gen-1 vs.\ gen-2+). Mean cross-generator F1\,=\,0.810 [95\% CI: 0.796, 0.822]; uniformly high off-diagonal values confirm depth signal transfers across five families without calibration}{figure.caption.16}{}}
+\@LN{323}{4}
+\@LN{324}{4}
+\@writefile{toc}{\contentsline {paragraph}{Cross-model generalization.}{5}{section*.17}\protected@file@percent }
+\@LN{325}{4}
+\@LN{326}{4}
+\@LN{327}{4}
+\@LN{328}{4}
+\@LN{329}{4}
+\@LN{330}{4}
+\@LN{331}{4}
+\@LN{332}{4}
+\@LN{333}{4}
+\@LN{334}{4}
+\@LN{335}{4}
+\@LN{336}{4}
+\@LN{337}{4}
+\@LN{338}{4}
+\@LN{339}{4}
+\@LN{340}{4}
+\@LN{341}{4}
+\@LN{342}{4}
+\@LN{343}{4}
+\@writefile{toc}{\contentsline {paragraph}{Confound controls.}{5}{section*.18}\protected@file@percent }
+\@LN{344}{4}
+\@LN{345}{4}
+\@LN{346}{4}
+\@LN{347}{4}
+\@LN{348}{4}
+\@LN{349}{4}
+\citation{markovian_chains}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces 8-generator LOGO macro-F1 (bootstrap 95\% CIs, $n$\,=\,1{,}000). Binary F1 excludes gen-0. $^{\dagger }$3-class F1 has upward bias from shared gen-0 seeds; independent-seed controls confirm the signal (F1\,=\,0.680; Appendix~\ref {app:seed-control}).}}{6}{table.caption.20}\protected@file@percent }
+\newlabel{tab:logo-results}{{2}{6}{8-generator LOGO macro-F1 (bootstrap 95\% CIs, $n$\,=\,1{,}000). Binary F1 excludes gen-0. $^{\dagger }$3-class F1 has upward bias from shared gen-0 seeds; independent-seed controls confirm the signal (F1\,=\,0.680; Appendix~\ref {app:seed-control})}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {paragraph}{Error analysis.}{6}{section*.19}\protected@file@percent }
+\@LN{350}{5}
+\@LN{351}{5}
+\@LN{352}{5}
+\@LN{353}{5}
+\@LN{354}{5}
+\@LN{355}{5}
+\@LN{356}{5}
+\@LN{357}{5}
+\@LN{358}{5}
+\@LN{359}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Differential Depth Response}{6}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:results-differential}{{4.2}{6}{Differential Depth Response}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Formal definition.}{6}{section*.21}\protected@file@percent }
+\@LN{360}{5}
+\@LN{361}{5}
+\@LN{362}{5}
+\@LN{363}{5}
+\@LN{364}{5}
+\@LN{365}{5}
+\@LN{366}{5}
+\@LN{367}{5}
+\@LN{368}{5}
+\@LN{369}{5}
+\@LN{370}{5}
+\@LN{371}{5}
+\@LN{372}{5}
+\@LN{373}{5}
+\@LN{374}{5}
+\@LN{375}{5}
+\@LN{376}{5}
+\@LN{377}{5}
+\@LN{378}{5}
+\@LN{379}{5}
+\@LN{380}{5}
+\@LN{381}{5}
+\@LN{382}{5}
+\@LN{383}{5}
+\@LN{384}{5}
+\@LN{385}{5}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Differential depth response (DDR). Drifting features (red; $|\rho | > 0.60$, effect size $d{=}0.74$--$1.05$) shift monotonically with generation depth; near-stationary features (blue; $d \leq 0.10$) are approximately preserved; entropy std (purple; $d{=}0.46$) is intermediate. Diamonds: cross-generator means; dots: per-generator values.}}{6}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:feature-drift}{{4}{6}{Differential depth response (DDR). Drifting features (red; $|\rho | > 0.60$, effect size $d{=}0.74$--$1.05$) shift monotonically with generation depth; near-stationary features (blue; $d \leq 0.10$) are approximately preserved; entropy std (purple; $d{=}0.46$) is intermediate. Diamonds: cross-generator means; dots: per-generator values}{figure.caption.22}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces LOGO binary F1 vs.\ inference cost (8-gen pooled). The 7-feature ensemble (one 410M model) matches multi-detector ensembles (1.4B total) at ${\sim }2.4\times $ lower cost. RTX 5090 timings.}}{6}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:baseline-ci}{{5}{6}{LOGO binary F1 vs.\ inference cost (8-gen pooled). The 7-feature ensemble (one 410M model) matches multi-detector ensembles (1.4B total) at ${\sim }2.4\times $ lower cost. RTX 5090 timings}{figure.caption.23}{}}
+\@LN{386}{5}
+\@LN{387}{5}
+\@LN{388}{5}
+\@LN{389}{5}
+\@LN{390}{5}
+\@LN{391}{5}
+\@LN{392}{5}
+\@writefile{toc}{\contentsline {paragraph}{Quantification.}{6}{section*.24}\protected@file@percent }
+\@LN{393}{5}
+\@LN{394}{5}
+\@LN{395}{5}
+\@LN{396}{5}
+\@LN{397}{5}
+\@LN{398}{5}
+\@LN{399}{5}
+\citation{curse_of_recursion,strong_model_collapse}
+\@LN@col{1}
+\@LN{400}{6}
+\@LN{401}{6}
+\@writefile{toc}{\contentsline {paragraph}{Validation.}{7}{section*.25}\protected@file@percent }
+\@LN{402}{6}
+\@LN{403}{6}
+\@LN{404}{6}
+\@LN{405}{6}
+\@LN{406}{6}
+\@LN{407}{6}
+\@LN{408}{6}
+\@LN{409}{6}
+\@LN{410}{6}
+\@writefile{toc}{\contentsline {paragraph}{Feature complementarity.}{7}{section*.26}\protected@file@percent }
+\@LN{411}{6}
+\@LN{412}{6}
+\@LN{413}{6}
+\@LN{414}{6}
+\@LN{415}{6}
+\@LN{416}{6}
+\@LN{417}{6}
+\@LN{418}{6}
+\@LN{419}{6}
+\@LN{420}{6}
+\@LN{421}{6}
+\@LN{422}{6}
+\@writefile{toc}{\contentsline {paragraph}{Cross-family reference models.}{7}{section*.27}\protected@file@percent }
+\@LN{423}{6}
+\@LN{424}{6}
+\@LN{425}{6}
+\@LN{426}{6}
+\@LN{427}{6}
+\@writefile{toc}{\contentsline {paragraph}{Temperature and prompt-type sensitivity.}{7}{section*.28}\protected@file@percent }
+\@LN{428}{6}
+\@LN{429}{6}
+\@LN{430}{6}
+\@LN{431}{6}
+\@LN{432}{6}
+\@LN{433}{6}
+\@LN{434}{6}
+\@LN{435}{6}
+\@LN{436}{6}
+\@LN{437}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Comparison with Detection Baselines}{7}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:results-baselines}{{4.3}{7}{Comparison with Detection Baselines}{subsection.4.3}{}}
+\@LN{438}{6}
+\@LN{439}{6}
+\@LN{440}{6}
+\@LN{441}{6}
+\@LN{442}{6}
+\@LN{443}{6}
+\@LN{444}{6}
+\@LN{445}{6}
+\@LN{446}{6}
+\@LN{447}{6}
+\@LN{448}{6}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Depth classification (8-gen LOGO, pooled). Binary F1 excludes gen-0. 7-feature: one 410M model; 4-det ensembles: two models, 1.4B. QLoRA (\S  \ref {sec:results-classification}) uses full token sequences (within-model 5-fold CV, not LOGO), serving as an information-asymmetric ceiling.}}{7}{table.caption.29}\protected@file@percent }
+\newlabel{tab:baselines}{{3}{7}{Depth classification (8-gen LOGO, pooled). Binary F1 excludes gen-0. 7-feature: one 410M model; 4-det ensembles: two models, 1.4B. QLoRA (\S \ref {sec:results-classification}) uses full token sequences (within-model 5-fold CV, not LOGO), serving as an information-asymmetric ceiling}{table.caption.29}{}}
+\@LN{449}{6}
+\@LN{450}{6}
+\@LN{451}{6}
+\@LN{452}{6}
+\@LN{453}{6}
+\@LN{454}{6}
+\@LN{455}{6}
+\@LN{456}{6}
+\@LN{457}{6}
+\@LN{458}{6}
+\@LN{459}{6}
+\@LN{460}{6}
+\@LN{461}{6}
+\@LN{462}{6}
+\@LN{463}{6}
+\@LN{464}{6}
+\@LN{465}{6}
+\@LN{466}{6}
+\@LN{467}{6}
+\@LN{468}{6}
+\@LN{469}{6}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{7}{Discussion}{section.5}{}}
+\@LN{470}{6}
+\@LN{471}{6}
+\@LN{472}{6}
+\@LN{473}{6}
+\@LN{474}{6}
+\@LN{475}{6}
+\@LN{476}{6}
+\@LN{477}{6}
+\@LN{478}{6}
+\@LN{479}{6}
+\@writefile{toc}{\contentsline {paragraph}{Relationship to model collapse.}{7}{section*.31}\protected@file@percent }
+\@LN{480}{6}
+\@LN{481}{6}
+\@LN{482}{6}
+\@LN{483}{6}
+\@LN{484}{6}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Feature convergence dynamics. (a)~Drifting features (red) and intermediate entropy std (purple): $|d| > 0.46$ by gen-2+. (b)~Near-stationary features (blue): $|d| < 0.25$ at all depths. Shape stability persists across chain lengths.}}{8}{figure.caption.30}\protected@file@percent }
+\newlabel{fig:convergence}{{6}{8}{Feature convergence dynamics. (a)~Drifting features (red) and intermediate entropy std (purple): $|d| > 0.46$ by gen-2+. (b)~Near-stationary features (blue): $|d| < 0.25$ at all depths. Shape stability persists across chain lengths}{figure.caption.30}{}}
+\@LN@col{1}
+\@LN{485}{7}
+\@LN{486}{7}
+\@LN{487}{7}
+\@LN{488}{7}
+\@LN{489}{7}
+\@writefile{toc}{\contentsline {paragraph}{Temperature sensitivity.}{8}{section*.32}\protected@file@percent }
+\@LN{490}{7}
+\@LN{491}{7}
+\@LN{492}{7}
+\@LN{493}{7}
+\@LN{494}{7}
+\@LN{495}{7}
+\@LN{496}{7}
+\@LN{497}{7}
+\@writefile{toc}{\contentsline {paragraph}{Error structure and scope.}{8}{section*.33}\protected@file@percent }
+\@LN{498}{7}
+\@LN{499}{7}
+\@LN{500}{7}
+\@LN{501}{7}
+\@LN{502}{7}
+\@LN{503}{7}
+\@LN{504}{7}
+\@LN{505}{7}
+\@LN{506}{7}
+\@LN{507}{7}
+\@LN{508}{7}
+\@LN{509}{7}
+\@LN{510}{7}
+\@LN{511}{7}
+\@LN{512}{7}
+\@LN{513}{7}
+\@LN{514}{7}
+\@LN{515}{7}
+\@LN{516}{7}
+\@LN{517}{7}
+\@LN@col{2}
+\@LN{518}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{8}{Conclusion}{section.6}{}}
+\@LN{519}{7}
+\@LN{520}{7}
+\@LN{521}{7}
+\@LN{522}{7}
+\@LN{523}{7}
+\@LN{524}{7}
+\@LN{525}{7}
+\@LN{526}{7}
+\@LN{527}{7}
+\@LN{528}{7}
+\@LN{529}{7}
+\@LN{530}{7}
+\newlabel{sec:limitations}{{6}{8}{Limitations}{section*.34}{}}
+\@LN{531}{7}
+\@LN{532}{7}
+\@LN{533}{7}
+\@LN{534}{7}
+\@LN{535}{7}
+\@LN{536}{7}
+\@LN{537}{7}
+\@LN{538}{7}
+\@LN{539}{7}
+\@LN{540}{7}
+\@LN{541}{7}
+\@LN{542}{7}
+\@LN{543}{7}
+\@LN{544}{7}
+\@LN{545}{7}
+\@LN{546}{7}
+\@LN{547}{7}
+\@LN{548}{7}
+\@LN{549}{7}
+\@LN{550}{7}
+\bibdata{references}
+\bibcite{self_consuming_mad}{{1}{2024}{{Alemohammad et~al.}}{{Alemohammad, Casco-Rodriguez, Luzi, Humayun, Babaei, LeJeune, Siahkoohi, and Baraniuk}}}
+\bibcite{chainwash}{{2}{2026}{{Ameen et~al.}}{{Ameen, Islam, Mahmud, and Hamid}}}
+\bibcite{fast_detectgpt}{{3}{2024}{{Bao et~al.}}{{Bao, Zhao, Teng, Yang, and Zhang}}}
+\bibcite{diveye}{{4}{2026}{{Basani and Chen}}{{}}}
+\bibcite{pythia}{{5}{2023}{{Biderman et~al.}}{{Biderman, Schoelkopf, Anthony, Bradley, O'Brien, Hallahan, Khan, Purohit, Prashanth, Raff, Skowron, Sutawika, and {van der Wal}}}}
+\bibcite{coral_ordinal}{{6}{2020}{{Cao et~al.}}{{Cao, Mirjalili, and Raschka}}}
+\bibcite{xgboost}{{7}{2016}{{Chen and Guestrin}}{{}}}
+\bibcite{beyond_binary}{{8}{2025}{{Cheng et~al.}}{{Cheng, Zhou, Jiang, Wang, and Li}}}
+\bibcite{cohen1988statistical}{{9}{1988}{{Cohen}}{{}}}
+\bibcite{synthid_text}{{10}{2024}{{Dathathri et~al.}}{{Dathathri, See, Ghaisas, Huang, McAdam, Welbl, Bachani, Kaskasoli, Stanforth, Matejovicova, Hayes, Vyas, Al~Merey, Brown-Cohen, Bunel, Balle, Cemgil, Ahmed, Stacpoole, Shumailov, Baetu, Gowal, Hassabis, and Kohli}}}
+\bibcite{qlora}{{11}{2023}{{Dettmers et~al.}}{{Dettmers, Pagnoni, Holtzman, and Zettlemoyer}}}
+\bibcite{strong_model_collapse}{{12}{2025}{{Dohmatob et~al.}}{{Dohmatob, Feng, Subramonian, and Kempe}}}
+\bibcite{dohmatob_tale_of_tails}{{13}{2024}{{Dohmatob et~al.}}{{Dohmatob, Feng, Yang, Charton, and Kempe}}}
+\bibcite{frank_hall_ordinal}{{14}{2001}{{Frank and Hall}}{{}}}
+\bibcite{markovian_chains}{{15}{2026}{{Geng et~al.}}{{Geng, Mohamed, Shang, Vazirgiannis, and Poibeau}}}
+\bibcite{llama3}{{16}{2024}{{Grattafiori et~al.}}{{Grattafiori, Dubey, Jauhri, Pandey, Kadian, Al-Dahle, Letman, Mathur, Schelten, Yang et~al.}}}
+\@LN@col{1}
+\@LN{551}{8}
+\newlabel{sec:ethics}{{6}{9}{Ethics Statement}{section*.35}{}}
+\@LN{552}{8}
+\@LN{553}{8}
+\@LN{554}{8}
+\@LN{555}{8}
+\@LN{556}{8}
+\@LN{557}{8}
+\@LN{558}{8}
+\@LN{559}{8}
+\@LN{560}{8}
+\@LN{561}{8}
+\@LN{562}{8}
+\@LN{563}{8}
+\@LN{564}{8}
+\@LN{565}{8}
+\@LN{566}{8}
+\@LN{567}{8}
+\@LN{568}{8}
+\@writefile{toc}{\contentsline {paragraph}{Licenses.}{9}{section*.36}\protected@file@percent }
+\@LN{569}{8}
+\@LN{570}{8}
+\@LN{571}{8}
+\@LN{572}{8}
+\@LN{573}{8}
+\@LN{574}{8}
+\@writefile{toc}{\contentsline {paragraph}{Compute budget.}{9}{section*.37}\protected@file@percent }
+\@LN{575}{8}
+\@LN{576}{8}
+\@LN{577}{8}
+\@writefile{toc}{\contentsline {paragraph}{Software.}{9}{section*.38}\protected@file@percent }
+\@LN{578}{8}
+\@LN{579}{8}
+\@LN{580}{8}
+\@LN{581}{8}
+\@LN{582}{8}
+\@LN{583}{8}
+\@LN{584}{8}
+\@LN{585}{8}
+\@LN{586}{8}
+\@LN{587}{8}
+\@LN{588}{8}
+\@LN{589}{8}
+\@LN{590}{8}
+\@LN{591}{8}
+\@LN{592}{8}
+\@LN{593}{8}
+\@LN{594}{8}
+\@LN{595}{8}
+\@LN{596}{8}
+\@LN{597}{8}
+\@LN{598}{8}
+\@LN@col{2}
+\@LN{599}{8}
+\@LN{600}{8}
+\@LN{601}{8}
+\@LN{602}{8}
+\@LN{603}{8}
+\@LN{604}{8}
+\@LN{605}{8}
+\@LN{606}{8}
+\@LN{607}{8}
+\@LN{608}{8}
+\@LN{609}{8}
+\@LN{610}{8}
+\@LN{611}{8}
+\@LN{612}{8}
+\@LN{613}{8}
+\@LN{614}{8}
+\@LN{615}{8}
+\@LN{616}{8}
+\@LN{617}{8}
+\@LN{618}{8}
+\@LN{619}{8}
+\@LN{620}{8}
+\@LN{621}{8}
+\@LN{622}{8}
+\@LN{623}{8}
+\@LN{624}{8}
+\@LN{625}{8}
+\@LN{626}{8}
+\@LN{627}{8}
+\@LN{628}{8}
+\@LN{629}{8}
+\@LN{630}{8}
+\@LN{631}{8}
+\@LN{632}{8}
+\@LN{633}{8}
+\@LN{634}{8}
+\@LN{635}{8}
+\@LN{636}{8}
+\@LN{637}{8}
+\@LN{638}{8}
+\@LN{639}{8}
+\@LN{640}{8}
+\@LN{641}{8}
+\@LN{642}{8}
+\@LN{643}{8}
+\@LN{644}{8}
+\@LN{645}{8}
+\@LN{646}{8}
+\@LN{647}{8}
+\@LN{648}{8}
+\@LN{649}{8}
+\@LN{650}{8}
+\@LN{651}{8}
+\@LN{652}{8}
+\@LN{653}{8}
+\@LN{654}{8}
+\bibcite{olmo}{{17}{2024}{{Groeneveld et~al.}}{{Groeneveld, Beltagy, Walsh, Bhagia, Kinney, Tafjord, Jha, Ivison, Magnusson, Wang, Arora, Atkinson, Authur, Chandu, Cohan, Dumas, Elazar, Gu, Hessel, Khot, Merrill, Morrison, Muennighoff, Naik, Nam, Peters, Pyatkin, Ravichander, Schwenk, Shah, Smith, Strubell, Subramani, Wortsman, Dasigi, Lambert, Richardson, Zettlemoyer, Dodge, Lo, Soldaini, Smith, and Hajishirzi}}}
+\bibcite{curious_decline}{{18}{2024}{{Guo et~al.}}{{Guo, Shang, Vazirgiannis, and Clavel}}}
+\bibcite{gutierrez_ordinal_survey}{{19}{2016}{{Guti{\'e}rrez et~al.}}{{Guti{\'e}rrez, P{\'e}rez-Ortiz, S{\'a}nchez-Monedero, Fern{\'a}ndez-Navarro, and Herv{\'a}s-Mart{\'i}nez}}}
+\bibcite{binoculars}{{20}{2024}{{Hans et~al.}}{{Hans, Schwarzschild, Cherepanova, Kazemi, Saha, Goldblum, Geiping, and Goldstein}}}
+\bibcite{mistral7b}{{21}{2023}{{Jiang et~al.}}{{Jiang, Sablayrolles, Mensch, Bamford, Chaplot, Casas, Bressand, Lengyel, Lample, Saulnier et~al.}}}
+\bibcite{watermark_llm}{{22}{2023}{{Kirchenbauer et~al.}}{{Kirchenbauer, Geiping, Wen, Katz, Miers, and Goldstein}}}
+\bibcite{koike_mia_detection}{{23}{2025}{{Koike et~al.}}{{Koike, Dugan, Kaneko, Callison-Burch, and Okazaki}}}
+\bibcite{lakens_equivalence}{{24}{2017}{{Lakens}}{{}}}
+\bibcite{monitoring_ai_review}{{25}{2024{a}}{{Liang et~al.}}{{Liang, Izzo, Zhang, Lepp, Cao, Zhao, Chen, Ye, Liu, Huang, McFarland, and Zou}}}
+\bibcite{mapping_llm_science}{{26}{2024{b}}{{Liang et~al.}}{{Liang, Zhang, Wu, Lepp, Ji, Zhao, Cao, Liu, He, Huang, Yang, Potts, Manning, and Zou}}}
+\bibcite{detectgpt}{{27}{2023}{{Mitchell et~al.}}{{Mitchell, Lee, Khazatsky, Manning, and Finn}}}
+\bibcite{broken_telephone}{{28}{2025}{{Mohamed et~al.}}{{Mohamed, Geng, Vazirgiannis, and Shang}}}
+\bibcite{ld_score}{{29}{2026}{{Narayanasamy et~al.}}{{Narayanasamy, Agrawal, Faber, and Alam}}}
+\bibcite{writing_diversity}{{30}{2024}{{Padmakumar and He}}{{}}}
+\bibcite{fineweb}{{31}{2024}{{Penedo et~al.}}{{Penedo, Kydl{\'\i }{\v {c}}ek, Ben~Allal, Lozhkov, Mitchell, Raffel, Von~Werra, and Wolf}}}
+\bibcite{qwen3}{{32}{2025}{{Qwen Team}}{{}}}
+\bibcite{two_birds}{{33}{2025}{{Rao et~al.}}{{Rao, Mohamed, Liu, and Liu}}}
+\bibcite{reliable_detection}{{34}{2025}{{Sadasivan et~al.}}{{Sadasivan, Kumar, Balasubramanian, Wang, and Feizi}}}
+\bibcite{schaeffer_collapse_position}{{35}{2025}{{Schaeffer et~al.}}{{Schaeffer, Kazdan, Arulandu, and Koyejo}}}
+\bibcite{min_k_percent}{{36}{2024}{{Shi et~al.}}{{Shi, Ajith, Xia, Huang, Liu, Blevins, Chen, and Zettlemoyer}}}
+\bibcite{corn_ordinal}{{37}{2023}{{Shi et~al.}}{{Shi, Cao, and Raschka}}}
+\@LN@col{1}
+\@LN{655}{9}
+\@LN{656}{9}
+\@LN{657}{9}
+\@LN{658}{9}
+\@LN{659}{9}
+\@LN{660}{9}
+\@LN{661}{9}
+\@LN{662}{9}
+\@LN{663}{9}
+\@LN{664}{9}
+\@LN{665}{9}
+\@LN{666}{9}
+\@LN{667}{9}
+\@LN{668}{9}
+\@LN{669}{9}
+\@LN{670}{9}
+\@LN{671}{9}
+\@LN{672}{9}
+\@LN{673}{9}
+\@LN{674}{9}
+\@LN{675}{9}
+\@LN{676}{9}
+\@LN{677}{9}
+\@LN{678}{9}
+\@LN{679}{9}
+\@LN{680}{9}
+\@LN{681}{9}
+\@LN{682}{9}
+\@LN{683}{9}
+\@LN{684}{9}
+\@LN{685}{9}
+\@LN{686}{9}
+\@LN{687}{9}
+\@LN{688}{9}
+\@LN{689}{9}
+\@LN{690}{9}
+\@LN{691}{9}
+\@LN{692}{9}
+\@LN{693}{9}
+\@LN{694}{9}
+\@LN{695}{9}
+\@LN{696}{9}
+\@LN{697}{9}
+\@LN{698}{9}
+\@LN{699}{9}
+\@LN{700}{9}
+\@LN{701}{9}
+\@LN{702}{9}
+\@LN{703}{9}
+\@LN{704}{9}
+\@LN{705}{9}
+\@LN{706}{9}
+\@LN{707}{9}
+\@LN{708}{9}
+\@LN{709}{9}
+\@LN{710}{9}
+\@LN{711}{9}
+\@LN{712}{9}
+\@LN@col{2}
+\@LN{713}{9}
+\@LN{714}{9}
+\@LN{715}{9}
+\@LN{716}{9}
+\@LN{717}{9}
+\@LN{718}{9}
+\@LN{719}{9}
+\@LN{720}{9}
+\@LN{721}{9}
+\@LN{722}{9}
+\@LN{723}{9}
+\@LN{724}{9}
+\@LN{725}{9}
+\@LN{726}{9}
+\@LN{727}{9}
+\@LN{728}{9}
+\@LN{729}{9}
+\@LN{730}{9}
+\@LN{731}{9}
+\@LN{732}{9}
+\@LN{733}{9}
+\@LN{734}{9}
+\@LN{735}{9}
+\@LN{736}{9}
+\@LN{737}{9}
+\@LN{738}{9}
+\@LN{739}{9}
+\@LN{740}{9}
+\@LN{741}{9}
+\@LN{742}{9}
+\@LN{743}{9}
+\@LN{744}{9}
+\@LN{745}{9}
+\@LN{746}{9}
+\@LN{747}{9}
+\@LN{748}{9}
+\@LN{749}{9}
+\@LN{750}{9}
+\@LN{751}{9}
+\@LN{752}{9}
+\@LN{753}{9}
+\@LN{754}{9}
+\@LN{755}{9}
+\@LN{756}{9}
+\@LN{757}{9}
+\@LN{758}{9}
+\@LN{759}{9}
+\@LN{760}{9}
+\@LN{761}{9}
+\@LN{762}{9}
+\@LN{763}{9}
+\@LN{764}{9}
+\@LN{765}{9}
+\@LN{766}{9}
+\@LN{767}{9}
+\bibcite{curse_of_recursion}{{38}{2024}{{Shumailov et~al.}}{{Shumailov, Shumaylov, Zhao, Papernot, Anderson, and Gal}}}
+\bibcite{dolma}{{39}{2024}{{Soldaini et~al.}}{{Soldaini, Kinney, Bhagia, Schwenk, Atkinson, Authur, Bogin, Chandu, Dumas, Elazar, Hofmann, Jha, Kumar, Lucy, Lyu, Lambert, Magnusson, Morrison, Muennighoff, Naik, Nam, Peters, Ravichander, Richardson, Shen, Strubell, Subramani, Tafjord, Walsh, Zettlemoyer, Smith, Hajishirzi, Beltagy, Groeneveld, Dodge, and Lo}}}
+\bibcite{stamatatos_survey}{{40}{2009}{{Stamatatos}}{{}}}
+\bibcite{ghostbuster}{{41}{2024}{{Verma et~al.}}{{Verma, Fleisig, Tomlin, and Klein}}}
+\bibcite{semeval2024_task8}{{42}{2024}{{Wang et~al.}}{{Wang, Mansurov, Ivanov, Su, Shelmanov, Tsvigun, Afzal, Mahmoud, Puccetti, Arnold, Whitehouse, Aji, Habash, Gurevych, and Nakov}}}
+\bibcite{attractor_cycles}{{43}{2025}{{Wang et~al.}}{{Wang, Li, Yan, Cheng, and Zhang}}}
+\bibcite{ccnet}{{44}{2020}{{Wenzek et~al.}}{{Wenzek, Lachaux, Conneau, Chaudhary, Guzm{\'a}n, Joulin, and Grave}}}
+\bibcite{wu_survey_2025}{{45}{2025}{{Wu et~al.}}{{Wu, Yang, Zhan, Yuan, Chao, and Wong}}}
+\bibcite{dsir}{{46}{2023}{{Xie et~al.}}{{Xie, Santurkar, Ma, and Liang}}}
+\bibcite{xu_spectrum_detection}{{47}{2024}{{Xu et~al.}}{{Xu, Wang, An, Liu, and Li}}}
+\bibcite{dna_gpt}{{48}{2024}{{Yang et~al.}}{{Yang, Cheng, Wu, Petzold, Wang, and Chen}}}
+\bibcite{human_texts_outliers}{{49}{2025}{{Zeng et~al.}}{{Zeng, Tang, Chen, Shen, Yu, Zhao, Chen, Cheng, and Xu}}}
+\@LN@col{1}
+\@LN{768}{10}
+\@LN{769}{10}
+\@LN{770}{10}
+\@LN{771}{10}
+\@LN{772}{10}
+\@LN{773}{10}
+\@LN{774}{10}
+\@LN{775}{10}
+\@LN{776}{10}
+\@LN{777}{10}
+\@LN{778}{10}
+\@LN{779}{10}
+\@LN{780}{10}
+\@LN{781}{10}
+\@LN{782}{10}
+\@LN{783}{10}
+\@LN{784}{10}
+\@LN{785}{10}
+\@LN{786}{10}
+\@LN{787}{10}
+\@LN{788}{10}
+\@LN{789}{10}
+\@LN{790}{10}
+\@LN{791}{10}
+\@LN{792}{10}
+\@LN{793}{10}
+\@LN{794}{10}
+\@LN{795}{10}
+\@LN{796}{10}
+\@LN{797}{10}
+\@LN{798}{10}
+\@LN{799}{10}
+\@LN{800}{10}
+\@LN{801}{10}
+\@LN{802}{10}
+\@LN{803}{10}
+\@LN{804}{10}
+\@LN{805}{10}
+\@LN{806}{10}
+\@LN{807}{10}
+\@LN{808}{10}
+\@LN{809}{10}
+\@LN{810}{10}
+\@LN{811}{10}
+\@LN{812}{10}
+\@LN{813}{10}
+\@LN{814}{10}
+\@LN{815}{10}
+\@LN{816}{10}
+\@LN{817}{10}
+\@LN{818}{10}
+\@LN{819}{10}
+\@LN{820}{10}
+\@LN{821}{10}
+\@LN{822}{10}
+\@LN{823}{10}
+\@LN{824}{10}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Per-generator sample counts}}{11}{table.caption.40}\protected@file@percent }
+\newlabel{tab:dataset-stats}{{4}{11}{Per-generator sample counts}{table.caption.40}{}}
+\@LN{825}{10}
+\@LN{826}{10}
+\@LN{827}{10}
+\@LN{828}{10}
+\@LN{829}{10}
+\@LN{830}{10}
+\@LN{831}{10}
+\@LN{832}{10}
+\@LN{833}{10}
+\@LN{834}{10}
+\@LN{835}{10}
+\@LN{836}{10}
+\@LN{837}{10}
+\@LN{838}{10}
+\@LN{839}{10}
+\@LN{840}{10}
+\@LN{841}{10}
+\@LN{842}{10}
+\@LN{843}{10}
+\@LN{844}{10}
+\@LN{845}{10}
+\@LN{846}{10}
+\@LN{847}{10}
+\@LN{848}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {a}Dataset Statistics}{11}{appendix.A}\protected@file@percent }
+\newlabel{app:dataset-stats}{{a}{11}{Dataset Statistics}{appendix.A}{}}
+\@LN{849}{10}
+\@LN{850}{10}
+\@LN{851}{10}
+\@LN{852}{10}
+\@LN{853}{10}
+\@LN{854}{10}
+\@LN{855}{10}
+\@LN{856}{10}
+\@LN{857}{10}
+\@LN{858}{10}
+\@LN@col{1}
+\@LN{859}{11}
+\@LN{860}{11}
+\@LN{861}{11}
+\@LN{862}{11}
+\@LN{863}{11}
+\@LN{864}{11}
+\@LN{865}{11}
+\@LN{866}{11}
+\@LN{867}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {b}Length Confound Analysis}{12}{appendix.B}\protected@file@percent }
+\newlabel{app:length}{{b}{12}{Length Confound Analysis}{appendix.B}{}}
+\@LN{868}{11}
+\@LN{869}{11}
+\@LN{870}{11}
+\@LN{871}{11}
+\@LN{872}{11}
+\@LN{873}{11}
+\@LN{874}{11}
+\@writefile{toc}{\contentsline {paragraph}{(a) Length--depth correlation.}{12}{section*.42}\protected@file@percent }
+\@LN{875}{11}
+\@LN{876}{11}
+\@LN{877}{11}
+\@LN{878}{11}
+\@LN{879}{11}
+\@writefile{toc}{\contentsline {paragraph}{(b) Length--feature correlations.}{12}{section*.43}\protected@file@percent }
+\@LN{880}{11}
+\@LN{881}{11}
+\@LN{882}{11}
+\@LN{883}{11}
+\@LN{884}{11}
+\@LN{885}{11}
+\@LN{886}{11}
+\@LN{887}{11}
+\@LN{888}{11}
+\@LN{889}{11}
+\@writefile{toc}{\contentsline {paragraph}{(c) Length-matched classification.}{12}{section*.44}\protected@file@percent }
+\@LN{890}{11}
+\@LN{891}{11}
+\@LN{892}{11}
+\@LN{893}{11}
+\@LN{894}{11}
+\@LN{895}{11}
+\@LN{896}{11}
+\@LN{897}{11}
+\@LN{898}{11}
+\@LN{899}{11}
+\@LN{900}{11}
+\@LN{901}{11}
+\@LN{902}{11}
+\@LN{903}{11}
+\@LN{904}{11}
+\@writefile{toc}{\contentsline {paragraph}{Conclusion.}{12}{section*.45}\protected@file@percent }
+\@LN{905}{11}
+\@LN{906}{11}
+\@LN@col{2}
+\@LN{907}{11}
+\@LN{908}{11}
+\@LN{909}{11}
+\@LN{910}{11}
+\@LN{911}{11}
+\@LN{912}{11}
+\@LN{913}{11}
+\@LN{914}{11}
+\@LN{915}{11}
+\@LN{916}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {c}Prompt Type Generalization}{12}{appendix.C}\protected@file@percent }
+\newlabel{app:prompt-type}{{c}{12}{Prompt Type Generalization}{appendix.C}{}}
+\@LN{917}{11}
+\@LN{918}{11}
+\@LN{919}{11}
+\@LN{920}{11}
+\@writefile{toc}{\contentsline {paragraph}{Within-prompt-type classification.}{12}{section*.46}\protected@file@percent }
+\@LN{921}{11}
+\@LN{922}{11}
+\@LN{923}{11}
+\@LN{924}{11}
+\@LN{925}{11}
+\@LN{926}{11}
+\@LN{927}{11}
+\@LN{928}{11}
+\@writefile{toc}{\contentsline {paragraph}{Cross-prompt-type transfer (LOPTO).}{12}{section*.47}\protected@file@percent }
+\@LN{929}{11}
+\@LN{930}{11}
+\@LN{931}{11}
+\@LN{932}{11}
+\@LN{933}{11}
+\@LN{934}{11}
+\@LN{935}{11}
+\@LN{936}{11}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Feature distributions by generation depth (violin plots, $N$\,=\,37{,}058). Drifting features (entropy mean, TTR, hapax ratio: $|\rho | > 0.60$) show clear location shifts and narrowing with increasing depth. Shape features (entropy max, tail decay: $|\rho | < 0.10$) remain approximately stationary. Quartile lines indicate median and interquartile range.}}{13}{figure.caption.41}\protected@file@percent }
+\newlabel{fig:violin}{{7}{13}{Feature distributions by generation depth (violin plots, $N$\,=\,37{,}058). Drifting features (entropy mean, TTR, hapax ratio: $|\rho | > 0.60$) show clear location shifts and narrowing with increasing depth. Shape features (entropy max, tail decay: $|\rho | < 0.10$) remain approximately stationary. Quartile lines indicate median and interquartile range}{figure.caption.41}{}}
+\citation{qlora}
+\@LN@col{1}
+\@LN{937}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {d}Finer-Grained Depth Classification}{14}{appendix.D}\protected@file@percent }
+\newlabel{app:finer-depth}{{d}{14}{Finer-Grained Depth Classification}{appendix.D}{}}
+\@LN{938}{13}
+\@LN{939}{13}
+\@LN{940}{13}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces 5-class LOGO evaluation. Each row holds out one generator for testing, training on the remaining five.}}{14}{table.caption.48}\protected@file@percent }
+\newlabel{tab:5class-logo}{{5}{14}{5-class LOGO evaluation. Each row holds out one generator for testing, training on the remaining five}{table.caption.48}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Per-class F1 averaged across all six LOGO folds.}}{14}{table.caption.49}\protected@file@percent }
+\newlabel{tab:5class-perclass}{{6}{14}{Per-class F1 averaged across all six LOGO folds}{table.caption.49}{}}
+\@writefile{toc}{\contentsline {paragraph}{Analysis.}{14}{section*.50}\protected@file@percent }
+\@LN{941}{13}
+\@LN{942}{13}
+\@LN{943}{13}
+\@LN{944}{13}
+\@LN{945}{13}
+\@LN{946}{13}
+\@LN{947}{13}
+\@LN{948}{13}
+\@LN{949}{13}
+\@LN{950}{13}
+\@LN{951}{13}
+\@LN{952}{13}
+\@LN{953}{13}
+\@LN{954}{13}
+\@LN{955}{13}
+\@LN{956}{13}
+\@LN{957}{13}
+\@LN{958}{13}
+\@LN{959}{13}
+\@LN{960}{13}
+\@LN{961}{13}
+\@LN{962}{13}
+\@LN{963}{13}
+\@LN{964}{13}
+\@LN{965}{13}
+\@LN{966}{13}
+\@LN{967}{13}
+\@LN{968}{13}
+\@writefile{toc}{\contentsline {paragraph}{Classifier comparison.}{14}{section*.51}\protected@file@percent }
+\@LN{969}{13}
+\@LN{970}{13}
+\@LN@col{2}
+\@LN{971}{13}
+\@LN{972}{13}
+\@LN{973}{13}
+\@LN{974}{13}
+\@LN{975}{13}
+\@LN{976}{13}
+\@LN{977}{13}
+\@LN{978}{13}
+\@LN{979}{13}
+\@LN{980}{13}
+\@LN{981}{13}
+\@LN{982}{13}
+\@LN{983}{13}
+\@LN{984}{13}
+\@LN{985}{13}
+\@LN{986}{13}
+\@LN{987}{13}
+\@LN{988}{13}
+\@LN{989}{13}
+\@LN{990}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {e}End-to-End Depth Classification (QLoRA)}{14}{appendix.E}\protected@file@percent }
+\newlabel{app:qlora}{{e}{14}{End-to-End Depth Classification (QLoRA)}{appendix.E}{}}
+\@LN{991}{13}
+\@LN{992}{13}
+\@LN{993}{13}
+\@LN{994}{13}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{14}{section*.52}\protected@file@percent }
+\@LN{995}{13}
+\@LN{996}{13}
+\@LN{997}{13}
+\@LN{998}{13}
+\@LN{999}{13}
+\@LN{1000}{13}
+\@LN{1001}{13}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces QLoRA end-to-end depth classification vs.\ XGBoost on handcrafted features, under 5-fold stratified CV (4-generator subset).}}{14}{table.caption.53}\protected@file@percent }
+\newlabel{tab:qlora}{{7}{14}{QLoRA end-to-end depth classification vs.\ XGBoost on handcrafted features, under 5-fold stratified CV (4-generator subset)}{table.caption.53}{}}
+\@writefile{toc}{\contentsline {paragraph}{Results.}{14}{section*.54}\protected@file@percent }
+\@LN{1002}{13}
+\@LN{1003}{13}
+\@LN{1004}{13}
+\@LN{1005}{13}
+\@LN{1006}{13}
+\@LN{1007}{13}
+\@LN{1008}{13}
+\@LN@col{1}
+\@LN{1009}{14}
+\@LN{1010}{14}
+\@LN{1011}{14}
+\@writefile{toc}{\contentsline {paragraph}{Hyperparameter robustness.}{15}{section*.55}\protected@file@percent }
+\@LN{1012}{14}
+\@LN{1013}{14}
+\@LN{1014}{14}
+\@LN{1015}{14}
+\@LN{1016}{14}
+\@LN{1017}{14}
+\@writefile{toc}{\contentsline {paragraph}{Implications.}{15}{section*.56}\protected@file@percent }
+\@LN{1018}{14}
+\@LN{1019}{14}
+\@LN{1020}{14}
+\@LN{1021}{14}
+\@LN{1022}{14}
+\@LN{1023}{14}
+\@LN{1024}{14}
+\@LN{1025}{14}
+\@LN{1026}{14}
+\@LN{1027}{14}
+\@LN{1028}{14}
+\@LN{1029}{14}
+\@LN{1030}{14}
+\@LN{1031}{14}
+\@LN{1032}{14}
+\@LN{1033}{14}
+\@LN{1034}{14}
+\@LN{1035}{14}
+\@LN{1036}{14}
+\@LN{1037}{14}
+\@LN{1038}{14}
+\@LN{1039}{14}
+\@LN{1040}{14}
+\@LN{1041}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {f}Leave-One-Feature-Out Analysis}{15}{appendix.F}\protected@file@percent }
+\newlabel{app:lofo}{{f}{15}{Leave-One-Feature-Out Analysis}{appendix.F}{}}
+\@LN{1042}{14}
+\@LN{1043}{14}
+\@LN{1044}{14}
+\@LN{1045}{14}
+\@LN{1046}{14}
+\@LN{1047}{14}
+\@writefile{toc}{\contentsline {paragraph}{Analysis.}{15}{section*.58}\protected@file@percent }
+\@LN{1048}{14}
+\@LN{1049}{14}
+\@LN{1050}{14}
+\@LN{1051}{14}
+\@LN{1052}{14}
+\@LN{1053}{14}
+\@LN{1054}{14}
+\@LN{1055}{14}
+\@LN{1056}{14}
+\@LN{1057}{14}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Leave-one-feature-out ablation (6-gen LOGO). Each row drops one feature and re-evaluates with the LOGO protocol. Sorted by impact magnitude.}}{15}{table.caption.57}\protected@file@percent }
+\newlabel{tab:lofo}{{8}{15}{Leave-one-feature-out ablation (6-gen LOGO). Each row drops one feature and re-evaluates with the LOGO protocol. Sorted by impact magnitude}{table.caption.57}{}}
+\@LN{1058}{14}
+\@LN{1059}{14}
+\@LN{1060}{14}
+\@LN{1061}{14}
+\@LN{1062}{14}
+\@LN{1063}{14}
+\@LN{1064}{14}
+\@LN{1065}{14}
+\@LN{1066}{14}
+\@LN{1067}{14}
+\@LN{1068}{14}
+\@writefile{toc}{\contentsline {paragraph}{Minimal sufficient subset.}{15}{section*.59}\protected@file@percent }
+\@LN{1069}{14}
+\@LN{1070}{14}
+\@LN{1071}{14}
+\@LN{1072}{14}
+\@LN{1073}{14}
+\@LN{1074}{14}
+\@LN{1075}{14}
+\@LN{1076}{14}
+\@LN{1077}{14}
+\@LN{1078}{14}
+\@LN{1079}{14}
+\@LN{1080}{14}
+\@LN{1081}{14}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Leave-one-feature-out importance on the full 8-generator set (37,058 samples). Ranking is consistent with the 6-generator subset (Table~\ref {tab:lofo}).}}{15}{table.caption.60}\protected@file@percent }
+\newlabel{tab:lofo-8gen}{{9}{15}{Leave-one-feature-out importance on the full 8-generator set (37,058 samples). Ranking is consistent with the 6-generator subset (Table~\ref {tab:lofo})}{table.caption.60}{}}
+\citation{coral_ordinal}
+\citation{frank_hall_ordinal}
+\@LN@col{1}
+\@LN{1082}{15}
+\@writefile{toc}{\contentsline {subsection}{\numberline {f.1}Candidate Feature Screening}{16}{subsection.F.1}\protected@file@percent }
+\newlabel{app:feature-candidate}{{f.1}{16}{Candidate Feature Screening}{subsection.F.1}{}}
+\@LN{1083}{15}
+\@LN{1084}{15}
+\@LN{1085}{15}
+\@LN{1086}{15}
+\@LN{1087}{15}
+\@LN{1088}{15}
+\@LN{1089}{15}
+\@LN{1090}{15}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Candidate feature screening. All six candidates fall in the drifting DDR zone and correlate strongly ($|r| > 0.65$) with existing features. Adding any combination to the baseline degrades or leaves unchanged LOGO 3-class F1; LOFO $\Delta > 0$ indicates that removing the candidate \emph  {improves} classification.}}{16}{table.caption.61}\protected@file@percent }
+\newlabel{tab:candidate-features}{{10}{16}{Candidate feature screening. All six candidates fall in the drifting DDR zone and correlate strongly ($|r| > 0.65$) with existing features. Adding any combination to the baseline degrades or leaves unchanged LOGO 3-class F1; LOFO $\Delta > 0$ indicates that removing the candidate \emph {improves} classification}{table.caption.61}{}}
+\@LN{1091}{15}
+\@LN{1092}{15}
+\@LN{1093}{15}
+\@LN{1094}{15}
+\@LN{1095}{15}
+\@LN{1096}{15}
+\@LN{1097}{15}
+\@LN{1098}{15}
+\@LN{1099}{15}
+\@LN{1100}{15}
+\@LN{1101}{15}
+\@LN{1102}{15}
+\@LN{1103}{15}
+\@LN{1104}{15}
+\@LN{1105}{15}
+\@LN{1106}{15}
+\@LN{1107}{15}
+\@LN{1108}{15}
+\@LN{1109}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {g}Confusion Matrix}{16}{appendix.G}\protected@file@percent }
+\newlabel{app:confusion}{{g}{16}{Confusion Matrix}{appendix.G}{}}
+\@LN{1110}{15}
+\@LN{1111}{15}
+\@LN{1112}{15}
+\@LN{1113}{15}
+\@LN{1114}{15}
+\@LN{1115}{15}
+\@LN@col{2}
+\@LN{1116}{15}
+\@LN{1117}{15}
+\@LN{1118}{15}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Aggregated 3-class confusion matrix from 6-generator LOGO evaluation ($N=27{,}529$). Each cell shows count and row-normalized percentage. Gen-0 is near-perfectly identified. Gen-1 errors are asymmetric: misclassification as gen-2+ (18.8\%) is 3$\times $ more frequent than as gen-0 (6.2\%). Gen-1 text already carries detectable recursive distortion.}}{16}{table.caption.62}\protected@file@percent }
+\newlabel{tab:confusion}{{11}{16}{Aggregated 3-class confusion matrix from 6-generator LOGO evaluation ($N=27{,}529$). Each cell shows count and row-normalized percentage. Gen-0 is near-perfectly identified. Gen-1 errors are asymmetric: misclassification as gen-2+ (18.8\%) is 3$\times $ more frequent than as gen-0 (6.2\%). Gen-1 text already carries detectable recursive distortion}{table.caption.62}{}}
+\@LN{1119}{15}
+\@LN{1120}{15}
+\@LN{1121}{15}
+\@LN{1122}{15}
+\@LN{1123}{15}
+\@LN{1124}{15}
+\@LN{1125}{15}
+\@LN{1126}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {h}Classifier Sensitivity}{16}{appendix.H}\protected@file@percent }
+\newlabel{app:classifier}{{h}{16}{Classifier Sensitivity}{appendix.H}{}}
+\@LN{1127}{15}
+\@LN{1128}{15}
+\@LN{1129}{15}
+\@LN{1130}{15}
+\@LN{1131}{15}
+\@LN{1132}{15}
+\@LN{1133}{15}
+\@LN{1134}{15}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces LOGO macro-F1 across three classifiers. Each column shows the held-out generator F1. (6-generator LOGO; 3-class.)}}{16}{table.caption.63}\protected@file@percent }
+\newlabel{tab:alt-classifier}{{12}{16}{LOGO macro-F1 across three classifiers. Each column shows the held-out generator F1. (6-generator LOGO; 3-class.)}{table.caption.63}{}}
+\@LN{1135}{15}
+\@LN{1136}{15}
+\@LN{1137}{15}
+\@LN{1138}{15}
+\@LN{1139}{15}
+\@LN{1140}{15}
+\@LN{1141}{15}
+\@LN{1142}{15}
+\@LN{1143}{15}
+\@LN{1144}{15}
+\@LN{1145}{15}
+\@LN@col{1}
+\@LN{1146}{16}
+\@LN{1147}{16}
+\@writefile{toc}{\contentsline {paragraph}{XGBoost hyperparameter sensitivity.}{17}{section*.64}\protected@file@percent }
+\@LN{1148}{16}
+\@LN{1149}{16}
+\@LN{1150}{16}
+\@LN{1151}{16}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces XGBoost \texttt  {max\_depth} sensitivity (8-gen LOGO). 3-class F1 varies by only 2.0\,pp; binary F1 (gen-1 vs.\ gen-2+) is effectively invariant ($\leq $0.1\,pp).}}{17}{table.caption.65}\protected@file@percent }
+\newlabel{tab:xgb-sensitivity}{{13}{17}{XGBoost \texttt {max\_depth} sensitivity (8-gen LOGO). 3-class F1 varies by only 2.0\,pp; binary F1 (gen-1 vs.\ gen-2+) is effectively invariant ($\leq $0.1\,pp)}{table.caption.65}{}}
+\@LN{1152}{16}
+\@LN{1153}{16}
+\@LN{1154}{16}
+\@LN{1155}{16}
+\@LN{1156}{16}
+\@LN{1157}{16}
+\@LN{1158}{16}
+\@LN{1159}{16}
+\newlabel{app:sampling-sensitivity}{{h}{17}{Sampling Sensitivity Analysis}{section*.67}{}}
+\@LN{1160}{16}
+\@LN{1161}{16}
+\@LN{1162}{16}
+\@LN{1163}{16}
+\@LN{1164}{16}
+\@LN{1165}{16}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Depth classification under varying temperature (fixed top-$p$\,=\,0.9). Binary: gen-1 vs.\ gen-2+. LOGO evaluation; 95\% bootstrap CIs.$^{\ast }$$^{\dagger }$}}{17}{table.caption.68}\protected@file@percent }
+\newlabel{tab:sampling-ablation}{{14}{17}{Depth classification under varying temperature (fixed top-$p$\,=\,0.9). Binary: gen-1 vs.\ gen-2+. LOGO evaluation; 95\% bootstrap CIs.$^{\ast }$$^{\dagger }$}{table.caption.68}{}}
+\@LN{1166}{16}
+\@LN{1167}{16}
+\@LN{1168}{16}
+\@LN{1169}{16}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces 3-class LOGO confusion matrix ($N$\,=\,27{,}529). (a)~Raw counts. (b)~Row-normalized recall percentages. Gen-0 achieves near-perfect classification; the primary confusion axis is gen-1 $\leftrightarrow $ gen-2+.}}{17}{figure.caption.66}\protected@file@percent }
+\newlabel{fig:confusion-heatmap}{{8}{17}{3-class LOGO confusion matrix ($N$\,=\,27{,}529). (a)~Raw counts. (b)~Row-normalized recall percentages. Gen-0 achieves near-perfect classification; the primary confusion axis is gen-1 $\leftrightarrow $ gen-2+}{figure.caption.66}{}}
+\@LN{1170}{16}
+\@LN{1171}{16}
+\@LN{1172}{16}
+\@LN{1173}{16}
+\@LN{1174}{16}
+\@LN{1175}{16}
+\@LN{1176}{16}
+\@LN{1177}{16}
+\@LN{1178}{16}
+\@LN{1179}{16}
+\@LN{1180}{16}
+\@LN{1181}{16}
+\@LN{1182}{16}
+\@LN{1183}{16}
+\@LN{1184}{16}
+\@LN{1185}{16}
+\@LN{1186}{16}
+\@LN{1187}{16}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Per-generator LOGO performance. (a)~Binary and 3-class F1, sorted by binary F1. Dashed lines: pool average. (b)~6-generator LOGO detail heatmap across model families.}}{18}{figure.caption.70}\protected@file@percent }
+\newlabel{fig:per-gen}{{9}{18}{Per-generator LOGO performance. (a)~Binary and 3-class F1, sorted by binary F1. Dashed lines: pool average. (b)~6-generator LOGO detail heatmap across model families}{figure.caption.70}{}}
+\@LN@col{1}
+\@LN{1188}{17}
+\@LN{1189}{17}
+\@LN{1190}{17}
+\@LN{1191}{17}
+\@LN{1192}{17}
+\@LN{1193}{17}
+\@LN{1194}{17}
+\@LN{1195}{17}
+\@LN{1196}{17}
+\@LN{1197}{17}
+\@LN{1198}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {i}Robustness to Text Perturbation}{18}{appendix.I}\protected@file@percent }
+\newlabel{app:human-edit}{{i}{18}{Robustness to Text Perturbation}{appendix.I}{}}
+\@LN{1199}{17}
+\@LN{1200}{17}
+\@LN{1201}{17}
+\@LN{1202}{17}
+\@LN{1203}{17}
+\@LN{1204}{17}
+\@LN{1205}{17}
+\@LN{1206}{17}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Robustness to random word replacement under 8-gen LOGO evaluation (binary: gen-1 vs.\ gen-2+). Bootstrap 95\% CIs on binary F1 ($n$\,=\,1000).}}{18}{table.caption.71}\protected@file@percent }
+\newlabel{tab:human-edit}{{15}{18}{Robustness to random word replacement under 8-gen LOGO evaluation (binary: gen-1 vs.\ gen-2+). Bootstrap 95\% CIs on binary F1 ($n$\,=\,1000)}{table.caption.71}{}}
+\@LN{1207}{17}
+\@LN@col{2}
+\@LN{1208}{17}
+\@LN{1209}{17}
+\@LN{1210}{17}
+\@LN{1211}{17}
+\@LN{1212}{17}
+\@LN{1213}{17}
+\@LN{1214}{17}
+\@LN{1215}{17}
+\@LN{1216}{17}
+\@LN{1217}{17}
+\@LN{1218}{17}
+\@LN{1219}{17}
+\@LN{1220}{17}
+\@LN{1221}{17}
+\@LN{1222}{17}
+\@writefile{toc}{\contentsline {paragraph}{Feature subset degradation.}{18}{section*.72}\protected@file@percent }
+\@LN{1223}{17}
+\@LN{1224}{17}
+\@LN{1225}{17}
+\@LN{1226}{17}
+\@LN{1227}{17}
+\@LN{1228}{17}
+\@LN{1229}{17}
+\@LN{1230}{17}
+\@LN{1231}{17}
+\@LN{1232}{17}
+\@LN{1233}{17}
+\@LN{1234}{17}
+\@LN{1235}{17}
+\@LN{1236}{17}
+\@LN{1237}{17}
+\@LN{1238}{17}
+\@LN@col{1}
+\@LN{1239}{18}
+\@LN{1240}{18}
+\@LN{1241}{18}
+\@LN{1242}{18}
+\@LN{1243}{18}
+\@LN{1244}{18}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Feature subset degradation under random word replacement (8-gen LOGO). Entropy-only: 5 reference-model features; 7-feature: full ensemble including lexical features.}}{19}{table.caption.73}\protected@file@percent }
+\newlabel{tab:feature-degrade}{{16}{19}{Feature subset degradation under random word replacement (8-gen LOGO). Entropy-only: 5 reference-model features; 7-feature: full ensemble including lexical features}{table.caption.73}{}}
+\@writefile{toc}{\contentsline {paragraph}{Baseline comparison.}{19}{section*.74}\protected@file@percent }
+\@LN{1245}{18}
+\@LN{1246}{18}
+\@LN{1247}{18}
+\@LN{1248}{18}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate. (Baseline scores use default XGBoost settings; trends are consistent with the unified configuration in Table~\ref {tab:baselines}.)}}{19}{table.caption.75}\protected@file@percent }
+\newlabel{tab:baseline-robustness}{{17}{19}{Baseline robustness under random word replacement (8-gen LOGO, binary F1). Bold indicates highest F1 at each perturbation rate. (Baseline scores use default XGBoost settings; trends are consistent with the unified configuration in Table~\ref {tab:baselines}.)}{table.caption.75}{}}
+\@LN{1249}{18}
+\@LN{1250}{18}
+\@LN{1251}{18}
+\@LN{1252}{18}
+\@LN{1253}{18}
+\@LN{1254}{18}
+\@LN{1255}{18}
+\@LN{1256}{18}
+\@LN{1257}{18}
+\@LN{1258}{18}
+\@LN{1259}{18}
+\@LN{1260}{18}
+\@LN{1261}{18}
+\@LN{1262}{18}
+\@LN{1263}{18}
+\@LN{1264}{18}
+\@LN{1265}{18}
+\@LN@col{2}
+\@writefile{toc}{\contentsline {paragraph}{LLM-simulated sentence regeneration.}{19}{section*.76}\protected@file@percent }
+\@LN{1266}{18}
+\@LN{1267}{18}
+\@LN{1268}{18}
+\@LN{1269}{18}
+\@LN{1270}{18}
+\@LN{1271}{18}
+\@LN{1272}{18}
+\@LN{1273}{18}
+\@LN{1274}{18}
+\@LN{1275}{18}
+\@LN{1276}{18}
+\@LN{1277}{18}
+\@LN{1278}{18}
+\@LN{1279}{18}
+\@LN{1280}{18}
+\@LN{1281}{18}
+\@LN{1282}{18}
+\@LN{1283}{18}
+\@LN{1284}{18}
+\@writefile{toc}{\contentsline {paragraph}{Seed complexity.}{19}{section*.77}\protected@file@percent }
+\@LN{1285}{18}
+\@LN{1286}{18}
+\@LN{1287}{18}
+\@LN{1288}{18}
+\@LN{1289}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {j}Cross-Domain Generalization}{19}{appendix.J}\protected@file@percent }
+\newlabel{app:domain}{{j}{19}{Cross-Domain Generalization}{appendix.J}{}}
+\@LN{1290}{18}
+\@LN{1291}{18}
+\@LN{1292}{18}
+\@LN{1293}{18}
+\@LN{1294}{18}
+\@LN{1295}{18}
+\@LN{1296}{18}
+\@LN{1297}{18}
+\@LN{1298}{18}
+\@LN{1299}{18}
+\@LN{1300}{18}
+\@LN{1301}{18}
+\@LN{1302}{18}
+\@LN{1303}{18}
+\@LN{1304}{18}
+\@LN{1305}{18}
+\@LN{1306}{18}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Cross-domain depth classification under LOGO evaluation (binary: gen-1 vs.\ gen-2+). Three generators $\times $ 200 seeds per domain. Bootstrap 95\% CIs ($n$\,=\,1000).}}{19}{table.caption.78}\protected@file@percent }
+\newlabel{tab:domain}{{18}{19}{Cross-domain depth classification under LOGO evaluation (binary: gen-1 vs.\ gen-2+). Three generators $\times $ 200 seeds per domain. Bootstrap 95\% CIs ($n$\,=\,1000)}{table.caption.78}{}}
+\@LN@col{1}
+\@LN{1307}{19}
+\@LN{1308}{19}
+\@LN{1309}{19}
+\@LN{1310}{19}
+\@LN{1311}{19}
+\@LN{1312}{19}
+\@LN{1313}{19}
+\@LN{1314}{19}
+\@LN{1315}{19}
+\@writefile{toc}{\contentsline {paragraph}{Domain $\times $ temperature interaction.}{20}{section*.79}\protected@file@percent }
+\@LN{1316}{19}
+\@LN{1317}{19}
+\@LN{1318}{19}
+\@LN{1319}{19}
+\@LN{1320}{19}
+\@LN{1321}{19}
+\@LN{1322}{19}
+\@LN{1323}{19}
+\@LN{1324}{19}
+\@LN{1325}{19}
+\@LN{1326}{19}
+\@LN{1327}{19}
+\@LN{1328}{19}
+\@LN{1329}{19}
+\@LN{1330}{19}
+\@LN{1331}{19}
+\@LN{1332}{19}
+\@LN{1333}{19}
+\@LN{1334}{19}
+\@writefile{toc}{\contentsline {paragraph}{3-class inversion as DDR evidence.}{20}{section*.80}\protected@file@percent }
+\@LN{1335}{19}
+\@LN{1336}{19}
+\@LN{1337}{19}
+\@LN{1338}{19}
+\@LN{1339}{19}
+\@LN{1340}{19}
+\@LN{1341}{19}
+\@LN{1342}{19}
+\@LN{1343}{19}
+\@LN{1344}{19}
+\@LN{1345}{19}
+\@LN{1346}{19}
+\@LN{1347}{19}
+\@LN{1348}{19}
+\@LN{1349}{19}
+\@LN{1350}{19}
+\@LN{1351}{19}
+\@LN{1352}{19}
+\@LN{1353}{19}
+\@LN@col{2}
+\@LN{1354}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {k}Instruction-Tuned Model Analysis}{20}{appendix.K}\protected@file@percent }
+\newlabel{app:instruct}{{k}{20}{Instruction-Tuned Model Analysis}{appendix.K}{}}
+\@LN{1355}{19}
+\@LN{1356}{19}
+\@LN{1357}{19}
+\@LN{1358}{19}
+\@LN{1359}{19}
+\@LN{1360}{19}
+\@LN{1361}{19}
+\@LN{1362}{19}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Depth classification: base vs.\ instruction-tuned models (within-model 5-fold CV). $\rho $: Spearman correlation of entropy mean with depth. Rev.: number of features (out of 7) whose $\rho $ reverses sign under instruction tuning.}}{20}{table.caption.82}\protected@file@percent }
+\newlabel{tab:instruct}{{19}{20}{Depth classification: base vs.\ instruction-tuned models (within-model 5-fold CV). $\rho $: Spearman correlation of entropy mean with depth. Rev.: number of features (out of 7) whose $\rho $ reverses sign under instruction tuning}{table.caption.82}{}}
+\@LN{1363}{19}
+\@LN{1364}{19}
+\@LN{1365}{19}
+\@LN{1366}{19}
+\@LN{1367}{19}
+\@LN{1368}{19}
+\@LN{1369}{19}
+\@LN{1370}{19}
+\@LN{1371}{19}
+\@LN{1372}{19}
+\@LN{1373}{19}
+\@LN{1374}{19}
+\@LN{1375}{19}
+\@LN{1376}{19}
+\@writefile{toc}{\contentsline {paragraph}{Retraining on instruction-tuned data.}{20}{section*.83}\protected@file@percent }
+\@LN{1377}{19}
+\@LN{1378}{19}
+\@LN{1379}{19}
+\@LN{1380}{19}
+\@LN{1381}{19}
+\@LN{1382}{19}
+\@LN{1383}{19}
+\@LN{1384}{19}
+\@LN{1385}{19}
+\@LN{1386}{19}
+\@LN{1387}{19}
+\@writefile{toc}{\contentsline {paragraph}{DDR structure under instruction tuning.}{20}{section*.85}\protected@file@percent }
+\@LN{1388}{19}
+\@LN{1389}{19}
+\@LN{1390}{19}
+\@LN{1391}{19}
+\@LN{1392}{19}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Classification recovery under instruction-tuned retraining (binary-only: gen-1 vs.\ gen-2+, gen-0 excluded from training and evaluation). Base$\rightarrow $Inst: base-trained classifier tested on instruct data. Note: Table~\ref {tab:instruct} reports higher instruct binary F1 (e.g., OLMo 0.813) because it uses 3-class training with binary evaluation, where gen-0 in training helps the classifier learn the feature space.}}{21}{table.caption.84}\protected@file@percent }
+\newlabel{tab:instruct-retrain}{{20}{21}{Classification recovery under instruction-tuned retraining (binary-only: gen-1 vs.\ gen-2+, gen-0 excluded from training and evaluation). Base$\rightarrow $Inst: base-trained classifier tested on instruct data. Note: Table~\ref {tab:instruct} reports higher instruct binary F1 (e.g., OLMo 0.813) because it uses 3-class training with binary evaluation, where gen-0 in training helps the classifier learn the feature space}{table.caption.84}{}}
+\@LN{1393}{20}
+\@LN{1394}{20}
+\@LN{1395}{20}
+\@LN{1396}{20}
+\@LN{1397}{20}
+\@LN{1398}{20}
+\@LN{1399}{20}
+\@LN{1400}{20}
+\@LN{1401}{20}
+\@LN{1402}{20}
+\@LN{1403}{20}
+\@LN{1404}{20}
+\@writefile{toc}{\contentsline {paragraph}{Reference model sensitivity.}{21}{section*.87}\protected@file@percent }
+\@LN{1405}{20}
+\@LN{1406}{20}
+\@LN{1407}{20}
+\@LN{1408}{20}
+\@LN{1409}{20}
+\@LN{1410}{20}
+\@LN{1411}{20}
+\@LN{1412}{20}
+\@LN{1413}{20}
+\@LN{1414}{20}
+\@LN{1415}{20}
+\@LN{1416}{20}
+\@LN{1417}{20}
+\@LN{1418}{20}
+\@LN{1419}{20}
+\@LN{1420}{20}
+\@LN{1421}{20}
+\@LN{1422}{20}
+\@LN{1423}{20}
+\@writefile{toc}{\contentsline {paragraph}{End-to-end instruct classification.}{21}{section*.88}\protected@file@percent }
+\@LN{1424}{20}
+\@LN{1425}{20}
+\@LN{1426}{20}
+\@LN{1427}{20}
+\@LN{1428}{20}
+\@LN{1429}{20}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces DDR partition under base vs.\ instruction-tuned models. (a)~Base models (silhouette\,=\,0.660): clear drifting/non-drifting separation. (b)~Instruction-tuned models (silhouette\,=\,0.372): all features compress toward zero, collapsing the partition; entropy max shifts from near-stationary to intermediate; formerly drifting features (hapax, TTR) lose most of their effect size. Bars show pooled $|d|$; markers show individual generators.}}{21}{figure.caption.86}\protected@file@percent }
+\newlabel{fig:instruct-ddr}{{10}{21}{DDR partition under base vs.\ instruction-tuned models. (a)~Base models (silhouette\,=\,0.660): clear drifting/non-drifting separation. (b)~Instruction-tuned models (silhouette\,=\,0.372): all features compress toward zero, collapsing the partition; entropy max shifts from near-stationary to intermediate; formerly drifting features (hapax, TTR) lose most of their effect size. Bars show pooled $|d|$; markers show individual generators}{figure.caption.86}{}}
+\@LN{1430}{20}
+\@LN{1431}{20}
+\@LN{1432}{20}
+\@LN{1433}{20}
+\@LN{1434}{20}
+\@LN{1435}{20}
+\@LN{1436}{20}
+\@LN{1437}{20}
+\@LN{1438}{20}
+\@LN{1439}{20}
+\@LN{1440}{20}
+\@LN{1441}{20}
+\@LN{1442}{20}
+\@LN{1443}{20}
+\@LN{1444}{20}
+\@writefile{toc}{\contentsline {section}{\numberline {l}Error Analysis of Binary Classification}{21}{appendix.L}\protected@file@percent }
+\newlabel{app:error-analysis}{{l}{21}{Error Analysis of Binary Classification}{appendix.L}{}}
+\@LN{1445}{20}
+\@LN{1446}{20}
+\@LN{1447}{20}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces End-to-end QLoRA vs.\ XGBoost on instruction-tuned data (within-model 5-fold CV, Qwen3-0.6B backbone). Base QLoRA rows shown for reference only; instruct sets ($N{\approx }4.4$--$5.0$K) are approximately twice the base sets ($N{\approx }2.3$K), so cross-condition comparison is confounded by training set size.}}{22}{table.caption.89}\protected@file@percent }
+\newlabel{tab:instruct-qlora}{{21}{22}{End-to-end QLoRA vs.\ XGBoost on instruction-tuned data (within-model 5-fold CV, Qwen3-0.6B backbone). Base QLoRA rows shown for reference only; instruct sets ($N{\approx }4.4$--$5.0$K) are approximately twice the base sets ($N{\approx }2.3$K), so cross-condition comparison is confounded by training set size}{table.caption.89}{}}
+\@writefile{toc}{\contentsline {paragraph}{Error asymmetry.}{22}{section*.90}\protected@file@percent }
+\@LN{1448}{21}
+\@LN{1449}{21}
+\@LN{1450}{21}
+\@LN{1451}{21}
+\@LN{1452}{21}
+\@LN{1453}{21}
+\@LN{1454}{21}
+\@LN{1455}{21}
+\@LN{1456}{21}
+\@LN{1457}{21}
+\@LN{1458}{21}
+\@LN{1459}{21}
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces Binary classification error analysis (gen-1 vs.\ gen-2+) under LOGO cross-validation. FP: gen-1 misclassified as gen-2+; FN: gen-2+ misclassified as gen-1. Errors are dominated by false negatives (86.2\%).}}{22}{table.caption.91}\protected@file@percent }
+\newlabel{tab:error-analysis}{{22}{22}{Binary classification error analysis (gen-1 vs.\ gen-2+) under LOGO cross-validation. FP: gen-1 misclassified as gen-2+; FN: gen-2+ misclassified as gen-1. Errors are dominated by false negatives (86.2\%)}{table.caption.91}{}}
+\@writefile{toc}{\contentsline {paragraph}{Per-depth error rates.}{22}{section*.92}\protected@file@percent }
+\@LN{1460}{21}
+\@LN{1461}{21}
+\@LN{1462}{21}
+\@LN{1463}{21}
+\@LN{1464}{21}
+\@LN{1465}{21}
+\@LN{1466}{21}
+\@LN{1467}{21}
+\@writefile{toc}{\contentsline {paragraph}{Feature-level explanation.}{22}{section*.94}\protected@file@percent }
+\@LN{1468}{21}
+\@LN{1469}{21}
+\@LN{1470}{21}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces Error rate by generation depth in binary classification. Depth-2 exhibits the highest misclassification rate (48.4\%); the gen-1$\to $gen-2 transition is the primary confusion boundary.}}{22}{table.caption.93}\protected@file@percent }
+\newlabel{tab:error-depth}{{23}{22}{Error rate by generation depth in binary classification. Depth-2 exhibits the highest misclassification rate (48.4\%); the gen-1$\to $gen-2 transition is the primary confusion boundary}{table.caption.93}{}}
+\@LN{1471}{21}
+\@LN{1472}{21}
+\@LN{1473}{21}
+\@LN{1474}{21}
+\@LN{1475}{21}
+\@LN{1476}{21}
+\@writefile{lot}{\contentsline {table}{\numberline {24}{\ignorespaces Feature comparison between correctly and incorrectly classified samples. Misclassified samples show substantially higher entropy and lexical diversity but no difference in shape features.}}{22}{table.caption.95}\protected@file@percent }
+\newlabel{tab:error-features}{{24}{22}{Feature comparison between correctly and incorrectly classified samples. Misclassified samples show substantially higher entropy and lexical diversity but no difference in shape features}{table.caption.95}{}}
+\@writefile{toc}{\contentsline {paragraph}{3-class confusion matrix.}{22}{section*.96}\protected@file@percent }
+\@LN{1477}{21}
+\@LN{1478}{21}
+\@LN{1479}{21}
+\@LN{1480}{21}
+\@LN{1481}{21}
+\@LN{1482}{21}
+\@writefile{lot}{\contentsline {table}{\numberline {25}{\ignorespaces Aggregated 3-class confusion matrix (\%) across 8-fold LOGO. Gen-0 is near-perfectly classified, while gen-2+ is frequently confused with gen-1.}}{22}{table.caption.97}\protected@file@percent }
+\newlabel{tab:confusion-3class}{{25}{22}{Aggregated 3-class confusion matrix (\%) across 8-fold LOGO. Gen-0 is near-perfectly classified, while gen-2+ is frequently confused with gen-1}{table.caption.97}{}}
+\@LN{1483}{21}
+\@writefile{toc}{\contentsline {section}{\numberline {m}Downstream Utility}{22}{appendix.M}\protected@file@percent }
+\newlabel{app:downstream}{{m}{22}{Downstream Utility}{appendix.M}{}}
+\@LN{1484}{21}
+\@LN{1485}{21}
+\@LN{1486}{21}
+\citation{lakens_equivalence}
+\@LN@col{1}
+\@LN{1487}{22}
+\@LN{1488}{22}
+\@writefile{lot}{\contentsline {table}{\numberline {26}{\ignorespaces Downstream fine-tuning perplexity (OLMo-2-0425-1B, mean $\pm $ std across 3 seeds). At equal sample count, random subsampling (2.367) outperforms depth-aware curation (depth 0--1: 2.387, binary-filtered: 2.389).}}{23}{table.caption.98}\protected@file@percent }
+\newlabel{tab:downstream}{{26}{23}{Downstream fine-tuning perplexity (OLMo-2-0425-1B, mean $\pm $ std across 3 seeds). At equal sample count, random subsampling (2.367) outperforms depth-aware curation (depth 0--1: 2.387, binary-filtered: 2.389)}{table.caption.98}{}}
+\@LN{1489}{22}
+\@LN{1490}{22}
+\@LN{1491}{22}
+\@LN{1492}{22}
+\@LN{1493}{22}
+\@LN{1494}{22}
+\@LN{1495}{22}
+\@LN{1496}{22}
+\@LN{1497}{22}
+\@LN{1498}{22}
+\@LN{1499}{22}
+\@LN{1500}{22}
+\@LN{1501}{22}
+\@writefile{toc}{\contentsline {paragraph}{Equivalence testing.}{23}{section*.99}\protected@file@percent }
+\@LN{1502}{22}
+\@LN{1503}{22}
+\@LN{1504}{22}
+\@LN{1505}{22}
+\@LN{1506}{22}
+\@LN{1507}{22}
+\@LN{1508}{22}
+\@LN{1509}{22}
+\@LN{1510}{22}
+\@LN{1511}{22}
+\@LN{1512}{22}
+\@LN{1513}{22}
+\@LN{1514}{22}
+\@LN{1515}{22}
+\@LN{1516}{22}
+\@LN{1517}{22}
+\@LN{1518}{22}
+\@LN{1519}{22}
+\@LN{1520}{22}
+\@LN{1521}{22}
+\@LN{1522}{22}
+\@LN{1523}{22}
+\@LN{1524}{22}
+\@LN{1525}{22}
+\@LN@col{2}
+\@LN{1526}{22}
+\@LN{1527}{22}
+\@LN{1528}{22}
+\@LN{1529}{22}
+\@LN{1530}{22}
+\@LN{1531}{22}
+\@LN{1532}{22}
+\@writefile{lot}{\contentsline {table}{\numberline {27}{\ignorespaces TOST equivalence testing across multiple margins. ``Equiv?'' indicates whether equivalence is established at $\alpha = 0.05$.}}{23}{table.caption.101}\protected@file@percent }
+\newlabel{tab:tost-margins}{{27}{23}{TOST equivalence testing across multiple margins. ``Equiv?'' indicates whether equivalence is established at $\alpha = 0.05$}{table.caption.101}{}}
+\@LN{1533}{22}
+\@LN{1534}{22}
+\@LN{1535}{22}
+\@LN{1536}{22}
+\@LN{1537}{22}
+\@LN{1538}{22}
+\@LN{1539}{22}
+\@LN{1540}{22}
+\@LN{1541}{22}
+\@LN{1542}{22}
+\@LN{1543}{22}
+\@LN{1544}{22}
+\@LN{1545}{22}
+\@LN{1546}{22}
+\@LN{1547}{22}
+\@LN{1548}{22}
+\@LN{1549}{22}
+\@LN{1550}{22}
+\@LN{1551}{22}
+\@LN{1552}{22}
+\@LN{1553}{22}
+\@LN{1554}{22}
+\@LN{1555}{22}
+\@LN{1556}{22}
+\@writefile{toc}{\contentsline {section}{\numberline {n}Cross-Model Chain Per-Class Detail}{23}{appendix.N}\protected@file@percent }
+\newlabel{app:cross-model-detail}{{n}{23}{Cross-Model Chain Per-Class Detail}{appendix.N}{}}
+\@LN{1557}{22}
+\@LN{1558}{22}
+\@LN{1559}{22}
+\@writefile{toc}{\contentsline {paragraph}{Variance decomposition.}{23}{section*.103}\protected@file@percent }
+\@LN{1560}{22}
+\@LN{1561}{22}
+\@LN{1562}{22}
+\@LN{1563}{22}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {28}{\ignorespaces Cross-model chain per-class performance (generator-level leave-one-out, $N$\,=\,2{,}964, $n_{\text  {generators}}$\,=\,5: Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B). Macro F1\,=\,0.831 under class balancing; under natural class distribution, macro F1\,=\,0.789. Binary F1 (gen-1 vs.\ gen-2+)\,=\,0.830 (95\% CI [.818, .841], case-level bootstrap, $n$\,=\,2{,}000). Cross-model chains avoid the gen-0 seed sharing issue present in single-generator LOGO.}}{24}{table.caption.102}\protected@file@percent }
+\newlabel{tab:cross-model-perclass}{{28}{24}{Cross-model chain per-class performance (generator-level leave-one-out, $N$\,=\,2{,}964, $n_{\text {generators}}$\,=\,5: Pythia-2.8B/1B, OLMo-2-1B, Qwen3-0.6B/1.7B). Macro F1\,=\,0.831 under class balancing; under natural class distribution, macro F1\,=\,0.789. Binary F1 (gen-1 vs.\ gen-2+)\,=\,0.830 (95\% CI [.818, .841], case-level bootstrap, $n$\,=\,2{,}000). Cross-model chains avoid the gen-0 seed sharing issue present in single-generator LOGO}{table.caption.102}{}}
+\@LN{1564}{23}
+\@LN{1565}{23}
+\@LN{1566}{23}
+\@LN{1567}{23}
+\@LN{1568}{23}
+\@LN{1569}{23}
+\@LN{1570}{23}
+\@LN{1571}{23}
+\@LN{1572}{23}
+\@LN{1573}{23}
+\@writefile{toc}{\contentsline {section}{\numberline {o}Feature Distribution Analysis}{24}{appendix.O}\protected@file@percent }
+\newlabel{app:feature-distributions}{{o}{24}{Feature Distribution Analysis}{appendix.O}{}}
+\@LN{1574}{23}
+\@LN{1575}{23}
+\@LN{1576}{23}
+\@LN{1577}{23}
+\@LN{1578}{23}
+\@LN{1579}{23}
+\@LN{1580}{23}
+\@LN{1581}{23}
+\@LN{1582}{23}
+\@LN{1583}{23}
+\@LN{1584}{23}
+\@LN{1585}{23}
+\@LN{1586}{23}
+\@LN{1587}{23}
+\@LN{1588}{23}
+\@LN{1589}{23}
+\@LN{1590}{23}
+\@LN{1591}{23}
+\@LN{1592}{23}
+\@LN{1593}{23}
+\@LN{1594}{23}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Per-feature depth trends. Bold line: pooled mean ($\pm $1.96\,SE shading) across all generators, colored by DDR zone (blue: drifting, wine: intermediate, amber: near-stationary). Thin traces: individual generators. Spearman $\rho $ and linear $R^2$ are annotated per panel.}}{24}{figure.caption.105}\protected@file@percent }
+\newlabel{fig:ddr-trends}{{11}{24}{Per-feature depth trends. Bold line: pooled mean ($\pm $1.96\,SE shading) across all generators, colored by DDR zone (blue: drifting, wine: intermediate, amber: near-stationary). Thin traces: individual generators. Spearman $\rho $ and linear $R^2$ are annotated per panel}{figure.caption.105}{}}
+\@LN{1595}{23}
+\@writefile{toc}{\contentsline {section}{\numberline {p}Cross-Temperature Transfer}{24}{appendix.P}\protected@file@percent }
+\newlabel{app:cross-temp}{{p}{24}{Cross-Temperature Transfer}{appendix.P}{}}
+\@LN{1596}{23}
+\@LN{1597}{23}
+\@LN{1598}{23}
+\@LN{1599}{23}
+\@LN{1600}{23}
+\@LN{1601}{23}
+\@LN{1602}{23}
+\@LN{1603}{23}
+\@LN{1604}{23}
+\@LN{1605}{23}
+\@LN{1606}{23}
+\@LN{1607}{23}
+\@LN{1608}{23}
+\@LN{1609}{23}
+\@LN{1610}{23}
+\@LN{1611}{23}
+\@LN{1612}{23}
+\@LN{1613}{23}
+\@LN{1614}{23}
+\@LN{1615}{23}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces UMAP 2D projection of the 7-feature space ($N$\,=\,7{,}500 stratified sample). (a) A gradient structure emerges, with deeper depths converging. (b) Gen-0 separates clearly; gen-1 and gen-2+ overlap, consistent with the high false-negative rate at the gen-1/gen-2+ boundary.}}{25}{figure.caption.107}\protected@file@percent }
+\newlabel{fig:umap}{{12}{25}{UMAP 2D projection of the 7-feature space ($N$\,=\,7{,}500 stratified sample). (a) A gradient structure emerges, with deeper depths converging. (b) Gen-0 separates clearly; gen-1 and gen-2+ overlap, consistent with the high false-negative rate at the gen-1/gen-2+ boundary}{figure.caption.107}{}}
+\@LN{1616}{24}
+\@LN{1617}{24}
+\@LN{1618}{24}
+\@LN{1619}{24}
+\@LN{1620}{24}
+\@LN{1621}{24}
+\@LN{1622}{24}
+\@LN{1623}{24}
+\@LN{1624}{24}
+\@LN{1625}{24}
+\@LN{1626}{24}
+\@LN{1627}{24}
+\@LN{1628}{24}
+\@LN{1629}{24}
+\@LN{1630}{24}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Cross-temperature transfer evaluation (6-gen LOGO). (a) Overall F1 by train$\rightarrow $test temperature condition. Matched conditions (0.7$\rightarrow $0.7, 1.0$\rightarrow $1.0) outperform cross-temperature transfer, with 0.7$\rightarrow $1.0 showing the largest degradation ($-6.6$\,pp in 3-class F1). (b) Per-generator 3-class F1 heatmap: Qwen3-1.7B shows dramatic degradation under cross-temperature conditions (0.418) while other generators remain stable. The temperature mismatch disproportionately affects the generator whose data was regenerated.}}{25}{figure.caption.108}\protected@file@percent }
+\newlabel{fig:cross-temp}{{13}{25}{Cross-temperature transfer evaluation (6-gen LOGO). (a) Overall F1 by train$\rightarrow $test temperature condition. Matched conditions (0.7$\rightarrow $0.7, 1.0$\rightarrow $1.0) outperform cross-temperature transfer, with 0.7$\rightarrow $1.0 showing the largest degradation ($-6.6$\,pp in 3-class F1). (b) Per-generator 3-class F1 heatmap: Qwen3-1.7B shows dramatic degradation under cross-temperature conditions (0.418) while other generators remain stable. The temperature mismatch disproportionately affects the generator whose data was regenerated}{figure.caption.108}{}}
+\@LN{1631}{24}
+\@LN{1632}{24}
+\@writefile{toc}{\contentsline {section}{\numberline {q}Feature Ablation}{25}{appendix.Q}\protected@file@percent }
+\newlabel{app:ablation-table}{{q}{25}{Feature Ablation}{appendix.Q}{}}
+\@LN{1633}{24}
+\@LN{1634}{24}
+\@LN{1635}{24}
+\@writefile{toc}{\contentsline {section}{\numberline {r}Feature Correlation Matrix}{25}{appendix.R}\protected@file@percent }
+\newlabel{sec:appendix-feature-correlation}{{r}{25}{Feature Correlation Matrix}{appendix.R}{}}
+\@LN{1636}{24}
+\@LN{1637}{24}
+\@LN{1638}{24}
+\@LN{1639}{24}
+\@LN{1640}{24}
+\@LN{1641}{24}
+\@LN{1642}{24}
+\@LN{1643}{24}
+\@LN{1644}{24}
+\@LN{1645}{24}
+\@LN{1646}{24}
+\@LN{1647}{24}
+\@LN{1648}{24}
+\@LN{1649}{24}
+\citation{lakens_equivalence}
+\citation{cohen1988statistical}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {29}{\ignorespaces Feature ablation (8-gen, 10-fold stratified CV, 3-class). Full $>$ surface (+8.5\,pp) and Full $>$ reference (+6.0\,pp) confirms complementarity.}}{26}{table.caption.109}\protected@file@percent }
+\newlabel{tab:ablation}{{29}{26}{Feature ablation (8-gen, 10-fold stratified CV, 3-class). Full $>$ surface (+8.5\,pp) and Full $>$ reference (+6.0\,pp) confirms complementarity}{table.caption.109}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {30}{\ignorespaces Pearson correlation matrix of the seven depth features ($N=27{,}529$).}}{26}{table.caption.110}\protected@file@percent }
+\newlabel{tab:feature-corr}{{30}{26}{Pearson correlation matrix of the seven depth features ($N=27{,}529$)}{table.caption.110}{}}
+\@LN{1650}{25}
+\@LN{1651}{25}
+\@LN{1652}{25}
+\@LN{1653}{25}
+\@LN{1654}{25}
+\@LN{1655}{25}
+\@writefile{toc}{\contentsline {section}{\numberline {s}Cross-Family Reference Models}{26}{appendix.S}\protected@file@percent }
+\newlabel{app:cross-ref}{{s}{26}{Cross-Family Reference Models}{appendix.S}{}}
+\@LN{1656}{25}
+\@LN{1657}{25}
+\@LN{1658}{25}
+\@LN{1659}{25}
+\@LN{1660}{25}
+\@LN{1661}{25}
+\@LN{1662}{25}
+\@LN{1663}{25}
+\@writefile{toc}{\contentsline {section}{\numberline {t}Independent-Seed Control}{26}{appendix.T}\protected@file@percent }
+\newlabel{app:seed-control}{{t}{26}{Independent-Seed Control}{appendix.T}{}}
+\@LN{1664}{25}
+\@LN{1665}{25}
+\@LN{1666}{25}
+\@LN{1667}{25}
+\@LN{1668}{25}
+\@LN{1669}{25}
+\@LN{1670}{25}
+\@LN{1671}{25}
+\@LN{1672}{25}
+\@LN{1673}{25}
+\@LN{1674}{25}
+\@LN{1675}{25}
+\@LN{1676}{25}
+\@LN{1677}{25}
+\@LN{1678}{25}
+\@LN{1679}{25}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {31}{\ignorespaces Cross-family reference model validation (5-gen LOGO subset). Drift direction is consistent (negative) across all three references; magnitude varies with capacity. Spread in LOGO F1 is 0.013.}}{26}{table.caption.111}\protected@file@percent }
+\newlabel{tab:cross-ref}{{31}{26}{Cross-family reference model validation (5-gen LOGO subset). Drift direction is consistent (negative) across all three references; magnitude varies with capacity. Spread in LOGO F1 is 0.013}{table.caption.111}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Cross-family reference model comparison. LOGO F1 spread is only 0.013 across three reference models from different families, confirming DDR is reference-model agnostic.}}{26}{figure.caption.112}\protected@file@percent }
+\newlabel{fig:ref-comparison}{{14}{26}{Cross-family reference model comparison. LOGO F1 spread is only 0.013 across three reference models from different families, confirming DDR is reference-model agnostic}{figure.caption.112}{}}
+\@LN{1680}{25}
+\@LN{1681}{25}
+\@writefile{toc}{\contentsline {paragraph}{Semantic similarity analysis.}{26}{section*.114}\protected@file@percent }
+\@LN{1682}{25}
+\@LN{1683}{25}
+\@LN{1684}{25}
+\@LN{1685}{25}
+\@LN{1686}{25}
+\@LN{1687}{25}
+\@LN{1688}{25}
+\@LN{1689}{25}
+\@LN{1690}{25}
+\@LN{1691}{25}
+\@LN{1692}{25}
+\@LN{1693}{25}
+\@LN{1694}{25}
+\@LN{1695}{25}
+\@writefile{toc}{\contentsline {section}{\numberline {u}Per-Generator Equivalence Testing}{26}{appendix.U}\protected@file@percent }
+\newlabel{app:tost}{{u}{26}{Per-Generator Equivalence Testing}{appendix.U}{}}
+\@LN{1696}{25}
+\@LN{1697}{25}
+\@LN{1698}{25}
+\@LN{1699}{25}
+\@LN{1700}{25}
+\@LN{1701}{25}
+\@LN{1702}{25}
+\@LN{1703}{25}
+\@LN{1704}{25}
+\@LN{1705}{25}
+\@LN{1706}{25}
+\@LN{1707}{25}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {32}{\ignorespaces Independent-seed cross-generator evaluation (binary: gen-1 vs.\ gen-2+). Disjoint seed pools eliminate any possibility of topic-based leakage. The average independent-seed F1 (0.680) is within 1.4\,pp of the shared-seed LOGO baseline (0.694). The classifier thus captures generative degradation patterns rather than seed-specific topic content.}}{27}{table.caption.113}\protected@file@percent }
+\newlabel{tab:seed-control}{{32}{27}{Independent-seed cross-generator evaluation (binary: gen-1 vs.\ gen-2+). Disjoint seed pools eliminate any possibility of topic-based leakage. The average independent-seed F1 (0.680) is within 1.4\,pp of the shared-seed LOGO baseline (0.694). The classifier thus captures generative degradation patterns rather than seed-specific topic content}{table.caption.113}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Embedding cosine similarity between consecutive depth steps. Deeper generations become increasingly similar to their inputs, yet the classifier still distinguishes depth classes. Dotted lines: prompt-type baselines.}}{27}{figure.caption.115}\protected@file@percent }
+\newlabel{fig:semantic-sim}{{15}{27}{Embedding cosine similarity between consecutive depth steps. Deeper generations become increasingly similar to their inputs, yet the classifier still distinguishes depth classes. Dotted lines: prompt-type baselines}{figure.caption.115}{}}
+\@LN{1708}{26}
+\@LN{1709}{26}
+\@LN{1710}{26}
+\@LN{1711}{26}
+\@LN{1712}{26}
+\@LN{1713}{26}
+\@LN{1714}{26}
+\@LN{1715}{26}
+\@LN{1716}{26}
+\@LN{1717}{26}
+\@LN{1718}{26}
+\@LN{1719}{26}
+\@LN{1720}{26}
+\@LN{1721}{26}
+\@LN{1722}{26}
+\@LN{1723}{26}
+\@LN{1724}{26}
+\@LN{1725}{26}
+\@LN{1726}{26}
+\@LN{1727}{26}
+\@LN{1728}{26}
+\@LN{1729}{26}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces TOST equivalence heatmap. Cohen's $d$ (gen-1 vs.\ gen-2+) per generator and feature. Asterisks (*) mark TOST equivalence at $\varepsilon {=}0.20$. Drifting features (red, left) show uniformly large $d$; near-stationary features (blue, right) cluster near zero.}}{27}{figure.caption.116}\protected@file@percent }
+\newlabel{fig:tost-heatmap}{{16}{27}{TOST equivalence heatmap. Cohen's $d$ (gen-1 vs.\ gen-2+) per generator and feature. Asterisks (*) mark TOST equivalence at $\varepsilon {=}0.20$. Drifting features (red, left) show uniformly large $d$; near-stationary features (blue, right) cluster near zero}{figure.caption.116}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {33}{\ignorespaces Per-generator TOST equivalence ($\varepsilon {=}|d|{<}0.20$, gen-1 vs.\ gen-2+). Observed $|d|$; \text  {$\mathsurround \z@ \mathchar "558$}{} = equivalent ($p_{\mathrm  {TOST}} < 0.05$). Features grouped by DDR partition.}}{27}{table.caption.117}\protected@file@percent }
+\newlabel{tab:tost-per-gen}{{33}{27}{Per-generator TOST equivalence ($\varepsilon {=}|d|{<}0.20$, gen-1 vs.\ gen-2+). Observed $|d|$; \checkmark {} = equivalent ($p_{\mathrm {TOST}} < 0.05$). Features grouped by DDR partition}{table.caption.117}{}}
+\@LN{1730}{26}
+\@writefile{toc}{\contentsline {subsection}{\numberline {u.1}TOST Bootstrap Stability}{27}{subsection.U.1}\protected@file@percent }
+\newlabel{app:tost-bootstrap}{{u.1}{27}{TOST Bootstrap Stability}{subsection.U.1}{}}
+\@LN{1731}{26}
+\@LN{1732}{26}
+\@LN{1733}{26}
+\@LN{1734}{26}
+\@LN{1735}{26}
+\@LN{1736}{26}
+\@LN{1737}{26}
+\@LN{1738}{26}
+\@LN{1739}{26}
+\@LN{1740}{26}
+\@LN{1741}{26}
+\@LN{1742}{26}
+\@LN{1743}{26}
+\@LN{1744}{26}
+\@LN{1745}{26}
+\@LN{1746}{26}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {34}{\ignorespaces Bootstrap stability of TOST equivalence ($B{=}1{,}000$, margin $|d|{<}0.20$). Rejection rate = fraction of bootstrap iterations where TOST rejects non-equivalence at $\alpha {=}0.05$.}}{28}{table.caption.118}\protected@file@percent }
+\newlabel{tab:tost-bootstrap}{{34}{28}{Bootstrap stability of TOST equivalence ($B{=}1{,}000$, margin $|d|{<}0.20$). Rejection rate = fraction of bootstrap iterations where TOST rejects non-equivalence at $\alpha {=}0.05$}{table.caption.118}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces DDR partition in pooled ($|\rho |$, Cohen's $d$) space. Drifting features (red) cluster at high $|\rho |$ and $d$; near-stationary features (blue) cluster near the origin; entropy std (purple) occupies a sole intermediate position. Dashed lines: TOST equivalence bound ($d{=}0.20$) and $|\rho |{=}0.30$. Diamond marker: entropy min (pooled $|\rho |{=}0.40$ reflects the gen-0/gen-1 boundary; gen-1 vs.\ gen-2+ $d{=}0.03$).}}{28}{figure.caption.119}\protected@file@percent }
+\newlabel{fig:ddr-scatter}{{17}{28}{DDR partition in pooled ($|\rho |$, Cohen's $d$) space. Drifting features (red) cluster at high $|\rho |$ and $d$; near-stationary features (blue) cluster near the origin; entropy std (purple) occupies a sole intermediate position. Dashed lines: TOST equivalence bound ($d{=}0.20$) and $|\rho |{=}0.30$. Diamond marker: entropy min (pooled $|\rho |{=}0.40$ reflects the gen-0/gen-1 boundary; gen-1 vs.\ gen-2+ $d{=}0.03$)}{figure.caption.119}{}}
+\@LN{1747}{27}
+\@LN{1748}{27}
+\@LN{1749}{27}
+\@writefile{toc}{\contentsline {section}{\numberline {v}DDR Partition Validation}{28}{appendix.V}\protected@file@percent }
+\newlabel{app:ddr-validation}{{v}{28}{DDR Partition Validation}{appendix.V}{}}
+\@LN{1750}{27}
+\@LN{1751}{27}
+\@LN{1752}{27}
+\@LN{1753}{27}
+\@LN{1754}{27}
+\@LN{1755}{27}
+\@writefile{lot}{\contentsline {table}{\numberline {35}{\ignorespaces $k$-means clustering of 7 features in $(|\rho |, d)$ space.}}{28}{table.caption.121}\protected@file@percent }
+\newlabel{tab:clustering}{{35}{28}{$k$-means clustering of 7 features in $(|\rho |, d)$ space}{table.caption.121}{}}
+\@LN{1756}{27}
+\@LN{1757}{27}
+\@LN@col{2}
+\@LN{1758}{27}
+\@LN{1759}{27}
+\@LN{1760}{27}
+\@LN{1761}{27}
+\@LN{1762}{27}
+\@LN{1763}{27}
+\@LN{1764}{27}
+\@LN{1765}{27}
+\@LN{1766}{27}
+\@LN{1767}{27}
+\@LN{1768}{27}
+\@LN{1769}{27}
+\@writefile{toc}{\contentsline {paragraph}{Exhaustive partition enumeration.}{28}{section*.122}\protected@file@percent }
+\@LN{1770}{27}
+\@LN{1771}{27}
+\@LN{1772}{27}
+\@LN{1773}{27}
+\@LN{1774}{27}
+\@LN{1775}{27}
+\@LN{1776}{27}
+\@LN{1777}{27}
+\@LN{1778}{27}
+\@LN{1779}{27}
+\@LN{1780}{27}
+\@writefile{toc}{\contentsline {paragraph}{Per-generator replication.}{28}{section*.123}\protected@file@percent }
+\@LN{1781}{27}
+\@LN{1782}{27}
+\@LN{1783}{27}
+\@LN{1784}{27}
+\@LN{1785}{27}
+\@LN{1786}{27}
+\@LN{1787}{27}
+\@LN{1788}{27}
+\@LN{1789}{27}
+\@LN{1790}{27}
+\@LN{1791}{27}
+\@LN{1792}{27}
+\@LN{1793}{27}
+\newlabel{app:tost-sensitivity}{{v}{28}{TOST Equivalence Bound Sensitivity}{section*.124}{}}
+\@LN{1794}{27}
+\@LN{1795}{27}
+\@LN{1796}{27}
+\@LN{1797}{27}
+\@writefile{lot}{\contentsline {table}{\numberline {36}{\ignorespaces TOST equivalence pass rate across 8 generators at varying $\varepsilon $.}}{28}{table.caption.125}\protected@file@percent }
+\newlabel{tab:tost-sensitivity}{{36}{28}{TOST equivalence pass rate across 8 generators at varying $\varepsilon $}{table.caption.125}{}}
+\citation{cohen1988statistical}
+\@LN@col{1}
+\@LN{1798}{28}
+\@LN{1799}{28}
+\@LN{1800}{28}
+\@LN{1801}{28}
+\@LN{1802}{28}
+\@LN{1803}{28}
+\@LN{1804}{28}
+\@LN{1805}{28}
+\@LN{1806}{28}
+\@LN{1807}{28}
+\@LN{1808}{28}
+\@LN{1809}{28}
+\@writefile{toc}{\contentsline {paragraph}{TOST margin rationale.}{29}{section*.126}\protected@file@percent }
+\@LN{1810}{28}
+\@LN{1811}{28}
+\@LN{1812}{28}
+\@LN{1813}{28}
+\@LN{1814}{28}
+\@LN{1815}{28}
+\@LN{1816}{28}
+\@LN{1817}{28}
+\@LN{1818}{28}
+\@LN{1819}{28}
+\@LN{1820}{28}
+\@LN{1821}{28}
+\@LN{1822}{28}
+\@LN{1823}{28}
+\@LN{1824}{28}
+\@LN{1825}{28}
+\@LN{1826}{28}
+\@LN{1827}{28}
+\@LN{1828}{28}
+\@writefile{toc}{\contentsline {paragraph}{Threshold sensitivity.}{29}{section*.127}\protected@file@percent }
+\@LN{1829}{28}
+\@LN{1830}{28}
+\@LN{1831}{28}
+\@LN{1832}{28}
+\@LN{1833}{28}
+\@LN{1834}{28}
+\@LN{1835}{28}
+\@LN{1836}{28}
+\@LN{1837}{28}
+\@LN{1838}{28}
+\@LN{1839}{28}
+\@LN{1840}{28}
+\@LN{1841}{28}
+\@LN{1842}{28}
+\@LN{1843}{28}
+\@LN{1844}{28}
+\@LN{1845}{28}
+\@LN{1846}{28}
+\@LN{1847}{28}
+\@LN@col{2}
+\newlabel{app:epsilon-sweep}{{v}{29}{Partition stability across $\varepsilon $ thresholds}{section*.128}{}}
+\@writefile{toc}{\contentsline {paragraph}{Partition stability across $\varepsilon $ thresholds.}{29}{section*.128}\protected@file@percent }
+\@LN{1848}{28}
+\@LN{1849}{28}
+\@LN{1850}{28}
+\@LN{1851}{28}
+\@LN{1852}{28}
+\@LN{1853}{28}
+\@LN{1854}{28}
+\@writefile{lot}{\contentsline {table}{\numberline {37}{\ignorespaces Partition stability under varying $\varepsilon $. Critical threshold: the $\varepsilon $ above which a feature is reclassified as stationary. The drifting/near-stationary split is invariant for $\varepsilon \in [0.10, 0.75]$; only entropy std ($d{=}0.46$) changes at $\varepsilon > 0.46$.}}{29}{table.caption.129}\protected@file@percent }
+\newlabel{tab:epsilon-sweep}{{37}{29}{Partition stability under varying $\varepsilon $. Critical threshold: the $\varepsilon $ above which a feature is reclassified as stationary. The drifting/near-stationary split is invariant for $\varepsilon \in [0.10, 0.75]$; only entropy std ($d{=}0.46$) changes at $\varepsilon > 0.46$}{table.caption.129}{}}
+\@LN{1855}{28}
+\@LN{1856}{28}
+\@LN{1857}{28}
+\@LN{1858}{28}
+\@LN{1859}{28}
+\@LN{1860}{28}
+\@LN{1861}{28}
+\@LN{1862}{28}
+\@LN{1863}{28}
+\@LN{1864}{28}
+\@LN{1865}{28}
+\newlabel{app:holdout-split}{{v}{29}{Holdout Generator Split Validation}{section*.130}{}}
+\@LN{1866}{28}
+\@LN{1867}{28}
+\@LN{1868}{28}
+\@LN{1869}{28}
+\@LN{1870}{28}
+\@LN{1871}{28}
+\@LN{1872}{28}
+\@LN{1873}{28}
+\@LN{1874}{28}
+\@LN{1875}{28}
+\@LN{1876}{28}
+\@LN{1877}{28}
+\@LN{1878}{28}
+\@LN{1879}{28}
+\@LN{1880}{28}
+\@LN{1881}{28}
+\@LN{1882}{28}
+\@LN{1883}{28}
+\@LN{1884}{28}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {38}{\ignorespaces Holdout split validation of the DDR partition. Selection (sel) and validation (val) $|\rho |$ and $d$ for two disjoint 4/4 generator splits. Zone assignment is identical across all four subsets for every feature.}}{30}{table.caption.131}\protected@file@percent }
+\newlabel{tab:holdout-split}{{38}{30}{Holdout split validation of the DDR partition. Selection (sel) and validation (val) $|\rho |$ and $d$ for two disjoint 4/4 generator splits. Zone assignment is identical across all four subsets for every feature}{table.caption.131}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Holdout split validation in $(|\rho |, d)$ space. Filled markers: selection set; hollow: validation set. Zone assignments are identical across subsets; selection/validation pairs cluster tightly for all features.}}{30}{figure.caption.132}\protected@file@percent }
+\newlabel{fig:holdout-scatter}{{18}{30}{Holdout split validation in $(|\rho |, d)$ space. Filled markers: selection set; hollow: validation set. Zone assignments are identical across subsets; selection/validation pairs cluster tightly for all features}{figure.caption.132}{}}
+\@LN{1885}{29}
+\@LN{1886}{29}
+\@LN{1887}{29}
+\@LN{1888}{29}
+\@LN{1889}{29}
+\@LN{1890}{29}
+\@LN{1891}{29}
+\@LN{1892}{29}
+\@LN{1893}{29}
+\@LN{1894}{29}
+\@LN{1895}{29}
+\@LN{1896}{29}
+\@LN{1897}{29}
+\@LN{1898}{29}
+\newlabel{app:heteroscedasticity}{{v}{30}{Heteroscedasticity Sensitivity}{section*.133}{}}
+\@LN{1899}{29}
+\@LN{1900}{29}
+\@LN{1901}{29}
+\@LN{1902}{29}
+\@LN{1903}{29}
+\@LN{1904}{29}
+\@LN{1905}{29}
+\@LN{1906}{29}
+\@LN{1907}{29}
+\@LN{1908}{29}
+\@LN{1909}{29}
+\@LN{1910}{29}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {39}{\ignorespaces Effect size comparison (gen-1 vs.\ gen-2+, $N$\,=\,29{,}095). Glass's $\Delta $ uses the gen-1 SD as denominator; Cliff's $\delta $ thresholds follow Romano et al.\ (2006): $|\delta | < 0.147$ negligible, $< 0.33$ small, $< 0.474$ medium, otherwise large.}}{30}{table.caption.134}\protected@file@percent }
+\newlabel{tab:effect-sizes}{{39}{30}{Effect size comparison (gen-1 vs.\ gen-2+, $N$\,=\,29{,}095). Glass's $\Delta $ uses the gen-1 SD as denominator; Cliff's $\delta $ thresholds follow Romano et al.\ (2006): $|\delta | < 0.147$ negligible, $< 0.33$ small, $< 0.474$ medium, otherwise large}{table.caption.134}{}}
+\@LN{1911}{29}
+\@LN{1912}{29}
+\@LN{1913}{29}
+\@LN{1914}{29}
+\@LN{1915}{29}
+\@LN{1916}{29}
+\@LN{1917}{29}
+\@LN{1918}{29}
+\@LN{1919}{29}
+\@LN{1920}{29}
+\@LN{1921}{29}
+\@LN{1922}{29}
+\@LN{1923}{29}
+\@LN{1924}{29}
+\@LN{1925}{29}
+\@LN{1926}{29}
+\@LN{1927}{29}
+\@LN{1928}{29}
+\@LN{1929}{29}
+\@LN{1930}{29}
+\@LN{1931}{29}
+\@LN{1932}{29}
+\@LN{1933}{29}
+\@writefile{toc}{\contentsline {section}{\numberline {w}Generator Subset Summary}{30}{appendix.W}\protected@file@percent }
+\newlabel{app:gen-subsets-section}{{w}{30}{Generator Subset Summary}{appendix.W}{}}
+\@LN{1934}{29}
+\@LN{1935}{29}
+\@writefile{lot}{\contentsline {table}{\numberline {40}{\ignorespaces Generator subsets by experiment type.}}{30}{table.caption.135}\protected@file@percent }
+\newlabel{tab:gen-subsets}{{40}{30}{Generator subsets by experiment type}{table.caption.135}{}}
+\@LN{1936}{29}
+\@LN{1937}{29}
+\@LN{1938}{29}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {41}{\ignorespaces Example text chain from seed 120 (Pythia-2.8B, continuation prompt). Gen-0 is the original Wikipedia passage; gen-1 and gen-2 are successive LLM continuations. Text is truncated for space.}}{31}{table.caption.136}\protected@file@percent }
+\newlabel{tab:qualitative-text}{{41}{31}{Example text chain from seed 120 (Pythia-2.8B, continuation prompt). Gen-0 is the original Wikipedia passage; gen-1 and gen-2 are successive LLM continuations. Text is truncated for space}{table.caption.136}{}}
+\@LN{1939}{30}
+\@LN{1940}{30}
+\@LN{1941}{30}
+\@LN{1942}{30}
+\@writefile{toc}{\contentsline {section}{\numberline {x}Qualitative Examples}{31}{appendix.X}\protected@file@percent }
+\newlabel{app:qualitative}{{x}{31}{Qualitative Examples}{appendix.X}{}}
+\@LN{1943}{30}
+\@LN{1944}{30}
+\@LN{1945}{30}
+\@LN{1946}{30}
+\@LN{1947}{30}
+\@LN{1948}{30}
+\@LN{1949}{30}
+\@LN{1950}{30}
+\@LN{1951}{30}
+\@LN{1952}{30}
+\@writefile{toc}{\contentsline {section}{\numberline {y}Cross-Generator Transfer Analysis}{31}{appendix.Y}\protected@file@percent }
+\newlabel{app:transfer}{{y}{31}{Cross-Generator Transfer Analysis}{appendix.Y}{}}
+\@LN{1953}{30}
+\@LN{1954}{30}
+\@LN{1955}{30}
+\@LN{1956}{30}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {42}{\ignorespaces Feature values for the chain in Table~\ref {tab:qualitative-text}. Drifting features ($\bar  {H}$, TTR, hapax) show monotonic degradation; shape features ($H_{\max }$, tail decay) remain stable (range $<$2\% and $<$4\% respectively).}}{31}{table.caption.137}\protected@file@percent }
+\newlabel{tab:qualitative-features}{{42}{31}{Feature values for the chain in Table~\ref {tab:qualitative-text}. Drifting features ($\bar {H}$, TTR, hapax) show monotonic degradation; shape features ($H_{\max }$, tail decay) remain stable (range $<$2\% and $<$4\% respectively)}{table.caption.137}{}}
+\@LN{1957}{30}
+\@LN{1958}{30}
+\@LN{1959}{30}
+\@LN{1960}{30}
+\@LN{1961}{30}
+\@LN{1962}{30}
+\@writefile{lot}{\contentsline {table}{\numberline {43}{\ignorespaces Cross-generator binary F1 transfer matrix (gen-1 vs.\ gen-2+). Each row trains on one generator; each column evaluates on another. Diagonal entries (\underline  {underlined}) are within-generator. All 56 off-diagonal pairs exceed chance (0.5). Classifiers use the same 7-feature XGBoost configuration as LOGO but are trained with a binary objective.}}{31}{table.caption.138}\protected@file@percent }
+\newlabel{tab:transfer}{{43}{31}{Cross-generator binary F1 transfer matrix (gen-1 vs.\ gen-2+). Each row trains on one generator; each column evaluates on another. Diagonal entries (\underline {underlined}) are within-generator. All 56 off-diagonal pairs exceed chance (0.5). Classifiers use the same 7-feature XGBoost configuration as LOGO but are trained with a binary objective}{table.caption.138}{}}
+\@LN{1963}{30}
+\@LN{1964}{30}
+\@LN{1965}{30}
+\@LN{1966}{30}
+\@LN{1967}{30}
+\@LN{1968}{30}
+\@LN{1969}{30}
+\@LN{1970}{30}
+\@LN{1971}{30}
+\@LN{1972}{30}
+\@LN{1973}{30}
+\@writefile{toc}{\contentsline {section}{\numberline {z}Supplementary DDR Characterization}{31}{appendix.Z}\protected@file@percent }
+\newlabel{app:ddr-supplement}{{z}{31}{Supplementary DDR Characterization}{appendix.Z}{}}
+\@LN{1974}{30}
+\@writefile{toc}{\contentsline {subsection}{\numberline {z.1}Partition Stability Across Temperatures}{31}{subsection.Z.1}\protected@file@percent }
+\newlabel{app:ddr-temp-stability}{{z.1}{31}{Partition Stability Across Temperatures}{subsection.Z.1}{}}
+\@LN{1975}{30}
+\@LN{1976}{30}
+\@LN{1977}{30}
+\@LN{1978}{30}
+\@LN{1979}{30}
+\@LN{1980}{30}
+\@LN{1981}{30}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {44}{\ignorespaces Mean $|d|$ (gen-1 vs.\ gen-2+) across 4 generators at each temperature. Partition labels: \textbf  {D}rifting ($|d|>0.5$), \textbf  {I}ntermediate ($0.1{<}|d|{<}0.5$), near-\textbf  {S}tationary ($|d|{<}0.1$). Boldface marks features that shift from their $\tau {=}0.7$ partition.}}{32}{table.caption.139}\protected@file@percent }
+\newlabel{tab:ddr-temp-stability}{{44}{32}{Mean $|d|$ (gen-1 vs.\ gen-2+) across 4 generators at each temperature. Partition labels: \textbf {D}rifting ($|d|>0.5$), \textbf {I}ntermediate ($0.1{<}|d|{<}0.5$), near-\textbf {S}tationary ($|d|{<}0.1$). Boldface marks features that shift from their $\tau {=}0.7$ partition}{table.caption.139}{}}
+\@LN{1982}{31}
+\@LN{1983}{31}
+\@LN{1984}{31}
+\@LN{1985}{31}
+\@LN{1986}{31}
+\@LN{1987}{31}
+\@LN{1988}{31}
+\@LN{1989}{31}
+\@LN{1990}{31}
+\@LN{1991}{31}
+\@LN{1992}{31}
+\@LN{1993}{31}
+\@LN{1994}{31}
+\@LN{1995}{31}
+\@LN{1996}{31}
+\@LN{1997}{31}
+\@LN{1998}{31}
+\@LN{1999}{31}
+\@writefile{toc}{\contentsline {subsection}{\numberline {z.2}Per-Family DDR Consistency}{32}{subsection.Z.2}\protected@file@percent }
+\newlabel{app:family-ddr}{{z.2}{32}{Per-Family DDR Consistency}{subsection.Z.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {45}{\ignorespaces Intra-family consistency of DDR patterns. Each cell shows the mean Spearman $|\rho |$(depth, feature) across generators within a family ($\pm $ SD for multi-generator families). Drifting features exhibit consistently high $|\rho |$ while near-stationary features remain low across all families. $H_{\mathrm  {min}}$ is a \emph  {boundary feature}: its elevated $|\rho | \approx 0.40$ reflects a large gen-0$\to $gen-1 transition, whereas its Cohen's $d \approx 0$ for gen-1\,/\,gen-2+ confirms near-stationarity within the binary classification scope (\S  \ref {sec:results-differential}).}}{32}{table.caption.140}\protected@file@percent }
+\newlabel{tab:family_ddr_consistency}{{45}{32}{Intra-family consistency of DDR patterns. Each cell shows the mean Spearman $|\rho |$(depth, feature) across generators within a family ($\pm $ SD for multi-generator families). Drifting features exhibit consistently high $|\rho |$ while near-stationary features remain low across all families. $H_{\mathrm {min}}$ is a \emph {boundary feature}: its elevated $|\rho | \approx 0.40$ reflects a large gen-0$\to $gen-1 transition, whereas its Cohen's $d \approx 0$ for gen-1\,/\,gen-2+ confirms near-stationarity within the binary classification scope (\S \ref {sec:results-differential})}{table.caption.140}{}}
+\@LN@col{2}
+\@LN{2000}{31}
+\@writefile{toc}{\contentsline {subsection}{\numberline {z.3}Per-Feature Convergence Dynamics}{32}{subsection.Z.3}\protected@file@percent }
+\newlabel{app:convergence}{{z.3}{32}{Per-Feature Convergence Dynamics}{subsection.Z.3}{}}
+\@LN{2001}{31}
+\@LN{2002}{31}
+\@LN{2003}{31}
+\@LN{2004}{31}
+\@LN{2005}{31}
+\@LN{2006}{31}
+\@LN{2007}{31}
+\@LN{2008}{31}
+\@LN{2009}{31}
+\@LN{2010}{31}
+\@LN{2011}{31}
+\@LN{2012}{31}
+\@LN{2013}{31}
+\@LN{2014}{31}
+\@LN{2015}{31}
+\@writefile{toc}{\contentsline {subsection}{\numberline {z.4}DDR Causality Analysis}{32}{subsection.Z.4}\protected@file@percent }
+\newlabel{app:ddr-causality}{{z.4}{32}{DDR Causality Analysis}{subsection.Z.4}{}}
+\@LN{2016}{31}
+\@LN{2017}{31}
+\@LN{2018}{31}
+\@LN{2019}{31}
+\@writefile{toc}{\contentsline {paragraph}{Permutation Importance.}{32}{section*.141}\protected@file@percent }
+\@LN{2020}{31}
+\@LN{2021}{31}
+\@LN{2022}{31}
+\@LN{2023}{31}
+\@LN{2024}{31}
+\@LN{2025}{31}
+\@LN{2026}{31}
+\@writefile{lot}{\contentsline {table}{\numberline {46}{\ignorespaces Permutation importance (8-gen LOGO). Each feature is shuffled independently; the resulting F1 drop quantifies marginal importance. Drifting features average $0.187$ vs.\ near-stationary $0.034$ ($5.5\times $).}}{32}{table.caption.142}\protected@file@percent }
+\newlabel{tab:perm-importance}{{46}{32}{Permutation importance (8-gen LOGO). Each feature is shuffled independently; the resulting F1 drop quantifies marginal importance. Drifting features average $0.187$ vs.\ near-stationary $0.034$ ($5.5\times $)}{table.caption.142}{}}
+\@writefile{toc}{\contentsline {paragraph}{Granger Causality.}{32}{section*.143}\protected@file@percent }
+\@LN{2027}{31}
+\@LN{2028}{31}
+\@LN{2029}{31}
+\@LN{2030}{31}
+\@LN{2031}{31}
+\@LN{2032}{31}
+\@LN{2033}{31}
+\@LN{2034}{31}
+\@LN{2035}{31}
+\@LN@col{1}
+\@LN{2036}{32}
+\@LN{2037}{32}
+\@writefile{lot}{\contentsline {table}{\numberline {47}{\ignorespaces Granger causality (Fisher combined across 8 generators, lag\,=\,1, $N$\,=\,29{,}095). $\Delta R^2$ is reported where available.}}{33}{table.caption.144}\protected@file@percent }
+\newlabel{tab:granger}{{47}{33}{Granger causality (Fisher combined across 8 generators, lag\,=\,1, $N$\,=\,29{,}095). $\Delta R^2$ is reported where available}{table.caption.144}{}}
+\@writefile{toc}{\contentsline {paragraph}{Key Findings.}{33}{section*.145}\protected@file@percent }
+\@LN{2038}{32}
+\@LN{2039}{32}
+\@LN{2040}{32}
+\@LN{2041}{32}
+\@LN{2042}{32}
+\@LN{2043}{32}
+\@LN{2044}{32}
+\@LN{2045}{32}
+\@LN{2046}{32}
+\@LN{2047}{32}
+\@LN{2048}{32}
+\@LN{2049}{32}
+\@LN{2050}{32}
+\@LN{2051}{32}
+\@LN{2052}{32}
+\@LN{2053}{32}
+\@LN{2054}{32}
+\@LN{2055}{32}
+\@LN{2056}{32}
+\@LN{2057}{32}
+\@LN{2058}{32}
+\@LN{2059}{32}
+\@LN{2060}{32}
+\@LN{2061}{32}
+\@LN{2062}{32}
+\@LN{2063}{32}
+\@LN{2064}{32}
+\@LN{2065}{32}
+\@LN{2066}{32}
+\@LN{2067}{32}
+\@writefile{toc}{\contentsline {subsection}{\numberline {z.5}Variance Decomposition}{33}{subsection.Z.5}\protected@file@percent }
+\newlabel{app:variance-decomposition}{{z.5}{33}{Variance Decomposition}{subsection.Z.5}{}}
+\@LN{2068}{32}
+\@LN{2069}{32}
+\@LN{2070}{32}
+\@LN{2071}{32}
+\@LN{2072}{32}
+\@LN{2073}{32}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {48}{\ignorespaces Two-way ANOVA variance decomposition (classical $\eta ^2$; proportions of total SS) for depth $\times $ generator ($N$\,=\,37{,}058). Location features show dominant depth effects ($\eta ^2_{\text  {depth}} {=} 0.34$--$0.37$); shape features are depth-invariant ($\eta ^2_{\text  {depth}} < 0.01$). All effects $p < 10^{-6}$.}}{33}{table.caption.146}\protected@file@percent }
+\newlabel{tab:anova_decomposition}{{48}{33}{Two-way ANOVA variance decomposition (classical $\eta ^2$; proportions of total SS) for depth $\times $ generator ($N$\,=\,37{,}058). Location features show dominant depth effects ($\eta ^2_{\text {depth}} {=} 0.34$--$0.37$); shape features are depth-invariant ($\eta ^2_{\text {depth}} < 0.01$). All effects $p < 10^{-6}$}{table.caption.146}{}}
+\@LN{2074}{32}
+\@LN{2075}{32}
+\@LN{2076}{32}
+\@LN{2077}{32}
+\@LN{2078}{32}
+\@LN{2079}{32}
+\@LN{2080}{32}
+\@LN{2081}{32}
+\@LN{2082}{32}
+\@LN{2083}{32}
+\@LN{2084}{32}
+\@LN{2085}{32}
+\@LN{2086}{32}
+\@LN{2087}{32}
+\@LN{2088}{32}
+\@LN{2089}{32}
+\@LN{2090}{32}
+\@writefile{toc}{\contentsline {subsection}{\numberline {z.6}Decoding Strategy Robustness}{33}{subsection.Z.6}\protected@file@percent }
+\newlabel{app:decoding-strategy}{{z.6}{33}{Decoding Strategy Robustness}{subsection.Z.6}{}}
+\@LN{2091}{32}
+\@LN{2092}{32}
+\@LN{2093}{32}
+\@LN{2094}{32}
+\@LN{2095}{32}
+\@LN{2096}{32}
+\@LN{2097}{32}
+\@LN{2098}{32}
+\@LN{2099}{32}
+\@LN{2100}{32}
+\@LN{2101}{32}
+\@LN{2102}{32}
+\@LN{2103}{32}
+\@LN{2104}{32}
+\@LN{2105}{32}
+\@LN{2106}{32}
+\@LN{2107}{32}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Decoding strategy robustness. \textbf  {(a)} Mean Cohen's $d$ (gen-1 vs.\ gen-2+) across three decoding strategies. Drifting features maintain large $d$ across all strategies; shape features remain below the stationarity threshold ($d < 0.15$). Reference lines mark drifting ($d{=}0.50$) and stationary ($d{=}0.15$) thresholds. \textbf  {(b)} Per-generator mean shape-feature $|d|$: all generators stay near-stationary under all three strategies.}}{34}{figure.caption.149}\protected@file@percent }
+\newlabel{fig:decoding-robustness}{{19}{34}{Decoding strategy robustness. \textbf {(a)} Mean Cohen's $d$ (gen-1 vs.\ gen-2+) across three decoding strategies. Drifting features maintain large $d$ across all strategies; shape features remain below the stationarity threshold ($d < 0.15$). Reference lines mark drifting ($d{=}0.50$) and stationary ($d{=}0.15$) thresholds. \textbf {(b)} Per-generator mean shape-feature $|d|$: all generators stay near-stationary under all three strategies}{figure.caption.149}{}}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {49}{\ignorespaces Shape-feature Cohen's $d$ (gen-1 vs.\ gen-2+) under three decoding strategies per generator. Values below 0.20 indicate negligible drift. Shape features are expected to remain near-stationary across strategies if DDR is decoding-agnostic.}}{34}{table.caption.147}\protected@file@percent }
+\newlabel{tab:decoding-shape}{{49}{34}{Shape-feature Cohen's $d$ (gen-1 vs.\ gen-2+) under three decoding strategies per generator. Values below 0.20 indicate negligible drift. Shape features are expected to remain near-stationary across strategies if DDR is decoding-agnostic}{table.caption.147}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {50}{\ignorespaces Drifting- and intermediate-feature Cohen's $d$ (gen-1 vs.\ gen-2+) under three decoding strategies per generator. Drifting features are expected to maintain large $d$ regardless of strategy.}}{34}{table.caption.148}\protected@file@percent }
+\newlabel{tab:decoding-drift}{{50}{34}{Drifting- and intermediate-feature Cohen's $d$ (gen-1 vs.\ gen-2+) under three decoding strategies per generator. Drifting features are expected to maintain large $d$ regardless of strategy}{table.caption.148}{}}
+\@LN{2108}{33}
+\@LN{2109}{33}
+\@LN{2110}{33}
+\@LN{2111}{33}
+\@LN{2112}{33}
+\@LN{2113}{33}
+\@LN{2114}{33}
+\@LN{2115}{33}
+\@LN{2116}{33}
+\@LN{2117}{33}
+\@LN{2118}{33}
+\@LN@col{2}
+\@LN{2119}{33}
+\@LN{2120}{33}
+\@LN{2121}{33}
+\@LN{2122}{33}
+\@LN{2123}{33}
+\@LN{2124}{33}
+\@LN{2125}{33}
+\@LN{2126}{33}
+\@LN{2127}{33}
+\@LN{2128}{33}
+\@LN{2129}{33}
+\@LN{2130}{33}
+\@LN{2131}{33}
+\@LN{2132}{33}
+\@LN{2133}{33}
+\@LN{2134}{33}
+\@LN{2135}{33}
+\@LN{2136}{33}
+\@LN{2137}{33}
+\@LN{2138}{33}
+\@writefile{toc}{\contentsline {subsection}{\numberline {z.7}9-Generator Scale Evaluation}{34}{subsection.Z.7}\protected@file@percent }
+\newlabel{app:9gen-scale}{{z.7}{34}{9-Generator Scale Evaluation}{subsection.Z.7}{}}
+\@LN{2139}{33}
+\@LN{2140}{33}
+\@LN{2141}{33}
+\@LN{2142}{33}
+\@LN{2143}{33}
+\@LN{2144}{33}
+\@LN{2145}{33}
+\@LN{2146}{33}
+\@LN{2147}{33}
+\citation{broken_telephone}
+\citation{markovian_chains}
+\citation{broken_telephone}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {51}{\ignorespaces 9-generator LOGO evaluation. Each row holds out the listed generator at test time. 3-class: gen-0\,/\,gen-1\,/\,gen-2+; binary: gen-1 vs.\ gen-2+. 95\% bootstrap CIs in brackets.}}{35}{table.caption.150}\protected@file@percent }
+\newlabel{tab:9gen-logo}{{51}{35}{9-generator LOGO evaluation. Each row holds out the listed generator at test time. 3-class: gen-0\,/\,gen-1\,/\,gen-2+; binary: gen-1 vs.\ gen-2+. 95\% bootstrap CIs in brackets}{table.caption.150}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Per-generator 3-class LOGO F1 for the 9-generator evaluation. Gemma-2-2B (orange) is the weakest held-out generator. Dashed line: 9-gen average (0.751). Parameter counts shown in parentheses.}}{35}{figure.caption.151}\protected@file@percent }
+\newlabel{fig:9gen-scale}{{20}{35}{Per-generator 3-class LOGO F1 for the 9-generator evaluation. Gemma-2-2B (orange) is the weakest held-out generator. Dashed line: 9-gen average (0.751). Parameter counts shown in parentheses}{figure.caption.151}{}}
+\@writefile{toc}{\contentsline {paragraph}{Overall comparison.}{35}{section*.152}\protected@file@percent }
+\@LN{2148}{34}
+\@LN{2149}{34}
+\@LN{2150}{34}
+\@LN{2151}{34}
+\@LN{2152}{34}
+\@LN{2153}{34}
+\@LN{2154}{34}
+\@writefile{toc}{\contentsline {paragraph}{Gemma-2-2B anomaly.}{35}{section*.153}\protected@file@percent }
+\@LN{2155}{34}
+\@LN{2156}{34}
+\@LN{2157}{34}
+\@LN{2158}{34}
+\@LN{2159}{34}
+\@LN{2160}{34}
+\@LN{2161}{34}
+\@LN{2162}{34}
+\@LN{2163}{34}
+\@LN{2164}{34}
+\@LN{2165}{34}
+\@LN{2166}{34}
+\@LN{2167}{34}
+\@LN{2168}{34}
+\@LN@col{2}
+\@LN{2169}{34}
+\@LN{2170}{34}
+\@LN{2171}{34}
+\@LN{2172}{34}
+\@LN{2173}{34}
+\@LN{2174}{34}
+\@LN{2175}{34}
+\@LN{2176}{34}
+\@LN{2177}{34}
+\@LN{2178}{34}
+\@LN{2179}{34}
+\@LN{2180}{34}
+\@writefile{toc}{\contentsline {paragraph}{Scale effect.}{35}{section*.154}\protected@file@percent }
+\@LN{2181}{34}
+\@LN{2182}{34}
+\@LN{2183}{34}
+\@LN{2184}{34}
+\@LN{2185}{34}
+\@LN{2186}{34}
+\@LN{2187}{34}
+\@LN{2188}{34}
+\@LN{2189}{34}
+\@LN{2190}{34}
+\@LN{2191}{34}
+\@writefile{toc}{\contentsline {paragraph}{14B-parameter evidence.}{35}{section*.155}\protected@file@percent }
+\@LN{2192}{34}
+\@LN{2193}{34}
+\@LN{2194}{34}
+\@LN{2195}{34}
+\@LN{2196}{34}
+\@LN{2197}{34}
+\@LN{2198}{34}
+\@LN{2199}{34}
+\@LN{2200}{34}
+\@LN{2201}{34}
+\@LN{2202}{34}
+\@LN{2203}{34}
+\@LN{2204}{34}
+\@LN{2205}{34}
+\@writefile{toc}{\contentsline {subsection}{\numberline {z.8}Comparison with Concurrent Iterative-Generation Studies}{35}{subsection.Z.8}\protected@file@percent }
+\newlabel{app:iterative-comparison}{{z.8}{35}{Comparison with Concurrent Iterative-Generation Studies}{subsection.Z.8}{}}
+\@LN{2206}{34}
+\@LN{2207}{34}
+\@LN{2208}{34}
+\@LN{2209}{34}
+\@LN{2210}{34}
+\@LN{2211}{34}
+\@LN{2212}{34}
+\@writefile{toc}{\contentsline {paragraph}{Finding-level connections.}{35}{section*.157}\protected@file@percent }
+\@LN{2213}{34}
+\@LN{2214}{34}
+\@LN{2215}{34}
+\@LN{2216}{34}
+\@LN{2217}{34}
+\citation{markovian_chains}
+\@writefile{lot}{\contentsline {table}{\numberline {52}{\ignorespaces Comparison with concurrent iterative-generation studies. All three examine how repeated LLM inference transforms text, but differ in chain operator, analytic lens, and downstream goal.}}{36}{table.caption.156}\protected@file@percent }
+\newlabel{tab:iterative-comparison}{{52}{36}{Comparison with concurrent iterative-generation studies. All three examine how repeated LLM inference transforms text, but differ in chain operator, analytic lens, and downstream goal}{table.caption.156}{}}
+\@LN@col{1}
+\@LN{2218}{35}
+\@LN{2219}{35}
+\@LN{2220}{35}
+\@LN{2221}{35}
+\@LN{2222}{35}
+\@LN{2223}{35}
+\@LN{2224}{35}
+\@LN{2225}{35}
+\@LN{2226}{35}
+\@LN{2227}{35}
+\@LN{2228}{35}
+\@LN{2229}{35}
+\@LN{2230}{35}
+\@LN{2231}{35}
+\@LN{2232}{35}
+\@LN{2233}{35}
+\@LN{2234}{35}
+\@LN{2235}{35}
+\@LN{2236}{35}
+\@LN{2237}{35}
+\@LN{2238}{35}
+\@LN{2239}{35}
+\@writefile{toc}{\contentsline {subsection}{\numberline {z.9}Token-Level NLL Distribution}{36}{subsection.Z.9}\protected@file@percent }
+\newlabel{app:nll-distribution}{{z.9}{36}{Token-Level NLL Distribution}{subsection.Z.9}{}}
+\@LN{2240}{35}
+\@LN{2241}{35}
+\@LN{2242}{35}
+\@LN{2243}{35}
+\@LN{2244}{35}
+\@LN{2245}{35}
+\@LN{2246}{35}
+\@LN{2247}{35}
+\@LN{2248}{35}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces Token-level NLL distribution by generation depth, aggregated across all 8 generators (Pythia-410M reference model). Dashed lines indicate median NLL per depth. The systematic leftward shift demonstrates that deeper-generation text is increasingly predictable.}}{36}{figure.caption.158}\protected@file@percent }
+\newlabel{fig:nll-dist}{{21}{36}{Token-level NLL distribution by generation depth, aggregated across all 8 generators (Pythia-410M reference model). Dashed lines indicate median NLL per depth. The systematic leftward shift demonstrates that deeper-generation text is increasingly predictable}{figure.caption.158}{}}
+\@LN{2249}{35}
+\@writefile{toc}{\contentsline {section}{\numberline {aa}Use of AI Assistants}{36}{appendix.Alph27}\protected@file@percent }
+\newlabel{app:ai-assistants}{{aa}{36}{Use of AI Assistants}{appendix.Alph27}{}}
+\@LN{2250}{35}
+\@LN{2251}{35}
+\@LN{2252}{35}
+\@LN{2253}{35}
+\@LN{2254}{35}
+\@LN{2255}{35}
+\@LN{2256}{35}
+\@LN{2257}{35}
+\@LN{2258}{35}
+\@LN{2259}{35}
+\gdef \@abspage@last{36}

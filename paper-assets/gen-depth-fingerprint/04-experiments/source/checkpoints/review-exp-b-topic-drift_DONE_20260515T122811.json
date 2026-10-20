@@ -1,0 +1,27 @@
+{
+  "exp_id": "review-exp-b-topic-drift",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:22:34.096Z",
+    "updated_at": "2026-05-15T12:28:11.624Z",
+    "hypothesis": "审稿回应实验B：Topic drift 描述性分析——语义漂移与 shape/drifting features 的关系，证明 depth fingerprint 不仅仅捕捉 topic shift",
+    "spec": {
+      "command": "python scripts/review_topic_drift.py",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/",
+      "data_count": 27529,
+      "model_name": "all-MiniLM-L6-v2",
+      "seed": 0
+    },
+    "conclusion": "success",
+    "log_path": "/tmp/topic_drift.log",
+    "checkpoint_path": "/root/gen-depth-fingerprint/results/review_topic_drift_results.json",
+    "completed_at": "2026-05-15T12:28:11.624Z"
+  },
+  "timestamp": "2026-05-15T12:28:11.695057+00:00",
+  "trigger": "update_registry"
+}

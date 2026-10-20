@@ -1,0 +1,55 @@
+{
+  "3class": {
+    "f1": 0.6319,
+    "per_class_f1": {
+      "gen0": 0.9949,
+      "gen1": 0.0482,
+      "gen2plus": 0.8525
+    },
+    "confusion_matrix": [
+      [
+        985,
+        3,
+        6
+      ],
+      [
+        1,
+        25,
+        964
+      ],
+      [
+        0,
+        20,
+        2860
+      ]
+    ],
+    "n_train": 37058,
+    "n_test": 4864
+  },
+  "binary": {
+    "f1": 0.4553,
+    "per_class_f1": {
+      "gen1": 0.0589,
+      "gen2plus": 0.8518
+    },
+    "confusion_matrix": [
+      [
+        31,
+        959
+      ],
+      [
+        32,
+        2848
+      ]
+    ],
+    "n_train": 29095,
+    "n_test": 3870
+  },
+  "config": {
+    "train_generators": 8,
+    "test_generator": "gemma-2-2b-rp11",
+    "classifier": "XGBoost",
+    "n_estimators": 200,
+    "max_depth": 6
+  }
+}

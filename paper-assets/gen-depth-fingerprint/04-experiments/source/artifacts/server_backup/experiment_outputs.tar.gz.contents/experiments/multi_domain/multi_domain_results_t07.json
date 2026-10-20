@@ -1,0 +1,99 @@
+{
+  "experiment": "multi_domain_t07",
+  "generation_params": {
+    "temperature": 0.7,
+    "top_p": 0.9
+  },
+  "per_domain": {
+    "news": {
+      "binary_f1": 0.7119,
+      "binary_ci": [
+        0.6898,
+        0.7332
+      ],
+      "3class_f1": 0.7149,
+      "3class_ci": [
+        0.6984,
+        0.7314
+      ],
+      "per_generator_binary": {
+        "mistral-7b": 0.7129,
+        "pythia-1b": 0.7606,
+        "qwen3-1.7b": 0.6556
+      },
+      "per_generator_3class": {
+        "mistral-7b": 0.6756,
+        "pythia-1b": 0.7689,
+        "qwen3-1.7b": 0.6993
+      },
+      "n_samples": 2400
+    },
+    "academic": {
+      "binary_f1": 0.6279,
+      "binary_ci": [
+        0.6027,
+        0.6515
+      ],
+      "3class_f1": 0.6564,
+      "3class_ci": [
+        0.6381,
+        0.6735
+      ],
+      "per_generator_binary": {
+        "mistral-7b": 0.6009,
+        "pythia-1b": 0.7383,
+        "qwen3-1.7b": 0.5132
+      },
+      "per_generator_3class": {
+        "mistral-7b": 0.6362,
+        "pythia-1b": 0.751,
+        "qwen3-1.7b": 0.5762
+      },
+      "n_samples": 2400
+    },
+    "code": {
+      "binary_f1": 0.6872,
+      "binary_ci": [
+        0.6641,
+        0.71
+      ],
+      "3class_f1": 0.6729,
+      "3class_ci": [
+        0.6537,
+        0.6918
+      ],
+      "per_generator_binary": {
+        "mistral-7b": 0.6342,
+        "pythia-1b": 0.7549,
+        "qwen3-1.7b": 0.6648
+      },
+      "per_generator_3class": {
+        "mistral-7b": 0.6463,
+        "pythia-1b": 0.7407,
+        "qwen3-1.7b": 0.634
+      },
+      "n_samples": 2400
+    }
+  },
+  "overall": {
+    "binary_f1": 0.6757,
+    "3class_f1": 0.6814
+  },
+  "comparison_with_t10": {
+    "news": {
+      "t07": 0.7119,
+      "t10": 0.7459,
+      "delta": -0.034
+    },
+    "academic": {
+      "t07": 0.6279,
+      "t10": 0.7386,
+      "delta": -0.1107
+    },
+    "code": {
+      "t07": 0.6872,
+      "t10": 0.7535,
+      "delta": -0.0663
+    }
+  }
+}

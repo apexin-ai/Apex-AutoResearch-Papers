@@ -1,0 +1,66 @@
+{
+  "exp_id": "plan-015-v2",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T00:56:20.612Z",
+    "updated_at": "2026-05-15T01:26:40.380Z",
+    "spec": {
+      "command": "PYTHONUNBUFFERED=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 python scripts/ordinal_baseline.py --device cuda:0",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/",
+      "data_count": 0,
+      "model_name": "pythia-410m+pythia-160m",
+      "seed": 42,
+      "checkpoint_path": "N/A (analysis task)",
+      "log_path": "/tmp/ordinal_baseline_v2.log"
+    },
+    "conclusion": "success",
+    "hypothesis": "Ordinal baseline bugfix + bootstrap CI: 修复 Binoculars denominator bug，验证 7-feature ensemble 显著优于所有单一检测器",
+    "metrics": {
+      "seven_feature_logo_f1": 0.798,
+      "seven_feature_ci95": [
+        0.786,
+        0.799
+      ],
+      "avg_logprob_logo_f1": 0.7653,
+      "avg_logprob_ci95": [
+        0.616,
+        0.82
+      ],
+      "ld_score_logo_f1": 0.7212,
+      "ld_score_ci95": [
+        0.588,
+        0.77
+      ],
+      "fastdetectgpt_logo_f1": 0.6269,
+      "fastdetectgpt_ci95": [
+        0.511,
+        0.762
+      ],
+      "binoculars_logo_f1": 0.579,
+      "binoculars_ci95": [
+        0.405,
+        0.664
+      ],
+      "binoculars_bug_fixed": true,
+      "ld_score_corrected_cv_f1": 0.7925,
+      "bootstrap_7feat_vs_avglogprob": {
+        "delta": 0.039,
+        "p": 0,
+        "significant": true
+      },
+      "bootstrap_7feat_vs_fastdetectgpt": {
+        "delta": 0.067,
+        "p": 0,
+        "significant": true
+      }
+    },
+    "completed_at": "2026-05-15T01:26:40.380Z"
+  },
+  "timestamp": "2026-05-15T01:26:40.451060+00:00",
+  "trigger": "update_registry"
+}

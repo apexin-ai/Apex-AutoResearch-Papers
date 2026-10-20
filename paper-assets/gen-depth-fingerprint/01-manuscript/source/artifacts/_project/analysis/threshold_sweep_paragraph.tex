@@ -1,0 +1,19 @@
+% Threshold sweep paragraph for appendix_ddr_validation.tex
+% Responds to R35-W2 / R38 concern about drifting boundary sensitivity.
+
+\paragraph{Threshold sensitivity.}
+To address concerns about the sensitivity of the drifting-boundary threshold,
+we sweep $|d|$ from $0.10$ to $0.80$ in increments of $0.05$ and record the
+resulting binary partition (drifting vs.\ stationary) along with the silhouette
+score in standardised $(\lvert\rho\rvert, d)$ space.
+Across the entire range, only \emph{three} distinct partitions emerge,
+reflecting natural gaps between feature clusters rather than threshold artefacts.
+The three-feature drifting set (\textsc{entropy\_mean}, \textsc{ttr}, \textsc{hapax\_ratio})
+is stable across $|d| \in [0.50,\, 0.75]$ with a silhouette of $0.66$---the
+peak value in the sweep.
+Including the intermediate feature \textsc{entropy\_std} ($d = 0.49$) yields a
+4/3 partition stable across $|d| \in [0.10,\, 0.45]$ (silhouette $= 0.45$).
+The partition used in our analysis corresponds to the peak-silhouette region,
+confirming that the drifting--stationary boundary reflects a natural gap in the
+$(\lvert\rho\rvert, d)$ landscape rather than an artefact of a particular
+threshold choice.

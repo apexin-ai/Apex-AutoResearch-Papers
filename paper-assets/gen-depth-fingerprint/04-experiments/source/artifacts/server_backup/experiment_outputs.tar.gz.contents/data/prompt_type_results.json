@@ -1,0 +1,197 @@
+{
+  "per_prompt_cv_f1": {
+    "continuation": {
+      "mean": 0.7806,
+      "std": 0.012,
+      "folds": [
+        0.786,
+        0.764,
+        0.8001,
+        0.7775,
+        0.7755
+      ]
+    },
+    "elaboration": {
+      "mean": 0.73,
+      "std": 0.0112,
+      "folds": [
+        0.7377,
+        0.7243,
+        0.7323,
+        0.744,
+        0.7116
+      ]
+    },
+    "inspired_rewriting": {
+      "mean": 0.7368,
+      "std": 0.0114,
+      "folds": [
+        0.724,
+        0.7457,
+        0.7294,
+        0.7306,
+        0.7544
+      ]
+    }
+  },
+  "lopto_f1": {
+    "continuation": 0.762,
+    "elaboration": 0.7622,
+    "inspired_rewriting": 0.7334,
+    "avg": 0.7525
+  },
+  "depth_decay": {
+    "continuation": {
+      "depth_counts": {
+        "0": 995,
+        "1": 992,
+        "2": 932,
+        "3": 874,
+        "4": 827
+      },
+      "d0": 995,
+      "d4": 827,
+      "retention_d4_pct": 83.1,
+      "max_depth": 4
+    },
+    "elaboration": {
+      "depth_counts": {
+        "0": 995,
+        "1": 995,
+        "2": 989,
+        "3": 986,
+        "4": 981
+      },
+      "d0": 995,
+      "d4": 981,
+      "retention_d4_pct": 98.6,
+      "max_depth": 4
+    },
+    "inspired_rewriting": {
+      "depth_counts": {
+        "0": 995,
+        "1": 995,
+        "2": 959,
+        "3": 944,
+        "4": 934
+      },
+      "d0": 995,
+      "d4": 934,
+      "retention_d4_pct": 93.9,
+      "max_depth": 4
+    }
+  },
+  "feature_drift": {
+    "continuation": {
+      "entropy_mean": {
+        "mean_d0": 2.637409,
+        "mean_d4": 1.167259,
+        "relative_change": -0.5574
+      },
+      "entropy_std": {
+        "mean_d0": 1.660982,
+        "mean_d4": 1.585047,
+        "relative_change": -0.0457
+      },
+      "entropy_max": {
+        "mean_d0": 7.37862,
+        "mean_d4": 7.353884,
+        "relative_change": -0.0034
+      },
+      "entropy_min": {
+        "mean_d0": 0.005805,
+        "mean_d4": 0.022709,
+        "relative_change": 2.912
+      },
+      "tail_decay": {
+        "mean_d0": -0.002293,
+        "mean_d4": -0.002222,
+        "relative_change": 0.031
+      },
+      "ttr": {
+        "mean_d0": 0.642574,
+        "mean_d4": 0.252662,
+        "relative_change": -0.6068
+      },
+      "hapax_ratio": {
+        "mean_d0": 0.516257,
+        "mean_d4": 0.134314,
+        "relative_change": -0.7398
+      }
+    },
+    "elaboration": {
+      "entropy_mean": {
+        "mean_d0": 2.637413,
+        "mean_d4": 1.396397,
+        "relative_change": -0.4705
+      },
+      "entropy_std": {
+        "mean_d0": 1.660995,
+        "mean_d4": 1.652359,
+        "relative_change": -0.0052
+      },
+      "entropy_max": {
+        "mean_d0": 7.378478,
+        "mean_d4": 7.885723,
+        "relative_change": 0.0687
+      },
+      "entropy_min": {
+        "mean_d0": 0.005801,
+        "mean_d4": 0.003078,
+        "relative_change": -0.4694
+      },
+      "tail_decay": {
+        "mean_d0": -0.002293,
+        "mean_d4": -0.002323,
+        "relative_change": -0.0133
+      },
+      "ttr": {
+        "mean_d0": 0.642574,
+        "mean_d4": 0.230491,
+        "relative_change": -0.6413
+      },
+      "hapax_ratio": {
+        "mean_d0": 0.516257,
+        "mean_d4": 0.088576,
+        "relative_change": -0.8284
+      }
+    },
+    "inspired_rewriting": {
+      "entropy_mean": {
+        "mean_d0": 2.637377,
+        "mean_d4": 1.379959,
+        "relative_change": -0.4768
+      },
+      "entropy_std": {
+        "mean_d0": 1.660963,
+        "mean_d4": 1.636728,
+        "relative_change": -0.0146
+      },
+      "entropy_max": {
+        "mean_d0": 7.3784,
+        "mean_d4": 7.902992,
+        "relative_change": 0.0711
+      },
+      "entropy_min": {
+        "mean_d0": 0.005797,
+        "mean_d4": 0.010427,
+        "relative_change": 0.7985
+      },
+      "tail_decay": {
+        "mean_d0": -0.002293,
+        "mean_d4": -0.002305,
+        "relative_change": -0.0052
+      },
+      "ttr": {
+        "mean_d0": 0.642574,
+        "mean_d4": 0.245623,
+        "relative_change": -0.6178
+      },
+      "hapax_ratio": {
+        "mean_d0": 0.516257,
+        "mean_d4": 0.103384,
+        "relative_change": -0.7997
+      }
+    }
+  }
+}

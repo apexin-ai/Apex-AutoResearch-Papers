@@ -1,0 +1,133 @@
+{
+  "experiment": "multi-domain-seeds",
+  "generators": [
+    "pythia-1b",
+    "qwen3-1.7b",
+    "mistral-7b"
+  ],
+  "domains": {
+    "news": {
+      "binary_f1": 0.7459,
+      "binary_ci": [
+        0.7261,
+        0.7642
+      ],
+      "multiclass_f1": 0.6516,
+      "multiclass_ci": [
+        0.6346,
+        0.6697
+      ],
+      "per_generator": {
+        "binary": {
+          "mistral-7b": 0.7341,
+          "pythia-1b": 0.7637,
+          "qwen3-1.7b": 0.7389
+        },
+        "multiclass": {
+          "mistral-7b": 0.6573,
+          "pythia-1b": 0.6483,
+          "qwen3-1.7b": 0.648
+        }
+      },
+      "n_seeds": 200,
+      "n_samples_total": 2400
+    },
+    "academic": {
+      "binary_f1": 0.7386,
+      "binary_ci": [
+        0.7195,
+        0.7571
+      ],
+      "multiclass_f1": 0.6223,
+      "multiclass_ci": [
+        0.6039,
+        0.6419
+      ],
+      "per_generator": {
+        "binary": {
+          "mistral-7b": 0.7,
+          "pythia-1b": 0.7633,
+          "qwen3-1.7b": 0.7478
+        },
+        "multiclass": {
+          "mistral-7b": 0.5695,
+          "pythia-1b": 0.6471,
+          "qwen3-1.7b": 0.6516
+        }
+      },
+      "n_seeds": 200,
+      "n_samples_total": 2398
+    },
+    "code": {
+      "binary_f1": 0.7535,
+      "binary_ci": [
+        0.7368,
+        0.7701
+      ],
+      "multiclass_f1": 0.6344,
+      "multiclass_ci": [
+        0.6158,
+        0.6525
+      ],
+      "per_generator": {
+        "binary": {
+          "mistral-7b": 0.7489,
+          "pythia-1b": 0.7442,
+          "qwen3-1.7b": 0.767
+        },
+        "multiclass": {
+          "mistral-7b": 0.5848,
+          "pythia-1b": 0.6651,
+          "qwen3-1.7b": 0.652
+        }
+      },
+      "n_seeds": 200,
+      "n_samples_total": 2400
+    },
+    "wikipedia_baseline": {
+      "n_seeds": 2,
+      "binary_f1": 0.8148,
+      "multiclass_f1": 0.8632
+    }
+  },
+  "cross_domain_summary": {
+    "worst_domain": "academic",
+    "worst_f1": 0.7386,
+    "best_domain": "code",
+    "best_f1": 0.7535,
+    "max_gap_vs_wiki": 0.0762,
+    "conclusion": "domain_independent"
+  },
+  "feature_analysis": {
+    "per_domain_feature_means": {
+      "news": {
+        "entropy_mean": 2.938228,
+        "entropy_std": 1.627296,
+        "entropy_min": 0.058575,
+        "entropy_max": 7.166966,
+        "tail_decay": -0.00229,
+        "ttr": 0.673419,
+        "hapax_ratio": 0.541311
+      },
+      "academic": {
+        "entropy_mean": 3.00626,
+        "entropy_std": 1.665877,
+        "entropy_min": 0.082945,
+        "entropy_max": 7.341923,
+        "tail_decay": -0.00229,
+        "ttr": 0.608921,
+        "hapax_ratio": 0.46263
+      },
+      "code": {
+        "entropy_mean": 2.537499,
+        "entropy_std": 1.59387,
+        "entropy_min": 0.055069,
+        "entropy_max": 7.178221,
+        "tail_decay": -0.002417,
+        "ttr": 0.643749,
+        "hapax_ratio": 0.4853
+      }
+    },
+    "domain_with_largest_shift": "academic"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "max_depth_3": {
+    "f1_3class_mean": 0.752,
+    "f1_3class_std": 0.0775,
+    "f1_binary_mean": 0.6997,
+    "f1_binary_std": 0.0792
+  },
+  "max_depth_4": {
+    "f1_3class_mean": 0.7592,
+    "f1_3class_std": 0.0766,
+    "f1_binary_mean": 0.6987,
+    "f1_binary_std": 0.0777
+  },
+  "max_depth_6": {
+    "f1_3class_mean": 0.7692,
+    "f1_3class_std": 0.0726,
+    "f1_binary_mean": 0.7002,
+    "f1_binary_std": 0.0742
+  },
+  "max_depth_8": {
+    "f1_3class_mean": 0.7718,
+    "f1_3class_std": 0.0705,
+    "f1_binary_mean": 0.6989,
+    "f1_binary_std": 0.073
+  }
+}

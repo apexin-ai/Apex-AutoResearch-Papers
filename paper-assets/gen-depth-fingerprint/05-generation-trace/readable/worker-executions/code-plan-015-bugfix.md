@@ -1,0 +1,1527 @@
+# code plan 015 bugfix
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/workers/worker_code_plan-015-bugfix_20260515T003200.log`
+- **Structured JSON:** [`393eccaa715ac681be39.json`](../../sessions/39/393eccaa715ac681be39.json)
+
+## Before a recorded user message
+
+33 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "8e190435-a758-465e-84dc-f2d9cf4563ef",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778806800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "edb3bc02-a8b7-4dc7-9137-6c7727b510dd",
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the current `ordinal_baseline.py` file on the server to understand the implementation before making fixes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "6a4a55ac-8dfa-477a-bf3c-ac5bd9e17d73",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AryaFraTsdNxMjihrNsjyh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11984,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11984
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先读取服务器上的 `ordinal_baseline.py` 全文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "bbd08745-2402-4aff-893e-eb08e94aff91",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AryaFraTsdNxMjihrNsjyh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11984,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11984
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01TFKUtqghHEUEkWap5YzC6a`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "b10cb146-574e-4a35-bb00-d375c7a45f0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AryaFraTsdNxMjihrNsjyh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11984,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11984
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T00:32:13.999Z_
+
+<details><summary>↩ Tool result · `toolu_01TFKUtqghHEUEkWap5YzC6a`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "1907a442-7e81-421d-ac82-ffd107f5b9de",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Tir8pnGrLvoFTZKxT2Md5n`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/ordinal_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "522f1fa3-7449-449e-959e-0b0238cf1440",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BhCosHHEyUy2mNtcPyD5bt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 936,
+      "cache_read_input_tokens": 23825,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 936
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T00:32:18.520Z_
+
+<details><summary>↩ Tool result · `toolu_01Tir8pnGrLvoFTZKxT2Md5n`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/gen-depth-fingerprint/ordinal_baseline.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.95}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "9d63e01d-2503-4b47-8dfb-318fbb9e710a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/gen-depth-fingerprint/ordinal_baseline.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/gen-depth-fingerprint/ordinal_baseline.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.95}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019tLN8QStwwEuYir59AjmXn`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/gen-depth-fingerprint -name \"ordinal_baseline.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "06c718e9-3d07-40d3-ac37-515e37eda469",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013iGdNQYCNoBD75P2NTA9nj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 225,
+      "cache_read_input_tokens": 24761,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 225
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T00:32:22.086Z_
+
+<details><summary>↩ Tool result · `toolu_019tLN8QStwwEuYir59AjmXn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/scripts/ordinal_baseline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "d3265c22-8c0f-4f12-86bc-a4c839e1d99f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/gen-depth-fingerprint/scripts/ordinal_baseline.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/scripts/ordinal_baseline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+文件在 `scripts/ordinal_baseline.py`。读取全文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "acc817c1-2e20-40af-9de8-7d9536b74810",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RKDRaV6ycQ8969aeHbnyDD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 217,
+      "cache_read_input_tokens": 24986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 217
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Bro69FmtvN9vBDpjn4qxTh`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/gen-depth-fingerprint/scripts/ordinal_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "e7d2e816-a514-4990-b571-b995209c571e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RKDRaV6ycQ8969aeHbnyDD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 217,
+      "cache_read_input_tokens": 24986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 217
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T00:32:26.176Z_
+
+<details><summary>↩ Tool result · `toolu_01Bro69FmtvN9vBDpjn4qxTh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"405 /root/gen-depth-fingerprint/scripts/ordinal_baseline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "b50bd528-2e58-4c73-8787-6fe5cb998fcb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"405 /root/gen-depth-fingerprint/scripts/ordinal_baseline.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"405 /root/gen-depth-fingerprint/scripts/ordinal_baseline.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GUSNLDjvQcnHmRbUFP6N6v`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/scripts/ordinal_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "a1a7616b-949a-4f34-9127-cac78de26308",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GRXavL3fnS5DjpM1fz9cnj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 239,
+      "cache_read_input_tokens": 25203,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 239
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T00:32:34.757Z_
+
+<details><summary>↩ Tool result · `toolu_01GUSNLDjvQcnHmRbUFP6N6v`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Ordinal baseline: test if existing AI detectors' scores carry depth signal.\\nInput:  data/{model}/generations.jsonl\\nOutput: results/ordinal_baseline_results.json\\n\\\"\\\"\\\"\\nimport argparse, json, os, sys, time\\nimport numpy as np\\nimport pandas as pd\\nfrom collections import Counter\\nfrom pathlib import Path\\nfrom scipy.spatial.distance import jensenshannon\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import f1_score\\nfrom sklearn.model_selection import StratifiedKFold\\nfrom xgboost import XGBClassifier\\nimport torch\\nimport torch.nn.functional as F\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nROOT = Path(\\\"/root/gen-depth-fingerprint\\\")\\nDATA = ROOT / \\\"data\\\"\\nRESULTS = ROOT / \\\"results\\\"\\nDEVICE = \\\"cuda:0\\\"\\nMAX_LEN = 512\\nHF_CACHE = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nMODEL_SOURCES = {\\n    \\\"pythia-2.8b\\\": DATA / \\\"generations.jsonl\\\",\\n    \\\"pythia-1b\\\":   DATA / \\\"pythia-1b\\\" / \\\"generations.jsonl\\\",\\n    \\\"olmo-2-1b\\\":   DATA / \\\"olmo-2-1b\\\" / \\\"generations.jsonl\\\",\\n    \\\"qwen3-0.6b\\\":  DATA / \\\"qwen3-0.6b\\\" / \\\"generations.jsonl\\\",\\n    \\\"qwen3-1.7b\\\":  DATA / \\\"qwen3-1.7b\\\" / \\\"generations.jsonl\\\",\\n}\\n\\n\\ndef load_texts(max_per_model=None):\\n    records = []\\n    for model_name, path in MODEL_SOURCES.items():\\n        if not path.exists():\\n            print(f\\\"  SKIP {path}\\\")\\n            continue\\n        count = 0\\n        with open(path) as f:\\n            for line in f:\\n                rec = json.loads(line)\\n                rec[\\\"model_name\\\"] = model_name\\n                records.append(rec)\\n                count += 1\\n                if max_per_model and count >= max_per_model:\\n                    break\\n        print(f\\\"  {model_name}: {count}\\\")\\n    df = pd.DataFrame(records)\\n    df[\\\"label\\\"] = df[\\\"depth\\\"].clip(upper=2)\\n    print(f\\\"  Total: {len(df)}, labels: {df['label'].value_counts().sort_index().to_dict()}\\\")\\n    return df\\n\\n\\n# ── LD-Score ─────────────────────────────────────────────��\\n\\ndef compute_ld_scores(texts, labels, n=3):\\n    \\\"\\\"\\\"JS divergence of char-trigram distribution vs. human reference.\\\"\\\"\\\"\\n    all_counts = []\\n    global_vocab = set()\\n    for text in texts:\\n        t = text.lower()\\n        counts = Counter(t[j:j+n] for j in range(len(t) - n + 1))\\n        all_counts.append(counts)\\n        global_vocab.update(counts.keys())\\n\\n    vocab = sorted(global_vocab)\\n    ng2i = {ng: i for i, ng in enumerate(vocab)}\\n    V = len(vocab)\\n    print(f\\\"  Trigram vocab: {V}\\\")\\n\\n    ref_total = Counter()\\n    for i, counts in enumerate(all_counts):\\n        if labels[i] == 0:\\n            ref_total.update(counts)\\n    total_ref = sum(ref_total.values())\\n    ref_vec = np.zeros(V, dtype=np.float64)\\n    for ng, c in ref_total.items():\\n        ref_vec[ng2i[ng]] = c / total_ref\\n\\n    scores = []\\n    for i, counts in enumerate(all_counts):\\n        total = sum(counts.values())\\n        if total == 0:\\n            scores.append(0.0)\\n            continue\\n        vec = np.zeros(V, dtype=np.float64)\\n        for ng, c in counts.items():\\n            vec[ng2i[ng]] = c / total\\n        js = jensenshannon(ref_vec, vec)\\n        scores.append(float(js) if not np.isnan(js) else 0.0)\\n        if i % 5000 == 0 and i > 0:\\n            print(f\\\"    {i}/{len(texts)}\\\")\\n    return scores\\n\\n\\n# ── FastDetectGPT + avg log-prob ──────────────────────────\\n\\ndef compute_fastdetectgpt_and_logprob(texts, model, tokenizer, device, bs=8):\\n    fdg_scores, lp_scores = [], []\\n    n = len(texts)\\n    for i in range(0, n, bs):\\n        batch = texts[i:i+bs]\\n        enc = tokenizer(batch, return_tensors=\\\"pt\\\", truncation=True,\\n                        max_length=MAX_LEN, padding=True).to(device)\\n        with torch.no_grad():\\n            logits = model(**enc).logits\\n\\n        log_probs = F.log_softmax(logits[:, :-1], dim=-1)\\n        probs = torch.exp(log_probs)\\n        targets = enc[\\\"input_ids\\\"][:, 1:]\\n        mask = enc[\\\"attention_mask\\\"][:, 1:].bool()\\n\\n        actual = log_probs.gather(2, targets.unsqueeze(-1)).squeeze(-1)\\n        expected = (probs * log_probs).sum(dim=-1)\\n        curv = actual - expected\\n\\n \\n\\n... [截断: 输出过长，省略 6716 字符] ...\\n\\nime()-t0:.1f}s\\\")\\n\\n    # 2. FastDetectGPT + log-prob\\n    print(\\\"\\\\n[2/3] FastDetectGPT (pythia-410m)\\\")\\n    t0 = time.time()\\n    performer = None\\n    try:\\n        scoring = \\\"EleutherAI/pythia-410m\\\"\\n        print(f\\\"  Loading {scoring}...\\\")\\n        tok = AutoTokenizer.from_pretrained(scoring, cache_dir=HF_CACHE)\\n        tok.pad_token = tok.eos_token\\n        mdl = AutoModelForCausalLM.from_pretrained(\\n            scoring, dtype=torch.float16, cache_dir=HF_CACHE\\n        ).to(DEVICE).eval()\\n        fdg, lp = compute_fastdetectgpt_and_logprob(texts, mdl, tok, DEVICE)\\n        all_scores[\\\"fastdetectgpt\\\"] = fdg\\n        all_scores[\\\"avg_logprob\\\"] = lp\\n        performer = mdl\\n        print(f\\\"  {time.time()-t0:.1f}s\\\")\\n    except Exception as e:\\n        print(f\\\"  FAILED: {e}\\\")\\n        import traceback; traceback.print_exc()\\n\\n    # 3. Binoculars\\n    print(\\\"\\\\n[3/3] Binoculars (pythia-160m × pythia-410m)\\\")\\n    t0 = time.time()\\n    try:\\n        obs_name = \\\"EleutherAI/pythia-160m\\\"\\n        print(f\\\"  Loading observer {obs_name}...\\\")\\n        observer = AutoModelForCausalLM.from_pretrained(\\n            obs_name, dtype=torch.float16, cache_dir=HF_CACHE\\n        ).to(DEVICE).eval()\\n        if performer is None:\\n            tok = AutoTokenizer.from_pretrained(\\\"EleutherAI/pythia-410m\\\", cache_dir=HF_CACHE)\\n            tok.pad_token = tok.eos_token\\n            performer = AutoModelForCausalLM.from_pretrained(\\n                \\\"EleutherAI/pythia-410m\\\", dtype=torch.float16, cache_dir=HF_CACHE\\n            ).to(DEVICE).eval()\\n        bino = compute_binoculars_scores(texts, observer, performer, tok, DEVICE)\\n        all_scores[\\\"binoculars\\\"] = bino\\n        print(f\\\"  {time.time()-t0:.1f}s\\\")\\n        del observer\\n    except Exception as e:\\n        print(f\\\"  FAILED: {e}\\\")\\n        import traceback; traceback.print_exc()\\n\\n    # Free GPU\\n    if performer is not None:\\n        del performer\\n    if \\\"mdl\\\" in locals():\\n        del mdl\\n    torch.cuda.empty_cache()\\n\\n    # Evaluate\\n    print(\\\"\\\\n[Eval]\\\")\\n    det_keys = [\\\"ld_score\\\", \\\"fastdetectgpt\\\", \\\"avg_logprob\\\", \\\"binoculars\\\"]\\n    det_names = {\\\"ld_score\\\": \\\"LD-Score\\\", \\\"fastdetectgpt\\\": \\\"FastDetectGPT\\\",\\n                 \\\"avg_logprob\\\": \\\"Avg-LogProb\\\", \\\"binoculars\\\": \\\"Binoculars\\\"}\\n\\n    for key in det_keys:\\n        sc = all_scores.get(key)\\n        if sc is None:\\n            results[key] = {\\\"error\\\": \\\"computation failed\\\"}\\n            continue\\n        name = det_names[key]\\n        r = eval_cv(sc, labels, name)\\n        r.update(eval_logo(sc, labels, model_names, name))\\n        rho_raw, _ = spearmanr(sc, depths)\\n        r[\\\"spearman_rho_raw_depth\\\"] = round(float(rho_raw), 4)\\n        results[key] = r\\n        print(f\\\"  {name:<15} F1={r['macro_f1_mean']:.4f}±{r['macro_f1_std']:.4f}\\\"\\n              f\\\"  LOGO={r['logo_macro_f1_mean']:.4f}  ρ={r['spearman_rho']:.4f}\\\")\\n\\n    # 7-feature comparison\\n    try:\\n        results[\\\"seven_feature\\\"] = eval_seven_features()\\n        sf = results[\\\"seven_feature\\\"]\\n        print(f\\\"  {'7-feat':<15} F1={sf['macro_f1_mean']:.4f}±{sf['macro_f1_std']:.4f}\\\"\\n              f\\\"  LOGO={sf['logo_macro_f1_mean']:.4f}\\\")\\n    except Exception as e:\\n        print(f\\\"  7-feature FAILED: {e}\\\")\\n        results[\\\"seven_feature\\\"] = {\\\"error\\\": str(e)}\\n\\n    # Summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(f\\\"{'Detector':<18} {'5-fold F1':>10} {'LOGO F1':>10} {'ρ (3-cls)':>10} {'ρ (depth)':>10}\\\")\\n    print(\\\"-\\\" * 60)\\n    for key in det_keys + [\\\"seven_feature\\\"]:\\n        r = results.get(key, {})\\n        if \\\"error\\\" in r:\\n            print(f\\\"{key:<18} {'ERR':>10}\\\")\\n            continue\\n        nm = r.get(\\\"feature\\\", key)\\n        print(f\\\"{nm:<18} {r.get('macro_f1_mean',0):>10.4f} \\\"\\n              f\\\"{r.get('logo_macro_f1_mean',0):>10.4f} \\\"\\n              f\\\"{r.get('spearman_rho',0):>10.4f} \\\"\\n              f\\\"{r.get('spearman_rho_raw_depth', r.get('spearman_rho',0)):>10.4f}\\\")\\n\\n    out = RESULTS / \\\"ordinal_baseline_results.json\\\"\\n    with open(out, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nSaved: {out}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "903eca91-0eb4-4012-a4b5-5bfb49713199",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Ordinal baseline: test if existing AI detectors' scores carry depth signal.\\\\nInput:  data/{model}/generations.jsonl\\\\nOutput: results/ordinal_baseline_results.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse, json, os, sys, time\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\nfrom scipy.spatial.distance import jensenshannon\\\\nfrom scipy.stats import spearmanr\\\\nfrom sklearn.metrics import f1_score\\\\nfrom sklearn.model_selection import StratifiedKFold\\\\nfrom xgboost import XGBClassifier\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nROOT = Path(\\\\\\\"/root/gen-depth-fingerprint\\\\\\\")\\\\nDATA = ROOT / \\\\\\\"data\\\\\\\"\\\\nRESULTS = ROOT / \\\\\\\"results\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\nMAX_LEN = 512\\\\nHF_CACHE = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n\\\\nMODEL_SOURCES = {\\\\n    \\\\\\\"pythia-2.8b\\\\\\\": DATA / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"pythia-1b\\\\\\\":   DATA / \\\\\\\"pythia-1b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"olmo-2-1b\\\\\\\":   DATA / \\\\\\\"olmo-2-1b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\":  DATA / \\\\\\\"qwen3-0.6b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\":  DATA / \\\\\\\"qwen3-1.7b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n}\\\\n\\\\n\\\\ndef load_texts(max_per_model=None):\\\\n    records = []\\\\n    for model_name, path in MODEL_SOURCES.items():\\\\n        if not path.exists():\\\\n            print(f\\\\\\\"  SKIP {path}\\\\\\\")\\\\n            continue\\\\n        count = 0\\\\n        with open(path) as f:\\\\n            for line in f:\\\\n                rec = json.loads(line)\\\\n                rec[\\\\\\\"model_name\\\\\\\"] = model_name\\\\n                records.append(rec)\\\\n                count += 1\\\\n                if max_per_model and count >= max_per_model:\\\\n                    break\\\\n        print(f\\\\\\\"  {model_name}: {count}\\\\\\\")\\\\n    df = pd.DataFrame(records)\\\\n    df[\\\\\\\"label\\\\\\\"] = df[\\\\\\\"depth\\\\\\\"].clip(upper=2)\\\\n    print(f\\\\\\\"  Total: {len(df)}, labels: {df['label'].value_counts().sort_index().to_dict()}\\\\\\\")\\\\n    return df\\\\n\\\\n\\\\n# ── LD-Score ─────────────────────────────────────────────��\\\\n\\\\ndef compute_ld_scores(texts, labels, n=3):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"JS divergence of char-trigram distribution vs. human reference.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_counts = []\\\\n    global_vocab = set()\\\\n    for text in texts:\\\\n        t = text.lower()\\\\n        counts = Counter(t[j:j+n] for j in range(len(t) - n + 1))\\\\n        all_counts.append(counts)\\\\n        global_vocab.update(counts.keys())\\\\n\\\\n    vocab = sorted(global_vocab)\\\\n    ng2i = {ng: i for i, ng in enumerate(vocab)}\\\\n    V = len(vocab)\\\\n    print(f\\\\\\\"  Trigram vocab: {V}\\\\\\\")\\\\n\\\\n    ref_total = Counter()\\\\n    for i, counts in enumerate(all_counts):\\\\n        if labels[i] == 0:\\\\n            ref_total.update(counts)\\\\n    total_ref = sum(ref_total.values())\\\\n    ref_vec = np.zeros(V, dtype=np.float64)\\\\n    for ng, c in ref_total.items():\\\\n        ref_vec[ng2i[ng]] = c / total_ref\\\\n\\\\n    scores = []\\\\n    for i, counts in enumerate(all_counts):\\\\n        total = sum(counts.values())\\\\n        if total == 0:\\\\n            scores.append(0.0)\\\\n            continue\\\\n        vec = np.zeros(V, dtype=np.float64)\\\\n        for ng, c in counts.items():\\\\n            vec[ng2i[ng]] = c / total\\\\n        js = jensenshannon(ref_vec, vec)\\\\n        scores.append(float(js) if not np.isnan(js) else 0.0)\\\\n        if i % 5000 == 0 and i > 0:\\\\n            print(f\\\\\\\"    {i}/{len(texts)}\\\\\\\")\\\\n    return scores\\\\n\\\\n\\\\n# ── FastDetectGPT + avg log-prob ──────────────────────────\\\\n\\\\ndef compute_fastdetectgpt_and_logprob(texts, model, tokenizer, device, bs=8):\\\\n    fdg_scores, lp_scores = [], []\\\\n    n = len(texts)\\\\n    for i in range(0, n, bs):\\\\n        batch = texts[i:i+bs]\\\\n        enc = tokenizer(batch, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True,\\\\n                        max_length=MAX_LEN, padding=True).to(device)\\\\n        with torch.no_grad():\\\\n            logits = model(**enc).logits\\\\n\\\\n        log_probs = F.log_softmax(logits[:, :-1], dim=-1)\\\\n        probs = torch.exp(log_probs)\\\\n        targets = enc[\\\\\\\"input_ids\\\\\\\"][:, 1:]\\\\n        mask = enc[\\\\\\\"attention_mask\\\\\\\"][:, 1:].bool()\\\\n\\\\n        actual = log_probs.gather(2, targets.unsqueeze(-1)).squeeze(-1)\\\\n        expected = (probs * log_probs).sum(dim=-1)\\\\n        curv = actual - expected\\\\n\\\\n \\\\n\\\\n... [截断: 输出过长，省略 6716 字符] ...\\\\n\\\\nime()-t0:.1f}s\\\\\\\")\\\\n\\\\n    # 2. FastDetectGPT + log-prob\\\\n    print(\\\\\\\"\\\\\\\\n[2/3] FastDetectGPT (pythia-410m)\\\\\\\")\\\\n    t0 = time.time()\\\\n    performer = None\\\\n    try:\\\\n        scoring = \\\\\\\"EleutherAI/pythia-410m\\\\\\\"\\\\n        print(f\\\\\\\"  Loading {scoring}...\\\\\\\")\\\\n        tok = AutoTokenizer.from_pretrained(scoring, cache_dir=HF_CACHE)\\\\n        tok.pad_token = tok.eos_token\\\\n        mdl = AutoModelForCausalLM.from_pretrained(\\\\n            scoring, dtype=torch.float16, cache_dir=HF_CACHE\\\\n        ).to(DEVICE).eval()\\\\n        fdg, lp = compute_fastdetectgpt_and_logprob(texts, mdl, tok, DEVICE)\\\\n        all_scores[\\\\\\\"fastdetectgpt\\\\\\\"] = fdg\\\\n        all_scores[\\\\\\\"avg_logprob\\\\\\\"] = lp\\\\n        performer = mdl\\\\n        print(f\\\\\\\"  {time.time()-t0:.1f}s\\\\\\\")\\\\n    except Exception as e:\\\\n        print(f\\\\\\\"  FAILED: {e}\\\\\\\")\\\\n        import traceback; traceback.print_exc()\\\\n\\\\n    # 3. Binoculars\\\\n    print(\\\\\\\"\\\\\\\\n[3/3] Binoculars (pythia-160m × pythia-410m)\\\\\\\")\\\\n    t0 = time.time()\\\\n    try:\\\\n        obs_name = \\\\\\\"EleutherAI/pythia-160m\\\\\\\"\\\\n        print(f\\\\\\\"  Loading observer {obs_name}...\\\\\\\")\\\\n        observer = AutoModelForCausalLM.from_pretrained(\\\\n            obs_name, dtype=torch.float16, cache_dir=HF_CACHE\\\\n        ).to(DEVICE).eval()\\\\n        if performer is None:\\\\n            tok = AutoTokenizer.from_pretrained(\\\\\\\"EleutherAI/pythia-410m\\\\\\\", cache_dir=HF_CACHE)\\\\n            tok.pad_token = tok.eos_token\\\\n            performer = AutoModelForCausalLM.from_pretrained(\\\\n                \\\\\\\"EleutherAI/pythia-410m\\\\\\\", dtype=torch.float16, cache_dir=HF_CACHE\\\\n            ).to(DEVICE).eval()\\\\n        bino = compute_binoculars_scores(texts, observer, performer, tok, DEVICE)\\\\n        all_scores[\\\\\\\"binoculars\\\\\\\"] = bino\\\\n        print(f\\\\\\\"  {time.time()-t0:.1f}s\\\\\\\")\\\\n        del observer\\\\n    except Exception as e:\\\\n        print(f\\\\\\\"  FAILED: {e}\\\\\\\")\\\\n        import traceback; traceback.print_exc()\\\\n\\\\n    # Free GPU\\\\n    if performer is not None:\\\\n        del performer\\\\n    if \\\\\\\"mdl\\\\\\\" in locals():\\\\n        del mdl\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    # Evaluate\\\\n    print(\\\\\\\"\\\\\\\\n[Eval]\\\\\\\")\\\\n    det_keys = [\\\\\\\"ld_score\\\\\\\", \\\\\\\"fastdetectgpt\\\\\\\", \\\\\\\"avg_logprob\\\\\\\", \\\\\\\"binoculars\\\\\\\"]\\\\n    det_names = {\\\\\\\"ld_score\\\\\\\": \\\\\\\"LD-Score\\\\\\\", \\\\\\\"fastdetectgpt\\\\\\\": \\\\\\\"FastDetectGPT\\\\\\\",\\\\n                 \\\\\\\"avg_logprob\\\\\\\": \\\\\\\"Avg-LogProb\\\\\\\", \\\\\\\"binoculars\\\\\\\": \\\\\\\"Binoculars\\\\\\\"}\\\\n\\\\n    for key in det_keys:\\\\n        sc = all_scores.get(key)\\\\n        if sc is None:\\\\n            results[key] = {\\\\\\\"error\\\\\\\": \\\\\\\"computation failed\\\\\\\"}\\\\n            continue\\\\n        name = det_names[key]\\\\n        r = eval_cv(sc, labels, name)\\\\n        r.update(eval_logo(sc, labels, model_names, name))\\\\n        rho_raw, _ = spearmanr(sc, depths)\\\\n        r[\\\\\\\"spearman_rho_raw_depth\\\\\\\"] = round(float(rho_raw), 4)\\\\n        results[key] = r\\\\n        print(f\\\\\\\"  {name:<15} F1={r['macro_f1_mean']:.4f}±{r['macro_f1_std']:.4f}\\\\\\\"\\\\n              f\\\\\\\"  LOGO={r['logo_macro_f1_mean']:.4f}  ρ={r['spearman_rho']:.4f}\\\\\\\")\\\\n\\\\n    # 7-feature comparison\\\\n    try:\\\\n        results[\\\\\\\"seven_feature\\\\\\\"] = eval_seven_features()\\\\n        sf = results[\\\\\\\"seven_feature\\\\\\\"]\\\\n        print(f\\\\\\\"  {'7-feat':<15} F1={sf['macro_f1_mean']:.4f}±{sf['macro_f1_std']:.4f}\\\\\\\"\\\\n              f\\\\\\\"  LOGO={sf['logo_macro_f1_mean']:.4f}\\\\\\\")\\\\n    except Exception as e:\\\\n        print(f\\\\\\\"  7-feature FAILED: {e}\\\\\\\")\\\\n        results[\\\\\\\"seven_feature\\\\\\\"] = {\\\\\\\"error\\\\\\\": str(e)}\\\\n\\\\n    # Summary\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n    print(f\\\\\\\"{'Detector':<18} {'5-fold F1':>10} {'LOGO F1':>10} {'ρ (3-cls)':>10} {'ρ (depth)':>10}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    for key in det_keys + [\\\\\\\"seven_feature\\\\\\\"]:\\\\n        r = results.get(key, {})\\\\n        if \\\\\\\"error\\\\\\\" in r:\\\\n            print(f\\\\\\\"{key:<18} {'ERR':>10}\\\\\\\")\\\\n            continue\\\\n        nm = r.get(\\\\\\\"feature\\\\\\\", key)\\\\n        print(f\\\\\\\"{nm:<18} {r.get('macro_f1_mean',0):>10.4f} \\\\\\\"\\\\n              f\\\\\\\"{r.get('logo_macro_f1_mean',0):>10.4f} \\\\\\\"\\\\n              f\\\\\\\"{r.get('spearman_rho',0):>10.4f} \\\\\\\"\\\\n              f\\\\\\\"{r.get('spearman_rho_raw_depth', r.get('spearman_rho',0)):>10.4f}\\\\\\\")\\\\n\\\\n    out = RESULTS / \\\\\\\"ordinal_baseline_results.json\\\\\\\"\\\\n    with open(out, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Ordinal baseline: test if existing AI detectors' scores carry depth signal.\\nInput:  data/{model}/generations.jsonl\\nOutput: results/ordinal_baseline_results.json\\n\\\"\\\"\\\"\\nimport argparse, json, os, sys, time\\nimport numpy as np\\nimport pandas as pd\\nfrom collections import Counter\\nfrom pathlib import Path\\nfrom scipy.spatial.distance import jensenshannon\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import f1_score\\nfrom sklearn.model_selection import StratifiedKFold\\nfrom xgboost import XGBClassifier\\nimport torch\\nimport torch.nn.functional as F\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nROOT = Path(\\\"/root/gen-depth-fingerprint\\\")\\nDATA = ROOT / \\\"data\\\"\\nRESULTS = ROOT / \\\"results\\\"\\nDEVICE = \\\"cuda:0\\\"\\nMAX_LEN = 512\\nHF_CACHE = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nMODEL_SOURCES = {\\n    \\\"pythia-2.8b\\\": DATA / \\\"generations.jsonl\\\",\\n    \\\"pythia-1b\\\":   DATA / \\\"pythia-1b\\\" / \\\"generations.jsonl\\\",\\n    \\\"olmo-2-1b\\\":   DATA / \\\"olmo-2-1b\\\" / \\\"generations.jsonl\\\",\\n    \\\"qwen3-0.6b\\\":  DATA / \\\"qwen3-0.6b\\\" / \\\"generations.jsonl\\\",\\n    \\\"qwen3-1.7b\\\":  DATA / \\\"qwen3-1.7b\\\" / \\\"generations.jsonl\\\",\\n}\\n\\n\\ndef load_texts(max_per_model=None):\\n    records = []\\n    for model_name, path in MODEL_SOURCES.items():\\n        if not path.exists():\\n            print(f\\\"  SKIP {path}\\\")\\n            continue\\n        count = 0\\n        with open(path) as f:\\n            for line in f:\\n                rec = json.loads(line)\\n                rec[\\\"model_name\\\"] = model_name\\n                records.append(rec)\\n                count += 1\\n                if max_per_model and count >= max_per_model:\\n                    break\\n        print(f\\\"  {model_name}: {count}\\\")\\n    df = pd.DataFrame(records)\\n    df[\\\"label\\\"] = df[\\\"depth\\\"].clip(upper=2)\\n    print(f\\\"  Total: {len(df)}, labels: {df['label'].value_counts().sort_index().to_dict()}\\\")\\n    return df\\n\\n\\n# ── LD-Score ─────────────────────────────────────────────��\\n\\ndef compute_ld_scores(texts, labels, n=3):\\n    \\\"\\\"\\\"JS divergence of char-trigram distribution vs. human reference.\\\"\\\"\\\"\\n    all_counts = []\\n    global_vocab = set()\\n    for text in texts:\\n        t = text.lower()\\n        counts = Counter(t[j:j+n] for j in range(len(t) - n + 1))\\n        all_counts.append(counts)\\n        global_vocab.update(counts.keys())\\n\\n    vocab = sorted(global_vocab)\\n    ng2i = {ng: i for i, ng in enumerate(vocab)}\\n    V = len(vocab)\\n    print(f\\\"  Trigram vocab: {V}\\\")\\n\\n    ref_total = Counter()\\n    for i, counts in enumerate(all_counts):\\n        if labels[i] == 0:\\n            ref_total.update(counts)\\n    total_ref = sum(ref_total.values())\\n    ref_vec = np.zeros(V, dtype=np.float64)\\n    for ng, c in ref_total.items():\\n        ref_vec[ng2i[ng]] = c / total_ref\\n\\n    scores = []\\n    for i, counts in enumerate(all_counts):\\n        total = sum(counts.values())\\n        if total == 0:\\n            scores.append(0.0)\\n            continue\\n        vec = np.zeros(V, dtype=np.float64)\\n        for ng, c in counts.items():\\n            vec[ng2i[ng]] = c / total\\n        js = jensenshannon(ref_vec, vec)\\n        scores.append(float(js) if not np.isnan(js) else 0.0)\\n        if i % 5000 == 0 and i > 0:\\n            print(f\\\"    {i}/{len(texts)}\\\")\\n    return scores\\n\\n\\n# ── FastDetectGPT + avg log-prob ──────────────────────────\\n\\ndef compute_fastdetectgpt_and_logprob(texts, model, tokenizer, device, bs=8):\\n    fdg_scores, lp_scores = [], []\\n    n = len(texts)\\n    for i in range(0, n, bs):\\n        batch = texts[i:i+bs]\\n        enc = tokenizer(batch, return_tensors=\\\"pt\\\", truncation=True,\\n                        max_length=MAX_LEN, padding=True).to(device)\\n        with torch.no_grad():\\n            logits = model(**enc).logits\\n\\n        log_probs = F.log_softmax(logits[:, :-1], dim=-1)\\n        probs = torch.exp(log_probs)\\n        targets = enc[\\\"input_ids\\\"][:, 1:]\\n        mask = enc[\\\"attention_mask\\\"][:, 1:].bool()\\n\\n        actual = log_probs.gather(2, targets.unsqueeze(-1)).squeeze(-1)\\n        expected = (probs * log_probs).sum(dim=-1)\\n        curv = actual - expected\\n\\n \\n\\n... [截断: 输出过长，省略 6716 字符] ...\\n\\nime()-t0:.1f}s\\\")\\n\\n    # 2. FastDetectGPT + log-prob\\n    print(\\\"\\\\n[2/3] FastDetectGPT (pythia-410m)\\\")\\n    t0 = time.time()\\n    performer = None\\n    try:\\n        scoring = \\\"EleutherAI/pythia-410m\\\"\\n        print(f\\\"  Loading {scoring}...\\\")\\n        tok = AutoTokenizer.from_pretrained(scoring, cache_dir=HF_CACHE)\\n        tok.pad_token = tok.eos_token\\n        mdl = AutoModelForCausalLM.from_pretrained(\\n            scoring, dtype=torch.float16, cache_dir=HF_CACHE\\n        ).to(DEVICE).eval()\\n        fdg, lp = compute_fastdetectgpt_and_logprob(texts, mdl, tok, DEVICE)\\n        all_scores[\\\"fastdetectgpt\\\"] = fdg\\n        all_scores[\\\"avg_logprob\\\"] = lp\\n        performer = mdl\\n        print(f\\\"  {time.time()-t0:.1f}s\\\")\\n    except Exception as e:\\n        print(f\\\"  FAILED: {e}\\\")\\n        import traceback; traceback.print_exc()\\n\\n    # 3. Binoculars\\n    print(\\\"\\\\n[3/3] Binoculars (pythia-160m × pythia-410m)\\\")\\n    t0 = time.time()\\n    try:\\n        obs_name = \\\"EleutherAI/pythia-160m\\\"\\n        print(f\\\"  Loading observer {obs_name}...\\\")\\n        observer = AutoModelForCausalLM.from_pretrained(\\n            obs_name, dtype=torch.float16, cache_dir=HF_CACHE\\n        ).to(DEVICE).eval()\\n        if performer is None:\\n            tok = AutoTokenizer.from_pretrained(\\\"EleutherAI/pythia-410m\\\", cache_dir=HF_CACHE)\\n            tok.pad_token = tok.eos_token\\n            performer = AutoModelForCausalLM.from_pretrained(\\n                \\\"EleutherAI/pythia-410m\\\", dtype=torch.float16, cache_dir=HF_CACHE\\n            ).to(DEVICE).eval()\\n        bino = compute_binoculars_scores(texts, observer, performer, tok, DEVICE)\\n        all_scores[\\\"binoculars\\\"] = bino\\n        print(f\\\"  {time.time()-t0:.1f}s\\\")\\n        del observer\\n    except Exception as e:\\n        print(f\\\"  FAILED: {e}\\\")\\n        import traceback; traceback.print_exc()\\n\\n    # Free GPU\\n    if performer is not None:\\n        del performer\\n    if \\\"mdl\\\" in locals():\\n        del mdl\\n    torch.cuda.empty_cache()\\n\\n    # Evaluate\\n    print(\\\"\\\\n[Eval]\\\")\\n    det_keys = [\\\"ld_score\\\", \\\"fastdetectgpt\\\", \\\"avg_logprob\\\", \\\"binoculars\\\"]\\n    det_names = {\\\"ld_score\\\": \\\"LD-Score\\\", \\\"fastdetectgpt\\\": \\\"FastDetectGPT\\\",\\n                 \\\"avg_logprob\\\": \\\"Avg-LogProb\\\", \\\"binoculars\\\": \\\"Binoculars\\\"}\\n\\n    for key in det_keys:\\n        sc = all_scores.get(key)\\n        if sc is None:\\n            results[key] = {\\\"error\\\": \\\"computation failed\\\"}\\n            continue\\n        name = det_names[key]\\n        r = eval_cv(sc, labels, name)\\n        r.update(eval_logo(sc, labels, model_names, name))\\n        rho_raw, _ = spearmanr(sc, depths)\\n        r[\\\"spearman_rho_raw_depth\\\"] = round(float(rho_raw), 4)\\n        results[key] = r\\n        print(f\\\"  {name:<15} F1={r['macro_f1_mean']:.4f}±{r['macro_f1_std']:.4f}\\\"\\n              f\\\"  LOGO={r['logo_macro_f1_mean']:.4f}  ρ={r['spearman_rho']:.4f}\\\")\\n\\n    # 7-feature comparison\\n    try:\\n        results[\\\"seven_feature\\\"] = eval_seven_features()\\n        sf = results[\\\"seven_feature\\\"]\\n        print(f\\\"  {'7-feat':<15} F1={sf['macro_f1_mean']:.4f}±{sf['macro_f1_std']:.4f}\\\"\\n              f\\\"  LOGO={sf['logo_macro_f1_mean']:.4f}\\\")\\n    except Exception as e:\\n        print(f\\\"  7-feature FAILED: {e}\\\")\\n        results[\\\"seven_feature\\\"] = {\\\"error\\\": str(e)}\\n\\n    # Summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(f\\\"{'Detector':<18} {'5-fold F1':>10} {'LOGO F1':>10} {'ρ (3-cls)':>10} {'ρ (depth)':>10}\\\")\\n    print(\\\"-\\\" * 60)\\n    for key in det_keys + [\\\"seven_feature\\\"]:\\n        r = results.get(key, {})\\n        if \\\"error\\\" in r:\\n            print(f\\\"{key:<18} {'ERR':>10}\\\")\\n            continue\\n        nm = r.get(\\\"feature\\\", key)\\n        print(f\\\"{nm:<18} {r.get('macro_f1_mean',0):>10.4f} \\\"\\n              f\\\"{r.get('logo_macro_f1_mean',0):>10.4f} \\\"\\n              f\\\"{r.get('spearman_rho',0):>10.4f} \\\"\\n              f\\\"{r.get('spearman_rho_raw_depth', r.get('spearman_rho',0)):>10.4f}\\\")\\n\\n    out = RESULTS / \\\"ordinal_baseline_results.json\\\"\\n    with open(out, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nSaved: {out}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated. Let me read specific sections. I need to see the full file, especially the `compute_binoculars_scores` function and the eval functions. Let me get the truncated portion.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "b2d02467-2cc4-4084-a24d-acd138f6e646",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H9BU9V6ZGLvrpfMqtjHZTM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3702,
+      "cache_read_input_tokens": 25442,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3702
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+输出被截断了，让我分段读取中间部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "2096a7a6-7f7f-4a62-af3c-7d15b297476d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H9BU9V6ZGLvrpfMqtjHZTM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3702,
+      "cache_read_input_tokens": 25442,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3702
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KTrKxSJriXSbcqJpaQ63XF`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -200 /root/gen-depth-fingerprint/scripts/ordinal_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "31fa3211-6809-4432-a489-c516718b124b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H9BU9V6ZGLvrpfMqtjHZTM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3702,
+      "cache_read_input_tokens": 25442,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3702
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T00:32:40.573Z_
+
+<details><summary>↩ Tool result · `toolu_01KTrKxSJriXSbcqJpaQ63XF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Ordinal baseline: test if existing AI detectors' scores carry depth signal.\\nInput:  data/{model}/generations.jsonl\\nOutput: results/ordinal_baseline_results.json\\n\\\"\\\"\\\"\\nimport argparse, json, os, sys, time\\nimport numpy as np\\nimport pandas as pd\\nfrom collections import Counter\\nfrom pathlib import Path\\nfrom scipy.spatial.distance import jensenshannon\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import f1_score\\nfrom sklearn.model_selection import StratifiedKFold\\nfrom xgboost import XGBClassifier\\nimport torch\\nimport torch.nn.functional as F\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nROOT = Path(\\\"/root/gen-depth-fingerprint\\\")\\nDATA = ROOT / \\\"data\\\"\\nRESULTS = ROOT / \\\"results\\\"\\nDEVICE = \\\"cuda:0\\\"\\nMAX_LEN = 512\\nHF_CACHE = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nMODEL_SOURCES = {\\n    \\\"pythia-2.8b\\\": DATA / \\\"generations.jsonl\\\",\\n    \\\"pythia-1b\\\":   DATA / \\\"pythia-1b\\\" / \\\"generations.jsonl\\\",\\n    \\\"olmo-2-1b\\\":   DATA / \\\"olmo-2-1b\\\" / \\\"generations.jsonl\\\",\\n    \\\"qwen3-0.6b\\\":  DATA / \\\"qwen3-0.6b\\\" / \\\"generations.jsonl\\\",\\n    \\\"qwen3-1.7b\\\":  DATA / \\\"qwen3-1.7b\\\" / \\\"generations.jsonl\\\",\\n}\\n\\n\\ndef load_texts(max_per_model=None):\\n    records = []\\n    for model_name, path in MODEL_SOURCES.items():\\n        if not path.exists():\\n            print(f\\\"  SKIP {path}\\\")\\n            continue\\n        count = 0\\n        with open(path) as f:\\n            for line in f:\\n                rec = json.loads(line)\\n                rec[\\\"model_name\\\"] = model_name\\n                records.append(rec)\\n                count += 1\\n                if max_per_model and count >= max_per_model:\\n                    break\\n        print(f\\\"  {model_name}: {count}\\\")\\n    df = pd.DataFrame(records)\\n    df[\\\"label\\\"] = df[\\\"depth\\\"].clip(upper=2)\\n    print(f\\\"  Total: {len(df)}, labels: {df['label'].value_counts().sort_index().to_dict()}\\\")\\n    return df\\n\\n\\n# ── LD-Score ─────────────────────────────────────────────��\\n\\ndef compute_ld_scores(texts, labels, n=3):\\n    \\\"\\\"\\\"JS divergence of char-trigram distribution vs. human reference.\\\"\\\"\\\"\\n    all_counts = []\\n    global_vocab = set()\\n    for text in texts:\\n        t = text.lower()\\n        counts = Counter(t[j:j+n] for j in range(len(t) - n + 1))\\n        all_counts.append(counts)\\n        global_vocab.update(counts.keys())\\n\\n    vocab = sorted(global_vocab)\\n    ng2i = {ng: i for i, ng in enumerate(vocab)}\\n    V = len(vocab)\\n    print(f\\\"  Trigram vocab: {V}\\\")\\n\\n    ref_total = Counter()\\n    for i, counts in enumerate(all_counts):\\n        if labels[i] == 0:\\n            ref_total.update(counts)\\n    total_ref = sum(ref_total.values())\\n    ref_vec = np.zeros(V, dtype=np.float64)\\n    for ng, c in ref_total.items():\\n        ref_vec[ng2i[ng]] = c / total_ref\\n\\n    scores = []\\n    for i, counts in enumerate(all_counts):\\n        total = sum(counts.values())\\n        if total == 0:\\n            scores.append(0.0)\\n            continue\\n        vec = np.zeros(V, dtype=np.float64)\\n        for ng, c in counts.items():\\n            vec[ng2i[ng]] = c / total\\n        js = jensenshannon(ref_vec, vec)\\n        scores.append(float(js) if not np.isnan(js) else 0.0)\\n        if i % 5000 == 0 and i > 0:\\n            print(f\\\"    {i}/{len(texts)}\\\")\\n    return scores\\n\\n\\n# ── FastDetectGPT + avg log-prob ──────────────────────────\\n\\ndef compute_fastdetectgpt_and_logprob(texts, model, tokenizer, device, bs=8):\\n    fdg_scores, lp_scores = [], []\\n    n = len(texts)\\n    for i in range(0, n, bs):\\n        batch = texts[i:i+bs]\\n        enc = tokenizer(batch, return_tensors=\\\"pt\\\", truncation=True,\\n                        max_length=MAX_LEN, padding=True).to(device)\\n        with torch.no_grad():\\n            logits = model(**enc).logits\\n\\n        log_probs = F.log_softmax(logits[:, :-1], dim=-1)\\n        probs = torch.exp(log_probs)\\n        targets = enc[\\\"input_ids\\\"][:, 1:]\\n        mask = enc[\\\"attention_mask\\\"][:, 1:].bool()\\n\\n        actual = log_probs.gather(2, targets.unsqueeze(-1)).squeeze(-1)\\n        expected = (probs * log_probs).sum(dim=-1)\\n        curv = actual - expected\\n\\n        for j in range(len(batch)):\\n            m = mask[j]\\n            n_tok = m.sum().item()\\n            if n_tok < 2:\\n                fdg_scores.append(0.0)\\n                lp_scores.append(0.0)\\n                continue\\n            c = curv[j][m]\\n            mean_c = c.mean().item()\\n            std_c = c.std().item()\\n            fdg_scores.append(mean_c / (std_c + 1e-8) if std_c > 1e-8 else mean_c)\\n            lp_scores.append(actual[j][m].mean().item())\\n\\n        done = min(i + bs, n)\\n        if (i // bs) % 200 == 0:\\n            print(f\\\"    {done}/{n}\\\")\\n    return fdg_scores, lp_scores\\n\\n\\n# ── Binoculars ────────────────────────────────────────────\\n\\ndef compute_binoculars_scores(texts, observer, performer, tokenizer, device, bs=8):\\n    scores = []\\n    n = len(texts)\\n    for i in range(0, n, bs):\\n        batch = texts[i:i+bs]\\n        enc = tokenizer(batch, return_tensors=\\\"pt\\\", truncation=True,\\n                        max_length=MAX_LEN, padding=True).to(device)\\n        with torch.no_grad():\\n            obs_logits = observer(**enc).logits\\n            perf_logits = performer(**enc).logits\\n\\n        shifted_obs = obs_logits[:, :-1].contiguous()\\n        shifted_perf = perf_logits[:, :-1].contiguous()\\n        shifted_ids = enc[\\\"input_ids\\\"][:, 1:].contiguous()\\n        mask = enc[\\\"attention_mask\\\"][:, 1:].float()\\n        B, T, V = shifted_obs.shape\\n\\n        ppl_loss = F.cross_entropy(\\n            shifted_obs.view(-1, V), shifted_ids.view(-1), reduction=\\\"none\\\"\\n        ).view(B, T)\\n        ppl = (ppl_loss * mask).sum(1) / mask.sum(1).clamp(min=1)\\n\\n        obs_argmax = shifted_obs.argmax(dim=-1)\\n        ce_loss = F.cross_entropy(\\n            shifted_perf.view(-1, V), obs_argmax.view(-1), reduction=\\\"none\\\"\\n        ).view(B, T)\\n        ce = (ce_loss * mask).sum(1) / mask.sum(1).clamp(min=1)\\n\\n        bino = ppl / ce.clamp(min=1e-8)\\n        scores.extend(bino.cpu().float().tolist())\\n\\n        done = min(i + bs, n)\\n        if (i // bs) % 200 == 0:\\n            print(f\\\"    {done}/{n}\\\")\\n    return scores\\n\\n\\n# ── Evaluation ────────────────────────────────────────────\\n\\ndef eval_cv(scores, labels, name, n_splits=5):\\n    X = np.array(scores).reshape(-1, 1)\\n    y = np.array(labels)\\n    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)\\n    f1s, pcs = [], []\\n    for tr, te in skf.split(X, y):\\n        clf = XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.1,\\n                            objective=\\\"multi:softmax\\\", num_class=3,\\n                            eval_metric=\\\"mlogloss\\\", verbosity=0, random_state=42)\\n        clf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        f1s.append(f1_score(y[te], pred, average=\\\"macro\\\"))\\n        pcs.append(f1_score(y[te], pred, average=None))\\n    rho, pval = spearmanr(scores, labels)\\n    return {\\n        \\\"feature\\\": name,\\n        \\\"macro_f1_mean\\\": round(float(np.mean(f1s)), 4),\\n        \\\"macro_f1_std\\\":  round(float(np.std(f1s)), 4),\\n        \\\"per_class_f1\\\":  [round(float(x), 4) for x in np.mean(pcs, axis=0)],\\n        \\\"spearman_rho\\\":  round(float(rho), 4),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "5d28c32d-a5a8-4c4a-99ff-848de5c530ad",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Ordinal baseline: test if existing AI detectors' scores carry depth signal.\\\\nInput:  data/{model}/generations.jsonl\\\\nOutput: results/ordinal_baseline_results.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse, json, os, sys, time\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\nfrom scipy.spatial.distance import jensenshannon\\\\nfrom scipy.stats import spearmanr\\\\nfrom sklearn.metrics import f1_score\\\\nfrom sklearn.model_selection import StratifiedKFold\\\\nfrom xgboost import XGBClassifier\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nROOT = Path(\\\\\\\"/root/gen-depth-fingerprint\\\\\\\")\\\\nDATA = ROOT / \\\\\\\"data\\\\\\\"\\\\nRESULTS = ROOT / \\\\\\\"results\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\nMAX_LEN = 512\\\\nHF_CACHE = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n\\\\nMODEL_SOURCES = {\\\\n    \\\\\\\"pythia-2.8b\\\\\\\": DATA / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"pythia-1b\\\\\\\":   DATA / \\\\\\\"pythia-1b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"olmo-2-1b\\\\\\\":   DATA / \\\\\\\"olmo-2-1b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\":  DATA / \\\\\\\"qwen3-0.6b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\":  DATA / \\\\\\\"qwen3-1.7b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n}\\\\n\\\\n\\\\ndef load_texts(max_per_model=None):\\\\n    records = []\\\\n    for model_name, path in MODEL_SOURCES.items():\\\\n        if not path.exists():\\\\n            print(f\\\\\\\"  SKIP {path}\\\\\\\")\\\\n            continue\\\\n        count = 0\\\\n        with open(path) as f:\\\\n            for line in f:\\\\n                rec = json.loads(line)\\\\n                rec[\\\\\\\"model_name\\\\\\\"] = model_name\\\\n                records.append(rec)\\\\n                count += 1\\\\n                if max_per_model and count >= max_per_model:\\\\n                    break\\\\n        print(f\\\\\\\"  {model_name}: {count}\\\\\\\")\\\\n    df = pd.DataFrame(records)\\\\n    df[\\\\\\\"label\\\\\\\"] = df[\\\\\\\"depth\\\\\\\"].clip(upper=2)\\\\n    print(f\\\\\\\"  Total: {len(df)}, labels: {df['label'].value_counts().sort_index().to_dict()}\\\\\\\")\\\\n    return df\\\\n\\\\n\\\\n# ── LD-Score ─────────────────────────────────────────────��\\\\n\\\\ndef compute_ld_scores(texts, labels, n=3):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"JS divergence of char-trigram distribution vs. human reference.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_counts = []\\\\n    global_vocab = set()\\\\n    for text in texts:\\\\n        t = text.lower()\\\\n        counts = Counter(t[j:j+n] for j in range(len(t) - n + 1))\\\\n        all_counts.append(counts)\\\\n        global_vocab.update(counts.keys())\\\\n\\\\n    vocab = sorted(global_vocab)\\\\n    ng2i = {ng: i for i, ng in enumerate(vocab)}\\\\n    V = len(vocab)\\\\n    print(f\\\\\\\"  Trigram vocab: {V}\\\\\\\")\\\\n\\\\n    ref_total = Counter()\\\\n    for i, counts in enumerate(all_counts):\\\\n        if labels[i] == 0:\\\\n            ref_total.update(counts)\\\\n    total_ref = sum(ref_total.values())\\\\n    ref_vec = np.zeros(V, dtype=np.float64)\\\\n    for ng, c in ref_total.items():\\\\n        ref_vec[ng2i[ng]] = c / total_ref\\\\n\\\\n    scores = []\\\\n    for i, counts in enumerate(all_counts):\\\\n        total = sum(counts.values())\\\\n        if total == 0:\\\\n            scores.append(0.0)\\\\n            continue\\\\n        vec = np.zeros(V, dtype=np.float64)\\\\n        for ng, c in counts.items():\\\\n            vec[ng2i[ng]] = c / total\\\\n        js = jensenshannon(ref_vec, vec)\\\\n        scores.append(float(js) if not np.isnan(js) else 0.0)\\\\n        if i % 5000 == 0 and i > 0:\\\\n            print(f\\\\\\\"    {i}/{len(texts)}\\\\\\\")\\\\n    return scores\\\\n\\\\n\\\\n# ── FastDetectGPT + avg log-prob ──────────────────────────\\\\n\\\\ndef compute_fastdetectgpt_and_logprob(texts, model, tokenizer, device, bs=8):\\\\n    fdg_scores, lp_scores = [], []\\\\n    n = len(texts)\\\\n    for i in range(0, n, bs):\\\\n        batch = texts[i:i+bs]\\\\n        enc = tokenizer(batch, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True,\\\\n                        max_length=MAX_LEN, padding=True).to(device)\\\\n        with torch.no_grad():\\\\n            logits = model(**enc).logits\\\\n\\\\n        log_probs = F.log_softmax(logits[:, :-1], dim=-1)\\\\n        probs = torch.exp(log_probs)\\\\n        targets = enc[\\\\\\\"input_ids\\\\\\\"][:, 1:]\\\\n        mask = enc[\\\\\\\"attention_mask\\\\\\\"][:, 1:].bool()\\\\n\\\\n        actual = log_probs.gather(2, targets.unsqueeze(-1)).squeeze(-1)\\\\n        expected = (probs * log_probs).sum(dim=-1)\\\\n        curv = actual - expected\\\\n\\\\n        for j in range(len(batch)):\\\\n            m = mask[j]\\\\n            n_tok = m.sum().item()\\\\n            if n_tok < 2:\\\\n                fdg_scores.append(0.0)\\\\n                lp_scores.append(0.0)\\\\n                continue\\\\n            c = curv[j][m]\\\\n            mean_c = c.mean().item()\\\\n            std_c = c.std().item()\\\\n            fdg_scores.append(mean_c / (std_c + 1e-8) if std_c > 1e-8 else mean_c)\\\\n            lp_scores.append(actual[j][m].mean().item())\\\\n\\\\n        done = min(i + bs, n)\\\\n        if (i // bs) % 200 == 0:\\\\n            print(f\\\\\\\"    {done}/{n}\\\\\\\")\\\\n    return fdg_scores, lp_scores\\\\n\\\\n\\\\n# ── Binoculars ────────────────────────────────────────────\\\\n\\\\ndef compute_binoculars_scores(texts, observer, performer, tokenizer, device, bs=8):\\\\n    scores = []\\\\n    n = len(texts)\\\\n    for i in range(0, n, bs):\\\\n        batch = texts[i:i+bs]\\\\n        enc = tokenizer(batch, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True,\\\\n                        max_length=MAX_LEN, padding=True).to(device)\\\\n        with torch.no_grad():\\\\n            obs_logits = observer(**enc).logits\\\\n            perf_logits = performer(**enc).logits\\\\n\\\\n        shifted_obs = obs_logits[:, :-1].contiguous()\\\\n        shifted_perf = perf_logits[:, :-1].contiguous()\\\\n        shifted_ids = enc[\\\\\\\"input_ids\\\\\\\"][:, 1:].contiguous()\\\\n        mask = enc[\\\\\\\"attention_mask\\\\\\\"][:, 1:].float()\\\\n        B, T, V = shifted_obs.shape\\\\n\\\\n        ppl_loss = F.cross_entropy(\\\\n            shifted_obs.view(-1, V), shifted_ids.view(-1), reduction=\\\\\\\"none\\\\\\\"\\\\n        ).view(B, T)\\\\n        ppl = (ppl_loss * mask).sum(1) / mask.sum(1).clamp(min=1)\\\\n\\\\n        obs_argmax = shifted_obs.argmax(dim=-1)\\\\n        ce_loss = F.cross_entropy(\\\\n            shifted_perf.view(-1, V), obs_argmax.view(-1), reduction=\\\\\\\"none\\\\\\\"\\\\n        ).view(B, T)\\\\n        ce = (ce_loss * mask).sum(1) / mask.sum(1).clamp(min=1)\\\\n\\\\n        bino = ppl / ce.clamp(min=1e-8)\\\\n        scores.extend(bino.cpu().float().tolist())\\\\n\\\\n        done = min(i + bs, n)\\\\n        if (i // bs) % 200 == 0:\\\\n            print(f\\\\\\\"    {done}/{n}\\\\\\\")\\\\n    return scores\\\\n\\\\n\\\\n# ── Evaluation ────────────────────────────────────────────\\\\n\\\\ndef eval_cv(scores, labels, name, n_splits=5):\\\\n    X = np.array(scores).reshape(-1, 1)\\\\n    y = np.array(labels)\\\\n    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)\\\\n    f1s, pcs = [], []\\\\n    for tr, te in skf.split(X, y):\\\\n        clf = XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.1,\\\\n                            objective=\\\\\\\"multi:softmax\\\\\\\", num_class=3,\\\\n                            eval_metric=\\\\\\\"mlogloss\\\\\\\", verbosity=0, random_state=42)\\\\n        clf.fit(X[tr], y[tr])\\\\n        pred = clf.predict(X[te])\\\\n        f1s.append(f1_score(y[te], pred, average=\\\\\\\"macro\\\\\\\"))\\\\n        pcs.append(f1_score(y[te], pred, average=None))\\\\n    rho, pval = spearmanr(scores, labels)\\\\n    return {\\\\n        \\\\\\\"feature\\\\\\\": name,\\\\n        \\\\\\\"macro_f1_mean\\\\\\\": round(float(np.mean(f1s)), 4),\\\\n        \\\\\\\"macro_f1_std\\\\\\\":  round(float(np.std(f1s)), 4),\\\\n        \\\\\\\"per_class_f1\\\\\\\":  [round(float(x), 4) for x in np.mean(pcs, axis=0)],\\\\n        \\\\\\\"spearman_rho\\\\\\\":  round(float(rho), 4),\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Ordinal baseline: test if existing AI detectors' scores carry depth signal.\\nInput:  data/{model}/generations.jsonl\\nOutput: results/ordinal_baseline_results.json\\n\\\"\\\"\\\"\\nimport argparse, json, os, sys, time\\nimport numpy as np\\nimport pandas as pd\\nfrom collections import Counter\\nfrom pathlib import Path\\nfrom scipy.spatial.distance import jensenshannon\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import f1_score\\nfrom sklearn.model_selection import StratifiedKFold\\nfrom xgboost import XGBClassifier\\nimport torch\\nimport torch.nn.functional as F\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nROOT = Path(\\\"/root/gen-depth-fingerprint\\\")\\nDATA = ROOT / \\\"data\\\"\\nRESULTS = ROOT / \\\"results\\\"\\nDEVICE = \\\"cuda:0\\\"\\nMAX_LEN = 512\\nHF_CACHE = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nMODEL_SOURCES = {\\n    \\\"pythia-2.8b\\\": DATA / \\\"generations.jsonl\\\",\\n    \\\"pythia-1b\\\":   DATA / \\\"pythia-1b\\\" / \\\"generations.jsonl\\\",\\n    \\\"olmo-2-1b\\\":   DATA / \\\"olmo-2-1b\\\" / \\\"generations.jsonl\\\",\\n    \\\"qwen3-0.6b\\\":  DATA / \\\"qwen3-0.6b\\\" / \\\"generations.jsonl\\\",\\n    \\\"qwen3-1.7b\\\":  DATA / \\\"qwen3-1.7b\\\" / \\\"generations.jsonl\\\",\\n}\\n\\n\\ndef load_texts(max_per_model=None):\\n    records = []\\n    for model_name, path in MODEL_SOURCES.items():\\n        if not path.exists():\\n            print(f\\\"  SKIP {path}\\\")\\n            continue\\n        count = 0\\n        with open(path) as f:\\n            for line in f:\\n                rec = json.loads(line)\\n                rec[\\\"model_name\\\"] = model_name\\n                records.append(rec)\\n                count += 1\\n                if max_per_model and count >= max_per_model:\\n                    break\\n        print(f\\\"  {model_name}: {count}\\\")\\n    df = pd.DataFrame(records)\\n    df[\\\"label\\\"] = df[\\\"depth\\\"].clip(upper=2)\\n    print(f\\\"  Total: {len(df)}, labels: {df['label'].value_counts().sort_index().to_dict()}\\\")\\n    return df\\n\\n\\n# ── LD-Score ─────────────────────────────────────────────��\\n\\ndef compute_ld_scores(texts, labels, n=3):\\n    \\\"\\\"\\\"JS divergence of char-trigram distribution vs. human reference.\\\"\\\"\\\"\\n    all_counts = []\\n    global_vocab = set()\\n    for text in texts:\\n        t = text.lower()\\n        counts = Counter(t[j:j+n] for j in range(len(t) - n + 1))\\n        all_counts.append(counts)\\n        global_vocab.update(counts.keys())\\n\\n    vocab = sorted(global_vocab)\\n    ng2i = {ng: i for i, ng in enumerate(vocab)}\\n    V = len(vocab)\\n    print(f\\\"  Trigram vocab: {V}\\\")\\n\\n    ref_total = Counter()\\n    for i, counts in enumerate(all_counts):\\n        if labels[i] == 0:\\n            ref_total.update(counts)\\n    total_ref = sum(ref_total.values())\\n    ref_vec = np.zeros(V, dtype=np.float64)\\n    for ng, c in ref_total.items():\\n        ref_vec[ng2i[ng]] = c / total_ref\\n\\n    scores = []\\n    for i, counts in enumerate(all_counts):\\n        total = sum(counts.values())\\n        if total == 0:\\n            scores.append(0.0)\\n            continue\\n        vec = np.zeros(V, dtype=np.float64)\\n        for ng, c in counts.items():\\n            vec[ng2i[ng]] = c / total\\n        js = jensenshannon(ref_vec, vec)\\n        scores.append(float(js) if not np.isnan(js) else 0.0)\\n        if i % 5000 == 0 and i > 0:\\n            print(f\\\"    {i}/{len(texts)}\\\")\\n    return scores\\n\\n\\n# ── FastDetectGPT + avg log-prob ──────────────────────────\\n\\ndef compute_fastdetectgpt_and_logprob(texts, model, tokenizer, device, bs=8):\\n    fdg_scores, lp_scores = [], []\\n    n = len(texts)\\n    for i in range(0, n, bs):\\n        batch = texts[i:i+bs]\\n        enc = tokenizer(batch, return_tensors=\\\"pt\\\", truncation=True,\\n                        max_length=MAX_LEN, padding=True).to(device)\\n        with torch.no_grad():\\n            logits = model(**enc).logits\\n\\n        log_probs = F.log_softmax(logits[:, :-1], dim=-1)\\n        probs = torch.exp(log_probs)\\n        targets = enc[\\\"input_ids\\\"][:, 1:]\\n        mask = enc[\\\"attention_mask\\\"][:, 1:].bool()\\n\\n        actual = log_probs.gather(2, targets.unsqueeze(-1)).squeeze(-1)\\n        expected = (probs * log_probs).sum(dim=-1)\\n        curv = actual - expected\\n\\n        for j in range(len(batch)):\\n            m = mask[j]\\n            n_tok = m.sum().item()\\n            if n_tok < 2:\\n                fdg_scores.append(0.0)\\n                lp_scores.append(0.0)\\n                continue\\n            c = curv[j][m]\\n            mean_c = c.mean().item()\\n            std_c = c.std().item()\\n            fdg_scores.append(mean_c / (std_c + 1e-8) if std_c > 1e-8 else mean_c)\\n            lp_scores.append(actual[j][m].mean().item())\\n\\n        done = min(i + bs, n)\\n        if (i // bs) % 200 == 0:\\n            print(f\\\"    {done}/{n}\\\")\\n    return fdg_scores, lp_scores\\n\\n\\n# ── Binoculars ────────────────────────────────────────────\\n\\ndef compute_binoculars_scores(texts, observer, performer, tokenizer, device, bs=8):\\n    scores = []\\n    n = len(texts)\\n    for i in range(0, n, bs):\\n        batch = texts[i:i+bs]\\n        enc = tokenizer(batch, return_tensors=\\\"pt\\\", truncation=True,\\n                        max_length=MAX_LEN, padding=True).to(device)\\n        with torch.no_grad():\\n            obs_logits = observer(**enc).logits\\n            perf_logits = performer(**enc).logits\\n\\n        shifted_obs = obs_logits[:, :-1].contiguous()\\n        shifted_perf = perf_logits[:, :-1].contiguous()\\n        shifted_ids = enc[\\\"input_ids\\\"][:, 1:].contiguous()\\n        mask = enc[\\\"attention_mask\\\"][:, 1:].float()\\n        B, T, V = shifted_obs.shape\\n\\n        ppl_loss = F.cross_entropy(\\n            shifted_obs.view(-1, V), shifted_ids.view(-1), reduction=\\\"none\\\"\\n        ).view(B, T)\\n        ppl = (ppl_loss * mask).sum(1) / mask.sum(1).clamp(min=1)\\n\\n        obs_argmax = shifted_obs.argmax(dim=-1)\\n        ce_loss = F.cross_entropy(\\n            shifted_perf.view(-1, V), obs_argmax.view(-1), reduction=\\\"none\\\"\\n        ).view(B, T)\\n        ce = (ce_loss * mask).sum(1) / mask.sum(1).clamp(min=1)\\n\\n        bino = ppl / ce.clamp(min=1e-8)\\n        scores.extend(bino.cpu().float().tolist())\\n\\n        done = min(i + bs, n)\\n        if (i // bs) % 200 == 0:\\n            print(f\\\"    {done}/{n}\\\")\\n    return scores\\n\\n\\n# ── Evaluation ────────────────────────────────────────────\\n\\ndef eval_cv(scores, labels, name, n_splits=5):\\n    X = np.array(scores).reshape(-1, 1)\\n    y = np.array(labels)\\n    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)\\n    f1s, pcs = [], []\\n    for tr, te in skf.split(X, y):\\n        clf = XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.1,\\n                            objective=\\\"multi:softmax\\\", num_class=3,\\n                            eval_metric=\\\"mlogloss\\\", verbosity=0, random_state=42)\\n        clf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        f1s.append(f1_score(y[te], pred, average=\\\"macro\\\"))\\n        pcs.append(f1_score(y[te], pred, average=None))\\n    rho, pval = spearmanr(scores, labels)\\n    return {\\n        \\\"feature\\\": name,\\n        \\\"macro_f1_mean\\\": round(float(np.mean(f1s)), 4),\\n        \\\"macro_f1_std\\\":  round(float(np.std(f1s)), 4),\\n        \\\"per_class_f1\\\":  [round(float(x), 4) for x in np.mean(pcs, axis=0)],\\n        \\\"spearman_rho\\\":  round(float(rho), 4),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019XaQm2kchdMycLB2v4vSrM`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -n +130 /root/gen-depth-fingerprint/scripts/ordinal_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "ee0e064e-d200-463c-9dda-38530b99b03b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01H9BU9V6ZGLvrpfMqtjHZTM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3702,
+      "cache_read_input_tokens": 25442,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3702
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T00:32:41.144Z_
+
+<details><summary>↩ Tool result · `toolu_019XaQm2kchdMycLB2v4vSrM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            std_c = c.std().item()\\n            fdg_scores.append(mean_c / (std_c + 1e-8) if std_c > 1e-8 else mean_c)\\n            lp_scores.append(actual[j][m].mean().item())\\n\\n        done = min(i + bs, n)\\n        if (i // bs) % 200 == 0:\\n            print(f\\\"    {done}/{n}\\\")\\n    return fdg_scores, lp_scores\\n\\n\\n# ── Binoculars ────────────────────────────────────────────\\n\\ndef compute_binoculars_scores(texts, observer, performer, tokenizer, device, bs=8):\\n    scores = []\\n    n = len(texts)\\n    for i in range(0, n, bs):\\n        batch = texts[i:i+bs]\\n        enc = tokenizer(batch, return_tensors=\\\"pt\\\", truncation=True,\\n                        max_length=MAX_LEN, padding=True).to(device)\\n        with torch.no_grad():\\n            obs_logits = observer(**enc).logits\\n            perf_logits = performer(**enc).logits\\n\\n        shifted_obs = obs_logits[:, :-1].contiguous()\\n        shifted_perf = perf_logits[:, :-1].contiguous()\\n        shifted_ids = enc[\\\"input_ids\\\"][:, 1:].contiguous()\\n        mask = enc[\\\"attention_mask\\\"][:, 1:].float()\\n        B, T, V = shifted_obs.shape\\n\\n        ppl_loss = F.cross_entropy(\\n            shifted_obs.view(-1, V), shifted_ids.view(-1), reduction=\\\"none\\\"\\n        ).view(B, T)\\n        ppl = (ppl_loss * mask).sum(1) / mask.sum(1).clamp(min=1)\\n\\n        obs_argmax = shifted_obs.argmax(dim=-1)\\n        ce_loss = F.cross_entropy(\\n            shifted_perf.view(-1, V), obs_argmax.view(-1), reduction=\\\"none\\\"\\n        ).view(B, T)\\n        ce = (ce_loss * mask).sum(1) / mask.sum(1).clamp(min=1)\\n\\n        bino = ppl / ce.clamp(min=1e-8)\\n        scores.extend(bino.cpu().float().tolist())\\n\\n        done = min(i + bs, n)\\n        if (i // bs) % 200 == 0:\\n            print(f\\\"    {done}/{n}\\\")\\n    return scores\\n\\n\\n# ── Evaluation ────────────────────────────────────────────\\n\\ndef eval_cv(scores, labels, name, n_splits=5):\\n    X = np.array(scores).reshape(-1, 1)\\n    y = np.array(labels)\\n    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)\\n    f1s, pcs = [], []\\n    for tr, te in skf.split(X, y):\\n        clf = XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.1,\\n                            objective=\\\"multi:softmax\\\", num_class=3,\\n                            eval_metric=\\\"mlogloss\\\", verbosity=0, random_state=42)\\n        clf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        f1s.append(f1_score(y[te], pred, average=\\\"macro\\\"))\\n        pcs.append(f1_score(y[te], pred, average=None))\\n    rho, pval = spearmanr(scores, labels)\\n    return {\\n        \\\"feature\\\": name,\\n        \\\"macro_f1_mean\\\": round(float(np.mean(f1s)), 4),\\n        \\\"macro_f1_std\\\":  round(float(np.std(f1s)), 4),\\n        \\\"per_class_f1\\\":  [round(float(x), 4) for x in np.mean(pcs, axis=0)],\\n        \\\"spearman_rho\\\":  round(float(rho), 4),\\n        \\\"spearman_pval\\\": float(pval),\\n    }\\n\\n\\ndef eval_logo(scores, labels, model_names, name):\\n    X = np.array(scores).reshape(-1, 1)\\n    y = np.array(labels)\\n    models = np.array(model_names)\\n    unique = sorted(set(model_names))\\n    f1s = {}\\n    for hold in unique:\\n        tr, te = models != hold, models == hold\\n        clf = XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.1,\\n                            objective=\\\"multi:softmax\\\", num_class=3,\\n                            eval_metric=\\\"mlogloss\\\", verbosity=0, random_state=42)\\n        clf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        f1s[hold] = round(f1_score(y[te], pred, average=\\\"macro\\\"), 4)\\n    vals = list(f1s.values())\\n    return {\\n        \\\"logo_macro_f1_mean\\\": round(float(np.mean(vals)), 4),\\n        \\\"logo_macro_f1_std\\\":  round(float(np.std(vals)), 4),\\n        \\\"logo_per_model_f1\\\":  f1s,\\n    }\\n\\n\\ndef eval_seven_features():\\n    feat_cols = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\",\\n                 \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\n    df = pd.read_csv(DATA / \\\"features_all_models.csv\\\")\\n    df = df[df[\\\"model_name\\\"].isin(MODEL_SOURCES.keys())]\\n    df[\\\"label\\\"] = df[\\\"depth\\\"].clip(upper=2)\\n    X, y = df[feat_cols].values, d\\n\\n... [截断: 输出过长，省略 2430 字符] ...\\n\\nime()-t0:.1f}s\\\")\\n\\n    # 2. FastDetectGPT + log-prob\\n    print(\\\"\\\\n[2/3] FastDetectGPT (pythia-410m)\\\")\\n    t0 = time.time()\\n    performer = None\\n    try:\\n        scoring = \\\"EleutherAI/pythia-410m\\\"\\n        print(f\\\"  Loading {scoring}...\\\")\\n        tok = AutoTokenizer.from_pretrained(scoring, cache_dir=HF_CACHE)\\n        tok.pad_token = tok.eos_token\\n        mdl = AutoModelForCausalLM.from_pretrained(\\n            scoring, dtype=torch.float16, cache_dir=HF_CACHE\\n        ).to(DEVICE).eval()\\n        fdg, lp = compute_fastdetectgpt_and_logprob(texts, mdl, tok, DEVICE)\\n        all_scores[\\\"fastdetectgpt\\\"] = fdg\\n        all_scores[\\\"avg_logprob\\\"] = lp\\n        performer = mdl\\n        print(f\\\"  {time.time()-t0:.1f}s\\\")\\n    except Exception as e:\\n        print(f\\\"  FAILED: {e}\\\")\\n        import traceback; traceback.print_exc()\\n\\n    # 3. Binoculars\\n    print(\\\"\\\\n[3/3] Binoculars (pythia-160m × pythia-410m)\\\")\\n    t0 = time.time()\\n    try:\\n        obs_name = \\\"EleutherAI/pythia-160m\\\"\\n        print(f\\\"  Loading observer {obs_name}...\\\")\\n        observer = AutoModelForCausalLM.from_pretrained(\\n            obs_name, dtype=torch.float16, cache_dir=HF_CACHE\\n        ).to(DEVICE).eval()\\n        if performer is None:\\n            tok = AutoTokenizer.from_pretrained(\\\"EleutherAI/pythia-410m\\\", cache_dir=HF_CACHE)\\n            tok.pad_token = tok.eos_token\\n            performer = AutoModelForCausalLM.from_pretrained(\\n                \\\"EleutherAI/pythia-410m\\\", dtype=torch.float16, cache_dir=HF_CACHE\\n            ).to(DEVICE).eval()\\n        bino = compute_binoculars_scores(texts, observer, performer, tok, DEVICE)\\n        all_scores[\\\"binoculars\\\"] = bino\\n        print(f\\\"  {time.time()-t0:.1f}s\\\")\\n        del observer\\n    except Exception as e:\\n        print(f\\\"  FAILED: {e}\\\")\\n        import traceback; traceback.print_exc()\\n\\n    # Free GPU\\n    if performer is not None:\\n        del performer\\n    if \\\"mdl\\\" in locals():\\n        del mdl\\n    torch.cuda.empty_cache()\\n\\n    # Evaluate\\n    print(\\\"\\\\n[Eval]\\\")\\n    det_keys = [\\\"ld_score\\\", \\\"fastdetectgpt\\\", \\\"avg_logprob\\\", \\\"binoculars\\\"]\\n    det_names = {\\\"ld_score\\\": \\\"LD-Score\\\", \\\"fastdetectgpt\\\": \\\"FastDetectGPT\\\",\\n                 \\\"avg_logprob\\\": \\\"Avg-LogProb\\\", \\\"binoculars\\\": \\\"Binoculars\\\"}\\n\\n    for key in det_keys:\\n        sc = all_scores.get(key)\\n        if sc is None:\\n            results[key] = {\\\"error\\\": \\\"computation failed\\\"}\\n            continue\\n        name = det_names[key]\\n        r = eval_cv(sc, labels, name)\\n        r.update(eval_logo(sc, labels, model_names, name))\\n        rho_raw, _ = spearmanr(sc, depths)\\n        r[\\\"spearman_rho_raw_depth\\\"] = round(float(rho_raw), 4)\\n        results[key] = r\\n        print(f\\\"  {name:<15} F1={r['macro_f1_mean']:.4f}±{r['macro_f1_std']:.4f}\\\"\\n              f\\\"  LOGO={r['logo_macro_f1_mean']:.4f}  ρ={r['spearman_rho']:.4f}\\\")\\n\\n    # 7-feature comparison\\n    try:\\n        results[\\\"seven_feature\\\"] = eval_seven_features()\\n        sf = results[\\\"seven_feature\\\"]\\n        print(f\\\"  {'7-feat':<15} F1={sf['macro_f1_mean']:.4f}±{sf['macro_f1_std']:.4f}\\\"\\n              f\\\"  LOGO={sf['logo_macro_f1_mean']:.4f}\\\")\\n    except Exception as e:\\n        print(f\\\"  7-feature FAILED: {e}\\\")\\n        results[\\\"seven_feature\\\"] = {\\\"error\\\": str(e)}\\n\\n    # Summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(f\\\"{'Detector':<18} {'5-fold F1':>10} {'LOGO F1':>10} {'ρ (3-cls)':>10} {'ρ (depth)':>10}\\\")\\n    print(\\\"-\\\" * 60)\\n    for key in det_keys + [\\\"seven_feature\\\"]:\\n        r = results.get(key, {})\\n        if \\\"error\\\" in r:\\n            print(f\\\"{key:<18} {'ERR':>10}\\\")\\n            continue\\n        nm = r.get(\\\"feature\\\", key)\\n        print(f\\\"{nm:<18} {r.get('macro_f1_mean',0):>10.4f} \\\"\\n              f\\\"{r.get('logo_macro_f1_mean',0):>10.4f} \\\"\\n              f\\\"{r.get('spearman_rho',0):>10.4f} \\\"\\n              f\\\"{r.get('spearman_rho_raw_depth', r.get('spearman_rho',0)):>10.4f}\\\")\\n\\n    out = RESULTS / \\\"ordinal_baseline_results.json\\\"\\n    with open(out, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nSaved: {out}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "d2e97b78-4fa8-4616-a20e-55fb0dfbed1f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            std_c = c.std().item()\\\\n            fdg_scores.append(mean_c / (std_c + 1e-8) if std_c > 1e-8 else mean_c)\\\\n            lp_scores.append(actual[j][m].mean().item())\\\\n\\\\n        done = min(i + bs, n)\\\\n        if (i // bs) % 200 == 0:\\\\n            print(f\\\\\\\"    {done}/{n}\\\\\\\")\\\\n    return fdg_scores, lp_scores\\\\n\\\\n\\\\n# ── Binoculars ────────────────────────────────────────────\\\\n\\\\ndef compute_binoculars_scores(texts, observer, performer, tokenizer, device, bs=8):\\\\n    scores = []\\\\n    n = len(texts)\\\\n    for i in range(0, n, bs):\\\\n        batch = texts[i:i+bs]\\\\n        enc = tokenizer(batch, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True,\\\\n                        max_length=MAX_LEN, padding=True).to(device)\\\\n        with torch.no_grad():\\\\n            obs_logits = observer(**enc).logits\\\\n            perf_logits = performer(**enc).logits\\\\n\\\\n        shifted_obs = obs_logits[:, :-1].contiguous()\\\\n        shifted_perf = perf_logits[:, :-1].contiguous()\\\\n        shifted_ids = enc[\\\\\\\"input_ids\\\\\\\"][:, 1:].contiguous()\\\\n        mask = enc[\\\\\\\"attention_mask\\\\\\\"][:, 1:].float()\\\\n        B, T, V = shifted_obs.shape\\\\n\\\\n        ppl_loss = F.cross_entropy(\\\\n            shifted_obs.view(-1, V), shifted_ids.view(-1), reduction=\\\\\\\"none\\\\\\\"\\\\n        ).view(B, T)\\\\n        ppl = (ppl_loss * mask).sum(1) / mask.sum(1).clamp(min=1)\\\\n\\\\n        obs_argmax = shifted_obs.argmax(dim=-1)\\\\n        ce_loss = F.cross_entropy(\\\\n            shifted_perf.view(-1, V), obs_argmax.view(-1), reduction=\\\\\\\"none\\\\\\\"\\\\n        ).view(B, T)\\\\n        ce = (ce_loss * mask).sum(1) / mask.sum(1).clamp(min=1)\\\\n\\\\n        bino = ppl / ce.clamp(min=1e-8)\\\\n        scores.extend(bino.cpu().float().tolist())\\\\n\\\\n        done = min(i + bs, n)\\\\n        if (i // bs) % 200 == 0:\\\\n            print(f\\\\\\\"    {done}/{n}\\\\\\\")\\\\n    return scores\\\\n\\\\n\\\\n# ── Evaluation ────────────────────────────────────────────\\\\n\\\\ndef eval_cv(scores, labels, name, n_splits=5):\\\\n    X = np.array(scores).reshape(-1, 1)\\\\n    y = np.array(labels)\\\\n    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)\\\\n    f1s, pcs = [], []\\\\n    for tr, te in skf.split(X, y):\\\\n        clf = XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.1,\\\\n                            objective=\\\\\\\"multi:softmax\\\\\\\", num_class=3,\\\\n                            eval_metric=\\\\\\\"mlogloss\\\\\\\", verbosity=0, random_state=42)\\\\n        clf.fit(X[tr], y[tr])\\\\n        pred = clf.predict(X[te])\\\\n        f1s.append(f1_score(y[te], pred, average=\\\\\\\"macro\\\\\\\"))\\\\n        pcs.append(f1_score(y[te], pred, average=None))\\\\n    rho, pval = spearmanr(scores, labels)\\\\n    return {\\\\n        \\\\\\\"feature\\\\\\\": name,\\\\n        \\\\\\\"macro_f1_mean\\\\\\\": round(float(np.mean(f1s)), 4),\\\\n        \\\\\\\"macro_f1_std\\\\\\\":  round(float(np.std(f1s)), 4),\\\\n        \\\\\\\"per_class_f1\\\\\\\":  [round(float(x), 4) for x in np.mean(pcs, axis=0)],\\\\n        \\\\\\\"spearman_rho\\\\\\\":  round(float(rho), 4),\\\\n        \\\\\\\"spearman_pval\\\\\\\": float(pval),\\\\n    }\\\\n\\\\n\\\\ndef eval_logo(scores, labels, model_names, name):\\\\n    X = np.array(scores).reshape(-1, 1)\\\\n    y = np.array(labels)\\\\n    models = np.array(model_names)\\\\n    unique = sorted(set(model_names))\\\\n    f1s = {}\\\\n    for hold in unique:\\\\n        tr, te = models != hold, models == hold\\\\n        clf = XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.1,\\\\n                            objective=\\\\\\\"multi:softmax\\\\\\\", num_class=3,\\\\n                            eval_metric=\\\\\\\"mlogloss\\\\\\\", verbosity=0, random_state=42)\\\\n        clf.fit(X[tr], y[tr])\\\\n        pred = clf.predict(X[te])\\\\n        f1s[hold] = round(f1_score(y[te], pred, average=\\\\\\\"macro\\\\\\\"), 4)\\\\n    vals = list(f1s.values())\\\\n    return {\\\\n        \\\\\\\"logo_macro_f1_mean\\\\\\\": round(float(np.mean(vals)), 4),\\\\n        \\\\\\\"logo_macro_f1_std\\\\\\\":  round(float(np.std(vals)), 4),\\\\n        \\\\\\\"logo_per_model_f1\\\\\\\":  f1s,\\\\n    }\\\\n\\\\n\\\\ndef eval_seven_features():\\\\n    feat_cols = [\\\\\\\"entropy_mean\\\\\\\", \\\\\\\"entropy_std\\\\\\\", \\\\\\\"entropy_min\\\\\\\", \\\\\\\"entropy_max\\\\\\\",\\\\n                 \\\\\\\"tail_decay\\\\\\\", \\\\\\\"ttr\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\"]\\\\n    df = pd.read_csv(DATA / \\\\\\\"features_all_models.csv\\\\\\\")\\\\n    df = df[df[\\\\\\\"model_name\\\\\\\"].isin(MODEL_SOURCES.keys())]\\\\n    df[\\\\\\\"label\\\\\\\"] = df[\\\\\\\"depth\\\\\\\"].clip(upper=2)\\\\n    X, y = df[feat_cols].values, d\\\\n\\\\n... [截断: 输出过长，省略 2430 字符] ...\\\\n\\\\nime()-t0:.1f}s\\\\\\\")\\\\n\\\\n    # 2. FastDetectGPT + log-prob\\\\n    print(\\\\\\\"\\\\\\\\n[2/3] FastDetectGPT (pythia-410m)\\\\\\\")\\\\n    t0 = time.time()\\\\n    performer = None\\\\n    try:\\\\n        scoring = \\\\\\\"EleutherAI/pythia-410m\\\\\\\"\\\\n        print(f\\\\\\\"  Loading {scoring}...\\\\\\\")\\\\n        tok = AutoTokenizer.from_pretrained(scoring, cache_dir=HF_CACHE)\\\\n        tok.pad_token = tok.eos_token\\\\n        mdl = AutoModelForCausalLM.from_pretrained(\\\\n            scoring, dtype=torch.float16, cache_dir=HF_CACHE\\\\n        ).to(DEVICE).eval()\\\\n        fdg, lp = compute_fastdetectgpt_and_logprob(texts, mdl, tok, DEVICE)\\\\n        all_scores[\\\\\\\"fastdetectgpt\\\\\\\"] = fdg\\\\n        all_scores[\\\\\\\"avg_logprob\\\\\\\"] = lp\\\\n        performer = mdl\\\\n        print(f\\\\\\\"  {time.time()-t0:.1f}s\\\\\\\")\\\\n    except Exception as e:\\\\n        print(f\\\\\\\"  FAILED: {e}\\\\\\\")\\\\n        import traceback; traceback.print_exc()\\\\n\\\\n    # 3. Binoculars\\\\n    print(\\\\\\\"\\\\\\\\n[3/3] Binoculars (pythia-160m × pythia-410m)\\\\\\\")\\\\n    t0 = time.time()\\\\n    try:\\\\n        obs_name = \\\\\\\"EleutherAI/pythia-160m\\\\\\\"\\\\n        print(f\\\\\\\"  Loading observer {obs_name}...\\\\\\\")\\\\n        observer = AutoModelForCausalLM.from_pretrained(\\\\n            obs_name, dtype=torch.float16, cache_dir=HF_CACHE\\\\n        ).to(DEVICE).eval()\\\\n        if performer is None:\\\\n            tok = AutoTokenizer.from_pretrained(\\\\\\\"EleutherAI/pythia-410m\\\\\\\", cache_dir=HF_CACHE)\\\\n            tok.pad_token = tok.eos_token\\\\n            performer = AutoModelForCausalLM.from_pretrained(\\\\n                \\\\\\\"EleutherAI/pythia-410m\\\\\\\", dtype=torch.float16, cache_dir=HF_CACHE\\\\n            ).to(DEVICE).eval()\\\\n        bino = compute_binoculars_scores(texts, observer, performer, tok, DEVICE)\\\\n        all_scores[\\\\\\\"binoculars\\\\\\\"] = bino\\\\n        print(f\\\\\\\"  {time.time()-t0:.1f}s\\\\\\\")\\\\n        del observer\\\\n    except Exception as e:\\\\n        print(f\\\\\\\"  FAILED: {e}\\\\\\\")\\\\n        import traceback; traceback.print_exc()\\\\n\\\\n    # Free GPU\\\\n    if performer is not None:\\\\n        del performer\\\\n    if \\\\\\\"mdl\\\\\\\" in locals():\\\\n        del mdl\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    # Evaluate\\\\n    print(\\\\\\\"\\\\\\\\n[Eval]\\\\\\\")\\\\n    det_keys = [\\\\\\\"ld_score\\\\\\\", \\\\\\\"fastdetectgpt\\\\\\\", \\\\\\\"avg_logprob\\\\\\\", \\\\\\\"binoculars\\\\\\\"]\\\\n    det_names = {\\\\\\\"ld_score\\\\\\\": \\\\\\\"LD-Score\\\\\\\", \\\\\\\"fastdetectgpt\\\\\\\": \\\\\\\"FastDetectGPT\\\\\\\",\\\\n                 \\\\\\\"avg_logprob\\\\\\\": \\\\\\\"Avg-LogProb\\\\\\\", \\\\\\\"binoculars\\\\\\\": \\\\\\\"Binoculars\\\\\\\"}\\\\n\\\\n    for key in det_keys:\\\\n        sc = all_scores.get(key)\\\\n        if sc is None:\\\\n            results[key] = {\\\\\\\"error\\\\\\\": \\\\\\\"computation failed\\\\\\\"}\\\\n            continue\\\\n        name = det_names[key]\\\\n        r = eval_cv(sc, labels, name)\\\\n        r.update(eval_logo(sc, labels, model_names, name))\\\\n        rho_raw, _ = spearmanr(sc, depths)\\\\n        r[\\\\\\\"spearman_rho_raw_depth\\\\\\\"] = round(float(rho_raw), 4)\\\\n        results[key] = r\\\\n        print(f\\\\\\\"  {name:<15} F1={r['macro_f1_mean']:.4f}±{r['macro_f1_std']:.4f}\\\\\\\"\\\\n              f\\\\\\\"  LOGO={r['logo_macro_f1_mean']:.4f}  ρ={r['spearman_rho']:.4f}\\\\\\\")\\\\n\\\\n    # 7-feature comparison\\\\n    try:\\\\n        results[\\\\\\\"seven_feature\\\\\\\"] = eval_seven_features()\\\\n        sf = results[\\\\\\\"seven_feature\\\\\\\"]\\\\n        print(f\\\\\\\"  {'7-feat':<15} F1={sf['macro_f1_mean']:.4f}±{sf['macro_f1_std']:.4f}\\\\\\\"\\\\n              f\\\\\\\"  LOGO={sf['logo_macro_f1_mean']:.4f}\\\\\\\")\\\\n    except Exception as e:\\\\n        print(f\\\\\\\"  7-feature FAILED: {e}\\\\\\\")\\\\n        results[\\\\\\\"seven_feature\\\\\\\"] = {\\\\\\\"error\\\\\\\": str(e)}\\\\n\\\\n    # Summary\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n    print(f\\\\\\\"{'Detector':<18} {'5-fold F1':>10} {'LOGO F1':>10} {'ρ (3-cls)':>10} {'ρ (depth)':>10}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    for key in det_keys + [\\\\\\\"seven_feature\\\\\\\"]:\\\\n        r = results.get(key, {})\\\\n        if \\\\\\\"error\\\\\\\" in r:\\\\n            print(f\\\\\\\"{key:<18} {'ERR':>10}\\\\\\\")\\\\n            continue\\\\n        nm = r.get(\\\\\\\"feature\\\\\\\", key)\\\\n        print(f\\\\\\\"{nm:<18} {r.get('macro_f1_mean',0):>10.4f} \\\\\\\"\\\\n              f\\\\\\\"{r.get('logo_macro_f1_mean',0):>10.4f} \\\\\\\"\\\\n              f\\\\\\\"{r.get('spearman_rho',0):>10.4f} \\\\\\\"\\\\n              f\\\\\\\"{r.get('spearman_rho_raw_depth', r.get('spearman_rho',0)):>10.4f}\\\\\\\")\\\\n\\\\n    out = RESULTS / \\\\\\\"ordinal_baseline_results.json\\\\\\\"\\\\n    with open(out, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"            std_c = c.std().item()\\n            fdg_scores.append(mean_c / (std_c + 1e-8) if std_c > 1e-8 else mean_c)\\n            lp_scores.append(actual[j][m].mean().item())\\n\\n        done = min(i + bs, n)\\n        if (i // bs) % 200 == 0:\\n            print(f\\\"    {done}/{n}\\\")\\n    return fdg_scores, lp_scores\\n\\n\\n# ── Binoculars ────────────────────────────────────────────\\n\\ndef compute_binoculars_scores(texts, observer, performer, tokenizer, device, bs=8):\\n    scores = []\\n    n = len(texts)\\n    for i in range(0, n, bs):\\n        batch = texts[i:i+bs]\\n        enc = tokenizer(batch, return_tensors=\\\"pt\\\", truncation=True,\\n                        max_length=MAX_LEN, padding=True).to(device)\\n        with torch.no_grad():\\n            obs_logits = observer(**enc).logits\\n            perf_logits = performer(**enc).logits\\n\\n        shifted_obs = obs_logits[:, :-1].contiguous()\\n        shifted_perf = perf_logits[:, :-1].contiguous()\\n        shifted_ids = enc[\\\"input_ids\\\"][:, 1:].contiguous()\\n        mask = enc[\\\"attention_mask\\\"][:, 1:].float()\\n        B, T, V = shifted_obs.shape\\n\\n        ppl_loss = F.cross_entropy(\\n            shifted_obs.view(-1, V), shifted_ids.view(-1), reduction=\\\"none\\\"\\n        ).view(B, T)\\n        ppl = (ppl_loss * mask).sum(1) / mask.sum(1).clamp(min=1)\\n\\n        obs_argmax = shifted_obs.argmax(dim=-1)\\n        ce_loss = F.cross_entropy(\\n            shifted_perf.view(-1, V), obs_argmax.view(-1), reduction=\\\"none\\\"\\n        ).view(B, T)\\n        ce = (ce_loss * mask).sum(1) / mask.sum(1).clamp(min=1)\\n\\n        bino = ppl / ce.clamp(min=1e-8)\\n        scores.extend(bino.cpu().float().tolist())\\n\\n        done = min(i + bs, n)\\n        if (i // bs) % 200 == 0:\\n            print(f\\\"    {done}/{n}\\\")\\n    return scores\\n\\n\\n# ── Evaluation ────────────────────────────────────────────\\n\\ndef eval_cv(scores, labels, name, n_splits=5):\\n    X = np.array(scores).reshape(-1, 1)\\n    y = np.array(labels)\\n    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)\\n    f1s, pcs = [], []\\n    for tr, te in skf.split(X, y):\\n        clf = XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.1,\\n                            objective=\\\"multi:softmax\\\", num_class=3,\\n                            eval_metric=\\\"mlogloss\\\", verbosity=0, random_state=42)\\n        clf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        f1s.append(f1_score(y[te], pred, average=\\\"macro\\\"))\\n        pcs.append(f1_score(y[te], pred, average=None))\\n    rho, pval = spearmanr(scores, labels)\\n    return {\\n        \\\"feature\\\": name,\\n        \\\"macro_f1_mean\\\": round(float(np.mean(f1s)), 4),\\n        \\\"macro_f1_std\\\":  round(float(np.std(f1s)), 4),\\n        \\\"per_class_f1\\\":  [round(float(x), 4) for x in np.mean(pcs, axis=0)],\\n        \\\"spearman_rho\\\":  round(float(rho), 4),\\n        \\\"spearman_pval\\\": float(pval),\\n    }\\n\\n\\ndef eval_logo(scores, labels, model_names, name):\\n    X = np.array(scores).reshape(-1, 1)\\n    y = np.array(labels)\\n    models = np.array(model_names)\\n    unique = sorted(set(model_names))\\n    f1s = {}\\n    for hold in unique:\\n        tr, te = models != hold, models == hold\\n        clf = XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.1,\\n                            objective=\\\"multi:softmax\\\", num_class=3,\\n                            eval_metric=\\\"mlogloss\\\", verbosity=0, random_state=42)\\n        clf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        f1s[hold] = round(f1_score(y[te], pred, average=\\\"macro\\\"), 4)\\n    vals = list(f1s.values())\\n    return {\\n        \\\"logo_macro_f1_mean\\\": round(float(np.mean(vals)), 4),\\n        \\\"logo_macro_f1_std\\\":  round(float(np.std(vals)), 4),\\n        \\\"logo_per_model_f1\\\":  f1s,\\n    }\\n\\n\\ndef eval_seven_features():\\n    feat_cols = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\",\\n                 \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\n    df = pd.read_csv(DATA / \\\"features_all_models.csv\\\")\\n    df = df[df[\\\"model_name\\\"].isin(MODEL_SOURCES.keys())]\\n    df[\\\"label\\\"] = df[\\\"depth\\\"].clip(upper=2)\\n    X, y = df[feat_cols].values, d\\n\\n... [截断: 输出过长，省略 2430 字符] ...\\n\\nime()-t0:.1f}s\\\")\\n\\n    # 2. FastDetectGPT + log-prob\\n    print(\\\"\\\\n[2/3] FastDetectGPT (pythia-410m)\\\")\\n    t0 = time.time()\\n    performer = None\\n    try:\\n        scoring = \\\"EleutherAI/pythia-410m\\\"\\n        print(f\\\"  Loading {scoring}...\\\")\\n        tok = AutoTokenizer.from_pretrained(scoring, cache_dir=HF_CACHE)\\n        tok.pad_token = tok.eos_token\\n        mdl = AutoModelForCausalLM.from_pretrained(\\n            scoring, dtype=torch.float16, cache_dir=HF_CACHE\\n        ).to(DEVICE).eval()\\n        fdg, lp = compute_fastdetectgpt_and_logprob(texts, mdl, tok, DEVICE)\\n        all_scores[\\\"fastdetectgpt\\\"] = fdg\\n        all_scores[\\\"avg_logprob\\\"] = lp\\n        performer = mdl\\n        print(f\\\"  {time.time()-t0:.1f}s\\\")\\n    except Exception as e:\\n        print(f\\\"  FAILED: {e}\\\")\\n        import traceback; traceback.print_exc()\\n\\n    # 3. Binoculars\\n    print(\\\"\\\\n[3/3] Binoculars (pythia-160m × pythia-410m)\\\")\\n    t0 = time.time()\\n    try:\\n        obs_name = \\\"EleutherAI/pythia-160m\\\"\\n        print(f\\\"  Loading observer {obs_name}...\\\")\\n        observer = AutoModelForCausalLM.from_pretrained(\\n            obs_name, dtype=torch.float16, cache_dir=HF_CACHE\\n        ).to(DEVICE).eval()\\n        if performer is None:\\n            tok = AutoTokenizer.from_pretrained(\\\"EleutherAI/pythia-410m\\\", cache_dir=HF_CACHE)\\n            tok.pad_token = tok.eos_token\\n            performer = AutoModelForCausalLM.from_pretrained(\\n                \\\"EleutherAI/pythia-410m\\\", dtype=torch.float16, cache_dir=HF_CACHE\\n            ).to(DEVICE).eval()\\n        bino = compute_binoculars_scores(texts, observer, performer, tok, DEVICE)\\n        all_scores[\\\"binoculars\\\"] = bino\\n        print(f\\\"  {time.time()-t0:.1f}s\\\")\\n        del observer\\n    except Exception as e:\\n        print(f\\\"  FAILED: {e}\\\")\\n        import traceback; traceback.print_exc()\\n\\n    # Free GPU\\n    if performer is not None:\\n        del performer\\n    if \\\"mdl\\\" in locals():\\n        del mdl\\n    torch.cuda.empty_cache()\\n\\n    # Evaluate\\n    print(\\\"\\\\n[Eval]\\\")\\n    det_keys = [\\\"ld_score\\\", \\\"fastdetectgpt\\\", \\\"avg_logprob\\\", \\\"binoculars\\\"]\\n    det_names = {\\\"ld_score\\\": \\\"LD-Score\\\", \\\"fastdetectgpt\\\": \\\"FastDetectGPT\\\",\\n                 \\\"avg_logprob\\\": \\\"Avg-LogProb\\\", \\\"binoculars\\\": \\\"Binoculars\\\"}\\n\\n    for key in det_keys:\\n        sc = all_scores.get(key)\\n        if sc is None:\\n            results[key] = {\\\"error\\\": \\\"computation failed\\\"}\\n            continue\\n        name = det_names[key]\\n        r = eval_cv(sc, labels, name)\\n        r.update(eval_logo(sc, labels, model_names, name))\\n        rho_raw, _ = spearmanr(sc, depths)\\n        r[\\\"spearman_rho_raw_depth\\\"] = round(float(rho_raw), 4)\\n        results[key] = r\\n        print(f\\\"  {name:<15} F1={r['macro_f1_mean']:.4f}±{r['macro_f1_std']:.4f}\\\"\\n              f\\\"  LOGO={r['logo_macro_f1_mean']:.4f}  ρ={r['spearman_rho']:.4f}\\\")\\n\\n    # 7-feature comparison\\n    try:\\n        results[\\\"seven_feature\\\"] = eval_seven_features()\\n        sf = results[\\\"seven_feature\\\"]\\n        print(f\\\"  {'7-feat':<15} F1={sf['macro_f1_mean']:.4f}±{sf['macro_f1_std']:.4f}\\\"\\n              f\\\"  LOGO={sf['logo_macro_f1_mean']:.4f}\\\")\\n    except Exception as e:\\n        print(f\\\"  7-feature FAILED: {e}\\\")\\n        results[\\\"seven_feature\\\"] = {\\\"error\\\": str(e)}\\n\\n    # Summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(f\\\"{'Detector':<18} {'5-fold F1':>10} {'LOGO F1':>10} {'ρ (3-cls)':>10} {'ρ (depth)':>10}\\\")\\n    print(\\\"-\\\" * 60)\\n    for key in det_keys + [\\\"seven_feature\\\"]:\\n        r = results.get(key, {})\\n        if \\\"error\\\" in r:\\n            print(f\\\"{key:<18} {'ERR':>10}\\\")\\n            continue\\n        nm = r.get(\\\"feature\\\", key)\\n        print(f\\\"{nm:<18} {r.get('macro_f1_mean',0):>10.4f} \\\"\\n              f\\\"{r.get('logo_macro_f1_mean',0):>10.4f} \\\"\\n              f\\\"{r.get('spearman_rho',0):>10.4f} \\\"\\n              f\\\"{r.get('spearman_rho_raw_depth', r.get('spearman_rho',0)):>10.4f}\\\")\\n\\n    out = RESULTS / \\\"ordinal_baseline_results.json\\\"\\n    with open(out, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nSaved: {out}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was still truncated. I need to see the middle part of the file - specifically the `eval_seven_features` function and the `main` function. Let me get lines 200-280.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "09e636f0-fa2d-49de-8ae1-4246cde00ec6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GKmVNZS2b6TCBkKv1Bd29Y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7101,
+      "cache_read_input_tokens": 29144,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7101
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+还有中间一段被截断了。让我读取 eval_seven_features 和 main 的部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "1aaf99c3-541d-4fe8-8dc9-d120a2d60a66",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GKmVNZS2b6TCBkKv1Bd29Y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7101,
+      "cache_read_input_tokens": 29144,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7101
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Asczf6VTWJfegqtCkpTFwr`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -280 /root/gen-depth-fingerprint/scripts/ordinal_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "0928290b-a7be-4948-8ee5-2d951dd7434c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GKmVNZS2b6TCBkKv1Bd29Y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7101,
+      "cache_read_input_tokens": 29144,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7101
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T00:32:46.864Z_
+
+<details><summary>↩ Tool result · `toolu_01Asczf6VTWJfegqtCkpTFwr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Ordinal baseline: test if existing AI detectors' scores carry depth signal.\\nInput:  data/{model}/generations.jsonl\\nOutput: results/ordinal_baseline_results.json\\n\\\"\\\"\\\"\\nimport argparse, json, os, sys, time\\nimport numpy as np\\nimport pandas as pd\\nfrom collections import Counter\\nfrom pathlib import Path\\nfrom scipy.spatial.distance import jensenshannon\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import f1_score\\nfrom sklearn.model_selection import StratifiedKFold\\nfrom xgboost import XGBClassifier\\nimport torch\\nimport torch.nn.functional as F\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nROOT = Path(\\\"/root/gen-depth-fingerprint\\\")\\nDATA = ROOT / \\\"data\\\"\\nRESULTS = ROOT / \\\"results\\\"\\nDEVICE = \\\"cuda:0\\\"\\nMAX_LEN = 512\\nHF_CACHE = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nMODEL_SOURCES = {\\n    \\\"pythia-2.8b\\\": DATA / \\\"generations.jsonl\\\",\\n    \\\"pythia-1b\\\":   DATA / \\\"pythia-1b\\\" / \\\"generations.jsonl\\\",\\n    \\\"olmo-2-1b\\\":   DATA / \\\"olmo-2-1b\\\" / \\\"generations.jsonl\\\",\\n    \\\"qwen3-0.6b\\\":  DATA / \\\"qwen3-0.6b\\\" / \\\"generations.jsonl\\\",\\n    \\\"qwen3-1.7b\\\":  DATA / \\\"qwen3-1.7b\\\" / \\\"generations.jsonl\\\",\\n}\\n\\n\\ndef load_texts(max_per_model=None):\\n    records = []\\n    for model_name, path in MODEL_SOURCES.items():\\n        if not path.exists():\\n            print(f\\\"  SKIP {path}\\\")\\n            continue\\n        count = 0\\n        with open(path) as f:\\n            for line in f:\\n                rec = json.loads(line)\\n                rec[\\\"model_name\\\"] = model_name\\n                records.append(rec)\\n                count += 1\\n                if max_per_model and count >= max_per_model:\\n                    break\\n        print(f\\\"  {model_name}: {count}\\\")\\n    df = pd.DataFrame(records)\\n    df[\\\"label\\\"] = df[\\\"depth\\\"].clip(upper=2)\\n    print(f\\\"  Total: {len(df)}, labels: {df['label'].value_counts().sort_index().to_dict()}\\\")\\n    return df\\n\\n\\n# ── LD-Score ─────────────────────────────────────────────��\\n\\ndef compute_ld_scores(texts, labels, n=3):\\n    \\\"\\\"\\\"JS divergence of char-trigram distribution vs. human reference.\\\"\\\"\\\"\\n    all_counts = []\\n    global_vocab = set()\\n    for text in texts:\\n        t = text.lower()\\n        counts = Counter(t[j:j+n] for j in range(len(t) - n + 1))\\n        all_counts.append(counts)\\n        global_vocab.update(counts.keys())\\n\\n    vocab = sorted(global_vocab)\\n    ng2i = {ng: i for i, ng in enumerate(vocab)}\\n    V = len(vocab)\\n    print(f\\\"  Trigram vocab: {V}\\\")\\n\\n    ref_total = Counter()\\n    for i, counts in enumerate(all_counts):\\n        if labels[i] == 0:\\n            ref_total.update(counts)\\n    total_ref = sum(ref_total.values())\\n    ref_vec = np.zeros(V, dtype=np.float64)\\n    for ng, c in ref_total.items():\\n        ref_vec[ng2i[ng]] = c / total_ref\\n\\n    scores = []\\n    for i, counts in enumerate(all_counts):\\n        total = sum(counts.values())\\n        if total == 0:\\n            scores.append(0.0)\\n            continue\\n        vec = np.zeros(V, dtype=np.float64)\\n        for ng, c in counts.items():\\n            vec[ng2i[ng]] = c / total\\n        js = jensenshannon(ref_vec, vec)\\n        scores.append(float(js) if not np.isnan(js) else 0.0)\\n        if i % 5000 == 0 and i > 0:\\n            print(f\\\"    {i}/{len(texts)}\\\")\\n    return scores\\n\\n\\n# ── FastDetectGPT + avg log-prob ──────────────────────────\\n\\ndef compute_fastdetectgpt_and_logprob(texts, model, tokenizer, device, bs=8):\\n    fdg_scores, lp_scores = [], []\\n    n = len(texts)\\n    for i in range(0, n, bs):\\n        batch = texts[i:i+bs]\\n        enc = tokenizer(batch, return_tensors=\\\"pt\\\", truncation=True,\\n                        max_length=MAX_LEN, padding=True).to(device)\\n        with torch.no_grad():\\n            logits = model(**enc).logits\\n\\n        log_probs = F.log_softmax(logits[:, :-1], dim=-1)\\n        probs = torch.exp(log_probs)\\n        targets = enc[\\\"input_ids\\\"][:, 1:]\\n        mask = enc[\\\"attention_mask\\\"][:, 1:].bool()\\n\\n        actual = log_probs.gather(2, targets.unsqueeze(-1)).squeeze(-1)\\n        expected = (probs * log_probs).sum(dim=-1)\\n        curv = actual - expected\\n\\n \\n\\n... [截断: 输出过长，省略 2110 字符] ...\\n\\nname, n_splits=5):\\n    X = np.array(scores).reshape(-1, 1)\\n    y = np.array(labels)\\n    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)\\n    f1s, pcs = [], []\\n    for tr, te in skf.split(X, y):\\n        clf = XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.1,\\n                            objective=\\\"multi:softmax\\\", num_class=3,\\n                            eval_metric=\\\"mlogloss\\\", verbosity=0, random_state=42)\\n        clf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        f1s.append(f1_score(y[te], pred, average=\\\"macro\\\"))\\n        pcs.append(f1_score(y[te], pred, average=None))\\n    rho, pval = spearmanr(scores, labels)\\n    return {\\n        \\\"feature\\\": name,\\n        \\\"macro_f1_mean\\\": round(float(np.mean(f1s)), 4),\\n        \\\"macro_f1_std\\\":  round(float(np.std(f1s)), 4),\\n        \\\"per_class_f1\\\":  [round(float(x), 4) for x in np.mean(pcs, axis=0)],\\n        \\\"spearman_rho\\\":  round(float(rho), 4),\\n        \\\"spearman_pval\\\": float(pval),\\n    }\\n\\n\\ndef eval_logo(scores, labels, model_names, name):\\n    X = np.array(scores).reshape(-1, 1)\\n    y = np.array(labels)\\n    models = np.array(model_names)\\n    unique = sorted(set(model_names))\\n    f1s = {}\\n    for hold in unique:\\n        tr, te = models != hold, models == hold\\n        clf = XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.1,\\n                            objective=\\\"multi:softmax\\\", num_class=3,\\n                            eval_metric=\\\"mlogloss\\\", verbosity=0, random_state=42)\\n        clf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        f1s[hold] = round(f1_score(y[te], pred, average=\\\"macro\\\"), 4)\\n    vals = list(f1s.values())\\n    return {\\n        \\\"logo_macro_f1_mean\\\": round(float(np.mean(vals)), 4),\\n        \\\"logo_macro_f1_std\\\":  round(float(np.std(vals)), 4),\\n        \\\"logo_per_model_f1\\\":  f1s,\\n    }\\n\\n\\ndef eval_seven_features():\\n    feat_cols = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\",\\n                 \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\n    df = pd.read_csv(DATA / \\\"features_all_models.csv\\\")\\n    df = df[df[\\\"model_name\\\"].isin(MODEL_SOURCES.keys())]\\n    df[\\\"label\\\"] = df[\\\"depth\\\"].clip(upper=2)\\n    X, y = df[feat_cols].values, df[\\\"label\\\"].values\\n    models = df[\\\"model_name\\\"].values\\n\\n    # 5-fold CV\\n    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\\n    f1s, pcs = [], []\\n    for tr, te in skf.split(X, y):\\n        clf = XGBClassifier(n_estimators=100, max_depth=5, learning_rate=0.1,\\n                            objective=\\\"multi:softmax\\\", num_class=3,\\n                            eval_metric=\\\"mlogloss\\\", verbosity=0, random_state=42)\\n        clf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        f1s.append(f1_score(y[te], pred, average=\\\"macro\\\"))\\n        pcs.append(f1_score(y[te], pred, average=None))\\n\\n    # LOGO\\n    unique = sorted(set(models))\\n    logo_f1s = {}\\n    for hold in unique:\\n        tr, te = models != hold, models == hold\\n        clf = XGBClassifier(n_estimators=100, max_depth=5, learning_rate=0.1,\\n                            objective=\\\"multi:softmax\\\", num_class=3,\\n                            eval_metric=\\\"mlogloss\\\", verbosity=0, random_state=42)\\n        clf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        logo_f1s[hold] = round(f1_score(y[te], pred, average=\\\"macro\\\"), 4)\\n    logo_vals = list(logo_f1s.values())\\n\\n    return {\\n        \\\"feature\\\": \\\"7-feature ensemble\\\",\\n        \\\"macro_f1_mean\\\": round(float(np.mean(f1s)), 4),\\n        \\\"macro_f1_std\\\":  round(float(np.std(f1s)), 4),\\n        \\\"per_class_f1\\\":  [round(float(x), 4) for x in np.mean(pcs, axis=0)],\\n        \\\"logo_macro_f1_mean\\\": round(float(np.mean(logo_vals)), 4),\\n        \\\"logo_macro_f1_std\\\":  round(float(np.std(logo_vals)), 4),\\n        \\\"logo_per_model_f1\\\":  logo_f1s,\\n        \\\"n_samples\\\": len(df),\\n    }\\n\\n\\n# ── Main ──────────────────────────────────────────────────\\n\\ndef main():\\n    ap = argparse.ArgumentParser()\\n    ap.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    args = ap.parse_args()\\n    RESULTS.mkdir(exist_ok=True)\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "de62b445-3523-4d96-9f06-04a26ee8bf50",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Ordinal baseline: test if existing AI detectors' scores carry depth signal.\\\\nInput:  data/{model}/generations.jsonl\\\\nOutput: results/ordinal_baseline_results.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse, json, os, sys, time\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\nfrom scipy.spatial.distance import jensenshannon\\\\nfrom scipy.stats import spearmanr\\\\nfrom sklearn.metrics import f1_score\\\\nfrom sklearn.model_selection import StratifiedKFold\\\\nfrom xgboost import XGBClassifier\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nROOT = Path(\\\\\\\"/root/gen-depth-fingerprint\\\\\\\")\\\\nDATA = ROOT / \\\\\\\"data\\\\\\\"\\\\nRESULTS = ROOT / \\\\\\\"results\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\nMAX_LEN = 512\\\\nHF_CACHE = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n\\\\nMODEL_SOURCES = {\\\\n    \\\\\\\"pythia-2.8b\\\\\\\": DATA / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"pythia-1b\\\\\\\":   DATA / \\\\\\\"pythia-1b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"olmo-2-1b\\\\\\\":   DATA / \\\\\\\"olmo-2-1b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\":  DATA / \\\\\\\"qwen3-0.6b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\":  DATA / \\\\\\\"qwen3-1.7b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n}\\\\n\\\\n\\\\ndef load_texts(max_per_model=None):\\\\n    records = []\\\\n    for model_name, path in MODEL_SOURCES.items():\\\\n        if not path.exists():\\\\n            print(f\\\\\\\"  SKIP {path}\\\\\\\")\\\\n            continue\\\\n        count = 0\\\\n        with open(path) as f:\\\\n            for line in f:\\\\n                rec = json.loads(line)\\\\n                rec[\\\\\\\"model_name\\\\\\\"] = model_name\\\\n                records.append(rec)\\\\n                count += 1\\\\n                if max_per_model and count >= max_per_model:\\\\n                    break\\\\n        print(f\\\\\\\"  {model_name}: {count}\\\\\\\")\\\\n    df = pd.DataFrame(records)\\\\n    df[\\\\\\\"label\\\\\\\"] = df[\\\\\\\"depth\\\\\\\"].clip(upper=2)\\\\n    print(f\\\\\\\"  Total: {len(df)}, labels: {df['label'].value_counts().sort_index().to_dict()}\\\\\\\")\\\\n    return df\\\\n\\\\n\\\\n# ── LD-Score ─────────────────────────────────────────────��\\\\n\\\\ndef compute_ld_scores(texts, labels, n=3):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"JS divergence of char-trigram distribution vs. human reference.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_counts = []\\\\n    global_vocab = set()\\\\n    for text in texts:\\\\n        t = text.lower()\\\\n        counts = Counter(t[j:j+n] for j in range(len(t) - n + 1))\\\\n        all_counts.append(counts)\\\\n        global_vocab.update(counts.keys())\\\\n\\\\n    vocab = sorted(global_vocab)\\\\n    ng2i = {ng: i for i, ng in enumerate(vocab)}\\\\n    V = len(vocab)\\\\n    print(f\\\\\\\"  Trigram vocab: {V}\\\\\\\")\\\\n\\\\n    ref_total = Counter()\\\\n    for i, counts in enumerate(all_counts):\\\\n        if labels[i] == 0:\\\\n            ref_total.update(counts)\\\\n    total_ref = sum(ref_total.values())\\\\n    ref_vec = np.zeros(V, dtype=np.float64)\\\\n    for ng, c in ref_total.items():\\\\n        ref_vec[ng2i[ng]] = c / total_ref\\\\n\\\\n    scores = []\\\\n    for i, counts in enumerate(all_counts):\\\\n        total = sum(counts.values())\\\\n        if total == 0:\\\\n            scores.append(0.0)\\\\n            continue\\\\n        vec = np.zeros(V, dtype=np.float64)\\\\n        for ng, c in counts.items():\\\\n            vec[ng2i[ng]] = c / total\\\\n        js = jensenshannon(ref_vec, vec)\\\\n        scores.append(float(js) if not np.isnan(js) else 0.0)\\\\n        if i % 5000 == 0 and i > 0:\\\\n            print(f\\\\\\\"    {i}/{len(texts)}\\\\\\\")\\\\n    return scores\\\\n\\\\n\\\\n# ── FastDetectGPT + avg log-prob ──────────────────────────\\\\n\\\\ndef compute_fastdetectgpt_and_logprob(texts, model, tokenizer, device, bs=8):\\\\n    fdg_scores, lp_scores = [], []\\\\n    n = len(texts)\\\\n    for i in range(0, n, bs):\\\\n        batch = texts[i:i+bs]\\\\n        enc = tokenizer(batch, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True,\\\\n                        max_length=MAX_LEN, padding=True).to(device)\\\\n        with torch.no_grad():\\\\n            logits = model(**enc).logits\\\\n\\\\n        log_probs = F.log_softmax(logits[:, :-1], dim=-1)\\\\n        probs = torch.exp(log_probs)\\\\n        targets = enc[\\\\\\\"input_ids\\\\\\\"][:, 1:]\\\\n        mask = enc[\\\\\\\"attention_mask\\\\\\\"][:, 1:].bool()\\\\n\\\\n        actual = log_probs.gather(2, targets.unsqueeze(-1)).squeeze(-1)\\\\n        expected = (probs * log_probs).sum(dim=-1)\\\\n        curv = actual - expected\\\\n\\\\n \\\\n\\\\n... [截断: 输出过长，省略 2110 字符] ...\\\\n\\\\nname, n_splits=5):\\\\n    X = np.array(scores).reshape(-1, 1)\\\\n    y = np.array(labels)\\\\n    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)\\\\n    f1s, pcs = [], []\\\\n    for tr, te in skf.split(X, y):\\\\n        clf = XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.1,\\\\n                            objective=\\\\\\\"multi:softmax\\\\\\\", num_class=3,\\\\n                            eval_metric=\\\\\\\"mlogloss\\\\\\\", verbosity=0, random_state=42)\\\\n        clf.fit(X[tr], y[tr])\\\\n        pred = clf.predict(X[te])\\\\n        f1s.append(f1_score(y[te], pred, average=\\\\\\\"macro\\\\\\\"))\\\\n        pcs.append(f1_score(y[te], pred, average=None))\\\\n    rho, pval = spearmanr(scores, labels)\\\\n    return {\\\\n        \\\\\\\"feature\\\\\\\": name,\\\\n        \\\\\\\"macro_f1_mean\\\\\\\": round(float(np.mean(f1s)), 4),\\\\n        \\\\\\\"macro_f1_std\\\\\\\":  round(float(np.std(f1s)), 4),\\\\n        \\\\\\\"per_class_f1\\\\\\\":  [round(float(x), 4) for x in np.mean(pcs, axis=0)],\\\\n        \\\\\\\"spearman_rho\\\\\\\":  round(float(rho), 4),\\\\n        \\\\\\\"spearman_pval\\\\\\\": float(pval),\\\\n    }\\\\n\\\\n\\\\ndef eval_logo(scores, labels, model_names, name):\\\\n    X = np.array(scores).reshape(-1, 1)\\\\n    y = np.array(labels)\\\\n    models = np.array(model_names)\\\\n    unique = sorted(set(model_names))\\\\n    f1s = {}\\\\n    for hold in unique:\\\\n        tr, te = models != hold, models == hold\\\\n        clf = XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.1,\\\\n                            objective=\\\\\\\"multi:softmax\\\\\\\", num_class=3,\\\\n                            eval_metric=\\\\\\\"mlogloss\\\\\\\", verbosity=0, random_state=42)\\\\n        clf.fit(X[tr], y[tr])\\\\n        pred = clf.predict(X[te])\\\\n        f1s[hold] = round(f1_score(y[te], pred, average=\\\\\\\"macro\\\\\\\"), 4)\\\\n    vals = list(f1s.values())\\\\n    return {\\\\n        \\\\\\\"logo_macro_f1_mean\\\\\\\": round(float(np.mean(vals)), 4),\\\\n        \\\\\\\"logo_macro_f1_std\\\\\\\":  round(float(np.std(vals)), 4),\\\\n        \\\\\\\"logo_per_model_f1\\\\\\\":  f1s,\\\\n    }\\\\n\\\\n\\\\ndef eval_seven_features():\\\\n    feat_cols = [\\\\\\\"entropy_mean\\\\\\\", \\\\\\\"entropy_std\\\\\\\", \\\\\\\"entropy_min\\\\\\\", \\\\\\\"entropy_max\\\\\\\",\\\\n                 \\\\\\\"tail_decay\\\\\\\", \\\\\\\"ttr\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\"]\\\\n    df = pd.read_csv(DATA / \\\\\\\"features_all_models.csv\\\\\\\")\\\\n    df = df[df[\\\\\\\"model_name\\\\\\\"].isin(MODEL_SOURCES.keys())]\\\\n    df[\\\\\\\"label\\\\\\\"] = df[\\\\\\\"depth\\\\\\\"].clip(upper=2)\\\\n    X, y = df[feat_cols].values, df[\\\\\\\"label\\\\\\\"].values\\\\n    models = df[\\\\\\\"model_name\\\\\\\"].values\\\\n\\\\n    # 5-fold CV\\\\n    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\\\\n    f1s, pcs = [], []\\\\n    for tr, te in skf.split(X, y):\\\\n        clf = XGBClassifier(n_estimators=100, max_depth=5, learning_rate=0.1,\\\\n                            objective=\\\\\\\"multi:softmax\\\\\\\", num_class=3,\\\\n                            eval_metric=\\\\\\\"mlogloss\\\\\\\", verbosity=0, random_state=42)\\\\n        clf.fit(X[tr], y[tr])\\\\n        pred = clf.predict(X[te])\\\\n        f1s.append(f1_score(y[te], pred, average=\\\\\\\"macro\\\\\\\"))\\\\n        pcs.append(f1_score(y[te], pred, average=None))\\\\n\\\\n    # LOGO\\\\n    unique = sorted(set(models))\\\\n    logo_f1s = {}\\\\n    for hold in unique:\\\\n        tr, te = models != hold, models == hold\\\\n        clf = XGBClassifier(n_estimators=100, max_depth=5, learning_rate=0.1,\\\\n                            objective=\\\\\\\"multi:softmax\\\\\\\", num_class=3,\\\\n                            eval_metric=\\\\\\\"mlogloss\\\\\\\", verbosity=0, random_state=42)\\\\n        clf.fit(X[tr], y[tr])\\\\n        pred = clf.predict(X[te])\\\\n        logo_f1s[hold] = round(f1_score(y[te], pred, average=\\\\\\\"macro\\\\\\\"), 4)\\\\n    logo_vals = list(logo_f1s.values())\\\\n\\\\n    return {\\\\n        \\\\\\\"feature\\\\\\\": \\\\\\\"7-feature ensemble\\\\\\\",\\\\n        \\\\\\\"macro_f1_mean\\\\\\\": round(float(np.mean(f1s)), 4),\\\\n        \\\\\\\"macro_f1_std\\\\\\\":  round(float(np.std(f1s)), 4),\\\\n        \\\\\\\"per_class_f1\\\\\\\":  [round(float(x), 4) for x in np.mean(pcs, axis=0)],\\\\n        \\\\\\\"logo_macro_f1_mean\\\\\\\": round(float(np.mean(logo_vals)), 4),\\\\n        \\\\\\\"logo_macro_f1_std\\\\\\\":  round(float(np.std(logo_vals)), 4),\\\\n        \\\\\\\"logo_per_model_f1\\\\\\\":  logo_f1s,\\\\n        \\\\\\\"n_samples\\\\\\\": len(df),\\\\n    }\\\\n\\\\n\\\\n# ── Main ──────────────────────────────────────────────────\\\\n\\\\ndef main():\\\\n    ap = argparse.ArgumentParser()\\\\n    ap.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    args = ap.parse_args()\\\\n    RESULTS.mkdir(exist_ok=True)\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Ordinal baseline: test if existing AI detectors' scores carry depth signal.\\nInput:  data/{model}/generations.jsonl\\nOutput: results/ordinal_baseline_results.json\\n\\\"\\\"\\\"\\nimport argparse, json, os, sys, time\\nimport numpy as np\\nimport pandas as pd\\nfrom collections import Counter\\nfrom pathlib import Path\\nfrom scipy.spatial.distance import jensenshannon\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import f1_score\\nfrom sklearn.model_selection import StratifiedKFold\\nfrom xgboost import XGBClassifier\\nimport torch\\nimport torch.nn.functional as F\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nROOT = Path(\\\"/root/gen-depth-fingerprint\\\")\\nDATA = ROOT / \\\"data\\\"\\nRESULTS = ROOT / \\\"results\\\"\\nDEVICE = \\\"cuda:0\\\"\\nMAX_LEN = 512\\nHF_CACHE = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nMODEL_SOURCES = {\\n    \\\"pythia-2.8b\\\": DATA / \\\"generations.jsonl\\\",\\n    \\\"pythia-1b\\\":   DATA / \\\"pythia-1b\\\" / \\\"generations.jsonl\\\",\\n    \\\"olmo-2-1b\\\":   DATA / \\\"olmo-2-1b\\\" / \\\"generations.jsonl\\\",\\n    \\\"qwen3-0.6b\\\":  DATA / \\\"qwen3-0.6b\\\" / \\\"generations.jsonl\\\",\\n    \\\"qwen3-1.7b\\\":  DATA / \\\"qwen3-1.7b\\\" / \\\"generations.jsonl\\\",\\n}\\n\\n\\ndef load_texts(max_per_model=None):\\n    records = []\\n    for model_name, path in MODEL_SOURCES.items():\\n        if not path.exists():\\n            print(f\\\"  SKIP {path}\\\")\\n            continue\\n        count = 0\\n        with open(path) as f:\\n            for line in f:\\n                rec = json.loads(line)\\n                rec[\\\"model_name\\\"] = model_name\\n                records.append(rec)\\n                count += 1\\n                if max_per_model and count >= max_per_model:\\n                    break\\n        print(f\\\"  {model_name}: {count}\\\")\\n    df = pd.DataFrame(records)\\n    df[\\\"label\\\"] = df[\\\"depth\\\"].clip(upper=2)\\n    print(f\\\"  Total: {len(df)}, labels: {df['label'].value_counts().sort_index().to_dict()}\\\")\\n    return df\\n\\n\\n# ── LD-Score ─────────────────────────────────────────────��\\n\\ndef compute_ld_scores(texts, labels, n=3):\\n    \\\"\\\"\\\"JS divergence of char-trigram distribution vs. human reference.\\\"\\\"\\\"\\n    all_counts = []\\n    global_vocab = set()\\n    for text in texts:\\n        t = text.lower()\\n        counts = Counter(t[j:j+n] for j in range(len(t) - n + 1))\\n        all_counts.append(counts)\\n        global_vocab.update(counts.keys())\\n\\n    vocab = sorted(global_vocab)\\n    ng2i = {ng: i for i, ng in enumerate(vocab)}\\n    V = len(vocab)\\n    print(f\\\"  Trigram vocab: {V}\\\")\\n\\n    ref_total = Counter()\\n    for i, counts in enumerate(all_counts):\\n        if labels[i] == 0:\\n            ref_total.update(counts)\\n    total_ref = sum(ref_total.values())\\n    ref_vec = np.zeros(V, dtype=np.float64)\\n    for ng, c in ref_total.items():\\n        ref_vec[ng2i[ng]] = c / total_ref\\n\\n    scores = []\\n    for i, counts in enumerate(all_counts):\\n        total = sum(counts.values())\\n        if total == 0:\\n            scores.append(0.0)\\n            continue\\n        vec = np.zeros(V, dtype=np.float64)\\n        for ng, c in counts.items():\\n            vec[ng2i[ng]] = c / total\\n        js = jensenshannon(ref_vec, vec)\\n        scores.append(float(js) if not np.isnan(js) else 0.0)\\n        if i % 5000 == 0 and i > 0:\\n            print(f\\\"    {i}/{len(texts)}\\\")\\n    return scores\\n\\n\\n# ── FastDetectGPT + avg log-prob ──────────────────────────\\n\\ndef compute_fastdetectgpt_and_logprob(texts, model, tokenizer, device, bs=8):\\n    fdg_scores, lp_scores = [], []\\n    n = len(texts)\\n    for i in range(0, n, bs):\\n        batch = texts[i:i+bs]\\n        enc = tokenizer(batch, return_tensors=\\\"pt\\\", truncation=True,\\n                        max_length=MAX_LEN, padding=True).to(device)\\n        with torch.no_grad():\\n            logits = model(**enc).logits\\n\\n        log_probs = F.log_softmax(logits[:, :-1], dim=-1)\\n        probs = torch.exp(log_probs)\\n        targets = enc[\\\"input_ids\\\"][:, 1:]\\n        mask = enc[\\\"attention_mask\\\"][:, 1:].bool()\\n\\n        actual = log_probs.gather(2, targets.unsqueeze(-1)).squeeze(-1)\\n        expected = (probs * log_probs).sum(dim=-1)\\n        curv = actual - expected\\n\\n \\n\\n... [截断: 输出过长，省略 2110 字符] ...\\n\\nname, n_splits=5):\\n    X = np.array(scores).reshape(-1, 1)\\n    y = np.array(labels)\\n    skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)\\n    f1s, pcs = [], []\\n    for tr, te in skf.split(X, y):\\n        clf = XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.1,\\n                            objective=\\\"multi:softmax\\\", num_class=3,\\n                            eval_metric=\\\"mlogloss\\\", verbosity=0, random_state=42)\\n        clf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        f1s.append(f1_score(y[te], pred, average=\\\"macro\\\"))\\n        pcs.append(f1_score(y[te], pred, average=None))\\n    rho, pval = spearmanr(scores, labels)\\n    return {\\n        \\\"feature\\\": name,\\n        \\\"macro_f1_mean\\\": round(float(np.mean(f1s)), 4),\\n        \\\"macro_f1_std\\\":  round(float(np.std(f1s)), 4),\\n        \\\"per_class_f1\\\":  [round(float(x), 4) for x in np.mean(pcs, axis=0)],\\n        \\\"spearman_rho\\\":  round(float(rho), 4),\\n        \\\"spearman_pval\\\": float(pval),\\n    }\\n\\n\\ndef eval_logo(scores, labels, model_names, name):\\n    X = np.array(scores).reshape(-1, 1)\\n    y = np.array(labels)\\n    models = np.array(model_names)\\n    unique = sorted(set(model_names))\\n    f1s = {}\\n    for hold in unique:\\n        tr, te = models != hold, models == hold\\n        clf = XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.1,\\n                            objective=\\\"multi:softmax\\\", num_class=3,\\n                            eval_metric=\\\"mlogloss\\\", verbosity=0, random_state=42)\\n        clf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        f1s[hold] = round(f1_score(y[te], pred, average=\\\"macro\\\"), 4)\\n    vals = list(f1s.values())\\n    return {\\n        \\\"logo_macro_f1_mean\\\": round(float(np.mean(vals)), 4),\\n        \\\"logo_macro_f1_std\\\":  round(float(np.std(vals)), 4),\\n        \\\"logo_per_model_f1\\\":  f1s,\\n    }\\n\\n\\ndef eval_seven_features():\\n    feat_cols = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\",\\n                 \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\n    df = pd.read_csv(DATA / \\\"features_all_models.csv\\\")\\n    df = df[df[\\\"model_name\\\"].isin(MODEL_SOURCES.keys())]\\n    df[\\\"label\\\"] = df[\\\"depth\\\"].clip(upper=2)\\n    X, y = df[feat_cols].values, df[\\\"label\\\"].values\\n    models = df[\\\"model_name\\\"].values\\n\\n    # 5-fold CV\\n    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\\n    f1s, pcs = [], []\\n    for tr, te in skf.split(X, y):\\n        clf = XGBClassifier(n_estimators=100, max_depth=5, learning_rate=0.1,\\n                            objective=\\\"multi:softmax\\\", num_class=3,\\n                            eval_metric=\\\"mlogloss\\\", verbosity=0, random_state=42)\\n        clf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        f1s.append(f1_score(y[te], pred, average=\\\"macro\\\"))\\n        pcs.append(f1_score(y[te], pred, average=None))\\n\\n    # LOGO\\n    unique = sorted(set(models))\\n    logo_f1s = {}\\n    for hold in unique:\\n        tr, te = models != hold, models == hold\\n        clf = XGBClassifier(n_estimators=100, max_depth=5, learning_rate=0.1,\\n                            objective=\\\"multi:softmax\\\", num_class=3,\\n                            eval_metric=\\\"mlogloss\\\", verbosity=0, random_state=42)\\n        clf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        logo_f1s[hold] = round(f1_score(y[te], pred, average=\\\"macro\\\"), 4)\\n    logo_vals = list(logo_f1s.values())\\n\\n    return {\\n        \\\"feature\\\": \\\"7-feature ensemble\\\",\\n        \\\"macro_f1_mean\\\": round(float(np.mean(f1s)), 4),\\n        \\\"macro_f1_std\\\":  round(float(np.std(f1s)), 4),\\n        \\\"per_class_f1\\\":  [round(float(x), 4) for x in np.mean(pcs, axis=0)],\\n        \\\"logo_macro_f1_mean\\\": round(float(np.mean(logo_vals)), 4),\\n        \\\"logo_macro_f1_std\\\":  round(float(np.std(logo_vals)), 4),\\n        \\\"logo_per_model_f1\\\":  logo_f1s,\\n        \\\"n_samples\\\": len(df),\\n    }\\n\\n\\n# ── Main ──────────────────────────────────────────────────\\n\\ndef main():\\n    ap = argparse.ArgumentParser()\\n    ap.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    args = ap.parse_args()\\n    RESULTS.mkdir(exist_ok=True)\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, I now have a good picture of the code. Let me also see the main function more completely to understand the CLI arguments - especially if there's a --device argument.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "583c7615-fbb3-470f-b4dc-7631441e5971",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UxPKYCVhfGeZRngSVmtBDc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3720,
+      "cache_read_input_tokens": 36245,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3720
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+让我看 main 函数的完整内容，包括 CLI 参数定义。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "0632c816-c405-427e-becc-9f99f544e4d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UxPKYCVhfGeZRngSVmtBDc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3720,
+      "cache_read_input_tokens": 36245,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3720
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PmRB5Y5RvsnYQyHLVCpDsK`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -n +290 /root/gen-depth-fingerprint/scripts/ordinal_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "fb86a045-553e-463b-81e6-d889e8c0c241",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UxPKYCVhfGeZRngSVmtBDc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3720,
+      "cache_read_input_tokens": 36245,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3720
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T00:32:54.872Z_
+
+<details><summary>↩ Tool result · `toolu_01PmRB5Y5RvsnYQyHLVCpDsK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    depths = df[\\\"depth\\\"].values\\n    model_names = df[\\\"model_name\\\"].tolist()\\n\\n    results = {\\\"n_texts\\\": len(texts), \\\"dry_run\\\": args.dry_run}\\n    all_scores = {}\\n\\n    # 1. LD-Score\\n    print(\\\"\\\\n[1/3] LD-Score\\\")\\n    t0 = time.time()\\n    all_scores[\\\"ld_score\\\"] = compute_ld_scores(texts, labels)\\n    print(f\\\"  {time.time()-t0:.1f}s\\\")\\n\\n    # 2. FastDetectGPT + log-prob\\n    print(\\\"\\\\n[2/3] FastDetectGPT (pythia-410m)\\\")\\n    t0 = time.time()\\n    performer = None\\n    try:\\n        scoring = \\\"EleutherAI/pythia-410m\\\"\\n        print(f\\\"  Loading {scoring}...\\\")\\n        tok = AutoTokenizer.from_pretrained(scoring, cache_dir=HF_CACHE)\\n        tok.pad_token = tok.eos_token\\n        mdl = AutoModelForCausalLM.from_pretrained(\\n            scoring, dtype=torch.float16, cache_dir=HF_CACHE\\n        ).to(DEVICE).eval()\\n        fdg, lp = compute_fastdetectgpt_and_logprob(texts, mdl, tok, DEVICE)\\n        all_scores[\\\"fastdetectgpt\\\"] = fdg\\n        all_scores[\\\"avg_logprob\\\"] = lp\\n        performer = mdl\\n        print(f\\\"  {time.time()-t0:.1f}s\\\")\\n    except Exception as e:\\n        print(f\\\"  FAILED: {e}\\\")\\n        import traceback; traceback.print_exc()\\n\\n    # 3. Binoculars\\n    print(\\\"\\\\n[3/3] Binoculars (pythia-160m × pythia-410m)\\\")\\n    t0 = time.time()\\n    try:\\n        obs_name = \\\"EleutherAI/pythia-160m\\\"\\n        print(f\\\"  Loading observer {obs_name}...\\\")\\n        observer = AutoModelForCausalLM.from_pretrained(\\n            obs_name, dtype=torch.float16, cache_dir=HF_CACHE\\n        ).to(DEVICE).eval()\\n        if performer is None:\\n            tok = AutoTokenizer.from_pretrained(\\\"EleutherAI/pythia-410m\\\", cache_dir=HF_CACHE)\\n            tok.pad_token = tok.eos_token\\n            performer = AutoModelForCausalLM.from_pretrained(\\n                \\\"EleutherAI/pythia-410m\\\", dtype=torch.float16, cache_dir=HF_CACHE\\n            ).to(DEVICE).eval()\\n        bino = compute_binoculars_scores(texts, observer, performer, tok, DEVICE)\\n        all_scores[\\\"binoculars\\\"] = bino\\n        print(f\\\"  {time.time()-t0:.1f}s\\\")\\n        del observer\\n    except Exception as e:\\n        print(f\\\"  FAILED: {e}\\\")\\n        import traceback; traceback.print_exc()\\n\\n    # Free GPU\\n    if performer is not None:\\n        del performer\\n    if \\\"mdl\\\" in locals():\\n        del mdl\\n    torch.cuda.empty_cache()\\n\\n    # Evaluate\\n    print(\\\"\\\\n[Eval]\\\")\\n    det_keys = [\\\"ld_score\\\", \\\"fastdetectgpt\\\", \\\"avg_logprob\\\", \\\"binoculars\\\"]\\n    det_names = {\\\"ld_score\\\": \\\"LD-Score\\\", \\\"fastdetectgpt\\\": \\\"FastDetectGPT\\\",\\n                 \\\"avg_logprob\\\": \\\"Avg-LogProb\\\", \\\"binoculars\\\": \\\"Binoculars\\\"}\\n\\n    for key in det_keys:\\n        sc = all_scores.get(key)\\n        if sc is None:\\n            results[key] = {\\\"error\\\": \\\"computation failed\\\"}\\n            continue\\n        name = det_names[key]\\n        r = eval_cv(sc, labels, name)\\n        r.update(eval_logo(sc, labels, model_names, name))\\n        rho_raw, _ = spearmanr(sc, depths)\\n        r[\\\"spearman_rho_raw_depth\\\"] = round(float(rho_raw), 4)\\n        results[key] = r\\n        print(f\\\"  {name:<15} F1={r['macro_f1_mean']:.4f}±{r['macro_f1_std']:.4f}\\\"\\n              f\\\"  LOGO={r['logo_macro_f1_mean']:.4f}  ρ={r['spearman_rho']:.4f}\\\")\\n\\n    # 7-feature comparison\\n    try:\\n        results[\\\"seven_feature\\\"] = eval_seven_features()\\n        sf = results[\\\"seven_feature\\\"]\\n        print(f\\\"  {'7-feat':<15} F1={sf['macro_f1_mean']:.4f}±{sf['macro_f1_std']:.4f}\\\"\\n              f\\\"  LOGO={sf['logo_macro_f1_mean']:.4f}\\\")\\n    except Exception as e:\\n        print(f\\\"  7-feature FAILED: {e}\\\")\\n        results[\\\"seven_feature\\\"] = {\\\"error\\\": str(e)}\\n\\n    # Summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(f\\\"{'Detector':<18} {'5-fold F1':>10} {'LOGO F1':>10} {'ρ (3-cls)':>10} {'ρ (depth)':>10}\\\")\\n    print(\\\"-\\\" * 60)\\n    for key in det_keys + [\\\"seven_feature\\\"]:\\n        r = results.get(key, {})\\n        if \\\"error\\\" in r:\\n            print(f\\\"{key:<18} {'ERR':>10}\\\")\\n            continue\\n        nm = r.get(\\\"feature\\\", key)\\n        print(f\\\"{nm:<18} {r.get('macro_f1_mean',0):>10.4f} \\\"\\n              f\\\"{r.get('logo_macro_f1_mean',0):>10.4f} \\\"\\n              f\\\"{r.get('spearman_rho',0):>10.4f} \\\"\\n              f\\\"{r.get('spearman_rho_raw_depth', r.get('spearman_rho',0)):>10.4f}\\\")\\n\\n    out = RESULTS / \\\"ordinal_baseline_results.json\\\"\\n    with open(out, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nSaved: {out}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "874b9a81-fce3-44fc-9409-e6f9824f405c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    depths = df[\\\\\\\"depth\\\\\\\"].values\\\\n    model_names = df[\\\\\\\"model_name\\\\\\\"].tolist()\\\\n\\\\n    results = {\\\\\\\"n_texts\\\\\\\": len(texts), \\\\\\\"dry_run\\\\\\\": args.dry_run}\\\\n    all_scores = {}\\\\n\\\\n    # 1. LD-Score\\\\n    print(\\\\\\\"\\\\\\\\n[1/3] LD-Score\\\\\\\")\\\\n    t0 = time.time()\\\\n    all_scores[\\\\\\\"ld_score\\\\\\\"] = compute_ld_scores(texts, labels)\\\\n    print(f\\\\\\\"  {time.time()-t0:.1f}s\\\\\\\")\\\\n\\\\n    # 2. FastDetectGPT + log-prob\\\\n    print(\\\\\\\"\\\\\\\\n[2/3] FastDetectGPT (pythia-410m)\\\\\\\")\\\\n    t0 = time.time()\\\\n    performer = None\\\\n    try:\\\\n        scoring = \\\\\\\"EleutherAI/pythia-410m\\\\\\\"\\\\n        print(f\\\\\\\"  Loading {scoring}...\\\\\\\")\\\\n        tok = AutoTokenizer.from_pretrained(scoring, cache_dir=HF_CACHE)\\\\n        tok.pad_token = tok.eos_token\\\\n        mdl = AutoModelForCausalLM.from_pretrained(\\\\n            scoring, dtype=torch.float16, cache_dir=HF_CACHE\\\\n        ).to(DEVICE).eval()\\\\n        fdg, lp = compute_fastdetectgpt_and_logprob(texts, mdl, tok, DEVICE)\\\\n        all_scores[\\\\\\\"fastdetectgpt\\\\\\\"] = fdg\\\\n        all_scores[\\\\\\\"avg_logprob\\\\\\\"] = lp\\\\n        performer = mdl\\\\n        print(f\\\\\\\"  {time.time()-t0:.1f}s\\\\\\\")\\\\n    except Exception as e:\\\\n        print(f\\\\\\\"  FAILED: {e}\\\\\\\")\\\\n        import traceback; traceback.print_exc()\\\\n\\\\n    # 3. Binoculars\\\\n    print(\\\\\\\"\\\\\\\\n[3/3] Binoculars (pythia-160m × pythia-410m)\\\\\\\")\\\\n    t0 = time.time()\\\\n    try:\\\\n        obs_name = \\\\\\\"EleutherAI/pythia-160m\\\\\\\"\\\\n        print(f\\\\\\\"  Loading observer {obs_name}...\\\\\\\")\\\\n        observer = AutoModelForCausalLM.from_pretrained(\\\\n            obs_name, dtype=torch.float16, cache_dir=HF_CACHE\\\\n        ).to(DEVICE).eval()\\\\n        if performer is None:\\\\n            tok = AutoTokenizer.from_pretrained(\\\\\\\"EleutherAI/pythia-410m\\\\\\\", cache_dir=HF_CACHE)\\\\n            tok.pad_token = tok.eos_token\\\\n            performer = AutoModelForCausalLM.from_pretrained(\\\\n                \\\\\\\"EleutherAI/pythia-410m\\\\\\\", dtype=torch.float16, cache_dir=HF_CACHE\\\\n            ).to(DEVICE).eval()\\\\n        bino = compute_binoculars_scores(texts, observer, performer, tok, DEVICE)\\\\n        all_scores[\\\\\\\"binoculars\\\\\\\"] = bino\\\\n        print(f\\\\\\\"  {time.time()-t0:.1f}s\\\\\\\")\\\\n        del observer\\\\n    except Exception as e:\\\\n        print(f\\\\\\\"  FAILED: {e}\\\\\\\")\\\\n        import traceback; traceback.print_exc()\\\\n\\\\n    # Free GPU\\\\n    if performer is not None:\\\\n        del performer\\\\n    if \\\\\\\"mdl\\\\\\\" in locals():\\\\n        del mdl\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    # Evaluate\\\\n    print(\\\\\\\"\\\\\\\\n[Eval]\\\\\\\")\\\\n    det_keys = [\\\\\\\"ld_score\\\\\\\", \\\\\\\"fastdetectgpt\\\\\\\", \\\\\\\"avg_logprob\\\\\\\", \\\\\\\"binoculars\\\\\\\"]\\\\n    det_names = {\\\\\\\"ld_score\\\\\\\": \\\\\\\"LD-Score\\\\\\\", \\\\\\\"fastdetectgpt\\\\\\\": \\\\\\\"FastDetectGPT\\\\\\\",\\\\n                 \\\\\\\"avg_logprob\\\\\\\": \\\\\\\"Avg-LogProb\\\\\\\", \\\\\\\"binoculars\\\\\\\": \\\\\\\"Binoculars\\\\\\\"}\\\\n\\\\n    for key in det_keys:\\\\n        sc = all_scores.get(key)\\\\n        if sc is None:\\\\n            results[key] = {\\\\\\\"error\\\\\\\": \\\\\\\"computation failed\\\\\\\"}\\\\n            continue\\\\n        name = det_names[key]\\\\n        r = eval_cv(sc, labels, name)\\\\n        r.update(eval_logo(sc, labels, model_names, name))\\\\n        rho_raw, _ = spearmanr(sc, depths)\\\\n        r[\\\\\\\"spearman_rho_raw_depth\\\\\\\"] = round(float(rho_raw), 4)\\\\n        results[key] = r\\\\n        print(f\\\\\\\"  {name:<15} F1={r['macro_f1_mean']:.4f}±{r['macro_f1_std']:.4f}\\\\\\\"\\\\n              f\\\\\\\"  LOGO={r['logo_macro_f1_mean']:.4f}  ρ={r['spearman_rho']:.4f}\\\\\\\")\\\\n\\\\n    # 7-feature comparison\\\\n    try:\\\\n        results[\\\\\\\"seven_feature\\\\\\\"] = eval_seven_features()\\\\n        sf = results[\\\\\\\"seven_feature\\\\\\\"]\\\\n        print(f\\\\\\\"  {'7-feat':<15} F1={sf['macro_f1_mean']:.4f}±{sf['macro_f1_std']:.4f}\\\\\\\"\\\\n              f\\\\\\\"  LOGO={sf['logo_macro_f1_mean']:.4f}\\\\\\\")\\\\n    except Exception as e:\\\\n        print(f\\\\\\\"  7-feature FAILED: {e}\\\\\\\")\\\\n        results[\\\\\\\"seven_feature\\\\\\\"] = {\\\\\\\"error\\\\\\\": str(e)}\\\\n\\\\n    # Summary\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n    print(f\\\\\\\"{'Detector':<18} {'5-fold F1':>10} {'LOGO F1':>10} {'ρ (3-cls)':>10} {'ρ (depth)':>10}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 60)\\\\n    for key in det_keys + [\\\\\\\"seven_feature\\\\\\\"]:\\\\n        r = results.get(key, {})\\\\n        if \\\\\\\"error\\\\\\\" in r:\\\\n            print(f\\\\\\\"{key:<18} {'ERR':>10}\\\\\\\")\\\\n            continue\\\\n        nm = r.get(\\\\\\\"feature\\\\\\\", key)\\\\n        print(f\\\\\\\"{nm:<18} {r.get('macro_f1_mean',0):>10.4f} \\\\\\\"\\\\n              f\\\\\\\"{r.get('logo_macro_f1_mean',0):>10.4f} \\\\\\\"\\\\n              f\\\\\\\"{r.get('spearman_rho',0):>10.4f} \\\\\\\"\\\\n              f\\\\\\\"{r.get('spearman_rho_raw_depth', r.get('spearman_rho',0)):>10.4f}\\\\\\\")\\\\n\\\\n    out = RESULTS / \\\\\\\"ordinal_baseline_results.json\\\\\\\"\\\\n    with open(out, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(results, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved: {out}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    depths = df[\\\"depth\\\"].values\\n    model_names = df[\\\"model_name\\\"].tolist()\\n\\n    results = {\\\"n_texts\\\": len(texts), \\\"dry_run\\\": args.dry_run}\\n    all_scores = {}\\n\\n    # 1. LD-Score\\n    print(\\\"\\\\n[1/3] LD-Score\\\")\\n    t0 = time.time()\\n    all_scores[\\\"ld_score\\\"] = compute_ld_scores(texts, labels)\\n    print(f\\\"  {time.time()-t0:.1f}s\\\")\\n\\n    # 2. FastDetectGPT + log-prob\\n    print(\\\"\\\\n[2/3] FastDetectGPT (pythia-410m)\\\")\\n    t0 = time.time()\\n    performer = None\\n    try:\\n        scoring = \\\"EleutherAI/pythia-410m\\\"\\n        print(f\\\"  Loading {scoring}...\\\")\\n        tok = AutoTokenizer.from_pretrained(scoring, cache_dir=HF_CACHE)\\n        tok.pad_token = tok.eos_token\\n        mdl = AutoModelForCausalLM.from_pretrained(\\n            scoring, dtype=torch.float16, cache_dir=HF_CACHE\\n        ).to(DEVICE).eval()\\n        fdg, lp = compute_fastdetectgpt_and_logprob(texts, mdl, tok, DEVICE)\\n        all_scores[\\\"fastdetectgpt\\\"] = fdg\\n        all_scores[\\\"avg_logprob\\\"] = lp\\n        performer = mdl\\n        print(f\\\"  {time.time()-t0:.1f}s\\\")\\n    except Exception as e:\\n        print(f\\\"  FAILED: {e}\\\")\\n        import traceback; traceback.print_exc()\\n\\n    # 3. Binoculars\\n    print(\\\"\\\\n[3/3] Binoculars (pythia-160m × pythia-410m)\\\")\\n    t0 = time.time()\\n    try:\\n        obs_name = \\\"EleutherAI/pythia-160m\\\"\\n        print(f\\\"  Loading observer {obs_name}...\\\")\\n        observer = AutoModelForCausalLM.from_pretrained(\\n            obs_name, dtype=torch.float16, cache_dir=HF_CACHE\\n        ).to(DEVICE).eval()\\n        if performer is None:\\n            tok = AutoTokenizer.from_pretrained(\\\"EleutherAI/pythia-410m\\\", cache_dir=HF_CACHE)\\n            tok.pad_token = tok.eos_token\\n            performer = AutoModelForCausalLM.from_pretrained(\\n                \\\"EleutherAI/pythia-410m\\\", dtype=torch.float16, cache_dir=HF_CACHE\\n            ).to(DEVICE).eval()\\n        bino = compute_binoculars_scores(texts, observer, performer, tok, DEVICE)\\n        all_scores[\\\"binoculars\\\"] = bino\\n        print(f\\\"  {time.time()-t0:.1f}s\\\")\\n        del observer\\n    except Exception as e:\\n        print(f\\\"  FAILED: {e}\\\")\\n        import traceback; traceback.print_exc()\\n\\n    # Free GPU\\n    if performer is not None:\\n        del performer\\n    if \\\"mdl\\\" in locals():\\n        del mdl\\n    torch.cuda.empty_cache()\\n\\n    # Evaluate\\n    print(\\\"\\\\n[Eval]\\\")\\n    det_keys = [\\\"ld_score\\\", \\\"fastdetectgpt\\\", \\\"avg_logprob\\\", \\\"binoculars\\\"]\\n    det_names = {\\\"ld_score\\\": \\\"LD-Score\\\", \\\"fastdetectgpt\\\": \\\"FastDetectGPT\\\",\\n                 \\\"avg_logprob\\\": \\\"Avg-LogProb\\\", \\\"binoculars\\\": \\\"Binoculars\\\"}\\n\\n    for key in det_keys:\\n        sc = all_scores.get(key)\\n        if sc is None:\\n            results[key] = {\\\"error\\\": \\\"computation failed\\\"}\\n            continue\\n        name = det_names[key]\\n        r = eval_cv(sc, labels, name)\\n        r.update(eval_logo(sc, labels, model_names, name))\\n        rho_raw, _ = spearmanr(sc, depths)\\n        r[\\\"spearman_rho_raw_depth\\\"] = round(float(rho_raw), 4)\\n        results[key] = r\\n        print(f\\\"  {name:<15} F1={r['macro_f1_mean']:.4f}±{r['macro_f1_std']:.4f}\\\"\\n              f\\\"  LOGO={r['logo_macro_f1_mean']:.4f}  ρ={r['spearman_rho']:.4f}\\\")\\n\\n    # 7-feature comparison\\n    try:\\n        results[\\\"seven_feature\\\"] = eval_seven_features()\\n        sf = results[\\\"seven_feature\\\"]\\n        print(f\\\"  {'7-feat':<15} F1={sf['macro_f1_mean']:.4f}±{sf['macro_f1_std']:.4f}\\\"\\n              f\\\"  LOGO={sf['logo_macro_f1_mean']:.4f}\\\")\\n    except Exception as e:\\n        print(f\\\"  7-feature FAILED: {e}\\\")\\n        results[\\\"seven_feature\\\"] = {\\\"error\\\": str(e)}\\n\\n    # Summary\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(f\\\"{'Detector':<18} {'5-fold F1':>10} {'LOGO F1':>10} {'ρ (3-cls)':>10} {'ρ (depth)':>10}\\\")\\n    print(\\\"-\\\" * 60)\\n    for key in det_keys + [\\\"seven_feature\\\"]:\\n        r = results.get(key, {})\\n        if \\\"error\\\" in r:\\n            print(f\\\"{key:<18} {'ERR':>10}\\\")\\n            continue\\n        nm = r.get(\\\"feature\\\", key)\\n        print(f\\\"{nm:<18} {r.get('macro_f1_mean',0):>10.4f} \\\"\\n              f\\\"{r.get('logo_macro_f1_mean',0):>10.4f} \\\"\\n              f\\\"{r.get('spearman_rho',0):>10.4f} \\\"\\n              f\\\"{r.get('spearman_rho_raw_depth', r.get('spearman_rho',0)):>10.4f}\\\")\\n\\n    out = RESULTS / \\\"ordinal_baseline_results.json\\\"\\n    with open(out, \\\"w\\\") as f:\\n        json.dump(results, f, indent=2)\\n    print(f\\\"\\\\nSaved: {out}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to see lines 280-290 to see the main function start with args parsing and data loading.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "31e424f5-ec53-48f7-bd61-77c0318d68ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014TnSNLzK27vDKE4FbSmXHu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2279,
+      "cache_read_input_tokens": 39965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2279
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01D9jYApskfz3H9SGTwiZuZb`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -295 /root/gen-depth-fingerprint/scripts/ordinal_baseline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "df301e5b-e3a0-4ddf-bf28-4ffb495a4f1e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014TnSNLzK27vDKE4FbSmXHu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2279,
+      "cache_read_input_tokens": 39965,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2279
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T00:33:00.307Z_
+
+<details><summary>↩ Tool result · `toolu_01D9jYApskfz3H9SGTwiZuZb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Ordinal baseline: test if existing AI detectors' scores carry depth signal.\\nInput:  data/{model}/generations.jsonl\\nOutput: results/ordinal_baseline_results.json\\n\\\"\\\"\\\"\\nimport argparse, json, os, sys, time\\nimport numpy as np\\nimport pandas as pd\\nfrom collections import Counter\\nfrom pathlib import Path\\nfrom scipy.spatial.distance import jensenshannon\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import f1_score\\nfrom sklearn.model_selection import StratifiedKFold\\nfrom xgboost import XGBClassifier\\nimport torch\\nimport torch.nn.functional as F\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nROOT = Path(\\\"/root/gen-depth-fingerprint\\\")\\nDATA = ROOT / \\\"data\\\"\\nRESULTS = ROOT / \\\"results\\\"\\nDEVICE = \\\"cuda:0\\\"\\nMAX_LEN = 512\\nHF_CACHE = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nMODEL_SOURCES = {\\n    \\\"pythia-2.8b\\\": DATA / \\\"generations.jsonl\\\",\\n    \\\"pythia-1b\\\":   DATA / \\\"pythia-1b\\\" / \\\"generations.jsonl\\\",\\n    \\\"olmo-2-1b\\\":   DATA / \\\"olmo-2-1b\\\" / \\\"generations.jsonl\\\",\\n    \\\"qwen3-0.6b\\\":  DATA / \\\"qwen3-0.6b\\\" / \\\"generations.jsonl\\\",\\n    \\\"qwen3-1.7b\\\":  DATA / \\\"qwen3-1.7b\\\" / \\\"generations.jsonl\\\",\\n}\\n\\n\\ndef load_texts(max_per_model=None):\\n    records = []\\n    for model_name, path in MODEL_SOURCES.items():\\n        if not path.exists():\\n            print(f\\\"  SKIP {path}\\\")\\n            continue\\n        count = 0\\n        with open(path) as f:\\n            for line in f:\\n                rec = json.loads(line)\\n                rec[\\\"model_name\\\"] = model_name\\n                records.append(rec)\\n                count += 1\\n                if max_per_model and count >= max_per_model:\\n                    break\\n        print(f\\\"  {model_name}: {count}\\\")\\n    df = pd.DataFrame(records)\\n    df[\\\"label\\\"] = df[\\\"depth\\\"].clip(upper=2)\\n    print(f\\\"  Total: {len(df)}, labels: {df['label'].value_counts().sort_index().to_dict()}\\\")\\n    return df\\n\\n\\n# ── LD-Score ─────────────────────────────────────────────��\\n\\ndef compute_ld_scores(texts, labels, n=3):\\n    \\\"\\\"\\\"JS divergence of char-trigram distribution vs. human reference.\\\"\\\"\\\"\\n    all_counts = []\\n    global_vocab = set()\\n    for text in texts:\\n        t = text.lower()\\n        counts = Counter(t[j:j+n] for j in range(len(t) - n + 1))\\n        all_counts.append(counts)\\n        global_vocab.update(counts.keys())\\n\\n    vocab = sorted(global_vocab)\\n    ng2i = {ng: i for i, ng in enumerate(vocab)}\\n    V = len(vocab)\\n    print(f\\\"  Trigram vocab: {V}\\\")\\n\\n    ref_total = Counter()\\n    for i, counts in enumerate(all_counts):\\n        if labels[i] == 0:\\n            ref_total.update(counts)\\n    total_ref = sum(ref_total.values())\\n    ref_vec = np.zeros(V, dtype=np.float64)\\n    for ng, c in ref_total.items():\\n        ref_vec[ng2i[ng]] = c / total_ref\\n\\n    scores = []\\n    for i, counts in enumerate(all_counts):\\n        total = sum(counts.values())\\n        if total == 0:\\n            scores.append(0.0)\\n            continue\\n        vec = np.zeros(V, dtype=np.float64)\\n        for ng, c in counts.items():\\n            vec[ng2i[ng]] = c / total\\n        js = jensenshannon(ref_vec, vec)\\n        scores.append(float(js) if not np.isnan(js) else 0.0)\\n        if i % 5000 == 0 and i > 0:\\n            print(f\\\"    {i}/{len(texts)}\\\")\\n    return scores\\n\\n\\n# ── FastDetectGPT + avg log-prob ──────────────────────────\\n\\ndef compute_fastdetectgpt_and_logprob(texts, model, tokenizer, device, bs=8):\\n    fdg_scores, lp_scores = [], []\\n    n = len(texts)\\n    for i in range(0, n, bs):\\n        batch = texts[i:i+bs]\\n        enc = tokenizer(batch, return_tensors=\\\"pt\\\", truncation=True,\\n                        max_length=MAX_LEN, padding=True).to(device)\\n        with torch.no_grad():\\n            logits = model(**enc).logits\\n\\n        log_probs = F.log_softmax(logits[:, :-1], dim=-1)\\n        probs = torch.exp(log_probs)\\n        targets = enc[\\\"input_ids\\\"][:, 1:]\\n        mask = enc[\\\"attention_mask\\\"][:, 1:].bool()\\n\\n        actual = log_probs.gather(2, targets.unsqueeze(-1)).squeeze(-1)\\n        expected = (probs * log_probs).sum(dim=-1)\\n        curv = actual - expected\\n\\n \\n\\n... [截断: 输出过长，省略 2564 字符] ...\\n\\nlf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        f1s.append(f1_score(y[te], pred, average=\\\"macro\\\"))\\n        pcs.append(f1_score(y[te], pred, average=None))\\n    rho, pval = spearmanr(scores, labels)\\n    return {\\n        \\\"feature\\\": name,\\n        \\\"macro_f1_mean\\\": round(float(np.mean(f1s)), 4),\\n        \\\"macro_f1_std\\\":  round(float(np.std(f1s)), 4),\\n        \\\"per_class_f1\\\":  [round(float(x), 4) for x in np.mean(pcs, axis=0)],\\n        \\\"spearman_rho\\\":  round(float(rho), 4),\\n        \\\"spearman_pval\\\": float(pval),\\n    }\\n\\n\\ndef eval_logo(scores, labels, model_names, name):\\n    X = np.array(scores).reshape(-1, 1)\\n    y = np.array(labels)\\n    models = np.array(model_names)\\n    unique = sorted(set(model_names))\\n    f1s = {}\\n    for hold in unique:\\n        tr, te = models != hold, models == hold\\n        clf = XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.1,\\n                            objective=\\\"multi:softmax\\\", num_class=3,\\n                            eval_metric=\\\"mlogloss\\\", verbosity=0, random_state=42)\\n        clf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        f1s[hold] = round(f1_score(y[te], pred, average=\\\"macro\\\"), 4)\\n    vals = list(f1s.values())\\n    return {\\n        \\\"logo_macro_f1_mean\\\": round(float(np.mean(vals)), 4),\\n        \\\"logo_macro_f1_std\\\":  round(float(np.std(vals)), 4),\\n        \\\"logo_per_model_f1\\\":  f1s,\\n    }\\n\\n\\ndef eval_seven_features():\\n    feat_cols = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\",\\n                 \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\n    df = pd.read_csv(DATA / \\\"features_all_models.csv\\\")\\n    df = df[df[\\\"model_name\\\"].isin(MODEL_SOURCES.keys())]\\n    df[\\\"label\\\"] = df[\\\"depth\\\"].clip(upper=2)\\n    X, y = df[feat_cols].values, df[\\\"label\\\"].values\\n    models = df[\\\"model_name\\\"].values\\n\\n    # 5-fold CV\\n    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\\n    f1s, pcs = [], []\\n    for tr, te in skf.split(X, y):\\n        clf = XGBClassifier(n_estimators=100, max_depth=5, learning_rate=0.1,\\n                            objective=\\\"multi:softmax\\\", num_class=3,\\n                            eval_metric=\\\"mlogloss\\\", verbosity=0, random_state=42)\\n        clf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        f1s.append(f1_score(y[te], pred, average=\\\"macro\\\"))\\n        pcs.append(f1_score(y[te], pred, average=None))\\n\\n    # LOGO\\n    unique = sorted(set(models))\\n    logo_f1s = {}\\n    for hold in unique:\\n        tr, te = models != hold, models == hold\\n        clf = XGBClassifier(n_estimators=100, max_depth=5, learning_rate=0.1,\\n                            objective=\\\"multi:softmax\\\", num_class=3,\\n                            eval_metric=\\\"mlogloss\\\", verbosity=0, random_state=42)\\n        clf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        logo_f1s[hold] = round(f1_score(y[te], pred, average=\\\"macro\\\"), 4)\\n    logo_vals = list(logo_f1s.values())\\n\\n    return {\\n        \\\"feature\\\": \\\"7-feature ensemble\\\",\\n        \\\"macro_f1_mean\\\": round(float(np.mean(f1s)), 4),\\n        \\\"macro_f1_std\\\":  round(float(np.std(f1s)), 4),\\n        \\\"per_class_f1\\\":  [round(float(x), 4) for x in np.mean(pcs, axis=0)],\\n        \\\"logo_macro_f1_mean\\\": round(float(np.mean(logo_vals)), 4),\\n        \\\"logo_macro_f1_std\\\":  round(float(np.std(logo_vals)), 4),\\n        \\\"logo_per_model_f1\\\":  logo_f1s,\\n        \\\"n_samples\\\": len(df),\\n    }\\n\\n\\n# ── Main ──────────────────────────────────────────────────\\n\\ndef main():\\n    ap = argparse.ArgumentParser()\\n    ap.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    args = ap.parse_args()\\n    RESULTS.mkdir(exist_ok=True)\\n\\n    max_pm = 20 if args.dry_run else None\\n    print(\\\"=\\\" * 60)\\n    print(\\\"Ordinal Baseline Comparison\\\" + (\\\" [DRY RUN]\\\" if args.dry_run else \\\"\\\"))\\n    print(\\\"=\\\" * 60)\\n\\n    print(\\\"\\\\n[Load]\\\")\\n    df = load_texts(max_per_model=max_pm)\\n    texts = df[\\\"text\\\"].tolist()\\n    labels = df[\\\"label\\\"].values\\n    depths = df[\\\"depth\\\"].values\\n    model_names = df[\\\"model_name\\\"].tolist()\\n\\n    results = {\\\"n_texts\\\": len(texts), \\\"dry_run\\\": args.dry_run}\\n    all_scores = {}\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "9008f30c-b71b-42fb-9e4d-083a23d17f5b",
+  "uuid": "8223a1ce-732e-4379-b179-04c849f32dac",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Ordinal baseline: test if existing AI detectors' scores carry depth signal.\\\\nInput:  data/{model}/generations.jsonl\\\\nOutput: results/ordinal_baseline_results.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse, json, os, sys, time\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\nfrom scipy.spatial.distance import jensenshannon\\\\nfrom scipy.stats import spearmanr\\\\nfrom sklearn.metrics import f1_score\\\\nfrom sklearn.model_selection import StratifiedKFold\\\\nfrom xgboost import XGBClassifier\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nROOT = Path(\\\\\\\"/root/gen-depth-fingerprint\\\\\\\")\\\\nDATA = ROOT / \\\\\\\"data\\\\\\\"\\\\nRESULTS = ROOT / \\\\\\\"results\\\\\\\"\\\\nDEVICE = \\\\\\\"cuda:0\\\\\\\"\\\\nMAX_LEN = 512\\\\nHF_CACHE = \\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"\\\\n\\\\nMODEL_SOURCES = {\\\\n    \\\\\\\"pythia-2.8b\\\\\\\": DATA / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"pythia-1b\\\\\\\":   DATA / \\\\\\\"pythia-1b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"olmo-2-1b\\\\\\\":   DATA / \\\\\\\"olmo-2-1b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"qwen3-0.6b\\\\\\\":  DATA / \\\\\\\"qwen3-0.6b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n    \\\\\\\"qwen3-1.7b\\\\\\\":  DATA / \\\\\\\"qwen3-1.7b\\\\\\\" / \\\\\\\"generations.jsonl\\\\\\\",\\\\n}\\\\n\\\\n\\\\ndef load_texts(max_per_model=None):\\\\n    records = []\\\\n    for model_name, path in MODEL_SOURCES.items():\\\\n        if not path.exists():\\\\n            print(f\\\\\\\"  SKIP {path}\\\\\\\")\\\\n            continue\\\\n        count = 0\\\\n        with open(path) as f:\\\\n            for line in f:\\\\n                rec = json.loads(line)\\\\n                rec[\\\\\\\"model_name\\\\\\\"] = model_name\\\\n                records.append(rec)\\\\n                count += 1\\\\n                if max_per_model and count >= max_per_model:\\\\n                    break\\\\n        print(f\\\\\\\"  {model_name}: {count}\\\\\\\")\\\\n    df = pd.DataFrame(records)\\\\n    df[\\\\\\\"label\\\\\\\"] = df[\\\\\\\"depth\\\\\\\"].clip(upper=2)\\\\n    print(f\\\\\\\"  Total: {len(df)}, labels: {df['label'].value_counts().sort_index().to_dict()}\\\\\\\")\\\\n    return df\\\\n\\\\n\\\\n# ── LD-Score ─────────────────────────────────────────────��\\\\n\\\\ndef compute_ld_scores(texts, labels, n=3):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"JS divergence of char-trigram distribution vs. human reference.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_counts = []\\\\n    global_vocab = set()\\\\n    for text in texts:\\\\n        t = text.lower()\\\\n        counts = Counter(t[j:j+n] for j in range(len(t) - n + 1))\\\\n        all_counts.append(counts)\\\\n        global_vocab.update(counts.keys())\\\\n\\\\n    vocab = sorted(global_vocab)\\\\n    ng2i = {ng: i for i, ng in enumerate(vocab)}\\\\n    V = len(vocab)\\\\n    print(f\\\\\\\"  Trigram vocab: {V}\\\\\\\")\\\\n\\\\n    ref_total = Counter()\\\\n    for i, counts in enumerate(all_counts):\\\\n        if labels[i] == 0:\\\\n            ref_total.update(counts)\\\\n    total_ref = sum(ref_total.values())\\\\n    ref_vec = np.zeros(V, dtype=np.float64)\\\\n    for ng, c in ref_total.items():\\\\n        ref_vec[ng2i[ng]] = c / total_ref\\\\n\\\\n    scores = []\\\\n    for i, counts in enumerate(all_counts):\\\\n        total = sum(counts.values())\\\\n        if total == 0:\\\\n            scores.append(0.0)\\\\n            continue\\\\n        vec = np.zeros(V, dtype=np.float64)\\\\n        for ng, c in counts.items():\\\\n            vec[ng2i[ng]] = c / total\\\\n        js = jensenshannon(ref_vec, vec)\\\\n        scores.append(float(js) if not np.isnan(js) else 0.0)\\\\n        if i % 5000 == 0 and i > 0:\\\\n            print(f\\\\\\\"    {i}/{len(texts)}\\\\\\\")\\\\n    return scores\\\\n\\\\n\\\\n# ── FastDetectGPT + avg log-prob ──────────────────────────\\\\n\\\\ndef compute_fastdetectgpt_and_logprob(texts, model, tokenizer, device, bs=8):\\\\n    fdg_scores, lp_scores = [], []\\\\n    n = len(texts)\\\\n    for i in range(0, n, bs):\\\\n        batch = texts[i:i+bs]\\\\n        enc = tokenizer(batch, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True,\\\\n                        max_length=MAX_LEN, padding=True).to(device)\\\\n        with torch.no_grad():\\\\n            logits = model(**enc).logits\\\\n\\\\n        log_probs = F.log_softmax(logits[:, :-1], dim=-1)\\\\n        probs = torch.exp(log_probs)\\\\n        targets = enc[\\\\\\\"input_ids\\\\\\\"][:, 1:]\\\\n        mask = enc[\\\\\\\"attention_mask\\\\\\\"][:, 1:].bool()\\\\n\\\\n        actual = log_probs.gather(2, targets.unsqueeze(-1)).squeeze(-1)\\\\n        expected = (probs * log_probs).sum(dim=-1)\\\\n        curv = actual - expected\\\\n\\\\n \\\\n\\\\n... [截断: 输出过长，省略 2564 字符] ...\\\\n\\\\nlf.fit(X[tr], y[tr])\\\\n        pred = clf.predict(X[te])\\\\n        f1s.append(f1_score(y[te], pred, average=\\\\\\\"macro\\\\\\\"))\\\\n        pcs.append(f1_score(y[te], pred, average=None))\\\\n    rho, pval = spearmanr(scores, labels)\\\\n    return {\\\\n        \\\\\\\"feature\\\\\\\": name,\\\\n        \\\\\\\"macro_f1_mean\\\\\\\": round(float(np.mean(f1s)), 4),\\\\n        \\\\\\\"macro_f1_std\\\\\\\":  round(float(np.std(f1s)), 4),\\\\n        \\\\\\\"per_class_f1\\\\\\\":  [round(float(x), 4) for x in np.mean(pcs, axis=0)],\\\\n        \\\\\\\"spearman_rho\\\\\\\":  round(float(rho), 4),\\\\n        \\\\\\\"spearman_pval\\\\\\\": float(pval),\\\\n    }\\\\n\\\\n\\\\ndef eval_logo(scores, labels, model_names, name):\\\\n    X = np.array(scores).reshape(-1, 1)\\\\n    y = np.array(labels)\\\\n    models = np.array(model_names)\\\\n    unique = sorted(set(model_names))\\\\n    f1s = {}\\\\n    for hold in unique:\\\\n        tr, te = models != hold, models == hold\\\\n        clf = XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.1,\\\\n                            objective=\\\\\\\"multi:softmax\\\\\\\", num_class=3,\\\\n                            eval_metric=\\\\\\\"mlogloss\\\\\\\", verbosity=0, random_state=42)\\\\n        clf.fit(X[tr], y[tr])\\\\n        pred = clf.predict(X[te])\\\\n        f1s[hold] = round(f1_score(y[te], pred, average=\\\\\\\"macro\\\\\\\"), 4)\\\\n    vals = list(f1s.values())\\\\n    return {\\\\n        \\\\\\\"logo_macro_f1_mean\\\\\\\": round(float(np.mean(vals)), 4),\\\\n        \\\\\\\"logo_macro_f1_std\\\\\\\":  round(float(np.std(vals)), 4),\\\\n        \\\\\\\"logo_per_model_f1\\\\\\\":  f1s,\\\\n    }\\\\n\\\\n\\\\ndef eval_seven_features():\\\\n    feat_cols = [\\\\\\\"entropy_mean\\\\\\\", \\\\\\\"entropy_std\\\\\\\", \\\\\\\"entropy_min\\\\\\\", \\\\\\\"entropy_max\\\\\\\",\\\\n                 \\\\\\\"tail_decay\\\\\\\", \\\\\\\"ttr\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\"]\\\\n    df = pd.read_csv(DATA / \\\\\\\"features_all_models.csv\\\\\\\")\\\\n    df = df[df[\\\\\\\"model_name\\\\\\\"].isin(MODEL_SOURCES.keys())]\\\\n    df[\\\\\\\"label\\\\\\\"] = df[\\\\\\\"depth\\\\\\\"].clip(upper=2)\\\\n    X, y = df[feat_cols].values, df[\\\\\\\"label\\\\\\\"].values\\\\n    models = df[\\\\\\\"model_name\\\\\\\"].values\\\\n\\\\n    # 5-fold CV\\\\n    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\\\\n    f1s, pcs = [], []\\\\n    for tr, te in skf.split(X, y):\\\\n        clf = XGBClassifier(n_estimators=100, max_depth=5, learning_rate=0.1,\\\\n                            objective=\\\\\\\"multi:softmax\\\\\\\", num_class=3,\\\\n                            eval_metric=\\\\\\\"mlogloss\\\\\\\", verbosity=0, random_state=42)\\\\n        clf.fit(X[tr], y[tr])\\\\n        pred = clf.predict(X[te])\\\\n        f1s.append(f1_score(y[te], pred, average=\\\\\\\"macro\\\\\\\"))\\\\n        pcs.append(f1_score(y[te], pred, average=None))\\\\n\\\\n    # LOGO\\\\n    unique = sorted(set(models))\\\\n    logo_f1s = {}\\\\n    for hold in unique:\\\\n        tr, te = models != hold, models == hold\\\\n        clf = XGBClassifier(n_estimators=100, max_depth=5, learning_rate=0.1,\\\\n                            objective=\\\\\\\"multi:softmax\\\\\\\", num_class=3,\\\\n                            eval_metric=\\\\\\\"mlogloss\\\\\\\", verbosity=0, random_state=42)\\\\n        clf.fit(X[tr], y[tr])\\\\n        pred = clf.predict(X[te])\\\\n        logo_f1s[hold] = round(f1_score(y[te], pred, average=\\\\\\\"macro\\\\\\\"), 4)\\\\n    logo_vals = list(logo_f1s.values())\\\\n\\\\n    return {\\\\n        \\\\\\\"feature\\\\\\\": \\\\\\\"7-feature ensemble\\\\\\\",\\\\n        \\\\\\\"macro_f1_mean\\\\\\\": round(float(np.mean(f1s)), 4),\\\\n        \\\\\\\"macro_f1_std\\\\\\\":  round(float(np.std(f1s)), 4),\\\\n        \\\\\\\"per_class_f1\\\\\\\":  [round(float(x), 4) for x in np.mean(pcs, axis=0)],\\\\n        \\\\\\\"logo_macro_f1_mean\\\\\\\": round(float(np.mean(logo_vals)), 4),\\\\n        \\\\\\\"logo_macro_f1_std\\\\\\\":  round(float(np.std(logo_vals)), 4),\\\\n        \\\\\\\"logo_per_model_f1\\\\\\\":  logo_f1s,\\\\n        \\\\\\\"n_samples\\\\\\\": len(df),\\\\n    }\\\\n\\\\n\\\\n# ── Main ──────────────────────────────────────────────────\\\\n\\\\ndef main():\\\\n    ap = argparse.ArgumentParser()\\\\n    ap.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    args = ap.parse_args()\\\\n    RESULTS.mkdir(exist_ok=True)\\\\n\\\\n    max_pm = 20 if args.dry_run else None\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"Ordinal Baseline Comparison\\\\\\\" + (\\\\\\\" [DRY RUN]\\\\\\\" if args.dry_run else \\\\\\\"\\\\\\\"))\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n[Load]\\\\\\\")\\\\n    df = load_texts(max_per_model=max_pm)\\\\n    texts = df[\\\\\\\"text\\\\\\\"].tolist()\\\\n    labels = df[\\\\\\\"label\\\\\\\"].values\\\\n    depths = df[\\\\\\\"depth\\\\\\\"].values\\\\n    model_names = df[\\\\\\\"model_name\\\\\\\"].tolist()\\\\n\\\\n    results = {\\\\\\\"n_texts\\\\\\\": len(texts), \\\\\\\"dry_run\\\\\\\": args.dry_run}\\\\n    all_scores = {}\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Ordinal baseline: test if existing AI detectors' scores carry depth signal.\\nInput:  data/{model}/generations.jsonl\\nOutput: results/ordinal_baseline_results.json\\n\\\"\\\"\\\"\\nimport argparse, json, os, sys, time\\nimport numpy as np\\nimport pandas as pd\\nfrom collections import Counter\\nfrom pathlib import Path\\nfrom scipy.spatial.distance import jensenshannon\\nfrom scipy.stats import spearmanr\\nfrom sklearn.metrics import f1_score\\nfrom sklearn.model_selection import StratifiedKFold\\nfrom xgboost import XGBClassifier\\nimport torch\\nimport torch.nn.functional as F\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nROOT = Path(\\\"/root/gen-depth-fingerprint\\\")\\nDATA = ROOT / \\\"data\\\"\\nRESULTS = ROOT / \\\"results\\\"\\nDEVICE = \\\"cuda:0\\\"\\nMAX_LEN = 512\\nHF_CACHE = \\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nMODEL_SOURCES = {\\n    \\\"pythia-2.8b\\\": DATA / \\\"generations.jsonl\\\",\\n    \\\"pythia-1b\\\":   DATA / \\\"pythia-1b\\\" / \\\"generations.jsonl\\\",\\n    \\\"olmo-2-1b\\\":   DATA / \\\"olmo-2-1b\\\" / \\\"generations.jsonl\\\",\\n    \\\"qwen3-0.6b\\\":  DATA / \\\"qwen3-0.6b\\\" / \\\"generations.jsonl\\\",\\n    \\\"qwen3-1.7b\\\":  DATA / \\\"qwen3-1.7b\\\" / \\\"generations.jsonl\\\",\\n}\\n\\n\\ndef load_texts(max_per_model=None):\\n    records = []\\n    for model_name, path in MODEL_SOURCES.items():\\n        if not path.exists():\\n            print(f\\\"  SKIP {path}\\\")\\n            continue\\n        count = 0\\n        with open(path) as f:\\n            for line in f:\\n                rec = json.loads(line)\\n                rec[\\\"model_name\\\"] = model_name\\n                records.append(rec)\\n                count += 1\\n                if max_per_model and count >= max_per_model:\\n                    break\\n        print(f\\\"  {model_name}: {count}\\\")\\n    df = pd.DataFrame(records)\\n    df[\\\"label\\\"] = df[\\\"depth\\\"].clip(upper=2)\\n    print(f\\\"  Total: {len(df)}, labels: {df['label'].value_counts().sort_index().to_dict()}\\\")\\n    return df\\n\\n\\n# ── LD-Score ─────────────────────────────────────────────��\\n\\ndef compute_ld_scores(texts, labels, n=3):\\n    \\\"\\\"\\\"JS divergence of char-trigram distribution vs. human reference.\\\"\\\"\\\"\\n    all_counts = []\\n    global_vocab = set()\\n    for text in texts:\\n        t = text.lower()\\n        counts = Counter(t[j:j+n] for j in range(len(t) - n + 1))\\n        all_counts.append(counts)\\n        global_vocab.update(counts.keys())\\n\\n    vocab = sorted(global_vocab)\\n    ng2i = {ng: i for i, ng in enumerate(vocab)}\\n    V = len(vocab)\\n    print(f\\\"  Trigram vocab: {V}\\\")\\n\\n    ref_total = Counter()\\n    for i, counts in enumerate(all_counts):\\n        if labels[i] == 0:\\n            ref_total.update(counts)\\n    total_ref = sum(ref_total.values())\\n    ref_vec = np.zeros(V, dtype=np.float64)\\n    for ng, c in ref_total.items():\\n        ref_vec[ng2i[ng]] = c / total_ref\\n\\n    scores = []\\n    for i, counts in enumerate(all_counts):\\n        total = sum(counts.values())\\n        if total == 0:\\n            scores.append(0.0)\\n            continue\\n        vec = np.zeros(V, dtype=np.float64)\\n        for ng, c in counts.items():\\n            vec[ng2i[ng]] = c / total\\n        js = jensenshannon(ref_vec, vec)\\n        scores.append(float(js) if not np.isnan(js) else 0.0)\\n        if i % 5000 == 0 and i > 0:\\n            print(f\\\"    {i}/{len(texts)}\\\")\\n    return scores\\n\\n\\n# ── FastDetectGPT + avg log-prob ──────────────────────────\\n\\ndef compute_fastdetectgpt_and_logprob(texts, model, tokenizer, device, bs=8):\\n    fdg_scores, lp_scores = [], []\\n    n = len(texts)\\n    for i in range(0, n, bs):\\n        batch = texts[i:i+bs]\\n        enc = tokenizer(batch, return_tensors=\\\"pt\\\", truncation=True,\\n                        max_length=MAX_LEN, padding=True).to(device)\\n        with torch.no_grad():\\n            logits = model(**enc).logits\\n\\n        log_probs = F.log_softmax(logits[:, :-1], dim=-1)\\n        probs = torch.exp(log_probs)\\n        targets = enc[\\\"input_ids\\\"][:, 1:]\\n        mask = enc[\\\"attention_mask\\\"][:, 1:].bool()\\n\\n        actual = log_probs.gather(2, targets.unsqueeze(-1)).squeeze(-1)\\n        expected = (probs * log_probs).sum(dim=-1)\\n        curv = actual - expected\\n\\n \\n\\n... [截断: 输出过长，省略 2564 字符] ...\\n\\nlf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        f1s.append(f1_score(y[te], pred, average=\\\"macro\\\"))\\n        pcs.append(f1_score(y[te], pred, average=None))\\n    rho, pval = spearmanr(scores, labels)\\n    return {\\n        \\\"feature\\\": name,\\n        \\\"macro_f1_mean\\\": round(float(np.mean(f1s)), 4),\\n        \\\"macro_f1_std\\\":  round(float(np.std(f1s)), 4),\\n        \\\"per_class_f1\\\":  [round(float(x), 4) for x in np.mean(pcs, axis=0)],\\n        \\\"spearman_rho\\\":  round(float(rho), 4),\\n        \\\"spearman_pval\\\": float(pval),\\n    }\\n\\n\\ndef eval_logo(scores, labels, model_names, name):\\n    X = np.array(scores).reshape(-1, 1)\\n    y = np.array(labels)\\n    models = np.array(model_names)\\n    unique = sorted(set(model_names))\\n    f1s = {}\\n    for hold in unique:\\n        tr, te = models != hold, models == hold\\n        clf = XGBClassifier(n_estimators=100, max_depth=3, learning_rate=0.1,\\n                            objective=\\\"multi:softmax\\\", num_class=3,\\n                            eval_metric=\\\"mlogloss\\\", verbosity=0, random_state=42)\\n        clf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        f1s[hold] = round(f1_score(y[te], pred, average=\\\"macro\\\"), 4)\\n    vals = list(f1s.values())\\n    return {\\n        \\\"logo_macro_f1_mean\\\": round(float(np.mean(vals)), 4),\\n        \\\"logo_macro_f1_std\\\":  round(float(np.std(vals)), 4),\\n        \\\"logo_per_model_f1\\\":  f1s,\\n    }\\n\\n\\ndef eval_seven_features():\\n    feat_cols = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\",\\n                 \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\n    df = pd.read_csv(DATA / \\\"features_all_models.csv\\\")\\n    df = df[df[\\\"model_name\\\"].isin(MODEL_SOURCES.keys())]\\n    df[\\\"label\\\"] = df[\\\"depth\\\"].clip(upper=2)\\n    X, y = df[feat_cols].values, df[\\\"label\\\"].values\\n    models = df[\\\"model_name\\\"].values\\n\\n    # 5-fold CV\\n    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\\n    f1s, pcs = [], []\\n    for tr, te in skf.split(X, y):\\n        clf = XGBClassifier(n_estimators=100, max_depth=5, learning_rate=0.1,\\n                            objective=\\\"multi:softmax\\\", num_class=3,\\n                            eval_metric=\\\"mlogloss\\\", verbosity=0, random_state=42)\\n        clf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        f1s.append(f1_score(y[te], pred, average=\\\"macro\\\"))\\n        pcs.append(f1_score(y[te], pred, average=None))\\n\\n    # LOGO\\n    unique = sorted(set(models))\\n    logo_f1s = {}\\n    for hold in unique:\\n        tr, te = models != hold, models == hold\\n        clf = XGBClassifier(n_estimators=100, max_depth=5, learning_rate=0.1,\\n                            objective=\\\"multi:softmax\\\", num_class=3,\\n                            eval_metric=\\\"mlogloss\\\", verbosity=0, random_state=42)\\n        clf.fit(X[tr], y[tr])\\n        pred = clf.predict(X[te])\\n        logo_f1s[hold] = round(f1_score(y[te], pred, average=\\\"macro\\\"), 4)\\n    logo_vals = list(logo_f1s.values())\\n\\n    return {\\n        \\\"feature\\\": \\\"7-feature ensemble\\\",\\n        \\\"macro_f1_mean\\\": round(float(np.mean(f1s)), 4),\\n        \\\"macro_f1_std\\\":  round(float(np.std(f1s)), 4),\\n        \\\"per_class_f1\\\":  [round(float(x), 4) for x in np.mean(pcs, axis=0)],\\n        \\\"logo_macro_f1_mean\\\": round(float(np.mean(logo_vals)), 4),\\n        \\\"logo_macro_f1_std\\\":  round(float(np.std(logo_vals)), 4),\\n        \\\"logo_per_model_f1\\\":  logo_f1s,\\n        \\\"n_samples\\\": len(df),\\n    }\\n\\n\\n# ── Main ──────────────────────────────────────────────────\\n\\ndef main():\\n    ap = argparse.ArgumentParser()\\n    ap.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\")\\n    args = ap.parse_args()\\n    RESULTS.mkdir(exist_ok=True)\\n\\n    max_pm = 20 if args.dry_run else None\\n    print(\\\"=\\\" * 60)\\n    print(\\\"Ordinal Baseline Comparison\\\" + (\\\" [DRY RUN]\\\" if args.dry_run else \\\"\\\"))\\n    print(\\\"=\\\" * 60)\\n\\n    print(\\\"\\\\n[Load]\\\")\\n    df = load_texts(max_per_model=max_pm)\\n    texts = df[\\\"text\\\"].tolist()\\n    labels = df[\\\"label\\\"].values\\n    depths = df[\\\"depth\\\"].values\\n    model_names = df[\\\"model_name\\\"].tolist()\\n\\n    results = {\\\"n_texts\\\": len(texts), \\\"dry_run\\\": args.dry_run}\\n    all_scores = {}\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---

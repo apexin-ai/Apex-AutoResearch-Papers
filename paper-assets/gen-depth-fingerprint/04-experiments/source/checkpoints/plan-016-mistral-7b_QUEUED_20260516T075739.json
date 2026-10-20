@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan-016-mistral-7b",
+  "project": "gen-depth-fingerprint",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T07:18:06.903Z",
+    "updated_at": "2026-05-16T07:57:38.996Z",
+    "hypothesis": "Scope expansion: Mistral-7B-v0.3 (Mistral family) continuation chains — extend depth fingerprinting from 3 to 6 model families"
+  },
+  "timestamp": "2026-05-16T07:57:39.117703+00:00",
+  "trigger": "update_registry"
+}

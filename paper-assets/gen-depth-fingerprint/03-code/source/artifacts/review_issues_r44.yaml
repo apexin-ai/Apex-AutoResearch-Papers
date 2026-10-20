@@ -1,0 +1,925 @@
+- id: R29-N1
+  summary: Base-model-only scope 未在 Abstract 标注
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 32
+  mentions:
+  - round: 29
+    reviewers: R1+R2
+    note: '共识: Abstract 必须标注 base-model scope'
+  - round: 31
+    reviewers: R1+R2
+    note: 'W1: Title/Abstract 仍需 base-model qualifier'
+  - round: 32
+    reviewers: R1+R2
+    note: '升级: 实验设计仅覆盖 base model, 建议扩展或限定 scope'
+  action_items:
+  - round: 29
+    action: Abstract 加 base (pretrained) qualifier
+    assigned_to: Agent
+    status: done
+  - round: 32
+    action: Abstract/Conclusion 已有 qualifier; instruct in Discussion
+    assigned_to: Director
+    status: done
+  resolution: Abstract L3 'eight base-model generators'; L7 'restricted to base models'. Title 保持不变(Reviewer 确认). Instruct limitations fully documented.
+  resolution_round: 32
+- id: R29-N2
+  summary: Downstream TOST underpowered (n=3) + Abstract overclaim
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 34
+  resolution: Abstract 完全移除 downstream claim. Appendix M 保留 null result 作为补充材料.
+  resolution_round: 34
+- id: R29-N3
+  summary: DDR 新颖性 incremental — 缺 concurrent work 系统对比表
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 31
+  resolution: related_work.tex concurrent-comparison table added
+  resolution_round: 31
+- id: R29-N4
+  summary: QLoRA gap 削弱方法论贡献 — 需重定位
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 34
+  resolution: Intro L14 'proof of concept'; Contribution 3 'Proof-of-concept classifier with boundary analysis'.
+  resolution_round: 34
+- id: R29-W1
+  summary: Gemma-2-2B gen-1 F1=0.036 anomaly 解释不充分
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 31
+  resolution: appendix_9gen_scale expanded
+  resolution_round: 31
+- id: R29-W2
+  summary: Cross-model chain F1=0.830 可能混淆 depth signal 与 generator identity
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 34
+  resolution: results.tex footnote + L15 single-gen transfer. Caveats sufficient.
+  resolution_round: 34
+- id: R29-W3
+  summary: 温度限制(t<0.9)未在 Abstract 标注
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 32
+  resolution: Abstract L4 'nucleus sampling (p=0.9, t<=0.7)'
+  resolution_round: 31
+- id: R29-W4
+  summary: DDR partition 3/1/3 intermediate 定义不够 principled
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 34
+  resolution: k=2 binary (sil=0.632); k=3 degradation (0.499); 3/1/3 = domain-informed refinement.
+  resolution_round: 34
+- id: R29-W5
+  summary: Baseline 范围偏窄 + 比较结构性不公平
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 35
+  resolution: 4.3 honestly presents 4-det+surface marginally exceeding.
+  resolution_round: 34
+- id: R29-W6
+  summary: Related work 引用缺失 + orphan bib entries
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 35
+  resolution: 'Round 35 确认: 66条引用, 0 orphan, 0 missing.'
+  resolution_round: 35
+- id: R29-W7
+  summary: Diagnostic not curative 缺具体场景
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 31
+  resolution: discussion.tex 两个诊断场景
+  resolution_round: 31
+- id: R29-W8
+  summary: Per-generator F1 变异大 (0.633-0.724)
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 31
+  resolution: discussion.tex '9.1pp per-generator spread'
+  resolution_round: 31
+- id: R32-N1
+  summary: DDR 增量新颖性不清晰 — 缺形式化定义
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 32
+  last_seen_round: 40
+  resolution: 'Section 4.2 新增: DDR_f=|ρ(depth,f)| formal definition + k-means validation (sil=0.660, p<0.03) + theoretical motivation (autoregressive mixing property). 两位 Reviewer Round 40 均确认 RESOLVED.'
+  resolution_round: 40
+- id: R32-N2
+  summary: Entropy min 分类存在根本性矛盾 (|rho|=0.40 标为 near-stationary)
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 32
+  last_seen_round: 34
+  resolution: results.tex L85 'boundary feature' with full qualification; Figure 2 caption aligned.
+  resolution_round: 34
+- id: R32-N3
+  summary: Tail_decay near-stationary 归类仅 4/8 generator 通过 TOST (epsilon=0.20)
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 32
+  last_seen_round: 40
+  resolution: 主文 Section 4.2 新增 explicit power caveat; Table 29 bootstrap (B=1000) 100% rejection rate 在 ±0.20 margin 内. R1 判定 substantially addressed.
+  resolution_round: 40
+- id: R32-W1
+  summary: 分类性能 F1=0.694 定位为 detecting 但实为 proof-of-concept
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 32
+  last_seen_round: 34
+  resolution: Intro L14, Contribution 3, Discussion L11 — all say 'proof-of-concept'.
+  resolution_round: 34
+- id: R32-W2
+  summary: TOST power analysis 缺失
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 32
+  last_seen_round: 34
+  resolution: SESOI justification + epsilon sensitivity + high-N masking acknowledged.
+  resolution_round: 34
+- id: R32-W3
+  summary: '术语混淆: entropy 指代 NLL 不规范'
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 32
+  last_seen_round: 44
+  mentions:
+  - round: 42
+    reviewers: R2
+    note: 'R2-W4: 再次提出 entropy≠NLL 混淆, R1 partial rebut (已有 disclaimer, minor)'
+  - round: 43
+    reviewers: R1+R2
+    note: 'R2-W1 再次提出, R1 同意. §3.3 disclaimer 不足以覆盖全文. 共识: 应统一为 ref-NLL 或 cross-entropy'
+  - round: 44
+    reviewers: R1+R2
+    note: 'R2-W4 再次提出, R1 minor#4 同意. 5/7 feature 以 entropy_ 命名但实际计算 reference-model NLL. 共识: 至少 Table 1 标注 NLL-based 或统一改名.'
+  action_items:
+  - round: 32
+    action: method.tex 3.3 L38 加 clarification
+    assigned_to: Agent
+    status: done
+  - round: 43
+    action: 全文统一术语为 ref-NLL 或 cross-entropy, Table 1 feature 名保持但加括号说明
+    assigned_to: PaperAgent
+    status: open
+  resolution: ''
+  resolution_round: null
+- id: R32-W4
+  summary: 附录关键结果应在主文讨论
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 32
+  last_seen_round: 40
+  resolution: 'Section 5 现有: cross-domain binary F1=0.74-0.75, 3-class F1=0.62-0.65; instruct 退化 3.7-19.9pp. R2 Round 40 确认 RESOLVED.'
+  resolution_round: 40
+- id: R32-W5
+  summary: 单一解码策略(nucleus only)
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 32
+  last_seen_round: 39
+  resolution: Discussion L7 reports greedy decoding validation (mean |d|=0.05) + top-k. Fully addressed.
+  resolution_round: 39
+- id: R32-W6
+  summary: 3-class F1=0.762 因 gen-0 共享而 misleading
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 32
+  last_seen_round: 40
+  resolution: 'Section 4.1: ''3-class F1 carries upward bias because gen-0 seeds are shared (§3.2); independent-seed control confirms depth signal (F1=0.68; Appendix T).'' R1 Round 40 确认 RESOLVED.'
+  resolution_round: 40
+- id: R32-W7
+  summary: 特征选取缺乏系统性论证
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 32
+  last_seen_round: 39
+  resolution: method.tex L53-57 详细解释 interpretability rationale + 6 candidate features evaluated and rejected.
+  resolution_round: 39
+- id: R34-W1
+  summary: Base-model-only scope 限制泛化价值 (结构性)
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 34
+  last_seen_round: 44
+  mentions:
+  - round: 42
+    reviewers: R1+R2
+    note: 'R42 再次提出: instruction-tuned signal 崩塌 + scope 前置不足. Intro 叙事仍给通用框架印象'
+  - round: 43
+    reviewers: R1+R2
+    note: 'R43 再次提出. R2 列为 N1 critical (scope-motivation fundamental mismatch); R1 同意但降级为 narrative tension. 共识: Intro §1 段落权重需调整, 减少 real-world detection hook, 增加 base-model generation dynamics 的科学性 motivation.'
+  - round: 44
+    reviewers: R1+R2
+    note: 'R2-W2 再次提出, R1 完全同意. Intro 用 scientific publications/data provenance 作 motivation 但实验仅覆盖 base models. Abstract 最后一句 scope 限定位置太靠后. 共识: 应前移至 Abstract 第1-2句或 §1 第1段.'
+  action_items:
+  - round: 42
+    action: Intro Footnote 1 提升为正文; Limitations 加 RLHF/SFT testable hypothesis
+    assigned_to: PaperAgent
+    status: in_progress
+  - round: 43
+    action: '重构 §1 段落权重: 缩短 real-world motivation, 增加 base-model analytical/scientific motivation; 保留 scope delineation'
+    assigned_to: PaperAgent
+    status: open
+  resolution: ''
+  resolution_round: null
+- id: R34-W2
+  summary: F1=0.694 性能天花板 (结构性)
+  category: experiment
+  severity: warning
+  status: wont_fix
+  first_raised_round: 34
+  last_seen_round: 34
+  resolution: 结构性限制, proof-of-concept 定位已到位.
+  resolution_round: 34
+- id: R34-W3
+  summary: QLoRA trade-off 未在主文充分讨论 + 指标混淆
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 34
+  last_seen_round: 40
+  resolution: abstract/intro/results/discussion/conclusion 全部 F1=0.905 位置统一标注 '3-class F1=0.905'. Reviewer 确认 minor presentation fix.
+  resolution_round: 40
+- id: R34-V1
+  summary: Pages 1-2 无 display item + 缺 method overview figure
+  category: format
+  severity: warning
+  status: wont_fix
+  first_raised_round: 34
+  last_seen_round: 44
+  mentions:
+  - round: 40
+    reviewers: R2
+    note: R2 标为 RESOLVED (reasonable range)
+  - round: 43
+    reviewers: visual_check
+    note: '视觉审查再次标注: 连续 2 页纯文本, Figure 1 到 page 6 才出现. 建议前移精简版 DDR 可视化.'
+  - round: 44
+    reviewers: visual_check
+    note: '视觉审查再次标注 warning: 前两页连续纯文本, Figure 1 到 page 6 才出现. 建议提前核心视觉结果.'
+  resolution: 页面预算极紧(8页), 加 method figure 风险>收益. 不处理.
+  resolution_round: 40
+- id: R34-W4
+  summary: 14B entropy_mean |rho|=0.39 跨过 drifting boundary 未明确报告
+  category: writing
+  severity: info
+  status: wont_fix
+  first_raised_round: 34
+  last_seen_round: 40
+  resolution: R1 Round 40 确认论文无 14B 实验数据(最大 7B+Gemma-2-2B); Limitations 已有 scale caveat. 标为 wont_fix.
+  resolution_round: 40
+- id: R39-N1
+  summary: Reference model (Pythia-410M) 混淆变量未消融 — family proximity confound
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 39
+  last_seen_round: 44
+  mentions:
+  - round: 40
+    reviewers: R1+R2
+    note: Appendix S Table 26 cross-family 验证, F1 spread 0.013. R1+R2 确认 convincingly RESOLVED.
+  - round: 43
+    reviewers: R1+R2
+    note: 'R43 再次提出(R1-W2, R2-W6): Pythia generators F1 最高(0.795, 0.714), 所有替代 ref 均为 causal LM. 主文未讨论此 confound. R2 rebut 后 R1 同意 Round 40 resolution 证据充分但呈现不足.'
+  - round: 44
+    reviewers: R1(raised)+R2(partial rebut)
+    note: 'R1-W5: 9.1pp per-generator variance 中 family proximity 贡献比例未量化. R2 rebut: Appendix s cross-family reference validation 已部分定量化(spread=0.013), 但同意未完全归因 9.1pp. 共识: 证据充分但呈现可改善.'
+  action_items:
+  - round: 40
+    action: Appendix S cross-family ref test
+    assigned_to: Agent
+    status: done
+  - round: 43
+    action: §3.3 或 §4.1 增加一段讨论 reference model bias, 引用 Appendix s 结果; 讨论 causal-LM-only 约束
+    assigned_to: PaperAgent
+    status: open
+  resolution: ''
+  resolution_round: null
+- id: R39-N2
+  summary: 正文溢出第 9 页 — Conclusion 超过 8 页限制
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 39
+  last_seen_round: 40
+  resolution: 'Figure 3 移至 Appendix app:baselines. 编译验证: Limitations 从 p.8 开始, 主文 ≤8 页.'
+  resolution_round: 40
+- id: R39-N3
+  summary: 3-class 深度分辨率与 'depth fingerprinting' 标题存在 framing gap
+  category: framing
+  severity: critical
+  status: open
+  first_raised_round: 39
+  last_seen_round: 44
+  mentions:
+  - round: 42
+    reviewers: R1+R2
+    note: 'R42 再次提出: ''ordinal classification'' framing 与 3-class 实际分辨率存在 gap'
+  - round: 43
+    reviewers: R1+R2
+    note: 'R43 共识 critical: ''fingerprinting'' 暗示精细识别能力, 5-class F1≈0.50 证明 gen-2+ 不可区分. R1+R2 均建议改用 ''Depth Profiling'' 或 ''Depth Classification''. R1 补充 NLP 文献中 fingerprinting 有 coarse-grained 先例但本文语境下读者默认期望更高分辨率.'
+  - round: 44
+    reviewers: R2(raised)+R1(rebut)
+    note: 'R2-N2 列为 critical: ''Depth Profiling'' 标题仍暗示精细刻画, 5-class F1≈0.50. R1 rebut: 当前标题含副标题 ''Classifying Recursive Generation Depth'' 已足够精确, ''profiling'' 在统计学中指 characterization 不必然意味连续量化; 但同意 Abstract
+      需更清楚区分两个 F1 的评估协议. 分歧记录.'
+  action_items:
+  - round: 42
+    action: §3.1 加 practical resolution 限定
+    assigned_to: PaperAgent
+    status: in_progress
+  - round: 43
+    action: '考虑修改标题: ''Depth Profiling'' 或 ''Depth Classification'' 替代 ''Depth Fingerprinting''; Abstract 首句明确 ''coarse ordinal classification'''
+    assigned_to: PaperAgent
+    status: done
+  resolution: ''
+  resolution_round: null
+- id: R39-W1
+  summary: Downstream utility 阴性结果应在主文正面讨论
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 39
+  last_seen_round: 39
+  resolution: 'Discussion L10: ''does not yet improve downstream training (TOST equivalence at ε=±2%)'' + 定位为 provenance tracking.'
+  resolution_round: 39
+- id: R39-W2
+  summary: 与 concurrent work (Geng et al. 2026, Mohamed et al. 2025) 区分不够 sharp
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 39
+  last_seen_round: 44
+  mentions:
+  - round: 40
+    reviewers: R2
+    note: Section 2.2 新增 differentiating statement + Table 45. R2 确认 RESOLVED.
+  - round: 43
+    reviewers: R1+R2
+    note: 'R2-W5 再次提出: Table 45 仅列元数据, 缺实质性结果对比. R1 同意并举例: Broken Telephone factuality degradation 与 DDR location drift 的关系, Markovian Chains convergence 与 greedy DDR 数据的对比. 需展开 cross-study discussion.'
+  - round: 44
+    reviewers: R1+R2
+    note: 'R2-W1 再次提出, R1 同意. Table 46 (Appendix z.6) 仅列元数据, 正文 §2.2 缺实质性 finding-level 对比. 共识: 核心区分点应上提到正文.'
+  action_items:
+  - round: 40
+    action: Section 2.2 differentiating statement
+    assigned_to: Agent
+    status: done
+  - round: 43
+    action: 'Discussion 或 Appendix 增加 1-2 段实质性 concurrent work comparison: DDR 与 Broken Telephone/Markovian Chains 的 finding-level 对比'
+    assigned_to: PaperAgent
+    status: open
+  resolution: ''
+  resolution_round: null
+- id: R39-W3
+  summary: Figure 1/2 灰度可读性 + 信息密度
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 39
+  last_seen_round: 40
+  resolution: Figure 1 改为 2×2 放大布局, 可读性显著改善. Figure 2 有分组文字标注. R2 判定 not blocking.
+  resolution_round: 40
+- id: R40-W1
+  summary: Discussion 中 QLoRA F1 引用造成指标混淆
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 40
+  last_seen_round: 40
+  resolution: abstract/intro/results/discussion/conclusion 全部 F1=0.905 位置统一标注 '3-class F1=0.905'. 编译验证通过.
+  resolution_round: 40
+- id: R40-W2
+  summary: 理论动机 'mixing property of finite vocabularies' 缺文献引用
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 40
+  last_seen_round: 40
+  resolution: 'results.tex: ''we hypothesize this reflects the mixing property of finite-vocabulary autoregressive processes~\citep{markovian_chains}''. 软化为假设 + 引用已有 Markov chain 分析.'
+  resolution_round: 40
+- id: R42-N1
+  summary: DDR novelty 主要为 empirical observation, 方法论贡献有限
+  category: framing
+  severity: critical
+  status: in_progress
+  first_raised_round: 42
+  last_seen_round: 44
+  mentions:
+  - round: 42
+    reviewers: R1+R2
+    note: '共识: DDR 是 empirical insight 而非 methodological innovation. 贡献在于 task definition + analytical finding. ARR 允许 diverse paper types.'
+  - round: 43
+    reviewers: R1+R2
+    note: 'R43 隐含再次确认: R2 Excitement=2.5 (方法论贡献偏薄), R1 Excitement=3. 但两位均肯定 DDR 是 genuine empirical contribution, 不阻止 Findings 接收.'
+  - round: 44
+    reviewers: R1+R2
+    note: 'R1-N1 列为 critical: DDR 理论动机仅为假设 (''we hypothesize...mixing property''), §5 承认 ''formal derivation remains future work''. R2 同意但指出 empirical paper 不必然需要完整推导, Shumailov et al. 2024 同样缺形式化证明. 共识:
+      DDR partition 在当前条件下 empirically robust, 但缺理论支撑限制了 generalizability 判断. 需至少提供 sketch proof 或 simplified model.'
+  action_items:
+  - round: 42
+    action: §1 contributions 确认 empirical 定位; §5 加 qualifying language + future work for formal derivation
+    assigned_to: PaperAgent
+    status: in_progress
+  - round: 44
+    action: 提供 simplified Markov chain model 下的 sketch proof, 或至少论证 entropy max/min 在 autoregressive sampling 下为何保持 invariant
+    assigned_to: PaperAgent
+    status: in_progress
+  resolution: ''
+  resolution_round: null
+- id: R42-N2
+  summary: Instruction-tuned models 下 DDR 结构性失效 + Introduction scope 前置不足
+  category: framing
+  severity: critical
+  status: in_progress
+  first_raised_round: 42
+  last_seen_round: 44
+  mentions:
+  - round: 42
+    reviewers: R1+R2
+    note: Footnote 1 scope 太不显眼. Intro general motivation 给通用框架印象. 建议前置 scope + testable hypothesis for instruction-tuned failure.
+  - round: 43
+    reviewers: R1+R2
+    note: 'R2-N1 再次强调: Intro §1 ''scientific publications'' motivation 与 base-model-only 实验存在核心矛盾. R1 同意需调整但降级为 narrative tension (标题/摘要/引言已有多处 scope delineation).'
+  - round: 44
+    reviewers: R1+R2
+    note: '与 R34-W1 合并: R2-W2 再次提出, R1 完全同意. 共识不变.'
+  action_items:
+  - round: 42
+    action: Intro Footnote 1 提升为正文; Limitations 加 RLHF/SFT testable hypothesis
+    assigned_to: PaperAgent
+    status: in_progress
+  - round: 43
+    action: '与 R34-W1 合并处理: 重构 §1 motivation 段落'
+    assigned_to: PaperAgent
+    status: open
+  resolution: ''
+  resolution_round: null
+- id: R42-N3
+  summary: Claim scope 与 F1=0.694 不匹配 — proof-of-concept 定位摇摆
+  category: framing
+  severity: critical
+  status: in_progress
+  first_raised_round: 42
+  last_seen_round: 44
+  mentions:
+  - round: 42
+    reviewers: R1+R2
+    note: Abstract 'analytical framework as primary contribution' 与正文实用化措辞矛盾. F1=0.694 不足以 deploy.
+  - round: 43
+    reviewers: R1+R2
+    note: R43 本轮未直接提及此 issue (proof-of-concept 定位似已稳定). R1 指出论文 Contributions 已明确 'Empirical decomposition / Task formulation / Scope characterization'. 可能已部分修复.
+  - round: 44
+    reviewers: R1+R2
+    note: 'R2-N3 从另一角度再次触及: DDR 7-feature F1=0.705 与 4-det+surface F1=0.708 持平, 分类性能非 unique contribution. R1 同意事实但部分 rebut: 论文 intended contribution 是分析框架而非分类性能, §4.3 最后一句已定位. 共识: 应更明确地将分类性能定位为 ''comparable
+      at lower cost'', 主 contribution 聚焦 DDR 分析框架.'
+  action_items:
+  - round: 42
+    action: Abstract/Intro 收窄为 'corpus provenance characterization'; Conclusion 改 'analytical axis'
+    assigned_to: PaperAgent
+    status: in_progress
+  - round: 44
+    action: §1 Contributions 明确区分 '分析贡献 (DDR 分解)' 和 '工程贡献 (分类器)', 承认后者非核心 claim
+    assigned_to: PaperAgent
+    status: in_progress
+  resolution: ''
+  resolution_round: null
+- id: R42-W1
+  summary: '''What is preserved'' 叙事 overselling'
+  category: framing
+  severity: warning
+  status: in_progress
+  first_raised_round: 42
+  last_seen_round: 42
+  mentions:
+  - round: 42
+    reviewers: R1+R2
+    note: '''preserved'' 暗示 mechanistic protection 无证据. 建议降调为 ''approximately invariant''.'
+  - round: 43
+    reviewers: ''
+    note: R43 本轮未直接提及. 可能已修复或不再被视为显著问题. 待 Research Director 确认.
+  - round: 44
+    reviewers: ''
+    note: R44 本轮未直接提及. Abstract 已使用 'approximately preserved'. 待 Research Director 确认是否已修复.
+  action_items:
+  - round: 42
+    action: Abstract 首次出现加限定 'approximately preserved'; 后续保留作已定义简写
+    assigned_to: PaperAgent
+    status: in_progress
+  resolution: ''
+  resolution_round: null
+- id: R42-W2
+  summary: XGBoost-to-QLoRA gap ~11.6pp 未充分分析
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 42
+  last_seen_round: 44
+  mentions:
+  - round: 42
+    reviewers: R1+R2
+    note: ~12pp 未解释信号是显著遗漏. 建议 probing analysis 或承认 framework 覆盖局限.
+  - round: 43
+    reviewers: ''
+    note: R43 本轮未直接提及. 待 Research Director 确认.
+  - round: 44
+    reviewers: R1+R2
+    note: 'R1-W3 再次提出, R2 完全同意. ''token embeddings capture sequential patterns'' 是 unsubstantiated claim, 未区分 input representation/joint optimization/model capacity 三个因素. 共识: 需 ablation 或至少承认无法归因.'
+  action_items:
+  - round: 42
+    action: Results §4.1 加 1-2 句定性分析 + future work
+    assigned_to: PaperAgent
+    status: in_progress
+  - round: 44
+    action: 移除或软化 'token embeddings capture sequential patterns' claim; 承认 gap 来源未消融; 或做简单 ablation (如 QLoRA on 7-feature input)
+    assigned_to: PaperAgent
+    status: in_progress
+  resolution: ''
+  resolution_round: null
+- id: R42-W3
+  summary: Scale ≤8B 泛化性未充分论证
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 42
+  last_seen_round: 42
+  mentions:
+  - round: 42
+    reviewers: R1+R2
+    note: 未测试 13B/70B+. 建议 Discussion 讨论 scale 约束 + testable predictions.
+  - round: 43
+    reviewers: ''
+    note: R43 本轮未直接提及. 待 Research Director 确认.
+  - round: 44
+    reviewers: ''
+    note: R44 本轮未直接提及. 待 Research Director 确认.
+  action_items:
+  - round: 42
+    action: Limitations 加 1 句 14B 初步证据 + testable prediction
+    assigned_to: PaperAgent
+    status: in_progress
+  resolution: ''
+  resolution_round: null
+- id: R42-W4
+  summary: Downstream TOST n=3 统计功效极低
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 42
+  last_seen_round: 44
+  mentions:
+  - round: 42
+    reviewers: R1+R2
+    note: n=3 TOST 功效极低, 等价结论不可靠. 建议更保守表述.
+  - round: 43
+    reviewers: R1+R2
+    note: 'R1-W4 再次提出: 正文引用语气比 Appendix m 更肯定. R2 部分同意但认为 Appendix 已有充分 disclaimer, 偏 info 级别. 共识: 正文引用需加 qualifier.'
+  - round: 44
+    reviewers: R1+R2
+    note: 'R2-W3 从更深角度提出: downstream null result 反向削弱 corpus curation motivation. R1 agree with nuance: 下游仅测单一场景, 不排除其他任务效用, 但 Introduction motivation 措辞需调整. 共识: 将 motivation 从 ''curation improves quality''
+      调整为 ''provenance auditing and contamination monitoring''.'
+  action_items:
+  - round: 42
+    action: Appendix m 加 power caveat; Discussion L11 降调措辞
+    assigned_to: PaperAgent
+    status: in_progress
+  - round: 43
+    action: 正文 §5 引用 downstream null result 时加 'preliminary evidence suggests'
+    assigned_to: PaperAgent
+    status: open
+  - round: 44
+    action: Intro motivation 从 'corpus curation' 调整为 'corpus provenance auditing / contamination monitoring'
+    assigned_to: PaperAgent
+    status: in_progress
+  resolution: ''
+  resolution_round: null
+- id: R42-W5
+  summary: DDR partition thresholds 主文引用 Appendix v 不足 (presentation)
+  category: method
+  severity: info
+  status: in_progress
+  first_raised_round: 42
+  last_seen_round: 42
+  mentions:
+  - round: 42
+    reviewers: R1(major)+R2(minor)
+    note: 'Appendix v 六重验证存在但主文引用不足. 判定: presentation issue.'
+  - round: 43
+    reviewers: ''
+    note: R43 本轮未直接提及. 待 Research Director 确认.
+  - round: 44
+    reviewers: ''
+    note: R44 本轮未直接提及. 待 Research Director 确认.
+  action_items:
+  - round: 42
+    action: §4.2 加 1 句总结 Appendix v 验证结果
+    assigned_to: PaperAgent
+    status: in_progress
+  resolution: ''
+  resolution_round: null
+- id: R42-W6
+  summary: '''Ordinal classification'' framing 与 3-class 实际分辨率 gap'
+  category: framing
+  severity: warning
+  status: open
+  first_raised_round: 42
+  last_seen_round: 44
+  mentions:
+  - round: 42
+    reviewers: R1+R2
+    note: 5-class F1 ~0.50, 实际分辨率仅 3 级. 建议 'coarse ordinal' framing.
+  - round: 43
+    reviewers: R1+R2
+    note: '与 R39-N3 合并: 标题 ''fingerprinting'' 与 3-class 分辨率不匹配是共识 critical issue.'
+  - round: 44
+    reviewers: R2(raised)+R1(partial rebut)
+    note: 与 R39-N3 合并处理. R2 维持 critical, R1 认为标题已含 'Classifying' 副标题, 足够精确. 分歧记录.
+  action_items:
+  - round: 42
+    action: §3.1 检查合并理由是否清晰, 补 practical resolution 限定
+    assigned_to: PaperAgent
+    status: in_progress
+  resolution: ''
+  resolution_round: null
+- id: R43-N1
+  summary: 跨域温度交互效应呈现不足 (domain×temperature interaction)
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 43
+  last_seen_round: 43
+  mentions:
+  - round: 43
+    reviewers: R1+R2
+    note: 'R1 初审列为 critical (温度混淆), R2 rebut 成功: Appendix j 已有 t=0.7 跨域数据且高温反而有利. 降为 warning. 共识: domain×temperature interaction 发现重要但呈现为一句内嵌描述, 应提升为独立小节.'
+  - round: 44
+    reviewers: ''
+    note: R44 本轮未直接提及. 待 Research Director 确认.
+  action_items:
+  - round: 43
+    action: Appendix j 将 domain×temperature interaction 提升为独立小节, 而非一句内嵌描述
+    assigned_to: PaperAgent
+    status: open
+  resolution: ''
+  resolution_round: null
+- id: R43-W1
+  summary: Gemma-2-2B 架构敏感性暴露 unknown-architecture 部署风险
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 43
+  last_seen_round: 44
+  mentions:
+  - round: 43
+    reviewers: R1+R2
+    note: R1-W1 提出, R2 同意. Gemma-2-2B gen-0/gen-1 系统性混淆 (SentencePiece tokenizer + distinct attention). 对其他 generator 影响小(F1偏移0.011), 但暴露 unknown architecture 风险.
+  - round: 44
+    reviewers: R1+R2
+    note: 'R1 交叉回应 + R2 小问题均提及. Gemma-2-2B 3-class F1=0.028 对 ''generator-agnostic'' 定位构成隐忧. 共识: Limitations 应讨论 architecture sensitivity.'
+  action_items:
+  - round: 43
+    action: Limitations 增加 unknown architecture 风险讨论, 引用 Appendix z.5 Gemma-2 evidence
+    assigned_to: PaperAgent
+    status: open
+  resolution: ''
+  resolution_round: null
+- id: R43-W2
+  summary: '6-gen vs 8-gen subset 不一致: LOFO 等关键消融未在完整 set 上更新'
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 43
+  last_seen_round: 44
+  mentions:
+  - round: 43
+    reviewers: R1+R2
+    note: R1-W3 提出, R2 同意. LOFO/confusion matrix/classifier sensitivity 用 6-gen, 主文用 8-gen. 特征重要性排序可能因 Llama-3.2-3B + Mistral-7B 的加入而改变.
+  - round: 44
+    reviewers: R1+R2
+    note: 'R1-W4 再次提出, R2 同意. QLoRA 3-class F1=0.905 (6-gen) vs Table 2 3-class F1=0.762 (8-gen), subset 差异使 Abstract 中两个 F1 不可直接比较. 共识: 需 apple-to-apple 比较.'
+  action_items:
+  - round: 43
+    action: 至少 LOFO 补充 8-gen 结果, 或在 Appendix 中论证 6-gen 结论可推广
+    assigned_to: PaperAgent
+    status: open
+  - round: 44
+    action: QLoRA Table 7 增加 8-gen 结果, 或报告 6-gen XGBoost 对应数字
+    assigned_to: PaperAgent
+    status: open
+  resolution: ''
+  resolution_round: null
+- id: R43-W3
+  summary: DDR partition descriptive vs mechanistic nature 未明确区分
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 43
+  last_seen_round: 44
+  mentions:
+  - round: 43
+    reviewers: R1+R2
+    note: R1-W5 提出, R2 同意 with nuance. Partition 定义含 target variable (depth), 存在潜在循环性. k-means/holdout/exhaustive enumeration 验证已实质性化解, 但 Discussion §5 暗示 mechanistic claim (nucleus sampling 结构性质) 而 partition
+      本身是 descriptive. 两层次应清晰区分.
+  - round: 44
+    reviewers: R1+R2
+    note: 'R1-N1 从理论动机角度再次触及: DDR 缺形式化推导使 partition 地位从 principled decomposition 降格为 post-hoc observation. R2 agree with nuance. 与 R42-N1 合并.'
+  action_items:
+  - round: 43
+    action: Method 或 Discussion 加一段讨论 DDR 的 descriptive observation vs mechanistic hypothesis 区分
+    assigned_to: PaperAgent
+    status: open
+  resolution: ''
+  resolution_round: null
+- id: R43-W4
+  summary: Baseline 比较叙事重心偏向单特征 vs 7-feature, 应以 multi-feature ensemble 为主对比
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 43
+  last_seen_round: 44
+  mentions:
+  - round: 43
+    reviewers: R2(raised)+R1(partial rebut)
+    note: 'R2-W2: 给人 strawman 印象. R1 rebut: Table 3 已有 4-det ensemble (F1=0.743) 和 4-det+surface (F1=0.774), 论文未 claim dramatic improvement. 但 R1 同意叙事重心应向 multi-feature comparison 倾斜.'
+  - round: 44
+    reviewers: R1+R2
+    note: 'R2-N3 升级: DDR 7-feature F1=0.705 与 4-det+surface F1=0.708 持平, 分类性能非 unique contribution. R1 agree on fact, partial rebut on severity: 论文 §4.3 已定位 DDR 贡献在分解洞察而非性能. 共识: 需更诚实地定位贡献性质.'
+  action_items:
+  - round: 43
+    action: '§4.3 叙事重组: 以 4-det+surface ensemble 作为 primary comparison point'
+    assigned_to: PaperAgent
+    status: open
+  - round: 44
+    action: §1 Contributions 承认分类性能 'comparable at lower cost', 主贡献聚焦 DDR 分析框架解释价值
+    assigned_to: PaperAgent
+    status: in_progress
+  resolution: ''
+  resolution_round: null
+- id: R43-W5
+  summary: Abstract 信息密度过高 (8+ 数值结果)
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 43
+  last_seen_round: 44
+  mentions:
+  - round: 43
+    reviewers: R2(raised)+R1(partial agree)
+    note: 'R2-W4: 核心信息被数字淹没. R1 部分同意, 建议保留 core contribution 数字但将 context 信息 (cost, parameter range, sampling params) 移至 Intro.'
+  - round: 44
+    reviewers: R2(raised)+R1(rebut)
+    note: 'R2-W5 再次提出. R1 rebut: 信息密度可接受, 真正问题是 qualifier 缺失 (d≤0.10 不含 entropy_std, 两个 F1 评估条件差异). 分歧: R2 认为需减密度, R1 认为需加 qualifier. 可合并修复.'
+  action_items:
+  - round: 43
+    action: Abstract 精简至 3-4 个关键数字, 将 context 信息移至 §1
+    assigned_to: PaperAgent
+    status: open
+  resolution: ''
+  resolution_round: null
+- id: R43-I1
+  summary: Limitations 缺少 English-only 语言泛化性讨论
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 43
+  last_seen_round: 43
+  mentions:
+  - round: 43
+    reviewers: R2(raised)+R1(agree)
+    note: 所有实验均英文 Wikipedia seed. Limitations 仅一句提及, 应作 standalone limitation 讨论.
+  - round: 44
+    reviewers: ''
+    note: R44 本轮未直接提及. 待 Research Director 确认.
+  action_items:
+  - round: 43
+    action: Limitations 加 English-only 作为独立限制点
+    assigned_to: PaperAgent
+    status: open
+  resolution: ''
+  resolution_round: null
+- id: R43-I2
+  summary: 'Missing references: Xu et al. (2024/2025) paraphrase attack'
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 43
+  last_seen_round: 43
+  mentions:
+  - round: 43
+    reviewers: R2(raised)+R1(agree)
+    note: 与 Appendix i human edit perturbation 直接相关, 应引用.
+  - round: 44
+    reviewers: ''
+    note: R44 本轮未直接提及. 待 Research Director 确认.
+  action_items:
+  - round: 43
+    action: Related Work 或 Appendix i 引用 Xu et al.
+    assigned_to: PaperAgent
+    status: open
+  resolution: ''
+  resolution_round: null
+- id: R44-N1
+  summary: Cross-model chain F1=0.830 提升未排除 generator diversity accumulation confound
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 44
+  last_seen_round: 44
+  mentions:
+  - round: 44
+    reviewers: R1(raised)+R2(agree)
+    note: 'R1-N2: Cross-model chain binary F1=0.830 vs single-generator LOGO F1=0.694 (+13.6pp). 替代假设: 分类器可能检测 generator diversity 累积而非 depth drift. Appendix y Table 39 是 single-gen transfer, 非 diversity-controlled
+      chain. R2 完全同意, 补充: same-family cross-size vs cross-family chains 可量化 diversity 贡献.'
+  action_items:
+  - round: 44
+    action: '控制实验: same-family cross-size chains vs cross-family chains, 或分析 cross-model chain 中 stationary vs drifting feature 贡献比例变化'
+    assigned_to: PaperAgent
+    status: in_progress
+  - round: 44
+    action: 至少在 Discussion 中讨论 generator diversity accumulation 替代假设
+    assigned_to: PaperAgent
+    status: in_progress
+  resolution: ''
+  resolution_round: null
+- id: R44-N2
+  summary: Abstract 'shape features d ≤ 0.10' overclaim — entropy_std (d=0.55) 被隐藏
+  category: framing
+  severity: critical
+  status: in_progress
+  first_raised_round: 44
+  last_seen_round: 44
+  mentions:
+  - round: 44
+    reviewers: R2(raised)+R1(agree)
+    note: 'R2-N1: Abstract 声称 shape features ''d ≤ 0.10'' 但 §4.2 将 entropy_std 归类为 intermediate (d=0.55). k-means 也将 entropy_std 独立分 cluster. Abstract 二分法掩盖三分结构 (drifting/intermediate/near-stationary).
+      R1 同意并补充: tail_decay 仅 4/8 通过 TOST, entropy_min 在 gen-0/gen-1 边界 |ρ|=0.40. 实际 partition 远非 clean binary.'
+  action_items:
+  - round: 44
+    action: Abstract 修正 'd ≤ 0.10' 为更准确表述, 如 'three near-stationary features (d < 0.10) and one intermediate'
+    assigned_to: PaperAgent
+    status: in_progress
+  - round: 44
+    action: 主文 §4.2 更诚实地呈现 partition 的模糊边界, 不将 boundary features 降格为括号补充
+    assigned_to: PaperAgent
+    status: in_progress
+  resolution: ''
+  resolution_round: null
+- id: R44-W1
+  summary: Abstract 中 QLoRA 3-class F1=0.905 缺 seed sharing caveat + 评估协议未区分
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 44
+  last_seen_round: 44
+  mentions:
+  - round: 44
+    reviewers: R1+R2
+    note: 'R1-W2 + R2-N2 交叉: Abstract 并列 binary F1=0.694 (LOGO, leak-free) 和 3-class F1=0.905 (QLoRA, 6-gen, within-model 5-fold CV with seed sharing), 但未标注评估协议差异. 不了解细节的读者易将 0.905 理解为 generalized performance.
+      共识: 需在 Abstract 中注明条件差异.'
+  action_items:
+  - round: 44
+    action: Abstract 中 QLoRA F1 附带 caveat (如 'within-generator evaluation') 或改为 binary F1; 所有 3-class F1 表格统一标注 seed sharing caveat
+    assigned_to: PaperAgent
+    status: in_progress
+  resolution: ''
+  resolution_round: null

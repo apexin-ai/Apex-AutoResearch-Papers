@@ -1,0 +1,86 @@
+# agent / loop_7.md
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/agent/loop_7.md`
+- **Structured JSON:** [`f4ec79a5a3049df6219b.json`](../../sessions/f4/f4ec79a5a3049df6219b.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 7
+reason: idle_timeout
+updated: '2026-05-15T18:47:56+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：autodl-5090 的 cuda:0/1/2/3（config `execution.gpu_ids`）。不得使用其他 GPU。
+- **7-gen vs 6-gen 数字禁止直接对比**（memory.md 硬约束）：7-gen binary F1=0.768 不可与 6-gen binary F1=0.723 做 apple-to-apple 比较。Instruct 结果只报 held-out 绝对 F1 和同架构 Δ。
+- **Instruct 方向反转是长度伪影**（D019，Reviewer CRITICAL）：不可 claim instruct "inverted DDR"。Discussion 用纯 "method boundary" 叙事：instruct 链 gen-1 vs gen-2+ F1≈0.5，depth signal 消失。
+- **Primary metric 是 binary LOGO F1=0.723**（D017）。3-class 0.789 只做 supplementary 并附 gen-0 caveat。
+- EMNLP 2026 ARR DDL **2026-05-25**，不允许换会议（D012，用户硬指令）。
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: autodl-5090, account=root, 工作目录 `/root/gen-depth-fingerprint`
+- **Python**: `/root/miniconda3/bin/python`（conda base，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）
+- **模型**: Pythia-2.8B/1B/410M + OLMo-2-1B + Qwen3-1.7B-Base/0.6B-Base/8B-Base（均在 HF cache）
+- **数据**: `/root/gen-depth-fingerprint/data/`（21557 chains, 6 generators）
+- **活跃进程**:
+  - plan-010-human-edit: PID 228872, tmux session, cuda 上跑 human_edit_robustness.py
+  - review-sampling-ablation: PID 226113, tmux session, cuda:2+cuda:3 跑 sampling_ablation.py
+- **Cron**: reconcile 确认两个 RUNNING 实验 PID 存活。本 session 无 CronCreate，需要为两个 RUNNING 实验重新注册 cron 监控。
+- **Worker**: `worker_analysis_olmo-instruct-step2-step3` 状态 running 但 turn_count=0（可能卡住，需检查）
+
+### 3. 📊 当前状态
+**刚完成**: Round 2 审稿大量修复——D017 binary metric 切换、D019 instruct 长度伪影确认、P0-A/P0-B/P1-D/P1-E/P2-F 全部 DONE，论文 results/conclusion/discussion/method 已大幅更新。
+
+**Registry 活跃实验**:
+| exp_id | status | 摘要 |
+|--------|--------|------|
+| plan-010-human-edit | RUNNING | 人类编辑鲁棒性（word replacement 5/10/20% + LLM rephrase），PID 228872 |
+| review-sampling-ablation | RUNNING | temperature/top-p 采样策略消融，PID 226113，cuda:2+3 |
+| plan-008-multi-domain | ALLOCATED | 多域种子（news/sci/creative/wiki），已分配 cuda:0 但**未提交**——需要 submit_on_allocated |
+
+**等待中**:
+- Worker `olmo-instruct-step2-step3` 回调（OLMo instruct 分析，但 turn_count=0 可能需要重新 spawn）
+- plan-010-human-edit 和 review-sampling-ablation 的 cron 回调（需重建 cron）
+- 论文 abstract + intro 数字更新（binary F1 headline）尚未完成
+- Round 3 审稿提交（所有修复完成后）
+
+### 4. 📋 待办（条件触发式）
+- **立即**: 为 plan-010-human-edit 和 review-sampling-ablation 注册 cron 监控（前 session cron 已丢失）
+- **立即**: plan-008-multi-domain 状态 ALLOCATED 未提交 → `submit_on_allocated` 提交到 cuda:0
+- **立即**: 检查 worker_analysis_olmo-instruct-step2-step3（turn_count=0）→ 若卡住则 cancel + 重新 spawn
+- plan-010-human-edit 完成 → 分析结果，若 F1 degradation <10pp → 写入 paper appendix 作为 robustness evidence
+- review-sampling-ablation 完成 → 分析 temperature sensitivity，若 delta <0.02pp → 写入 paper 确认 hyperparameter robustness
+- plan-008-multi-domain 完成 → 分析跨域一致性，结果写入 results
+- 三个实验全部完成 → spawn Worker 做 abstract+intro binary headline 更新 + related_work CI 残留修复 + P1-E ordinal 写入 + 全文数字一致性 → post_to_reviewer Round 3
+- Round 3 通过 → EMNLP ARR 提交材料准备
+
+### 5. 🎯 战略上下文
+**核心结论链**: D002(MVP pass) → D004/D005(differential depth response) → D007(reframe) → D008(ensemble consistency) → D009(Claim 3 negative) → D017(binary primary metric) → D019(instruct=length artifact)
+
+**论文 framing 已稳定**: 3 Claims（depth discriminability ✅, differential response ✅, downstream negative ✅），binary LOGO F1=0.723 为 headline，7-feature > 4-baseline 在 binary 下成立。
+
+**易错点**:
+1. plan-008-multi-domain 是 ALLOCATED 不是 RUNNING——必须 submit_on_allocated 才开始跑，不要以为它在跑
+2. 本 session 没有 cron——两个 RUNNING 实验没有监控，完成后不会有回调，必须立即重建
+3. 论文写作进度：results/conclusion/discussion/method 已更新，但 **abstract + intro 还是旧数字**（3-class headline），这是 Round 2 最关键的未完成项
+4. D019 后 instruct 叙事已定：scope boundary（不是 inverted DDR），但 discussion section 可能还需要 Worker 更新文字
+5. 成功/负向/失败 = 35/3/8，总 47 个 DONE。多数 failure 是早期 plan-002 Qwen 系列环境问题，已不影响
+
+
+---

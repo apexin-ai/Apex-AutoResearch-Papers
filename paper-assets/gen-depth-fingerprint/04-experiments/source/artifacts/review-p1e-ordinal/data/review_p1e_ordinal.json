@@ -1,0 +1,92 @@
+{
+  "3class_logo": {
+    "xgboost_multiclass": {
+      "f1": 0.7888,
+      "ci": {
+        "mean": 0.7888,
+        "ci_lo": 0.7843,
+        "ci_hi": 0.7933
+      },
+      "per_gen": {
+        "olmo-2-1b": 0.7635,
+        "pythia-1b": 0.8536,
+        "pythia-2.8b": 0.8045,
+        "qwen3-0.6b": 0.8199,
+        "qwen3-1.7b": 0.81,
+        "qwen3-8b": 0.6875
+      }
+    },
+    "coral_ordinal": {
+      "f1": 0.7711,
+      "ci": {
+        "mean": 0.771,
+        "ci_lo": 0.7662,
+        "ci_hi": 0.776
+      },
+      "per_gen": {
+        "olmo-2-1b": 0.7393,
+        "pythia-1b": 0.8381,
+        "pythia-2.8b": 0.7917,
+        "qwen3-0.6b": 0.8093,
+        "qwen3-1.7b": 0.7932,
+        "qwen3-8b": 0.6637
+      }
+    },
+    "frank_hall_ordinal": {
+      "f1": 0.7931,
+      "ci": {
+        "mean": 0.7931,
+        "ci_lo": 0.7885,
+        "ci_hi": 0.7975
+      },
+      "per_gen": {
+        "olmo-2-1b": 0.7665,
+        "pythia-1b": 0.8595,
+        "pythia-2.8b": 0.8048,
+        "qwen3-0.6b": 0.8246,
+        "qwen3-1.7b": 0.8135,
+        "qwen3-8b": 0.6951
+      }
+    }
+  },
+  "binary_logo": {
+    "xgboost_binary": {
+      "f1": 0.7213,
+      "ci": {
+        "mean": 0.7213,
+        "ci_lo": 0.715,
+        "ci_hi": 0.7275
+      },
+      "per_gen": {
+        "olmo-2-1b": 0.6797,
+        "pythia-1b": 0.7852,
+        "pythia-2.8b": 0.717,
+        "qwen3-0.6b": 0.7608,
+        "qwen3-1.7b": 0.7497,
+        "qwen3-8b": 0.6368
+      }
+    },
+    "coral_binary": {
+      "f1": 0.7275,
+      "ci": {
+        "mean": 0.7276,
+        "ci_lo": 0.7217,
+        "ci_hi": 0.7339
+      },
+      "per_gen": {
+        "olmo-2-1b": 0.678,
+        "pythia-1b": 0.7955,
+        "pythia-2.8b": 0.7296,
+        "qwen3-0.6b": 0.7597,
+        "qwen3-1.7b": 0.7623,
+        "qwen3-8b": 0.6415
+      }
+    }
+  },
+  "ordinal_consistency": {
+    "xgboost": 0.8209,
+    "coral": 0.8095,
+    "frank_hall": 0.8245
+  },
+  "conclusion": "Ordinal methods (CORAL F1=0.7711, Frank-Hall F1=0.7931) perform comparably to multiclass XGBoost (F1=0.7888). With only 3 ordinal levels, the ordinal structure provides minimal additional benefit."
+}

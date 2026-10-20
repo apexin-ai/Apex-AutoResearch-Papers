@@ -1,0 +1,98 @@
+{
+  "seed": 42,
+  "n_bootstrap": 1000,
+  "xgb_params": {
+    "n_estimators": 200,
+    "max_depth": 6,
+    "learning_rate": 0.1,
+    "random_state": 42,
+    "eval_metric": "mlogloss",
+    "use_label_encoder": false
+  },
+  "logo_6gen": {
+    "f1_observed": 0.7879,
+    "mean": 0.788,
+    "ci_lower": 0.783,
+    "ci_upper": 0.7929,
+    "n_bootstrap": 1000,
+    "n_samples": 27529,
+    "per_generator": {
+      "olmo-2-1b": {
+        "f1": 0.7861,
+        "mean": 0.7859,
+        "ci_lower": 0.7737,
+        "ci_upper": 0.7974
+      },
+      "pythia-1b": {
+        "f1": 0.8282,
+        "mean": 0.8284,
+        "ci_lower": 0.8177,
+        "ci_upper": 0.839
+      },
+      "pythia-2.8b": {
+        "f1": 0.8168,
+        "mean": 0.8168,
+        "ci_lower": 0.8054,
+        "ci_upper": 0.8284
+      },
+      "qwen3-0.6b": {
+        "f1": 0.7998,
+        "mean": 0.7999,
+        "ci_lower": 0.7881,
+        "ci_upper": 0.8114
+      },
+      "qwen3-1.7b": {
+        "f1": 0.7928,
+        "mean": 0.7926,
+        "ci_lower": 0.7806,
+        "ci_upper": 0.8047
+      },
+      "qwen3-8b": {
+        "f1": 0.7079,
+        "mean": 0.7079,
+        "ci_lower": 0.6946,
+        "ci_upper": 0.7223
+      }
+    }
+  },
+  "logo_5gen": {
+    "f1_observed": 0.8034,
+    "mean": 0.8036,
+    "ci_lower": 0.7982,
+    "ci_upper": 0.8085,
+    "n_bootstrap": 1000,
+    "n_samples": 23032,
+    "per_generator": {
+      "olmo-2-1b": {
+        "f1": 0.7747,
+        "mean": 0.7744,
+        "ci_lower": 0.7621,
+        "ci_upper": 0.7865
+      },
+      "pythia-1b": {
+        "f1": 0.8341,
+        "mean": 0.834,
+        "ci_lower": 0.8232,
+        "ci_upper": 0.8444
+      },
+      "pythia-2.8b": {
+        "f1": 0.8207,
+        "mean": 0.8204,
+        "ci_lower": 0.8093,
+        "ci_upper": 0.8314
+      },
+      "qwen3-0.6b": {
+        "f1": 0.7991,
+        "mean": 0.7991,
+        "ci_lower": 0.7865,
+        "ci_upper": 0.8109
+      },
+      "qwen3-1.7b": {
+        "f1": 0.7899,
+        "mean": 0.7895,
+        "ci_lower": 0.7775,
+        "ci_upper": 0.8015
+      }
+    }
+  }
+}

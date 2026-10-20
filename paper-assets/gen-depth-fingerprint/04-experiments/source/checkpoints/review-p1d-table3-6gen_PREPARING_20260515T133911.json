@@ -1,0 +1,14 @@
+{
+  "exp_id": "review-p1d-table3-6gen",
+  "project": "gen-depth-fingerprint",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:39:11.673Z",
+    "updated_at": "2026-05-15T13:39:11.673Z"
+  },
+  "timestamp": "2026-05-15T13:39:11.744182+00:00",
+  "trigger": "update_registry"
+}

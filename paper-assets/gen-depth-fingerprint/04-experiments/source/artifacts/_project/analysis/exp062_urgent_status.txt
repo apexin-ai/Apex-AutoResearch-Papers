@@ -1,0 +1,93 @@
+exp062 Urgent Status — 2026-05-21 21:50 CST (13:50 UTC)
+=========================================================
+
+## 1. Cohen's d Results
+
+**ZERO Cohen's d files exist on the server.** No cohens_d_*.txt or early_cohens_d.txt
+found anywhere under /root/gen-depth-fingerprint/.
+
+Features extracted so far (in data/):
+  - features_pythia-2.8b-greedy.csv   658KB  ✅
+  - features_pythia-2.8b-topk.csv     615KB  ✅
+  - features_pythia-1b-greedy.csv      657KB  ✅
+  - features_olmo-2-1b-greedy.csv      661KB  ✅
+  - features_olmo-2-1b-topk.csv        634KB  ✅
+  - features_qwen3-1.7b-greedy.csv     658KB  ✅
+  - (6/16 feature CSVs exist; 10 missing)
+
+Pending feature extraction (data exists, CSV not extracted):
+  - pythia-1b-topk (4589 lines) — extract watcher STUCK (see §5)
+  - llama-3.2-3b-greedy (4875 lines)
+  - mistral-7b-v0.3-greedy (4918 lines)
+
+## 2. 16-Combo Completion Status
+
+Model               | Greedy        | Top-k
+---------------------|---------------|---------------
+pythia-2.8b          | 4854 ✅ DONE  | 4527 ✅ DONE
+pythia-1b            | 4867 ✅ DONE  | 4589 ✅ DONE
+olmo-2-1b            | 4879 ✅ DONE  | 4641 ✅ DONE
+qwen3-0.6b           | 🔄 417/996 42%| NOT_STARTED
+qwen3-1.7b           | 4864 ✅ DONE  | 🔄 522/996 52%
+qwen3-8b             | ❌ NOT_STARTED | ❌ NOT_STARTED
+llama-3.2-3b         | 4875 ✅ DONE  | 🔄 187/995 19%
+mistral-7b-v0.3      | 4918 ✅ DONE  | 🔄 66/996  7%
+
+Summary: 9/16 DONE, 4 running, 3 NOT_STARTED (qwen3-0.6b-topk, qwen3-8b×2)
+
+## 3. GPU Processes (8× RTX 5090 32GB)
+
+GPU | Process                              | VRAM   | Util
+----|--------------------------------------|--------|-----
+ 0  | llama-3.2-3b topk (PID 347968)       | 6.8GB  | 61%
+ 1  | qwen3-1.7b topk (PID 344399)         | 3.9GB  | 42%
+ 2  | mistral-7b-v0.3 topk (PID 349080)    | 14.6GB | 88%
+ 3  | qwen3-0.6b greedy (PID 357811)       | 1.8GB  | 33%
+4-7 | IDLE                                 | 0      | 0%
+
+## 4. Watcher Status
+
+PID 356682 (cuda3 chain v2): ALIVE, 1h40m
+  - Pythia-1B finished at 20:22, now running Qwen3-0.6B greedy+topk on GPU3
+  - Next: done after qwen3-0.6b topk completes
+
+PID 356867 (qwen3-8b watcher): ALIVE, 1h40m
+  - Monitoring GPU 0/1/2 for free GPU, polls every 60s
+  - Will launch qwen3-8b greedy+topk on first available GPU
+
+PID 357040 (pythia-1b topk extractor): ALIVE, 1h38m — ⚠️ STUCK
+  - Extract log (/tmp/extract_pythia1b_topk.log) is EMPTY
+  - BUG: pgrep -f "generate_chain_decoding.*pythia-1b" self-matches PID 357040's
+    own command string, so the while loop never exits
+  - pythia-1b topk data is READY (4589 lines) but extraction never triggers
+  - ACTION NEEDED: kill 357040 and manually run extraction
+
+## 5. ETA for All 16 Combos
+
+Currently running (from progress bars):
+  qwen3-1.7b topk:    522/996 (52%) ~12.5s/it → ~1h39m → done ~23:30 CST
+  llama-3.2-3b topk:  187/995 (19%) ~10.5s/it → ~2h22m → done ~00:12 CST
+  qwen3-0.6b greedy:  417/996 (42%) ~13.0s/it → ~2h06m → done ~23:56 CST
+  mistral-7b-v0.3 topk: 66/996 (7%) ~12.5s/it → ~3h14m → done ~01:04 CST
+
+Sequenced:
+  qwen3-0.6b topk:  starts after greedy → ~3.5h greedy + ~3.5h topk → done ~03:30 CST
+  qwen3-8b greedy:  starts when first of GPU0/1/2 frees (GPU1 first ~23:30)
+  qwen3-8b topk:    follows greedy
+
+Estimated qwen3-8b (8B model, ~14s/it):
+  greedy: ~3.9h + topk: ~3.9h ≈ 7.8h total → done ~07:20 CST May 22
+
+ALL 16 COMBOS COMPLETE: ~07:20 CST May 22 (bottleneck: qwen3-8b)
+
+## 6. Critical Issues
+
+1. PID 357040 is STUCK due to pgrep self-matching. 3 greedy features
+   (pythia-1b-topk, llama-3.2-3b-greedy, mistral-7b-v0.3-greedy) are ready
+   for extraction but have no automated trigger.
+
+2. GPU 4-7 are IDLE. Could parallelize qwen3-8b immediately instead of
+   waiting for qwen3-1.7b to finish on GPU1.
+
+3. No Cohen's d computation has been done yet. Feature extraction +
+   Cohen's d analysis is the bottleneck after generation completes.

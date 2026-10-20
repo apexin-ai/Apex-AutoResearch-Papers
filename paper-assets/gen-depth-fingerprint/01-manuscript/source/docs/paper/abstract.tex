@@ -1,0 +1,7 @@
+% Abstract — Depth Profiling of Recursive LLM Generation Chains
+\begin{abstract}
+As large language model (LLM) outputs re-enter training corpora and seed further generation, understanding how recursive generation reshapes text distributions is critical for data provenance and corpus curation. Existing detectors answer only the binary human-or-machine question, ignoring \emph{generation depth}; we introduce \emph{depth profiling} to address this gap.
+We decompose distributional drift under recursive generation into location and shape components. Across eight base-model generators from five families, negative log-likelihood (NLL) location features drift monotonically with depth while shape features remain near-stationary---an effect-size gap exceeding $8{\times}$ ($d{=}0.74$--$1.05$ vs.\ $d < 0.10$). We term this asymmetry the \emph{differential depth response} (DDR).
+Prior work documents \emph{what converges}; the central finding here is \emph{what is approximately preserved}: shape stability complements location drift for ordinal depth grading without per-generator calibration. A lightweight ensemble achieves leak-free binary F1\,=\,0.694 under 8-generator leave-one-generator-out evaluation; cross-model chains reach F1\,=\,0.830.
+Instruction tuning compresses DDR and bounds current applicability to base models\footnote{Code and data are available at \url{https://anonymous.4open.science/r/gen-depth-fingerprint-3FB3/}.}.
+\end{abstract}

@@ -1,0 +1,44 @@
+{
+  "full_7features": {
+    "mean_f1": 0.7727,
+    "std_f1": 0.0092,
+    "top_feature_importance": {
+      "hapax_ratio": 0.3486,
+      "entropy_mean": 0.2336,
+      "ttr": 0.1753,
+      "entropy_std": 0.0936,
+      "entropy_max": 0.0742,
+      "entropy_min": 0.0395,
+      "tail_decay": 0.0352
+    }
+  },
+  "surface_only_2features": {
+    "mean_f1": 0.6882,
+    "std_f1": 0.0069,
+    "features": [
+      "ttr",
+      "hapax_ratio"
+    ]
+  },
+  "reference_only_5features": {
+    "mean_f1": 0.7134,
+    "std_f1": 0.0087,
+    "features": [
+      "entropy_mean",
+      "entropy_std",
+      "entropy_max",
+      "entropy_min",
+      "tail_decay"
+    ]
+  },
+  "comparison": {
+    "full_vs_surface": {
+      "delta": 0.0845,
+      "p_value": 0.9916
+    },
+    "full_vs_reference": {
+      "delta": 0.0594,
+      "p_value": 0.9919
+    }
+  }
+}

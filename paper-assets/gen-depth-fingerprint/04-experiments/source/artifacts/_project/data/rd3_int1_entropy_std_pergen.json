@@ -1,0 +1,63 @@
+{
+  "per_generator": {
+    "olmo-2-1b": {
+      "n": 4713,
+      "entropy_std_rho": -0.2958,
+      "entropy_std_pval": 0.0,
+      "entropy_mean_rho": -0.6386,
+      "entropy_mean_pval": 0.0,
+      "tail_decay_rho": -0.1411,
+      "tail_decay_pval": 0.0
+    },
+    "pythia-1b": {
+      "n": 4555,
+      "entropy_std_rho": -0.2414,
+      "entropy_std_pval": 0.0,
+      "entropy_mean_rho": -0.712,
+      "entropy_mean_pval": 0.0,
+      "tail_decay_rho": 0.0904,
+      "tail_decay_pval": 0.0
+    },
+    "pythia-2.8b": {
+      "n": 4609,
+      "entropy_std_rho": -0.153,
+      "entropy_std_pval": 0.0,
+      "entropy_mean_rho": -0.6754,
+      "entropy_mean_pval": 0.0,
+      "tail_decay_rho": 0.0633,
+      "tail_decay_pval": 1.7e-05
+    },
+    "qwen3-0.6b": {
+      "n": 4538,
+      "entropy_std_rho": -0.2294,
+      "entropy_std_pval": 0.0,
+      "entropy_mean_rho": -0.5656,
+      "entropy_mean_pval": 0.0,
+      "tail_decay_rho": -0.0902,
+      "tail_decay_pval": 0.0
+    },
+    "qwen3-1.7b": {
+      "n": 4617,
+      "entropy_std_rho": -0.1882,
+      "entropy_std_pval": 0.0,
+      "entropy_mean_rho": -0.6022,
+      "entropy_mean_pval": 0.0,
+      "tail_decay_rho": -0.0698,
+      "tail_decay_pval": 2e-06
+    },
+    "qwen3-8b": {
+      "n": 4497,
+      "entropy_std_rho": -0.0755,
+      "entropy_std_pval": 0.0,
+      "entropy_mean_rho": -0.4754,
+      "entropy_mean_pval": 0.0,
+      "tail_decay_rho": -0.0894,
+      "tail_decay_pval": 0.0
+    }
+  },
+  "max_entropy_std_abs_rho": 0.2958,
+  "max_entropy_std_generator": "olmo-2-1b",
+  "all_below_015": false,
+  "any_above_02": true,
+  "conclusion": "caveat needed"
+}

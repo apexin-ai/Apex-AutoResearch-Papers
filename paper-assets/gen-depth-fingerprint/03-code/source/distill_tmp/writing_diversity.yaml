@@ -1,0 +1,110 @@
+paper_key: "writing_diversity"
+title: "Does Writing with Language Models Reduce Content Diversity?"
+venue: "ICLR 2024"
+full_text_available: true  # arXiv HTML available at 2309.05196v3
+
+research:
+  baselines:
+    - Solo writing (no AI assistance)
+    - GPT3-assisted writing (davinci base model)
+    - InstructGPT-assisted writing (text-davinci-003)
+  metrics:
+    - {name: "Homogenization (avg pairwise Rouge-L similarity)", direction: "lower_better"}
+    - {name: "Homogenization (avg pairwise BertScore similarity)", direction: "lower_better"}
+    - {name: "Lexical diversity (unique n-gram fraction)", direction: "higher_better"}
+    - {name: "Key point diversity (clustered unique arguments)", direction: "higher_better"}
+    - {name: "5-gram distribution concentration", direction: "lower_better"}
+  datasets:
+    - {name: "Custom essay corpus", size: "300 argumentative essays, 38 writers, 10 topics from NY Times Student Opinion"}
+  ablation_dimensions:
+    - Model type (GPT3 base vs InstructGPT)
+    - Text attribution (user-contributed vs model-contributed)
+    - Diversity granularity (lexical n-gram vs semantic key-point)
+    - Clustering threshold for key point diversity (0.5-0.8)
+    - Per-topic vs aggregate analysis
+  training_recipe:
+    participants: "38 professional writers from Upwork (native English speakers)"
+    task: "Argumentative essays ~300 words on 10 topics"
+    design: "3 conditions x 10 topics x 10 essays = 300 essays"
+    models_used: "OpenAI davinci (GPT3) and text-davinci-003 (InstructGPT)"
+    decoding: "temperature=0.9, frequency_penalty=0.5, top_p=1.0"
+    min_queries: ">=5 model suggestions required per essay"
+    key_point_extraction: "gpt-3.5-turbo summarization (~6.86 key points/essay)"
+  method_family: "Controlled human-AI co-writing experiment with diversity measurement"
+
+positioning:
+  core_claim: "RLHF-tuned models (InstructGPT) significantly reduce content diversity in human-AI co-writing compared to base models (GPT3), and this reduction is entirely attributable to model-contributed text, not changes in user behavior."
+  key_results: "InstructGPT homogenization: 0.1660 Rouge-L (+8.1% vs Solo 0.1536, p<0.05); GPT3: 0.1578 (not significant); 5-gram diversity: InstructGPT 0.977 vs Solo 0.991; key point diversity: InstructGPT 0.738 vs Solo 0.792 (p<0.05); model suggestion self-similarity: InstructGPT 0.20 vs GPT3 0.11 (p<0.05)"
+  limitations:
+    - "Single-turn suggestion interface may not reflect all real-world co-writing contexts"
+    - "Upwork writers not representative of all demographics"
+    - "Only OpenAI models tested; results may not generalize to other model families"
+    - "Single-session study; repeated interactions over time could change dynamics"
+  relation_to_us: "foundation"  # Directly establishes that RLHF models produce less diverse text — this is the mechanism behind detectable AI fingerprints in generation depth
+
+narrative:
+  story_type: "突破局限型"  # Breaks through assumption that AI writing assistance is neutral; reveals hidden homogenization cost
+  hook: "LLMs are transforming content creation, but millions of users relying on the same model risks 'algorithmic monoculture' — shifting content toward the mode"
+  tension: "Prior work shows LLMs influence opinions and lack demographic representation, but no one has measured whether co-writing actually reduces the diversity of produced content"
+  key_insight: "Section 5 (attribution analysis): the diversity loss is 100% attributable to model-contributed text — user writing behavior is unchanged across all conditions, but InstructGPT suggestions are inherently more homogeneous than GPT3 suggestions"
+  argument_chain: "Monoculture risk → controlled experiment design → verify equal engagement → measure homogenization → measure diversity loss → attribute to model text → diagnose RLHF as cause"
+  contribution_framing: "Implicit 3-fold: (1) controlled experiment measuring diversity impact, (2) diversity metrics at lexical and semantic levels, (3) attribution analysis pinpointing model text as cause. Contributions stated as findings rather than an explicit numbered list"
+  intro_structure: "2 main paragraphs: P1 motivates the monoculture problem with prior evidence; P2 describes the experimental approach and previews findings. Notably compact intro."
+  notable_technique: "The GPT3 vs InstructGPT comparison is the key rhetorical device — by showing GPT3 does NOT reduce diversity while InstructGPT DOES, the paper isolates RLHF/instruction-tuning as the causal factor, rather than AI assistance in general. This is more persuasive than just measuring one model."
+
+figures:
+  figure_count: 13  # including appendix figures
+  figure1:
+    type: "motivation"
+    description: "Boxplots showing corpus homogenization at key point level across three conditions (Solo, GPT3, InstructGPT) and 10 topics. InstructGPT displays highest median on 7/10 topics."
+    narrative_role: "Immediately demonstrates the main finding visually — InstructGPT consistently elevates homogenization across topics"
+    design_elements: ["horizontal boxplots", "per-topic breakdown", "outlier markers", "three-condition color coding"]
+    visual_style: "Grid of boxplots organized by topic; three colors for three conditions; clean axis labels; emphasis on InstructGPT being consistently highest"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "boxplot"
+      what_compared: "Homogenization scores (Rouge-L) across Solo, InstructGPT, GPT3 at key point level"
+      how_gain_highlighted: "Visual separation of InstructGPT median from Solo/GPT3; boxplot spread shows consistency"
+      design_note: "Aggregated view complementing per-topic Figure 1; boxplot chosen to show distribution, not just means"
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Frequency distributions of (a) top-50 unigrams and (b) top-50 5-grams across three conditions"
+      how_gain_highlighted: "InstructGPT shows steeper curve on 5-grams (more concentrated), while unigrams overlap — reveals that diversity loss is in phrases, not individual words"
+      design_note: "Two-panel figure; frequency rank on x-axis, probability on y-axis; overlapping lines make convergence/divergence immediately visible"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Attribution analysis: (a) homogenization by authorship (user vs model), (b) 5-gram distributions separated by author"
+      how_gain_highlighted: "Dashed lines (user text) overlap perfectly across conditions; solid lines (model text) diverge — visually proves model is the cause"
+      design_note: "The dashed-vs-solid encoding is the key design choice; makes the causal attribution visually immediate without statistical explanation"
+  ablation_figures:
+    - figure_id: "Appendix figures"
+      viz_type: "boxplot and line_plot variants"
+      dimensions_varied: ["clustering threshold", "per-topic breakdown", "BertScore vs Rouge-L"]
+      design_note: "Appendix replicates main analyses with alternative metrics/thresholds for robustness"
+  figure_narrative_role: "Figure 1 (main result: homogenization by topic) → Figure 2 (aggregated homogenization) → Figure 3 (lexical diversity mechanism) → Figure 4 (causal attribution) — progressive deepening from 'what happens' to 'where it happens' to 'why it happens'"
+
+tables:
+  table_count: 13  # including appendix tables
+  main_result_table:
+    table_id: "Table 3"
+    row_axis: "metrics"  # n-gram sizes (unigram through 5-gram) in 3a; clustering thresholds in 3b
+    col_axis: "conditions (Solo, GPT3, InstructGPT)"
+    row_organization: "by_category"  # split into (a) lexical diversity and (b) key point diversity sub-tables
+    col_organization: "flat"  # three conditions side by side
+    highlight_strategy: "bold values indicate p<0.05 statistical significance"
+    statistical_reporting: "permutation tests (1000 iterations); chi-square tests for distribution comparisons; independent t-tests for usage stats"
+    num_baselines: 2  # Solo and GPT3 serve as baselines for InstructGPT
+    design_note: "Split into 3a (n-gram diversity) and 3b (key point diversity) sub-tables; compact format showing both metrics in one numbered table; bold = significant rather than bold = best"
+  ablation_tables:
+    - table_id: "Table 1"
+      what_varied: ["condition (Solo, GPT3, InstructGPT)"]
+      variation_style: "full_numbers"
+      design_note: "Usage statistics table verifying equal engagement across conditions (queries, acceptance rate, model-written %, word count); serves as manipulation check rather than result"
+    - table_id: "Table 4"
+      what_varied: ["condition (Solo vs InstructGPT)"]
+      variation_style: "full_numbers"
+      design_note: "Top-10 most frequent 5-grams comparison; qualitative evidence showing InstructGPT repeats topic-specific phrases much more (14x vs 6x); bridges quantitative metrics to intuitive understanding"
+  supplementary_tables:
+    in_appendix: true
+    content: "Extended homogenization results with BertScore, per-topic diversity breakdowns, compression-based diversity analysis, additional usage statistics, model self-diversity measurements"
+    reason: "Main text focuses on Rouge-L and key point metrics; appendix provides robustness checks with alternative metrics (BertScore, compression ratio) and finer-grained per-topic analysis"

@@ -1,0 +1,24 @@
+2026-05-20 23:52:00,819 WARNING core.tools.dream  [dream] Phase 2 worst parse failed (attempt 0): while parsing a flow sequence
+  in "<unicode string>", line 169, column 18:
+            columns: [Feature, Pythia-410M ρ, OLMo-2- ... 
+                     ^
+expected ',' or ']', but got '?'
+  in "<unicode string>", line 169, column 85:
+     ... ρ, Qwen3-0.6B ρ, Stable Category?]
+                                         ^
+2026-05-20 23:58:30,694 WARNING core.tools.dream  [dream] Phase 2 worst parse failed (attempt 1): while parsing a flow sequence
+  in "<unicode string>", line 165, column 18:
+            columns: [Feature, Pythia-410M ref, OLMo- ... 
+                     ^
+expected ',' or ']', but got '?'
+  in "<unicode string>", line 165, column 94:
+     ... en-0.6B ref, Consistent Category?]
+                                         ^
+2026-05-20 23:58:30,694 WARNING core.tools.dream  [dream:dream_20260520T232427] Phase 2 worst failed: Phase 2 (worst) failed: while parsing a flow sequence
+  in "<unicode string>", line 165, column 18:
+            columns: [Feature, Pythia-410M ref, OLMo- ... 
+                     ^
+expected ',' or ']', but got '?'
+  in "<unicode string>", line 165, column 94:
+     ... en-0.6B ref, Consistent Category?]
+                                         ^

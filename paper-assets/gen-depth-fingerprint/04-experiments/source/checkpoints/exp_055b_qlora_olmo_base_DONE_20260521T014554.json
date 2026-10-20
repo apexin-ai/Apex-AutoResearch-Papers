@@ -1,0 +1,48 @@
+{
+  "exp_id": "exp_055b_qlora_olmo_base",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:53:17.806Z",
+    "updated_at": "2026-05-21T01:45:54.219Z",
+    "hypothesis": "Within-model QLoRA on OLMo-2-1B base data establishes per-model baseline for instruct comparison; expected 3-class F1 comparable to pooled base QLoRA (0.905) with potential variance from smaller per-model dataset",
+    "spec": {
+      "command": "qlora_instruct.py --generator olmo-2-1b",
+      "server": "bjb2-18868",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "72272",
+      "log_path": "N/A",
+      "submitted_at": "2026-05-19T09:02:39.461Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/olmo-2-1b/",
+      "data_count": 2379,
+      "model_name": "Qwen3-0.6B-Base (backbone)",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "wall_clock_seconds": 146594.8,
+      "gpu_hours": 40.72
+    },
+    "conclusion": "success",
+    "metrics": {
+      "macro_f1_3class": 0.8588,
+      "macro_f1_3class_std": 0.0036,
+      "macro_f1_5class": 0.5398,
+      "macro_f1_5class_std": 0.015,
+      "binary_f1": 0.7925,
+      "binary_f1_std": 0.0097,
+      "n_samples": 2379,
+      "runtime_seconds": 911.7,
+      "note": "completed before kill signal"
+    },
+    "completed_at": "2026-05-21T01:45:54.219Z"
+  },
+  "timestamp": "2026-05-21T01:45:54.332771+00:00",
+  "trigger": "update_registry"
+}

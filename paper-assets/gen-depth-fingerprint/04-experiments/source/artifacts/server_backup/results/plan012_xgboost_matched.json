@@ -1,0 +1,166 @@
+{
+  "experiment": "plan-012-xgboost-matched",
+  "method": "HGBT_7features_5fold_stratified",
+  "evaluation_protocol": "5-fold stratified CV, 4 generators (pythia-1b, olmo-2-1b, qwen3-0.6b, qwen3-1.7b)",
+  "matched_to": "plan-012 QLoRA evaluation protocol",
+  "n_samples": 18423,
+  "n_folds": 5,
+  "n_bootstrap": 2000,
+  "seed": 42,
+  "features": [
+    "entropy_mean",
+    "entropy_std",
+    "entropy_min",
+    "entropy_max",
+    "tail_decay",
+    "ttr",
+    "hapax_ratio"
+  ],
+  "xgboost_5class": {
+    "macro_f1": 0.4968,
+    "macro_f1_std": 0.0076,
+    "macro_f1_ci95": [
+      0.4908,
+      0.5029
+    ],
+    "macro_f1_boot_std": 0.0031,
+    "weighted_f1": 0.5114,
+    "weighted_f1_ci95": [
+      0.5042,
+      0.5192
+    ],
+    "accuracy": 0.531,
+    "accuracy_ci95": [
+      0.524,
+      0.5383
+    ],
+    "per_class_f1": {
+      "class_0": 0.9492,
+      "class_1": 0.6495,
+      "class_2": 0.2665,
+      "class_3": 0.2611,
+      "class_4": 0.3578
+    },
+    "fold_results": [
+      {
+        "fold": 0,
+        "n_train": 14738,
+        "n_val": 3685,
+        "macro_f1": 0.4838,
+        "weighted_f1": 0.4988,
+        "accuracy": 0.5227
+      },
+      {
+        "fold": 1,
+        "n_train": 14738,
+        "n_val": 3685,
+        "macro_f1": 0.5058,
+        "weighted_f1": 0.5206,
+        "accuracy": 0.5384
+      },
+      {
+        "fold": 2,
+        "n_train": 14738,
+        "n_val": 3685,
+        "macro_f1": 0.503,
+        "weighted_f1": 0.5166,
+        "accuracy": 0.5354
+      },
+      {
+        "fold": 3,
+        "n_train": 14739,
+        "n_val": 3684,
+        "macro_f1": 0.4954,
+        "weighted_f1": 0.5099,
+        "accuracy": 0.5277
+      },
+      {
+        "fold": 4,
+        "n_train": 14739,
+        "n_val": 3684,
+        "macro_f1": 0.4957,
+        "weighted_f1": 0.511,
+        "accuracy": 0.5309
+      }
+    ]
+  },
+  "xgboost_3class": {
+    "macro_f1": 0.8048,
+    "macro_f1_std": 0.0076,
+    "macro_f1_ci95": [
+      0.799,
+      0.8107
+    ],
+    "macro_f1_boot_std": 0.003,
+    "weighted_f1": 0.8229,
+    "weighted_f1_ci95": [
+      0.8172,
+      0.8284
+    ],
+    "accuracy": 0.8251,
+    "accuracy_ci95": [
+      0.8196,
+      0.8308
+    ],
+    "per_class_f1": {
+      "class_0": 0.9516,
+      "class_1": 0.6079,
+      "class_2": 0.855
+    },
+    "fold_results": [
+      {
+        "fold": 0,
+        "n_train": 14738,
+        "n_val": 3685,
+        "macro_f1": 0.8115,
+        "weighted_f1": 0.8278,
+        "accuracy": 0.829
+      },
+      {
+        "fold": 1,
+        "n_train": 14738,
+        "n_val": 3685,
+        "macro_f1": 0.8148,
+        "weighted_f1": 0.8318,
+        "accuracy": 0.8339
+      },
+      {
+        "fold": 2,
+        "n_train": 14738,
+        "n_val": 3685,
+        "macro_f1": 0.7938,
+        "weighted_f1": 0.8137,
+        "accuracy": 0.8163
+      },
+      {
+        "fold": 3,
+        "n_train": 14739,
+        "n_val": 3684,
+        "macro_f1": 0.8033,
+        "weighted_f1": 0.8217,
+        "accuracy": 0.8238
+      },
+      {
+        "fold": 4,
+        "n_train": 14739,
+        "n_val": 3684,
+        "macro_f1": 0.8006,
+        "weighted_f1": 0.8194,
+        "accuracy": 0.8222
+      }
+    ]
+  },
+  "comparison": {
+    "qlora_qwen06b_5class": 0.5828,
+    "qlora_qwen06b_3class": 0.9052,
+    "qlora_pythia410m_5class": 0.5564,
+    "qlora_pythia410m_3class": 0.8703,
+    "xgboost_matched_5class": 0.4968,
+    "xgboost_matched_3class": 0.8048,
+    "delta_qwen06b_vs_xgboost_5class": 0.086,
+    "delta_qwen06b_vs_xgboost_3class": 0.1004,
+    "delta_pythia410m_vs_xgboost_5class": 0.0596,
+    "delta_pythia410m_vs_xgboost_3class": 0.0655
+  },
+  "runtime_seconds": 33.6
+}

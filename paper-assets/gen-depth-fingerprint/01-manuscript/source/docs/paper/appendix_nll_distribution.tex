@@ -1,0 +1,12 @@
+% section header and label in main.tex
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_appendix_nll_distribution.pdf}
+\caption{Token-level NLL distribution by generation depth, aggregated across all 8 generators (Pythia-410M reference model). Dashed lines indicate median NLL per depth. The systematic leftward shift demonstrates that deeper-generation text is increasingly predictable.}
+\label{fig:nll-dist}
+\end{figure}
+
+Figure~\ref{fig:nll-dist} plots the kernel density of per-token NLL across depths~0--4 (8 generators, 25 texts/depth, ${\sim}$236k tokens, Pythia-410M reference).
+The distributions shift leftward as depth increases: median NLL drops from 1.64~nats (gen-0) to 0.02 (gen-4). Recursively generated text becomes increasingly predictable.
+This monotonic compression provides a mechanistic explanation for the entropy-based features driving the depth classifier.

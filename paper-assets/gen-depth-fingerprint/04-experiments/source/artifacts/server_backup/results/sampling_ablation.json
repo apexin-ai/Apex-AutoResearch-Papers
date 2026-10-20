@@ -1,0 +1,80 @@
+{
+  "configs": {
+    "low_t05_p08": {
+      "3class_f1": 0.785,
+      "binary_f1": 0.7968,
+      "per_class_f1": {
+        "gen-0": 0.935,
+        "gen-1": 0.6233,
+        "gen-2+": 0.7968
+      },
+      "per_generator": {
+        "olmo-2-1b": 0.7478,
+        "pythia-1b": 0.8517,
+        "pythia-2.8b": 0.7915,
+        "qwen3-0.6b": 0.8183,
+        "qwen3-1.7b": 0.8417,
+        "qwen3-8b": 0.6585
+      },
+      "spearman_entropy_mean": -0.6942,
+      "spearman_entropy_std": -0.3244,
+      "spearman_entropy_min": -0.464,
+      "spearman_entropy_max": 0.0855,
+      "spearman_tail_decay": -0.0787,
+      "spearman_ttr": -0.6812,
+      "spearman_hapax_ratio": -0.7201
+    },
+    "default_t07_p09": {
+      "3class_f1": 0.7877,
+      "binary_f1": 0.7985,
+      "per_class_f1": {
+        "gen-0": 0.9335,
+        "gen-1": 0.6312,
+        "gen-2+": 0.7985
+      },
+      "per_generator": {
+        "olmo-2-1b": 0.7655,
+        "pythia-1b": 0.8516,
+        "pythia-2.8b": 0.8076,
+        "qwen3-0.6b": 0.8193,
+        "qwen3-1.7b": 0.8046,
+        "qwen3-8b": 0.6832
+      },
+      "spearman_entropy_mean": -0.6022,
+      "spearman_entropy_std": -0.1882,
+      "spearman_entropy_min": -0.4062,
+      "spearman_entropy_max": 0.0884,
+      "spearman_tail_decay": -0.0698,
+      "spearman_ttr": -0.6523,
+      "spearman_hapax_ratio": -0.6696
+    },
+    "high_t10_p095": {
+      "3class_f1": 0.7258,
+      "binary_f1": 0.7333,
+      "per_class_f1": {
+        "gen-0": 0.8772,
+        "gen-1": 0.5672,
+        "gen-2+": 0.7331
+      },
+      "per_generator": {
+        "olmo-2-1b": 0.7642,
+        "pythia-1b": 0.8575,
+        "pythia-2.8b": 0.8057,
+        "qwen3-0.6b": 0.8249,
+        "qwen3-1.7b": 0.4183,
+        "qwen3-8b": 0.6973
+      },
+      "spearman_entropy_mean": -0.0018,
+      "spearman_entropy_std": 0.0031,
+      "spearman_entropy_min": 0.0176,
+      "spearman_entropy_max": 0.0491,
+      "spearman_tail_decay": -0.1122,
+      "spearman_ttr": -0.3401,
+      "spearman_hapax_ratio": -0.363
+    }
+  },
+  "f1_range": 0.0619,
+  "f1_range_pp": 6.19,
+  "robust": false,
+  "binary_f1_range": 0.0652
+}

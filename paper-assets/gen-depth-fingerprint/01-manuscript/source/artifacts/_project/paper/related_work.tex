@@ -1,0 +1,19 @@
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{AI-generated text detection.}
+\looseness=-1 Detection methods span zero-shot scoring \cite{detectgpt,fast_detectgpt,binoculars,dna_gpt}, learned classifiers \cite{ghostbuster,ld_score,reliable_detection}, and surprisal-based approaches \cite{diveye,xu_spectrum_detection}; see \citet{wu_survey_2025} for a survey.
+Recent work moves beyond binary detection---multi-generator attribution \cite{semeval2024_task8}, collaboration roles \cite{beyond_binary}, joint detection-attribution \cite{two_birds}---but all taxonomize by \emph{source} or \emph{production mode}, not recursive generation \emph{depth}.
+Recent work reframes detection as an out-of-distribution problem \cite{human_texts_outliers}; depth profiling differs in targeting ordinal depth rather than binary membership, with cross-generator transfer as the evaluation axis.
+We introduce ordinal depth classification \cite{gutierrez_ordinal_survey,coral_ordinal} as a complementary task; repurposing existing detection scores as depth predictors reveals high cross-generator variance (binary F1\,=\,0.54--0.71; Table~\ref{tab:baselines}).
+
+\paragraph{Model collapse and iterative generation.}
+\looseness=-1 Self-consuming generative models lose distributional coverage via training-loop parameter updates \cite{self_consuming_mad,curse_of_recursion,strong_model_collapse,dohmatob_tale_of_tails,schaeffer_collapse_position}; we instead examine \emph{inference chains} where parameters are fixed.
+Concurrent iterative-generation studies document complementary phenomena: paraphrasing chains show factuality degradation \cite{broken_telephone}, Markovian analysis bounds distinguishable depth to ${\sim}$3 classes \cite{markovian_chains}, and attractor cycle evidence emerges \cite{attractor_cycles}.
+DDR differs in chain type (non-paraphrastic continuation), analysis lens (location/shape decomposition identifying what is \emph{preserved}), and downstream utility (shape stability enables cross-generator classification without calibration); a detailed comparison appears in Appendix~\ref{app:iterative-comparison}.
+
+\paragraph{Diversity, stylometry, and provenance.}
+\looseness=-1 Declining lexical diversity under recursive generation \cite{curious_decline,writing_diversity} aligns with the monotonic TTR and hapax ratio decline we observe; these classical stylometric features \cite{stamatatos_survey} constitute DDR's drifting component.
+Data curation relies on quality signals \cite{dsir,ccnet}; generation depth offers a complementary provenance axis.
+Watermarking \cite{watermark_llm,synthid_text} requires generator cooperation and degrades across multi-step chains \cite{chainwash}; our post-hoc approach requires no generation-time modification.
+Our NLL tail analysis extends probability-based membership inference \cite{min_k_percent,koike_mia_detection} from binary membership to ordinal depth.

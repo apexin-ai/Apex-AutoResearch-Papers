@@ -1,0 +1,114 @@
+{
+  "test_A_llama_rp11": {
+    "3class_f1": 0.4168,
+    "binary_f1": 0.5182,
+    "per_class": {
+      "class_0": {
+        "accuracy": 0.9859,
+        "n": 995
+      },
+      "class_1": {
+        "accuracy": 0.0974,
+        "n": 975
+      },
+      "class_2": {
+        "accuracy": 0.4489,
+        "n": 2446
+      }
+    },
+    "n_samples": 4416,
+    "confusion_matrix": [
+      [
+        979,
+        5,
+        11
+      ],
+      [
+        331,
+        319,
+        325
+      ],
+      [
+        626,
+        641,
+        1149
+      ]
+    ],
+    "labels": [
+      "gen-0",
+      "gen-1",
+      "gen-2+"
+    ]
+  },
+  "test_B_llama_rp10_filtered": {
+    "3class_f1": 0.7155,
+    "binary_f1": 0.621,
+    "per_class": {
+      "gen-0": {
+        "f1": 0.9427,
+        "accuracy": 0.9829,
+        "n": 995
+      },
+      "gen-1": {
+        "f1": 0.5647,
+        "accuracy": 0.5654,
+        "n": 872
+      },
+      "gen-2+": {
+        "f1": 0.6391,
+        "accuracy": 0.6131,
+        "n": 1070
+      }
+    },
+    "confusion_matrix": [
+      [
+        978,
+        10,
+        7
+      ],
+      [
+        59,
+        493,
+        320
+      ],
+      [
+        43,
+        371,
+        656
+      ]
+    ],
+    "binary_per_class": {
+      "gen-1": 0.6007,
+      "gen-2+": 0.6413
+    },
+    "binary_confusion_matrix": [
+      [
+        552,
+        320
+      ],
+      [
+        414,
+        656
+      ]
+    ],
+    "labels": [
+      "gen-0",
+      "gen-1",
+      "gen-2+"
+    ],
+    "n_kept": 2937,
+    "n_original": 4680
+  },
+  "train_info": {
+    "n_samples": 32378,
+    "generators": [
+      "mistral-7b-v0.3",
+      "olmo-2-1b",
+      "pythia-1b",
+      "pythia-2.8b",
+      "qwen3-0.6b",
+      "qwen3-1.7b",
+      "qwen3-8b"
+    ]
+  }
+}

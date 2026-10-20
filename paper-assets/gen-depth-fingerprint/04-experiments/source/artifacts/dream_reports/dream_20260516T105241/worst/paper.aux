@@ -1,0 +1,54 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Binary Synthetic Text Detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model Collapse and Iterative Generation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stylometry and Authorship Attribution.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Task Formulation}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Generation Chain Construction}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Feature Extraction}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Surface diversity features (2):}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Reference-model features (5):}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Classifier}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Feature Ablation and Trend Analysis}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:ablation}{{4.1}{3}{Feature Ablation and Trend Analysis}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Feature ablation (5-fold CV, Pythia-2.8B only). Surface features dominate; reference features contribute minimally (+3pp).}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:ablation}{{1}{3}{Feature ablation (5-fold CV, Pythia-2.8B only). Surface features dominate; reference features contribute minimally (+3pp)}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Generator Evaluation}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:cross-gen}{{4.2}{3}{Cross-Generator Evaluation}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces LOGO per-generator held-out F1. Performance degrades sharply for non-Pythia families.}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:logo}{{2}{3}{LOGO per-generator held-out F1. Performance degrades sharply for non-Pythia families}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces 7-feature ensemble vs baselines under 5-generator LOGO. The ensemble does not outperform Avg-LogProb.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:baselines}{{3}{4}{7-feature ensemble vs baselines under 5-generator LOGO. The ensemble does not outperform Avg-LogProb}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Paraphrastic vs Continuation Chains}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:para}{{4.3}{4}{Paraphrastic vs Continuation Chains}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Chain type comparison. The difference is not statistically significant ($p = 0.18$).}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:para}{{4}{4}{Chain type comparison. The difference is not statistically significant ($p = 0.18$)}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Finer-Grained Ordinal Classification}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:ordinal}{{4.4}{4}{Finer-Grained Ordinal Classification}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Classification performance across granularities. 5-class degrades to near-random.}}{4}{table.5}\protected@file@percent }
+\newlabel{tab:ordinal}{{5}{4}{Classification performance across granularities. 5-class degrades to near-random}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}End-to-End Learned Classifier}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:e2e}{{4.5}{5}{End-to-End Learned Classifier}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces End-to-end vs handcrafted features. Both fail at cross-family generalization identically.}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:e2e}{{6}{5}{End-to-end vs handcrafted features. Both fail at cross-family generalization identically}{table.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{5}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{5}{section.6}\protected@file@percent }
+\bibstyle{plain}
+\bibcite{mitchell2023detectgpt}{1}
+\bibcite{hans2024binoculars}{2}
+\bibcite{alemohammad2023selfconsuming}{3}
+\bibcite{dohmatob2024modelcollapse}{4}
+\bibcite{guo2024curious}{5}
+\bibcite{holtzman2020curious}{6}
+\bibcite{bao2024broken}{7}
+\bibcite{stamatatos2009survey}{8}
+\bibcite{biderman2023pythia}{9}
+\bibcite{groeneveld2024olmo}{10}
+\gdef \@abspage@last{6}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan-014",
+  "project": "gen-depth-fingerprint",
+  "state": "QUEUED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T00:12:01.909Z",
+    "updated_at": "2026-05-15T00:23:25.860Z",
+    "hypothesis": "大模型生成器：Qwen3-8B-Base (7B+) 的 continuation 链是否展现同样的 depth dynamics"
+  },
+  "timestamp": "2026-05-15T00:23:25.913876+00:00",
+  "trigger": "update_registry"
+}

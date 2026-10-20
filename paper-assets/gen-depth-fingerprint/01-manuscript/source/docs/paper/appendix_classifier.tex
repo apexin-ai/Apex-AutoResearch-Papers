@@ -1,0 +1,116 @@
+\looseness=-1 To verify that the depth signal resides in the features rather than the classifier,
+we repeat the 6-generator LOGO evaluation using Logistic Regression and Random Forest
+in place of XGBoost (Table~\ref{tab:alt-classifier}).
+All other settings (the same 7 features, 3-class labels, and class-balanced downsampling) are
+kept identical. For Logistic Regression we apply standard scaling to the features.
+
+\begin{table}[ht]
+\centering
+\caption{LOGO macro-F1 across three classifiers. Each column shows the held-out generator F1. (6-generator LOGO; 3-class.)}
+\label{tab:alt-classifier}
+\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lc cccccc}
+\toprule
+Classifier & Avg F1 & OLMo-2 & Py-1B & Py-2.8B & Qw-0.6B & Qw-1.7B & Qw-8B \\
+\midrule
+XGBoost          & 0.789 & 0.764 & 0.856 & 0.804 & 0.824 & 0.806 & 0.683 \\
+Random Forest    & 0.790 & 0.764 & 0.856 & 0.804 & 0.825 & 0.807 & 0.684 \\
+Logistic Regr.   & 0.725 & 0.719 & 0.781 & 0.740 & 0.745 & 0.743 & 0.624 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\looseness=-1 Both tree-based classifiers achieve LOGO F1 $\approx 0.79$,
+and even a linear model reaches $0.725$, well above the $0.33$ chance baseline for
+three classes.
+The per-generator ranking is also consistent across classifiers
+(Pythia-1B easiest, Qwen3-8B hardest),
+confirming that discriminative power originates in the entropy and lexical features,
+not in classifier capacity.
+Ordinal-specific methods (CORAL \cite{coral_ordinal}, Frank-Hall \cite{frank_hall_ordinal}) achieve comparable F1 with overlapping CIs, which confirms that 3-class granularity provides insufficient resolution for ranking-aware losses to improve over standard multiclass classification.
+
+\paragraph{XGBoost hyperparameter sensitivity.}
+To verify that performance is not an artifact of hyperparameter selection, we vary \texttt{max\_depth} $\in \{3, 4, 6, 8\}$ while keeping all other settings fixed (Table~\ref{tab:xgb-sensitivity}).
+
+\begin{table}[ht]
+\centering
+\small
+\caption{XGBoost \texttt{max\_depth} sensitivity (8-gen LOGO). 3-class F1 varies by only 2.0\,pp; binary F1 (gen-1 vs.\ gen-2+) is effectively invariant ($\leq$0.1\,pp).}
+\label{tab:xgb-sensitivity}
+\begin{tabular}{lcc}
+\toprule
+\textbf{max\_depth} & \textbf{3-class F1} & \textbf{Binary F1} \\
+\midrule
+3 & 0.752 & 0.700 \\
+4 & 0.759 & 0.699 \\
+6 & 0.769 & 0.700 \\
+8 & 0.772 & 0.699 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\looseness=-1 3-class F1 increases monotonically with tree depth but the total range is only 2.0\,pp (0.752--0.772); binary F1 is effectively invariant (0.699--0.700).
+The default \texttt{max\_depth}\,=\,6 used throughout the paper lies within 0.3\,pp of the best 3-class setting; the reported results are not sensitive to this choice.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_appendix_confusion.pdf}
+\caption{3-class LOGO confusion matrix ($N$\,=\,27{,}529). (a)~Raw counts. (b)~Row-normalized recall percentages. Gen-0 achieves near-perfect classification; the primary confusion axis is gen-1 $\leftrightarrow$ gen-2+.}
+\label{fig:confusion-heatmap}
+\end{figure}
+
+\subsection*{Sampling Sensitivity Analysis}
+\label{app:sampling-sensitivity}
+
+\looseness=-1 To assess robustness to decoding temperature, we regenerate continuation chains at $t \in \{0.5, 0.9\}$ with fixed nucleus $p{=}0.9$ (matching the default) for four generators spanning three model families: Pythia-2.8B, OLMo-2-1B, Qwen3-1.7B, and Qwen3-0.6B (Table~\ref{tab:sampling-ablation}).
+
+\begin{table}[ht]
+\centering
+\caption{Depth classification under varying temperature (fixed top-$p$\,=\,0.9). Binary: gen-1 vs.\ gen-2+. LOGO evaluation; 95\% bootstrap CIs.$^{\ast}$$^{\dagger}$}
+\label{tab:sampling-ablation}
+\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{llcc c}
+\toprule
+Model & Temp & LOGO Binary F1 & 95\% CI & $\rho$(ent.\ mean) \\
+\midrule
+Pythia-2.8B$^{\dagger}$ & 0.5  & \textbf{0.814} & [.798, .828] & $-0.58$ \\
+Pythia-2.8B$^{\dagger}$ & 0.7  & 0.740 & [.725, .755] & $-0.60$ \\
+Pythia-2.8B$^{\dagger}$ & 0.9  & 0.480 & [.465, .498] & $-0.30$ \\
+\midrule
+OLMo-2-1B & 0.5  & \textbf{0.783} & [.768, .798] & $-0.72$ \\
+OLMo-2-1B & 0.7  & 0.695 & [.679, .711] & $-0.60$ \\
+OLMo-2-1B & 0.9  & 0.453 & [.437, .469] & $-0.26$ \\
+\midrule
+Qwen3-1.7B$^{\dagger}$ & 0.5  & 0.751 & --- & $-0.60$ \\
+Qwen3-1.7B$^{\dagger}$ & 0.7  & 0.751 & --- & $-0.60$ \\
+Qwen3-1.7B$^{\dagger}$ & 0.9  & 0.566 & --- & $-0.37$ \\
+\midrule
+Qwen3-0.6B & 0.5  & 0.711 & [.694, .729] & $-0.67$ \\
+Qwen3-0.6B & 0.7  & 0.691 & [.673, .709] & $-0.60$ \\
+Qwen3-0.6B & 0.9  & 0.598 & [.582, .615] & $-0.29$ \\
+\bottomrule
+\end{tabular}}
+\end{table}
+\noindent\begin{minipage}{\columnwidth}
+\scriptsize $^{\ast}$OLMo temperature experiments use OLMo-2-0425-1B; the original OLMo-2-1B-hf weights are no longer publicly available.\par\vspace{1pt}
+$^{\dagger}$Pythia-2.8B and Qwen3-1.7B use 6-generator LOGO (pre-expansion); OLMo-2-1B and Qwen3-0.6B use 8-generator LOGO. Within-model comparisons are unaffected.
+\end{minipage}\vspace{4pt}
+
+\looseness=-1 Temperature sensitivity is asymmetric and model-dependent. High-temperature degradation ($t{=}0.9$) is universal: all four generators lose $9.3$--$26.0$\,pp in binary F1, with entropy mean's $|\rho|$ weakening to $0.26$--$0.37$ (vs.\ $0.58$--$0.72$ at $t{=}0.5$). Low-temperature improvement ($t{=}0.5$) is model-dependent: Pythia-2.8B and OLMo-2-1B gain $+7.4$ and $+8.8$\,pp respectively, while both Qwen models show negligible change ($0$--$2.0$\,pp). This split tracks model family rather than scale: Qwen3-0.6B (smallest) and Qwen3-1.7B both plateau, while OLMo-2-1B (similar scale to Qwen3-1.7B) benefits substantially. One possible explanation is that Qwen models produce more peaked output distributions at $t{=}0.7$, leaving less room for low-temperature compression to sharpen the depth signal.
+
+\looseness=-1 The method operates reliably within $t \in [0.5, 0.7]$ across all tested models. Degradation onset at $t{=}0.9$ defines the practical upper bound, consistent with the hypothesis that elevated temperature injects sufficient randomness to flatten the distributional drift that DDR exploits (\S\ref{sec:discussion}).
+
+\subsection*{Per-Generator Performance}
+
+Figure~\ref{fig:per-gen} visualizes per-generator LOGO performance.
+Pythia models (1B, 2.8B) achieve highest F1, while larger models (Mistral-7B, Qwen3-8B) show degradation.
+The scale effect (larger models $\rightarrow$ lower F1) is consistent with higher-capacity models generating text statistically closer to human writing.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_appendix_per_gen.pdf}
+\caption{Per-generator LOGO performance. (a)~Binary and 3-class F1, sorted by binary F1. Dashed lines: pool average. (b)~6-generator LOGO detail heatmap across model families.}
+\label{fig:per-gen}
+\end{figure*}

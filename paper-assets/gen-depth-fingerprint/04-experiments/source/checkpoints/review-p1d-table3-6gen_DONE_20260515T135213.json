@@ -1,0 +1,27 @@
+{
+  "exp_id": "review-p1d-table3-6gen",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:39:11.673Z",
+    "updated_at": "2026-05-15T13:52:13.005Z",
+    "hypothesis": "P1-D: Table 3 统一为 6-gen LOGO + M6 超参对比——single baselines 用 6-gen 口径 + 100/3 vs 200/6 比较",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python3 scripts/review_p1d_6gen_baselines.py",
+      "server": "autodl-5090",
+      "data_path": "data/detector_scores_all.csv + data/*/generations.jsonl",
+      "data_count": 27529,
+      "model_name": "XGBClassifier (single-feature baselines)",
+      "seed": 789,
+      "checkpoint_path": "results/review_p1d_6gen_baselines.json",
+      "log_path": "logs/review_p1d_6gen_baselines.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T13:52:13.005Z"
+  },
+  "timestamp": "2026-05-15T13:52:13.082765+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,32 @@
+{
+  "exp_id": "plan-006-paraphrastic",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T21:44:53.232Z",
+    "updated_at": "2026-05-15T23:13:21.032Z",
+    "spec": {
+      "plan_id": "plan_006",
+      "hypothesis": "Paraphrastic chains converge faster than continuation chains, preserving less depth signal — tests attractor convergence theory",
+      "gpu": "cuda:1",
+      "command": "python paraphrastic_chains.py --phase all --device cuda:1",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/prompt_type_features.csv (continuation baseline)",
+      "data_count": "995 seeds x 5 depths",
+      "model_name": "Pythia-2.8B",
+      "seed": "matching plan-005 seeds",
+      "pid": 246021
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T23:13:20.370Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T23:13:21.032Z"
+  },
+  "timestamp": "2026-05-15T23:13:21.123881+00:00",
+  "trigger": "update_registry"
+}

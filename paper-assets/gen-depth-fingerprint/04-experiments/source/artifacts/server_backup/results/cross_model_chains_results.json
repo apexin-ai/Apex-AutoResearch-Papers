@@ -1,0 +1,150 @@
+{
+  "experiment": "cross_model_chains",
+  "plan": "plan_007",
+  "cross_model": {
+    "macro_f1_mean": 0.8089,
+    "macro_f1_std": 0.0166,
+    "binary_f1": 0.7635,
+    "binary_f1_gen1_vs_gen2plus": 0.7635,
+    "binary_f1_gen0_vs_gen2plus": 0.8372,
+    "fold_f1s": [
+      0.8059,
+      0.7974,
+      0.7869,
+      0.82,
+      0.8341
+    ],
+    "n_samples": 2964,
+    "confusion_matrix": [
+      [
+        935,
+        48,
+        5
+      ],
+      [
+        68,
+        750,
+        170
+      ],
+      [
+        23,
+        250,
+        715
+      ]
+    ],
+    "per_class": {
+      "gen-0": {
+        "precision": 0.9113,
+        "recall": 0.9464,
+        "f1": 0.9285
+      },
+      "gen-1": {
+        "precision": 0.7156,
+        "recall": 0.7591,
+        "f1": 0.7367
+      },
+      "gen-2+": {
+        "precision": 0.8034,
+        "recall": 0.7237,
+        "f1": 0.7614
+      }
+    },
+    "feature_importance": {
+      "entropy_mean": 0.2038,
+      "entropy_std": 0.0856,
+      "entropy_min": 0.0513,
+      "entropy_max": 0.0584,
+      "tail_decay": 0.0415,
+      "ttr": 0.2024,
+      "hapax_ratio": 0.357
+    },
+    "statistical_tests": [
+      {
+        "feature": "entropy_mean",
+        "H": 1244.6837,
+        "p": 5.25245679240583e-271,
+        "sig": true
+      },
+      {
+        "feature": "entropy_std",
+        "H": 251.454,
+        "p": 2.4972585385306665e-55,
+        "sig": true
+      },
+      {
+        "feature": "entropy_min",
+        "H": 636.0661,
+        "p": 7.585851687682177e-139,
+        "sig": true
+      },
+      {
+        "feature": "entropy_max",
+        "H": 62.0166,
+        "p": 3.414040918479937e-14,
+        "sig": true
+      },
+      {
+        "feature": "tail_decay",
+        "H": 5.733,
+        "p": 0.05689686582747448,
+        "sig": false
+      },
+      {
+        "feature": "ttr",
+        "H": 1700.1458,
+        "p": 0.0,
+        "sig": true
+      },
+      {
+        "feature": "hapax_ratio",
+        "H": 1766.6233,
+        "p": 0.0,
+        "sig": true
+      }
+    ]
+  },
+  "generator_diversity": {
+    "mean_unique_generators": 3.0,
+    "std_unique_generators": 0.67,
+    "distribution": {
+      "3": 517,
+      "4": 196,
+      "2": 182,
+      "1": 8
+    }
+  },
+  "single_model_baselines": {
+    "pythia-2.8b": {
+      "macro_f1_mean": 0.8156,
+      "macro_f1_std": 0.0166,
+      "n_samples": 2976
+    },
+    "pythia-1b": {
+      "macro_f1_mean": 0.8622,
+      "macro_f1_std": 0.0121,
+      "n_samples": 2979
+    },
+    "olmo-2-1b": {
+      "macro_f1_mean": 0.7801,
+      "macro_f1_std": 0.0096,
+      "n_samples": 2964
+    },
+    "qwen3-0.6b": {
+      "macro_f1_mean": 0.8354,
+      "macro_f1_std": 0.0163,
+      "n_samples": 2958
+    },
+    "qwen3-1.7b": {
+      "macro_f1_mean": 0.8106,
+      "macro_f1_std": 0.017,
+      "n_samples": 2949
+    }
+  },
+  "generator_pool": [
+    "pythia-2.8b",
+    "pythia-1b",
+    "olmo-2-1b",
+    "qwen3-0.6b",
+    "qwen3-1.7b"
+  ]
+}

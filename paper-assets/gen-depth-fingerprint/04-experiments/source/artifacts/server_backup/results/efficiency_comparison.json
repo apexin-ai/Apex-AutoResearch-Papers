@@ -1,0 +1,71 @@
+{
+  "benchmark_config": {
+    "n_samples": 100,
+    "warmup_samples": 5,
+    "max_seq_len": 512,
+    "avg_seq_len": 236.8,
+    "gpu": "NVIDIA RTX 5090 32GB",
+    "dtype": "float16"
+  },
+  "methods": {
+    "7_feature_ensemble": {
+      "models": [
+        "Pythia-410M (410M params)"
+      ],
+      "model_params_total": "410M",
+      "forward_passes_per_text": 1,
+      "gpu_memory_mb": 773.1,
+      "inference_gpu_memory_mb": 905.2,
+      "wall_clock_ms_per_text": 9.7,
+      "total_time_100_texts_s": 0.97,
+      "flops_per_text": "1.94e+11",
+      "features": {
+        "reference (GPU)": [
+          "entropy_mean",
+          "entropy_std",
+          "entropy_min",
+          "entropy_max",
+          "tail_decay"
+        ],
+        "surface (CPU)": [
+          "ttr",
+          "hapax_ratio"
+        ]
+      }
+    },
+    "4_det_plus_surface": {
+      "models": [
+        "Pythia-410M (410M params, observer)",
+        "Pythia-1B (1B params, performer)"
+      ],
+      "model_params_total": "1.41B",
+      "forward_passes_per_text": "3 naive (2× 410M + 1× 1B) or 2 optimized (1× 410M + 1× 1B)",
+      "gpu_memory_mb": 2712.1,
+      "inference_gpu_memory_mb": 2867.8,
+      "wall_clock_ms_per_text": 22.8,
+      "total_time_100_texts_s": 2.28,
+      "flops_per_text_optimized": "6.68e+11",
+      "flops_per_text_naive": "8.62e+11",
+      "time_breakdown_s": {
+        "fdg_logprob_s": 0.858,
+        "binoculars_s": 1.359,
+        "ld_score_s": 0.061,
+        "surface_s": 0.002
+      },
+      "detectors": {
+        "avg_logprob": "1× Pythia-410M forward pass",
+        "fastdetectgpt": "same Pythia-410M pass (shared)",
+        "binoculars": "1× Pythia-410M (observer) + 1× Pythia-1B (performer)",
+        "ld_score": "CPU trigram JSD (no GPU model)",
+        "surface": "TTR + hapax_ratio (CPU string ops)"
+      }
+    }
+  },
+  "comparison": {
+    "speedup_ratio": 2.35,
+    "memory_ratio": 3.51,
+    "flop_ratio_optimized": 3.44,
+    "flop_ratio_naive": 4.44,
+    "parameter_ratio": 3.44
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "exp_id": "review-p1c-instruct-logo",
+  "project": "gen-depth-fingerprint",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:52:46.010Z",
+    "updated_at": "2026-05-15T16:28:59.850Z",
+    "hypothesis": "P1-C instruct LOGO F1: 7-gen LOGO (6 base + Qwen3-1.7B-Instruct) 分类器评估，instruct vs base 泛化对比",
+    "conclusion": "success",
+    "metrics": {
+      "7gen_logo_avg_f1": 0.7498,
+      "7gen_binary_f1": 0.768,
+      "6gen_base_logo_f1": 0.789,
+      "6gen_base_binary_f1": 0.723,
+      "instruct_held_out_3class_f1": 0.5434,
+      "instruct_held_out_binary_f1": 0.6582,
+      "base_qwen17b_held_out_3class_f1": 0.8023,
+      "base_qwen17b_held_out_binary_f1": 0.8208,
+      "instruct_vs_base_delta_3class": -0.2589,
+      "instruct_vs_base_delta_binary": -0.1626
+    },
+    "spec": {
+      "command": "python run_logo_eval.py --mode 7gen-instruct",
+      "server": "autodl-5090",
+      "data_path": "data/",
+      "data_count": 25000,
+      "model_name": "7-gen LOGO (6 base + Qwen3-1.7B-Instruct)",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-15T16:28:59.929955+00:00",
+  "trigger": "update_registry"
+}

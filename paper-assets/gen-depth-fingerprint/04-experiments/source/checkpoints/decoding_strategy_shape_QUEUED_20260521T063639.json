@@ -1,0 +1,15 @@
+{
+  "exp_id": "decoding_strategy_shape",
+  "project": "gen-depth-fingerprint",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T06:36:35.954Z",
+    "updated_at": "2026-05-21T06:36:39.724Z",
+    "hypothesis": "DDR shape stability (entropy_max, entropy_min, tail_decay d<0.15) holds under greedy and top-k decoding, not just nucleus sampling — verifying the claim is decoding-strategy-agnostic"
+  },
+  "timestamp": "2026-05-21T06:36:39.865543+00:00",
+  "trigger": "update_registry"
+}

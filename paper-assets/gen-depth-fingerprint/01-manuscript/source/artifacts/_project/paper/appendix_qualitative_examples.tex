@@ -1,0 +1,48 @@
+\section{Qualitative Examples}
+\label{app:qualitative}
+
+Table~\ref{tab:qualitative-text} presents an example generation chain from seed 120 (Pythia-2.8B, continuation prompt), illustrating how text evolves across recursive generation steps.
+Table~\ref{tab:qualitative-features} reports the corresponding 7-feature values. Central-tendency features ($\bar{H}$, TTR, hapax ratio) drift monotonically while shape features ($H_{\max}$, tail decay) remain near-stationary, consistent with the differential depth response pattern.
+
+\begin{table}[t]
+\centering
+\caption{Example text chain from seed 120 (Pythia-2.8B, continuation prompt). Gen-0 is the original Wikipedia passage; gen-1 and gen-2 are successive LLM continuations. Text is truncated for space.}
+\label{tab:qualitative-text}
+\small
+\begin{tabular}{p{0.90\columnwidth}}
+\toprule
+\textbf{Gen-0 (Wikipedia seed)} \\
+\midrule
+Aquarius is an equatorial constellation of the zodiac, between Capricornus and Pisces. Its name is Latin for ``water-carrier'' or ``cup-carrier''. Aquarius is one of the oldest of the recognized constellations along the zodiac (the Sun's apparent path). It was one of the 48 constellations listed by the 2nd century astronomer Ptolemy, and it remains one of the 88 modern constellations. It is found in a region often called the Sea due to its profusion of constellations with watery associations such as Cetus the whale, Pisces the fish, and Eridanus the river. [\ldots] \\
+\midrule
+\textbf{Gen-1} \\
+\midrule
+Babylonian astrology and was also depicted in ancient Egyptian art. In Greek mythology, Aquarius is the son of Poseidon and Gaia. He is also the god of the sea and the sky, the god of travelers, and the guardian of the underworld. In Roman mythology, Aquarius is the son of Saturn and the nymph Egeria, and the god of the sea. In Jewish mythology, Aquarius is the son of the God of the Air and the Goddess of the Moon. In Chinese mythology, Aquarius is the son of the God of the Sky and the Goddess of the Earth. [\ldots] \\
+\midrule
+\textbf{Gen-2} \\
+\midrule
+God of the Sky and the Goddess of the Earth. In the ancient Greek mythology, Aquarius is the son of the God of the Sky and the Goddess of the Earth. In the Hindu mythology, Aquarius is the son of the God of the Sky and the Goddess of the Earth. In the ancient Egyptian mythology, Aquarius is the son of the God of the Sky and the Goddess of the Earth. [\ldots] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Feature values for the chain in Table~\ref{tab:qualitative-text}. Drifting features ($\bar{H}$, TTR, hapax) show monotonic degradation; shape features ($H_{\max}$, tail decay) remain stable (range $<$2\% and $<$4\% respectively).}
+\label{tab:qualitative-features}
+\small
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lrrr}
+\toprule
+Feature & Gen-0 & Gen-1 & Gen-2 \\
+\midrule
+$\bar{H}$ (entropy mean) & 2.720 & 2.206 & 0.780 \\
+$\sigma_H$ (entropy std) & 1.772 & 1.816 & 1.517 \\
+$H_{\min}$ (entropy min) & 0.002 & 0.005 & 0.000 \\
+$H_{\max}$ (entropy max) & 7.000 & 7.016 & 6.926 \\
+tail decay & $-$0.00227 & $-$0.00231 & $-$0.00223 \\
+TTR & 0.659 & 0.272 & 0.081 \\
+hapax ratio & 0.561 & 0.183 & 0.005 \\
+\bottomrule
+\end{tabular}}
+\end{table}

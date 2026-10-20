@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan-016-gemma2-2b",
+  "project": "gen-depth-fingerprint",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T07:18:06.285Z",
+    "updated_at": "2026-05-16T07:42:56.399Z",
+    "hypothesis": "Scope expansion: Gemma-2-2B (Google/Gemma family) continuation chains — extend depth fingerprinting from 3 to 6 model families"
+  },
+  "timestamp": "2026-05-16T07:42:56.528529+00:00",
+  "trigger": "update_registry"
+}

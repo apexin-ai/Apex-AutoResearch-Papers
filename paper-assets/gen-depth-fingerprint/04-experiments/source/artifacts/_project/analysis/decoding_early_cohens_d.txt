@@ -1,0 +1,33 @@
+Cohen's d: gen-1 vs gen-2+ (Decoding Strategy Early Results)
+============================================================
+Reference model: Pythia-410M | Date: 2026-05-21
+
+| Generator            | Strategy | entropy_mean | entropy_std | entropy_max | entropy_min | tail_decay | TTR   | hapax_ratio |
+|----------------------|----------|-------------|-------------|-------------|-------------|------------|-------|-------------|
+| OLMo-2-1B            | greedy   | 1.293       | 0.947       | 0.031       | 0.027       | 0.033      | 0.889 | 0.805       |
+| OLMo-2-1B            | top-k    | 0.729       | 0.352       | 0.011       | 0.011       | 0.222      | 0.704 | 0.690       |
+| Pythia-2.8B          | greedy   | 1.426       | 0.931       | 0.091       | 0.075       | 0.066      | 0.981 | 0.875       |
+| Pythia-1B            | greedy   | 0.983       | 0.912       | 0.123       | 0.044       | 0.039      | 0.635 | 0.529       |
+
+Sample sizes:
+  OLMo-2-1B greedy:   gen1=984,  gen2+=2900
+  OLMo-2-1B top-k:    gen1=984,  gen2+=2662
+  Pythia-2.8B greedy:  gen1=995,  gen2+=2864
+  Pythia-1B greedy:    gen1=994,  gen2+=2878
+
+Shape features (entropy_max, entropy_min, tail_decay) — expected < 0.20:
+  - OLMo-2-1B greedy:  max=0.031, min=0.027, tail=0.033  [ALL < 0.20 YES]
+  - OLMo-2-1B top-k:   max=0.011, min=0.011, tail=0.222  [tail_decay EXCEEDS 0.20]
+  - Pythia-2.8B greedy: max=0.091, min=0.075, tail=0.066  [ALL < 0.20 YES]
+  - Pythia-1B greedy:   max=0.123, min=0.044, tail=0.039  [ALL < 0.20 YES]
+
+Drifting features (entropy_mean, TTR, hapax_ratio) — expected > 0.50:
+  - OLMo-2-1B greedy:  mean=1.293, TTR=0.889, hapax=0.805  [ALL > 0.50 YES]
+  - OLMo-2-1B top-k:   mean=0.729, TTR=0.704, hapax=0.690  [ALL > 0.50 YES]
+  - Pythia-2.8B greedy: mean=1.426, TTR=0.981, hapax=0.875  [ALL > 0.50 YES]
+  - Pythia-1B greedy:   mean=0.983, TTR=0.635, hapax=0.529  [ALL > 0.50 YES]
+
+Summary:
+  Shape/drifting dichotomy holds across all 4 conditions.
+  Greedy decoding produces larger effect sizes than top-k (OLMo-2-1B greedy vs top-k).
+  One minor exception: OLMo-2-1B top-k tail_decay=0.222, slightly above the 0.20 threshold.

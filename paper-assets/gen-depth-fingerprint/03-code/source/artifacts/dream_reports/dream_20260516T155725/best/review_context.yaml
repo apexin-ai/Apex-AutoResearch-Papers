@@ -1,0 +1,458 @@
+narrative_guidance: '所有 plan-016 跨家族生成器确认 depth signal 普遍存在；9-generator 评估强化 universality
+  claim； framing 完全成立无需调整。原始 3 claims 完整保留，Claim 1 的 generalization 论据从 6-gen 升级到
+  9-gen 跨 5+ 家族。 Differential depth response 在所有新家族中定性成立，cross-family reference model
+  优势得到确认。
+
+  '
+imagined_experiments:
+- name: feature_ablation_and_trend
+  plan_id: plan_001
+  description: '三部分分析：(A) 特征消融 full/reference-only/surface-only； (B) 每特征 depth trend
+    线性拟合；(C) 深度分层 perplexity 预验证。
+
+    '
+  expected_results:
+    full_7feat_macro_f1: 0.832
+    reference_only_f1: 0.738
+    surface_only_f1: 0.774
+    full_vs_surface_bootstrap_p: 0.001
+    full_vs_ref_bootstrap_p: 0.0001
+    h2_drift_features:
+      entropy_mean_slope: -0.28
+      entropy_mean_R2: 0.94
+      ttr_slope: -0.045
+      ttr_R2: 0.91
+      hapax_ratio_slope: -0.062
+      hapax_R2: 0.96
+    h1_stationary_features:
+      entropy_std_slope: -0.008
+      entropy_std_R2: 0.12
+      tail_decay_slope: 0.003
+      tail_decay_R2: 0.05
+      entropy_max_slope: -0.015
+      entropy_max_R2: 0.18
+    median_ppl_by_depth:
+    - 13.5
+    - 4.96
+    - 3.0
+    - 2.07
+    - 1.72
+    ppl_depth_spearman: -0.92
+  result_rationale: 'best 档下，full ensemble 显著优于任一子集（+5.8pp over ref-only，+5.8pp over
+    surface）， 证明 reference features 和 surface features 提供互补信号而非冗余。H2 drift features  展现
+    R²>0.90 的强单调趋势，因为递归生成的 location shift 导致 mean/diversity 持续压缩； H1 features R²<0.20
+    因为 shape 由 sampling mechanism 和 architecture 决定，对 input  content drift 不敏感。Perplexity
+    随 depth 急剧下降（depth-0 到 depth-4 下降 87%）， 这是因为深层生成文本越来越可预测（mean NLL 持续降低）。
+
+    '
+  tables:
+  - name: 'Table 1: Feature Ablation (5-fold CV, Pythia-2.8B)'
+    columns:
+    - Feature_Set
+    - Macro_F1
+    - 95%_CI
+    rows:
+    - - Full_7feat
+      - 0.832
+      - '[0.818, 0.845]'
+    - - Reference_only_5feat
+      - 0.738
+      - '[0.721, 0.754]'
+    - - Surface_only_2feat
+      - 0.774
+      - '[0.758, 0.789]'
+  - name: 'Table 2: Per-Feature Depth Trend (Linear Regression)'
+    columns:
+    - Feature
+    - Slope
+    - R²
+    - Category
+    rows:
+    - - entropy_mean
+      - -0.28
+      - 0.94
+      - drift
+    - - hapax_ratio
+      - -0.062
+      - 0.96
+      - drift
+    - - ttr
+      - -0.045
+      - 0.91
+      - drift
+    - - entropy_std
+      - -0.008
+      - 0.12
+      - stationary
+    - - tail_decay
+      - 0.003
+      - 0.05
+      - stationary
+    - - entropy_max
+      - -0.015
+      - 0.18
+      - stationary
+    - - entropy_min
+      - -0.19
+      - 0.88
+      - drift
+  figures_description:
+  - 'Fig 1: 7 features × depth(0-4) 折线图, mean±std, drift features 清晰单调下降, stationary
+    features 近水平'
+  - 'Fig 2: Perplexity by depth box plot, 呈现 depth-0>>depth-4 的急剧下降'
+  analysis: '消融结果确认 surface 和 reference features 各自贡献独立信号。drift/stationary 分裂完美对齐
+    location-shift 假说：central-tendency features 跟踪 mean shift，shape features 对之不敏感。
+
+    '
+- name: cross_generator_evaluation
+  plan_id: plan_002
+  description: '扩展到 5 generators (Pythia-2.8B, Pythia-1B, OLMo-2-1B, Qwen3-1.7B, Qwen3-0.6B)，
+    LOGO CV 评估跨生成器泛化能力。
+
+    '
+  expected_results:
+    logo_5gen_avg_macro_f1: 0.81
+    logo_5gen_ci95:
+    - 0.798
+    - 0.822
+    per_generator_held_out:
+      pythia-2.8b: 0.82
+      pythia-1b: 0.86
+      olmo-2-1b: 0.77
+      qwen3-1.7b: 0.81
+      qwen3-0.6b: 0.83
+    per_gen_f1_std: 0.032
+    per_gen_f1_range:
+    - 0.77
+    - 0.86
+    leave_one_family_out:
+      pythia_held_out: 0.79
+      olmo_held_out: 0.77
+      qwen_held_out: 0.8
+    family_out_vs_gen_out_delta: 0.015
+    ablation_full_f1: 0.81
+    ablation_reference_only_f1: 0.76
+    ablation_surface_only_f1: 0.754
+    top_features:
+    - hapax_ratio_0.285
+    - ttr_0.172
+    - entropy_mean_0.165
+    total_records: 22920
+  result_rationale: 'best 档假设跨生成器泛化强健。5-gen LOGO 均值 0.81 体现了 depth signal 的 architecture-invariant  特性——递归生成的
+    distributional drift 是生成过程本身的属性，不依赖特定模型。Pythia-1B 最高因为 与训练集中 Pythia-2.8B 同家族共享
+    tokenizer/architecture bias；OLMo 最低因为 architecture  差异最大。家族级别 holdout 仅比 generator-level
+    低 ~1.5pp，说明跨家族泛化 robust。 per-gen std 0.032 远低于单检测器 baseline 的 per-gen variance。
+
+    '
+  tables:
+  - name: 'Table 3: Leave-One-Generator-Out F1'
+    columns:
+    - Held_Out_Generator
+    - Family
+    - Params
+    - Macro_F1
+    rows:
+    - - Pythia-2.8B
+      - Pythia
+      - 2.8B
+      - 0.82
+    - - Pythia-1B
+      - Pythia
+      - 1.0B
+      - 0.86
+    - - OLMo-2-1B
+      - OLMo
+      - 1.5B
+      - 0.77
+    - - Qwen3-1.7B
+      - Qwen
+      - 1.7B
+      - 0.81
+    - - Qwen3-0.6B
+      - Qwen
+      - 0.6B
+      - 0.83
+  - name: 'Table 4: Leave-One-Family-Out F1'
+    columns:
+    - Held_Out_Family
+    - Macro_F1
+    - Delta_vs_GenOut
+    rows:
+    - - Pythia
+      - 0.79
+      - -0.02
+    - - OLMo
+      - 0.77
+      - 0.0
+    - - Qwen
+      - 0.8
+      - -0.01
+  figures_description:
+  - 'Fig 3: Per-generator held-out F1 bar chart with CI whiskers, 展示跨生成器一致性'
+  analysis: '5-gen 评估确认 Claim 1 跨生成器泛化。Pythia 家族两个成员（1B+2.8B）不造成显著 inflation—— leave-one-family-out
+    delta 仅 1.5pp。为后续 plan-016 的 9-gen 扩展奠定基础。
+
+    '
+- name: paraphrastic_comparison
+  plan_id: plan_006
+  description: '构建平行 paraphrasing chains 直接对比 continuation chains， 测试 attractor convergence
+    理论——non-paraphrastic chains 是否保留更多 depth signal。
+
+    '
+  expected_results:
+    paraphrastic_3class_f1: 0.74
+    paraphrastic_3class_f1_std: 0.009
+    paraphrastic_binary_f1: 0.67
+    continuation_3class_f1: 0.79
+    continuation_3class_f1_std: 0.006
+    continuation_binary_f1: 0.75
+    f1_delta_3class: -0.05
+    f1_delta_binary: -0.08
+    depth_retention_para: 0.97
+    depth_retention_cont: 0.83
+    spearman_entropy_mean_para: -0.53
+    spearman_entropy_mean_cont: -0.68
+    spearman_ttr_para: -0.44
+    spearman_ttr_cont: -0.63
+    spearman_hapax_para: -0.46
+    spearman_hapax_cont: -0.65
+    drift_direction_consistent: true
+    cross_transfer_para_to_cont_f1: 0.77
+    cross_transfer_cont_to_para_f1: 0.74
+    n_paraphrastic: 4900
+    n_continuation: 4609
+  result_rationale: 'best 档下 paraphrastic chains 的 depth signal 弱于 continuation 但仍可检测（F1>chance），
+    符合 attractor theory 预测：paraphrasing 的语义保持约束加速收敛（retention 97% 意味着 depth-4 仍有 97%
+    的 chains 产出合理文本），但 feature drift 幅度被压缩（Spearman ρ  绝对值低 ~0.15-0.20）。Crucially，drift
+    direction 一致（同向负相关），说明 location-shift  机制在两种 chain 中同向作用，只是 paraphrasing 的语义锚定限制了
+    shift 幅度。 Cross-transfer F1 >0.74 说明同一特征空间对两种 chain 都有效， 支持统一 depth estimation
+    framework 的叙事。
+
+    '
+  tables:
+  - name: 'Table 5: Paraphrastic vs Continuation Chains'
+    columns:
+    - Chain_Type
+    - 3class_F1
+    - Binary_F1
+    - Retention_d4/d0
+    rows:
+    - - Continuation
+      - 0.79
+      - 0.75
+      - 0.83
+    - - Paraphrastic
+      - 0.74
+      - 0.67
+      - 0.97
+    - - Delta
+      - -0.05
+      - -0.08
+      - 0.14
+  - name: 'Table 6: Feature Drift Comparison (Spearman ρ)'
+    columns:
+    - Feature
+    - Continuation
+    - Paraphrastic
+    - Direction_Match
+    rows:
+    - - entropy_mean
+      - -0.68
+      - -0.53
+      - ✓
+    - - ttr
+      - -0.63
+      - -0.44
+      - ✓
+    - - hapax_ratio
+      - -0.65
+      - -0.46
+      - ✓
+    - - entropy_std
+      - -0.08
+      - -0.05
+      - ✓
+    - - tail_decay
+      - -0.04
+      - -0.03
+      - ✓
+  figures_description:
+  - 'Fig 4: Paired drift curves (continuation vs paraphrastic) per feature, 展示同向但幅度差异'
+  - 'Fig 5: Cross-transfer confusion matrices'
+  analysis: 'Paraphrastic chains 验证了 attractor convergence theory 的预测（semantic preservation  约束限制
+    drift 幅度），同时证明 non-paraphrastic continuation 是更优的实验设计选择， 因为它保留了更多可判别的 depth signal。两种
+    chain type 的 cross-transfer 高 F1 支持 统一 depth estimation 框架的可行性。
+
+    '
+- name: finer_grained_ordinal
+  plan_id: plan_009
+  description: '5-class ordinal 分类 (gen-0 through gen-4) 测试更细粒度 depth estimation 的可行性。
+
+    '
+  expected_results:
+    5class_macro_f1: 0.51
+    5class_f1_95ci:
+    - 0.5
+    - 0.52
+    5class_accuracy: 0.55
+    5class_mae: 0.65
+    3class_macro_f1: 0.79
+    delta_5class_vs_3class: -0.28
+    per_class_f1:
+      depth_0: 0.92
+      depth_1: 0.63
+      depth_2: 0.28
+      depth_3: 0.27
+      depth_4: 0.45
+    gen2_gen3_confusion_rate: 0.42
+    ordinal_methods:
+      CORAL: 0.5
+      Frank_Hall: 0.52
+      XGBoost: 0.51
+    concordance_index: 0.82
+  result_rationale: 'best 档下 5-class 仍然是 negative result（F1~0.51），但这完全符合 theoretical
+    prediction： attractor theory 预测 depth signal 在 ~3 classes 后饱和。gen-2 和 gen-3 基本不可分
+    （confusion rate 42%）因为 location shift 在 depth-2 后趋于 plateau——递归生成的  distributional
+    drift 存在 diminishing returns。关键正面信号：concordance index 0.82  表明 ordinal ranking
+    仍然 well-calibrated，即使 exact classification 困难。 这支持 3-class 作为 practical ceiling
+    的 framing，同时 ordinal structure 的存在 validates depth as genuinely ordinal (not just
+    categorical)。
+
+    '
+  tables:
+  - name: 'Table 7: Granularity Comparison'
+    columns:
+    - Granularity
+    - Macro_F1
+    - MAE
+    - Concordance
+    rows:
+    - - 3-class
+      - 0.79
+      - 0.24
+      - 0.87
+    - - 5-class
+      - 0.51
+      - 0.65
+      - 0.82
+  - name: 'Table 8: 5-Class Per-Depth F1'
+    columns:
+    - Depth
+    - F1
+    - Most_Confused_With
+    rows:
+    - - gen-0
+      - 0.92
+      - gen-1
+    - - gen-1
+      - 0.63
+      - gen-2
+    - - gen-2
+      - 0.28
+      - gen-3
+    - - gen-3
+      - 0.27
+      - gen-2
+    - - gen-4
+      - 0.45
+      - gen-3
+  figures_description:
+  - 'Fig 6: 5×5 confusion matrix heatmap, 展示 gen-2/gen-3 的 heavy confusion band'
+  - 'Fig 7: F1 vs granularity curve (2-class through 5-class), 展示 3-class 后急剧衰减'
+  analysis: '5-class negative 是 theoretically predicted 且 narratively useful：它为 3-class  practical
+    ceiling 提供 empirical evidence，同时 high concordance 说明 depth 确实是  ordinal quantity。Paper
+    中作为 supporting analysis 报告，strengthen 了 framing 的理论严谨性。
+
+    '
+- name: end_to_end_classifier
+  plan_id: plan_012
+  description: 'QLoRA fine-tuned Qwen3-0.6B-Base 端到端 depth classification， 对比 handcrafted
+    distributional features。
+
+    '
+  expected_results:
+    qwen06b_5class_macro_f1: 0.59
+    qwen06b_5class_f1_std: 0.005
+    qwen06b_3class_macro_f1: 0.91
+    qwen06b_3class_f1_std: 0.003
+    pythia410m_5class_macro_f1: 0.56
+    pythia410m_3class_macro_f1: 0.87
+    per_class_f1_5class:
+      depth_0: 1.0
+      depth_1: 0.8
+      depth_2: 0.41
+      depth_3: 0.32
+      depth_4: 0.44
+    vs_xgboost_5class_delta_pp: 8.5
+    vs_xgboost_3class_delta_pp: 12.4
+    logo_generalization_f1: 0.72
+    logo_vs_within_gen_delta: -0.19
+    lora_rank: 32
+    training_epochs: 3
+  result_rationale: 'best 档下 E2E classifier 在 within-generator CV 上大幅优于 XGBoost（+8-12pp），
+    因为 LM hidden states 能捕获 handcrafted features 无法表达的细粒度 distributional  shift pattern。但
+    LOGO generalization 仅 ~0.72（比 within-gen 低 ~19pp），说明  learned representations
+    过拟合于 generator-specific patterns。这是 best 档的 key  nuance：E2E 方法在 known-generator
+    场景下 superior，但 handcrafted features 在  unknown-generator 场景下更 robust。这 validates
+    paper 选择 interpretable features  作为 primary method 的设计决策——real-world 应用面对 unknown
+    generators， interpretability + robustness > raw accuracy。
+
+    '
+  tables:
+  - name: 'Table 9: E2E vs Feature-Based Comparison'
+    columns:
+    - Method
+    - 3class_CV
+    - 5class_CV
+    - 3class_LOGO
+    - Interpretable
+    rows:
+    - - XGBoost_7feat
+      - 0.79
+      - 0.51
+      - 0.79
+      - ✓
+    - - Qwen3-0.6B_QLoRA
+      - 0.91
+      - 0.59
+      - 0.72
+      - ✗
+    - - Pythia-410M_QLoRA
+      - 0.87
+      - 0.56
+      - 0.68
+      - ✗
+  - name: 'Table 10: E2E Per-Class F1 (5-class, Qwen3-0.6B)'
+    columns:
+    - Depth
+    - E2E_F1
+    - XGBoost_F1
+    - Delta
+    rows:
+    - - gen-0
+      - 1.0
+      - 0.91
+      - 0.09
+    - - gen-1
+      - 0.8
+      - 0.63
+      - 0.17
+    - - gen-2
+      - 0.41
+      - 0.27
+      - 0.14
+    - - gen-3
+      - 0.32
+      - 0.27
+      - 0.05
+    - - gen-4
+      - 0.44
+      - 0.44
+      - 0.0
+  figures_description:
+  - 'Fig 8: Within-gen vs LOGO F1 对比 bar chart, 展示 E2E 泛化 gap'
+  - 'Fig 9: t-SNE of E2E hidden states colored by depth, 展示 gen-0/gen-1 清晰分离但 gen-2+
+    混叠'
+  analysis: E2E 实验的作用是 supplementary validation：(1) 证明 depth signal 确实存在于 hidden states  (upper
+    bound)；(2) 证明 handcrafted features 的 generalization 优势 justifies  interpretable
+    approach 的选择。Paper 中作为 "ceiling analysis" 报告。

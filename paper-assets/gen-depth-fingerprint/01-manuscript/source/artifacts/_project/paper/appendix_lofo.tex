@@ -1,0 +1,57 @@
+\looseness=-1 We complement the permutation importance analysis (\S\ref{sec:results-differential}) with a leave-one-feature-out ablation. Each row drops one of the seven features and re-evaluates the full 6-gen LOGO protocol; $\Delta$ is the change relative to the full 7-feature ensemble (F1\,=\,0.789).
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Leave-one-feature-out ablation (6-gen LOGO). Each row drops one feature and re-evaluates with the LOGO protocol. Sorted by impact magnitude.}
+\label{tab:lofo}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Dropped feature} & \textbf{LOGO F1} & $\boldsymbol{\Delta}$ \textbf{vs Full} \\
+\midrule
+entropy\_max    & 0.774 & $-$1.50\,pp \\
+entropy\_mean   & 0.783 & $-$0.63\,pp \\
+ttr             & 0.784 & $-$0.55\,pp \\
+hapax\_ratio    & 0.785 & $-$0.42\,pp \\
+tail\_decay     & 0.786 & $-$0.33\,pp \\
+entropy\_std    & 0.786 & $-$0.29\,pp \\
+entropy\_min    & 0.789 & $+$0.01\,pp \\
+\midrule
+Full (7 features) & 0.789 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Analysis.}
+\looseness=-1 Entropy\_max causes the largest degradation when removed ($-$1.5\,pp), despite ranking only fourth in permutation importance (split frequency 0.063). This indicates that entropy\_max provides unique signal (capturing the most surprising token under the reference model) that is not redundant with other features.
+Conversely, entropy\_min is fully redundant ($\Delta$\,=\,+0.01\,pp), consistent with its near-zero permutation importance (0.015).
+Six of seven features contribute positively to the ensemble, which confirms that the 7-feature design is not over-specified.
+
+\looseness=-1 To verify that feature importance generalizes beyond the original 6-generator subset, we repeat the LOFO analysis on the full 8-generator set (37,058 samples, 10-fold stratified CV). Table~\ref{tab:lofo-8gen} confirms consistent rankings: \texttt{entropy\_max} remains the most impactful feature ($\Delta=-0.019$), followed by \texttt{entropy\_mean} ($\Delta=-0.012$). All seven features contribute positively, with no feature becoming redundant upon dataset expansion.
+
+\paragraph{Minimal sufficient subset.}
+\looseness=-1 To assess feature redundancy, we evaluate all $\binom{7}{2}{=}21$ two-feature subsets under 10-fold stratified CV (8-gen, 3-class).
+The best pair is \{entropy\_mean, entropy\_max\}, achieving F1\,=\,0.68 (one drifting and one stationary feature), which captures 88\% of the full-ensemble performance (0.771) and confirms that the DDR partition's two components are individually informative.
+Adding the remaining five features yields +9.1\,pp; the full set provides meaningful complementarity beyond the minimal core. Nevertheless, the two-feature result demonstrates that the depth signal is not an artifact of feature-set size.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Leave-one-feature-out importance on the full 8-generator set (37,058 samples). Ranking is consistent with the 6-generator subset (Table~\ref{tab:lofo}).}
+\label{tab:lofo-8gen}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Configuration} & \textbf{3-class F1} & $\boldsymbol{\Delta}$ \\
+\midrule
+Full (7 features) & 0.771 & --- \\
+\midrule
+$-$ entropy\_max    & 0.752 & $-$0.019 \\
+$-$ entropy\_mean   & 0.759 & $-$0.012 \\
+$-$ entropy\_std    & 0.763 & $-$0.007 \\
+$-$ ttr             & 0.764 & $-$0.007 \\
+$-$ hapax\_ratio    & 0.765 & $-$0.005 \\
+$-$ entropy\_min    & 0.766 & $-$0.005 \\
+$-$ tail\_decay     & 0.767 & $-$0.004 \\
+\bottomrule
+\end{tabular}
+\end{table}

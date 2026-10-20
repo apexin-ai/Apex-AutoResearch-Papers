@@ -1,0 +1,228 @@
+paper_key: "broken_telephone"
+title: "LLM as a Broken Telephone: Iterative Generation Distorts Information"
+venue: "ACL 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "Iteration 0 (original human-written text)"
+    - "Single-model chains vs. multi-model chains"
+    - "Bilingual vs. multilingual chains"
+  metrics:
+    - {name: "BLEU", direction: "higher_better"}
+    - {name: "ROUGE-1", direction: "higher_better"}
+    - {name: "chrF", direction: "higher_better"}
+    - {name: "METEOR", direction: "higher_better"}
+    - {name: "BERTScore", direction: "higher_better"}
+    - {name: "FActScore", direction: "higher_better"}
+  datasets:
+    - {name: "BookSum", size: "150 documents, 100-200 words each", domain: "book summaries"}
+    - {name: "ScriptBase-alpha", size: "150 documents, 100-200 words each", domain: "movie scripts"}
+    - {name: "News2024", size: "150 documents, 100-200 words each", domain: "news articles (2024 only)"}
+  ablation_dimensions:
+    - "Bridge language choice (FR, DE, NL, VN, ZH, TH — Latin vs. non-Latin scripts)"
+    - "Chain complexity (bilingual vs. multilingual, 2 vs. 5 languages)"
+    - "Number of models (1 vs. 2 vs. 3)"
+    - "Temperature (1e-6, 0.25, 0.5, 0.75, 1.0)"
+    - "Prompt constraint level (simple, base, constrained)"
+    - "Task type (translation vs. rephrasing)"
+  training_recipe:
+    models:
+      - "Llama-3.1-8B-Instruct (temp=0.6, top_p=0.9)"
+      - "Mistral-7B-Instruct-v0.2 (temp=0.0)"
+      - "Gemma-2-9B-it (temp=1.0, top_p=0.95)"
+    max_tokens: 8000
+    hardware: "54 GPU-days (36 on A100, 18 on A10)"
+    factuality_judge: "Claude 3.5 Sonnet (for FActScore)"
+    no_training: "Inference-only; no model finetuning involved"
+  method_family: "Iterative inference-time generation (translation chains) measuring information distortion"
+
+positioning:
+  core_claim: "Information distortion accumulates inevitably through iterative LLM generation, influenced by language proximity and chain complexity, but is partially mitigable through temperature control and constrained prompting—establishing that LLMs act as lossy information channels."
+  key_results: >
+    EN<->TH (Llama) FActScore gradient: -0.018/iter (News2024), -0.026/iter (BookSum);
+    EN<->FR (Llama) FActScore gradient: -0.004/iter (much less distortion for Latin-script pairs);
+    Multilingual 5-language chain: steepest gradient -0.038/iter;
+    By iteration 100, all chains converge to similar low FActScore (~0.04) regardless of setup;
+    Temperature 1e-6 stabilizes after 2 iterations; temperature 1.0 causes steepest decline;
+    Qualitative: "A lorry driver has been fined" → "A small car received a compensation" by iteration 100.
+  limitations:
+    - "Datasets share similar characteristics; specialized/long-tail domains unexplored"
+    - "Limited to 7-9B parameter models; larger models may behave differently"
+    - "Default generation settings only; greedy/beam search unexplored"
+    - "Translation as proxy task; other iterative generation scenarios (summarization, paraphrasing) less explored"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: >
+    Opens with the observation that LLMs increasingly generate online content, then
+    raises a concern about iterative processing: what happens when LLMs repeatedly
+    consume and reprocess their own outputs? The "broken telephone" (Chinese whispers)
+    analogy is introduced immediately as a vivid, universally understood frame for
+    information distortion through sequential transmission.
+  tension: >
+    Unlike prior work on model collapse (which requires retraining), this paper targets
+    inference-time distortion—each step is just prompting, no weight updates.
+    The tension is: even without training, iterative generation should be safe... right?
+    Translation as testbed makes the distortion measurable because there's an objective
+    ground truth to compare against.
+  key_insight: >
+    Revealed through the language pair comparison in Experiment 1: distortion is not
+    uniform—it depends critically on the bridge language. Latin-script pairs (EN<->FR)
+    show near-zero degradation, while non-Latin pairs (EN<->TH) degrade 4-5x faster.
+    This connects to training data representation and suggests the distortion reflects
+    model competence boundaries. The convergence phenomenon (all setups reach ~0.04
+    FActScore by iteration 100) suggests a universal "information floor."
+  argument_chain: >
+    LLMs generate increasing web content → iterative processing is inevitable →
+    broken telephone analogy suggests distortion → choose translation as measurable testbed →
+    Exp1: bilingual self-loop reveals language-dependent distortion →
+    Exp2: multi-model collaboration adds/reduces noise depending on language →
+    Exp3: multilingual chains accelerate distortion →
+    ablations: temperature and prompt constraints partially mitigate →
+    conclusion: distortion inevitable, mitigation possible but incomplete
+  contribution_framing: >
+    Three findings presented as bullet points (not numbered contributions):
+    (1) Distortion depends on intermediate language choice (linguistic similarity + training data prevalence)
+    (2) Greater chain complexity amplifies distortion
+    (3) Temperature control and constrained prompting mitigate but cannot prevent distortion.
+    Notably framed as empirical findings rather than methodological contributions.
+  intro_structure: >
+    4 paragraphs:
+    P1 (Hook): LLMs generate content, iterative processing raises concerns
+    P2 (Analogy): Broken telephone game as conceptual frame
+    P3 (Research question): Do LLMs exhibit similar distortion?
+    P4 (Approach + contributions): Translation testbed, three key findings listed
+  notable_technique: >
+    The broken telephone analogy is the paper's most effective narrative device—it transforms
+    a technical measurement study into an intuitive story. The qualitative example
+    (Table 1: lorry driver -> bus -> small car with explosions and compensation)
+    is placed before any metrics, making readers viscerally understand the problem
+    before seeing numbers. The three-experiment escalation (single-model bilingual →
+    multi-model bilingual → multilingual multiplayer) creates natural narrative momentum.
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "method_overview"
+    description: >
+      Three-panel overview of the three experimental setups. Left: Bilingual Self-Loop
+      (single model, EN<->FR/TH, 100 iterations). Middle: Bilingual Two-Player
+      (two different models collaborating on same translation chain). Right: Multilingual
+      Multiplayer (multiple languages and models in extended chains).
+    narrative_role: >
+      Establishes all three experiments at a glance, showing the escalation in complexity
+      from left to right. Readers can reference back to this figure throughout the paper.
+    design_elements:
+      - "Three-panel layout showing experimental progression"
+      - "Arrow-based translation flow diagrams"
+      - "Model icons distinguishing Llama/Mistral/Gemma"
+      - "Language labels (EN, FR, TH, ZH, DE) at each node"
+    visual_style: >
+      Horizontal three-panel layout. Each panel shows a circular or chain-like
+      translation flow with arrows connecting language nodes. Different models
+      distinguished by icons or colors. Clean, diagrammatic style typical of
+      NLP experiment overviews.
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: >
+        Llama bilingual self-loop metrics (BLEU, ROUGE-1, chrF, METEOR, BERTScore, FActScore)
+        across 100 iterations for 6 language pairs (FR, DE, NL, VN, ZH, TH) on News2024.
+      how_gain_highlighted: >
+        Language pairs naturally separate into two groups: Latin-script (FR/DE/NL) cluster
+        high, non-Latin (VN/ZH/TH) cluster low, with TH showing steepest decline.
+        The visual gap between clusters is the main finding.
+      design_note: >
+        Multi-subplot grid (one per metric). 6 lines per subplot distinguished by color.
+        X-axis is iteration count (0-100), Y-axis is metric value. The consistent
+        pattern across all 6 metrics reinforces the language-dependence finding.
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: >
+        Bilingual two-player results comparing single-model vs. multi-model chains
+        for EN<->FR and EN<->TH on News2024.
+      how_gain_highlighted: >
+        Shows that collaboration helps for Thai (reducing distortion) but hurts for
+        French (increasing distortion)—a nuanced, non-obvious finding.
+      design_note: >
+        Paired comparison layout. Lines for single-model and multi-model chains
+        shown together for direct comparison per language pair.
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: >
+        Rephrasing experiments on 30 News2024 documents: individual models
+        (Llama, Mistral, Gemma) vs. collaborative combinations over 100 iterations.
+      how_gain_highlighted: >
+        Collaborative setups show steeper decline than individual models,
+        with Llama+Mistral+Gemma triple collaboration declining fastest.
+      design_note: >
+        Tests whether the translation finding generalizes to pure rephrasing.
+        Multiple overlapping lines showing model and collaboration effects.
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      dimensions_varied:
+        - "Temperature (1e-6, 0.25, 0.5, 0.75, 1.0)"
+      design_note: >
+        Temperature spectrum visualization for EN<->FR with Llama on 30 News2024 docs.
+        Shows clear ordering: lower temperature = less degradation. Temperature 1e-6
+        stabilizes after ~2 iterations (essentially deterministic). Clean parameter sweep.
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      dimensions_varied:
+        - "Prompt constraint level (simple, base, constrained)"
+      design_note: >
+        Shows more constrained prompts preserve higher relevance and factuality.
+        Three lines with clear separation. On Llama, 30 News2024 docs, EN<->FR.
+  figure_narrative_role: >
+    Figure 1 (experimental overview) → Table 1 (qualitative distortion example) →
+    Figure 2 (Exp1: language-dependent degradation curves) →
+    Figure 3 (Exp2: multi-model collaboration effects) →
+    Figure 4 (rephrasing as alternative task) →
+    Figure 5 (temperature ablation) → Figure 6 (prompt constraint ablation).
+    Narrative arc: setup → demonstrate problem → escalate complexity → explore mitigation.
+
+tables:
+  table_count: 9
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "datasets x models"
+    col_axis: "language pairs (DE, FR, NL, TH, VN, ZH) with avg gradient + std error"
+    row_organization: "by_category"
+    col_organization: "grouped_by_language_pair"
+    highlight_strategy: "Gradient values with standard errors; no bold/underline visible"
+    statistical_reporting: "Average gradient +/- standard error across 150 documents"
+    num_baselines: 0
+    design_note: >
+      FActScore gradients as primary metric—negative gradient = distortion rate per iteration.
+      Organized as 3 datasets x 2 models = 6 rows, 6 language pairs as columns.
+      The gradient representation is elegant: a single number captures 100 iterations of decline.
+      Standard errors included for reliability. Compact but information-dense.
+  ablation_tables:
+    - table_id: "Table 1"
+      what_varied: ["Iteration number (0, 2, 10, 50, 100)"]
+      variation_style: "full_numbers"
+      design_note: >
+        Qualitative text example showing progressive distortion of a news article
+        about a lorry driver. Not a metrics table—shows actual text at 5 snapshots
+        across 100 iterations. Distortions highlighted in the text. Placed before
+        quantitative results for immediate reader engagement. Functions as a
+        motivating example that makes the abstract metric decline concrete.
+    - table_id: "Tables 4-7 (Appendix)"
+      what_varied: ["BLEURT scores across all experiments"]
+      variation_style: "full_numbers"
+      design_note: "Supplementary metric tables supporting main FActScore findings"
+  supplementary_tables:
+    in_appendix: true
+    content: >
+      Table 3: Default decoding parameters for each model.
+      Tables 4-7: BLEURT scores across all four experiments.
+      Table 8: Temperature variation detailed analysis.
+      Additional appendix tables for comprehensive metric reporting.
+    reason: >
+      Main text focuses on FActScore gradient as the cleanest summary statistic.
+      BLEURT and detailed parameter tables deferred to appendix to keep main text
+      focused. Only 2 tables in main text (qualitative example + FActScore gradients)
+      keeps the paper visually clean despite 450 documents x 100 iterations of data.

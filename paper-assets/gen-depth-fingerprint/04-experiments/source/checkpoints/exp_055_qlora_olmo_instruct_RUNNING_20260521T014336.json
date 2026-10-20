@@ -1,0 +1,44 @@
+{
+  "exp_id": "exp_055_qlora_olmo_instruct",
+  "project": "gen-depth-fingerprint",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:53:14.526Z",
+    "updated_at": "2026-05-21T01:43:36.189Z",
+    "hypothesis": "QLoRA end-to-end classifier on OLMo-2-0425-1B-Instruct generation data recovers depth signal partially: 3-class F1 lower than base QLoRA (0.905) due to instruct-tuning compressing depth features, but higher than XGBoost on instruct features (0.575)",
+    "spec": {
+      "command": "qlora_instruct.py --generator olmo-2-0425-1b-instruct",
+      "server": "bjb2-18868",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "71920",
+      "log_path": "results/qlora_olmo_instruct.log",
+      "submitted_at": "2026-05-19T09:02:34.465Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/olmo-2-0425-1b-instruct/",
+      "data_count": 4429,
+      "model_name": "Qwen3-0.6B-Base (backbone)",
+      "seed": 42,
+      "checkpoint_path": "N/A"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "macro_f1_3class": 0.8881,
+      "macro_f1_3class_std": 0.0071,
+      "macro_f1_5class": 0.5976,
+      "macro_f1_5class_std": 0.0046,
+      "binary_f1": 0.8363,
+      "binary_f1_std": 0.0096,
+      "n_samples": 4429,
+      "runtime_seconds": 1689.7
+    }
+  },
+  "timestamp": "2026-05-21T01:43:36.296279+00:00",
+  "trigger": "update_registry"
+}

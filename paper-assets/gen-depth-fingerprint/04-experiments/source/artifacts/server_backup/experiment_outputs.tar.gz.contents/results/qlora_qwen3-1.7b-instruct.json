@@ -1,0 +1,413 @@
+{
+  "experiment": "qlora_instruct_qwen3-1.7b-instruct",
+  "generator": "qwen3-1.7b-instruct",
+  "backbone": "/root/autodl-tmp/models/qwen3-0.6b/Qwen/Qwen3-0___6B-Base/",
+  "method": "QLoRA_4bit_seqcls",
+  "lora_config": {
+    "r": 32,
+    "alpha": 64,
+    "target_modules": [
+      "q_proj",
+      "v_proj"
+    ]
+  },
+  "max_length": 512,
+  "batch_size": 8,
+  "lr": 0.0002,
+  "epochs": 3,
+  "n_folds": 5,
+  "n_samples": 4963,
+  "cv_type": "5-fold_stratified_within_model",
+  "macro_f1_5class": 0.5514,
+  "macro_f1_5class_std": 0.0031,
+  "macro_f1_3class": 0.9066,
+  "macro_f1_3class_std": 0.0082,
+  "binary_f1_gen1_vs_gen2plus": 0.8672,
+  "binary_f1_gen1_vs_gen2plus_std": 0.0137,
+  "per_class_f1_5class": {
+    "depth_0": 0.9855,
+    "depth_1": 0.8004,
+    "depth_2": 0.4078,
+    "depth_3": 0.1548,
+    "depth_4": 0.4084
+  },
+  "per_class_f1_3class": {
+    "gen0": 0.9855,
+    "gen1": 0.8004,
+    "gen2+": 0.9338
+  },
+  "fold_results": [
+    {
+      "fold": 0,
+      "n_train": 3970,
+      "n_val": 993,
+      "macro_f1_5class": 0.5531,
+      "per_class_f1_5class": {
+        "depth_0": 0.9851,
+        "depth_1": 0.8138,
+        "depth_2": 0.4767,
+        "depth_3": 0.0099,
+        "depth_4": 0.4802
+      },
+      "confusion_matrix_5class": [
+        [
+          199,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          3,
+          153,
+          41,
+          0,
+          2
+        ],
+        [
+          1,
+          15,
+          143,
+          2,
+          37
+        ],
+        [
+          1,
+          6,
+          120,
+          1,
+          70
+        ],
+        [
+          0,
+          2,
+          98,
+          1,
+          97
+        ]
+      ],
+      "macro_f1_3class": 0.9142,
+      "per_class_f1_3class": {
+        "gen0": 0.9851,
+        "gen1": 0.8138,
+        "gen2+": 0.9436
+      },
+      "confusion_matrix_3class": [
+        [
+          199,
+          1,
+          0
+        ],
+        [
+          3,
+          153,
+          43
+        ],
+        [
+          2,
+          23,
+          569
+        ]
+      ],
+      "binary_f1_gen1_vs_gen2plus": 0.8795
+    },
+    {
+      "fold": 1,
+      "n_train": 3970,
+      "n_val": 993,
+      "macro_f1_5class": 0.5473,
+      "per_class_f1_5class": {
+        "depth_0": 0.9848,
+        "depth_1": 0.78,
+        "depth_2": 0.3668,
+        "depth_3": 0.1748,
+        "depth_4": 0.4299
+      },
+      "confusion_matrix_5class": [
+        [
+          195,
+          3,
+          1,
+          0,
+          0
+        ],
+        [
+          2,
+          172,
+          19,
+          6,
+          1
+        ],
+        [
+          0,
+          38,
+          73,
+          40,
+          47
+        ],
+        [
+          0,
+          16,
+          54,
+          27,
+          101
+        ],
+        [
+          0,
+          12,
+          53,
+          38,
+          95
+        ]
+      ],
+      "macro_f1_3class": 0.8947,
+      "per_class_f1_3class": {
+        "gen0": 0.9848,
+        "gen1": 0.78,
+        "gen2+": 0.9191
+      },
+      "confusion_matrix_3class": [
+        [
+          195,
+          3,
+          1
+        ],
+        [
+          2,
+          172,
+          26
+        ],
+        [
+          0,
+          66,
+          528
+        ]
+      ],
+      "binary_f1_gen1_vs_gen2plus": 0.8518
+    },
+    {
+      "fold": 2,
+      "n_train": 3970,
+      "n_val": 993,
+      "macro_f1_5class": 0.5552,
+      "per_class_f1_5class": {
+        "depth_0": 0.9777,
+        "depth_1": 0.83,
+        "depth_2": 0.3779,
+        "depth_3": 0.2191,
+        "depth_4": 0.3715
+      },
+      "confusion_matrix_5class": [
+        [
+          197,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          5,
+          166,
+          26,
+          1,
+          1
+        ],
+        [
+          2,
+          16,
+          82,
+          60,
+          39
+        ],
+        [
+          0,
+          10,
+          68,
+          39,
+          81
+        ],
+        [
+          0,
+          9,
+          59,
+          57,
+          73
+        ]
+      ],
+      "macro_f1_3class": 0.917,
+      "per_class_f1_3class": {
+        "gen0": 0.9777,
+        "gen1": 0.83,
+        "gen2+": 0.9434
+      },
+      "confusion_matrix_3class": [
+        [
+          197,
+          0,
+          2
+        ],
+        [
+          5,
+          166,
+          28
+        ],
+        [
+          2,
+          35,
+          558
+        ]
+      ],
+      "binary_f1_gen1_vs_gen2plus": 0.8864
+    },
+    {
+      "fold": 3,
+      "n_train": 3971,
+      "n_val": 992,
+      "macro_f1_5class": 0.5533,
+      "per_class_f1_5class": {
+        "depth_0": 0.9851,
+        "depth_1": 0.7948,
+        "depth_2": 0.4079,
+        "depth_3": 0.1818,
+        "depth_4": 0.397
+      },
+      "confusion_matrix_5class": [
+        [
+          199,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          5,
+          153,
+          31,
+          9,
+          1
+        ],
+        [
+          0,
+          20,
+          93,
+          52,
+          33
+        ],
+        [
+          0,
+          7,
+          73,
+          31,
+          87
+        ],
+        [
+          1,
+          6,
+          61,
+          51,
+          79
+        ]
+      ],
+      "macro_f1_3class": 0.9057,
+      "per_class_f1_3class": {
+        "gen0": 0.9851,
+        "gen1": 0.7948,
+        "gen2+": 0.9372
+      },
+      "confusion_matrix_3class": [
+        [
+          199,
+          0,
+          0
+        ],
+        [
+          5,
+          153,
+          41
+        ],
+        [
+          1,
+          33,
+          560
+        ]
+      ],
+      "binary_f1_gen1_vs_gen2plus": 0.8645
+    },
+    {
+      "fold": 4,
+      "n_train": 3971,
+      "n_val": 992,
+      "macro_f1_5class": 0.548,
+      "per_class_f1_5class": {
+        "depth_0": 0.995,
+        "depth_1": 0.7835,
+        "depth_2": 0.4096,
+        "depth_3": 0.1884,
+        "depth_4": 0.3636
+      },
+      "confusion_matrix_5class": [
+        [
+          199,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          161,
+          31,
+          1,
+          4
+        ],
+        [
+          0,
+          20,
+          94,
+          36,
+          48
+        ],
+        [
+          0,
+          19,
+          83,
+          31,
+          65
+        ],
+        [
+          0,
+          12,
+          53,
+          63,
+          70
+        ]
+      ],
+      "macro_f1_3class": 0.9014,
+      "per_class_f1_3class": {
+        "gen0": 0.995,
+        "gen1": 0.7835,
+        "gen2+": 0.9258
+      },
+      "confusion_matrix_3class": [
+        [
+          199,
+          0,
+          0
+        ],
+        [
+          2,
+          161,
+          36
+        ],
+        [
+          0,
+          51,
+          543
+        ]
+      ],
+      "binary_f1_gen1_vs_gen2plus": 0.8539
+    }
+  ],
+  "runtime_seconds": 1880.5,
+  "seed": 123
+}

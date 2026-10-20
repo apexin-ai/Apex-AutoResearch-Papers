@@ -1,0 +1,23 @@
+{
+  "exp_id": "review-p1c-olmo-instruct",
+  "project": "gen-depth-fingerprint",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:20:43.541Z",
+    "updated_at": "2026-05-15T15:30:48.729Z",
+    "hypothesis": "P1-C OLMo Instruct: OLMo-2-1B-Instruct (或最接近的 instruct 版本) continuation chains 是否展现 differential depth response",
+    "spec": {
+      "command": "bash run_p1c_olmo_instruct.sh",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/olmo-2-0425-1b-instruct/",
+      "data_count": 4975,
+      "model_name": "OLMo-2-0425-1B-Instruct",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-15T15:30:48.835413+00:00",
+  "trigger": "update_registry"
+}

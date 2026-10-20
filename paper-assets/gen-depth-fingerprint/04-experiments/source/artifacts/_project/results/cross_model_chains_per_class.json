@@ -1,0 +1,124 @@
+{
+  "experiment": "cross_model_chains_per_class",
+  "date": "2026-05-17",
+  "n_samples": 2964,
+  "generator_pool": [
+    "pythia-2.8b",
+    "pythia-1b",
+    "olmo-2-1b",
+    "qwen3-0.6b",
+    "qwen3-1.7b"
+  ],
+  "three_class": {
+    "macro_f1": 0.8305,
+    "ci95": [
+      0.8172,
+      0.8439
+    ],
+    "per_class": {
+      "gen-0": {
+        "precision": 0.9213,
+        "recall": 0.9484,
+        "f1": 0.9347,
+        "support": 988,
+        "precision_ci95": [
+          0.9047,
+          0.938
+        ],
+        "recall_ci95": [
+          0.9342,
+          0.9619
+        ],
+        "f1_ci95": [
+          0.923,
+          0.946
+        ]
+      },
+      "gen-1": {
+        "precision": 0.737,
+        "recall": 0.8026,
+        "f1": 0.7684,
+        "support": 988,
+        "precision_ci95": [
+          0.7112,
+          0.7645
+        ],
+        "recall_ci95": [
+          0.7773,
+          0.8271
+        ],
+        "f1_ci95": [
+          0.748,
+          0.7883
+        ]
+      },
+      "gen-2+": {
+        "precision": 0.8416,
+        "recall": 0.7419,
+        "f1": 0.7886,
+        "support": 988,
+        "precision_ci95": [
+          0.8174,
+          0.8656
+        ],
+        "recall_ci95": [
+          0.7147,
+          0.7686
+        ],
+        "f1_ci95": [
+          0.7678,
+          0.8087
+        ]
+      }
+    },
+    "confusion_matrix": [
+      [
+        937,
+        43,
+        8
+      ],
+      [
+        65,
+        793,
+        130
+      ],
+      [
+        15,
+        240,
+        733
+      ]
+    ]
+  },
+  "binary": {
+    "task": "gen-0 vs gen-1+",
+    "f1": 0.9506,
+    "ci95": [
+      0.9421,
+      0.9589
+    ],
+    "per_class": {
+      "gen-0": {
+        "precision": 0.9213,
+        "recall": 0.9484,
+        "f1": 0.9347,
+        "support": 988
+      },
+      "gen-1+": {
+        "precision": 0.9738,
+        "recall": 0.9595,
+        "f1": 0.9666,
+        "support": 1976
+      }
+    },
+    "confusion_matrix": [
+      [
+        937,
+        51
+      ],
+      [
+        80,
+        1896
+      ]
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "exp_id": "exp_047_multi_domain_t07",
+  "project": "gen-depth-fingerprint",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T05:51:25.881Z",
+    "updated_at": "2026-05-17T07:21:57.137Z",
+    "hypothesis": "Depth fingerprint generalizes across domains (News, Academic, Code) under standard decoding (t=0.7, top_p=0.9) matching main experiment params, eliminating the temperature confound from t=1.0 results and producing directly comparable domain generalization numbers",
+    "parent": "exp_043_multi_domain_seeds",
+    "spec": {
+      "command": "python run_multi_domain_t07.py (3 generators x 3 domains parallel in tmux multi_domain_t07)",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/experiments/multi_domain/",
+      "data_count": "200 seeds x 3 domains x 3 generators x 4 depths = 7200 samples",
+      "model_name": "Pythia-1B, Qwen3-1.7B, Mistral-7B-v0.3 (gen) + Pythia-410M (ref)",
+      "seed": "default",
+      "gpu": "cuda:0,1,2",
+      "checkpoint_source": "N/A (generation + evaluation pipeline, no pretrained checkpoint)",
+      "eval_data": "News/Academic/Code seeds 200 per domain, generated chains depth 0-3"
+    },
+    "metrics": {
+      "news_binary_f1": 0.7119,
+      "news_binary_ci": [
+        0.6898,
+        0.7332
+      ],
+      "news_3class_f1": 0.7149,
+      "academic_binary_f1": 0.6279,
+      "academic_binary_ci": [
+        0.6027,
+        0.6515
+      ],
+      "academic_3class_f1": 0.6564,
+      "code_binary_f1": 0.6872,
+      "code_binary_ci": [
+        0.6641,
+        0.71
+      ],
+      "code_3class_f1": 0.6729,
+      "overall_binary_f1": 0.6757,
+      "overall_3class_f1": 0.6814,
+      "delta_vs_t10_news": -0.034,
+      "delta_vs_t10_academic": -0.1107,
+      "delta_vs_t10_code": -0.0663
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T07:21:57.278241+00:00",
+  "trigger": "update_registry"
+}

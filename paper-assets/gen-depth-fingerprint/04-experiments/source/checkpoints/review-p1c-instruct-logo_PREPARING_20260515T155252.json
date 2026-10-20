@@ -1,0 +1,16 @@
+{
+  "exp_id": "review-p1c-instruct-logo",
+  "project": "gen-depth-fingerprint",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:52:46.010Z",
+    "updated_at": "2026-05-15T15:52:52.606Z",
+    "hypothesis": "P1-C instruct LOGO F1: 7-gen LOGO (6 base + Qwen3-1.7B-Instruct) 分类器评估，instruct vs base 泛化对比",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T15:52:52.708670+00:00",
+  "trigger": "update_registry"
+}

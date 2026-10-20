@@ -1,0 +1,51 @@
+{
+  "exp_id": "exp_052_instruct_qwen3_1_7b",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T03:06:04.788Z",
+    "updated_at": "2026-05-21T01:45:50.088Z",
+    "hypothesis": "Instruct-tuned Qwen3-1.7B (chat template, thinking=off) shows degraded depth signal vs base Qwen3-1.7B (F1=0.709), quantifying instruction-tuning's impact on DDR",
+    "spec": {
+      "checkpoint_path": "N/A",
+      "log_path": "N/A",
+      "command": "generate + extract + eval",
+      "server": "bjb2-18868",
+      "data_path": "data/qwen3-1.7b-instruct/",
+      "data_count": 4963,
+      "model_name": "Qwen3-1.7B-Instruct",
+      "seed": 42
+    },
+    "conclusion": "success",
+    "metrics": {
+      "within_binary_f1": 0.8753,
+      "within_binary_ci": [
+        0.8667,
+        0.8837
+      ],
+      "within_3class_f1": 0.7324,
+      "within_3class_ci": [
+        0.7195,
+        0.745
+      ],
+      "base_binary_f1": 0.8614,
+      "base_3class_f1": 0.769,
+      "logo_instruct_binary": 0.658,
+      "logo_instruct_3class": 0.543,
+      "logo_base_binary": 0.821,
+      "logo_base_3class": 0.802,
+      "gen1_f1_instruct": 0.438,
+      "gen1_f1_base": 0.579,
+      "spearman_direction": "reversed (instruct ρ>0, base ρ<0)",
+      "delta_within_binary": 0.014,
+      "delta_within_3class": -0.037,
+      "delta_logo_binary": -0.163
+    },
+    "completed_at": "2026-05-21T01:45:50.088Z"
+  },
+  "timestamp": "2026-05-21T01:45:50.200032+00:00",
+  "trigger": "update_registry"
+}

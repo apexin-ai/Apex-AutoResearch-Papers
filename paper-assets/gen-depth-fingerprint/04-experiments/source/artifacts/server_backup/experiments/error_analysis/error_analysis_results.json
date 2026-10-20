@@ -1,0 +1,218 @@
+{
+  "total_samples": 29095,
+  "total_misclassified": 8170,
+  "overall_error_rate": 0.2808,
+  "by_generator": {
+    "llama-3.2-3b": {
+      "total": 3685,
+      "errors": 1112,
+      "error_rate": 0.3018
+    },
+    "mistral-7b-v0.3": {
+      "total": 3853,
+      "errors": 1734,
+      "error_rate": 0.45
+    },
+    "olmo-2-1b": {
+      "total": 3718,
+      "errors": 1054,
+      "error_rate": 0.2835
+    },
+    "pythia-1b": {
+      "total": 3560,
+      "errors": 648,
+      "error_rate": 0.182
+    },
+    "pythia-2.8b": {
+      "total": 3614,
+      "errors": 866,
+      "error_rate": 0.2396
+    },
+    "qwen3-0.6b": {
+      "total": 3542,
+      "errors": 745,
+      "error_rate": 0.2103
+    },
+    "qwen3-1.7b": {
+      "total": 3621,
+      "errors": 814,
+      "error_rate": 0.2248
+    },
+    "qwen3-8b": {
+      "total": 3502,
+      "errors": 1197,
+      "error_rate": 0.3418
+    }
+  },
+  "by_depth": {
+    "1": {
+      "total": 7896,
+      "errors": 1130,
+      "error_rate": 0.1431,
+      "direction": "FP (predicted gen-2+ but true gen-1)"
+    },
+    "2": {
+      "total": 7512,
+      "errors": 3637,
+      "error_rate": 0.4842,
+      "direction": "FN (predicted gen-1 but true gen-2+)"
+    },
+    "3": {
+      "total": 7032,
+      "errors": 2051,
+      "error_rate": 0.2917,
+      "direction": "FN (predicted gen-1 but true gen-2+)"
+    },
+    "4": {
+      "total": 6655,
+      "errors": 1352,
+      "error_rate": 0.2032,
+      "direction": "FN (predicted gen-1 but true gen-2+)"
+    }
+  },
+  "feature_comparison": {
+    "entropy_mean": {
+      "correct_mean": 1.570031,
+      "correct_std": 0.933307,
+      "correct_median": 1.268704,
+      "incorrect_mean": 2.261806,
+      "incorrect_std": 0.673631,
+      "incorrect_median": 2.308246,
+      "mann_whitney_U": 46889660.5,
+      "mann_whitney_p": 0.0
+    },
+    "entropy_std": {
+      "correct_mean": 1.622689,
+      "correct_std": 0.270289,
+      "correct_median": 1.647198,
+      "incorrect_mean": 1.741299,
+      "incorrect_std": 0.211073,
+      "incorrect_median": 1.737541,
+      "mann_whitney_U": 61047210.5,
+      "mann_whitney_p": 0.0
+    },
+    "entropy_min": {
+      "correct_mean": 0.028098,
+      "correct_std": 0.287281,
+      "correct_median": 0.000679,
+      "incorrect_mean": 0.033024,
+      "incorrect_std": 0.338469,
+      "incorrect_median": 0.00163,
+      "mann_whitney_U": 61855821.0,
+      "mann_whitney_p": 1.0096962388514175e-294
+    },
+    "entropy_max": {
+      "correct_mean": 7.525471,
+      "correct_std": 0.757147,
+      "correct_median": 7.550781,
+      "incorrect_mean": 7.525109,
+      "incorrect_std": 0.739443,
+      "incorrect_median": 7.523438,
+      "mann_whitney_U": 85830661.5,
+      "mann_whitney_p": 0.5844877328354403
+    },
+    "tail_decay": {
+      "correct_mean": -0.0023,
+      "correct_std": 0.000239,
+      "correct_median": -0.0023,
+      "incorrect_mean": -0.002298,
+      "incorrect_std": 0.000233,
+      "incorrect_median": -0.002297,
+      "mann_whitney_U": 85189369.5,
+      "mann_whitney_p": 0.6532341559192693
+    },
+    "ttr": {
+      "correct_mean": 0.302367,
+      "correct_std": 0.226667,
+      "correct_median": 0.221106,
+      "incorrect_mean": 0.463546,
+      "incorrect_std": 0.176509,
+      "incorrect_median": 0.46291,
+      "mann_whitney_U": 45932378.5,
+      "mann_whitney_p": 0.0
+    },
+    "hapax_ratio": {
+      "correct_mean": 0.175953,
+      "correct_std": 0.220024,
+      "correct_median": 0.077348,
+      "incorrect_mean": 0.313092,
+      "incorrect_std": 0.18669,
+      "incorrect_median": 0.294461,
+      "mann_whitney_U": 45444292.5,
+      "mann_whitney_p": 0.0
+    }
+  },
+  "text_length": "skipped (no text field in features data)",
+  "error_types": {
+    "false_positive": {
+      "count": 1130,
+      "pct": 3.88,
+      "avg_features": {
+        "entropy_mean": 1.765197,
+        "entropy_std": 1.693325,
+        "entropy_min": 0.059306,
+        "entropy_max": 7.419151,
+        "tail_decay": -0.002299,
+        "ttr": 0.377185,
+        "hapax_ratio": 0.239734
+      },
+      "top_generators": {
+        "qwen3-0.6b": 234,
+        "pythia-1b": 188,
+        "qwen3-1.7b": 175,
+        "olmo-2-1b": 154,
+        "pythia-2.8b": 129,
+        "qwen3-8b": 93,
+        "llama-3.2-3b": 82,
+        "mistral-7b-v0.3": 75
+      }
+    },
+    "false_negative": {
+      "count": 7040,
+      "pct": 24.2,
+      "avg_features": {
+        "entropy_mean": 2.341518,
+        "entropy_std": 1.748999,
+        "entropy_min": 0.028806,
+        "entropy_max": 7.542116,
+        "tail_decay": -0.002298,
+        "ttr": 0.477408,
+        "hapax_ratio": 0.324866
+      },
+      "top_generators": {
+        "mistral-7b-v0.3": 1659,
+        "qwen3-8b": 1104,
+        "llama-3.2-3b": 1030,
+        "olmo-2-1b": 900,
+        "pythia-2.8b": 737,
+        "qwen3-1.7b": 639,
+        "qwen3-0.6b": 511,
+        "pythia-1b": 460
+      },
+      "by_depth": {
+        "2": {
+          "total": 7512,
+          "misclassified_as_gen1": 3637,
+          "rate": 0.4842
+        },
+        "3": {
+          "total": 7032,
+          "misclassified_as_gen1": 2051,
+          "rate": 0.2917
+        },
+        "4": {
+          "total": 6655,
+          "misclassified_as_gen1": 1352,
+          "rate": 0.2032
+        }
+      }
+    }
+  },
+  "key_findings": [
+    "Hardest generator: mistral-7b-v0.3 (error_rate=0.4500), easiest: pythia-1b (0.1820)",
+    "Error rates by depth: d1=0.1431, d2=0.4842, d3=0.2917, d4=0.2032",
+    "FP (gen-1→gen-2+): 1130 (13.8% of errors), FN (gen-2+→gen-1): 7040 (86.2% of errors)",
+    "Significantly different features (p<0.05): entropy_mean(p=0.00e+00), entropy_std(p=0.00e+00), ttr(p=0.00e+00), hapax_ratio(p=0.00e+00), entropy_min(p=1.01e-294)",
+    "FN rate (gen-2+ misclassified as gen-1) by depth: d2: 0.4842, d3: 0.2917, d4: 0.2032"
+  ]
+}

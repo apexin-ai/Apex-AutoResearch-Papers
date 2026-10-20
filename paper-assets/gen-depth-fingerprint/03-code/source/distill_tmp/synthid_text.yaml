@@ -1,0 +1,27 @@
+paper_key: "synthid_text"
+title: "Scalable Watermarking for Identifying Large Language Model Outputs"
+venue: "Nature 2024"
+full_text_available: false
+
+research:
+  baselines: ["Gumbel sampling (non-distortionary)", "Soft Red List sampling (distortionary)", "unwatermarked generation"]
+  metrics:
+    - {name: "TPR at fixed FPR", direction: "higher_better"}
+    - {name: "perplexity", direction: "lower_better"}
+    - {name: "human preference ratings", direction: "higher_better"}
+  datasets:
+    - {name: "ELI5 (Explain Like I'm 5)", size: "unknown"}
+    - {name: "Gemini chatbot interactions", size: "~20M interactions"}
+  ablation_dimensions: ["watermark type (distortionary vs non-distortionary)", "tournament sampling", "speculative sampling integration"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "production Gemini systems"}
+  method_family: "production-scale text watermarking (tournament sampling + sliding-window seeds)"
+
+positioning:
+  core_claim: "Introduces SynthID-Text, a production-ready watermarking method deployed on ~20M Gemini interactions, preserving text quality (no significant human preference difference) with high detection accuracy and minimal latency via tournament sampling integrated with speculative decoding."
+  key_results: "N/A - abstract only"
+  limitations: ["N/A"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

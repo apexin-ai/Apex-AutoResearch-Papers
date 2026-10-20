@@ -1,0 +1,359 @@
+{
+  "qwen3_06b_instruct": {
+    "length_per_depth": {
+      "0": {
+        "mean": 252.1,
+        "median": 256,
+        "std": 22.5,
+        "min": 66,
+        "max": 256,
+        "n": 996
+      },
+      "1": {
+        "mean": 34.9,
+        "median": 28,
+        "std": 29.6,
+        "min": 1,
+        "max": 256,
+        "n": 996
+      },
+      "2": {
+        "mean": 26.5,
+        "median": 23,
+        "std": 20.8,
+        "min": 2,
+        "max": 256,
+        "n": 979
+      },
+      "3": {
+        "mean": 24.0,
+        "median": 22,
+        "std": 17.0,
+        "min": 2,
+        "max": 256,
+        "n": 977
+      },
+      "4": {
+        "mean": 22.5,
+        "median": 21,
+        "std": 14.7,
+        "min": 2,
+        "max": 256,
+        "n": 975
+      }
+    },
+    "length_depth_spearman": {
+      "rho": -0.5826,
+      "p": "0.00e+00"
+    },
+    "length_range_used": [
+      16.0,
+      31.0
+    ],
+    "original_rho": {
+      "ttr": 0.5287,
+      "hapax_ratio": 0.5085,
+      "entropy_mean": 0.5176,
+      "entropy_std": 0.2687,
+      "entropy_min": 0.5125
+    },
+    "length_matched_rho": {
+      "ttr": -0.0069,
+      "hapax_ratio": -0.0031,
+      "entropy_mean": -0.0117,
+      "entropy_std": -0.0502,
+      "entropy_min": -0.0135
+    },
+    "partial_corr_rho": {
+      "ttr": 0.1389,
+      "hapax_ratio": 0.1248,
+      "entropy_mean": 0.1027,
+      "entropy_std": 0.1703,
+      "entropy_min": 0.1127
+    },
+    "length_matched_n_per_depth": {
+      "1": 325,
+      "2": 524,
+      "3": 581,
+      "4": 604
+    },
+    "short_text_stats": {
+      "n_short": 3597,
+      "pct_short": 73.1,
+      "ttr_mean": 0.9084,
+      "ttr_se": 0.0014,
+      "ttr_cv": 0.0016,
+      "hapax_ratio_mean": 0.84,
+      "hapax_ratio_se": 0.0024,
+      "hapax_ratio_cv": 0.0028,
+      "entropy_mean_mean": 4.0276,
+      "entropy_mean_se": 0.0124,
+      "entropy_mean_cv": 0.0031
+    },
+    "binary_f1_gen1_vs_gen2plus": {
+      "per_generator": {
+        "olmo-2-1b": 0.6731,
+        "pythia-1b": 0.788,
+        "pythia-2.8b": 0.7202,
+        "qwen3-0.6b": 0.745,
+        "qwen3-0.6b-instruct": 0.5519,
+        "qwen3-1.7b": 0.7427,
+        "qwen3-8b": 0.629
+      },
+      "average_f1": 0.6928,
+      "instruct_held_out_f1": 0.5519
+    },
+    "conclusion": {
+      "length_confound_confirmed": true,
+      "length_depth_abs_rho": 0.5826,
+      "surface_reversal_survives_control": true,
+      "surface_partial_rho": {
+        "ttr": 0.1389,
+        "hapax_ratio": 0.1248
+      },
+      "entropy_reversal_survives_control": true,
+      "entropy_partial_rho": 0.1027
+    }
+  },
+  "qwen3_17b_instruct": {
+    "length_per_depth": {
+      "0": {
+        "mean": 252.1,
+        "median": 256,
+        "std": 22.5,
+        "min": 66,
+        "max": 256,
+        "n": 996
+      },
+      "1": {
+        "mean": 79.0,
+        "median": 73,
+        "std": 49.0,
+        "min": 3,
+        "max": 256,
+        "n": 996
+      },
+      "2": {
+        "mean": 73.8,
+        "median": 70,
+        "std": 43.9,
+        "min": 1,
+        "max": 256,
+        "n": 991
+      },
+      "3": {
+        "mean": 71.9,
+        "median": 67,
+        "std": 41.7,
+        "min": 3,
+        "max": 256,
+        "n": 990
+      },
+      "4": {
+        "mean": 68.3,
+        "median": 64,
+        "std": 38.8,
+        "min": 3,
+        "max": 256,
+        "n": 990
+      }
+    },
+    "length_depth_spearman": {
+      "rho": -0.5204,
+      "p": "0.00e+00"
+    },
+    "length_range_used": [
+      39.0,
+      97.0
+    ],
+    "original_rho": {
+      "ttr": 0.4801,
+      "hapax_ratio": 0.4766,
+      "entropy_mean": 0.4779,
+      "entropy_std": 0.3009,
+      "entropy_min": 0.337
+    },
+    "length_matched_rho": {
+      "ttr": 0.1895,
+      "hapax_ratio": 0.2241,
+      "entropy_mean": 0.0421,
+      "entropy_std": -0.0206,
+      "entropy_min": -0.015
+    },
+    "partial_corr_rho": {
+      "ttr": 0.1302,
+      "hapax_ratio": 0.1658,
+      "entropy_mean": 0.1606,
+      "entropy_std": 0.1364,
+      "entropy_min": -0.0383
+    },
+    "length_matched_n_per_depth": {
+      "0": 9,
+      "1": 501,
+      "2": 487,
+      "3": 501,
+      "4": 528
+    },
+    "short_text_stats": {
+      "n_short": 1277,
+      "pct_short": 25.7,
+      "ttr_mean": 0.8712,
+      "ttr_se": 0.0026,
+      "ttr_cv": 0.003,
+      "hapax_ratio_mean": 0.7831,
+      "hapax_ratio_se": 0.004,
+      "hapax_ratio_cv": 0.0052,
+      "entropy_mean_mean": 3.7716,
+      "entropy_mean_se": 0.0181,
+      "entropy_mean_cv": 0.0048
+    },
+    "binary_f1_gen1_vs_gen2plus": {
+      "per_generator": {
+        "olmo-2-1b": 0.6744,
+        "pythia-1b": 0.788,
+        "pythia-2.8b": 0.7237,
+        "qwen3-0.6b": 0.7415,
+        "qwen3-1.7b": 0.746,
+        "qwen3-1.7b-instruct": 0.5058,
+        "qwen3-8b": 0.6264
+      },
+      "average_f1": 0.6865,
+      "instruct_held_out_f1": 0.5058
+    },
+    "conclusion": {
+      "length_confound_confirmed": true,
+      "length_depth_abs_rho": 0.5204,
+      "surface_reversal_survives_control": true,
+      "surface_partial_rho": {
+        "ttr": 0.1302,
+        "hapax_ratio": 0.1658
+      },
+      "entropy_reversal_survives_control": true,
+      "entropy_partial_rho": 0.1606
+    }
+  },
+  "conclusion": {
+    "length_confound_confirmed": true,
+    "surface_reversal_survives_control": false,
+    "entropy_reversal_survives_control": true
+  },
+  "olmo_2_0425_1b_instruct": {
+    "length_per_depth": {
+      "0": {
+        "mean": 251.9,
+        "median": 256,
+        "std": 23.0,
+        "min": 64,
+        "max": 256,
+        "n": 995
+      },
+      "1": {
+        "mean": 226.9,
+        "median": 256,
+        "std": 60.8,
+        "min": 1,
+        "max": 260,
+        "n": 965
+      },
+      "2": {
+        "mean": 198.2,
+        "median": 239,
+        "std": 71.0,
+        "min": 2,
+        "max": 257,
+        "n": 884
+      },
+      "3": {
+        "mean": 196.1,
+        "median": 241,
+        "std": 73.3,
+        "min": 2,
+        "max": 257,
+        "n": 817
+      },
+      "4": {
+        "mean": 197.8,
+        "median": 244,
+        "std": 71.9,
+        "min": 1,
+        "max": 257,
+        "n": 768
+      }
+    },
+    "length_depth_spearman": {
+      "rho": -0.3701,
+      "p": "7.72e-144"
+    },
+    "length_range_used": [
+      155.25,
+      256.0
+    ],
+    "original_rho": {
+      "ttr": 0.0057,
+      "hapax_ratio": 0.0253,
+      "entropy_mean": 0.4822,
+      "entropy_std": 0.2955,
+      "entropy_min": 0.0796
+    },
+    "length_matched_rho": {
+      "ttr": -0.2208,
+      "hapax_ratio": -0.1776,
+      "entropy_mean": 0.464,
+      "entropy_std": 0.3091,
+      "entropy_min": -0.0303
+    },
+    "partial_corr_rho": {
+      "ttr": -0.2407,
+      "hapax_ratio": -0.1979,
+      "entropy_mean": 0.364,
+      "entropy_std": 0.2187,
+      "entropy_min": -0.0611
+    },
+    "length_matched_n_per_depth": {
+      "0": 976,
+      "1": 838,
+      "2": 626,
+      "3": 571,
+      "4": 532
+    },
+    "short_text_stats": {
+      "n_short": 117,
+      "pct_short": 2.6,
+      "ttr_mean": 0.9108,
+      "ttr_se": 0.0077,
+      "ttr_cv": 0.0085,
+      "hapax_ratio_mean": 0.8486,
+      "hapax_ratio_se": 0.0124,
+      "hapax_ratio_cv": 0.0146,
+      "entropy_mean_mean": 4.0899,
+      "entropy_mean_se": 0.1192,
+      "entropy_mean_cv": 0.0291
+    },
+    "binary_f1_gen1_vs_gen2plus": {
+      "per_generator": {
+        "olmo-2-0425-1b-instruct": 0.3506,
+        "olmo-2-1b": 0.6835,
+        "pythia-1b": 0.7882,
+        "pythia-2.8b": 0.7144,
+        "qwen3-0.6b": 0.7546,
+        "qwen3-1.7b": 0.7451,
+        "qwen3-8b": 0.6344
+      },
+      "average_f1": 0.6673,
+      "instruct_held_out_f1": 0.3506
+    },
+    "conclusion": {
+      "length_confound_confirmed": true,
+      "length_depth_abs_rho": 0.3701,
+      "surface_reversal_survives_control": false,
+      "surface_partial_rho": {
+        "ttr": -0.2407,
+        "hapax_ratio": -0.1979
+      },
+      "entropy_reversal_survives_control": true,
+      "entropy_partial_rho": 0.364,
+      "length_confound_dominates": false,
+      "depth_signal_after_control": "partially_survives"
+    }
+  }
+}

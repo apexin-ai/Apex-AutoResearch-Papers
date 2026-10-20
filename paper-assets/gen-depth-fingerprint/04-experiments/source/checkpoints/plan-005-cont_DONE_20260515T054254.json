@@ -1,0 +1,63 @@
+{
+  "exp_id": "plan-005-cont",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:28:43.383Z",
+    "updated_at": "2026-05-15T05:42:53.944Z",
+    "spec": {
+      "command": "python generate_chain_prompt.py --model-name pythia-2.8b --prompt-type continuation",
+      "server": "autodl-5090",
+      "gpu": "cuda:1",
+      "pid": 164658,
+      "log_path": "/root/runs/gen-depth-fingerprint/plan-005-cont.log",
+      "submitted_at": "2026-05-15T03:28:43.303Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl",
+      "data_count": 995,
+      "model_name": "pythia-2.8b",
+      "seed": 0,
+      "prompt_type": "continuation",
+      "checkpoint_path": "/root/gen-depth-fingerprint/data/pythia-2.8b-continuation/generations_shard0.jsonl",
+      "wall_clock_seconds": 8050.6,
+      "gpu_hours": 2.24
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T05:40:03.942Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T05:40:05.254414+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "total_records": 4620,
+      "unique_seeds": 995,
+      "skipped": 168,
+      "depth_distribution": {
+        "0": 995,
+        "1": 992,
+        "2": 932,
+        "3": 874,
+        "4": 827
+      },
+      "output_file": "/root/gen-depth-fingerprint/data/pythia-2.8b-continuation/generations_shard0.jsonl",
+      "file_size_mb": 4.93,
+      "runtime_seconds": 7760,
+      "speed_seeds_per_sec": 0.13
+    },
+    "completed_at": "2026-05-15T05:42:53.944Z"
+  },
+  "timestamp": "2026-05-15T05:42:54.030360+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan-015",
+  "project": "gen-depth-fingerprint",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:58:41.890Z",
+    "updated_at": "2026-05-15T00:25:57.679Z",
+    "hypothesis": "现有检测器 ordinal baseline：FastDetectGPT/LD-Score 等检测器的连续分数是否已提供 ordinal depth signal"
+  },
+  "timestamp": "2026-05-15T00:25:57.750051+00:00",
+  "trigger": "update_registry"
+}

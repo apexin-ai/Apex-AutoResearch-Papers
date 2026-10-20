@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan-016-gemma2-2b-rp11",
+  "project": "gen-depth-fingerprint",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:10:59.251Z",
+    "updated_at": "2026-05-16T12:11:46.249Z",
+    "hypothesis": "Gemma-2-2B with repetition_penalty=1.1 — D036 strategy: sole rp=1.1 generator in main results. rp-LOFO Test A gate (F1>0.70 required)."
+  },
+  "timestamp": "2026-05-16T12:11:46.376639+00:00",
+  "trigger": "update_registry"
+}

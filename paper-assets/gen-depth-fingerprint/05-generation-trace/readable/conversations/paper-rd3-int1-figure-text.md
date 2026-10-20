@@ -1,0 +1,1980 @@
+# paper rd3 int1 figure text
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 63
+- **Recorded user turns:** 0
+- **Tool calls:** 31
+- **Original source:** `logs/chats/worker_paper_rd3-int1-figure-text_20260516T053419.jsonl`
+- **Structured JSON:** [`7e8d7e86af6daafed570.json`](../../sessions/7e/7e8d7e86af6daafed570.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+63 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T05:37:38.828516+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__save_project_file",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__save_project_file",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T05:37:38.828906+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T05:37:38.829170+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-16T05:37:38.829483+00:00_
+
+1	\section{Results}
+2	\label{sec:results}
+3	
+4	We evaluate depth fingerprinting along four axes: cross-generator classification (\S\ref{sec:results-classification}), differential depth response of individual features (\S\ref{sec:results-differential}), comparison with existing detection baselines (\S\ref{sec:results-baselines}), and downstream utility for data curation (\S\ref{sec:results-downstream}).
+5	
+6	\subsection{Depth Classification Performance}
+7	\label{sec:results-classification}
+8	
+9	Table~\ref{tab:logo-results} reports leave-one-generator-out (LOGO) macro-F1 for 3-class depth estimation (gen-0\,/\,gen-1\,/\,gen-2+) across six generators spanning three model families and parameter counts from 0.6B to 8.2B.
+10	
+11	The 7-feature ensemble achieves 3-class LOGO F1\,=\,0.789 (Table~\ref{tab:logo-results}). Because gen-0 seed texts are shared across generators (\S\ref{sec:generation}), the gen-0 class F1 (0.94) may be inflated; we therefore report a leak-free binary evaluation (gen-1 vs.\ gen-2+, F1\,=\,0.723) as the primary metric in \S\ref{sec:results-baselines}.
+12	Per-generator binary F1 ranges from 0.641 (Qwen3-8B) to 0.795 (Pythia-1B); 3-class F1 ranges from 0.683 to 0.856.
+13	Per-class F1 varies by depth: gen-0\,=\,0.94, gen-2+\,=\,0.80, gen-1\,=\,0.64; the primary difficulty lies in distinguishing gen-1 from gen-2+, where feature margins narrow.
+14	
+15	\paragraph{Cross-scale transfer.}
+16	The six-generator evaluation includes Qwen3-8B (8.2B parameters), confirming that depth signal persists beyond the $\leq$2.8B training generators, though with a moderate gap: Qwen3-8B binary F1\,=\,0.641 (CI [0.625, 0.657]) vs.\ 0.68--0.80 for smaller generators.
+17	Adding Qwen3-8B data improves classification on the original five generators (+0.8\,pp to 0.810); a volume-matched control confirms 94\% of this gain is attributable to generator diversity rather than data quantity.
+18	
+19	\paragraph{Cross-family generalization.}
+20	Leave-one-family-out (LOFO) evaluation---h
+…[truncated 9607 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T05:37:38.829831+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T05:37:38.830110+00:00_
+
+1	\section{Method}
+2	\label{sec:method}
+3	
+4	\subsection{Task Formulation}
+5	\label{sec:task}
+6	
+7	Given a text $x$, the goal is to predict its \emph{generation depth} $d \in \{0, 1, 2{+}\}$, where $d{=}0$ denotes human-written text, $d{=}1$ denotes first-generation LLM output conditioned on human text, and $d{=}2{+}$ denotes text produced by recursively conditioning an LLM on its own prior output at least twice.
+8	Formally, let $\mathcal{C}_0$ be a reference corpus of human-written text.
+9	A generation chain of depth $k$ is defined recursively: $x^{(0)} \sim \mathcal{C}_0$, and $x^{(k)} = G(x^{(k-1)})$ for $k \geq 1$, where $G$ denotes stochastic LLM generation conditioned on its input.
+10	We frame depth estimation as an ordinal classification task over three classes rather than binary real-vs-synthetic detection, enabling finer-grained provenance characterization.
+11	Depths beyond 2 are merged into a single $2{+}$ class, consistent with monotonic feature convergence that compresses inter-class margins beyond depth 2 (\S\ref{sec:results-differential}).
+12	
+13	\subsection{Generation Chain Construction}
+14	\label{sec:generation}
+15	
+16	We construct generation chains using six generators spanning three model families: \textbf{Pythia} (2.8B, 1B) \cite{pythia}, \textbf{OLMo} (OLMo-2-1B) \cite{olmo}, and \textbf{Qwen} (Qwen3-1.7B, Qwen3-0.6B, Qwen3-8B-Base) \cite{qwen3}.
+17	This selection covers parameter scales from 0.6B to 8.2B and diverse pretraining corpora, enabling evaluation of cross-generator and cross-scale generalization.
+18	
+19	For each generator, we sample approximately 1{,}000 seed passages from English Wikipedia as $\mathcal{C}_0$.
+20	The same pool of seed passages serves as gen-0 for all generators.
+21	In LOGO evaluation, gen-0 samples from the held-out generator's chains also appear (with the same text) in the training generators' chains, creating a potential train--test overlap for the gen-0 class.
+22	We address this with a supplementary binary evaluatio
+…[truncated 8321 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T05:37:38.830332+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T05:37:38.830599+00:00_
+
+1	\section{Discussion}
+2	\label{sec:discussion}
+3	
+4	\paragraph{Shape stationarity: mechanistic hypothesis.}
+5	Distributional shape features (entropy standard deviation, tail decay) remain near-stationary across generation depths, while central-tendency features drift monotonically (\S\ref{sec:results-differential}).
+6	We hypothesize that this reflects a decomposition of the autoregressive generation process: at each token position, the output distribution is determined jointly by model parameters (fixed) and conditioning context (varying).
+7	Recursive generation progressively shifts context toward the model's high-probability regions---reducing entropy mean---but does not alter the softmax architecture or sampling hyperparameters that determine distributional shape.
+8	In effect, diverse inputs passed through the same softmax and top-$p$ sampler produce NLL distributions whose shape reflects sampler parameters rather than input content, decoupling shape from the content drift that drives central-tendency features.
+9	This predicts that shape features should remain stationary until generation depth reaches the model's fixed-point distribution, a regime not yet observed in our chain lengths ($\leq$4 steps).
+10	Sampling ablation is consistent with this account: depth signal is robust to moderate temperature variation (${\leq}0.3$\,pp for $t \in [0.5, 0.7]$) but degrades substantially at $t = 1.0$ ($-6$\,pp; Appendix~\ref{app:sampling-sensitivity}), where the sampling mechanism itself becomes the dominant source of distributional shape variation, overwhelming the depth signal.
+11	
+12	\paragraph{Comparison with detector ensembles.}
+13	In binary evaluation (gen-1 vs.\ gen-2+), our 7-feature ensemble (F1\,=\,0.723) performs comparably to a 4-detector+surface ensemble (0.724) combining four pretrained detection scores with two surface statistics.
+14	We do not claim feature-engineering superiority: the primary contributions are the task formulation (ordinal depth estimation b
+…[truncated 7168 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T05:37:38.830819+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/gen-depth-fingerprint/*.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/gen-depth-fingerprint/*.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T05:37:38.831025+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/ablation_analysis.py\\n/root/gen-depth-fingerprint/analyze_7gen_logo.py\\n/root/gen-depth-fingerprint/analyze_instruct.py\\n/root/gen-depth-fingerprint/analyze_prompt_types.py\\n/root/gen-depth-fingerprint/bootstrap_ci_plan015.py\\n/root/gen-depth-fingerprint/classify_and_eval.py\\n/root/gen-depth-fingerprint/classify_multi.py\\n/root/gen-depth-fingerprint/compute_binary_baseline.py\\n/root/gen-depth-fingerprint/compute_dataset_stats.py\\n/root/gen-depth-fingerprint/cross_generator_eval.py\\n/root/gen-depth-fingerprint/cross_model_chains.py\\n/root/gen-depth-fingerprint/cross_ref_analysis.py\\n/root/gen-depth-fingerprint/dedup_generations.py\\n/root/gen-depth-fingerprint/detector_baseline.py\\n/root/gen-depth-fingerprint/end_to_end_classifier.py\\n/root/gen-depth-fingerprint/end_to_end_classifier_pythia.py\\n/root/gen-depth-fingerprint/end_to_end_classifier_v2.py\\n/root/gen-depth-fingerprint/extract_confusion_3class.py\\n/root/gen-depth-fingerprint/extract_features.py\\n/root/gen-depth-fingerprint/extract_features_crossref.py\\n/root/gen-depth-fingerprint/extract_features_multi.py\\n/root/gen-depth-fingerprint/finer_ordinal.py\\n/root/gen-depth-fingerprint/finetune_downstream.py\\n/root/gen-depth-fingerprint/generate_chain.py\\n/root/gen-depth-fingerprint/generate_chain_instruct.py\\n/root/gen-depth-fingerprint/generate_chain_prompt.py\\n/root/gen-depth-fingerprint/merge_shards.py\\n/root/gen-depth-fingerprint/multi_domain_seeds.py\\n/root/gen-depth-fingerprint/multi_seed_stability.py\\n/root/gen-depth-fingerprint/paraphrastic_chains.py\\n/root/gen-depth-fingerprint/prepare_downstream_data.py\\n/root/gen-depth-fingerprint/run_high_only.py\\n/root/gen-depth-fingerprint/sampling_ablation.py\\n/root/gen-depth-fingerprint/text_length_analysis.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T05:37:38.831250+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/gen-depth-fingerprint -name \"*fig1*\" -o -name \"*strip*\" -o -name \"*differential*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/gen-depth-fingerprint -name \"*fig1*\" -o -name \"*strip*\" -o -name \"*differential*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T05:37:38.831463+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/results/fig1_differential_response_v2.pdf\\n/root/gen-depth-fingerprint/results/fig1_differential_response_v2.png\\n/root/gen-depth-fingerprint/scripts/plot_fig1.py\\n/root/gen-depth-fingerprint/scripts/plot_fig1_strip.py\\n/root/gen-depth-fingerprint/artifacts/fig1_differential_response.png\\n/root/gen-depth-fingerprint/artifacts/fig1_differential_response.pdf\\n/root/gen-depth-fingerprint/figures/paper/fig1_differential_response.pdf\\n/root/gen-depth-fingerprint/figures/paper/fig1_differential_response.png\\n/root/gen-depth-fingerprint/figures/fig1_differential_response_strip.pdf\\n/root/gen-depth-fingerprint/figures/fig1_differential_response_strip.png\\n/root/gen-depth-fingerprint/paper/figures/fig1_differential_response.pdf\\n/root/gen-depth-fingerprint/paper/figures/fig1_differential_response.png\\n/root/gen-depth-fingerprint/charts/gen_fig1.py\\n/root/gen-depth-fingerprint/charts/fig1_differential_response.pdf\\n/root/gen-depth-fingerprint/charts/fig1_differential_response.png\\n/root/gen-depth-fingerprint/fig1_differential_response.pdf\\n/root/gen-depth-fingerprint/fig1_differential_response.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T05:37:38.831695+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/gen-depth-fingerprint -name \"*.py\" -path \"*plot*\" -o -name \"*.py\" -path \"*fig*\" -o -name \"*draw*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/gen-depth-fingerprint -name \"*.py\" -path \"*plot*\" -o -name \"*.py\" -path \"*fig*\" -o -name \"*draw*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T05:37:38.831893+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/scripts/plot_fig1.py\\n/root/gen-depth-fingerprint/scripts/plot_fig2.py\\n/root/gen-depth-fingerprint/scripts/plot_fig3.py\\n/root/gen-depth-fingerprint/scripts/plot_fig1_strip.py\\n/root/gen-depth-fingerprint/paper/generate_figures.py\\n/root/gen-depth-fingerprint/charts/gen_fig1.py\\n/root/gen-depth-fingerprint/charts/gen_fig3.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T05:37:38.832073+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/scripts/plot_fig1_strip.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/gen-depth-fingerprint/scripts/plot_fig1_strip.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T05:37:38.832306+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Figure 1: Strip plot of per-generator Spearman rho with overall markers.\\\"\\\"\\\"\\nimport json\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom pathlib import Path\\n\\nplt.rcParams.update({\\n    'font.family': 'serif',\\n    'font.serif': ['Times New Roman', 'DejaVu Serif', 'Nimbus Roman'],\\n    'font.size': 8,\\n    'axes.labelsize': 9,\\n    'axes.titlesize': 9,\\n    'xtick.labelsize': 7.5,\\n    'ytick.labelsize': 7,\\n    'legend.fontsize': 6,\\n    'figure.dpi': 300,\\n    'savefig.dpi': 300,\\n    'savefig.bbox': 'tight',\\n    'axes.spines.top': False,\\n    'axes.spines.right': False,\\n    'axes.grid': False,\\n    'mathtext.fontset': 'cm',\\n})\\n\\nwith open('/root/gen-depth-fingerprint/results/spearman_per_generator.json') as f:\\n    per_gen = json.load(f)\\n\\nfeatures = ['hapax_ratio', 'ttr', 'entropy_mean', 'entropy_min', 'entropy_max', 'tail_decay', 'entropy_std']\\nfeat_labels = ['Hapax', 'TTR', r'$\\\\bar{H}$', r'$H_{\\\\min}$', r'$H_{\\\\max}$', 'Tail Dec.', r'$\\\\sigma_H$']\\n\\noverall = {\\n    'hapax_ratio': -0.558, 'ttr': -0.542, 'entropy_mean': -0.475,\\n    'entropy_min': -0.303, 'entropy_max': 0.095,\\n    'tail_decay': -0.089, 'entropy_std': -0.076,\\n}\\n\\ndrifting = {'hapax_ratio', 'ttr', 'entropy_mean'}\\n\\ngenerators = list(per_gen.keys())\\n\\nCOLORS = {\\n    'pythia-1b':   '#E69F00',\\n    'pythia-2.8b': '#56B4E9',\\n    'olmo-2-1b':   '#009E73',\\n    'qwen3-0.6b':  '#0072B2',\\n    'qwen3-1.7b':  '#D55E00',\\n    'qwen3-8b':    '#CC79A7',\\n}\\n\\nMARKERS = {\\n    'pythia-1b':   'o',\\n    'pythia-2.8b': 's',\\n    'olmo-2-1b':   '^',\\n    'qwen3-0.6b':  'D',\\n    'qwen3-1.7b':  'v',\\n    'qwen3-8b':    'P',\\n}\\n\\nLABELS = {\\n    'pythia-1b':   'Pythia-1B',\\n    'pythia-2.8b': 'Pythia-2.8B',\\n    'olmo-2-1b':   'OLMo-2-1B',\\n    'qwen3-0.6b':  'Qwen3-0.6B',\\n
+…[truncated 2986 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T05:37:38.832589+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/spearman_per_generator.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/gen-depth-fingerprint/results/spearman_per_generator.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T05:37:38.832809+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia-1b\\\": {\\n    \\\"entropy_mean\\\": -0.712,\\n    \\\"entropy_std\\\": -0.2414,\\n    \\\"entropy_min\\\": -0.5051,\\n    \\\"entropy_max\\\": 0.0048,\\n    \\\"tail_decay\\\": 0.0904,\\n    \\\"ttr\\\": -0.6568,\\n    \\\"hapax_ratio\\\": -0.6741\\n  },\\n  \\\"pythia-2.8b\\\": {\\n    \\\"entropy_mean\\\": -0.6754,\\n    \\\"entropy_std\\\": -0.153,\\n    \\\"entropy_min\\\": -0.4797,\\n    \\\"entropy_max\\\": -0.0351,\\n    \\\"tail_decay\\\": 0.0633,\\n    \\\"ttr\\\": -0.6333,\\n    \\\"hapax_ratio\\\": -0.6553\\n  },\\n  \\\"olmo-2-1b\\\": {\\n    \\\"entropy_mean\\\": -0.6386,\\n    \\\"entropy_std\\\": -0.2958,\\n    \\\"entropy_min\\\": -0.3874,\\n    \\\"entropy_max\\\": 0.0672,\\n    \\\"tail_decay\\\": -0.1411,\\n    \\\"ttr\\\": -0.6996,\\n    \\\"hapax_ratio\\\": -0.7124\\n  },\\n  \\\"qwen3-0.6b\\\": {\\n    \\\"entropy_mean\\\": -0.5656,\\n    \\\"entropy_std\\\": -0.2294,\\n    \\\"entropy_min\\\": -0.3587,\\n    \\\"entropy_max\\\": 0.0857,\\n    \\\"tail_decay\\\": -0.0902,\\n    \\\"ttr\\\": -0.6111,\\n    \\\"hapax_ratio\\\": -0.6273\\n  },\\n  \\\"qwen3-1.7b\\\": {\\n    \\\"entropy_mean\\\": -0.6022,\\n    \\\"entropy_std\\\": -0.1882,\\n    \\\"entropy_min\\\": -0.4062,\\n    \\\"entropy_max\\\": 0.0884,\\n    \\\"tail_decay\\\": -0.0698,\\n    \\\"ttr\\\": -0.6523,\\n    \\\"hapax_ratio\\\": -0.6696\\n  },\\n  \\\"qwen3-8b\\\": {\\n    \\\"entropy_mean\\\": -0.4754,\\n    \\\"entropy_std\\\": -0.0755,\\n    \\\"entropy_min\\\": -0.3029,\\n    \\\"entropy_max\\\": 0.0946,\\n    \\\"tail_decay\\\": -0.0894,\\n    \\\"ttr\\\": -0.5419,\\n    \\\"hapax_ratio\\\": -0.5578\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T05:37:38.833011+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat > /root/gen-depth-fingerprint/scripts/plot_fig1_strip.py << 'PYTHON'\n#!/usr/bin/env python3\n\"\"\"Figure 1: Strip plot of per-generator Spearman rho with overall markers.\"\"\"\nimport json\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom pathlib import Path\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif', 'Nimbus Roman'],\n    'font.size': 8,\n    'axes.labelsize': 9,\n    'axes.titlesize': 9,\n    'xtick.labelsize': 7.5,\n    'ytick.labelsize': 7,\n    'legend.fontsize': 6,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'axes.grid': False,\n    'mathtext.fontset': 'cm',\n})\n\nwith open('/root/gen-depth-fingerprint/results/spearman_per_generator.json') as f:\n    per_gen = json.load(f)\n\nfeatures = ['hapax_ratio', 'ttr', 'entropy_mean', 'entropy_min', 'entropy_max', 'tail_decay', 'entropy_std']\nfeat_labels = ['Hapax', 'TTR', r'$\\bar{H}$', r'$H_{\\min}$', r'$H_{\\max}$', 'Tail Dec.', r'$\\sigma_H$']\n\noverall = {\n    'hapax_ratio': -0.558, 'ttr': -0.542, 'entropy_mean': -0.475,\n    'entropy_min': -0.303, 'entropy_max': 0.095,\n    'tail_decay': -0.089, 'entropy_std': -0.076,\n}\n\ndrifting = {'hapax_ratio', 'ttr', 'entropy_mean', 'entropy_min'}\n\ngenerators = list(per_gen.keys())\n\nCOLORS = {\n    'pythia-1b':   '#E69F00',\n    'pythia-2.8b': '#56B4E9',\n    'olmo-2-1b':   '#009E73',\n    'qwen3-0.6b':  '#0072B2',\n    'qwen3-1.7b':  '#D55E00',\n    'qwen3-8b':    '#CC79A7',\n}\n\nMARKERS = {\n    'pythia-1b':   'o',\n    'pythia-2.8b': 's',\n    'olmo-2-1b':   '^',\n    'qwen3-0.6b':  'D',\n    'qwen3-1.7b':  'v',\n    'qwen3-8b':    'P',\n}\n\nLABELS = {\n    'pythia-1b':   'Pythia-1B',\n    'pythia-2.8b': 'Pythia-2.8B',\n    'olmo-2-1b':   'OLMo-2-1B',\n    'qwen3-0.6b':  'Qwen3-0.6B',\n    'qwen3-1.7b':  'Qwen3-1.7B',\n    'qwen3-8b':    'Qwen3-8B',\n}\n\nfig, ax = plt.subplots(figsize=(3.25, 2.4))\n\nx = np.arange(len(features))\njitter_offsets = np.linspace(-0.22, 0.22, len(generators))\n\nfor gi, gen in enumerate(generators):\n    vals = [per_gen[gen][f] for f in features]\n    ax.scatter(\n        x + jitter_offsets[gi], vals,\n        marker=MARKERS[gen], color=COLORS[gen], s=20, linewidths=0.4,\n        edgecolors='white', zorder=3, label=LABELS[gen],\n    )\n\noverall_vals = [overall[f] for f in features]\nax.scatter(\n    x, overall_vals, marker='X', color='black', s=45, linewidths=0.5,\n    edgecolors='black', zorder=4, label='Overall',\n)\n\nax.axhline(0, color='black', linewidth=0.4, zorder=1)\nax.axhline(-0.15, color='gray', linewidth=0.5, linestyle='--', alpha=0.4, zorder=1)\nax.axhline(0.15, color='gray', linewidth=0.5, linestyle='--', alpha=0.4, zorder=1)\n\nfor i, f in enumerate(features):\n    if f in drifting:\n        ax.axvspan(i - 0.4, i + 0.4, color='#2166AC', alpha=0.06, zorder=0)\n    else:\n        ax.axvspan(i - 0.4, i + 0.4, color='#999999', alpha=0.06, zorder=0)\n\nax.set_xticks(x)\nax.set_xticklabels(feat_labels)\nax.set_ylabel(r\"Spearman $\\rho$ with Depth\")\nax.set_ylim(-0.82, 0.25)\n\n# Bracket annotations: drifting covers indices 0-3, near-stationary covers 4-6\nax.annotate('', xy=(-0.4, 0.23), xytext=(3.4, 0.23),\n            arrowprops=dict(arrowstyle='-', color='#2166AC', lw=0.8),\n            annotation_clip=False)\nax.text(1.5, 0.245, 'drifting', fontsize=5.5, fontstyle='italic', color='#2166AC',\n        ha='center', va='bottom')\nax.annotate('', xy=(3.6, 0.23), xytext=(6.4, 0.23),\n            arrowprops=dict(arrowstyle='-', color='#666666', lw=0.8),\n            annotation_clip=False)\nax.text(5, 0.245, 'near-stationary', fontsize=5.5, fontstyle='italic', color='#666666',\n        ha='center', va='bottom')\n\nhandles, labels_list = ax.get_legend_handles_labels()\nleg = ax.legend(handles, labels_list, loc='lower center', ncol=4, frameon=True,\n          fancybox=False, edgecolor='#cccccc', framealpha=0.95,\n          handletextpad=0.3, columnspacing=0.6, borderpad=0.3,\n          bbox_to_anchor=(0.5, -0.52))\n\nplt.subplots_adjust(bottom=0.28)\n\noutdir = Path('/root/gen-depth-fingerprint')\nfig.savefig(outdir / 'fig1_differential_response.pdf', facecolor='white')\nfig.savefig(outdir / 'fig1_differential_response.png', dpi=300, facecolor='white')\nprint(f'Saved to {outdir}/fig1_differential_response.{{pdf,png}}')\n\nplt.close()\nPYTHON\npython3 /root/gen-depth-fingerprint/scripts/plot_fig1_strip.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat > /root/gen-depth-fingerprint/scripts/plot_fig1_strip.py << 'PYTHON'\n#!/usr/bin/env python3\n\"\"\"Figure 1: Strip plot of per-generator Spearman rho with overall markers.\"\"\"\nimport json\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom pathlib import Path\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif', 'Nimbus Roman'],\n    'font.size': 8,\n    'axes.labelsize': 9,\n    'axes.titlesize': 9,\n    'xtick.labelsize': 7.5,\n    'ytick.labelsize': 7,\n    'legend.fontsize': 6,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'axes.grid': False,\n    'mathtext.fontset': 'cm',\n})\n\nwith open('/root/gen-depth-fingerprint/results/spearman_per_generator.json') as f:\n    per_gen = json.load(f)\n\nfeatures = ['hapax_ratio', 'ttr', 'entropy_mean', 'entropy_min', 'entropy_max', 'tail_decay', 'entropy_std']\nfeat_labels = ['Hapax', 'TTR', r'$\\bar{H}$', r'$H_{\\min}$', r'$H_{\\max}$', 'Tail Dec.', r'$\\sigma_H$']\n\noverall = {\n    'hapax_ratio': -0.558, 'ttr': -0.542, 'entropy_mean': -0.475,\n    'entropy_min': -0.303, 'entropy_max': 0.095,\n    'tail_decay': -0.089, 'entropy_std': -0.076,\n}\n\ndrifting = {'hapax_ratio', 'ttr', 'entropy_mean', 'entropy_min'}\n\ngenerators = list(per_gen.keys())\n\nCOLORS = {\n    'pythia-1b':   '#E69F00',\n    'pythia-2.8b': '#56B4E9',\n    'olmo-2-1b':   '#009E73',\n    'qwen3-0.6b':  '#0072B2',\n    'qwen3-1.7b':  '#D55E00',\n    'qwen3-8b':    '#CC79A7',\n}\n\nMARKERS = {\n    'pythia-1b':   'o',\n    'pythia-2.8b': 's',\n    'olmo-2-1b':   '^',\n    'qwen3-0.6b':  'D',\n    'qwen3-1.7b':  'v',\n    'qwen3-8b':    'P',\n}\n\nLABELS = {\n    'pythia-1b':   'Pythia-1B',\n    'pythia-2.8b': 'Pythia-2.8B',\n    'olmo-2-1b':   'OLMo-2-1B',\n    'qwen3-0.6b':  'Qwen3-0.6B',\n    'qwen3-1.7b':  'Qwen3-1.7B',\n    'qwen3-8b':    'Qwen3-8B',\n}\n\nfig, ax = plt.subplots(figsize=(3.25, 2.4))\n\nx = np.arange(len(features))\njitter_offsets = np.linspace(-0.22, 0.22, len(generators))\n\nfor gi, gen in enumerate(generators):\n    vals = [per_gen[gen][f] for f in features]\n    ax.scatter(\n        x + jitter_offsets[gi], vals,\n        marker=MARKERS[gen], color=COLORS[gen], s=20, linewidths=0.4,\n        edgecolors='white', zorder=3, label=LABELS[gen],\n    )\n\noverall_vals = [overall[f] for f in features]\nax.scatter(\n    x, overall_vals, marker='X', color='black', s=45, linewidths=0.5,\n    edgecolors='black', zorder=4, label='Overall',\n)\n\nax.axhline(0, color='black', linewidth=0.4, zorder=1)\nax.axhline(-0.15, color='gray', linewidth=0.5, linestyle='--', alpha=0.4, zorder=1)\nax.axhline(0.15, color='gray', linewidth=0.5, linestyle='--', alpha=0.4, zorder=1)\n\nfor i, f in enumerate(features):\n    if f in drifting:\n        ax.axvspan(i - 0.4, i + 0.4, color='#2166AC', alpha=0.06, zorder=0)\n    else:\n        ax.axvspan(i - 0.4, i + 0.4, color='#999999', alpha=0.06, zorder=0)\n\nax.set_xticks(x)\nax.set_xticklabels(feat_labels)\nax.set_ylabel(r\"Spearman $\\rho$ with Depth\")\nax.set_ylim(-0.82, 0.25)\n\n# Bracket annotations: drifting covers indices 0-3, near-stationary covers 4-6\nax.annotate('', xy=(-0.4, 0.23), xytext=(3.4, 0.23),\n            arrowprops=dict(arrowstyle='-', color='#2166AC', lw=0.8),\n            annotation_clip=False)\nax.text(1.5, 0.245, 'drifting', fontsize=5.5, fontstyle='italic', color='#2166AC',\n        ha='center', va='bottom')\nax.annotate('', xy=(3.6, 0.23), xytext=(6.4, 0.23),\n            arrowprops=dict(arrowstyle='-', color='#666666', lw=0.8),\n            annotation_clip=False)\nax.text(5, 0.245, 'near-stationary', fontsize=5.5, fontstyle='italic', color='#666666',\n        ha='center', va='bottom')\n\nhandles, labels_list = ax.get_legend_handles_labels()\nleg = ax.legend(handles, labels_list, loc='lower center', ncol=4, frameon=True,\n          fancybox=False, edgecolor='#cccccc', framealpha=0.95,\n          handletextpad=0.3, columnspacing=0.6, borderpad=0.3,\n          bbox_to_anchor=(0.5, -0.52))\n\nplt.subplots_adjust(bottom=0.28)\n\noutdir = Path('/root/gen-depth-fingerprint')\nfig.savefig(outdir / 'fig1_differential_response.pdf', facecolor='white')\nfig.savefig(outdir / 'fig1_differential_response.png', dpi=300, facecolor='white')\nprint(f'Saved to {outdir}/fig1_differential_response.{{pdf,png}}')\n\nplt.close()\nPYTHON\npython3 /root/gen-depth-fingerprint/scripts/plot_fig1_strip.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T05:37:38.833276+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat > /root/gen-depth-fingerprint/scripts/plot_fig1_strip.py << \\\\'PYTHON\\\\'\\\\n#!/usr/bin/env python3\\\\n\\\"\\\"\\\"Figure 1: Strip plot of per-generator Spearman rho with overall markers.\\\"\\\"\\\"\\\\nimport json\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\'Agg\\\\')\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nfrom pathlib import Path\\\\n\\\\nplt.rcParams.update({\\\\n    \\\\'font.family\\\\': \\\\'serif\\\\',\\\\n    \\\\'font.serif\\\\': [\\\\'Times New Roman\\\\', \\\\'DejaVu Serif\\\\', \\\\'Nimbus Roman\\\\'],\\\\n    \\\\'font.size\\\\': 8,\\\\n    \\\\'axes.labelsize\\\\': 9,\\\\n    \\\\'axes.titlesize\\\\': 9,\\\\n    \\\\'xtick.labelsize\\\\': 7.5,\\\\n    \\\\'ytick.labelsize\\\\': 7,\\\\n    \\\\'legend.fontsize\\\\': 6,\\\\n    \\\\'figure.dpi\\\\': 300,\\\\n    \\\\'savefig.dpi\\\\': 300,\\\\n    \\\\'savefig.bbox\\\\': \\\\'tight\\\\',\\\\n    \\\\'axes.spines.top\\\\': False,\\\\n    \\\\'axes.spines.right\\\\': False,\\\\n    \\\\'axes.grid\\\\': False,\\\\n    \\\\'mathtext.fontset\\\\': \\\\'cm\\\\',\\\\n})\\\\n\\\\nwith open(\\\\'/root/gen-depth-fingerprint/results/spearman_per_generator.json\\\\') as f:\\\\n    per_gen = json.load(f)\\\\n\\\\nfeatures = [\\\\'hapax_ratio\\\\', \\\\'ttr\\\\', \\\\'entropy_mean\\\\', \\\\'entropy_min\\\\', \\\\'entropy_max\\\\', \\\\'tail_decay\\\\', \\\\'entropy_std\\\\']\\\\nfeat_labels = [\\\\'Hapax\\\\', \\\\'TTR\\\\', r\\\\'$\\\\\\\\bar{H}$\\\\', r\\\\'$H_{\\\\\\\\min}$\\\\', r\\\\'$H_{\\\\\\\\max}$\\\\', \\\\'Tail Dec.\\\\', r\\\\'$\\\\\\\\sigma_H$\\\\']\\\\n\\\\noverall = {\\\\n    \\\\'hapax_ratio\\\\': -0.558, \\\\'ttr\\\\': -0.542, \\\\'entropy_mean\\\\': -0.475,\\\\n    \\\\'entropy_min\\\\': -0.303, \\\\'entropy_max\\\\': 0.095,\\\\n    \\\\'tail_decay\\\\': -0.089, \\\\'entropy_std\\\\': -0.076,\\\\n}\\\\n\\\\ndrifting = {\\\\'hapax_ratio\\\\', \\\\'ttr\\\\',
+…[truncated 4227 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-16T05:37:38.833429+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+  "limit": "80",
+  "offset": "55"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+    "limit": "80",
+    "offset": "55"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T05:37:38.833609+00:00_
+
+55	
+56	
+57	\subsection{Differential Depth Response}
+58	\label{sec:results-differential}
+59	
+60	Features exhibit \emph{differential depth response}: central-tendency and diversity measures drift monotonically with depth, while distributional shape measures remain near-stationary.
+61	This pattern is consistent with recursive generation inducing a location shift in the token-level NLL distribution---the text becomes progressively more predictable (mean shifts), while the functional form of the distribution is preserved (shape is invariant).
+62	
+63	\begin{figure}[t]
+64	\centering
+65	\includegraphics[width=\columnwidth]{fig1_differential_response.pdf}
+66	\caption{Differential depth response: Spearman correlations between individual features and generation depth. Central-tendency and diversity features (hapax ratio, TTR, entropy mean) show strong monotonic drift, while shape features (entropy std, tail decay) remain near-stationary.}
+67	\label{fig:feature-drift}
+68	\end{figure}
+69	
+70	Individual-level Spearman correlations with depth confirm the split (Figure~\ref{fig:feature-drift}):
+71	drifting features show strong monotonic trends (hapax ratio $\rho = -0.558$, TTR $\rho = -0.542$, entropy mean $\rho = -0.475$),
+72	while shape features show weak or negligible correlations (entropy std $|\rho| = 0.076$, tail decay $|\rho| = 0.089$).
+73	However, these correlations are computed on continuation chains; elaboration and rewriting chains show substantially weaker drift (Appendix~\ref{app:prompt-type}), and this prompt-type dependence bounds the generality of the differential response characterization.
+74	
+75	\paragraph{Feature complementarity.}
+76	Table~\ref{tab:ablation} reports ablation results.
+77	The full 7-feature set (F1\,=\,0.789) significantly outperforms both surface-only features (TTR, hapax\_ratio; F1\,=\,0.729) and reference-only features (entropy mean/std/max/min, tail\_decay; F1\,=\,0.745; McNemar $p \approx 0$).
+78	Permutation importance ranks hapax ratio highes
+…[truncated 3201 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T05:37:38.833774+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/method.tex",
+  "limit": "10",
+  "offset": "55"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/method.tex",
+    "limit": "10",
+    "offset": "55"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T05:37:38.833905+00:00_
+
+55	    \item \textbf{TTR}: type-token ratio (number of unique word types divided by total tokens);
+56	    \item \textbf{hapax\_ratio}: proportion of words appearing exactly once (\emph{hapax legomena}).
+57	\end{itemize}
+58	
+59	\paragraph{Feature complementarity.}
+60	The grouping reflects an empirical pattern we term \emph{differential depth response}: central-tendency and diversity features (entropy\_mean, TTR, hapax\_ratio) drift monotonically with generation depth, while distributional shape features (entropy\_std, tail\_decay) remain near-stationary.
+61	This differential behavior---consistent with recursive generation inducing a location shift in the NLL distribution while preserving its functional form---motivates combining both feature types.
+62	As shown in \S\ref{sec:results}, the full 7-feature set significantly outperforms either group alone.
+63	
+64	\subsection{Evaluation Protocol}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T05:37:38.834027+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/discussion.tex",
+  "limit": "15",
+  "offset": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/discussion.tex",
+    "limit": "15",
+    "offset": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T05:37:38.834155+00:00_
+
+0	\section{Discussion}
+1	\label{sec:discussion}
+2	
+3	\paragraph{Shape stationarity: mechanistic hypothesis.}
+4	Distributional shape features (entropy standard deviation, tail decay) remain near-stationary across generation depths, while central-tendency features drift monotonically (\S\ref{sec:results-differential}).
+5	We hypothesize that this reflects a decomposition of the autoregressive generation process: at each token position, the output distribution is determined jointly by model parameters (fixed) and conditioning context (varying).
+6	Recursive generation progressively shifts context toward the model's high-probability regions---reducing entropy mean---but does not alter the softmax architecture or sampling hyperparameters that determine distributional shape.
+7	In effect, diverse inputs passed through the same softmax and top-$p$ sampler produce NLL distributions whose shape reflects sampler parameters rather than input content, decoupling shape from the content drift that drives central-tendency features.
+8	This predicts that shape features should remain stationary until generation depth reaches the model's fixed-point distribution, a regime not yet observed in our chain lengths ($\leq$4 steps).
+9	Sampling ablation is consistent with this account: depth signal is robust to moderate temperature variation (${\leq}0.3$\,pp for $t \in [0.5, 0.7]$) but degrades substantially at $t = 1.0$ ($-6$\,pp; Appendix~\ref{app:sampling-sensitivity}), where the sampling mechanism itself becomes the dominant source of distributional shape variation, overwhelming the depth signal.
+10	
+11	\paragraph{Comparison with detector ensembles.}
+12	In binary evaluation (gen-1 vs.\ gen-2+), our 7-feature ensemble (F1\,=\,0.723) performs comparably to a 4-detector+surface ensemble (0.724) combining four pretrained detection scores with two surface statistics.
+13	We do not claim feature-engineering superiority: the primary contributions are the task formulation (ordinal depth estimation be
+…[truncated 454 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T05:37:38.834314+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && which python3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && which python3",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T05:37:38.834436+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T05:37:38.834559+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom pathlib import Path\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif', 'Nimbus Roman'],\n    'font.size': 8,\n    'axes.labelsize': 9,\n    'axes.titlesize': 9,\n    'xtick.labelsize': 7.5,\n    'ytick.labelsize': 7,\n    'legend.fontsize': 6,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'axes.grid': False,\n    'mathtext.fontset': 'cm',\n})\n\nwith open('/root/gen-depth-fingerprint/results/spearman_per_generator.json') as f:\n    per_gen = json.load(f)\n\nfeatures = ['hapax_ratio', 'ttr', 'entropy_mean', 'entropy_min', 'entropy_max', 'tail_decay', 'entropy_std']\nfeat_labels = ['Hapax', 'TTR', r'\\$\\\\bar{H}\\$', r'\\$H_{\\\\min}\\$', r'\\$H_{\\\\max}\\$', 'Tail Dec.', r'\\$\\\\sigma_H\\$']\n\noverall = {\n    'hapax_ratio': -0.558, 'ttr': -0.542, 'entropy_mean': -0.475,\n    'entropy_min': -0.303, 'entropy_max': 0.095,\n    'tail_decay': -0.089, 'entropy_std': -0.076,\n}\n\ndrifting = {'hapax_ratio', 'ttr', 'entropy_mean', 'entropy_min'}\n\ngenerators = list(per_gen.keys())\n\nCOLORS = {\n    'pythia-1b':   '#E69F00',\n    'pythia-2.8b': '#56B4E9',\n    'olmo-2-1b':   '#009E73',\n    'qwen3-0.6b':  '#0072B2',\n    'qwen3-1.7b':  '#D55E00',\n    'qwen3-8b':    '#CC79A7',\n}\n\nMARKERS = {\n    'pythia-1b':   'o',\n    'pythia-2.8b': 's',\n    'olmo-2-1b':   '^',\n    'qwen3-0.6b':  'D',\n    'qwen3-1.7b':  'v',\n    'qwen3-8b':    'P',\n}\n\nLABELS = {\n    'pythia-1b':   'Pythia-1B',\n    'pythia-2.8b': 'Pythia-2.8B',\n    'olmo-2-1b':   'OLMo-2-1B',\n    'qwen3-0.6b':  'Qwen3-0.6B',\n    'qwen3-1.7b':  'Qwen3-1.7B',\n    'qwen3-8b':    'Qwen3-8B',\n}\n\nfig, ax = plt.subplots(figsize=(3.25, 2.4))\n\nx = np.arange(len(features))\njitter_offsets = np.linspace(-0.22, 0.22, len(generators))\n\nfor gi, gen in enumerate(generators):\n    vals = [per_gen[gen][f] for f in features]\n    ax.scatter(\n        x + jitter_offsets[gi], vals,\n        marker=MARKERS[gen], color=COLORS[gen], s=20, linewidths=0.4,\n        edgecolors='white', zorder=3, label=LABELS[gen],\n    )\n\noverall_vals = [overall[f] for f in features]\nax.scatter(\n    x, overall_vals, marker='X', color='black', s=45, linewidths=0.5,\n    edgecolors='black', zorder=4, label='Overall',\n)\n\nax.axhline(0, color='black', linewidth=0.4, zorder=1)\nax.axhline(-0.15, color='gray', linewidth=0.5, linestyle='--', alpha=0.4, zorder=1)\nax.axhline(0.15, color='gray', linewidth=0.5, linestyle='--', alpha=0.4, zorder=1)\n\nfor i, f in enumerate(features):\n    if f in drifting:\n        ax.axvspan(i - 0.4, i + 0.4, color='#2166AC', alpha=0.06, zorder=0)\n    else:\n        ax.axvspan(i - 0.4, i + 0.4, color='#999999', alpha=0.06, zorder=0)\n\nax.set_xticks(x)\nax.set_xticklabels(feat_labels)\nax.set_ylabel(r'Spearman \\$\\\\rho\\$ with Depth')\nax.set_ylim(-0.82, 0.25)\n\nax.annotate('', xy=(-0.4, 0.23), xytext=(3.4, 0.23),\n            arrowprops=dict(arrowstyle='-', color='#2166AC', lw=0.8),\n            annotation_clip=False)\nax.text(1.5, 0.245, 'drifting', fontsize=5.5, fontstyle='italic', color='#2166AC',\n        ha='center', va='bottom')\nax.annotate('', xy=(3.6, 0.23), xytext=(6.4, 0.23),\n            arrowprops=dict(arrowstyle='-', color='#666666', lw=0.8),\n            annotation_clip=False)\nax.text(5, 0.245, 'near-stationary', fontsize=5.5, fontstyle='italic', color='#666666',\n        ha='center', va='bottom')\n\nhandles, labels_list = ax.get_legend_handles_labels()\nleg = ax.legend(handles, labels_list, loc='lower center', ncol=4, frameon=True,\n          fancybox=False, edgecolor='#cccccc', framealpha=0.95,\n          handletextpad=0.3, columnspacing=0.6, borderpad=0.3,\n          bbox_to_anchor=(0.5, -0.52))\n\nplt.subplots_adjust(bottom=0.28)\n\noutdir = Path('/root/gen-depth-fingerprint')\nfig.savefig(outdir / 'fig1_differential_response.pdf', facecolor='white')\nfig.savefig(outdir / 'fig1_differential_response.png', dpi=300, facecolor='white')\nprint(f'Saved to {outdir}/fig1_differential_response.pdf')\n\nplt.close()\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom pathlib import Path\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif', 'Nimbus Roman'],\n    'font.size': 8,\n    'axes.labelsize': 9,\n    'axes.titlesize': 9,\n    'xtick.labelsize': 7.5,\n    'ytick.labelsize': 7,\n    'legend.fontsize': 6,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'axes.grid': False,\n    'mathtext.fontset': 'cm',\n})\n\nwith open('/root/gen-depth-fingerprint/results/spearman_per_generator.json') as f:\n    per_gen = json.load(f)\n\nfeatures = ['hapax_ratio', 'ttr', 'entropy_mean', 'entropy_min', 'entropy_max', 'tail_decay', 'entropy_std']\nfeat_labels = ['Hapax', 'TTR', r'\\$\\\\bar{H}\\$', r'\\$H_{\\\\min}\\$', r'\\$H_{\\\\max}\\$', 'Tail Dec.', r'\\$\\\\sigma_H\\$']\n\noverall = {\n    'hapax_ratio': -0.558, 'ttr': -0.542, 'entropy_mean': -0.475,\n    'entropy_min': -0.303, 'entropy_max': 0.095,\n    'tail_decay': -0.089, 'entropy_std': -0.076,\n}\n\ndrifting = {'hapax_ratio', 'ttr', 'entropy_mean', 'entropy_min'}\n\ngenerators = list(per_gen.keys())\n\nCOLORS = {\n    'pythia-1b':   '#E69F00',\n    'pythia-2.8b': '#56B4E9',\n    'olmo-2-1b':   '#009E73',\n    'qwen3-0.6b':  '#0072B2',\n    'qwen3-1.7b':  '#D55E00',\n    'qwen3-8b':    '#CC79A7',\n}\n\nMARKERS = {\n    'pythia-1b':   'o',\n    'pythia-2.8b': 's',\n    'olmo-2-1b':   '^',\n    'qwen3-0.6b':  'D',\n    'qwen3-1.7b':  'v',\n    'qwen3-8b':    'P',\n}\n\nLABELS = {\n    'pythia-1b':   'Pythia-1B',\n    'pythia-2.8b': 'Pythia-2.8B',\n    'olmo-2-1b':   'OLMo-2-1B',\n    'qwen3-0.6b':  'Qwen3-0.6B',\n    'qwen3-1.7b':  'Qwen3-1.7B',\n    'qwen3-8b':    'Qwen3-8B',\n}\n\nfig, ax = plt.subplots(figsize=(3.25, 2.4))\n\nx = np.arange(len(features))\njitter_offsets = np.linspace(-0.22, 0.22, len(generators))\n\nfor gi, gen in enumerate(generators):\n    vals = [per_gen[gen][f] for f in features]\n    ax.scatter(\n        x + jitter_offsets[gi], vals,\n        marker=MARKERS[gen], color=COLORS[gen], s=20, linewidths=0.4,\n        edgecolors='white', zorder=3, label=LABELS[gen],\n    )\n\noverall_vals = [overall[f] for f in features]\nax.scatter(\n    x, overall_vals, marker='X', color='black', s=45, linewidths=0.5,\n    edgecolors='black', zorder=4, label='Overall',\n)\n\nax.axhline(0, color='black', linewidth=0.4, zorder=1)\nax.axhline(-0.15, color='gray', linewidth=0.5, linestyle='--', alpha=0.4, zorder=1)\nax.axhline(0.15, color='gray', linewidth=0.5, linestyle='--', alpha=0.4, zorder=1)\n\nfor i, f in enumerate(features):\n    if f in drifting:\n        ax.axvspan(i - 0.4, i + 0.4, color='#2166AC', alpha=0.06, zorder=0)\n    else:\n        ax.axvspan(i - 0.4, i + 0.4, color='#999999', alpha=0.06, zorder=0)\n\nax.set_xticks(x)\nax.set_xticklabels(feat_labels)\nax.set_ylabel(r'Spearman \\$\\\\rho\\$ with Depth')\nax.set_ylim(-0.82, 0.25)\n\nax.annotate('', xy=(-0.4, 0.23), xytext=(3.4, 0.23),\n            arrowprops=dict(arrowstyle='-', color='#2166AC', lw=0.8),\n            annotation_clip=False)\nax.text(1.5, 0.245, 'drifting', fontsize=5.5, fontstyle='italic', color='#2166AC',\n        ha='center', va='bottom')\nax.annotate('', xy=(3.6, 0.23), xytext=(6.4, 0.23),\n            arrowprops=dict(arrowstyle='-', color='#666666', lw=0.8),\n            annotation_clip=False)\nax.text(5, 0.245, 'near-stationary', fontsize=5.5, fontstyle='italic', color='#666666',\n        ha='center', va='bottom')\n\nhandles, labels_list = ax.get_legend_handles_labels()\nleg = ax.legend(handles, labels_list, loc='lower center', ncol=4, frameon=True,\n          fancybox=False, edgecolor='#cccccc', framealpha=0.95,\n          handletextpad=0.3, columnspacing=0.6, borderpad=0.3,\n          bbox_to_anchor=(0.5, -0.52))\n\nplt.subplots_adjust(bottom=0.28)\n\noutdir = Path('/root/gen-depth-fingerprint')\nfig.savefig(outdir / 'fig1_differential_response.pdf', facecolor='white')\nfig.savefig(outdir / 'fig1_differential_response.png', dpi=300, facecolor='white')\nprint(f'Saved to {outdir}/fig1_differential_response.pdf')\n\nplt.close()\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T05:37:38.834754+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Saved to /root/gen-depth-fingerprint/fig1_differential_response.pdf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.05}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T05:37:38.834886+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "scp autodl-5090:/root/gen-depth-fingerprint/fig1_differential_response.pdf /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/fig1_differential_response.pdf",
+  "description": "Download Figure 1 PDF from server to artifacts"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "scp autodl-5090:/root/gen-depth-fingerprint/fig1_differential_response.pdf /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/fig1_differential_response.pdf",
+    "description": "Download Figure 1 PDF from server to artifacts"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T05:37:38.835000+00:00_
+
+Warning: Permanently added '[connect.bjb2.seetacloud.com]:35890' (ED25519) to the list of known hosts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-16T05:37:38.835107+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/fig1_differential_response.pdf /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/fig1_differential_response.pdf",
+  "description": "Copy Figure 1 PDF to docs directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/fig1_differential_response.pdf /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/fig1_differential_response.pdf",
+    "description": "Copy Figure 1 PDF to docs directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T05:37:38.835237+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-16T05:37:38.835361+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+  "old_string": "\\caption{Differential depth response: Spearman correlations between individual features and generation depth. Central-tendency and diversity features (hapax ratio, TTR, entropy mean) show strong monotonic drift, while shape features (entropy std, tail decay) remain near-stationary.}",
+  "new_string": "\\caption{Differential depth response: Spearman correlations between individual features and generation depth. Drifting features (hapax ratio $\\rho = -0.558$, TTR $-0.542$, entropy mean $-0.475$, entropy min $-0.303$) show monotonic trends with depth, while near-stationary features (entropy max $|\\rho| = 0.095$, tail decay $0.089$, entropy std $0.076$) show weak or negligible correlations. Per-generator variation for entropy\\_std is attenuated when pooled across generators (within-generator $|\\rho|$ up to 0.30 vs.\\ pooled $|\\rho| = 0.076$).}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+    "old_string": "\\caption{Differential depth response: Spearman correlations between individual features and generation depth. Central-tendency and diversity features (hapax ratio, TTR, entropy mean) show strong monotonic drift, while shape features (entropy std, tail decay) remain near-stationary.}",
+    "new_string": "\\caption{Differential depth response: Spearman correlations between individual features and generation depth. Drifting features (hapax ratio $\\rho = -0.558$, TTR $-0.542$, entropy mean $-0.475$, entropy min $-0.303$) show monotonic trends with depth, while near-stationary features (entropy max $|\\rho| = 0.095$, tail decay $0.089$, entropy std $0.076$) show weak or negligible correlations. Per-generator variation for entropy\\_std is attenuated when pooled across generators (within-generator $|\\rho|$ up to 0.30 vs.\\ pooled $|\\rho| = 0.076$).}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T05:37:38.835519+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T05:37:38.835655+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+  "old_string": "Individual-level Spearman correlations with depth confirm the split (Figure~\\ref{fig:feature-drift}):\ndrifting features show strong monotonic trends (hapax ratio $\\rho = -0.558$, TTR $\\rho = -0.542$, entropy mean $\\rho = -0.475$),\nwhile shape features show weak or negligible correlations (entropy std $|\\rho| = 0.076$, tail decay $|\\rho| = 0.089$).",
+  "new_string": "Individual-level Spearman correlations with depth confirm the split (Figure~\\ref{fig:feature-drift}):\ndrifting features show strong monotonic trends (hapax ratio $\\rho = -0.558$, TTR $\\rho = -0.542$, entropy mean $\\rho = -0.475$, entropy min $\\rho = -0.303$),\nwhile near-stationary features show weak or negligible correlations (entropy max $|\\rho| = 0.095$, tail decay $|\\rho| = 0.089$, entropy std $|\\rho| = 0.076$)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+    "old_string": "Individual-level Spearman correlations with depth confirm the split (Figure~\\ref{fig:feature-drift}):\ndrifting features show strong monotonic trends (hapax ratio $\\rho = -0.558$, TTR $\\rho = -0.542$, entropy mean $\\rho = -0.475$),\nwhile shape features show weak or negligible correlations (entropy std $|\\rho| = 0.076$, tail decay $|\\rho| = 0.089$).",
+    "new_string": "Individual-level Spearman correlations with depth confirm the split (Figure~\\ref{fig:feature-drift}):\ndrifting features show strong monotonic trends (hapax ratio $\\rho = -0.558$, TTR $\\rho = -0.542$, entropy mean $\\rho = -0.475$, entropy min $\\rho = -0.303$),\nwhile near-stationary features show weak or negligible correlations (entropy max $|\\rho| = 0.095$, tail decay $|\\rho| = 0.089$, entropy std $|\\rho| = 0.076$)."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T05:37:38.835815+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-16T05:37:38.835930+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex",
+  "old_string": "The grouping reflects an empirical pattern we term \\emph{differential depth response}: central-tendency and diversity features (entropy\\_mean, TTR, hapax\\_ratio) drift monotonically with generation depth, while distributional shape features (entropy\\_std, tail\\_decay) remain near-stationary.\nThis differential behavior---consistent with recursive generation inducing a location shift in the NLL distribution while preserving its functional form---motivates combining both feature types.",
+  "new_string": "The grouping reflects an empirical pattern we term \\emph{differential depth response}: central-tendency, diversity, and lower-bound features (entropy\\_mean, TTR, hapax\\_ratio, entropy\\_min) drift monotonically with generation depth, while distributional shape and upper-bound features (entropy\\_std, entropy\\_max, tail\\_decay) remain near-stationary.\nThis differential behavior---consistent with recursive generation compressing the lower tail of the NLL distribution while preserving upper-tail behavior and overall shape---motivates combining both feature types."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex",
+    "old_string": "The grouping reflects an empirical pattern we term \\emph{differential depth response}: central-tendency and diversity features (entropy\\_mean, TTR, hapax\\_ratio) drift monotonically with generation depth, while distributional shape features (entropy\\_std, tail\\_decay) remain near-stationary.\nThis differential behavior---consistent with recursive generation inducing a location shift in the NLL distribution while preserving its functional form---motivates combining both feature types.",
+    "new_string": "The grouping reflects an empirical pattern we term \\emph{differential depth response}: central-tendency, diversity, and lower-bound features (entropy\\_mean, TTR, hapax\\_ratio, entropy\\_min) drift monotonically with generation depth, while distributional shape and upper-bound features (entropy\\_std, entropy\\_max, tail\\_decay) remain near-stationary.\nThis differential behavior---consistent with recursive generation compressing the lower tail of the NLL distribution while preserving upper-tail behavior and overall shape---motivates combining both feature types."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T05:37:38.836089+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-16T05:37:38.836212+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex",
+  "old_string": "\\paragraph{Shape stationarity: mechanistic hypothesis.}\nDistributional shape features (entropy standard deviation, tail decay) remain near-stationary across generation depths, while central-tendency features drift monotonically (\\S\\ref{sec:results-differential}).\nWe hypothesize that this reflects a decomposition of the autoregressive generation process: at each token position, the output distribution is determined jointly by model parameters (fixed) and conditioning context (varying).\nRecursive generation progressively shifts context toward the model's high-probability regions---reducing entropy mean---but does not alter the softmax architecture or sampling hyperparameters that determine distributional shape.\nIn effect, diverse inputs passed through the same softmax and top-$p$ sampler produce NLL distributions whose shape reflects sampler parameters rather than input content, decoupling shape from the content drift that drives central-tendency features.\nThis predicts that shape features should remain stationary until generation depth reaches the model's fixed-point distribution, a regime not yet observed in our chain lengths ($\\leq$4 steps).",
+  "new_string": "\\paragraph{Shape stationarity: mechanistic hypothesis.}\nNear-stationary features (entropy standard deviation, entropy max, tail decay) remain stable across generation depths, while drifting features---including entropy min---shift monotonically (\\S\\ref{sec:results-differential}).\nThe refined pattern is \\emph{lower-tail compression with upper-tail preservation}: entropy\\_min (the NLL floor) decreases with depth ($\\rho = -0.303$; per-generator $|\\rho|$ up to 0.51), indicating that the model's most confident predictions become progressively more confident under recursion; meanwhile entropy\\_max (the NLL ceiling) is unchanged ($|\\rho| = 0.095$), and entropy\\_std (spread) remains near-stationary at the pooled level ($|\\rho| = 0.076$).\nMechanistically, recursive generation compresses the lower tail of the NLL distribution while preserving upper-tail behavior, resulting in a net location shift with partial shape preservation.\nThe softmax and top-$p$ sampler impose an effective ceiling on per-token surprise, explaining upper-tail invariance; but conditioning on progressively more predictable context allows the model to produce increasingly confident (low-NLL) tokens, compressing the lower tail.\nWe note a Simpson's paradox in entropy\\_std: within individual generators, $|\\rho|$ reaches up to 0.30, but cross-generator pooling reduces this to 0.076. Within-generator shape drift is partially masked by between-generator variability in baseline distributional shape.\nThis predicts that shape features should remain approximately stationary until generation depth reaches the model's fixed-point distribution, a regime not yet observed in our chain lengths ($\\leq$4 steps)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex",
+    "old_string": "\\paragraph{Shape stationarity: mechanistic hypothesis.}\nDistributional shape features (entropy standard deviation, tail decay) remain near-stationary across generation depths, while central-tendency features drift monotonically (\\S\\ref{sec:results-differential}).\nWe hypothesize that this reflects a decomposition of the autoregressive generation process: at each token position, the output distribution is determined jointly by model parameters (fixed) and conditioning context (varying).\nRecursive generation progressively shifts context toward the model's high-probability regions---reducing entropy mean---but does not alter the softmax architecture or sampling hyperparameters that determine distributional shape.\nIn effect, diverse inputs passed through the same softmax and top-$p$ sampler produce NLL distributions whose shape reflects sampler parameters rather than input content, decoupling shape from the content drift that drives central-tendency features.\nThis predicts that shape features should remain stationary until generation depth reaches the model's fixed-point distribution, a regime not yet observed in our chain lengths ($\\leq$4 steps).",
+    "new_string": "\\paragraph{Shape stationarity: mechanistic hypothesis.}\nNear-stationary features (entropy standard deviation, entropy max, tail decay) remain stable across generation depths, while drifting features---including entropy min---shift monotonically (\\S\\ref{sec:results-differential}).\nThe refined pattern is \\emph{lower-tail compression with upper-tail preservation}: entropy\\_min (the NLL floor) decreases with depth ($\\rho = -0.303$; per-generator $|\\rho|$ up to 0.51), indicating that the model's most confident predictions become progressively more confident under recursion; meanwhile entropy\\_max (the NLL ceiling) is unchanged ($|\\rho| = 0.095$), and entropy\\_std (spread) remains near-stationary at the pooled level ($|\\rho| = 0.076$).\nMechanistically, recursive generation compresses the lower tail of the NLL distribution while preserving upper-tail behavior, resulting in a net location shift with partial shape preservation.\nThe softmax and top-$p$ sampler impose an effective ceiling on per-token surprise, explaining upper-tail invariance; but conditioning on progressively more predictable context allows the model to produce increasingly confident (low-NLL) tokens, compressing the lower tail.\nWe note a Simpson's paradox in entropy\\_std: within individual generators, $|\\rho|$ reaches up to 0.30, but cross-generator pooling reduces this to 0.076. Within-generator shape drift is partially masked by between-generator variability in baseline distributional shape.\nThis predicts that shape features should remain approximately stationary until generation depth reaches the model's fixed-point distribution, a regime not yet observed in our chain lengths ($\\leq$4 steps)."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T05:37:38.836389+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-16T05:37:38.836521+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+  "old_string": "\\caption{Differential depth response: Spearman correlations between individual features and generation depth. Central-tendency and diversity features (hapax ratio, TTR, entropy mean) show strong monotonic drift, while shape features (entropy std, tail decay) remain near-stationary.}",
+  "new_string": "\\caption{Differential depth response: Spearman correlations between individual features and generation depth. Drifting features (hapax ratio $\\rho = -0.558$, TTR $-0.542$, entropy mean $-0.475$, entropy min $-0.303$) show monotonic trends with depth, while near-stationary features (entropy max $|\\rho| = 0.095$, tail decay $0.089$, entropy std $0.076$) show weak or negligible correlations. Per-generator variation for entropy\\_std is attenuated when pooled across generators (within-generator $|\\rho|$ up to 0.30 vs.\\ pooled $|\\rho| = 0.076$).}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+    "old_string": "\\caption{Differential depth response: Spearman correlations between individual features and generation depth. Central-tendency and diversity features (hapax ratio, TTR, entropy mean) show strong monotonic drift, while shape features (entropy std, tail decay) remain near-stationary.}",
+    "new_string": "\\caption{Differential depth response: Spearman correlations between individual features and generation depth. Drifting features (hapax ratio $\\rho = -0.558$, TTR $-0.542$, entropy mean $-0.475$, entropy min $-0.303$) show monotonic trends with depth, while near-stationary features (entropy max $|\\rho| = 0.095$, tail decay $0.089$, entropy std $0.076$) show weak or negligible correlations. Per-generator variation for entropy\\_std is attenuated when pooled across generators (within-generator $|\\rho|$ up to 0.30 vs.\\ pooled $|\\rho| = 0.076$).}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T05:37:38.836703+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-16T05:37:38.836824+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+  "old_string": "Individual-level Spearman correlations with depth confirm the split (Figure~\\ref{fig:feature-drift}):\ndrifting features show strong monotonic trends (hapax ratio $\\rho = -0.558$, TTR $\\rho = -0.542$, entropy mean $\\rho = -0.475$),\nwhile shape features show weak or negligible correlations (entropy std $|\\rho| = 0.076$, tail decay $|\\rho| = 0.089$).",
+  "new_string": "Individual-level Spearman correlations with depth confirm the split (Figure~\\ref{fig:feature-drift}):\ndrifting features show strong monotonic trends (hapax ratio $\\rho = -0.558$, TTR $\\rho = -0.542$, entropy mean $\\rho = -0.475$, entropy min $\\rho = -0.303$),\nwhile near-stationary features show weak or negligible correlations (entropy max $|\\rho| = 0.095$, tail decay $|\\rho| = 0.089$, entropy std $|\\rho| = 0.076$)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+    "old_string": "Individual-level Spearman correlations with depth confirm the split (Figure~\\ref{fig:feature-drift}):\ndrifting features show strong monotonic trends (hapax ratio $\\rho = -0.558$, TTR $\\rho = -0.542$, entropy mean $\\rho = -0.475$),\nwhile shape features show weak or negligible correlations (entropy std $|\\rho| = 0.076$, tail decay $|\\rho| = 0.089$).",
+    "new_string": "Individual-level Spearman correlations with depth confirm the split (Figure~\\ref{fig:feature-drift}):\ndrifting features show strong monotonic trends (hapax ratio $\\rho = -0.558$, TTR $\\rho = -0.542$, entropy mean $\\rho = -0.475$, entropy min $\\rho = -0.303$),\nwhile near-stationary features show weak or negligible correlations (entropy max $|\\rho| = 0.095$, tail decay $|\\rho| = 0.089$, entropy std $|\\rho| = 0.076$)."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-16T05:37:38.836981+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-16T05:37:38.837097+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/method.tex",
+  "old_string": "The grouping reflects an empirical pattern we term \\emph{differential depth response}: central-tendency and diversity features (entropy\\_mean, TTR, hapax\\_ratio) drift monotonically with generation depth, while distributional shape features (entropy\\_std, tail\\_decay) remain near-stationary.\nThis differential behavior---consistent with recursive generation inducing a location shift in the NLL distribution while preserving its functional form---motivates combining both feature types.",
+  "new_string": "The grouping reflects an empirical pattern we term \\emph{differential depth response}: central-tendency, diversity, and lower-bound features (entropy\\_mean, TTR, hapax\\_ratio, entropy\\_min) drift monotonically with generation depth, while distributional shape and upper-bound features (entropy\\_std, entropy\\_max, tail\\_decay) remain near-stationary.\nThis differential behavior---consistent with recursive generation compressing the lower tail of the NLL distribution while preserving upper-tail behavior and overall shape---motivates combining both feature types."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/method.tex",
+    "old_string": "The grouping reflects an empirical pattern we term \\emph{differential depth response}: central-tendency and diversity features (entropy\\_mean, TTR, hapax\\_ratio) drift monotonically with generation depth, while distributional shape features (entropy\\_std, tail\\_decay) remain near-stationary.\nThis differential behavior---consistent with recursive generation inducing a location shift in the NLL distribution while preserving its functional form---motivates combining both feature types.",
+    "new_string": "The grouping reflects an empirical pattern we term \\emph{differential depth response}: central-tendency, diversity, and lower-bound features (entropy\\_mean, TTR, hapax\\_ratio, entropy\\_min) drift monotonically with generation depth, while distributional shape and upper-bound features (entropy\\_std, entropy\\_max, tail\\_decay) remain near-stationary.\nThis differential behavior---consistent with recursive generation compressing the lower tail of the NLL distribution while preserving upper-tail behavior and overall shape---motivates combining both feature types."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T05:37:38.837262+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/method.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-16T05:37:38.837386+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/discussion.tex",
+  "old_string": "\\paragraph{Shape stationarity: mechanistic hypothesis.}\nDistributional shape features (entropy standard deviation, tail decay) remain near-stationary across generation depths, while central-tendency features drift monotonically (\\S\\ref{sec:results-differential}).\nWe hypothesize that this reflects a decomposition of the autoregressive generation process: at each token position, the output distribution is determined jointly by model parameters (fixed) and conditioning context (varying).\nRecursive generation progressively shifts context toward the model's high-probability regions---reducing entropy mean---but does not alter the softmax architecture or sampling hyperparameters that determine distributional shape.\nIn effect, diverse inputs passed through the same softmax and top-$p$ sampler produce NLL distributions whose shape reflects sampler parameters rather than input content, decoupling shape from the content drift that drives central-tendency features.\nThis predicts that shape features should remain stationary until generation depth reaches the model's fixed-point distribution, a regime not yet observed in our chain lengths ($\\leq$4 steps).",
+  "new_string": "\\paragraph{Shape stationarity: mechanistic hypothesis.}\nNear-stationary features (entropy standard deviation, entropy max, tail decay) remain stable across generation depths, while drifting features---including entropy min---shift monotonically (\\S\\ref{sec:results-differential}).\nThe refined pattern is \\emph{lower-tail compression with upper-tail preservation}: entropy\\_min (the NLL floor) decreases with depth ($\\rho = -0.303$; per-generator $|\\rho|$ up to 0.51), indicating that the model's most confident predictions become progressively more confident under recursion; meanwhile entropy\\_max (the NLL ceiling) is unchanged ($|\\rho| = 0.095$), and entropy\\_std (spread) remains near-stationary at the pooled level ($|\\rho| = 0.076$).\nMechanistically, recursive generation compresses the lower tail of the NLL distribution while preserving upper-tail behavior, resulting in a net location shift with partial shape preservation.\nThe softmax and top-$p$ sampler impose an effective ceiling on per-token surprise, explaining upper-tail invariance; but conditioning on progressively more predictable context allows the model to produce increasingly confident (low-NLL) tokens, compressing the lower tail.\nWe note a Simpson's paradox in entropy\\_std: within individual generators, $|\\rho|$ reaches up to 0.30, but cross-generator pooling reduces this to 0.076. Within-generator shape drift is partially masked by between-generator variability in baseline distributional shape.\nThis predicts that shape features should remain approximately stationary until generation depth reaches the model's fixed-point distribution, a regime not yet observed in our chain lengths ($\\leq$4 steps)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/discussion.tex",
+    "old_string": "\\paragraph{Shape stationarity: mechanistic hypothesis.}\nDistributional shape features (entropy standard deviation, tail decay) remain near-stationary across generation depths, while central-tendency features drift monotonically (\\S\\ref{sec:results-differential}).\nWe hypothesize that this reflects a decomposition of the autoregressive generation process: at each token position, the output distribution is determined jointly by model parameters (fixed) and conditioning context (varying).\nRecursive generation progressively shifts context toward the model's high-probability regions---reducing entropy mean---but does not alter the softmax architecture or sampling hyperparameters that determine distributional shape.\nIn effect, diverse inputs passed through the same softmax and top-$p$ sampler produce NLL distributions whose shape reflects sampler parameters rather than input content, decoupling shape from the content drift that drives central-tendency features.\nThis predicts that shape features should remain stationary until generation depth reaches the model's fixed-point distribution, a regime not yet observed in our chain lengths ($\\leq$4 steps).",
+    "new_string": "\\paragraph{Shape stationarity: mechanistic hypothesis.}\nNear-stationary features (entropy standard deviation, entropy max, tail decay) remain stable across generation depths, while drifting features---including entropy min---shift monotonically (\\S\\ref{sec:results-differential}).\nThe refined pattern is \\emph{lower-tail compression with upper-tail preservation}: entropy\\_min (the NLL floor) decreases with depth ($\\rho = -0.303$; per-generator $|\\rho|$ up to 0.51), indicating that the model's most confident predictions become progressively more confident under recursion; meanwhile entropy\\_max (the NLL ceiling) is unchanged ($|\\rho| = 0.095$), and entropy\\_std (spread) remains near-stationary at the pooled level ($|\\rho| = 0.076$).\nMechanistically, recursive generation compresses the lower tail of the NLL distribution while preserving upper-tail behavior, resulting in a net location shift with partial shape preservation.\nThe softmax and top-$p$ sampler impose an effective ceiling on per-token surprise, explaining upper-tail invariance; but conditioning on progressively more predictable context allows the model to produce increasingly confident (low-NLL) tokens, compressing the lower tail.\nWe note a Simpson's paradox in entropy\\_std: within individual generators, $|\\rho|$ reaches up to 0.30, but cross-generator pooling reduces this to 0.076. Within-generator shape drift is partially masked by between-generator variability in baseline distributional shape.\nThis predicts that shape features should remain approximately stationary until generation depth reaches the model's fixed-point distribution, a regime not yet observed in our chain lengths ($\\leq$4 steps)."
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-16T05:37:38.837564+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/discussion.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-16T05:37:38.837719+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "diff /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+  "description": "Verify results.tex consistency between artifacts and docs"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "diff /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/results.tex",
+    "description": "Verify results.tex consistency between artifacts and docs"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-16T05:37:38.837834+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-16T05:37:38.837943+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "diff /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/method.tex",
+  "description": "Verify method.tex consistency between artifacts and docs"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "diff /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/method.tex /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/method.tex",
+    "description": "Verify method.tex consistency between artifacts and docs"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-16T05:37:38.838050+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-16T05:37:38.838156+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "diff /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/discussion.tex",
+  "description": "Verify discussion.tex consistency between artifacts and docs"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "diff /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/discussion.tex",
+    "description": "Verify discussion.tex consistency between artifacts and docs"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-16T05:37:38.838302+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-16T05:37:38.838424+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "diff /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/fig1_differential_response.pdf /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/fig1_differential_response.pdf",
+  "description": "Verify Figure 1 PDF consistency between artifacts and docs"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "diff /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/fig1_differential_response.pdf /home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/fig1_differential_response.pdf",
+    "description": "Verify Figure 1 PDF consistency between artifacts and docs"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-16T05:37:38.838532+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-16T05:37:38.838690+00:00_
+
+called Grep
+
+<details open><summary>🔧 Tool call — Grep</summary>
+
+```json
+{
+  "pattern": "\\\\(cite|ref)\\{",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex",
+  "output_mode": "content",
+  "head_limit": "20",
+  "-n": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Grep",
+  "tool_args": {
+    "pattern": "\\\\(cite|ref)\\{",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/discussion.tex",
+    "output_mode": "content",
+    "head_limit": "20",
+    "-n": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-16T05:37:38.838827+00:00_
+
+5:Near-stationary features (entropy standard deviation, entropy max, tail decay) remain stable across generation depths, while drifting features---including entropy min---shift monotonically (\S\ref{sec:results-differential}).
+11:Sampling ablation is consistent with this account: depth signal is robust to moderate temperature variation (${\leq}0.3$\,pp for $t \in [0.5, 0.7]$) but degrades substantially at $t = 1.0$ ($-6$\,pp; Appendix~\ref{app:sampling-sensitivity}), where the sampling mechanism itself becomes the dominant source of distributional shape variation, overwhelming the depth signal.
+19:Qwen3-0.6B serves dual roles as both generator and cross-family reference model in Table~\ref{tab:cross-ref}, creating a potential self-referencing bias.
+21:All main results use Pythia-410M as the default reference to avoid this overlap; the cross-reference experiment (\S\ref{sec:results-differential}) serves solely to confirm that differential depth response is reference-model-independent.
+25:Continuation chains exhibit 16.9\% depth retention loss by gen-4, while elaboration chains retain 98.6\% of samples (Appendix~\ref{app:prompt-type}).
+27:Together with the paraphrastic attenuation reported below (binary F1\,=\,0.671 vs.\ 0.749 for continuation), these results bound depth fingerprinting's primary applicability to continuation-style generation, where distributional drift is strongest; near-paraphrastic settings approach the method's detection floor as semantic-preservation constraints anchor distributional shift \cite{broken_telephone}.
+36:Our results relate to, but are distinct from, model collapse \cite{curse_of_recursion,strong_model_collapse,self_consuming_mad}.
+37:In training-loop collapse, gradient updates on self-generated data cause progressive mode collapse---catastrophic diversity loss after 5--10 retraining generations \cite{curse_of_recursion}.
+44:Five-class depth estimation reduces LOGO F1 from 0.789 to 0.501; gen-2 and gen-3 are inseparable (per-class F1\,
+…[truncated 1236 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Grep",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-16T05:37:38.838977+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+  "offset": "56",
+  "limit": "18"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/artifacts/_project/paper/results.tex",
+    "offset": "56",
+    "limit": "18"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-16T05:37:38.839102+00:00_
+
+56	
+57	\subsection{Differential Depth Response}
+58	\label{sec:results-differential}
+59	
+60	Features exhibit \emph{differential depth response}: central-tendency and diversity measures drift monotonically with depth, while distributional shape measures remain near-stationary.
+61	This pattern is consistent with recursive generation inducing a location shift in the token-level NLL distribution---the text becomes progressively more predictable (mean shifts), while the functional form of the distribution is preserved (shape is invariant).
+62	
+63	\begin{figure}[t]
+64	\centering
+65	\includegraphics[width=\columnwidth]{fig1_differential_response.pdf}
+66	\caption{Differential depth response: Spearman correlations between individual features and generation depth. Drifting features (hapax ratio $\rho = -0.558$, TTR $-0.542$, entropy mean $-0.475$, entropy min $-0.303$) show monotonic trends with depth, while near-stationary features (entropy max $|\rho| = 0.095$, tail decay $0.089$, entropy std $0.076$) show weak or negligible correlations. Per-generator variation for entropy\_std is attenuated when pooled across generators (within-generator $|\rho|$ up to 0.30 vs.\ pooled $|\rho| = 0.076$).}
+67	\label{fig:feature-drift}
+68	\end{figure}
+69	
+70	Individual-level Spearman correlations with depth confirm the split (Figure~\ref{fig:feature-drift}):
+71	drifting features show strong monotonic trends (hapax ratio $\rho = -0.558$, TTR $\rho = -0.542$, entropy mean $\rho = -0.475$, entropy min $\rho = -0.303$),
+72	while near-stationary features show weak or negligible correlations (entropy max $|\rho| = 0.095$, tail decay $|\rho| = 0.089$, entropy std $|\rho| = 0.076$).
+73	However, these correlations are computed on continuation chains; elaboration and rewriting chains show substantially weaker drift (Appendix~\ref{app:prompt-type}), and this prompt-type dependence bounds the generality of the differential response characterization.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-16T05:37:38.839288+00:00_
+
+All edits are correct and consistent. Summary of completed work:
+
+**Task 1 — Spearman ρ values confirmed:**
+- entropy_min: overall ρ = −0.303 (per-gen |ρ| range 0.30–0.51)
+- entropy_max: overall ρ = +0.095 (per-gen |ρ| range 0.005–0.095)
+- entropy_std: pooled |ρ| = 0.076, per-gen max |ρ| = 0.296 ≈ 0.30 ✓
+
+**Task 2 — Figure 1 redrawn:**
+- Drifting zone (blue): hapax, TTR, entropy_mean, entropy_min (4 features)
+- Near-stationary zone (grey): entropy_max, tail_decay, entropy_std (3 features)
+- PDF saved to both `artifacts/_project/paper/` and `docs/paper/`
+
+**Task 3 — Paper text updated (artifacts/ = docs/):**
+- 3a: Figure 1 caption — lists all 7 features with ρ values + Simpson's paradox caveat
+- 3b: §4.2 body — 4 drifting + 3 near-stationary with all ρ values
+- 3c: Method feature complementarity — updated grouping with entropy_min → drifting, entropy_max → stationary
+- 3d: Discussion — replaced "pure location shift" with "lower-tail compression + upper-tail preservation" mechanism + Simpson's paradox paragraph
+- 3e: "near-stationary" wording preserved throughout
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_paper_rd3-int1-figure-text_20260516T053419"
+}
+```
+
+</details>
+
+---

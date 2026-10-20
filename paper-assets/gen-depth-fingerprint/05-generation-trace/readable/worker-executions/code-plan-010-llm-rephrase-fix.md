@@ -1,0 +1,3112 @@
+# code plan 010 llm rephrase fix
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 67
+- **Recorded user turns:** 0
+- **Tool calls:** 23
+- **Original source:** `logs/workers/worker_code_plan-010-llm-rephrase-fix_20260517T010546.log`
+- **Structured JSON:** [`83924f45a61cd4a8b1dc.json`](../../sessions/83/83924f45a61cd4a8b1dc.json)
+
+## Before a recorded user message
+
+67 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint",
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "a5458336-e021-4b33-ae15-75ba8ca87cca",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-3-projects-gen-depth-fingerprint/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778997000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "84a3e293-85fc-4025-a138-7d60b2148b43",
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by SSH-ing to the server to understand the current state of the code and then fix the bugs.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "cdc99cee-d206-411a-a598-d208039c021a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YE2UT2Cs7sA6cHsnP9RX9J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 14343,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14343
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+I'll fix the 3 bugs in the LLM rephrase evaluation script and rerun it. Let me start by reading the reference implementation and the current script on the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "0e35439d-1405-4a30-97f5-c7efa7099221",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YE2UT2Cs7sA6cHsnP9RX9J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 14343,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14343
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CEc9yvw72bhAw2Bv3JrVNr`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "6ff56467-e3ab-4854-9873-a42e34ef4c84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YE2UT2Cs7sA6cHsnP9RX9J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 14343,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 14343
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-17T01:06:01.073Z_
+
+<details><summary>↩ Tool result · `toolu_01CEc9yvw72bhAw2Bv3JrVNr`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "b6906b10-9be6-4ddf-ab67-4ce07962df8e",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me first look at the files in the experiment directory and read both the reference implementation and the current LLM rephrase script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "4ebbcc2f-90f1-450b-98a4-06b7fc4ae6ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JCKxbtcmFCN83XLzvy5BfF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 749,
+      "cache_read_input_tokens": 26184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 749
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MdjLRsJDbhn64Fe2ekChPM`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/gen-depth-fingerprint/experiments/human_edit_robustness/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "43cd2544-64e0-4f78-99b1-a8f1ab101b83",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JCKxbtcmFCN83XLzvy5BfF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 749,
+      "cache_read_input_tokens": 26184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 749
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T01:06:05.830Z_
+
+<details><summary>↩ Tool result · `toolu_01MdjLRsJDbhn64Fe2ekChPM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"baseline_robustness.json\\nbaseline_robustness.log\\nbaseline_robustness_eval.py\\nentropy_only_degradation.json\\nentropy_only_eval.log\\nentropy_only_eval.py\\nllm_rephrase.log\\nllm_rephrase_results.json\\nrephrased_texts.jsonl\\nrobustness_results.json\\nrun.log\\nrun_llm_rephrase.py\\nrun_llm_rephrase_resume.log\\nrun_robustness.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "2e1d6327-7d4a-443e-89bf-24deeae55c18",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"baseline_robustness.json\\\\nbaseline_robustness.log\\\\nbaseline_robustness_eval.py\\\\nentropy_only_degradation.json\\\\nentropy_only_eval.log\\\\nentropy_only_eval.py\\\\nllm_rephrase.log\\\\nllm_rephrase_results.json\\\\nrephrased_texts.jsonl\\\\nrobustness_results.json\\\\nrun.log\\\\nrun_llm_rephrase.py\\\\nrun_llm_rephrase_resume.log\\\\nrun_robustness.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"baseline_robustness.json\\nbaseline_robustness.log\\nbaseline_robustness_eval.py\\nentropy_only_degradation.json\\nentropy_only_eval.log\\nentropy_only_eval.py\\nllm_rephrase.log\\nllm_rephrase_results.json\\nrephrased_texts.jsonl\\nrobustness_results.json\\nrun.log\\nrun_llm_rephrase.py\\nrun_llm_rephrase_resume.log\\nrun_robustness.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UBbP59rNfBqJgPdJkFHheX`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/experiments/human_edit_robustness/run_robustness.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "69c845df-5b2e-4b01-a069-2604fc8b27f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017A8N6pJqLY74LH1iRLCdzB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 383,
+      "cache_read_input_tokens": 26933,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 383
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T01:06:09.358Z_
+
+<details><summary>↩ Tool result · `toolu_01UBbP59rNfBqJgPdJkFHheX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nHuman Edit Robustness Experiment (plan_010 RC5)\\n\\nTests depth fingerprint robustness under random word replacement.\\n- Perturbation rates: 0%, 5%, 10%, 20%\\n- LOGO evaluation: train on original features, test on perturbed features\\n- 7 features: entropy_mean/std/min/max, tail_decay, ttr, hapax_ratio\\n- Reference model: Pythia-410M\\n- Classifier: XGBoost (200 trees, max_depth=6)\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nfrom collections import Counter\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom xgboost import XGBClassifier\\nfrom sklearn.metrics import f1_score\\n\\nSEED = 42\\nSUBSAMPLE_N = 5000\\nBATCH_SIZE = 48\\nPERTURBATION_RATES = [0.0, 0.05, 0.10, 0.20]\\nFEATURES = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\",\\n            \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\n                  random_state=SEED, eval_metric=\\\"mlogloss\\\",\\n                  use_label_encoder=False)\\nCLASS_MAP_3 = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\\nMODEL_SNAPSHOT = \\\"/root/autodl-tmp/models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/9879c9b5f8bea9051dcb0e68dff21493d67e9d4f\\\"\\nPROJECT_ROOT = Path(\\\"/root/gen-depth-fingerprint\\\")\\nDATA_DIR = PROJECT_ROOT / \\\"data\\\"\\nOUTPUT_DIR = PROJECT_ROOT / \\\"experiments\\\" / \\\"human_edit_robustness\\\"\\n\\n\\ndef load_all_texts():\\n    \\\"\\\"\\\"Load texts from all 8 generators, return DataFrame with model_name, seed_id, depth, text.\\\"\\\"\\\"\\n    generators = {\\n        \\\"pythia-2.8b\\\": [DATA_DIR / \\\"generations_shard0.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard1.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard2.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard3.jsonl\\\"],\\n        \\\"pythia-1b\\\": [DATA_DIR / \\\"pythia-1b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"olmo-2-1b\\\": [DATA_DIR / \\\"olmo-2-1b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-0.6b\\\": [DATA_DIR / \\\"qwen3-0.6b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-1.7b\\\": [DATA_DIR / \\\"qwen3-1.7b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-8b\\\": [DATA_DIR / \\\"qwen3-8b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"llama-3.2-3b\\\": [DATA_DIR / \\\"llama-3.2-3b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"mistral-7b-v0.3\\\": [DATA_DIR / \\\"mistral-7b-v0.3\\\" / \\\"generations_shard0.jsonl\\\"],\\n    }\\n\\n    all_records = []\\n    for model_name, paths in generators.items():\\n        seen = set()\\n        for p in paths:\\n            if not p.exists():\\n                continue\\n            with open(p) as f:\\n                for line in f:\\n                    line = line.strip()\\n                    if not line:\\n                        continue\\n                    rec = json.loads(line)\\n                    key = (rec.get(\\\"seed_id\\\"), rec.get(\\\"depth\\\"))\\n                    if key in seen:\\n                        continue\\n                    seen.add(key)\\n                    all_records.append({\\n                        \\\"model_name\\\": model_name,\\n                        \\\"seed_id\\\": rec[\\\"seed_id\\\"],\\n                        \\\"depth\\\": rec[\\\"depth\\\"],\\n                        \\\"text\\\": rec[\\\"text\\\"],\\n                    })\\n        print(f\\\"  {model_name}: {len(seen)} texts loaded\\\")\\n\\n    return pd.DataFrame(all_records)\\n\\n\\ndef load_all_features():\\n    \\\"\\\"\\\"Load features from features_all_models.csv + llama/mistral JSONL.\\\"\\\"\\\"\\n    df_base = pd.read_csv(DATA_DIR / \\\"features_all_models.csv\\\")\\n\\n    new_gens = [\\n        (\\\"llama-3.2-3b\\\", DATA_DIR / \\\"llama-3.2-3b\\\" / \\\"features_pythia410m.jsonl\\\"),\\n        (\\\"mistral-7b-v0.3\\\", DATA_DIR / \\\"mistral-7b-v0.3\\\" / \\\"features_pythia410m.jsonl\\\"),\\n    ]\\n    dfs = [df_base]\\n    for gen_name, path in new_gens:\\n        records = []\\n        with open(path) as f:\\n            for line in f:\\n                rec = json.loads(line)\\n                rec[\\\"model_name\\\"] = gen_name\\n                records.append(rec)\\n        dfs.append(pd.DataFrame(records))\\n\\n    cols = [\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES\\n    df = pd.concat([d[cols] for d in dfs], ign\\n\\n... [截断: 输出过长，省略 6641 字符] ...\\n\\ne stratified by model\\n    print(f\\\"\\\\n[3/5] Subsampling to {SUBSAMPLE_N}...\\\")\\n    rng = np.random.RandomState(SEED)\\n    generators = sorted(df[\\\"model_name\\\"].unique())\\n    n_per_gen = SUBSAMPLE_N // len(generators)\\n    parts = []\\n    for gen in generators:\\n        sub = df[df[\\\"model_name\\\"] == gen]\\n        n = min(n_per_gen, len(sub))\\n        parts.append(sub.sample(n=n, random_state=rng, replace=False))\\n    df_sample = pd.concat(parts, ignore_index=True)\\n    print(f\\\"  Sampled: {len(df_sample)} ({len(generators)} generators, ~{n_per_gen} each)\\\")\\n    for gen in generators:\\n        n = len(df_sample[df_sample[\\\"model_name\\\"] == gen])\\n        print(f\\\"    {gen}: {n}\\\")\\n\\n    # Step 2: Load model for feature extraction\\n    print(\\\"\\\\n[4/5] Loading Pythia-410M...\\\")\\n    device = \\\"cuda:0\\\"\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_SNAPSHOT, local_files_only=True)\\n    model = AutoModelForCausalLM.from_pretrained(\\n        MODEL_SNAPSHOT, local_files_only=True, torch_dtype=torch.float16,\\n    ).to(device).eval()\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n    print(\\\"  Model loaded on cuda:0\\\")\\n\\n    # Step 3: For each perturbation rate, perturb + extract + evaluate\\n    print(\\\"\\\\n[5/5] Running perturbation experiments...\\\")\\n    results = {}\\n    original_features_df = df_sample[[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES].copy()\\n\\n    for rate in PERTURBATION_RATES:\\n        rate_key = f\\\"{rate:.2f}\\\"\\n        print(f\\\"\\\\n--- Rate: {rate_key} ---\\\")\\n\\n        if rate == 0.0:\\n            # Baseline: use original features directly\\n            perturbed_df = original_features_df.copy()\\n        else:\\n            # Perturb texts and re-extract features\\n            perturb_rng = np.random.RandomState(SEED)\\n            texts = df_sample[\\\"text\\\"].tolist()\\n            perturbed_texts = [perturb_text(t, rate, perturb_rng) for t in texts]\\n            print(f\\\"  Perturbed {len(perturbed_texts)} texts at rate {rate}\\\")\\n\\n            print(f\\\"  Extracting features...\\\")\\n            feat_list = extract_features_batch(perturbed_texts, tokenizer, model, device)\\n            perturbed_df = df_sample[[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"]].copy()\\n            for feat_name in FEATURES:\\n                perturbed_df[feat_name] = [f[feat_name] for f in feat_list]\\n\\n        # LOGO evaluation\\n        print(f\\\"  Running LOGO evaluation...\\\")\\n        binary_f1, multi_f1, binary_ci = logo_eval(original_features_df, perturbed_df)\\n        results[rate_key] = {\\n            \\\"binary_f1\\\": round(binary_f1, 4),\\n            \\\"multiclass_f1\\\": round(multi_f1, 4),\\n            \\\"binary_ci\\\": [round(binary_ci[0], 4), round(binary_ci[1], 4)],\\n        }\\n        print(f\\\"  Binary F1: {binary_f1:.4f} [{binary_ci[0]:.4f}, {binary_ci[1]:.4f}]\\\")\\n        print(f\\\"  Multiclass F1: {multi_f1:.4f}\\\")\\n\\n    # Compute degradation\\n    baseline_bin = results[\\\"0.00\\\"][\\\"binary_f1\\\"]\\n    degradation = {}\\n    for rate in [0.05, 0.10, 0.20]:\\n        rate_key = f\\\"{rate:.2f}\\\"\\n        drop = results[rate_key][\\\"binary_f1\\\"] - baseline_bin\\n        degradation[f\\\"{rate_key}_drop_binary\\\"] = round(drop, 4)\\n\\n    # Save results\\n    output = {\\n        \\\"results\\\": results,\\n        \\\"degradation\\\": degradation,\\n        \\\"meta\\\": {\\n            \\\"n_samples\\\": len(df_sample),\\n            \\\"n_per_generator\\\": {gen: int(len(df_sample[df_sample[\\\"model_name\\\"] == gen]))\\n                                for gen in generators},\\n            \\\"perturbation_method\\\": \\\"random word replacement from same-text vocabulary\\\",\\n            \\\"feature_extraction\\\": \\\"Pythia-410M\\\",\\n            \\\"classifier\\\": \\\"XGBoost 200/6, class-balanced LOGO\\\",\\n            \\\"seed\\\": SEED,\\n            \\\"batch_size\\\": BATCH_SIZE,\\n        }\\n    }\\n\\n    output_path = OUTPUT_DIR / \\\"robustness_results.json\\\"\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {output_path}\\\")\\n    print(json.dumps(output, indent=2))\\n\\n    # Cleanup\\n    del model, tokenizer\\n    torch.cuda.empty_cache()\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "adb08921-685a-419b-b0b4-5b070c22b750",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nHuman Edit Robustness Experiment (plan_010 RC5)\\\\n\\\\nTests depth fingerprint robustness under random word replacement.\\\\n- Perturbation rates: 0%, 5%, 10%, 20%\\\\n- LOGO evaluation: train on original features, test on perturbed features\\\\n- 7 features: entropy_mean/std/min/max, tail_decay, ttr, hapax_ratio\\\\n- Reference model: Pythia-410M\\\\n- Classifier: XGBoost (200 trees, max_depth=6)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nimport torch\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\nfrom xgboost import XGBClassifier\\\\nfrom sklearn.metrics import f1_score\\\\n\\\\nSEED = 42\\\\nSUBSAMPLE_N = 5000\\\\nBATCH_SIZE = 48\\\\nPERTURBATION_RATES = [0.0, 0.05, 0.10, 0.20]\\\\nFEATURES = [\\\\\\\"entropy_mean\\\\\\\", \\\\\\\"entropy_std\\\\\\\", \\\\\\\"entropy_min\\\\\\\", \\\\\\\"entropy_max\\\\\\\",\\\\n            \\\\\\\"tail_decay\\\\\\\", \\\\\\\"ttr\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\"]\\\\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\\\n                  random_state=SEED, eval_metric=\\\\\\\"mlogloss\\\\\\\",\\\\n                  use_label_encoder=False)\\\\nCLASS_MAP_3 = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\\\\nMODEL_SNAPSHOT = \\\\\\\"/root/autodl-tmp/models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/9879c9b5f8bea9051dcb0e68dff21493d67e9d4f\\\\\\\"\\\\nPROJECT_ROOT = Path(\\\\\\\"/root/gen-depth-fingerprint\\\\\\\")\\\\nDATA_DIR = PROJECT_ROOT / \\\\\\\"data\\\\\\\"\\\\nOUTPUT_DIR = PROJECT_ROOT / \\\\\\\"experiments\\\\\\\" / \\\\\\\"human_edit_robustness\\\\\\\"\\\\n\\\\n\\\\ndef load_all_texts():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load texts from all 8 generators, return DataFrame with model_name, seed_id, depth, text.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    generators = {\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": [DATA_DIR / \\\\\\\"generations_shard0.jsonl\\\\\\\",\\\\n                        DATA_DIR / \\\\\\\"generations_shard1.jsonl\\\\\\\",\\\\n                        DATA_DIR / \\\\\\\"generations_shard2.jsonl\\\\\\\",\\\\n                        DATA_DIR / \\\\\\\"generations_shard3.jsonl\\\\\\\"],\\\\n        \\\\\\\"pythia-1b\\\\\\\": [DATA_DIR / \\\\\\\"pythia-1b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": [DATA_DIR / \\\\\\\"olmo-2-1b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": [DATA_DIR / \\\\\\\"qwen3-0.6b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": [DATA_DIR / \\\\\\\"qwen3-1.7b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"qwen3-8b\\\\\\\": [DATA_DIR / \\\\\\\"qwen3-8b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"llama-3.2-3b\\\\\\\": [DATA_DIR / \\\\\\\"llama-3.2-3b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"mistral-7b-v0.3\\\\\\\": [DATA_DIR / \\\\\\\"mistral-7b-v0.3\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n    }\\\\n\\\\n    all_records = []\\\\n    for model_name, paths in generators.items():\\\\n        seen = set()\\\\n        for p in paths:\\\\n            if not p.exists():\\\\n                continue\\\\n            with open(p) as f:\\\\n                for line in f:\\\\n                    line = line.strip()\\\\n                    if not line:\\\\n                        continue\\\\n                    rec = json.loads(line)\\\\n                    key = (rec.get(\\\\\\\"seed_id\\\\\\\"), rec.get(\\\\\\\"depth\\\\\\\"))\\\\n                    if key in seen:\\\\n                        continue\\\\n                    seen.add(key)\\\\n                    all_records.append({\\\\n                        \\\\\\\"model_name\\\\\\\": model_name,\\\\n                        \\\\\\\"seed_id\\\\\\\": rec[\\\\\\\"seed_id\\\\\\\"],\\\\n                        \\\\\\\"depth\\\\\\\": rec[\\\\\\\"depth\\\\\\\"],\\\\n                        \\\\\\\"text\\\\\\\": rec[\\\\\\\"text\\\\\\\"],\\\\n                    })\\\\n        print(f\\\\\\\"  {model_name}: {len(seen)} texts loaded\\\\\\\")\\\\n\\\\n    return pd.DataFrame(all_records)\\\\n\\\\n\\\\ndef load_all_features():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load features from features_all_models.csv + llama/mistral JSONL.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    df_base = pd.read_csv(DATA_DIR / \\\\\\\"features_all_models.csv\\\\\\\")\\\\n\\\\n    new_gens = [\\\\n        (\\\\\\\"llama-3.2-3b\\\\\\\", DATA_DIR / \\\\\\\"llama-3.2-3b\\\\\\\" / \\\\\\\"features_pythia410m.jsonl\\\\\\\"),\\\\n        (\\\\\\\"mistral-7b-v0.3\\\\\\\", DATA_DIR / \\\\\\\"mistral-7b-v0.3\\\\\\\" / \\\\\\\"features_pythia410m.jsonl\\\\\\\"),\\\\n    ]\\\\n    dfs = [df_base]\\\\n    for gen_name, path in new_gens:\\\\n        records = []\\\\n        with open(path) as f:\\\\n            for line in f:\\\\n                rec = json.loads(line)\\\\n                rec[\\\\\\\"model_name\\\\\\\"] = gen_name\\\\n                records.append(rec)\\\\n        dfs.append(pd.DataFrame(records))\\\\n\\\\n    cols = [\\\\\\\"model_name\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\"] + FEATURES\\\\n    df = pd.concat([d[cols] for d in dfs], ign\\\\n\\\\n... [截断: 输出过长，省略 6641 字符] ...\\\\n\\\\ne stratified by model\\\\n    print(f\\\\\\\"\\\\\\\\n[3/5] Subsampling to {SUBSAMPLE_N}...\\\\\\\")\\\\n    rng = np.random.RandomState(SEED)\\\\n    generators = sorted(df[\\\\\\\"model_name\\\\\\\"].unique())\\\\n    n_per_gen = SUBSAMPLE_N // len(generators)\\\\n    parts = []\\\\n    for gen in generators:\\\\n        sub = df[df[\\\\\\\"model_name\\\\\\\"] == gen]\\\\n        n = min(n_per_gen, len(sub))\\\\n        parts.append(sub.sample(n=n, random_state=rng, replace=False))\\\\n    df_sample = pd.concat(parts, ignore_index=True)\\\\n    print(f\\\\\\\"  Sampled: {len(df_sample)} ({len(generators)} generators, ~{n_per_gen} each)\\\\\\\")\\\\n    for gen in generators:\\\\n        n = len(df_sample[df_sample[\\\\\\\"model_name\\\\\\\"] == gen])\\\\n        print(f\\\\\\\"    {gen}: {n}\\\\\\\")\\\\n\\\\n    # Step 2: Load model for feature extraction\\\\n    print(\\\\\\\"\\\\\\\\n[4/5] Loading Pythia-410M...\\\\\\\")\\\\n    device = \\\\\\\"cuda:0\\\\\\\"\\\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_SNAPSHOT, local_files_only=True)\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        MODEL_SNAPSHOT, local_files_only=True, torch_dtype=torch.float16,\\\\n    ).to(device).eval()\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n    print(\\\\\\\"  Model loaded on cuda:0\\\\\\\")\\\\n\\\\n    # Step 3: For each perturbation rate, perturb + extract + evaluate\\\\n    print(\\\\\\\"\\\\\\\\n[5/5] Running perturbation experiments...\\\\\\\")\\\\n    results = {}\\\\n    original_features_df = df_sample[[\\\\\\\"model_name\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\"] + FEATURES].copy()\\\\n\\\\n    for rate in PERTURBATION_RATES:\\\\n        rate_key = f\\\\\\\"{rate:.2f}\\\\\\\"\\\\n        print(f\\\\\\\"\\\\\\\\n--- Rate: {rate_key} ---\\\\\\\")\\\\n\\\\n        if rate == 0.0:\\\\n            # Baseline: use original features directly\\\\n            perturbed_df = original_features_df.copy()\\\\n        else:\\\\n            # Perturb texts and re-extract features\\\\n            perturb_rng = np.random.RandomState(SEED)\\\\n            texts = df_sample[\\\\\\\"text\\\\\\\"].tolist()\\\\n            perturbed_texts = [perturb_text(t, rate, perturb_rng) for t in texts]\\\\n            print(f\\\\\\\"  Perturbed {len(perturbed_texts)} texts at rate {rate}\\\\\\\")\\\\n\\\\n            print(f\\\\\\\"  Extracting features...\\\\\\\")\\\\n            feat_list = extract_features_batch(perturbed_texts, tokenizer, model, device)\\\\n            perturbed_df = df_sample[[\\\\\\\"model_name\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\"]].copy()\\\\n            for feat_name in FEATURES:\\\\n                perturbed_df[feat_name] = [f[feat_name] for f in feat_list]\\\\n\\\\n        # LOGO evaluation\\\\n        print(f\\\\\\\"  Running LOGO evaluation...\\\\\\\")\\\\n        binary_f1, multi_f1, binary_ci = logo_eval(original_features_df, perturbed_df)\\\\n        results[rate_key] = {\\\\n            \\\\\\\"binary_f1\\\\\\\": round(binary_f1, 4),\\\\n            \\\\\\\"multiclass_f1\\\\\\\": round(multi_f1, 4),\\\\n            \\\\\\\"binary_ci\\\\\\\": [round(binary_ci[0], 4), round(binary_ci[1], 4)],\\\\n        }\\\\n        print(f\\\\\\\"  Binary F1: {binary_f1:.4f} [{binary_ci[0]:.4f}, {binary_ci[1]:.4f}]\\\\\\\")\\\\n        print(f\\\\\\\"  Multiclass F1: {multi_f1:.4f}\\\\\\\")\\\\n\\\\n    # Compute degradation\\\\n    baseline_bin = results[\\\\\\\"0.00\\\\\\\"][\\\\\\\"binary_f1\\\\\\\"]\\\\n    degradation = {}\\\\n    for rate in [0.05, 0.10, 0.20]:\\\\n        rate_key = f\\\\\\\"{rate:.2f}\\\\\\\"\\\\n        drop = results[rate_key][\\\\\\\"binary_f1\\\\\\\"] - baseline_bin\\\\n        degradation[f\\\\\\\"{rate_key}_drop_binary\\\\\\\"] = round(drop, 4)\\\\n\\\\n    # Save results\\\\n    output = {\\\\n        \\\\\\\"results\\\\\\\": results,\\\\n        \\\\\\\"degradation\\\\\\\": degradation,\\\\n        \\\\\\\"meta\\\\\\\": {\\\\n            \\\\\\\"n_samples\\\\\\\": len(df_sample),\\\\n            \\\\\\\"n_per_generator\\\\\\\": {gen: int(len(df_sample[df_sample[\\\\\\\"model_name\\\\\\\"] == gen]))\\\\n                                for gen in generators},\\\\n            \\\\\\\"perturbation_method\\\\\\\": \\\\\\\"random word replacement from same-text vocabulary\\\\\\\",\\\\n            \\\\\\\"feature_extraction\\\\\\\": \\\\\\\"Pythia-410M\\\\\\\",\\\\n            \\\\\\\"classifier\\\\\\\": \\\\\\\"XGBoost 200/6, class-balanced LOGO\\\\\\\",\\\\n            \\\\\\\"seed\\\\\\\": SEED,\\\\n            \\\\\\\"batch_size\\\\\\\": BATCH_SIZE,\\\\n        }\\\\n    }\\\\n\\\\n    output_path = OUTPUT_DIR / \\\\\\\"robustness_results.json\\\\\\\"\\\\n    with open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {output_path}\\\\\\\")\\\\n    print(json.dumps(output, indent=2))\\\\n\\\\n    # Cleanup\\\\n    del model, tokenizer\\\\n    torch.cuda.empty_cache()\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nHuman Edit Robustness Experiment (plan_010 RC5)\\n\\nTests depth fingerprint robustness under random word replacement.\\n- Perturbation rates: 0%, 5%, 10%, 20%\\n- LOGO evaluation: train on original features, test on perturbed features\\n- 7 features: entropy_mean/std/min/max, tail_decay, ttr, hapax_ratio\\n- Reference model: Pythia-410M\\n- Classifier: XGBoost (200 trees, max_depth=6)\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nfrom collections import Counter\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom xgboost import XGBClassifier\\nfrom sklearn.metrics import f1_score\\n\\nSEED = 42\\nSUBSAMPLE_N = 5000\\nBATCH_SIZE = 48\\nPERTURBATION_RATES = [0.0, 0.05, 0.10, 0.20]\\nFEATURES = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\",\\n            \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\n                  random_state=SEED, eval_metric=\\\"mlogloss\\\",\\n                  use_label_encoder=False)\\nCLASS_MAP_3 = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\\nMODEL_SNAPSHOT = \\\"/root/autodl-tmp/models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/9879c9b5f8bea9051dcb0e68dff21493d67e9d4f\\\"\\nPROJECT_ROOT = Path(\\\"/root/gen-depth-fingerprint\\\")\\nDATA_DIR = PROJECT_ROOT / \\\"data\\\"\\nOUTPUT_DIR = PROJECT_ROOT / \\\"experiments\\\" / \\\"human_edit_robustness\\\"\\n\\n\\ndef load_all_texts():\\n    \\\"\\\"\\\"Load texts from all 8 generators, return DataFrame with model_name, seed_id, depth, text.\\\"\\\"\\\"\\n    generators = {\\n        \\\"pythia-2.8b\\\": [DATA_DIR / \\\"generations_shard0.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard1.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard2.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard3.jsonl\\\"],\\n        \\\"pythia-1b\\\": [DATA_DIR / \\\"pythia-1b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"olmo-2-1b\\\": [DATA_DIR / \\\"olmo-2-1b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-0.6b\\\": [DATA_DIR / \\\"qwen3-0.6b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-1.7b\\\": [DATA_DIR / \\\"qwen3-1.7b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-8b\\\": [DATA_DIR / \\\"qwen3-8b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"llama-3.2-3b\\\": [DATA_DIR / \\\"llama-3.2-3b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"mistral-7b-v0.3\\\": [DATA_DIR / \\\"mistral-7b-v0.3\\\" / \\\"generations_shard0.jsonl\\\"],\\n    }\\n\\n    all_records = []\\n    for model_name, paths in generators.items():\\n        seen = set()\\n        for p in paths:\\n            if not p.exists():\\n                continue\\n            with open(p) as f:\\n                for line in f:\\n                    line = line.strip()\\n                    if not line:\\n                        continue\\n                    rec = json.loads(line)\\n                    key = (rec.get(\\\"seed_id\\\"), rec.get(\\\"depth\\\"))\\n                    if key in seen:\\n                        continue\\n                    seen.add(key)\\n                    all_records.append({\\n                        \\\"model_name\\\": model_name,\\n                        \\\"seed_id\\\": rec[\\\"seed_id\\\"],\\n                        \\\"depth\\\": rec[\\\"depth\\\"],\\n                        \\\"text\\\": rec[\\\"text\\\"],\\n                    })\\n        print(f\\\"  {model_name}: {len(seen)} texts loaded\\\")\\n\\n    return pd.DataFrame(all_records)\\n\\n\\ndef load_all_features():\\n    \\\"\\\"\\\"Load features from features_all_models.csv + llama/mistral JSONL.\\\"\\\"\\\"\\n    df_base = pd.read_csv(DATA_DIR / \\\"features_all_models.csv\\\")\\n\\n    new_gens = [\\n        (\\\"llama-3.2-3b\\\", DATA_DIR / \\\"llama-3.2-3b\\\" / \\\"features_pythia410m.jsonl\\\"),\\n        (\\\"mistral-7b-v0.3\\\", DATA_DIR / \\\"mistral-7b-v0.3\\\" / \\\"features_pythia410m.jsonl\\\"),\\n    ]\\n    dfs = [df_base]\\n    for gen_name, path in new_gens:\\n        records = []\\n        with open(path) as f:\\n            for line in f:\\n                rec = json.loads(line)\\n                rec[\\\"model_name\\\"] = gen_name\\n                records.append(rec)\\n        dfs.append(pd.DataFrame(records))\\n\\n    cols = [\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES\\n    df = pd.concat([d[cols] for d in dfs], ign\\n\\n... [截断: 输出过长，省略 6641 字符] ...\\n\\ne stratified by model\\n    print(f\\\"\\\\n[3/5] Subsampling to {SUBSAMPLE_N}...\\\")\\n    rng = np.random.RandomState(SEED)\\n    generators = sorted(df[\\\"model_name\\\"].unique())\\n    n_per_gen = SUBSAMPLE_N // len(generators)\\n    parts = []\\n    for gen in generators:\\n        sub = df[df[\\\"model_name\\\"] == gen]\\n        n = min(n_per_gen, len(sub))\\n        parts.append(sub.sample(n=n, random_state=rng, replace=False))\\n    df_sample = pd.concat(parts, ignore_index=True)\\n    print(f\\\"  Sampled: {len(df_sample)} ({len(generators)} generators, ~{n_per_gen} each)\\\")\\n    for gen in generators:\\n        n = len(df_sample[df_sample[\\\"model_name\\\"] == gen])\\n        print(f\\\"    {gen}: {n}\\\")\\n\\n    # Step 2: Load model for feature extraction\\n    print(\\\"\\\\n[4/5] Loading Pythia-410M...\\\")\\n    device = \\\"cuda:0\\\"\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_SNAPSHOT, local_files_only=True)\\n    model = AutoModelForCausalLM.from_pretrained(\\n        MODEL_SNAPSHOT, local_files_only=True, torch_dtype=torch.float16,\\n    ).to(device).eval()\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n    print(\\\"  Model loaded on cuda:0\\\")\\n\\n    # Step 3: For each perturbation rate, perturb + extract + evaluate\\n    print(\\\"\\\\n[5/5] Running perturbation experiments...\\\")\\n    results = {}\\n    original_features_df = df_sample[[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES].copy()\\n\\n    for rate in PERTURBATION_RATES:\\n        rate_key = f\\\"{rate:.2f}\\\"\\n        print(f\\\"\\\\n--- Rate: {rate_key} ---\\\")\\n\\n        if rate == 0.0:\\n            # Baseline: use original features directly\\n            perturbed_df = original_features_df.copy()\\n        else:\\n            # Perturb texts and re-extract features\\n            perturb_rng = np.random.RandomState(SEED)\\n            texts = df_sample[\\\"text\\\"].tolist()\\n            perturbed_texts = [perturb_text(t, rate, perturb_rng) for t in texts]\\n            print(f\\\"  Perturbed {len(perturbed_texts)} texts at rate {rate}\\\")\\n\\n            print(f\\\"  Extracting features...\\\")\\n            feat_list = extract_features_batch(perturbed_texts, tokenizer, model, device)\\n            perturbed_df = df_sample[[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"]].copy()\\n            for feat_name in FEATURES:\\n                perturbed_df[feat_name] = [f[feat_name] for f in feat_list]\\n\\n        # LOGO evaluation\\n        print(f\\\"  Running LOGO evaluation...\\\")\\n        binary_f1, multi_f1, binary_ci = logo_eval(original_features_df, perturbed_df)\\n        results[rate_key] = {\\n            \\\"binary_f1\\\": round(binary_f1, 4),\\n            \\\"multiclass_f1\\\": round(multi_f1, 4),\\n            \\\"binary_ci\\\": [round(binary_ci[0], 4), round(binary_ci[1], 4)],\\n        }\\n        print(f\\\"  Binary F1: {binary_f1:.4f} [{binary_ci[0]:.4f}, {binary_ci[1]:.4f}]\\\")\\n        print(f\\\"  Multiclass F1: {multi_f1:.4f}\\\")\\n\\n    # Compute degradation\\n    baseline_bin = results[\\\"0.00\\\"][\\\"binary_f1\\\"]\\n    degradation = {}\\n    for rate in [0.05, 0.10, 0.20]:\\n        rate_key = f\\\"{rate:.2f}\\\"\\n        drop = results[rate_key][\\\"binary_f1\\\"] - baseline_bin\\n        degradation[f\\\"{rate_key}_drop_binary\\\"] = round(drop, 4)\\n\\n    # Save results\\n    output = {\\n        \\\"results\\\": results,\\n        \\\"degradation\\\": degradation,\\n        \\\"meta\\\": {\\n            \\\"n_samples\\\": len(df_sample),\\n            \\\"n_per_generator\\\": {gen: int(len(df_sample[df_sample[\\\"model_name\\\"] == gen]))\\n                                for gen in generators},\\n            \\\"perturbation_method\\\": \\\"random word replacement from same-text vocabulary\\\",\\n            \\\"feature_extraction\\\": \\\"Pythia-410M\\\",\\n            \\\"classifier\\\": \\\"XGBoost 200/6, class-balanced LOGO\\\",\\n            \\\"seed\\\": SEED,\\n            \\\"batch_size\\\": BATCH_SIZE,\\n        }\\n    }\\n\\n    output_path = OUTPUT_DIR / \\\"robustness_results.json\\\"\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {output_path}\\\")\\n    print(json.dumps(output, indent=2))\\n\\n    # Cleanup\\n    del model, tokenizer\\n    torch.cuda.empty_cache()\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+The output was truncated. Let me get the key functions - specifically `extract_features_batch` (for tail_decay) and `logo_eval` (for binary/multiclass definitions).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "eeefcf37-0dd2-466d-8f29-7123e77121e7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012g1aXkLjkk31LFozTK4dce",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3665,
+      "cache_read_input_tokens": 27316,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3665
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XpH4hk1d7YNWy7aPdGstHY`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def extract_features\\|def logo_eval\\|tail_decay\\|y_bin\\|CLASS_MAP\\|depth.*>=\\|depth.*>\" /root/gen-depth-fingerprint/experiments/human_edit_robustness/run_robustness.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "0f2c2d29-100d-4536-8ebd-fe4ebc2ec05b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012g1aXkLjkk31LFozTK4dce",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3665,
+      "cache_read_input_tokens": 27316,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3665
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T01:06:13.932Z_
+
+<details><summary>↩ Tool result · `toolu_01XpH4hk1d7YNWy7aPdGstHY`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "1d1ec85e-68cb-4610-9d70-bd55fe65c1c7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VW9J8d5JY74aMZfikn4YoZ`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def extract_features\\|def logo_eval\\|tail_decay\\|y_bin\\|CLASS_MAP\\|depth\" /root/gen-depth-fingerprint/experiments/human_edit_robustness/run_robustness.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "47be5d64-05d9-469c-807c-af8f6f83225b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0176NkoiBK4ofkzvPoBnXAQ7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 302,
+      "cache_read_input_tokens": 30981,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 302
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T01:06:16.993Z_
+
+<details><summary>↩ Tool result · `toolu_01VW9J8d5JY74aMZfikn4YoZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "f8f0470c-41dc-4663-b80a-6d30462524b1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01StWV3MumLqqGF2uCNajBwz`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"tail_decay\" /root/gen-depth-fingerprint/experiments/human_edit_robustness/run_robustness.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "fd3ccb47-70ad-47fb-9ce7-70e07fa2d607",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017V5q1trW9iNmvYLDTQPbLn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 254,
+      "cache_read_input_tokens": 31283,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 254
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T01:06:20.196Z_
+
+<details><summary>↩ Tool result · `toolu_01StWV3MumLqqGF2uCNajBwz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"7:- 7 features: entropy_mean/std/min/max, tail_decay, ttr, hapax_ratio\\n30:            \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\n155:                tail_decay = float(coeffs[0])\\n157:                tail_decay = 0.0\\n173:                \\\"tail_decay\\\": tail_decay,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "2604175a-cc1c-4fe8-ba6d-ecfad83121ae",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"7:- 7 features: entropy_mean/std/min/max, tail_decay, ttr, hapax_ratio\\\\n30:            \\\\\\\"tail_decay\\\\\\\", \\\\\\\"ttr\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\"]\\\\n155:                tail_decay = float(coeffs[0])\\\\n157:                tail_decay = 0.0\\\\n173:                \\\\\\\"tail_decay\\\\\\\": tail_decay,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"7:- 7 features: entropy_mean/std/min/max, tail_decay, ttr, hapax_ratio\\n30:            \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\n155:                tail_decay = float(coeffs[0])\\n157:                tail_decay = 0.0\\n173:                \\\"tail_decay\\\": tail_decay,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FP4HAxHWra9FhE1uur7tgH`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "sed -n '140,180p' /root/gen-depth-fingerprint/experiments/human_edit_robustness/run_robustness.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "daa080f8-3d72-4069-81c0-dea89569e133",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J3RBbXZsz8Lgch5T9s2HXm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 319,
+      "cache_read_input_tokens": 31537,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 319
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T01:06:23.154Z_
+
+<details><summary>↩ Tool result · `toolu_01FP4HAxHWra9FhE1uur7tgH`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "60b31a2b-569e-491a-971f-4bfc924f68a9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CyC9bY6E2bt9YHtw3TuUeW`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -200 /root/gen-depth-fingerprint/experiments/human_edit_robustness/run_robustness.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "e1aa37fa-4c4e-46e5-9909-ad2c27026805",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GAQF3QLbbZwhLD4QrcddM8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 229,
+      "cache_read_input_tokens": 31856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 229
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-17T01:06:26.203Z_
+
+<details><summary>↩ Tool result · `toolu_01CyC9bY6E2bt9YHtw3TuUeW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nHuman Edit Robustness Experiment (plan_010 RC5)\\n\\nTests depth fingerprint robustness under random word replacement.\\n- Perturbation rates: 0%, 5%, 10%, 20%\\n- LOGO evaluation: train on original features, test on perturbed features\\n- 7 features: entropy_mean/std/min/max, tail_decay, ttr, hapax_ratio\\n- Reference model: Pythia-410M\\n- Classifier: XGBoost (200 trees, max_depth=6)\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nfrom collections import Counter\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom xgboost import XGBClassifier\\nfrom sklearn.metrics import f1_score\\n\\nSEED = 42\\nSUBSAMPLE_N = 5000\\nBATCH_SIZE = 48\\nPERTURBATION_RATES = [0.0, 0.05, 0.10, 0.20]\\nFEATURES = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\",\\n            \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\n                  random_state=SEED, eval_metric=\\\"mlogloss\\\",\\n                  use_label_encoder=False)\\nCLASS_MAP_3 = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\\nMODEL_SNAPSHOT = \\\"/root/autodl-tmp/models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/9879c9b5f8bea9051dcb0e68dff21493d67e9d4f\\\"\\nPROJECT_ROOT = Path(\\\"/root/gen-depth-fingerprint\\\")\\nDATA_DIR = PROJECT_ROOT / \\\"data\\\"\\nOUTPUT_DIR = PROJECT_ROOT / \\\"experiments\\\" / \\\"human_edit_robustness\\\"\\n\\n\\ndef load_all_texts():\\n    \\\"\\\"\\\"Load texts from all 8 generators, return DataFrame with model_name, seed_id, depth, text.\\\"\\\"\\\"\\n    generators = {\\n        \\\"pythia-2.8b\\\": [DATA_DIR / \\\"generations_shard0.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard1.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard2.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard3.jsonl\\\"],\\n        \\\"pythia-1b\\\": [DATA_DIR / \\\"pythia-1b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"olmo-2-1b\\\": [DATA_DIR / \\\"olmo-2-1b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-0.6b\\\": [DATA_DIR / \\\"qwen3-0.6b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-1.7b\\\": [DATA_DIR / \\\"qwen3-1.7b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-8b\\\": [DATA_DIR / \\\"qwen3-8b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"llama-3.2-3b\\\": [DATA_DIR / \\\"llama-3.2-3b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"mistral-7b-v0.3\\\": [DATA_DIR / \\\"mistral-7b-v0.3\\\" / \\\"generations_shard0.jsonl\\\"],\\n    }\\n\\n    all_records = []\\n    for model_name, paths in generators.items():\\n        seen = set()\\n        for p in paths:\\n            if not p.exists():\\n                continue\\n            with open(p) as f:\\n                for line in f:\\n                    line = line.strip()\\n                    if not line:\\n                        continue\\n                    rec = json.loads(line)\\n                    key = (rec.get(\\\"seed_id\\\"), rec.get(\\\"depth\\\"))\\n                    if key in seen:\\n                        continue\\n                    seen.add(key)\\n                    all_records.append({\\n                        \\\"model_name\\\": model_name,\\n                        \\\"seed_id\\\": rec[\\\"seed_id\\\"],\\n                        \\\"depth\\\": rec[\\\"depth\\\"],\\n                        \\\"text\\\": rec[\\\"text\\\"],\\n                    })\\n        print(f\\\"  {model_name}: {len(seen)} texts loaded\\\")\\n\\n    return pd.DataFrame(all_records)\\n\\n\\ndef load_all_features():\\n    \\\"\\\"\\\"Load features from features_all_models.csv + llama/mistral JSONL.\\\"\\\"\\\"\\n    df_base = pd.read_csv(DATA_DIR / \\\"features_all_models.csv\\\")\\n\\n    new_gens = [\\n        (\\\"llama-3.2-3b\\\", DATA_DIR / \\\"llama-3.2-3b\\\" / \\\"features_pythia410m.jsonl\\\"),\\n        (\\\"mistral-7b-v0.3\\\", DATA_DIR / \\\"mistral-7b-v0.3\\\" / \\\"features_pythia410m.jsonl\\\"),\\n    ]\\n    dfs = [df_base]\\n    for gen_name, path in new_gens:\\n        records = []\\n        with open(path) as f:\\n            for line in f:\\n                rec = json.loads(line)\\n                rec[\\\"model_name\\\"] = gen_name\\n                records.append(rec)\\n        dfs.append(pd.DataFrame(records))\\n\\n    cols = [\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES\\n    df = pd.concat([d[cols] for d in dfs], ignore_index=True)\\n    return df\\n\\n\\ndef perturb_text(text, replace_rate, rng):\\n    words = text.split()\\n    n_replace = int(len(words) * replace_rate)\\n    if n_replace == 0 or len(words) == 0:\\n        return text\\n    positions = rng.choice(len(words), size=n_replace, replace=False)\\n    vocab = list(set(words))\\n    for pos in positions:\\n        words[pos] = vocab[rng.randint(0, len(vocab))]\\n    return ' '.join(words)\\n\\n\\ndef extract_features_batch(texts, tokenizer, model, device):\\n    \\\"\\\"\\\"Extract all 7 features for a list of texts.\\\"\\\"\\\"\\n    results = []\\n    for start in range(0, len(texts), BATCH_SIZE):\\n        batch_texts = texts[start:start + BATCH_SIZE]\\n        encodings = tokenizer(\\n            batch_texts, return_tensors=\\\"pt\\\", padding=True,\\n            truncation=True, max_length=512,\\n        ).to(device)\\n\\n        with torch.no_grad():\\n            logits = model(**encodings).logits\\n\\n        for i in range(len(batch_texts)):\\n            mask = encodings[\\\"attention_mask\\\"][i].bool()\\n            seq_len = mask.sum().item()\\n            if seq_len < 2:\\n                results.append({f: 0.0 for f in FEATURES})\\n                continue\\n\\n            token_logits = logits[i, :seq_len - 1, :]\\n            log_probs = torch.log_softmax(token_logits, dim=-1)\\n            probs = torch.exp(log_probs)\\n            entropy = -(probs * log_probs).sum(dim=-1)\\n            entropy_np = entropy.float().cpu().numpy()\\n\\n            avg_log_probs = log_probs.float().mean(dim=0)\\n            sorted_lp, _ = torch.sort(avg_log_probs, descending=True)\\n            sorted_lp_np = sorted_lp.cpu().numpy()\\n            vocab_size = sorted_lp_np.shape[0]\\n            hi = min(1000, vocab_size)\\n            lo = min(100, hi)\\n            if hi - lo >= 2:\\n                x = np.arange(lo, hi, dtype=np.float64)\\n                y = sorted_lp_np[lo:hi].astype(np.float64)\\n                coeffs = np.polyfit(x, y, 1)\\n                tail_decay = float(coeffs[0])\\n            else:\\n                tail_decay = 0.0\\n\\n            words = batch_texts[i].lower().split()\\n            n_tokens = len(words)\\n            if n_tokens == 0:\\n                ttr, hapax_ratio = 0.0, 0.0\\n            else:\\n                counter = Counter(words)\\n                ttr = len(counter) / n_tokens\\n                hapax_ratio = sum(1 for c in counter.values() if c == 1) / n_tokens\\n\\n            results.append({\\n                \\\"entropy_mean\\\": float(np.mean(entropy_np)),\\n                \\\"entropy_std\\\": float(np.std(entropy_np)),\\n                \\\"entropy_min\\\": float(np.min(entropy_np)),\\n                \\\"entropy_max\\\": float(np.max(entropy_np)),\\n                \\\"tail_decay\\\": tail_decay,\\n                \\\"ttr\\\": ttr,\\n                \\\"hapax_ratio\\\": hapax_ratio,\\n            })\\n\\n        if (start // BATCH_SIZE) % 10 == 0:\\n            print(f\\\"    Extracted {min(start + BATCH_SIZE, len(texts))}/{len(texts)}\\\")\\n\\n    return results\\n\\n\\ndef downsample(df, label_col, rng):\\n    counts = df[label_col].value_counts()\\n    min_n = counts.min()\\n    parts = []\\n    for lbl in sorted(counts.index):\\n        sub = df[df[label_col] == lbl]\\n        parts.append(sub.sample(n=min_n, random_state=rng, replace=False))\\n    return pd.concat(parts, ignore_index=True)\\n\\n\\ndef bootstrap_f1(y_true, y_pred, n_boot=1000, seed=SEED):\\n    rng = np.random.RandomState(seed)\\n    n = len(y_true)\\n    scores = []\\n    for _ in range(n_boot):\\n        idx = rng.randint(0, n, size=n)\\n        yt, yp = y_true[idx], y_pred[idx]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "a8b3626a-ffe4-412a-8e5c-1629547b3202",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nHuman Edit Robustness Experiment (plan_010 RC5)\\\\n\\\\nTests depth fingerprint robustness under random word replacement.\\\\n- Perturbation rates: 0%, 5%, 10%, 20%\\\\n- LOGO evaluation: train on original features, test on perturbed features\\\\n- 7 features: entropy_mean/std/min/max, tail_decay, ttr, hapax_ratio\\\\n- Reference model: Pythia-410M\\\\n- Classifier: XGBoost (200 trees, max_depth=6)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nimport torch\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\nfrom xgboost import XGBClassifier\\\\nfrom sklearn.metrics import f1_score\\\\n\\\\nSEED = 42\\\\nSUBSAMPLE_N = 5000\\\\nBATCH_SIZE = 48\\\\nPERTURBATION_RATES = [0.0, 0.05, 0.10, 0.20]\\\\nFEATURES = [\\\\\\\"entropy_mean\\\\\\\", \\\\\\\"entropy_std\\\\\\\", \\\\\\\"entropy_min\\\\\\\", \\\\\\\"entropy_max\\\\\\\",\\\\n            \\\\\\\"tail_decay\\\\\\\", \\\\\\\"ttr\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\"]\\\\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\\\n                  random_state=SEED, eval_metric=\\\\\\\"mlogloss\\\\\\\",\\\\n                  use_label_encoder=False)\\\\nCLASS_MAP_3 = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\\\\nMODEL_SNAPSHOT = \\\\\\\"/root/autodl-tmp/models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/9879c9b5f8bea9051dcb0e68dff21493d67e9d4f\\\\\\\"\\\\nPROJECT_ROOT = Path(\\\\\\\"/root/gen-depth-fingerprint\\\\\\\")\\\\nDATA_DIR = PROJECT_ROOT / \\\\\\\"data\\\\\\\"\\\\nOUTPUT_DIR = PROJECT_ROOT / \\\\\\\"experiments\\\\\\\" / \\\\\\\"human_edit_robustness\\\\\\\"\\\\n\\\\n\\\\ndef load_all_texts():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load texts from all 8 generators, return DataFrame with model_name, seed_id, depth, text.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    generators = {\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": [DATA_DIR / \\\\\\\"generations_shard0.jsonl\\\\\\\",\\\\n                        DATA_DIR / \\\\\\\"generations_shard1.jsonl\\\\\\\",\\\\n                        DATA_DIR / \\\\\\\"generations_shard2.jsonl\\\\\\\",\\\\n                        DATA_DIR / \\\\\\\"generations_shard3.jsonl\\\\\\\"],\\\\n        \\\\\\\"pythia-1b\\\\\\\": [DATA_DIR / \\\\\\\"pythia-1b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": [DATA_DIR / \\\\\\\"olmo-2-1b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": [DATA_DIR / \\\\\\\"qwen3-0.6b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": [DATA_DIR / \\\\\\\"qwen3-1.7b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"qwen3-8b\\\\\\\": [DATA_DIR / \\\\\\\"qwen3-8b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"llama-3.2-3b\\\\\\\": [DATA_DIR / \\\\\\\"llama-3.2-3b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"mistral-7b-v0.3\\\\\\\": [DATA_DIR / \\\\\\\"mistral-7b-v0.3\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n    }\\\\n\\\\n    all_records = []\\\\n    for model_name, paths in generators.items():\\\\n        seen = set()\\\\n        for p in paths:\\\\n            if not p.exists():\\\\n                continue\\\\n            with open(p) as f:\\\\n                for line in f:\\\\n                    line = line.strip()\\\\n                    if not line:\\\\n                        continue\\\\n                    rec = json.loads(line)\\\\n                    key = (rec.get(\\\\\\\"seed_id\\\\\\\"), rec.get(\\\\\\\"depth\\\\\\\"))\\\\n                    if key in seen:\\\\n                        continue\\\\n                    seen.add(key)\\\\n                    all_records.append({\\\\n                        \\\\\\\"model_name\\\\\\\": model_name,\\\\n                        \\\\\\\"seed_id\\\\\\\": rec[\\\\\\\"seed_id\\\\\\\"],\\\\n                        \\\\\\\"depth\\\\\\\": rec[\\\\\\\"depth\\\\\\\"],\\\\n                        \\\\\\\"text\\\\\\\": rec[\\\\\\\"text\\\\\\\"],\\\\n                    })\\\\n        print(f\\\\\\\"  {model_name}: {len(seen)} texts loaded\\\\\\\")\\\\n\\\\n    return pd.DataFrame(all_records)\\\\n\\\\n\\\\ndef load_all_features():\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load features from features_all_models.csv + llama/mistral JSONL.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    df_base = pd.read_csv(DATA_DIR / \\\\\\\"features_all_models.csv\\\\\\\")\\\\n\\\\n    new_gens = [\\\\n        (\\\\\\\"llama-3.2-3b\\\\\\\", DATA_DIR / \\\\\\\"llama-3.2-3b\\\\\\\" / \\\\\\\"features_pythia410m.jsonl\\\\\\\"),\\\\n        (\\\\\\\"mistral-7b-v0.3\\\\\\\", DATA_DIR / \\\\\\\"mistral-7b-v0.3\\\\\\\" / \\\\\\\"features_pythia410m.jsonl\\\\\\\"),\\\\n    ]\\\\n    dfs = [df_base]\\\\n    for gen_name, path in new_gens:\\\\n        records = []\\\\n        with open(path) as f:\\\\n            for line in f:\\\\n                rec = json.loads(line)\\\\n                rec[\\\\\\\"model_name\\\\\\\"] = gen_name\\\\n                records.append(rec)\\\\n        dfs.append(pd.DataFrame(records))\\\\n\\\\n    cols = [\\\\\\\"model_name\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\"] + FEATURES\\\\n    df = pd.concat([d[cols] for d in dfs], ignore_index=True)\\\\n    return df\\\\n\\\\n\\\\ndef perturb_text(text, replace_rate, rng):\\\\n    words = text.split()\\\\n    n_replace = int(len(words) * replace_rate)\\\\n    if n_replace == 0 or len(words) == 0:\\\\n        return text\\\\n    positions = rng.choice(len(words), size=n_replace, replace=False)\\\\n    vocab = list(set(words))\\\\n    for pos in positions:\\\\n        words[pos] = vocab[rng.randint(0, len(vocab))]\\\\n    return ' '.join(words)\\\\n\\\\n\\\\ndef extract_features_batch(texts, tokenizer, model, device):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract all 7 features for a list of texts.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    results = []\\\\n    for start in range(0, len(texts), BATCH_SIZE):\\\\n        batch_texts = texts[start:start + BATCH_SIZE]\\\\n        encodings = tokenizer(\\\\n            batch_texts, return_tensors=\\\\\\\"pt\\\\\\\", padding=True,\\\\n            truncation=True, max_length=512,\\\\n        ).to(device)\\\\n\\\\n        with torch.no_grad():\\\\n            logits = model(**encodings).logits\\\\n\\\\n        for i in range(len(batch_texts)):\\\\n            mask = encodings[\\\\\\\"attention_mask\\\\\\\"][i].bool()\\\\n            seq_len = mask.sum().item()\\\\n            if seq_len < 2:\\\\n                results.append({f: 0.0 for f in FEATURES})\\\\n                continue\\\\n\\\\n            token_logits = logits[i, :seq_len - 1, :]\\\\n            log_probs = torch.log_softmax(token_logits, dim=-1)\\\\n            probs = torch.exp(log_probs)\\\\n            entropy = -(probs * log_probs).sum(dim=-1)\\\\n            entropy_np = entropy.float().cpu().numpy()\\\\n\\\\n            avg_log_probs = log_probs.float().mean(dim=0)\\\\n            sorted_lp, _ = torch.sort(avg_log_probs, descending=True)\\\\n            sorted_lp_np = sorted_lp.cpu().numpy()\\\\n            vocab_size = sorted_lp_np.shape[0]\\\\n            hi = min(1000, vocab_size)\\\\n            lo = min(100, hi)\\\\n            if hi - lo >= 2:\\\\n                x = np.arange(lo, hi, dtype=np.float64)\\\\n                y = sorted_lp_np[lo:hi].astype(np.float64)\\\\n                coeffs = np.polyfit(x, y, 1)\\\\n                tail_decay = float(coeffs[0])\\\\n            else:\\\\n                tail_decay = 0.0\\\\n\\\\n            words = batch_texts[i].lower().split()\\\\n            n_tokens = len(words)\\\\n            if n_tokens == 0:\\\\n                ttr, hapax_ratio = 0.0, 0.0\\\\n            else:\\\\n                counter = Counter(words)\\\\n                ttr = len(counter) / n_tokens\\\\n                hapax_ratio = sum(1 for c in counter.values() if c == 1) / n_tokens\\\\n\\\\n            results.append({\\\\n                \\\\\\\"entropy_mean\\\\\\\": float(np.mean(entropy_np)),\\\\n                \\\\\\\"entropy_std\\\\\\\": float(np.std(entropy_np)),\\\\n                \\\\\\\"entropy_min\\\\\\\": float(np.min(entropy_np)),\\\\n                \\\\\\\"entropy_max\\\\\\\": float(np.max(entropy_np)),\\\\n                \\\\\\\"tail_decay\\\\\\\": tail_decay,\\\\n                \\\\\\\"ttr\\\\\\\": ttr,\\\\n                \\\\\\\"hapax_ratio\\\\\\\": hapax_ratio,\\\\n            })\\\\n\\\\n        if (start // BATCH_SIZE) % 10 == 0:\\\\n            print(f\\\\\\\"    Extracted {min(start + BATCH_SIZE, len(texts))}/{len(texts)}\\\\\\\")\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef downsample(df, label_col, rng):\\\\n    counts = df[label_col].value_counts()\\\\n    min_n = counts.min()\\\\n    parts = []\\\\n    for lbl in sorted(counts.index):\\\\n        sub = df[df[label_col] == lbl]\\\\n        parts.append(sub.sample(n=min_n, random_state=rng, replace=False))\\\\n    return pd.concat(parts, ignore_index=True)\\\\n\\\\n\\\\ndef bootstrap_f1(y_true, y_pred, n_boot=1000, seed=SEED):\\\\n    rng = np.random.RandomState(seed)\\\\n    n = len(y_true)\\\\n    scores = []\\\\n    for _ in range(n_boot):\\\\n        idx = rng.randint(0, n, size=n)\\\\n        yt, yp = y_true[idx], y_pred[idx]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nHuman Edit Robustness Experiment (plan_010 RC5)\\n\\nTests depth fingerprint robustness under random word replacement.\\n- Perturbation rates: 0%, 5%, 10%, 20%\\n- LOGO evaluation: train on original features, test on perturbed features\\n- 7 features: entropy_mean/std/min/max, tail_decay, ttr, hapax_ratio\\n- Reference model: Pythia-410M\\n- Classifier: XGBoost (200 trees, max_depth=6)\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nfrom collections import Counter\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom xgboost import XGBClassifier\\nfrom sklearn.metrics import f1_score\\n\\nSEED = 42\\nSUBSAMPLE_N = 5000\\nBATCH_SIZE = 48\\nPERTURBATION_RATES = [0.0, 0.05, 0.10, 0.20]\\nFEATURES = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\",\\n            \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\n                  random_state=SEED, eval_metric=\\\"mlogloss\\\",\\n                  use_label_encoder=False)\\nCLASS_MAP_3 = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\\nMODEL_SNAPSHOT = \\\"/root/autodl-tmp/models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/9879c9b5f8bea9051dcb0e68dff21493d67e9d4f\\\"\\nPROJECT_ROOT = Path(\\\"/root/gen-depth-fingerprint\\\")\\nDATA_DIR = PROJECT_ROOT / \\\"data\\\"\\nOUTPUT_DIR = PROJECT_ROOT / \\\"experiments\\\" / \\\"human_edit_robustness\\\"\\n\\n\\ndef load_all_texts():\\n    \\\"\\\"\\\"Load texts from all 8 generators, return DataFrame with model_name, seed_id, depth, text.\\\"\\\"\\\"\\n    generators = {\\n        \\\"pythia-2.8b\\\": [DATA_DIR / \\\"generations_shard0.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard1.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard2.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard3.jsonl\\\"],\\n        \\\"pythia-1b\\\": [DATA_DIR / \\\"pythia-1b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"olmo-2-1b\\\": [DATA_DIR / \\\"olmo-2-1b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-0.6b\\\": [DATA_DIR / \\\"qwen3-0.6b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-1.7b\\\": [DATA_DIR / \\\"qwen3-1.7b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-8b\\\": [DATA_DIR / \\\"qwen3-8b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"llama-3.2-3b\\\": [DATA_DIR / \\\"llama-3.2-3b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"mistral-7b-v0.3\\\": [DATA_DIR / \\\"mistral-7b-v0.3\\\" / \\\"generations_shard0.jsonl\\\"],\\n    }\\n\\n    all_records = []\\n    for model_name, paths in generators.items():\\n        seen = set()\\n        for p in paths:\\n            if not p.exists():\\n                continue\\n            with open(p) as f:\\n                for line in f:\\n                    line = line.strip()\\n                    if not line:\\n                        continue\\n                    rec = json.loads(line)\\n                    key = (rec.get(\\\"seed_id\\\"), rec.get(\\\"depth\\\"))\\n                    if key in seen:\\n                        continue\\n                    seen.add(key)\\n                    all_records.append({\\n                        \\\"model_name\\\": model_name,\\n                        \\\"seed_id\\\": rec[\\\"seed_id\\\"],\\n                        \\\"depth\\\": rec[\\\"depth\\\"],\\n                        \\\"text\\\": rec[\\\"text\\\"],\\n                    })\\n        print(f\\\"  {model_name}: {len(seen)} texts loaded\\\")\\n\\n    return pd.DataFrame(all_records)\\n\\n\\ndef load_all_features():\\n    \\\"\\\"\\\"Load features from features_all_models.csv + llama/mistral JSONL.\\\"\\\"\\\"\\n    df_base = pd.read_csv(DATA_DIR / \\\"features_all_models.csv\\\")\\n\\n    new_gens = [\\n        (\\\"llama-3.2-3b\\\", DATA_DIR / \\\"llama-3.2-3b\\\" / \\\"features_pythia410m.jsonl\\\"),\\n        (\\\"mistral-7b-v0.3\\\", DATA_DIR / \\\"mistral-7b-v0.3\\\" / \\\"features_pythia410m.jsonl\\\"),\\n    ]\\n    dfs = [df_base]\\n    for gen_name, path in new_gens:\\n        records = []\\n        with open(path) as f:\\n            for line in f:\\n                rec = json.loads(line)\\n                rec[\\\"model_name\\\"] = gen_name\\n                records.append(rec)\\n        dfs.append(pd.DataFrame(records))\\n\\n    cols = [\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES\\n    df = pd.concat([d[cols] for d in dfs], ignore_index=True)\\n    return df\\n\\n\\ndef perturb_text(text, replace_rate, rng):\\n    words = text.split()\\n    n_replace = int(len(words) * replace_rate)\\n    if n_replace == 0 or len(words) == 0:\\n        return text\\n    positions = rng.choice(len(words), size=n_replace, replace=False)\\n    vocab = list(set(words))\\n    for pos in positions:\\n        words[pos] = vocab[rng.randint(0, len(vocab))]\\n    return ' '.join(words)\\n\\n\\ndef extract_features_batch(texts, tokenizer, model, device):\\n    \\\"\\\"\\\"Extract all 7 features for a list of texts.\\\"\\\"\\\"\\n    results = []\\n    for start in range(0, len(texts), BATCH_SIZE):\\n        batch_texts = texts[start:start + BATCH_SIZE]\\n        encodings = tokenizer(\\n            batch_texts, return_tensors=\\\"pt\\\", padding=True,\\n            truncation=True, max_length=512,\\n        ).to(device)\\n\\n        with torch.no_grad():\\n            logits = model(**encodings).logits\\n\\n        for i in range(len(batch_texts)):\\n            mask = encodings[\\\"attention_mask\\\"][i].bool()\\n            seq_len = mask.sum().item()\\n            if seq_len < 2:\\n                results.append({f: 0.0 for f in FEATURES})\\n                continue\\n\\n            token_logits = logits[i, :seq_len - 1, :]\\n            log_probs = torch.log_softmax(token_logits, dim=-1)\\n            probs = torch.exp(log_probs)\\n            entropy = -(probs * log_probs).sum(dim=-1)\\n            entropy_np = entropy.float().cpu().numpy()\\n\\n            avg_log_probs = log_probs.float().mean(dim=0)\\n            sorted_lp, _ = torch.sort(avg_log_probs, descending=True)\\n            sorted_lp_np = sorted_lp.cpu().numpy()\\n            vocab_size = sorted_lp_np.shape[0]\\n            hi = min(1000, vocab_size)\\n            lo = min(100, hi)\\n            if hi - lo >= 2:\\n                x = np.arange(lo, hi, dtype=np.float64)\\n                y = sorted_lp_np[lo:hi].astype(np.float64)\\n                coeffs = np.polyfit(x, y, 1)\\n                tail_decay = float(coeffs[0])\\n            else:\\n                tail_decay = 0.0\\n\\n            words = batch_texts[i].lower().split()\\n            n_tokens = len(words)\\n            if n_tokens == 0:\\n                ttr, hapax_ratio = 0.0, 0.0\\n            else:\\n                counter = Counter(words)\\n                ttr = len(counter) / n_tokens\\n                hapax_ratio = sum(1 for c in counter.values() if c == 1) / n_tokens\\n\\n            results.append({\\n                \\\"entropy_mean\\\": float(np.mean(entropy_np)),\\n                \\\"entropy_std\\\": float(np.std(entropy_np)),\\n                \\\"entropy_min\\\": float(np.min(entropy_np)),\\n                \\\"entropy_max\\\": float(np.max(entropy_np)),\\n                \\\"tail_decay\\\": tail_decay,\\n                \\\"ttr\\\": ttr,\\n                \\\"hapax_ratio\\\": hapax_ratio,\\n            })\\n\\n        if (start // BATCH_SIZE) % 10 == 0:\\n            print(f\\\"    Extracted {min(start + BATCH_SIZE, len(texts))}/{len(texts)}\\\")\\n\\n    return results\\n\\n\\ndef downsample(df, label_col, rng):\\n    counts = df[label_col].value_counts()\\n    min_n = counts.min()\\n    parts = []\\n    for lbl in sorted(counts.index):\\n        sub = df[df[label_col] == lbl]\\n        parts.append(sub.sample(n=min_n, random_state=rng, replace=False))\\n    return pd.concat(parts, ignore_index=True)\\n\\n\\ndef bootstrap_f1(y_true, y_pred, n_boot=1000, seed=SEED):\\n    rng = np.random.RandomState(seed)\\n    n = len(y_true)\\n    scores = []\\n    for _ in range(n_boot):\\n        idx = rng.randint(0, n, size=n)\\n        yt, yp = y_true[idx], y_pred[idx]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Tu5qSHDwbyPS27CVteRLPM`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -n +200 /root/gen-depth-fingerprint/experiments/human_edit_robustness/run_robustness.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "89bec4a6-1fce-4d62-b7d0-50a1639a5d0f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NPfjCsv7gHA7qNELinWMjz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3396,
+      "cache_read_input_tokens": 32085,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3396
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T01:06:29.440Z_
+
+<details><summary>↩ Tool result · `toolu_01Tu5qSHDwbyPS27CVteRLPM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        yt, yp = y_true[idx], y_pred[idx]\\n        if len(np.unique(yt)) < 2:\\n            continue\\n        scores.append(f1_score(yt, yp, average=\\\"macro\\\"))\\n    arr = np.array(scores)\\n    return float(np.percentile(arr, 2.5)), float(np.percentile(arr, 97.5))\\n\\n\\ndef logo_eval(df_original, df_perturbed):\\n    \\\"\\\"\\\"\\n    LOGO evaluation: train on original features of 7 generators,\\n    test on perturbed features of held-out generator.\\n    Returns binary F1 (gen-1 vs gen-2+) and multiclass F1 (3-class).\\n    \\\"\\\"\\\"\\n    df_orig = df_original.copy()\\n    df_pert = df_perturbed.copy()\\n    df_orig[\\\"label_3\\\"] = df_orig[\\\"depth\\\"].map(CLASS_MAP_3)\\n    df_pert[\\\"label_3\\\"] = df_pert[\\\"depth\\\"].map(CLASS_MAP_3)\\n\\n    generators = sorted(df_orig[\\\"model_name\\\"].unique())\\n    rng = np.random.RandomState(SEED)\\n\\n    all_binary_true, all_binary_pred = [], []\\n    all_multi_true, all_multi_pred = [], []\\n\\n    for gen in generators:\\n        train_df = df_orig[df_orig[\\\"model_name\\\"] != gen].copy()\\n        test_df = df_pert[df_pert[\\\"model_name\\\"] == gen].copy()\\n\\n        if len(test_df) == 0:\\n            continue\\n\\n        # 3-class\\n        train_ds = downsample(train_df, \\\"label_3\\\", rng)\\n        clf = XGBClassifier(**XGB_PARAMS)\\n        clf.fit(train_ds[FEATURES].values, train_ds[\\\"label_3\\\"].values)\\n        preds_3 = clf.predict(test_df[FEATURES].values)\\n        all_multi_true.extend(test_df[\\\"label_3\\\"].values.tolist())\\n        all_multi_pred.extend(preds_3.tolist())\\n\\n        # Binary (gen-1 vs gen-2+): only test samples with depth >= 1\\n        test_bin = test_df[test_df[\\\"depth\\\"] >= 1].copy()\\n        train_bin = train_df[train_df[\\\"depth\\\"] >= 1].copy()\\n        if len(test_bin) == 0 or len(train_bin) == 0:\\n            continue\\n        test_bin[\\\"label_bin\\\"] = (test_bin[\\\"depth\\\"] >= 2).astype(int)\\n        train_bin[\\\"label_bin\\\"] = (train_bin[\\\"depth\\\"] >= 2).astype(int)\\n\\n        train_bin_ds = downsample(train_bin, \\\"label_bin\\\", rng)\\n        clf_bin = XGBClassifier(**XGB_PARAMS)\\n        clf_bin.fit(train_bin_ds[FEATURES].values, train_bin_ds[\\\"label_bin\\\"].values)\\n        preds_bin = clf_bin.predict(test_bin[FEATURES].values)\\n        all_binary_true.extend(test_bin[\\\"label_bin\\\"].values.tolist())\\n        all_binary_pred.extend(preds_bin.tolist())\\n\\n    y_bin_true = np.array(all_binary_true)\\n    y_bin_pred = np.array(all_binary_pred)\\n    y_multi_true = np.array(all_multi_true)\\n    y_multi_pred = np.array(all_multi_pred)\\n\\n    binary_f1 = float(f1_score(y_bin_true, y_bin_pred, average=\\\"macro\\\"))\\n    multi_f1 = float(f1_score(y_multi_true, y_multi_pred, average=\\\"macro\\\"))\\n    ci_lo, ci_hi = bootstrap_f1(y_bin_true, y_bin_pred)\\n\\n    return binary_f1, multi_f1, [ci_lo, ci_hi]\\n\\n\\ndef main():\\n    print(\\\"=\\\" * 60)\\n    print(\\\"Human Edit Robustness Experiment\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    # Step 1: Load texts and features\\n    print(\\\"\\\\n[1/5] Loading texts...\\\")\\n    df_texts = load_all_texts()\\n    print(f\\\"  Total texts: {len(df_texts)}\\\")\\n\\n    print(\\\"\\\\n[2/5] Loading original features...\\\")\\n    df_features = load_all_features()\\n    print(f\\\"  Total features: {len(df_features)}\\\")\\n\\n    # Merge texts with features\\n    df = df_features.merge(df_texts, on=[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"], how=\\\"inner\\\")\\n    print(f\\\"  Merged (features+text): {len(df)}\\\")\\n\\n    # Subsample stratified by model\\n    print(f\\\"\\\\n[3/5] Subsampling to {SUBSAMPLE_N}...\\\")\\n    rng = np.random.RandomState(SEED)\\n    generators = sorted(df[\\\"model_name\\\"].unique())\\n    n_per_gen = SUBSAMPLE_N // len(generators)\\n    parts = []\\n    for gen in generators:\\n        sub = df[df[\\\"model_name\\\"] == gen]\\n        n = min(n_per_gen, len(sub))\\n        parts.append(sub.sample(n=n, random_state=rng, replace=False))\\n    df_sample = pd.concat(parts, ignore_index=True)\\n    print(f\\\"  Sampled: {len(df_sample)} ({len(generators)} generators, ~{n_per_gen} each)\\\")\\n    for gen in generators:\\n        n = len(df_sample[df_sample[\\\"model_name\\\"] == gen])\\n        print(f\\\"    {gen}: {n}\\\")\\n\\n    # Step 2: Load model for feature extraction\\n    print(\\\"\\\\n[4/5] Loading Pythia-410M...\\\")\\n    device = \\\"cuda:0\\\"\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_SNAPSHOT, local_files_only=True)\\n    model = AutoModelForCausalLM.from_pretrained(\\n        MODEL_SNAPSHOT, local_files_only=True, torch_dtype=torch.float16,\\n    ).to(device).eval()\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n    print(\\\"  Model loaded on cuda:0\\\")\\n\\n    # Step 3: For each perturbation rate, perturb + extract + evaluate\\n    print(\\\"\\\\n[5/5] Running perturbation experiments...\\\")\\n    results = {}\\n    original_features_df = df_sample[[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES].copy()\\n\\n    for rate in PERTURBATION_RATES:\\n        rate_key = f\\\"{rate:.2f}\\\"\\n        print(f\\\"\\\\n--- Rate: {rate_key} ---\\\")\\n\\n        if rate == 0.0:\\n            # Baseline: use original features directly\\n            perturbed_df = original_features_df.copy()\\n        else:\\n            # Perturb texts and re-extract features\\n            perturb_rng = np.random.RandomState(SEED)\\n            texts = df_sample[\\\"text\\\"].tolist()\\n            perturbed_texts = [perturb_text(t, rate, perturb_rng) for t in texts]\\n            print(f\\\"  Perturbed {len(perturbed_texts)} texts at rate {rate}\\\")\\n\\n            print(f\\\"  Extracting features...\\\")\\n            feat_list = extract_features_batch(perturbed_texts, tokenizer, model, device)\\n            perturbed_df = df_sample[[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"]].copy()\\n            for feat_name in FEATURES:\\n                perturbed_df[feat_name] = [f[feat_name] for f in feat_list]\\n\\n        # LOGO evaluation\\n        print(f\\\"  Running LOGO evaluation...\\\")\\n        binary_f1, multi_f1, binary_ci = logo_eval(original_features_df, perturbed_df)\\n        results[rate_key] = {\\n            \\\"binary_f1\\\": round(binary_f1, 4),\\n            \\\"multiclass_f1\\\": round(multi_f1, 4),\\n            \\\"binary_ci\\\": [round(binary_ci[0], 4), round(binary_ci[1], 4)],\\n        }\\n        print(f\\\"  Binary F1: {binary_f1:.4f} [{binary_ci[0]:.4f}, {binary_ci[1]:.4f}]\\\")\\n        print(f\\\"  Multiclass F1: {multi_f1:.4f}\\\")\\n\\n    # Compute degradation\\n    baseline_bin = results[\\\"0.00\\\"][\\\"binary_f1\\\"]\\n    degradation = {}\\n    for rate in [0.05, 0.10, 0.20]:\\n        rate_key = f\\\"{rate:.2f}\\\"\\n        drop = results[rate_key][\\\"binary_f1\\\"] - baseline_bin\\n        degradation[f\\\"{rate_key}_drop_binary\\\"] = round(drop, 4)\\n\\n    # Save results\\n    output = {\\n        \\\"results\\\": results,\\n        \\\"degradation\\\": degradation,\\n        \\\"meta\\\": {\\n            \\\"n_samples\\\": len(df_sample),\\n            \\\"n_per_generator\\\": {gen: int(len(df_sample[df_sample[\\\"model_name\\\"] == gen]))\\n                                for gen in generators},\\n            \\\"perturbation_method\\\": \\\"random word replacement from same-text vocabulary\\\",\\n            \\\"feature_extraction\\\": \\\"Pythia-410M\\\",\\n            \\\"classifier\\\": \\\"XGBoost 200/6, class-balanced LOGO\\\",\\n            \\\"seed\\\": SEED,\\n            \\\"batch_size\\\": BATCH_SIZE,\\n        }\\n    }\\n\\n    output_path = OUTPUT_DIR / \\\"robustness_results.json\\\"\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {output_path}\\\")\\n    print(json.dumps(output, indent=2))\\n\\n    # Cleanup\\n    del model, tokenizer\\n    torch.cuda.empty_cache()\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "4d869024-3c85-4f79-be7b-41f6aecefe24",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        yt, yp = y_true[idx], y_pred[idx]\\\\n        if len(np.unique(yt)) < 2:\\\\n            continue\\\\n        scores.append(f1_score(yt, yp, average=\\\\\\\"macro\\\\\\\"))\\\\n    arr = np.array(scores)\\\\n    return float(np.percentile(arr, 2.5)), float(np.percentile(arr, 97.5))\\\\n\\\\n\\\\ndef logo_eval(df_original, df_perturbed):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    LOGO evaluation: train on original features of 7 generators,\\\\n    test on perturbed features of held-out generator.\\\\n    Returns binary F1 (gen-1 vs gen-2+) and multiclass F1 (3-class).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    df_orig = df_original.copy()\\\\n    df_pert = df_perturbed.copy()\\\\n    df_orig[\\\\\\\"label_3\\\\\\\"] = df_orig[\\\\\\\"depth\\\\\\\"].map(CLASS_MAP_3)\\\\n    df_pert[\\\\\\\"label_3\\\\\\\"] = df_pert[\\\\\\\"depth\\\\\\\"].map(CLASS_MAP_3)\\\\n\\\\n    generators = sorted(df_orig[\\\\\\\"model_name\\\\\\\"].unique())\\\\n    rng = np.random.RandomState(SEED)\\\\n\\\\n    all_binary_true, all_binary_pred = [], []\\\\n    all_multi_true, all_multi_pred = [], []\\\\n\\\\n    for gen in generators:\\\\n        train_df = df_orig[df_orig[\\\\\\\"model_name\\\\\\\"] != gen].copy()\\\\n        test_df = df_pert[df_pert[\\\\\\\"model_name\\\\\\\"] == gen].copy()\\\\n\\\\n        if len(test_df) == 0:\\\\n            continue\\\\n\\\\n        # 3-class\\\\n        train_ds = downsample(train_df, \\\\\\\"label_3\\\\\\\", rng)\\\\n        clf = XGBClassifier(**XGB_PARAMS)\\\\n        clf.fit(train_ds[FEATURES].values, train_ds[\\\\\\\"label_3\\\\\\\"].values)\\\\n        preds_3 = clf.predict(test_df[FEATURES].values)\\\\n        all_multi_true.extend(test_df[\\\\\\\"label_3\\\\\\\"].values.tolist())\\\\n        all_multi_pred.extend(preds_3.tolist())\\\\n\\\\n        # Binary (gen-1 vs gen-2+): only test samples with depth >= 1\\\\n        test_bin = test_df[test_df[\\\\\\\"depth\\\\\\\"] >= 1].copy()\\\\n        train_bin = train_df[train_df[\\\\\\\"depth\\\\\\\"] >= 1].copy()\\\\n        if len(test_bin) == 0 or len(train_bin) == 0:\\\\n            continue\\\\n        test_bin[\\\\\\\"label_bin\\\\\\\"] = (test_bin[\\\\\\\"depth\\\\\\\"] >= 2).astype(int)\\\\n        train_bin[\\\\\\\"label_bin\\\\\\\"] = (train_bin[\\\\\\\"depth\\\\\\\"] >= 2).astype(int)\\\\n\\\\n        train_bin_ds = downsample(train_bin, \\\\\\\"label_bin\\\\\\\", rng)\\\\n        clf_bin = XGBClassifier(**XGB_PARAMS)\\\\n        clf_bin.fit(train_bin_ds[FEATURES].values, train_bin_ds[\\\\\\\"label_bin\\\\\\\"].values)\\\\n        preds_bin = clf_bin.predict(test_bin[FEATURES].values)\\\\n        all_binary_true.extend(test_bin[\\\\\\\"label_bin\\\\\\\"].values.tolist())\\\\n        all_binary_pred.extend(preds_bin.tolist())\\\\n\\\\n    y_bin_true = np.array(all_binary_true)\\\\n    y_bin_pred = np.array(all_binary_pred)\\\\n    y_multi_true = np.array(all_multi_true)\\\\n    y_multi_pred = np.array(all_multi_pred)\\\\n\\\\n    binary_f1 = float(f1_score(y_bin_true, y_bin_pred, average=\\\\\\\"macro\\\\\\\"))\\\\n    multi_f1 = float(f1_score(y_multi_true, y_multi_pred, average=\\\\\\\"macro\\\\\\\"))\\\\n    ci_lo, ci_hi = bootstrap_f1(y_bin_true, y_bin_pred)\\\\n\\\\n    return binary_f1, multi_f1, [ci_lo, ci_hi]\\\\n\\\\n\\\\ndef main():\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n    print(\\\\\\\"Human Edit Robustness Experiment\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    # Step 1: Load texts and features\\\\n    print(\\\\\\\"\\\\\\\\n[1/5] Loading texts...\\\\\\\")\\\\n    df_texts = load_all_texts()\\\\n    print(f\\\\\\\"  Total texts: {len(df_texts)}\\\\\\\")\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n[2/5] Loading original features...\\\\\\\")\\\\n    df_features = load_all_features()\\\\n    print(f\\\\\\\"  Total features: {len(df_features)}\\\\\\\")\\\\n\\\\n    # Merge texts with features\\\\n    df = df_features.merge(df_texts, on=[\\\\\\\"model_name\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\"], how=\\\\\\\"inner\\\\\\\")\\\\n    print(f\\\\\\\"  Merged (features+text): {len(df)}\\\\\\\")\\\\n\\\\n    # Subsample stratified by model\\\\n    print(f\\\\\\\"\\\\\\\\n[3/5] Subsampling to {SUBSAMPLE_N}...\\\\\\\")\\\\n    rng = np.random.RandomState(SEED)\\\\n    generators = sorted(df[\\\\\\\"model_name\\\\\\\"].unique())\\\\n    n_per_gen = SUBSAMPLE_N // len(generators)\\\\n    parts = []\\\\n    for gen in generators:\\\\n        sub = df[df[\\\\\\\"model_name\\\\\\\"] == gen]\\\\n        n = min(n_per_gen, len(sub))\\\\n        parts.append(sub.sample(n=n, random_state=rng, replace=False))\\\\n    df_sample = pd.concat(parts, ignore_index=True)\\\\n    print(f\\\\\\\"  Sampled: {len(df_sample)} ({len(generators)} generators, ~{n_per_gen} each)\\\\\\\")\\\\n    for gen in generators:\\\\n        n = len(df_sample[df_sample[\\\\\\\"model_name\\\\\\\"] == gen])\\\\n        print(f\\\\\\\"    {gen}: {n}\\\\\\\")\\\\n\\\\n    # Step 2: Load model for feature extraction\\\\n    print(\\\\\\\"\\\\\\\\n[4/5] Loading Pythia-410M...\\\\\\\")\\\\n    device = \\\\\\\"cuda:0\\\\\\\"\\\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_SNAPSHOT, local_files_only=True)\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        MODEL_SNAPSHOT, local_files_only=True, torch_dtype=torch.float16,\\\\n    ).to(device).eval()\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n    print(\\\\\\\"  Model loaded on cuda:0\\\\\\\")\\\\n\\\\n    # Step 3: For each perturbation rate, perturb + extract + evaluate\\\\n    print(\\\\\\\"\\\\\\\\n[5/5] Running perturbation experiments...\\\\\\\")\\\\n    results = {}\\\\n    original_features_df = df_sample[[\\\\\\\"model_name\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\"] + FEATURES].copy()\\\\n\\\\n    for rate in PERTURBATION_RATES:\\\\n        rate_key = f\\\\\\\"{rate:.2f}\\\\\\\"\\\\n        print(f\\\\\\\"\\\\\\\\n--- Rate: {rate_key} ---\\\\\\\")\\\\n\\\\n        if rate == 0.0:\\\\n            # Baseline: use original features directly\\\\n            perturbed_df = original_features_df.copy()\\\\n        else:\\\\n            # Perturb texts and re-extract features\\\\n            perturb_rng = np.random.RandomState(SEED)\\\\n            texts = df_sample[\\\\\\\"text\\\\\\\"].tolist()\\\\n            perturbed_texts = [perturb_text(t, rate, perturb_rng) for t in texts]\\\\n            print(f\\\\\\\"  Perturbed {len(perturbed_texts)} texts at rate {rate}\\\\\\\")\\\\n\\\\n            print(f\\\\\\\"  Extracting features...\\\\\\\")\\\\n            feat_list = extract_features_batch(perturbed_texts, tokenizer, model, device)\\\\n            perturbed_df = df_sample[[\\\\\\\"model_name\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\"]].copy()\\\\n            for feat_name in FEATURES:\\\\n                perturbed_df[feat_name] = [f[feat_name] for f in feat_list]\\\\n\\\\n        # LOGO evaluation\\\\n        print(f\\\\\\\"  Running LOGO evaluation...\\\\\\\")\\\\n        binary_f1, multi_f1, binary_ci = logo_eval(original_features_df, perturbed_df)\\\\n        results[rate_key] = {\\\\n            \\\\\\\"binary_f1\\\\\\\": round(binary_f1, 4),\\\\n            \\\\\\\"multiclass_f1\\\\\\\": round(multi_f1, 4),\\\\n            \\\\\\\"binary_ci\\\\\\\": [round(binary_ci[0], 4), round(binary_ci[1], 4)],\\\\n        }\\\\n        print(f\\\\\\\"  Binary F1: {binary_f1:.4f} [{binary_ci[0]:.4f}, {binary_ci[1]:.4f}]\\\\\\\")\\\\n        print(f\\\\\\\"  Multiclass F1: {multi_f1:.4f}\\\\\\\")\\\\n\\\\n    # Compute degradation\\\\n    baseline_bin = results[\\\\\\\"0.00\\\\\\\"][\\\\\\\"binary_f1\\\\\\\"]\\\\n    degradation = {}\\\\n    for rate in [0.05, 0.10, 0.20]:\\\\n        rate_key = f\\\\\\\"{rate:.2f}\\\\\\\"\\\\n        drop = results[rate_key][\\\\\\\"binary_f1\\\\\\\"] - baseline_bin\\\\n        degradation[f\\\\\\\"{rate_key}_drop_binary\\\\\\\"] = round(drop, 4)\\\\n\\\\n    # Save results\\\\n    output = {\\\\n        \\\\\\\"results\\\\\\\": results,\\\\n        \\\\\\\"degradation\\\\\\\": degradation,\\\\n        \\\\\\\"meta\\\\\\\": {\\\\n            \\\\\\\"n_samples\\\\\\\": len(df_sample),\\\\n            \\\\\\\"n_per_generator\\\\\\\": {gen: int(len(df_sample[df_sample[\\\\\\\"model_name\\\\\\\"] == gen]))\\\\n                                for gen in generators},\\\\n            \\\\\\\"perturbation_method\\\\\\\": \\\\\\\"random word replacement from same-text vocabulary\\\\\\\",\\\\n            \\\\\\\"feature_extraction\\\\\\\": \\\\\\\"Pythia-410M\\\\\\\",\\\\n            \\\\\\\"classifier\\\\\\\": \\\\\\\"XGBoost 200/6, class-balanced LOGO\\\\\\\",\\\\n            \\\\\\\"seed\\\\\\\": SEED,\\\\n            \\\\\\\"batch_size\\\\\\\": BATCH_SIZE,\\\\n        }\\\\n    }\\\\n\\\\n    output_path = OUTPUT_DIR / \\\\\\\"robustness_results.json\\\\\\\"\\\\n    with open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {output_path}\\\\\\\")\\\\n    print(json.dumps(output, indent=2))\\\\n\\\\n    # Cleanup\\\\n    del model, tokenizer\\\\n    torch.cuda.empty_cache()\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"        yt, yp = y_true[idx], y_pred[idx]\\n        if len(np.unique(yt)) < 2:\\n            continue\\n        scores.append(f1_score(yt, yp, average=\\\"macro\\\"))\\n    arr = np.array(scores)\\n    return float(np.percentile(arr, 2.5)), float(np.percentile(arr, 97.5))\\n\\n\\ndef logo_eval(df_original, df_perturbed):\\n    \\\"\\\"\\\"\\n    LOGO evaluation: train on original features of 7 generators,\\n    test on perturbed features of held-out generator.\\n    Returns binary F1 (gen-1 vs gen-2+) and multiclass F1 (3-class).\\n    \\\"\\\"\\\"\\n    df_orig = df_original.copy()\\n    df_pert = df_perturbed.copy()\\n    df_orig[\\\"label_3\\\"] = df_orig[\\\"depth\\\"].map(CLASS_MAP_3)\\n    df_pert[\\\"label_3\\\"] = df_pert[\\\"depth\\\"].map(CLASS_MAP_3)\\n\\n    generators = sorted(df_orig[\\\"model_name\\\"].unique())\\n    rng = np.random.RandomState(SEED)\\n\\n    all_binary_true, all_binary_pred = [], []\\n    all_multi_true, all_multi_pred = [], []\\n\\n    for gen in generators:\\n        train_df = df_orig[df_orig[\\\"model_name\\\"] != gen].copy()\\n        test_df = df_pert[df_pert[\\\"model_name\\\"] == gen].copy()\\n\\n        if len(test_df) == 0:\\n            continue\\n\\n        # 3-class\\n        train_ds = downsample(train_df, \\\"label_3\\\", rng)\\n        clf = XGBClassifier(**XGB_PARAMS)\\n        clf.fit(train_ds[FEATURES].values, train_ds[\\\"label_3\\\"].values)\\n        preds_3 = clf.predict(test_df[FEATURES].values)\\n        all_multi_true.extend(test_df[\\\"label_3\\\"].values.tolist())\\n        all_multi_pred.extend(preds_3.tolist())\\n\\n        # Binary (gen-1 vs gen-2+): only test samples with depth >= 1\\n        test_bin = test_df[test_df[\\\"depth\\\"] >= 1].copy()\\n        train_bin = train_df[train_df[\\\"depth\\\"] >= 1].copy()\\n        if len(test_bin) == 0 or len(train_bin) == 0:\\n            continue\\n        test_bin[\\\"label_bin\\\"] = (test_bin[\\\"depth\\\"] >= 2).astype(int)\\n        train_bin[\\\"label_bin\\\"] = (train_bin[\\\"depth\\\"] >= 2).astype(int)\\n\\n        train_bin_ds = downsample(train_bin, \\\"label_bin\\\", rng)\\n        clf_bin = XGBClassifier(**XGB_PARAMS)\\n        clf_bin.fit(train_bin_ds[FEATURES].values, train_bin_ds[\\\"label_bin\\\"].values)\\n        preds_bin = clf_bin.predict(test_bin[FEATURES].values)\\n        all_binary_true.extend(test_bin[\\\"label_bin\\\"].values.tolist())\\n        all_binary_pred.extend(preds_bin.tolist())\\n\\n    y_bin_true = np.array(all_binary_true)\\n    y_bin_pred = np.array(all_binary_pred)\\n    y_multi_true = np.array(all_multi_true)\\n    y_multi_pred = np.array(all_multi_pred)\\n\\n    binary_f1 = float(f1_score(y_bin_true, y_bin_pred, average=\\\"macro\\\"))\\n    multi_f1 = float(f1_score(y_multi_true, y_multi_pred, average=\\\"macro\\\"))\\n    ci_lo, ci_hi = bootstrap_f1(y_bin_true, y_bin_pred)\\n\\n    return binary_f1, multi_f1, [ci_lo, ci_hi]\\n\\n\\ndef main():\\n    print(\\\"=\\\" * 60)\\n    print(\\\"Human Edit Robustness Experiment\\\")\\n    print(\\\"=\\\" * 60)\\n\\n    # Step 1: Load texts and features\\n    print(\\\"\\\\n[1/5] Loading texts...\\\")\\n    df_texts = load_all_texts()\\n    print(f\\\"  Total texts: {len(df_texts)}\\\")\\n\\n    print(\\\"\\\\n[2/5] Loading original features...\\\")\\n    df_features = load_all_features()\\n    print(f\\\"  Total features: {len(df_features)}\\\")\\n\\n    # Merge texts with features\\n    df = df_features.merge(df_texts, on=[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"], how=\\\"inner\\\")\\n    print(f\\\"  Merged (features+text): {len(df)}\\\")\\n\\n    # Subsample stratified by model\\n    print(f\\\"\\\\n[3/5] Subsampling to {SUBSAMPLE_N}...\\\")\\n    rng = np.random.RandomState(SEED)\\n    generators = sorted(df[\\\"model_name\\\"].unique())\\n    n_per_gen = SUBSAMPLE_N // len(generators)\\n    parts = []\\n    for gen in generators:\\n        sub = df[df[\\\"model_name\\\"] == gen]\\n        n = min(n_per_gen, len(sub))\\n        parts.append(sub.sample(n=n, random_state=rng, replace=False))\\n    df_sample = pd.concat(parts, ignore_index=True)\\n    print(f\\\"  Sampled: {len(df_sample)} ({len(generators)} generators, ~{n_per_gen} each)\\\")\\n    for gen in generators:\\n        n = len(df_sample[df_sample[\\\"model_name\\\"] == gen])\\n        print(f\\\"    {gen}: {n}\\\")\\n\\n    # Step 2: Load model for feature extraction\\n    print(\\\"\\\\n[4/5] Loading Pythia-410M...\\\")\\n    device = \\\"cuda:0\\\"\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_SNAPSHOT, local_files_only=True)\\n    model = AutoModelForCausalLM.from_pretrained(\\n        MODEL_SNAPSHOT, local_files_only=True, torch_dtype=torch.float16,\\n    ).to(device).eval()\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n    print(\\\"  Model loaded on cuda:0\\\")\\n\\n    # Step 3: For each perturbation rate, perturb + extract + evaluate\\n    print(\\\"\\\\n[5/5] Running perturbation experiments...\\\")\\n    results = {}\\n    original_features_df = df_sample[[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES].copy()\\n\\n    for rate in PERTURBATION_RATES:\\n        rate_key = f\\\"{rate:.2f}\\\"\\n        print(f\\\"\\\\n--- Rate: {rate_key} ---\\\")\\n\\n        if rate == 0.0:\\n            # Baseline: use original features directly\\n            perturbed_df = original_features_df.copy()\\n        else:\\n            # Perturb texts and re-extract features\\n            perturb_rng = np.random.RandomState(SEED)\\n            texts = df_sample[\\\"text\\\"].tolist()\\n            perturbed_texts = [perturb_text(t, rate, perturb_rng) for t in texts]\\n            print(f\\\"  Perturbed {len(perturbed_texts)} texts at rate {rate}\\\")\\n\\n            print(f\\\"  Extracting features...\\\")\\n            feat_list = extract_features_batch(perturbed_texts, tokenizer, model, device)\\n            perturbed_df = df_sample[[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"]].copy()\\n            for feat_name in FEATURES:\\n                perturbed_df[feat_name] = [f[feat_name] for f in feat_list]\\n\\n        # LOGO evaluation\\n        print(f\\\"  Running LOGO evaluation...\\\")\\n        binary_f1, multi_f1, binary_ci = logo_eval(original_features_df, perturbed_df)\\n        results[rate_key] = {\\n            \\\"binary_f1\\\": round(binary_f1, 4),\\n            \\\"multiclass_f1\\\": round(multi_f1, 4),\\n            \\\"binary_ci\\\": [round(binary_ci[0], 4), round(binary_ci[1], 4)],\\n        }\\n        print(f\\\"  Binary F1: {binary_f1:.4f} [{binary_ci[0]:.4f}, {binary_ci[1]:.4f}]\\\")\\n        print(f\\\"  Multiclass F1: {multi_f1:.4f}\\\")\\n\\n    # Compute degradation\\n    baseline_bin = results[\\\"0.00\\\"][\\\"binary_f1\\\"]\\n    degradation = {}\\n    for rate in [0.05, 0.10, 0.20]:\\n        rate_key = f\\\"{rate:.2f}\\\"\\n        drop = results[rate_key][\\\"binary_f1\\\"] - baseline_bin\\n        degradation[f\\\"{rate_key}_drop_binary\\\"] = round(drop, 4)\\n\\n    # Save results\\n    output = {\\n        \\\"results\\\": results,\\n        \\\"degradation\\\": degradation,\\n        \\\"meta\\\": {\\n            \\\"n_samples\\\": len(df_sample),\\n            \\\"n_per_generator\\\": {gen: int(len(df_sample[df_sample[\\\"model_name\\\"] == gen]))\\n                                for gen in generators},\\n            \\\"perturbation_method\\\": \\\"random word replacement from same-text vocabulary\\\",\\n            \\\"feature_extraction\\\": \\\"Pythia-410M\\\",\\n            \\\"classifier\\\": \\\"XGBoost 200/6, class-balanced LOGO\\\",\\n            \\\"seed\\\": SEED,\\n            \\\"batch_size\\\": BATCH_SIZE,\\n        }\\n    }\\n\\n    output_path = OUTPUT_DIR / \\\"robustness_results.json\\\"\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {output_path}\\\")\\n    print(json.dumps(output, indent=2))\\n\\n    # Cleanup\\n    del model, tokenizer\\n    torch.cuda.empty_cache()\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+Good. Now I have the reference implementation. Key points:
+- **tail_decay**: rank 100-1000 on `avg_log_probs` sorted descending, then polyfit
+- **binary**: filter `depth >= 1`, then `y = (depth >= 2)`
+- **3-class**: `CLASS_MAP_3 = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}`
+
+Now let me read the buggy `run_llm_rephrase.py`:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "d147917c-ced2-406c-a717-a7e7ebb5a2dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018c6QYaxeEg2QE3nncUGFsN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3289,
+      "cache_read_input_tokens": 35481,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3289
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01V7PXu2rLbYueGkHNYpwLhP`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/experiments/human_edit_robustness/run_llm_rephrase.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "b737f5c9-fe2e-4aba-bdca-469821226ae6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018c6QYaxeEg2QE3nncUGFsN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3289,
+      "cache_read_input_tokens": 35481,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3289
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T01:06:37.793Z_
+
+<details><summary>↩ Tool result · `toolu_01V7PXu2rLbYueGkHNYpwLhP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nLLM-Simulated Editing (Condition B): Qwen3-0.6B-Base rephrasing\\n\\nFor each text, randomly select 1-3 sentences (not the first), use\\nQwen3-0.6B-Base to regenerate them via context continuation.\\nThen re-extract depth features with Pythia-410M and evaluate with pooled LOGO XGBoost.\\n\\nProtocol: train on original features, test on rephrased features.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport re\\nimport sys\\nimport time\\nfrom collections import Counter\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom xgboost import XGBClassifier\\nfrom sklearn.metrics import f1_score\\n\\nSEED = 42\\nSUBSAMPLE_N = 5000\\nBATCH_SIZE = 32\\nFEATURES = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\",\\n            \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\n                  random_state=SEED, eval_metric=\\\"mlogloss\\\",\\n                  use_label_encoder=False)\\n\\nQWEN_MODEL_PATH = \\\"/root/autodl-tmp/models/Qwen/Qwen3-0.6B-Base\\\"\\nPYTHIA_MODEL_PATH = \\\"/root/autodl-tmp/models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/9879c9b5f8bea9051dcb0e68dff21493d67e9d4f\\\"\\nPROJECT_ROOT = Path(\\\"/root/gen-depth-fingerprint\\\")\\nDATA_DIR = PROJECT_ROOT / \\\"data\\\"\\nOUTPUT_DIR = PROJECT_ROOT / \\\"experiments\\\" / \\\"human_edit_robustness\\\"\\n\\n\\ndef load_all_texts():\\n    generators = {\\n        \\\"pythia-2.8b\\\": [DATA_DIR / \\\"generations_shard0.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard1.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard2.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard3.jsonl\\\"],\\n        \\\"pythia-1b\\\": [DATA_DIR / \\\"pythia-1b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"olmo-2-1b\\\": [DATA_DIR / \\\"olmo-2-1b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-0.6b\\\": [DATA_DIR / \\\"qwen3-0.6b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-1.7b\\\": [DATA_DIR / \\\"qwen3-1.7b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-8b\\\": [DATA_DIR / \\\"qwen3-8b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"llama-3.2-3b\\\": [DATA_DIR / \\\"llama-3.2-3b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"mistral-7b-v0.3\\\": [DATA_DIR / \\\"mistral-7b-v0.3\\\" / \\\"generations_shard0.jsonl\\\"],\\n    }\\n\\n    all_records = []\\n    for model_name, paths in generators.items():\\n        seen = set()\\n        for p in paths:\\n            if not p.exists():\\n                continue\\n            with open(p) as f:\\n                for line in f:\\n                    line = line.strip()\\n                    if not line:\\n                        continue\\n                    rec = json.loads(line)\\n                    key = (rec.get(\\\"seed_id\\\"), rec.get(\\\"depth\\\"))\\n                    if key in seen:\\n                        continue\\n                    seen.add(key)\\n                    all_records.append({\\n                        \\\"model_name\\\": model_name,\\n                        \\\"seed_id\\\": rec[\\\"seed_id\\\"],\\n                        \\\"depth\\\": rec[\\\"depth\\\"],\\n                        \\\"text\\\": rec[\\\"text\\\"],\\n                    })\\n        print(f\\\"  {model_name}: {len(seen)} texts loaded\\\")\\n\\n    return pd.DataFrame(all_records)\\n\\n\\ndef load_all_features():\\n    df_base = pd.read_csv(DATA_DIR / \\\"features_all_models.csv\\\")\\n\\n    new_gens = [\\n        (\\\"llama-3.2-3b\\\", DATA_DIR / \\\"llama-3.2-3b\\\" / \\\"features_pythia410m.jsonl\\\"),\\n        (\\\"mistral-7b-v0.3\\\", DATA_DIR / \\\"mistral-7b-v0.3\\\" / \\\"features_pythia410m.jsonl\\\"),\\n    ]\\n    dfs = [df_base]\\n    for gen_name, path in new_gens:\\n        records = []\\n        with open(path) as f:\\n            for line in f:\\n                rec = json.loads(line)\\n                rec[\\\"model_name\\\"] = gen_name\\n                records.append(rec)\\n        dfs.append(pd.DataFrame(records))\\n\\n    cols = [\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES\\n    df = pd.concat([d[cols] for d in dfs], ignore_index=True)\\n    return df\\n\\n\\ndef split_sentences(text):\\n    parts = re.split(r'(?<=[.!?])\\\\s+', text.strip())\\n    return [p for p in parts if p.strip()]\\n\\n\\ndef rephrase_with_llm(texts, tokenizer, model, \\n\\n... [截断: 输出过长，省略 11516 字符] ...\\n\\noken\\n    print(\\\"  Pythia-410M loaded\\\", flush=True)\\n\\n    print(f\\\"  Extracting features from rephrased texts...\\\", flush=True)\\n    feat_list = extract_features_batch(rephrased_texts, pythia_tokenizer, pythia_model, device)\\n    print(f\\\"  Extracted {len(feat_list)} feature vectors\\\", flush=True)\\n\\n    rephrased_df = df_sample[[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"]].copy()\\n    for feat_name in FEATURES:\\n        rephrased_df[feat_name] = [f[feat_name] for f in feat_list]\\n\\n    original_df = df_sample[[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES].copy()\\n\\n    del pythia_model, pythia_tokenizer\\n    torch.cuda.empty_cache()\\n\\n    # LOGO evaluation\\n    print(f\\\"\\\\n[5/6] Running LOGO evaluation...\\\", flush=True)\\n\\n    print(\\\"  Evaluating original (baseline)...\\\", flush=True)\\n    orig_bin_f1, orig_multi_f1, orig_bin_ci, orig_multi_ci = logo_eval(original_df, original_df)\\n    print(f\\\"  Original: binary={orig_bin_f1:.4f} [{orig_bin_ci[0]:.4f}, {orig_bin_ci[1]:.4f}], \\\"\\n          f\\\"multi={orig_multi_f1:.4f} [{orig_multi_ci[0]:.4f}, {orig_multi_ci[1]:.4f}]\\\", flush=True)\\n\\n    print(\\\"  Evaluating LLM rephrased...\\\", flush=True)\\n    reph_bin_f1, reph_multi_f1, reph_bin_ci, reph_multi_ci = logo_eval(original_df, rephrased_df)\\n    print(f\\\"  Rephrased: binary={reph_bin_f1:.4f} [{reph_bin_ci[0]:.4f}, {reph_bin_ci[1]:.4f}], \\\"\\n          f\\\"multi={reph_multi_f1:.4f} [{reph_multi_ci[0]:.4f}, {reph_multi_ci[1]:.4f}]\\\", flush=True)\\n\\n    # Save results\\n    print(f\\\"\\\\n[6/6] Saving results...\\\", flush=True)\\n    edit_ratio = compute_edit_distance_ratio(texts, rephrased_texts)\\n\\n    binary_drop = reph_bin_f1 - orig_bin_f1\\n    multi_drop = reph_multi_f1 - orig_multi_f1\\n\\n    output = {\\n        \\\"results\\\": {\\n            \\\"original\\\": {\\n                \\\"binary_f1\\\": round(orig_bin_f1, 4),\\n                \\\"binary_ci\\\": [round(orig_bin_ci[0], 4), round(orig_bin_ci[1], 4)],\\n                \\\"multiclass_f1\\\": round(orig_multi_f1, 4),\\n                \\\"multiclass_ci\\\": [round(orig_multi_ci[0], 4), round(orig_multi_ci[1], 4)],\\n            },\\n            \\\"llm_rephrased\\\": {\\n                \\\"binary_f1\\\": round(reph_bin_f1, 4),\\n                \\\"binary_ci\\\": [round(reph_bin_ci[0], 4), round(reph_bin_ci[1], 4)],\\n                \\\"multiclass_f1\\\": round(reph_multi_f1, 4),\\n                \\\"multiclass_ci\\\": [round(reph_multi_ci[0], 4), round(reph_multi_ci[1], 4)],\\n            },\\n        },\\n        \\\"degradation\\\": {\\n            \\\"binary_drop\\\": round(binary_drop, 4),\\n            \\\"multiclass_drop\\\": round(multi_drop, 4),\\n            \\\"relative_binary_drop_pct\\\": f\\\"{abs(binary_drop) / orig_bin_f1 * 100:.1f}%\\\",\\n        },\\n        \\\"rephrase_stats\\\": {\\n            \\\"n_samples\\\": len(df_sample),\\n            \\\"avg_sentences_replaced\\\": round(float(np.mean(n_replaced)), 2),\\n            \\\"avg_edit_distance_ratio\\\": round(edit_ratio, 4),\\n            \\\"model\\\": \\\"Qwen3-0.6B-Base\\\",\\n        },\\n        \\\"comparison_with_random_replacement\\\": {\\n            \\\"random_5pct_binary\\\": 0.6496,\\n            \\\"random_5pct_drop\\\": -0.0457,\\n            \\\"llm_rephrase_binary\\\": round(reph_bin_f1, 4),\\n            \\\"llm_rephrase_drop\\\": round(binary_drop, 4),\\n            \\\"note\\\": (\\\"LLM rephrase degrades less than 5% random replacement\\\"\\n                     if abs(binary_drop) < 0.0457\\n                     else \\\"LLM rephrase degrades more than 5% random replacement\\\"),\\n        },\\n        \\\"meta\\\": {\\n            \\\"features\\\": FEATURES,\\n            \\\"rephrase_model\\\": \\\"Qwen3-0.6B-Base\\\",\\n            \\\"reference_model\\\": \\\"Pythia-410M\\\",\\n            \\\"xgb_params\\\": {\\\"n_estimators\\\": 200, \\\"max_depth\\\": 6},\\n            \\\"class_balanced\\\": True,\\n            \\\"protocol\\\": \\\"pooled LOGO 8-fold, train=original, test=rephrased\\\",\\n            \\\"seed\\\": SEED,\\n            \\\"elapsed_seconds\\\": round(time.time() - t0, 1),\\n        },\\n    }\\n\\n    output_path = OUTPUT_DIR / \\\"llm_rephrase_results.json\\\"\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {output_path}\\\", flush=True)\\n    print(json.dumps(output, indent=2))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "b4e94e23-ca64-47f5-a7a8-6cf4ccb1ffae",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLLM-Simulated Editing (Condition B): Qwen3-0.6B-Base rephrasing\\\\n\\\\nFor each text, randomly select 1-3 sentences (not the first), use\\\\nQwen3-0.6B-Base to regenerate them via context continuation.\\\\nThen re-extract depth features with Pythia-410M and evaluate with pooled LOGO XGBoost.\\\\n\\\\nProtocol: train on original features, test on rephrased features.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nimport torch\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\nfrom xgboost import XGBClassifier\\\\nfrom sklearn.metrics import f1_score\\\\n\\\\nSEED = 42\\\\nSUBSAMPLE_N = 5000\\\\nBATCH_SIZE = 32\\\\nFEATURES = [\\\\\\\"entropy_mean\\\\\\\", \\\\\\\"entropy_std\\\\\\\", \\\\\\\"entropy_min\\\\\\\", \\\\\\\"entropy_max\\\\\\\",\\\\n            \\\\\\\"tail_decay\\\\\\\", \\\\\\\"ttr\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\"]\\\\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\\\n                  random_state=SEED, eval_metric=\\\\\\\"mlogloss\\\\\\\",\\\\n                  use_label_encoder=False)\\\\n\\\\nQWEN_MODEL_PATH = \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-0.6B-Base\\\\\\\"\\\\nPYTHIA_MODEL_PATH = \\\\\\\"/root/autodl-tmp/models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/9879c9b5f8bea9051dcb0e68dff21493d67e9d4f\\\\\\\"\\\\nPROJECT_ROOT = Path(\\\\\\\"/root/gen-depth-fingerprint\\\\\\\")\\\\nDATA_DIR = PROJECT_ROOT / \\\\\\\"data\\\\\\\"\\\\nOUTPUT_DIR = PROJECT_ROOT / \\\\\\\"experiments\\\\\\\" / \\\\\\\"human_edit_robustness\\\\\\\"\\\\n\\\\n\\\\ndef load_all_texts():\\\\n    generators = {\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": [DATA_DIR / \\\\\\\"generations_shard0.jsonl\\\\\\\",\\\\n                        DATA_DIR / \\\\\\\"generations_shard1.jsonl\\\\\\\",\\\\n                        DATA_DIR / \\\\\\\"generations_shard2.jsonl\\\\\\\",\\\\n                        DATA_DIR / \\\\\\\"generations_shard3.jsonl\\\\\\\"],\\\\n        \\\\\\\"pythia-1b\\\\\\\": [DATA_DIR / \\\\\\\"pythia-1b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": [DATA_DIR / \\\\\\\"olmo-2-1b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": [DATA_DIR / \\\\\\\"qwen3-0.6b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": [DATA_DIR / \\\\\\\"qwen3-1.7b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"qwen3-8b\\\\\\\": [DATA_DIR / \\\\\\\"qwen3-8b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"llama-3.2-3b\\\\\\\": [DATA_DIR / \\\\\\\"llama-3.2-3b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"mistral-7b-v0.3\\\\\\\": [DATA_DIR / \\\\\\\"mistral-7b-v0.3\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n    }\\\\n\\\\n    all_records = []\\\\n    for model_name, paths in generators.items():\\\\n        seen = set()\\\\n        for p in paths:\\\\n            if not p.exists():\\\\n                continue\\\\n            with open(p) as f:\\\\n                for line in f:\\\\n                    line = line.strip()\\\\n                    if not line:\\\\n                        continue\\\\n                    rec = json.loads(line)\\\\n                    key = (rec.get(\\\\\\\"seed_id\\\\\\\"), rec.get(\\\\\\\"depth\\\\\\\"))\\\\n                    if key in seen:\\\\n                        continue\\\\n                    seen.add(key)\\\\n                    all_records.append({\\\\n                        \\\\\\\"model_name\\\\\\\": model_name,\\\\n                        \\\\\\\"seed_id\\\\\\\": rec[\\\\\\\"seed_id\\\\\\\"],\\\\n                        \\\\\\\"depth\\\\\\\": rec[\\\\\\\"depth\\\\\\\"],\\\\n                        \\\\\\\"text\\\\\\\": rec[\\\\\\\"text\\\\\\\"],\\\\n                    })\\\\n        print(f\\\\\\\"  {model_name}: {len(seen)} texts loaded\\\\\\\")\\\\n\\\\n    return pd.DataFrame(all_records)\\\\n\\\\n\\\\ndef load_all_features():\\\\n    df_base = pd.read_csv(DATA_DIR / \\\\\\\"features_all_models.csv\\\\\\\")\\\\n\\\\n    new_gens = [\\\\n        (\\\\\\\"llama-3.2-3b\\\\\\\", DATA_DIR / \\\\\\\"llama-3.2-3b\\\\\\\" / \\\\\\\"features_pythia410m.jsonl\\\\\\\"),\\\\n        (\\\\\\\"mistral-7b-v0.3\\\\\\\", DATA_DIR / \\\\\\\"mistral-7b-v0.3\\\\\\\" / \\\\\\\"features_pythia410m.jsonl\\\\\\\"),\\\\n    ]\\\\n    dfs = [df_base]\\\\n    for gen_name, path in new_gens:\\\\n        records = []\\\\n        with open(path) as f:\\\\n            for line in f:\\\\n                rec = json.loads(line)\\\\n                rec[\\\\\\\"model_name\\\\\\\"] = gen_name\\\\n                records.append(rec)\\\\n        dfs.append(pd.DataFrame(records))\\\\n\\\\n    cols = [\\\\\\\"model_name\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\"] + FEATURES\\\\n    df = pd.concat([d[cols] for d in dfs], ignore_index=True)\\\\n    return df\\\\n\\\\n\\\\ndef split_sentences(text):\\\\n    parts = re.split(r'(?<=[.!?])\\\\\\\\s+', text.strip())\\\\n    return [p for p in parts if p.strip()]\\\\n\\\\n\\\\ndef rephrase_with_llm(texts, tokenizer, model, \\\\n\\\\n... [截断: 输出过长，省略 11516 字符] ...\\\\n\\\\noken\\\\n    print(\\\\\\\"  Pythia-410M loaded\\\\\\\", flush=True)\\\\n\\\\n    print(f\\\\\\\"  Extracting features from rephrased texts...\\\\\\\", flush=True)\\\\n    feat_list = extract_features_batch(rephrased_texts, pythia_tokenizer, pythia_model, device)\\\\n    print(f\\\\\\\"  Extracted {len(feat_list)} feature vectors\\\\\\\", flush=True)\\\\n\\\\n    rephrased_df = df_sample[[\\\\\\\"model_name\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\"]].copy()\\\\n    for feat_name in FEATURES:\\\\n        rephrased_df[feat_name] = [f[feat_name] for f in feat_list]\\\\n\\\\n    original_df = df_sample[[\\\\\\\"model_name\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\"] + FEATURES].copy()\\\\n\\\\n    del pythia_model, pythia_tokenizer\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    # LOGO evaluation\\\\n    print(f\\\\\\\"\\\\\\\\n[5/6] Running LOGO evaluation...\\\\\\\", flush=True)\\\\n\\\\n    print(\\\\\\\"  Evaluating original (baseline)...\\\\\\\", flush=True)\\\\n    orig_bin_f1, orig_multi_f1, orig_bin_ci, orig_multi_ci = logo_eval(original_df, original_df)\\\\n    print(f\\\\\\\"  Original: binary={orig_bin_f1:.4f} [{orig_bin_ci[0]:.4f}, {orig_bin_ci[1]:.4f}], \\\\\\\"\\\\n          f\\\\\\\"multi={orig_multi_f1:.4f} [{orig_multi_ci[0]:.4f}, {orig_multi_ci[1]:.4f}]\\\\\\\", flush=True)\\\\n\\\\n    print(\\\\\\\"  Evaluating LLM rephrased...\\\\\\\", flush=True)\\\\n    reph_bin_f1, reph_multi_f1, reph_bin_ci, reph_multi_ci = logo_eval(original_df, rephrased_df)\\\\n    print(f\\\\\\\"  Rephrased: binary={reph_bin_f1:.4f} [{reph_bin_ci[0]:.4f}, {reph_bin_ci[1]:.4f}], \\\\\\\"\\\\n          f\\\\\\\"multi={reph_multi_f1:.4f} [{reph_multi_ci[0]:.4f}, {reph_multi_ci[1]:.4f}]\\\\\\\", flush=True)\\\\n\\\\n    # Save results\\\\n    print(f\\\\\\\"\\\\\\\\n[6/6] Saving results...\\\\\\\", flush=True)\\\\n    edit_ratio = compute_edit_distance_ratio(texts, rephrased_texts)\\\\n\\\\n    binary_drop = reph_bin_f1 - orig_bin_f1\\\\n    multi_drop = reph_multi_f1 - orig_multi_f1\\\\n\\\\n    output = {\\\\n        \\\\\\\"results\\\\\\\": {\\\\n            \\\\\\\"original\\\\\\\": {\\\\n                \\\\\\\"binary_f1\\\\\\\": round(orig_bin_f1, 4),\\\\n                \\\\\\\"binary_ci\\\\\\\": [round(orig_bin_ci[0], 4), round(orig_bin_ci[1], 4)],\\\\n                \\\\\\\"multiclass_f1\\\\\\\": round(orig_multi_f1, 4),\\\\n                \\\\\\\"multiclass_ci\\\\\\\": [round(orig_multi_ci[0], 4), round(orig_multi_ci[1], 4)],\\\\n            },\\\\n            \\\\\\\"llm_rephrased\\\\\\\": {\\\\n                \\\\\\\"binary_f1\\\\\\\": round(reph_bin_f1, 4),\\\\n                \\\\\\\"binary_ci\\\\\\\": [round(reph_bin_ci[0], 4), round(reph_bin_ci[1], 4)],\\\\n                \\\\\\\"multiclass_f1\\\\\\\": round(reph_multi_f1, 4),\\\\n                \\\\\\\"multiclass_ci\\\\\\\": [round(reph_multi_ci[0], 4), round(reph_multi_ci[1], 4)],\\\\n            },\\\\n        },\\\\n        \\\\\\\"degradation\\\\\\\": {\\\\n            \\\\\\\"binary_drop\\\\\\\": round(binary_drop, 4),\\\\n            \\\\\\\"multiclass_drop\\\\\\\": round(multi_drop, 4),\\\\n            \\\\\\\"relative_binary_drop_pct\\\\\\\": f\\\\\\\"{abs(binary_drop) / orig_bin_f1 * 100:.1f}%\\\\\\\",\\\\n        },\\\\n        \\\\\\\"rephrase_stats\\\\\\\": {\\\\n            \\\\\\\"n_samples\\\\\\\": len(df_sample),\\\\n            \\\\\\\"avg_sentences_replaced\\\\\\\": round(float(np.mean(n_replaced)), 2),\\\\n            \\\\\\\"avg_edit_distance_ratio\\\\\\\": round(edit_ratio, 4),\\\\n            \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-0.6B-Base\\\\\\\",\\\\n        },\\\\n        \\\\\\\"comparison_with_random_replacement\\\\\\\": {\\\\n            \\\\\\\"random_5pct_binary\\\\\\\": 0.6496,\\\\n            \\\\\\\"random_5pct_drop\\\\\\\": -0.0457,\\\\n            \\\\\\\"llm_rephrase_binary\\\\\\\": round(reph_bin_f1, 4),\\\\n            \\\\\\\"llm_rephrase_drop\\\\\\\": round(binary_drop, 4),\\\\n            \\\\\\\"note\\\\\\\": (\\\\\\\"LLM rephrase degrades less than 5% random replacement\\\\\\\"\\\\n                     if abs(binary_drop) < 0.0457\\\\n                     else \\\\\\\"LLM rephrase degrades more than 5% random replacement\\\\\\\"),\\\\n        },\\\\n        \\\\\\\"meta\\\\\\\": {\\\\n            \\\\\\\"features\\\\\\\": FEATURES,\\\\n            \\\\\\\"rephrase_model\\\\\\\": \\\\\\\"Qwen3-0.6B-Base\\\\\\\",\\\\n            \\\\\\\"reference_model\\\\\\\": \\\\\\\"Pythia-410M\\\\\\\",\\\\n            \\\\\\\"xgb_params\\\\\\\": {\\\\\\\"n_estimators\\\\\\\": 200, \\\\\\\"max_depth\\\\\\\": 6},\\\\n            \\\\\\\"class_balanced\\\\\\\": True,\\\\n            \\\\\\\"protocol\\\\\\\": \\\\\\\"pooled LOGO 8-fold, train=original, test=rephrased\\\\\\\",\\\\n            \\\\\\\"seed\\\\\\\": SEED,\\\\n            \\\\\\\"elapsed_seconds\\\\\\\": round(time.time() - t0, 1),\\\\n        },\\\\n    }\\\\n\\\\n    output_path = OUTPUT_DIR / \\\\\\\"llm_rephrase_results.json\\\\\\\"\\\\n    with open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {output_path}\\\\\\\", flush=True)\\\\n    print(json.dumps(output, indent=2))\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nLLM-Simulated Editing (Condition B): Qwen3-0.6B-Base rephrasing\\n\\nFor each text, randomly select 1-3 sentences (not the first), use\\nQwen3-0.6B-Base to regenerate them via context continuation.\\nThen re-extract depth features with Pythia-410M and evaluate with pooled LOGO XGBoost.\\n\\nProtocol: train on original features, test on rephrased features.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport re\\nimport sys\\nimport time\\nfrom collections import Counter\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom xgboost import XGBClassifier\\nfrom sklearn.metrics import f1_score\\n\\nSEED = 42\\nSUBSAMPLE_N = 5000\\nBATCH_SIZE = 32\\nFEATURES = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\",\\n            \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\n                  random_state=SEED, eval_metric=\\\"mlogloss\\\",\\n                  use_label_encoder=False)\\n\\nQWEN_MODEL_PATH = \\\"/root/autodl-tmp/models/Qwen/Qwen3-0.6B-Base\\\"\\nPYTHIA_MODEL_PATH = \\\"/root/autodl-tmp/models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/9879c9b5f8bea9051dcb0e68dff21493d67e9d4f\\\"\\nPROJECT_ROOT = Path(\\\"/root/gen-depth-fingerprint\\\")\\nDATA_DIR = PROJECT_ROOT / \\\"data\\\"\\nOUTPUT_DIR = PROJECT_ROOT / \\\"experiments\\\" / \\\"human_edit_robustness\\\"\\n\\n\\ndef load_all_texts():\\n    generators = {\\n        \\\"pythia-2.8b\\\": [DATA_DIR / \\\"generations_shard0.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard1.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard2.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard3.jsonl\\\"],\\n        \\\"pythia-1b\\\": [DATA_DIR / \\\"pythia-1b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"olmo-2-1b\\\": [DATA_DIR / \\\"olmo-2-1b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-0.6b\\\": [DATA_DIR / \\\"qwen3-0.6b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-1.7b\\\": [DATA_DIR / \\\"qwen3-1.7b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-8b\\\": [DATA_DIR / \\\"qwen3-8b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"llama-3.2-3b\\\": [DATA_DIR / \\\"llama-3.2-3b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"mistral-7b-v0.3\\\": [DATA_DIR / \\\"mistral-7b-v0.3\\\" / \\\"generations_shard0.jsonl\\\"],\\n    }\\n\\n    all_records = []\\n    for model_name, paths in generators.items():\\n        seen = set()\\n        for p in paths:\\n            if not p.exists():\\n                continue\\n            with open(p) as f:\\n                for line in f:\\n                    line = line.strip()\\n                    if not line:\\n                        continue\\n                    rec = json.loads(line)\\n                    key = (rec.get(\\\"seed_id\\\"), rec.get(\\\"depth\\\"))\\n                    if key in seen:\\n                        continue\\n                    seen.add(key)\\n                    all_records.append({\\n                        \\\"model_name\\\": model_name,\\n                        \\\"seed_id\\\": rec[\\\"seed_id\\\"],\\n                        \\\"depth\\\": rec[\\\"depth\\\"],\\n                        \\\"text\\\": rec[\\\"text\\\"],\\n                    })\\n        print(f\\\"  {model_name}: {len(seen)} texts loaded\\\")\\n\\n    return pd.DataFrame(all_records)\\n\\n\\ndef load_all_features():\\n    df_base = pd.read_csv(DATA_DIR / \\\"features_all_models.csv\\\")\\n\\n    new_gens = [\\n        (\\\"llama-3.2-3b\\\", DATA_DIR / \\\"llama-3.2-3b\\\" / \\\"features_pythia410m.jsonl\\\"),\\n        (\\\"mistral-7b-v0.3\\\", DATA_DIR / \\\"mistral-7b-v0.3\\\" / \\\"features_pythia410m.jsonl\\\"),\\n    ]\\n    dfs = [df_base]\\n    for gen_name, path in new_gens:\\n        records = []\\n        with open(path) as f:\\n            for line in f:\\n                rec = json.loads(line)\\n                rec[\\\"model_name\\\"] = gen_name\\n                records.append(rec)\\n        dfs.append(pd.DataFrame(records))\\n\\n    cols = [\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES\\n    df = pd.concat([d[cols] for d in dfs], ignore_index=True)\\n    return df\\n\\n\\ndef split_sentences(text):\\n    parts = re.split(r'(?<=[.!?])\\\\s+', text.strip())\\n    return [p for p in parts if p.strip()]\\n\\n\\ndef rephrase_with_llm(texts, tokenizer, model, \\n\\n... [截断: 输出过长，省略 11516 字符] ...\\n\\noken\\n    print(\\\"  Pythia-410M loaded\\\", flush=True)\\n\\n    print(f\\\"  Extracting features from rephrased texts...\\\", flush=True)\\n    feat_list = extract_features_batch(rephrased_texts, pythia_tokenizer, pythia_model, device)\\n    print(f\\\"  Extracted {len(feat_list)} feature vectors\\\", flush=True)\\n\\n    rephrased_df = df_sample[[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"]].copy()\\n    for feat_name in FEATURES:\\n        rephrased_df[feat_name] = [f[feat_name] for f in feat_list]\\n\\n    original_df = df_sample[[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES].copy()\\n\\n    del pythia_model, pythia_tokenizer\\n    torch.cuda.empty_cache()\\n\\n    # LOGO evaluation\\n    print(f\\\"\\\\n[5/6] Running LOGO evaluation...\\\", flush=True)\\n\\n    print(\\\"  Evaluating original (baseline)...\\\", flush=True)\\n    orig_bin_f1, orig_multi_f1, orig_bin_ci, orig_multi_ci = logo_eval(original_df, original_df)\\n    print(f\\\"  Original: binary={orig_bin_f1:.4f} [{orig_bin_ci[0]:.4f}, {orig_bin_ci[1]:.4f}], \\\"\\n          f\\\"multi={orig_multi_f1:.4f} [{orig_multi_ci[0]:.4f}, {orig_multi_ci[1]:.4f}]\\\", flush=True)\\n\\n    print(\\\"  Evaluating LLM rephrased...\\\", flush=True)\\n    reph_bin_f1, reph_multi_f1, reph_bin_ci, reph_multi_ci = logo_eval(original_df, rephrased_df)\\n    print(f\\\"  Rephrased: binary={reph_bin_f1:.4f} [{reph_bin_ci[0]:.4f}, {reph_bin_ci[1]:.4f}], \\\"\\n          f\\\"multi={reph_multi_f1:.4f} [{reph_multi_ci[0]:.4f}, {reph_multi_ci[1]:.4f}]\\\", flush=True)\\n\\n    # Save results\\n    print(f\\\"\\\\n[6/6] Saving results...\\\", flush=True)\\n    edit_ratio = compute_edit_distance_ratio(texts, rephrased_texts)\\n\\n    binary_drop = reph_bin_f1 - orig_bin_f1\\n    multi_drop = reph_multi_f1 - orig_multi_f1\\n\\n    output = {\\n        \\\"results\\\": {\\n            \\\"original\\\": {\\n                \\\"binary_f1\\\": round(orig_bin_f1, 4),\\n                \\\"binary_ci\\\": [round(orig_bin_ci[0], 4), round(orig_bin_ci[1], 4)],\\n                \\\"multiclass_f1\\\": round(orig_multi_f1, 4),\\n                \\\"multiclass_ci\\\": [round(orig_multi_ci[0], 4), round(orig_multi_ci[1], 4)],\\n            },\\n            \\\"llm_rephrased\\\": {\\n                \\\"binary_f1\\\": round(reph_bin_f1, 4),\\n                \\\"binary_ci\\\": [round(reph_bin_ci[0], 4), round(reph_bin_ci[1], 4)],\\n                \\\"multiclass_f1\\\": round(reph_multi_f1, 4),\\n                \\\"multiclass_ci\\\": [round(reph_multi_ci[0], 4), round(reph_multi_ci[1], 4)],\\n            },\\n        },\\n        \\\"degradation\\\": {\\n            \\\"binary_drop\\\": round(binary_drop, 4),\\n            \\\"multiclass_drop\\\": round(multi_drop, 4),\\n            \\\"relative_binary_drop_pct\\\": f\\\"{abs(binary_drop) / orig_bin_f1 * 100:.1f}%\\\",\\n        },\\n        \\\"rephrase_stats\\\": {\\n            \\\"n_samples\\\": len(df_sample),\\n            \\\"avg_sentences_replaced\\\": round(float(np.mean(n_replaced)), 2),\\n            \\\"avg_edit_distance_ratio\\\": round(edit_ratio, 4),\\n            \\\"model\\\": \\\"Qwen3-0.6B-Base\\\",\\n        },\\n        \\\"comparison_with_random_replacement\\\": {\\n            \\\"random_5pct_binary\\\": 0.6496,\\n            \\\"random_5pct_drop\\\": -0.0457,\\n            \\\"llm_rephrase_binary\\\": round(reph_bin_f1, 4),\\n            \\\"llm_rephrase_drop\\\": round(binary_drop, 4),\\n            \\\"note\\\": (\\\"LLM rephrase degrades less than 5% random replacement\\\"\\n                     if abs(binary_drop) < 0.0457\\n                     else \\\"LLM rephrase degrades more than 5% random replacement\\\"),\\n        },\\n        \\\"meta\\\": {\\n            \\\"features\\\": FEATURES,\\n            \\\"rephrase_model\\\": \\\"Qwen3-0.6B-Base\\\",\\n            \\\"reference_model\\\": \\\"Pythia-410M\\\",\\n            \\\"xgb_params\\\": {\\\"n_estimators\\\": 200, \\\"max_depth\\\": 6},\\n            \\\"class_balanced\\\": True,\\n            \\\"protocol\\\": \\\"pooled LOGO 8-fold, train=original, test=rephrased\\\",\\n            \\\"seed\\\": SEED,\\n            \\\"elapsed_seconds\\\": round(time.time() - t0, 1),\\n        },\\n    }\\n\\n    output_path = OUTPUT_DIR / \\\"llm_rephrase_results.json\\\"\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {output_path}\\\", flush=True)\\n    print(json.dumps(output, indent=2))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+The output was truncated. Let me get the critical functions (`extract_features_batch` and `logo_eval`):
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "813bbad9-d197-4221-b92d-f5032edb9ef7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017L6EZDZR4K3FBvfV8YFo9y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3971,
+      "cache_read_input_tokens": 38770,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3971
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01C72JdzEHRMxsG3kg9MbVD8`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"def extract_features_batch\\|def logo_eval\\|y_bin\\|depth.*>\\|tail_decay\\|sorted_lp\\|polyfit\\|linregress\\|CLASS_MAP\\|class_map\" /root/gen-depth-fingerprint/experiments/human_edit_robustness/run_llm_rephrase.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "ebebe9da-b1ef-4729-8420-566623f00317",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017L6EZDZR4K3FBvfV8YFo9y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3971,
+      "cache_read_input_tokens": 38770,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3971
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-17T01:06:43.018Z_
+
+<details><summary>↩ Tool result · `toolu_01C72JdzEHRMxsG3kg9MbVD8`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "27b1088a-62de-4741-b2a7-41bf51ea22cb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VhBbpYbX37Ak8ApWJzSA4s`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"tail_decay\" /root/gen-depth-fingerprint/experiments/human_edit_robustness/run_llm_rephrase.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "a2b5194c-181f-4e34-8c16-86fa28856f79",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013aN9tNyQZjrsTczDeCdmSY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 307,
+      "cache_read_input_tokens": 42741,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 307
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T01:06:46.571Z_
+
+<details><summary>↩ Tool result · `toolu_01VhBbpYbX37Ak8ApWJzSA4s`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"30:            \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\n205:                tail_decay = float(np.polyfit(log_ranks, log_probs_tail, 1)[0])\\n207:                tail_decay = 0.0\\n220:                \\\"tail_decay\\\": tail_decay,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "ebfcf9a4-688c-4acf-a3d1-b584c3af1a3f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30:            \\\\\\\"tail_decay\\\\\\\", \\\\\\\"ttr\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\"]\\\\n205:                tail_decay = float(np.polyfit(log_ranks, log_probs_tail, 1)[0])\\\\n207:                tail_decay = 0.0\\\\n220:                \\\\\\\"tail_decay\\\\\\\": tail_decay,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"30:            \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\n205:                tail_decay = float(np.polyfit(log_ranks, log_probs_tail, 1)[0])\\n207:                tail_decay = 0.0\\n220:                \\\"tail_decay\\\": tail_decay,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013SNeAM7GNTv6bbJJ3Wwwhb`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"depth\" /root/gen-depth-fingerprint/experiments/human_edit_robustness/run_llm_rephrase.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "8c393e3d-598a-44e2-b6f6-dd9f2bff2305",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pxc2GPLfxX3283d5GDHAeK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 307,
+      "cache_read_input_tokens": 43048,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 307
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-17T01:06:49.881Z_
+
+<details><summary>↩ Tool result · `toolu_013SNeAM7GNTv6bbJJ3Wwwhb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"6:Then re-extract depth features with Pythia-410M and evaluate with pooled LOGO XGBoost.\\n31:XGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\n37:PROJECT_ROOT = Path(\\\"/root/gen-depth-fingerprint\\\")\\n69:                    key = (rec.get(\\\"seed_id\\\"), rec.get(\\\"depth\\\"))\\n76:                        \\\"depth\\\": rec[\\\"depth\\\"],\\n101:    cols = [\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES\\n244:        y_train_multi = tr[\\\"depth\\\"].values\\n248:        y_test_multi = te[\\\"depth\\\"].values\\n325:    df = df_texts.merge(df_features, on=[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"], how=\\\"inner\\\")\\n400:    rephrased_df = df_sample[[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"]].copy()\\n404:    original_df = df_sample[[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES].copy()\\n468:            \\\"xgb_params\\\": {\\\"n_estimators\\\": 200, \\\"max_depth\\\": 6},\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "b459157c-7f32-4465-a912-e7c657099648",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"6:Then re-extract depth features with Pythia-410M and evaluate with pooled LOGO XGBoost.\\\\n31:XGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\\\n37:PROJECT_ROOT = Path(\\\\\\\"/root/gen-depth-fingerprint\\\\\\\")\\\\n69:                    key = (rec.get(\\\\\\\"seed_id\\\\\\\"), rec.get(\\\\\\\"depth\\\\\\\"))\\\\n76:                        \\\\\\\"depth\\\\\\\": rec[\\\\\\\"depth\\\\\\\"],\\\\n101:    cols = [\\\\\\\"model_name\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\"] + FEATURES\\\\n244:        y_train_multi = tr[\\\\\\\"depth\\\\\\\"].values\\\\n248:        y_test_multi = te[\\\\\\\"depth\\\\\\\"].values\\\\n325:    df = df_texts.merge(df_features, on=[\\\\\\\"model_name\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\"], how=\\\\\\\"inner\\\\\\\")\\\\n400:    rephrased_df = df_sample[[\\\\\\\"model_name\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\"]].copy()\\\\n404:    original_df = df_sample[[\\\\\\\"model_name\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\"] + FEATURES].copy()\\\\n468:            \\\\\\\"xgb_params\\\\\\\": {\\\\\\\"n_estimators\\\\\\\": 200, \\\\\\\"max_depth\\\\\\\": 6},\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"6:Then re-extract depth features with Pythia-410M and evaluate with pooled LOGO XGBoost.\\n31:XGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\n37:PROJECT_ROOT = Path(\\\"/root/gen-depth-fingerprint\\\")\\n69:                    key = (rec.get(\\\"seed_id\\\"), rec.get(\\\"depth\\\"))\\n76:                        \\\"depth\\\": rec[\\\"depth\\\"],\\n101:    cols = [\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES\\n244:        y_train_multi = tr[\\\"depth\\\"].values\\n248:        y_test_multi = te[\\\"depth\\\"].values\\n325:    df = df_texts.merge(df_features, on=[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"], how=\\\"inner\\\")\\n400:    rephrased_df = df_sample[[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"]].copy()\\n404:    original_df = df_sample[[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES].copy()\\n468:            \\\"xgb_params\\\": {\\\"n_estimators\\\": 200, \\\"max_depth\\\": 6},\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012fZYMKz5Z9csuLXVRKzJor`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -n 270 /root/gen-depth-fingerprint/experiments/human_edit_robustness/run_llm_rephrase.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "efb28340-6229-45eb-afc1-c5565053f5b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XBfPdmehd8QP48v2Y4Kx6R",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 599,
+      "cache_read_input_tokens": 43355,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 599
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-17T01:06:53.125Z_
+
+<details><summary>↩ Tool result · `toolu_012fZYMKz5Z9csuLXVRKzJor`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nLLM-Simulated Editing (Condition B): Qwen3-0.6B-Base rephrasing\\n\\nFor each text, randomly select 1-3 sentences (not the first), use\\nQwen3-0.6B-Base to regenerate them via context continuation.\\nThen re-extract depth features with Pythia-410M and evaluate with pooled LOGO XGBoost.\\n\\nProtocol: train on original features, test on rephrased features.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport re\\nimport sys\\nimport time\\nfrom collections import Counter\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom xgboost import XGBClassifier\\nfrom sklearn.metrics import f1_score\\n\\nSEED = 42\\nSUBSAMPLE_N = 5000\\nBATCH_SIZE = 32\\nFEATURES = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\",\\n            \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\n                  random_state=SEED, eval_metric=\\\"mlogloss\\\",\\n                  use_label_encoder=False)\\n\\nQWEN_MODEL_PATH = \\\"/root/autodl-tmp/models/Qwen/Qwen3-0.6B-Base\\\"\\nPYTHIA_MODEL_PATH = \\\"/root/autodl-tmp/models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/9879c9b5f8bea9051dcb0e68dff21493d67e9d4f\\\"\\nPROJECT_ROOT = Path(\\\"/root/gen-depth-fingerprint\\\")\\nDATA_DIR = PROJECT_ROOT / \\\"data\\\"\\nOUTPUT_DIR = PROJECT_ROOT / \\\"experiments\\\" / \\\"human_edit_robustness\\\"\\n\\n\\ndef load_all_texts():\\n    generators = {\\n        \\\"pythia-2.8b\\\": [DATA_DIR / \\\"generations_shard0.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard1.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard2.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard3.jsonl\\\"],\\n        \\\"pythia-1b\\\": [DATA_DIR / \\\"pythia-1b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"olmo-2-1b\\\": [DATA_DIR / \\\"olmo-2-1b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-0.6b\\\": [DATA_DIR / \\\"qwen3-0.6b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-1.7b\\\": [DATA_DIR / \\\"qwen3-1.7b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-8b\\\": [DATA_DIR / \\\"qwen3-8b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"llama-3.2-3b\\\": [DATA_DIR / \\\"llama-3.2-3b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"mistral-7b-v0.3\\\": [DATA_DIR / \\\"mistral-7b-v0.3\\\" / \\\"generations_shard0.jsonl\\\"],\\n    }\\n\\n    all_records = []\\n    for model_name, paths in generators.items():\\n        seen = set()\\n        for p in paths:\\n            if not p.exists():\\n                continue\\n            with open(p) as f:\\n                for line in f:\\n                    line = line.strip()\\n                    if not line:\\n                        continue\\n                    rec = json.loads(line)\\n                    key = (rec.get(\\\"seed_id\\\"), rec.get(\\\"depth\\\"))\\n                    if key in seen:\\n                        continue\\n                    seen.add(key)\\n                    all_records.append({\\n                        \\\"model_name\\\": model_name,\\n                        \\\"seed_id\\\": rec[\\\"seed_id\\\"],\\n                        \\\"depth\\\": rec[\\\"depth\\\"],\\n                        \\\"text\\\": rec[\\\"text\\\"],\\n                    })\\n        print(f\\\"  {model_name}: {len(seen)} texts loaded\\\")\\n\\n    return pd.DataFrame(all_records)\\n\\n\\ndef load_all_features():\\n    df_base = pd.read_csv(DATA_DIR / \\\"features_all_models.csv\\\")\\n\\n    new_gens = [\\n        (\\\"llama-3.2-3b\\\", DATA_DIR / \\\"llama-3.2-3b\\\" / \\\"features_pythia410m.jsonl\\\"),\\n        (\\\"mistral-7b-v0.3\\\", DATA_DIR / \\\"mistral-7b-v0.3\\\" / \\\"features_pythia410m.jsonl\\\"),\\n    ]\\n    dfs = [df_base]\\n    for gen_name, path in new_gens:\\n        records = []\\n        with open(path) as f:\\n            for line in f:\\n                rec = json.loads(line)\\n                rec[\\\"model_name\\\"] = gen_name\\n                records.append(rec)\\n        dfs.append(pd.DataFrame(records))\\n\\n    cols = [\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES\\n    df = pd.concat([d[cols] for d in dfs], ignore_index=True)\\n    return df\\n\\n\\ndef split_sentences(text):\\n    parts = re.split(r'(?<=[.!?])\\\\s+', text.strip())\\n    return [p for p in parts if p.strip()]\\n\\n\\ndef rephrase_with_llm(texts, tokenizer, model, \\n\\n... [截断: 输出过长，省略 1958 字符] ...\\n\\n_features_batch(texts, tokenizer, model, device, batch_size=BATCH_SIZE):\\n    all_features = []\\n\\n    for start in range(0, len(texts), batch_size):\\n        batch_texts = texts[start:start + batch_size]\\n        encodings = tokenizer(\\n            batch_texts, return_tensors=\\\"pt\\\", padding=True,\\n            truncation=True, max_length=512,\\n        )\\n        input_ids = encodings[\\\"input_ids\\\"].to(device)\\n        attention_mask = encodings[\\\"attention_mask\\\"].to(device)\\n\\n        with torch.no_grad():\\n            outputs = model(input_ids=input_ids, attention_mask=attention_mask)\\n            logits = outputs.logits\\n\\n        for j in range(len(batch_texts)):\\n            mask = attention_mask[j].bool()\\n            seq_len = mask.sum().item()\\n            if seq_len < 3:\\n                all_features.append({f: 0.0 for f in FEATURES})\\n                continue\\n\\n            token_logits = logits[j, :seq_len - 1, :]\\n            probs = torch.softmax(token_logits, dim=-1)\\n            log_probs = torch.log(probs + 1e-10)\\n            entropies = -(probs * log_probs).sum(dim=-1)\\n\\n            ent_np = entropies.cpu().numpy()\\n            tokens = input_ids[j, :seq_len].cpu().tolist()\\n\\n            sorted_probs, _ = probs.sort(dim=-1, descending=True)\\n            mean_sorted = sorted_probs.mean(dim=0).cpu().numpy()\\n            top_k = min(50, mean_sorted.shape[0])\\n            ranks = np.arange(1, top_k + 1)\\n            log_ranks = np.log(ranks)\\n            log_probs_tail = np.log(mean_sorted[:top_k] + 1e-10)\\n            if len(log_ranks) > 1:\\n                tail_decay = float(np.polyfit(log_ranks, log_probs_tail, 1)[0])\\n            else:\\n                tail_decay = 0.0\\n\\n            unique_tokens = set(tokens)\\n            ttr = len(unique_tokens) / seq_len if seq_len > 0 else 0\\n            token_counts = Counter(tokens)\\n            hapax = sum(1 for c in token_counts.values() if c == 1)\\n            hapax_ratio = hapax / seq_len if seq_len > 0 else 0\\n\\n            all_features.append({\\n                \\\"entropy_mean\\\": float(ent_np.mean()),\\n                \\\"entropy_std\\\": float(ent_np.std()),\\n                \\\"entropy_min\\\": float(ent_np.min()),\\n                \\\"entropy_max\\\": float(ent_np.max()),\\n                \\\"tail_decay\\\": tail_decay,\\n                \\\"ttr\\\": ttr,\\n                \\\"hapax_ratio\\\": hapax_ratio,\\n            })\\n\\n        done = min(start + batch_size, len(texts))\\n        if done % (batch_size * 10) == 0 or done == len(texts):\\n            print(f\\\"    Features extracted: {done}/{len(texts)}\\\", flush=True)\\n\\n    return all_features\\n\\n\\ndef logo_eval(train_df, test_df):\\n    generators = sorted(train_df[\\\"model_name\\\"].unique())\\n    binary_preds_all = []\\n    binary_true_all = []\\n    multi_preds_all = []\\n    multi_true_all = []\\n\\n    for held_out in generators:\\n        tr = train_df[train_df[\\\"model_name\\\"] != held_out]\\n        te = test_df[test_df[\\\"model_name\\\"] == held_out]\\n\\n        X_train = tr[FEATURES].values\\n        y_train_multi = tr[\\\"depth\\\"].values\\n        y_train_bin = (y_train_multi > 0).astype(int)\\n\\n        X_test = te[FEATURES].values\\n        y_test_multi = te[\\\"depth\\\"].values\\n        y_test_bin = (y_test_multi > 0).astype(int)\\n\\n        # Class-balanced binary\\n        counts = Counter(y_train_bin)\\n        total = sum(counts.values())\\n        n_classes = len(counts)\\n        weights_bin = {c: total / (n_classes * counts[c]) for c in counts}\\n        sample_weights_bin = np.array([weights_bin[y] for y in y_train_bin])\\n\\n        clf_bin = XGBClassifier(**XGB_PARAMS)\\n        clf_bin.fit(X_train, y_train_bin, sample_weight=sample_weights_bin)\\n        pred_bin = clf_bin.predict(X_test)\\n        binary_preds_all.extend(pred_bin)\\n        binary_true_all.extend(y_test_bin)\\n\\n        # Multiclass\\n        counts_m = Counter(y_train_multi)\\n        total_m = sum(counts_m.values())\\n        n_classes_m = len(counts_m)\\n        weights_m = {c: total_m / (n_classes_m * counts_m[c]) for c in counts_m}\\n        sample_weights_m = np.array([weights_m[y] for y in y_train_multi])\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "431d540c-243a-481f-ac8c-7d7efe40bd79",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLLM-Simulated Editing (Condition B): Qwen3-0.6B-Base rephrasing\\\\n\\\\nFor each text, randomly select 1-3 sentences (not the first), use\\\\nQwen3-0.6B-Base to regenerate them via context continuation.\\\\nThen re-extract depth features with Pythia-410M and evaluate with pooled LOGO XGBoost.\\\\n\\\\nProtocol: train on original features, test on rephrased features.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nimport torch\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\nfrom xgboost import XGBClassifier\\\\nfrom sklearn.metrics import f1_score\\\\n\\\\nSEED = 42\\\\nSUBSAMPLE_N = 5000\\\\nBATCH_SIZE = 32\\\\nFEATURES = [\\\\\\\"entropy_mean\\\\\\\", \\\\\\\"entropy_std\\\\\\\", \\\\\\\"entropy_min\\\\\\\", \\\\\\\"entropy_max\\\\\\\",\\\\n            \\\\\\\"tail_decay\\\\\\\", \\\\\\\"ttr\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\"]\\\\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\\\n                  random_state=SEED, eval_metric=\\\\\\\"mlogloss\\\\\\\",\\\\n                  use_label_encoder=False)\\\\n\\\\nQWEN_MODEL_PATH = \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen3-0.6B-Base\\\\\\\"\\\\nPYTHIA_MODEL_PATH = \\\\\\\"/root/autodl-tmp/models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/9879c9b5f8bea9051dcb0e68dff21493d67e9d4f\\\\\\\"\\\\nPROJECT_ROOT = Path(\\\\\\\"/root/gen-depth-fingerprint\\\\\\\")\\\\nDATA_DIR = PROJECT_ROOT / \\\\\\\"data\\\\\\\"\\\\nOUTPUT_DIR = PROJECT_ROOT / \\\\\\\"experiments\\\\\\\" / \\\\\\\"human_edit_robustness\\\\\\\"\\\\n\\\\n\\\\ndef load_all_texts():\\\\n    generators = {\\\\n        \\\\\\\"pythia-2.8b\\\\\\\": [DATA_DIR / \\\\\\\"generations_shard0.jsonl\\\\\\\",\\\\n                        DATA_DIR / \\\\\\\"generations_shard1.jsonl\\\\\\\",\\\\n                        DATA_DIR / \\\\\\\"generations_shard2.jsonl\\\\\\\",\\\\n                        DATA_DIR / \\\\\\\"generations_shard3.jsonl\\\\\\\"],\\\\n        \\\\\\\"pythia-1b\\\\\\\": [DATA_DIR / \\\\\\\"pythia-1b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"olmo-2-1b\\\\\\\": [DATA_DIR / \\\\\\\"olmo-2-1b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"qwen3-0.6b\\\\\\\": [DATA_DIR / \\\\\\\"qwen3-0.6b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"qwen3-1.7b\\\\\\\": [DATA_DIR / \\\\\\\"qwen3-1.7b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"qwen3-8b\\\\\\\": [DATA_DIR / \\\\\\\"qwen3-8b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"llama-3.2-3b\\\\\\\": [DATA_DIR / \\\\\\\"llama-3.2-3b\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n        \\\\\\\"mistral-7b-v0.3\\\\\\\": [DATA_DIR / \\\\\\\"mistral-7b-v0.3\\\\\\\" / \\\\\\\"generations_shard0.jsonl\\\\\\\"],\\\\n    }\\\\n\\\\n    all_records = []\\\\n    for model_name, paths in generators.items():\\\\n        seen = set()\\\\n        for p in paths:\\\\n            if not p.exists():\\\\n                continue\\\\n            with open(p) as f:\\\\n                for line in f:\\\\n                    line = line.strip()\\\\n                    if not line:\\\\n                        continue\\\\n                    rec = json.loads(line)\\\\n                    key = (rec.get(\\\\\\\"seed_id\\\\\\\"), rec.get(\\\\\\\"depth\\\\\\\"))\\\\n                    if key in seen:\\\\n                        continue\\\\n                    seen.add(key)\\\\n                    all_records.append({\\\\n                        \\\\\\\"model_name\\\\\\\": model_name,\\\\n                        \\\\\\\"seed_id\\\\\\\": rec[\\\\\\\"seed_id\\\\\\\"],\\\\n                        \\\\\\\"depth\\\\\\\": rec[\\\\\\\"depth\\\\\\\"],\\\\n                        \\\\\\\"text\\\\\\\": rec[\\\\\\\"text\\\\\\\"],\\\\n                    })\\\\n        print(f\\\\\\\"  {model_name}: {len(seen)} texts loaded\\\\\\\")\\\\n\\\\n    return pd.DataFrame(all_records)\\\\n\\\\n\\\\ndef load_all_features():\\\\n    df_base = pd.read_csv(DATA_DIR / \\\\\\\"features_all_models.csv\\\\\\\")\\\\n\\\\n    new_gens = [\\\\n        (\\\\\\\"llama-3.2-3b\\\\\\\", DATA_DIR / \\\\\\\"llama-3.2-3b\\\\\\\" / \\\\\\\"features_pythia410m.jsonl\\\\\\\"),\\\\n        (\\\\\\\"mistral-7b-v0.3\\\\\\\", DATA_DIR / \\\\\\\"mistral-7b-v0.3\\\\\\\" / \\\\\\\"features_pythia410m.jsonl\\\\\\\"),\\\\n    ]\\\\n    dfs = [df_base]\\\\n    for gen_name, path in new_gens:\\\\n        records = []\\\\n        with open(path) as f:\\\\n            for line in f:\\\\n                rec = json.loads(line)\\\\n                rec[\\\\\\\"model_name\\\\\\\"] = gen_name\\\\n                records.append(rec)\\\\n        dfs.append(pd.DataFrame(records))\\\\n\\\\n    cols = [\\\\\\\"model_name\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\"] + FEATURES\\\\n    df = pd.concat([d[cols] for d in dfs], ignore_index=True)\\\\n    return df\\\\n\\\\n\\\\ndef split_sentences(text):\\\\n    parts = re.split(r'(?<=[.!?])\\\\\\\\s+', text.strip())\\\\n    return [p for p in parts if p.strip()]\\\\n\\\\n\\\\ndef rephrase_with_llm(texts, tokenizer, model, \\\\n\\\\n... [截断: 输出过长，省略 1958 字符] ...\\\\n\\\\n_features_batch(texts, tokenizer, model, device, batch_size=BATCH_SIZE):\\\\n    all_features = []\\\\n\\\\n    for start in range(0, len(texts), batch_size):\\\\n        batch_texts = texts[start:start + batch_size]\\\\n        encodings = tokenizer(\\\\n            batch_texts, return_tensors=\\\\\\\"pt\\\\\\\", padding=True,\\\\n            truncation=True, max_length=512,\\\\n        )\\\\n        input_ids = encodings[\\\\\\\"input_ids\\\\\\\"].to(device)\\\\n        attention_mask = encodings[\\\\\\\"attention_mask\\\\\\\"].to(device)\\\\n\\\\n        with torch.no_grad():\\\\n            outputs = model(input_ids=input_ids, attention_mask=attention_mask)\\\\n            logits = outputs.logits\\\\n\\\\n        for j in range(len(batch_texts)):\\\\n            mask = attention_mask[j].bool()\\\\n            seq_len = mask.sum().item()\\\\n            if seq_len < 3:\\\\n                all_features.append({f: 0.0 for f in FEATURES})\\\\n                continue\\\\n\\\\n            token_logits = logits[j, :seq_len - 1, :]\\\\n            probs = torch.softmax(token_logits, dim=-1)\\\\n            log_probs = torch.log(probs + 1e-10)\\\\n            entropies = -(probs * log_probs).sum(dim=-1)\\\\n\\\\n            ent_np = entropies.cpu().numpy()\\\\n            tokens = input_ids[j, :seq_len].cpu().tolist()\\\\n\\\\n            sorted_probs, _ = probs.sort(dim=-1, descending=True)\\\\n            mean_sorted = sorted_probs.mean(dim=0).cpu().numpy()\\\\n            top_k = min(50, mean_sorted.shape[0])\\\\n            ranks = np.arange(1, top_k + 1)\\\\n            log_ranks = np.log(ranks)\\\\n            log_probs_tail = np.log(mean_sorted[:top_k] + 1e-10)\\\\n            if len(log_ranks) > 1:\\\\n                tail_decay = float(np.polyfit(log_ranks, log_probs_tail, 1)[0])\\\\n            else:\\\\n                tail_decay = 0.0\\\\n\\\\n            unique_tokens = set(tokens)\\\\n            ttr = len(unique_tokens) / seq_len if seq_len > 0 else 0\\\\n            token_counts = Counter(tokens)\\\\n            hapax = sum(1 for c in token_counts.values() if c == 1)\\\\n            hapax_ratio = hapax / seq_len if seq_len > 0 else 0\\\\n\\\\n            all_features.append({\\\\n                \\\\\\\"entropy_mean\\\\\\\": float(ent_np.mean()),\\\\n                \\\\\\\"entropy_std\\\\\\\": float(ent_np.std()),\\\\n                \\\\\\\"entropy_min\\\\\\\": float(ent_np.min()),\\\\n                \\\\\\\"entropy_max\\\\\\\": float(ent_np.max()),\\\\n                \\\\\\\"tail_decay\\\\\\\": tail_decay,\\\\n                \\\\\\\"ttr\\\\\\\": ttr,\\\\n                \\\\\\\"hapax_ratio\\\\\\\": hapax_ratio,\\\\n            })\\\\n\\\\n        done = min(start + batch_size, len(texts))\\\\n        if done % (batch_size * 10) == 0 or done == len(texts):\\\\n            print(f\\\\\\\"    Features extracted: {done}/{len(texts)}\\\\\\\", flush=True)\\\\n\\\\n    return all_features\\\\n\\\\n\\\\ndef logo_eval(train_df, test_df):\\\\n    generators = sorted(train_df[\\\\\\\"model_name\\\\\\\"].unique())\\\\n    binary_preds_all = []\\\\n    binary_true_all = []\\\\n    multi_preds_all = []\\\\n    multi_true_all = []\\\\n\\\\n    for held_out in generators:\\\\n        tr = train_df[train_df[\\\\\\\"model_name\\\\\\\"] != held_out]\\\\n        te = test_df[test_df[\\\\\\\"model_name\\\\\\\"] == held_out]\\\\n\\\\n        X_train = tr[FEATURES].values\\\\n        y_train_multi = tr[\\\\\\\"depth\\\\\\\"].values\\\\n        y_train_bin = (y_train_multi > 0).astype(int)\\\\n\\\\n        X_test = te[FEATURES].values\\\\n        y_test_multi = te[\\\\\\\"depth\\\\\\\"].values\\\\n        y_test_bin = (y_test_multi > 0).astype(int)\\\\n\\\\n        # Class-balanced binary\\\\n        counts = Counter(y_train_bin)\\\\n        total = sum(counts.values())\\\\n        n_classes = len(counts)\\\\n        weights_bin = {c: total / (n_classes * counts[c]) for c in counts}\\\\n        sample_weights_bin = np.array([weights_bin[y] for y in y_train_bin])\\\\n\\\\n        clf_bin = XGBClassifier(**XGB_PARAMS)\\\\n        clf_bin.fit(X_train, y_train_bin, sample_weight=sample_weights_bin)\\\\n        pred_bin = clf_bin.predict(X_test)\\\\n        binary_preds_all.extend(pred_bin)\\\\n        binary_true_all.extend(y_test_bin)\\\\n\\\\n        # Multiclass\\\\n        counts_m = Counter(y_train_multi)\\\\n        total_m = sum(counts_m.values())\\\\n        n_classes_m = len(counts_m)\\\\n        weights_m = {c: total_m / (n_classes_m * counts_m[c]) for c in counts_m}\\\\n        sample_weights_m = np.array([weights_m[y] for y in y_train_multi])\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nLLM-Simulated Editing (Condition B): Qwen3-0.6B-Base rephrasing\\n\\nFor each text, randomly select 1-3 sentences (not the first), use\\nQwen3-0.6B-Base to regenerate them via context continuation.\\nThen re-extract depth features with Pythia-410M and evaluate with pooled LOGO XGBoost.\\n\\nProtocol: train on original features, test on rephrased features.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport re\\nimport sys\\nimport time\\nfrom collections import Counter\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport pandas as pd\\nimport torch\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\nfrom xgboost import XGBClassifier\\nfrom sklearn.metrics import f1_score\\n\\nSEED = 42\\nSUBSAMPLE_N = 5000\\nBATCH_SIZE = 32\\nFEATURES = [\\\"entropy_mean\\\", \\\"entropy_std\\\", \\\"entropy_min\\\", \\\"entropy_max\\\",\\n            \\\"tail_decay\\\", \\\"ttr\\\", \\\"hapax_ratio\\\"]\\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\\n                  random_state=SEED, eval_metric=\\\"mlogloss\\\",\\n                  use_label_encoder=False)\\n\\nQWEN_MODEL_PATH = \\\"/root/autodl-tmp/models/Qwen/Qwen3-0.6B-Base\\\"\\nPYTHIA_MODEL_PATH = \\\"/root/autodl-tmp/models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/9879c9b5f8bea9051dcb0e68dff21493d67e9d4f\\\"\\nPROJECT_ROOT = Path(\\\"/root/gen-depth-fingerprint\\\")\\nDATA_DIR = PROJECT_ROOT / \\\"data\\\"\\nOUTPUT_DIR = PROJECT_ROOT / \\\"experiments\\\" / \\\"human_edit_robustness\\\"\\n\\n\\ndef load_all_texts():\\n    generators = {\\n        \\\"pythia-2.8b\\\": [DATA_DIR / \\\"generations_shard0.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard1.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard2.jsonl\\\",\\n                        DATA_DIR / \\\"generations_shard3.jsonl\\\"],\\n        \\\"pythia-1b\\\": [DATA_DIR / \\\"pythia-1b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"olmo-2-1b\\\": [DATA_DIR / \\\"olmo-2-1b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-0.6b\\\": [DATA_DIR / \\\"qwen3-0.6b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-1.7b\\\": [DATA_DIR / \\\"qwen3-1.7b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"qwen3-8b\\\": [DATA_DIR / \\\"qwen3-8b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"llama-3.2-3b\\\": [DATA_DIR / \\\"llama-3.2-3b\\\" / \\\"generations_shard0.jsonl\\\"],\\n        \\\"mistral-7b-v0.3\\\": [DATA_DIR / \\\"mistral-7b-v0.3\\\" / \\\"generations_shard0.jsonl\\\"],\\n    }\\n\\n    all_records = []\\n    for model_name, paths in generators.items():\\n        seen = set()\\n        for p in paths:\\n            if not p.exists():\\n                continue\\n            with open(p) as f:\\n                for line in f:\\n                    line = line.strip()\\n                    if not line:\\n                        continue\\n                    rec = json.loads(line)\\n                    key = (rec.get(\\\"seed_id\\\"), rec.get(\\\"depth\\\"))\\n                    if key in seen:\\n                        continue\\n                    seen.add(key)\\n                    all_records.append({\\n                        \\\"model_name\\\": model_name,\\n                        \\\"seed_id\\\": rec[\\\"seed_id\\\"],\\n                        \\\"depth\\\": rec[\\\"depth\\\"],\\n                        \\\"text\\\": rec[\\\"text\\\"],\\n                    })\\n        print(f\\\"  {model_name}: {len(seen)} texts loaded\\\")\\n\\n    return pd.DataFrame(all_records)\\n\\n\\ndef load_all_features():\\n    df_base = pd.read_csv(DATA_DIR / \\\"features_all_models.csv\\\")\\n\\n    new_gens = [\\n        (\\\"llama-3.2-3b\\\", DATA_DIR / \\\"llama-3.2-3b\\\" / \\\"features_pythia410m.jsonl\\\"),\\n        (\\\"mistral-7b-v0.3\\\", DATA_DIR / \\\"mistral-7b-v0.3\\\" / \\\"features_pythia410m.jsonl\\\"),\\n    ]\\n    dfs = [df_base]\\n    for gen_name, path in new_gens:\\n        records = []\\n        with open(path) as f:\\n            for line in f:\\n                rec = json.loads(line)\\n                rec[\\\"model_name\\\"] = gen_name\\n                records.append(rec)\\n        dfs.append(pd.DataFrame(records))\\n\\n    cols = [\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES\\n    df = pd.concat([d[cols] for d in dfs], ignore_index=True)\\n    return df\\n\\n\\ndef split_sentences(text):\\n    parts = re.split(r'(?<=[.!?])\\\\s+', text.strip())\\n    return [p for p in parts if p.strip()]\\n\\n\\ndef rephrase_with_llm(texts, tokenizer, model, \\n\\n... [截断: 输出过长，省略 1958 字符] ...\\n\\n_features_batch(texts, tokenizer, model, device, batch_size=BATCH_SIZE):\\n    all_features = []\\n\\n    for start in range(0, len(texts), batch_size):\\n        batch_texts = texts[start:start + batch_size]\\n        encodings = tokenizer(\\n            batch_texts, return_tensors=\\\"pt\\\", padding=True,\\n            truncation=True, max_length=512,\\n        )\\n        input_ids = encodings[\\\"input_ids\\\"].to(device)\\n        attention_mask = encodings[\\\"attention_mask\\\"].to(device)\\n\\n        with torch.no_grad():\\n            outputs = model(input_ids=input_ids, attention_mask=attention_mask)\\n            logits = outputs.logits\\n\\n        for j in range(len(batch_texts)):\\n            mask = attention_mask[j].bool()\\n            seq_len = mask.sum().item()\\n            if seq_len < 3:\\n                all_features.append({f: 0.0 for f in FEATURES})\\n                continue\\n\\n            token_logits = logits[j, :seq_len - 1, :]\\n            probs = torch.softmax(token_logits, dim=-1)\\n            log_probs = torch.log(probs + 1e-10)\\n            entropies = -(probs * log_probs).sum(dim=-1)\\n\\n            ent_np = entropies.cpu().numpy()\\n            tokens = input_ids[j, :seq_len].cpu().tolist()\\n\\n            sorted_probs, _ = probs.sort(dim=-1, descending=True)\\n            mean_sorted = sorted_probs.mean(dim=0).cpu().numpy()\\n            top_k = min(50, mean_sorted.shape[0])\\n            ranks = np.arange(1, top_k + 1)\\n            log_ranks = np.log(ranks)\\n            log_probs_tail = np.log(mean_sorted[:top_k] + 1e-10)\\n            if len(log_ranks) > 1:\\n                tail_decay = float(np.polyfit(log_ranks, log_probs_tail, 1)[0])\\n            else:\\n                tail_decay = 0.0\\n\\n            unique_tokens = set(tokens)\\n            ttr = len(unique_tokens) / seq_len if seq_len > 0 else 0\\n            token_counts = Counter(tokens)\\n            hapax = sum(1 for c in token_counts.values() if c == 1)\\n            hapax_ratio = hapax / seq_len if seq_len > 0 else 0\\n\\n            all_features.append({\\n                \\\"entropy_mean\\\": float(ent_np.mean()),\\n                \\\"entropy_std\\\": float(ent_np.std()),\\n                \\\"entropy_min\\\": float(ent_np.min()),\\n                \\\"entropy_max\\\": float(ent_np.max()),\\n                \\\"tail_decay\\\": tail_decay,\\n                \\\"ttr\\\": ttr,\\n                \\\"hapax_ratio\\\": hapax_ratio,\\n            })\\n\\n        done = min(start + batch_size, len(texts))\\n        if done % (batch_size * 10) == 0 or done == len(texts):\\n            print(f\\\"    Features extracted: {done}/{len(texts)}\\\", flush=True)\\n\\n    return all_features\\n\\n\\ndef logo_eval(train_df, test_df):\\n    generators = sorted(train_df[\\\"model_name\\\"].unique())\\n    binary_preds_all = []\\n    binary_true_all = []\\n    multi_preds_all = []\\n    multi_true_all = []\\n\\n    for held_out in generators:\\n        tr = train_df[train_df[\\\"model_name\\\"] != held_out]\\n        te = test_df[test_df[\\\"model_name\\\"] == held_out]\\n\\n        X_train = tr[FEATURES].values\\n        y_train_multi = tr[\\\"depth\\\"].values\\n        y_train_bin = (y_train_multi > 0).astype(int)\\n\\n        X_test = te[FEATURES].values\\n        y_test_multi = te[\\\"depth\\\"].values\\n        y_test_bin = (y_test_multi > 0).astype(int)\\n\\n        # Class-balanced binary\\n        counts = Counter(y_train_bin)\\n        total = sum(counts.values())\\n        n_classes = len(counts)\\n        weights_bin = {c: total / (n_classes * counts[c]) for c in counts}\\n        sample_weights_bin = np.array([weights_bin[y] for y in y_train_bin])\\n\\n        clf_bin = XGBClassifier(**XGB_PARAMS)\\n        clf_bin.fit(X_train, y_train_bin, sample_weight=sample_weights_bin)\\n        pred_bin = clf_bin.predict(X_test)\\n        binary_preds_all.extend(pred_bin)\\n        binary_true_all.extend(y_test_bin)\\n\\n        # Multiclass\\n        counts_m = Counter(y_train_multi)\\n        total_m = sum(counts_m.values())\\n        n_classes_m = len(counts_m)\\n        weights_m = {c: total_m / (n_classes_m * counts_m[c]) for c in counts_m}\\n        sample_weights_m = np.array([weights_m[y] for y in y_train_multi])\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016VzuDgyQiXFFTDBK167886`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -n +270 /root/gen-depth-fingerprint/experiments/human_edit_robustness/run_llm_rephrase.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "286bf7f5-9a9c-4c38-b97c-f804acc33eb6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gdw553DBgzNLMiDkA7oii5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3506,
+      "cache_read_input_tokens": 43954,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3506
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-17T01:06:56.426Z_
+
+<details><summary>↩ Tool result · `toolu_016VzuDgyQiXFFTDBK167886`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n        clf_multi = XGBClassifier(**XGB_PARAMS, num_class=len(set(y_train_multi)))\\n        clf_multi.fit(X_train, y_train_multi, sample_weight=sample_weights_m)\\n        pred_multi = clf_multi.predict(X_test)\\n        multi_preds_all.extend(pred_multi)\\n        multi_true_all.extend(y_test_multi)\\n\\n    binary_f1 = f1_score(binary_true_all, binary_preds_all, average=\\\"macro\\\")\\n    multi_f1 = f1_score(multi_true_all, multi_preds_all, average=\\\"macro\\\")\\n\\n    # Bootstrap CI\\n    rng = np.random.RandomState(SEED)\\n    binary_true_arr = np.array(binary_true_all)\\n    binary_pred_arr = np.array(binary_preds_all)\\n    boot_scores = []\\n    for _ in range(1000):\\n        idx = rng.choice(len(binary_true_arr), size=len(binary_true_arr), replace=True)\\n        boot_scores.append(f1_score(binary_true_arr[idx], binary_pred_arr[idx], average=\\\"macro\\\"))\\n    ci = (float(np.percentile(boot_scores, 2.5)), float(np.percentile(boot_scores, 97.5)))\\n\\n    multi_true_arr = np.array(multi_true_all)\\n    multi_pred_arr = np.array(multi_preds_all)\\n    boot_multi = []\\n    for _ in range(1000):\\n        idx = rng.choice(len(multi_true_arr), size=len(multi_true_arr), replace=True)\\n        boot_multi.append(f1_score(multi_true_arr[idx], multi_pred_arr[idx], average=\\\"macro\\\"))\\n    ci_multi = (float(np.percentile(boot_multi, 2.5)), float(np.percentile(boot_multi, 97.5)))\\n\\n    return binary_f1, multi_f1, ci, ci_multi\\n\\n\\ndef compute_edit_distance_ratio(original_texts, rephrased_texts):\\n    ratios = []\\n    for orig, reph in zip(original_texts, rephrased_texts):\\n        orig_words = orig.split()\\n        reph_words = reph.split()\\n        if not orig_words:\\n            continue\\n        max_len = max(len(orig_words), len(reph_words))\\n        matching = sum(1 for i, w in enumerate(orig_words)\\n                       if i < len(reph_words) and reph_words[i] == w)\\n        ratio = 1.0 - (matching / max_len) if max_len > 0 else 0.0\\n        ratios.append(ratio)\\n    return float(np.mean(ratios)) if ratios else 0.0\\n\\n\\ndef main():\\n    os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"0\\\"\\n    device = \\\"cuda:0\\\"\\n    t0 = time.time()\\n\\n    print(\\\"[1/6] Loading texts and features...\\\", flush=True)\\n    df_texts = load_all_texts()\\n    df_features = load_all_features()\\n\\n    df = df_texts.merge(df_features, on=[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"], how=\\\"inner\\\")\\n    print(f\\\"  Merged: {len(df)} samples\\\", flush=True)\\n\\n    print(f\\\"\\\\n[2/6] Subsampling to {SUBSAMPLE_N}...\\\", flush=True)\\n    rng = np.random.RandomState(SEED)\\n    generators = sorted(df[\\\"model_name\\\"].unique())\\n    n_per_gen = SUBSAMPLE_N // len(generators)\\n    parts = []\\n    for gen in generators:\\n        sub = df[df[\\\"model_name\\\"] == gen]\\n        n = min(n_per_gen, len(sub))\\n        parts.append(sub.sample(n=n, random_state=rng, replace=False))\\n    df_sample = pd.concat(parts, ignore_index=True)\\n    print(f\\\"  Sampled: {len(df_sample)} ({len(generators)} generators, ~{n_per_gen} each)\\\", flush=True)\\n\\n    # Check for intermediate results\\n    intermediate_path = OUTPUT_DIR / \\\"rephrased_texts.jsonl\\\"\\n    if intermediate_path.exists():\\n        print(f\\\"\\\\n[3/6] Loading cached rephrased texts from {intermediate_path}...\\\", flush=True)\\n        rephrased_texts = []\\n        n_replaced = []\\n        with open(intermediate_path) as f:\\n            for line in f:\\n                rec = json.loads(line)\\n                rephrased_texts.append(rec[\\\"rephrased\\\"])\\n                n_replaced.append(rec[\\\"n_sentences_replaced\\\"])\\n        if len(rephrased_texts) == len(df_sample):\\n            print(f\\\"  Loaded {len(rephrased_texts)} cached rephrased texts\\\", flush=True)\\n        else:\\n            print(f\\\"  Cache size mismatch ({len(rephrased_texts)} vs {len(df_sample)}), re-running...\\\", flush=True)\\n            rephrased_texts = None\\n    else:\\n        rephrased_texts = None\\n\\n    texts = df_sample[\\\"text\\\"].tolist()\\n\\n    if rephrased_texts is None:\\n        print(f\\\"\\\\n[3/6] Loading Qwen3-0.6B-Base for rephrasing...\\\", flush=True)\\n        qwen_tokenizer = AutoTokenizer.from_pretrained(QWEN_MODEL_PATH, loca\\n\\n... [截断: 输出过长，省略 1559 字符] ...\\n\\noken\\n    print(\\\"  Pythia-410M loaded\\\", flush=True)\\n\\n    print(f\\\"  Extracting features from rephrased texts...\\\", flush=True)\\n    feat_list = extract_features_batch(rephrased_texts, pythia_tokenizer, pythia_model, device)\\n    print(f\\\"  Extracted {len(feat_list)} feature vectors\\\", flush=True)\\n\\n    rephrased_df = df_sample[[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"]].copy()\\n    for feat_name in FEATURES:\\n        rephrased_df[feat_name] = [f[feat_name] for f in feat_list]\\n\\n    original_df = df_sample[[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES].copy()\\n\\n    del pythia_model, pythia_tokenizer\\n    torch.cuda.empty_cache()\\n\\n    # LOGO evaluation\\n    print(f\\\"\\\\n[5/6] Running LOGO evaluation...\\\", flush=True)\\n\\n    print(\\\"  Evaluating original (baseline)...\\\", flush=True)\\n    orig_bin_f1, orig_multi_f1, orig_bin_ci, orig_multi_ci = logo_eval(original_df, original_df)\\n    print(f\\\"  Original: binary={orig_bin_f1:.4f} [{orig_bin_ci[0]:.4f}, {orig_bin_ci[1]:.4f}], \\\"\\n          f\\\"multi={orig_multi_f1:.4f} [{orig_multi_ci[0]:.4f}, {orig_multi_ci[1]:.4f}]\\\", flush=True)\\n\\n    print(\\\"  Evaluating LLM rephrased...\\\", flush=True)\\n    reph_bin_f1, reph_multi_f1, reph_bin_ci, reph_multi_ci = logo_eval(original_df, rephrased_df)\\n    print(f\\\"  Rephrased: binary={reph_bin_f1:.4f} [{reph_bin_ci[0]:.4f}, {reph_bin_ci[1]:.4f}], \\\"\\n          f\\\"multi={reph_multi_f1:.4f} [{reph_multi_ci[0]:.4f}, {reph_multi_ci[1]:.4f}]\\\", flush=True)\\n\\n    # Save results\\n    print(f\\\"\\\\n[6/6] Saving results...\\\", flush=True)\\n    edit_ratio = compute_edit_distance_ratio(texts, rephrased_texts)\\n\\n    binary_drop = reph_bin_f1 - orig_bin_f1\\n    multi_drop = reph_multi_f1 - orig_multi_f1\\n\\n    output = {\\n        \\\"results\\\": {\\n            \\\"original\\\": {\\n                \\\"binary_f1\\\": round(orig_bin_f1, 4),\\n                \\\"binary_ci\\\": [round(orig_bin_ci[0], 4), round(orig_bin_ci[1], 4)],\\n                \\\"multiclass_f1\\\": round(orig_multi_f1, 4),\\n                \\\"multiclass_ci\\\": [round(orig_multi_ci[0], 4), round(orig_multi_ci[1], 4)],\\n            },\\n            \\\"llm_rephrased\\\": {\\n                \\\"binary_f1\\\": round(reph_bin_f1, 4),\\n                \\\"binary_ci\\\": [round(reph_bin_ci[0], 4), round(reph_bin_ci[1], 4)],\\n                \\\"multiclass_f1\\\": round(reph_multi_f1, 4),\\n                \\\"multiclass_ci\\\": [round(reph_multi_ci[0], 4), round(reph_multi_ci[1], 4)],\\n            },\\n        },\\n        \\\"degradation\\\": {\\n            \\\"binary_drop\\\": round(binary_drop, 4),\\n            \\\"multiclass_drop\\\": round(multi_drop, 4),\\n            \\\"relative_binary_drop_pct\\\": f\\\"{abs(binary_drop) / orig_bin_f1 * 100:.1f}%\\\",\\n        },\\n        \\\"rephrase_stats\\\": {\\n            \\\"n_samples\\\": len(df_sample),\\n            \\\"avg_sentences_replaced\\\": round(float(np.mean(n_replaced)), 2),\\n            \\\"avg_edit_distance_ratio\\\": round(edit_ratio, 4),\\n            \\\"model\\\": \\\"Qwen3-0.6B-Base\\\",\\n        },\\n        \\\"comparison_with_random_replacement\\\": {\\n            \\\"random_5pct_binary\\\": 0.6496,\\n            \\\"random_5pct_drop\\\": -0.0457,\\n            \\\"llm_rephrase_binary\\\": round(reph_bin_f1, 4),\\n            \\\"llm_rephrase_drop\\\": round(binary_drop, 4),\\n            \\\"note\\\": (\\\"LLM rephrase degrades less than 5% random replacement\\\"\\n                     if abs(binary_drop) < 0.0457\\n                     else \\\"LLM rephrase degrades more than 5% random replacement\\\"),\\n        },\\n        \\\"meta\\\": {\\n            \\\"features\\\": FEATURES,\\n            \\\"rephrase_model\\\": \\\"Qwen3-0.6B-Base\\\",\\n            \\\"reference_model\\\": \\\"Pythia-410M\\\",\\n            \\\"xgb_params\\\": {\\\"n_estimators\\\": 200, \\\"max_depth\\\": 6},\\n            \\\"class_balanced\\\": True,\\n            \\\"protocol\\\": \\\"pooled LOGO 8-fold, train=original, test=rephrased\\\",\\n            \\\"seed\\\": SEED,\\n            \\\"elapsed_seconds\\\": round(time.time() - t0, 1),\\n        },\\n    }\\n\\n    output_path = OUTPUT_DIR / \\\"llm_rephrase_results.json\\\"\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {output_path}\\\", flush=True)\\n    print(json.dumps(output, indent=2))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "e4b0204a-1571-43f4-8fa8-97e14518b577",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n        clf_multi = XGBClassifier(**XGB_PARAMS, num_class=len(set(y_train_multi)))\\\\n        clf_multi.fit(X_train, y_train_multi, sample_weight=sample_weights_m)\\\\n        pred_multi = clf_multi.predict(X_test)\\\\n        multi_preds_all.extend(pred_multi)\\\\n        multi_true_all.extend(y_test_multi)\\\\n\\\\n    binary_f1 = f1_score(binary_true_all, binary_preds_all, average=\\\\\\\"macro\\\\\\\")\\\\n    multi_f1 = f1_score(multi_true_all, multi_preds_all, average=\\\\\\\"macro\\\\\\\")\\\\n\\\\n    # Bootstrap CI\\\\n    rng = np.random.RandomState(SEED)\\\\n    binary_true_arr = np.array(binary_true_all)\\\\n    binary_pred_arr = np.array(binary_preds_all)\\\\n    boot_scores = []\\\\n    for _ in range(1000):\\\\n        idx = rng.choice(len(binary_true_arr), size=len(binary_true_arr), replace=True)\\\\n        boot_scores.append(f1_score(binary_true_arr[idx], binary_pred_arr[idx], average=\\\\\\\"macro\\\\\\\"))\\\\n    ci = (float(np.percentile(boot_scores, 2.5)), float(np.percentile(boot_scores, 97.5)))\\\\n\\\\n    multi_true_arr = np.array(multi_true_all)\\\\n    multi_pred_arr = np.array(multi_preds_all)\\\\n    boot_multi = []\\\\n    for _ in range(1000):\\\\n        idx = rng.choice(len(multi_true_arr), size=len(multi_true_arr), replace=True)\\\\n        boot_multi.append(f1_score(multi_true_arr[idx], multi_pred_arr[idx], average=\\\\\\\"macro\\\\\\\"))\\\\n    ci_multi = (float(np.percentile(boot_multi, 2.5)), float(np.percentile(boot_multi, 97.5)))\\\\n\\\\n    return binary_f1, multi_f1, ci, ci_multi\\\\n\\\\n\\\\ndef compute_edit_distance_ratio(original_texts, rephrased_texts):\\\\n    ratios = []\\\\n    for orig, reph in zip(original_texts, rephrased_texts):\\\\n        orig_words = orig.split()\\\\n        reph_words = reph.split()\\\\n        if not orig_words:\\\\n            continue\\\\n        max_len = max(len(orig_words), len(reph_words))\\\\n        matching = sum(1 for i, w in enumerate(orig_words)\\\\n                       if i < len(reph_words) and reph_words[i] == w)\\\\n        ratio = 1.0 - (matching / max_len) if max_len > 0 else 0.0\\\\n        ratios.append(ratio)\\\\n    return float(np.mean(ratios)) if ratios else 0.0\\\\n\\\\n\\\\ndef main():\\\\n    os.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = \\\\\\\"0\\\\\\\"\\\\n    device = \\\\\\\"cuda:0\\\\\\\"\\\\n    t0 = time.time()\\\\n\\\\n    print(\\\\\\\"[1/6] Loading texts and features...\\\\\\\", flush=True)\\\\n    df_texts = load_all_texts()\\\\n    df_features = load_all_features()\\\\n\\\\n    df = df_texts.merge(df_features, on=[\\\\\\\"model_name\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\"], how=\\\\\\\"inner\\\\\\\")\\\\n    print(f\\\\\\\"  Merged: {len(df)} samples\\\\\\\", flush=True)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n[2/6] Subsampling to {SUBSAMPLE_N}...\\\\\\\", flush=True)\\\\n    rng = np.random.RandomState(SEED)\\\\n    generators = sorted(df[\\\\\\\"model_name\\\\\\\"].unique())\\\\n    n_per_gen = SUBSAMPLE_N // len(generators)\\\\n    parts = []\\\\n    for gen in generators:\\\\n        sub = df[df[\\\\\\\"model_name\\\\\\\"] == gen]\\\\n        n = min(n_per_gen, len(sub))\\\\n        parts.append(sub.sample(n=n, random_state=rng, replace=False))\\\\n    df_sample = pd.concat(parts, ignore_index=True)\\\\n    print(f\\\\\\\"  Sampled: {len(df_sample)} ({len(generators)} generators, ~{n_per_gen} each)\\\\\\\", flush=True)\\\\n\\\\n    # Check for intermediate results\\\\n    intermediate_path = OUTPUT_DIR / \\\\\\\"rephrased_texts.jsonl\\\\\\\"\\\\n    if intermediate_path.exists():\\\\n        print(f\\\\\\\"\\\\\\\\n[3/6] Loading cached rephrased texts from {intermediate_path}...\\\\\\\", flush=True)\\\\n        rephrased_texts = []\\\\n        n_replaced = []\\\\n        with open(intermediate_path) as f:\\\\n            for line in f:\\\\n                rec = json.loads(line)\\\\n                rephrased_texts.append(rec[\\\\\\\"rephrased\\\\\\\"])\\\\n                n_replaced.append(rec[\\\\\\\"n_sentences_replaced\\\\\\\"])\\\\n        if len(rephrased_texts) == len(df_sample):\\\\n            print(f\\\\\\\"  Loaded {len(rephrased_texts)} cached rephrased texts\\\\\\\", flush=True)\\\\n        else:\\\\n            print(f\\\\\\\"  Cache size mismatch ({len(rephrased_texts)} vs {len(df_sample)}), re-running...\\\\\\\", flush=True)\\\\n            rephrased_texts = None\\\\n    else:\\\\n        rephrased_texts = None\\\\n\\\\n    texts = df_sample[\\\\\\\"text\\\\\\\"].tolist()\\\\n\\\\n    if rephrased_texts is None:\\\\n        print(f\\\\\\\"\\\\\\\\n[3/6] Loading Qwen3-0.6B-Base for rephrasing...\\\\\\\", flush=True)\\\\n        qwen_tokenizer = AutoTokenizer.from_pretrained(QWEN_MODEL_PATH, loca\\\\n\\\\n... [截断: 输出过长，省略 1559 字符] ...\\\\n\\\\noken\\\\n    print(\\\\\\\"  Pythia-410M loaded\\\\\\\", flush=True)\\\\n\\\\n    print(f\\\\\\\"  Extracting features from rephrased texts...\\\\\\\", flush=True)\\\\n    feat_list = extract_features_batch(rephrased_texts, pythia_tokenizer, pythia_model, device)\\\\n    print(f\\\\\\\"  Extracted {len(feat_list)} feature vectors\\\\\\\", flush=True)\\\\n\\\\n    rephrased_df = df_sample[[\\\\\\\"model_name\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\"]].copy()\\\\n    for feat_name in FEATURES:\\\\n        rephrased_df[feat_name] = [f[feat_name] for f in feat_list]\\\\n\\\\n    original_df = df_sample[[\\\\\\\"model_name\\\\\\\", \\\\\\\"seed_id\\\\\\\", \\\\\\\"depth\\\\\\\"] + FEATURES].copy()\\\\n\\\\n    del pythia_model, pythia_tokenizer\\\\n    torch.cuda.empty_cache()\\\\n\\\\n    # LOGO evaluation\\\\n    print(f\\\\\\\"\\\\\\\\n[5/6] Running LOGO evaluation...\\\\\\\", flush=True)\\\\n\\\\n    print(\\\\\\\"  Evaluating original (baseline)...\\\\\\\", flush=True)\\\\n    orig_bin_f1, orig_multi_f1, orig_bin_ci, orig_multi_ci = logo_eval(original_df, original_df)\\\\n    print(f\\\\\\\"  Original: binary={orig_bin_f1:.4f} [{orig_bin_ci[0]:.4f}, {orig_bin_ci[1]:.4f}], \\\\\\\"\\\\n          f\\\\\\\"multi={orig_multi_f1:.4f} [{orig_multi_ci[0]:.4f}, {orig_multi_ci[1]:.4f}]\\\\\\\", flush=True)\\\\n\\\\n    print(\\\\\\\"  Evaluating LLM rephrased...\\\\\\\", flush=True)\\\\n    reph_bin_f1, reph_multi_f1, reph_bin_ci, reph_multi_ci = logo_eval(original_df, rephrased_df)\\\\n    print(f\\\\\\\"  Rephrased: binary={reph_bin_f1:.4f} [{reph_bin_ci[0]:.4f}, {reph_bin_ci[1]:.4f}], \\\\\\\"\\\\n          f\\\\\\\"multi={reph_multi_f1:.4f} [{reph_multi_ci[0]:.4f}, {reph_multi_ci[1]:.4f}]\\\\\\\", flush=True)\\\\n\\\\n    # Save results\\\\n    print(f\\\\\\\"\\\\\\\\n[6/6] Saving results...\\\\\\\", flush=True)\\\\n    edit_ratio = compute_edit_distance_ratio(texts, rephrased_texts)\\\\n\\\\n    binary_drop = reph_bin_f1 - orig_bin_f1\\\\n    multi_drop = reph_multi_f1 - orig_multi_f1\\\\n\\\\n    output = {\\\\n        \\\\\\\"results\\\\\\\": {\\\\n            \\\\\\\"original\\\\\\\": {\\\\n                \\\\\\\"binary_f1\\\\\\\": round(orig_bin_f1, 4),\\\\n                \\\\\\\"binary_ci\\\\\\\": [round(orig_bin_ci[0], 4), round(orig_bin_ci[1], 4)],\\\\n                \\\\\\\"multiclass_f1\\\\\\\": round(orig_multi_f1, 4),\\\\n                \\\\\\\"multiclass_ci\\\\\\\": [round(orig_multi_ci[0], 4), round(orig_multi_ci[1], 4)],\\\\n            },\\\\n            \\\\\\\"llm_rephrased\\\\\\\": {\\\\n                \\\\\\\"binary_f1\\\\\\\": round(reph_bin_f1, 4),\\\\n                \\\\\\\"binary_ci\\\\\\\": [round(reph_bin_ci[0], 4), round(reph_bin_ci[1], 4)],\\\\n                \\\\\\\"multiclass_f1\\\\\\\": round(reph_multi_f1, 4),\\\\n                \\\\\\\"multiclass_ci\\\\\\\": [round(reph_multi_ci[0], 4), round(reph_multi_ci[1], 4)],\\\\n            },\\\\n        },\\\\n        \\\\\\\"degradation\\\\\\\": {\\\\n            \\\\\\\"binary_drop\\\\\\\": round(binary_drop, 4),\\\\n            \\\\\\\"multiclass_drop\\\\\\\": round(multi_drop, 4),\\\\n            \\\\\\\"relative_binary_drop_pct\\\\\\\": f\\\\\\\"{abs(binary_drop) / orig_bin_f1 * 100:.1f}%\\\\\\\",\\\\n        },\\\\n        \\\\\\\"rephrase_stats\\\\\\\": {\\\\n            \\\\\\\"n_samples\\\\\\\": len(df_sample),\\\\n            \\\\\\\"avg_sentences_replaced\\\\\\\": round(float(np.mean(n_replaced)), 2),\\\\n            \\\\\\\"avg_edit_distance_ratio\\\\\\\": round(edit_ratio, 4),\\\\n            \\\\\\\"model\\\\\\\": \\\\\\\"Qwen3-0.6B-Base\\\\\\\",\\\\n        },\\\\n        \\\\\\\"comparison_with_random_replacement\\\\\\\": {\\\\n            \\\\\\\"random_5pct_binary\\\\\\\": 0.6496,\\\\n            \\\\\\\"random_5pct_drop\\\\\\\": -0.0457,\\\\n            \\\\\\\"llm_rephrase_binary\\\\\\\": round(reph_bin_f1, 4),\\\\n            \\\\\\\"llm_rephrase_drop\\\\\\\": round(binary_drop, 4),\\\\n            \\\\\\\"note\\\\\\\": (\\\\\\\"LLM rephrase degrades less than 5% random replacement\\\\\\\"\\\\n                     if abs(binary_drop) < 0.0457\\\\n                     else \\\\\\\"LLM rephrase degrades more than 5% random replacement\\\\\\\"),\\\\n        },\\\\n        \\\\\\\"meta\\\\\\\": {\\\\n            \\\\\\\"features\\\\\\\": FEATURES,\\\\n            \\\\\\\"rephrase_model\\\\\\\": \\\\\\\"Qwen3-0.6B-Base\\\\\\\",\\\\n            \\\\\\\"reference_model\\\\\\\": \\\\\\\"Pythia-410M\\\\\\\",\\\\n            \\\\\\\"xgb_params\\\\\\\": {\\\\\\\"n_estimators\\\\\\\": 200, \\\\\\\"max_depth\\\\\\\": 6},\\\\n            \\\\\\\"class_balanced\\\\\\\": True,\\\\n            \\\\\\\"protocol\\\\\\\": \\\\\\\"pooled LOGO 8-fold, train=original, test=rephrased\\\\\\\",\\\\n            \\\\\\\"seed\\\\\\\": SEED,\\\\n            \\\\\\\"elapsed_seconds\\\\\\\": round(time.time() - t0, 1),\\\\n        },\\\\n    }\\\\n\\\\n    output_path = OUTPUT_DIR / \\\\\\\"llm_rephrase_results.json\\\\\\\"\\\\n    with open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {output_path}\\\\\\\", flush=True)\\\\n    print(json.dumps(output, indent=2))\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n        clf_multi = XGBClassifier(**XGB_PARAMS, num_class=len(set(y_train_multi)))\\n        clf_multi.fit(X_train, y_train_multi, sample_weight=sample_weights_m)\\n        pred_multi = clf_multi.predict(X_test)\\n        multi_preds_all.extend(pred_multi)\\n        multi_true_all.extend(y_test_multi)\\n\\n    binary_f1 = f1_score(binary_true_all, binary_preds_all, average=\\\"macro\\\")\\n    multi_f1 = f1_score(multi_true_all, multi_preds_all, average=\\\"macro\\\")\\n\\n    # Bootstrap CI\\n    rng = np.random.RandomState(SEED)\\n    binary_true_arr = np.array(binary_true_all)\\n    binary_pred_arr = np.array(binary_preds_all)\\n    boot_scores = []\\n    for _ in range(1000):\\n        idx = rng.choice(len(binary_true_arr), size=len(binary_true_arr), replace=True)\\n        boot_scores.append(f1_score(binary_true_arr[idx], binary_pred_arr[idx], average=\\\"macro\\\"))\\n    ci = (float(np.percentile(boot_scores, 2.5)), float(np.percentile(boot_scores, 97.5)))\\n\\n    multi_true_arr = np.array(multi_true_all)\\n    multi_pred_arr = np.array(multi_preds_all)\\n    boot_multi = []\\n    for _ in range(1000):\\n        idx = rng.choice(len(multi_true_arr), size=len(multi_true_arr), replace=True)\\n        boot_multi.append(f1_score(multi_true_arr[idx], multi_pred_arr[idx], average=\\\"macro\\\"))\\n    ci_multi = (float(np.percentile(boot_multi, 2.5)), float(np.percentile(boot_multi, 97.5)))\\n\\n    return binary_f1, multi_f1, ci, ci_multi\\n\\n\\ndef compute_edit_distance_ratio(original_texts, rephrased_texts):\\n    ratios = []\\n    for orig, reph in zip(original_texts, rephrased_texts):\\n        orig_words = orig.split()\\n        reph_words = reph.split()\\n        if not orig_words:\\n            continue\\n        max_len = max(len(orig_words), len(reph_words))\\n        matching = sum(1 for i, w in enumerate(orig_words)\\n                       if i < len(reph_words) and reph_words[i] == w)\\n        ratio = 1.0 - (matching / max_len) if max_len > 0 else 0.0\\n        ratios.append(ratio)\\n    return float(np.mean(ratios)) if ratios else 0.0\\n\\n\\ndef main():\\n    os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"0\\\"\\n    device = \\\"cuda:0\\\"\\n    t0 = time.time()\\n\\n    print(\\\"[1/6] Loading texts and features...\\\", flush=True)\\n    df_texts = load_all_texts()\\n    df_features = load_all_features()\\n\\n    df = df_texts.merge(df_features, on=[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"], how=\\\"inner\\\")\\n    print(f\\\"  Merged: {len(df)} samples\\\", flush=True)\\n\\n    print(f\\\"\\\\n[2/6] Subsampling to {SUBSAMPLE_N}...\\\", flush=True)\\n    rng = np.random.RandomState(SEED)\\n    generators = sorted(df[\\\"model_name\\\"].unique())\\n    n_per_gen = SUBSAMPLE_N // len(generators)\\n    parts = []\\n    for gen in generators:\\n        sub = df[df[\\\"model_name\\\"] == gen]\\n        n = min(n_per_gen, len(sub))\\n        parts.append(sub.sample(n=n, random_state=rng, replace=False))\\n    df_sample = pd.concat(parts, ignore_index=True)\\n    print(f\\\"  Sampled: {len(df_sample)} ({len(generators)} generators, ~{n_per_gen} each)\\\", flush=True)\\n\\n    # Check for intermediate results\\n    intermediate_path = OUTPUT_DIR / \\\"rephrased_texts.jsonl\\\"\\n    if intermediate_path.exists():\\n        print(f\\\"\\\\n[3/6] Loading cached rephrased texts from {intermediate_path}...\\\", flush=True)\\n        rephrased_texts = []\\n        n_replaced = []\\n        with open(intermediate_path) as f:\\n            for line in f:\\n                rec = json.loads(line)\\n                rephrased_texts.append(rec[\\\"rephrased\\\"])\\n                n_replaced.append(rec[\\\"n_sentences_replaced\\\"])\\n        if len(rephrased_texts) == len(df_sample):\\n            print(f\\\"  Loaded {len(rephrased_texts)} cached rephrased texts\\\", flush=True)\\n        else:\\n            print(f\\\"  Cache size mismatch ({len(rephrased_texts)} vs {len(df_sample)}), re-running...\\\", flush=True)\\n            rephrased_texts = None\\n    else:\\n        rephrased_texts = None\\n\\n    texts = df_sample[\\\"text\\\"].tolist()\\n\\n    if rephrased_texts is None:\\n        print(f\\\"\\\\n[3/6] Loading Qwen3-0.6B-Base for rephrasing...\\\", flush=True)\\n        qwen_tokenizer = AutoTokenizer.from_pretrained(QWEN_MODEL_PATH, loca\\n\\n... [截断: 输出过长，省略 1559 字符] ...\\n\\noken\\n    print(\\\"  Pythia-410M loaded\\\", flush=True)\\n\\n    print(f\\\"  Extracting features from rephrased texts...\\\", flush=True)\\n    feat_list = extract_features_batch(rephrased_texts, pythia_tokenizer, pythia_model, device)\\n    print(f\\\"  Extracted {len(feat_list)} feature vectors\\\", flush=True)\\n\\n    rephrased_df = df_sample[[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"]].copy()\\n    for feat_name in FEATURES:\\n        rephrased_df[feat_name] = [f[feat_name] for f in feat_list]\\n\\n    original_df = df_sample[[\\\"model_name\\\", \\\"seed_id\\\", \\\"depth\\\"] + FEATURES].copy()\\n\\n    del pythia_model, pythia_tokenizer\\n    torch.cuda.empty_cache()\\n\\n    # LOGO evaluation\\n    print(f\\\"\\\\n[5/6] Running LOGO evaluation...\\\", flush=True)\\n\\n    print(\\\"  Evaluating original (baseline)...\\\", flush=True)\\n    orig_bin_f1, orig_multi_f1, orig_bin_ci, orig_multi_ci = logo_eval(original_df, original_df)\\n    print(f\\\"  Original: binary={orig_bin_f1:.4f} [{orig_bin_ci[0]:.4f}, {orig_bin_ci[1]:.4f}], \\\"\\n          f\\\"multi={orig_multi_f1:.4f} [{orig_multi_ci[0]:.4f}, {orig_multi_ci[1]:.4f}]\\\", flush=True)\\n\\n    print(\\\"  Evaluating LLM rephrased...\\\", flush=True)\\n    reph_bin_f1, reph_multi_f1, reph_bin_ci, reph_multi_ci = logo_eval(original_df, rephrased_df)\\n    print(f\\\"  Rephrased: binary={reph_bin_f1:.4f} [{reph_bin_ci[0]:.4f}, {reph_bin_ci[1]:.4f}], \\\"\\n          f\\\"multi={reph_multi_f1:.4f} [{reph_multi_ci[0]:.4f}, {reph_multi_ci[1]:.4f}]\\\", flush=True)\\n\\n    # Save results\\n    print(f\\\"\\\\n[6/6] Saving results...\\\", flush=True)\\n    edit_ratio = compute_edit_distance_ratio(texts, rephrased_texts)\\n\\n    binary_drop = reph_bin_f1 - orig_bin_f1\\n    multi_drop = reph_multi_f1 - orig_multi_f1\\n\\n    output = {\\n        \\\"results\\\": {\\n            \\\"original\\\": {\\n                \\\"binary_f1\\\": round(orig_bin_f1, 4),\\n                \\\"binary_ci\\\": [round(orig_bin_ci[0], 4), round(orig_bin_ci[1], 4)],\\n                \\\"multiclass_f1\\\": round(orig_multi_f1, 4),\\n                \\\"multiclass_ci\\\": [round(orig_multi_ci[0], 4), round(orig_multi_ci[1], 4)],\\n            },\\n            \\\"llm_rephrased\\\": {\\n                \\\"binary_f1\\\": round(reph_bin_f1, 4),\\n                \\\"binary_ci\\\": [round(reph_bin_ci[0], 4), round(reph_bin_ci[1], 4)],\\n                \\\"multiclass_f1\\\": round(reph_multi_f1, 4),\\n                \\\"multiclass_ci\\\": [round(reph_multi_ci[0], 4), round(reph_multi_ci[1], 4)],\\n            },\\n        },\\n        \\\"degradation\\\": {\\n            \\\"binary_drop\\\": round(binary_drop, 4),\\n            \\\"multiclass_drop\\\": round(multi_drop, 4),\\n            \\\"relative_binary_drop_pct\\\": f\\\"{abs(binary_drop) / orig_bin_f1 * 100:.1f}%\\\",\\n        },\\n        \\\"rephrase_stats\\\": {\\n            \\\"n_samples\\\": len(df_sample),\\n            \\\"avg_sentences_replaced\\\": round(float(np.mean(n_replaced)), 2),\\n            \\\"avg_edit_distance_ratio\\\": round(edit_ratio, 4),\\n            \\\"model\\\": \\\"Qwen3-0.6B-Base\\\",\\n        },\\n        \\\"comparison_with_random_replacement\\\": {\\n            \\\"random_5pct_binary\\\": 0.6496,\\n            \\\"random_5pct_drop\\\": -0.0457,\\n            \\\"llm_rephrase_binary\\\": round(reph_bin_f1, 4),\\n            \\\"llm_rephrase_drop\\\": round(binary_drop, 4),\\n            \\\"note\\\": (\\\"LLM rephrase degrades less than 5% random replacement\\\"\\n                     if abs(binary_drop) < 0.0457\\n                     else \\\"LLM rephrase degrades more than 5% random replacement\\\"),\\n        },\\n        \\\"meta\\\": {\\n            \\\"features\\\": FEATURES,\\n            \\\"rephrase_model\\\": \\\"Qwen3-0.6B-Base\\\",\\n            \\\"reference_model\\\": \\\"Pythia-410M\\\",\\n            \\\"xgb_params\\\": {\\\"n_estimators\\\": 200, \\\"max_depth\\\": 6},\\n            \\\"class_balanced\\\": True,\\n            \\\"protocol\\\": \\\"pooled LOGO 8-fold, train=original, test=rephrased\\\",\\n            \\\"seed\\\": SEED,\\n            \\\"elapsed_seconds\\\": round(time.time() - t0, 1),\\n        },\\n    }\\n\\n    output_path = OUTPUT_DIR / \\\"llm_rephrase_results.json\\\"\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {output_path}\\\", flush=True)\\n    print(json.dumps(output, indent=2))\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of all 3 bugs in `run_llm_rephrase.py`:
+
+**Bug 1: Binary task definition (lines ~244-248)**
+- Current: `y_train_bin = (y_train_multi > 0).astype(int)` and `y_test_bin = (y_test_multi > 0).astype(int)` — this is gen-0 vs gen-1+
+- Should be: filter to depth >= 1, then `y_bin = (depth >= 2).astype(int)` — gen-1 vs gen-2+
+
+
+**Bug 2: Multiclass uses raw depth (5-class) instead of 3-class mapping**
+- Current: `y_train_multi = tr["depth"].values` — raw depth values (0,1,2,3,4)
+- Should be: apply `CLASS_MAP_3 = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}`
+**Bug 3: tail_decay calculation**
+- Current (lines ~195-205): Takes the top-50 sorted probabilities, computes log of both the probability values and their rank positions, then fits a linear model to extract the decay coefficient
+- Reference (correct): Should instead use ranks 100-1000 from the average log-probabilities sorted in descending order, fitting linear regression directly on the raw rank indices rather than their logarithms.
+
+Now I'm setting up an evaluation script that loads the cached rephrased texts from a JSONL file...
+
+Actually, I think it's cleaner to write a focused evaluation script that handles just the feature extraction and LOGO evaluation with the correct definitions, rather than trying to patch the existing complex script. Let me build that out.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "c9cbd1cc-4163-486a-9fd7-79c45b2f137e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019et2ghWjc1rmaMyoWdEXNS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3676,
+      "cache_read_input_tokens": 47460,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3676
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+Now I have a clear picture of all 3 bugs:
+
+1. **Bug 1** (line ~246): `y_bin = (depth > 0)` → should filter depth>=1, then `y_bin = (depth >= 2)` 
+2. **Bug 2** (line ~244): Uses raw 5-class depth → should map via `{0:0, 1:1, 2:2, 3:2, 4:2}`
+3. **Bug 3** (lines ~195-205): top-50 probs with log-log → should use rank 100-1000 of avg log-probs with linear fit
+
+I'll write a fixed evaluation-only script (skips rephrase generation since `rephrased_texts.jsonl` exists) and run it.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "289bf525-8088-4369-906b-007763c3d018",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019et2ghWjc1rmaMyoWdEXNS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3676,
+      "cache_read_input_tokens": 47460,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3676
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01AmD8bv7YkrWEqj4s2jw4o5`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat > /root/gen-depth-fingerprint/experiments/human_edit_robustness/run_llm_rephrase_fixed.py << 'SCRIPT'\n\"\"\"\nLLM Rephrase Evaluation - Fixed version\nFixes: (1) binary = gen1 vs gen2+, (2) 3-class mapping, (3) tail_decay rank 100-1000\n\"\"\"\nimport json\nimport time\nfrom collections import Counter\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\nimport torch\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\nfrom xgboost import XGBClassifier\nfrom sklearn.metrics import f1_score\n\nSEED = 42\nSUBSAMPLE_N = 5000\nBATCH_SIZE = 32\nFEATURES = [\"entropy_mean\", \"entropy_std\", \"entropy_min\", \"entropy_max\",\n            \"tail_decay\", \"ttr\", \"hapax_ratio\"]\nXGB_PARAMS = dict(n_estimators=200, max_depth=6, learning_rate=0.1,\n                  random_state=SEED, eval_metric=\"mlogloss\",\n                  use_label_encoder=False)\nCLASS_MAP_3 = {0: 0, 1: 1, 2: 2, 3: 2, 4: 2}\n\nPYTHIA_MODEL_PATH = \"/root/autodl-tmp/models/pythia-410m/models--EleutherAI--pythia-410m/snapshots/9879c9b5f8bea9051dcb0e68dff21493d67e9d4f\"\nPROJECT_ROOT = Path(\"/root/gen-depth-fingerprint\")\nDATA_DIR = PROJECT_ROOT / \"data\"\nOUTPUT_DIR = PROJECT_ROOT / \"experiments\" / \"human_edit_robustness\"\n\n\ndef load_all_texts():\n    generators = {\n        \"pythia-2.8b\": [DATA_DIR / \"generations_shard0.jsonl\",\n                        DATA_DIR / \"generations_shard1.jsonl\",\n                        DATA_DIR / \"generations_shard2.jsonl\",\n                        DATA_DIR / \"generations_shard3.jsonl\"],\n        \"pythia-1b\": [DATA_DIR / \"pythia-1b\" / \"generations_shard0.jsonl\"],\n        \"olmo-2-1b\": [DATA_DIR / \"olmo-2-1b\" / \"generations_shard0.jsonl\"],\n        \"qwen3-0.6b\": [DATA_DIR / \"qwen3-0.6b\" / \"generations_shard0.jsonl\"],\n        \"qwen3-1.7b\": [DATA_DIR / \"qwen3-1.7b\" / \"generations_shard0.jsonl\"],\n        \"qwen3-8b\": [DATA_DIR / \"qwen3-8b\" / \"generations_shard0.jsonl\"],\n        \"llama-3.2-3b\": [DATA_DIR / \"llama-3.2-3b\" / \"generations_shard0.jsonl\"],\n        \"mistral-7b-v0.3\": [DATA_DIR / \"mistral-7b-v0.3\" / \"generations_shard0.jsonl\"],\n    }\n    all_records = []\n    for model_name, paths in generators.items():\n        seen = set()\n        for p in paths:\n            if not p.exists():\n                continue\n            with open(p) as f:\n                for line in f:\n                    line = line.strip()\n                    if not line:\n                        continue\n                    rec = json.loads(line)\n                    key = (rec.get(\"seed_id\"), rec.get(\"depth\"))\n                    if key in seen:\n                        continue\n                    seen.add(key)\n                    all_records.append({\n                        \"model_name\": model_name,\n                        \"seed_id\": rec[\"seed_id\"],\n                        \"depth\": rec[\"depth\"],\n                        \"text\": rec[\"text\"],\n                    })\n        print(f\"  {model_name}: {len(seen)} texts loaded\")\n    return pd.DataFrame(all_records)\n\n\ndef load_all_features():\n    df_base = pd.read_csv(DATA_DIR / \"features_all_models.csv\")\n    new_gens = [\n        (\"llama-3.2-3b\", DATA_DIR / \"llama-3.2-3b\" / \"features_pythia410m.jsonl\"),\n        (\"mistral-7b-v0.3\", DATA_DIR / \"mistral-7b-v0.3\" / \"features_pythia410m.jsonl\"),\n    ]\n    dfs = [df_base]\n    for gen_name, path in new_gens:\n        records = []\n        with open(path) as f:\n            for line in f:\n                rec = json.loads(line)\n                rec[\"model_name\"] = gen_name\n                records.append(rec)\n        dfs.append(pd.DataFrame(records))\n    cols = [\"model_name\", \"seed_id\", \"depth\"] + FEATURES\n    df = pd.concat([d[cols] for d in dfs], ignore_index=True)\n    return df\n\n\ndef extract_features_batch(texts, tokenizer, model, device, batch_size=BATCH_SIZE):\n    \"\"\"Fixed: tail_decay uses rank 100-1000 of avg log-probs (matching main pipeline).\"\"\"\n    all_features = []\n    for start in range(0, len(texts), batch_size):\n        batch_texts = texts[start:start + batch_size]\n        encodings = tokenizer(\n            batch_texts, return_tensors=\"pt\", padding=True,\n            truncation=True, max_length=512,\n        )\n        input_ids = encodings[\"input_ids\"].to(device)\n        attention_mask = encodings[\"attention_mask\"].to(device)\n\n        with torch.no_grad():\n            logits = model(input_ids=input_ids, attention_mask=attention_mask).logits\n\n        for j in range(len(batch_texts)):\n            mask = attention_mask[j].bool()\n            seq_len = mask.sum().item()\n            if seq_len < 3:\n                all_features.append({f: 0.0 for f in FEATURES})\n                continue\n\n            token_logits = logits[j, :seq_len - 1, :]\n            log_probs = torch.log_softmax(token_logits, dim=-1)\n            probs = torch.exp(log_probs)\n            entropy = -(probs * log_probs).sum(dim=-1)\n            ent_np = entropy.float().cpu().numpy()\n\n            # tail_decay: avg log-probs across positions, sort descending, fit rank 100-1000\n            avg_log_probs = log_probs.float().mean(dim=0)\n            sorted_lp, _ = torch.sort(avg_log_probs, descending=True)\n            sorted_lp_np = sorted_lp.cpu().numpy()\n            vocab_size = sorted_lp_np.shape[0]\n            hi = min(1000, vocab_size)\n            lo = min(100, hi)\n            if hi - lo >= 2:\n                x = np.arange(lo, hi, dtype=np.float64)\n                y = sorted_lp_np[lo:hi].astype(np.float64)\n                coeffs = np.polyfit(x, y, 1)\n                tail_decay = float(coeffs[0])\n            else:\n                tail_decay = 0.0\n\n            # ttr and hapax on words (matching reference)\n            words = batch_texts[j].lower().split()\n            n_tokens = len(words)\n            if n_tokens == 0:\n                ttr, hapax_ratio = 0.0, 0.0\n            else:\n                counter = Counter(words)\n                ttr = len(counter) / n_tokens\n                hapax_ratio = sum(1 for c in counter.values() if c == 1) / n_tokens\n\n            all_features.append({\n                \"entropy_mean\": float(np.mean(ent_np)),\n                \"entropy_std\": float(np.std(ent_np)),\n                \"entropy_min\": float(np.min(ent_np)),\n                \"entropy_max\": float(np.max(ent_np)),\n                \"tail_decay\": tail_decay,\n                \"ttr\": ttr,\n                \"hapax_ratio\": hapax_ratio,\n            })\n\n        done = min(start + batch_size, len(texts))\n        if done % (batch_size * 10) == 0 or done == len(texts):\n            print(f\"    Features extracted: {done}/{len(texts)}\", flush=True)\n\n    return all_features\n\n\ndef downsample(df, label_col, rng):\n    counts = df[label_col].value_counts()\n    min_n = counts.min()\n    parts = []\n    for lbl in sorted(counts.index):\n        sub = df[df[label_col] == lbl]\n        parts.append(sub.sample(n=min_n, random_state=rng, replace=False))\n    return pd.concat(parts, ignore_index=True)\n\n\ndef bootstrap_f1(y_true, y_pred, n_boot=1000, seed=SEED):\n    rng = np.random.RandomState(seed)\n    n = len(y_true)\n    scores = []\n    for _ in range(n_boot):\n        idx = rng.randint(0, n, size=n)\n        yt, yp = y_true[idx], y_pred[idx]\n        if len(np.unique(yt)) < 2:\n            continue\n        scores.append(f1_score(yt, yp, average=\"macro\"))\n    arr = np.array(scores)\n    return float(np.percentile(arr, 2.5)), float(np.percentile(arr, 97.5))\n\n\ndef logo_eval(train_df, test_df):\n    \"\"\"\n    Fixed LOGO evaluation:\n    - Binary: filter depth>=1, then y = (depth >= 2) → gen-1 vs gen-2+\n    - Multiclass: 3-class via CLASS_MAP_3\n    \"\"\"\n    df_tr = train_df.copy()\n    df_te = test_df.copy()\n    df_tr[\"label_3\"] = df_tr[\"depth\"].map(CLASS_MAP_3)\n    df_te[\"label_3\"] = df_te[\"depth\"].map(CLASS_MAP_3)\n\n    generators = sorted(df_tr[\"model_name\"].unique())\n    rng = np.random.RandomState(SEED)\n\n    all_binary_true, all_binary_pred = [], []\n    all_multi_true, all_multi_pred = [], []\n\n    for gen in generators:\n        tr = df_tr[df_tr[\"model_name\"] != gen].copy()\n        te = df_te[df_te[\"model_name\"] == gen].copy()\n        if len(te) == 0:\n            continue\n\n        # 3-class evaluation\n        train_ds = downsample(tr, \"label_3\", rng)\n        clf = XGBClassifier(**XGB_PARAMS)\n        clf.fit(train_ds[FEATURES].values, train_ds[\"label_3\"].values)\n        preds_3 = clf.predict(te[FEATURES].values)\n        all_multi_true.extend(te[\"label_3\"].values.tolist())\n        all_multi_pred.extend(preds_3.tolist())\n\n        # Binary: gen-1 vs gen-2+ (filter depth==0)\n        test_bin = te[te[\"depth\"] >= 1].copy()\n        train_bin = tr[tr[\"depth\"] >= 1].copy()\n        if len(test_bin) == 0 or len(train_bin) == 0:\n            continue\n        test_bin[\"label_bin\"] = (test_bin[\"depth\"] >= 2).astype(int)\n        train_bin[\"label_bin\"] = (train_bin[\"depth\"] >= 2).astype(int)\n\n        train_bin_ds = downsample(train_bin, \"label_bin\", rng)\n        clf_bin = XGBClassifier(**XGB_PARAMS)\n        clf_bin.fit(train_bin_ds[FEATURES].values, train_bin_ds[\"label_bin\"].values)\n        preds_bin = clf_bin.predict(test_bin[FEATURES].values)\n        all_binary_true.extend(test_bin[\"label_bin\"].values.tolist())\n        all_binary_pred.extend(preds_bin.tolist())\n\n    y_bin_true = np.array(all_binary_true)\n    y_bin_pred = np.array(all_binary_pred)\n    y_multi_true = np.array(all_multi_true)\n    y_multi_pred = np.array(all_multi_pred)\n\n    binary_f1 = float(f1_score(y_bin_true, y_bin_pred, average=\"macro\"))\n    multi_f1 = float(f1_score(y_multi_true, y_multi_pred, average=\"macro\"))\n    ci_bin = bootstrap_f1(y_bin_true, y_bin_pred)\n    ci_multi = bootstrap_f1(y_multi_true, y_multi_pred)\n\n    return binary_f1, multi_f1, ci_bin, ci_multi\n\n\ndef compute_edit_distance_ratio(original_texts, rephrased_texts):\n    ratios = []\n    for orig, reph in zip(original_texts, rephrased_texts):\n        orig_words = orig.split()\n        reph_words = reph.split()\n        if not orig_words:\n            continue\n        max_len = max(len(orig_words), len(reph_words))\n        matching = sum(1 for i, w in enumerate(orig_words)\n                       if i < len(reph_words) and reph_words[i] == w)\n        ratio = 1.0 - (matching / max_len) if max_len > 0 else 0.0\n        ratios.append(ratio)\n    return float(np.mean(ratios)) if ratios else 0.0\n\n\ndef main():\n    import os\n    os.environ[\"CUDA_VISIBLE_DEVICES\"] = \"0\"\n    device = \"cuda:0\"\n    t0 = time.time()\n\n    print(\"[1/5] Loading texts and features...\", flush=True)\n    df_texts = load_all_texts()\n    df_features = load_all_features()\n    df = df_texts.merge(df_features, on=[\"model_name\", \"seed_id\", \"depth\"], how=\"inner\")\n    print(f\"  Merged: {len(df)} samples\", flush=True)\n\n    print(f\"\\n[2/5] Subsampling to {SUBSAMPLE_N}...\", flush=True)\n    rng = np.random.RandomState(SEED)\n    generators = sorted(df[\"model_name\"].unique())\n    n_per_gen = SUBSAMPLE_N // len(generators)\n    parts = []\n    for gen in generators:\n        sub = df[df[\"model_name\"] == gen]\n        n = min(n_per_gen, len(sub))\n        parts.append(sub.sample(n=n, random_state=rng, replace=False))\n    df_sample = pd.concat(parts, ignore_index=True)\n    print(f\"  Sampled: {len(df_sample)} ({len(generators)} generators, ~{n_per_gen} each)\", flush=True)\n\n    # Load cached rephrased texts\n    intermediate_path = OUTPUT_DIR / \"rephrased_texts.jsonl\"\n    print(f\"\\n[3/5] Loading cached rephrased texts...\", flush=True)\n    rephrased_texts = []\n    n_replaced = []\n    with open(intermediate_path) as f:\n        for line in f:\n            rec = json.loads(line)\n            rephrased_texts.append(rec[\"rephrased\"])\n            n_replaced.append(rec[\"n_sentences_replaced\"])\n    assert len(rephrased_texts) == len(df_sample), \\\n        f\"Cache mismatch: {len(rephrased_texts)} vs {len(df_sample)}\"\n    print(f\"  Loaded {len(rephrased_texts)} rephrased texts\", flush=True)\n\n    texts = df_sample[\"text\"].tolist()\n\n    # Extract features with fixed tail_decay\n    print(f\"\\n[4/5] Extracting features (fixed tail_decay)...\", flush=True)\n    print(\"  Loading Pythia-410M...\", flush=True)\n    tokenizer = AutoTokenizer.from_pretrained(PYTHIA_MODEL_PATH, local_files_only=True)\n    model = AutoModelForCausalLM.from_pretrained(\n        PYTHIA_MODEL_PATH, local_files_only=True, torch_dtype=torch.float16,\n    ).to(device).eval()\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    print(\"  Extracting original text features...\", flush=True)\n    orig_feat_list = extract_features_batch(texts, tokenizer, model, device)\n    print(\"  Extracting rephrased text features...\", flush=True)\n    reph_feat_list = extract_features_batch(rephrased_texts, tokenizer, model, device)\n\n    original_df = df_sample[[\"model_name\", \"seed_id\", \"depth\"]].copy()\n    for feat_name in FEATURES:\n        original_df[feat_name] = [f[feat_name] for f in orig_feat_list]\n\n    rephrased_df = df_sample[[\"model_name\", \"seed_id\", \"depth\"]].copy()\n    for feat_name in FEATURES:\n        rephrased_df[feat_name] = [f[feat_name] for f in reph_feat_list]\n\n    del model, tokenizer\n    torch.cuda.empty_cache()\n\n    # LOGO evaluation\n    print(f\"\\n[5/5] Running LOGO evaluation...\", flush=True)\n    print(\"  Evaluating original...\", flush=True)\n    orig_bin_f1, orig_multi_f1, orig_bin_ci, orig_multi_ci = logo_eval(original_df, original_df)\n    print(f\"  Original: binary={orig_bin_f1:.4f} [{orig_bin_ci[0]:.4f}, {orig_bin_ci[1]:.4f}], \"\n          f\"multi={orig_multi_f1:.4f} [{orig_multi_ci[0]:.4f}, {orig_multi_ci[1]:.4f}]\", flush=True)\n\n    print(\"  Evaluating rephrased...\", flush=True)\n    reph_bin_f1, reph_multi_f1, reph_bin_ci, reph_multi_ci = logo_eval(original_df, rephrased_df)\n    print(f\"  Rephrased: binary={reph_bin_f1:.4f} [{reph_bin_ci[0]:.4f}, {reph_bin_ci[1]:.4f}], \"\n          f\"multi={reph_multi_f1:.4f} [{reph_multi_ci[0]:.4f}, {reph_multi_ci[1]:.4f}]\", flush=True)\n\n    # Save results\n    edit_ratio = compute_edit_distance_ratio(texts, rephrased_texts)\n    binary_drop = reph_bin_f1 - orig_bin_f1\n    multi_drop = reph_multi_f1 - orig_multi_f1\n\n    output = {\n        \"original\": {\n            \"binary_f1\": round(orig_bin_f1, 4),\n            \"binary_ci\": [round(orig_bin_ci[0], 4), round(orig_bin_ci[1], 4)],\n            \"multiclass_f1\": round(orig_multi_f1, 4),\n            \"multiclass_ci\": [round(orig_multi_ci[0], 4), round(orig_multi_ci[1], 4)],\n        },\n        \"rephrased\": {\n            \"binary_f1\": round(reph_bin_f1, 4),\n            \"binary_ci\": [round(reph_bin_ci[0], 4), round(reph_bin_ci[1], 4)],\n            \"multiclass_f1\": round(reph_multi_f1, 4),\n            \"multiclass_ci\": [round(reph_multi_ci[0], 4), round(reph_multi_ci[1], 4)],\n        },\n        \"drop\": {\n            \"binary\": round(binary_drop, 4),\n            \"multiclass\": round(multi_drop, 4),\n        },\n        \"edit_distance_ratio\": round(edit_ratio, 4),\n        \"n_samples\": len(df_sample),\n        \"method\": \"7feature LOGO-CV, binary=gen1-vs-gen2+, 3class=gen0/gen1/gen2+\",\n        \"meta\": {\n            \"avg_sentences_replaced\": round(float(np.mean(n_replaced)), 2),\n            \"rephrase_model\": \"Qwen3-0.6B-Base\",\n            \"reference_model\": \"Pythia-410M\",\n            \"elapsed_seconds\": round(time.time() - t0, 1),\n        },\n    }\n\n    output_path = OUTPUT_DIR / \"llm_rephrase_results.json\"\n    with open(output_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {output_path}\", flush=True)\n    print(json.dumps(output, indent=2))\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT\necho \"Script written successfully\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "e72d8b43-f8c7-40fc-9fe1-e6bee28f652e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019et2ghWjc1rmaMyoWdEXNS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3676,
+      "cache_read_input_tokens": 47460,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3676
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-17T01:08:21.467Z_
+
+<details><summary>↩ Tool result · `toolu_01AmD8bv7YkrWEqj4s2jw4o5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "01065bb5-0e92-453b-8c0c-958c61072231",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+Script written. Now let me run it:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "2b13787a-744c-4cd3-bb3d-e5582c21db65",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019NV38khNh75SmBTiKHPj13",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6822,
+      "cache_read_input_tokens": 51136,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6822
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013oxdPfGDBwFXa2HPBT7xJy`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/gen-depth-fingerprint/experiments/human_edit_robustness && source /root/miniconda3/bin/activate && python run_llm_rephrase_fixed.py 2>&1",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "ea953699-7871-4628-9bdd-74fab80a8c17",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019NV38khNh75SmBTiKHPj13",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6822,
+      "cache_read_input_tokens": 51136,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6822
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-17T01:08:57.322Z_
+
+<details><summary>↩ Tool result · `toolu_013oxdPfGDBwFXa2HPBT7xJy`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/gen-depth-fingerprint/experiments/human_edit_robustness && source /root/miniconda3/bin/activate && python run_llm_rephrase_fixed.py 2>&1'\\n\\nStdout:\\n\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:08:56] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:08:57] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "eeb0fa44-1940-4052-8113-e02990724b45",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/gen-depth-fingerprint/experiments/human_edit_robustness && source /root/miniconda3/bin/activate && python run_llm_rephrase_fixed.py 2>&1'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:08:56] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:08:57] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/gen-depth-fingerprint/experiments/human_edit_robustness && source /root/miniconda3/bin/activate && python run_llm_rephrase_fixed.py 2>&1'\\n\\nStdout:\\n\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:08:56] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:08:57] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The script is running but takes more than 30 seconds. I need to let it run with a longer timeout or in background. Let me use a longer nohup approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "c0a5b3cd-6d36-439c-bac8-413d73b0fb45",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HKZDkTPaUT4WZcMW13Beb7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 566,
+      "cache_read_input_tokens": 57958,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 566
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+The script takes time due to feature extraction. Let me run it with nohup and a longer timeout:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "dffb3936-9113-4c6a-a96e-3aec1a138995",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HKZDkTPaUT4WZcMW13Beb7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 566,
+      "cache_read_input_tokens": 57958,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 566
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01ANdtk5o8y7UHsGBqVUvLUk`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cd /root/gen-depth-fingerprint/experiments/human_edit_robustness && source /root/miniconda3/bin/activate && nohup python run_llm_rephrase_fixed.py > run_llm_rephrase_fixed.log 2>&1 &\necho \"PID: $!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "a3f7dcec-593d-492b-83be-007eea3ef38d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HKZDkTPaUT4WZcMW13Beb7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 566,
+      "cache_read_input_tokens": 57958,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 566
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-17T01:09:33.360Z_
+
+<details><summary>↩ Tool result · `toolu_01ANdtk5o8y7UHsGBqVUvLUk`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/gen-depth-fingerprint/experiments/human_edit_robustness && source /root/miniconda3/bin/activate && nohup python run_llm_rephrase_fixed.py > run_llm_rephrase_fixed.log 2>&1 &\\\\necho \\\"PID: $!\\\"'\\n\\nStdout:\\n\\nPID: 366728\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.65}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "aa083b5f-ee0d-4080-b242-df406ddcd976",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/gen-depth-fingerprint/experiments/human_edit_robustness && source /root/miniconda3/bin/activate && nohup python run_llm_rephrase_fixed.py > run_llm_rephrase_fixed.log 2>&1 &\\\\\\\\necho \\\\\\\"PID: $!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID: 366728\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.65}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/gen-depth-fingerprint/experiments/human_edit_robustness && source /root/miniconda3/bin/activate && nohup python run_llm_rephrase_fixed.py > run_llm_rephrase_fixed.log 2>&1 &\\\\necho \\\"PID: $!\\\"'\\n\\nStdout:\\n\\nPID: 366728\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.65}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+It launched but the tool still timed out. The PID is 366728. Let me check if it's running and then monitor the log file periodically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "85dfce6a-e220-4690-bba3-2c56fe3b8476",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Frbs3MQPUi2ruw8GAQcuzD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 436,
+      "cache_read_input_tokens": 58524,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 436
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+Process launched (PID 366728). Let me check its progress:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "75bd328d-271f-4292-b23c-b508cf831f7a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Frbs3MQPUi2ruw8GAQcuzD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 436,
+      "cache_read_input_tokens": 58524,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 436
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AMWn9FDxFASrvfDqLevSBc`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "tail -30 /root/gen-depth-fingerprint/experiments/human_edit_robustness/run_llm_rephrase_fixed.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "a742f6fd-92a0-4c56-af42-1c6c5fc6d1bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Frbs3MQPUi2ruw8GAQcuzD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 436,
+      "cache_read_input_tokens": 58524,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 436
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-17T01:09:39.062Z_
+
+<details><summary>↩ Tool result · `toolu_01AMWn9FDxFASrvfDqLevSBc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:09:37] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:09:37] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:09:37] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:09:38] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:09:38] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:09:38] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:09:38] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "e119b222-6577-405d-82a1-9718ab780011",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:09:37] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:09:37] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:09:37] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:09:38] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:09:38] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:09:38] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:09:38] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\\\nParameters: { \\\\\\\"use_label_encoder\\\\\\\" } are not used.\\\\n\\\\n  bst.update(dtrain, iteration=i, fobj=obj)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:09:37] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:09:37] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:09:37] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:09:38] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:09:38] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:09:38] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n/root/miniconda3/lib/python3.12/site-packages/xgboost/training.py:200: UserWarning: [09:09:38] WARNING: /__w/xgboost/xgboost/src/learner.cc:782: \\nParameters: { \\\"use_label_encoder\\\" } are not used.\\n\\n  bst.update(dtrain, iteration=i, fobj=obj)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Hmm, it seems it hit a problem. Wait - actually, it looks like it jumped ahead to the LOGO evaluation (XGBoost training), which means the feature extraction either already completed very fast or it's using cached features from the DataFrame. Let me look at the beginning of the log to see what happened, and check if it's still running.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "4b0ccba3-b281-4333-9192-746f20cec088",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019jMEdaMjo5M8SmeG2Sj1jm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1074,
+      "cache_read_input_tokens": 58960,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1074
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018QMNCfeWeXxR2bfVgDibNU`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -50 /root/gen-depth-fingerprint/experiments/human_edit_robustness/run_llm_rephrase_fixed.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "6f849a1f-29bb-47cb-a6d2-c3bd702de9a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019jMEdaMjo5M8SmeG2Sj1jm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1074,
+      "cache_read_input_tokens": 58960,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1074
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-17T01:09:44.890Z_
+
+<details><summary>↩ Tool result · `toolu_018QMNCfeWeXxR2bfVgDibNU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[1/5] Loading texts and features...\\n  pythia-2.8b: 4609 texts loaded\\n  pythia-1b: 2286 texts loaded\\n  olmo-2-1b: 2379 texts loaded\\n  qwen3-0.6b: 2270 texts loaded\\n  qwen3-1.7b: 2291 texts loaded\\n  qwen3-8b: 4497 texts loaded\\n  llama-3.2-3b: 4680 texts loaded\\n  mistral-7b-v0.3: 4849 texts loaded\\n  Merged: 27861 samples\\n\\n[2/5] Subsampling to 5000...\\n  Sampled: 5000 (8 generators, ~625 each)\\n\\n[3/5] Loading cached rephrased texts...\\n  Loaded 5000 rephrased texts\\n\\n[4/5] Extracting features (fixed tail_decay)...\\n  Loading Pythia-410M...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n  Extracting original text features...\\n    Features extracted: 320/5000\\n    Features extracted: 640/5000\\n    Features extracted: 960/5000\\n    Features extracted: 1280/5000\\n    Features extracted: 1600/5000\\n    Features extracted: 1920/5000\\n    Features extracted: 2240/5000\\n    Features extracted: 2560/5000\\n    Features extracted: 2880/5000\\n    Features extracted: 3200/5000\\n    Features extracted: 3520/5000\\n    Features extracted: 3840/5000\\n    Features extracted: 4160/5000\\n    Features extracted: 4480/5000\\n    Features extracted: 4800/5000\\n    Features extracted: 5000/5000\\n  Extracting rephrased text features...\\n    Features extracted: 320/5000\\n    Features extracted: 640/5000\\n    Features extracted: 960/5000\\n    Features extracted: 1280/5000\\n    Features extracted: 1600/5000\\n    Features extracted: 1920/5000\\n    Features extracted: 2240/5000\\n    Features extracted: 2560/5000\\n    Features extracted: 2880/5000\\n    Features extracted: 3200/5000\\n    Features extracted: 3520/5000\\n    Features extracted: 3840/5000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "1eccd368-59ce-4620-8005-3ac4ea382f2f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[1/5] Loading texts and features...\\\\n  pythia-2.8b: 4609 texts loaded\\\\n  pythia-1b: 2286 texts loaded\\\\n  olmo-2-1b: 2379 texts loaded\\\\n  qwen3-0.6b: 2270 texts loaded\\\\n  qwen3-1.7b: 2291 texts loaded\\\\n  qwen3-8b: 4497 texts loaded\\\\n  llama-3.2-3b: 4680 texts loaded\\\\n  mistral-7b-v0.3: 4849 texts loaded\\\\n  Merged: 27861 samples\\\\n\\\\n[2/5] Subsampling to 5000...\\\\n  Sampled: 5000 (8 generators, ~625 each)\\\\n\\\\n[3/5] Loading cached rephrased texts...\\\\n  Loaded 5000 rephrased texts\\\\n\\\\n[4/5] Extracting features (fixed tail_decay)...\\\\n  Loading Pythia-410M...\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n  Extracting original text features...\\\\n    Features extracted: 320/5000\\\\n    Features extracted: 640/5000\\\\n    Features extracted: 960/5000\\\\n    Features extracted: 1280/5000\\\\n    Features extracted: 1600/5000\\\\n    Features extracted: 1920/5000\\\\n    Features extracted: 2240/5000\\\\n    Features extracted: 2560/5000\\\\n    Features extracted: 2880/5000\\\\n    Features extracted: 3200/5000\\\\n    Features extracted: 3520/5000\\\\n    Features extracted: 3840/5000\\\\n    Features extracted: 4160/5000\\\\n    Features extracted: 4480/5000\\\\n    Features extracted: 4800/5000\\\\n    Features extracted: 5000/5000\\\\n  Extracting rephrased text features...\\\\n    Features extracted: 320/5000\\\\n    Features extracted: 640/5000\\\\n    Features extracted: 960/5000\\\\n    Features extracted: 1280/5000\\\\n    Features extracted: 1600/5000\\\\n    Features extracted: 1920/5000\\\\n    Features extracted: 2240/5000\\\\n    Features extracted: 2560/5000\\\\n    Features extracted: 2880/5000\\\\n    Features extracted: 3200/5000\\\\n    Features extracted: 3520/5000\\\\n    Features extracted: 3840/5000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[1/5] Loading texts and features...\\n  pythia-2.8b: 4609 texts loaded\\n  pythia-1b: 2286 texts loaded\\n  olmo-2-1b: 2379 texts loaded\\n  qwen3-0.6b: 2270 texts loaded\\n  qwen3-1.7b: 2291 texts loaded\\n  qwen3-8b: 4497 texts loaded\\n  llama-3.2-3b: 4680 texts loaded\\n  mistral-7b-v0.3: 4849 texts loaded\\n  Merged: 27861 samples\\n\\n[2/5] Subsampling to 5000...\\n  Sampled: 5000 (8 generators, ~625 each)\\n\\n[3/5] Loading cached rephrased texts...\\n  Loaded 5000 rephrased texts\\n\\n[4/5] Extracting features (fixed tail_decay)...\\n  Loading Pythia-410M...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n  Extracting original text features...\\n    Features extracted: 320/5000\\n    Features extracted: 640/5000\\n    Features extracted: 960/5000\\n    Features extracted: 1280/5000\\n    Features extracted: 1600/5000\\n    Features extracted: 1920/5000\\n    Features extracted: 2240/5000\\n    Features extracted: 2560/5000\\n    Features extracted: 2880/5000\\n    Features extracted: 3200/5000\\n    Features extracted: 3520/5000\\n    Features extracted: 3840/5000\\n    Features extracted: 4160/5000\\n    Features extracted: 4480/5000\\n    Features extracted: 4800/5000\\n    Features extracted: 5000/5000\\n  Extracting rephrased text features...\\n    Features extracted: 320/5000\\n    Features extracted: 640/5000\\n    Features extracted: 960/5000\\n    Features extracted: 1280/5000\\n    Features extracted: 1600/5000\\n    Features extracted: 1920/5000\\n    Features extracted: 2240/5000\\n    Features extracted: 2560/5000\\n    Features extracted: 2880/5000\\n    Features extracted: 3200/5000\\n    Features extracted: 3520/5000\\n    Features extracted: 3840/5000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+Good, feature extraction completed for both original and rephrased. Now it's in the LOGO eval phase. Let me check if it finished:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "aa78ae61-4bc0-4718-b1f9-feca89f647f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wxa54wyFEzHAJjTugCHbMq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 930,
+      "cache_read_input_tokens": 60034,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 930
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018MWQVyjh9KnheS6juadp7S`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -n \"Results saved\\|Original:\\|Rephrased:\\|binary=\" /root/gen-depth-fingerprint/experiments/human_edit_robustness/run_llm_rephrase_fixed.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "0f38d8f7-71d2-4778-b3f9-c2fe7d23c19c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wxa54wyFEzHAJjTugCHbMq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 930,
+      "cache_read_input_tokens": 60034,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 930
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-17T01:09:53.504Z_
+
+<details><summary>↩ Tool result · `toolu_018MWQVyjh9KnheS6juadp7S`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "cbf75764-0664-460f-86e9-3ca04495dfc9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JsG1tCor3GPkQg3WDFfdqs`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep \"Results saved\" /root/gen-depth-fingerprint/experiments/human_edit_robustness/run_llm_rephrase_fixed.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "ea9ccb47-4ec0-49a9-945b-734505f25bbd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01169RhmDMuBpV74Q2armRdd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 276,
+      "cache_read_input_tokens": 60964,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 276
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-17T01:09:56.800Z_
+
+<details><summary>↩ Tool result · `toolu_01JsG1tCor3GPkQg3WDFfdqs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Results saved to /root/gen-depth-fingerprint/experiments/human_edit_robustness/llm_rephrase_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "a5a52797-159e-44bc-ba9a-ced841ab4bff",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Results saved to /root/gen-depth-fingerprint/experiments/human_edit_robustness/llm_rephrase_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Results saved to /root/gen-depth-fingerprint/experiments/human_edit_robustness/llm_rephrase_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63_
+
+Done. Let me read the results:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "3f4928ba-1e07-4036-bc99-405240fd3ca0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019GoruN7R7yQV4dSkhGzKT1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 349,
+      "cache_read_input_tokens": 61240,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 349
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VQKLcknozvhy9bVQoF78fw`</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/experiments/human_edit_robustness/llm_rephrase_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "736fe352-66d3-40e4-912d-d6da70853a41",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019GoruN7R7yQV4dSkhGzKT1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 349,
+      "cache_read_input_tokens": 61240,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 349
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-17T01:10:00.523Z_
+
+<details><summary>↩ Tool result · `toolu_01VQKLcknozvhy9bVQoF78fw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"original\\\": {\\n    \\\"binary_f1\\\": 0.6918,\\n    \\\"binary_ci\\\": [\\n      0.6749,\\n      0.7067\\n    ],\\n    \\\"multiclass_f1\\\": 0.7385,\\n    \\\"multiclass_ci\\\": [\\n      0.7269,\\n      0.7496\\n    ]\\n  },\\n  \\\"rephrased\\\": {\\n    \\\"binary_f1\\\": 0.6471,\\n    \\\"binary_ci\\\": [\\n      0.6308,\\n      0.6619\\n    ],\\n    \\\"multiclass_f1\\\": 0.6672,\\n    \\\"multiclass_ci\\\": [\\n      0.6548,\\n      0.6796\\n    ]\\n  },\\n  \\\"drop\\\": {\\n    \\\"binary\\\": -0.0447,\\n    \\\"multiclass\\\": -0.0713\\n  },\\n  \\\"edit_distance_ratio\\\": 0.5071,\\n  \\\"n_samples\\\": 5000,\\n  \\\"method\\\": \\\"7feature LOGO-CV, binary=gen1-vs-gen2+, 3class=gen0/gen1/gen2+\\\",\\n  \\\"meta\\\": {\\n    \\\"avg_sentences_replaced\\\": 1.69,\\n    \\\"rephrase_model\\\": \\\"Qwen3-0.6B-Base\\\",\\n    \\\"reference_model\\\": \\\"Pythia-410M\\\",\\n    \\\"elapsed_seconds\\\": 35.9\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "81e7354c-f681-4fc4-8350-e9e22b356c23",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"original\\\\\\\": {\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.6918,\\\\n    \\\\\\\"binary_ci\\\\\\\": [\\\\n      0.6749,\\\\n      0.7067\\\\n    ],\\\\n    \\\\\\\"multiclass_f1\\\\\\\": 0.7385,\\\\n    \\\\\\\"multiclass_ci\\\\\\\": [\\\\n      0.7269,\\\\n      0.7496\\\\n    ]\\\\n  },\\\\n  \\\\\\\"rephrased\\\\\\\": {\\\\n    \\\\\\\"binary_f1\\\\\\\": 0.6471,\\\\n    \\\\\\\"binary_ci\\\\\\\": [\\\\n      0.6308,\\\\n      0.6619\\\\n    ],\\\\n    \\\\\\\"multiclass_f1\\\\\\\": 0.6672,\\\\n    \\\\\\\"multiclass_ci\\\\\\\": [\\\\n      0.6548,\\\\n      0.6796\\\\n    ]\\\\n  },\\\\n  \\\\\\\"drop\\\\\\\": {\\\\n    \\\\\\\"binary\\\\\\\": -0.0447,\\\\n    \\\\\\\"multiclass\\\\\\\": -0.0713\\\\n  },\\\\n  \\\\\\\"edit_distance_ratio\\\\\\\": 0.5071,\\\\n  \\\\\\\"n_samples\\\\\\\": 5000,\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"7feature LOGO-CV, binary=gen1-vs-gen2+, 3class=gen0/gen1/gen2+\\\\\\\",\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"avg_sentences_replaced\\\\\\\": 1.69,\\\\n    \\\\\\\"rephrase_model\\\\\\\": \\\\\\\"Qwen3-0.6B-Base\\\\\\\",\\\\n    \\\\\\\"reference_model\\\\\\\": \\\\\\\"Pythia-410M\\\\\\\",\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 35.9\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"original\\\": {\\n    \\\"binary_f1\\\": 0.6918,\\n    \\\"binary_ci\\\": [\\n      0.6749,\\n      0.7067\\n    ],\\n    \\\"multiclass_f1\\\": 0.7385,\\n    \\\"multiclass_ci\\\": [\\n      0.7269,\\n      0.7496\\n    ]\\n  },\\n  \\\"rephrased\\\": {\\n    \\\"binary_f1\\\": 0.6471,\\n    \\\"binary_ci\\\": [\\n      0.6308,\\n      0.6619\\n    ],\\n    \\\"multiclass_f1\\\": 0.6672,\\n    \\\"multiclass_ci\\\": [\\n      0.6548,\\n      0.6796\\n    ]\\n  },\\n  \\\"drop\\\": {\\n    \\\"binary\\\": -0.0447,\\n    \\\"multiclass\\\": -0.0713\\n  },\\n  \\\"edit_distance_ratio\\\": 0.5071,\\n  \\\"n_samples\\\": 5000,\\n  \\\"method\\\": \\\"7feature LOGO-CV, binary=gen1-vs-gen2+, 3class=gen0/gen1/gen2+\\\",\\n  \\\"meta\\\": {\\n    \\\"avg_sentences_replaced\\\": 1.69,\\n    \\\"rephrase_model\\\": \\\"Qwen3-0.6B-Base\\\",\\n    \\\"reference_model\\\": \\\"Pythia-410M\\\",\\n    \\\"elapsed_seconds\\\": 35.9\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+验证通过：
+
+- **Original binary F1 = 0.6918** — 在预期 ~0.69-0.70 范围内（主实验 Table 3 的 0.7014），确认 Bug 1 已修复
+- **3-class multiclass F1 = 0.7385** — 合理范围，确认 Bug 2 已修复
+- **Binary 不是 0.93** — 证明不再是 gen-0 vs gen-1+ 的 trivial task
+
+结果：
+| Condition | Binary F1 | Multiclass F1 |
+|-----------|-----------|---------------|
+| Original  | 0.6918 [0.6749, 0.7067] | 0.7385 [0.7269, 0.7496] |
+| LLM Rephrased | 0.6471 [0.6308, 0.6619] | 0.6672 [0.6548, 0.6796] |
+| Drop | -0.0447 | -0.0713 |
+
+Edit distance ratio: 0.5071, avg 1.69 sentences replaced per text. Results saved to `llm_rephrase_results.json`.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "uuid": "d8b1a3dd-2c2c-4acb-8709-3b39933c5504",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JN6A3FYHcUsbBTsnbKzb4M",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 692,
+      "cache_read_input_tokens": 61589,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 692
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 67_
+
+验证通过：
+
+- **Original binary F1 = 0.6918** — 在预期 ~0.69-0.70 范围内（主实验 Table 3 的 0.7014），确认 Bug 1 已修复
+- **3-class multiclass F1 = 0.7385** — 合理范围，确认 Bug 2 已修复
+- **Binary 不是 0.93** — 证明不再是 gen-0 vs gen-1+ 的 trivial task
+
+结果：
+| Condition | Binary F1 | Multiclass F1 |
+|-----------|-----------|---------------|
+| Original  | 0.6918 [0.6749, 0.7067] | 0.7385 [0.7269, 0.7496] |
+| LLM Rephrased | 0.6471 [0.6308, 0.6619] | 0.6672 [0.6548, 0.6796] |
+| Drop | -0.0447 | -0.0713 |
+
+Edit distance ratio: 0.5071, avg 1.69 sentences replaced per text. Results saved to `llm_rephrase_results.json`.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 254017,
+  "duration_api_ms": 188641,
+  "num_turns": 24,
+  "stop_reason": "end_turn",
+  "session_id": "ddfbb0a4-bf73-4c86-9ca5-53ce97584a81",
+  "total_cost_usd": 1.092077,
+  "usage": {
+    "input_tokens": 27,
+    "cache_creation_input_tokens": 50440,
+    "cache_read_input_tokens": 1015230,
+    "output_tokens": 10682,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 50440,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 312,
+        "cache_read_input_tokens": 61589,
+        "cache_creation_input_tokens": 692,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 692
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1922,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002027,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 27,
+      "outputTokens": 10682,
+      "cacheReadInputTokens": 1015230,
+      "cacheCreationInputTokens": 50440,
+      "webSearchRequests": 0,
+      "costUSD": 1.09005,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "a0630d8b-09ed-4b09-8801-1b3ce0c39ae1"
+}
+```
+
+</details>
+
+---

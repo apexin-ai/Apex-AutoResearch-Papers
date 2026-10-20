@@ -1,0 +1,131 @@
+{
+  "experiment": "8gen_logo",
+  "n_generators": 8,
+  "n_total_rows": 37058,
+  "overall_3class_f1": 0.7698,
+  "overall_binary_f1": 0.7014,
+  "per_generator_3class": {
+    "llama-3.2-3b": {
+      "macro_f1": 0.7621,
+      "gen-0_f1": 0.9397,
+      "gen-1_f1": 0.5939,
+      "gen-2+_f1": 0.7526,
+      "ci_lower": 0.7506,
+      "ci_upper": 0.7731
+    },
+    "mistral-7b-v0.3": {
+      "macro_f1": 0.6159,
+      "gen-0_f1": 0.8318,
+      "gen-1_f1": 0.4489,
+      "gen-2+_f1": 0.567,
+      "ci_lower": 0.6034,
+      "ci_upper": 0.6283
+    },
+    "olmo-2-1b": {
+      "macro_f1": 0.7742,
+      "gen-0_f1": 0.9449,
+      "gen-1_f1": 0.6018,
+      "gen-2+_f1": 0.7757,
+      "ci_lower": 0.7632,
+      "ci_upper": 0.7849
+    },
+    "pythia-1b": {
+      "macro_f1": 0.8564,
+      "gen-0_f1": 0.9855,
+      "gen-1_f1": 0.7099,
+      "gen-2+_f1": 0.8739,
+      "ci_lower": 0.8467,
+      "ci_upper": 0.8664
+    },
+    "pythia-2.8b": {
+      "macro_f1": 0.8169,
+      "gen-0_f1": 0.9802,
+      "gen-1_f1": 0.6595,
+      "gen-2+_f1": 0.8109,
+      "ci_lower": 0.8063,
+      "ci_upper": 0.8277
+    },
+    "qwen3-0.6b": {
+      "macro_f1": 0.8224,
+      "gen-0_f1": 0.9702,
+      "gen-1_f1": 0.6566,
+      "gen-2+_f1": 0.8405,
+      "ci_lower": 0.8114,
+      "ci_upper": 0.8334
+    },
+    "qwen3-1.7b": {
+      "macro_f1": 0.8098,
+      "gen-0_f1": 0.9359,
+      "gen-1_f1": 0.6585,
+      "gen-2+_f1": 0.835,
+      "ci_lower": 0.7985,
+      "ci_upper": 0.8208
+    },
+    "qwen3-8b": {
+      "macro_f1": 0.7009,
+      "gen-0_f1": 0.8372,
+      "gen-1_f1": 0.5604,
+      "gen-2+_f1": 0.7051,
+      "ci_lower": 0.6883,
+      "ci_upper": 0.7143
+    }
+  },
+  "per_generator_binary": {
+    "llama-3.2-3b": {
+      "binary_f1": 0.6845,
+      "ci_lower": 0.6685,
+      "ci_upper": 0.7002
+    },
+    "mistral-7b-v0.3": {
+      "binary_f1": 0.5476,
+      "ci_lower": 0.5326,
+      "ci_upper": 0.5632
+    },
+    "olmo-2-1b": {
+      "binary_f1": 0.6946,
+      "ci_lower": 0.6795,
+      "ci_upper": 0.7099
+    },
+    "pythia-1b": {
+      "binary_f1": 0.7899,
+      "ci_lower": 0.7752,
+      "ci_upper": 0.8043
+    },
+    "pythia-2.8b": {
+      "binary_f1": 0.7393,
+      "ci_lower": 0.7254,
+      "ci_upper": 0.7547
+    },
+    "qwen3-0.6b": {
+      "binary_f1": 0.7573,
+      "ci_lower": 0.7425,
+      "ci_upper": 0.7714
+    },
+    "qwen3-1.7b": {
+      "binary_f1": 0.7479,
+      "ci_lower": 0.7321,
+      "ci_upper": 0.7633
+    },
+    "qwen3-8b": {
+      "binary_f1": 0.6501,
+      "ci_lower": 0.6349,
+      "ci_upper": 0.667
+    }
+  },
+  "baseline_6gen_3class_f1": 0.7893115309790949,
+  "delta_8gen_vs_6gen": -0.0195,
+  "delta_per_generator_vs_6gen": {
+    "olmo-2-1b": 0.0107,
+    "pythia-1b": 0.0002,
+    "pythia-2.8b": 0.0128,
+    "qwen3-0.6b": -0.0019,
+    "qwen3-1.7b": 0.0052,
+    "qwen3-8b": 0.0177
+  },
+  "notes": [
+    "tail_decay computed differently for llama/mistral (NLL proportion) vs original 6 (log-prob slope)",
+    "tail_decay has lowest permutation importance (rank 7/7), impact expected to be minimal",
+    "Binary task: gen-1 vs gen-2+ only (gen-0 excluded)",
+    "gen-0 seeds shared across generators (same Wikipedia seeds)"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "experiment": "independent_seed_control",
+  "description": "Cross-generator depth classification with non-overlapping Wikipedia seeds",
+  "results": [
+    {
+      "train": "Pythia-2.8B (SetA)",
+      "test": "OLMo-2-1B (SetB)",
+      "binary_f1": 0.6945,
+      "ci_lower": 0.6727,
+      "ci_upper": 0.7167,
+      "n_train": 996,
+      "n_test": 1842
+    },
+    {
+      "train": "OLMo-2-1B (SetB)",
+      "test": "Pythia-2.8B (SetA)",
+      "binary_f1": 0.666,
+      "ci_lower": 0.6429,
+      "ci_upper": 0.6893,
+      "n_train": 980,
+      "n_test": 1838
+    }
+  ],
+  "average_binary_f1": 0.6803,
+  "shared_seed_logo_binary_f1_ref": 0.694,
+  "delta_vs_shared": -0.0137
+}

@@ -1,0 +1,43 @@
+Cohen's d: gen-1 vs gen-2+ (Decoding Strategy Batch 2)
+============================================================
+Reference model: Pythia-410M | Date: 2026-05-21
+
+=== pythia-2.8b topk ===
+n=4527 | gen-1: 987, gen-2+: 2545
+Depths: {0: 995, 1: 987, 2: 916, 3: 840, 4: 789}
+
+Shape features (gen-1 vs gen-2+):
+  entropy_max:  d = 0.2742
+  entropy_min:  d = 0.0478
+  tail_decay:   d = 0.1221
+
+Drifting features:
+  entropy_mean: d = 0.7753
+  ttr:          d = 0.4599
+  hapax_ratio:  d = 0.4054
+
+Intermediate:
+  entropy_std:  d = 0.1078
+
+Note: entropy_max d=0.274 exceeds 0.20 threshold (not fully shape-stable).
+      ttr (0.460) and hapax_ratio (0.406) below 0.50 drifting threshold.
+
+=== qwen3-1.7b greedy ===
+n=4864 | gen-1: 985, gen-2+: 2883
+Depths: {0: 996, 1: 985, 2: 970, 3: 962, 4: 951}
+
+Shape features (gen-1 vs gen-2+):
+  entropy_max:  d = 0.0800
+  entropy_min:  d = 0.0122
+  tail_decay:   d = 0.0382
+
+Drifting features:
+  entropy_mean: d = 0.9546
+  ttr:          d = 0.7029
+  hapax_ratio:  d = 0.6575
+
+Intermediate:
+  entropy_std:  d = 0.7957
+
+Note: All shape features well below 0.20. Strong drifting signal.
+      entropy_std unusually high (0.796) — acts as drifting, not intermediate.

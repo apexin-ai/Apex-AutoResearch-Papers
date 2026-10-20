@@ -1,0 +1,23 @@
+{
+  "exp_id": "plan-016-gemma2-2b-rp11",
+  "project": "gen-depth-fingerprint",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:10:59.251Z",
+    "updated_at": "2026-05-16T16:06:29.855Z",
+    "hypothesis": "Gemma-2-2B with repetition_penalty=1.1 — D036 strategy: sole rp=1.1 generator in main results. rp-LOFO Test A gate (F1>0.70 required).",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python generate_chain.py --model-name gemma-2-2b-rp11 --model-path /root/autodl-tmp/models/gemma-2-2b/AI-ModelScope/gemma-2-2b --repetition-penalty 1.1 --device cuda:0",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/gemma-2-2b-rp11/generations_shard0.jsonl",
+      "data_count": 994,
+      "model_name": "gemma-2-2b",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-16T16:06:29.999259+00:00",
+  "trigger": "update_registry"
+}

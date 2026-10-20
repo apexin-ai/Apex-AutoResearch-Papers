@@ -1,0 +1,27 @@
+{
+  "model": "qwen3-0.6b",
+  "temp": 0.5,
+  "binary_f1": 0.7111,
+  "binary_ci_95": [
+    0.6943,
+    0.7285
+  ],
+  "binary_n_test": 3706,
+  "three_class_f1": 0.8019,
+  "three_class_ci_95": [
+    0.7896,
+    0.8145
+  ],
+  "three_class_n_test": 4699,
+  "entropy_mean_spearman_rho": -0.669,
+  "entropy_mean_spearman_p": 0.0,
+  "per_feature_spearman": {
+    "entropy_mean": -0.669,
+    "entropy_std": -0.3317,
+    "entropy_min": -0.4451,
+    "entropy_max": 0.0895,
+    "tail_decay": -0.0754,
+    "ttr": -0.659,
+    "hapax_ratio": -0.6945
+  }
+}

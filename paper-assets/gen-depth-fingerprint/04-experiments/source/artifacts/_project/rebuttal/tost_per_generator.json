@@ -1,0 +1,101 @@
+{
+  "equivalence_bound_d": 0.2,
+  "per_generator": {
+    "llama-3.2-3b": {
+      "n_gen1": 984, "n_gen2p": 2701,
+      "features": {
+        "entropy_max": {"observed_d": 0.0081, "p_tost": 1.34e-07, "equivalent": true},
+        "tail_decay": {"observed_d": 0.188, "p_tost": 0.374, "equivalent": false},
+        "entropy_min": {"observed_d": 0.0067, "p_tost": 1.11e-07, "equivalent": true},
+        "entropy_mean": {"observed_d": 1.1476, "p_tost": 1.0, "equivalent": false},
+        "ttr": {"observed_d": 1.0372, "p_tost": 1.0, "equivalent": false},
+        "hapax_ratio": {"observed_d": 0.9833, "p_tost": 1.0, "equivalent": false},
+        "entropy_std": {"observed_d": 0.4984, "p_tost": 1.0, "equivalent": false}
+      }
+    },
+    "mistral-7b-v0.3": {
+      "n_gen1": 994, "n_gen2p": 2859,
+      "features": {
+        "entropy_max": {"observed_d": -0.004, "p_tost": 5.39e-08, "equivalent": true},
+        "tail_decay": {"observed_d": 0.1604, "p_tost": 0.141, "equivalent": false},
+        "entropy_min": {"observed_d": -0.0377, "p_tost": 5.40e-06, "equivalent": true},
+        "entropy_mean": {"observed_d": 0.8922, "p_tost": 1.0, "equivalent": false},
+        "ttr": {"observed_d": 0.8198, "p_tost": 1.0, "equivalent": false},
+        "hapax_ratio": {"observed_d": 0.8207, "p_tost": 1.0, "equivalent": false},
+        "entropy_std": {"observed_d": 0.2292, "p_tost": 0.786, "equivalent": false}
+      }
+    },
+    "olmo-2-1b": {
+      "n_gen1": 988, "n_gen2p": 2730,
+      "features": {
+        "entropy_max": {"observed_d": 0.0601, "p_tost": 8.33e-05, "equivalent": true},
+        "tail_decay": {"observed_d": 0.223, "p_tost": 0.732, "equivalent": false},
+        "entropy_min": {"observed_d": 0.0682, "p_tost": 1.95e-04, "equivalent": true},
+        "entropy_mean": {"observed_d": 1.1887, "p_tost": 1.0, "equivalent": false},
+        "ttr": {"observed_d": 1.0766, "p_tost": 1.0, "equivalent": false},
+        "hapax_ratio": {"observed_d": 1.0027, "p_tost": 1.0, "equivalent": false},
+        "entropy_std": {"observed_d": 0.6086, "p_tost": 1.0, "equivalent": false}
+      }
+    },
+    "pythia-1b": {
+      "n_gen1": 993, "n_gen2p": 2567,
+      "features": {
+        "entropy_max": {"observed_d": 0.2062, "p_tost": 0.565, "equivalent": false},
+        "tail_decay": {"observed_d": -0.0838, "p_tost": 9.41e-04, "equivalent": true},
+        "entropy_min": {"observed_d": 0.024, "p_tost": 1.29e-06, "equivalent": true},
+        "entropy_mean": {"observed_d": 1.4044, "p_tost": 1.0, "equivalent": false},
+        "ttr": {"observed_d": 0.7984, "p_tost": 1.0, "equivalent": false},
+        "hapax_ratio": {"observed_d": 0.6491, "p_tost": 1.0, "equivalent": false},
+        "entropy_std": {"observed_d": 0.532, "p_tost": 1.0, "equivalent": false}
+      }
+    },
+    "pythia-2.8b": {
+      "n_gen1": 993, "n_gen2p": 2625,
+      "features": {
+        "entropy_max": {"observed_d": 0.2531, "p_tost": 0.923, "equivalent": false},
+        "tail_decay": {"observed_d": -0.0673, "p_tost": 1.90e-04, "equivalent": true},
+        "entropy_min": {"observed_d": -0.0319, "p_tost": 3.42e-06, "equivalent": true},
+        "entropy_mean": {"observed_d": 1.1971, "p_tost": 1.0, "equivalent": false},
+        "ttr": {"observed_d": 0.7689, "p_tost": 1.0, "equivalent": false},
+        "hapax_ratio": {"observed_d": 0.668, "p_tost": 1.0, "equivalent": false},
+        "entropy_std": {"observed_d": 0.3885, "p_tost": 1.0, "equivalent": false}
+      }
+    },
+    "qwen3-0.6b": {
+      "n_gen1": 986, "n_gen2p": 2556,
+      "features": {
+        "entropy_max": {"observed_d": 0.0125, "p_tost": 2.98e-07, "equivalent": true},
+        "tail_decay": {"observed_d": 0.0845, "p_tost": 1.04e-03, "equivalent": true},
+        "entropy_min": {"observed_d": -0.1, "p_tost": 3.84e-03, "equivalent": true},
+        "entropy_mean": {"observed_d": 0.9165, "p_tost": 1.0, "equivalent": false},
+        "ttr": {"observed_d": 0.6276, "p_tost": 1.0, "equivalent": false},
+        "hapax_ratio": {"observed_d": 0.5028, "p_tost": 1.0, "equivalent": false},
+        "entropy_std": {"observed_d": 0.5569, "p_tost": 1.0, "equivalent": false}
+      }
+    },
+    "qwen3-1.7b": {
+      "n_gen1": 983, "n_gen2p": 2638,
+      "features": {
+        "entropy_max": {"observed_d": -0.0198, "p_tost": 7.41e-07, "equivalent": true},
+        "tail_decay": {"observed_d": 0.0879, "p_tost": 1.36e-03, "equivalent": true},
+        "entropy_min": {"observed_d": -0.0491, "p_tost": 2.76e-05, "equivalent": true},
+        "entropy_mean": {"observed_d": 1.115, "p_tost": 1.0, "equivalent": false},
+        "ttr": {"observed_d": 0.9285, "p_tost": 1.0, "equivalent": false},
+        "hapax_ratio": {"observed_d": 0.8301, "p_tost": 1.0, "equivalent": false},
+        "entropy_std": {"observed_d": 0.5155, "p_tost": 1.0, "equivalent": false}
+      }
+    },
+    "qwen3-8b": {
+      "n_gen1": 979, "n_gen2p": 2523,
+      "features": {
+        "entropy_max": {"observed_d": -0.0404, "p_tost": 1.15e-05, "equivalent": true},
+        "tail_decay": {"observed_d": 0.1544, "p_tost": 0.113, "equivalent": false},
+        "entropy_min": {"observed_d": -0.0057, "p_tost": 1.30e-07, "equivalent": true},
+        "entropy_mean": {"observed_d": 0.8638, "p_tost": 1.0, "equivalent": false},
+        "ttr": {"observed_d": 0.708, "p_tost": 1.0, "equivalent": false},
+        "hapax_ratio": {"observed_d": 0.6579, "p_tost": 1.0, "equivalent": false},
+        "entropy_std": {"observed_d": 0.3717, "p_tost": 1.0, "equivalent": false}
+      }
+    }
+  }
+}

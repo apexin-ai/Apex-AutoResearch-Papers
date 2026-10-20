@@ -1,0 +1,15 @@
+{
+  "exp_id": "review-p0b-volume-matched",
+  "project": "gen-depth-fingerprint",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:39:06.387Z",
+    "updated_at": "2026-05-15T13:43:29.288Z",
+    "hypothesis": "P0-B: Volume-matched 5-gen 控制——隔离数据量效应，验证 Qwen3-8B 加入的真实贡献"
+  },
+  "timestamp": "2026-05-15T13:43:29.390033+00:00",
+  "trigger": "update_registry"
+}

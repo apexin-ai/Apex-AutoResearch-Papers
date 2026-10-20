@@ -1,0 +1,64 @@
+{
+  "exp_id": "exp_057",
+  "project": "gen-depth-fingerprint",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:37:15.230Z",
+    "updated_at": "2026-05-20T07:37:19.472Z",
+    "metrics": {
+      "9gen_logo_3class_f1": 0.7516,
+      "9gen_logo_binary_f1": 0.6842,
+      "8gen_baseline_3class_f1": 0.7698,
+      "delta_9gen_vs_8gen": -0.0182,
+      "qwen3_8b_3class_f1": 0.7,
+      "qwen3_8b_3class_ci": [
+        0.6874,
+        0.7133
+      ],
+      "qwen3_8b_binary_f1": 0.654,
+      "qwen3_8b_binary_ci": [
+        0.6383,
+        0.6709
+      ],
+      "qwen3_8b_per_class": {
+        "gen0_f1": 0.84,
+        "gen1_f1": 0.5592,
+        "gen2plus_f1": 0.7009
+      },
+      "gemma_2_2b_3class_f1": 0.6143,
+      "gemma_2_2b_3class_ci": [
+        0.5748,
+        0.654
+      ],
+      "gemma_2_2b_binary_f1": 0.5539,
+      "gemma_2_2b_binary_ci": [
+        0.4224,
+        0.684
+      ],
+      "gemma_2_2b_per_class": {
+        "gen0_f1": 0.9737,
+        "gen1_f1": 0.0625,
+        "gen2plus_f1": 0.8067
+      },
+      "per_gen_3class_f1": {
+        "pythia-1b": 0.8496,
+        "pythia-2.8b": 0.8174,
+        "qwen3-0.6b": 0.8167,
+        "qwen3-1.7b": 0.8087,
+        "olmo-2-1b": 0.7767,
+        "llama-3.2-3b": 0.7688,
+        "qwen3-8b": 0.7,
+        "gemma-2-2b": 0.6143,
+        "mistral-7b-v0.3": 0.6122
+      },
+      "n_total_rows": 38119,
+      "n_generators": 9
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T07:37:19.693073+00:00",
+  "trigger": "update_registry"
+}

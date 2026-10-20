@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Feature group ablation and complementarity (8-gen 10-fold CV).
+Both subsets significantly underperform the full set (+8.5\,pp, +5.9\,pp).
+Permutation importance: \texttt{hapax\_ratio} (0.269) $>$ \texttt{entropy\_mean} (0.164) $>$ \texttt{ttr} (0.159).}
+\label{tab:feature-ablation}
+\begin{tabular}{lp{3.2cm}ccc}
+\toprule
+\textbf{Feature Set} & \textbf{Features} & \textbf{LOGO F1} & \textbf{95\% CI} & \textbf{McNemar $p$} \\
+\midrule
+Full (7 features) & all & 0.773 & --- & --- \\
+Surface only (2)  & TTR, hapax\_ratio & 0.688 & --- & $<$ 0.001 \\
+Reference only (5) & entropy\_mean/std/min/max, tail\_decay & 0.713 & --- & $<$ 0.001 \\
+\bottomrule
+\end{tabular}
+\end{table}

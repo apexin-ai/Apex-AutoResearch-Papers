@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_058_ddr_causality",
+  "project": "gen-depth-fingerprint",
+  "state": "ALLOCATED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:05:46.902Z",
+    "updated_at": "2026-05-20T07:32:21.537Z",
+    "hypothesis": "DDR features have causal predictive power for depth beyond correlation: permutation importance confirms each feature group (drifting/stationary) contributes independently, and Granger causality tests show depth-t features predict depth-(t+1) features beyond autoregressive baseline, establishing temporal causal direction in the generation chain",
+    "notes": "脚本 444 行，3 模块（permutation/granger/intervention）已实现并 dry-run 验证。全部 CPU-bound，不需要 GPU。数据: features_8gen.csv 37058 行。预估: Granger ~2min, Permutation ~15min, Intervention ~45min，可并行。",
+    "server": "bjb2-18868",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "server": "bjb2-18868",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-20T07:31:57.474Z"
+    }
+  },
+  "timestamp": "2026-05-20T07:32:21.634772+00:00",
+  "trigger": "update_registry"
+}

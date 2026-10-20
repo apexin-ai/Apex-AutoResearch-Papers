@@ -1,0 +1,77 @@
+# director / loop_7.md
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/director/loop_7.md`
+- **Structured JSON:** [`cfc6108c5f21c02f01b8.json`](../../sessions/cf/cfc6108c5f21c02f01b8.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 7
+reason: max_messages
+updated: '2026-05-24T21:50:15+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- EMNLP 2026 主文严格 8 页限制（Limitations 不计入），当前刚好卡在边界，任何增加主文内容的操作必须同步压缩其他段落
+- 论文所有主文图的 DDR zone 配色必须统一：Drifting=#D6604D (红), Intermediate=#7570B3 (紫), Near-stationary=#4393C3 (蓝)。已在 5 个图脚本中统一，不可回退
+- 图表 caption 中颜色描述必须与实际配色一致（已从 "blue/amber" 更新为 "red/blue/purple"）
+
+### 2. 🖥️ 基础设施快照
+- 本项目无远程服务器，所有图表在本地生成
+- 论文目录：`/home/ubuntu/.agent-ml-research-idea_gen_0514_3/projects/gen-depth-fingerprint/docs/paper/`
+- 图表脚本：`artifacts/_project/chart/` 下的 `fig1_ddr_v3.py`, `fig2_framework_v5.py`, `fig3_baseline_v2.py`, `plot_convergence_dynamics.py`, `fig_ddr_trajectory_v2.py`, `docs/chart/fix_colors.py`
+- Python: `python3`（系统 Python）
+- 编译：`latexmk -pdf -interaction=nonstopmode -g main.tex`（必须 `-g` 强制重编译）
+- 无活跃训练进程 / 无 cron
+
+### 3. 📊 当前状态
+正在处理曹晓玉的三部分请求：
+1. ✅ Limitations 拆为 3 段
+2. ✅ 主文 6 个图配色统一（DDR 三色系），caption 颜色描述已更新
+3. 🔄 页面布局优化（进行中）
+
+**已完成的图颜色更新**：
+- `fig_ddr_trajectory_v2.py` (Fig 1): grand mean 从蓝/琥珀改为红/蓝
+- `fig1_ddr_v3.py` (Fig 3): DDR zone 从 Wong palette 改为统一三色
+- `plot_convergence_dynamics.py` (Fig 4): 特征颜色按 DDR zone 分配
+- `fig3_baseline_v2.py` (Fig 5): 方法颜色按 DDR 语义分配
+- `fix_colors.py` (Fig 6/16/17): 已使用正确颜色
+- `fig2_framework_v5.py`: 新增 DDR zone 三色框（列宽竖版）
+
+**页面布局当前状态**：
+- 在 method.tex 插入了列宽 framework figure（`figure[t]`），落在 p4
+- 压缩了 discussion.tex（`\looseness=-1` + 删冗余句），但尚未编译验证是否回到 8 页
+- **关键待验证**：编译后检查主文是否 ≤ 8 页。如果仍超，需进一步压缩或移除 framework figure
+
+**页面图分布**：p2✓ p3✗ p4✓ p5✓ p6✓ p7✓ p8✓ — p3 仍无图（只有 Table 1）
+
+### 4. 📋 待办
+- 立即编译 → 检查页数：≤8 页 → 继续；>8 页 → 进一步压缩 Discussion/Results 或移除 framework figure
+- p3 无图问题：可尝试把 framework figure 从 `figure[t]` 改为在 method.tex 更早位置定义让 LaTeX 浮动到 p3；或接受 p3 只有 Table 不强求
+- 编译通过后 → `pdf_to_images` 全 8 页视觉审查 → `feishu_upload_file` 上传 PDF 给用户
+- Fig 2（transfer heatmap）配色：使用 `RdBu_r` colormap 表示 F1 值，与 DDR 语义无关，可保持不变——但需确认用户是否接受
+
+### 5. 🎯 战略上下文
+- 项目处于审稿阶段，论文内容基本定稿，当前改动是视觉/排版层面
+- 用户（曹晓玉）对"颜色一致"要求极严格："不只是色系一致，而是真正的颜色一致"
+- 8 页限制是硬约束，framework figure 的价值 vs 页数开销需要权衡——如果压缩后仍超页，优先保 8 页，移除 framework figure
+- feedback memory: 每次论文编辑+编译后必须上传 PDF 给用户（`feedback_upload_pdf.md`）
+- feedback memory: 两栏排版优先竖向单栏图（`feedback_figure_layout.md`）——framework figure 已采用列宽竖版设计
+
+
+---

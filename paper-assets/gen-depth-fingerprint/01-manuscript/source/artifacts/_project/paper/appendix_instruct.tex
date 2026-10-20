@@ -1,0 +1,96 @@
+\subsection*{Instruction-Tuned Model Results}
+
+Table~\ref{tab:instruct} summarizes depth classification under instruction tuning for three model families.
+All results use within-model 5-fold CV on single-generator chains; LOGO evaluation is available for two models but uses earlier generator subsets (5--6 generators), so cross-model numbers are not directly comparable across rows.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Depth classification: base vs.\ instruction-tuned models (within-model 5-fold CV). $\rho$: Spearman correlation of entropy mean with depth. Rev.: number of features (out of 7) whose $\rho$ reverses sign under instruction tuning.}
+\label{tab:instruct}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lcc cc cc c}
+\toprule
+& \multicolumn{2}{c}{\textbf{3-class F1}} & \multicolumn{2}{c}{\textbf{Binary F1}} & \multicolumn{2}{c}{$\boldsymbol{\rho}$\textbf{(ent.\ mean)}} & \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+\textbf{Model} & Base & Instruct & Base & Instruct & Base & Instruct & \textbf{Rev.} \\
+\midrule
+OLMo-2-1B       & 0.754 & 0.575 & 0.845 & 0.813 & $-$0.64 & $+$0.48 & 6/7 \\
+Qwen3-1.7B      & 0.769 & 0.732 & 0.861 & 0.875 & $-$0.60 & $+$0.48 & 6/7 \\
+Llama-3.2-3B    & 0.742 & 0.544 & 0.849 & 0.838 & $-$0.63 & $+$0.23 & 3/7 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+Instruction tuning degrades 3-class F1 by 3.7--19.9\,pp across all three families, while binary F1 (gen-1 vs.\ gen-2+) changes remain small ($|\Delta| \leq 3.2$\,pp).
+The asymmetry indicates that instruction tuning primarily disrupts the gen-0/gen-1 boundary (human vs.\ first-generation), consistent with RLHF shifting the output distribution away from human-like text.
+Entropy-mean $\rho$ reverses sign for all three models ($-0.60$--$-0.64$ base $\rightarrow$ $+0.23$--$+0.48$ instruct), and 6 of 7 features reverse for OLMo and Qwen vs.\ 3 of 7 for Llama.
+This pattern is consistent with instruction tuning shifting the generation attractor rather than eliminating iterative dynamics (\S\ref{sec:discussion}).
+
+\paragraph{Retraining on instruction-tuned data.}
+To test whether the depth signal persists under instruction tuning with reversed polarity, we retrain the XGBoost classifier on instruction-tuned feature data (Table~\ref{tab:instruct-retrain}).
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Classification recovery under instruction-tuned retraining (binary-only: gen-1 vs.\ gen-2+, gen-0 excluded from training and evaluation). Base$\rightarrow$Inst: base-trained classifier tested on instruct data. Note: Table~\ref{tab:instruct} reports higher instruct binary F1 (e.g., OLMo 0.813) because it uses 3-class training with binary evaluation, where gen-0 in training helps the classifier learn the feature space.}
+\label{tab:instruct-retrain}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Model} & \textbf{Base$\rightarrow$Inst} & \textbf{Retrained} & \textbf{$\Delta$} \\
+\midrule
+OLMo-2-1B-Inst   & 0.321 & 0.590 & $+$0.269 \\
+Qwen3-1.7B-Inst  & 0.500 & 0.660 & $+$0.160 \\
+Qwen3-0.6B-Inst  & 0.532 & 0.600 & $+$0.068 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Retraining recovers substantial within-model performance ($+$6.8--26.9\,pp), but the retrained F1 (0.590--0.660) remains below base-model levels (0.69--0.72). Instruction tuning compresses depth signal beyond what retraining on reversed-polarity features can fully recover.
+
+\paragraph{DDR structure under instruction tuning.}
+$k{=}2$ clustering in $(|\rho|, d)$ space on pooled instruct features yields silhouette\,=\,0.372 (vs.\ 0.660 for base models); the clean drifting/non-drifting partition is substantially compressed.
+The compression is model-dependent: OLMo-Instruct shows near-zero $|\rho|$ for TTR and hapax (0.006, 0.025), while Qwen instruct models retain moderate correlations ($|\rho|{=}0.48$--$0.53$).
+Cross-condition transfer is near chance in both directions (base$\rightarrow$instruct binary F1\,=\,0.490; instruct$\rightarrow$base F1\,=\,0.454), with the asymmetry ($-$0.036) suggesting that instruct-trained features generalize even less to base distributions than the reverse.
+These results indicate that instruction tuning compresses the feature-space structure underlying DDR rather than simply reversing feature directions (Figure~\ref{fig:instruct-ddr}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_appendix_instruct_ddr.pdf}
+\caption{DDR partition under base vs.\ instruction-tuned models. (a)~Base models (silhouette\,=\,0.660): clear drifting/non-drifting separation. (b)~Instruction-tuned models (silhouette\,=\,0.372): all features compress toward zero, collapsing the partition; entropy max shifts from near-stationary to intermediate; formerly drifting features (hapax, TTR) lose most of their effect size. Bars show pooled $|d|$; markers show individual generators.}
+\label{fig:instruct-ddr}
+\end{figure}
+
+\paragraph{Reference model sensitivity.}
+One hypothesis for the instruct degradation is reference-model mismatch: the base Pythia-410M reference may produce systematically biased NLL estimates on instruction-tuned outputs, masking depth-dependent variation.
+To test this, we replace the reference with Qwen3-0.6B-Instruct and recompute all features on the two instruct generators.
+The hypothesis is partially rejected: Qwen3-1.7B-Instruct shows mixed changes (entropy max $d$: $0.51 \to 0.08$, becoming near-stationary; entropy std $d$: $1.07 \to 1.51$, increasing), while OLMo-Instruct loses nearly all depth signal (entropy mean $d$: $1.33 \to 0.02$; tail decay $d$: $0.60 \to 0.06$).
+The model-dependent heterogeneity rules out reference mismatch as a universal explanation for instruct DDR degradation. Alignment fundamentally reshapes the generation dynamics rather than introducing a correctable measurement artifact.
+
+\paragraph{End-to-end instruct classification.}
+To test whether depth signal persists at the token level despite summary-statistic degradation, we apply the QLoRA end-to-end classifier (Appendix~\ref{app:qlora}) to instruction-tuned data using within-model 5-fold stratified CV (Table~\ref{tab:instruct-qlora}).
+
+\begin{table}[ht]
+\centering
+\small
+\caption{End-to-end QLoRA vs.\ XGBoost on instruction-tuned data (within-model 5-fold CV, Qwen3-0.6B backbone). Base QLoRA rows shown for reference only; instruct sets ($N{\approx}4.4$--$5.0$K) are approximately twice the base sets ($N{\approx}2.3$K), so cross-condition comparison is confounded by training set size.}
+\label{tab:instruct-qlora}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+& \multicolumn{2}{c}{\textbf{3-class F1}} & & \\
+\cmidrule(lr){2-3}
+\textbf{Model} & XGB & QLoRA & $\boldsymbol{\Delta}$ & \textbf{$N$} \\
+\midrule
+OLMo-2-1B-Inst   & 0.575 & 0.888\,$\pm$\,0.007 & $+$31.3\,pp & 4{,}429 \\
+Qwen3-1.7B-Inst  & 0.732 & 0.907\,$\pm$\,0.008 & $+$17.5\,pp & 4{,}963 \\
+\midrule
+OLMo-2-1B (base) &       & 0.859\,$\pm$\,0.004 &             & 2{,}379 \\
+Qwen3-1.7B (base)&       & 0.904\,$\pm$\,0.009 &             & 2{,}291 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+The XGBoost-to-QLoRA gap on the same instruct data is substantial ($+$17.5 to $+$31.3\,pp). Depth signal persists at the token level under instruction tuning but is inaccessible to the seven summary statistics; the degradation reported in Table~\ref{tab:instruct} reflects a feature-level limitation rather than signal absence.
+Note that instruct samples are approximately twice the base count used here (Table~\ref{tab:instruct-qlora}), so the instruct-vs-base QLoRA comparison is confounded by training set size; the meaningful comparison is QLoRA-vs-XGBoost on the same instruct data.
+All results use within-model 5-fold CV, not cross-generator LOGO, limiting generalization claims.

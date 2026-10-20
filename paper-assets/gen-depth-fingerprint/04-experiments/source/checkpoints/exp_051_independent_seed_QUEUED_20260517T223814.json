@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_051_independent_seed",
+  "project": "gen-depth-fingerprint",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T22:38:00.466Z",
+    "updated_at": "2026-05-17T22:38:13.942Z",
+    "hypothesis": "Cross-generator depth classification with non-overlapping seeds achieves comparable F1 to shared-seed LOGO, ruling out topic fingerprint leakage"
+  },
+  "timestamp": "2026-05-17T22:38:14.045820+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1517 @@
+# fix pooled rho computation
+
+**Depth Profiling: Classifying Recursive Generation Depth in Base-Model LLM Text** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 51
+- **Recorded user turns:** 0
+- **Tool calls:** 25
+- **Original source:** `logs/chats/worker_fix_pooled-rho-computation_20260516T060056.jsonl`
+- **Structured JSON:** [`8305f04bbbbfa02713f9.json`](../../sessions/83/8305f04bbbbfa02713f9.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+51 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T06:02:47.588478+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T06:02:47.588786+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T06:02:47.588941+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/gen-depth-fingerprint/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/gen-depth-fingerprint/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T06:02:47.589070+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/gen-depth-fingerprint/data/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/gen-depth-fingerprint/data/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-16T06:02:47.589217+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ablation_results.json\\nalt_classifier_results.json\\nbinary_bootstrap_pvalue.json\\nbootstrap_ci_results.json\\nbootstrap_ci_v2_results.json\\nconfusion_matrix_3class.json\\nconfusion_matrix_results.json\\ncross_model_chains_results.json\\ndataset_stats.json\\ndataset_stats_table.tex\\ndepth_trends.png\\nfamily_holdout_3class.json\\nfig1_differential_response_v2.pdf\\nfig1_differential_response_v2.png\\nfiner_ordinal_results.json\\nhuman_edit_robustness.json\\nhuman_edit_robustness_old_no_chat_template.json\\ninstruct_length_confound.json\\nlofo_ablation_results.json\\nmulti_classify_results.csv\\nmulti_classify_results.json\\nmulti_domain_results.json\\nmulti_seed_stability.json\\nmvp_results.json\\nn2a_bootstrap_ci.json\\nordinal_baseline_results.json\\np1c_instruct_logo_f1.json\\nper_gen_binary_f1.json\\nperplexity_by_depth.json\\nplan006_paraphrastic_comparison.json\\nplan006_paraphrastic_comparison_old_rp13.json\\nplan012_pythia410m_results.json\\nplan012_qwen06b_results.json\\nplan012_qwen06b_seed123_r32_results.json\\nplan012_xgboost_matched.json\\nrd3_int1_entropy_std_pergen.json\\nreview_baseline_ensemble_results.json\\nreview_overall_ci_results.json\\nreview_overall_ci_v2_results.json\\nreview_p0a_binary_logo.json\\nreview_p0b_volume_matched.json\\nreview_p1c_instruct.json\\nreview_p1c_olmo_instruct.json\\nreview_p1c_qwen06b_instruct.json\\nreview_p1d_6gen_baselines.json\\nreview_p1e_ordinal.json\\nreview_p2f_cross_ref_bias.json\\nreview_topic_drift_results.json\\nsampling_ablation.json\\nspearman_per_generator.json\\ntrend_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-16T06:02:47.589348+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/gen-depth-fingerprint/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/gen-depth-fingerprint/scripts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T06:02:47.589487+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"cross-model-chains\\ncross_generator_report.md\\ncross_generator_results.json\\ncross_ref_results.json\\ndetector_baseline_results.json\\ndetector_scores.csv\\ndetector_scores_all.csv\\ndownstream\\nfeatures.csv\\nfeatures_all.csv\\nfeatures_all_models.csv\\nfeatures_olmo-2-0425-1b-instruct.csv\\nfeatures_olmo-2-1b.csv\\nfeatures_pythia-1b.csv\\nfeatures_pythia-2.8b-creative.csv\\nfeatures_pythia-2.8b-news.csv\\nfeatures_pythia-2.8b-news.csv.pre_dedup\\nfeatures_pythia-2.8b-scientific.csv\\nfeatures_pythia-2.8b.csv\\nfeatures_qwen3-0.6b-instruct.csv\\nfeatures_qwen3-0.6b.csv\\nfeatures_qwen3-1.7b-high-temp.csv\\nfeatures_qwen3-1.7b-instruct.csv\\nfeatures_qwen3-1.7b-low-temp.csv\\nfeatures_qwen3-1.7b.csv\\nfeatures_ref_olmo.csv\\nfeatures_ref_qwen.csv\\ngenerations.jsonl\\ngenerations_shard0.jsonl\\ngenerations_shard1.jsonl\\ngenerations_shard2.jsonl\\ngenerations_shard3.jsonl\\nolmo-2-0425-1b-instruct\\nolmo-2-1b\\nparaphrase_features.csv\\nparaphrase_features_old_rp13.csv\\nplan015_bootstrap_ci.json\\nprompt_type_results.json\\npythia-1b\\npythia-2.8b-continuation\\npythia-2.8b-creative\\npythia-2.8b-elaboration\\npythia-2.8b-inspired_rewriting\\npythia-2.8b-news\\npythia-2.8b-paraphrase\\npythia-2.8b-paraphrase_backup\\npythia-2.8b-scientific\\nqwen3-0.6b\\nqwen3-0.6b-instruct\\nqwen3-1.7b\\nqwen3-1.7b-high-temp\\nqwen3-1.7b-instruct\\nqwen3-1.7b-low-temp\\nqwen3-8b\\nseeds\\ntext_length_analysis.json\\ntext_length_boxplot.png\\nwiki_seed_1000.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T06:02:47.589666+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nalt_classifier_eval.py\\nanalyze_prompt_types.py\\nbinary_bootstrap_pvalue.py\\nbootstrap_ci.py\\nbootstrap_ci_6gen.py\\nbootstrap_ci_v2.py\\nfamily_holdout_3class.py\\ninstruct_length_confound.py\\nlofo_ablation.py\\nmulti_seed_stability.py\\nolmo_instruct_length_confound.py\\nordinal_baseline.py\\nordinal_baseline.py.bak\\np1c_instruct_logo_f1.py\\nplan012_xgboost_matched.py\\nplot_fig1.py\\nplot_fig1_strip.py\\nplot_fig2.py\\nplot_fig3.py\\nreview_baseline_ensemble.py\\nreview_overall_ci.py\\nreview_p0a_binary_logo.py\\nreview_p0b_volume_matched.py\\nreview_p1c_qwen06b_instruct.py\\nreview_p1d_6gen_baselines.py\\nreview_p1e_ordinal.py\\nreview_topic_drift.py\\nround3_computations.py\\nrun_plan014_postproc.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T06:02:47.589818+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -5 /root/gen-depth-fingerprint/data/features_all.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -5 /root/gen-depth-fingerprint/data/features_all.csv",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T06:02:47.589946+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\\npythia-2.8b,0,0,2.750941038131714,1.7452049255371094,0.0037155151367187,8.1875,-0.0023365610659114,0.6565656565656566,0.5454545454545454\\npythia-2.8b,0,1,2.614940404891968,1.5979273319244385,0.0012836456298828,7.58984375,-0.0024120605262577,0.5532994923857868,0.4010152284263959\\npythia-2.8b,0,2,2.637716293334961,1.539425253868103,0.004119873046875,8.046875,-0.0023911462288827,0.3981042654028436,0.2606635071090047\\npythia-2.8b,0,3,0.6078211069107056,1.422417163848877,4.7087669372558594e-05,7.359375,-0.0023208776900405,0.088235294117647,0.0147058823529411\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T06:02:47.590071+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/spearman_per_generator.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/gen-depth-fingerprint/results/spearman_per_generator.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T06:02:47.590220+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pythia-1b\\\": {\\n    \\\"entropy_mean\\\": -0.712,\\n    \\\"entropy_std\\\": -0.2414,\\n    \\\"entropy_min\\\": -0.5051,\\n    \\\"entropy_max\\\": 0.0048,\\n    \\\"tail_decay\\\": 0.0904,\\n    \\\"ttr\\\": -0.6568,\\n    \\\"hapax_ratio\\\": -0.6741\\n  },\\n  \\\"pythia-2.8b\\\": {\\n    \\\"entropy_mean\\\": -0.6754,\\n    \\\"entropy_std\\\": -0.153,\\n    \\\"entropy_min\\\": -0.4797,\\n    \\\"entropy_max\\\": -0.0351,\\n    \\\"tail_decay\\\": 0.0633,\\n    \\\"ttr\\\": -0.6333,\\n    \\\"hapax_ratio\\\": -0.6553\\n  },\\n  \\\"olmo-2-1b\\\": {\\n    \\\"entropy_mean\\\": -0.6386,\\n    \\\"entropy_std\\\": -0.2958,\\n    \\\"entropy_min\\\": -0.3874,\\n    \\\"entropy_max\\\": 0.0672,\\n    \\\"tail_decay\\\": -0.1411,\\n    \\\"ttr\\\": -0.6996,\\n    \\\"hapax_ratio\\\": -0.7124\\n  },\\n  \\\"qwen3-0.6b\\\": {\\n    \\\"entropy_mean\\\": -0.5656,\\n    \\\"entropy_std\\\": -0.2294,\\n    \\\"entropy_min\\\": -0.3587,\\n    \\\"entropy_max\\\": 0.0857,\\n    \\\"tail_decay\\\": -0.0902,\\n    \\\"ttr\\\": -0.6111,\\n    \\\"hapax_ratio\\\": -0.6273\\n  },\\n  \\\"qwen3-1.7b\\\": {\\n    \\\"entropy_mean\\\": -0.6022,\\n    \\\"entropy_std\\\": -0.1882,\\n    \\\"entropy_min\\\": -0.4062,\\n    \\\"entropy_max\\\": 0.0884,\\n    \\\"tail_decay\\\": -0.0698,\\n    \\\"ttr\\\": -0.6523,\\n    \\\"hapax_ratio\\\": -0.6696\\n  },\\n  \\\"qwen3-8b\\\": {\\n    \\\"entropy_mean\\\": -0.4754,\\n    \\\"entropy_std\\\": -0.0755,\\n    \\\"entropy_min\\\": -0.3029,\\n    \\\"entropy_max\\\": 0.0946,\\n    \\\"tail_decay\\\": -0.0894,\\n    \\\"ttr\\\": -0.5419,\\n    \\\"hapax_ratio\\\": -0.5578\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T06:02:47.590350+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -50 /root/gen-depth-fingerprint/scripts/plot_fig1_strip.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -50 /root/gen-depth-fingerprint/scripts/plot_fig1_strip.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T06:02:47.590486+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Figure 1: Strip plot of per-generator Spearman rho with overall markers.\\\"\\\"\\\"\\nimport json\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom pathlib import Path\\n\\nplt.rcParams.update({\\n    'font.family': 'serif',\\n    'font.serif': ['Times New Roman', 'DejaVu Serif', 'Nimbus Roman'],\\n    'font.size': 8,\\n    'axes.labelsize': 9,\\n    'axes.titlesize': 9,\\n    'xtick.labelsize': 7.5,\\n    'ytick.labelsize': 7,\\n    'legend.fontsize': 6,\\n    'figure.dpi': 300,\\n    'savefig.dpi': 300,\\n    'savefig.bbox': 'tight',\\n    'axes.spines.top': False,\\n    'axes.spines.right': False,\\n    'axes.grid': False,\\n    'mathtext.fontset': 'cm',\\n})\\n\\nwith open('/root/gen-depth-fingerprint/results/spearman_per_generator.json') as f:\\n    per_gen = json.load(f)\\n\\nfeatures = ['hapax_ratio', 'ttr', 'entropy_mean', 'entropy_min', 'entropy_max', 'tail_decay', 'entropy_std']\\nfeat_labels = ['Hapax', 'TTR', r'$\\\\bar{H}$', r'$H_{\\\\min}$', r'$H_{\\\\max}$', 'Tail Dec.', r'$\\\\sigma_H$']\\n\\noverall = {\\n    'hapax_ratio': -0.558, 'ttr': -0.542, 'entropy_mean': -0.475,\\n    'entropy_min': -0.303, 'entropy_max': 0.095,\\n    'tail_decay': -0.089, 'entropy_std': -0.076,\\n}\\n\\ndrifting = {'hapax_ratio', 'ttr', 'entropy_mean', 'entropy_min'}\\n\\ngenerators = list(per_gen.keys())\\n\\nCOLORS = {\\n    'pythia-1b':   '#E69F00',\\n    'pythia-2.8b': '#56B4E9',\\n    'olmo-2-1b':   '#009E73',\\n    'qwen3-0.6b':  '#0072B2',\\n    'qwen3-1.7b':  '#D55E00',\\n    'qwen3-8b':    '#CC79A7',\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T06:02:47.590647+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/gen-depth-fingerprint/data/features_all.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "wc -l /root/gen-depth-fingerprint/data/features_all.csv",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T06:02:47.590772+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"21 /root/gen-depth-fingerprint/data/features_all.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T06:02:47.590883+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"import pandas as pd; df=pd.read_csv('/root/gen-depth-fingerprint/data/features_all.csv'); print('Models:', df['model_name'].unique()); print('Counts:', df['model_name'].value_counts().to_dict()); print('Total:', len(df))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "python3 -c \"import pandas as pd; df=pd.read_csv('/root/gen-depth-fingerprint/data/features_all.csv'); print('Models:', df['model_name'].unique()); print('Counts:', df['model_name'].value_counts().to_dict()); print('Total:', len(df))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T06:02:47.591012+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T06:02:47.591181+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/gen-depth-fingerprint/data/features_pythia-1b.csv /root/gen-depth-fingerprint/data/features_pythia-2.8b.csv /root/gen-depth-fingerprint/data/features_olmo-2-1b.csv /root/gen-depth-fingerprint/data/features_qwen3-0.6b.csv /root/gen-depth-fingerprint/data/features_qwen3-1.7b.csv /root/gen-depth-fingerprint/data/features_qwen3-8b.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "wc -l /root/gen-depth-fingerprint/data/features_pythia-1b.csv /root/gen-depth-fingerprint/data/features_pythia-2.8b.csv /root/gen-depth-fingerprint/data/features_olmo-2-1b.csv /root/gen-depth-fingerprint/data/features_qwen3-0.6b.csv /root/gen-depth-fingerprint/data/features_qwen3-1.7b.csv /root/gen-depth-fingerprint/data/features_qwen3-8b.csv",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T06:02:47.591320+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"   4556 /root/gen-depth-fingerprint/data/features_pythia-1b.csv\\n   4610 /root/gen-depth-fingerprint/data/features_pythia-2.8b.csv\\n   4714 /root/gen-depth-fingerprint/data/features_olmo-2-1b.csv\\n   4539 /root/gen-depth-fingerprint/data/features_qwen3-0.6b.csv\\n   4618 /root/gen-depth-fingerprint/data/features_qwen3-1.7b.csv\\n  23037 total\\n\", \"stderr\": \"wc: /root/gen-depth-fingerprint/data/features_qwen3-8b.csv: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-16T06:02:47.591448+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -3 /root/gen-depth-fingerprint/data/features_pythia-1b.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -3 /root/gen-depth-fingerprint/data/features_pythia-1b.csv",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T06:02:47.591568+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\\npythia-1b,0,0,2.7512362003326416,1.7449111938476562,0.0035419464111328125,8.1875,-0.002336906582095497,0.6565656565656566,0.5454545454545454\\npythia-1b,0,1,2.2214949131011963,1.8826262950897217,0.0015554428100585938,7.73828125,-0.002317933291661955,0.4371859296482412,0.19095477386934673\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T06:02:47.591738+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/gen-depth-fingerprint/data/ -name \"*qwen3-8b*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/gen-depth-fingerprint/data/ -name \"*qwen3-8b*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T06:02:47.591858+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T06:02:47.591969+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "ls /root/gen-depth-fingerprint/data/qwen3-8b/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "ls /root/gen-depth-fingerprint/data/qwen3-8b/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T06:02:47.592083+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"generations.jsonl\\ngenerations_final.jsonl\\ngenerations_recovered.jsonl\\ngenerations_shard0.jsonl\\ngenerations_shard0.jsonl.bak_416\\ngenerations_shard0_recovered.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T06:02:47.592210+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -l \"spearman\" /root/gen-depth-fingerprint/scripts/*.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -l \"spearman\" /root/gen-depth-fingerprint/scripts/*.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T06:02:47.592332+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/scripts/bootstrap_ci.py\\n/root/gen-depth-fingerprint/scripts/instruct_length_confound.py\\n/root/gen-depth-fingerprint/scripts/olmo_instruct_length_confound.py\\n/root/gen-depth-fingerprint/scripts/ordinal_baseline.py\\n/root/gen-depth-fingerprint/scripts/plot_fig1_strip.py\\n/root/gen-depth-fingerprint/scripts/review_overall_ci.py\\n/root/gen-depth-fingerprint/scripts/review_p1c_qwen06b_instruct.py\\n/root/gen-depth-fingerprint/scripts/review_topic_drift.py\\n/root/gen-depth-fingerprint/scripts/round3_computations.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T06:02:47.592451+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "find /root/gen-depth-fingerprint/ -name \"features_all_models.csv\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "find /root/gen-depth-fingerprint/ -name \"features_all_models.csv\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T06:02:47.592566+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/gen-depth-fingerprint/data/features_all_models.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T06:02:47.592703+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "wc -l /root/gen-depth-fingerprint/data/features_all_models.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "wc -l /root/gen-depth-fingerprint/data/features_all_models.csv",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-16T06:02:47.592812+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "head -3 /root/gen-depth-fingerprint/data/features_all_models.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "head -3 /root/gen-depth-fingerprint/data/features_all_models.csv",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T06:02:47.592922+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"27530 /root/gen-depth-fingerprint/data/features_all_models.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T06:02:47.593031+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"model_name,seed_id,depth,entropy_mean,entropy_std,entropy_min,entropy_max,tail_decay,ttr,hapax_ratio\\npythia-2.8b,0,0,2.7516980171203613,1.744314193725586,0.003396987915039,8.1875,-0.0023380015550609,0.6565656565656566,0.5454545454545454\\npythia-2.8b,0,1,2.616674900054932,1.59860098361969,0.0011329650878906,7.59375,-0.002411389477936,0.5532994923857868,0.4010152284263959\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-16T06:02:47.593158+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "python3 -c \"import pandas as pd; df=pd.read_csv('/root/gen-depth-fingerprint/data/features_all_models.csv'); print(df['model_name'].value_counts())\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "python3 -c \"import pandas as pd; df=pd.read_csv('/root/gen-depth-fingerprint/data/features_all_models.csv'); print(df['model_name'].value_counts())\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T06:02:47.593277+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T06:02:47.593387+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -oP \"^[^,]+\" /root/gen-depth-fingerprint/data/features_all_models.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -oP \"^[^,]+\" /root/gen-depth-fingerprint/data/features_all_models.csv",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T06:02:47.593671+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"model_name\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\npythia-2.8b\\
+…[truncated 7759 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-16T06:02:47.593854+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat > /root/gen-depth-fingerprint/scripts/compute_pooled_rho.py << 'PYEOF'\nimport pandas as pd\nimport numpy as np\nfrom scipy.stats import spearmanr\nimport json\n\nfeatures = ['hapax_ratio', 'ttr', 'entropy_mean', 'entropy_min', 'entropy_max', 'tail_decay', 'entropy_std']\n\n# Step 1: Pooled Spearman rho\ndf = pd.read_csv('/root/gen-depth-fingerprint/data/features_all_models.csv')\ngenerators = sorted(df['model_name'].unique().tolist())\nn_samples = len(df)\n\nprint(f\"Generators: {generators}\")\nprint(f\"Per-gen counts: {df['model_name'].value_counts().to_dict()}\")\nprint(f\"Total samples: {n_samples}\")\nprint()\n\npooled_rho = {}\nfor feat in features:\n    rho, pval = spearmanr(df[feat], df['depth'])\n    pooled_rho[feat] = round(rho, 4)\n\n# Step 2: Per-gen median rho\nwith open('/root/gen-depth-fingerprint/results/spearman_per_generator.json') as f:\n    per_gen = json.load(f)\n\nper_gen_median_rho = {}\nfor feat in features:\n    vals = sorted([per_gen[g][feat] for g in per_gen])\n    median_val = (vals[2] + vals[3]) / 2  # 6 values: median = avg of 3rd and 4th\n    per_gen_median_rho[feat] = round(median_val, 4)\n\n# Save results\nresult = {\n    \"pooled_rho\": pooled_rho,\n    \"per_gen_median_rho\": per_gen_median_rho,\n    \"n_samples_pooled\": n_samples,\n    \"generators\": generators,\n    \"computation_details\": f\"Pooled: Spearman rho on all {n_samples} samples from {len(generators)} generators. Median: median of 6 per-gen rho values from spearman_per_generator.json.\"\n}\nwith open('/root/gen-depth-fingerprint/results/pooled_rho_fix.json', 'w') as f:\n    json.dump(result, f, indent=2)\n\n# Print results\nprint(\"=== POOLED RHO (all ~27500 samples) ===\")\nfor feat in features:\n    print(f\"{feat}: {pooled_rho[feat]}\")\n\nprint()\nprint(\"=== PER-GEN MEDIAN RHO ===\")\nfor feat in features:\n    print(f\"{feat}: {per_gen_median_rho[feat]}\")\n\nprint()\nprint(\"=== WRONG VALUES (currently in paper, Qwen3-8B only) ===\")\nwrong = {'hapax_ratio': -0.558, 'ttr': -0.542, 'entropy_mean': -0.475, 'entropy_min': -0.303, 'entropy_max': 0.095, 'tail_decay': -0.089, 'entropy_std': -0.076}\nfor feat in features:\n    print(f\"{feat}: wrong={wrong[feat]}, pooled={pooled_rho[feat]}, median={per_gen_median_rho[feat]}\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /root/gen-depth-fingerprint/scripts/compute_pooled_rho.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat > /root/gen-depth-fingerprint/scripts/compute_pooled_rho.py << 'PYEOF'\nimport pandas as pd\nimport numpy as np\nfrom scipy.stats import spearmanr\nimport json\n\nfeatures = ['hapax_ratio', 'ttr', 'entropy_mean', 'entropy_min', 'entropy_max', 'tail_decay', 'entropy_std']\n\n# Step 1: Pooled Spearman rho\ndf = pd.read_csv('/root/gen-depth-fingerprint/data/features_all_models.csv')\ngenerators = sorted(df['model_name'].unique().tolist())\nn_samples = len(df)\n\nprint(f\"Generators: {generators}\")\nprint(f\"Per-gen counts: {df['model_name'].value_counts().to_dict()}\")\nprint(f\"Total samples: {n_samples}\")\nprint()\n\npooled_rho = {}\nfor feat in features:\n    rho, pval = spearmanr(df[feat], df['depth'])\n    pooled_rho[feat] = round(rho, 4)\n\n# Step 2: Per-gen median rho\nwith open('/root/gen-depth-fingerprint/results/spearman_per_generator.json') as f:\n    per_gen = json.load(f)\n\nper_gen_median_rho = {}\nfor feat in features:\n    vals = sorted([per_gen[g][feat] for g in per_gen])\n    median_val = (vals[2] + vals[3]) / 2  # 6 values: median = avg of 3rd and 4th\n    per_gen_median_rho[feat] = round(median_val, 4)\n\n# Save results\nresult = {\n    \"pooled_rho\": pooled_rho,\n    \"per_gen_median_rho\": per_gen_median_rho,\n    \"n_samples_pooled\": n_samples,\n    \"generators\": generators,\n    \"computation_details\": f\"Pooled: Spearman rho on all {n_samples} samples from {len(generators)} generators. Median: median of 6 per-gen rho values from spearman_per_generator.json.\"\n}\nwith open('/root/gen-depth-fingerprint/results/pooled_rho_fix.json', 'w') as f:\n    json.dump(result, f, indent=2)\n\n# Print results\nprint(\"=== POOLED RHO (all ~27500 samples) ===\")\nfor feat in features:\n    print(f\"{feat}: {pooled_rho[feat]}\")\n\nprint()\nprint(\"=== PER-GEN MEDIAN RHO ===\")\nfor feat in features:\n    print(f\"{feat}: {per_gen_median_rho[feat]}\")\n\nprint()\nprint(\"=== WRONG VALUES (currently in paper, Qwen3-8B only) ===\")\nwrong = {'hapax_ratio': -0.558, 'ttr': -0.542, 'entropy_mean': -0.475, 'entropy_min': -0.303, 'entropy_max': 0.095, 'tail_decay': -0.089, 'entropy_std': -0.076}\nfor feat in features:\n    print(f\"{feat}: wrong={wrong[feat]}, pooled={pooled_rho[feat]}, median={per_gen_median_rho[feat]}\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /root/gen-depth-fingerprint/scripts/compute_pooled_rho.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T06:02:47.594015+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Generators: ['olmo-2-1b', 'pythia-1b', 'pythia-2.8b', 'qwen3-0.6b', 'qwen3-1.7b', 'qwen3-8b']\\nPer-gen counts: {'olmo-2-1b': 4713, 'qwen3-1.7b': 4617, 'pythia-2.8b': 4609, 'pythia-1b': 4555, 'qwen3-0.6b': 4538, 'qwen3-8b': 4497}\\nTotal samples: 27529\\n\\n=== POOLED RHO (all ~27500 samples) ===\\nhapax_ratio: -0.6467\\nttr: -0.6302\\nentropy_mean: -0.6098\\nentropy_min: -0.4061\\nentropy_max: 0.0503\\ntail_decay: -0.0403\\nentropy_std: -0.1996\\n\\n=== PER-GEN MEDIAN RHO ===\\nhapax_ratio: -0.6624\\nttr: -0.6428\\nentropy_mean: -0.6204\\nentropy_min: -0.3968\\nentropy_max: 0.0764\\ntail_decay: -0.0796\\nentropy_std: -0.2088\\n\\n=== WRONG VALUES (currently in paper, Qwen3-8B only) ===\\nhapax_ratio: wrong=-0.558, pooled=-0.6467, median=-0.6624\\nttr: wrong=-0.542, pooled=-0.6302, median=-0.6428\\nentropy_mean: wrong=-0.475, pooled=-0.6098, median=-0.6204\\nentropy_min: wrong=-0.303, pooled=-0.4061, median=-0.3968\\nentropy_max: wrong=0.095, pooled=0.0503, median=0.0764\\ntail_decay: wrong=-0.089, pooled=-0.0403, median=-0.0796\\nentropy_std: wrong=-0.076, pooled=-0.1996, median=-0.2088\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-16T06:02:47.594155+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/scripts/plot_fig1_strip.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/gen-depth-fingerprint/scripts/plot_fig1_strip.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T06:02:47.594326+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Figure 1: Strip plot of per-generator Spearman rho with overall markers.\\\"\\\"\\\"\\nimport json\\nimport matplotlib\\nmatplotlib.use('Agg')\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom pathlib import Path\\n\\nplt.rcParams.update({\\n    'font.family': 'serif',\\n    'font.serif': ['Times New Roman', 'DejaVu Serif', 'Nimbus Roman'],\\n    'font.size': 8,\\n    'axes.labelsize': 9,\\n    'axes.titlesize': 9,\\n    'xtick.labelsize': 7.5,\\n    'ytick.labelsize': 7,\\n    'legend.fontsize': 6,\\n    'figure.dpi': 300,\\n    'savefig.dpi': 300,\\n    'savefig.bbox': 'tight',\\n    'axes.spines.top': False,\\n    'axes.spines.right': False,\\n    'axes.grid': False,\\n    'mathtext.fontset': 'cm',\\n})\\n\\nwith open('/root/gen-depth-fingerprint/results/spearman_per_generator.json') as f:\\n    per_gen = json.load(f)\\n\\nfeatures = ['hapax_ratio', 'ttr', 'entropy_mean', 'entropy_min', 'entropy_max', 'tail_decay', 'entropy_std']\\nfeat_labels = ['Hapax', 'TTR', r'$\\\\bar{H}$', r'$H_{\\\\min}$', r'$H_{\\\\max}$', 'Tail Dec.', r'$\\\\sigma_H$']\\n\\noverall = {\\n    'hapax_ratio': -0.558, 'ttr': -0.542, 'entropy_mean': -0.475,\\n    'entropy_min': -0.303, 'entropy_max': 0.095,\\n    'tail_decay': -0.089, 'entropy_std': -0.076,\\n}\\n\\ndrifting = {'hapax_ratio', 'ttr', 'entropy_mean', 'entropy_min'}\\n\\ngenerators = list(per_gen.keys())\\n\\nCOLORS = {\\n    'pythia-1b':   '#E69F00',\\n    'pythia-2.8b': '#56B4E9',\\n    'olmo-2-1b':   '#009E73',\\n    'qwen3-0.6b':  '#0072B2',\\n    'qwen3-1.7b':  '#D55E00',\\n    'qwen3-8b':    '#CC79A7',\\n}\\n\\nMARKERS = {\\n    'pythia-1b':   'o',\\n    'pythia-2.8b': 's',\\n    'olmo-2-1b':   '^',\\n    'qwen3-0.6b':  'D',\\n    'qwen3-1.7b':  'v',\\n    'qwen3-8b':    'P',\\n}\\n\\nLABELS = {\\n    'pythia-1b':   'Pythia-1B',\\n    'pythia-2.8b': 'Pythia-2.8B',\\n    'olmo-2-1b':   'OLMo-2-1B',\\n    'qwen3-0.6b':  '
+…[truncated 2723 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-16T06:02:47.594489+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "sed -i \"s/    'hapax_ratio': -0.558, 'ttr': -0.542, 'entropy_mean': -0.475,/    'hapax_ratio': -0.6467, 'ttr': -0.6302, 'entropy_mean': -0.6098,/\" /root/gen-depth-fingerprint/scripts/plot_fig1_strip.py && sed -i \"s/    'entropy_min': -0.303, 'entropy_max': 0.095,/    'entropy_min': -0.4061, 'entropy_max': 0.0503,/\" /root/gen-depth-fingerprint/scripts/plot_fig1_strip.py && sed -i \"s/    'tail_decay': -0.089, 'entropy_std': -0.076,/    'tail_decay': -0.0403, 'entropy_std': -0.1996,/\" /root/gen-depth-fingerprint/scripts/plot_fig1_strip.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "sed -i \"s/    'hapax_ratio': -0.558, 'ttr': -0.542, 'entropy_mean': -0.475,/    'hapax_ratio': -0.6467, 'ttr': -0.6302, 'entropy_mean': -0.6098,/\" /root/gen-depth-fingerprint/scripts/plot_fig1_strip.py && sed -i \"s/    'entropy_min': -0.303, 'entropy_max': 0.095,/    'entropy_min': -0.4061, 'entropy_max': 0.0503,/\" /root/gen-depth-fingerprint/scripts/plot_fig1_strip.py && sed -i \"s/    'tail_decay': -0.089, 'entropy_std': -0.076,/    'tail_decay': -0.0403, 'entropy_std': -0.1996,/\" /root/gen-depth-fingerprint/scripts/plot_fig1_strip.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T06:02:47.594634+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-16T06:02:47.594754+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "grep -A3 \"overall = {\" /root/gen-depth-fingerprint/scripts/plot_fig1_strip.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "grep -A3 \"overall = {\" /root/gen-depth-fingerprint/scripts/plot_fig1_strip.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-16T06:02:47.594872+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"overall = {\\n    'hapax_ratio': -0.6467, 'ttr': -0.6302, 'entropy_mean': -0.6098,\\n    'entropy_min': -0.4061, 'entropy_max': 0.0503,\\n    'tail_decay': -0.0403, 'entropy_std': -0.1996,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-16T06:02:47.595002+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /root/gen-depth-fingerprint/scripts/plot_fig1_strip.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /root/gen-depth-fingerprint/scripts/plot_fig1_strip.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T06:02:47.595121+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Saved to /root/gen-depth-fingerprint/fig1_differential_response.{pdf,png}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.01}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-16T06:02:47.595252+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "autodl-5090",
+  "command": "cat /root/gen-depth-fingerprint/results/pooled_rho_fix.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "autodl-5090",
+    "command": "cat /root/gen-depth-fingerprint/results/pooled_rho_fix.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-16T06:02:47.595386+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"pooled_rho\\\": {\\n    \\\"hapax_ratio\\\": -0.6467,\\n    \\\"ttr\\\": -0.6302,\\n    \\\"entropy_mean\\\": -0.6098,\\n    \\\"entropy_min\\\": -0.4061,\\n    \\\"entropy_max\\\": 0.0503,\\n    \\\"tail_decay\\\": -0.0403,\\n    \\\"entropy_std\\\": -0.1996\\n  },\\n  \\\"per_gen_median_rho\\\": {\\n    \\\"hapax_ratio\\\": -0.6624,\\n    \\\"ttr\\\": -0.6428,\\n    \\\"entropy_mean\\\": -0.6204,\\n    \\\"entropy_min\\\": -0.3968,\\n    \\\"entropy_max\\\": 0.0764,\\n    \\\"tail_decay\\\": -0.0796,\\n    \\\"entropy_std\\\": -0.2088\\n  },\\n  \\\"n_samples_pooled\\\": 27529,\\n  \\\"generators\\\": [\\n    \\\"olmo-2-1b\\\",\\n    \\\"pythia-1b\\\",\\n    \\\"pythia-2.8b\\\",\\n    \\\"qwen3-0.6b\\\",\\n    \\\"qwen3-1.7b\\\",\\n    \\\"qwen3-8b\\\"\\n  ],\\n  \\\"computation_details\\\": \\\"Pooled: Spearman rho on all 27529 samples from 6 generators. Median: median of 6 per-gen rho values from spearman_per_generator.json.\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-16T06:02:47.595544+00:00_
+
+Results:
+
+```
+=== POOLED RHO (all 27,529 samples) ===
+hapax_ratio:  -0.6467
+ttr:          -0.6302
+entropy_mean: -0.6098
+entropy_min:  -0.4061
+entropy_max:   0.0503
+tail_decay:   -0.0403
+entropy_std:  -0.1996
+
+=== PER-GEN MEDIAN RHO ===
+hapax_ratio:  -0.6624
+ttr:          -0.6428
+entropy_mean: -0.6204
+entropy_min:  -0.3968
+entropy_max:   0.0764
+tail_decay:   -0.0796
+entropy_std:  -0.2088
+```
+
+The wrong values (Qwen3-8B only) were systematically attenuated — the true pooled correlations are substantially stronger for all drifting features (e.g., hapax: -0.558 → -0.6467, entropy_mean: -0.475 → -0.6098, entropy_std: -0.076 → -0.1996).
+
+Completed:
+1. `results/pooled_rho_fix.json` — saved with both pooled and per-gen median values
+2. `scripts/plot_fig1_strip.py` — `overall` dict updated with true pooled rho
+3. `fig1_differential_response.{pdf,png}` — regenerated with corrected values
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_fix_pooled-rho-computation_20260516T060056"
+}
+```
+
+</details>
+
+---

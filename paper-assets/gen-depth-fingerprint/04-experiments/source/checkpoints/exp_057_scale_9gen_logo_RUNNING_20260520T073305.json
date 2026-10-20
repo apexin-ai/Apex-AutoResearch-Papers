@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp_057_scale_9gen_logo",
+  "project": "gen-depth-fingerprint",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:05:40.222Z",
+    "updated_at": "2026-05-20T07:33:05.257Z",
+    "hypothesis": "Depth signal persists at 7B+ scale: Qwen3-8B-Base generation chains exhibit DDR patterns (drifting central-tendency, stationary shape features) comparable to sub-3B models, and adding Qwen3-8B as 9th generator to LOGO evaluation maintains or improves ensemble F1, ruling out scale-dependent signal collapse",
+    "notes": "Feature extraction 不需要——qwen3-8b 7-feature 已在 features_all_models.csv (4497行)。发现 9 generators 可用（含新 gemma-2-2b 1061行）。总计 38119 行。纯 CPU XGBoost ~3min。命令: cd /root/gen-depth-fingerprint && python3 eval_9gen_logo.py → results/9gen_logo_results.json",
+    "server": "bjb2-18868",
+    "gpu": "cuda:0",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python3 eval_9gen_logo.py\"",
+      "server": "bjb2-18868",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "179763",
+      "log_path": "~/runs/gen-depth-fingerprint/exp_057_scale_9gen_logo.log",
+      "submitted_at": "2026-05-20T07:33:04.712Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "179763",
+    "log_path": "~/runs/gen-depth-fingerprint/exp_057_scale_9gen_logo.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-fingerprint && python3 eval_9gen_logo.py\""
+    }
+  },
+  "timestamp": "2026-05-20T07:33:05.697932+00:00",
+  "trigger": "update_registry"
+}

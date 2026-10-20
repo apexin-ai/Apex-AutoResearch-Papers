@@ -1,0 +1,25 @@
+paper_key: "min_k_percent"
+title: "Detecting Pretraining Data from Large Language Models"
+venue: "ICLR 2024"
+full_text_available: false
+
+research:
+  baselines: ["reference model-based detection methods"]
+  metrics:
+    - {name: "AUROC", direction: "higher_better"}
+    - {name: "improvement over previous methods", direction: "higher_better"}
+  datasets:
+    - {name: "WikiMIA", size: "dynamic benchmark"}
+  ablation_dimensions: ["percentage k threshold", "copyrighted book detection", "contaminated downstream examples", "privacy auditing"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "zero-shot membership inference (token probability outlier detection)"
+
+positioning:
+  core_claim: "Proposes Min-K% Prob, a reference-free method that detects pretraining data by identifying text with outlier low-probability tokens, achieving 7.4% improvement on WikiMIA over prior methods."
+  key_results: "N/A - abstract only"
+  limitations: ["N/A"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

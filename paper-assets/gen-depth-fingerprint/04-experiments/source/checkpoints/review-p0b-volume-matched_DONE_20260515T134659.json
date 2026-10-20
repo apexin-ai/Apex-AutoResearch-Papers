@@ -1,0 +1,28 @@
+{
+  "exp_id": "review-p0b-volume-matched",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:39:06.387Z",
+    "updated_at": "2026-05-15T13:46:59.465Z",
+    "hypothesis": "P0-B: Volume-matched 5-gen 控制——隔离数据量效应，验证 Qwen3-8B 加入的真实贡献",
+    "spec": {
+      "command": "python scripts/review_p0b_volume_matched.py",
+      "server": "autodl-5090",
+      "data_path": "data/features_all_models.csv",
+      "data_count": 23032,
+      "model_name": "xgboost",
+      "seed": 42,
+      "checkpoint_source": "results/review_p0b_volume_matched.json",
+      "checkpoint_path": "results/review_p0b_volume_matched.json",
+      "log_path": "results/review_p0b_volume_matched.json"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T13:43:52.734Z"
+  },
+  "timestamp": "2026-05-15T13:46:59.539771+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,73 @@
+{
+  "exp_id": "plan-005-elab",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:28:45.680Z",
+    "updated_at": "2026-05-15T08:49:52.314Z",
+    "spec": {
+      "command": "python generate_chain_prompt.py --model-name pythia-2.8b --prompt-type elaboration --input data/wiki_seed_1000.jsonl --shard-id 0 --num-shards 1 --device cuda:0",
+      "server": "autodl-5090",
+      "gpu": "cuda:2",
+      "pid": 164737,
+      "log_path": "/root/gen-depth-fingerprint/logs/plan-005-elab",
+      "submitted_at": "2026-05-15T03:28:45.601Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/wiki_seed_1000.jsonl",
+      "data_count": 1000,
+      "model_name": "pythia-2.8b",
+      "seed": "all",
+      "prompt_type": "elaboration",
+      "checkpoint_path": "/root/gen-depth-fingerprint/data/pythia-2.8b-elaboration/generations_shard0.jsonl",
+      "wall_clock_seconds": 19266.7,
+      "gpu_hours": 5.35
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T05:58:50.421Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T05:58:51.901208+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "total_records": 4946,
+      "unique_seeds": 995,
+      "skipped": 14,
+      "depth_distribution": {
+        "0": 995,
+        "1": 995,
+        "2": 989,
+        "3": 986,
+        "4": 981
+      },
+      "output_file": "/root/gen-depth-fingerprint/data/pythia-2.8b-elaboration/generations_shard0.jsonl",
+      "file_size_mb": 5.53,
+      "runtime_seconds": 8960.2,
+      "depth_retention_d4_d0": 0.986,
+      "logo_cv_f1": {
+        "mean": 0.73,
+        "std": 0.011
+      },
+      "lopto_f1": 0.7622,
+      "feature_drift_entropy_mean": -0.4705,
+      "feature_drift_ttr": -0.6413,
+      "feature_drift_hapax": -0.8284,
+      "vs_continuation": "retention 98.6% vs 83.1%; CV F1 0.730 vs 0.781 — elaboration chains more stable but depth signal weaker within-type",
+      "vs_rewriting": "retention 98.6% vs 93.9%; CV F1 0.730 vs 0.737 — similar discriminability, elaboration slightly lower"
+    },
+    "completed_at": "2026-05-15T08:49:52.315Z"
+  },
+  "timestamp": "2026-05-15T08:49:52.400053+00:00",
+  "trigger": "update_registry"
+}

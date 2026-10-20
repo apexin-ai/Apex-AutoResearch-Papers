@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan-005",
+  "project": "gen-depth-fingerprint",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:24:02.435Z",
+    "updated_at": "2026-05-15T03:29:40.525Z",
+    "hypothesis": "Prompt type comparison: continuation vs elaboration vs inspired_rewriting 链的 depth signal 强度差异。Pythia-2.8B, 1000 seeds, 3 prompt types × 5 depths = 15K texts"
+  },
+  "timestamp": "2026-05-15T03:29:40.589365+00:00",
+  "trigger": "update_registry"
+}

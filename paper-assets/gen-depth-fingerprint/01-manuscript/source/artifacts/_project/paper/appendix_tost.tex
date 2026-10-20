@@ -1,0 +1,53 @@
+\section{Per-Generator Equivalence Testing}
+\label{app:tost}
+
+\begingroup\setlength{\parskip}{2pt plus 1pt}
+
+To confirm that the near-stationary classification is not a pooling artifact, we apply two one-sided $t$-tests (TOST) \cite{lakens_equivalence} for each feature within each generator separately (gen-1 vs.\ gen-2+, equivalence bound $|d| < 0.20$).
+We adopt Cohen's conventional small effect size ($d{=}0.20$) \cite{cohen1988statistical} as the smallest effect of practical significance (SESOI): effects below this threshold are unlikely to be practically meaningful for depth discrimination.
+LOFO analysis independently supports this choice: removing any near-stationary feature changes classification F1 by $\leq$1.5\,pp (Appendix~\ref{app:lofo}), linking the statistical threshold to classification irrelevance.
+Sensitivity analysis at $\varepsilon \in \{0.15, 0.20, 0.25\}$ confirms the partition is robust to the bound choice (Appendix~\ref{app:tost-sensitivity}); bootstrap resampling ($B{=}1{,}000$) shows 100\% rejection stability for all near-stationary features (Appendix~\ref{app:tost-bootstrap}); and the partition is invariant across $\varepsilon \in [0.10, 0.75]$ (Appendix~\ref{app:epsilon-sweep}).
+Table~\ref{tab:tost-per-gen} reports observed $|d|$; \checkmark{} marks features for which the TOST null hypothesis (non-equivalence) is rejected at $\alpha = 0.05$.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_appendix_tost_heatmap.pdf}
+\caption{TOST equivalence heatmap. Cohen's $d$ (gen-1 vs.\ gen-2+) per generator and feature. Asterisks (*) mark TOST equivalence at $\varepsilon{=}0.20$. Drifting features (red, left) show uniformly large $d$; near-stationary features (blue, right) cluster near zero.}
+\label{fig:tost-heatmap}
+\end{figure}
+
+Entropy min passes equivalence for all eight generators; entropy max passes for six of eight (exceeding $\varepsilon$ only for Pythia-1B and Pythia-2.8B, where $|d| \approx 0.21$--$0.25$); tail decay passes for four of eight.
+All drifting and intermediate features fail equivalence uniformly, with $|d|$ ranging from 0.23 (entropy std, Mistral) to 1.40 (entropy mean, Pythia-1B).
+The partition is robust at the individual-generator level, with entropy min as the most consistently stationary feature.
+Figure~\ref{fig:ddr-scatter} visualizes the DDR partition in ($|\rho|$, $d$) space; the three groups are separated by clear gaps.
+
+\endgroup
+
+\begin{table}[ht]
+\centering
+\footnotesize
+\caption{Per-generator TOST equivalence ($\varepsilon{=}|d|{<}0.20$, gen-1 vs.\ gen-2+). Observed $|d|$; \checkmark{} = equivalent ($p_{\mathrm{TOST}} < 0.05$). Features grouped by DDR partition.}
+\label{tab:tost-per-gen}
+\resizebox{\columnwidth}{!}{%
+\renewcommand{\arraystretch}{1.20}%
+\begin{tabular}{l ccc c ccc}
+\toprule
+& \multicolumn{3}{c}{\textbf{Drifting}} & \textbf{Int.} & \multicolumn{3}{c}{\textbf{Near-stationary}} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-5} \cmidrule(lr){6-8}
+\textbf{Generator} & $\bar{H}$ & TTR & hapax & $\sigma_H$ & $H_{\max}$ & tail & $H_{\min}$ \\
+\midrule
+Pythia-2.8B  & 1.20 & 0.77 & 0.67 & 0.39 & 0.25          & 0.07\,\checkmark & 0.03\,\checkmark \\
+Pythia-1B    & 1.40 & 0.80 & 0.65 & 0.53 & 0.21          & 0.08\,\checkmark & 0.02\,\checkmark \\
+Qwen3-1.7B  & 1.12 & 0.93 & 0.83 & 0.52 & 0.02\,\checkmark & 0.09\,\checkmark & 0.05\,\checkmark \\
+Llama-3.2-3B & 1.15 & 1.04 & 0.98 & 0.50 & 0.01\,\checkmark & 0.19          & 0.01\,\checkmark \\
+OLMo-2-1B   & 1.19 & 1.08 & 1.00 & 0.61 & 0.06\,\checkmark & 0.22          & 0.07\,\checkmark \\
+Qwen3-8B    & 0.86 & 0.71 & 0.66 & 0.37 & 0.04\,\checkmark & 0.15          & 0.01\,\checkmark \\
+Qwen3-0.6B  & 0.92 & 0.63 & 0.50 & 0.56 & 0.01\,\checkmark & 0.08\,\checkmark & 0.10\,\checkmark \\
+Mistral-7B   & 0.89 & 0.82 & 0.82 & 0.23 & 0.00\,\checkmark & 0.16          & 0.04\,\checkmark \\
+\midrule
+\textbf{Equiv.\ count} & 0/8 & 0/8 & 0/8 & 0/8 & 6/8 & 4/8 & 8/8 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+

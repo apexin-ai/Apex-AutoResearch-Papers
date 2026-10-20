@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan-002-qwen06b-r2-s0",
+  "project": "gen-depth-fingerprint",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:35:10.950Z",
+    "updated_at": "2026-05-14T22:35:46.652Z",
+    "hypothesis": "跨模型泛化数据生成：Qwen3-0.6B continuation 链 shard0（orphan 进程恢复）"
+  },
+  "timestamp": "2026-05-14T22:35:46.685516+00:00",
+  "trigger": "update_registry"
+}

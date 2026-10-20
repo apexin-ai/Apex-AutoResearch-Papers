@@ -1,0 +1,29 @@
+{
+  "exp_id": "plan-005",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:24:02.435Z",
+    "updated_at": "2026-05-15T06:02:13.131Z",
+    "hypothesis": "Prompt type comparison: continuation vs elaboration vs inspired_rewriting 链的 depth signal 强度差异。Pythia-2.8B, 1000 seeds, 3 prompt types × 5 depths = 15K texts",
+    "spec": {
+      "command": "python scripts/analyze_prompt_types.py",
+      "server": "autodl-5090",
+      "gpu": "cuda:1,cuda:2,cuda:3",
+      "data_path": "data/pythia-2.8b-*/features.jsonl",
+      "data_count": 14393,
+      "model_name": "pythia-2.8b",
+      "seed": 42,
+      "log_path": "tmux: plan-005-cont, plan-005-elab, plan-005-rewrite"
+    },
+    "notes": "2026-05-15 04:20: 运行 ~52min，35% 完成。cont 381/995 seeds (1785行)/elab 336/995 (1670行)/rewrite 348/995 (1703行)。ETA ~14:00 server time (~1.5h)。初步观察：continuation depth 0→4 衰减 15%（381→325），elaboration 仅衰减 1.5%（336→331）——continuation 递归生成更容易产生低质量文本。",
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "success",
+    "completed_at": "2026-05-15T05:30:39.849Z"
+  },
+  "timestamp": "2026-05-15T06:02:13.217885+00:00",
+  "trigger": "update_registry"
+}

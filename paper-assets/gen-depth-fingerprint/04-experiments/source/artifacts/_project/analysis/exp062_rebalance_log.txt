@@ -1,0 +1,26 @@
+exp062 GPU Rebalance Log
+========================
+Date: 2026-05-21 20:07 CST
+
+Action: Moved Qwen3-8B off cuda:3 chain to a free-GPU watcher on cuda:0/1/2.
+
+What changed:
+- Killed old chain watcher (PID 349616, start_cuda3_chain.sh)
+- Created start_cuda3_chain_v2.sh: same as original but stops after Qwen3-0.6B (no Qwen3-8B)
+- Started new chain v2 (PID 356682), currently waiting for Pythia-1B (PID 349382) on cuda:3
+- Created start_qwen8b_on_free_gpu.sh: polls cuda:0/1/2 every 60s for a free GPU
+- Started Qwen3-8B watcher (PID 356867)
+
+Script paths:
+- /root/gen-depth-fingerprint/start_cuda3_chain_v2.sh
+- /root/gen-depth-fingerprint/start_qwen8b_on_free_gpu.sh
+
+Log files:
+- /tmp/cuda3_chain_v2.log (chain v2 progress)
+- /tmp/qwen8b_watcher.log (GPU watcher status)
+- /tmp/gen_qwen8b_decoding.log (Qwen3-8B generation output, once started)
+
+Expected behavior:
+- cuda:3: Pythia-1B finishes → Qwen3-0.6B greedy+topk → done
+- cuda:0/1/2: whichever finishes its current job first gets Qwen3-8B greedy+topk (~16GB, ~4h)
+- Estimated Qwen3-8B start: ~23:00 CST when cuda:0/1/2 tasks complete

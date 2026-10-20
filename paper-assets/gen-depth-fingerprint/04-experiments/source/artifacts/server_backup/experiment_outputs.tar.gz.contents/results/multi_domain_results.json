@@ -1,0 +1,109 @@
+{
+  "per_domain": {
+    "news": {
+      "3class_f1": 0.5614,
+      "binary_f1": 0.6264,
+      "per_class_f1": {
+        "gen-0": 0.7236,
+        "gen-1": 0.3429,
+        "gen-2+": 0.6179
+      },
+      "spearman_entropy_mean": -0.0432,
+      "spearman_entropy_std": -0.0307,
+      "spearman_entropy_min": -0.0793,
+      "spearman_entropy_max": 0.096,
+      "spearman_tail_decay": 0.0723,
+      "spearman_ttr": -0.3055,
+      "spearman_hapax_ratio": -0.3213
+    },
+    "scientific": {
+      "3class_f1": 0.7049,
+      "binary_f1": 0.7701,
+      "per_class_f1": {
+        "gen-0": 0.8838,
+        "gen-1": 0.4614,
+        "gen-2+": 0.7695
+      },
+      "spearman_entropy_mean": -0.6628,
+      "spearman_entropy_std": -0.2997,
+      "spearman_entropy_min": -0.4962,
+      "spearman_entropy_max": -0.1981,
+      "spearman_tail_decay": -0.2108,
+      "spearman_ttr": -0.0394,
+      "spearman_hapax_ratio": -0.0317
+    },
+    "creative": {
+      "3class_f1": 0.6275,
+      "binary_f1": 0.731,
+      "per_class_f1": {
+        "gen-0": 0.7632,
+        "gen-1": 0.3938,
+        "gen-2+": 0.7254
+      },
+      "spearman_entropy_mean": -0.6196,
+      "spearman_entropy_std": -0.284,
+      "spearman_entropy_min": -0.3678,
+      "spearman_entropy_max": -0.1824,
+      "spearman_tail_decay": -0.1658,
+      "spearman_ttr": -0.411,
+      "spearman_hapax_ratio": -0.4336
+    },
+    "wikipedia": {
+      "3class_f1": 0.7928,
+      "binary_f1": 0.8224,
+      "per_class_f1": {
+        "gen-0": 0.9268,
+        "gen-1": 0.6295,
+        "gen-2+": 0.822
+      },
+      "spearman_entropy_mean": -0.6754,
+      "spearman_entropy_std": -0.153,
+      "spearman_entropy_min": -0.4797,
+      "spearman_entropy_max": -0.0351,
+      "spearman_tail_decay": 0.0633,
+      "spearman_ttr": -0.6333,
+      "spearman_hapax_ratio": -0.6553
+    }
+  },
+  "cross_domain": {
+    "3class_f1": 0.4775,
+    "binary_f1": 0.673,
+    "per_class_f1": {
+      "gen-0": 0.4573,
+      "gen-1": 0.3348,
+      "gen-2+": 0.6404
+    },
+    "per_domain": {
+      "creative": 0.5305,
+      "news": 0.3692,
+      "scientific": 0.4131,
+      "wikipedia": 0.4866
+    }
+  },
+  "wiki_transfer": {
+    "news": {
+      "3class_f1": 0.231,
+      "per_class_f1": {
+        "gen-0": 0.4323,
+        "gen-1": 0.1538,
+        "gen-2+": 0.1069
+      }
+    },
+    "scientific": {
+      "3class_f1": 0.3351,
+      "per_class_f1": {
+        "gen-0": 0.3572,
+        "gen-1": 0.3583,
+        "gen-2+": 0.2897
+      }
+    },
+    "creative": {
+      "3class_f1": 0.2319,
+      "per_class_f1": {
+        "gen-0": 0.3928,
+        "gen-1": 0.2322,
+        "gen-2+": 0.0706
+      }
+    }
+  }
+}

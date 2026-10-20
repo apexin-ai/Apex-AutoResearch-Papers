@@ -1,0 +1,54 @@
+{
+  "method": "bootstrap_ci_v2_corrected",
+  "fix": "added downsample to match registry LOGO; per-gen bootstrap on test set only",
+  "n_samples": 27529,
+  "n_bootstrap": 1000,
+  "logo_seed": 789,
+  "boot_seed": 42,
+  "xgb_params": {
+    "n_estimators": 200,
+    "max_depth": 6,
+    "learning_rate": 0.1,
+    "random_state": 789,
+    "eval_metric": "mlogloss"
+  },
+  "avg_6gen_f1": 0.7887,
+  "per_generator": {
+    "olmo-2-1b": {
+      "f1": 0.7649,
+      "ci_lower": 0.754,
+      "ci_upper": 0.776
+    },
+    "pythia-1b": {
+      "f1": 0.8528,
+      "ci_lower": 0.843,
+      "ci_upper": 0.863
+    },
+    "pythia-2.8b": {
+      "f1": 0.8037,
+      "ci_lower": 0.793,
+      "ci_upper": 0.813
+    },
+    "qwen3-0.6b": {
+      "f1": 0.8231,
+      "ci_lower": 0.813,
+      "ci_upper": 0.834
+    },
+    "qwen3-1.7b": {
+      "f1": 0.8064,
+      "ci_lower": 0.796,
+      "ci_upper": 0.817
+    },
+    "qwen3-8b": {
+      "f1": 0.6815,
+      "ci_lower": 0.668,
+      "ci_upper": 0.694
+    }
+  },
+  "overall_f1": 0.7878,
+  "overall_ci95": [
+    0.783,
+    0.792
+  ],
+  "overall_ci_width": 0.009
+}

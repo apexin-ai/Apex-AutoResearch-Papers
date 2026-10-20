@@ -1,0 +1,27 @@
+paper_key: "gltr"
+title: "GLTR: Statistical Detection and Visualization of Generated Text"
+venue: "ACL 2019"
+full_text_available: false
+
+research:
+  baselines: ["unaided human detection (54% accuracy)"]
+  metrics:
+    - {name: "human detection rate", direction: "higher_better"}
+    - {name: "word probability", direction: "descriptive"}
+    - {name: "absolute rank", direction: "descriptive"}
+    - {name: "predicted distribution entropy", direction: "descriptive"}
+  datasets:
+    - {name: "human-subjects study data", size: "unknown"}
+  ablation_dimensions: ["sampling scheme", "statistical test type (probability, rank, entropy)"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "statistical detection via token-level probability visualization"
+
+positioning:
+  core_claim: "Proposes a visual forensic tool using three simple statistical tests (word probability, rank, entropy) that improves human detection of generated text from 54% to 72% without prior training."
+  key_results: "N/A - abstract only"
+  limitations: ["N/A"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

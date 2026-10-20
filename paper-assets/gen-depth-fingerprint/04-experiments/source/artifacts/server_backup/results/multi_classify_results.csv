@@ -1,0 +1,11 @@
+held_out,eval_type,macro_f1,weighted_f1,accuracy,train_size,test_size
+olmo-2-1b,leave_one_generator_out,0.4977,0.5064,0.5349,22816,4713
+pythia-1b,leave_one_generator_out,0.552,0.5678,0.5809,22974,4555
+pythia-2.8b,leave_one_generator_out,0.527,0.5401,0.5648,22920,4609
+qwen3-0.6b,leave_one_generator_out,0.5062,0.522,0.5394,22991,4538
+qwen3-1.7b,leave_one_generator_out,0.5192,0.5308,0.5551,22912,4617
+qwen3-8b,leave_one_generator_out,0.437,0.4513,0.4952,23032,4497
+family:olmo,leave_one_family_out,0.4977,0.5064,0.5349,22816,4713
+family:pythia,leave_one_family_out,0.5049,0.5191,0.5445,18365,9164
+family:qwen,leave_one_family_out,0.4785,0.4914,0.5226,13877,13652
+none(pooled),pooled_stratified_cv,0.492,0.5064,0.53122,27529,27529

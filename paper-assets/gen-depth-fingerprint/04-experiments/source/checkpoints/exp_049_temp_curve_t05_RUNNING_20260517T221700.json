@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_049_temp_curve_t05",
+  "project": "gen-depth-fingerprint",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T22:15:10.383Z",
+    "updated_at": "2026-05-17T22:16:59.981Z",
+    "hypothesis": "DDR signal at t=0.5 should be stronger than t=0.7 (less randomness preserves more distributional structure)",
+    "spec": {
+      "command": "bash run_temp_curve.sh",
+      "server": "autodl-5090",
+      "data_path": "data/pythia-2.8b-t05/",
+      "data_count": 1000,
+      "model_name": "EleutherAI/pythia-2.8b",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-17T22:17:00.064959+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "exp_id": "mvp-001",
+  "project": "gen-depth-fingerprint",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:17:16.218Z",
+    "updated_at": "2026-05-14T18:08:20.940Z",
+    "hypothesis": "Pythia-410M 参考模型的分布特征（entropy stats, tail-decay, TTR, hapax）能区分 Pythia-2.8B continuation 链的 gen-0/gen-1/gen-2+，3-class macro-F1 ≥ 0.45",
+    "spec": {
+      "command": "python generate_chain.py --input data/wiki_seed_1000.jsonl --shard-id {0-3} --num-shards 4 --device cuda:0 (4 shards parallel)",
+      "server": "autodl-5090",
+      "data_path": "/root/gen-depth-fingerprint/data/wiki_seed_1000.jsonl",
+      "data_count": 1000,
+      "model_name": "EleutherAI/pythia-2.8b (FP16)",
+      "seed": 42,
+      "temperature": 0.7,
+      "top_p": 0.9,
+      "max_new_tokens": 256,
+      "reference_model": "EleutherAI/pythia-410m",
+      "script_path": "/root/gen-depth-fingerprint/generate_chain.py",
+      "generation_type": "continuation",
+      "depths": "gen-0 to gen-4",
+      "checkpoint_path": "/root/gen-depth-fingerprint/results/mvp_results.json",
+      "log_path": "/root/gen-depth-fingerprint/data/features.csv"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "macro_f1": 0.8408,
+      "binary_f1_gen0_vs_gen2plus": 0.8653,
+      "cv_macro_f1": 0.806,
+      "cv_std": 0.013,
+      "gen0_f1": 0.9517,
+      "gen1_f1": 0.7759,
+      "gen2plus_f1": 0.7947,
+      "total_records": 4609,
+      "seeds_used": 995,
+      "skipped": 173
+    },
+    "completed_at": "2026-05-14T18:08:20.940Z"
+  },
+  "timestamp": "2026-05-14T18:08:20.954732+00:00",
+  "trigger": "update_registry"
+}

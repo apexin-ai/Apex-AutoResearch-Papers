@@ -1,0 +1,186 @@
+{
+  "primary_comparison": {
+    "group_a": "size_matched",
+    "group_b": "depth01",
+    "mean_a": 2.367,
+    "mean_b": 2.3872,
+    "mean_diff": -0.0202,
+    "bootstrap_95ci": [
+      -0.0207,
+      -0.0199
+    ],
+    "cohens_d": -65.5375,
+    "permutation_p": 0.099,
+    "exact_permutation_p": 0.1,
+    "n_boot": 10000,
+    "n_perm": 10000
+  },
+  "pairwise": [
+    {
+      "group_a": "size_matched",
+      "group_b": "depth01",
+      "mean_a": 2.367,
+      "mean_b": 2.3872,
+      "mean_diff": -0.0202,
+      "bootstrap_95ci": [
+        -0.0207,
+        -0.0199
+      ],
+      "cohens_d": -65.5375,
+      "permutation_p": 0.1008,
+      "exact_permutation_p": 0.1,
+      "n_boot": 10000,
+      "n_perm": 10000
+    },
+    {
+      "group_a": "size_matched",
+      "group_b": "all",
+      "mean_a": 2.367,
+      "mean_b": 2.335133,
+      "mean_diff": 0.031867,
+      "bootstrap_95ci": [
+        0.0316,
+        0.032
+      ],
+      "cohens_d": 195.1427,
+      "permutation_p": 0.1034,
+      "exact_permutation_p": 0.1,
+      "n_boot": 10000,
+      "n_perm": 10000
+    },
+    {
+      "group_a": "size_matched",
+      "group_b": "binary_filtered",
+      "mean_a": 2.367,
+      "mean_b": 2.389,
+      "mean_diff": -0.022,
+      "bootstrap_95ci": [
+        -0.022,
+        -0.022
+      ],
+      "cohens_d": Infinity,
+      "permutation_p": 0.0983,
+      "exact_permutation_p": 0.1,
+      "n_boot": 10000,
+      "n_perm": 10000
+    },
+    {
+      "group_a": "size_matched",
+      "group_b": "depth0_only",
+      "mean_a": 2.367,
+      "mean_b": 2.681167,
+      "mean_diff": -0.314167,
+      "bootstrap_95ci": [
+        -0.3148,
+        -0.313
+      ],
+      "cohens_d": -439.2043,
+      "permutation_p": 0.0645,
+      "exact_permutation_p": 0.1,
+      "n_boot": 10000,
+      "n_perm": 10000
+    },
+    {
+      "group_a": "depth01",
+      "group_b": "all",
+      "mean_a": 2.3872,
+      "mean_b": 2.335133,
+      "mean_diff": 0.052067,
+      "bootstrap_95ci": [
+        0.051667,
+        0.052567
+      ],
+      "cohens_d": 149.2705,
+      "permutation_p": 0.1019,
+      "exact_permutation_p": 0.1,
+      "n_boot": 10000,
+      "n_perm": 10000
+    },
+    {
+      "group_a": "depth01",
+      "group_b": "binary_filtered",
+      "mean_a": 2.3872,
+      "mean_b": 2.389,
+      "mean_diff": -0.0018,
+      "bootstrap_95ci": [
+        -0.0021,
+        -0.0013
+      ],
+      "cohens_d": -5.84,
+      "permutation_p": 0.0978,
+      "exact_permutation_p": 0.1,
+      "n_boot": 10000,
+      "n_perm": 10000
+    },
+    {
+      "group_a": "depth01",
+      "group_b": "depth0_only",
+      "mean_a": 2.3872,
+      "mean_b": 2.681167,
+      "mean_diff": -0.293967,
+      "bootstrap_95ci": [
+        -0.294833,
+        -0.292833
+      ],
+      "cohens_d": -377.4184,
+      "permutation_p": 0.0655,
+      "exact_permutation_p": 0.1,
+      "n_boot": 10000,
+      "n_perm": 10000
+    },
+    {
+      "group_a": "all",
+      "group_b": "binary_filtered",
+      "mean_a": 2.335133,
+      "mean_b": 2.389,
+      "mean_diff": -0.053867,
+      "bootstrap_95ci": [
+        -0.054,
+        -0.0536
+      ],
+      "cohens_d": -329.8646,
+      "permutation_p": 0.0963,
+      "exact_permutation_p": 0.1,
+      "n_boot": 10000,
+      "n_perm": 10000
+    },
+    {
+      "group_a": "all",
+      "group_b": "depth0_only",
+      "mean_a": 2.335133,
+      "mean_b": 2.681167,
+      "mean_diff": -0.346033,
+      "bootstrap_95ci": [
+        -0.346767,
+        -0.344867
+      ],
+      "cohens_d": -471.6201,
+      "permutation_p": 0.0634,
+      "exact_permutation_p": 0.1,
+      "n_boot": 10000,
+      "n_perm": 10000
+    },
+    {
+      "group_a": "binary_filtered",
+      "group_b": "depth0_only",
+      "mean_a": 2.389,
+      "mean_b": 2.681167,
+      "mean_diff": -0.292167,
+      "bootstrap_95ci": [
+        -0.2928,
+        -0.291
+      ],
+      "cohens_d": -408.4483,
+      "permutation_p": 0.0694,
+      "exact_permutation_p": 0.1,
+      "n_boot": 10000,
+      "n_perm": 10000
+    }
+  ],
+  "caveat": "n=3 per group. Bootstrap and permutation tests with such small samples have limited resolution (exact permutation test has only C(6,3)=20 distinct assignments, so minimum nonzero p=0.05). Results should be interpreted as directional evidence, not definitive hypothesis tests.",
+  "method": {
+    "bootstrap": "nonparametric percentile bootstrap, 10000 resamples",
+    "permutation": "two-sided permutation test on mean difference, 10000 random + exact enumeration",
+    "effect_size": "Cohen's d with pooled SD (ddof=1)"
+  }
+}

@@ -1,0 +1,110 @@
+Cohen's d: gen-1 vs gen-2+ — All Decoding Strategy Results (15/16 combos)
+===========================================================================
+Reference model: Pythia-410M | Date: 2026-05-22
+Source: All completed decoding-strategy combos (greedy ×8, top-k ×7)
+
+| Generator        | Strategy | entropy_mean | entropy_std | entropy_max | entropy_min | tail_decay |   TTR   | hapax_ratio | Shape Pass | Drift Pass |
+|------------------|----------|-------------|-------------|-------------|-------------|------------|---------|-------------|------------|------------|
+| LLaMA-3.2-3B    | greedy   |      1.4589 |      1.0104 |      0.0604 |      0.0690 |     0.0449 |  1.2717 |      1.2628 |    YES     |    YES     |
+| LLaMA-3.2-3B    | top-k    |      0.7664 |      0.2141 |      0.0796 |      0.0282 |     0.1973 |  0.7280 |      0.7081 |    YES     |    YES     |
+| Mistral-7B-v0.3 | greedy   |      1.3075 |      0.6161 |      0.0137 |      0.0203 |     0.1382 |  1.0447 |      1.0300 |    YES     |    YES     |
+| Mistral-7B-v0.3 | top-k    |      0.6965 |      0.0704 |      0.0641 |      0.0126 |     0.1231 |  0.6443 |      0.6683 |    YES     |    YES     |
+| OLMo-2-1B       | greedy   |      1.2933 |      0.9473 |      0.0310 |      0.0267 |     0.0329 |  0.8888 |      0.8049 |    YES     |    YES     |
+| OLMo-2-1B       | top-k    |      0.7285 |      0.3524 |      0.0108 |      0.0107 |     0.2218 |  0.7038 |      0.6899 |    NO*     |    YES     |
+| Pythia-1B        | greedy   |      0.9832 |      0.9120 |      0.1226 |      0.0438 |     0.0386 |  0.6350 |      0.5290 |    YES     |    YES     |
+| Pythia-1B        | top-k    |      0.8327 |      0.1286 |      0.2714 |      0.0351 |     0.1772 |  0.4107 |      0.3367 |    NO*     |    NO*     |
+| Pythia-2.8B      | greedy   |      1.4262 |      0.9310 |      0.0909 |      0.0751 |     0.0665 |  0.9808 |      0.8745 |    YES     |    YES     |
+| Pythia-2.8B      | top-k    |      0.7046 |      0.0991 |      0.2649 |      0.0437 |     0.1161 |  0.4124 |      0.3665 |    NO*     |    NO*     |
+| Qwen3-0.6B      | greedy   |      0.8239 |      0.7208 |      0.0926 |      0.0223 |     0.0260 |  0.5052 |      0.4554 |    YES     |    NO*     |
+| Qwen3-0.6B      | top-k    |      0.8012 |      0.3032 |      0.0163 |      0.0962 |     0.1307 |  0.5796 |      0.5173 |    YES     |    YES     |
+| Qwen3-1.7B      | greedy   |      1.0281 |      0.7799 |      0.0789 |      0.0118 |     0.0370 |  0.7400 |      0.6833 |    YES     |    YES     |
+| Qwen3-1.7B      | top-k    |      0.9851 |      0.3163 |      0.0314 |      0.0291 |     0.1392 |  0.8448 |      0.7950 |    YES     |    YES     |
+| Qwen3-8B        | greedy   |      0.9835 |      0.7096 |      0.0060 |      0.0581 |     0.0755 |  0.7597 |      0.7561 |    YES     |    YES     |
+
+Thresholds:
+  Shape pass: all 3 shape features (entropy_max, entropy_min, tail_decay) < 0.20
+  Drift pass: all 3 drifting features (entropy_mean, ttr, hapax_ratio) > 0.50
+  Intermediate: entropy_std (not used in pass criteria)
+
+Sample sizes:
+  LLaMA-3.2-3B greedy:    gen1=986,  gen2+=2894
+  Mistral-7B-v0.3 greedy:  gen1=995,  gen2+=2927
+  OLMo-2-1B greedy:       gen1=984,  gen2+=2900
+  OLMo-2-1B top-k:        gen1=984,  gen2+=2662
+  Pythia-1B greedy:        gen1=994,  gen2+=2878
+  Pythia-1B top-k:         gen1=991,  gen2+=2603
+  Pythia-2.8B greedy:      gen1=995,  gen2+=2864
+  Pythia-2.8B top-k:       gen1=987,  gen2+=2545
+  Qwen3-1.7B greedy:      gen1=985,  gen2+=2883
+  Qwen3-1.7B top-k:       gen1=988,  gen2+=2640
+  LLaMA-3.2-3B top-k:     gen1=983,  gen2+=2626
+  Mistral-7B-v0.3 top-k:   gen1=995,  gen2+=2860
+  Qwen3-0.6B greedy:      gen1=988,  gen2+=2888
+  Qwen3-0.6B top-k:       gen1=991,  gen2+=2569
+  Qwen3-8B greedy:        gen1=982,  gen2+=2722
+
+======================================================================
+Shape features (entropy_max, entropy_min, tail_decay) — threshold < 0.20
+======================================================================
+  Greedy (8/8 PASS):
+    LLaMA-3.2-3B:    max=0.060, min=0.069, tail=0.045  [PASS]
+    Mistral-7B-v0.3:  max=0.014, min=0.020, tail=0.138  [PASS]
+    OLMo-2-1B:       max=0.031, min=0.027, tail=0.033  [PASS]
+    Pythia-1B:        max=0.123, min=0.044, tail=0.039  [PASS]
+    Pythia-2.8B:      max=0.091, min=0.075, tail=0.066  [PASS]
+    Qwen3-0.6B:      max=0.093, min=0.022, tail=0.026  [PASS]
+    Qwen3-1.7B:      max=0.079, min=0.012, tail=0.037  [PASS]
+    Qwen3-8B:        max=0.006, min=0.058, tail=0.076  [PASS]
+  Top-k (4/7 PASS):
+    LLaMA-3.2-3B:    max=0.080, min=0.028, tail=0.197  [PASS]
+    Mistral-7B-v0.3:  max=0.064, min=0.013, tail=0.123  [PASS]
+    OLMo-2-1B:       max=0.011, min=0.011, tail=0.222  [FAIL: tail_decay]
+    Pythia-1B:        max=0.271, min=0.035, tail=0.177  [FAIL: entropy_max]
+    Pythia-2.8B:      max=0.265, min=0.044, tail=0.116  [FAIL: entropy_max]
+    Qwen3-0.6B:      max=0.016, min=0.096, tail=0.131  [PASS]
+    Qwen3-1.7B:      max=0.031, min=0.029, tail=0.139  [PASS]
+
+======================================================================
+Drifting features (entropy_mean, TTR, hapax_ratio) — threshold > 0.50
+======================================================================
+  Greedy (7/8 PASS):
+    LLaMA-3.2-3B:    mean=1.459, TTR=1.272, hapax=1.263  [ALL PASS]
+    Mistral-7B-v0.3:  mean=1.308, TTR=1.045, hapax=1.030  [ALL PASS]
+    OLMo-2-1B:       mean=1.293, TTR=0.889, hapax=0.805  [ALL PASS]
+    Pythia-1B:        mean=0.983, TTR=0.635, hapax=0.529  [ALL PASS]
+    Pythia-2.8B:      mean=1.426, TTR=0.981, hapax=0.875  [ALL PASS]
+    Qwen3-0.6B:      mean=0.824, TTR=0.505, hapax=0.455  [FAIL: hapax]
+    Qwen3-1.7B:      mean=1.028, TTR=0.740, hapax=0.683  [ALL PASS]
+    Qwen3-8B:        mean=0.984, TTR=0.760, hapax=0.756  [ALL PASS]
+  Top-k (5/7 PASS):
+    LLaMA-3.2-3B:    mean=0.766, TTR=0.728, hapax=0.708  [ALL PASS]
+    Mistral-7B-v0.3:  mean=0.697, TTR=0.644, hapax=0.668  [ALL PASS]
+    OLMo-2-1B:       mean=0.729, TTR=0.704, hapax=0.690  [ALL PASS]
+    Qwen3-0.6B:      mean=0.801, TTR=0.580, hapax=0.517  [ALL PASS]
+    Pythia-1B:        mean=0.833, TTR=0.411, hapax=0.337  [FAIL: TTR, hapax]
+    Pythia-2.8B:      mean=0.705, TTR=0.412, hapax=0.367  [FAIL: TTR, hapax]
+    Qwen3-1.7B:      mean=0.985, TTR=0.845, hapax=0.795  [ALL PASS]
+
+======================================================================
+Summary patterns (15/16 combos observed)
+======================================================================
+1. Greedy: 7/8 pass both Shape and Drift (Qwen3-0.6B fails Drift by
+   hapax_ratio=0.46). Decoding determinism generally preserves the
+   depth fingerprint. Qwen3-8B passes both (Shape YES, Drift YES).
+2. Top-k: 4/7 pass Shape (LLaMA-3.2-3B, Mistral-7B, Qwen3-0.6B, Qwen3-1.7B);
+   5/7 pass Drift (LLaMA-3.2-3B, Mistral-7B, OLMo, Qwen3-0.6B, Qwen3-1.7B).
+   Top-k attenuates the signal, but larger/stronger models retain it.
+   Qwen3-0.6B notably passes both under top-k despite failing Drift under greedy.
+3. LLaMA-3.2-3B greedy remains the strongest overall signal (d_mean=1.46,
+   d_ttr=1.27, d_hapax=1.26). LLaMA also retains a strong signal under
+   top-k (d_mean=0.77, d_ttr=0.73, d_hapax=0.71).
+4. Mistral-7B retains both Shape and Drift under top-k (d_mean=0.70,
+   d_ttr=0.64, d_hapax=0.67), consistent with the pattern that larger
+   models are more robust to stochastic sampling.
+5. entropy_std is strategy-sensitive: high under greedy (~0.62-1.01),
+   collapsed under top-k (0.07-0.35).
+6. The shape/drift dichotomy is robust across model families under greedy
+   decoding (exception: Qwen3-0.6B narrowly misses hapax threshold).
+   Under top-k, it breaks down for Pythia models but persists for
+   LLaMA-3.2-3B, Mistral-7B, Qwen3-0.6B, and Qwen3-1.7B.
+7. Remaining: Qwen3-8B top-k (1/16).

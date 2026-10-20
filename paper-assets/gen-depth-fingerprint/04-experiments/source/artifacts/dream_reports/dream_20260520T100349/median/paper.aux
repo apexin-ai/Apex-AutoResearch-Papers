@@ -1,0 +1,141 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{mitchell2023detectgpt}
+\citation{bao2024fast}
+\citation{gehrmann2019gltr}
+\citation{hans2024binoculars}
+\citation{yang2024dnagpt}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Perplexity-based detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model collapse and iterative generation.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data quality and vocabulary diversity.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{OOD detection and membership inference.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Feature Design}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Drifting features}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Shape features}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Intermediate features}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Classifier and Evaluation Protocol}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LOGO (Leave-One-Generator-Out):}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LOFO (Leave-One-Family-Out):}{3}{section*.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Feature ablation under 5-fold CV on MVP data. Surface features (TTR, hapax) and reference features (entropy, tail) provide complementary signal (McNemar $p \approx 0$).}}{4}{table.caption.10}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:ablation}{{1}{4}{Feature ablation under 5-fold CV on MVP data. Surface features (TTR, hapax) and reference features (entropy, tail) provide complementary signal (McNemar $p \approx 0$)}{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Feature trend classification across depth. Drifting features show $\sim $10$\times $ larger KS statistics than stationary features. \texttt  {entropy\_std} is classified as intermediate (TOST $d = 0.458$, rejection 0/1000).}}{4}{table.caption.11}\protected@file@percent }
+\newlabel{tab:trend}{{2}{4}{Feature trend classification across depth. Drifting features show $\sim $10$\times $ larger KS statistics than stationary features. \texttt {entropy\_std} is classified as intermediate (TOST $d = 0.458$, rejection 0/1000)}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Feature Ablation and DDR Trend Analysis}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:ablation}{{4.1}{4}{Feature Ablation and DDR Trend Analysis}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Generator Evaluation}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:cross_gen}{{4.2}{4}{Cross-Generator Evaluation}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Cross-Reference-Model Validation}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces LOGO per-generator results (5-gen). Binary F1 ranges 0.659--0.724 across generators.}}{5}{table.caption.12}\protected@file@percent }
+\newlabel{tab:logo}{{3}{5}{LOGO per-generator results (5-gen). Binary F1 ranges 0.659--0.724 across generators}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces LOGO vs.\ LOFO comparison. The small gap confirms limited family leakage.}}{5}{table.caption.13}\protected@file@percent }
+\newlabel{tab:lofo}{{4}{5}{LOGO vs.\ LOFO comparison. The small gap confirms limited family leakage}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Baseline Comparison}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:baseline}{{4.4}{5}{Baseline Comparison}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Cross-Model Chains}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Downstream Utility (Negative Finding)}{5}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}9-Generator Scale Evaluation}{5}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:9gen}{{4.7}{5}{9-Generator Scale Evaluation}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-reference-model validation. DDR trends hold across all reference models, confirming generation-intrinsic origin. Drift magnitude varies (OLMo range [$-0.61$, $-0.91$] vs.\ Pythia [$-1.19$, $-1.40$]).}}{6}{table.caption.14}\protected@file@percent }
+\newlabel{tab:cross_ref}{{5}{6}{Cross-reference-model validation. DDR trends hold across all reference models, confirming generation-intrinsic origin. Drift magnitude varies (OLMo range [$-0.61$, $-0.91$] vs.\ Pythia [$-1.19$, $-1.40$])}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Baseline comparison (LOGO macro F1). The 7-feature ensemble significantly outperforms all individual detectors (bootstrap $p < 0.001$). The multi-detector ensemble matches performance at $>$2.4$\times $ inference cost.}}{6}{table.caption.15}\protected@file@percent }
+\newlabel{tab:baseline}{{6}{6}{Baseline comparison (LOGO macro F1). The 7-feature ensemble significantly outperforms all individual detectors (bootstrap $p < 0.001$). The multi-detector ensemble matches performance at $>$2.4$\times $ inference cost}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scope: base models only.}{6}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Temperature sensitivity.}{6}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The \texttt  {entropy\_std} question.}{6}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Handcrafted vs.\ end-to-end.}{6}{section*.22}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Single-model vs.\ cross-model chains. Generator heterogeneity amplifies depth signal by $+$13.6 pp binary F1.}}{7}{table.caption.16}\protected@file@percent }
+\newlabel{tab:cross_model}{{7}{7}{Single-model vs.\ cross-model chains. Generator heterogeneity amplifies depth signal by $+$13.6 pp binary F1}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Downstream CLM perplexity by training data composition. At equal sample count, depth-aware curation does not improve over random subsampling.}}{7}{table.caption.17}\protected@file@percent }
+\newlabel{tab:downstream}{{8}{7}{Downstream CLM perplexity by training data composition. At equal sample count, depth-aware curation does not improve over random subsampling}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {paragraph}{Semantic convergence vs.\ distributional divergence.}{7}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{mitchell2023detectgpt}{{1}{2023}{{Mitchell et al.}}{{}}}
+\bibcite{bao2024fast}{{2}{2024}{{Bao et al.}}{{}}}
+\bibcite{gehrmann2019gltr}{{3}{2019}{{Gehrmann et al.}}{{}}}
+\bibcite{hans2024binoculars}{{4}{2024}{{Hans et al.}}{{}}}
+\bibcite{yang2024dnagpt}{{5}{2024}{{Yang et al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces 9-generator LOGO results. Gemma-2-2B exhibits anomalous gen-1 F1 = 0.036; Mistral-7B and Qwen3-8B show moderate scale-related degradation.}}{8}{table.caption.18}\protected@file@percent }
+\newlabel{tab:9gen}{{9}{8}{9-generator LOGO results. Gemma-2-2B exhibits anomalous gen-1 F1 = 0.036; Mistral-7B and Qwen3-8B show moderate scale-related degradation}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Prompt Type Comparison}{9}{appendix.A}\protected@file@percent }
+\newlabel{app:prompt}{{A}{9}{Prompt Type Comparison}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Prompt type comparison. Higher semantic divergence (lower retention) correlates with stronger depth signal. LOPTO: leave-one-prompt-type-out.}}{9}{table.caption.26}\protected@file@percent }
+\newlabel{tab:prompt}{{10}{9}{Prompt type comparison. Higher semantic divergence (lower retention) correlates with stronger depth signal. LOPTO: leave-one-prompt-type-out}{table.caption.26}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Paraphrastic vs.\ Non-Paraphrastic Chains}{9}{appendix.B}\protected@file@percent }
+\newlabel{app:para}{{B}{9}{Paraphrastic vs.\ Non-Paraphrastic Chains}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Paraphrastic vs.\ continuation chains. Semantic preservation compresses depth signal.}}{9}{table.caption.27}\protected@file@percent }
+\newlabel{tab:para}{{11}{9}{Paraphrastic vs.\ continuation chains. Semantic preservation compresses depth signal}{table.caption.27}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Multi-Domain Analysis}{9}{appendix.C}\protected@file@percent }
+\newlabel{app:domain}{{C}{9}{Multi-Domain Analysis}{appendix.C}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Multi-domain binary F1. Cross-domain transfer F1 = 0.650.}}{9}{table.caption.28}\protected@file@percent }
+\newlabel{tab:domain}{{12}{9}{Multi-domain binary F1. Cross-domain transfer F1 = 0.650}{table.caption.28}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Finer-Grained Ordinal Classification}{9}{appendix.D}\protected@file@percent }
+\newlabel{app:ordinal}{{D}{9}{Finer-Grained Ordinal Classification}{appendix.D}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces 3-class vs.\ 5-class classification. 3-class is the practical resolution ceiling.}}{10}{table.caption.29}\protected@file@percent }
+\newlabel{tab:ordinal}{{13}{10}{3-class vs.\ 5-class classification. 3-class is the practical resolution ceiling}{table.caption.29}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Robustness to Human Editing}{10}{appendix.E}\protected@file@percent }
+\newlabel{app:edit}{{E}{10}{Robustness to Human Editing}{appendix.E}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Robustness to simulated human editing.}}{10}{table.caption.30}\protected@file@percent }
+\newlabel{tab:edit}{{14}{10}{Robustness to simulated human editing}{table.caption.30}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {F}LD-Score Feature Addition}{10}{appendix.F}\protected@file@percent }
+\newlabel{app:ld}{{F}{10}{LD-Score Feature Addition}{appendix.F}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces LD-Score feature addition. Marginal contribution is not significant.}}{10}{table.caption.31}\protected@file@percent }
+\newlabel{tab:ld}{{15}{10}{LD-Score feature addition. Marginal contribution is not significant}{table.caption.31}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {G}End-to-End QLoRA Classification}{10}{appendix.G}\protected@file@percent }
+\newlabel{app:qlora}{{G}{10}{End-to-End QLoRA Classification}{appendix.G}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {H}Text Length Control}{10}{appendix.H}\protected@file@percent }
+\newlabel{app:length}{{H}{10}{Text Length Control}{appendix.H}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Handcrafted vs.\ end-to-end classification. QLoRA achieves $+$12--15 pp improvement at $\sim $150--250$\times $ inference cost.}}{11}{table.caption.32}\protected@file@percent }
+\newlabel{tab:qlora_app}{{16}{11}{Handcrafted vs.\ end-to-end classification. QLoRA achieves $+$12--15 pp improvement at $\sim $150--250$\times $ inference cost}{table.caption.32}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Length confound analysis. Only 1.6 pp of the 4.6 pp drop is attributable to length.}}{11}{table.caption.33}\protected@file@percent }
+\newlabel{tab:length}{{17}{11}{Length confound analysis. Only 1.6 pp of the 4.6 pp drop is attributable to length}{table.caption.33}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Large-Scale Generator}{11}{appendix.I}\protected@file@percent }
+\newlabel{app:scale}{{I}{11}{Large-Scale Generator}{appendix.I}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces 6-generator LOGO including Qwen3-8B. Scale degradation is moderate ($-$1.1 pp average).}}{11}{table.caption.34}\protected@file@percent }
+\newlabel{tab:scale}{{18}{11}{6-generator LOGO including Qwen3-8B. Scale degradation is moderate ($-$1.1 pp average)}{table.caption.34}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {J}DDR Causality Analysis}{11}{appendix.J}\protected@file@percent }
+\newlabel{app:causality}{{J}{11}{DDR Causality Analysis}{appendix.J}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {K}TOST Bootstrap Stability}{11}{appendix.K}\protected@file@percent }
+\newlabel{sec:tost}{{K}{11}{TOST Bootstrap Stability}{appendix.K}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {L}Instruct Model Evaluation}{11}{appendix.L}\protected@file@percent }
+\newlabel{app:instruct}{{L}{11}{Instruct Model Evaluation}{appendix.L}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces DDR causality evidence. Drifting features dominate across all methods.}}{12}{table.caption.35}\protected@file@percent }
+\newlabel{tab:causality}{{19}{12}{DDR causality evidence. Drifting features dominate across all methods}{table.caption.35}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces TOST bootstrap stability. \texttt  {entropy\_std} fails stationarity at $d = 0.2$ margin.}}{12}{table.caption.36}\protected@file@percent }
+\newlabel{tab:tost_app}{{20}{12}{TOST bootstrap stability. \texttt {entropy\_std} fails stationarity at $d = 0.2$ margin}{table.caption.36}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {M}Temperature Sensitivity}{12}{appendix.M}\protected@file@percent }
+\newlabel{app:temp}{{M}{12}{Temperature Sensitivity}{appendix.M}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {N}Independent Seed Validation}{12}{appendix.N}\protected@file@percent }
+\newlabel{app:seed_val}{{N}{12}{Independent Seed Validation}{appendix.N}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {O}Seed Complexity Stratification}{12}{appendix.O}\protected@file@percent }
+\newlabel{app:seed_complex}{{O}{12}{Seed Complexity Stratification}{appendix.O}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {P}Topic Drift Correlation}{12}{appendix.P}\protected@file@percent }
+\newlabel{app:topic}{{P}{12}{Topic Drift Correlation}{appendix.P}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {Q}TOST Equivalence Tests (Downstream)}{12}{appendix.Q}\protected@file@percent }
+\newlabel{app:tost_downstream}{{Q}{12}{TOST Equivalence Tests (Downstream)}{appendix.Q}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {R}\texttt  {entropy\_std} Cross-Reference Inconsistency}{12}{appendix.R}\protected@file@percent }
+\newlabel{app:entropy_std}{{R}{12}{\texttt {entropy\_std} Cross-Reference Inconsistency}{appendix.R}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Instruct vs.\ base model depth signal. OLMo-Instruct shows near-complete degradation with feature direction reversal.}}{13}{table.caption.37}\protected@file@percent }
+\newlabel{tab:instruct_app}{{21}{13}{Instruct vs.\ base model depth signal. OLMo-Instruct shows near-complete degradation with feature direction reversal}{table.caption.37}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces Temperature sensitivity. Signal degrades severely at $t \geq 0.9$.}}{13}{table.caption.38}\protected@file@percent }
+\newlabel{tab:temp_app}{{22}{13}{Temperature sensitivity. Signal degrades severely at $t \geq 0.9$}{table.caption.38}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces Seed leakage validation. $\Delta = -0.014$, within noise.}}{13}{table.caption.39}\protected@file@percent }
+\newlabel{tab:seed_val}{{23}{13}{Seed leakage validation. $\Delta = -0.014$, within noise}{table.caption.39}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {24}{\ignorespaces Seed complexity stratification. Depth signal is seed-independent.}}{13}{table.caption.40}\protected@file@percent }
+\newlabel{tab:seed_complex}{{24}{13}{Seed complexity stratification. Depth signal is seed-independent}{table.caption.40}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {25}{\ignorespaces Semantic similarity by depth transition. Deeper generations converge semantically while diverging distributionally.}}{13}{table.caption.41}\protected@file@percent }
+\newlabel{tab:topic}{{25}{13}{Semantic similarity by depth transition. Deeper generations converge semantically while diverging distributionally}{table.caption.41}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {26}{\ignorespaces TOST equivalence tests for downstream CLM quality. SM = size-matched random.}}{13}{table.caption.42}\protected@file@percent }
+\newlabel{tab:tost_downstream}{{26}{13}{TOST equivalence tests for downstream CLM quality. SM = size-matched random}{table.caption.42}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {27}{\ignorespaces \texttt  {entropy\_std} Cohen's $d$ across reference models.}}{13}{table.caption.43}\protected@file@percent }
+\newlabel{tab:entropy_std_cross}{{27}{13}{\texttt {entropy\_std} Cohen's $d$ across reference models}{table.caption.43}{}}
+\gdef \@abspage@last{13}

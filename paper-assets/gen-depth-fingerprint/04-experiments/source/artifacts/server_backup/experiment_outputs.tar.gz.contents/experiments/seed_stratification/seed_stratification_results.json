@@ -1,0 +1,52 @@
+{
+  "stratification_method": "ttr terciles of gen-0 samples (averaged across models per seed_id)",
+  "groups": {
+    "low_complexity": {
+      "n_chains": 332,
+      "n_samples_total": 12339,
+      "ttr_range": [
+        0.3444164605587019,
+        0.6219284952033093
+      ],
+      "binary_f1": 0.6847,
+      "multiclass_f1": 0.7724
+    },
+    "medium": {
+      "n_chains": 332,
+      "n_samples_total": 12371,
+      "ttr_range": [
+        0.6220442942778458,
+        0.668488482210436
+      ],
+      "binary_f1": 0.695,
+      "multiclass_f1": 0.7779
+    },
+    "high_complexity": {
+      "n_chains": 332,
+      "n_samples_total": 12348,
+      "ttr_range": [
+        0.6685633973671742,
+        0.9352400899430602
+      ],
+      "binary_f1": 0.6953,
+      "multiclass_f1": 0.7792
+    }
+  },
+  "overall": {
+    "binary_f1": 0.6946,
+    "multiclass_f1": 0.7729
+  },
+  "max_group_diff_binary": 0.0106,
+  "max_group_diff_multiclass": 0.0068,
+  "conclusion": "seed_independent",
+  "meta": {
+    "n_total": 37058,
+    "stratification_feature": "ttr",
+    "xgb_params": {
+      "n_estimators": 200,
+      "max_depth": 6
+    },
+    "protocol": "pooled LOGO 8-fold, class-balanced",
+    "seed": 42
+  }
+}

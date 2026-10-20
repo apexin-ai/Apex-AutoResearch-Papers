@@ -1,0 +1,209 @@
+{
+  "figures_found": [
+    {
+      "number": "1",
+      "env_type": "figure*",
+      "image_path": "fig_ddr_trajectory.pdf",
+      "caption": "Feature trajectories across generation depth ($y$-axis: $z$-scored feature values). \\textbf{Top row (drifting)}: entropy mean and hapax ratio decline monotonically across all eight generators ($|\\rho|",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": true,
+      "source_file": "introduction.tex"
+    },
+    {
+      "number": "2",
+      "env_type": "figure",
+      "image_path": "fig_transfer_heatmap.pdf",
+      "caption": "Cross-generator depth classification: $8{\\times}8$ transfer matrix (binary F1, gen-1 vs.\\ gen-2+). Each cell shows F1 when training on one generator (row) and testing on another (column). Mean cross-g",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "results.tex"
+    },
+    {
+      "number": "3",
+      "env_type": "figure",
+      "image_path": "fig1_differential_response.pdf",
+      "caption": "Differential depth response (DDR). Drifting features (blue; $|\\rho| > 0.60$, effect size $d{=}0.74$--$1.05$) shift monotonically with generation depth; near-stationary features (amber; $d \\leq 0.10$) ",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "results.tex"
+    },
+    {
+      "number": "4",
+      "env_type": "figure",
+      "image_path": "fig_convergence_dynamics.pdf",
+      "caption": "Feature convergence dynamics across generation depth. Drifting features (blue) show monotonically increasing effect size ($|d| > 1$ by gen-2+); near-stationary features (amber) remain within $|d| < 0.",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "results.tex"
+    },
+    {
+      "number": "5",
+      "env_type": "figure",
+      "image_path": "fig3_baseline_comparison.pdf",
+      "caption": "LOGO binary F1 vs.\\ inference cost in ms/text (8-gen pooled). The 7-feature ensemble (one 410M reference model) matches multi-detector ensembles (two models, 1.4B total) at ${\\sim}2.4\\times$ lower cos",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "results.tex"
+    },
+    {
+      "number": "A.1",
+      "env_type": "figure*",
+      "image_path": "fig_appendix_violin.pdf",
+      "caption": "Feature distributions by generation depth (violin plots, $N$\\,=\\,37{,}058). Drifting features (entropy mean, TTR, hapax ratio: $|\\rho| > 0.60$) show clear location shifts and narrowing with increasing",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix_dataset_stats.tex"
+    },
+    {
+      "number": "A.2",
+      "env_type": "figure",
+      "image_path": "fig_appendix_confusion.pdf",
+      "caption": "3-class LOGO confusion matrix ($N$\\,=\\,27{,}529). Gen-0 achieves near-perfect classification; the primary confusion axis is gen-1 $\\leftrightarrow$ gen-2+.",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix_confusion_matrix.tex"
+    },
+    {
+      "number": "A.3",
+      "env_type": "figure",
+      "image_path": "fig_appendix_confusion.pdf",
+      "caption": "(Continued) Row-normalized view of the confusion matrix.",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix_confusion_matrix.tex"
+    },
+    {
+      "number": "A.4",
+      "env_type": "figure",
+      "image_path": "fig_appendix_per_gen.pdf",
+      "caption": "Per-generator LOGO performance. Dashed lines: pool average.",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix_classifier.tex"
+    },
+    {
+      "number": "A.5",
+      "env_type": "figure",
+      "image_path": "fig_appendix_per_gen.pdf",
+      "caption": "(Continued) Per-generator performance heatmap across model families.",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix_classifier.tex"
+    },
+    {
+      "number": "A.6",
+      "env_type": "figure",
+      "image_path": "fig_appendix_instruct_ddr.pdf",
+      "caption": "DDR partition under base vs.\\ instruction-tuned models. (a)~Base models (silhouette\\,=\\,0.660): clear drifting/non-drifting separation. (b)~Instruction-tuned models (silhouette\\,=\\,0.372): all feature",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix_instruct.tex"
+    },
+    {
+      "number": "A.7",
+      "env_type": "figure",
+      "image_path": "fig_appendix_ddr_trends.pdf",
+      "caption": "Per-feature depth trends. Bold line: pooled mean ($\\pm$1.96\\,SE shading) across all generators, colored by DDR zone (blue: drifting, wine: intermediate, amber: near-stationary). Thin traces: individua",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix_feature_distributions.tex"
+    },
+    {
+      "number": "A.8",
+      "env_type": "figure",
+      "image_path": "fig_appendix_umap.pdf",
+      "caption": "UMAP 2D projection of the 7-feature space ($N$\\,=\\,7{,}500 stratified sample). (a) A gradient structure emerges, with deeper depths converging. (b) Gen-0 separates clearly; gen-1 and gen-2+ overlap, c",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix_feature_distributions.tex"
+    },
+    {
+      "number": "A.9",
+      "env_type": "figure",
+      "image_path": "fig_appendix_cross_temp.pdf",
+      "caption": "Cross-temperature transfer evaluation (6-gen LOGO). (a) Overall F1 by train$\\rightarrow$test temperature condition. Matched conditions (0.7$\\rightarrow$0.7, 1.0$\\rightarrow$1.0) outperform cross-tempe",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix_cross_temp.tex"
+    },
+    {
+      "number": "A.10",
+      "env_type": "figure",
+      "image_path": "fig_ddr_scatter.pdf",
+      "caption": "DDR partition in pooled ($|\\rho|$, Cohen's $d$) space. Drifting features (green) cluster at high $|\\rho|$ and $d$; near-stationary features (orange) cluster near the origin; entropy std (purple) occup",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix_tost.tex"
+    },
+    {
+      "number": "A.11",
+      "env_type": "figure",
+      "image_path": "fig_ddr_holdout_split.pdf",
+      "caption": "Holdout split validation in $(|\\rho|, d)$ space. Filled markers: selection set; hollow: validation set. Zone assignments are identical across subsets; selection/validation pairs cluster tightly for al",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix_ddr_validation.tex"
+    },
+    {
+      "number": "A.12",
+      "env_type": "figure",
+      "image_path": "fig_appendix_variance_decomp.pdf",
+      "caption": "ANOVA variance decomposition ($\\eta^2$) by feature. Depth explains 34--37\\% of location-feature variance vs.\\ $<$1\\% for shape features (${>}48\\times$ gap). Generator identity contributes uniformly ${",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix_variance_decomposition.tex"
+    },
+    {
+      "number": "A.13",
+      "env_type": "figure*",
+      "image_path": "fig_appendix_decoding.pdf",
+      "caption": "Decoding strategy robustness. \\textbf{(a)} Mean Cohen's $d$ (gen-1 vs.\\ gen-2+) across three decoding strategies. Drifting features maintain large $d$ across all strategies; shape features remain belo",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix_decoding_strategy.tex"
+    },
+    {
+      "number": "A.14",
+      "env_type": "figure",
+      "image_path": "fig_appendix_9gen_scale.pdf",
+      "caption": "Per-generator 3-class LOGO F1 for the 9-generator evaluation. Gemma-2-2B (orange) is the weakest held-out generator. Dashed line: 9-gen average (0.751). Parameter counts shown in parentheses.",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix_9gen_scale.tex"
+    },
+    {
+      "number": "A.15",
+      "env_type": "figure",
+      "image_path": "fig_appendix_nll_distribution.pdf",
+      "caption": "Token-level NLL distribution by generation depth, aggregated across all 8 generators (Pythia-410M reference model). Dashed lines indicate median NLL per depth. The systematic leftward shift demonstrat",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix_nll_distribution.tex"
+    }
+  ],
+  "results": [],
+  "post_review": {},
+  "backup_dir": "",
+  "error": "No valid figure targets. Invalid: ['17']. Available: ['1', '2', '3', '4', '5', 'A.1', 'A.10', 'A.11', 'A.12', 'A.13', 'A.14', 'A.15', 'A.2', 'A.3', 'A.4', 'A.5', 'A.6', 'A.7', 'A.8', 'A.9']",
+  "timestamp": "2026-05-24T12:21:20.580913+00:00"
+}
