@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_check_mistral_hires_status_20260514T210448_result.json",
     "occurrence": 1,
-    "bytes": 931,
-    "sha256": "ebc20b426d3aad7ee49c1635f800480688b26e16dd92fda5e10d4a79a019a205"
+    "bytes": 930,
+    "sha256": "a803fc589cfb62b5907f5f64a287e5c4564fd350dc98aff7d613b61605e3af42"
   },
   "statistics": {
     "messages": 1,

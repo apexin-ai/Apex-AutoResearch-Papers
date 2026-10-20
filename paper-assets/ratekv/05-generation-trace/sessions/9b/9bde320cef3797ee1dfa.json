@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_mistral_llama_k_ablation_20260514T071221_result.json",
     "occurrence": 1,
-    "bytes": 1485,
-    "sha256": "d2e4718b8126f3d30ac0c15de25be61570d0627871e9a7b3fb8c99cccdec106c"
+    "bytes": 1484,
+    "sha256": "972843c73bd4f9464ba4a397b638d1e01e3d139fca3a1213557ebc5fcf1c0ce7"
   },
   "statistics": {
     "messages": 1,

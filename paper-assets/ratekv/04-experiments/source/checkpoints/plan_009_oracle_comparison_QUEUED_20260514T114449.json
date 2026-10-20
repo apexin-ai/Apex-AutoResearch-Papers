@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan_009_oracle_comparison",
+  "project": "ratekv",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:44:49.386Z",
+    "updated_at": "2026-05-14T11:44:49.386Z"
+  },
+  "timestamp": "2026-05-14T11:44:49.480258+00:00",
+  "trigger": "update_registry"
+}

@@ -5129,7 +5129,7 @@ _source line 109_
 
 ```json
 {
-  "command": "git ls-remote https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git 2>&1 | head -10",
+  "command": "git ls-remote https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git 2>&1 | head -10",
   "description": "Check anonymous repo status"
 }
 ```
@@ -5314,7 +5314,7 @@ _source line 113_
 
 ```json
 {
-  "command": "git clone https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git /tmp/anon_repo 2>&1 | tail -5",
+  "command": "git clone https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git /tmp/anon_repo 2>&1 | tail -5",
   "description": "Clone anonymous repo",
   "timeout": 60000
 }

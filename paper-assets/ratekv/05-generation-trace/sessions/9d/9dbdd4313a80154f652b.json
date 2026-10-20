@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_gpu_mistral_verify_and_submit_20260514T213503_result.json",
     "occurrence": 1,
-    "bytes": 165,
-    "sha256": "e586dcd07173b2f0017a4c46caef195579846358e35d826e04dae14f6f17c2d2"
+    "bytes": 164,
+    "sha256": "915378cd5bc46f4e9a2b52ffcd2ac5d1c049f69cd3386bf1efd73297d1fbbb73"
   },
   "statistics": {
     "messages": 1,

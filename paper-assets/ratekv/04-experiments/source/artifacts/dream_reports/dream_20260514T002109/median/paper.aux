@@ -1,0 +1,83 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Method}{2}{section.2}\protected@file@percent }
+\newlabel{sec:method}{{2}{2}{Method}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Distortion Profiling}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}MCKP Formulation}{2}{subsection.2.2}\protected@file@percent }
+\newlabel{eq:obj}{{2}{2}{MCKP Formulation}{equation.2}{}}
+\newlabel{eq:one}{{3}{2}{MCKP Formulation}{equation.3}{}}
+\newlabel{eq:budget}{{4}{2}{MCKP Formulation}{equation.4}{}}
+\newlabel{eq:card}{{5}{2}{MCKP Formulation}{equation.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Cardinality Constraint Selection}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Cross-model comparison at 4$\times $ KV cache compression. Improvement is relative PPL reduction vs.\ uniform 4-bit. L0 $\Delta $ ratio: Layer~0 mean profiling delta divided by global mean.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:cross_model}{{1}{3}{Cross-model comparison at 4$\times $ KV cache compression. Improvement is relative PPL reduction vs.\ uniform 4-bit. L0 $\Delta $ ratio: Layer~0 mean profiling delta divided by global mean}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Llama-3.1-8B allocation summary by layer group. Profiling delta mean is the average $\delta _h(4\text  {-bit})$ across heads in the group.}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:llama_alloc}{{2}{3}{Llama-3.1-8B allocation summary by layer group. Profiling delta mean is the average $\delta _h(4\text {-bit})$ across heads in the group}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Layer~0 Handling}{3}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experiments}{3}{section.3}\protected@file@percent }
+\newlabel{sec:experiments}{{3}{3}{Experiments}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Setup}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Cross-Model Results}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:cross_model}{{3.2}{3}{Cross-Model Results}{subsection.3.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Compounding effect sweep on Qwen2.5-7B at 4$\times $ compression. $\Delta $PPL is relative to $k{=}0$ (no 2-bit heads allowed).}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:compounding}{{3}{4}{Compounding effect sweep on Qwen2.5-7B at 4$\times $ compression. $\Delta $PPL is relative to $k{=}0$ (no 2-bit heads allowed)}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Sensitivity to cardinality bound $k$ on Qwen2.5-7B. Percentage change is relative to $k{=}16$.}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:sensitivity_k}{{4}{4}{Sensitivity to cardinality bound $k$ on Qwen2.5-7B. Percentage change is relative to $k{=}16$}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Compounding Effect Characterization}{4}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:compounding}{{3.3}{4}{Compounding Effect Characterization}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Sensitivity to $k$.}{4}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Budget Sweep Across Compression Ratios}{4}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:budget}{{3.4}{4}{Budget Sweep Across Compression Ratios}{subsection.3.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Comparison with Reverse Waterfilling}{4}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:waterfilling}{{3.5}{4}{Comparison with Reverse Waterfilling}{subsection.3.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Budget sweep results on Qwen2.5-7B. FP16 baseline PPL: 9.87.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:budget}{{5}{5}{Budget sweep results on Qwen2.5-7B. FP16 baseline PPL: 9.87}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Allocation distribution (\% of heads) by compression ratio on Qwen2.5-7B.}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:alloc_dist}{{6}{5}{Allocation distribution (\% of heads) by compression ratio on Qwen2.5-7B}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}L0 Auto-Discovery}{5}{subsection.3.6}\protected@file@percent }
+\newlabel{sec:l0}{{3.6}{5}{L0 Auto-Discovery}{subsection.3.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Oracle Comparison}{5}{subsection.3.7}\protected@file@percent }
+\newlabel{sec:oracle}{{3.7}{5}{Oracle Comparison}{subsection.3.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}Cross-Dataset Evaluation}{5}{subsection.3.8}\protected@file@percent }
+\newlabel{sec:cross_dataset}{{3.8}{5}{Cross-Dataset Evaluation}{subsection.3.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Comparison with RateQuant-style waterfilling on Qwen2.5-7B at 4$\times $ compression.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:waterfilling}{{7}{6}{Comparison with RateQuant-style waterfilling on Qwen2.5-7B at 4$\times $ compression}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Decomposition of MCKP advantage over discretized waterfilling.}}{6}{table.8}\protected@file@percent }
+\newlabel{tab:advantage}{{8}{6}{Decomposition of MCKP advantage over discretized waterfilling}{table.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-calibration robustness.}{6}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.9}High-Resolution Profiling}{6}{subsection.3.9}\protected@file@percent }
+\newlabel{sec:hires}{{3.9}{6}{High-Resolution Profiling}{subsection.3.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.10}Downstream Task Evaluation}{6}{subsection.3.10}\protected@file@percent }
+\newlabel{sec:downstream}{{3.10}{6}{Downstream Task Evaluation}{subsection.3.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.11}Scaling Evidence: 72B Profiling}{6}{subsection.3.11}\protected@file@percent }
+\newlabel{sec:72b}{{3.11}{6}{Scaling Evidence: 72B Profiling}{subsection.3.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Layer~0 head allocation without explicit L0 exclusion on Qwen2.5-7B. Baseline uses full constraints including L0 exclusion.}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:l0_heads}{{9}{7}{Layer~0 head allocation without explicit L0 exclusion on Qwen2.5-7B. Baseline uses full constraints including L0 exclusion}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Oracle vs.\ constrained MCKP on a subset of Qwen2.5-7B layers. Search space: $4^{16} = 262{,}144$ configurations.}}{7}{table.10}\protected@file@percent }
+\newlabel{tab:oracle}{{10}{7}{Oracle vs.\ constrained MCKP on a subset of Qwen2.5-7B layers. Search space: $4^{16} = 262{,}144$ configurations}{table.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Related Work}{7}{section.4}\protected@file@percent }
+\newlabel{sec:related}{{4}{7}{Related Work}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{KV cache compression.}{7}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mixed-precision quantization.}{7}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Knapsack formulations in ML.}{7}{section*.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces C4 vs.\ WikiText-2 evaluation on Qwen2.5-7B at 4$\times $ compression.}}{8}{table.11}\protected@file@percent }
+\newlabel{tab:c4}{{11}{8}{C4 vs.\ WikiText-2 evaluation on Qwen2.5-7B at 4$\times $ compression}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Cross-calibration matrix on Qwen2.5-7B. Penalty is relative PPL increase vs.\ same-domain calibration.}}{8}{table.12}\protected@file@percent }
+\newlabel{tab:cross_calib}{{12}{8}{Cross-calibration matrix on Qwen2.5-7B. Penalty is relative PPL increase vs.\ same-domain calibration}{table.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{8}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{8}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{GQA ratio as a predictor of method gains.}{8}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{8}{Conclusion}{section.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Profiling resolution comparison on Qwen2.5-7B.}}{9}{table.13}\protected@file@percent }
+\newlabel{tab:hires}{{13}{9}{Profiling resolution comparison on Qwen2.5-7B}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Downstream task results on Qwen2.5-7B at 4$\times $ compression. Recovery \%: fraction of uniform degradation recovered by MCKP.}}{9}{table.14}\protected@file@percent }
+\newlabel{tab:downstream}{{14}{9}{Downstream task results on Qwen2.5-7B at 4$\times $ compression. Recovery \%: fraction of uniform degradation recovered by MCKP}{table.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Profiling comparison: Qwen2.5-7B vs.\ 72B.}}{9}{table.15}\protected@file@percent }
+\newlabel{tab:72b}{{15}{9}{Profiling comparison: Qwen2.5-7B vs.\ 72B}{table.15}{}}
+\gdef \@abspage@last{9}

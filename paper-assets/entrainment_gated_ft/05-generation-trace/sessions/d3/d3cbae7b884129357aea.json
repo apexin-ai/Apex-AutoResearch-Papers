@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_wang-paradox-boolq-taxonomy-cleanup_20260519T170231_result.json",
     "occurrence": 1,
-    "bytes": 1961,
-    "sha256": "b74945621c760d89d7e2922a2c10cb276da56880ca2e95bb48e84238f6c2e99e"
+    "bytes": 1960,
+    "sha256": "be9d258168a3ab2b9a9cc4ff3be085259b172994ad8ac35da2fe53ce6e86e4f7"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_diag_w2_w9_server_check_20260515T050332_result.json",
     "occurrence": 1,
-    "bytes": 370,
-    "sha256": "93f8e8aabe649db7badce01394626098480f1f7b0840dbf3763dd96e5cc10098"
+    "bytes": 369,
+    "sha256": "98eea1d3626635c2905f1b480b670b613b072f82a3052b4b8238911b1f461bcd"
   },
   "statistics": {
     "messages": 1,

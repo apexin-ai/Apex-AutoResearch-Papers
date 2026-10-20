@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_check_mistral_heuristic_k_value_20260514T093421_result.json",
     "occurrence": 1,
-    "bytes": 912,
-    "sha256": "39b2e642b737673bba2c5b8c3708470437b62d43f2a0f708b65b90f79af6763f"
+    "bytes": 911,
+    "sha256": "8e7f4bf677341ca0f0b3922193589f8616078461aa40b2cfd3ab6d9aebf1462d"
   },
   "statistics": {
     "messages": 1,

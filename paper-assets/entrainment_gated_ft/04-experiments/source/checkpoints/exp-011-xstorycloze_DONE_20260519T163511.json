@@ -1,0 +1,53 @@
+{
+  "exp_id": "exp-011-xstorycloze",
+  "project": "entrainment_gated_ft",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T16:18:38.168Z",
+    "updated_at": "2026-05-19T16:35:11.653Z",
+    "hypothesis": "xstorycloze_en (StoryCloze equivalent, context completion task) shows significant cross-architecture convergence with attention ratio, providing a second statistically significant anchor beyond LAMBADA after Bonferroni correction",
+    "parent": "exp-011",
+    "spec": {
+      "command": "bash /root/entrainment_gated_ft/run_xstorycloze_batch.sh (PID 497694)",
+      "server": "westb-48145",
+      "data_path": "/root/autodl-tmp/models_1.3b/ (16 models)",
+      "data_count": 16,
+      "model_name": "GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)",
+      "seed": 0,
+      "checkpoint_source": "/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained)",
+      "eval_data": "xstorycloze_en (juletxara/xstory_cloze, en split)",
+      "gpu": "cuda:0 (RTX PRO 6000)"
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/entrainment_gated_ft/lm_eval_clean/xstorycloze/",
+    "log_path": "/root/entrainment_gated_ft/nohup.out",
+    "completed_at": "2026-05-19T16:32:04.959Z",
+    "metrics": {
+      "xstorycloze_en": {
+        "rho": -0.6,
+        "raw_p": 0.35,
+        "bonferroni_adj_p_10": 1,
+        "std_pure": 0.0082,
+        "std_h3_1": 0.0055,
+        "convergence_direction": "correct but weak"
+      },
+      "two_benchmark_bonferroni": {
+        "LAMBADA_adj_p": 0.0334,
+        "xstorycloze_adj_p": 0.7,
+        "note": "LAMBADA survives 2-benchmark Bonferroni (p=0.0334 < 0.05)"
+      },
+      "ten_benchmark_bonferroni": {
+        "significant_count": "0/10",
+        "LAMBADA_adj_p": 0.167,
+        "note": "No benchmark survives 10-benchmark Bonferroni"
+      },
+      "method": "exact_permutation_test_two_tailed",
+      "conclusion": "xstorycloze_en NOT a second anchor. Convergence is LAMBADA-specific. W1 unresolved via multi-benchmark approach."
+    }
+  },
+  "timestamp": "2026-05-19T16:35:11.695319+00:00",
+  "trigger": "update_registry"
+}

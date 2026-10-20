@@ -1,0 +1,5 @@
+{"ts": "2026-05-17T05:26:04+00:00", "role": "director", "loop_id": "director_loop_1", "event": "BOOT_STARTED", "details": {"loop_count": 1, "boot_kind": "first_boot"}}
+{"ts": "2026-05-17T05:26:04+00:00", "role": "agent", "loop_id": "agent_loop_1", "event": "BOOT_COMPLETE", "details": {"new_session_id": null, "loop_count": 1, "boot_kind": "first_boot_agent_skip", "restart_recovery": false}}
+{"ts": "2026-05-17T05:27:31+00:00", "role": "reviewer", "loop_id": "reviewer_loop_1", "event": "BOOT_STARTED", "details": {"loop_count": 1, "boot_kind": "first_boot"}}
+{"ts": "2026-05-17T05:28:18+00:00", "role": "director", "loop_id": "director_loop_1", "event": "BOOT_COMPLETE", "details": {"new_session_id": "9ee9ee6f-030c-4bf1-b747-dd56f29d43fd", "loop_count": 1, "boot_kind": "first_boot", "restart_recovery": false}}
+{"ts": "2026-05-17T05:28:58+00:00", "role": "reviewer", "loop_id": "reviewer_loop_1", "event": "BOOT_COMPLETE", "details": {"new_session_id": "b1e2ff0c-b928-405d-b21f-f1c1f5da6932", "loop_count": 1, "boot_kind": "first_boot", "restart_recovery": false}}

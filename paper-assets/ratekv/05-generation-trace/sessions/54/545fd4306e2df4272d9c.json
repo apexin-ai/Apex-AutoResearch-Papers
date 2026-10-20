@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_figure_heatmap-gemma2-hires-switch_20260515T010636_result.json",
     "occurrence": 1,
-    "bytes": 283,
-    "sha256": "c2c77d022bfb4857343a75c97890385d3ac601201a3e046665ad47a134ae0bea"
+    "bytes": 282,
+    "sha256": "9ba0663fa66f0b66f1a1d1619d52e90ca55afc9eefbc4279e0f6149f16ee49c0"
   },
   "statistics": {
     "messages": 1,

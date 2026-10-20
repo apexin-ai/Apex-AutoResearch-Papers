@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_mistral_multi_seed_ppl_v2_20260516T040001_result.json",
     "occurrence": 1,
-    "bytes": 466,
-    "sha256": "6f4d4a62ac3d881d39ea7daa90dceda9948a5585b7405916fc674c8753468d42"
+    "bytes": 465,
+    "sha256": "727bf3937ebc7c9f403bb548d145ffde25af526780c084cce447ea06aa6fb0f7"
   },
   "statistics": {
     "messages": 1,

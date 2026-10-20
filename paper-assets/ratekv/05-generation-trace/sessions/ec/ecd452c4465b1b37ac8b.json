@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_p1-patch-yi15-gemma2_20260514T185614_result.json",
     "occurrence": 1,
-    "bytes": 1503,
-    "sha256": "8b196fb07b8135dd2aa06571b71bad769033776f10c6977840eb05252286b838"
+    "bytes": 1502,
+    "sha256": "164b1321322ef8bcc6b9e4297a2ebb83d6afcfc586ade030d2328086f4b59828"
   },
   "statistics": {
     "messages": 1,

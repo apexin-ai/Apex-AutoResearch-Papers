@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp-005-dn-eval",
+  "project": "entrainment_gated_ft",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:56:19.907Z",
+    "updated_at": "2026-05-24T07:41:38.303Z",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/entrainment_gated_ft && python scripts/patch_fla_eval.py --model hf --model_args pretrained=/root/entrainment_gated_ft/models/340M-20B-DeltaNet-hybrid-3-1,trust_remote_code=True,dtype=float16 --tasks lambada_openai,arc_easy --device cuda:0 --batch_size auto --log_samples --output_path /root/entrainment_gated_ft/results/exp005_zoo_expansion/DeltaNet_hybrid-3-1/ && echo DELTANET_EVAL_DONE\"",
+      "server": "westb-48145",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "886300",
+      "log_path": "~/runs/entrainment_gated_ft/exp-005-dn-eval.log",
+      "submitted_at": "2026-05-22T16:04:02.638Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "metrics": {
+      "model": "340M-20B-DeltaNet-hybrid-3-1",
+      "lambada_openai_acc": 0.3536,
+      "lambada_openai_ppl": 30.45,
+      "arc_easy_acc": 0.601,
+      "arc_easy_acc_norm": 0.5198,
+      "status": "DONE"
+    }
+  },
+  "timestamp": "2026-05-24T07:41:38.375310+00:00",
+  "trigger": "update_registry"
+}

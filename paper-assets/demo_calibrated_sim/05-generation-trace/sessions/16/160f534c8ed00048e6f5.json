@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "160f534c8ed00048e6f5",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "research reference audit",
+  "task_key": "worker_research_reference-audit_20260513T063327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_reference-audit_20260513T063327_result.json",
+    "occurrence": 1,
+    "bytes": 766,
+    "sha256": "d182d1db08cbabf9bb7509db8fc3c40f4bb73de87beef3c488a5ed68717b9104"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。报告已写入 `artifacts/reference_audit_report.md`。\n\n**结果：0 篇幻觉论文，8 篇均真实存在。**\n\n需要修正的问题：\n\n| 严重度 | 论文 | 问题 |\n|--------|------|------|\n| **必须修** | `gupta2026intra_fairness` (2602.16438) | 作者错误：实际首作者是 **Paraschou**，不是 Gupta。论文真实但作者张冠李戴 |\n| 建议修 | `sim2real2026gap` (2603.11245) | 作者写了 \"Anonymous\" 但论文已有实名作者（Zhou, Sun 等，CMU） |\n| 建议修 | `anonymous2026expert_persona` (2603.18507) | 作者写了 \"Anonymous\" 但实际是 Hu, Rostami, Thomason |\n| 可选 | `basil2025playing_pretend` (2512.05858) | 标题省略了系列前缀 \"Prompting Science Report 4:\" |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-reference-audit.md"
+}

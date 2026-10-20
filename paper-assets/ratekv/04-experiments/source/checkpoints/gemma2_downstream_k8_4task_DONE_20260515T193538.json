@@ -1,0 +1,46 @@
+{
+  "exp_id": "gemma2_downstream_k8_4task",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:24:09.366Z",
+    "updated_at": "2026-05-15T19:35:38.017Z",
+    "hypothesis": "Gemma-2 downstream eval with k=8 (spread model), 4-task protocol (arc_challenge, hellaswag, piqa, winogrande). Fixes k=2 error from gemma2_downstream_k2_4task. Should produce updated Table 4 numbers with correct 4-task avg.",
+    "server": "westd-37397",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-37397",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-15T19:27:08.779Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python3 run_gemma2_downstream_k8.py\"",
+      "finished_at": "2026-05-15T19:35:36.032Z",
+      "training_hours": 0.14
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python3 run_gemma2_downstream_k8.py\"",
+      "server": "westd-37397",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "366460",
+      "log_path": "~/runs/ratekv/gemma2_downstream_k8_4task.log",
+      "submitted_at": "2026-05-15T19:27:10.724Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 507.3,
+      "gpu_hours": 0.14
+    },
+    "pid": "366460",
+    "log_path": "~/runs/ratekv/gemma2_downstream_k8_4task.log",
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T19:35:38.017Z"
+  },
+  "timestamp": "2026-05-15T19:35:38.180282+00:00",
+  "trigger": "update_registry"
+}

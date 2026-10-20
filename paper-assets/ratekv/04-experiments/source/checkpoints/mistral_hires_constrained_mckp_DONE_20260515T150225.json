@@ -1,0 +1,28 @@
+{
+  "exp_id": "mistral_hires_constrained_mckp",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:48:40.269Z",
+    "updated_at": "2026-05-15T15:02:25.337Z",
+    "hypothesis": "Mistral-7B (Flat, conc=0.22) constrained MCKP should show minimal improvement over uniform 4-bit",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python run_mistral_hires_constrained.py",
+      "server": "westd-37397",
+      "data_path": "/root/ratekv/mistral_profiling_results.json",
+      "data_count": 256,
+      "model_name": "mistralai/Mistral-7B-v0.3",
+      "seed": 42,
+      "checkpoint_source": "mistral_hires_bf16_2bitonly_results.json",
+      "eval_data": "wikitext-2"
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T15:01:49.430Z",
+    "notes": "uniform 4-bit PPL = 50130.79 (catastrophic error, expected ~7.13). MCKP constrained PPL = 7.1341 正常。Root cause TBD - likely uniform quantization code path bug (wrong bit-width or attention patch not reset). 需修复后重跑 uniform eval。"
+  },
+  "timestamp": "2026-05-15T15:02:25.599490+00:00",
+  "trigger": "update_registry"
+}

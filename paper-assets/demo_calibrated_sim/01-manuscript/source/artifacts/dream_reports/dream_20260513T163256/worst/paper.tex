@@ -1,0 +1,407 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{natbib}
+
+\title{The Scale-Dependent Calibration Paradox:\\Prompt-Based and Training-Based Corrections\\Both Fail for Dialect Bias in LLM User Simulators}
+
+\author{Anonymous}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+% ============================================================
+\begin{abstract}
+LLM-based user simulators exhibit dialect-dependent behavioral biases---speakers of African American Vernacular English (AAVE) and Indian English receive systematically different interaction patterns compared to Standard American English.
+We study two complementary calibration strategies: Behavioral Calibration Prompting (BCP), which injects target behavioral rates at prompt time, and Direct Preference Optimization (DPO), which aligns models via dialect-calibrated preference pairs.
+Through controlled multi-run experiments on Qwen2.5-7B-Instruct and Qwen2.5-14B-Instruct in the $\tau$-bench retail domain, we find that both strategies fail, but the \emph{nature} of failure is scale-dependent.
+At 7B, BCP triggers overcorrection rebound (+2.75 percentage points above baseline, 4/4 runs consistent) and pilot observations suggest completion suppression and cross-dimension interference, though these do not consistently replicate across runs.
+At 14B, destructive side effects vanish---completion rates remain high and overcorrection disappears---but calibration itself remains ineffective.
+DPO+BCP interaction at 7B produces suggestive evidence of calibration reversal (gap expansion in 10/12 variant$\times$run checks), but this effect does not replicate at 14B ($p=0.18$, 95\% CI includes zero, reversal direction consistent in only 2/4 runs).
+We term this the \emph{scale-dependent calibration paradox}: scaling resolves BCP's harms without solving its core limitation.
+These findings establish constraints for future calibration research and connect observed failures to broader phenomena in persona prompting and preference optimization.
+\end{abstract}
+
+% ============================================================
+\section{Introduction}
+\label{sec:intro}
+
+LLM-based user simulators are increasingly used to evaluate conversational agents in domains such as customer service \citep{yao2024taubench}, but recent work has revealed systematic dialect-dependent biases in these simulators \citep{seshadri2026lost}.
+Speakers of non-standard dialects---particularly AAVE and Indian English---receive interaction patterns that diverge from Standard American English baselines, with downstream consequences for agent evaluation fairness \citep{sim2real2026gap}.
+
+A natural response is to calibrate the simulator: adjust its behavioral rates (e.g., politeness frequency, question-asking rate) to match empirically observed human distributions.
+We investigate two canonical paradigms for this adjustment:
+\begin{enumerate}
+    \item \textbf{Behavioral Calibration Prompting (BCP)}: system-prompt injection specifying target behavioral rates for each dialect.
+    \item \textbf{Direct Preference Optimization (DPO)} \citep{rafailov2023dpo}: fine-tuning the simulator on dialect-calibrated preference pairs, then combining with BCP at inference.
+\end{enumerate}
+
+Prior work on persona prompting has documented accuracy degradation when LLMs adopt non-default personas \citep{basil2025playing_pretend, hu2026expert_persona}, and bias spillover effects under targeted alignment \citep{gupta2026intra_fairness}.
+However, no systematic study has examined how calibration interventions fail in multi-turn agentic dialogue, nor how failure patterns change with model scale.
+
+We present a controlled empirical study across two model scales (7B and 14B parameters) with multi-run replication (4 runs $\times$ 20 tasks per condition).
+Our primary finding is a \emph{scale-dependent calibration paradox}:
+\begin{itemize}
+    \item At 7B, BCP produces one robustly replicated failure mode---overcorrection rebound (FM3)---alongside pilot observations of completion suppression and cross-dimension interference that do not consistently replicate across runs.
+    \item At 14B, all destructive side effects disappear, but BCP calibration remains ineffective.
+    \item DPO+BCP interaction at 7B shows suggestive evidence of calibration reversal, but this effect vanishes at 14B.
+\end{itemize}
+
+This paradox---that scaling resolves harms without conferring efficacy---implies that ``BCP works at scale'' is a misleading conclusion.
+Future calibration methods cannot assume that scaling alone will solve the problem.
+
+Our contributions are:
+\begin{enumerate}
+    \item[\textbf{C1.}] Documentation of overcorrection rebound as a robust BCP failure mode at 7B (4/4 runs consistent, +2.75pp mean), with completion suppression and cross-dimension interference observed in a single-run pilot but not consistently replicated (Section~\ref{sec:exp1}).
+    \item[\textbf{C2.}] Exploratory evidence that DPO+BCP interaction produces calibration reversal at 7B, suggestive but statistically underpowered, and not replicated at 14B (Section~\ref{sec:exp2}).
+    \item[\textbf{C3.}] Identification of a scale-dependent calibration paradox: failure severity transitions from ``catastrophic over-response'' at 7B to ``selective ignoring'' at 14B, with no scale achieving effective calibration (Sections~\ref{sec:exp1}--\ref{sec:exp2}).
+    \item[\textbf{C4.}] Actionable constraints for future calibration research grounded in the observed failure patterns (Section~\ref{sec:discussion}).
+\end{enumerate}
+
+% ============================================================
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{LLM User Simulation and Bias.}
+LLM-based user simulators have been adopted for scalable evaluation of conversational agents \citep{yao2024taubench}.
+\citet{sim2real2026gap} quantify the gap between simulated and human users in $\tau$-bench, while \citet{seshadri2026lost} document that AAVE and Indian English speakers receive the worst simulator calibration, motivating targeted interventions.
+
+\paragraph{Persona Prompting and Accuracy.}
+\citet{basil2025playing_pretend} show that persona prompting degrades MMLU accuracy from 71.6\% to 66.3\%, and \citet{hu2026expert_persona} document accuracy degradation up to 30 percentage points under persona assignment, with instruction-tuned models being more susceptible.
+These findings parallel our observation that BCP prompts can suppress task completion at 7B (FM1), though we find this effect does not consistently replicate in multi-run evaluation.
+
+\paragraph{Targeted Alignment and Spillover.}
+\citet{gupta2026intra_fairness} document bias spillover in targeted alignment, where correcting one fairness dimension perturbs others.
+This connects to our pilot observation of cross-dimension interference (FM2), though our multi-run data suggests this may reflect sampling noise rather than a systematic mechanism.
+
+\paragraph{DPO and Alignment Fragility.}
+\citet{lee2024dpo_toxicity} demonstrate that DPO bypasses rather than removes capabilities, with alignment being fragile and reversible.
+Our exploratory finding that DPO+BCP interaction can reverse calibration direction at 7B (C2) is consistent with this fragility, though the effect lacks sufficient statistical power for definitive claims.
+
+% ============================================================
+\section{Method}
+\label{sec:method}
+
+\subsection{Evaluation Framework}
+
+We evaluate on the $\tau$-bench retail domain \citep{yao2024taubench}, a multi-turn tool-calling benchmark with 16 available tools and standardized task completion criteria.
+Each evaluation episode consists of a user simulator interacting with a customer service agent over multiple turns.
+We measure three behavioral dimensions:
+\begin{itemize}
+    \item \textbf{Task completion rate}: fraction of tasks successfully completed.
+    \item \textbf{Politeness rate}: fraction of user turns containing polite language markers.
+    \item \textbf{Question rate}: fraction of user turns containing explicit questions.
+\end{itemize}
+
+For each condition, we run $n=20$ tasks per dialectal variant per run, with 4 independent runs where specified.
+
+\subsection{Behavioral Calibration Prompting (BCP)}
+
+BCP injects target behavioral rates into the user simulator's system prompt.
+For each dialect $d \in \{\text{Standard, AAVE, Indian}\}$ and behavioral dimension $b \in \{\text{politeness, question\_rate}\}$, we specify a target rate $r_{d,b}$ derived from empirical human behavioral distributions.
+We evaluate six BCP variants per run:
+\begin{itemize}
+    \item \texttt{baseline}: no calibration prompt.
+    \item \texttt{calibrated\_aave}: BCP targeting AAVE behavioral rates.
+    \item \texttt{calibrated\_indian}: BCP targeting Indian English behavioral rates.
+    \item \texttt{single\_dim\_politeness}: BCP targeting only politeness.
+    \item \texttt{single\_dim\_question}: BCP targeting only question rate.
+    \item \texttt{overcorrected}: BCP targeting extreme politeness values.
+\end{itemize}
+
+\subsection{DPO Training}
+
+We fine-tune Qwen2.5-7B-Instruct and Qwen2.5-14B-Instruct using DPO \citep{rafailov2023dpo} on dialect-calibrated preference pairs constructed from $\tau$-bench episodes.
+Preferred responses exhibit target dialect-appropriate behavioral rates; rejected responses exhibit baseline (uncalibrated) rates.
+We use LoRA with rank $r=16$ for parameter-efficient training.
+
+For 7B, DPO training achieves accuracy 0.75--1.0 with loss 0.653.
+For 14B, training achieves accuracy 0.72--0.95 with loss 0.661 over 12.5 hours.
+The merged DPO model is then evaluated with BCP prompts to test the interaction effect.
+
+\subsection{Hypotheses and Pass Criteria}
+
+We evaluate three pre-registered hypotheses:
+\begin{itemize}
+    \item \textbf{H1} (Bias exists): The simulator exhibits significant behavioral differences across dialects ($p < 0.05$).
+    \item \textbf{H2} (Calibration effective): BCP reduces the politeness gap between dialects by $\geq$30\%.
+    \item \textbf{H3} (No harm): Calibrated variants retain $\geq$80\% of baseline task completion rate.
+\end{itemize}
+
+% ============================================================
+\section{Experiment 1: 7B BCP Multi-Run Replication}
+\label{sec:exp1}
+
+\subsection{Setup}
+
+We replicate the initial BCP evaluation (mvp-004, Qwen2.5-7B-Instruct) with 3 additional independent runs (Runs~2--4), totaling 4 runs $\times$ 6 variants $\times$ ${\sim}$20 tasks.
+The original run (mvp-004) reported completion retention of 52.3\% and cross-dimension interference of $-$25.6\% politeness shift when targeting question rate, suggesting two strong failure modes (FM1 and FM2).
+The goal of this replication is to determine whether these findings are robust or single-run artifacts.
+
+\subsection{Results}
+
+Table~\ref{tab:7b_replication} presents the full 4-run replication results.
+
+\begin{table}[t]
+\centering
+\small
+\caption{7B BCP 4-run replication summary (Qwen2.5-7B-Instruct, $\tau$-bench retail, $n \approx 20$ tasks/variant/run). Completion retention is the ratio of calibrated variant completion to baseline completion.}
+\label{tab:7b_replication}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Metric} & \textbf{Run 1} & \textbf{Run 2} & \textbf{Run 3} & \textbf{Run 4} & \textbf{Mean} & \textbf{Std} \\
+\midrule
+Baseline completion     & 0.368 & 0.395 & 0.430 & 0.410 & 0.401 & 0.026 \\
+AAVE completion         & 0.100 & 0.316 & 0.350 & 0.333 & 0.275 & 0.117 \\
+Indian completion       & 0.150 & 0.300 & 0.375 & 0.316 & 0.285 & 0.097 \\
+Completion retention    & 52.3\% & 78.2\% & 84.8\% & 83.1\% & 74.6\% & 15.0\% \\
+\midrule
+FM1 (retention $<$80\%) & Yes & Yes$^*$ & No & No & 2/4 & --- \\
+\midrule
+Pol shift (target qrate)  & $-$25.6\% & $-$6.1\% & +2.0\% & $-$3.2\% & $-$8.2\% & 12.4\% \\
+FM2 replicated?           & Yes & No & No & No & 1/4 & --- \\
+\midrule
+Overcorr.\ rebound (pp)  & +4.6 & +2.8 & +1.5 & +2.1 & +2.75 & 1.29 \\
+FM3 direction consistent? & Yes & Yes & Yes & Yes & 4/4 & --- \\
+\midrule
+H2 pass?                  & Fail & Fail & Fail & Fail & 0/4 & --- \\
+H3 pass?                  & Fail & Fail & Pass & Fail & 1/4 & --- \\
+\bottomrule
+\end{tabular}
+\vspace{1mm}
+\raggedright\footnotesize{$^*$Borderline: retention = 78.2\%, near the 80\% threshold.}
+\end{table}
+
+\subsection{Analysis}
+
+\paragraph{FM1 (Completion Suppression): Not Robustly Replicated.}
+The original run reported completion retention of 52.3\%, well below the 80\% threshold.
+However, the three replication runs yield retention of 78.2\%, 84.8\%, and 83.1\% (3-run mean excluding the original: 82.0\%).
+The 4-run mean of 74.6\% is pulled down by the original run, which appears to be an outlier.
+With a standard deviation of 15.0\%, the 95\% confidence interval for mean retention is wide enough to include 80\%.
+The original AAVE completion of 0.100 is a plausible tail event under a binomial distribution with true rate ${\sim}$0.30 ($P(\leq 2/20) \approx 3.5\%$), but it is not representative of the typical outcome.
+We classify FM1 as an observation from a single-run pilot, not a consistently replicated failure mode.
+
+\paragraph{FM2 (Cross-Dimension Interference): Not Robustly Replicated.}
+The original run showed a $-$25.6\% politeness shift when targeting question rate.
+Replication runs show shifts of $-$6.1\%, +2.0\%, and $-$3.2\%---small in magnitude and inconsistent in direction.
+Only 1 of 4 runs shows an interference effect exceeding 10\%.
+Cross-dimension interference is more likely sampling noise than a systematic mechanism.
+Like FM1, we classify FM2 as a pilot observation.
+
+\paragraph{FM3 (Overcorrection Rebound): Robust.}
+Overcorrection rebound is the sole robustly replicated BCP failure mode.
+All 4 runs show overcorrected politeness above the baseline, with rebound magnitudes of +4.6, +2.8, +1.5, and +2.1 percentage points (mean +2.75pp, std 1.29pp).
+The directional consistency of 4/4 runs provides strong evidence that requesting extreme behavioral shifts triggers a rebound toward default rates at 7B scale.
+
+\paragraph{Hypothesis Tests.}
+H2 (calibration effective) fails in all 4 runs: BCP does not reduce the politeness gap by $\geq$30\% in any run.
+H3 (no harm) passes in 1 of 4 runs, driven by higher baseline completion in Run~3.
+
+% ============================================================
+\section{Experiment 2: 14B DPO+BCP Scale Comparison}
+\label{sec:exp2}
+
+\subsection{Setup}
+
+To test whether DPO+BCP interaction effects are scale-dependent, we train a DPO model on Qwen2.5-14B-Instruct (LoRA $r=16$, FP16, TP=2, 12.5 hours) and evaluate the merged model with BCP prompts over 4 independent runs $\times$ 20 tasks.
+
+Prior 14B BCP-only results (qwen14b-bcp-001) established the 14B baseline:
+mean completion 61.6\% (vs 7B 36.8\%), H3 passing 4/4 runs (no completion collapse), and FM3 rebound absent (0/4 runs).
+The question is whether FM4---DPO+BCP calibration reversal, observed at 7B with gap expansion in 10/12 variant$\times$run checks---replicates at 14B.
+
+\subsection{Results}
+
+Table~\ref{tab:fm4_scale} compares FM4 metrics across scales, and Table~\ref{tab:14b_dpo_runs} shows per-run 14B DPO+BCP results.
+
+\begin{table}[t]
+\centering
+\small
+\caption{FM4 (DPO+BCP calibration reversal) scale comparison. Gap diff is the change in dialect politeness gap after DPO+BCP relative to BCP alone.}
+\label{tab:fm4_scale}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{7B} & \textbf{14B} & \textbf{Scale effect} \\
+\midrule
+Gap diff (AAVE)            & +0.155 & +0.035 & 77\% reduction \\
+Gap diff (Indian)          & +0.161 & +0.028 & 83\% reduction \\
+$p$-value (one-sided)      & 0.081 / 0.069 & 0.18 & Non-significant \\
+CI lower bound             & $-$0.065 / $-$0.052 & $-$0.08 & Both contain 0 \\
+Reversal consistent runs   & --- & 2/4 & Inconsistent \\
+Gap expansion count        & 10/12 & 5/12 & Systematic $\to$ random \\
+FM4 status                 & Suggestive & Not replicated & Scale-dependent \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{14B DPO+BCP per-run results (Qwen2.5-14B-Instruct, LoRA $r=16$, $n=20$ tasks/run). Gap = AAVE politeness $-$ baseline politeness.}
+\label{tab:14b_dpo_runs}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Run} & \textbf{Base pol} & \textbf{AAVE pol} & \textbf{Gap} & \textbf{Completion} & \textbf{H2} & \textbf{H3} \\
+\midrule
+Run 1 & 0.538 & 0.562 & +0.024 & 0.63 & Fail & Pass \\
+Run 2 & 0.521 & 0.570 & +0.049 & 0.55 & Fail & Pass \\
+Run 3 & 0.533 & 0.518 & $-$0.015 & 0.60 & Fail & Pass \\
+Run 4 & 0.527 & 0.541 & +0.014 & 0.53 & Fail & Fail \\
+\midrule
+Mean  & 0.530 & 0.548 & +0.018 & 0.578 & 0/4 & 3/4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Analysis}
+
+\paragraph{FM4 Does Not Replicate at 14B.}
+At 7B, gap expansion occurs in 10/12 variant$\times$run checks, suggesting a systematic DPO+BCP interaction.
+At 14B, gap expansion occurs in only 5/12 checks---indistinguishable from chance (50\%).
+The gap difference magnitudes are substantially reduced (AAVE: +0.155 at 7B $\to$ +0.035 at 14B, a 77\% reduction; Indian: +0.161 $\to$ +0.028, 83\% reduction), and the $p$-value rises from 0.07--0.08 to 0.18.
+The 95\% CI spans $[-0.08, +0.16]$, comfortably including zero.
+Reversal direction is consistent in only 2 of 4 runs.
+
+This result is mechanistically expected: BCP has minimal effect at 14B (the model selectively ignores calibration prompts), so DPO cannot reverse an effect that barely exists.
+The 7B FM4 signal likely reflects DPO interacting with 7B's strong but misdirected BCP response.
+
+\paragraph{14B DPO+BCP Preserves Completion.}
+Mean completion at 14B DPO+BCP is 0.578, and H3 passes in 3/4 runs.
+FM1 (completion suppression) is absent: completion retention is 93\%.
+FM3 (overcorrection rebound) is also absent at 14B ($-$0.02pp, effectively zero).
+
+\paragraph{H2 Still Fails at Both Scales.}
+Despite DPO training at 14B (loss 0.661, accuracy 0.72--0.95), calibration remains ineffective: H2 fails in all 4 runs.
+This confirms the scale-dependent calibration paradox---scaling eliminates destructive side effects but does not enable effective calibration.
+
+% ============================================================
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{The Scale-Dependent Calibration Paradox}
+
+Our central finding is that BCP failure is ubiquitous across scales, but its \emph{character} transitions:
+
+\begin{itemize}
+    \item \textbf{7B = ``Catastrophic over-response.''} BCP prompts overwhelm the model's limited capacity, triggering overcorrection rebound (FM3, robustly replicated) and, in some runs, completion suppression and cross-dimension interference. The model responds to calibration instructions, but its responses are destabilizing.
+    \item \textbf{14B = ``Selective ignoring.''} The model maintains normal behavior (high completion, no rebound) but simply does not adjust behavioral rates in response to calibration prompts. H2 fails at 14B just as it fails at 7B.
+\end{itemize}
+
+There is no ``sweet spot'' scale at which BCP achieves its intended effect: smaller models are harmed by it, and larger models ignore it.
+
+\subsection{Implications for Future Calibration Research}
+
+\paragraph{Prompt-based calibration faces a fundamental limitation.}
+The scale-dependent paradox suggests that behavioral rate calibration via system prompts is not a viable strategy, at least for multi-turn agentic dialogue.
+This extends the persona-accuracy trade-off documented by \citet{basil2025playing_pretend} and \citet{hu2026expert_persona} from single-turn settings to multi-turn tool-calling scenarios, adding a scale dimension: larger models resist perturbation but are not thereby calibrated.
+
+\paragraph{Behavioral dimensions are coupled.}
+Our pilot observations of cross-dimension interference (FM2, not robustly replicated) are consistent with the bias spillover documented by \citet{gupta2026intra_fairness}.
+While FM2 does not meet the threshold for a robust finding, the theoretical concern remains: calibrating one dimension without perturbing others likely requires methods that explicitly disentangle dimensions, such as per-dimension reward models or constrained decoding.
+
+\paragraph{Calibration methods must be evaluated in combination.}
+The suggestive DPO+BCP interaction at 7B (C2) highlights that calibration methods cannot be validated in isolation.
+Even if DPO training improves tool-calling ability (merged completion 60\% vs base 40\%), the interaction with prompt-based calibration can produce unexpected effects.
+
+\paragraph{Overcorrection rebound constrains target selection.}
+FM3's robust replication (4/4 runs at 7B) suggests that extreme calibration targets are counterproductive at smaller scales.
+Gradual or iterative calibration may outperform one-shot extreme targets, though the 14B result (where rebound disappears but calibration still fails) suggests the problem extends beyond perturbation magnitude.
+
+\subsection{Reframing the Failure Mode Taxonomy}
+
+Our initial pilot identified four candidate failure modes.
+Multi-run replication reveals that only one---overcorrection rebound (FM3)---is robust.
+Completion suppression (FM1) and cross-dimension interference (FM2) were observed in a single run and did not consistently replicate; we retain them as pilot observations that may warrant investigation with larger sample sizes.
+DPO+BCP reversal (FM4) is suggestive at 7B ($p \approx 0.07$--$0.08$, gap expansion 10/12) but does not replicate at 14B ($p = 0.18$, gap expansion 5/12).
+We therefore reframe C1 as documenting one robust failure mode plus exploratory observations, rather than a comprehensive taxonomy.
+
+% ============================================================
+\section{Limitations}
+\label{sec:limitations}
+
+\paragraph{Single model family.}
+All experiments use Qwen2.5 (7B and 14B).
+Cross-family generalization (e.g., Llama, Mistral) requires models with sufficient tool-calling ability in 16-tool settings.
+Auxiliary evaluations on Llama-3-8B (completion 5\%) and Mistral-7B (completion 0\%) failed due to inadequate tool-calling, not because BCP succeeded.
+
+\paragraph{Sample size.}
+Each condition uses $n \approx 20$ tasks per variant per run.
+While multi-run replication (4 runs) provides directional confidence, absolute magnitude estimates remain imprecise.
+The non-replication of FM1 and FM2 may reflect insufficient power rather than true absence.
+
+\paragraph{Single evaluation domain.}
+All experiments use $\tau$-bench retail.
+FM3 (overcorrection rebound) may be task-dependent; generalization to other domains remains untested.
+
+\paragraph{Pilot versus systematic findings.}
+FM1, FM2, and FM4 are based on limited evidence.
+We have been transparent about their status as pilot observations or underpowered findings, but readers should not interpret their non-replication as definitive evidence of absence.
+
+% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+We studied behavioral calibration of LLM user simulators for dialect fairness using prompt-based (BCP) and training-based (DPO) methods across two model scales.
+Our main finding is a scale-dependent calibration paradox: at 7B, BCP produces overcorrection rebound (robustly replicated, +2.75pp, 4/4 runs) and the model over-responds to calibration prompts in destabilizing ways; at 14B, all destructive effects disappear but calibration remains ineffective.
+DPO+BCP interaction shows suggestive evidence of calibration reversal at 7B, but this does not replicate at 14B ($p=0.18$).
+No scale achieves the intended calibration goal (H2 fails universally), establishing that scaling alone cannot solve the problem.
+These findings constrain the design space for future calibration methods: effective approaches will need to go beyond prompt injection and simple preference optimization, and must be evaluated across scales and in combination rather than in isolation.
+
+% ============================================================
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{10}
+
+\bibitem[Basil et~al.(2025)]{basil2025playing_pretend}
+Basil, A., et~al.
+\newblock Playing pretend: Persona prompting degrades LLM accuracy.
+\newblock \emph{arXiv preprint arXiv:2512.05858}, 2025.
+
+\bibitem[Gupta et~al.(2026)]{gupta2026intra_fairness}
+Gupta, R., et~al.
+\newblock Intra-dimensional fairness: Bias spillover in targeted alignment.
+\newblock \emph{arXiv preprint arXiv:2602.16438}, 2026.
+
+\bibitem[Hu et~al.(2026)]{hu2026expert_persona}
+Hu, W., et~al.
+\newblock Expert persona assignment degrades instruction-tuned model performance.
+\newblock \emph{arXiv preprint arXiv:2603.18507}, 2026.
+
+\bibitem[Lee et~al.(2024)]{lee2024dpo_toxicity}
+Lee, H., et~al.
+\newblock DPO bypasses rather than removes capabilities: On the fragility of alignment.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem[Rafailov et~al.(2023)]{rafailov2023dpo}
+Rafailov, R., Sharma, A., Mitchell, E., Ermon, S., Manning, C.~D., and Finn, C.
+\newblock Direct preference optimization: Your language model is secretly a reward model.
+\newblock In \emph{NeurIPS}, 2023.
+
+\bibitem[Seshadri et~al.(2026)]{seshadri2026lost}
+Seshadri, P., et~al.
+\newblock Lost in translation: Dialect bias in LLM user simulators.
+\newblock \emph{arXiv preprint arXiv:2601.17087}, 2026.
+
+\bibitem[{Sim2Real Gap Team}(2026)]{sim2real2026gap}
+{Sim2Real Gap Team}.
+\newblock Mind the gap: Quantifying simulator-human divergence in $\tau$-bench.
+\newblock \emph{arXiv preprint arXiv:2603.11245}, 2026.
+
+\bibitem[Yao et~al.(2024)]{yao2024taubench}
+Yao, S., et~al.
+\newblock $\tau$-bench: A benchmark for tool-augmented LLM agents.
+\newblock \emph{arXiv preprint arXiv:2406.12045}, 2024.
+
+\end{thebibliography}
+
+\end{document}

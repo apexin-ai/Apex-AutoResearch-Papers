@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_gpu_llama_hires_constrained_mckp_20260514T214744_result.json",
     "occurrence": 1,
-    "bytes": 678,
-    "sha256": "4f998088d94661c3d98292b6aa0f9a885c39ddf2618dcaf80fcfae7c201c05f6"
+    "bytes": 677,
+    "sha256": "f709b876411a7b7bd267aee300aada8f269e24cb0e29a0dce4e76f37ff52da9d"
   },
   "statistics": {
     "messages": 1,

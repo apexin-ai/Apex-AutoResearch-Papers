@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_viz_compounding_curves_figure_20260515T180814_result.json",
     "occurrence": 1,
-    "bytes": 412,
-    "sha256": "fb27b8eca234ab14654bda8589a221f16339d2aece25dcd4db38611de1b9b833"
+    "bytes": 411,
+    "sha256": "a6b5d1e09ea22044804907178935312e722510f85bead6ddecfe78cdc527ba35"
   },
   "statistics": {
     "messages": 1,

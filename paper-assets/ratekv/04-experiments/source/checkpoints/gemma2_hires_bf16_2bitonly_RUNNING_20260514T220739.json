@@ -1,0 +1,24 @@
+{
+  "exp_id": "gemma2_hires_bf16_2bitonly",
+  "project": "ratekv",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:03:50.846Z",
+    "updated_at": "2026-05-14T22:07:39.743Z",
+    "spec": {
+      "command": "python run_gemma2_hires_bf16_2bitonly.py --model /root/autodl-tmp/.hf_cache/google/gemma-2-9b --gpu cuda:0 --batch_size 2",
+      "server": "westd-37397",
+      "data_path": "calibration_hires.json",
+      "data_count": 64,
+      "model_name": "Gemma-2-9B",
+      "seed": 0,
+      "hypothesis": "Gemma-2-9B hires bf16 2-bit only profiling (64seq x 2048tok). 补全 5 模型 hires 全景图，允许去掉 Table 3 的 ddagger 标注。Standard concentration=0.23, 预期 hires 类似。336 heads x ~20s/head ≈ 1.9h。",
+      "log_path": "/root/runs/ratekv/gemma2_hires_bf16_2bitonly.log"
+    }
+  },
+  "timestamp": "2026-05-14T22:07:39.847889+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_phi3_model_redownload_20260515T194547_result.json",
     "occurrence": 1,
-    "bytes": 1082,
-    "sha256": "17d8d3bf8ac2263f213a943108b87d167dea07843ebda5cf1d62be10f262d72f"
+    "bytes": 1081,
+    "sha256": "672465c644d60858971edf0c2d7c68711344619b35be183d71ed6b3a36b2dd92"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_head_heterogeneity_20260514T052347_result.json",
     "occurrence": 1,
-    "bytes": 1318,
-    "sha256": "bf872b10352d9101c3e507f4f10a3586a816d5e1e05e5197faacc0771b41c964"
+    "bytes": 1317,
+    "sha256": "6729622e691f226b7190fa57408cda64952a60dd189003c9fc5478fe0da516be"
   },
   "statistics": {
     "messages": 1,

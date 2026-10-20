@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_restart_exp_e_and_prep_llama_phase23_20260514T015725_result.json",
     "occurrence": 1,
-    "bytes": 693,
-    "sha256": "7824a840b71497cc6c7ec90b4ef0df4fe87c7038c23ebb13fe35fc9620a6cd5b"
+    "bytes": 692,
+    "sha256": "c40e00418355949be7eec1900e2f37dc4bd830af774aaa16720cb94b7a57a6de"
   },
   "statistics": {
     "messages": 1,

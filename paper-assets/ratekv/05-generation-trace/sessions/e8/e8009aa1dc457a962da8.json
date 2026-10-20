@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_check_llama_3seed_ci_20260515T230241_result.json",
     "occurrence": 1,
-    "bytes": 1066,
-    "sha256": "6ade3a93379e2fe311268f11223cbe4484f4577d537acc57b49e7d41c81a3122"
+    "bytes": 1065,
+    "sha256": "d918a6e99449107caa8073890aaf88d65db893ff1b812bfc8487eb98bf515aa8"
   },
   "statistics": {
     "messages": 1,

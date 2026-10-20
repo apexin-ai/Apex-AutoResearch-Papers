@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_transformer-baseline-perexample_20260520T011942_result.json",
     "occurrence": 1,
-    "bytes": 1136,
-    "sha256": "6cf482b2a399e8d144aa1eb9eaf01129759231d399700f52a3992dee8368c709"
+    "bytes": 1135,
+    "sha256": "2a2d71fa38a8105a31095ed40c90d24be8ba0fa34948d82ec284b7698199a155"
   },
   "statistics": {
     "messages": 1,

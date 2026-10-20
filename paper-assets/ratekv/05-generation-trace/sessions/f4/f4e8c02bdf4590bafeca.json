@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_claim3_revision_20260514T204030_result.json",
     "occurrence": 1,
-    "bytes": 1269,
-    "sha256": "8db5e40daf9e93100d6316e1caf29486e28189a7424335c78bb49b840819e43c"
+    "bytes": 1268,
+    "sha256": "9f2a736cf334256d40cc57753d71488b7fcab3723ad8bb26189e85c3f9daf5eb"
   },
   "statistics": {
     "messages": 1,

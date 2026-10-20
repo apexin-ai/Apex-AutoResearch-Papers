@@ -1,0 +1,63 @@
+{
+  "exp_id": "exp-005",
+  "project": "entrainment_gated_ft",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-20T02:26:40.718Z",
+    "updated_at": "2026-05-22T17:12:40.049Z",
+    "hypothesis": "Cross-architecture Jaccard overlap of helped/hurt sets will remain significantly above chance when expanded from 3 to 6 linear attention architectures, indicating that attention-mediated sample sensitivity is architecture-independent.",
+    "parent": "exp-001",
+    "completed_at": "2026-05-22T14:24:29.103Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed",
+        "metrics": {
+          "cancel_reason": "Wang et al. zoo 仅含 GDN/RetNet/HGRN2，无法扩展 n>3，已由 worker_analysis_arch-extension-check 确认"
+        }
+      },
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T15:05:27.711311+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "4arch_lambada_mean_J_helped": 0.1219,
+      "4arch_lambada_mean_J_hurt": 0.0965,
+      "4arch_arceasy_mean_J_helped": 0.1034,
+      "4arch_arceasy_mean_J_hurt": 0.1059,
+      "4arch_all_z_min": 3.78,
+      "4arch_all_z_max": 12.04,
+      "4arch_all_p": "<0.001",
+      "gla_h31_lambada_acc": 0.3819,
+      "gla_h31_arc_acc": 0.5673,
+      "gla_pure_lambada_acc": 0.3392,
+      "gla_pure_arc_acc": 0.5829,
+      "deltanet_h31_lambada_acc": 0.3536,
+      "deltanet_h31_arc_acc": 0.601,
+      "architectures_completed": [
+        "GDN",
+        "RetNet",
+        "HGRN2",
+        "GLA"
+      ],
+      "architectures_pending": [
+        "DeltaNet",
+        "HGRN"
+      ]
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T15:05:23.157Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "success",
+    "notes": "诊断中: worker_diagnose_exp-005-p1-v4_20260522T150706 正在查日志。日志仅7行，进程在下载 DeltaNet h3-1 模型时 EXIT_CODE=1 退出。"
+  },
+  "timestamp": "2026-05-22T17:12:40.179450+00:00",
+  "trigger": "update_registry"
+}

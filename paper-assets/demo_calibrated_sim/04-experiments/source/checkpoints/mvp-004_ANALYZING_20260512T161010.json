@@ -1,0 +1,27 @@
+{
+  "exp_id": "mvp-004",
+  "project": "demo_calibrated_sim",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T13:33:44.761Z",
+    "updated_at": "2026-05-12T16:10:10.061Z",
+    "spec": {
+      "command": "BCP evaluation with 6 variants (baseline, aave_target, indian_english_target, overcorrected, single_dim_question, single_dim_politeness)",
+      "server": "cqa1-21977",
+      "data_path": "tau-bench retail dev split",
+      "data_count": 20,
+      "model_name": "Qwen/Qwen2.5-7B-Instruct",
+      "seed": 10,
+      "gpu": "cuda:2",
+      "pid": 111195,
+      "log_path": "/root/democalib/results/full_experiment_v4.log",
+      "hypothesis": "BCP prompt-level behavioral calibration can reduce dialect bias"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-12T16:10:10.096491+00:00",
+  "trigger": "update_registry"
+}

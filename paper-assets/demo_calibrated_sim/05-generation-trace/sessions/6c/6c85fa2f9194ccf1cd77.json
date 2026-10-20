@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c85fa2f9194ccf1cd77",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "ops dpo002 log check",
+  "task_key": "worker_ops_dpo002-log-check_20260512T185746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_dpo002-log-check_20260512T185746_result.json",
+    "occurrence": 1,
+    "bytes": 796,
+    "sha256": "f04742d11a3d6f5f3c00cbb1d183d1ff6eba30610efe9d1fcd7537811d5d50c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## dpo-002 结果报告\n\n**训练结果：成功完成** — 3 epochs，无 error/crash。\n\n**关键 metrics：**\n| 指标 | 值 |\n|------|-----|\n| final_loss | 0.6614 |\n| train_runtime | 1:26:02 (5162.8s) |\n| epochs | 3.0 |\n| samples/sec | 0.908 |\n| 最后一步 rewards/accuracy | 0.667 |\n| 最后一步 rewards/margin | 0.026 |\n\n**Checkpoints：** checkpoint-782, checkpoint-1173, final_adapter\n\n**值得注意：** loss 从未显著下降（始终在 0.63-0.68 波动），rewards/margin 极小（~0.03-0.13），rewards/accuracy 在 0.5-1.0 间震荡。训练本身跑完了，但 DPO 学习效果有限——符合预期（v2 数据仍存在 TRL tokenizer mismatch 问题）。\n\n**Registry：** status=DONE, conclusion=success ✓\n**Cron：** 已删除 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-dpo002-log-check.md"
+}

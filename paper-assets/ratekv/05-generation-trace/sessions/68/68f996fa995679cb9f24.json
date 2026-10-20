@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_pythia_cleanup_and_json_20260515T130805_result.json",
     "occurrence": 1,
-    "bytes": 312,
-    "sha256": "6ba3aad6dfeaaf19a78b55424a793c3bc97fc9fbf4d5bf99c954caefa4565bda"
+    "bytes": 311,
+    "sha256": "fa4d530ea0da77bbec9c088c635c891734734ec01722593e90a2846068502ff3"
   },
   "statistics": {
     "messages": 1,

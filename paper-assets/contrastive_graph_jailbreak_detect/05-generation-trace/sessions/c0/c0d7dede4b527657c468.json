@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0d7dede4b527657c468",
+  "project": "contrastive_graph_jailbreak_detect",
+  "kind": "result",
+  "title": "code gnn supcon model",
+  "task_key": "worker_code_gnn-supcon-model_20260517T055215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gnn-supcon-model_20260517T055215_result.json",
+    "occurrence": 1,
+    "bytes": 591,
+    "sha256": "844fc368b64f6b82eda3993fb801556f37f165821e8af274fd5e5ac3f26828d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n\n- `Models OK` — GINEncoder + SupConLoss import 正常\n- `Augmentations OK` — dual_augment import 正常\n- `train_mvp.py --help` — CLI 参数解析正常\n\n已创建 5 个文件：\n- `src/models/__init__.py`\n- `src/models/gin_encoder.py` — 3-layer GIN + projection head, L2 normalized output\n- `src/models/supcon_loss.py` — SupConLoss with log-sum-exp trick\n- `src/augmentations.py` — dropout_edge / drop_feature / subgraph + dual_augment\n- `src/train_mvp.py` — 完整训练入口，支持 5-fold CV 和 cross-failure-mode holdout"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gnn-supcon-model.md"
+}

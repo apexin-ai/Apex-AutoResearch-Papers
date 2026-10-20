@@ -1,0 +1,122 @@
+{
+  "n_main_benchmarks": 9,
+  "benchmarks_new": {
+    "boolq": {
+      "rho": 0.2,
+      "raw_p": 0.7833,
+      "std_at_pure": 0.016321,
+      "std_at_h3_1": 0.023571,
+      "convergence_ratio": 0.6924,
+      "is_copa_supplementary": false
+    },
+    "copa": {
+      "rho": -0.6669,
+      "raw_p": 0.2667,
+      "std_at_pure": 0.026247,
+      "std_at_h3_1": 0.004714,
+      "convergence_ratio": 5.5679,
+      "is_copa_supplementary": true
+    },
+    "piqa": {
+      "rho": -0.5,
+      "raw_p": 0.45,
+      "std_at_pure": 0.005404,
+      "std_at_h3_1": 0.003393,
+      "convergence_ratio": 1.5927,
+      "is_copa_supplementary": false
+    },
+    "sciq": {
+      "rho": 0.1,
+      "raw_p": 0.95,
+      "std_at_pure": 0.008731,
+      "std_at_h3_1": 0.007364,
+      "convergence_ratio": 1.1856,
+      "is_copa_supplementary": false
+    }
+  },
+  "combined_correction": {
+    "lambada_openai": {
+      "rho": -1.0,
+      "raw_p": 0.0167,
+      "bonferroni_adj_p": 0.1503,
+      "bh_fdr_adj_p": 0.1503,
+      "source": "exp-008"
+    },
+    "hellaswag": {
+      "rho": 0.3,
+      "raw_p": 0.6833,
+      "bonferroni_adj_p": 1.0,
+      "bh_fdr_adj_p": 0.95,
+      "source": "exp-008"
+    },
+    "winogrande": {
+      "rho": 0.1,
+      "raw_p": 0.95,
+      "bonferroni_adj_p": 1.0,
+      "bh_fdr_adj_p": 0.95,
+      "source": "exp-008"
+    },
+    "arc_easy": {
+      "rho": -0.7,
+      "raw_p": 0.2333,
+      "bonferroni_adj_p": 1.0,
+      "bh_fdr_adj_p": 0.6999,
+      "source": "exp-008"
+    },
+    "arc_challenge": {
+      "rho": 0.6,
+      "raw_p": 0.35,
+      "bonferroni_adj_p": 1.0,
+      "bh_fdr_adj_p": 0.7875,
+      "source": "exp-008"
+    },
+    "mmlu": {
+      "rho": -0.7,
+      "raw_p": 0.2333,
+      "bonferroni_adj_p": 1.0,
+      "bh_fdr_adj_p": 0.6999,
+      "source": "exp-008"
+    },
+    "boolq": {
+      "rho": 0.2,
+      "raw_p": 0.7833,
+      "bonferroni_adj_p": 1.0,
+      "bh_fdr_adj_p": 0.95,
+      "std_at_pure": 0.016321,
+      "std_at_h3_1": 0.023571,
+      "convergence_ratio": 0.6924,
+      "source": "exp-011"
+    },
+    "piqa": {
+      "rho": -0.5,
+      "raw_p": 0.45,
+      "bonferroni_adj_p": 1.0,
+      "bh_fdr_adj_p": 0.81,
+      "std_at_pure": 0.005404,
+      "std_at_h3_1": 0.003393,
+      "convergence_ratio": 1.5927,
+      "source": "exp-011"
+    },
+    "sciq": {
+      "rho": 0.1,
+      "raw_p": 0.95,
+      "bonferroni_adj_p": 1.0,
+      "bh_fdr_adj_p": 0.95,
+      "std_at_pure": 0.008731,
+      "std_at_h3_1": 0.007364,
+      "convergence_ratio": 1.1856,
+      "source": "exp-011"
+    }
+  },
+  "copa_supplementary": {
+    "rho": -0.6669,
+    "raw_p": 0.2667,
+    "bonferroni_adj_p": 0.2667,
+    "std_at_pure": 0.026247,
+    "std_at_h3_1": 0.004714,
+    "convergence_ratio": 5.5679,
+    "is_supplementary": true,
+    "note": "n=100, not included in main Bonferroni correction",
+    "source": "exp-011"
+  }
+}

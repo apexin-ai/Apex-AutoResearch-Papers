@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2a1a3f5baaa5a3f77c1",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "research tau bench survey",
+  "task_key": "worker_research_tau-bench-survey_20260512T095914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_tau-bench-survey_20260512T095914_result.json",
+    "occurrence": 1,
+    "bytes": 752,
+    "sha256": "699f5c3a1d6a0acc15b063c1e1b1fdbf2f8001f1bfcb5c77526fa24924a66bd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。分析文档已写入 `artifacts/tau_bench_analysis.md`。\n\n核心发现：\n- **115 个 test 任务**（人工标注）+ 500 个 train 任务（synthetic），涵盖退货/换货/取消/修改/查询等操作\n- **User simulator** 用 LLM 模拟，system prompt 中注入 task instruction（含角色、目标、性格），有 4 种策略（llm/react/verify/reflection）\n- **评估是确定性的**：通过数据库状态哈希比对 + 文本子串匹配，binary reward (0/1)，不依赖 LLM judge\n- **对 DemoCalib 最关键的 hook 点**：`LLMUserSimulationEnv.build_system_prompt()` 注入行为校准、`ToolCallingAgent.solve()` 循环拦截 agent 行为、`Env.calculate_reward()` 扩展为细粒度 reward"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-tau-bench-survey.md"
+}

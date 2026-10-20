@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_exp-005-pure-baselines_20260522T155641_result.json",
     "occurrence": 1,
-    "bytes": 2410671,
-    "sha256": "2710692e33d36f741f21ad3d84fc66263a492060a0e2f6367ff79f69264e04df"
+    "bytes": 2410670,
+    "sha256": "633ecd1d1dfdfc0ee2ee053b5a488ff8785793f072d77a710ef9783b90b6a8f2"
   },
   "statistics": {
     "messages": 1,

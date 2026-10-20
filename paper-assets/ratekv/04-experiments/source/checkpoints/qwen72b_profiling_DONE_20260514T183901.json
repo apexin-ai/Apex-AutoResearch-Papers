@@ -1,0 +1,33 @@
+{
+  "exp_id": "qwen72b_profiling",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:46:37.826Z",
+    "updated_at": "2026-05-14T18:39:01.190Z",
+    "spec": {
+      "hypothesis": "Qwen2.5-72B profiling-only (plan_013 restarted): 双卡加载 72B bf16，standard profiling (16x512)。分析 Layer 0 dominance、compounding threshold、Top-5% concentration。验证高 GQA ratio + 大规模是否呈现高异质性。",
+      "plan_id": "plan_013",
+      "claim": [
+        1
+      ],
+      "model_name": "Qwen2.5-72B",
+      "server": "westd-37397",
+      "data_path": "wikitext-103-raw-v1 train (calibration)",
+      "data_count": "16 seqs x 2048 tokens (hires profiling)",
+      "seed": 42,
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ]
+    },
+    "notes": "72B 下载因磁盘空间不足被紧急终止（Director 指令）。250GB 总量无法同时容纳 72B (137GB) + Gemma-2 (36GB) + Yi (18GB) + Qwen-7B (15GB) + 其他。72B profiling 需要更大磁盘的服务器或清理更多空间后再尝试。",
+    "conclusion": "killed",
+    "completed_at": "2026-05-14T18:39:01.190Z"
+  },
+  "timestamp": "2026-05-14T18:39:01.325320+00:00",
+  "trigger": "update_registry"
+}

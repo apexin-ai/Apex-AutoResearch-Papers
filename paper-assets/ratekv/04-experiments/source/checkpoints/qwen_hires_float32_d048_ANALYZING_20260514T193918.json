@@ -1,0 +1,35 @@
+{
+  "exp_id": "qwen_hires_float32_d048",
+  "project": "ratekv",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:29:52.909Z",
+    "updated_at": "2026-05-14T19:39:17.997Z",
+    "spec": {
+      "command": "python run_hires_quant.py --model Qwen2.5-7B --device cuda:0 --calibration calibration_hires.json --output qwen_hires_results.json --budget 0.25 --num_samples 64 --seq_len 2048 --batch_size 4",
+      "server": "westd-37397",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "247429",
+      "log_path": "~/runs/ratekv/qwen_hires_float32_d048.log",
+      "submitted_at": "2026-05-14T18:29:52.783Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "calibration_hires.json",
+      "data_count": 64,
+      "model_name": "Qwen2.5-7B",
+      "seed": 0,
+      "hypothesis": "修复 hires profiler 后（加 2-bit + .float()），Qwen2.5-7B hires profiling 的 top-5% concentration 是否仍 >0.50，验证 Claim 3 diagnostic threshold。"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T19:39:17.791Z"
+    }
+  },
+  "timestamp": "2026-05-14T19:39:18.086855+00:00",
+  "trigger": "update_registry"
+}

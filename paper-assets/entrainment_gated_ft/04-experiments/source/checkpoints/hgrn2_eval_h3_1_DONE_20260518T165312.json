@@ -1,0 +1,27 @@
+{
+  "exp_id": "hgrn2_eval_h3_1",
+  "project": "entrainment_gated_ft",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:47:57.853Z",
+    "updated_at": "2026-05-18T16:53:12.858Z",
+    "spec": {
+      "command": "HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python run_lmeval_clean.py --model_path 1.3B-100B-HGRN2-hybrid-3-1 --tasks 6tasks --batch_size 8",
+      "server": "westb-48145",
+      "data_path": "/root/autodl-tmp/models_1.3b/1.3B-100B-HGRN2-hybrid-3-1",
+      "data_count": 1,
+      "model_name": "HGRN2-1.3B-hybrid-3-1",
+      "seed": 0
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/entrainment_gated_ft/lm_eval_clean/1.3B-100B-HGRN2-hybrid-3-1.json",
+    "log_path": "/tmp/hgrn2_eval_h3_1.log",
+    "hypothesis": "HGRN2 hybrid-3-1 (highest attention ratio) will show less degradation on composition-heavy benchmarks compared to pure linear models, following the attention-ratio degradation pattern observed in GDN and RetNet families",
+    "completed_at": "2026-05-18T16:53:12.858Z"
+  },
+  "timestamp": "2026-05-18T16:53:12.867313+00:00",
+  "trigger": "update_registry"
+}

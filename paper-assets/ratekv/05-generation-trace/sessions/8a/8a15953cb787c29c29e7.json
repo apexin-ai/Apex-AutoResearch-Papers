@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_mistral_uniform_ppl_bug_and_orphan_kill_20260515T150250_result.json",
     "occurrence": 1,
-    "bytes": 1030,
-    "sha256": "9593044c1d47b6d9e57e27f7ef6d4768754ea6691a14edfa84cda6734f5eef86"
+    "bytes": 1029,
+    "sha256": "d98a28ecf1caf6414fa6b2589eac9c2750fb8f614859b6748fe00d0e99c287c9"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_prep_code-release-final_20260523T164502_result.json",
     "occurrence": 1,
-    "bytes": 482,
-    "sha256": "aaf046b1bca5edce457e915adaaa17f07cebe7bf50af506090b3b095edd10754"
+    "bytes": 481,
+    "sha256": "8ea5e8c9df7b577f82ffe18e8952b86ddb89d5167359e2c5e236691cd866d6fc"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_gpu_llama_hires_bf16_final_20260514T210031_result.json",
     "occurrence": 1,
-    "bytes": 186,
-    "sha256": "ea5f91ebebf3b6ad139fc9f77492d71e73b149302b3164d76d51461adb65219b"
+    "bytes": 185,
+    "sha256": "ab9a18a61b73e9f868cd269b4c63768daa560485b661c5593a1bf14921ec9e67"
   },
   "statistics": {
     "messages": 1,

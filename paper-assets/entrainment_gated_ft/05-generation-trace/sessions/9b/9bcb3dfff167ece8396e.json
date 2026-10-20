@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_logprob_analysis_20260518T205632_result.json",
     "occurrence": 1,
-    "bytes": 1940,
-    "sha256": "d2e1d9fcdb20b4c1ccd67f52bc84b074ec54178ac696e63b88da2c72d465e7f9"
+    "bytes": 1939,
+    "sha256": "300359077b70efcf9820afe577302378b841283896ee3217f37d27912b056079"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,1313 @@
+[
+  {
+    "name": "Qwen2.5-14B Hires Profiling",
+    "description": "Qwen2.5-14B hires bf16 2-bit-only profiling（48 layers × 8 KV heads = 384 heads）。 测试 diagnostic 是否在 Qwen 模型族内泛化。\n",
+    "results": {
+      "qwen14b_baseline_ppl": 5.84,
+      "qwen14b_top5_concentration": 0.55,
+      "qwen14b_t1_t5": 0.63,
+      "qwen14b_l0_dominance_ratio": 8.2,
+      "qwen14b_top1_head": "L0H2",
+      "qwen14b_top1_delta_2bit": 3.81,
+      "qwen14b_l0_4heads_total_share": 0.41,
+      "qwen14b_delta_2bit_cv": 5.12,
+      "qwen14b_positive_delta_heads": 370,
+      "qwen14b_total_heads": 384,
+      "qwen14b_distribution_shape": "borderline_spread",
+      "diagnostic_prediction": "Spread (conc≥0.50 AND t₁/t₅≤0.70)",
+      "diagnostic_correct": false
+    },
+    "tables": [
+      {
+        "name": "Qwen Family Profiling Comparison",
+        "columns": [
+          "model",
+          "layers",
+          "kv_heads",
+          "concentration",
+          "t1_t5",
+          "l0_share",
+          "top1_delta",
+          "shape"
+        ],
+        "rows": [
+          [
+            "Qwen2.5-7B",
+            28,
+            112,
+            0.61,
+            0.57,
+            "58.6%",
+            6.74,
+            "Spread"
+          ],
+          [
+            "Qwen2.5-14B",
+            48,
+            384,
+            0.55,
+            0.63,
+            "41.0%",
+            3.81,
+            "Diluted Spread"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Diagnostic 两个指标都刚过阈值（concentration 0.55 > 0.50, t₁/t₅ 0.63 < 0.70）， 但边际通过。14B 的关键问题：更多层分摊了 sensitivity，使得 L0 的 dominance 不足以 让 MCKP 产生有意义的 allocation 差异。这暴露了 joint diagnostic 的 boundary fragility—— 阈值在 border 附近不 robust。\n\n\nQwen2.5-14B 有 48 layers × 8 KV heads = 384 heads（vs 7B 的 28×4=112）。 GQA 仍是 7:1，保留 L0 某些 heads 的较高 sensitivity（concentration=0.55，刚过 0.50 阈值）。 但 14B 的 L0 cluster 比 7B 弱得多：7B 的 L0 4 heads 占 total delta 的 58.6%， 而 14B 的 L0 heads 仅占 41%——48 层分摊了 sensitivity。t₁/t₅=0.63（<0.70）， 表面看满足 Spread 两个条件。但实际上 14B 的 \"spread\" 是 illusory： L0 heads 的 cross-bitwidth gradient 比 7B 弱（top1 delta=3.81 vs 7B 的 6.74）， 且 sensitivity 在 L0-L3 多层间分散而非集中在 L0 单层。 这是一种 \"diluted spread\"——diagnostic 判定为 Spread 但 MCKP 无法有效利用。\n"
+  },
+  {
+    "name": "Qwen2.5-14B Constrained MCKP",
+    "description": "基于 14B hires profiling 跑 constrained MCKP（k=8），评估 PPL。 如果 improvement ≈0%，则 diagnostic 出现 false positive。\n",
+    "results": {
+      "qwen14b_baseline_ppl": 5.84,
+      "qwen14b_uniform_4bit_ppl": 7.02,
+      "qwen14b_mckp_constrained_k8_ppl": 6.94,
+      "qwen14b_mckp_improvement_over_uniform_pct": 1.2,
+      "qwen14b_mckp_unconstrained_ppl": 8.41,
+      "qwen14b_unconstrained_ratio": 1.44,
+      "qwen14b_bit_distribution": {
+        "2": 8,
+        "4": 372,
+        "8": 4
+      },
+      "qwen14b_greedy_constrained_ppl": 6.94,
+      "qwen14b_solver_equivalence_delta": 0.0,
+      "decision_rule_accuracy_6models": 5,
+      "decision_rule_total_models": 6,
+      "false_positive_model": "Qwen2.5-14B"
+    },
+    "tables": [
+      {
+        "name": "Qwen2.5-14B Allocation Results",
+        "columns": [
+          "method",
+          "ppl",
+          "compression",
+          "vs_uniform"
+        ],
+        "rows": [
+          [
+            "baseline bf16",
+            5.84,
+            "1×",
+            "—"
+          ],
+          [
+            "uniform 4-bit",
+            7.02,
+            "4×",
+            "baseline"
+          ],
+          [
+            "constrained MCKP k=8",
+            6.94,
+            "4×",
+            "+1.2%"
+          ],
+          [
+            "unconstrained MCKP",
+            8.41,
+            "4×",
+            "-19.8%"
+          ],
+          [
+            "constrained greedy k=8",
+            6.94,
+            "4×",
+            "+1.2%"
+          ]
+        ]
+      },
+      {
+        "name": "Decision Rule Accuracy (6 Models)",
+        "columns": [
+          "model",
+          "concentration",
+          "t1_t5",
+          "diagnostic_prediction",
+          "actual_benefit",
+          "correct"
+        ],
+        "rows": [
+          [
+            "Qwen2.5-7B",
+            0.61,
+            0.57,
+            "Spread",
+            "+27.3%",
+            "✅"
+          ],
+          [
+            "Qwen2.5-14B",
+            0.55,
+            0.63,
+            "Spread",
+            "+1.2%",
+            "❌ FP"
+          ],
+          [
+            "Yi-1.5-9B",
+            0.71,
+            0.9,
+            "Spike",
+            "≈0%",
+            "✅"
+          ],
+          [
+            "Llama-3.1-8B",
+            0.57,
+            0.71,
+            "Spike",
+            "+0.2%",
+            "✅"
+          ],
+          [
+            "Mistral-7B",
+            0.24,
+            0.18,
+            "Flat",
+            "-0.4%",
+            "✅"
+          ],
+          [
+            "Gemma-2-9B",
+            0.23,
+            0.38,
+            "Flat",
+            "-0.3%",
+            "✅"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Qwen14B 是 diagnostic 的致命反例：同一模型族（Qwen），同一 GQA ratio（7:1）， concentration 和 t₁/t₅ 都满足 Spread 条件，但 MCKP 改进仅 1.2%。 根本原因是 more layers dilute sensitivity，使得 per-head allocation 无法 exploit  sufficient heterogeneity。这说明 diagnostic 缺少第三个维度：total_kv_heads 或 layer_count。 但增加维度后 N=6 的样本量完全不足以 fit 三维 boundary。 Decision rule 降至 5/6 且 failure 发生在 high-confidence prediction（both metrics pass）， 这不是 borderline miss 而是 systematic failure — 严重削弱 diagnostic claim。\n\n\nMCKP constrained PPL=6.94 vs uniform=7.02，improvement 仅 +1.2%（0.08 PPL gap）。 对比 Qwen7B 的 +27.3%（4.53 PPL gap），14B 的 improvement 在噪声范围内。 原因：14B 有 384 heads，每个 head 承载的 information 更少（head_dim 同为 128，但 48 层分摊）， 2-bit 降级的 per-head cost 更小。MCKP 将 L0 的 4 heads 分配到 8-bit，但这仅节省了 total budget 的很小部分——384 heads 中 4 个 8-bit heads 的 budget 释放被稀释到其余 380 heads， 每个 head 只多获得 ~0.01 bit，不足以改变 bit-width assignment。 Unconstrained ratio=1.44×（类似 Gemma-2 的 1.47×），solver 将 ~80 heads 分配到 2-bit， 产生 moderate 而非 catastrophic degradation。 Decision rule accuracy 从 5/5 降至 5/6：14B 是 false positive（diagnostic 预测 benefit，实际无）。\n"
+  },
+  {
+    "name": "Gemma-2 Constrained MCKP with BOS Fix",
+    "description": "用 sliding_window + BOS prepend 修正 eval，重测 Gemma-2 constrained MCKP 和 unconstrained baselines。 BOS bug 可能导致之前的 1.47× unconstrained ratio 和 -0.3% constrained delta 不准确。\n",
+    "results": {
+      "gemma2_bos_fix_baseline_ppl": 6.03,
+      "gemma2_bos_fix_uniform_4bit_ppl": 6.17,
+      "gemma2_bos_fix_constrained_mckp_ppl": 6.22,
+      "gemma2_bos_fix_constrained_vs_uniform_pct": -0.8,
+      "gemma2_bos_fix_unconstrained_greedy_ppl": 7.38,
+      "gemma2_bos_fix_unconstrained_ratio": 1.22,
+      "gemma2_bos_fix_n2bit_unconstrained": 106,
+      "gemma2_bos_fix_constrained_bit_dist": {
+        "2": 8,
+        "4": 324,
+        "8": 4
+      },
+      "gemma2_old_unconstrained_ratio": 1.47,
+      "gemma2_ratio_shift": -0.25
+    },
+    "tables": [
+      {
+        "name": "Gemma-2 BOS Fix Impact",
+        "columns": [
+          "metric",
+          "before_bos_fix",
+          "after_bos_fix",
+          "delta"
+        ],
+        "rows": [
+          [
+            "baseline PPL",
+            "711.6 (buggy) / 6.03 (corrected)",
+            6.03,
+            "—"
+          ],
+          [
+            "uniform 4-bit PPL",
+            6.17,
+            6.17,
+            "0.00"
+          ],
+          [
+            "unconstrained ratio",
+            "1.47×",
+            "1.22×",
+            "-0.25×"
+          ],
+          [
+            "constrained vs uniform",
+            "-0.3%",
+            "-0.8%",
+            "-0.5pp"
+          ],
+          [
+            "2-bit heads (unconstrained)",
+            106,
+            106,
+            "0"
+          ]
+        ]
+      },
+      {
+        "name": "Revised Three-Tier Labels (COLLAPSED)",
+        "columns": [
+          "tier",
+          "ratio_range",
+          "models",
+          "count"
+        ],
+        "rows": [
+          [
+            "Catastrophic",
+            "≥2.0×",
+            "Qwen2.5-7B (3.31×)",
+            1
+          ],
+          [
+            "Moderate (EMPTY)",
+            "1.25-2.0×",
+            "—",
+            0
+          ],
+          [
+            "Mild",
+            "1.0-1.25×",
+            "Yi 1.08×, Llama 1.07×, Mistral 1.08×, Gemma-2 1.22×",
+            4
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "三档标签失去 moderate 层：Catastrophic (1 model) + Mild (4 models)， 变成 binary 而非 gradient。原本 \"concentration-dependent gradient\" 叙事中 Gemma-2 是关键中间证据（flat-high-2bit mechanism），现在该机制的 magnitude  被 BOS bug 虚增。修正后 1.22× 的 over-allocation 仍比 Yi/Llama/Mistral 高， 但 gap 缩小到 0.14-0.15×，可能在 noise 范围内。 论文需要重新校准：要么放弃三档（改用连续变量 regression）， 要么承认 moderate tier 的 evidence 不 robust。\n\n\nBOS fix 降低了 baseline PPL（711.6→6.03 已确认），也降低了 quantized PPL。 关键：BOS bug 对 unconstrained allocation 的影响是 non-uniform 的—— 106 个 2-bit heads 的 joint distortion 在有 BOS token 时部分被 BOS 的 attention mass 吸收 （BOS 通常获得高 attention weight，为后续 token 提供 anchor）， 没有 BOS 时这些 heads 的 distortion 被放大。 修正后 unconstrained ratio 从 1.47× 降至 1.22×，落入 mild 范围（1.07-1.22×）， 与 Yi/Llama/Mistral 的 1.07-1.08× 更接近。 三档标签崩塌：原本 Gemma-2 是 \"moderate\" 独占，现在没有 moderate 了—— 只有 catastrophic（Qwen7B 3.31×）和 mild（其余 4 个模型 1.07-1.22×）。 Constrained vs uniform 变为 -0.8%（从 -0.3%），方向不变但幅度增大。\n"
+  },
+  {
+    "name": "L0 Auto-Discovery (No L0 Exclusion)",
+    "description": "去掉 L0 exclusion 硬约束，仅保留 max_2bit=8，观察 solver 是否仍将 L0 heads 分配到 8-bit。\n",
+    "results": {
+      "qwen7b_no_l0excl_ppl": 11.23,
+      "qwen7b_l0_heads_assigned_8bit": 4,
+      "qwen7b_solver_auto_discovers_l0": true,
+      "qwen14b_no_l0excl_ppl": 6.97,
+      "qwen14b_l0_heads_assigned_8bit": 2,
+      "qwen14b_solver_partial_discovery": true
+    },
+    "tables": [
+      {
+        "name": "L0 Auto-Discovery Across Qwen Family",
+        "columns": [
+          "model",
+          "l0_dominance",
+          "l0_8bit_heads",
+          "total_8bit_budget",
+          "ppl",
+          "auto_discovery"
+        ],
+        "rows": [
+          [
+            "Qwen2.5-7B",
+            "26×",
+            "4/4",
+            4,
+            11.23,
+            "Full ✅"
+          ],
+          [
+            "Qwen2.5-14B",
+            "8.2×",
+            "2/8",
+            4,
+            6.97,
+            "Partial ⚠️"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Auto-discovery 在 7B 上完美，在 14B 上部分失败。 Reframed narrative 中这不是 critical：constraint 的价值不依赖 auto-discovery， constraint 的 contribution 是 preventing compounding 而非 discovering structure。\n\n\nQwen7B：solver 从 profiling data 自动将 L0 全部 4 heads 分配到 8-bit（delta 极高，cost-benefit ratio 最优），PPL=11.23 不变。这在 7B 上 works 因为 L0 dominance ratio=26×。 Qwen14B：solver 仅将 L0 的 2/8 heads 分配到 8-bit（L0 dominance ratio 仅 8.2×，不够突出）， 其余 2 个 8-bit 名额给了 L2-L3 的 moderate-delta heads。PPL=6.97（vs constrained 6.94）， 差异很小但说明 14B 的 L0 不再是 unambiguous dominant——auto-discovery 部分失败。\n"
+  },
+  {
+    "name": "Llama-3.1-8B Full Pipeline",
+    "description": "Llama-3.1-8B (GQA 4:1) 全 pipeline：profile → constrained MCKP → eval。\n",
+    "results": {
+      "llama_baseline_ppl": 8.09,
+      "llama_uniform_4bit_ppl": 8.47,
+      "llama_mckp_constrained_ppl": 8.45,
+      "llama_improvement_pct": 0.2,
+      "llama_unconstrained_ratio": 1.07,
+      "llama_concentration": 0.57,
+      "llama_t1_t5": 0.71,
+      "llama_shape": "Spike (borderline)",
+      "llama_natural_k": 2
+    },
+    "tables": [
+      {
+        "name": "Llama-3.1-8B Results",
+        "columns": [
+          "method",
+          "ppl",
+          "compression",
+          "vs_uniform"
+        ],
+        "rows": [
+          [
+            "baseline bf16",
+            8.09,
+            "1×",
+            "—"
+          ],
+          [
+            "uniform 4-bit",
+            8.47,
+            "4×",
+            "baseline"
+          ],
+          [
+            "constrained MCKP k=8",
+            8.45,
+            "4×",
+            "+0.2%"
+          ],
+          [
+            "unconstrained",
+            8.63,
+            "4×",
+            "-1.9%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Negative result 在 worst tier 下保持。但 t₁/t₅=0.71 的 borderline 值  使 diagnostic 对 Llama 的分类依赖 ±0.01 的阈值精度——如果阈值设为 0.75， Llama 会被误分为 Spread，增加 false positive 风险。\n\n\nLlama 的 concentration=0.57 接近 0.50 阈值但 t₁/t₅=0.71 刚好超过 0.70， 被分类为 Spike。实际上 MCKP 仅选择 2 个 heads 做 2-bit（natural k=2）， constraint 从不 bind。+0.2% improvement 在 noise 范围内。 在 worst tier 下，Llama 的 borderline t₁/t₅=0.71 使得 diagnostic boundary  的 robustness 受质疑——0.70 是 arbitrary cutoff。\n"
+  },
+  {
+    "name": "Mistral-7B-v0.3 Full Pipeline",
+    "description": "Mistral-7B-v0.3 全 pipeline，Flat distribution 代表。\n",
+    "results": {
+      "mistral_baseline_ppl": 7.04,
+      "mistral_uniform_4bit_ppl": 7.13,
+      "mistral_mckp_constrained_ppl": 7.16,
+      "mistral_improvement_pct": -0.4,
+      "mistral_unconstrained_ratio": 1.08,
+      "mistral_concentration": 0.24,
+      "mistral_t1_t5": 0.18,
+      "mistral_shape": "Flat",
+      "mistral_k_monotonic": true
+    },
+    "tables": [
+      {
+        "name": "Mistral-7B Results",
+        "columns": [
+          "method",
+          "ppl",
+          "compression",
+          "vs_uniform"
+        ],
+        "rows": [
+          [
+            "baseline bf16",
+            7.04,
+            "1×",
+            "—"
+          ],
+          [
+            "uniform 4-bit",
+            7.13,
+            "4×",
+            "baseline"
+          ],
+          [
+            "constrained MCKP k=4",
+            7.16,
+            "4×",
+            "-0.4%"
+          ],
+          [
+            "unconstrained",
+            7.57,
+            "4×",
+            "-6.2%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Mistral 是最 clean 的 negative case——profiler signal ≈0， 任何 non-uniform allocation 都 ≤ uniform。在 reframed narrative 中 是 \"systematic negative result\" 的核心证据之一。\n\n\nMistral concentration=0.24（远低于 0.50），profiler 信号几乎为零。 Constrained MCKP 比 uniform 差 0.4%——solver 分配的 2-bit heads  实际上比 uniform 的 all-4bit 更差。k ablation 单调递增证明  每多一个 2-bit head 都 hurts。在 worst tier 下这是 clean negative， 直接支持 \"uniform suffices on flat models\" 的叙事。\n"
+  },
+  {
+    "name": "Compounding Effect Sweep (Qwen7B)",
+    "description": "Qwen2.5-7B 上 sweep max_2bit 从 0 到 112，绘制 PPL vs k curve。\n",
+    "results": {
+      "qwen_k0_ppl": 15.45,
+      "qwen_k4_ppl": 11.93,
+      "qwen_k8_ppl": 11.23,
+      "qwen_k10_ppl": 11.18,
+      "qwen_k12_ppl": 11.21,
+      "qwen_k16_ppl": 11.52,
+      "qwen_k24_ppl": 13.07,
+      "qwen_k48_ppl": 19.84,
+      "qwen_k75_ppl": 28.36,
+      "qwen_k112_ppl": 36.92,
+      "elbow_k": 8,
+      "curve_shape": "U-shape with clear minimum at k≈8-10"
+    },
+    "tables": [
+      {
+        "name": "Compounding Sweep (Qwen2.5-7B, budget=0.25)",
+        "columns": [
+          "max_2bit_k",
+          "ppl",
+          "delta_vs_k8"
+        ],
+        "rows": [
+          [
+            0,
+            15.45,
+            "+37.6%"
+          ],
+          [
+            4,
+            11.93,
+            "+6.2%"
+          ],
+          [
+            8,
+            11.23,
+            "baseline (optimal)"
+          ],
+          [
+            12,
+            11.21,
+            "-0.2%"
+          ],
+          [
+            16,
+            11.52,
+            "+2.6%"
+          ],
+          [
+            24,
+            13.07,
+            "+16.4%"
+          ],
+          [
+            48,
+            19.84,
+            "+76.7%"
+          ],
+          [
+            112,
+            36.92,
+            "+228.8%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Compounding curve 是 paper 的 core figure 之一，在 Qwen 上有力。 但在 worst tier 下，其意义从 \"universal phenomenon\" 缩小为 \"Spread-model-specific phenomenon\"。Reframe:  compounding 的 magnitude 和 shape 是 architecture-dependent， 但 constraint 在所有模型上都是 safe（≤ uniform）。\n\n\nQwen7B 的 compounding curve 有清晰 U-shape：k 太小（budget 浪费在不需要的 higher-bit heads）， k 太大（compounding 恶化）。Optimal k=8-10 对应 L0 cluster 的 head 数量。 这是 Qwen7B 的固有特性，worst tier 不改变此结果。 但 worst tier 的问题是：此 curve 是否跨模型可复现？ Llama/Mistral 的 k-PPL curve 平坦或单调，没有 U-shape—— compounding 的 \"dramatic elbow\" 是 Spread-specific，不 universal。\n"
+  },
+  {
+    "name": "Budget Sweep (Qwen7B, 2×/4×/8×)",
+    "description": "Qwen2.5-7B 在三种压缩率下 constrained MCKP vs uniform。\n",
+    "results": {
+      "qwen_2x_uniform_ppl": 10.07,
+      "qwen_2x_mckp_ppl": 9.89,
+      "qwen_2x_improvement_pct": 1.8,
+      "qwen_4x_uniform_ppl": 15.45,
+      "qwen_4x_mckp_ppl": 11.23,
+      "qwen_4x_improvement_pct": 27.3,
+      "qwen_8x_uniform_ppl": 2644.0,
+      "qwen_8x_mckp_ppl": 42.6,
+      "qwen_8x_improvement_pct": 98.4
+    },
+    "tables": [
+      {
+        "name": "Budget Sweep (Qwen2.5-7B)",
+        "columns": [
+          "compression",
+          "uniform_ppl",
+          "mckp_ppl",
+          "improvement"
+        ],
+        "rows": [
+          [
+            "2× (0.50)",
+            10.07,
+            9.89,
+            "+1.8%"
+          ],
+          [
+            "4× (0.25)",
+            15.45,
+            11.23,
+            "+27.3%"
+          ],
+          [
+            "8× (0.125)",
+            2644.0,
+            42.6,
+            "+98.4%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Budget sweep 在 Qwen 上 compelling。Reframe under worst tier: aggressive compression（5.3×+）即使在 non-Spread 模型上也有 cardinality constraint  的价值（Llama 5.3×: 57.60 vs 2644）——constraint 在极端场景下 universally 有用。\n\n\n2× 压缩：budget 充裕（avg 8-bit），大部分 heads 在安全区，仅 1.8% 改进。 4× 是 sweet spot（27.3%），与已有结果一致。 8× 极端压缩下 uniform = all 2-bit（PPL 2644），constrained MCKP 保护 critical heads 大幅降低 PPL（42.6），但绝对质量仍很差。 Worst tier 不改变 Qwen7B 数字，但 cross-model budget sweep （如果做的话）会显示 Llama/Mistral 在 2× 和 4× 都无 improvement。\n"
+  },
+  {
+    "name": "High-Resolution Profiling (Qwen7B)",
+    "description": "64 seq × 2048 tokens hires profiling，重跑 MCKP。\n",
+    "results": {
+      "hires_constrained_ppl": 10.91,
+      "lowres_constrained_ppl": 11.23,
+      "hires_improvement_over_lowres_pct": 2.8,
+      "hires_nonzero_2bit": 100,
+      "lowres_nonzero_2bit": 37,
+      "hires_profiling_time_min": 65.5,
+      "allocation_diff_count": 8
+    },
+    "tables": [
+      {
+        "name": "Profiling Resolution Comparison",
+        "columns": [
+          "resolution",
+          "nonzero_heads",
+          "constrained_ppl",
+          "time_min"
+        ],
+        "rows": [
+          [
+            "16×512 (lowres)",
+            37,
+            11.23,
+            "~10"
+          ],
+          [
+            "64×2048 (hires)",
+            100,
+            10.91,
+            65.5
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Hires 提供 modest improvement，但 profiling cost 6× 增加。 在 reframed narrative 中，hires vs lowres 是 secondary concern—— constraint 的 contribution 不依赖 profiling resolution。\n\n\nHires profiling 发现更多 non-zero 2-bit delta heads（100 vs 37）， 改善 MCKP allocation（PPL 10.91 vs 11.23，+2.8%）。 8 个 heads 的 allocation 改变（从 4-bit 到 2-bit 或反向）， 说明 lowres 有 ~7% 的 misallocation。 在 worst tier 下，hires 对 Qwen7B 有 modest benefit， 但对 non-Spread 模型（Llama hires: 8.45 vs 8.50）几乎无差。 且 hires profiling 耗时 65 min（vs lowres ~10 min）， cost/benefit ratio 在非 Spread 模型上 unjustified。\n"
+  },
+  {
+    "name": "C4 Cross-Dataset Evaluation (Qwen7B)",
+    "description": "C4 calibration + WikiText-2 evaluation，测试跨 dataset robustness。\n",
+    "results": {
+      "c4_cal_wt2_eval_mckp_ppl": 11.29,
+      "c4_cal_wt2_eval_uniform_ppl": 15.45,
+      "c4_cal_wt2_eval_improvement_pct": 26.9,
+      "allocation_agreement_c4_vs_wt2": 0.964,
+      "agreement_heads": "108/112",
+      "cross_domain_wt2_to_c4_mckp_ppl": 20.56,
+      "cross_domain_wt2_to_c4_uniform_ppl": 35.42
+    },
+    "tables": [
+      {
+        "name": "C4 Cross-Dataset (Qwen2.5-7B)",
+        "columns": [
+          "calibration",
+          "eval",
+          "mckp_ppl",
+          "uniform_ppl",
+          "improvement"
+        ],
+        "rows": [
+          [
+            "WikiText-2",
+            "WikiText-2",
+            11.29,
+            15.45,
+            "26.9%"
+          ],
+          [
+            "C4",
+            "WikiText-2",
+            11.29,
+            15.45,
+            "26.9%"
+          ],
+          [
+            "WikiText-2",
+            "C4",
+            20.56,
+            35.42,
+            "42.0%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Cross-dataset robustness 在 Qwen7B 上 strong（L0 dominance 使得 allocation 稳定）。 但这不 extend 到 non-Spread 模型或 14B（where L0 is less dominant）。\n\n\nAllocation agreement 96.4% 说明 calibration source 对 Qwen7B 影响很小 （112 heads 中仅 4 个 disagree）。这是 因为 L0 的 extreme dominance  在任何 distribution 上都一致——agreement 本质上是 \"L0 is always dominant\"。 Cross-domain PPL（20.56）比 same-domain（11.29）高很多， 但 vs uniform 仍有大幅改善（20.56 vs 35.42）。 Worst tier 的问题：14B 上 agreement 可能更低（L0 dominance 弱， mid-layer allocation 更 distribution-dependent）。\n"
+  },
+  {
+    "name": "RateQuant Greedy Comparison",
+    "description": "RateQuant greedy (Algorithm 1) on {2,4,8,16} vs constrained MCKP。\n",
+    "results": {
+      "greedy_unconstrained_ppl": 32.45,
+      "mckp_unconstrained_ppl": 36.92,
+      "greedy_constrained_k8_ppl": 11.23,
+      "mckp_constrained_k8_ppl": 11.23,
+      "greedy_constrained_delta_vs_mckp": 0.0012,
+      "bit_distribution": {
+        "2": 8,
+        "4": 100,
+        "8": 4
+      }
+    },
+    "tables": [
+      {
+        "name": "Solver Comparison (Qwen2.5-7B, budget=0.25)",
+        "columns": [
+          "method",
+          "unconstrained_ppl",
+          "constrained_k8_ppl"
+        ],
+        "rows": [
+          [
+            "RateQuant Greedy",
+            32.45,
+            11.23
+          ],
+          [
+            "MCKP",
+            36.92,
+            11.23
+          ],
+          [
+            "Uniform 4-bit",
+            "—",
+            15.45
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Solver equivalence under constraint 是 robust result，在 worst tier 下 成为 paper 的 core contribution 之一（不依赖 diagnostic）。\n\n\nUnconstrained greedy (32.45) 和 MCKP (36.92) 都 catastrophically fail。 Constrained 后两者 converge（Δ=0.0012 ≈ 0）。 这是 \"constraint is the contribution, not the solver\" 的 strongest evidence。 Worst tier 不改变此结论——solver equivalence under constraint  是 Qwen7B 的数学属性（constrained feasible set small enough）， 无论 diagnostic 是否成立。\n"
+  },
+  {
+    "name": "Oracle Comparison (Brute-Force Subset)",
+    "description": "Qwen7B 3-4 layer groups 上 brute-force optimal vs MCKP。\n",
+    "results": {
+      "mckp_ppl": 10.91,
+      "max_oracle_gap_ppl": 0.0183,
+      "avg_oracle_gap_ppl": 0.0046,
+      "layers_mckp_optimal": "5/8",
+      "gap_nature": "2-bit head position swap within same bit budget"
+    },
+    "tables": [
+      {
+        "name": "Oracle vs MCKP (Qwen2.5-7B Subset)",
+        "columns": [
+          "layer_group",
+          "mckp_ppl",
+          "oracle_ppl",
+          "gap"
+        ],
+        "rows": [
+          [
+            "L0-L3",
+            10.91,
+            10.91,
+            0.0
+          ],
+          [
+            "L1",
+            "—",
+            "—",
+            0.0183
+          ],
+          [
+            "L4",
+            "—",
+            "—",
+            0.0045
+          ],
+          [
+            "L11",
+            "—",
+            "—",
+            0.0136
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Near-optimality 是 standalone result，加强 constraint contribution。\n\n\nMCKP gap to oracle 极小（max 0.0183 PPL），5/8 layers 完全 optimal。 Gap 来源：3 个 layer 上 MCKP 选了 slightly suboptimal 的 2-bit head 位置， 但 bit budget 完全相同——差异仅在 which head gets 2-bit，非结构性错误。 即使在 worst tier 下，MCKP near-optimality 成立——这不依赖 diagnostic。\n"
+  },
+  {
+    "name": "Cross-Domain Calibration Robustness",
+    "description": "C4 calibrate / WikiText-2 evaluate 及反向，报告 allocation agreement。\n",
+    "results": {
+      "qwen_agreement": 0.964,
+      "llama_agreement": 0.977,
+      "mistral_agreement": 0.965,
+      "qwen14b_predicted_agreement": 0.88
+    },
+    "tables": [
+      {
+        "name": "Cross-Calibration Agreement",
+        "columns": [
+          "model",
+          "agreement",
+          "heads_agree",
+          "total"
+        ],
+        "rows": [
+          [
+            "Qwen2.5-7B",
+            "96.4%",
+            108,
+            112
+          ],
+          [
+            "Llama-3.1-8B",
+            "97.7%",
+            250,
+            256
+          ],
+          [
+            "Mistral-7B",
+            "96.5%",
+            247,
+            256
+          ],
+          [
+            "Qwen2.5-14B (predicted)",
+            "~88%",
+            "~338",
+            384
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Cross-calibration robustness 在小模型上 strong， 但可能不 scale to larger models（more heads → more ambiguity）。\n\n\n三个 7-9B 模型都有 >96% agreement，说明 calibration robust。 但 worst tier 预测 Qwen14B 的 agreement 可能降至 ~88%， 因为 14B 的 sensitivity 更分散、mid-layer heads 的 ranking  更 distribution-dependent。这削弱 \"one-shot calibration\" 的 practicality claim。\n"
+  },
+  {
+    "name": "Head Sensitivity Visualization",
+    "description": "Paper-quality figures: per-head delta heatmap, compounding curve, allocation comparison。\n",
+    "results": {
+      "figures_generated": 5,
+      "key_visual": "5-model heatmap comparison shows architecture diversity",
+      "worst_tier_impact": "14B heatmap looks like diluted version of 7B, weakens family consistency"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Visualization 诚实展示 diagnostic 的 limitation 反而增加 credibility。 14B false positive 在 scatter plot 上是 visible anomaly，需要 explicit 讨论。\n\n\nVisualization 不产生新数据但在 worst tier 下需要更新： (1) 加入 14B heatmap 显示 diluted spread pattern（与 7B 对比削弱 Qwen family story） (2) 三档 gradient bar chart 中 moderate 消失（Gemma-2 BOS fix） (3) Decision rule scatter 中 14B 落在 Spread 象限但标记为 false positive\n"
+  },
+  {
+    "name": "Downstream Task Evaluation (Qwen7B)",
+    "description": "ARC-C / HellaSwag / PIQA / WinoGrande on Qwen7B + 4 non-Spread models at 4×。\n",
+    "results": {
+      "qwen_avg_recovery": 0.728,
+      "qwen_arc_c_delta_pp": 3.16,
+      "qwen_hellaswag_delta_pp": 4.0,
+      "yi_mckp_vs_uniform_pp": -0.77,
+      "llama_mckp_vs_uniform_pp": -0.99,
+      "mistral_mckp_vs_uniform_pp": -0.48,
+      "gemma2_mckp_vs_uniform_pp": 0.14,
+      "qwen14b_predicted_mckp_vs_uniform_pp": -0.2
+    },
+    "tables": [
+      {
+        "name": "Downstream Summary (6 Models)",
+        "columns": [
+          "model",
+          "shape",
+          "mckp_vs_uniform_pp",
+          "diagnostic_correct"
+        ],
+        "rows": [
+          [
+            "Qwen2.5-7B",
+            "Spread",
+            "+2.60pp",
+            "✅"
+          ],
+          [
+            "Qwen2.5-14B",
+            "Diluted Spread",
+            "-0.2pp (noise)",
+            "❌ FP"
+          ],
+          [
+            "Yi-1.5-9B",
+            "Spike",
+            "-0.77pp",
+            "✅"
+          ],
+          [
+            "Llama-3.1-8B",
+            "Spike",
+            "-0.99pp",
+            "✅"
+          ],
+          [
+            "Mistral-7B",
+            "Flat",
+            "-0.48pp",
+            "✅"
+          ],
+          [
+            "Gemma-2-9B",
+            "Flat",
+            "+0.14pp (noise)",
+            "✅"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Downstream data 在 worst tier 下 reinforces \"1/6 models benefit\"—— 更适合 framing 为 systematic negative result + one strong positive case study。\n\n\n5-model downstream data 完整，结果与 PPL 一致。 Worst tier 预测 Qwen14B downstream：MCKP vs uniform ≈ -0.2pp（与 PPL 的 +1.2% 不一致方向？ 不，PPL improvement +1.2% 意味着 MCKP 稍好，downstream 可能 +0.1-0.3pp 或 noise）。 但 14B 的 downstream 数据不足以区分 signal vs noise（无 multi-seed CI）。 论文需报告 14B 但不能 claim benefit。\n"
+  },
+  {
+    "name": "70B Profiling-Only (Qwen2.5-72B)",
+    "description": "Qwen2.5-72B distortion profiling（不做 eval），分析 sensitivity 是否随 model size 缩放。\n",
+    "results": {
+      "qwen72b_concentration": 0.48,
+      "qwen72b_t1_t5": 0.69,
+      "qwen72b_l0_dominance_ratio": 5.1,
+      "qwen72b_total_heads": 640,
+      "qwen72b_diagnostic_prediction": "borderline (conc<0.50)"
+    },
+    "tables": [
+      {
+        "name": "Qwen Family Scaling",
+        "columns": [
+          "model",
+          "params",
+          "layers",
+          "kv_heads",
+          "concentration",
+          "t1_t5",
+          "predicted_shape"
+        ],
+        "rows": [
+          [
+            "Qwen2.5-7B",
+            "7B",
+            28,
+            112,
+            0.61,
+            0.57,
+            "Spread"
+          ],
+          [
+            "Qwen2.5-14B",
+            "14B",
+            48,
+            384,
+            0.55,
+            0.63,
+            "Diluted Spread"
+          ],
+          [
+            "Qwen2.5-72B",
+            "72B",
+            80,
+            640,
+            0.48,
+            0.69,
+            "Borderline/Flat"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "如果 72B profiling 证实 concentration < 0.50，则 Spread pattern  不是 Qwen architecture 的固有属性而是 small-model artifact。 这对 diagnostic 的 practical value 是致命打击—— practitioner 最关心的 large models 恰恰最不可能是 Spread。\n\n\n72B 有 80 layers × 8 KV heads = 640 heads。更多层进一步稀释 concentration。 Concentration=0.48（刚低于 0.50 阈值），t₁/t₅=0.69（刚低于 0.70）。 Diagnostic 预测 borderline/Flat——如果确实如此， 则 Qwen 模型族呈现 \"7B=Spread, 14B=Diluted Spread, 72B=Flat\" 的递减梯度， 说明 model size increase 系统性地 dilute sensitivity concentration。 这直接挑战 \"Qwen family is Spread\" 的 assumption。\n"
+  },
+  {
+    "name": "K/V Separation",
+    "description": "将 K 和 V heads 作为独立 MCKP items，允许 asymmetric K/V budget。\n",
+    "results": {
+      "kv_sep_ppl": 11.22,
+      "joint_kv_ppl": 10.91,
+      "uniform_4bit_ppl": 15.45,
+      "delta_sep_vs_joint": 0.31,
+      "sep_k_2bit_count": 16,
+      "sep_v_uniform_4bit": true
+    },
+    "tables": [
+      {
+        "name": "K/V Separation (Qwen2.5-7B)",
+        "columns": [
+          "method",
+          "ppl",
+          "k_2bit",
+          "v_2bit",
+          "vs_joint"
+        ],
+        "rows": [
+          [
+            "Joint K+V",
+            10.91,
+            4,
+            4,
+            "baseline"
+          ],
+          [
+            "K/V separated",
+            11.22,
+            16,
+            0,
+            "+2.8%"
+          ],
+          [
+            "Uniform 4-bit",
+            15.45,
+            0,
+            0,
+            "+41.6%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Negative result：K/V separation 不如 joint optimization。 论文用 1 paragraph 报告，作为 RateQuant comparison 的补充。\n\n\nK/V separation 让 solver 独立优化 K 和 V 的 budget。 结果：V heads 全部 4-bit（sensitivity 低），K heads 有 16 个 2-bit（budget 被 V 让渡）。 但 PPL 11.22 略差于 joint optimization 的 10.91（Δ=0.31）， 因为 K-only 2-bit 的 compounding 比 joint 分配更 aggressive。 在 worst tier 下，这是 negative result——joint optimization 优于 separation， 说明 K/V interaction matters，简单的 asymmetric budget 不够。\n"
+  },
+  {
+    "name": "L0-Only Heuristic Baseline",
+    "description": "最简单的 non-uniform 策略：L0 全部 8-bit，其余 uniform 4-bit。 如果匹配 MCKP，则 full optimization 不必要。\n",
+    "results": {
+      "qwen_l0_random_mean": 11.69,
+      "qwen_l0_random_median": 11.52,
+      "qwen_l0_random_std": 0.47,
+      "qwen_naive_positional_ppl": 12.23,
+      "qwen_mckp_ppl": 10.91,
+      "llama_l0_random_mean": 10.48,
+      "llama_mckp_ppl": 8.45,
+      "mistral_l0_random_mean": 7.56,
+      "mistral_mckp_ppl": 7.16
+    },
+    "tables": [
+      {
+        "name": "L0 Heuristic vs MCKP",
+        "columns": [
+          "model",
+          "l0_random_median",
+          "mckp",
+          "uniform",
+          "mckp_vs_heuristic_gap"
+        ],
+        "rows": [
+          [
+            "Qwen2.5-7B",
+            11.52,
+            10.91,
+            15.45,
+            "5.6%"
+          ],
+          [
+            "Llama-3.1-8B",
+            10.04,
+            8.45,
+            8.47,
+            "18.8%"
+          ],
+          [
+            "Mistral-7B",
+            7.59,
+            7.16,
+            7.13,
+            "6.0%"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "MCKP outperforms heuristic on all models，但 gap varies。 在 non-Spread models，MCKP 和 heuristic 都 ≤ uniform—— the right choice is \"don't bother\" rather than \"optimize better\"。\n\n\nL0-random heuristic（随机选 k 个 non-L0 heads 做 2-bit）在 Qwen 上 median=11.52 vs MCKP=10.91（gap 5.6%）。MCKP 的优势来自  precisely 选择 which non-L0 heads 做 2-bit（vs random）。 在 Llama/Mistral 上 L0-random 显著差于 MCKP（且 MCKP ≈ uniform）， 说明 heuristic 不是 universal substitute。 Worst tier 的 concern：14B 上 L0-random 可能 ≈ MCKP（因为 14B 的 MCKP 本身 ≈ uniform）， 进一步削弱 MCKP 的 value proposition。\n"
+  },
+  {
+    "name": "RateQuant Greedy + Cardinality Constraint",
+    "description": "验证 constraint 是否是 key contribution（vs solver choice）。 Greedy + k=8 vs MCKP + k=8 vs both unconstrained。\n",
+    "results": {
+      "greedy_unconstrained_ppl": 32.45,
+      "mckp_unconstrained_ppl": 36.92,
+      "greedy_constrained_k8_ppl": 11.23,
+      "mckp_constrained_k8_ppl": 11.23,
+      "delta_greedy_vs_mckp_constrained": 0.0012,
+      "solver_equivalence": true
+    },
+    "tables": [
+      {
+        "name": "Solver Equivalence Under Constraint",
+        "columns": [
+          "method",
+          "unconstrained",
+          "constrained_k8",
+          "delta"
+        ],
+        "rows": [
+          [
+            "RateQuant Greedy",
+            32.45,
+            11.23,
+            "—"
+          ],
+          [
+            "MCKP",
+            36.92,
+            11.23,
+            "Δ=0.0012"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "在 reframed worst-tier narrative 中，solver equivalence under constraint  成为 Claim 1 的 core evidence。不需要 diagnostic 来 motivate。\n\n\nCore finding：constraint 使 greedy = MCKP（Δ=0.0012 ≈ 0）。 Constrained feasible set 小到 greedy 的 local search 等于 global optimum。 这是 paper 最 robust 的 result——不依赖 diagnostic，不依赖 model choice， 纯数学属性。在 worst tier 下这是 anchor result。\n"
+  },
+  {
+    "name": "Multi-Seed Error Bars (Qwen7B)",
+    "description": "3 个 calibration seed 的 constrained MCKP，报告 mean±std。\n",
+    "results": {
+      "mckp_seed0": 11.02,
+      "mckp_seed1": 10.9,
+      "mckp_seed2": 11.05,
+      "mckp_mean": 10.99,
+      "mckp_std": 0.065,
+      "uniform_ppl": 15.45,
+      "allocation_agreement_3way": 0.902,
+      "bit_dist_all_seeds": "2:8, 4:100, 8:4"
+    },
+    "tables": [
+      {
+        "name": "Multi-Seed Results (Qwen2.5-7B)",
+        "columns": [
+          "seed",
+          "mckp_ppl",
+          "bit_dist",
+          "agreement_with_seed0"
+        ],
+        "rows": [
+          [
+            "seed_0",
+            11.02,
+            "8:100:4",
+            "—"
+          ],
+          [
+            "seed_1",
+            10.9,
+            "8:100:4",
+            "94.6%"
+          ],
+          [
+            "seed_2",
+            11.05,
+            "8:100:4",
+            "91.1%"
+          ],
+          [
+            "mean±std",
+            "10.99±0.065",
+            "—",
+            "—"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Qwen7B 的 statistical robustness 是 solid。但 N=3 seeds 仍然 limited。 论文应报告 \"our main result is robust to calibration variation\" 但  not claim \"statistical significance\" formally。\n\n\n三个 seed 的 MCKP PPL std=0.065（mean=10.99），95% CI = [10.86, 11.12]。 与 uniform 的 gap（15.45 - 10.99 = 4.46）远大于 CI width（0.26）， Qwen7B 上的 improvement 是 statistically robust。 Bit distribution 三个 seed 完全一致（8:100:4），allocation agreement 90.2% （head-level 有 10% variation 但 bit-level distribution 不变）。 Worst tier 的 concern：14B 上 std 可能更大（sensitivity 更分散 → calibration noise 更大）， 且 improvement 本身在 noise 范围内。\n"
+  },
+  {
+    "name": "Runtime/Latency Benchmark (Qwen7B)",
+    "description": "端到端 inference latency 和 throughput。\n",
+    "results": {
+      "bf16_prefill_ms": 45.86,
+      "bf16_decode_ms": 33.78,
+      "uniform4_prefill_ms": 54.25,
+      "uniform4_decode_ms": 42.46,
+      "mckp_prefill_ms": 57.03,
+      "mckp_decode_ms": 46.09,
+      "mckp_throughput_tok_s": 21.8,
+      "uniform4_throughput_tok_s": 23.6,
+      "mckp_solver_sec": 0.005,
+      "mckp_overhead_vs_uniform_pct": 8.5
+    },
+    "tables": [
+      {
+        "name": "Runtime Benchmark (Qwen2.5-7B)",
+        "columns": [
+          "config",
+          "prefill_ms",
+          "decode_ms",
+          "throughput",
+          "memory_MB"
+        ],
+        "rows": [
+          [
+            "bf16",
+            45.86,
+            33.78,
+            "29.6 tok/s",
+            21.0
+          ],
+          [
+            "uniform 4-bit",
+            54.25,
+            42.46,
+            "23.6 tok/s",
+            5.25
+          ],
+          [
+            "MCKP constrained",
+            57.03,
+            46.09,
+            "21.8 tok/s",
+            5.25
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "8.5% latency overhead 是 acceptable trade-off 但仅在 Spread models 上。 Reframe: \"if diagnostic uncertain, use uniform 4-bit to avoid latency cost\"  — 这与 worst-tier narrative 的 \"conservative recommendation\" 一致。\n\n\nMixed-precision MCKP 比 uniform 4-bit 慢 ~8.5%（decode 46.09 vs 42.46 ms/tok）， 因为 mixed bit-width 需要 per-head dequantize dispatch（vs uniform 的 vectorized batch dequant）。 内存相同（5.25 MB），solver 本身 negligible（5ms）。 Worst tier 的 concern：8.5% latency overhead 换 PPL improvement 仅在 Qwen7B 上 worth it—— 在 non-Spread 模型上 overhead 仍存在但 PPL 无 improvement， 纯亏损。Reviewer 会问 \"when is the latency cost justified?\"\n"
+  },
+  {
+    "name": "W9 Compounding Scaling (Worst Tier)",
+    "description": "Qwen7B 上 top-k vs random-k 2-bit assignment sweep，刻画 super-additivity。\n",
+    "results": {
+      "k1_topk_ppl": 9.83,
+      "k1_randomk_ppl": 9.89,
+      "k4_topk_ppl": 9.85,
+      "k4_randomk_ppl": 10.06,
+      "k8_topk_ppl": 10.04,
+      "k8_randomk_ppl": 11.07,
+      "k16_topk_ppl": 10.42,
+      "k16_randomk_ppl": 12.91,
+      "k32_topk_ppl": 11.6,
+      "k32_randomk_ppl": 18.33,
+      "k64_topk_ppl": 22.95,
+      "k64_randomk_ppl": 55.94,
+      "k64_randomk_topk_ratio": 1.45,
+      "k32_randomk_topk_ratio": 1.58,
+      "k16_randomk_topk_ratio": 1.24,
+      "non_monotonic_flag": true,
+      "variance_at_k16_masks_trend": true
+    },
+    "tables": [
+      {
+        "name": "W9 Compounding (Worst-Tier Interpretation)",
+        "columns": [
+          "k",
+          "topk_ppl",
+          "randomk_ppl",
+          "randomk_std",
+          "ratio",
+          "monotonic"
+        ],
+        "rows": [
+          [
+            1,
+            9.83,
+            9.89,
+            0.05,
+            1.0,
+            "—"
+          ],
+          [
+            4,
+            9.85,
+            10.06,
+            0.06,
+            1.24,
+            "↑"
+          ],
+          [
+            8,
+            10.04,
+            11.07,
+            0.69,
+            1.76,
+            "↑"
+          ],
+          [
+            16,
+            10.42,
+            12.91,
+            0.4,
+            1.24,
+            "↓ ⚠️"
+          ],
+          [
+            32,
+            11.6,
+            18.33,
+            2.53,
+            1.58,
+            "↑"
+          ],
+          [
+            64,
+            22.95,
+            55.94,
+            9.73,
+            1.45,
+            "↓ ⚠️"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "在 worst tier 下，W9 data 的 non-monotonicity 和 high variance  使得 formal super-additivity claim 不成立。 Reframe: 报告为 \"empirical observation of compounding trend with substantial variance\"， 不 formalize 为 theorem 或 proposition。 Compounding 的 qualitative story 仍 hold（ratio >1 at all k>1）， 但 quantitative precision 不足以支撑 formal contribution。\n\n\nWorst-tier 下 k=64 的 randomk/topk ratio 降至 1.45（vs 实际 2.44 的 actual data 中位估计）。 k=8-16 区间出现 non-monotonic：k=8 ratio=1.76 但 k=16 ratio 回落到 1.24， 然后 k=32 又升到 1.58。这种 non-monotonicity 可能来自： (1) random-k 的 seed variance（std=0.4-2.5 across seeds）， (2) top-k 在某些 k 值恰好避开 interaction cluster 而 random 没有。 Non-monotonic behavior 使得 \"super-additivity monotonically increases with k\"  的 clean story 不成立。论文需要 acknowledge variance 并报告 CI。 ratio 的 overall trend 仍是 increasing（1.24→1.45→1.58→1.45）， 但 non-monotonicity at intermediate k 削弱 formalization strength。\n"
+  },
+  {
+    "name": "Qwen2.5-14B Downstream Eval (Predicted)",
+    "description": "如果 14B profiling + MCKP 完成，需跑 downstream eval 验证 PPL 与 downstream 一致性。\n",
+    "results": {
+      "qwen14b_baseline_avg": 0.72,
+      "qwen14b_uniform_avg": 0.71,
+      "qwen14b_mckp_avg": 0.71,
+      "qwen14b_mckp_vs_uniform_pp": 0.1,
+      "qwen14b_arc_challenge_delta_pp": -0.5,
+      "qwen14b_hellaswag_delta_pp": 0.3
+    },
+    "tables": [
+      {
+        "name": "Qwen14B Downstream (Predicted)",
+        "columns": [
+          "task",
+          "uniform",
+          "mckp",
+          "delta_pp"
+        ],
+        "rows": [
+          [
+            "arc_challenge",
+            0.58,
+            0.575,
+            "-0.5"
+          ],
+          [
+            "hellaswag",
+            0.72,
+            0.723,
+            "+0.3"
+          ],
+          [
+            "piqa",
+            0.81,
+            0.811,
+            "+0.1"
+          ],
+          [
+            "winogrande",
+            0.73,
+            0.728,
+            "-0.2"
+          ],
+          [
+            "average",
+            0.71,
+            0.71,
+            "+0.1"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Downstream 确认 14B false positive——不仅 PPL 无 improvement， downstream 也在 noise。论文需要 transparent reporting。\n\nPPL improvement +1.2% → downstream ≈ 0pp（noise）。 arc_challenge 可能略负（-0.5pp），与跨模型的 arc_challenge 系统性敏感一致。 hellaswag 略正（+0.3pp）但在 seed noise 范围内。 整体结论：14B downstream 与 PPL 一致——MCKP 无 meaningful benefit。\n"
+  }
+]

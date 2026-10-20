@@ -1,0 +1,707 @@
+tier: best
+narrative_guidance: '三条claims全部保留，title直接用"The Equalizer Effect"。 叙事主线：attention作为universal
+  equalizer跨任务跨scale生效，但per-example机制architecture-specific。 7B三点scale curve完成monotonic
+  convergence story。 多任务覆盖（LAMBADA+HellaSwag+ARC-e）消除task-specificity质疑。 与Wang et
+  al.形成清晰互补：他们提供model zoo，我们揭示他们遗漏的深层现象。 目标EMNLP 2026 Main。
+
+  '
+imagined_experiments:
+- name: Cross-task convergence quantification
+  plan_id: exp-001
+  description: '对6个benchmark在1.3B和340M两个scale上计算cross-architecture std随attention ratio变化趋势，
+    Spearman rank correlation检验convergence显著性，按retrieval-dependent vs reasoning-dependent分类。
+
+    '
+  expected_results:
+    tasks_with_significant_convergence_1_3b: 4
+    lambada_spearman_rho: -1.0
+    lambada_spearman_p: 0.0083
+    lambada_std_reduction_pct: 79
+    hellaswag_spearman_rho: -0.9
+    hellaswag_spearman_p: 0.037
+    arc_easy_spearman_rho: -0.95
+    arc_easy_spearman_p: 0.017
+    winogrande_spearman_rho: -0.9
+    winogrande_spearman_p: 0.037
+    piqa_spearman_rho: -0.5
+    piqa_spearman_p: 0.391
+    arc_challenge_spearman_rho: -0.6
+    arc_challenge_spearman_p: 0.285
+    retrieval_tasks_avg_rho: -0.94
+    reasoning_tasks_avg_rho: -0.55
+    task_type_dichotomy_significant: true
+  result_rationale: 'LAMBADA是纯retrieval任务（从context中提取最后一词），convergence最强（ρ=-1.0）已被现有数据确认。
+    HellaSwag（commonsense continuation选择）和ARC-e（简单科学问答）均有较强的context-grounding成分， attention层通过增强context
+    integration使不同recurrence机制的弱点得到互补性修正，因此也会出现显著convergence。 Winogrande（共指消解）需要精确的long-range
+    reference resolution，这恰好是attention的强项， 因此也会出现convergence。PIQA和ARC-challenge更依赖reasoning和world
+    knowledge而非retrieval， 不同recurrence机制在这些任务上的差异更多来自训练动态而非architecture capacity gap，
+    attention无法系统性地弥合这类差异，convergence不显著。 这形成了清晰的task-type dichotomy：retrieval-dependent任务convergence显著，reasoning任务不显著。
+
+    '
+  tables:
+  - name: 'Table 1: Cross-architecture convergence by benchmark'
+    columns:
+    - Benchmark
+    - Task Type
+    - Std(attn=0)
+    - Std(attn=8)
+    - Reduction%
+    - Spearman ρ
+    - p-value
+    rows:
+    - - LAMBADA
+      - retrieval
+      - 0.024
+      - 0.005
+      - 79%
+      - -1.0
+      - 0.0083
+    - - HellaSwag
+      - retrieval-grounded
+      - 0.018
+      - 0.007
+      - 61%
+      - -0.9
+      - 0.037
+    - - ARC-Easy
+      - retrieval-grounded
+      - 0.031
+      - 0.011
+      - 65%
+      - -0.95
+      - 0.017
+    - - Winogrande
+      - coreference
+      - 0.022
+      - 0.009
+      - 59%
+      - -0.9
+      - 0.037
+    - - PIQA
+      - reasoning
+      - 0.015
+      - 0.011
+      - 27%
+      - -0.5
+      - 0.391
+    - - ARC-Challenge
+      - reasoning
+      - 0.028
+      - 0.019
+      - 32%
+      - -0.6
+      - 0.285
+  figures_description:
+  - 'Figure 1: 六个benchmark的cross-arch std vs attention ratio折线图（1.3B）， retrieval类任务用实线（显示clear
+    monotonic decrease），reasoning类用虚线（flat或noisy）。 双panel：左1.3B右340M，340M panel显示rebound现象。
+
+    '
+  analysis: '4个任务显著convergence超出pass_fail阈值（≥2），且task-type dichotomy清晰。 retrieval-dependent任务的convergence可用attention的context
+    integration功能解释： 不同recurrence机制各有retrieval盲区，attention统一补偿这些盲区。 reasoning任务的non-convergence支持"equalizer
+    effect is retrieval-specific"的refined claim， 这比"universal convergence"更有趣——说明attention的equalizing作用有边界条件。
+
+    '
+- name: Multi-benchmark per-example analysis
+  plan_id: exp-002
+  description: '对1.3B模型在HellaSwag、ARC-easy、ARC-challenge上用--log_samples重新跑lm-eval，
+    提取per-example accuracy变化，计算cross-architecture helped/hurt overlap（Jaccard）， 验证equalizer
+    paradox是否在LAMBADA之外复现。
+
+    '
+  expected_results:
+    hellaswag_pairwise_jaccard_mean: 0.06
+    arc_easy_pairwise_jaccard_mean: 0.07
+    arc_challenge_pairwise_jaccard_mean: 0.12
+    hellaswag_helped_pct_gdn: 0.18
+    hellaswag_helped_pct_retnet: 0.21
+    hellaswag_helped_pct_hgrn2: 0.19
+    hellaswag_hurt_pct_gdn: 0.14
+    hellaswag_hurt_pct_retnet: 0.11
+    hellaswag_hurt_pct_hgrn2: 0.09
+    paradox_replicated_hellaswag: true
+    paradox_replicated_arc_easy: true
+    paradox_replicated_arc_challenge: false
+    gpu_hours_actual: 7.5
+  result_rationale: 'HellaSwag和ARC-e在exp-001中显示显著aggregate convergence，per-example分析将揭示
+    这种convergence也是通过non-overlapping sample subsets实现的（Jaccard<0.10）， 因为不同recurrence机制的context建模弱点在不同样本上显现：
+    GDN的gated delta rule在需要precise memory update的样本上弱， RetNet的exponential decay在long-range
+    dependency样本上弱， HGRN2的hierarchical gating在需要flat attention分布的样本上弱。 Attention分别修补这些不同的弱点，因此affected
+    samples几乎不重叠。 ARC-challenge因为aggregate convergence本身不显著，per-example pattern也更noisy，
+    Jaccard略高但paradox不clean。 这个结果直接强化Claim 3：equalizer paradox不是LAMBADA的artifact，
+    而是retrieval-grounded任务的general phenomenon。
+
+    '
+  tables:
+  - name: 'Table 2: Per-example overlap across benchmarks (Jaccard index, 1.3B, h3-1
+      vs h0)'
+    columns:
+    - Benchmark
+    - GDN-RetNet
+    - GDN-HGRN2
+    - RetNet-HGRN2
+    - Mean Jaccard
+    rows:
+    - - LAMBADA
+      - 0.04
+      - 0.05
+      - 0.03
+      - 0.04
+    - - HellaSwag
+      - 0.07
+      - 0.06
+      - 0.05
+      - 0.06
+    - - ARC-Easy
+      - 0.08
+      - 0.07
+      - 0.06
+      - 0.07
+    - - ARC-Challenge
+      - 0.14
+      - 0.11
+      - 0.12
+      - 0.12
+  figures_description:
+  - 'Figure 2: 三个benchmark的Venn diagram（或UpSet plot），展示三个architecture的helped samples重叠。
+    每个benchmark一个panel，清晰显示重叠区域极小。
+
+    '
+  - 'Figure 3: Per-example effect heatmap——行为样本，列为architecture， 颜色编码accuracy变化方向和幅度，显示"棋盘格"pattern（非一致方向）。
+
+    '
+  analysis: 'Equalizer paradox在LAMBADA、HellaSwag、ARC-e三个任务上复现， mean Jaccard均<0.10，满足best
+    tier的pass_fail标准。 这是论文的核心contribution加强版：paradox不是task-specific artifact， 而是attention介入retrieval-dependent任务的general
+    mechanism。 ARC-challenge的higher Jaccard提供了有趣的boundary condition讨论。
+
+    '
+- name: 7B model evaluation
+  plan_id: exp-006
+  description: '从Wang et al. HuggingFace repos获取7B-scale models， 在6个benchmark上评估，构建3-scale
+    (340M, 1.3B, 7B) convergence trajectory。
+
+    '
+  expected_results:
+    models_available_7b: 3
+    architectures_available_7b:
+    - GatedDeltaNet
+    - RetNet
+    - HGRN2
+    lambada_cross_arch_std_7b_h0: 0.019
+    lambada_cross_arch_std_7b_h3_1: 0.002
+    lambada_std_reduction_7b_pct: 89
+    hellaswag_std_reduction_7b_pct: 75
+    arc_easy_std_reduction_7b_pct: 71
+    scale_convergence_spearman_rho: -1.0
+    scale_convergence_spearman_p: 0.0083
+    monotonic_deepening_confirmed: true
+    gpu_hours_actual: 18
+  result_rationale: 'Wang et al.的model zoo包含多scale实验，7B是他们的largest scale，极可能有模型。 在best
+    tier下，7B模型可获取且convergence继续deepening的原因： (1) 更大的模型capacity使attention层的context
+    integration更充分， 各recurrence机制的residual差异被更有效地弥合； (2) 7B的training dynamics更稳定，340M的rebound现象（capacity不足导致attention和recurrence争抢参数）
+    在7B上消失； (3) 三点scale curve (340M partial → 1.3B strong → 7B near-complete) 形成clean
+    monotonic trajectory，std reduction从~40% → ~79% → ~89%， 支持"convergence随scale增强"的narrative。
+    这完成了Claim 2的scale story，从binary contrast升级为三点趋势线。
+
+    '
+  tables:
+  - name: 'Table 3: Cross-architecture std across scales'
+    columns:
+    - Scale
+    - Attn Config
+    - LAMBADA Std
+    - HellaSwag Std
+    - ARC-E Std
+    - Mean Std (retrieval tasks)
+    rows:
+    - - 340M
+      - h0
+      - 0.021
+      - 0.016
+      - 0.028
+      - 0.022
+    - - 340M
+      - h3-1
+      - 0.013
+      - 0.012
+      - 0.02
+      - 0.015
+    - - 1.3B
+      - h0
+      - 0.024
+      - 0.018
+      - 0.031
+      - 0.024
+    - - 1.3B
+      - h3-1
+      - 0.005
+      - 0.007
+      - 0.011
+      - 0.008
+    - - 7B
+      - h0
+      - 0.019
+      - 0.015
+      - 0.025
+      - 0.02
+    - - 7B
+      - h3-1
+      - 0.002
+      - 0.004
+      - 0.007
+      - 0.004
+  figures_description:
+  - 'Figure 4: 三点scale curve——x轴为model scale (340M, 1.3B, 7B)， y轴为cross-arch std (h3-1
+    config)，三条线分别对应LAMBADA、HellaSwag、ARC-e。 所有线monotonically decrease，LAMBADA下降最陡。
+    右侧secondary y轴显示std reduction percentage。
+
+    '
+  analysis: '7B数据的获取和monotonic deepening是best tier的关键区分因素。 三点curve使Claim 2从"two-point
+    contrast"升级为"scaling law"， 可以拟合power law或log-linear关系，增强理论深度。 7B的near-complete
+    convergence（LAMBADA std仅0.002）暗示 在sufficient scale下attention几乎完全消除architecture差异，
+    这对architecture selection有直接practical implication。
+
+    '
+- name: 340M rebound mechanism analysis
+  plan_id: exp-007
+  description: '深入分析340M在attn=8时的non-monotonic rebound， per-example比较340M和1.3B在相同attention
+    ratio下的差异， 识别rebound的根本原因。
+
+    '
+  expected_results:
+    rebound_magnitude_std_increase: 0.006
+    rebound_samples_overlap_with_1_3b_hurt: 0.45
+    capacity_bottleneck_confirmed: true
+    rebound_correlated_with_context_length: true
+    rebound_context_length_threshold: 85
+    rebound_explained_variance_by_capacity: 0.62
+  result_rationale: '340M的rebound在attn=8时出现，这是最高attention ratio。 在best tier下，机制将被清晰识别为capacity
+    bottleneck： 340M总参数有限，当attention层占比过高时recurrence层的参数被过度压缩， 导致recurrence的sequence
+    modeling能力退化。 表现为长context样本（>85 tokens）上的性能下降， 因为这些样本本来最依赖recurrence的sequential
+    processing。 1.3B不出现rebound是因为总capacity足够同时支撑attention和recurrence。 这个发现完美补充scale
+    story：convergence需要sufficient scale， 不仅是scale越大convergence越深，而且scale不足时会出现pathological
+    behavior。
+
+    '
+  tables:
+  - name: 'Table 4: 340M rebound characterization'
+    columns:
+    - Feature
+    - Rebound Samples
+    - Non-rebound Samples
+    - p-value
+    rows:
+    - - Mean context length (tokens)
+      - 112.3
+      - 68.7
+      - <0.001
+    - - Target token frequency rank
+      - 4521
+      - 3890
+      - 0.23
+    - - Overlap with 1.3B hurt samples
+      - 45%
+      - 12%
+      - <0.001
+  figures_description:
+  - 'Figure 5: 340M vs 1.3B的per-example effect scatter plot， x轴为1.3B上的accuracy change，y轴为340M上的accuracy
+    change。 颜色编码context length，长context样本聚集在340M negative / 1.3B positive象限。
+
+    '
+  analysis: 'Capacity bottleneck解释简洁且可验证，为scale-dependent convergence提供mechanistic
+    grounding。 长context样本在340M上的rebound可以解释为：recurrence层capacity不足以维持long-range state，
+    而attention层虽然能做long-range retrieval但在340M上head数量不足以覆盖所有位置。 这个发现增加了论文的理论深度，不仅是描述性的"scale
+    matters"，而是解释性的"why scale matters"。
+
+    '
+- name: Helped/hurt sample characterization
+  plan_id: exp-003
+  description: '对LAMBADA上每个architecture的helped/hurt samples计算linguistic features：
+    target token frequency, context length, last-sentence perplexity, topic distribution，
+    检验feature是否显著区分helped vs hurt，以及feature profile是否跨architecture不同。
+
+    '
+  expected_results:
+    significant_features_count: 3
+    target_token_frequency_p_value: 0.003
+    context_length_p_value: 0.001
+    last_sentence_perplexity_p_value: 0.008
+    topic_distribution_p_value: 0.12
+    gdn_hurt_profile: high-frequency targets, medium context
+    retnet_hurt_profile: long context, low-frequency targets
+    hgrn2_helped_profile: long context, high perplexity last sentence
+    cross_arch_feature_profile_different: true
+    cross_arch_profile_difference_p: 0.002
+  result_rationale: '不同recurrence机制有不同的architectural inductive bias： GDN的gated delta
+    rule擅长precise memory update但对高频pattern可能过拟合， attention介入后反而干扰了已经well-learned的高频target
+    retrieval，导致hurt。 RetNet的exponential decay天然在long-range上弱， attention介入后未必能完全补偿（因为attention层数有限），
+    所以long context样本被hurt。 HGRN2的hierarchical gating在处理high perplexity context时不够灵活，
+    attention提供了complementary的context weighting，帮助了这类样本。 三个architecture的feature profile显著不同（MANOVA
+    p<0.005）， 直接支持Claim 3：虽然aggregate convergence，但per-example mechanism是architecture-specific的。
+    3个显著features在best tier范围[2,4]内。
+
+    '
+  tables:
+  - name: 'Table 5: Feature comparison of helped vs hurt samples by architecture'
+    columns:
+    - Feature
+    - GDN Helped
+    - GDN Hurt
+    - RetNet Helped
+    - RetNet Hurt
+    - HGRN2 Helped
+    - HGRN2 Hurt
+    rows:
+    - - Target freq rank (median)
+      - 5200
+      - 1800
+      - 2100
+      - 6800
+      - 4300
+      - 3900
+    - - Context length (mean)
+      - 72
+      - 81
+      - 58
+      - 105
+      - 98
+      - 62
+    - - Last-sent ppl (mean)
+      - 45.2
+      - 42.8
+      - 41.5
+      - 48.3
+      - 52.1
+      - 38.7
+  figures_description:
+  - 'Figure 6: 三个architecture的helped/hurt样本在feature space中的2D PCA投影。 三个panel（GDN/RetNet/HGRN2），helped为蓝色hurt为红色，
+    显示不同architecture的helped/hurt样本占据feature space的不同区域。
+
+    '
+  - 'Figure 7: Feature importance radar chart——每个architecture一个多边形， 显示哪些features最能区分该architecture的helped
+    vs hurt样本。 三个多边形形状显著不同。
+
+    '
+  analysis: '3个features显著区分helped/hurt（p<0.01），且feature profile跨architecture显著不同。
+    这为equalizer paradox提供了mechanistic explanation： attention不是"一刀切"地帮助所有样本，而是根据每个architecture的specific
+    weakness 修补不同类型的样本。GDN被hurt的样本恰好不是RetNet/HGRN2被hurt的样本， 因为三者的architectural weakness在feature
+    space中occupies不同区域。 这是论文在mechanistic understanding上的核心contribution。
+
+    '
+- name: Attention weight extraction and visualization
+  plan_id: exp-004
+  description: '从三个architecture的hybrid models（h3-1 config, 1.3B）提取attention weight
+    patterns， 分析attention focus位置、与helped/hurt sample identity的correlation、 cross-architecture
+    attention pattern similarity。
+
+    '
+  expected_results:
+    attention_pattern_similarity_gdn_retnet: 0.31
+    attention_pattern_similarity_gdn_hgrn2: 0.28
+    attention_pattern_similarity_retnet_hgrn2: 0.35
+    attention_helped_correlation_gdn: 0.42
+    attention_helped_correlation_retnet: 0.38
+    attention_helped_correlation_hgrn2: 0.45
+    mean_cross_arch_attention_correlation: 0.31
+    attention_focus_divergence_on_hurt_samples: true
+  result_rationale: '在best tier下，attention pattern analysis将揭示： (1) 三个architecture的attention层学到了不同的attention
+    patterns（cosine similarity ~0.3）， 因为attention层需要compensate不同的recurrence weakness，形成不同的learned
+    strategy。 (2) Attention weight patterns与helped/hurt identity有moderate correlation（>0.3），
+    说明attention的"选择性关注"确实驱动了per-example effect。 GDN的attention倾向于关注distant positions（补偿delta
+    rule的local bias）， RetNet的attention关注decay boundary附近的positions（补偿exponential decay的hard
+    cutoff）， HGRN2的attention关注hierarchical boundary crossing的positions。 这些不同的compensation
+    strategies解释了为什么affected samples不重叠。
+
+    '
+  tables:
+  - name: 'Table 6: Attention pattern analysis summary'
+    columns:
+    - Metric
+    - GDN
+    - RetNet
+    - HGRN2
+    rows:
+    - - Mean attention entropy
+      - 3.21
+      - 2.87
+      - 3.05
+    - - Dominant position (relative)
+      - distant (>50 tokens)
+      - mid-range (20-50)
+      - boundary positions
+    - - Correlation with helped samples
+      - 0.42
+      - 0.38
+      - 0.45
+  figures_description:
+  - 'Figure 8: Attention heatmap对比——三个architecture各一列， 上行为helped sample，下行为hurt sample，
+    显示attention weight分布的architecture-specific pattern。
+
+    '
+  - 'Figure 9: Attention pattern PCA——每个architecture的attention weight vectors 投影到2D空间，显示三个architecture形成distinct
+    clusters。
+
+    '
+  analysis: 'Attention pattern analysis为Claim 3提供了最直接的mechanistic evidence。 Cross-architecture
+    attention similarity低（~0.3）说明attention在不同architecture context中 学到了不同的compensation
+    strategy，不是简单地"添加相同的能力"。 与helped/hurt的correlation > 0.3满足pass_fail标准， 建立了"attention
+    pattern → per-example effect"的因果链条。 这是从descriptive到explanatory的关键升级。
+
+    '
+- name: Architecture expansion check
+  plan_id: exp-005
+  description: '搜索Wang et al. model zoo和其他来源的additional hybrid architectures （Mamba/Mamba2
+    hybrids, RWKV hybrids等），评估convergence是否generalize。
+
+    '
+  expected_results:
+    additional_architectures_found: 1
+    architecture_name: Mamba2-hybrid
+    mamba2_convergence_confirmed: true
+    mamba2_lambada_std_with_base: 0.027
+    mamba2_lambada_std_with_attn: 0.006
+    n_architectures_total: 4
+    convergence_holds_with_4_arch: true
+  result_rationale: 'Wang et al. 2025的model zoo以GDN/RetNet/HGRN2为主，但Mamba2-hybrid
+    是近期hybrid architecture中较受关注的变体，存在已训练好的checkpoint的概率较高。 在best tier下，找到至少一个additional
+    architecture并确认convergence： Mamba2的selective state space mechanism与其他三种recurrence都不同，
+    但attention的equalizing effect应该仍然成立，因为attention的context integration 是一种general
+    mechanism，不依赖于specific recurrence type。 Mamba2加入后n=4，进一步降低"n太小"的reviewer concern。
+    如果convergence在第四个architecture上也成立，大幅增强generalizability claim。
+
+    '
+  tables:
+  - name: 'Table 7: Extended architecture convergence'
+    columns:
+    - Architecture
+    - Recurrence Type
+    - Std(h0)
+    - Std(h3-1)
+    - Reduction%
+    rows:
+    - - GatedDeltaNet
+      - Gated delta rule
+      - 0.024
+      - 0.005
+      - 79%
+    - - RetNet
+      - Exponential decay
+      - 0.024
+      - 0.005
+      - 79%
+    - - HGRN2
+      - Hierarchical gating
+      - 0.024
+      - 0.005
+      - 79%
+    - - Mamba2-hybrid
+      - Selective SSM
+      - 0.027
+      - 0.006
+      - 78%
+  figures_description:
+  - 'Figure 10 (supplementary): 四个architecture的convergence curve， Mamba2用虚线标注为"validation
+    architecture"， 与原始三个architecture的convergence趋势高度一致。
+
+    '
+  analysis: '第四个architecture的加入将equalizer effect从"在三个特定architecture上成立" 升级为"跨recurrence
+    mechanism families的general phenomenon"。 四种recurrence机制（delta rule, exponential
+    decay, hierarchical gating, selective SSM） 代表了当前linear recurrence的主要paradigms，覆盖面足以支撑generalizability
+    claim。 这直接回应Reviewer Concern D（n=3太少）。
+
+    '
+- name: Statistical robustness framework
+  plan_id: exp-008
+  description: '实现bootstrap CIs，多重比较校正，sensitivity analysis（排除GDN）， 报告effect sizes。
+
+    '
+  expected_results:
+    bootstrap_ci_std_reduction_lambada:
+    - 0.014
+    - 0.022
+    bootstrap_ci_std_reduction_hellaswag:
+    - 0.008
+    - 0.016
+    bootstrap_ci_std_reduction_arc_easy:
+    - 0.012
+    - 0.025
+    bootstrap_ci_lower_bound_min: 0.008
+    all_cis_above_zero: true
+    bonferroni_corrected_significant_tasks: 3
+    fdr_corrected_significant_tasks: 4
+    gdn_excluded_convergence_holds: true
+    gdn_excluded_lambada_std_reduction_pct: 72
+    gdn_excluded_spearman_rho: -0.95
+    cohens_d_lambada_convergence: 2.8
+    eta_squared_attention_effect: 0.74
+  result_rationale: '在best tier下，所有statistical robustness checks通过： (1) Bootstrap
+    95% CI lower bound > 0（最低0.008），因为convergence effect size很大（Cohen''s d ~2.8），
+    即使在resampling中也不会消失。 (2) 排除GDN后convergence仍显著（reduction 72%），因为RetNet和HGRN2之间的convergence
+    是独立于GDN的——GDN虽有D004 confound但其removal只是略微削弱overall effect。 两个architecture的convergence（从std=0.018到std=0.005）本身就足够显著。
+    (3) Bonferroni校正后仍有3个任务显著，FDR校正后4个，因为原始p值足够小。 (4) 大effect size（η²=0.74说明74%的variance由attention
+    ratio解释）确保statistical power充足。 这为所有claims提供了bulletproof的statistical foundation。
+
+    '
+  tables:
+  - name: 'Table 8: Statistical robustness summary'
+    columns:
+    - Test
+    - Result
+    - Threshold
+    - Pass
+    rows:
+    - - Bootstrap 95% CI (LAMBADA std reduction)
+      - '[0.014, 0.022]'
+      - lower > 0
+      - 'Yes'
+    - - GDN-excluded Spearman ρ
+      - -0.95
+      - p < 0.05
+      - 'Yes'
+    - - GDN-excluded std reduction
+      - 72%
+      - '> 50%'
+      - 'Yes'
+    - - Bonferroni-corrected sig. tasks
+      - 3
+      - ≥ 2
+      - 'Yes'
+    - - Cohen's d (LAMBADA)
+      - 2.8
+      - '> 0.8 (large)'
+      - 'Yes'
+    - - η² (attention effect)
+      - 0.74
+      - '> 0.14 (large)'
+      - 'Yes'
+  figures_description:
+  - 'Figure 11 (supplementary): Bootstrap distribution of std reduction， histogram
+    with 95% CI marked，clearly above zero。
+
+    '
+  - 'Figure 12 (supplementary): 有/无GDN的convergence curve对比， 两条curve趋势一致，仅magnitude略有差异。
+
+    '
+  analysis: 'Statistical robustness framework消除了所有methodological质疑。 GDN exclusion
+    test是最关键的：D004 training confound是一个已知的potential confounder， 但排除后核心结论不变证明convergence是三个architecture的共同现象而非GDN驱动的artifact。
+    大effect size确保即使reviewer对sample size有质疑，power analysis也站得住脚。
+
+    '
+- name: Wang et al. explicit differentiation
+  plan_id: exp-009
+  description: '系统性side-by-side对比Wang et al.的exact statements与我们的analysis， 量化increment。
+
+    '
+  expected_results:
+    wang_convergence_mentions: 2
+    wang_quantitative_convergence_metric: false
+    wang_per_example_analysis: false
+    wang_scale_dependent_analysis: false
+    wang_mechanistic_analysis: false
+    differentiation_points: 4
+    wang_quote_convergence: models with attention tend to perform more similarly
+    our_increment_summary: quantitative framework, scale dependency, per-example mechanism,
+      equalizer paradox
+  result_rationale: 'Wang et al. 2025是一篇model zoo paper，主要贡献是提供comprehensive训练和evaluation
+    infrastructure。 他们在discussion中定性地提到了convergence趋势（"models with attention tend
+    to perform more similarly" 类似措辞），但没有：(a) 计算cross-arch std trajectory——他们报告individual
+    model performance 而非architecture-level variance；(b) 做per-example analysis——他们只看aggregate
+    accuracy； (c) 分析scale dependency——他们在多scale上训练但没有比较convergence across scales；
+    (d) 提出mechanistic explanation——没有分析为什么convergence发生。 这4个differentiation points在best
+    tier下全部成立，因为Wang et al.的论文目标是model zoo本身 而非convergence现象的深入分析。我们的contribution是"使用他们的excellent
+    data 发现他们没有探索的深层现象"，这是一种清晰的互补关系。
+
+    '
+  tables:
+  - name: 'Table 9: Contribution differentiation'
+    columns:
+    - Analysis Dimension
+    - Wang et al.
+    - Ours
+    rows:
+    - - Convergence metric
+      - Qualitative mention
+      - Quantitative std trajectory + Spearman test
+    - - Per-example analysis
+      - Not performed
+      - Helped/hurt classification + Jaccard overlap
+    - - Scale dependency
+      - Multi-scale training, no convergence analysis
+      - 340M→1.3B→7B convergence curve + rebound mechanism
+    - - Mechanistic analysis
+      - Not performed
+      - Feature characterization + attention pattern analysis
+    - - Paradox identification
+      - Not identified
+      - Aggregate convergence + per-example divergence
+  figures_description: []
+  analysis: '4-point differentiation清晰建立了our contribution的independent value。 关键narrative：我们不是在"重复"Wang
+    et al.的工作，而是在他们的data上发现了 他们没有寻找的deeper phenomenon。这类似于"dataset paper"vs"analysis
+    paper"的关系。 Wang et al.实际上strengthen了我们的position：他们的comprehensive model zoo 使我们的per-example
+    analysis更有说服力，因为models are trained under controlled conditions。
+
+    '
+- name: Convergence-divergence bridge analysis
+  plan_id: exp-010
+  description: '在LAMBADA上同时绘制aggregate convergence curve和per-example divergence metrics
+    随attention ratio的变化，展示convergence和divergence的co-evolution。
+
+    '
+  expected_results:
+    convergence_divergence_correlation: -0.92
+    convergence_divergence_p_value: 0.003
+    co_evolution_confirmed: true
+    paradox_intensification_with_attention: true
+    max_paradox_ratio_at_h3_1: 15.8
+    paradox_ratio_definition: std_reduction / mean_jaccard
+  result_rationale: '在best tier下，convergence和divergence强烈anti-correlated（r=-0.92）：
+    更多attention同时带来更强的aggregate convergence和更低的per-example overlap。 原因：每增加一个attention层，attention有更多capacity去compensate
+    architecture-specific weakness。 但因为每个architecture的weakness不同，additional attention
+    capacity被分配到不同的sample subsets上， 导致per-example divergence加深。 这种co-evolution是equalizer
+    paradox的核心： attention越强→aggregate越similar→但per-example越不同。 paradox ratio（std_reduction
+    / mean_jaccard）在h3-1达到最大值15.8， 意味着在最高attention ratio下paradox最为显著。 这个结果将成为论文的headline
+    visualization和核心insight。
+
+    '
+  tables:
+  - name: 'Table 10: Convergence-divergence co-evolution'
+    columns:
+    - Attn Config
+    - Cross-arch Std
+    - Mean Pairwise Jaccard
+    - Paradox Ratio
+    rows:
+    - - h0 (no attn)
+      - 0.024
+      - N/A
+      - N/A
+    - - h6-1 (1 layer)
+      - 0.018
+      - 0.09
+      - 0.7
+    - - h3-1 (2 layers)
+      - 0.012
+      - 0.07
+      - 1.7
+    - - h2-1 (3 layers)
+      - 0.008
+      - 0.05
+      - 3.2
+    - - h1-1 (4 layers)
+      - 0.005
+      - 0.04
+      - 4.8
+  figures_description:
+  - 'Figure 13 (paper的hero figure): 双y轴图——左轴为cross-arch std（下降趋势）， 右轴为mean pairwise
+    Jaccard（也下降趋势），x轴为attention ratio。 两条曲线同时下降，标注"The Equalizer Paradox"区域。 shaded
+    region表示bootstrap CI。
+
+    '
+  - 'Figure 14: Paradox ratio（std_reduction/jaccard）随attention ratio单调增加的bar chart，
+    直观展示paradox随attention加深。
+
+    '
+  analysis: 这是论文的conceptual核心和最重要的visualization。 Convergence-divergence co-evolution将三条claims统一到一个coherent
+    framework中： Claim 1（aggregate convergence）+ Claim 3（per-example divergence）= Equalizer
+    Paradox， 而Claim 2（scale dependency）说明这个paradox只在sufficient scale下fully emerge。
+    correlation r=-0.92 (p=0.003)提供了strong statistical evidence。 这个figure应该是论文的Figure
+    1或Figure 2，placed prominently to hook readers。

@@ -1,0 +1,22 @@
+{
+  "exp_id": "falcon7b_hires_profiling",
+  "project": "ratekv",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:06:00.588Z",
+    "updated_at": "2026-05-15T22:29:53.203Z",
+    "spec": {
+      "server": "westd-37397",
+      "model_name": "Falcon-7B",
+      "data_count": 64,
+      "seed": 42
+    },
+    "hypothesis": "Falcon-7B hires profiling: MQA (1 KV head/layer, 32 total). Extremely few KV heads → high concentration possible. If concentration ≥0.50 AND t1/t5 ≤0.70 → Spread (second positive example for diagnostic rule).",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-15T22:29:53.380559+00:00",
+  "trigger": "update_registry"
+}

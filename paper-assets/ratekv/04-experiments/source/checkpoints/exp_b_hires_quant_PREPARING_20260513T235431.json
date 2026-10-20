@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_b_hires_quant",
+  "project": "ratekv",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T23:22:41.820Z",
+    "updated_at": "2026-05-13T23:54:31.568Z",
+    "hypothesis": "PPL-guided quant-only MCKP with full bit-width action space {2,4,8,16-bit}. 之前 quant-only=uniform 是 tautology (只有 4-bit 选项)。现在 solver 可给 sensitive heads (Layer 0) 分 8/16-bit 保护, tolerant heads 分 2-bit 节省 budget。Budget=0.25 (4x 压缩). Pass: PPL < uniform 4-bit (15.45) by ≥0.5. Fail = 项目 archive.",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-13T23:54:31.610294+00:00",
+  "trigger": "update_registry"
+}

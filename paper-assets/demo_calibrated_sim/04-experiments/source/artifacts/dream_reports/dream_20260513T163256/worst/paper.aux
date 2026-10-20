@@ -1,0 +1,86 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{yao2024taubench}
+\citation{seshadri2026lost}
+\citation{sim2real2026gap}
+\citation{rafailov2023dpo}
+\citation{basil2025playing_pretend,hu2026expert_persona}
+\citation{gupta2026intra_fairness}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{yao2024taubench}
+\citation{sim2real2026gap}
+\citation{seshadri2026lost}
+\citation{basil2025playing_pretend}
+\citation{hu2026expert_persona}
+\citation{gupta2026intra_fairness}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{LLM User Simulation and Bias.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Persona Prompting and Accuracy.}{2}{section*.2}\protected@file@percent }
+\citation{lee2024dpo_toxicity}
+\citation{yao2024taubench}
+\citation{rafailov2023dpo}
+\@writefile{toc}{\contentsline {paragraph}{Targeted Alignment and Spillover.}{3}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DPO and Alignment Fragility.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Evaluation Framework}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Behavioral Calibration Prompting (BCP)}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}DPO Training}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Hypotheses and Pass Criteria}{4}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiment 1: 7B BCP Multi-Run Replication}{4}{section.4}\protected@file@percent }
+\newlabel{sec:exp1}{{4}{4}{Experiment 1: 7B BCP Multi-Run Replication}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Results}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Analysis}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{FM1 (Completion Suppression): Not Robustly Replicated.}{4}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{FM2 (Cross-Dimension Interference): Not Robustly Replicated.}{4}{section*.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces 7B BCP 4-run replication summary (Qwen2.5-7B-Instruct, $\tau $-bench retail, $n \approx 20$ tasks/variant/run). Completion retention is the ratio of calibrated variant completion to baseline completion.}}{5}{table.1}\protected@file@percent }
+\newlabel{tab:7b_replication}{{1}{5}{7B BCP 4-run replication summary (Qwen2.5-7B-Instruct, $\tau $-bench retail, $n \approx 20$ tasks/variant/run). Completion retention is the ratio of calibrated variant completion to baseline completion}{table.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{FM3 (Overcorrection Rebound): Robust.}{5}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hypothesis Tests.}{5}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiment 2: 14B DPO+BCP Scale Comparison}{5}{section.5}\protected@file@percent }
+\newlabel{sec:exp2}{{5}{5}{Experiment 2: 14B DPO+BCP Scale Comparison}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Setup}{5}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Results}{5}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces FM4 (DPO+BCP calibration reversal) scale comparison. Gap diff is the change in dialect politeness gap after DPO+BCP relative to BCP alone.}}{6}{table.2}\protected@file@percent }
+\newlabel{tab:fm4_scale}{{2}{6}{FM4 (DPO+BCP calibration reversal) scale comparison. Gap diff is the change in dialect politeness gap after DPO+BCP relative to BCP alone}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces 14B DPO+BCP per-run results (Qwen2.5-14B-Instruct, LoRA $r=16$, $n=20$ tasks/run). Gap = AAVE politeness $-$ baseline politeness.}}{6}{table.3}\protected@file@percent }
+\newlabel{tab:14b_dpo_runs}{{3}{6}{14B DPO+BCP per-run results (Qwen2.5-14B-Instruct, LoRA $r=16$, $n=20$ tasks/run). Gap = AAVE politeness $-$ baseline politeness}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Analysis}{6}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{FM4 Does Not Replicate at 14B.}{6}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{14B DPO+BCP Preserves Completion.}{6}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{H2 Still Fails at Both Scales.}{6}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{6}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{6}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}The Scale-Dependent Calibration Paradox}{6}{subsection.6.1}\protected@file@percent }
+\citation{basil2025playing_pretend}
+\citation{hu2026expert_persona}
+\citation{gupta2026intra_fairness}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Implications for Future Calibration Research}{7}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Prompt-based calibration faces a fundamental limitation.}{7}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Behavioral dimensions are coupled.}{7}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Calibration methods must be evaluated in combination.}{7}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Overcorrection rebound constrains target selection.}{7}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Reframing the Failure Mode Taxonomy}{7}{subsection.6.3}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{basil2025playing_pretend}{{1}{2025}{{Basil et~al.}}{{}}}
+\bibcite{gupta2026intra_fairness}{{2}{2026}{{Gupta et~al.}}{{}}}
+\bibcite{hu2026expert_persona}{{3}{2026}{{Hu et~al.}}{{}}}
+\bibcite{lee2024dpo_toxicity}{{4}{2024}{{Lee et~al.}}{{}}}
+\bibcite{rafailov2023dpo}{{5}{2023}{{Rafailov et~al.}}{{}}}
+\bibcite{seshadri2026lost}{{6}{2026}{{Seshadri et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{8}{section.7}\protected@file@percent }
+\newlabel{sec:limitations}{{7}{8}{Limitations}{section.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Single model family.}{8}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sample size.}{8}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Single evaluation domain.}{8}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Pilot versus systematic findings.}{8}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{8}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{8}{Conclusion}{section.8}{}}
+\bibcite{sim2real2026gap}{{7}{2026}{{Sim2Real Gap Team}}{{}}}
+\bibcite{yao2024taubench}{{8}{2024}{{Yao et~al.}}{{}}}
+\gdef \@abspage@last{9}

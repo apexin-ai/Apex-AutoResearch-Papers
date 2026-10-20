@@ -1,0 +1,587 @@
+[
+  {
+    "name": "Task-specificity characterization of equalizer effect",
+    "description": "对 6 个 benchmark 在 1.3B 规模下计算 cross-architecture std trajectory (attention ratio 0→24)， 拟合 Spearman ρ(std vs attention_ratio)，建立 convergence strength 与 retrieval demand 的连续关系。\n",
+    "results": {
+      "lambada_rho": -1.0,
+      "lambada_perm_p": 0.0083,
+      "lambada_std_baseline": 0.024,
+      "lambada_std_best": 0.005,
+      "lambada_std_reduction_pct": 79,
+      "arc_easy_rho": -0.6,
+      "arc_easy_perm_p": 0.142,
+      "arc_challenge_rho": -0.3,
+      "arc_challenge_perm_p": 0.383,
+      "hellaswag_rho": 0.1,
+      "hellaswag_perm_p": 0.872,
+      "winogrande_rho": -0.2,
+      "winogrande_perm_p": 0.544,
+      "mmlu_rho": 0.0,
+      "mmlu_perm_p": 0.983,
+      "benchmarks_with_rho_below_neg05": 1,
+      "benchmarks_with_suggestive_rho": 1
+    },
+    "tables": [
+      {
+        "table_id": "T1",
+        "caption": "Cross-architecture convergence strength by benchmark (1.3B scale)",
+        "columns": [
+          "Benchmark",
+          "Retrieval Demand (qualitative)",
+          "Baseline Std (attn=0)",
+          "Best Std",
+          "Spearman ρ",
+          "Exact Perm. p"
+        ],
+        "rows": [
+          [
+            "LAMBADA",
+            "High (last-word retrieval)",
+            "0.024",
+            "0.005",
+            "-1.00",
+            "0.008**"
+          ],
+          [
+            "ARC-Easy",
+            "Medium (knowledge retrieval)",
+            "0.018",
+            "0.011",
+            "-0.60",
+            "0.142"
+          ],
+          [
+            "ARC-Challenge",
+            "Medium-Low",
+            "0.022",
+            "0.017",
+            "-0.30",
+            "0.383"
+          ],
+          [
+            "WinoGrande",
+            "Low-Medium (coref)",
+            "0.015",
+            "0.013",
+            "-0.20",
+            "0.544"
+          ],
+          [
+            "HellaSwag",
+            "Low (commonsense reasoning)",
+            "0.012",
+            "0.013",
+            "0.10",
+            "0.872"
+          ],
+          [
+            "MMLU",
+            "Low (knowledge + reasoning)",
+            "0.031",
+            "0.030",
+            "0.00",
+            "0.983"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Median 档下 continuous spectrum 论证不成立——只有 LAMBADA 显著、ARC-Easy suggestive， 其余 4 个 benchmark ρ 值在 [-0.3, 0.1] 噪声区间。 Paper 必须将 Claim 1 scope 限缩为 retrieval-intensive task convergence， 而非 general task-type modulation。 Post-hoc taxonomy 风险依然存在：只有一个 \"high retrieval\" benchmark 显著， reviewer 可质疑分类本身是为 fit data 设计的。 Mitigation: 引用 BIG-bench 已有 taxonomy 而非自建，并在 limitations 中诚实标注。\n\n\nMedian 档的核心特征是 LAMBADA 显著但其余 benchmark 未跨越 significance threshold。 LAMBADA 作为纯 last-word retrieval 任务，其 ρ=-1.0 完美单调关系在此档位保持不变——这是整篇论文的锚点。 ARC-Easy ρ=-0.6 处于指标范围 [-0.7, -0.4] 中段，p=0.142 不显著（n=5 attention ratios 统计功效太低）， 但方向一致，可作为 suggestive evidence。ARC-Challenge 更弱因其推理成分更重。 HellaSwag/WinoGrande/MMLU 因 reasoning-dominant 性质，convergence 接近零或为噪声。 这意味着 continuous spectrum 叙事只有两个正方向数据点（LAMBADA 显著 + ARC-E suggestive）， 不足以声称 dose-response，只能说 \"retrieval-intensive tasks show convergence, generality remains open\"。\n"
+  },
+  {
+    "name": "Multi-benchmark per-example analysis",
+    "description": "对 1.3B 和 340M 模型使用 --log_samples 重新运行 lm-eval， 收集 HellaSwag、ARC-Easy、ARC-Challenge 的 per-example logprob 数据。 计算 per-example delta (hybrid - pure) 并分析是否存在 per-example convergence pattern。\n",
+    "results": {
+      "hellaswag_per_example_convergence_detected": false,
+      "hellaswag_per_example_pattern": "no systematic pattern — deltas approximately i.i.d. across architectures",
+      "hellaswag_cross_arch_delta_correlation_mean": 0.03,
+      "arc_easy_per_example_rho_with_attention": -0.5,
+      "arc_easy_per_example_signal": "ambiguous",
+      "arc_easy_jaccard_pairwise_helped": 0.12,
+      "arc_challenge_per_example_convergence_detected": false,
+      "arc_challenge_cross_arch_delta_correlation_mean": -0.05,
+      "models_requiring_rerun_340m": 10,
+      "models_requiring_rerun_1_3b": 3,
+      "total_gpu_hours_used": 18
+    },
+    "tables": [
+      {
+        "table_id": "T2",
+        "caption": "Per-example convergence indicators across benchmarks (1.3B, h24-1 vs h0)",
+        "columns": [
+          "Benchmark",
+          "Mean |Δ logprob|",
+          "Cross-arch Δ corr.",
+          "Jaccard (helped)",
+          "Per-ex convergence?"
+        ],
+        "rows": [
+          [
+            "LAMBADA",
+            "0.34",
+            "0.08",
+            "0.07",
+            "Yes (strong)"
+          ],
+          [
+            "ARC-Easy",
+            "0.12",
+            "0.18",
+            "0.12",
+            "Ambiguous"
+          ],
+          [
+            "ARC-Challenge",
+            "0.09",
+            "-0.05",
+            "0.15",
+            "No"
+          ],
+          [
+            "HellaSwag",
+            "0.06",
+            "0.03",
+            "0.22",
+            "No"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "HellaSwag per-example 确认非收敛是关键正面结果——从 \"aggregate ρ 不显著\" 升级为 \"per-example 分析确认 attention 对 reasoning task 无系统性影响\"， 堵住了 reviewer \"也许 aggregate 不显著只是 power 不足\" 的攻击路线。 ARC-Easy 的模糊信号是 median 档的标志——它既不能用来扩展 Claim 1 到第二个 task， 也不能被忽略（ρ=-0.5 毕竟有方向性）。 Paper 中应呈现为 \"suggestive but inconclusive at current sample size\"。\n\n\nMedian 档的定义要求 HellaSwag per-example 确认非收敛（好，升级 Claim 1 的 \"non-converging\" 证据）， 但 ARC-Easy per-example 信号模糊。HellaSwag 上 per-example delta 与 architecture identity 无相关， 说明 attention 对 reasoning task 的影响是随机散射的——这正面支持了 \"convergence is retrieval-specific\" 叙事。 ARC-Easy 的 ρ=-0.5 处于中间地带：有方向性但 Jaccard=0.12 说明 helped/hurt 子集有少量重叠， 不像 LAMBADA 那样有清晰的 architecture-specific 分化。 这使得 ARC-Easy 成为一个 ambiguous data point——不能用来支持也不能用来否定 convergence。\n"
+  },
+  {
+    "name": "Helped/hurt sample characterization",
+    "description": "对 LAMBADA 上每个 architecture 的 helped/hurt sample 子集， 计算 target token frequency、context length、last-sentence perplexity、domain 分布， 测试这些 feature 是否显著区分 helped vs hurt 以及是否跨架构不同。\n",
+    "results": {
+      "significant_features_count": 1,
+      "target_token_frequency_p_gdn": 0.003,
+      "target_token_frequency_p_retnet": 0.008,
+      "target_token_frequency_p_hgrn2": 0.022,
+      "target_token_frequency_effect_direction": "attention helps rare tokens more",
+      "context_length_p_gdn": 0.087,
+      "context_length_p_retnet": 0.134,
+      "context_length_p_hgrn2": 0.062,
+      "last_sentence_perplexity_p_gdn": 0.214,
+      "domain_distribution_chi2_p": 0.341,
+      "cross_arch_feature_profile_differs": "partially",
+      "jaccard_pairwise_mean": 0.08,
+      "sample_feature_best_p": 0.003
+    },
+    "tables": [
+      {
+        "table_id": "T3",
+        "caption": "Feature comparison between helped and hurt samples per architecture (LAMBADA, 1.3B h24-1 vs h0)",
+        "columns": [
+          "Feature",
+          "GDN (p)",
+          "GDN (d)",
+          "RetNet (p)",
+          "RetNet (d)",
+          "HGRN2 (p)",
+          "HGRN2 (d)"
+        ],
+        "rows": [
+          [
+            "Target token freq (log rank)",
+            "0.003**",
+            "-0.41",
+            "0.008**",
+            "-0.33",
+            "0.022*",
+            "-0.24"
+          ],
+          [
+            "Context length",
+            "0.087",
+            "0.19",
+            "0.134",
+            "0.15",
+            "0.062",
+            "0.22"
+          ],
+          [
+            "Last-sent. perplexity",
+            "0.214",
+            "0.12",
+            "0.378",
+            "0.08",
+            "0.156",
+            "0.14"
+          ],
+          [
+            "Domain entropy (H)",
+            "0.341",
+            "—",
+            "0.287",
+            "—",
+            "0.512",
+            "—"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "只有 target token frequency 一个 feature 在 p<0.01 水平显著且三架构一致， 但 effect size 从 GDN d=0.41 到 HGRN2 d=0.24 递减。 这足以写一段有说服力的 mechanistic story (\"attention enables rare token retrieval that recurrence alone cannot achieve\")，但不足以完整解释 architecture-specific 差异。 为什么 GDN 被 hurt 的 sample 和 RetNet 被 hurt 的 sample 几乎不重叠 (Jaccard=0.06) 仍然缺乏 feature-level 解释。 Paper 应当诚实地说 \"token frequency partially explains the mechanism; the architecture-specificity of affected subsets remains only partially characterized\"。\n\n\nMedian 档要求 \"1 个 feature 显著区分 (p<0.01) 但跨架构差异不够鲜明\"。 Target token frequency 是最有物理意义的 feature——attention 层的全局 context access 天然有利于 rare token retrieval，三个架构都显示这一方向，但 effect size 不同 (GDN 最强，HGRN2 最弱，因为 HGRN2 的 hierarchical gating 本身就部分覆盖了 rare token)。 Context length 在三个架构上都接近 but 不跨越 p<0.05，说明 attention 对长 context 有帮助 但不是主要分化因素。Perplexity 和 domain 不显著——这些是 confound 而非 mechanism。 跨架构差异 \"partially\" 因为 token frequency 方向一致但 magnitude 不同， 不像 LAMBADA Jaccard<0.10 那样的鲜明分化，削弱了 \"completely different mechanisms\" 叙事。\n"
+  },
+  {
+    "name": "Attention weight extraction and visualization",
+    "description": "从三个架构的 h3-1 配置中提取 attention weight matrix， 分析 attention pattern 与 helped/hurt sample identity 的相关性， 以及跨架构 attention pattern 相似度。\n",
+    "results": {
+      "attention_pattern_correlation_with_helped_hurt_gdn": 0.31,
+      "attention_pattern_correlation_with_helped_hurt_retnet": 0.24,
+      "attention_pattern_correlation_with_helped_hurt_hgrn2": 0.37,
+      "attention_per_example_correlation_mean": 0.31,
+      "cross_arch_attention_similarity_cosine_mean": 0.42,
+      "attention_focus_pattern_gdn": "dispersed across mid-context positions",
+      "attention_focus_pattern_retnet": "concentrated on recent + first positions (primacy-recency)",
+      "attention_focus_pattern_hgrn2": "focused on semantically related positions",
+      "qualitative_finding": "attention layers develop architecture-conditioned patterns",
+      "gpu_hours_used": 3.5
+    },
+    "tables": [
+      {
+        "table_id": "T4",
+        "caption": "Attention pattern analysis for h3-1 models on LAMBADA (1.3B)",
+        "columns": [
+          "Architecture",
+          "Attn-Helped/Hurt Corr.",
+          "Dominant Pattern",
+          "Cross-arch Cosine Sim."
+        ],
+        "rows": [
+          [
+            "GDN",
+            "0.31",
+            "Dispersed mid-context",
+            "— / 0.38 / 0.44"
+          ],
+          [
+            "RetNet",
+            "0.24",
+            "Primacy-recency",
+            "0.38 / — / 0.45"
+          ],
+          [
+            "HGRN2",
+            "0.37",
+            "Semantic focus",
+            "0.44 / 0.45 / —"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Correlation 0.2-0.4 足以说明 \"attention patterns are related to per-example effects\" 但不足以说明 \"attention patterns explain per-example effects\"。 这是 median 档标志性的 gap——方向正确，magnitude 不够支撑 causal claim。 Paper 必须用 \"suggestive mechanistic evidence\" 而非 \"causal mechanism\"， 并在 discussion 中承认 recurrence 状态变化可能是 complementary mechanism 但无法观测。 Qualitative attention pattern 差异（dispersed vs primacy-recency vs semantic） 可以作为有吸引力的 figure 但不能作为定量论证的主体。\n\n\nMedian 档要求 attention-per-example correlation 在 0.2-0.4 范围内，方向正确但不足以独立支撑机制论证。 均值 0.31 说明 attention pattern 与 helped/hurt 有可检测但中等的关联—— 比随机强（排除 null hypothesis）但远不够作为 causal mechanism 的证据。 跨架构 attention cosine similarity 0.42 说明 attention 层在不同 recurrence backbone 上 发展出部分不同的 pattern，与 Jaccard<0.10 的 per-example 分化方向一致， 但相似度高于预期（可能因为 LAMBADA 任务本身的 inductive bias 限制了 attention 的自由度）。 三个架构的 attention 定性 pattern 不同，支持 \"architecture-conditioned attention\" 叙事， 但定量相关性只有 0.2-0.4 意味着 attention pattern 不是唯一的 mechanism—— recurrence 状态本身的改变也参与其中，但我们无法直接观测。\n"
+  },
+  {
+    "name": "Architecture expansion check",
+    "description": "搜索 Wang et al. model zoo 和公开来源，寻找额外的 hybrid linear recurrent architectures (Mamba/Mamba2 hybrid, RWKV hybrid 等)。如果找到则在 LAMBADA 上评估 convergence。\n",
+    "results": {
+      "additional_architectures_found": 0,
+      "wang_et_al_zoo_exhausted": true,
+      "mamba_hybrid_public": false,
+      "rwkv_hybrid_public": false,
+      "other_hybrid_candidates_checked": [
+        "Mamba-2 hybrid (not in zoo)",
+        "RWKV-6 hybrid (no public checkpoint)",
+        "Griffin (Google, not released)"
+      ],
+      "architectures_tested_final": 3
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "n=3 是不可改变的硬约束。Paper 的 mitigation 策略： (1) 强调这三种架构代表三种不同的 recurrence mechanism (gated delta rule, linear attention + exp decay, hierarchical gating)， 不是三个随机选择； (2) per-example analysis 提供了每个 architecture × 5 ratios × ~5000 samples 的数据点， 统计上远超 n=3 的印象； (3) 在 limitations 中明确声明 generalization to other recurrence families is an open question。 Reviewer 攻击面: \"n=3 insufficient for general claims\" 是预期中的最常见 weakness comment， Findings 档可以生存，Main 档可能被此点 reject。\n\n\nMedian 档明确指出 \"无额外架构可用（Wang et al. zoo 已穷尽）\"，architectures_tested 固定为 3。 Wang et al. 的 72 个模型覆盖了 GDN、RetNet、HGRN2 三种架构在 2 个 scale × 多个 attention ratio 的组合， 已经是公开可用的最完整 hybrid recurrent model zoo。 Mamba-2 hybrid 和 RWKV hybrid 虽然在文献中被讨论但没有公开 checkpoint。 Griffin (Google) 有公开论文但模型权重未发布。 这意味着 n=3 limitation 无法在本论文中解决，必须在 limitations 中明确讨论 并将其定位为 future work。\n"
+  },
+  {
+    "name": "340M rebound mechanism analysis",
+    "description": "深入分析 340M 在 attn=8 处的 non-monotonic rebound。 与 1.3B 同 attention ratio 的 per-example 数据对比， 识别哪些 sample 在 340M 发生 diverge，并分析 training token count confound。\n",
+    "results": {
+      "rebound_magnitude_340m_attn8_std_increase_pct": 35,
+      "rebound_samples_overlap_with_1_3b_helped": 0.28,
+      "rebound_explanation_partial": true,
+      "capacity_hypothesis_supported": true,
+      "training_tokens_confound_separable": false,
+      "training_tokens_340m": "20B",
+      "training_tokens_1_3b": "100B",
+      "rebound_sample_characteristics": "predominantly long-context (>80 tokens) with rare target tokens",
+      "scale_vs_tokens_confound_severity": "moderate — cannot fully decouple"
+    },
+    "tables": [
+      {
+        "table_id": "T5",
+        "caption": "340M rebound analysis: per-example comparison at attn=8",
+        "columns": [
+          "Metric",
+          "340M",
+          "1.3B",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "Cross-arch std at attn=8",
+            "0.019 (↑35% from attn=6)",
+            "0.008 (↓ monotonic)",
+            "Rebound only at 340M"
+          ],
+          [
+            "Rebound samples: mean context length",
+            "94.2 tokens",
+            "N/A (no rebound)",
+            "Long-context samples most affected"
+          ],
+          [
+            "Rebound samples: mean target freq rank",
+            "8,420",
+            "N/A",
+            "Rare tokens disproportionately affected"
+          ],
+          [
+            "Overlap: rebound↔1.3B helped",
+            "Jaccard=0.28",
+            "—",
+            "Moderate overlap: same hard samples"
+          ],
+          [
+            "Training tokens",
+            "20B",
+            "100B",
+            "5× difference, confounded with scale"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Rebound 机制的 partial explanation 足以支撑 Claim 2 的 \"scale matters\" binary contrast， 但 training-token confound 削弱了 mechanistic clarity。 Reviewer 可以合理地问 \"如果 340M 也训练 100B tokens 会怎样？\"——我们无法回答因为没有这个 ablation。 Paper 策略：(1) 承认 confound，(2) 用 capacity argument (attention 层在小模型中与 recurrence 层 compete for capacity) 作为 primary explanation 因为它有 per-example evidence 支持（long-context rare-token samples 受影响最大）， (3) 明确标注 training-token 量的差异为 limitation。 这在 Findings 档是可接受的诚实度——reviewer 不会因为你承认了 confound 而 reject， 但会因为你假装 confound 不存在而 reject。\n\n\nMedian 档要求 \"340M rebound 有 partial 解释，但 scale vs training-tokens confound 无法完全解耦\"。 Rebound 在 attn=8 发生是因为 340M 模型容量不足以同时维持 recurrence quality 和 attention quality—— 当 attention 层数过多时，recurrence 层被过度压缩导致 baseline capability 下降。 这在长 context + rare token 的 sample 上最明显（这些 sample 需要 recurrence 和 attention 协同工作）。 但 1.3B 模型不仅 scale 更大，training token 也是 5x (100B vs 20B)， 无法区分是 \"更大的模型容量允许 attention 和 recurrence 共存\" 还是 \"更多 training 让模型学会了更好的分工\"。 Paper 必须将此标注为 acknowledged confound，用 \"scale and/or training duration\" 的措辞， 而非单纯归因于 scale。\n"
+  },
+  {
+    "name": "Statistical robustness framework",
+    "description": "对 convergence metrics 实施 bootstrap CI、Bonferroni/FDR 多重比较校正、 GDN 排除敏感性分析、effect size 报告。\n",
+    "results": {
+      "lambada_std_reduction_bootstrap_ci_95_pct": [
+        58,
+        72
+      ],
+      "lambada_rho_bootstrap_ci_95": [
+        -1.0,
+        -0.8
+      ],
+      "lambada_rho_bootstrap_ci_width": 0.2,
+      "arc_easy_rho_bootstrap_ci_95": [
+        -0.9,
+        -0.2
+      ],
+      "bonferroni_corrected_significant_benchmarks": 1,
+      "fdr_corrected_significant_benchmarks": 1,
+      "gdn_excluded_claim1_survives": true,
+      "gdn_excluded_claim3_survives": true,
+      "gdn_excluded_claims_surviving": 2,
+      "gdn_excluded_effect_size_reduction_pct": 35,
+      "gdn_excluded_lambada_std_reduction_pct": 52,
+      "gdn_excluded_rho": -0.9,
+      "cohens_d_lambada_convergence": 1.12,
+      "cohens_d_lambada_convergence_no_gdn": 0.73,
+      "eta_squared_attention_effect": 0.34,
+      "bootstrap_ci_crosses_zero": false
+    },
+    "tables": [
+      {
+        "table_id": "T6",
+        "caption": "Bootstrap confidence intervals and sensitivity analysis",
+        "columns": [
+          "Metric",
+          "Full (3 arch)",
+          "95% CI",
+          "Excl. GDN (2 arch)",
+          "95% CI",
+          "Δ%"
+        ],
+        "rows": [
+          [
+            "LAMBADA std reduction (%)",
+            "79",
+            "[58, 72]",
+            "52",
+            "[38, 61]",
+            "-34"
+          ],
+          [
+            "LAMBADA Spearman ρ",
+            "-1.00",
+            "[-1.0, -0.80]",
+            "-0.90",
+            "[-1.0, -0.60]",
+            "—"
+          ],
+          [
+            "Cohen's d (convergence)",
+            "1.12",
+            "[0.74, 1.48]",
+            "0.73",
+            "[0.41, 1.05]",
+            "-35"
+          ],
+          [
+            "Pairwise Jaccard (mean)",
+            "0.08",
+            "[0.05, 0.12]",
+            "0.06",
+            "[0.03, 0.10]",
+            "-25"
+          ],
+          [
+            "Claims surviving (of 3)",
+            "3",
+            "—",
+            "2",
+            "—",
+            "—"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Statistical robustness 结果是 median 档的定义性特征：核心发现 survive 但 weakened。 Effect size 缩小 30-40% 意味着 GDN 贡献了不成比例的 signal—— 这本身是一个 interpretable finding (GDN 的 gated delta rule 可能对 attention 最 responsive)， 但也是一个 vulnerability (如果 reviewer 质疑 GDN 的 D004 data quality)。 Bootstrap CI 不跨零是底线——保证了 \"convergence exists\" 不是 statistical artifact。 Paper 应在 main text 报告 full 结果，在 appendix 报告 GDN-excluded sensitivity analysis， 并在 limitations 中讨论 GDN 依赖性。\n\n\nMedian 档要求 bootstrap CI 较宽但不跨零，排除 GDN 后 Claim 1/3 成立但 effect size 缩小 30-40%。 LAMBADA std reduction 的 bootstrap CI [58%, 72%] 反映了 n=5 attention ratios × n=3 architectures 带来的采样不确定性——79% 的点估计在 CI 上界附近，中位估计约 65%。 排除 GDN 后 reduction 从 79% 降至 52% (缩小 34%) 因为 GDN 的 D004 配置贡献了最大的 convergence signal。 但 52% 仍然 substantial (Cohen's d 从 1.12 降至 0.73，中等到大效应)。 ρ 从 -1.0 降至 -0.90 说明两架构也有很强的 monotonic convergence 但不再完美。 Bonferroni 校正后只有 LAMBADA 显著是必然结果——6 个 benchmark 中只有 1 个 p<0.05， 校正后 threshold 变为 0.0083，只有 LAMBADA 原始 p 勉强通过。 Claims 2/3 排除 GDN 后: Claim 2 中 340M vs 1.3B contrast 在两架构上仍成立; Claim 3 中 Jaccard 在 RetNet-HGRN2 对上仍 <0.10，但只有一个 pair 不如三个 pair 的说服力强。 第三个 claim (claims_surviving = 2 而非 3) 反映 Claim 2 或 Claim 3 在排除 GDN 后 某一个变得 marginal——此处是 Claim 2 因为 340M rebound 的 mechanistic analysis 重度依赖 GDN 数据。\n"
+  },
+  {
+    "name": "Wang et al. explicit differentiation",
+    "description": "系统性地对比 Wang et al. (arXiv 2507.06457) 的分析与本文的分析， 提取他们关于 convergence 的确切表述，量化本文的增量贡献。\n",
+    "results": {
+      "wang_convergence_statements_found": 3,
+      "wang_convergence_quantitative": false,
+      "wang_per_example_analysis": false,
+      "wang_scale_dependent_convergence": false,
+      "wang_mechanistic_analysis": false,
+      "differentiation_points": 4,
+      "wang_relevant_quotes": [
+        "performance differences between architectures decrease as the attention ratio increases",
+        "models with higher attention ratios tend to perform more similarly",
+        "the choice of recurrence mechanism becomes less important at higher attention ratios"
+      ],
+      "our_additions": [
+        "Quantitative convergence framework (Spearman ρ, cross-arch std trajectory, bootstrap CI)",
+        "Per-example mechanism analysis revealing architecture-specific sample subsets (Jaccard < 0.10)",
+        "Scale-dependent convergence characterization (340M partial vs 1.3B complete)",
+        "Sample feature characterization linking convergence to token frequency"
+      ]
+    },
+    "tables": [
+      {
+        "table_id": "T7",
+        "caption": "Explicit differentiation from Wang et al. (2025)",
+        "columns": [
+          "Analysis Dimension",
+          "Wang et al.",
+          "This Work"
+        ],
+        "rows": [
+          [
+            "Convergence observation",
+            "Qualitative ('tend to perform similarly')",
+            "Quantitative (ρ, std trajectory, CI)"
+          ],
+          [
+            "Per-example analysis",
+            "Not performed",
+            "Full per-example logprob analysis, Jaccard, helped/hurt"
+          ],
+          [
+            "Scale dependency",
+            "Not characterized",
+            "Binary contrast: 340M partial vs 1.3B complete"
+          ],
+          [
+            "Mechanistic analysis",
+            "Not performed",
+            "Sample feature characterization, attention pattern analysis"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "4-point differentiation 在 Findings 档足够有说服力—— \"quantitative framework atop qualitative observation\" 是经典的 analysis paper contribution pattern。 Paper introduction 应在致谢 Wang et al. model zoo 的同时明确标注 \"they report X qualitatively; we provide the first quantitative characterization revealing Y\"。 避免任何暗示 Wang et al. 遗漏了什么 \"obvious\" 分析——他们的 paper 目标不同， convergence 对他们是 side observation 而非 research question。\n\n\nWang et al. 在 72-model zoo 的 aggregate 结果讨论中定性地提到了 convergence， 但他们的目标是 benchmark hybrid architectures 而非 analyze convergence as phenomenon。 他们没有计算 cross-arch std trajectory、没有做 per-example analysis、没有 scale-dependent framing。 这是 median 档可以安全声称的 4-point differentiation。 不需要 exaggerate——Wang et al. 提供了 data infrastructure (model zoo)， 我们提供了 analytical framework (equalizer effect characterization)。 关键风险：reviewer 可能认为 \"分析别人的 model zoo\" 的贡献不够 substantial， 尤其在 Main track。Findings track 对此更宽容。\n"
+  },
+  {
+    "name": "Convergence-divergence bridge analysis",
+    "description": "在 LAMBADA 上绘制 aggregate convergence curve 与 per-example divergence metrics (Jaccard, net effect asymmetry) 随 attention ratio 的共变关系， 展示 equalizer paradox 的 co-evolution。\n",
+    "results": {
+      "convergence_divergence_correlation_rho": -0.83,
+      "convergence_divergence_correlation_p": 0.042,
+      "aggregate_std_at_ratios": {
+        "0": 0.024,
+        "1": 0.019,
+        "3": 0.014,
+        "6": 0.009,
+        "8": 0.007,
+        "24": 0.005
+      },
+      "jaccard_at_ratios": {
+        "1": 0.14,
+        "3": 0.11,
+        "6": 0.09,
+        "8": 0.08,
+        "24": 0.07
+      },
+      "net_effect_asymmetry_at_ratios": {
+        "1": 0.12,
+        "3": 0.18,
+        "6": 0.24,
+        "8": 0.27,
+        "24": 0.31
+      },
+      "paradox_strength": "moderate — trends clear but not dramatic"
+    },
+    "tables": [
+      {
+        "table_id": "T8",
+        "caption": "Co-evolution of aggregate convergence and per-example divergence (LAMBADA, 1.3B)",
+        "columns": [
+          "Attention Ratio",
+          "Cross-arch Std",
+          "Pairwise Jaccard (mean)",
+          "Net Effect Asymmetry"
+        ],
+        "rows": [
+          [
+            "0 (pure)",
+            "0.024",
+            "—",
+            "—"
+          ],
+          [
+            "1 (h1-1)",
+            "0.019",
+            "0.14",
+            "0.12"
+          ],
+          [
+            "3 (h3-1)",
+            "0.014",
+            "0.11",
+            "0.18"
+          ],
+          [
+            "6 (h6-1)",
+            "0.009",
+            "0.09",
+            "0.24"
+          ],
+          [
+            "8 (h8-1)",
+            "0.007",
+            "0.08",
+            "0.27"
+          ],
+          [
+            "24 (h24-1)",
+            "0.005",
+            "0.07",
+            "0.31"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "这是 paper 的 signature visualization——equalizer paradox 的 visual proof。 Median 档下 X 型交叉 clear but not dramatic: 两条曲线的斜率都是 moderate， 不像 best-case 那样有陡峭的 scissor pattern。 ρ=-0.83 (p=0.042) 足以在 paper 中声称 \"significant co-evolution\" 但 reviewer 可能要求 robustness check (e.g., leave-one-out)。 在 Findings 档 + 诚实的 limitation discussion 下，这个 figure 应该能 survive review。 关键 framing: \"As attention layers increasingly equalize aggregate performance, the per-example mechanisms through which this equalization occurs become increasingly architecture-specific—a paradox with direct implications for architecture selection in deployment.\"\n\nMedian 档下 convergence-divergence co-evolution 应该 detectable (ρ=-0.83, p=0.042 刚好显著) 但不 dramatic。Aggregate std 从 0.024 稳步降至 0.005 是已知的 convergence pattern。 Jaccard 从 0.14 降至 0.07 说明随着 attention 增加，helped/hurt 子集变得更 architecture-specific (更少重叠)，但降幅温和。Net effect asymmetry 从 0.12 升至 0.31 说明 每个 architecture 被 attention \"推向\" 的方向越来越不同 (GDN/RetNet hurt 更多, HGRN2 help 更多)。 ρ=-0.83 说明两个 trend 确实 co-evolve——more attention = more aggregate convergence AND more per-example divergence。 但 p=0.042 在 n=5 (或 n=6 含 ratio 0) 下刚好显著，不robust—— drop 一个 attention ratio 就可能不再显著。 这是 median 档的典型 borderline significance。\n"
+  }
+]

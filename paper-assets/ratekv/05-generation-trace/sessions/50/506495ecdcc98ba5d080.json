@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_mistral_constrained_mckp_20260515T143635_result.json",
     "occurrence": 1,
-    "bytes": 603,
-    "sha256": "c00460c2032d54f0c3381fa0ae2644fb7ebb30dff76471c57632670b678ee5e7"
+    "bytes": 602,
+    "sha256": "88dfb117b6b38b3ec63f336106e5ac2d190a1aca6d98f90697f401a17313f02a"
   },
   "statistics": {
     "messages": 1,

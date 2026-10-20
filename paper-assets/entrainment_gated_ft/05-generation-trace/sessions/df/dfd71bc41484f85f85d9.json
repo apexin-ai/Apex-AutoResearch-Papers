@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_retnet_three_arch_20260519T065225_result.json",
     "occurrence": 1,
-    "bytes": 1252,
-    "sha256": "7801a77583e5923a89c644ac7b2661947215ec8055ce83fcf132a7de2938c3fc"
+    "bytes": 1251,
+    "sha256": "1b773dd4ad15bf8e5a93a04436077c12d9d4a3ba9d264897fbcf038321f1404b"
   },
   "statistics": {
     "messages": 1,

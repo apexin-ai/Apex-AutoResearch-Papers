@@ -1,0 +1,29 @@
+{
+  "exp_id": "llama_hires_pipeline",
+  "project": "ratekv",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T02:17:45.441Z",
+    "updated_at": "2026-05-14T02:17:45.441Z",
+    "spec": {
+      "hypothesis": "Llama-3.1-8B hires profiling 补救：用 64seq×2048tok 高分辨率 calibration 重做 profiling + constrained MCKP + bf16 eval。类比 exp_e 对 Qwen 的改善 (lowres PPL恶化2.52→hires 0.75, 70%改善)。Pass: MCKP PPL < uniform 4-bit (8.47)。",
+      "parent": "llama_full_pipeline",
+      "plan_id": "plan_002",
+      "claim": [
+        1,
+        2
+      ],
+      "model_name": "Llama-3.1-8B",
+      "data_path": "WikiText-2 hires calibration (64seq×2048tok)",
+      "data_count": 64,
+      "seed": 0,
+      "eval_data": "WikiText-2",
+      "checkpoint_source": "N/A"
+    }
+  },
+  "timestamp": "2026-05-14T02:17:45.479379+00:00",
+  "trigger": "update_registry"
+}

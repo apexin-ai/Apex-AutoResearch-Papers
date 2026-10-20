@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "cf52560a267788ded929",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "eval qwen14b bcp 001",
+  "task_key": "worker_eval_qwen14b-bcp-001_20260513T072703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen14b-bcp-001_20260513T072703_result.json",
+    "occurrence": 1,
+    "bytes": 2456127,
+    "sha256": "934b8dcfad33398fb63a22fd79ca224739623e8380466c7ab8ddad5c638676ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "cf52560a267788ded929-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/eval-qwen14b-bcp-001.md"
+}

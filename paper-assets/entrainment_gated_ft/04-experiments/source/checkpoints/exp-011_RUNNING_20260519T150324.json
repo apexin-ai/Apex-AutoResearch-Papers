@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp-011",
+  "project": "entrainment_gated_ft",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:12:29.428Z",
+    "updated_at": "2026-05-19T15:03:24.116Z",
+    "hypothesis": "Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction",
+    "parent": "exp-001",
+    "spec": {
+      "command": "bash /root/entrainment_gated_ft/run_exp011_batch.sh (nohup PID 474289)",
+      "server": "westb-48145",
+      "data_path": "/root/autodl-tmp/models_1.3b/ (16 models)",
+      "data_count": 16,
+      "model_name": "GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)",
+      "seed": 0,
+      "eval_data": "boolq, copa, piqa, sciq (4 benchmarks x 16 models)",
+      "gpu": "cuda:0 (RTX PRO 6000)",
+      "checkpoint_source": "/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained checkpoints)"
+    }
+  },
+  "timestamp": "2026-05-19T15:03:24.153387+00:00",
+  "trigger": "update_registry"
+}

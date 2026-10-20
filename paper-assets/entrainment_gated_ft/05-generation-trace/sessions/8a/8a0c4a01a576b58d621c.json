@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_retnet_download_fix_20260518T145025_result.json",
     "occurrence": 1,
-    "bytes": 1180,
-    "sha256": "bc5fd4896a368bf1303deb83913ddc3da2f5f5d3d6974c74e097ae13ca1f1045"
+    "bytes": 1179,
+    "sha256": "784869e75f4dccbe6c8590eaba46d7fa9b56e2ba64f1fa829b7880390c0abe6f"
   },
   "statistics": {
     "messages": 1,

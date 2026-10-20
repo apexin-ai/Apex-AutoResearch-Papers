@@ -1,0 +1,40 @@
+{
+  "exp_id": "phi3_medium_hires_profiling_v2",
+  "project": "ratekv",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:46:55.534Z",
+    "updated_at": "2026-05-16T01:51:17.653Z",
+    "spec": {
+      "server": "westd-37397",
+      "model_name": "Phi-3-medium-14B",
+      "data_count": 64,
+      "seed": 42,
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_phi3_medium_hires_profiling.py --gpu cuda:1\"",
+      "data_path": "calibration_hires.json",
+      "model_path": "/root/autodl-tmp/.hf_cache/LLM-Research/Phi-3-medium-128k-instruct"
+    },
+    "hypothesis": "Phi-3-medium hires profiling: GQA 4:1, 40 layers × 10 KV heads = 400 total. Moderate-high KV head count. If concentration ≥0.50 AND t1/t5 ≤0.70 → Spread. Secondary candidate; 14B scale provides scaling evidence.",
+    "metrics": {
+      "top5_concentration": 0.1742,
+      "top5_n_heads": 20,
+      "baseline_calibration_ppl": 4.783,
+      "delta_2bit_cv": 0.8905,
+      "layer0_dominance_ratio": 0.04,
+      "shape": "Flat",
+      "top1_head": "L9H6",
+      "top1_delta_2bit": 0.1806,
+      "total_heads": 400,
+      "profiling_hours": 2.48,
+      "note": "Early-middle concentrated (L8-L11) but concentration far below 0.50 threshold"
+    },
+    "checkpoint_path": "/root/ratekv/artifacts/phi3_medium_hires_bf16_2bitonly_results.json",
+    "log_path": "/tmp/phi3_profiling.log",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-16T01:51:17.840354+00:00",
+  "trigger": "update_registry"
+}

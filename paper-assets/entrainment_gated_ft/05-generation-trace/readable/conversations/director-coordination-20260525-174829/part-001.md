@@ -11653,13 +11653,13 @@ _source line 355 · 2026-05-25T09:03:28.670890+00:00_
 如何使用：
 
 1. 配置 git remote（如果还没配）：
-   git remote set-url origin https://caoxiaoyu001:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/PROJECT_NAME.git
+   git remote set-url origin https://[REDACTED]@github.com/anonymous-nlp-2026-2/PROJECT_NAME.git
 
    或在 push 时手动用：
-   git push https://caoxiaoyu001:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/PROJECT_NAME.git main
+   git push https://[REDACTED]@github.com/anonymous-nlp-2026-2/PROJECT_NAME.git main
 
 2. 验证密钥可用：
-   git ls-remote https://caoxiaoyu001:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/PROJECT_NAME.git
+   git ls-remote https://[REDACTED]@github.com/anonymous-nlp-2026-2/PROJECT_NAME.git
    能看到 ref 列表说明 OK。
 
 3. 完成后按之前的自检消息执行：
@@ -12258,7 +12258,7 @@ _source line 373 · 2026-05-25T09:04:25.825167+00:00_
 
 1	{
 2	  "repo_public": "https://github.com/anonymous-nlp-2026-2/entrainment_gated_ft",
-3	  "push_url": "https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git",
+3	  "push_url": "https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git",
 4	  "github_user": "anonymous-nlp-2026-2",
 5	  "repo_name": "entrainment_gated_ft"
 6	}
@@ -12691,8 +12691,8 @@ called Edit
 {
   "replace_all": "False",
   "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/_anonymous_repo.json",
-  "old_string": "\"push_url\": \"https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git\",\n  \"github_user\": \"anonymous-nlp-2026-2\",",
-  "new_string": "\"push_url\": \"https://caoxiaoyu001:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git\",\n  \"github_user\": \"caoxiaoyu001\","
+  "old_string": "\"push_url\": \"https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git\",\n  \"github_user\": \"anonymous-nlp-2026-2\",",
+  "new_string": "\"push_url\": \"https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git\",\n  \"github_user\": \"caoxiaoyu001\","
 }
 ```
 
@@ -12708,8 +12708,8 @@ called Edit
   "tool_args": {
     "replace_all": "False",
     "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/_anonymous_repo.json",
-    "old_string": "\"push_url\": \"https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git\",\n  \"github_user\": \"anonymous-nlp-2026-2\",",
-    "new_string": "\"push_url\": \"https://caoxiaoyu001:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git\",\n  \"github_user\": \"caoxiaoyu001\","
+    "old_string": "\"push_url\": \"https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git\",\n  \"github_user\": \"anonymous-nlp-2026-2\",",
+    "new_string": "\"push_url\": \"https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git\",\n  \"github_user\": \"caoxiaoyu001\","
   }
 }
 ```

@@ -1,0 +1,22 @@
+{
+  "exp_id": "runtime_benchmark",
+  "project": "ratekv",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:14:55.287Z",
+    "updated_at": "2026-05-14T09:15:00.169Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python -u run_runtime_benchmark.py --gpu cuda:0 2>&1 | tee runtime_benchmark.log",
+      "server": "westd-37397",
+      "data_path": "/root/ratekv/ppl_profiles_hires.json",
+      "data_count": 0,
+      "model_name": "Qwen2.5-7B",
+      "seed": 0
+    }
+  },
+  "timestamp": "2026-05-14T09:15:00.240856+00:00",
+  "trigger": "update_registry"
+}

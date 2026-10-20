@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_340m-multi-bench_20260522T002147_result.json",
     "occurrence": 1,
-    "bytes": 1847,
-    "sha256": "882d271856783f23c8f448adf8dd9f55c6cc9fbd444067b22d7236b103b3e9d6"
+    "bytes": 1846,
+    "sha256": "1afd7d5f90427b7f97724b5ad7e07c684add321e4401c0533d6852577b6a9ad4"
   },
   "statistics": {
     "messages": 1,

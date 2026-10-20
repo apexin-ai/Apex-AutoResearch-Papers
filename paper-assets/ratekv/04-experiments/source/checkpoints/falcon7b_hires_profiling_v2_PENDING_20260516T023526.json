@@ -1,0 +1,22 @@
+{
+  "exp_id": "falcon7b_hires_profiling_v2",
+  "project": "ratekv",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:54:54.161Z",
+    "updated_at": "2026-05-16T02:35:26.475Z",
+    "spec": {
+      "hypothesis": "Falcon-7B hires profiling v2: MQA (1 KV head/layer, 32 total). Extremely few KV heads → high concentration likely. If concentration ≥0.50 AND t1/t5 ≤0.70 → second Spread example. Running on cuda:1 parallel with InternLM2.",
+      "model": "Falcon-7B",
+      "server": "westd-37397",
+      "gpu": "cuda:1"
+    },
+    "hypothesis": "Falcon-7B hires profiling v2: MQA (1 KV head/layer, 32 layers = 32 total KV heads). Extremely sparse KV structure. Top-5% = ~2 heads. If concentration ≥0.50 AND t1/t5 ≤0.70 → Spread. Architecturally extreme test case for diagnostic rule.",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-16T02:35:26.662031+00:00",
+  "trigger": "update_registry"
+}

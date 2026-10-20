@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_kivi_baseline_qwen7b_20260515T143618_result.json",
     "occurrence": 1,
-    "bytes": 708,
-    "sha256": "6f824d651a18103c0502467d765950efc658fd8d036cb02092595f8f608535d7"
+    "bytes": 707,
+    "sha256": "50d5eb7e342211f34e1f1b8495d5bac5240e2bd830a9d77fb25ee33831f64a55"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,33 @@
+{
+  "exp_id": "yi_mistral_downstream_k2",
+  "project": "ratekv",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:35:52.826Z",
+    "updated_at": "2026-05-15T18:41:53.312Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python run_yi_mistral_downstream_k2.py",
+      "server": "westd-37397",
+      "model_name": "Yi-1.5-9B + Mistral-7B",
+      "data_path": "lm-eval built-in (arc_challenge, hellaswag, piqa, winogrande)",
+      "data_count": 0,
+      "seed": 0,
+      "description": "D063: downstream eval for Yi+Mistral at optimal k=2, updating Table 4",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "356698"
+    },
+    "hypothesis": "D063: Yi-1.5-9B and Mistral-7B downstream eval at optimal k=2 should maintain <1pp avg degradation vs uniform, validating Table 4 correction",
+    "reproduce": {
+      "finished_at": "2026-05-15T18:41:52.291Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-15T18:41:53.480965+00:00",
+  "trigger": "update_registry"
+}

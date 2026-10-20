@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_multi_seed_lowres_20260514T110226_result.json",
     "occurrence": 1,
-    "bytes": 617,
-    "sha256": "108b59f526c1a1dd2df4a5f6d51cb96d6337754a82cf071acb054b218a0a0a90"
+    "bytes": 616,
+    "sha256": "43d100afcda8b4102fb11b5a93445e952d39f397eebaee497ff6b0bdb38b2838"
   },
   "statistics": {
     "messages": 1,

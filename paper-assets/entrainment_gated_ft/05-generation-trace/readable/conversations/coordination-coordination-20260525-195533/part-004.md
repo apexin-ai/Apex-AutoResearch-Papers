@@ -2592,7 +2592,7 @@ _source line 1625 · 2026-05-24T04:26:23.787262+00:00_
 - Routing 数值统一 paired t-test（LAMBADA +5.2pp, ARC-Easy +1.2pp）
 
 **操作**：
-- 如发现不一致 → 直接修复论文 → 编译 → commit → push 到匿名仓库（HTTPS+token URL: `https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git`）
+- 如发现不一致 → 直接修复论文 → 编译 → commit → push 到匿名仓库（HTTPS+token URL: `https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git`）
 - 如无问题 → 汇报"自查无问题"
 
 汇报格式简短：发现 X 处问题已修复 / 自查无问题。
@@ -2966,7 +2966,7 @@ called mcp__agent-ml-research__spawn_worker
 {
   "task_type": "prep:final-compile-push",
   "project": "entrainment_gated_ft",
-  "task_prompt": "最终编译、检查 Figure 2、commit 并 push 到匿名仓库。\n\n## 背景\n刚完成最终数据自查，修复了 4 处不一致：\n1. Routing SD: LAMBADA 0.8→0.4pp, ARC-Easy 0.9→0.5pp (experiments.tex)\n2. Table 1 HellaSwag: ρ 0.4→0.3, p .517→.683, σ_h3-1 1.22→1.18, Ratio 0.96→0.99 (experiments.tex)\n3. Appendix HellaSwag ρ: 0.4→0.3 (appendix.tex)\n4. Appendix within_scale_jaccard GDN-HGRN2 J_hurt: 0.089→0.088 (appendix.tex)\n\n## 任务\n\n### Step 1: 检查 Figure 2 (fig2_task_specificity)\nFigure 2 是 task specificity 图表，包含各 benchmark 的 ρ 值散点。HellaSwag 的 ρ 刚从 0.4 改为 0.3——如果图中 HellaSwag 点画在 ρ=0.4，需要重新生成。\n\n```bash\n# 在服务器上找到 Figure 2 生成脚本\nssh westb-48145\nfind /root/entrainment_gated_ft/ -name \"*fig2*\" -o -name \"*task_specific*\" | grep \"\\.py$\"\n# 检查脚本中 HellaSwag 的 ρ 值\n```\n\n如果 ρ 值是从数据文件读取的：\n- 检查数据文件中 HellaSwag ρ 是 0.3 还是 0.4\n- 如果是 0.4，需要更新数据文件并重新生成图\n- 如果是从 table1_task_specificity.csv 读取且已是 0.3，则图不需要改\n\n如果 ρ 值是硬编码的：\n- 改为 0.3 并重新生成\n\n重新生成图（如需要）：\n```bash\ncd /root/entrainment_gated_ft/\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython gen_fig2_task_specificity.py  # 或实际脚本名\n```\n\n然后把新图下载到本地论文目录：\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/\n\n### Step 2: 编译 PDF\n在本地编译：\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/\npdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n```\n\n检查：\n- 0 undefined references\n- 0 undefined citations\n- 主文 ≤ 8 页\n- 无 critical warnings\n\n### Step 3: Commit\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/\ngit add docs/paper/experiments.tex docs/paper/appendix.tex docs/paper/main.pdf\n# 如果 Figure 2 也改了，加 docs/paper/figures/fig2_task_specificity.pdf\ngit status\ngit commit -m \"Final data audit fixes: Table 1 HellaSwag rho, routing SD, appendix Jaccard cell\n\n- Table 1 HellaSwag: rho 0.4->0.3, p .517->.683, sigma 1.22->1.18\n- Routing SD: LAMBADA 0.8->0.4pp, ARC-Easy 0.9->0.5pp (paired diffs)\n- Appendix within_scale_jaccard GDN-HGRN2 J_hurt: 0.089->0.088\n- Appendix HellaSwag rho reference: 0.4->0.3\"\n```\n\n### Step 4: Push 到匿名仓库\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/\ngit push https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git HEAD:main\n```\n\n### 重要\n- 如果编译失败，诊断并修复\n- 如果 push 失败（force push 可能需要），先 pull 再 push，或使用 --force（仅匿名仓库，安全）\n- 报告 Figure 2 的处理结果（是否需要更新 + 是否已更新）",
+  "task_prompt": "最终编译、检查 Figure 2、commit 并 push 到匿名仓库。\n\n## 背景\n刚完成最终数据自查，修复了 4 处不一致：\n1. Routing SD: LAMBADA 0.8→0.4pp, ARC-Easy 0.9→0.5pp (experiments.tex)\n2. Table 1 HellaSwag: ρ 0.4→0.3, p .517→.683, σ_h3-1 1.22→1.18, Ratio 0.96→0.99 (experiments.tex)\n3. Appendix HellaSwag ρ: 0.4→0.3 (appendix.tex)\n4. Appendix within_scale_jaccard GDN-HGRN2 J_hurt: 0.089→0.088 (appendix.tex)\n\n## 任务\n\n### Step 1: 检查 Figure 2 (fig2_task_specificity)\nFigure 2 是 task specificity 图表，包含各 benchmark 的 ρ 值散点。HellaSwag 的 ρ 刚从 0.4 改为 0.3——如果图中 HellaSwag 点画在 ρ=0.4，需要重新生成。\n\n```bash\n# 在服务器上找到 Figure 2 生成脚本\nssh westb-48145\nfind /root/entrainment_gated_ft/ -name \"*fig2*\" -o -name \"*task_specific*\" | grep \"\\.py$\"\n# 检查脚本中 HellaSwag 的 ρ 值\n```\n\n如果 ρ 值是从数据文件读取的：\n- 检查数据文件中 HellaSwag ρ 是 0.3 还是 0.4\n- 如果是 0.4，需要更新数据文件并重新生成图\n- 如果是从 table1_task_specificity.csv 读取且已是 0.3，则图不需要改\n\n如果 ρ 值是硬编码的：\n- 改为 0.3 并重新生成\n\n重新生成图（如需要）：\n```bash\ncd /root/entrainment_gated_ft/\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython gen_fig2_task_specificity.py  # 或实际脚本名\n```\n\n然后把新图下载到本地论文目录：\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/\n\n### Step 2: 编译 PDF\n在本地编译：\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/\npdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n```\n\n检查：\n- 0 undefined references\n- 0 undefined citations\n- 主文 ≤ 8 页\n- 无 critical warnings\n\n### Step 3: Commit\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/\ngit add docs/paper/experiments.tex docs/paper/appendix.tex docs/paper/main.pdf\n# 如果 Figure 2 也改了，加 docs/paper/figures/fig2_task_specificity.pdf\ngit status\ngit commit -m \"Final data audit fixes: Table 1 HellaSwag rho, routing SD, appendix Jaccard cell\n\n- Table 1 HellaSwag: rho 0.4->0.3, p .517->.683, sigma 1.22->1.18\n- Routing SD: LAMBADA 0.8->0.4pp, ARC-Easy 0.9->0.5pp (paired diffs)\n- Appendix within_scale_jaccard GDN-HGRN2 J_hurt: 0.089->0.088\n- Appendix HellaSwag rho reference: 0.4->0.3\"\n```\n\n### Step 4: Push 到匿名仓库\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/\ngit push https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git HEAD:main\n```\n\n### 重要\n- 如果编译失败，诊断并修复\n- 如果 push 失败（force push 可能需要），先 pull 再 push，或使用 --force（仅匿名仓库，安全）\n- 报告 Figure 2 的处理结果（是否需要更新 + 是否已更新）",
   "tool_groups": "['ssh', 'git']"
 }
 ````
@@ -2983,7 +2983,7 @@ called mcp__agent-ml-research__spawn_worker
   "tool_args": {
     "task_type": "prep:final-compile-push",
     "project": "entrainment_gated_ft",
-    "task_prompt": "最终编译、检查 Figure 2、commit 并 push 到匿名仓库。\n\n## 背景\n刚完成最终数据自查，修复了 4 处不一致：\n1. Routing SD: LAMBADA 0.8→0.4pp, ARC-Easy 0.9→0.5pp (experiments.tex)\n2. Table 1 HellaSwag: ρ 0.4→0.3, p .517→.683, σ_h3-1 1.22→1.18, Ratio 0.96→0.99 (experiments.tex)\n3. Appendix HellaSwag ρ: 0.4→0.3 (appendix.tex)\n4. Appendix within_scale_jaccard GDN-HGRN2 J_hurt: 0.089→0.088 (appendix.tex)\n\n## 任务\n\n### Step 1: 检查 Figure 2 (fig2_task_specificity)\nFigure 2 是 task specificity 图表，包含各 benchmark 的 ρ 值散点。HellaSwag 的 ρ 刚从 0.4 改为 0.3——如果图中 HellaSwag 点画在 ρ=0.4，需要重新生成。\n\n```bash\n# 在服务器上找到 Figure 2 生成脚本\nssh westb-48145\nfind /root/entrainment_gated_ft/ -name \"*fig2*\" -o -name \"*task_specific*\" | grep \"\\.py$\"\n# 检查脚本中 HellaSwag 的 ρ 值\n```\n\n如果 ρ 值是从数据文件读取的：\n- 检查数据文件中 HellaSwag ρ 是 0.3 还是 0.4\n- 如果是 0.4，需要更新数据文件并重新生成图\n- 如果是从 table1_task_specificity.csv 读取且已是 0.3，则图不需要改\n\n如果 ρ 值是硬编码的：\n- 改为 0.3 并重新生成\n\n重新生成图（如需要）：\n```bash\ncd /root/entrainment_gated_ft/\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython gen_fig2_task_specificity.py  # 或实际脚本名\n```\n\n然后把新图下载到本地论文目录：\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/\n\n### Step 2: 编译 PDF\n在本地编译：\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/\npdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n```\n\n检查：\n- 0 undefined references\n- 0 undefined citations\n- 主文 ≤ 8 页\n- 无 critical warnings\n\n### Step 3: Commit\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/\ngit add docs/paper/experiments.tex docs/paper/appendix.tex docs/paper/main.pdf\n# 如果 Figure 2 也改了，加 docs/paper/figures/fig2_task_specificity.pdf\ngit status\ngit commit -m \"Final data audit fixes: Table 1 HellaSwag rho, routing SD, appendix Jaccard cell\n\n- Table 1 HellaSwag: rho 0.4->0.3, p .517->.683, sigma 1.22->1.18\n- Routing SD: LAMBADA 0.8->0.4pp, ARC-Easy 0.9->0.5pp (paired diffs)\n- Appendix within_scale_jaccard GDN-HGRN2 J_hurt: 0.089->0.088\n- Appendix HellaSwag rho reference: 0.4->0.3\"\n```\n\n### Step 4: Push 到匿名仓库\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/\ngit push https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git HEAD:main\n```\n\n### 重要\n- 如果编译失败，诊断并修复\n- 如果 push 失败（force push 可能需要），先 pull 再 push，或使用 --force（仅匿名仓库，安全）\n- 报告 Figure 2 的处理结果（是否需要更新 + 是否已更新）",
+    "task_prompt": "最终编译、检查 Figure 2、commit 并 push 到匿名仓库。\n\n## 背景\n刚完成最终数据自查，修复了 4 处不一致：\n1. Routing SD: LAMBADA 0.8→0.4pp, ARC-Easy 0.9→0.5pp (experiments.tex)\n2. Table 1 HellaSwag: ρ 0.4→0.3, p .517→.683, σ_h3-1 1.22→1.18, Ratio 0.96→0.99 (experiments.tex)\n3. Appendix HellaSwag ρ: 0.4→0.3 (appendix.tex)\n4. Appendix within_scale_jaccard GDN-HGRN2 J_hurt: 0.089→0.088 (appendix.tex)\n\n## 任务\n\n### Step 1: 检查 Figure 2 (fig2_task_specificity)\nFigure 2 是 task specificity 图表，包含各 benchmark 的 ρ 值散点。HellaSwag 的 ρ 刚从 0.4 改为 0.3——如果图中 HellaSwag 点画在 ρ=0.4，需要重新生成。\n\n```bash\n# 在服务器上找到 Figure 2 生成脚本\nssh westb-48145\nfind /root/entrainment_gated_ft/ -name \"*fig2*\" -o -name \"*task_specific*\" | grep \"\\.py$\"\n# 检查脚本中 HellaSwag 的 ρ 值\n```\n\n如果 ρ 值是从数据文件读取的：\n- 检查数据文件中 HellaSwag ρ 是 0.3 还是 0.4\n- 如果是 0.4，需要更新数据文件并重新生成图\n- 如果是从 table1_task_specificity.csv 读取且已是 0.3，则图不需要改\n\n如果 ρ 值是硬编码的：\n- 改为 0.3 并重新生成\n\n重新生成图（如需要）：\n```bash\ncd /root/entrainment_gated_ft/\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython gen_fig2_task_specificity.py  # 或实际脚本名\n```\n\n然后把新图下载到本地论文目录：\n/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/\n\n### Step 2: 编译 PDF\n在本地编译：\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/\npdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n```\n\n检查：\n- 0 undefined references\n- 0 undefined citations\n- 主文 ≤ 8 页\n- 无 critical warnings\n\n### Step 3: Commit\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/\ngit add docs/paper/experiments.tex docs/paper/appendix.tex docs/paper/main.pdf\n# 如果 Figure 2 也改了，加 docs/paper/figures/fig2_task_specificity.pdf\ngit status\ngit commit -m \"Final data audit fixes: Table 1 HellaSwag rho, routing SD, appendix Jaccard cell\n\n- Table 1 HellaSwag: rho 0.4->0.3, p .517->.683, sigma 1.22->1.18\n- Routing SD: LAMBADA 0.8->0.4pp, ARC-Easy 0.9->0.5pp (paired diffs)\n- Appendix within_scale_jaccard GDN-HGRN2 J_hurt: 0.089->0.088\n- Appendix HellaSwag rho reference: 0.4->0.3\"\n```\n\n### Step 4: Push 到匿名仓库\n```bash\ncd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/\ngit push https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git HEAD:main\n```\n\n### 重要\n- 如果编译失败，诊断并修复\n- 如果 push 失败（force push 可能需要），先 pull 再 push，或使用 --force（仅匿名仓库，安全）\n- 报告 Figure 2 的处理结果（是否需要更新 + 是否已更新）",
     "tool_groups": "['ssh', 'git']"
   }
 }
@@ -14669,7 +14669,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig_method_overview_intent.txt \\\n  --caption \"Three-panel method overview: (1) Model Zoo with pure/hybrid architecture pairs, (2) Per-example decomposition into helped/hurt/unchanged sets, (3) Cross-architecture Jaccard overlap showing architecture-specific sensitivity\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_method_overview_pb.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig_method_overview_intent.txt \\\n  --caption \"Three-panel method overview: (1) Model Zoo with pure/hybrid architecture pairs, (2) Per-example decomposition into helped/hurt/unchanged sets, (3) Cross-architecture Jaccard overlap showing architecture-specific sensitivity\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_method_overview_pb.png \\\n  --iterations 5 2>&1",
   "description": "Run PaperBanana generate (iteration 1)",
   "timeout": "300000"
 }
@@ -14685,7 +14685,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig_method_overview_intent.txt \\\n  --caption \"Three-panel method overview: (1) Model Zoo with pure/hybrid architecture pairs, (2) Per-example decomposition into helped/hurt/unchanged sets, (3) Cross-architecture Jaccard overlap showing architecture-specific sensitivity\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_method_overview_pb.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig_method_overview_intent.txt \\\n  --caption \"Three-panel method overview: (1) Model Zoo with pure/hybrid architecture pairs, (2) Per-example decomposition into helped/hurt/unchanged sets, (3) Cross-architecture Jaccard overlap showing architecture-specific sensitivity\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_method_overview_pb.png \\\n  --iterations 5 2>&1",
     "description": "Run PaperBanana generate (iteration 1)",
     "timeout": "300000"
   }
@@ -15000,7 +15000,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig_method_overview_intent.txt \\\n  --caption \"Method overview: Model Zoo with pure/hybrid pairs, per-example decomposition into helped/hurt/unchanged, cross-architecture Jaccard overlap J≈0.10\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_method_overview_pb_v2.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig_method_overview_intent.txt \\\n  --caption \"Method overview: Model Zoo with pure/hybrid pairs, per-example decomposition into helped/hurt/unchanged, cross-architecture Jaccard overlap J≈0.10\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_method_overview_pb_v2.png \\\n  --iterations 5 2>&1",
   "description": "Run PaperBanana round 2",
   "timeout": "300000"
 }
@@ -15016,7 +15016,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig_method_overview_intent.txt \\\n  --caption \"Method overview: Model Zoo with pure/hybrid pairs, per-example decomposition into helped/hurt/unchanged, cross-architecture Jaccard overlap J≈0.10\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_method_overview_pb_v2.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig_method_overview_intent.txt \\\n  --caption \"Method overview: Model Zoo with pure/hybrid pairs, per-example decomposition into helped/hurt/unchanged, cross-architecture Jaccard overlap J≈0.10\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_method_overview_pb_v2.png \\\n  --iterations 5 2>&1",
     "description": "Run PaperBanana round 2",
     "timeout": "300000"
   }
@@ -15207,7 +15207,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig_method_overview_intent.txt \\\n  --caption \"Method pipeline: model zoo, per-example decomposition, cross-architecture Jaccard overlap with barely-touching Venn circles\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_method_overview_pb_v3.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig_method_overview_intent.txt \\\n  --caption \"Method pipeline: model zoo, per-example decomposition, cross-architecture Jaccard overlap with barely-touching Venn circles\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_method_overview_pb_v3.png \\\n  --iterations 5 2>&1",
   "description": "Run PaperBanana round 3",
   "timeout": "300000"
 }
@@ -15223,7 +15223,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig_method_overview_intent.txt \\\n  --caption \"Method pipeline: model zoo, per-example decomposition, cross-architecture Jaccard overlap with barely-touching Venn circles\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_method_overview_pb_v3.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig_method_overview_intent.txt \\\n  --caption \"Method pipeline: model zoo, per-example decomposition, cross-architecture Jaccard overlap with barely-touching Venn circles\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig_method_overview_pb_v3.png \\\n  --iterations 5 2>&1",
     "description": "Run PaperBanana round 3",
     "timeout": "300000"
   }
@@ -17318,7 +17318,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v1.txt \\\n  --caption \"Three-panel method overview: Model Zoo, Per-Example Decomposition, Cross-Architecture Overlap with J≈0.10\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig2_pb_v1.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v1.txt \\\n  --caption \"Three-panel method overview: Model Zoo, Per-Example Decomposition, Cross-Architecture Overlap with J≈0.10\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig2_pb_v1.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana round 1 of 5",
   "timeout": "300000",
   "run_in_background": "True"
@@ -17335,7 +17335,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v1.txt \\\n  --caption \"Three-panel method overview: Model Zoo, Per-Example Decomposition, Cross-Architecture Overlap with J≈0.10\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig2_pb_v1.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v1.txt \\\n  --caption \"Three-panel method overview: Model Zoo, Per-Example Decomposition, Cross-Architecture Overlap with J≈0.10\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig2_pb_v1.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana round 1 of 5",
     "timeout": "300000",
     "run_in_background": "True"
@@ -17380,7 +17380,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2.txt \\\n  --caption \"Pipeline diagram: Model Zoo architectures, per-example sorting into helped/hurt/unchanged, cross-architecture Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig2_pb_v2.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2.txt \\\n  --caption \"Pipeline diagram: Model Zoo architectures, per-example sorting into helped/hurt/unchanged, cross-architecture Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig2_pb_v2.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana round 2 of 5",
   "timeout": "300000",
   "run_in_background": "True"
@@ -17397,7 +17397,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2.txt \\\n  --caption \"Pipeline diagram: Model Zoo architectures, per-example sorting into helped/hurt/unchanged, cross-architecture Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig2_pb_v2.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2.txt \\\n  --caption \"Pipeline diagram: Model Zoo architectures, per-example sorting into helped/hurt/unchanged, cross-architecture Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output figures/paper/fig2_pb_v2.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana round 2 of 5",
     "timeout": "300000",
     "run_in_background": "True"
@@ -18118,7 +18118,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v1.txt \\\n  --caption \"Three-panel method overview: Model Zoo, Per-Example Decomposition, Cross-Architecture Overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --image-model imagen-4.0-generate-001 \\\n  --output figures/paper/fig2_pb_v1.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v1.txt \\\n  --caption \"Three-panel method overview: Model Zoo, Per-Example Decomposition, Cross-Architecture Overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --image-model imagen-4.0-generate-001 \\\n  --output figures/paper/fig2_pb_v1.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana with imagen-4.0 model",
   "timeout": "300000",
   "run_in_background": "True"
@@ -18135,7 +18135,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v1.txt \\\n  --caption \"Three-panel method overview: Model Zoo, Per-Example Decomposition, Cross-Architecture Overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --image-model imagen-4.0-generate-001 \\\n  --output figures/paper/fig2_pb_v1.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v1.txt \\\n  --caption \"Three-panel method overview: Model Zoo, Per-Example Decomposition, Cross-Architecture Overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --image-model imagen-4.0-generate-001 \\\n  --output figures/paper/fig2_pb_v1.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana with imagen-4.0 model",
     "timeout": "300000",
     "run_in_background": "True"
@@ -18180,7 +18180,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2.txt \\\n  --caption \"Pipeline diagram: Model Zoo architectures, per-example decomposition, cross-architecture Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --image-model gemini-2.5-flash-image \\\n  --output figures/paper/fig2_pb_v2.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2.txt \\\n  --caption \"Pipeline diagram: Model Zoo architectures, per-example decomposition, cross-architecture Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --image-model gemini-2.5-flash-image \\\n  --output figures/paper/fig2_pb_v2.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana with gemini-2.5-flash-image",
   "timeout": "300000",
   "run_in_background": "True"
@@ -18197,7 +18197,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2.txt \\\n  --caption \"Pipeline diagram: Model Zoo architectures, per-example decomposition, cross-architecture Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --image-model gemini-2.5-flash-image \\\n  --output figures/paper/fig2_pb_v2.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2.txt \\\n  --caption \"Pipeline diagram: Model Zoo architectures, per-example decomposition, cross-architecture Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --image-model gemini-2.5-flash-image \\\n  --output figures/paper/fig2_pb_v2.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana with gemini-2.5-flash-image",
     "timeout": "300000",
     "run_in_background": "True"
@@ -18795,7 +18795,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v1.txt \\\n  --caption \"Three-panel method overview: Model Zoo, Per-Example Decomposition, Cross-Architecture Overlap with J≈0.10\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v1.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v1.txt \\\n  --caption \"Three-panel method overview: Model Zoo, Per-Example Decomposition, Cross-Architecture Overlap with J≈0.10\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v1.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana v1: detailed panel spec",
   "timeout": "300000",
   "run_in_background": "True"
@@ -18812,7 +18812,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v1.txt \\\n  --caption \"Three-panel method overview: Model Zoo, Per-Example Decomposition, Cross-Architecture Overlap with J≈0.10\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v1.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v1.txt \\\n  --caption \"Three-panel method overview: Model Zoo, Per-Example Decomposition, Cross-Architecture Overlap with J≈0.10\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v1.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana v1: detailed panel spec",
     "timeout": "300000",
     "run_in_background": "True"
@@ -18857,7 +18857,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2.txt \\\n  --caption \"Pipeline diagram: Model Zoo architectures, per-example sorting, cross-architecture Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v2.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2.txt \\\n  --caption \"Pipeline diagram: Model Zoo architectures, per-example sorting, cross-architecture Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v2.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana v2: flow diagram style",
   "timeout": "300000",
   "run_in_background": "True"
@@ -18874,7 +18874,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2.txt \\\n  --caption \"Pipeline diagram: Model Zoo architectures, per-example sorting, cross-architecture Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v2.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2.txt \\\n  --caption \"Pipeline diagram: Model Zoo architectures, per-example sorting, cross-architecture Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v2.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana v2: flow diagram style",
     "timeout": "300000",
     "run_in_background": "True"
@@ -18919,7 +18919,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v3.txt \\\n  --caption \"Method overview: three nearly-separate sets representing low cross-architecture Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v3.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v3.txt \\\n  --caption \"Method overview: three nearly-separate sets representing low cross-architecture Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v3.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana v3: alternative overlap visual",
   "timeout": "300000",
   "run_in_background": "True"
@@ -18936,7 +18936,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v3.txt \\\n  --caption \"Method overview: three nearly-separate sets representing low cross-architecture Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v3.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v3.txt \\\n  --caption \"Method overview: three nearly-separate sets representing low cross-architecture Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v3.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana v3: alternative overlap visual",
     "timeout": "300000",
     "run_in_background": "True"
@@ -18981,7 +18981,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v4.txt \\\n  --caption \"Abstract conceptual diagram: model zoo to per-example decomposition to architecture-specific sensitivity\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v4.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v4.txt \\\n  --caption \"Abstract conceptual diagram: model zoo to per-example decomposition to architecture-specific sensitivity\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v4.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana v4: abstract conceptual style",
   "timeout": "300000",
   "run_in_background": "True"
@@ -18998,7 +18998,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v4.txt \\\n  --caption \"Abstract conceptual diagram: model zoo to per-example decomposition to architecture-specific sensitivity\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v4.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v4.txt \\\n  --caption \"Abstract conceptual diagram: model zoo to per-example decomposition to architecture-specific sensitivity\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v4.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana v4: abstract conceptual style",
     "timeout": "300000",
     "run_in_background": "True"
@@ -19043,7 +19043,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v5.txt \\\n  --caption \"Detailed methodology figure: Model Zoo with Pure/+Attn variants, per-example decomposition, cross-architecture overlap J≈0.10\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v5.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v5.txt \\\n  --caption \"Detailed methodology figure: Model Zoo with Pure/+Attn variants, per-example decomposition, cross-architecture overlap J≈0.10\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v5.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana v5: max detail description",
   "timeout": "300000",
   "run_in_background": "True"
@@ -19060,7 +19060,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v5.txt \\\n  --caption \"Detailed methodology figure: Model Zoo with Pure/+Attn variants, per-example decomposition, cross-architecture overlap J≈0.10\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v5.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v5.txt \\\n  --caption \"Detailed methodology figure: Model Zoo with Pure/+Attn variants, per-example decomposition, cross-architecture overlap J≈0.10\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v5.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana v5: max detail description",
     "timeout": "300000",
     "run_in_background": "True"
@@ -19194,7 +19194,7 @@ OVERALL STYLE:
 ### Step 2: 运行 generate（必须指定 --vlm-model）
 
 ```bash
-GOOGLE_API_KEY="$KEY" paperbanana generate \
+GOOGLE_API_KEY="[REDACTED]" paperbanana generate \
   --input /tmp/fig2_intent.txt \
   --caption "Three-panel experimental framework: (a) controlled model zoo with 3 architectures × 5 attention ratios × 2 scales, (b) per-example decomposition into helped/hurt/unchanged sets, (c) cross-architecture Jaccard overlap showing architecture-specific effects (J ≈ 0.10)" \
   --vlm-model gemini-2.5-pro \
@@ -19672,7 +19672,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent.txt \\\n  --caption \"Three-panel experimental framework: (a) controlled model zoo with 3 architectures × 5 attention ratios × 2 scales, (b) per-example decomposition into helped/hurt/unchanged sets, (c) cross-architecture Jaccard overlap showing architecture-specific effects (J ≈ 0.10)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v1.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent.txt \\\n  --caption \"Three-panel experimental framework: (a) controlled model zoo with 3 architectures × 5 attention ratios × 2 scales, (b) per-example decomposition into helped/hurt/unchanged sets, (c) cross-architecture Jaccard overlap showing architecture-specific effects (J ≈ 0.10)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v1.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana v1 with Director's intent",
   "timeout": "300000"
 }
@@ -19688,7 +19688,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent.txt \\\n  --caption \"Three-panel experimental framework: (a) controlled model zoo with 3 architectures × 5 attention ratios × 2 scales, (b) per-example decomposition into helped/hurt/unchanged sets, (c) cross-architecture Jaccard overlap showing architecture-specific effects (J ≈ 0.10)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v1.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent.txt \\\n  --caption \"Three-panel experimental framework: (a) controlled model zoo with 3 architectures × 5 attention ratios × 2 scales, (b) per-example decomposition into helped/hurt/unchanged sets, (c) cross-architecture Jaccard overlap showing architecture-specific effects (J ≈ 0.10)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v1.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana v1 with Director's intent",
     "timeout": "300000"
   }
@@ -20427,7 +20427,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2_new.txt \\\n  --caption \"Flow diagram: model zoo grid, per-example decomposition, nearly-separate circles for low Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v2.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2_new.txt \\\n  --caption \"Flow diagram: model zoo grid, per-example decomposition, nearly-separate circles for low Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v2.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana v2",
   "timeout": "300000",
   "run_in_background": "True"
@@ -20444,7 +20444,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2_new.txt \\\n  --caption \"Flow diagram: model zoo grid, per-example decomposition, nearly-separate circles for low Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v2.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2_new.txt \\\n  --caption \"Flow diagram: model zoo grid, per-example decomposition, nearly-separate circles for low Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v2.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana v2",
     "timeout": "300000",
     "run_in_background": "True"
@@ -20489,7 +20489,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v3.txt \\\n  --caption \"Method overview with nearly-separate colored discs showing low cross-architecture overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v3.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v3.txt \\\n  --caption \"Method overview with nearly-separate colored discs showing low cross-architecture overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v3.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana v3",
   "timeout": "300000",
   "run_in_background": "True"
@@ -20506,7 +20506,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v3.txt \\\n  --caption \"Method overview with nearly-separate colored discs showing low cross-architecture overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v3.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v3.txt \\\n  --caption \"Method overview with nearly-separate colored discs showing low cross-architecture overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v3.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana v3",
     "timeout": "300000",
     "run_in_background": "True"

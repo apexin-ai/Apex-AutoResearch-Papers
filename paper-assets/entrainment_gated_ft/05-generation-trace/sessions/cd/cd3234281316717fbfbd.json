@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_local_backup_20260519T025639_result.json",
     "occurrence": 1,
-    "bytes": 255,
-    "sha256": "a98a1b4ae82ed3ccdb88b2968ae29bb8f0284897d0459da289b6a3d6a88719c3"
+    "bytes": 254,
+    "sha256": "82e372e12de8443199fce387aa355eaf05b12a622529cdd5f941324b1c1e61cd"
   },
   "statistics": {
     "messages": 1,

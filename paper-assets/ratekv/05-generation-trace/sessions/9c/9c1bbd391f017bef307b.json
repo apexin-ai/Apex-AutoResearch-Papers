@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_llama_full_pipeline_20260514T013209_result.json",
     "occurrence": 1,
-    "bytes": 410,
-    "sha256": "ffdc7ade1499e3a52e7bcd0d6e4486854c70e483ccadfefb7ddcc922c76578d6"
+    "bytes": 409,
+    "sha256": "5e456611a2ce1b553ddf8f2c8ec4c9de74447bdb650a7d88eb5851c254d7a018"
   },
   "statistics": {
     "messages": 1,

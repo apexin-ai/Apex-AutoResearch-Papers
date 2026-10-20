@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_figure_heatmap-mistral-datasource-fix_20260515T010222_result.json",
     "occurrence": 1,
-    "bytes": 1389,
-    "sha256": "b26bcc5e5ef1dcdf16ccde38d463c8a321f34d1c51219481921fec99231af777"
+    "bytes": 1388,
+    "sha256": "1d475bb7c491895ceac91bc23794c32b4f7816a43743e94fbcd2bb19f034b0a2"
   },
   "statistics": {
     "messages": 1,

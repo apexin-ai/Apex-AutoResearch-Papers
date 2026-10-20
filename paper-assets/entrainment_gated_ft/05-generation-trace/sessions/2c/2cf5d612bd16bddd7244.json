@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_null-jaccard-permutation_20260520T011902_result.json",
     "occurrence": 1,
-    "bytes": 995,
-    "sha256": "cdbd7c2e1b79f030fe6930b47224f7f9dc57083811ed173852a72b4e84e3700c"
+    "bytes": 994,
+    "sha256": "71dc0969ac38ddc20016bcf9f3f4e576e9747f5cd90b41ddd152245ff711f37d"
   },
   "statistics": {
     "messages": 1,

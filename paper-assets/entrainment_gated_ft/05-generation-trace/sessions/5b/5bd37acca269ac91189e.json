@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_check_340m-eval-urgent_20260522T002003_result.json",
     "occurrence": 1,
-    "bytes": 991,
-    "sha256": "89195f4a05f4eb0a203321cae69cfa52cda346a966b9f37d15d8983157af9caf"
+    "bytes": 990,
+    "sha256": "58cbab984c96e762fc233b2e75a29990714a0954e7e952adbaa623c12634841d"
   },
   "statistics": {
     "messages": 1,

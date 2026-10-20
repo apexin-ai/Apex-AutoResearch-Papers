@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f7528366e8f31e824de",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "infra cleanup old code dir",
+  "task_key": "worker_infra_cleanup-old-code-dir_20260512T144213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_cleanup-old-code-dir_20260512T144213_result.json",
+    "occurrence": 1,
+    "bytes": 205,
+    "sha256": "005a75b93e9015289c46b04f2734234e7d88d48e9e76a476c9544e2efd4581c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n- `/root/democalib/code/` 已删除（含旧版 `behavioral_fingerprint.py`、`h_gate_evaluator.py`、`run_mvp_experiment.py` 及 `__pycache__`）\n- 根目录新版文件完好"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-cleanup-old-code-dir.md"
+}

@@ -1,0 +1,97 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{dao2024transformers,gu2024mamba}
+\citation{waleffe2024empirical,de2024griffin}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{gu2024mamba}
+\citation{katharopoulos2020transformers}
+\citation{qin2024hgrn2}
+\citation{waleffe2024empirical,de2024griffin}
+\citation{yang2024gated}
+\citation{sun2023retentive}
+\citation{qin2024hgrn2}
+\citation{mccoy2020berts}
+\citation{swayamdipta2020dataset}
+\citation{dehghani2021benchmark}
+\citation{gehrmann2022repairing}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hybrid recurrence-attention architectures.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-example analysis in NLP.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmark evaluation limitations.}{2}{section*.3}\protected@file@percent }
+\citation{eval-harness}
+\citation{paperno2016lambada}
+\citation{clark2018think}
+\citation{zellers2019hellaswag}
+\citation{sakaguchi2021winogrande}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Model Zoo}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Evaluation Protocol}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Per-Example Analysis}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Statistical Methods}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Per-Example Divergence Is Universal Across Benchmarks}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:divergence}{{4.1}{3}{Per-Example Divergence Is Universal Across Benchmarks}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Pairwise Jaccard similarity on helped sets (1.3B, $h=3$). All values below 0.15, confirming that architectures benefit from attention on largely non-overlapping example subsets.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:jaccard_benchmarks}{{1}{4}{Pairwise Jaccard similarity on helped sets (1.3B, $h=3$). All values below 0.15, confirming that architectures benefit from attention on largely non-overlapping example subsets}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Per-example convergence metrics across benchmarks (1.3B). Aggregate $\rho $ measures cross-architecture std vs.\ attention ratio. Per-example $\rho $ measures Jaccard trend. No benchmark shows significant per-example convergence.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:per_example_convergence}{{2}{4}{Per-example convergence metrics across benchmarks (1.3B). Aggregate $\rho $ measures cross-architecture std vs.\ attention ratio. Per-example $\rho $ measures Jaccard trend. No benchmark shows significant per-example convergence}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Aggregate Convergence Does Not Survive Robustness Checks}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:robustness}{{4.2}{4}{Aggregate Convergence Does Not Survive Robustness Checks}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Per-Example Divergence Is Attention-Invariant}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:bridge}{{4.3}{4}{Per-Example Divergence Is Attention-Invariant}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Sensitivity analysis: effect of GDN inclusion on LAMBADA convergence (1.3B). Excluding GDN collapses the effect; the bootstrap CI crosses zero.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:sensitivity}{{3}{5}{Sensitivity analysis: effect of GDN inclusion on LAMBADA convergence (1.3B). Excluding GDN collapses the effect; the bootstrap CI crosses zero}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces RetNet--HGRN2 cross-architecture std trajectory (LAMBADA, 1.3B). The trajectory is non-monotonic, with std increasing at $h = 6$ and $h = 12$.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:retnet_hgrn2_trajectory}{{4}{5}{RetNet--HGRN2 cross-architecture std trajectory (LAMBADA, 1.3B). The trajectory is non-monotonic, with std increasing at $h = 6$ and $h = 12$}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Surface and Moderate-Depth Features Cannot Explain Divergence}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:features}{{4.4}{5}{Surface and Moderate-Depth Features Cannot Explain Divergence}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Phase 1: Surface features.}{5}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Phase 2: Deeper features.}{5}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Attention Patterns Do Not Explain the Effect}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:attention}{{4.5}{5}{Attention Patterns Do Not Explain the Effect}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Multiple comparison correction across benchmarks. After Bonferroni correction, no benchmark reaches clear significance at $\alpha = 0.05$.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:multiple_comparison}{{5}{6}{Multiple comparison correction across benchmarks. After Bonferroni correction, no benchmark reaches clear significance at $\alpha = 0.05$}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Per-example divergence is stable across attention ratios (LAMBADA, 1.3B). Jaccard remains in the 0.07--0.09 range regardless of how many attention layers are added.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:bridge}{{6}{6}{Per-example divergence is stable across attention ratios (LAMBADA, 1.3B). Jaccard remains in the 0.07--0.09 range regardless of how many attention layers are added}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Scale Analysis: 340M vs.\ 1.3B}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:scale}{{4.6}{6}{Scale Analysis: 340M vs.\ 1.3B}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Architecture Generalization}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:expansion}{{4.7}{6}{Architecture Generalization}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Feature analysis for helped vs.\ hurt samples (LAMBADA, 1.3B, $h=3$). No feature reaches significance with cross-architecture consistency. Best single-feature AUC is 0.54.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:features}{{7}{7}{Feature analysis for helped vs.\ hurt samples (LAMBADA, 1.3B, $h=3$). No feature reaches significance with cross-architecture consistency. Best single-feature AUC is 0.54}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Attention pattern analysis (LAMBADA, 1.3B, $h=3$). Entropy and positional focus differ negligibly between helped and hurt samples. Attention alone predicts helped status with AUC $\leq 0.57$.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:attention}{{8}{7}{Attention pattern analysis (LAMBADA, 1.3B, $h=3$). Entropy and positional focus differ negligibly between helped and hurt samples. Attention alone predicts helped status with AUC $\leq 0.57$}{table.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{What per-example divergence means for evaluation.}{7}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for ensembling and routing.}{7}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Opacity of the mechanism.}{7}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.9}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{clark2018think}{{1}{2018}{{Clark et~al.}}{{}}}
+\bibcite{dao2024transformers}{{2}{2024}{{Dao and Gu}}{{}}}
+\bibcite{de2024griffin}{{3}{2024}{{De et~al.}}{{}}}
+\bibcite{dehghani2021benchmark}{{4}{2021}{{Dehghani et~al.}}{{}}}
+\bibcite{eval-harness}{{5}{2024}{{Gao et~al.}}{{}}}
+\bibcite{gehrmann2022repairing}{{6}{2022}{{Gehrmann et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Cross-architecture attention similarity (CKA) at the $h=3$ layer. Moderate similarity in attention structure coexists with low Jaccard on outcomes.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:cka}{{9}{8}{Cross-architecture attention similarity (CKA) at the $h=3$ layer. Moderate similarity in attention structure coexists with low Jaccard on outcomes}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Scale comparison of convergence trajectories. The 340M and 1.3B scales differ in both parameter count and training tokens, preventing causal attribution.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:scale}{{10}{8}{Scale comparison of convergence trajectories. The 340M and 1.3B scales differ in both parameter count and training tokens, preventing causal attribution}{table.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\bibcite{gu2024mamba}{{7}{2024}{{Gu and Dao}}{{}}}
+\bibcite{katharopoulos2020transformers}{{8}{2020}{{Katharopoulos et~al.}}{{}}}
+\bibcite{mccoy2020berts}{{9}{2020}{{McCoy et~al.}}{{}}}
+\bibcite{paperno2016lambada}{{10}{2016}{{Paperno et~al.}}{{}}}
+\bibcite{qin2024hgrn2}{{11}{2024}{{Qin et~al.}}{{}}}
+\bibcite{sakaguchi2021winogrande}{{12}{2021}{{Sakaguchi et~al.}}{{}}}
+\bibcite{sun2023retentive}{{13}{2023}{{Sun et~al.}}{{}}}
+\bibcite{swayamdipta2020dataset}{{14}{2020}{{Swayamdipta et~al.}}{{}}}
+\bibcite{waleffe2024empirical}{{15}{2024}{{Waleffe et~al.}}{{}}}
+\bibcite{wang2025hybrid}{{16}{2025}{{Wang et~al.}}{{}}}
+\bibcite{yang2024gated}{{17}{2024}{{Yang et~al.}}{{}}}
+\bibcite{zellers2019hellaswag}{{18}{2019}{{Zellers et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Architecture expansion search. No additional architecture provides compatible checkpoints for fair comparison.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:arch_search}{{11}{9}{Architecture expansion search. No additional architecture provides compatible checkpoints for fair comparison}{table.11}{}}
+\gdef \@abspage@last{9}

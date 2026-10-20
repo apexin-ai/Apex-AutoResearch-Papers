@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_exp-005-eval-and-download_20260522T162822_result.json",
     "occurrence": 1,
-    "bytes": 585,
-    "sha256": "1fa132efbe7d7fb00157d5217a3d9df2d0b3064b00ff729822c83075422dfa44"
+    "bytes": 584,
+    "sha256": "79c0c6bf65272034a2def7f62db3dad58581a7941485dabd4edadccd7c537d9c"
   },
   "statistics": {
     "messages": 1,

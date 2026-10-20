@@ -1,0 +1,369 @@
+- id: R1-W1
+  summary: "Diagnostic framework overfitting: 2 thresholds on 5 models (1 positive)"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 2
+  mentions:
+    - round: 1
+      reviewers: [R1, R2]
+      note: "consensus: 2 free parameters perfectly fit 5 samples = overfitting"
+    - round: 2
+      reviewers: [R1, R2]
+      note: "recurred as R2-W1: Round 1 fix insufficient, N=1 positive unchanged. Also R2-W2: no practical value vs direct solver."
+  action_items:
+    - round: 1
+      action: "Add Qwen-14B + Pythia + downgrade claim"
+      assigned_to: Agent+Paper Agent
+      status: done
+    - round: 2
+      action: "Downgrade from Contribution 3 to empirical observation; add threshold sensitivity analysis; reposition as interpretive not decisional"
+      assigned_to: Paper Agent
+      status: in_progress
+  resolution: "Round 1 resolved. Round 2 reopened — deeper fix needed."
+  resolution_round: null
+
+- id: R1-W2
+  summary: "4/5 models missing unconstrained greedy/MCKP baselines in Table 2"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: "Experiment complete 5/5. Table 2 updated."
+  resolution_round: 1
+
+- id: R1-W3
+  summary: "Downstream evaluation only on Qwen"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: "5/5 models downstream eval done."
+  resolution_round: 1
+
+- id: R1-W4
+  summary: "Qwen may be architectural outlier"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: "Qwen-14B=Flat confirmed. Diagnostic 7/7."
+  resolution_round: 1
+
+- id: R1-W5
+  summary: "Novelty: cardinality constraint is standard knapsack technique"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: "Contribution repositioned as diagnosis+fix."
+  resolution_round: 1
+
+- id: R1-W6
+  summary: "Profiling-compounding logical tension"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: "Added restoring additivity paragraph."
+  resolution_round: 1
+
+- id: R1-W7
+  summary: "Related work missing HAWQ/HAQ and 2025 KV cache works"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: "Added 11 new citations."
+  resolution_round: 1
+
+- id: R1-W8
+  summary: "Solver equivalence lacks formal statement"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: "Added empirical observation formal statement."
+  resolution_round: 1
+
+- id: R1-W9
+  summary: "Non-additive compounding not formally defined"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: "W9 v2 super-additivity data integrated."
+  resolution_round: 1
+
+- id: R1-W10
+  summary: "Standard vs hires profiling mixed"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: "Unified to hires."
+  resolution_round: 1
+
+- id: R1-W11
+  summary: "Granularity tradeoff data error"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: "Fixed."
+  resolution_round: 1
+
+- id: R1-KIVI
+  summary: "No comparison with concurrent KV cache methods"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 1
+  last_seen_round: 1
+  resolution: "KIVI baseline done. Orthogonal positioning."
+  resolution_round: 1
+
+- id: L10-W1
+  summary: "Registry status contradiction"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 10
+  last_seen_round: 10
+  resolution: "Registry updated."
+  resolution_round: 1
+
+- id: R2-W1
+  summary: "Decision rule N=1 positive: no statistical validity, no practical value vs solver"
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - round: 2
+      reviewers: [R1, R2]
+      note: "consensus: recurred from R1-W1. N=1 unchanged. Rule has zero practical value — solver is O(H log H)."
+  action_items:
+    - round: 2
+      action: "Downgrade Contribution 3 to empirical observation; add threshold sensitivity; search spread models (N=1→N=2)"
+      assigned_to: Paper Agent + Agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: R2-W2
+  summary: "Compounding 'cause' claim too strong; only Qwen data"
+  category: method
+  severity: critical
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - round: 2
+      reviewers: [R1, R2]
+      note: "consensus: 'cause' → 'contributing factor'; need compounding curves on non-Qwen models"
+  action_items:
+    - round: 2
+      action: "Change 'cause' globally; run compounding sweep on Llama(spike) + Mistral(flat)"
+      assigned_to: Agent + Paper Agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: R2-W3
+  summary: "Abstract 29.4% lead metric misleading (1/7 models)"
+  category: writing
+  severity: major
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - round: 2
+      reviewers: [R1, R2]
+      note: "consensus: reorder to negative-first"
+  action_items:
+    - round: 2
+      action: "Rewrite abstract: lead with 6/7 negative finding, then Qwen case study"
+      assigned_to: Paper Agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: R2-W4
+  summary: "RateQuant incremental contribution unclear"
+  category: method
+  severity: major
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - round: 2
+      reviewers: [R1, R2]
+      note: "consensus: formulation from RateQuant, contribution is failure mode diagnosis"
+  action_items:
+    - round: 2
+      action: "Rewrite Introduction contributions paragraph: explicit RateQuant differentiation"
+      assigned_to: Paper Agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: R2-W5
+  summary: "Model scale ≤14B limits generalizability"
+  category: experiment
+  severity: major
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - round: 2
+      reviewers: [R1, R2]
+      note: "consensus: KV cache need is 70B+; 7B→14B dilution trend"
+  action_items:
+    - round: 2
+      action: "Attempt Qwen2.5-32B profiling-only (batch=1); add scale discussion to Limitations"
+      assigned_to: Agent + Paper Agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: R2-W6
+  summary: "Downstream eval no confidence intervals"
+  category: experiment
+  severity: major
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - round: 2
+      reviewers: [R1, R2]
+      note: "consensus: differences within 0-shot noise range"
+  action_items:
+    - round: 2
+      action: "3-seed downstream eval on Qwen-7B + Llama-8B, report mean±std"
+      assigned_to: Agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: R2-W7
+  summary: "Runtime benchmark is PyTorch simulation, not real kernel"
+  category: writing
+  severity: major
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - round: 2
+      reviewers: [R1, R2]
+      note: "consensus: move simulation caveat to Limitations"
+  action_items:
+    - round: 2
+      action: "Move caveat from Appendix K to Limitations; cross-reference"
+      assigned_to: Paper Agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: R2-W8
+  summary: "'Catastrophic failure' narrative overblown"
+  category: writing
+  severity: major
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - round: 2
+      reviewers: [R1, R2]
+      note: "consensus: catastrophic only for Qwen; flat models = moderate"
+  action_items:
+    - round: 2
+      action: "Restrict 'catastrophic' to Qwen/spread; flat = moderate/negligible"
+      assigned_to: Paper Agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: R2-W9
+  summary: "Spread/spike/flat lack formal definition with crisp inequalities"
+  category: writing
+  severity: minor
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - round: 2
+      reviewers: [R1, R2]
+      note: "consensus: soft boundaries have overlap"
+  action_items:
+    - round: 2
+      action: "Add crisp definitions: spread (conc≥0.50, t1/t5≤0.70), spike (t1/t5>0.70, conc≥0.25), flat (conc<0.25)"
+      assigned_to: Paper Agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: R2-W10
+  summary: "Limitations section too short (2 sentences)"
+  category: writing
+  severity: minor
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - round: 2
+      reviewers: [R1, R2]
+      note: "consensus: ACL ARR requires adequate discussion"
+  action_items:
+    - round: 2
+      action: "Expand to 7+ items: scale, N=1, runtime sim, downstream scope, calibration, competitors, long-context"
+      assigned_to: Paper Agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: R2-W11
+  summary: "Long-context evaluation only 8K"
+  category: experiment
+  severity: minor
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 2
+  mentions:
+    - round: 2
+      reviewers: [R1, R2]
+      note: "consensus: KV cache pressure at 32K-128K"
+  action_items:
+    - round: 2
+      action: "Acknowledge in Limitations; optional 32K eval if GPU time permits"
+      assigned_to: Paper Agent + Agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: R2-REFS
+  summary: "Missing references + bib venue updates + author order inconsistencies"
+  category: writing
+  severity: minor
+  status: in_progress
+  first_raised_round: 2
+  last_seen_round: 2
+  action_items:
+    - round: 2
+      action: "Update venues, check 4 author orders, add Cocktail/MiKV/More Tokens"
+      assigned_to: Agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null

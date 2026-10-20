@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_gpu_yi15_tmux_download_20260514T160503_result.json",
     "occurrence": 1,
-    "bytes": 496,
-    "sha256": "f6f06737a32d48ac2ae8a59517fbf17a8782c64b39b696d12f54789d425583fb"
+    "bytes": 495,
+    "sha256": "709046f7f848f628b9ec8ce46ddde540680e90dd64d9a52ed1e0bc506f1697f6"
   },
   "statistics": {
     "messages": 1,

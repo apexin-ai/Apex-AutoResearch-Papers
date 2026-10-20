@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_jaccard-upper-bound_20260520T045417_result.json",
     "occurrence": 1,
-    "bytes": 961,
-    "sha256": "6b25a84f087c349ec1445355bc3085a41d301396ee766b42c506f73fb77c06f9"
+    "bytes": 960,
+    "sha256": "e43ab2d6a61840c645f4fbb3ef9ae812f8f890878586030c2cb9cf0ba9ae9117"
   },
   "statistics": {
     "messages": 1,

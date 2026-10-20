@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_exp-005-hgrn-chain_20260522T162706_result.json",
     "occurrence": 1,
-    "bytes": 326,
-    "sha256": "57f5b33d37c4ea24f924e7c3c087c92ca2075904030de8e1232d4932afe44138"
+    "bytes": 325,
+    "sha256": "8b69014ecb0162205454709b6bc41adf0091bad23995c98eaa443b4cd4cbf438"
   },
   "statistics": {
     "messages": 1,

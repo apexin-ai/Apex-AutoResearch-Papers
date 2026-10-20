@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_e4-pythia-restart_20260522T102601_result.json",
     "occurrence": 1,
-    "bytes": 2349593,
-    "sha256": "0acf1ac395200c9d5a748329dd365e93300e1f893057e2af4b81f4b25179f2e5"
+    "bytes": 2349592,
+    "sha256": "567b203da25d657252d4c6fde515606300d34afb1538c23dbd5985dbb3fa78bb"
   },
   "statistics": {
     "messages": 1,

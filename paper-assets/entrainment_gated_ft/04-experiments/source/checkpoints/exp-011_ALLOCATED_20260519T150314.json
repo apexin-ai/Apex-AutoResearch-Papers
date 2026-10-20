@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-011",
+  "project": "entrainment_gated_ft",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:12:29.428Z",
+    "updated_at": "2026-05-19T15:03:14.764Z",
+    "hypothesis": "Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction",
+    "parent": "exp-001"
+  },
+  "timestamp": "2026-05-19T15:03:14.787108+00:00",
+  "trigger": "update_registry"
+}

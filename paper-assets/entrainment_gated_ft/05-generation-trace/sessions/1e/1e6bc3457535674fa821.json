@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_xstorycloze-taxonomy-fig2_20260519T183036_result.json",
     "occurrence": 1,
-    "bytes": 335,
-    "sha256": "de035ee2696144384616dccb43e4ae8350961c44e3266321c8a2152a2a4b8bbd"
+    "bytes": 334,
+    "sha256": "7e893774b7d6b916eed4fed3c89db821fb4aa0a785755d0512ff39113069a268"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_budget_sweep_20260514T010123_result.json",
     "occurrence": 1,
-    "bytes": 744,
-    "sha256": "62f2bd7320574923dd59f6aaa5977142ab5215875a3de8b46f2b6b57a58820a3"
+    "bytes": 743,
+    "sha256": "70461ebb5f066a07fd111f2d742338f444ec311ef2d502764b2a3ed08b927079"
   },
   "statistics": {
     "messages": 1,

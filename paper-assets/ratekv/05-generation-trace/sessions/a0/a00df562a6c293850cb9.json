@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_hires_mckp_reeval_20260514T064307_result.json",
     "occurrence": 1,
-    "bytes": 882,
-    "sha256": "59fe832469353a2d39ef67b13464089d7d164db41231b9de2b9fbf86bece4055"
+    "bytes": 881,
+    "sha256": "721ada3bcd6fd7a0347fe99ddcabe9cddb96602c3de80c822be78daa82635323"
   },
   "statistics": {
     "messages": 1,

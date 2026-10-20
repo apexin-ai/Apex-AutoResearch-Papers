@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_verify_t1t5_formula_all_models_20260515T144250_result.json",
     "occurrence": 1,
-    "bytes": 2070,
-    "sha256": "59529c5b39f30eb7211c409c4042b78df36a467472602a355bba49b79a0b46ea"
+    "bytes": 2069,
+    "sha256": "52505fa96641aac7ffbf9e9944ef584a4ff24317f7fc5ab1a08a08ad140aa672"
   },
   "statistics": {
     "messages": 1,

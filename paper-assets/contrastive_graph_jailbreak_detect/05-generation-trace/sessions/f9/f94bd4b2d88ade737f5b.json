@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f94bd4b2d88ade737f5b",
+  "project": "contrastive_graph_jailbreak_detect",
+  "kind": "result",
+  "title": "research benign data sources",
+  "task_key": "worker_research_benign-data-sources_20260517T055130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_benign-data-sources_20260517T055130_result.json",
+    "occurrence": 1,
+    "bytes": 1431,
+    "sha256": "d0b10990a5d2a928be620aff2831b10f3399c9250bffb94e031277d91f87cde3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报结果：\n\n---\n\n## 1. Benign Traces 各 Repo 结论\n\n| Repo | 结论 |\n|------|------|\n| **ToolBench** | **有**, 126K benign traces, 完整 tool_name+params+result, Apache-2.0 |\n| **SHADE-Arena** | **有**, 但公开量少 (5/17 task pairs), 需申请完整版 |\n| **AgentBench** | **无预录 traces**, 仅 task definitions, 需自行运行生成 |\n| **Agent-SafetyBench** | **无**, 仅环境/工具定义, 无执行 traces |\n| **STAC** | **无 benign**, 483 条全部是攻击 traces |\n\n## 2. 推荐 Benign 数据获取方案\n\n**首选: ToolBench** — 126K 条 benign API call traces, 格式 `Action(tool_name) + Action_Input(params) + Observation(result)` 几乎直接映射到目标格式，Apache-2.0 可自由使用。\n\n**备选 (同分布合成)**: 用 STAC 的 4 个 SHADE-Arena 环境定义给 agent 正常任务，录制 benign traces，确保与攻击数据同分布。\n\n## 3. STAC Failure Mode 分布\n\n10 类 failure mode 分布均匀 (42-55/类)，总计 483 样本。80.7% 来自 SHADE-Arena 4 大环境 (spam_filter_updating 103, travel 99, workspace 98, banking 90)。\n\n## 4. STAC Tool Chain 统计\n\n- **256 个 unique tools**\n- 链长: min=1, max=11, mean=2.62, median=3.0\n- **84.7% 攻击链为 2-3 步** — 图规模小，需侧重节点属性编码而非拓扑复杂度\n- Top tools: search_files_by_filename(117), send_email(99), get_file_by_id(42)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-benign-data-sources.md"
+}

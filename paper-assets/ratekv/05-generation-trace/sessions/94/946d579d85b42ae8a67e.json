@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_llama_multi_seed_ppl_20260516T033727_result.json",
     "occurrence": 1,
-    "bytes": 409,
-    "sha256": "4b35c1414f362f4fb4e1bbb2c31abe8e2f0a4701a68b5a0a41367e586e97c74c"
+    "bytes": 408,
+    "sha256": "a94f0bdb24279435668f8ba989b0e655de3edce7f58371d34bd897f8d2e1441d"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,28 @@
+{
+  "exp_id": "llama_full_pipeline",
+  "project": "ratekv",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T01:22:48.218Z",
+    "updated_at": "2026-05-14T01:34:14.070Z",
+    "spec": {
+      "hypothesis": "Llama-3.1-8B full pipeline replication: profiling (256 heads × {2,4,8}-bit) + constrained MCKP + PPL eval. 验证跨架构泛化性 (GQA 4:1 vs Qwen 7:1)。Pass: MCKP PPL < uniform 4-bit by ≥0.5, budget=0.25.",
+      "plan_id": "plan_002",
+      "claim": [
+        1,
+        2
+      ],
+      "model_name": "Llama-3.1-8B",
+      "data_path": "/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B/",
+      "seed": 0,
+      "command": "CUDA_VISIBLE_DEVICES=0 python run_llama_pipeline.py",
+      "server": "westd-37397",
+      "data_count": 256
+    }
+  },
+  "timestamp": "2026-05-14T01:34:14.103738+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_check_gpu_status_and_phi3_20260516T023611_result.json",
     "occurrence": 1,
-    "bytes": 1529,
-    "sha256": "22166b215f414b84f365dd49fd42fbd83150e7bd5250a923c8bfd55fcf1975fa"
+    "bytes": 1528,
+    "sha256": "d7804b51cf2a3e48020a18da6a58af75f40c7b7ba45df2efc7e25aa5f9071114"
   },
   "statistics": {
     "messages": 1,

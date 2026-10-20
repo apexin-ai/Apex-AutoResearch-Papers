@@ -1,0 +1,20 @@
+{
+  "exp_id": "w2_unconstrained_v2",
+  "project": "ratekv",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T05:47:21.242Z",
+    "updated_at": "2026-05-15T05:54:10.310Z",
+    "spec": {
+      "hypothesis": "Unconstrained greedy/MCKP on full {2,4,8,16} profiles evaluated on WikiText-2 test set will show catastrophic PPL for Spread models (Qwen) but not for Flat/Spike models, confirming cardinality constraint necessity",
+      "description": "W2 v2: unconstrained baselines with merged full {2,4,8,16} profiles + WikiText-2 test set eval for Yi-1.5/Llama/Mistral/Gemma-2",
+      "parent": "w2_unconstrained_baselines",
+      "plan_id": "w2"
+    }
+  },
+  "timestamp": "2026-05-15T05:54:10.455620+00:00",
+  "trigger": "update_registry"
+}

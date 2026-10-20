@@ -1,0 +1,799 @@
+tier: worst
+narrative_guidance: 'Abandon convergence as headline. Reframe paper around the robust
+  finding that survives all checks: per-example divergence (Jaccard <0.10) is architecture-intrinsic
+  and persists regardless of aggregate convergence trends. New title direction: ''Aggregate
+  Metrics Hide Architecture-Specific Behavior in Hybrid Language Models.'' Lead claim
+  becomes: hybrid architectures that look identical on benchmarks are solving fundamentally
+  different subsets of examples — standard evaluation is blind to this. Convergence
+  (when it exists) is demoted to a secondary observation. Practical implication reframed:
+  architecture selection matters even when leaderboard scores converge, because failure
+  modes don''t overlap → ensemble/routing potential. Trade-off: weaker theoretical
+  story, but more defensible claims.
+
+  '
+imagined_experiments:
+- name: Multi-benchmark per-example analysis (task-specificity validation)
+  plan_id: exp-002
+  description: 'Re-run lm-eval with --log_samples on 1.3B models for HellaSwag, ARC-Easy,
+    ARC-Challenge. Collect per-example correctness vectors across architectures and
+    attention ratios. Compute pairwise Jaccard on helped/hurt sets; test whether per-example
+    convergence is absent on non-LAMBADA benchmarks.
+
+    '
+  expected_results:
+    hellaswag_jaccard_mean: 0.08
+    hellaswag_jaccard_std: 0.03
+    arc_easy_jaccard_mean: 0.11
+    arc_challenge_jaccard_mean: 0.13
+    hellaswag_per_example_convergence_rho: -0.15
+    hellaswag_per_example_convergence_p: 0.62
+    arc_easy_per_example_convergence_rho: -0.4
+    arc_easy_per_example_convergence_p: 0.35
+    winogrande_per_example_convergence_rho: -0.2
+    winogrande_per_example_convergence_p: 0.55
+    n_benchmarks_with_per_example_convergence: 0
+    arc_easy_aggregate_convergence_suggestive: true
+    arc_easy_per_example_mechanism_matches_lambada: false
+  result_rationale: 'In the worst tier, per-example analysis on HellaSwag and WinoGrande
+    reveals NO convergence signal at sample level either — confirming task-specificity
+    holds. However, ARC-Easy shows a weak but non-trivial per-example signal (rho=-0.40,
+    p=0.35) that partially mirrors LAMBADA''s pattern, threatening the clean "retrieval-specific"
+    story. The effect is too weak to be significant but too present to ignore, collapsing
+    the task-specificity claim into a muddier "convergence is generic but weak everywhere
+    except LAMBADA where GDN amplifies it" narrative. Jaccard values on HellaSwag
+    (~0.08) confirm per-example divergence generalizes across benchmarks — this is
+    the one robust finding. ARC tasks show slightly higher Jaccard (0.11-0.13), suggesting
+    reasoning tasks have marginally more overlap in architecture behavior but still
+    fundamentally low. The critical implication: convergence is NOT cleanly retrieval-specific
+    (undermining Claim 1''s dose-response framing), but per-example divergence IS
+    universal (supporting the reframed narrative).
+
+    '
+  tables:
+  - title: Per-example convergence metrics across benchmarks (1.3B)
+    columns:
+    - Benchmark
+    - Aggregate ρ (std vs attn)
+    - Per-example ρ
+    - Per-example p
+    - Mean Jaccard
+    - Interpretation
+    rows:
+    - - LAMBADA
+      - '-1.00'
+      - '-0.90'
+      - '0.017'
+      - '0.07'
+      - Convergent (but GDN-driven)
+    - - ARC-Easy
+      - '-0.70'
+      - '-0.40'
+      - '0.350'
+      - '0.11'
+      - Weak signal, non-significant
+    - - ARC-Challenge
+      - '-0.30'
+      - '-0.10'
+      - '0.780'
+      - '0.13'
+      - No convergence
+    - - HellaSwag
+      - '0.30'
+      - '-0.15'
+      - '0.620'
+      - '0.08'
+      - No convergence
+    - - WinoGrande
+      - '0.10'
+      - '-0.20'
+      - '0.550'
+      - '0.09'
+      - No convergence
+  - title: Pairwise Jaccard similarity on helped sets (1.3B, h3-1 config)
+    columns:
+    - Benchmark
+    - GDN-RetNet
+    - GDN-HGRN2
+    - RetNet-HGRN2
+    - Mean
+    rows:
+    - - LAMBADA
+      - '0.06'
+      - '0.08'
+      - '0.07'
+      - '0.07'
+    - - ARC-Easy
+      - '0.10'
+      - '0.12'
+      - '0.11'
+      - '0.11'
+    - - ARC-Challenge
+      - '0.11'
+      - '0.14'
+      - '0.13'
+      - '0.13'
+    - - HellaSwag
+      - '0.07'
+      - '0.09'
+      - '0.08'
+      - '0.08'
+    - - WinoGrande
+      - '0.08'
+      - '0.10'
+      - '0.09'
+      - '0.09'
+  figures_description:
+  - Heatmap of Jaccard similarity across all benchmark × architecture pairs. Uniformly
+    cold (blue) across all benchmarks, demonstrating that per-example divergence is
+    benchmark-agnostic. LAMBADA and HellaSwag nearly identical in Jaccard despite
+    opposite aggregate convergence trends.
+  - 'Scatter: aggregate convergence ρ vs per-example convergence ρ per benchmark.
+    No clean linear relationship; ARC-Easy is an outlier with moderate per-example
+    signal despite aggregate suggestiveness, breaking the expected dose-response pattern.'
+  analysis: 'The ARC-Easy per-example signal (ρ=-0.40) is the worst-case complication.
+    It''s not significant (p=0.35) but it''s not zero either. A reviewer can argue:
+    "convergence exists weakly everywhere, LAMBADA just happens to cross significance
+    because GDN''s anomalous behavior inflates the signal." This undermines the retrieval-specificity
+    framing. However, the universal low Jaccard (all <0.15) is the paper''s salvation
+    — it doesn''t depend on convergence at all. The reframe: "regardless of whether
+    architectures converge in aggregate, they solve different examples" is supported
+    by every benchmark. Dose-response narrative for convergence strength is dead;
+    replace with: "per-example divergence is the invariant, convergence is the variable."
+
+    '
+- name: Helped/hurt sample characterization — Phase 2 (perplexity + topic)
+  plan_id: exp-003
+  description: 'Extend Phase 1 surface feature analysis with deeper features: (a)
+    perplexity of target token under pure recurrent baseline (no attention), (b) topic/domain
+    classification of LAMBADA contexts using a lightweight classifier or embedding
+    clustering. Test whether these features differentiate helped vs hurt samples within
+    and across architectures.
+
+    '
+  expected_results:
+    perplexity_gdn_helped_vs_hurt_p: 0.18
+    perplexity_hgrn2_helped_vs_hurt_p: 0.09
+    perplexity_retnet_helped_vs_hurt_p: 0.31
+    perplexity_cross_arch_interaction_p: 0.42
+    topic_gdn_chi2_p: 0.35
+    topic_hgrn2_chi2_p: 0.22
+    topic_retnet_chi2_p: 0.47
+    topic_cross_arch_difference_p: 0.61
+    any_feature_significant_p_lt_01: false
+    n_features_marginal_p_lt_05: 1
+    best_single_feature_auc: 0.54
+  result_rationale: 'In the worst tier, ALL Phase 2 features are non-significant.
+    Perplexity under baseline shows a marginal trend for HGRN2 (p=0.09) — helped samples
+    tend to have slightly higher baseline perplexity, suggesting attention helps on
+    "harder" items — but the effect doesn''t replicate across GDN (p=0.18) or RetNet
+    (p=0.31), and the cross-architecture interaction is nowhere near significant (p=0.42).
+    Topic/domain analysis reveals no systematic pattern at all (all p>0.2). The best
+    single-feature AUC for predicting helped/hurt is 0.54, barely above chance. This
+    means we have ZERO mechanistic toehold: we cannot explain what makes a sample
+    helped vs hurt by any measurable property. The architecture-specific effect is
+    real (Jaccard proves it) but opaque. This is the worst case for Concern C — no
+    causal mechanism is articulable. The reframe must embrace this opacity: "the effect
+    is detectable but not yet explainable, which itself is a finding about the limits
+    of current interpretability."
+
+    '
+  tables:
+  - title: 'Phase 2 feature analysis: helped vs hurt samples (LAMBADA, 1.3B h3-1)'
+    columns:
+    - Feature
+    - GDN p-value
+    - HGRN2 p-value
+    - RetNet p-value
+    - Cross-arch interaction p
+    - Best AUC
+    rows:
+    - - Baseline perplexity
+      - '0.18'
+      - '0.09'
+      - '0.31'
+      - '0.42'
+      - '0.54'
+    - - Topic (fiction/non-fiction)
+      - '0.35'
+      - '0.22'
+      - '0.47'
+      - '0.61'
+      - '0.51'
+    - - Topic (10-cluster)
+      - '0.41'
+      - '0.29'
+      - '0.53'
+      - '0.58'
+      - '0.52'
+    - - Token frequency (Phase 1)
+      - '>0.2'
+      - '>0.2'
+      - '>0.2'
+      - '>0.5'
+      - '0.51'
+    - - Context length (Phase 1)
+      - '>0.2'
+      - '>0.2'
+      - '0.012'
+      - '>0.5'
+      - '0.52'
+  - title: Combined feature model (logistic regression, helped vs hurt)
+    columns:
+    - Architecture
+    - All features AUC
+    - 95% CI
+    - Permutation baseline AUC
+    rows:
+    - - GDN
+      - '0.53'
+      - '[0.49, 0.57]'
+      - '0.50'
+    - - HGRN2
+      - '0.55'
+      - '[0.51, 0.59]'
+      - '0.50'
+    - - RetNet
+      - '0.52'
+      - '[0.48, 0.56]'
+      - '0.50'
+  figures_description:
+  - Violin plots of baseline perplexity for helped vs hurt samples, split by architecture.
+    Distributions almost entirely overlapping. HGRN2 shows a slight rightward shift
+    for helped samples but the overlap is >90%.
+  - ROC curves for combined feature model per architecture. All curves hug the diagonal,
+    with AUCs in [0.52, 0.55]. Visual confirmation that no accessible feature set
+    predicts helped/hurt status.
+  analysis: 'Complete mechanistic failure. Six features tested across two phases,
+    none reaches significance with cross-architecture consistency. The HGRN2 perplexity
+    trend (p=0.09) is tantalizing but unreliable — it doesn''t survive multiple comparison
+    correction and doesn''t generalize to the other architectures. The combined model
+    AUC of 0.53-0.55 means that even throwing all features together, we predict helped/hurt
+    status barely better than a coin flip. This is simultaneously the worst and most
+    interesting outcome: the architecture-specific effect is NOT driven by any obvious
+    data property. For the reframed paper, this becomes: "standard sample features
+    cannot explain which examples each architecture handles differently, suggesting
+    the divergence operates at a representational level not captured by surface or
+    moderate-depth features."
+
+    '
+- name: Attention weight extraction and visualization
+  plan_id: exp-004
+  description: 'Extract attention weight matrices from h3-1 hybrid models for all
+    3 architectures on LAMBADA samples. Analyze: position-level attention entropy,
+    correlation between attention focus and helped/hurt identity, cross-architecture
+    attention pattern similarity (CKA or cosine).
+
+    '
+  expected_results:
+    attention_entropy_helped_vs_hurt_correlation_gdn: 0.07
+    attention_entropy_helped_vs_hurt_correlation_hgrn2: 0.12
+    attention_entropy_helped_vs_hurt_correlation_retnet: 0.04
+    cross_arch_attention_cka_gdn_retnet: 0.31
+    cross_arch_attention_cka_gdn_hgrn2: 0.28
+    cross_arch_attention_cka_retnet_hgrn2: 0.35
+    attention_focus_position_correlation_with_effect: 0.09
+    attention_pattern_predicts_helped_auc: 0.56
+    interpretable_pattern_found: false
+  result_rationale: 'In the worst tier, attention patterns show low correlation with
+    helped/hurt identity (r<0.15 for all architectures). Attention entropy — a measure
+    of how focused vs diffuse the attention is — differs only trivially between helped
+    and hurt samples. Cross-architecture CKA similarity is moderate (~0.30), meaning
+    attention layers are doing somewhat similar things structurally across architectures,
+    but this structural similarity does NOT predict the divergent per-example outcomes.
+    The attention pattern AUC for predicting helped/hurt (0.56) is only marginally
+    better than the feature-based model and far from interpretable. No clear "smoking
+    gun" pattern emerges (e.g., no finding like "GDN attends to nearby context while
+    RetNet attends to distant context on helped samples"). This makes Concern C (no
+    causal mechanism) essentially unanswerable within the scope of this paper. The
+    attention layer is doing something architecture-specific, but what it''s doing
+    doesn''t cleanly map onto which examples benefit.
+
+    '
+  tables:
+  - title: Attention pattern analysis (LAMBADA, 1.3B h3-1)
+    columns:
+    - Metric
+    - GDN
+    - HGRN2
+    - RetNet
+    rows:
+    - - Mean attention entropy (helped)
+      - '2.31'
+      - '2.45'
+      - '2.28'
+    - - Mean attention entropy (hurt)
+      - '2.34'
+      - '2.39'
+      - '2.30'
+    - - Entropy correlation with effect size
+      - '0.07'
+      - '0.12'
+      - '0.04'
+    - - '% attention on last 10 tokens (helped)'
+      - '0.34'
+      - '0.29'
+      - '0.36'
+    - - '% attention on last 10 tokens (hurt)'
+      - '0.33'
+      - '0.30'
+      - '0.35'
+    - - Attention predicts helped AUC
+      - '0.54'
+      - '0.57'
+      - '0.53'
+  - title: Cross-architecture attention similarity (CKA, h3-1 layer)
+    columns:
+    - Pair
+    - CKA (all samples)
+    - CKA (helped subset)
+    - CKA (hurt subset)
+    rows:
+    - - GDN–RetNet
+      - '0.31'
+      - '0.29'
+      - '0.33'
+    - - GDN–HGRN2
+      - '0.28'
+      - '0.26'
+      - '0.30'
+    - - RetNet–HGRN2
+      - '0.35'
+      - '0.33'
+      - '0.37'
+  figures_description:
+  - Attention heatmaps for 3 representative LAMBADA examples (one helped by all, one
+    hurt by all, one divergent). No visually distinguishable pattern difference. Attention
+    distributions look qualitatively similar across architectures even on divergent
+    samples.
+  - 'Scatter plot: per-sample attention entropy vs effect size (log-prob change),
+    colored by architecture. Cloud is roughly circular with no discernible trend.
+    Correlation lines nearly flat (all |r|<0.15).'
+  analysis: 'Attention analysis provides no mechanistic explanation. The moderate
+    CKA values (~0.30) are actually a nuisance finding — attention is somewhat similar
+    across architectures, which means the divergent per-example outcomes must arise
+    from the INTERACTION between attention and the different recurrence mechanisms,
+    not from attention alone. This is plausible but untestable within our experimental
+    scope — we''d need to ablate the recurrence mechanism while holding attention
+    fixed, which requires retraining. For the reframed paper, this section becomes:
+    "attention patterns alone do not explain architecture-specific effects, suggesting
+    the mechanism operates through attention-recurrence interaction" — a honest null
+    result that points to future work. The figures can still appear in the paper as
+    evidence of thoroughness.
+
+    '
+- name: Architecture expansion check
+  plan_id: exp-005
+  description: 'Search Wang et al. model zoo and public repositories for additional
+    hybrid architectures (Mamba-2 hybrids, RWKV hybrids, Griffin, etc.) compatible
+    with lm-eval. If found, evaluate on LAMBADA to test convergence generalization.
+
+    '
+  expected_results:
+    additional_architectures_found: 0
+    additional_architectures_compatible: 0
+    n_architectures_tested: 3
+    wang_et_al_only_gdn_retnet_hgrn2: true
+    public_hybrid_checkpoints_available: false
+  result_rationale: 'In the worst tier, no additional architectures are available.
+    Wang et al.''s model zoo contains only GDN, RetNet, and HGRN2 — confirmed by their
+    paper and repository. Public Mamba-2 hybrid checkpoints exist but were trained
+    with incompatible tokenizers or training setups, making fair comparison impossible
+    without retraining (out of GPU budget). Griffin checkpoints are not publicly released.
+    RWKV-6 hybrids don''t exist in the literature. The n=3 limitation is hard and
+    cannot be resolved before the ARR deadline. This is a genuine limitation that
+    reviewers will flag, and the paper must address it directly. Mitigation: emphasize
+    that the three architectures represent three DISTINCT recurrence mechanisms (gated
+    delta rule, linear attention + exponential decay, hierarchical gated recurrence),
+    so the finding spans mechanism diversity even if not architecture count.
+
+    '
+  tables:
+  - title: Architecture expansion search results
+    columns:
+    - Architecture
+    - Source
+    - Hybrid checkpoints available
+    - Compatible
+    - Reason if incompatible
+    rows:
+    - - Mamba-2 hybrid
+      - Waleffe et al. 2024
+      - Yes (Zamba)
+      - 'No'
+      - Different tokenizer, training data, no attention-ratio sweep
+    - - Griffin
+      - De et al. 2024
+      - 'No'
+      - N/A
+      - Checkpoints not public
+    - - RWKV-6 hybrid
+      - N/A
+      - 'No'
+      - N/A
+      - No hybrid variant exists
+    - - Based (linear attention)
+      - Arora et al. 2024
+      - Partial
+      - 'No'
+      - No systematic attention-ratio sweep
+    - - Hawk/Griffin (RecurrentGemma)
+      - Google 2024
+      - Yes (2B)
+      - 'No'
+      - Single scale, single config, no attention sweep
+  figures_description: []
+  analysis: 'Architecture expansion is impossible within constraints. The paper is
+    locked at n=3. The reframed narrative partially mitigates this: if the headline
+    claim is "per-example divergence exists" rather than "convergence is universal,"
+    then n=3 is sufficient to demonstrate the phenomenon. The generalization question
+    ("does this hold for all hybrid architectures?") becomes explicit future work.
+    Honest framing: "We demonstrate the phenomenon across three architecturally distinct
+    recurrence mechanisms; whether it extends to all hybrid architectures is an open
+    question requiring controlled training of additional architecture families."
+
+    '
+- name: 340M rebound mechanism analysis
+  plan_id: exp-007
+  description: 'Deep analysis of 340M non-monotonic rebound at attn=8. Per-example
+    comparison with 1.3B at same attention ratio. Attempt to disentangle scale (340M
+    vs 1.3B) from training tokens (20B vs 100B) as explanatory variables for the rebound.
+
+    '
+  expected_results:
+    rebound_explained: false
+    scale_vs_tokens_disentangleable: false
+    per_example_overlap_340m_1_3b_jaccard: 0.12
+    rebound_samples_characterizable: false
+    rebound_unique_to_gdn: true
+    retnet_hgrn2_340m_trajectory: flat
+    training_tokens_340m: 20B
+    training_tokens_1_3b: 100B
+    tokens_per_param_340m: 58.8
+    tokens_per_param_1_3b: 76.9
+  result_rationale: 'In the worst tier, the 340M rebound is unexplained and unexplainable
+    with available data. The fundamental confound is that 340M models were trained
+    on 20B tokens while 1.3B models saw 100B tokens — a 5x difference. Tokens-per-parameter
+    ratio also differs (58.8 vs 76.9), meaning 340M models are relatively undertrained.
+    The rebound at high attention ratios could be: (a) insufficient capacity at 340M
+    to benefit from many attention layers, (b) undertrained attention layers at 340M
+    due to fewer tokens, (c) a genuine scale threshold effect. These hypotheses are
+    indistinguishable without training 340M models on 100B tokens or 1.3B models on
+    20B tokens, neither of which is feasible. Per-example comparison shows low overlap
+    between 340M and 1.3B rebound samples (Jaccard 0.12), and the rebound is most
+    pronounced for GDN, again raising the GDN-specific confound. RetNet and HGRN2
+    at 340M show essentially flat trajectories with no clear rebound, making the "rebound"
+    primarily a GDN phenomenon. The scale story collapses into: "we observe a difference
+    between 340M and 1.3B but cannot attribute it to scale, training compute, or their
+    interaction."
+
+    '
+  tables:
+  - title: 340M vs 1.3B trajectory comparison
+    columns:
+    - Architecture
+    - 340M trajectory
+    - 1.3B trajectory
+    - 340M rebound at h=8
+    - Confound
+    rows:
+    - - GDN
+      - Non-monotonic (rebound at h=8)
+      - Monotonic convergence
+      - Yes (std increases 40%)
+      - D004 confound + undertrained
+    - - RetNet
+      - Flat (no clear trend)
+      - Monotonic convergence
+      - 'No'
+      - 20B tokens may be insufficient
+    - - HGRN2
+      - Flat (slight improvement)
+      - Monotonic convergence
+      - 'No'
+      - 20B tokens may be insufficient
+  - title: Training configuration confound
+    columns:
+    - Scale
+    - Params
+    - Training tokens
+    - Tokens/param
+    - Chinchilla ratio
+    rows:
+    - - 340M
+      - 340M
+      - 20B
+      - '58.8'
+      - Under-trained (~0.3x Chinchilla)
+    - - 1.3B
+      - 1.3B
+      - 100B
+      - '76.9'
+      - Under-trained (~0.4x Chinchilla)
+  figures_description:
+  - Cross-architecture std vs attention ratio, 340M and 1.3B overlaid. 1.3B shows
+    clean monotonic decrease. 340M shows flat-to-noisy trajectory. GDN-specific rebound
+    visible at h=8 for 340M but not for other architectures. Annotation marks the
+    training token confound.
+  - Venn-style diagram of rebound samples at 340M (h=8 vs h=3) compared to 1.3B divergence
+    samples. Overlap is minimal (Jaccard 0.12), suggesting different mechanisms at
+    different scales.
+  analysis: 'Claim 2 (scale-dependent convergence) is effectively dead as a standalone
+    claim. The binary contrast is real — 340M doesn''t converge, 1.3B does — but the
+    attribution is hopelessly confounded. With the worst tier reframe, this becomes
+    a reported observation rather than a claim: "convergence was observed at 1.3B
+    but not at 340M; however, these scales differ in both parameter count and training
+    compute, preventing causal attribution." In the reframed paper focused on per-example
+    divergence, scale becomes a secondary observation in a limitations paragraph rather
+    than a headline claim. The GDN-specificity of the rebound further erodes confidence
+    that it reflects a general scale phenomenon.
+
+    '
+- name: Statistical robustness framework
+  plan_id: exp-008
+  description: 'Bootstrap CIs for convergence metrics. Multi-comparison correction.
+    Sensitivity analysis with GDN excluded. Effect sizes.
+
+    '
+  expected_results:
+    bootstrap_ci_std_reduction_full:
+      point: 0.79
+      ci_lower: 0.61
+      ci_upper: 0.91
+    bootstrap_ci_std_reduction_gdn_excluded:
+      point: 0.18
+      ci_lower: -0.08
+      ci_upper: 0.41
+    gdn_excluded_rho: -0.6
+    gdn_excluded_p: 0.285
+    gdn_excluded_significant: false
+    retnet_hgrn2_std_trajectory: non-monotonic
+    retnet_hgrn2_std_at_h0: 0.021
+    retnet_hgrn2_std_at_h3: 0.019
+    retnet_hgrn2_std_at_h6: 0.018
+    retnet_hgrn2_std_at_h12: 0.02
+    retnet_hgrn2_std_at_h24: 0.017
+    bonferroni_corrected_p_lambada: 0.048
+    bonferroni_corrected_p_lambada_6tests: 0.288
+    fdr_corrected_significant_benchmarks: 0
+    cohens_d_std_reduction_full: 1.82
+    cohens_d_std_reduction_gdn_excluded: 0.34
+  result_rationale: 'This is the core worst-tier finding. When GDN is excluded, the
+    79% std reduction collapses to 18% — and the bootstrap 95% CI crosses zero ([-0.08,
+    0.41]). The RetNet-HGRN2 pair alone shows a flat-to-slightly-decreasing std trajectory
+    that is non-monotonic (slight increase at h=12 before decreasing again at h=24).
+    The Spearman ρ drops from -1.0 to -0.60 (p=0.285), losing significance entirely.
+    This means the convergence finding is substantially driven by GDN''s anomalous
+    behavior — either the D004 confound or a GDN-specific architectural artifact.
+    Bonferroni correction across 6 benchmarks kills even LAMBADA''s significance (0.048
+    × 6 = 0.288). FDR correction yields zero significant benchmarks. The convergence
+    claim, as originally stated, does not survive robustness checks. Cohen''s d drops
+    from 1.82 (large, with GDN) to 0.34 (small, without GDN), confirming the effect
+    is GDN-driven. The paper CANNOT lead with convergence. The reframe to per-example
+    divergence is not optional — it''s necessary.
+
+    '
+  tables:
+  - title: 'Sensitivity analysis: GDN inclusion/exclusion on LAMBADA convergence'
+    columns:
+    - Metric
+    - All 3 architectures
+    - GDN excluded (RetNet + HGRN2 only)
+    rows:
+    - - Std reduction (%)
+      - 79%
+      - 18%
+    - - Bootstrap 95% CI
+      - '[0.61, 0.91]'
+      - '[-0.08, 0.41]'
+    - - Spearman ρ (std vs attn ratio)
+      - '-1.00'
+      - '-0.60'
+    - - p-value (two-tailed)
+      - '0.008'
+      - '0.285'
+    - - Cohen's d
+      - '1.82'
+      - '0.34'
+    - - Monotonic decrease?
+      - 'Yes'
+      - No (rebound at h=12)
+  - title: Multiple comparison correction across benchmarks
+    columns:
+    - Benchmark
+    - Raw p
+    - Bonferroni p (×6)
+    - FDR-adjusted p
+    - Significant at α=0.05
+    rows:
+    - - LAMBADA
+      - '0.008'
+      - '0.048'
+      - '0.048'
+      - Borderline / No
+    - - ARC-Easy
+      - '0.117'
+      - '0.702'
+      - '0.351'
+      - 'No'
+    - - MMLU
+      - '0.117'
+      - '0.702'
+      - '0.351'
+      - 'No'
+    - - HellaSwag
+      - '0.742'
+      - '1.000'
+      - '0.891'
+      - 'No'
+    - - ARC-Challenge
+      - '0.883'
+      - '1.000'
+      - '0.883'
+      - 'No'
+    - - WinoGrande
+      - '0.608'
+      - '1.000'
+      - '0.891'
+      - 'No'
+  - title: RetNet-HGRN2 cross-architecture std trajectory (LAMBADA, 1.3B)
+    columns:
+    - Attention layers
+    - RetNet acc
+    - HGRN2 acc
+    - Cross-arch std
+    - Δ from h=0
+    rows:
+    - - h=0
+      - '0.412'
+      - '0.391'
+      - '0.0148'
+      - —
+    - - h=3
+      - '0.428'
+      - '0.414'
+      - '0.0099'
+      - -33%
+    - - h=6
+      - '0.441'
+      - '0.422'
+      - '0.0134'
+      - -9%
+    - - h=12
+      - '0.455'
+      - '0.437'
+      - '0.0127'
+      - -14%
+    - - h=24
+      - '0.468'
+      - '0.456'
+      - '0.0085'
+      - -43%
+  figures_description:
+  - 'Bootstrap distribution of std reduction percentage, with and without GDN. Left
+    panel (all 3 archs): distribution centered at 79%, well above zero. Right panel
+    (GDN excluded): distribution centered at 18%, straddling zero. Dashed line at
+    zero shows CI overlap.'
+  - Cross-architecture std trajectory with GDN (solid, steep decline) and without
+    GDN (dashed, noisy flat-to-slight decline). Shaded bootstrap CIs. Visual shows
+    that convergence is dominated by GDN's trajectory pulling away from the other
+    two.
+  analysis: 'This is the experiment that forces the reframe. The convergence finding
+    does not survive the most basic robustness check — removing one of three architectures.
+    A reviewer who asks "is this just GDN being weird?" can point to this table and
+    say yes. The Bonferroni correction is also damaging: even LAMBADA barely survives
+    at 0.048, and a strict reviewer would reject it. The paper must be transparent
+    about this. In the reframed narrative, this analysis appears in Section 4 as:
+    "We initially observed strong aggregate convergence, but robustness analysis reveals
+    this is substantially driven by a single architecture (GDN). We therefore focus
+    on the more robust finding: per-example divergence, which persists regardless
+    of GDN''s inclusion." This honesty actually strengthens the paper — it shows rigorous
+    self-evaluation.
+
+    '
+- name: Convergence-divergence bridge analysis
+  plan_id: exp-010
+  description: 'Plot aggregate convergence alongside per-example divergence metrics
+    (Jaccard, net effect asymmetry) as function of attention ratio for LAMBADA. Test
+    whether convergence and divergence co-evolve.
+
+    '
+  expected_results:
+    convergence_divergence_correlation_rho: -0.3
+    convergence_divergence_correlation_p: 0.45
+    jaccard_trend_with_attention: stable
+    jaccard_at_h0: null
+    jaccard_at_h3: 0.08
+    jaccard_at_h6: 0.07
+    jaccard_at_h12: 0.09
+    jaccard_at_h24: 0.07
+    net_effect_asymmetry_stable: true
+    paradox_visualization_compelling: moderate
+    co_evolution_significant: false
+  result_rationale: 'In the worst tier, the convergence-divergence "co-evolution"
+    is not significant because the convergence side is broken (GDN-driven). Jaccard
+    remains stable across attention ratios (~0.07-0.09), meaning per-example divergence
+    is always present regardless of how much attention is added. This is actually
+    consistent with the reframed narrative but kills the "paradox" framing: there''s
+    no co-evolution because divergence is a constant, not a function of attention
+    ratio. The correlation between aggregate convergence (which is noisy without GDN)
+    and per-example Jaccard is weak (ρ=-0.30, p=0.45). The "paradox" becomes less
+    of a paradox and more of a simple observation: architectures always solve different
+    examples (Jaccard ~0.08 is intrinsic), and sometimes their aggregate scores happen
+    to converge (when GDN is included). The visualization can still be striking —
+    showing flat Jaccard against a converging (or not) std line — but the causal "more
+    attention = more paradox" story doesn''t hold.
+
+    '
+  tables:
+  - title: Convergence-divergence metrics by attention ratio (LAMBADA, 1.3B)
+    columns:
+    - Attention ratio (h/24)
+    - Cross-arch std (all 3)
+    - Cross-arch std (no GDN)
+    - Mean pairwise Jaccard
+    - Net effect asymmetry
+    rows:
+    - - 0/24 (h=0)
+      - '0.024'
+      - '0.015'
+      - —
+      - —
+    - - 3/24 (h=3)
+      - '0.018'
+      - '0.010'
+      - '0.08'
+      - '0.42'
+    - - 6/24 (h=6)
+      - '0.012'
+      - '0.013'
+      - '0.07'
+      - '0.45'
+    - - 12/24 (h=12)
+      - '0.008'
+      - '0.013'
+      - '0.09'
+      - '0.39'
+    - - 24/24 (h=24)
+      - '0.005'
+      - '0.009'
+      - '0.07'
+      - '0.44'
+  - title: Convergence-divergence correlation
+    columns:
+    - Metric pair
+    - Spearman ρ
+    - p-value
+    - Interpretation
+    rows:
+    - - Std (all 3) vs Jaccard
+      - '-0.30'
+      - '0.45'
+      - Not significant
+    - - Std (no GDN) vs Jaccard
+      - '-0.10'
+      - '0.82'
+      - No relationship
+    - - Std (all 3) vs net asymmetry
+      - '0.10'
+      - '0.87'
+      - No relationship
+  figures_description:
+  - 'Dual-axis plot: left y-axis shows cross-architecture std (declining with attention
+    for all-3, flat for no-GDN); right y-axis shows mean pairwise Jaccard (flat ~0.08
+    across all attention ratios). The visual ''paradox'' is present when GDN is included
+    but disappears without it. Both lines shown with and without GDN to make the point
+    explicit.'
+  - Per-example Sankey/alluvial diagram showing sample flow between helped/hurt categories
+    across attention ratios for each architecture. Demonstrates that individual sample
+    fates are stable — the same samples tend to be helped or hurt regardless of attention
+    ratio, explaining the flat Jaccard.
+  analysis: 'The paradox framing survives only as a visual observation when GDN is
+    included, not as a statistically supported co-evolution. In the reframed paper,
+    this becomes the key Figure 1: "Per-example divergence is architecture-intrinsic
+    and attention-invariant." The flat Jaccard line is actually the strongest visual
+    argument for the reframed paper — it shows that no amount of attention makes architectures
+    agree on which examples to solve. This is more powerful than a co-evolution story
+    because it''s simpler and more robust. The "paradox" terminology should be softened
+    to "disconnect" or "dissociation" — aggregate metrics move while per-example identity
+    doesn''t. The Sankey diagram showing stable sample fates across attention ratios
+    could be a compelling supplementary figure.'

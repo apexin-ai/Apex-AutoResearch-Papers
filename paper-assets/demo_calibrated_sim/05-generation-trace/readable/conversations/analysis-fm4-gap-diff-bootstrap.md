@@ -1,0 +1,1382 @@
+# analysis fm4 gap diff bootstrap
+
+**Why Calibration Fails: A Taxonomy of Failure Modes in Dialect-Aware LLM User Simulation** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 0
+- **Tool calls:** 22
+- **Original source:** `logs/chats/worker_analysis_fm4-gap-diff-bootstrap_20260513T155612.jsonl`
+- **Structured JSON:** [`8d2ec6376ba30017e37a.json`](../../sessions/8d/8d2ec6376ba30017e37a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+45 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-13T15:58:54.876313+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-13T15:58:54.876658+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-13T15:58:54.876862+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/democalib/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls /root/democalib/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-13T15:58:54.876997+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/democalib/results/hgate_dpo003_merged/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls /root/democalib/results/hgate_dpo003_merged/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-13T15:58:54.877153+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"aave_corpus_gen.log\\nbaseline_merged.json\\nbcp7b_multirun\\nbootstrap_ci_report.md\\nbootstrap_ci_results.json\\ndefault_prompt_comparison.log\\ndefault_prompt_test\\ndiag_base\\ndiag_merged\\ndpo_eval\\ndpo_eval_v2\\ndpo_eval_v3\\ndpo_train.log\\ndpo_train_v2.log\\ndpo_train_v3.log\\ndryrun_dpo_prep\\nexperiment.log\\nfull_experiment.log\\nfull_experiment_restart.log\\nfull_experiment_v3.log\\nfull_experiment_v4.log\\nhgate_dpo001\\nhgate_dpo003_merged\\nllama_bcp\\nmistral_bcp\\nmvp_results.json\\nquick_test.log\\nquick_test2.log\\nquick_test3.log\\nquick_test4.log\\nqwen14b_bcp\\ntool-calling-democalib-qwen-0.0_range_0-20_user-democalib-qwen-llm_0512193645.json\\ntool-calling-democalib-qwen-0.0_range_0-20_user-democalib-qwen-llm_0512204616.json\\ntool-calling-democalib-qwen-0.0_range_0-20_user-democalib-qwen-llm_0512210428.json\\ntool-calling-democalib-qwen-0.0_range_0-20_user-democalib-qwen-llm_0512212144.json\\ntool-calling-democalib-qwen-0.0_range_0-20_user-democalib-qwen-llm_0512213214.json\\ntool-calling-democalib-qwen-0.0_range_0-20_user-democalib-qwen-llm_0512220004.json\\ntool-calling-democalib-qwen-0.0_range_0-20_user-democalib-qwen-llm_0512221254.json\\ntool-calling-democalib-qwen-0.0_range_0-20_user-democalib-qwen-llm_0512223000.json\\ntool-calling-democalib-qwen-0.0_range_0-20_user-democalib-qwen-llm_0512225520.json\\ntool-calling-democalib-qwen-0.0_range_0-20_user-democalib-qwen-llm_0512230856.json\\ntool-calling-democalib-qwen-0.0_range_0-3_user-democalib-qwen-llm_0512191736.json\\ntool-calling-democalib-qwen-0.0_range_0-3_user-democalib-qwen-llm_0512191740.json\\ntool-calling-democalib-qwen-0.0_range_0-3_user-democalib-qwen-llm_0512191746.json\\ntool-calling-democalib-qwen-0.0_range_0-3_user-democalib-qwen-llm_0512192105.json\\ntool-calling-democalib-qwen-0.0_range_0-3_user-democalib-qwen-llm_0512192112.json\\ntool-calling-democalib-qwen-0.0_range_0-3_user-democalib-qwen-llm_0512192306.json\
+…[truncated 274 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-13T15:58:54.877309+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"aggregate_results.json\\ngroup_a.log\\ngroup_b.log\\nrun_1\\nrun_2\\nrun_3\\nrun_4\\nvllm_gpu2.log\\nvllm_gpu3.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-13T15:58:54.877442+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -100 /root/democalib/scripts/bootstrap_ci.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "head -100 /root/democalib/scripts/bootstrap_ci.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-13T15:58:54.877617+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Bootstrap 95% CI computation for DemoCalib paper.\\n\\nComputes per-task bootstrap CIs for 4 key comparisons:\\n  C1 (FM3 rebound):   overcorrected_pol - baseline_pol in DPO+BCP model\\n  C2 (FM4 reversal):  AAVE/Indian politeness gap direction in DPO+BCP vs Base BCP\\n  C3 (7B-vs-14B):     BCP completion difference across model scales\\n  C4 (H2 calibration): BCP politeness gap reduction (calibrated vs uncalibrated)\\n\\nInput:  Raw tau-bench trace files + mvp_results.json per experiment\\nOutput: results/bootstrap_ci_results.json, results/bootstrap_ci_report.md\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\nimport json, glob, os, sys\\nimport numpy as np\\nfrom pathlib import Path\\n\\nROOT = Path(__file__).resolve().parent.parent\\nsys.path.insert(0, str(ROOT))\\nfrom behavioral_fingerprint import BehavioralFingerprint, analyze_traces\\n\\nSEED = 42\\nN_BOOT = 10_000\\nCI_LEVEL = 0.95\\n\\nVARIANT_ORDER = [\\n    \\\"uncalibrated_baseline\\\", \\\"aave_target\\\", \\\"indian_english_target\\\",\\n    \\\"overcorrected\\\", \\\"single_dim_question\\\", \\\"single_dim_politeness\\\",\\n]\\n\\nBCP_TARGETS = {\\n    \\\"aave_target\\\": {\\\"politeness_rate\\\": 0.20},\\n    \\\"indian_english_target\\\": {\\\"politeness_rate\\\": 0.20},\\n    \\\"overcorrected\\\": {\\\"politeness_rate\\\": 0.10},\\n}\\n\\n\\n# ---------- per-task extraction ----------\\n\\ndef extract_per_task(trace_file: str) -> list[dict]:\\n    fp = BehavioralFingerprint()\\n    data = json.load(open(trace_file))\\n    tasks = []\\n    for task in data:\\n        traj = task.get(\\\"traj\\\", [])\\n        trace = [\\n            {\\\"role\\\": m[\\\"role\\\"], \\\"content\\\": m.get(\\\"content\\\", \\\"\\\")}\\n            for m in traj if m.get(\\\"role\\\") in (\\\"user\\\", \\\"assistant\\\")\\n        ]\\n        if not trace:\\n            continue\\n        result = fp.extract(trace)\\n
+…[truncated 1998 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-13T15:58:54.877811+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -80 /root/democalib/results/bootstrap_ci_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "head -80 /root/democalib/results/bootstrap_ci_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-13T15:58:54.877992+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"C1_fm3_rebound\\\": {\\n    \\\"point\\\": 0.07061555920856866,\\n    \\\"ci_lo\\\": -0.01743759876518689,\\n    \\\"ci_hi\\\": 0.15586182389280392,\\n    \\\"n_a\\\": 77,\\n    \\\"n_b\\\": 78,\\n    \\\"description\\\": \\\"overcorrected_pol - baseline_pol (DPO+BCP 7B)\\\",\\n    \\\"interpretation\\\": \\\"positive = overcorrected variant has higher politeness than baseline (rebound)\\\"\\n  },\\n  \\\"C1_per_run\\\": {\\n    \\\"run_1\\\": {\\n      \\\"point\\\": 0.09452526769851322,\\n      \\\"ci_lo\\\": -0.0626023037148039,\\n      \\\"ci_hi\\\": 0.24621719779367798,\\n      \\\"n_a\\\": 20,\\n      \\\"n_b\\\": 18\\n    },\\n    \\\"run_2\\\": {\\n      \\\"point\\\": 0.042291020736160534,\\n      \\\"ci_lo\\\": -0.14527181027119146,\\n      \\\"ci_hi\\\": 0.22590993647221616,\\n      \\\"n_a\\\": 20,\\n      \\\"n_b\\\": 20\\n    },\\n    \\\"run_3\\\": {\\n      \\\"point\\\": 0.04892185746352429,\\n      \\\"ci_lo\\\": -0.12196693121693115,\\n      \\\"ci_hi\\\": 0.21942135141093463,\\n      \\\"n_a\\\": 18,\\n      \\\"n_b\\\": 20\\n    },\\n    \\\"run_4\\\": {\\n      \\\"point\\\": 0.10350349890160093,\\n      \\\"ci_lo\\\": -0.06917600148707134,\\n      \\\"ci_hi\\\": 0.27749958972056477,\\n      \\\"n_a\\\": 19,\\n      \\\"n_b\\\": 20\\n    }\\n  },\\n  \\\"C2_fm4_reversal\\\": {\\n    \\\"base_bcp_aave_target_gap\\\": {\\n      \\\"point\\\": -0.09123611768348616,\\n      \\\"ci_lo\\\": -0.28311683966618173,\\n      \\\"ci_hi\\\": 0.10310017029753886,\\n      \\\"n_a\\\": 20,\\n      \\\"n_b\\\": 19,\\n      \\\"description\\\": \\\"aave_target_pol - baseline_pol (Base BCP 7B)\\\"\\n    },\\n    \\\"dpo_bcp_aave_target_gap\\\": {\\n      \\\"point\\\": 0.06395951961423807,\\n      \\\"ci_lo\\\": -0.028746008400047457,\\n      \\\"ci_hi\\\": 0.15297953138280113,\\n      \\\"n_a\\\": 78,\\n      \\\"n_b\\\": 78,\\n      \\\"description\\\": \\\"aave_target_pol - baseline_pol (DPO+BCP
+…[truncated 1091 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-13T15:58:54.878173+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -200 /root/democalib/scripts/bootstrap_ci.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "head -200 /root/democalib/scripts/bootstrap_ci.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-13T15:58:54.878397+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Bootstrap 95% CI computation for DemoCalib paper.\\n\\nComputes per-task bootstrap CIs for 4 key comparisons:\\n  C1 (FM3 rebound):   overcorrected_pol - baseline_pol in DPO+BCP model\\n  C2 (FM4 reversal):  AAVE/Indian politeness gap direction in DPO+BCP vs Base BCP\\n  C3 (7B-vs-14B):     BCP completion difference across model scales\\n  C4 (H2 calibration): BCP politeness gap reduction (calibrated vs uncalibrated)\\n\\nInput:  Raw tau-bench trace files + mvp_results.json per experiment\\nOutput: results/bootstrap_ci_results.json, results/bootstrap_ci_report.md\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\nimport json, glob, os, sys\\nimport numpy as np\\nfrom pathlib import Path\\n\\nROOT = Path(__file__).resolve().parent.parent\\nsys.path.insert(0, str(ROOT))\\nfrom behavioral_fingerprint import BehavioralFingerprint, analyze_traces\\n\\nSEED = 42\\nN_BOOT = 10_000\\nCI_LEVEL = 0.95\\n\\nVARIANT_ORDER = [\\n    \\\"uncalibrated_baseline\\\", \\\"aave_target\\\", \\\"indian_english_target\\\",\\n    \\\"overcorrected\\\", \\\"single_dim_question\\\", \\\"single_dim_politeness\\\",\\n]\\n\\nBCP_TARGETS = {\\n    \\\"aave_target\\\": {\\\"politeness_rate\\\": 0.20},\\n    \\\"indian_english_target\\\": {\\\"politeness_rate\\\": 0.20},\\n    \\\"overcorrected\\\": {\\\"politeness_rate\\\": 0.10},\\n}\\n\\n\\n# ---------- per-task extraction ----------\\n\\ndef extract_per_task(trace_file: str) -> list[dict]:\\n    fp = BehavioralFingerprint()\\n    data = json.load(open(trace_file))\\n    tasks = []\\n    for task in data:\\n        traj = task.get(\\\"traj\\\", [])\\n        trace = [\\n            {\\\"role\\\": m[\\\"role\\\"], \\\"content\\\": m.get(\\\"content\\\", \\\"\\\")}\\n            for m in traj if m.get(\\\"role\\\") in (\\\"user\\\", \\\"assistant\\\")\\n        ]\\n        if not trace:\\n            continue\\n        result = fp.extract(trace)\\n
+…[truncated 6467 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-13T15:58:54.878552+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/democalib/results/hgate_dpo003_merged/run_1/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls /root/democalib/results/hgate_dpo003_merged/run_1/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-13T15:58:54.878709+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"eval.log\\nmvp_results.json\\ntool-calling-democalib-dpo003-merged-0.0_range_0-20_user-democalib-dpo003-merged-llm_0513094523.json\\ntool-calling-democalib-dpo003-merged-0.0_range_0-20_user-democalib-dpo003-merged-llm_0513094603.json\\ntool-calling-democalib-dpo003-merged-0.0_range_0-20_user-democalib-dpo003-merged-llm_0513101230.json\\ntool-calling-democalib-dpo003-merged-0.0_range_0-20_user-democalib-dpo003-merged-llm_0513102049.json\\ntool-calling-democalib-dpo003-merged-0.0_range_0-20_user-democalib-dpo003-merged-llm_0513103309.json\\ntool-calling-democalib-dpo003-merged-0.0_range_0-20_user-democalib-dpo003-merged-llm_0513104335.json\\ntool-calling-democalib-dpo003-merged-0.0_range_0-20_user-democalib-dpo003-merged-llm_0513105056.json\\ntool-calling-democalib-dpo003-merged-0.0_range_0-20_user-democalib-dpo003-merged-llm_0513110723.json\\ntool-calling-democalib-dpo003-merged-0.0_range_0-20_user-democalib-dpo003-merged-llm_0513111342.json\\ntool-calling-democalib-dpo003-merged-0.0_range_0-20_user-democalib-dpo003-merged-llm_0513113136.json\\ntool-calling-democalib-dpo003-merged-0.0_range_0-20_user-democalib-dpo003-merged-llm_0513113732.json\\ntool-calling-democalib-dpo003-merged-0.0_range_0-20_user-democalib-dpo003-merged-llm_0513115125.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-13T15:58:54.878841+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/democalib/results/ -maxdepth 1 -name \"tool-calling-*.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/democalib/results/ -maxdepth 1 -name \"tool-calling-*.json\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-13T15:58:54.878984+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/democalib/results/tool-calling-democalib-qwen-0.0_range_0-3_user-democalib-qwen-llm_0512191736.json\\n/root/democalib/results/tool-calling-democalib-qwen-0.0_range_0-3_user-democalib-qwen-llm_0512191740.json\\n/root/democalib/results/tool-calling-democalib-qwen-0.0_range_0-3_user-democalib-qwen-llm_0512191746.json\\n/root/democalib/results/tool-calling-democalib-qwen-0.0_range_0-3_user-democalib-qwen-llm_0512192105.json\\n/root/democalib/results/tool-calling-democalib-qwen-0.0_range_0-3_user-democalib-qwen-llm_0512192112.json\\n/root/democalib/results/tool-calling-democalib-qwen-0.0_range_0-3_user-democalib-qwen-llm_0512192306.json\\n/root/democalib/results/tool-calling-democalib-qwen-0.0_range_0-3_user-democalib-qwen-llm_0512192721.json\\n/root/democalib/results/tool-calling-democalib-qwen-0.0_range_0-3_user-democalib-qwen-llm_0512193202.json\\n/root/democalib/results/tool-calling-democalib-qwen-0.0_range_0-20_user-democalib-qwen-llm_0512193645.json\\n/root/democalib/results/tool-calling-democalib-qwen-0.0_range_0-20_user-democalib-qwen-llm_0512204616.json\\n/root/democalib/results/tool-calling-democalib-qwen-0.0_range_0-20_user-democalib-qwen-llm_0512210428.json\\n/root/democalib/results/tool-calling-democalib-qwen-0.0_range_0-20_user-democalib-qwen-llm_0512212144.json\\n/root/democalib/results/tool-calling-democalib-qwen-0.0_range_0-20_user-democalib-qwen-llm_0512213214.json\\n/root/democalib/results/tool-calling-democalib-qwen-0.0_range_0-20_user-democalib-qwen-llm_0512220004.json\\n/root/democalib/results/tool-calling-democalib-qwen-0.0_range_0-20_user-democalib-qwen-llm_0512221254.json\\n/root/democalib/results/tool-calling-democalib-qwen-0.0_range_0-20_user-democalib-qwen-llm_0512223000.json\\n/root/democalib/results/tool-calling-democalib-qwen-0.0_range_0-20_user-democalib-qwen-llm_0512225520.json\\n/root/democalib/results/tool-calling-democalib-qwen-0.0_range_0-20_user-democalib-qwen-llm_05122308
+…[truncated 114 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-13T15:58:54.879127+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/democalib/results/mvp_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls /root/democalib/results/mvp_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-13T15:58:54.879250+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/democalib/results/mvp_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-13T15:58:54.879448+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat > /root/democalib/scripts/bootstrap_fm4_gap_diff.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"FM4 Gap-Difference Bootstrap.\n\nTests: (DPO+BCP_gap - Base_BCP_gap) > 0 for AAVE and Indian English\n  where gap = variant_pol - baseline_pol\n\nH0: dpo_gap - base_gap <= 0 (no reversal)\nH1: dpo_gap - base_gap > 0  (reversal confirmed)\n\"\"\"\n\nfrom __future__ import annotations\nimport json, glob, os, sys\nimport numpy as np\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parent.parent\nsys.path.insert(0, str(ROOT))\nos.chdir(ROOT)\nfrom behavioral_fingerprint import BehavioralFingerprint, analyze_traces\n\nSEED = 42\nN_BOOT = 10_000\nCI_LEVEL = 0.95\n\nVARIANT_ORDER = [\n    \"uncalibrated_baseline\", \"aave_target\", \"indian_english_target\",\n    \"overcorrected\", \"single_dim_question\", \"single_dim_politeness\",\n]\n\n\ndef extract_per_task(trace_file: str) -> list[dict]:\n    fp = BehavioralFingerprint()\n    data = json.load(open(trace_file))\n    tasks = []\n    for task in data:\n        traj = task.get(\"traj\", [])\n        trace = [\n            {\"role\": m[\"role\"], \"content\": m.get(\"content\", \"\")}\n            for m in traj if m.get(\"role\") in (\"user\", \"assistant\")\n        ]\n        if not trace:\n            continue\n        result = fp.extract(trace)\n        if result.total_user_turns == 0:\n            continue\n        tasks.append({\n            \"task_id\": task[\"task_id\"],\n            \"politeness_rate\": result.politeness_rate,\n            \"question_rate\": result.question_rate,\n        })\n    return tasks\n\n\ndef match_files_to_variants(trace_dir: str, mvp_path: str) -> dict[str, list[dict]]:\n    mvp = json.load(open(mvp_path))\n    variant_stats = {}\n    for vn in VARIANT_ORDER:\n        if vn not in mvp:\n            continue\n        v = mvp[vn]\n        variant_stats[vn] = (v[\"mean_politeness_rate\"], v[\"mean_question_rate\"], v[\"num_traces\"])\n\n    files = sorted(glob.glob(os.path.join(trace_dir, \"tool-calling-*.json\")))\n    file_data = {}\n    for f in files:\n        raw = json.load(open(f))\n        if len(raw) < 15:\n            continue\n        tasks = extract_per_task(f)\n        if not tasks:\n            continue\n        pol = float(np.mean([t[\"politeness_rate\"] for t in tasks]))\n        q = float(np.mean([t[\"question_rate\"] for t in tasks]))\n        n = len(tasks)\n        file_data[f] = (tasks, pol, q, n)\n\n    matched: dict[str, list[dict]] = {}\n    used = set()\n    for vn, (v_pol, v_q, v_n) in variant_stats.items():\n        best_f, best_d = None, 1e9\n        for f, (tasks, pol, q, n) in file_data.items():\n            if f in used:\n                continue\n            d = abs(pol - v_pol) + abs(q - v_q) + 0.001 * abs(n - v_n)\n            if d < best_d:\n                best_d, best_f = d, f\n        if best_f and best_d < 0.02:\n            matched[vn] = file_data[best_f][0]\n            used.add(best_f)\n        else:\n            print(f\"  WARNING: no match for {vn} (best_d={best_d:.4f})\")\n    return matched\n\n\ndef load_multirun(label, base_dir):\n    pooled: dict[str, list[dict]] = {}\n    run_data: dict[str, dict[str, list[dict]]] = {}\n    run_dirs = sorted(glob.glob(os.path.join(base_dir, \"run_*\")))\n    for rd in run_dirs:\n        mvp_path = os.path.join(rd, \"mvp_results.json\")\n        if not os.path.exists(mvp_path):\n            continue\n        rname = os.path.basename(rd)\n        print(f\"Loading {label}/{rname} from {rd}\")\n        matched = match_files_to_variants(rd, mvp_path)\n        print(f\"  Matched: {list(matched.keys())}\")\n        run_data[rname] = matched\n        for vn, tasks in matched.items():\n            pooled.setdefault(vn, []).extend(tasks)\n    return pooled, run_data\n\n\ndef pol_array(tasks):\n    return np.array([t[\"politeness_rate\"] for t in tasks])\n\n\ndef gap_diff_bootstrap(dpo_variant, dpo_baseline, base_variant, base_baseline,\n                       n_boot=N_BOOT, seed=SEED):\n    \"\"\"Bootstrap CI for (mean(dpo_gap) - mean(base_gap)).\n    \n    dpo_gap  = dpo_variant_pol  - dpo_baseline_pol\n    base_gap = base_variant_pol - base_baseline_pol\n    diff     = dpo_gap - base_gap\n    \n    All four arrays resampled independently each iteration.\n    \"\"\"\n    rng = np.random.default_rng(seed)\n    n_dv, n_db = len(dpo_variant), len(dpo_baseline)\n    n_bv, n_bb = len(base_variant), len(base_baseline)\n\n    boots = np.empty(n_boot)\n    for i in range(n_boot):\n        dpo_gap = (rng.choice(dpo_variant, n_dv, replace=True).mean()\n                   - rng.choice(dpo_baseline, n_db, replace=True).mean())\n        base_gap = (rng.choice(base_variant, n_bv, replace=True).mean()\n                    - rng.choice(base_baseline, n_bb, replace=True).mean())\n        boots[i] = dpo_gap - base_gap\n\n    alpha = 1 - CI_LEVEL\n    lo, hi = np.percentile(boots, [alpha / 2 * 100, (1 - alpha / 2) * 100])\n\n    point_dpo_gap = dpo_variant.mean() - dpo_baseline.mean()\n    point_base_gap = base_variant.mean() - base_baseline.mean()\n    point_diff = point_dpo_gap - point_base_gap\n\n    p_value = float(np.mean(boots <= 0))\n\n    return {\n        \"point_estimate\": round(float(point_diff), 6),\n        \"dpo_gap\": round(float(point_dpo_gap), 6),\n        \"base_gap\": round(float(point_base_gap), 6),\n        \"ci_lower\": round(float(lo), 6),\n        \"ci_upper\": round(float(hi), 6),\n        \"p_value_one_sided\": round(p_value, 6),\n        \"significant\": bool(lo > 0),\n        \"n_dpo_variant\": n_dv,\n        \"n_dpo_baseline\": n_db,\n        \"n_base_variant\": n_bv,\n        \"n_base_baseline\": n_bb,\n        \"n_bootstrap\": n_boot,\n        \"seed\": seed,\n    }\n\n\ndef main():\n    print(\"=\" * 60)\n    print(\"FM4 Gap-Difference Bootstrap\")\n    print(\"=\" * 60)\n\n    # Load Base BCP (mvp-004) — single run\n    print(\"\\nLoading Base BCP (mvp-004)...\")\n    base_bcp = match_files_to_variants(\"results\", \"results/mvp_results.json\")\n    print(f\"  Matched: {list(base_bcp.keys())}\")\n\n    # Load DPO+BCP (hgate-dpo003-merged) — 4 runs pooled\n    print(\"\\nLoading DPO+BCP (hgate-dpo003-merged)...\")\n    dpo_pooled, dpo_runs = load_multirun(\"DPO+BCP\", \"results/hgate_dpo003_merged\")\n\n    results = {}\n\n    for variant_key, variant_label in [(\"aave_target\", \"AAVE\"), (\"indian_english_target\", \"Indian\")]:\n        print(f\"\\n--- {variant_label} ---\")\n\n        base_bl = pol_array(base_bcp[\"uncalibrated_baseline\"])\n        base_var = pol_array(base_bcp[variant_key])\n        dpo_bl = pol_array(dpo_pooled[\"uncalibrated_baseline\"])\n        dpo_var = pol_array(dpo_pooled[variant_key])\n\n        print(f\"  Base BCP: baseline n={len(base_bl)}, {variant_label} n={len(base_var)}\")\n        print(f\"  DPO+BCP:  baseline n={len(dpo_bl)}, {variant_label} n={len(dpo_var)}\")\n        print(f\"  Base gap: {base_var.mean() - base_bl.mean():.4f}\")\n        print(f\"  DPO  gap: {dpo_var.mean() - dpo_bl.mean():.4f}\")\n\n        r = gap_diff_bootstrap(dpo_var, dpo_bl, base_var, base_bl)\n        results[f\"C2_fm4_gap_diff_{variant_label.lower()}\"] = r\n\n        print(f\"  Gap diff: {r['point_estimate']:.4f}\")\n        print(f\"  95% CI:   [{r['ci_lower']:.4f}, {r['ci_upper']:.4f}]\")\n        print(f\"  p-value (one-sided, H1: diff>0): {r['p_value_one_sided']:.4f}\")\n        print(f\"  Significant (CI_lo > 0): {r['significant']}\")\n\n        # Per-run breakdown\n        per_run = {}\n        for rname, rdata in sorted(dpo_runs.items()):\n            if variant_key in rdata and \"uncalibrated_baseline\" in rdata:\n                rr = gap_diff_bootstrap(\n                    pol_array(rdata[variant_key]),\n                    pol_array(rdata[\"uncalibrated_baseline\"]),\n                    base_var, base_bl\n                )\n                per_run[rname] = rr\n                print(f\"    {rname}: diff={rr['point_estimate']:.4f} \"\n                      f\"[{rr['ci_lower']:.4f}, {rr['ci_upper']:.4f}] p={rr['p_value_one_sided']:.4f}\")\n        results[f\"C2_fm4_gap_diff_{variant_label.lower()}_per_run\"] = per_run\n\n    # Save results\n    out_path = \"results/bootstrap_fm4_gap_diff_results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\n    # Also append to existing bootstrap_ci_results.json\n    existing_path = \"results/bootstrap_ci_results.json\"\n    if os.path.exists(existing_path):\n        existing = json.load(open(existing_path))\n        existing[\"C2_fm4_gap_diff\"] = results\n        with open(existing_path, \"w\") as f:\n            json.dump(existing, f, indent=2)\n        print(f\"Appended to {existing_path}\")\n\n    print(\"\\n\" + \"=\" * 60)\n    print(\"DONE\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script written successfully\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat > /root/democalib/scripts/bootstrap_fm4_gap_diff.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"FM4 Gap-Difference Bootstrap.\n\nTests: (DPO+BCP_gap - Base_BCP_gap) > 0 for AAVE and Indian English\n  where gap = variant_pol - baseline_pol\n\nH0: dpo_gap - base_gap <= 0 (no reversal)\nH1: dpo_gap - base_gap > 0  (reversal confirmed)\n\"\"\"\n\nfrom __future__ import annotations\nimport json, glob, os, sys\nimport numpy as np\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parent.parent\nsys.path.insert(0, str(ROOT))\nos.chdir(ROOT)\nfrom behavioral_fingerprint import BehavioralFingerprint, analyze_traces\n\nSEED = 42\nN_BOOT = 10_000\nCI_LEVEL = 0.95\n\nVARIANT_ORDER = [\n    \"uncalibrated_baseline\", \"aave_target\", \"indian_english_target\",\n    \"overcorrected\", \"single_dim_question\", \"single_dim_politeness\",\n]\n\n\ndef extract_per_task(trace_file: str) -> list[dict]:\n    fp = BehavioralFingerprint()\n    data = json.load(open(trace_file))\n    tasks = []\n    for task in data:\n        traj = task.get(\"traj\", [])\n        trace = [\n            {\"role\": m[\"role\"], \"content\": m.get(\"content\", \"\")}\n            for m in traj if m.get(\"role\") in (\"user\", \"assistant\")\n        ]\n        if not trace:\n            continue\n        result = fp.extract(trace)\n        if result.total_user_turns == 0:\n            continue\n        tasks.append({\n            \"task_id\": task[\"task_id\"],\n            \"politeness_rate\": result.politeness_rate,\n            \"question_rate\": result.question_rate,\n        })\n    return tasks\n\n\ndef match_files_to_variants(trace_dir: str, mvp_path: str) -> dict[str, list[dict]]:\n    mvp = json.load(open(mvp_path))\n    variant_stats = {}\n    for vn in VARIANT_ORDER:\n        if vn not in mvp:\n            continue\n        v = mvp[vn]\n        variant_stats[vn] = (v[\"mean_politeness_rate\"], v[\"mean_question_rate\"], v[\"num_traces\"])\n\n    files = sorted(glob.glob(os.path.join(trace_dir, \"tool-calling-*.json\")))\n    file_data = {}\n    for f in files:\n        raw = json.load(open(f))\n        if len(raw) < 15:\n            continue\n        tasks = extract_per_task(f)\n        if not tasks:\n            continue\n        pol = float(np.mean([t[\"politeness_rate\"] for t in tasks]))\n        q = float(np.mean([t[\"question_rate\"] for t in tasks]))\n        n = len(tasks)\n        file_data[f] = (tasks, pol, q, n)\n\n    matched: dict[str, list[dict]] = {}\n    used = set()\n    for vn, (v_pol, v_q, v_n) in variant_stats.items():\n        best_f, best_d = None, 1e9\n        for f, (tasks, pol, q, n) in file_data.items():\n            if f in used:\n                continue\n            d = abs(pol - v_pol) + abs(q - v_q) + 0.001 * abs(n - v_n)\n            if d < best_d:\n                best_d, best_f = d, f\n        if best_f and best_d < 0.02:\n            matched[vn] = file_data[best_f][0]\n            used.add(best_f)\n        else:\n            print(f\"  WARNING: no match for {vn} (best_d={best_d:.4f})\")\n    return matched\n\n\ndef load_multirun(label, base_dir):\n    pooled: dict[str, list[dict]] = {}\n    run_data: dict[str, dict[str, list[dict]]] = {}\n    run_dirs = sorted(glob.glob(os.path.join(base_dir, \"run_*\")))\n    for rd in run_dirs:\n        mvp_path = os.path.join(rd, \"mvp_results.json\")\n        if not os.path.exists(mvp_path):\n            continue\n        rname = os.path.basename(rd)\n        print(f\"Loading {label}/{rname} from {rd}\")\n        matched = match_files_to_variants(rd, mvp_path)\n        print(f\"  Matched: {list(matched.keys())}\")\n        run_data[rname] = matched\n        for vn, tasks in matched.items():\n            pooled.setdefault(vn, []).extend(tasks)\n    return pooled, run_data\n\n\ndef pol_array(tasks):\n    return np.array([t[\"politeness_rate\"] for t in tasks])\n\n\ndef gap_diff_bootstrap(dpo_variant, dpo_baseline, base_variant, base_baseline,\n                       n_boot=N_BOOT, seed=SEED):\n    \"\"\"Bootstrap CI for (mean(dpo_gap) - mean(base_gap)).\n    \n    dpo_gap  = dpo_variant_pol  - dpo_baseline_pol\n    base_gap = base_variant_pol - base_baseline_pol\n    diff     = dpo_gap - base_gap\n    \n    All four arrays resampled independently each iteration.\n    \"\"\"\n    rng = np.random.default_rng(seed)\n    n_dv, n_db = len(dpo_variant), len(dpo_baseline)\n    n_bv, n_bb = len(base_variant), len(base_baseline)\n\n    boots = np.empty(n_boot)\n    for i in range(n_boot):\n        dpo_gap = (rng.choice(dpo_variant, n_dv, replace=True).mean()\n                   - rng.choice(dpo_baseline, n_db, replace=True).mean())\n        base_gap = (rng.choice(base_variant, n_bv, replace=True).mean()\n                    - rng.choice(base_baseline, n_bb, replace=True).mean())\n        boots[i] = dpo_gap - base_gap\n\n    alpha = 1 - CI_LEVEL\n    lo, hi = np.percentile(boots, [alpha / 2 * 100, (1 - alpha / 2) * 100])\n\n    point_dpo_gap = dpo_variant.mean() - dpo_baseline.mean()\n    point_base_gap = base_variant.mean() - base_baseline.mean()\n    point_diff = point_dpo_gap - point_base_gap\n\n    p_value = float(np.mean(boots <= 0))\n\n    return {\n        \"point_estimate\": round(float(point_diff), 6),\n        \"dpo_gap\": round(float(point_dpo_gap), 6),\n        \"base_gap\": round(float(point_base_gap), 6),\n        \"ci_lower\": round(float(lo), 6),\n        \"ci_upper\": round(float(hi), 6),\n        \"p_value_one_sided\": round(p_value, 6),\n        \"significant\": bool(lo > 0),\n        \"n_dpo_variant\": n_dv,\n        \"n_dpo_baseline\": n_db,\n        \"n_base_variant\": n_bv,\n        \"n_base_baseline\": n_bb,\n        \"n_bootstrap\": n_boot,\n        \"seed\": seed,\n    }\n\n\ndef main():\n    print(\"=\" * 60)\n    print(\"FM4 Gap-Difference Bootstrap\")\n    print(\"=\" * 60)\n\n    # Load Base BCP (mvp-004) — single run\n    print(\"\\nLoading Base BCP (mvp-004)...\")\n    base_bcp = match_files_to_variants(\"results\", \"results/mvp_results.json\")\n    print(f\"  Matched: {list(base_bcp.keys())}\")\n\n    # Load DPO+BCP (hgate-dpo003-merged) — 4 runs pooled\n    print(\"\\nLoading DPO+BCP (hgate-dpo003-merged)...\")\n    dpo_pooled, dpo_runs = load_multirun(\"DPO+BCP\", \"results/hgate_dpo003_merged\")\n\n    results = {}\n\n    for variant_key, variant_label in [(\"aave_target\", \"AAVE\"), (\"indian_english_target\", \"Indian\")]:\n        print(f\"\\n--- {variant_label} ---\")\n\n        base_bl = pol_array(base_bcp[\"uncalibrated_baseline\"])\n        base_var = pol_array(base_bcp[variant_key])\n        dpo_bl = pol_array(dpo_pooled[\"uncalibrated_baseline\"])\n        dpo_var = pol_array(dpo_pooled[variant_key])\n\n        print(f\"  Base BCP: baseline n={len(base_bl)}, {variant_label} n={len(base_var)}\")\n        print(f\"  DPO+BCP:  baseline n={len(dpo_bl)}, {variant_label} n={len(dpo_var)}\")\n        print(f\"  Base gap: {base_var.mean() - base_bl.mean():.4f}\")\n        print(f\"  DPO  gap: {dpo_var.mean() - dpo_bl.mean():.4f}\")\n\n        r = gap_diff_bootstrap(dpo_var, dpo_bl, base_var, base_bl)\n        results[f\"C2_fm4_gap_diff_{variant_label.lower()}\"] = r\n\n        print(f\"  Gap diff: {r['point_estimate']:.4f}\")\n        print(f\"  95% CI:   [{r['ci_lower']:.4f}, {r['ci_upper']:.4f}]\")\n        print(f\"  p-value (one-sided, H1: diff>0): {r['p_value_one_sided']:.4f}\")\n        print(f\"  Significant (CI_lo > 0): {r['significant']}\")\n\n        # Per-run breakdown\n        per_run = {}\n        for rname, rdata in sorted(dpo_runs.items()):\n            if variant_key in rdata and \"uncalibrated_baseline\" in rdata:\n                rr = gap_diff_bootstrap(\n                    pol_array(rdata[variant_key]),\n                    pol_array(rdata[\"uncalibrated_baseline\"]),\n                    base_var, base_bl\n                )\n                per_run[rname] = rr\n                print(f\"    {rname}: diff={rr['point_estimate']:.4f} \"\n                      f\"[{rr['ci_lower']:.4f}, {rr['ci_upper']:.4f}] p={rr['p_value_one_sided']:.4f}\")\n        results[f\"C2_fm4_gap_diff_{variant_label.lower()}_per_run\"] = per_run\n\n    # Save results\n    out_path = \"results/bootstrap_fm4_gap_diff_results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\n    # Also append to existing bootstrap_ci_results.json\n    existing_path = \"results/bootstrap_ci_results.json\"\n    if os.path.exists(existing_path):\n        existing = json.load(open(existing_path))\n        existing[\"C2_fm4_gap_diff\"] = results\n        with open(existing_path, \"w\") as f:\n            json.dump(existing, f, indent=2)\n        print(f\"Appended to {existing_path}\")\n\n    print(\"\\n\" + \"=\" * 60)\n    print(\"DONE\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script written successfully\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-13T15:58:54.879791+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-13T15:58:54.879963+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cd /root/democalib && python scripts/bootstrap_fm4_gap_diff.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cd /root/democalib && python scripts/bootstrap_fm4_gap_diff.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-13T15:58:54.880098+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/democalib && python scripts/bootstrap_fm4_gap_diff.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-13T15:58:54.880222+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "which python3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "which python3",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-13T15:58:54.880339+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'which' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-13T15:58:54.880455+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/miniconda3/bin/python3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls /root/miniconda3/bin/python3",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-13T15:58:54.880571+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-13T15:58:54.880706+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cd /root/democalib && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 scripts/bootstrap_fm4_gap_diff.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cd /root/democalib && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 scripts/bootstrap_fm4_gap_diff.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-13T15:58:54.880854+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nFM4 Gap-Difference Bootstrap\\n============================================================\\n\\nLoading Base BCP (mvp-004)...\\n  Matched: ['uncalibrated_baseline', 'aave_target', 'indian_english_target', 'overcorrected', 'single_dim_question', 'single_dim_politeness']\\n\\nLoading DPO+BCP (hgate-dpo003-merged)...\\nLoading DPO+BCP/run_1 from results/hgate_dpo003_merged/run_1\\n  Matched: ['uncalibrated_baseline', 'aave_target', 'indian_english_target', 'overcorrected', 'single_dim_question', 'single_dim_politeness']\\nLoading DPO+BCP/run_2 from results/hgate_dpo003_merged/run_2\\n  Matched: ['uncalibrated_baseline', 'aave_target', 'indian_english_target', 'overcorrected', 'single_dim_question', 'single_dim_politeness']\\nLoading DPO+BCP/run_3 from results/hgate_dpo003_merged/run_3\\n  Matched: ['uncalibrated_baseline', 'aave_target', 'indian_english_target', 'overcorrected', 'single_dim_question', 'single_dim_politeness']\\nLoading DPO+BCP/run_4 from results/hgate_dpo003_merged/run_4\\n  Matched: ['uncalibrated_baseline', 'aave_target', 'indian_english_target', 'overcorrected', 'single_dim_question', 'single_dim_politeness']\\n\\n--- AAVE ---\\n  Base BCP: baseline n=19, AAVE n=20\\n  DPO+BCP:  baseline n=78, AAVE n=78\\n  Base gap: -0.0912\\n  DPO  gap: 0.0640\\n  Gap diff: 0.1552\\n  95% CI:   [-0.0648, 0.3599]\\n  p-value (one-sided, H1: diff>0): 0.0806\\n  Significant (CI_lo > 0): False\\n    run_1: diff=0.2250 [-0.0379, 0.4851] p=0.0442\\n    run_2: diff=0.1845 [-0.0997, 0.4623] p=0.1030\\n    run_3: diff=0.1417 [-0.1052, 0.3896] p=0.1368\\n    run_4: diff=0.0716 [-0.1909, 0.3313] p=0.3004\\n\\n--- Indian ---\\n  Base BCP: baseline n=19, Indian n=20\\n  DPO+BCP:  baseline n=78, Indian n=78\\n  Base gap: -0.0992\\n  DPO  gap: 0.0619\\n  Gap diff: 0.1612\\n  95% CI:   [-0.0518, 0.3664]\\n  p-value (one-sided, H1: diff>0): 0.0687\\n  Significant
+…[truncated 520 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-13T15:58:54.881031+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "demo_calibrated_sim",
+  "filters": "{'exp_id': 'bootstrap-ci-001'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "demo_calibrated_sim",
+    "filters": "{'exp_id': 'bootstrap-ci-001'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-13T15:58:54.881161+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0579}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-13T15:58:54.881279+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "demo_calibrated_sim",
+  "limit": "10",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "demo_calibrated_sim",
+    "limit": "10",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-13T15:58:54.881713+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"bootstrap-ci-001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T15:41:26.778Z\", \"updated_at\": \"2026-05-13T15:55:29.229Z\", \"spec\": {\"command\": \"python3 scripts/bootstrap_ci.py\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/democalib/results/\", \"data_count\": 592, \"model_name\": \"N/A (CPU-only analysis)\", \"seed\": 42, \"checkpoint_source\": \"N/A\", \"checkpoint_path\": \"/root/democalib/results/bootstrap_ci_results.json\", \"log_path\": \"/root/democalib/results/bootstrap_ci_report.md\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T15:41:45.131Z\", \"metrics\": {\"C2_fm4_reversal_aave\": {\"significant\": \"PENDING_correct_test\", \"note\": \"Original test used wrong null hypothesis. Correct test: bootstrap CI of (dpo_gap - base_gap) > 0. Pending re-run.\"}, \"correction_reason\": \"Reviewer flagged: FM4 claim is gap direction reversal, need to test (dpo_gap - base_gap) > 0, not individual gap significance\"}}, \"bcp7b-multirun-001\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T15:45:33.648Z\", \"updated_at\": \"2026-05-13T15:46:13.388Z\", \"spec\": {\"command\": \"bash /root/democalib/run_bcp7b_multirun.sh\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:2\"], \"pid\": \"174169\", \"log_path\": \"~/runs/demo_calibrated_sim/bcp7b-multirun-001.log\", \"submitted_at\": \"2026-05-13T15:45:33.601Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/democalib/prompts\", \"data_count\": 360, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": \"N/A (3 independent runs)\", \"checkpoint_source\": \"/root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct\", \"eval_data\": \"tau-bench dev split, 20 tasks x 6 variants x 3 runs\"}, \"hypothesis\": \"7B BCP multi-run replication: verify FM1 (completion collapse) and FM2 (cross-dim interference) reproducibility across
+…[truncated 16385 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-13T15:58:54.881946+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "bootstrap-ci-001",
+  "field": "metrics",
+  "value": "{'C2_fm4_reversal_aave': {'significant': 'PENDING_correct_test', 'note': 'Original test used wrong null hypothesis. Correct test: bootstrap CI of (dpo_gap - base_gap) > 0. Pending re-run.'}, 'correction_reason': 'Reviewer flagged: FM4 claim is gap direction reversal, need to test (dpo_gap - base_gap) > 0, not individual gap significance', 'C2_fm4_gap_diff_aave': {'point_estimate': 0.1552, 'dpo_gap': 0.064, 'base_gap': -0.0912, 'ci_lower': -0.0648, 'ci_upper': 0.3599, 'p_value_one_sided': 0.0806, 'significant': False, 'n_dpo_variant': 78, 'n_dpo_baseline': 78, 'n_base_variant': 20, 'n_base_baseline': 19, 'n_bootstrap': 10000, 'seed': 42}, 'C2_fm4_gap_diff_indian': {'point_estimate': 0.1612, 'dpo_gap': 0.0619, 'base_gap': -0.0992, 'ci_lower': -0.0518, 'ci_upper': 0.3664, 'p_value_one_sided': 0.0687, 'significant': False, 'n_dpo_variant': 78, 'n_dpo_baseline': 78, 'n_base_variant': 20, 'n_base_baseline': 19, 'n_bootstrap': 10000, 'seed': 42}}",
+  "project": "demo_calibrated_sim"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "bootstrap-ci-001",
+    "field": "metrics",
+    "value": "{'C2_fm4_reversal_aave': {'significant': 'PENDING_correct_test', 'note': 'Original test used wrong null hypothesis. Correct test: bootstrap CI of (dpo_gap - base_gap) > 0. Pending re-run.'}, 'correction_reason': 'Reviewer flagged: FM4 claim is gap direction reversal, need to test (dpo_gap - base_gap) > 0, not individual gap significance', 'C2_fm4_gap_diff_aave': {'point_estimate': 0.1552, 'dpo_gap': 0.064, 'base_gap': -0.0912, 'ci_lower': -0.0648, 'ci_upper': 0.3599, 'p_value_one_sided': 0.0806, 'significant': False, 'n_dpo_variant': 78, 'n_dpo_baseline': 78, 'n_base_variant': 20, 'n_base_baseline': 19, 'n_bootstrap': 10000, 'seed': 42}, 'C2_fm4_gap_diff_indian': {'point_estimate': 0.1612, 'dpo_gap': 0.0619, 'base_gap': -0.0992, 'ci_lower': -0.0518, 'ci_upper': 0.3664, 'p_value_one_sided': 0.0687, 'significant': False, 'n_dpo_variant': 78, 'n_dpo_baseline': 78, 'n_base_variant': 20, 'n_base_baseline': 19, 'n_bootstrap': 10000, 'seed': 42}}",
+    "project": "demo_calibrated_sim"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-13T15:58:54.882142+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"bootstrap-ci-001\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T15:41:26.778Z\", \"updated_at\": \"2026-05-13T15:58:16.578Z\", \"spec\": {\"command\": \"python3 scripts/bootstrap_ci.py\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/democalib/results/\", \"data_count\": 592, \"model_name\": \"N/A (CPU-only analysis)\", \"seed\": 42, \"checkpoint_source\": \"N/A\", \"checkpoint_path\": \"/root/democalib/results/bootstrap_ci_results.json\", \"log_path\": \"/root/democalib/results/bootstrap_ci_report.md\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T15:41:45.131Z\", \"metrics\": {\"C2_fm4_reversal_aave\": {\"significant\": \"PENDING_correct_test\", \"note\": \"Original test used wrong null hypothesis. Correct test: bootstrap CI of (dpo_gap - base_gap) > 0. Pending re-run.\"}, \"correction_reason\": \"Reviewer flagged: FM4 claim is gap direction reversal, need to test (dpo_gap - base_gap) > 0, not individual gap significance\", \"C2_fm4_gap_diff_aave\": {\"point_estimate\": 0.1552, \"dpo_gap\": 0.064, \"base_gap\": -0.0912, \"ci_lower\": -0.0648, \"ci_upper\": 0.3599, \"p_value_one_sided\": 0.0806, \"significant\": false, \"n_dpo_variant\": 78, \"n_dpo_baseline\": 78, \"n_base_variant\": 20, \"n_base_baseline\": 19, \"n_bootstrap\": 10000, \"seed\": 42}, \"C2_fm4_gap_diff_indian\": {\"point_estimate\": 0.1612, \"dpo_gap\": 0.0619, \"base_gap\": -0.0992, \"ci_lower\": -0.0518, \"ci_upper\": 0.3664, \"p_value_one_sided\": 0.0687, \"significant\": false, \"n_dpo_variant\": 78, \"n_dpo_baseline\": 78, \"n_base_variant\": 20, \"n_base_baseline\": 19, \"n_bootstrap\": 10000, \"seed\": 42}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1112}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-13T15:58:54.882294+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "FM4 Gap-Difference Bootstrap Results",
+  "type": "data",
+  "description": "Bootstrap CI for FM4 gap-difference test: (DPO+BCP_gap - Base_BCP_gap) > 0. AAVE p=0.081, Indian p=0.069. Neither significant at α=0.05.",
+  "project": "demo_calibrated_sim",
+  "exp_id": "bootstrap-ci-001",
+  "source_path": "/root/democalib/results/bootstrap_fm4_gap_diff_results.json",
+  "tags": "['bootstrap', 'fm4', 'gap-difference', 'statistical-test']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "FM4 Gap-Difference Bootstrap Results",
+    "type": "data",
+    "description": "Bootstrap CI for FM4 gap-difference test: (DPO+BCP_gap - Base_BCP_gap) > 0. AAVE p=0.081, Indian p=0.069. Neither significant at α=0.05.",
+    "project": "demo_calibrated_sim",
+    "exp_id": "bootstrap-ci-001",
+    "source_path": "/root/democalib/results/bootstrap_fm4_gap_diff_results.json",
+    "tags": "['bootstrap', 'fm4', 'gap-difference', 'statistical-test']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-13T15:58:54.882431+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/democalib/results/bootstrap_fm4_gap_diff_results.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-13T15:58:54.882587+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/democalib/results/bootstrap_fm4_gap_diff_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/democalib/results/bootstrap_fm4_gap_diff_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-13T15:58:54.882820+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"C2_fm4_gap_diff_aave\\\": {\\n    \\\"point_estimate\\\": 0.155196,\\n    \\\"dpo_gap\\\": 0.06396,\\n    \\\"base_gap\\\": -0.091236,\\n    \\\"ci_lower\\\": -0.064782,\\n    \\\"ci_upper\\\": 0.359943,\\n    \\\"p_value_one_sided\\\": 0.0806,\\n    \\\"significant\\\": false,\\n    \\\"n_dpo_variant\\\": 78,\\n    \\\"n_dpo_baseline\\\": 78,\\n    \\\"n_base_variant\\\": 20,\\n    \\\"n_base_baseline\\\": 19,\\n    \\\"n_bootstrap\\\": 10000,\\n    \\\"seed\\\": 42\\n  },\\n  \\\"C2_fm4_gap_diff_aave_per_run\\\": {\\n    \\\"run_1\\\": {\\n      \\\"point_estimate\\\": 0.225047,\\n      \\\"dpo_gap\\\": 0.133811,\\n      \\\"base_gap\\\": -0.091236,\\n      \\\"ci_lower\\\": -0.037903,\\n      \\\"ci_upper\\\": 0.485125,\\n      \\\"p_value_one_sided\\\": 0.0442,\\n      \\\"significant\\\": false,\\n      \\\"n_dpo_variant\\\": 20,\\n      \\\"n_dpo_baseline\\\": 18,\\n      \\\"n_base_variant\\\": 20,\\n      \\\"n_base_baseline\\\": 19,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"seed\\\": 42\\n    },\\n    \\\"run_2\\\": {\\n      \\\"point_estimate\\\": 0.18449,\\n      \\\"dpo_gap\\\": 0.093254,\\n      \\\"base_gap\\\": -0.091236,\\n      \\\"ci_lower\\\": -0.099655,\\n      \\\"ci_upper\\\": 0.46227,\\n      \\\"p_value_one_sided\\\": 0.103,\\n      \\\"significant\\\": false,\\n      \\\"n_dpo_variant\\\": 18,\\n      \\\"n_dpo_baseline\\\": 20,\\n      \\\"n_base_variant\\\": 20,\\n      \\\"n_base_baseline\\\": 19,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"seed\\\": 42\\n    },\\n    \\\"run_3\\\": {\\n      \\\"point_estimate\\\": 0.141677,\\n      \\\"dpo_gap\\\": 0.050441,\\n      \\\"base_gap\\\": -0.091236,\\n      \\\"ci_lower\\\": -0.105201,\\n      \\\"ci_upper\\\": 0.389601,\\n      \\\"p_value_one_sided\\\": 0.1368,\\n      \\\"significant\\\": false,\\n      \\\"n_dpo_variant\\\": 20,\\n      \\\"n_dpo_baseline\\\": 20,\\n      \\\"n_base_variant\\\": 20,\\n      \\\"
+…[truncated 3264 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-13T15:58:54.882991+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "FM4 Gap-Difference Bootstrap Results",
+  "type": "data",
+  "description": "Bootstrap CI for FM4 gap-difference test: (DPO+BCP_gap - Base_BCP_gap) > 0. AAVE p=0.081, Indian p=0.069. Neither significant at α=0.05.",
+  "project": "demo_calibrated_sim",
+  "exp_id": "bootstrap-ci-001",
+  "content": "{\"C2_fm4_gap_diff_aave\":{\"point_estimate\":0.155196,\"dpo_gap\":0.06396,\"base_gap\":-0.091236,\"ci_lower\":-0.064782,\"ci_upper\":0.359943,\"p_value_one_sided\":0.0806,\"significant\":false,\"n_dpo_variant\":78,\"n_dpo_baseline\":78,\"n_base_variant\":20,\"n_base_baseline\":19,\"n_bootstrap\":10000,\"seed\":42},\"C2_fm4_gap_diff_indian\":{\"point_estimate\":0.161157,\"dpo_gap\":0.061922,\"base_gap\":-0.099236,\"ci_lower\":-0.051829,\"ci_upper\":0.366375,\"p_value_one_sided\":0.0687,\"significant\":false,\"n_dpo_variant\":78,\"n_dpo_baseline\":78,\"n_base_variant\":20,\"n_base_baseline\":19,\"n_bootstrap\":10000,\"seed\":42}}",
+  "content_filename": "bootstrap_fm4_gap_diff_results.json",
+  "tags": "['bootstrap', 'fm4', 'gap-difference', 'statistical-test']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "FM4 Gap-Difference Bootstrap Results",
+    "type": "data",
+    "description": "Bootstrap CI for FM4 gap-difference test: (DPO+BCP_gap - Base_BCP_gap) > 0. AAVE p=0.081, Indian p=0.069. Neither significant at α=0.05.",
+    "project": "demo_calibrated_sim",
+    "exp_id": "bootstrap-ci-001",
+    "content": "{\"C2_fm4_gap_diff_aave\":{\"point_estimate\":0.155196,\"dpo_gap\":0.06396,\"base_gap\":-0.091236,\"ci_lower\":-0.064782,\"ci_upper\":0.359943,\"p_value_one_sided\":0.0806,\"significant\":false,\"n_dpo_variant\":78,\"n_dpo_baseline\":78,\"n_base_variant\":20,\"n_base_baseline\":19,\"n_bootstrap\":10000,\"seed\":42},\"C2_fm4_gap_diff_indian\":{\"point_estimate\":0.161157,\"dpo_gap\":0.061922,\"base_gap\":-0.099236,\"ci_lower\":-0.051829,\"ci_upper\":0.366375,\"p_value_one_sided\":0.0687,\"significant\":false,\"n_dpo_variant\":78,\"n_dpo_baseline\":78,\"n_base_variant\":20,\"n_base_baseline\":19,\"n_bootstrap\":10000,\"seed\":42}}",
+    "content_filename": "bootstrap_fm4_gap_diff_results.json",
+    "tags": "['bootstrap', 'fm4', 'gap-difference', 'statistical-test']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-13T15:58:54.883132+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'C2_fm4_gap_diff_aave': ...ap': 10000, 'seed': 42}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-13T15:58:54.883261+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "FM4 Gap-Difference Bootstrap Results",
+  "type": "data",
+  "description": "Bootstrap CI for FM4 gap-difference test: (DPO+BCP_gap - Base_BCP_gap) > 0. AAVE p=0.081, Indian p=0.069. Neither significant at alpha=0.05.",
+  "project": "demo_calibrated_sim",
+  "exp_id": "bootstrap-ci-001",
+  "content": "{\"C2_fm4_gap_diff_aave\":{\"point_estimate\":0.155196,\"dpo_gap\":0.06396,\"base_gap\":-0.091236,\"ci_lower\":-0.064782,\"ci_upper\":0.359943,\"p_value_one_sided\":0.0806,\"significant\":false,\"n_dpo_variant\":78,\"n_dpo_baseline\":78,\"n_base_variant\":20,\"n_base_baseline\":19},\"C2_fm4_gap_diff_indian\":{\"point_estimate\":0.161157,\"dpo_gap\":0.061922,\"base_gap\":-0.099236,\"ci_lower\":-0.051829,\"ci_upper\":0.366375,\"p_value_one_sided\":0.0687,\"significant\":false,\"n_dpo_variant\":78,\"n_dpo_baseline\":78,\"n_base_variant\":20,\"n_base_baseline\":19}}",
+  "content_filename": "bootstrap_fm4_gap_diff_results.json",
+  "tags": "['bootstrap', 'fm4', 'gap-difference', 'statistical-test']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "FM4 Gap-Difference Bootstrap Results",
+    "type": "data",
+    "description": "Bootstrap CI for FM4 gap-difference test: (DPO+BCP_gap - Base_BCP_gap) > 0. AAVE p=0.081, Indian p=0.069. Neither significant at alpha=0.05.",
+    "project": "demo_calibrated_sim",
+    "exp_id": "bootstrap-ci-001",
+    "content": "{\"C2_fm4_gap_diff_aave\":{\"point_estimate\":0.155196,\"dpo_gap\":0.06396,\"base_gap\":-0.091236,\"ci_lower\":-0.064782,\"ci_upper\":0.359943,\"p_value_one_sided\":0.0806,\"significant\":false,\"n_dpo_variant\":78,\"n_dpo_baseline\":78,\"n_base_variant\":20,\"n_base_baseline\":19},\"C2_fm4_gap_diff_indian\":{\"point_estimate\":0.161157,\"dpo_gap\":0.061922,\"base_gap\":-0.099236,\"ci_lower\":-0.051829,\"ci_upper\":0.366375,\"p_value_one_sided\":0.0687,\"significant\":false,\"n_dpo_variant\":78,\"n_dpo_baseline\":78,\"n_base_variant\":20,\"n_base_baseline\":19}}",
+    "content_filename": "bootstrap_fm4_gap_diff_results.json",
+    "tags": "['bootstrap', 'fm4', 'gap-difference', 'statistical-test']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-13T15:58:54.883390+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'C2_fm4_gap_diff_aave': ... 'n_base_baseline': 19}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-13T15:58:54.883510+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "FM4 Gap-Difference Bootstrap Results",
+  "type": "data",
+  "description": "Bootstrap CI for FM4 gap-difference test: (DPO+BCP_gap - Base_BCP_gap) > 0. AAVE p=0.081, Indian p=0.069. Neither significant at alpha=0.05.",
+  "project": "demo_calibrated_sim",
+  "exp_id": "bootstrap-ci-001",
+  "content": "AAVE: diff=0.155, 95%CI [-0.065, 0.360], p=0.081, not significant. Indian: diff=0.161, 95%CI [-0.052, 0.366], p=0.069, not significant. Script: /root/democalib/scripts/bootstrap_fm4_gap_diff.py. Full results: /root/democalib/results/bootstrap_fm4_gap_diff_results.json",
+  "content_filename": "bootstrap_fm4_gap_diff_results.json",
+  "tags": "['bootstrap', 'fm4', 'gap-difference', 'statistical-test']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "FM4 Gap-Difference Bootstrap Results",
+    "type": "data",
+    "description": "Bootstrap CI for FM4 gap-difference test: (DPO+BCP_gap - Base_BCP_gap) > 0. AAVE p=0.081, Indian p=0.069. Neither significant at alpha=0.05.",
+    "project": "demo_calibrated_sim",
+    "exp_id": "bootstrap-ci-001",
+    "content": "AAVE: diff=0.155, 95%CI [-0.065, 0.360], p=0.081, not significant. Indian: diff=0.161, 95%CI [-0.052, 0.366], p=0.069, not significant. Script: /root/democalib/scripts/bootstrap_fm4_gap_diff.py. Full results: /root/democalib/results/bootstrap_fm4_gap_diff_results.json",
+    "content_filename": "bootstrap_fm4_gap_diff_results.json",
+    "tags": "['bootstrap', 'fm4', 'gap-difference', 'statistical-test']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-13T15:58:54.883687+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260513_904f2f\", \"name\": \"FM4 Gap-Difference Bootstrap Results\", \"type\": \"data\", \"description\": \"Bootstrap CI for FM4 gap-difference test: (DPO+BCP_gap - Base_BCP_gap) > 0. AAVE p=0.081, Indian p=0.069. Neither significant at alpha=0.05.\", \"path\": \"projects/demo_calibrated_sim/artifacts/bootstrap-ci-001/data/bootstrap_fm4_gap_diff_results.json\", \"url\": null, \"project\": \"demo_calibrated_sim\", \"exp_id\": \"bootstrap-ci-001\", \"skill\": \"\", \"created_at\": \"2026-05-13T15:58:42.932409+00:00\", \"tags\": [\"bootstrap\", \"fm4\", \"gap-difference\", \"statistical-test\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-13T15:58:54.883879+00:00_
+
+FM4 gap-difference bootstrap 完成。结果：
+
+| | Point Estimate | 95% CI | p-value (one-sided) | Significant? |
+|---|---|---|---|---|
+| **AAVE** | +0.155 | [-0.065, 0.360] | 0.081 | No |
+| **Indian** | +0.161 | [-0.052, 0.366] | 0.069 | No |
+
+**结论**：两个方言的 gap-difference 方向一致（DPO+BCP 确实反转了 BCP 的校准方向），点估计 ~0.16，但 95% CI 包含 0，one-sided p-value 在 0.07-0.08，**未达 α=0.05 显著水平**。
+
+根本原因是 Base BCP 只有 1 run（n=19~20 per variant），样本量不足导致 CI 宽。如果 bcp7b-multirun-001（当前 ANALYZING 状态）的 3 runs 数据可用，pooled 后 base 侧 n 可从 ~20 提升到 ~80，CI 会大幅收窄。
+
+已更新：
+- Registry `bootstrap-ci-001` metrics 新增 `C2_fm4_gap_diff_aave` 和 `C2_fm4_gap_diff_indian`
+- 结果写入 `/root/democalib/results/bootstrap_fm4_gap_diff_results.json` 并追加到 `bootstrap_ci_results.json`
+- 脚本：`/root/democalib/scripts/bootstrap_fm4_gap_diff.py`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_fm4-gap-diff-bootstrap_20260513T155612"
+}
+```
+
+</details>
+
+---

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_investigate_gpu1_auto_restart_20260514T095421_result.json",
     "occurrence": 1,
-    "bytes": 1197,
-    "sha256": "9a88317330b086f021af9a42894e44634d0e38b79155d33e6c4fe842f2188653"
+    "bytes": 1196,
+    "sha256": "df78e3178fed81760e9ae93a0b07abc2b16845754dd058d26c8d902cfb8adcca"
   },
   "statistics": {
     "messages": 1,

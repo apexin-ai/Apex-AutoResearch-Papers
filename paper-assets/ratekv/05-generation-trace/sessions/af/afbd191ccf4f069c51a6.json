@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_verify_greedy_constraint_impl_20260514T070945_result.json",
     "occurrence": 1,
-    "bytes": 1237,
-    "sha256": "1eea5a76b1f30f8adc33c8aee6a207c356790945cb988dd476023ec4fba47679"
+    "bytes": 1236,
+    "sha256": "76d79b8ca84985430cc524105ac058811e82399e96af31f48d484e0072c38324"
   },
   "statistics": {
     "messages": 1,

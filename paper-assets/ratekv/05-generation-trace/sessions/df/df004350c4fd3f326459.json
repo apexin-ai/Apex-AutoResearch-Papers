@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_downstream_eval_qwen_20260514T055338_result.json",
     "occurrence": 1,
-    "bytes": 2274,
-    "sha256": "5fc29ea0aa405d378f923b82c1305ba3aa74ce2d9b369f88f8533a15ee027495"
+    "bytes": 2273,
+    "sha256": "c871526a74c8eaaae61e6a3e460258ac26d9b78ad4f1e2d160a913fecb96e810"
   },
   "statistics": {
     "messages": 1,

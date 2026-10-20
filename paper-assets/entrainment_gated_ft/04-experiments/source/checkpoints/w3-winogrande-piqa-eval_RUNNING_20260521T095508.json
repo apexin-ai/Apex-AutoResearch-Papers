@@ -1,0 +1,33 @@
+{
+  "exp_id": "w3-winogrande-piqa-eval",
+  "project": "entrainment_gated_ft",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:28:29.577Z",
+    "updated_at": "2026-05-21T09:55:08.866Z",
+    "spec": {
+      "command": "bash run_winogrande_piqa_all.sh (run_lmeval_clean.py × 30 tasks)",
+      "server": "westb-48145",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "722233",
+      "log_path": "~/runs/entrainment_gated_ft/w3-winogrande-piqa-eval.log",
+      "submitted_at": "2026-05-21T08:28:29.524Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "lm-eval-harness winogrande + piqa",
+      "data_count": "winogrande=1267, piqa=1838",
+      "model_name": "GDN/RetNet/HGRN2 × 5 ratios (1.3B)",
+      "seed": "default"
+    },
+    "hypothesis": "WinoGrande + PIQA per-example multiplicity analysis to decouple format (2-choice vs 4-way MC) from task-type as driver of ambiguity α spectrum, addressing Round 5 W3 format confound concern",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T09:55:08.913917+00:00",
+  "trigger": "update_registry"
+}

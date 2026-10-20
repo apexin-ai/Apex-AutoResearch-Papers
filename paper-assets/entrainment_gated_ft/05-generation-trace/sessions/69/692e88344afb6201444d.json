@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_exp-005-deltanet-eval-hgrn-fix_20260522T155530_result.json",
     "occurrence": 1,
-    "bytes": 977,
-    "sha256": "9aab762cb9d1abb464d626685a5adc2845353abf132ba500f05e10bbea4759da"
+    "bytes": 976,
+    "sha256": "3caa84904f09b034a9996fa8e50fced0a8cc87a8b506491690c0bfca11bb3d6a"
   },
   "statistics": {
     "messages": 1,

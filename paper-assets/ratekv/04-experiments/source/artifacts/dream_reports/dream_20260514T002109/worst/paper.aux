@@ -1,0 +1,81 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{KV Cache Quantization.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Rate--Distortion Approaches.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mixed-Precision Quantization.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Per-Head Distortion Profiling}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}MCKP Formulation}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{eq:obj}{{2}{3}{MCKP Formulation}{equation.2}{}}
+\newlabel{eq:assign}{{3}{3}{MCKP Formulation}{equation.3}{}}
+\newlabel{eq:budget}{{4}{3}{MCKP Formulation}{equation.4}{}}
+\newlabel{eq:card}{{5}{3}{MCKP Formulation}{equation.5}{}}
+\newlabel{eq:l0}{{6}{3}{MCKP Formulation}{equation.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Cardinality Constraint as Compounding Regularization}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Layer-0 Exclusion}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:exp}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Profiling.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{4}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Model Comparison: Main Results}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:main-results}{{4.2}{4}{Cross-Model Comparison: Main Results}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Per-head allocation results at 4$\times $ compression (WikiText-2 perplexity). Improvement is relative reduction vs.\ uniform 4-bit.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:main}{{1}{4}{Per-head allocation results at 4$\times $ compression (WikiText-2 perplexity). Improvement is relative reduction vs.\ uniform 4-bit}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Sensitivity Structure: Architecture Dependence}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:sensitivity}{{4.3}{4}{Sensitivity Structure: Architecture Dependence}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Per-head sensitivity concentration across model families.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:sensitivity}{{2}{4}{Per-head sensitivity concentration across model families}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Compounding Effect Analysis}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:compounding}{{4.4}{5}{Compounding Effect Analysis}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Compounding sweep on Qwen2.5-7B: PPL vs.\ max 2-bit heads $k$.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:compounding}{{3}{5}{Compounding sweep on Qwen2.5-7B: PPL vs.\ max 2-bit heads $k$}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Layer-0 Exclusion Ablation}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:l0}{{4.5}{5}{Layer-0 Exclusion Ablation}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Layer-0 exclusion ablation (Qwen2.5-7B, 4$\times $ compression).}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:l0}{{4}{5}{Layer-0 exclusion ablation (Qwen2.5-7B, 4$\times $ compression)}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Budget Sweep}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:budget}{{4.6}{5}{Budget Sweep}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Budget sweep on Qwen2.5-7B across compression ratios.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:budget}{{5}{6}{Budget sweep on Qwen2.5-7B across compression ratios}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Comparison with Reverse Waterfilling}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:waterfilling}{{4.7}{6}{Comparison with Reverse Waterfilling}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Constrained MCKP vs.\ reverse waterfilling (4$\times $ compression).}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:waterfilling}{{6}{6}{Constrained MCKP vs.\ reverse waterfilling (4$\times $ compression)}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Oracle Gap Analysis}{6}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:oracle}{{4.8}{6}{Oracle Gap Analysis}{subsection.4.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Oracle comparison on layer subset (Qwen2.5-7B).}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:oracle}{{7}{6}{Oracle comparison on layer subset (Qwen2.5-7B)}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Cross-Domain Robustness}{7}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:robustness}{{4.9}{7}{Cross-Domain Robustness}{subsection.4.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Cross-dataset evaluation (Qwen2.5-7B, 4$\times $ compression).}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:c4}{{8}{7}{Cross-dataset evaluation (Qwen2.5-7B, 4$\times $ compression)}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Cross-calibration results (Qwen2.5-7B).}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:crosscalib}{{9}{7}{Cross-calibration results (Qwen2.5-7B)}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Profiling Resolution Ablation}{7}{subsection.4.10}\protected@file@percent }
+\newlabel{sec:profiling}{{4.10}{7}{Profiling Resolution Ablation}{subsection.4.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Profiling resolution comparison (Qwen2.5-7B).}}{7}{table.10}\protected@file@percent }
+\newlabel{tab:profiling}{{10}{7}{Profiling resolution comparison (Qwen2.5-7B)}{table.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Downstream Task Evaluation}{8}{subsection.4.11}\protected@file@percent }
+\newlabel{sec:downstream}{{4.11}{8}{Downstream Task Evaluation}{subsection.4.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Downstream performance (Qwen2.5-7B, 4$\times $ compression). Recovery \% measures how much of the FP16-to-uniform gap is recovered.}}{8}{table.11}\protected@file@percent }
+\newlabel{tab:downstream}{{11}{8}{Downstream performance (Qwen2.5-7B, 4$\times $ compression). Recovery \% measures how much of the FP16-to-uniform gap is recovered}{table.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.12}Scaling Analysis: Qwen2.5-72B}{8}{subsection.4.12}\protected@file@percent }
+\newlabel{sec:scaling}{{4.12}{8}{Scaling Analysis: Qwen2.5-72B}{subsection.4.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Sensitivity scaling within the Qwen family (profiling only).}}{8}{table.12}\protected@file@percent }
+\newlabel{tab:scale}{{12}{8}{Sensitivity scaling within the Qwen family (profiling only)}{table.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{8}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GQA Ratio as Governing Factor.}{8}{section*.8}\protected@file@percent }
+\bibstyle{plainnat}
+\@writefile{toc}{\contentsline {paragraph}{Constraints Are Necessary but Model-Specific.}{9}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{9}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\gdef \@abspage@last{9}

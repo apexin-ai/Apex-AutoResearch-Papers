@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_build_latex_compile_check_20260515T151208_result.json",
     "occurrence": 1,
-    "bytes": 46580,
-    "sha256": "31362944a3c171929e185f551f3623c17f67c2a5d76627687967769ead0d20f2"
+    "bytes": 46579,
+    "sha256": "5b1fd94d68f35fad7e289503c0a7a4e9d4c80c1b82ec8e9ad8b66cad0dc23551"
   },
   "statistics": {
     "messages": 1,

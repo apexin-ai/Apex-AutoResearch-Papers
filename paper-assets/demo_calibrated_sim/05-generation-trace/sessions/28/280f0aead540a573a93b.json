@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "280f0aead540a573a93b",
+  "project": "demo_calibrated_sim",
+  "kind": "worker",
+  "title": "infra env setup cqa1",
+  "task_key": "worker_infra_env-setup-cqa1_20260512T102236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup-cqa1_20260512T102236.log",
+    "occurrence": 1,
+    "bytes": 817497,
+    "sha256": "960d06d59df1af2a6ebf6d60a3e723a6f705b8ffd84bfcaca41cb460e6b7e3a4"
+  },
+  "statistics": {
+    "messages": 585,
+    "user_turns": 0,
+    "tool_calls": 236,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 107,
+      "tool_call": 236,
+      "tool_result": 236,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 585,
+      "chunks": [
+        {
+          "path": "280f0aead540a573a93b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "280f0aead540a573a93b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "280f0aead540a573a93b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "280f0aead540a573a93b-part-0004.json",
+          "message_count": 45
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-env-setup-cqa1.md"
+}

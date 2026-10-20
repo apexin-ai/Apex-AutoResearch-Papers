@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_wang_et_al_check_20260518T205548_result.json",
     "occurrence": 1,
-    "bytes": 892,
-    "sha256": "61014ef432efa71fb5c658c1aaebdf3c1ab28d9603ab7ef5bc87be159a44f7df"
+    "bytes": 891,
+    "sha256": "bde3d6d83b124fcf31938a41623205fd4d3e73e3df7ed74ec448df4970cefcd7"
   },
   "statistics": {
     "messages": 1,

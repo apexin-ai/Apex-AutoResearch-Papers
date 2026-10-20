@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_kivi_asymmetric_compounding_20260516T082515_result.json",
     "occurrence": 1,
-    "bytes": 1030,
-    "sha256": "c2d023308e95806bfd55be4e7954baa3cffd990ebaceb01d6d046d98767245c9"
+    "bytes": 1029,
+    "sha256": "8145d2c7e1dda136f5ec9c11be0965220eae90c0479375468fe73e0fd29b57a9"
   },
   "statistics": {
     "messages": 1,

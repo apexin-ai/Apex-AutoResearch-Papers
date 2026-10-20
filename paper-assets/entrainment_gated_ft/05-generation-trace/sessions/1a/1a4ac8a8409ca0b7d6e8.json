@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_gateddeltanet-new-check_20260518T051249_result.json",
     "occurrence": 1,
-    "bytes": 2184,
-    "sha256": "65bc3c285e11bcaa35eb1d2d6d7f88d4da89998c5c5259dcac46ac48eb0c5828"
+    "bytes": 2183,
+    "sha256": "9f8a74a3f354d37deb4a7b86dda71348bfa47b31abb355282a9a2887b913268a"
   },
   "statistics": {
     "messages": 1,

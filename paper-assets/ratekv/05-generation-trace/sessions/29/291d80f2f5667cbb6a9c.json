@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_mistral_compounding_sweep_20260515T163254_result.json",
     "occurrence": 1,
-    "bytes": 364,
-    "sha256": "d236cdc3f494838d413969ed3c0eca04ba31ae56f74e9b6ea4e471e46003edf8"
+    "bytes": 363,
+    "sha256": "911bbfcbb17852bd0f1a0a0a844be6b0c6b64bf4dbb44e6cac6c24bd4a811dce"
   },
   "statistics": {
     "messages": 1,

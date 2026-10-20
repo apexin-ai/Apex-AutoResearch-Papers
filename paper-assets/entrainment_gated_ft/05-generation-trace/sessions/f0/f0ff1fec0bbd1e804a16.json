@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_caveat_and_h6_robustness_20260519T065202_result.json",
     "occurrence": 1,
-    "bytes": 930,
-    "sha256": "b3a0dbce4c11db2d0baebc8882ddd24a208e63fc65eeaec9dd7a8cd7262fefc9"
+    "bytes": 929,
+    "sha256": "9b3eefab7979a4ffdeb3a29320ed84c435501815b21ad6f8cb1d119aa71b978f"
   },
   "statistics": {
     "messages": 1,

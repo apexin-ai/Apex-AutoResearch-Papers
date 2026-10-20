@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_qwen14b_constrained_pipeline_20260515T112623_result.json",
     "occurrence": 1,
-    "bytes": 801,
-    "sha256": "710258d212381a612d0898cc4d260bd757b47ce6a367897553a1db89d5a26d9a"
+    "bytes": 800,
+    "sha256": "04f6e0a7bd1921e9aff2d95492ff4a4d8e7fd47c7fe597d55884950b53552621"
   },
   "statistics": {
     "messages": 1,

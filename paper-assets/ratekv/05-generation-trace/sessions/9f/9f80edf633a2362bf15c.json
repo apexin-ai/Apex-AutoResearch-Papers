@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_downstream_eval_mckp_hires_20260514T071342_result.json",
     "occurrence": 1,
-    "bytes": 1039,
-    "sha256": "c4cf56c277cb277f27a3d3497c318bcc02926a461882a0c2dd1c9a51233c0e38"
+    "bytes": 1038,
+    "sha256": "4a1a2e0395da4c779ee47a0a2973208287b5f8d39320545d24627bc26d4281f9"
   },
   "statistics": {
     "messages": 1,

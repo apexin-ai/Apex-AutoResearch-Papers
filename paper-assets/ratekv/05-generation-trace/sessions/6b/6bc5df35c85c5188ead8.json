@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_diag_w2_check_full_profiles_20260515T050552_result.json",
     "occurrence": 1,
-    "bytes": 1725,
-    "sha256": "30d4a61788da85ef1c00d0ff152206aa2b97193ff97699d4d35b789f0f489d87"
+    "bytes": 1724,
+    "sha256": "9762c23e9699882b191e33d67e77e9f23673130d4a51ebf460fefe8970795f1d"
   },
   "statistics": {
     "messages": 1,

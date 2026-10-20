@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_llama_3seed_downstream_ci_20260515T215434_result.json",
     "occurrence": 1,
-    "bytes": 465,
-    "sha256": "46199238109552c667c4e18604a081075297d230d7f49b88b30538904d00c406"
+    "bytes": 464,
+    "sha256": "6406c8a9a83c6454ca79c4b5eba5e94958ea277d90aad9f17d5b3a641821c77a"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_check_llama_sweep_status_20260515T163523_result.json",
     "occurrence": 1,
-    "bytes": 350,
-    "sha256": "03f9bc9931a0c100f2d7d021ca2a8f739200e33f20410c42350e110b546712fc"
+    "bytes": 349,
+    "sha256": "1d76af7eb353f236d3bece6940e93cd666ca2fdb0f02dd19839579d1028db7b2"
   },
   "statistics": {
     "messages": 1,

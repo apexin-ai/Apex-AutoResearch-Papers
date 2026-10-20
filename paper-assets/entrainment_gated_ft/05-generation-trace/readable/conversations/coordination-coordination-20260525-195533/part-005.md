@@ -213,7 +213,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v4_new.txt \\\n  --caption \"Method overview with separate dot matrices showing low cross-architecture overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v4.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v4_new.txt \\\n  --caption \"Method overview with separate dot matrices showing low cross-architecture overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v4.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana v4: dot matrix overlap",
   "timeout": "300000",
   "run_in_background": "True"
@@ -230,7 +230,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v4_new.txt \\\n  --caption \"Method overview with separate dot matrices showing low cross-architecture overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v4.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v4_new.txt \\\n  --caption \"Method overview with separate dot matrices showing low cross-architecture overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v4.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana v4: dot matrix overlap",
     "timeout": "300000",
     "run_in_background": "True"
@@ -275,7 +275,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v5_new.txt \\\n  --caption \"Detailed methodology figure with pixel-precise Venn overlap specification for J≈0.10\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v5.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v5_new.txt \\\n  --caption \"Detailed methodology figure with pixel-precise Venn overlap specification for J≈0.10\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v5.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana v5: max detail",
   "timeout": "300000",
   "run_in_background": "True"
@@ -292,7 +292,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v5_new.txt \\\n  --caption \"Detailed methodology figure with pixel-precise Venn overlap specification for J≈0.10\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v5.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v5_new.txt \\\n  --caption \"Detailed methodology figure with pixel-precise Venn overlap specification for J≈0.10\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v5.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana v5: max detail",
     "timeout": "300000",
     "run_in_background": "True"
@@ -337,7 +337,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2_new.txt \\\n  --caption \"Flow diagram: model zoo grid, per-example decomposition, nearly-separate circles for low Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v2.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2_new.txt \\\n  --caption \"Flow diagram: model zoo grid, per-example decomposition, nearly-separate circles for low Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v2.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana v2 retry",
   "timeout": "300000",
   "run_in_background": "True"
@@ -354,7 +354,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2_new.txt \\\n  --caption \"Flow diagram: model zoo grid, per-example decomposition, nearly-separate circles for low Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v2.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2_new.txt \\\n  --caption \"Flow diagram: model zoo grid, per-example decomposition, nearly-separate circles for low Jaccard overlap\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v2.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana v2 retry",
     "timeout": "300000",
     "run_in_background": "True"
@@ -725,7 +725,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2_iter2.txt \\\n  --caption \"Simplified model zoo grid with flat colored blocks, spacious layout, barely-touching Venn circles\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v2.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2_iter2.txt \\\n  --caption \"Simplified model zoo grid with flat colored blocks, spacious layout, barely-touching Venn circles\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v2.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana v2: simplified grid + spacing",
   "timeout": "300000",
   "run_in_background": "True"
@@ -742,7 +742,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2_iter2.txt \\\n  --caption \"Simplified model zoo grid with flat colored blocks, spacious layout, barely-touching Venn circles\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v2.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v2_iter2.txt \\\n  --caption \"Simplified model zoo grid with flat colored blocks, spacious layout, barely-touching Venn circles\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v2.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana v2: simplified grid + spacing",
     "timeout": "300000",
     "run_in_background": "True"
@@ -787,7 +787,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v3_iter2.txt \\\n  --caption \"Nature/Science style low-saturation academic figure with muted coral, steel blue, sage green palette\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v3.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v3_iter2.txt \\\n  --caption \"Nature/Science style low-saturation academic figure with muted coral, steel blue, sage green palette\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v3.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana v3: muted Nature palette",
   "timeout": "300000",
   "run_in_background": "True"
@@ -804,7 +804,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v3_iter2.txt \\\n  --caption \"Nature/Science style low-saturation academic figure with muted coral, steel blue, sage green palette\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v3.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v3_iter2.txt \\\n  --caption \"Nature/Science style low-saturation academic figure with muted coral, steel blue, sage green palette\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v3.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana v3: muted Nature palette",
     "timeout": "300000",
     "run_in_background": "True"
@@ -849,7 +849,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v4_iter2.txt \\\n  --caption \"Borderless modern panel layout with thin divider lines, no card backgrounds\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v4.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v4_iter2.txt \\\n  --caption \"Borderless modern panel layout with thin divider lines, no card backgrounds\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v4.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana v4: borderless modern",
   "timeout": "300000",
   "run_in_background": "True"
@@ -866,7 +866,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v4_iter2.txt \\\n  --caption \"Borderless modern panel layout with thin divider lines, no card backgrounds\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v4.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v4_iter2.txt \\\n  --caption \"Borderless modern panel layout with thin divider lines, no card backgrounds\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v4.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana v4: borderless modern",
     "timeout": "300000",
     "run_in_background": "True"
@@ -1007,7 +1007,7 @@ _source line 2227 · 2026-05-24T18:53:00.216153+00:00_
 
 ```bash
 source /tmp/fig_venv/bin/activate
-export GOOGLE_API_KEY="[REDACTED_GOOGLE_TOKEN]"
+export GOOGLE_API_KEY="[REDACTED]"
 ```
 
 用 `/tmp/fig2_intent_v4_iter2.txt` 作为 intent（无边框、现代简洁风格），执行：
@@ -1369,7 +1369,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v3_iter2.txt \\\n  --caption \"Nature/Science style low-saturation methodology figure with muted coral, steel blue, sage green\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v3.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v3_iter2.txt \\\n  --caption \"Nature/Science style low-saturation methodology figure with muted coral, steel blue, sage green\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v3.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana v3: muted Nature palette (retry)",
   "timeout": "300000",
   "run_in_background": "True"
@@ -1386,7 +1386,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v3_iter2.txt \\\n  --caption \"Nature/Science style low-saturation methodology figure with muted coral, steel blue, sage green\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v3.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_v3_iter2.txt \\\n  --caption \"Nature/Science style low-saturation methodology figure with muted coral, steel blue, sage green\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v3.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana v3: muted Nature palette (retry)",
     "timeout": "300000",
     "run_in_background": "True"
@@ -1939,7 +1939,7 @@ Between Panel 1→2 and Panel 2→3: very thin horizontal arrows (0.4pt, #BDC3C7
 
 ```bash
 source /tmp/fig_venv/bin/activate
-export GOOGLE_API_KEY="[REDACTED_GOOGLE_TOKEN]"
+export GOOGLE_API_KEY="[REDACTED]"
 paperbanana generate --intent-file /tmp/fig2_intent_premium.txt --vlm-model gemini-2.5-pro --output /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/fig2_banana_v8_premium.png
 ```
 
@@ -2088,7 +2088,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_premium.txt \\\n  --caption \"Nature Methods style methodology: controlled model zoo, per-example decomposition, cross-architecture overlap with three separate circles (J≈0.10)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v8_premium.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_premium.txt \\\n  --caption \"Nature Methods style methodology: controlled model zoo, per-example decomposition, cross-architecture overlap with three separate circles (J≈0.10)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v8_premium.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana v8 premium Nature style",
   "timeout": "300000",
   "run_in_background": "True"
@@ -2105,7 +2105,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_premium.txt \\\n  --caption \"Nature Methods style methodology: controlled model zoo, per-example decomposition, cross-architecture overlap with three separate circles (J≈0.10)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v8_premium.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_premium.txt \\\n  --caption \"Nature Methods style methodology: controlled model zoo, per-example decomposition, cross-architecture overlap with three separate circles (J≈0.10)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v8_premium.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana v8 premium Nature style",
     "timeout": "300000",
     "run_in_background": "True"
@@ -2150,7 +2150,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_premium_v9.txt \\\n  --caption \"Ultra-minimal Nature style: borderless circles, soft fills, whitespace-only panel separation\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v9_ultramin.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_premium_v9.txt \\\n  --caption \"Ultra-minimal Nature style: borderless circles, soft fills, whitespace-only panel separation\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v9_ultramin.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana v9 ultra-minimal",
   "timeout": "300000",
   "run_in_background": "True"
@@ -2167,7 +2167,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_premium_v9.txt \\\n  --caption \"Ultra-minimal Nature style: borderless circles, soft fills, whitespace-only panel separation\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v9_ultramin.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_intent_premium_v9.txt \\\n  --caption \"Ultra-minimal Nature style: borderless circles, soft fills, whitespace-only panel separation\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig2_banana_v9_ultramin.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana v9 ultra-minimal",
     "timeout": "300000",
     "run_in_background": "True"
@@ -4004,7 +4004,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_method_v10_intent.txt \\\n  --caption \"Three-stage experimental framework: (1) controlled model zoo with Pure/+Attention variants across 3 linear recurrent architectures, (2) per-example decomposition into helped/hurt/unchanged sets, (3) cross-architecture Jaccard overlap showing architecture-specific sensitivity (J≈0.10)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig_method_overview_banana_v10.png \\\n  --iterations 5 2>&1",
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_method_v10_intent.txt \\\n  --caption \"Three-stage experimental framework: (1) controlled model zoo with Pure/+Attention variants across 3 linear recurrent architectures, (2) per-example decomposition into helped/hurt/unchanged sets, (3) cross-architecture Jaccard overlap showing architecture-specific sensitivity (J≈0.10)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig_method_overview_banana_v10.png \\\n  --iterations 5 2>&1",
   "description": "PaperBanana v10 Nature/Science premium",
   "timeout": "300000",
   "run_in_background": "True"
@@ -4021,7 +4021,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED_GOOGLE_TOKEN]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_method_v10_intent.txt \\\n  --caption \"Three-stage experimental framework: (1) controlled model zoo with Pure/+Attention variants across 3 linear recurrent architectures, (2) per-example decomposition into helped/hurt/unchanged sets, (3) cross-architecture Jaccard overlap showing architecture-specific sensitivity (J≈0.10)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig_method_overview_banana_v10.png \\\n  --iterations 5 2>&1",
+    "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft && GOOGLE_API_KEY=\"[REDACTED]\" /tmp/fig_venv/bin/paperbanana generate \\\n  --input /tmp/fig2_method_v10_intent.txt \\\n  --caption \"Three-stage experimental framework: (1) controlled model zoo with Pure/+Attention variants across 3 linear recurrent architectures, (2) per-example decomposition into helped/hurt/unchanged sets, (3) cross-architecture Jaccard overlap showing architecture-specific sensitivity (J≈0.10)\" \\\n  --vlm-model gemini-2.5-pro \\\n  --output docs/paper/figures/fig_method_overview_banana_v10.png \\\n  --iterations 5 2>&1",
     "description": "PaperBanana v10 Nature/Science premium",
     "timeout": "300000",
     "run_in_background": "True"
@@ -4723,7 +4723,7 @@ _source line 2334 · 2026-05-25T09:06:49.352051+00:00_
 
 1	{
 2	  "repo_public": "https://github.com/anonymous-nlp-2026-2/entrainment_gated_ft",
-3	  "push_url": "https://caoxiaoyu001:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git",
+3	  "push_url": "https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git",
 4	  "github_user": "caoxiaoyu001",
 5	  "repo_name": "entrainment_gated_ft"
 6	}
@@ -4818,7 +4818,7 @@ _source line 2337 · 2026-05-25T09:07:02.375329+00:00_
 
 1	{
 2	  "repo_public": "https://github.com/anonymous-nlp-2026-2/entrainment_gated_ft",
-3	  "push_url": "https://caoxiaoyu001:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git",
+3	  "push_url": "https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git",
 4	  "github_user": "caoxiaoyu001",
 5	  "repo_name": "entrainment_gated_ft"
 6	}
@@ -5969,7 +5969,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /tmp/anon_repo && git remote add origin https://caoxiaoyu001:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git && git push -f origin main 2>&1",
+  "command": "cd /tmp/anon_repo && git remote add origin https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git && git push -f origin main 2>&1",
   "description": "Push anonymous repo to GitHub",
   "timeout": "60000"
 }
@@ -5985,7 +5985,7 @@ called Bash
   "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /tmp/anon_repo && git remote add origin https://caoxiaoyu001:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git && git push -f origin main 2>&1",
+    "command": "cd /tmp/anon_repo && git remote add origin https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git && git push -f origin main 2>&1",
     "description": "Push anonymous repo to GitHub",
     "timeout": "60000"
   }

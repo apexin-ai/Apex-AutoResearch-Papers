@@ -1,0 +1,67 @@
+{
+  "helped": {
+    "GDN_vs_HGRN2": {
+      "J_obs": 0.100218,
+      "J_null_mean": 0.051056,
+      "J_null_std": 0.006911,
+      "z_score": 7.11,
+      "p_value": 0.0001
+    },
+    "GDN_vs_RetNet": {
+      "J_obs": 0.092251,
+      "J_null_mean": 0.044946,
+      "J_null_std": 0.007013,
+      "z_score": 6.75,
+      "p_value": 0.0001
+    },
+    "HGRN2_vs_RetNet": {
+      "J_obs": 0.108077,
+      "J_null_mean": 0.048826,
+      "J_null_std": 0.006882,
+      "z_score": 8.61,
+      "p_value": 0.0001
+    }
+  },
+  "hurt": {
+    "GDN_vs_HGRN2": {
+      "J_obs": 0.088362,
+      "J_null_mean": 0.048967,
+      "J_null_std": 0.006666,
+      "z_score": 5.91,
+      "p_value": 0.0001
+    },
+    "GDN_vs_RetNet": {
+      "J_obs": 0.10338,
+      "J_null_mean": 0.056292,
+      "J_null_std": 0.006875,
+      "z_score": 6.85,
+      "p_value": 0.0001
+    },
+    "HGRN2_vs_RetNet": {
+      "J_obs": 0.086691,
+      "J_null_mean": 0.044571,
+      "J_null_std": 0.006965,
+      "z_score": 6.05,
+      "p_value": 0.0001
+    }
+  },
+  "overall_null_mean_helped": 0.048276,
+  "overall_null_mean_hurt": 0.049943,
+  "set_sizes": {
+    "GDN": {
+      "helped": 462,
+      "hurt": 615
+    },
+    "HGRN2": {
+      "helped": 548,
+      "hurt": 395
+    },
+    "RetNet": {
+      "helped": 426,
+      "hurt": 495
+    }
+  },
+  "N": 5153,
+  "n_permutations": 10000,
+  "seed": 42
+}

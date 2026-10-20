@@ -1,0 +1,21 @@
+{
+  "exp_id": "budget_sweep",
+  "project": "ratekv",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:51:52.095Z",
+    "updated_at": "2026-05-14T00:51:52.095Z",
+    "spec": {
+      "hypothesis": "Budget sweep: constrained MCKP at compression ratios 2x/4x/8x (budget=0.5/0.25/0.125). Compare each against uniform baseline at same budget. Qwen2.5-7B, WikiText-2.",
+      "plan_id": "plan_005",
+      "claim": [
+        2
+      ]
+    }
+  },
+  "timestamp": "2026-05-14T00:51:52.125118+00:00",
+  "trigger": "update_registry"
+}

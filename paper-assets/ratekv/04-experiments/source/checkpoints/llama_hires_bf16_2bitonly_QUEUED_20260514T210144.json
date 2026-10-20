@@ -1,0 +1,15 @@
+{
+  "exp_id": "llama_hires_bf16_2bitonly",
+  "project": "ratekv",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:17:48.408Z",
+    "updated_at": "2026-05-14T21:01:43.984Z",
+    "hypothesis": "Llama-3.1-8B hires bf16 2-bit only profiling (64seq×2048tok): 补全 5 模型 hires concentration 全景图。Standard profiling concentration=0.34-0.59, 预期 hires 会更高。256 heads × ~30s/head ≈ 2h。"
+  },
+  "timestamp": "2026-05-14T21:01:44.111851+00:00",
+  "trigger": "update_registry"
+}

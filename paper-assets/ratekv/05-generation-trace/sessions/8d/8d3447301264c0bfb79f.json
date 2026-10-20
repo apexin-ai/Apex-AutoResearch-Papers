@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_compounding-curves-integration_20260516T015523_result.json",
     "occurrence": 1,
-    "bytes": 594,
-    "sha256": "6a4d8927db30e15b966de1924272e4eaa028010bb4b5c2c479850f534c7bed93"
+    "bytes": 593,
+    "sha256": "b9ca5f87a2753f9f8b8739ad5e298b1d8df622edfec7d3f819de9a0345ace474"
   },
   "statistics": {
     "messages": 1,

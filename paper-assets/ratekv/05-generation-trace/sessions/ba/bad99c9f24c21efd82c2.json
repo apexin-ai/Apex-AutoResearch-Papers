@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_gemma2_hires_bf16_2bitonly_20260515T005231_result.json",
     "occurrence": 1,
-    "bytes": 1371,
-    "sha256": "c95b33a3a1bc2829fcd6eb18fde80426ef8f1a7cc53eb89bf1b2a5dea551d901"
+    "bytes": 1370,
+    "sha256": "3f526ea95426d9fdf8bbf0352fac8428c3c581bb42ecf39f33e4ca7cd5409278"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69d5bf7659fafb907ef5",
+  "project": "demo_calibrated_sim",
+  "kind": "history",
+  "title": "reviewer / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_2.md",
+    "occurrence": 1,
+    "bytes": 3835,
+    "sha256": "c16976b842ed20ad441072af7fd4de8c1fce4db4bda4d26eb3700182c6aa5aea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_wall_time\nupdated: '2026-05-12T19:00:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 gpu_ids=[2,3]，仅 cuda:2 和 cuda:3 可用。GPU 0/1/4/5 上有其他项目进程，绝不能占用\n- 服务器 cqa1-21977，账号 root。只有这一台服务器\n- `/root/autodl-tmp/` 磁盘 98%（仅剩 3.9GB），任何写操作前必须确认空间。dpo-003 checkpoint 写入可能触发磁盘满\n- WANDB_MODE=disabled（dpo-003），无法用 wandb 交叉验证，只能靠日志\n- dpo-001 H-gate eval 曾出现 cherry-picking 风险（5 runs 方差 10%-30%），已要求 Agent 报告全部 runs。下次 eval 必须延续此要求\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-21977(root)，6×RTX 4090D (24GB each)\n- 工作目录：`/root/democalib/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型路径：`/root/autodl-tmp/models/Qwen2.5-7B-Instruct/`（Qwen，主力），`/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3/`（Plan B，14GB，刚下完）\n- DPO 数据：`/root/democalib/data/dpo_pairs_v2.jsonl`（1563 pairs，conversational format）\n- dpo-003 输出：`/root/democalib/dpo_output_v3/`（训练中，checkpoint 尚未写入）\n- dpo-003 日志：`/root/democalib/results/dpo_train_v3.log`\n- 活跃进程：dpo-003 (PID 299965, cuda:2, 23022 MiB)，dpo-002 (PID 276055, cuda:3, 23192 MiB)\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/demo_calibrated_sim/`\n\n### 3. 📊 当前状态\n刚完成：Mistral 下载核实（完整）+ 磁盘空间告警（3.9GB 剩余，已 warning 给 Director 建议删 `Qwen2.5-7B-Instruct-DPO-merged/` 释放 ~15GB）。\n\nRegistry RUNNING：\n- **dpo-003**：Fix B（plain text 转换消除 TRL mismatch），step ~111/1173 (9%), ETA ~50 min。这是**核心决策节点**\n- **dpo-002**：有 100% tokenizer mismatch 的对照组，cuda:3\n\n等待中：\n- dpo-003 训练完成 → Agent 应立即跑 H-gate eval\n- dpo-002 完成 → 作为对照数据点（预期差于 dpo-003）\n- Director 对磁盘告警的决策（是否清理 DPO-merged）\n\n### 4. 📋 待办\n- dpo-003 训练完成通知 → 核实最终 loss/rewards_accuracy（应优于 dpo-001 的 0.6814/0.5），检查 checkpoint 是否成功保存，确认无磁盘满错误\n- dpo-003 H-gate eval 完成 → **独立核实** H2（politeness gap reduction ≥30%）和 H3（completion ≥29.6%=baseline 80%），要求全部 runs 报告，计算均值和方差\n- H-gate PASS → Plan A（DPO method paper）成立，审查 Agent 结论是否过度 claim\n- H-gate FAIL → Plan B 启动：Mistral BCP eval，completion 须 >20% 否则 KILL 项目\n- dpo-002 完成 → 与 dpo-003 对比，验证 mismatch 消除确实改善了训练效果\n- 磁盘满事故发生 → severity: critical，要求 Agent 立即清理并重跑\n\n### 5. 🎯 战略上下文\n- **决策链**：D001-D009。核心路径：BCP 6/6 FAIL → DPO 路线。dpo-001 有 48% mismatch → H-gate FAIL。根因确认为 TRL #5213（add_generation_prompt=True hardcoded）。dpo-003 用 Fix B 消除 mismatch，是 Plan A 唯一希望\n- **Llama BCP 无效**（D007/D009）：completion=5% floor effect，不能 claim 跨模型复现。已降级为辅助证据\n- **Plan B 极弱**：单模型 BCP 失败分析对 EMNLP Findings 接受率 <30%。需 Mistral completion >20% 才有多模型支撑，否则 KILL\n- **最容易判断错的事**：\n  1. Worker 报 \"done\" ≠ 训练完成（可能只是启动 worker 结束，训练在 nohup 背景跑）\n  2. dpo-001 的 `conclusion: success` 指训练过程成功，不指 eval 成功（eval 是 hgate-dpo001，H3 FAIL）\n  3. ssh_read_only 不支持管道符 `|` 和重定向 `>`，需要拆分命令\n  4. dpo-003 spec 里 `--gpu-id 0` 是 CUDA_VISIBLE_DEVICES=2 下的逻辑 ID，物理卡是 cuda:2，不是违规\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35c49b6f33ecf90d3bb5",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "research literature map init",
+  "task_key": "worker_research_literature-map-init_20260512T102744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-map-init_20260512T102744_result.json",
+    "occurrence": 1,
+    "bytes": 1075,
+    "sha256": "fe4cc3fc70bbbe6063026c43a1712c99c79ea6eff55e8ac6bc97da7548084290"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/literature_map.yaml`，共 20 篇论文：\n\n| 类别 | 数量 | 关键论文 |\n|------|------|---------|\n| direct-competitor | **0** | 未找到——验证项目新颖性 |\n| foundation | 4 | Seshadri 2026 (Lost in Simulation), τ-bench, AgentBench, MINT |\n| method-component | 7 | DPO, Calibrate Before Use, Consistent Personas (RL), User LMs, Persona Catch, Alignment Survey |\n| evaluation | 5 | ReDial (AAVE), DialectBench, BBQ, Bias Survey, Dialect vs Demographics |\n| background | 5 | Dialect NLP Survey, Rickford AAVE, Kachru Indian English, DAUS, User Diversity |\n\n关键发现：\n- **Seshadri 2026** 是最核心的前序工作（记录了问题），但原文标题是 \"Lost in Simulation\" 而非 \"AFAA\"，发表于 arXiv 2601.17087，尚未确认被 ICLR 2026 接收\n- **无直接竞品**做\"校准用户模拟器方言行为率\"，DemoCalib 的 BCP + DPO 方案有明确的新颖性空间\n- 最接近的是 Haq & Saldias 2026 (Dialect vs Demographics)，但他们只量化偏差机制，不提出校准方法"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-map-init.md"
+}

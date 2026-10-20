@@ -1,0 +1,25 @@
+{
+  "exp_id": "gemma2_downstream_k8_4task_v2",
+  "project": "ratekv",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:39:01.643Z",
+    "updated_at": "2026-05-15T19:53:31.418Z",
+    "spec": {
+      "hypothesis": "Gemma-2 downstream eval with k=8 (spread model), 4-task protocol (arc_challenge, hellaswag, piqa, winogrande). v2: fixed eval_ppl.py head_dim for Gemma-2 (was hidden_size//num_heads=224, now getattr(config,'head_dim')=256).",
+      "server": "westd-37397",
+      "model_name": "gemma-2-9b",
+      "parent": "gemma2_downstream_k8_4task",
+      "fix_applied": "eval_ppl.py head_dim now reads from model.model.layers[0].self_attn.head_dim (256) instead of config fallback (224). try/except preserves backward compat for other models.",
+      "dry_run_verified": "2026-05-15, arc_challenge limit=50, acc=0.6, no shape mismatch",
+      "gpu": [
+        "cuda:1"
+      ]
+    }
+  },
+  "timestamp": "2026-05-15T19:53:31.795369+00:00",
+  "trigger": "update_registry"
+}

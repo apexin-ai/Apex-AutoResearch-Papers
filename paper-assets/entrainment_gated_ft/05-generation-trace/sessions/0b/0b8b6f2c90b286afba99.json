@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_exp-005-hgrn-eval-watch_20260522T161920_result.json",
     "occurrence": 1,
-    "bytes": 289,
-    "sha256": "39099b16f0d63901946bddb68bb37244a158b1e7be65024fe60e6e99f034c063"
+    "bytes": 288,
+    "sha256": "18fc9d01ae9121e53034f0f98d3c07c74df2e1336bb2d0d89a63f7736d95fd90"
   },
   "statistics": {
     "messages": 1,

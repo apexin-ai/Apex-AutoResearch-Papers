@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_viz_jaccard-heatmap-5arch_20260522T210326_result.json",
     "occurrence": 1,
-    "bytes": 492,
-    "sha256": "5be061ed43bec9d3659f37d1da26543d2a7ccd629b44f5a9a714e4c661332c64"
+    "bytes": 491,
+    "sha256": "4f8ccb9adfff9323af2d63743351d6d9729798b1e6e27a553b571d9e3baad28e"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_bootstrap-ci-decoupling_20260520T011928_result.json",
     "occurrence": 1,
-    "bytes": 1339,
-    "sha256": "688f350ab5462850e7abb39e01fde8ff28de304bad55eb931840f1fe0980a72e"
+    "bytes": 1338,
+    "sha256": "afa2e9f056efdba646ded7cc3d3f7db100e44cece9065cae087cb3ab798cefa6"
   },
   "statistics": {
     "messages": 1,

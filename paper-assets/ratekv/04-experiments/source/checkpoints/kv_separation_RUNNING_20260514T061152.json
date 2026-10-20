@@ -1,0 +1,34 @@
+{
+  "exp_id": "kv_separation",
+  "project": "ratekv",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:01:37.522Z",
+    "updated_at": "2026-05-14T06:11:52.854Z",
+    "hypothesis": "K 和 V heads 作为独立 MCKP items 分别优化 bit-width，允许 K/V 不对称分配（如 K avg 2.85 bits, V avg 2.15 bits）。对比 joint K+V optimization vs 当前 uniform K=V 方案。RateQuant 支持不对称 K/V，MCKP 应能自然处理。",
+    "spec": {
+      "command": "python run_kv_separation.py",
+      "server": "westd-37397",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "186353",
+      "log_path": "~/runs/ratekv/kv_separation.log",
+      "submitted_at": "2026-05-14T06:11:38.237Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "calibration_hires.json",
+      "data_count": "64x2048",
+      "model_name": "Qwen/Qwen2.5-7B",
+      "seed": 42,
+      "device": "cuda:1",
+      "eval_data": "wikitext-2"
+    }
+  },
+  "timestamp": "2026-05-14T06:11:52.909036+00:00",
+  "trigger": "update_registry"
+}

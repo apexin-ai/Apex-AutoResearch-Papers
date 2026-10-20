@@ -1,0 +1,248 @@
+{
+  "experiment": "exp-010",
+  "description": "Convergence-Divergence Bridge: aggregate convergence vs per-example divergence",
+  "task": "lambada_openai",
+  "n_samples": 5153,
+  "architectures": [
+    "GDN",
+    "HGRN2",
+    "RetNet"
+  ],
+  "aggregate_convergence": {
+    "pure": {
+      "attention_ratio": 0.0,
+      "cross_arch_std": 0.024047126977057007,
+      "per_arch_acc": {
+        "GDN": 0.5429846691247817,
+        "HGRN2": 0.48418397050261985,
+        "RetNet": 0.5165922763438774
+      }
+    },
+    "h24-1": {
+      "attention_ratio": 0.04,
+      "cross_arch_std": 0.016238171620323174,
+      "per_arch_acc": {
+        "GDN": 0.5396856200271687,
+        "HGRN2": 0.5002910925674364,
+        "RetNet": 0.5152338443625073
+      }
+    },
+    "h12-1": {
+      "attention_ratio": 0.07692307692307693,
+      "cross_arch_std": 0.013595712311665278,
+      "per_arch_acc": {
+        "GDN": 0.5336697069668155,
+        "HGRN2": 0.5030079565301766,
+        "RetNet": 0.5070832524742869
+      }
+    },
+    "h6-1": {
+      "attention_ratio": 0.14285714285714285,
+      "cross_arch_std": 0.006055084765553574,
+      "per_arch_acc": {
+        "GDN": 0.5109644867067727,
+        "HGRN2": 0.5088298078789055,
+        "RetNet": 0.4971861051814477
+      }
+    },
+    "h3-1": {
+      "attention_ratio": 0.25,
+      "cross_arch_std": 0.004942545182713789,
+      "per_arch_acc": {
+        "GDN": 0.5134872889578886,
+        "HGRN2": 0.5138754123811372,
+        "RetNet": 0.5032020182418009
+      }
+    }
+  },
+  "per_example_divergence": {
+    "h24-1": {
+      "attention_ratio": 0.04,
+      "per_arch": {
+        "GDN": {
+          "helped": 485,
+          "hurt": 501,
+          "net": -16
+        },
+        "HGRN2": {
+          "helped": 479,
+          "hurt": 396,
+          "net": 83
+        },
+        "RetNet": {
+          "helped": 448,
+          "hurt": 455,
+          "net": -7
+        }
+      },
+      "pairwise": {
+        "GDN_vs_HGRN2": {
+          "jaccard_helped": 0.1004566210045662,
+          "jaccard_hurt": 0.07168458781362007,
+          "net_asymmetry": 0.019212109450805356
+        },
+        "GDN_vs_RetNet": {
+          "jaccard_helped": 0.08995327102803738,
+          "jaccard_hurt": 0.09507445589919816,
+          "net_asymmetry": 0.0017465554046186688
+        },
+        "HGRN2_vs_RetNet": {
+          "jaccard_helped": 0.09316037735849056,
+          "jaccard_hurt": 0.09523809523809523,
+          "net_asymmetry": 0.017465554046186688
+        }
+      },
+      "mean_jaccard_helped": 0.09452342313036471,
+      "mean_jaccard_hurt": 0.08733237965030449,
+      "mean_net_asymmetry": 0.012808072967203571
+    },
+    "h12-1": {
+      "attention_ratio": 0.07692307692307693,
+      "per_arch": {
+        "GDN": {
+          "helped": 464,
+          "hurt": 512,
+          "net": -48
+        },
+        "HGRN2": {
+          "helped": 512,
+          "hurt": 415,
+          "net": 97
+        },
+        "RetNet": {
+          "helped": 427,
+          "hurt": 476,
+          "net": -49
+        }
+      },
+      "pairwise": {
+        "GDN_vs_HGRN2": {
+          "jaccard_helped": 0.09786276715410573,
+          "jaccard_hurt": 0.07043879907621248,
+          "net_asymmetry": 0.028138948185522997
+        },
+        "GDN_vs_RetNet": {
+          "jaccard_helped": 0.08658536585365853,
+          "jaccard_hurt": 0.08690869086908691,
+          "net_asymmetry": 0.00019406171162429653
+        },
+        "HGRN2_vs_RetNet": {
+          "jaccard_helped": 0.10082063305978899,
+          "jaccard_hurt": 0.08526187576126674,
+          "net_asymmetry": 0.028333009897147293
+        }
+      },
+      "mean_jaccard_helped": 0.09508958868918442,
+      "mean_jaccard_hurt": 0.08086978856885539,
+      "mean_net_asymmetry": 0.01888867326476486
+    },
+    "h6-1": {
+      "attention_ratio": 0.14285714285714285,
+      "per_arch": {
+        "GDN": {
+          "helped": 426,
+          "hurt": 598,
+          "net": -172
+        },
+        "HGRN2": {
+          "helped": 524,
+          "hurt": 397,
+          "net": 127
+        },
+        "RetNet": {
+          "helped": 399,
+          "hurt": 499,
+          "net": -100
+        }
+      },
+      "pairwise": {
+        "GDN_vs_HGRN2": {
+          "jaccard_helped": 0.09953703703703703,
+          "jaccard_hurt": 0.08505997818974918,
+          "net_asymmetry": 0.05802445177566466
+        },
+        "GDN_vs_RetNet": {
+          "jaccard_helped": 0.09126984126984126,
+          "jaccard_hurt": 0.11597151576805696,
+          "net_asymmetry": 0.01397244323694935
+        },
+        "HGRN2_vs_RetNet": {
+          "jaccard_helped": 0.08588235294117647,
+          "jaccard_hurt": 0.09535452322738386,
+          "net_asymmetry": 0.04405200853871531
+        }
+      },
+      "mean_jaccard_helped": 0.0922297437493516,
+      "mean_jaccard_hurt": 0.09879533906172999,
+      "mean_net_asymmetry": 0.03868296785044311
+    },
+    "h3-1": {
+      "attention_ratio": 0.25,
+      "per_arch": {
+        "GDN": {
+          "helped": 462,
+          "hurt": 615,
+          "net": -153
+        },
+        "HGRN2": {
+          "helped": 548,
+          "hurt": 395,
+          "net": 153
+        },
+        "RetNet": {
+          "helped": 426,
+          "hurt": 495,
+          "net": -69
+        }
+      },
+      "pairwise": {
+        "GDN_vs_HGRN2": {
+          "jaccard_helped": 0.10021786492374728,
+          "jaccard_hurt": 0.08836206896551724,
+          "net_asymmetry": 0.05938288375703474
+        },
+        "GDN_vs_RetNet": {
+          "jaccard_helped": 0.09225092250922509,
+          "jaccard_hurt": 0.10337972166998012,
+          "net_asymmetry": 0.01630118377644091
+        },
+        "HGRN2_vs_RetNet": {
+          "jaccard_helped": 0.1080773606370876,
+          "jaccard_hurt": 0.08669108669108669,
+          "net_asymmetry": 0.04308169998059383
+        }
+      },
+      "mean_jaccard_helped": 0.10018204935668666,
+      "mean_jaccard_hurt": 0.09281095910886135,
+      "mean_net_asymmetry": 0.03958858917135649
+    }
+  },
+  "co_evolution_tests": {
+    "4-point (hybrids only)": {
+      "std_vs_jaccard_helped": {
+        "r": -0.3999999999999999,
+        "p": 0.75,
+        "n": 4
+      },
+      "std_vs_jaccard_hurt": {
+        "r": -0.6000000000000001,
+        "p": 0.375,
+        "n": 4
+      }
+    },
+    "5-point (including pure=0)": {
+      "std_vs_jaccard_helped": {
+        "r": -0.7,
+        "p": 0.23333333333333334,
+        "n": 5
+      },
+      "std_vs_jaccard_hurt": {
+        "r": -0.8,
+        "p": 0.13333333333333333,
+        "n": 5
+      }
+    },
+    "n_permutations_4pt": 24,
+    "n_permutations_5pt": 120
+  }
+}

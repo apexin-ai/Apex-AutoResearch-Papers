@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_bootstrap-ci-alpha_20260521T130458_result.json",
     "occurrence": 1,
-    "bytes": 711,
-    "sha256": "169563de9820d4418f36f20999ada422328654ba70a54a2521855e1ac8f2dc6a"
+    "bytes": 710,
+    "sha256": "2182bb1661303cb94dc75eaf10ce7e5ebb3cc003c452a742d34e6b59c8a04311"
   },
   "statistics": {
     "messages": 1,

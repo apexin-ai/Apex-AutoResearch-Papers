@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_hgrn2_diagnose_20260518T155822_result.json",
     "occurrence": 1,
-    "bytes": 1272,
-    "sha256": "eae9ba53f827dc4073d2af7134f4b1d7e697bb5900ed6281bef40ed011db2501"
+    "bytes": 1271,
+    "sha256": "15c76330bce266c0f23d9ae824e941bc8be13597e37c1124cc2b3509391fa4d3"
   },
   "statistics": {
     "messages": 1,

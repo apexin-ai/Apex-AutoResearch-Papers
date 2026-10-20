@@ -410,6 +410,56 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39357442666"
+    },
+    "entrainment_gated_ft/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 328475861,
+        "etag": "\"d6bb644e973d957bced6390b48cc74ab-40\"",
+        "modified": "2026-05-31T17:31:29+00:00"
+      },
+      "archive_sha256": "6c9d78da9ac8f06b5b71dd682841aa662127685bd00477d310d927c818bf9418",
+      "projects": [
+        "demo_calibrated_sim",
+        "contrastive_graph_jailbreak_detect",
+        "entrainment_gated_ft",
+        "ratekv"
+      ],
+      "counts": [
+        {
+          "project": "demo_calibrated_sim",
+          "title": "Why Calibration Fails: A Taxonomy of Failure Modes in Dialect-Aware LLM User Simulation",
+          "paper_pdf": "paper.pdf",
+          "code_count": 161,
+          "data_count": 167,
+          "trace_count": 203
+        },
+        {
+          "project": "contrastive_graph_jailbreak_detect",
+          "title": "contrastive graph jailbreak detect",
+          "paper_pdf": null,
+          "code_count": 28,
+          "data_count": 15,
+          "trace_count": 28
+        },
+        {
+          "project": "entrainment_gated_ft",
+          "title": "Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models",
+          "paper_pdf": "paper.pdf",
+          "code_count": 150,
+          "data_count": 431,
+          "trace_count": 599
+        },
+        {
+          "project": "ratekv",
+          "title": "When Does Non-Uniform KV Cache Quantization Help? Cardinality Constraints and a Heterogeneity Diagnostic",
+          "paper_pdf": "paper.pdf",
+          "code_count": 308,
+          "data_count": 874,
+          "trace_count": 1250
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39357442666"
     }
   }
 }

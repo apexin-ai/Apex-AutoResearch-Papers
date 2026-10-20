@@ -1,0 +1,28 @@
+{
+  "exp_id": "yi_8k_eval",
+  "project": "ratekv",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:13:23.584Z",
+    "updated_at": "2026-05-16T05:34:17.016Z",
+    "hypothesis": "Yi-1.5-9B 8K long-context eval: Spike shape (c=0.71, t1/t5=0.90). Expect no MCKP benefit at 8K — Spike control for Spread-specific long-context amplification claim.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_yi_longcontext_8k.py --gpu cuda:0\"",
+      "server": "westd-37397",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "405564",
+      "log_path": "~/runs/ratekv/yi_8k_eval.log",
+      "submitted_at": "2026-05-16T05:34:03.226Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-16T05:34:17.208384+00:00",
+  "trigger": "update_registry"
+}

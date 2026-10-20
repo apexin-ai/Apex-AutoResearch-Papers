@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp-005-pure-v4",
+  "project": "entrainment_gated_ft",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:35:11.429Z",
+    "updated_at": "2026-05-24T07:45:43.011Z",
+    "spec": {
+      "command": "bash -c \"bash /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_pure_v4.sh\"",
+      "server": "westb-48145",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "903338",
+      "log_path": "~/runs/entrainment_gated_ft/exp-005-pure-v4.log",
+      "submitted_at": "2026-05-22T16:35:11.341Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-24T07:45:43.088242+00:00",
+  "trigger": "update_registry"
+}

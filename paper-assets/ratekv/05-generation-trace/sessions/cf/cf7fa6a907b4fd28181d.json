@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_check_qwen_gemma_status_20260515T215047_result.json",
     "occurrence": 1,
-    "bytes": 1592,
-    "sha256": "58aa3491c9e6fec50f72dc964f3bd22215797f91c34d64aeed1c2cb8cc8ea0ac"
+    "bytes": 1591,
+    "sha256": "5ed33d3cd98876f052d6e1ecfe3dd40e698cf776f98d07517c91ba9c8fe0fdb1"
   },
   "statistics": {
     "messages": 1,

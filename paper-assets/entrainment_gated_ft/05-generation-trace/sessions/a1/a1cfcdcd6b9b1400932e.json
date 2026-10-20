@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_cleanup-remote-tarball_20260525T210538_result.json",
     "occurrence": 1,
-    "bytes": 82,
-    "sha256": "409042da8822131a18f8a05195e2be4072c2839a9d1fdbe7cf8592341c3e4481"
+    "bytes": 81,
+    "sha256": "d1c8aa6416e79d1d855607e8f510b240b15c972c23571b637198b2ed3c63b12f"
   },
   "statistics": {
     "messages": 1,

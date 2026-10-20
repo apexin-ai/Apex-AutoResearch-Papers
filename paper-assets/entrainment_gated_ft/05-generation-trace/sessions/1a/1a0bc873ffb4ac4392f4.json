@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_synthetic-composition-design_20260518T053347_result.json",
     "occurrence": 1,
-    "bytes": 1525,
-    "sha256": "015ae7914890868e30c96f6498f88a58db890093dc3ad817fbd0564ae5ab0563"
+    "bytes": 1524,
+    "sha256": "3b0f2d665018ccc6e6fc60e74d9ac0eec9d6e579d612e7105068144a0875a7d1"
   },
   "statistics": {
     "messages": 1,

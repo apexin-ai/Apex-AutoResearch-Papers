@@ -1,0 +1,27 @@
+{
+  "exp_id": "eval_340m_retnet_hgrn2",
+  "project": "entrainment_gated_ft",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T04:03:58.762Z",
+    "updated_at": "2026-05-19T04:32:37.289Z",
+    "hypothesis": "340M RetNet and HGRN2 models will show the same architecture-dependent attention effect observed at 1.3B scale: HGRN2 benefits from attention while RetNet shows minimal benefit, with task-dependent equalizer effect on LAMBADA",
+    "spec": {
+      "command": "bash /root/entrainment_gated_ft/run_all_340m_eval.sh",
+      "server": "westb-48145",
+      "data_path": "/root/autodl-tmp/models/",
+      "data_count": 10,
+      "model_name": "340M RetNet×5 + HGRN2×5",
+      "seed": 0
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/entrainment_gated_ft/lm_eval_clean/340m/",
+    "log_path": "/root/entrainment_gated_ft/lm_eval_clean/340m/run_all.log",
+    "completed_at": "2026-05-19T04:32:37.289Z"
+  },
+  "timestamp": "2026-05-19T04:32:37.298304+00:00",
+  "trigger": "update_registry"
+}

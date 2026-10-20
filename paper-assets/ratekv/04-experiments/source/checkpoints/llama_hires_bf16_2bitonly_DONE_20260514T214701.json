@@ -1,0 +1,34 @@
+{
+  "exp_id": "llama_hires_bf16_2bitonly",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:17:48.408Z",
+    "updated_at": "2026-05-14T21:47:01.860Z",
+    "hypothesis": "Llama-3.1-8B hires bf16 2-bit only profiling (64seq×2048tok): 补全 5 模型 hires concentration 全景图。Standard profiling concentration=0.34-0.59, 预期 hires 会更高。256 heads × ~30s/head ≈ 2h。",
+    "spec": {
+      "command": "python run_llama_hires_bf16_2bitonly.py --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-8B --gpu cuda:0 --batch_size 2",
+      "server": "westd-37397",
+      "data_path": "calibration_hires.json",
+      "data_count": 64,
+      "model_name": "Meta-Llama-3.1-8B",
+      "seed": 0,
+      "log_path": "/tmp/llama_hires_bf16_2bitonly.log",
+      "checkpoint_path": "/root/ratekv/llama_hires_bf16_2bitonly_results.json"
+    },
+    "metrics": {
+      "top5_concentration": 0.57,
+      "t1_t5": 0.85,
+      "top1_head": "L2H5_delta=15.26",
+      "baseline_calibration_ppl": 6.5055,
+      "total_heads": 256
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T21:46:36.437Z"
+  },
+  "timestamp": "2026-05-14T21:47:01.968274+00:00",
+  "trigger": "update_registry"
+}

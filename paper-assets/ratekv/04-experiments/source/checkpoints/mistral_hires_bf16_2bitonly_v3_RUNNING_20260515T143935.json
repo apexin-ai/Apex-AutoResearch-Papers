@@ -1,0 +1,37 @@
+{
+  "exp_id": "mistral_hires_bf16_2bitonly_v3",
+  "project": "ratekv",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:37:00.902Z",
+    "updated_at": "2026-05-15T14:39:35.470Z",
+    "hypothesis": "Mistral-7B-v0.3 hires bf16 2-bit only profiling v3. Model integrity verified (3/3 shards + safetensor + transformers). 64seq×2048tok, 256 heads.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_mistral_hires_bf16_2bitonly.py --model /root/autodl-tmp/models/Mistral-7B-v0.3 --gpu cuda:0 --batch_size 2\"",
+      "server": "westd-37397",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "340906",
+      "log_path": "~/runs/ratekv/mistral_hires_bf16_2bitonly_v3.log",
+      "submitted_at": "2026-05-15T22:32:45Z",
+      "submitted_via": "tmux",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "Mistral-7B-v0.3",
+      "data_path": "wikitext-2 (built-in)",
+      "data_count": 64,
+      "seed": 42,
+      "checkpoint_source": "Mistral-7B-v0.3 pretrained",
+      "eval_data": "wikitext-2 (profiling)"
+    },
+    "conclusion": "killed",
+    "parent": "mistral_hires_bf16_2bitonly_v2",
+    "notes": "SUPERSEDED by v4 (mistral_hires_bf16_2bitonly_v4). Model integrity verified but v4 used re-downloaded model from HF with fixed cuda device."
+  },
+  "timestamp": "2026-05-15T14:39:35.610905+00:00",
+  "trigger": "update_registry"
+}

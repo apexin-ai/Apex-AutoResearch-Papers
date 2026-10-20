@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp-004",
+  "project": "entrainment_gated_ft",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T16:41:10.744Z",
+    "updated_at": "2026-05-19T16:57:48.978Z",
+    "hypothesis": "Attention layers in hybrid-3-1 models exhibit systematically different attention patterns (entropy, position distribution) between helped and hurt samples on LAMBADA, revealing how attention mediates the entrainment-gating effect across architectures.",
+    "parent": "exp-003",
+    "spec": {
+      "command": "python extract_attention_weights.py (forward hooks on Q,K, manual softmax(QK^T/√d) with GQA expansion)",
+      "server": "westb-48145",
+      "data_path": "/root/entrainment_gated_ft/lm_eval_clean/lambada_openai per-example data",
+      "data_count": 5153,
+      "model_name": "GDN-h3-1, RetNet-h3-1, HGRN2-h3-1 (1.3B)",
+      "seed": 42,
+      "gpu": "cuda:0",
+      "checkpoint_source": "Wang et al. pretrained weights",
+      "eval_data": "lambada_openai (5153 examples)",
+      "log_path": "/tmp/exp004.log (process died after Worker exited - nohup orphan)",
+      "checkpoint_path": "N/A - process crashed before completion",
+      "failure_reason": "Worker used nohup instead of submit_training_job/tmux; PID 515917 died after Worker exit. GPU idle since ~16:47 UTC."
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T16:57:48.978Z"
+  },
+  "timestamp": "2026-05-19T16:57:49.006086+00:00",
+  "trigger": "update_registry"
+}

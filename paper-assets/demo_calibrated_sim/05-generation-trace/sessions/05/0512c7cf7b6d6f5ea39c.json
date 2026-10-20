@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "0512c7cf7b6d6f5ea39c",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "code tokenizer fix prep",
+  "task_key": "worker_code_tokenizer-fix-prep_20260512T154936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_tokenizer-fix-prep_20260512T154936_result.json",
+    "occurrence": 1,
+    "bytes": 1011,
+    "sha256": "27f6b5d87df14bc03350c429d48a66ce1f133e6824c96e49fd2a24438ae02c67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两种模式都验证通过。\n\n**结果**：\n\n`/root/democalib/build_dpo_pairs_v2.py` 已就绪。与 v1 的区别：\n\n| | v1 | v2 |\n|---|---|---|\n| prompt 格式 | `\"Customer: ...\\nAgent: ...\"` 手工拼接 | message lists `[{\"role\":\"user\",\"content\":\"...\"},...]` |\n| tokenizer 对齐 | 不匹配 ChatML（48% mismatch） | DPOTrainer 自动调 `apply_chat_template()` |\n| 输出模式 | 纯文本 | `--format messages`（默认）或 `--format text`（预格式化） |\n| 配对逻辑 | 相同 | 相同 |\n| 额外过滤 | 保留空 content messages | 过滤掉空 content |\n\n使用时（当需要重建数据时）：\n```bash\npython3 build_dpo_pairs_v2.py \\\n  --calibrated-traces <calibrated.json> \\\n  --uncalibrated-traces results/baseline_merged.json \\\n  --output data/dpo_pairs_v2.jsonl\n```\n\n现有 `train_dpo.py` 不需要改动——TRL 1.4.0 的 DPOTrainer 原生支持 conversational format。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "role": "user",
+              "content": "..."
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-tokenizer-fix-prep.md"
+}

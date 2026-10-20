@@ -1,0 +1,26 @@
+{
+  "exp_id": "c4_cross_dataset_eval",
+  "project": "ratekv",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T01:17:45.349Z",
+    "updated_at": "2026-05-14T01:23:19.819Z",
+    "spec": {
+      "hypothesis": "C4 cross-dataset evaluation: 用 C4 数据做 calibration + profiling + constrained MCKP solver + eval，与 WikiText-2 结果对比 (同 budget=0.25, max_2bit=8)。验证 (a) per-head 分配跨数据集一致性 (b) PPL 改善幅度跨数据集稳定性。",
+      "plan_id": "plan_007",
+      "claim": [
+        1,
+        2,
+        3
+      ],
+      "model_name": "Qwen2.5-7B",
+      "data_path": "C4 (allenai/c4)",
+      "seed": 0
+    }
+  },
+  "timestamp": "2026-05-14T01:23:19.875458+00:00",
+  "trigger": "update_registry"
+}

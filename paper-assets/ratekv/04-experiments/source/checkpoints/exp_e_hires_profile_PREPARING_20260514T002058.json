@@ -1,0 +1,18 @@
+{
+  "exp_id": "exp_e_hires_profile",
+  "project": "ratekv",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:20:58.895Z",
+    "updated_at": "2026-05-14T00:20:58.895Z",
+    "spec": {
+      "hypothesis": "用高分辨率 calibration (64 seq × 2048 tokens, calibration_hires.json) 重新 profile 并跑 constrained MCKP (max_2bit=8 + L0 exclusion)。验证高分辨率 profiling 是否改善中间层分辨率、产出不同/更优的 bit 分配。对比 exp_c (低分辨率 profile)。",
+      "parent": "exp_c_constrained_mckp"
+    }
+  },
+  "timestamp": "2026-05-14T00:20:58.918222+00:00",
+  "trigger": "update_registry"
+}

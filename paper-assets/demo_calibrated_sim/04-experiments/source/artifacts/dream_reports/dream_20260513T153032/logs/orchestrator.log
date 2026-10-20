@@ -1,0 +1,3 @@
+2026-05-13 16:14:01,696 INFO    core.tools.feishu  create_chat: name='demo_calibrated_sim-审稿群' → chat_id=oc_8e1afc751ba69bea0a663f25b9a6a3a1
+2026-05-13 16:14:01,699 INFO    core.tools.dream  [dream] auto-created Group C for project=demo_calibrated_sim: oc_8e1afc751ba69bea0a663f25b9a6a3a1
+2026-05-13 16:14:01,790 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-idea_gen_0509_2/config/mcp_config_dream_review_director.json

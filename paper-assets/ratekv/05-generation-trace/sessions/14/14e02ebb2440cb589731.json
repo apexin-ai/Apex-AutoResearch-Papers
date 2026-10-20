@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_kill-zombie_20260513T174138_result.json",
     "occurrence": 1,
-    "bytes": 197,
-    "sha256": "859e46e3b91b55628dcbf3a5d01c5b239f4fe3b41c2c3051e5bf1b80d5eaec95"
+    "bytes": 196,
+    "sha256": "5b304353ee1dae3e498431e55a341d39058550e4b7089bf2b725cc505429a9cc"
   },
   "statistics": {
     "messages": 1,

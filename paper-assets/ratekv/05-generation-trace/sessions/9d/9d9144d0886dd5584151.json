@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_p0-concentration-patch_20260514T221709_result.json",
     "occurrence": 1,
-    "bytes": 692,
-    "sha256": "a1143759640172302c2a96e900462f6ec8891d60e5a9df54c720cac47d0701bb"
+    "bytes": 691,
+    "sha256": "5ad570bc218542765697f789d98e8770308d3babe6bf538bc1115a86e8512b76"
   },
   "statistics": {
     "messages": 1,

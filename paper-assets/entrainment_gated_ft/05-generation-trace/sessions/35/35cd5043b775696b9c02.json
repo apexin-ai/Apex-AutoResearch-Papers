@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_research_lit_cluster_2_linear_recurrent_20260519T184333_result.json",
     "occurrence": 1,
-    "bytes": 1189,
-    "sha256": "84c32ba4408cca97e0f9ff2cf66b6fd0c6d635564d9f95b9fc7199590ec2190b"
+    "bytes": 1188,
+    "sha256": "02505f075d67acb35170f1735ed10ea922f68ac98b9764904255090b12fca3fd"
   },
   "statistics": {
     "messages": 1,

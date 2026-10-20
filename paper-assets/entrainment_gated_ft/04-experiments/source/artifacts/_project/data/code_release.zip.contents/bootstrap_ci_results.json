@@ -1,0 +1,74 @@
+{
+  "sigma": {
+    "pure": {
+      "point": 0.02431,
+      "ci_lower": 0.0193,
+      "ci_upper": 0.02955
+    },
+    "h24_1": {
+      "point": 0.01647,
+      "ci_lower": 0.01162,
+      "ci_upper": 0.02172
+    },
+    "h12_1": {
+      "point": 0.01462,
+      "ci_lower": 0.00969,
+      "ci_upper": 0.02019
+    },
+    "h6_1": {
+      "point": 0.00643,
+      "ci_lower": 0.0024,
+      "ci_upper": 0.01165
+    },
+    "h3_1": {
+      "point": 0.00537,
+      "ci_lower": 0.0018,
+      "ci_upper": 0.01057
+    }
+  },
+  "J_helped": {
+    "h24_1": {
+      "point": 0.0945,
+      "ci_lower": 0.0826,
+      "ci_upper": 0.1066
+    },
+    "h12_1": {
+      "point": 0.0954,
+      "ci_lower": 0.0834,
+      "ci_upper": 0.1075
+    },
+    "h6_1": {
+      "point": 0.0904,
+      "ci_lower": 0.079,
+      "ci_upper": 0.1023
+    },
+    "h3_1": {
+      "point": 0.0964,
+      "ci_lower": 0.0844,
+      "ci_upper": 0.1088
+    }
+  },
+  "J_hurt": {
+    "h24_1": {
+      "point": 0.086,
+      "ci_lower": 0.0745,
+      "ci_upper": 0.0978
+    },
+    "h12_1": {
+      "point": 0.0775,
+      "ci_lower": 0.0667,
+      "ci_upper": 0.0891
+    },
+    "h6_1": {
+      "point": 0.098,
+      "ci_lower": 0.0857,
+      "ci_upper": 0.1105
+    },
+    "h3_1": {
+      "point": 0.0932,
+      "ci_lower": 0.0814,
+      "ci_upper": 0.1057
+    }
+  },
+  "key_finding": "sigma CIs non-overlapping between pure and h3-1 (true signal) vs J CIs overlapping across ratios (flat) -> supports decoupling"
+}

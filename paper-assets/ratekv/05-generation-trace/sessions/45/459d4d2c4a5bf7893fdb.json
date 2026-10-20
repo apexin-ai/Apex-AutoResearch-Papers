@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_mistral_footnote_fix_20260514T213232_result.json",
     "occurrence": 1,
-    "bytes": 497,
-    "sha256": "f73f345094360b5662b30ef1c7754e82fd07c3415a0e960a4498286e3695968e"
+    "bytes": 496,
+    "sha256": "753eaa62723893c82565c5643b476d32e597a85e6335952be3aa4147fb5f3a0c"
   },
   "statistics": {
     "messages": 1,

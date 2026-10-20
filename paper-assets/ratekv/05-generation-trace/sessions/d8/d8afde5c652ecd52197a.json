@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_compounding_sweep_20260514T002939_result.json",
     "occurrence": 1,
-    "bytes": 1345,
-    "sha256": "b9c18a3bb2d474fa1cda35d04c49f5aec74a707e8f336297c0bf7d1bf06bcc20"
+    "bytes": 1344,
+    "sha256": "d4dab410ab1ce3e755fa6b505c744d73d79db7f661c526c7749a5a8879579b96"
   },
   "statistics": {
     "messages": 1,

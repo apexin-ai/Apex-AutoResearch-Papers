@@ -1,0 +1,85 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{kivi2024}
+\citation{kvquant2024}
+\citation{arkv2026}
+\citation{ratequant2026}
+\citation{haq2019,hawq2020}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{KV Cache Quantization.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Rate--Distortion Approaches.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mixed-Precision Quantization.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Per-Head Distortion Profiling}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Constrained MCKP Formulation}{2}{subsection.3.2}\protected@file@percent }
+\citation{ratequant2026}
+\newlabel{eq:obj}{{2}{3}{Constrained MCKP Formulation}{equation.2}{}}
+\newlabel{eq:budget}{{3}{3}{Constrained MCKP Formulation}{equation.3}{}}
+\newlabel{eq:card}{{4}{3}{Constrained MCKP Formulation}{equation.4}{}}
+\newlabel{eq:discrete}{{5}{3}{Constrained MCKP Formulation}{equation.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Determining the Cardinality Bound $k$}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Solver}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Datasets.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Profiling.}{3}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Main results at $4\times $ KV cache compression on WikiText-2. PPL improvement is relative to uniform 4-bit.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:main}{{1}{4}{Main results at $4\times $ KV cache compression on WikiText-2. PPL improvement is relative to uniform 4-bit}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Allocation comparison on Llama-3.1-8B at $4\times $ compression.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:llama_alloc}{{2}{4}{Allocation comparison on Llama-3.1-8B at $4\times $ compression}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results: Cross-Model Consistency}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:main}{{4.2}{4}{Main Results: Cross-Model Consistency}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Llama-3.1-8B allocation detail.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Compounding Effect Analysis}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:compounding}{{4.3}{4}{Compounding Effect Analysis}{subsection.4.3}{}}
+\citation{ratequant2026}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Compounding effect sweep on Qwen2.5-7B (WikiText-2). Elbow at $k \approx 12$, optimal at $k = 8$.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:compounding}{{3}{5}{Compounding effect sweep on Qwen2.5-7B (WikiText-2). Elbow at $k \approx 12$, optimal at $k = 8$}{table.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Compounding effect elbow curve. Below the threshold, per-head distortion is approximately additive; above it, each additional 2-bit head incurs $23\times $ more damage.}}{5}{figure.1}\protected@file@percent }
+\newlabel{fig:elbow}{{1}{5}{Compounding effect elbow curve. Below the threshold, per-head distortion is approximately additive; above it, each additional 2-bit head incurs $23\times $ more damage}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Budget Sweep}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Comparison with RateQuant}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Oracle Comparison}{5}{subsection.4.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Budget sweep on Qwen2.5-7B (WikiText-2). FP16 baseline PPL: 9.82.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:budget}{{4}{6}{Budget sweep on Qwen2.5-7B (WikiText-2). FP16 baseline PPL: 9.82}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces RateQuant vs.\ constrained MCKP on Llama-3.1-8B at $4\times $ compression.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:ratequant}{{5}{6}{RateQuant vs.\ constrained MCKP on Llama-3.1-8B at $4\times $ compression}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Cross-Dataset Robustness}{6}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}L0 Auto-Discovery}{6}{subsection.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}High-Resolution Profiling}{6}{subsection.4.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces MCKP vs.\ brute-force oracle on Qwen2.5-7B layer groups.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:oracle}{{6}{7}{MCKP vs.\ brute-force oracle on Qwen2.5-7B layer groups}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-calibration matrix on Qwen2.5-7B ($4\times $). Each cell shows PPL.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:crosscalib}{{7}{7}{Cross-calibration matrix on Qwen2.5-7B ($4\times $). Each cell shows PPL}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.10}Downstream Task Evaluation}{7}{subsection.4.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.11}Scaling Analysis: Qwen2.5-72B}{7}{subsection.4.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why does cardinality regularization work?}{7}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.10}\protected@file@percent }
+\bibcite{kivi2024}{{1}{2024}{{KIVI}}{{}}}
+\bibcite{kvquant2024}{{2}{2024}{{KVQuant}}{{}}}
+\bibcite{arkv2026}{{3}{2026}{{ARKV}}{{}}}
+\bibcite{ratequant2026}{{4}{2026}{{RateQuant}}{{}}}
+\bibcite{haq2019}{{5}{2019}{{HAQ}}{{}}}
+\bibcite{hawq2020}{{6}{2020}{{HAWQ}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces L0 head allocation with and without exclusion constraint (Qwen2.5-7B).}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:l0auto}{{8}{8}{L0 head allocation with and without exclusion constraint (Qwen2.5-7B)}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Profiling resolution comparison on Qwen2.5-7B.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:hires}{{9}{8}{Profiling resolution comparison on Qwen2.5-7B}{table.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Downstream task results on Qwen2.5-7B at $4\times $ compression. Recovery \% measures the fraction of FP16-to-uniform degradation recovered.}}{9}{table.10}\protected@file@percent }
+\newlabel{tab:downstream}{{10}{9}{Downstream task results on Qwen2.5-7B at $4\times $ compression. Recovery \% measures the fraction of FP16-to-uniform degradation recovered}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Sensitivity scaling: Qwen2.5-7B vs.\ 72B.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:scaling}{{11}{9}{Sensitivity scaling: Qwen2.5-7B vs.\ 72B}{table.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Layer 0 Sensitivity Across Models}{9}{appendix.A}\protected@file@percent }
+\newlabel{app:l0}{{A}{9}{Layer 0 Sensitivity Across Models}{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Discovered Mid-Layer Sensitive Heads (Hi-Res)}{9}{appendix.B}\protected@file@percent }
+\newlabel{app:hires_heads}{{B}{9}{Discovered Mid-Layer Sensitive Heads (Hi-Res)}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Layer~0 profiling deltas across architectures.}}{10}{table.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Mid-layer heads discovered by high-resolution profiling on Qwen2.5-7B.}}{10}{table.13}\protected@file@percent }
+\gdef \@abspage@last{10}

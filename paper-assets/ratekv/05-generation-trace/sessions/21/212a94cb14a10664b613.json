@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_multi_seed_infrastructure_20260516T032334_result.json",
     "occurrence": 1,
-    "bytes": 1527,
-    "sha256": "1da04125884b3a2c2dee92d556ae1bb61476855e384a2adb28acca3d7237d68b"
+    "bytes": 1526,
+    "sha256": "eafa2e06872827d95019c853a61f1f3b2c62550b4215f40406ded04c31b8508d"
   },
   "statistics": {
     "messages": 1,

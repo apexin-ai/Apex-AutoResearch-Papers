@@ -1,0 +1,74 @@
+{
+  "exp_id": "exp-011",
+  "project": "entrainment_gated_ft",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:12:29.428Z",
+    "updated_at": "2026-05-19T16:19:49.900Z",
+    "hypothesis": "Cross-architecture variance on additional retrieval-dependent benchmarks (StoryCloze, BoolQ, COPA, PIQA, SciQ) decreases monotonically with attention ratio, providing a second statistically significant anchor (exact permutation p<0.05, two-tailed) beyond LAMBADA after Bonferroni correction",
+    "parent": "exp-001",
+    "spec": {
+      "command": "bash /root/entrainment_gated_ft/run_exp011_batch.sh (nohup PID 474289)",
+      "server": "westb-48145",
+      "data_path": "/root/autodl-tmp/models_1.3b/ (16 models)",
+      "data_count": 16,
+      "model_name": "GDN/RetNet/HGRN2 x 5 ratios + Transformer baseline (1.3B)",
+      "seed": 0,
+      "eval_data": "boolq, copa, piqa, sciq (4 benchmarks x 16 models)",
+      "gpu": "cuda:0 (RTX PRO 6000)",
+      "checkpoint_source": "/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained checkpoints)"
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/entrainment_gated_ft/lm_eval_clean/exp011/",
+    "log_path": "/root/entrainment_gated_ft/lm_eval_clean/exp011/run_all.log",
+    "completed_at": "2026-05-19T16:14:41.324Z",
+    "metrics": {
+      "boolq": {
+        "rho": 0.2,
+        "raw_p": 0.7833,
+        "bonferroni_adj_p_9": 1,
+        "std_pure": 0.0163,
+        "std_h3_1": 0.0236,
+        "convergence": false
+      },
+      "piqa": {
+        "rho": -0.5,
+        "raw_p": 0.45,
+        "bonferroni_adj_p_9": 1,
+        "std_pure": 0.0054,
+        "std_h3_1": 0.0034,
+        "convergence": false
+      },
+      "sciq": {
+        "rho": 0.1,
+        "raw_p": 0.95,
+        "bonferroni_adj_p_9": 1,
+        "std_pure": 0.0087,
+        "std_h3_1": 0.0074,
+        "convergence": false
+      },
+      "copa_supplementary": {
+        "rho": -0.67,
+        "raw_p": 0.2667,
+        "std_pure": 0.0262,
+        "std_h3_1": 0.0047,
+        "convergence_ratio": 5.57,
+        "note": "supplementary only (n=100), not in main Bonferroni"
+      },
+      "LAMBADA_recomputed": {
+        "rho": -1,
+        "raw_p": 0.0167,
+        "bonferroni_adj_p_9": 0.1503,
+        "note": "no longer significant after 9-benchmark Bonferroni"
+      },
+      "merged_9benchmark_significant_count": "0/9",
+      "method": "exact_permutation_test_two_tailed",
+      "conclusion": "No second significant anchor found. boolq/sciq show positive rho (anti-convergence). piqa weak negative. COPA direction correct but underpowered. Convergence appears LAMBADA-specific."
+    }
+  },
+  "timestamp": "2026-05-19T16:19:49.928759+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,50 @@
+{
+  "exp_id": "c4_cross_dataset_eval",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T01:17:45.349Z",
+    "updated_at": "2026-05-14T10:17:02.124Z",
+    "spec": {
+      "hypothesis": "C4 cross-dataset evaluation: 用 C4 数据做 calibration + profiling + constrained MCKP solver + eval，与 WikiText-2 结果对比 (同 budget=0.25, max_2bit=8)。验证 (a) per-head 分配跨数据集一致性 (b) PPL 改善幅度跨数据集稳定性。",
+      "plan_id": "plan_007",
+      "claim": [
+        1,
+        2,
+        3
+      ],
+      "model_name": "Qwen2.5-7B",
+      "data_path": "/root/ratekv/c4_calibration.json",
+      "seed": 42,
+      "command": "python run_c4_cross_dataset.py",
+      "server": "westd-37397",
+      "data_count": 64,
+      "checkpoint_path": "/root/ratekv/c4_eval_results.json",
+      "log_path": "/root/ratekv/c4_phase2_4.log"
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-14T01:28:48.100Z",
+    "metrics": {
+      "c4_mckp_ppl": 11.3285,
+      "uniform4bit_ppl": 15.4454,
+      "delta_over_uniform": 4.117,
+      "allocation_agreement_rate": 0.982,
+      "n_disagree": 2,
+      "bit_distribution": {
+        "2": 8,
+        "4": 100,
+        "8": 4
+      },
+      "memory_ratio": 0.25,
+      "wt2_ref_mckp_ppl": 11.2312,
+      "wt2_ref_delta": 4.2142,
+      "ppl_gap": 0.097
+    },
+    "notes": "⚠️ DATA CONTAMINATION: c4_calibration.json confirmed to be WikiText data mislabeled as C4. Evidence: (1) first entry is WikiText signature '= Valkyria Chronicles III =', (2) contains WikiText @-@ tokenization, (3) no C4 dataset in HF cache, (4) file created 1min after WikiText cache. All C4-related results (PPL=11.33, agreement=98.2%) are actually WikiText-on-WikiText (same domain), NOT cross-domain. Results INVALID for cross-domain robustness claim. Real C4 data downloaded to c4_calibration_real.json (200 entries from allenai/c4 en validation). Needs re-run with real data."
+  },
+  "timestamp": "2026-05-14T10:17:02.194520+00:00",
+  "trigger": "update_registry"
+}

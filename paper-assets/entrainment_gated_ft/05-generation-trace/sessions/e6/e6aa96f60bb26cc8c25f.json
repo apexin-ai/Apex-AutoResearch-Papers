@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_check_xstorycloze-completion_20260519T163109_result.json",
     "occurrence": 1,
-    "bytes": 762,
-    "sha256": "b1ed8c2200b53c69edcf2b9c0858f7df975bb17bab02027ece69da25c520c5c2"
+    "bytes": 761,
+    "sha256": "eb19202490d7f69ca5232fab6e421094e75b7048a7e30ccdc1970154381d00b6"
   },
   "statistics": {
     "messages": 1,

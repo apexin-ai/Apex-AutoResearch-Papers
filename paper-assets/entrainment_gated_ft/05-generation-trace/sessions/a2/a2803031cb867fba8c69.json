@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_ssh-check-westb_20260523T164237_result.json",
     "occurrence": 1,
-    "bytes": 692,
-    "sha256": "5006f755effc9bfb761d2e330ad60e699981b5607712450847e6a9f160b8df14"
+    "bytes": 691,
+    "sha256": "0b5626b2220c50f350d16f78a142ccb0d438e76cf8cb799bf42ae8329fd47c5e"
   },
   "statistics": {
     "messages": 1,

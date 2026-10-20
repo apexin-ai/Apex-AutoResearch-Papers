@@ -1,0 +1,26 @@
+{
+  "exp_id": "c4_cross_dataset_eval_v2",
+  "project": "ratekv",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:06:10.739Z",
+    "updated_at": "2026-05-14T09:06:26.695Z",
+    "spec": {
+      "hypothesis": "Rerun plan_007 with verified C4 data (D032). c4_calibration.json was WikiText data — replaced with real allenai/c4 en validation. Calibrate on C4 → constrained MCKP (k=8) → eval on WT2 test. Compare allocation agreement with WT2-calibrated allocation.",
+      "plan_id": "plan_007",
+      "claim": [
+        1,
+        2,
+        3
+      ],
+      "model_name": "Qwen2.5-7B",
+      "server": "westd-37397",
+      "parent": "c4_cross_dataset_eval"
+    }
+  },
+  "timestamp": "2026-05-14T09:06:26.760313+00:00",
+  "trigger": "update_registry"
+}

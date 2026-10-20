@@ -1,0 +1,1306 @@
+narrative_guidance: '原始 framing 完全成立。三条 claim 原样保留。Reviewer 认可 2-bit compounding 作为
+  universal failure mode 的新颖性， cardinality constraint 作为 principled intervention（非
+  trivial heuristic），1/8 benefit 作为对 field 隐含假设的重要修正。 avg_review_score 3.5-4.0，p_accept
+  0.4-0.6，major objections 0-1，narrative rewrite 0-10%。
+
+  '
+imagined_experiments:
+- name: L0 exclusion removal
+  plan_id: plan_001
+  description: '移除 solver 中的 L0 硬排除约束，仅保留 max_2bit=8。验证 solver 纯粹从 profiling data
+    自动发现 L0 sensitivity， 将 L0 heads 分配到 8-bit。
+
+    '
+  expected_results:
+    solver_auto_assigns_l0_8bit: true
+    ppl_with_l0_exclusion: 10.91
+    ppl_without_l0_exclusion: 10.91
+    delta: 0.0
+    l0_heads_assigned_8bit: 4
+    bit_distribution:
+      2: 8
+      4: 100
+      8: 4
+  result_rationale: 'best 档下，profiling data 的信号足够强：L0 的 4 个 head 的 2-bit delta (合计占总
+    delta 58.6%) 远高于其他 head。 MCKP solver 在 max_2bit=8 约束下，自然将这 4 个 high-delta head
+    升到 8-bit，无需硬编码 L0 排除规则。 这强化了 "constraint 是 principled，不是 ad-hoc" 的叙事——solver 自动发现了结构，constraint
+    只防止过度分配。 Reviewer 在 best 档下接受这一点作为 constraint principled-ness 的证据。
+
+    '
+  tables:
+  - name: L0 Exclusion Ablation
+    rows:
+    - condition: With L0 exclusion
+      ppl: 10.91
+      l0_bits: 8-bit (forced)
+      other_2bit: 8
+    - condition: Without L0 exclusion
+      ppl: 10.91
+      l0_bits: 8-bit (auto)
+      other_2bit: 8
+  figures_description:
+  - Bit allocation heatmap showing solver auto-discovers L0 sensitivity pattern identical
+    to forced exclusion
+  analysis: 'PPL delta=0.0 证明 L0 排除是冗余的——profiling quality 足以让 solver 自主发现。 这消除了 "你的方法依赖
+    L0 domain knowledge" 的攻击面。
+
+    '
+- name: Llama-3.1-8B full pipeline
+  plan_id: plan_002
+  description: '在 Llama-3.1-8B (GQA 4:1, 256 KV heads) 上复现完整 pipeline。 测试 cross-architecture
+    generalizability。
+
+    '
+  expected_results:
+    baseline_ppl_bf16: 8.09
+    uniform_4bit_ppl: 8.47
+    mckp_constrained_ppl: 8.45
+    mckp_unconstrained_ppl: 8.63
+    delta_constrained_vs_uniform: +0.2%
+    unconstrained_degradation_ratio: 1.07
+    natural_2bit_count: 2
+    concentration: 0.57
+    distribution_shape: Spike
+  result_rationale: 'Llama 是 spike 型架构（L2H5 single dominant head, t₁/t₅≈0.85）。GQA=4:1
+    + 256 heads 意味着 sensitivity 分散在大量 heads 上，单个 outlier 无法被 MCKP 充分利用。unconstrained
+    solver 仅选 12 heads 到 2-bit (4.7%)，compounding 效应轻微但仍存在 (1.07×)。constrained MCKP
+    与 uniform 几乎持平 (+0.2%)。 best 档下 reviewer 接受这是对 Claim 3 的正面证据：spike 型 + 低 concentration
+    架构不需要 non-uniform， diagnostic 正确预测了这一结果。7/8 negative 是 contribution 的一部分。
+
+    '
+  tables:
+  - name: Llama-3.1-8B Pipeline Results
+    rows:
+    - method: BF16 baseline
+      ppl: 8.09
+    - method: Uniform 4-bit
+      ppl: 8.47
+    - method: MCKP constrained (k=2)
+      ppl: 8.45
+    - method: MCKP unconstrained
+      ppl: 8.63
+  figures_description:
+  - 'Per-head sensitivity heatmap: single dominant L2H5 outlier, rest flat'
+  analysis: 'Llama 代表 "spike + low benefit" 的典型案例。constrained MCKP 自然选 k=2（constraint
+    never binds）， 与 uniform 差异在噪声范围内。unconstrained 仍比 uniform 差 (1.07×)，确认 compounding
+    是 universal。
+
+    '
+- name: Mistral-7B-v0.3 full pipeline
+  plan_id: plan_003
+  description: '在 Mistral-7B-v0.3 上复现完整 pipeline。不同架构族验证 cross-architecture validity。
+
+    '
+  expected_results:
+    baseline_ppl_bf16: 7.04
+    uniform_4bit_ppl: 7.13
+    mckp_constrained_ppl: 7.16
+    mckp_unconstrained_ppl: 7.57
+    delta_constrained_vs_uniform: -0.4%
+    unconstrained_degradation_ratio: 1.08
+    concentration: 0.22
+    distribution_shape: Flat
+    k_ablation_monotonic: true
+  result_rationale: 'Mistral 是 flat 型架构（concentration=0.22, CV=1.31）。profiler 报告近零信号差异——heads
+    间 sensitivity 几乎无差别。unconstrained solver 将 42/256=16.4% heads 分到 2-bit，因为无法区分好坏，
+    累积 compounding 产生 1.08× 退化。k ablation 单调递增（每增加一个 2-bit head 都是损失）， 证实 profiler
+    zero-signal = uniform 最优。best 档下 reviewer 认可这是 Claim 3 的关键证据： flat 型架构 profiling
+    是浪费，直接 uniform 即可。
+
+    '
+  tables:
+  - name: Mistral-7B-v0.3 Pipeline Results
+    rows:
+    - method: BF16 baseline
+      ppl: 7.04
+    - method: Uniform 4-bit
+      ppl: 7.13
+    - method: MCKP constrained (k=4)
+      ppl: 7.16
+    - method: MCKP unconstrained
+      ppl: 7.57
+  - name: Mistral k Ablation
+    rows:
+    - k: 4
+      ppl: 7.165
+    - k: 8
+      ppl: 7.2
+    - k: 12
+      ppl: 7.245
+    - k: 16
+      ppl: 7.311
+    - k: 18
+      ppl: 7.323
+  figures_description:
+  - 'Monotonically increasing k-PPL curve: zero-signal profiler means every 2-bit
+    allocation hurts'
+  analysis: 'Mistral 的 monotonic k-PPL 曲线与 Qwen 的 U-shaped 形成对比——论文中并列展示，直观说明 spread
+    vs flat 的根本区别。Constrained 比 uniform 略差 0.4%，确认 non-uniform 无价值。
+
+    '
+- name: Compounding effect characterization sweep
+  plan_id: plan_004
+  description: '在 Qwen2.5-7B 上 sweep max_2bit 从 0 到 112。绘制 PPL vs max_2bit 曲线， 定位
+    compounding threshold。
+
+    '
+  expected_results:
+    ppl_k0: 9.81
+    ppl_k8: 10.05
+    ppl_k16: 10.42
+    ppl_k32: 11.6
+    ppl_k64: 22.95
+    ppl_k112: ~98.8
+    safe_threshold_k: 8
+    degradation_at_k8_pct: 2.4%
+    compounding_onset: k≈16-32
+    curve_shape: U-shaped with sharp elbow at k≈32
+  result_rationale: 'Qwen 是 spread 型 (L0 cluster of 4 heads)。k≤8 时，solver 仅将低-sensitivity
+    heads 分到 2-bit， compounding 可控 (<2.5%)。k=8 是 sweet spot：允许 8 个 2-bit heads 释放
+    budget 给 L0 4 heads 升 8-bit， PPL 显著优于 uniform。k>16 后 compounding 呈超线性增长——2-bit
+    distortion 通过 residual stream 非加性累积，profiling 预测 joint PPL≈11 但实际 32-37 (3× error)。best
+    档下 reviewer 接受这是 compounding 效应的 first quantitative characterization，U-shaped
+    曲线是 headline figure。
+
+    '
+  tables:
+  - name: Qwen Compounding Sweep
+    rows:
+    - k: 0
+      ppl: 9.81
+      ratio_to_baseline: 1.0
+    - k: 8
+      ppl: 10.05
+      ratio_to_baseline: 1.02
+    - k: 16
+      ppl: 10.42
+      ratio_to_baseline: 1.06
+    - k: 32
+      ppl: 11.6
+      ratio_to_baseline: 1.18
+    - k: 64
+      ppl: 22.95
+      ratio_to_baseline: 2.34
+    - k: 112
+      ppl: 98.75
+      ratio_to_baseline: 10.07
+  figures_description:
+  - 'PPL vs max_2bit sweep: U-shaped curve with safe zone (k≤8), transition zone (16-32),
+    catastrophic zone (>48)'
+  - 'Superposition: Qwen U-shaped vs Mistral monotonic vs Llama flat — three regimes
+    in one figure'
+  analysis: 'compounding sweep 是 Claim 1 的核心定量证据。k=8 threshold 在所有架构上 universally
+    safe (<2.5% degradation)， 为 Claim 2 的 constraint parameterization 提供实证基础。
+
+    '
+- name: Budget sweep (2×, 4×, 8×)
+  plan_id: plan_005
+  description: '在 Qwen2.5-7B 上测试 constrained MCKP 在 compression ratio 2×, 4×, 8× (budget=0.5,
+    0.25, 0.125)。
+
+    '
+  expected_results:
+    budget_0.5:
+      mckp_ppl: ~9.85
+      uniform_ppl: ~10.2
+      delta_pct: +3.4%
+    budget_0.25:
+      mckp_ppl: 10.91
+      uniform_ppl: 15.45
+      delta_pct: +29.4%
+    budget_0.125:
+      mckp_ppl: ~57.6
+      uniform_2bit_ppl: ~2644
+      delta_pct: '>97%'
+  result_rationale: 'Compression 越激进，non-uniform allocation 的价值越大。2× 时 budget 充裕，大部分
+    heads 留在 4-bit， 差异小。4× 是 paper 主战场，MCKP +29.4% 是 headline。8× 时 uniform 只能全 2-bit
+    (PPL 2644 catastrophic)， 而 MCKP 通过 cardinality constraint 保护关键 heads 在 4-bit，PPL
+    57.6——仍然高但 45× better。 best 档下 reviewer 接受 "compression amplifies benefit" 作为
+    deployment motivation。
+
+    '
+  tables:
+  - name: Budget Sweep Results
+    rows:
+    - budget: 0.5
+      compression: 2×
+      mckp_ppl: 9.85
+      uniform_ppl: 10.2
+      improvement: +3.4%
+    - budget: 0.25
+      compression: 4×
+      mckp_ppl: 10.91
+      uniform_ppl: 15.45
+      improvement: +29.4%
+    - budget: 0.125
+      compression: 8×
+      mckp_ppl: 57.6
+      uniform_ppl: 2644
+      improvement: '>97%'
+  figures_description:
+  - 'Log-scale PPL vs compression ratio: MCKP and uniform diverge exponentially at
+    aggressive compression'
+  analysis: 'Budget sweep 回答 reviewer Q4 ("How does this work at different compression
+    ratios?")。 关键 insight: moderate compression 是 practical sweet spot，aggressive
+    compression 展示 constraint 的 catastrophic prevention 价值。
+
+    '
+- name: High-resolution profiling
+  plan_id: plan_006
+  description: '64 seq × 2048 tokens hires profiling (vs 16×512 lowres)。验证 profiling
+    quality 影响 allocation quality。
+
+    '
+  expected_results:
+    hires_mckp_ppl: 10.91
+    lowres_mckp_ppl: 11.23
+    improvement_ppl: 0.32
+    improvement_pct: 2.9%
+    hires_nonzero_2bit_heads: 100
+    lowres_nonzero_2bit_heads: 37
+    profiling_time_min: 65.5
+    allocation_diff_count: 8
+    bit_distribution:
+      2: 8
+      4: 100
+      8: 4
+  result_rationale: 'hires profiling 将 non-zero 2-bit delta 的 head 数从 37 增到 100/112，给
+    solver 更多信号区分 heads。 PPL 从 11.23 降到 10.91 (gap recovery 从 ~75% 升到 ~81%)。8 个 head
+    的分配发生变化。 best 档下，reviewer 认可 profiling resolution 是一个 practical hyperparameter，65
+    min 的开销对 offline profiling 可接受。这强化了 "profiling data quality matters" 的叙事，但 constraint
+    仍然是 primary intervention——hires 只是 marginal improvement on top of constraint。
+
+    '
+  tables:
+  - name: Profiling Resolution Comparison
+    rows:
+    - resolution: 16×512 (lowres)
+      mckp_ppl: 11.23
+      nonzero_heads: 37
+      time_min: ~10
+    - resolution: 64×2048 (hires)
+      mckp_ppl: 10.91
+      nonzero_heads: 100
+      time_min: 65.5
+  figures_description:
+  - 'Per-head delta heatmap: lowres vs hires, showing hires reveals mid-layer sensitivity
+    structure'
+  analysis: 'hires profiling 是论文 §5.4 的 ablation。关键区别：lowres 下 solver 只能区分 37 heads，
+    hires 下能区分 100 heads。但两者 bit distribution 完全相同 (2:8, 4:100, 8:4)——constraint 的稳定性
+    进一步证明它是 robust intervention。
+
+    '
+- name: C4 cross-dataset evaluation
+  plan_id: plan_007
+  description: '在 C4 上 calibrate 和 evaluate，验证结果不依赖 WikiText-2。包含 cross-domain transfer。
+
+    '
+  expected_results:
+    c4_cal_wt2_eval_mckp_ppl: 11.29
+    c4_cal_wt2_eval_uniform_ppl: 15.45
+    allocation_agreement_c4_vs_wt2: 0.964
+    agreement_heads: 108/112
+    cross_domain_wt2_to_c4_mckp_ppl: 20.56
+    cross_domain_wt2_to_c4_uniform_ppl: 35.42
+    contamination_impact: 0.034
+  result_rationale: '96.4% allocation agreement (108/112 heads) 证明 profiling-based
+    allocation 对 calibration data 的 choice 鲁棒。 4 个不一致 heads 的 delta 差异小，对最终 PPL 影响仅
+    0.034。cross-domain transfer (wt2→c4) 同样 MCKP >> uniform (20.56 vs 35.42)。best
+    档下 reviewer 接受 "calibration-robust" 的 claim， 不要求额外 calibration domain 实验。WikiText-2
+    contamination 不是 concern。
+
+    '
+  tables:
+  - name: Cross-Dataset Calibration
+    rows:
+    - calibration: WikiText-2
+      eval: WikiText-2
+      mckp_ppl: 10.91
+      uniform_ppl: 15.45
+    - calibration: C4
+      eval: WikiText-2
+      mckp_ppl: 11.29
+      uniform_ppl: 15.45
+    - calibration: WikiText-2
+      eval: C4
+      mckp_ppl: 20.56
+      uniform_ppl: 35.42
+  figures_description: []
+  analysis: 'C4 实验回答 "WikiText-2 specific?" 质疑。96.4% agreement 是 strong evidence。
+    cross-domain transfer 性能比同 domain 差但 MCKP 优势保持。
+
+    '
+- name: RateQuant greedy comparison
+  plan_id: plan_008
+  description: '实现 RateQuant Algorithm 1 greedy 在 {2,4,8,16} 上。证明 polymatroid optimality
+    在非连续 bit-width 上 breaks。
+
+    '
+  expected_results:
+    greedy_unconstrained_ppl: 32.45
+    mckp_unconstrained_ppl: 36.92
+    uniform_4bit_ppl: 15.45
+    greedy_2bit_count: 68
+    greedy_bit_dist:
+      2: 68
+      4: 30
+      8: 4
+      16: 10
+  result_rationale: 'RateQuant 的 greedy 依赖 polymatroid structure (Prop. 6)，要求 bit-width
+    是连续整数 {2,...,6}。 在 {2,4,8,16} 上，marginal gain per bit 的 submodularity breaks：2→4
+    的 gain-per-bit 与 4→8 的 gain-per-bit 不再单调，greedy 过度分配 2-bit (68/112 = 60.7%)。PPL
+    32.45 (3.31× baseline)。 甚至 MCKP unconstrained 更差 (36.92)——因为 independent profiling
+    低估了 joint 2-bit distortion。 best 档下 reviewer 接受这是 RateQuant 在 hardware-aligned
+    bit-widths 上的 genuine gap， 我们的 constraint 修复了这个 gap。
+
+    '
+  tables:
+  - name: RateQuant vs MCKP on {2,4,8,16}
+    rows:
+    - method: RateQuant greedy (unconstrained)
+      ppl: 32.45
+      2bit_heads: 68
+    - method: MCKP (unconstrained)
+      ppl: 36.92
+      2bit_heads: ~70
+    - method: Uniform 4-bit
+      ppl: 15.45
+      2bit_heads: 0
+  figures_description:
+  - 'Bit allocation comparison: greedy vs MCKP vs constrained, showing over-allocation
+    of 2-bit'
+  analysis: '核心 differentiation evidence。两个 SOTA solver 都 fail——问题不在 solver algorithm，在
+    compounding。 这消除了 "换个更好的 solver 就行" 的反驳。
+
+    '
+- name: Oracle comparison
+  plan_id: plan_009
+  description: 'Brute-force optimal allocation on subset of layers。量化 MCKP 与 oracle
+    的 gap。
+
+    '
+  expected_results:
+    mckp_ppl: 10.91
+    max_oracle_gap_ppl: 0.018
+    avg_oracle_gap_ppl: 0.005
+    layers_mckp_optimal: 5/8
+    layers_with_gap: 3
+    gap_nature: 2-bit head position swap within same bit budget
+    total_evals: 54
+  result_rationale: 'constrained MCKP 在 5/8 layers 上 exactly optimal。3 个 layer 上存在
+    0.005-0.018 PPL 的微小 gap， 来源是 2-bit head 的位置交换（同一 bit budget 内选择不同的 head 放 2-bit）。gap
+    < 0.02 PPL 证明 constrained MCKP 是 near-optimal solver，独立 profiling 的 non-additivity
+    在 k≤8 时可控。 best 档下 reviewer 不会追问 oracle gap——0.018 PPL 在 baseline 9.81 上是 0.18%，可忽略。
+
+    '
+  tables:
+  - name: Oracle Gap by Layer Group
+    rows:
+    - layer_group: L0-L3
+      oracle_gap: 0.0
+    - layer_group: L1
+      oracle_gap: 0.018
+    - layer_group: L4
+      oracle_gap: 0.005
+    - layer_group: L11
+      oracle_gap: 0.014
+  figures_description: []
+  analysis: 'Oracle comparison 回答 "MCKP 是否足够好"。avg gap 0.005 证明 constrained MCKP +
+    independent profiling 在 k≤8 下是 practically optimal。gap 的 nature (position swap)
+    说明 non-additivity 在小 k 下 影响 limited to head ordering，不影响 bit budget 分配。
+
+    '
+- name: Cross-domain calibration robustness
+  plan_id: plan_010
+  description: 'calibrate on C4, evaluate on WikiText-2 (and vice versa)。报告 per-head
+    allocation agreement。
+
+    '
+  expected_results:
+    allocation_agreement_c4_vs_wt2: 0.964
+    agreement_heads: 108/112
+    c4_cal_wt2_eval_mckp_ppl: 11.29
+    wt2_cal_c4_eval_mckp_ppl: 20.56
+    contamination_impact: 0.034
+  result_rationale: '同 plan_007。per-head sensitivity 的 ranking 主要由 architecture 决定（哪些
+    head 做 attention over long-range patterns），calibration data 的 domain 只影响 delta
+    的 magnitude 而非 ordering。 96.4% agreement 是 strong cross-domain robustness。best
+    档下 reviewer 满意。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 与 plan_007 合并报告。96.4% agreement 是 appendix 的支撑数据。
+- name: Head sensitivity visualization
+  plan_id: plan_011
+  description: '生成 paper-quality figures: per-head delta heatmap, compounding curve,
+    allocation comparison。
+
+    '
+  expected_results:
+    figures_generated: 3
+    heatmap_shows_l0_cluster: true
+    compounding_curve_shows_u_shape: true
+    allocation_chart_shows_over_allocation: true
+  result_rationale: '可视化是 paper 的 communication backbone。best 档下 reviewer 通过图理解三个核心
+    claim： (1) heatmap 立即可见 L0 cluster 的 spread pattern vs 其他架构的 flat/spike， (2) compounding
+    curve 的 U-shape 直观展示 k=8 sweet spot， (3) allocation comparison 清晰对比 unconstrained
+    (60% 2-bit) vs constrained (7% 2-bit) vs uniform (0% 2-bit)。 好的 figure 降低 reviewer
+    cognitive load，增加 acceptance probability。
+
+    '
+  tables: []
+  figures_description:
+  - 'Fig 1: Per-head 2-bit delta heatmap (layer × head) for Qwen — L0 cluster clearly
+    visible'
+  - 'Fig 2: PPL vs max_2bit sweep — Qwen U-shape, Llama flat, Mistral monotonic in
+    one panel'
+  - 'Fig 3: Stacked bar chart of bit allocation across methods (unconstrained / constrained
+    / uniform)'
+  analysis: Figures 是论文最重要的 communication tool。Fig 2 (compounding curve) 是 contribution
+    的 single best visualization。
+- name: Downstream task evaluation (Qwen)
+  plan_id: plan_012
+  description: 'ARC-C / HellaSwag / PIQA / WinoGrande on Qwen2.5-7B at 4× compression。
+    验证 PPL improvement 转化为 downstream gain。
+
+    '
+  expected_results:
+    arc_c:
+      uniform: 0.481
+      mckp: 0.514
+      delta_pp: 3.16
+    hellaswag:
+      uniform: 0.728
+      mckp: 0.768
+      delta_pp: 4.0
+    piqa:
+      uniform: 0.766
+      mckp: 0.779
+      delta_pp: 1.25
+    winogrande:
+      uniform: 0.662
+      mckp: 0.682
+      delta_pp: 1.97
+    avg_recovery_pct: 72.8
+    bf16_baseline_avg: ~0.699
+  result_rationale: 'Qwen 是 spread 型，PPL 提升 27.3% (15.45→10.91)。downstream 任务与 PPL
+    的相关性在 moderate compression 下通常成立。+1.25 到 +4.00pp 的 per-task gain 与 PPL gap 的 magnitude
+    一致——HellaSwag 和 ARC-C 对 KV cache quality 最敏感（需要 multi-hop reasoning），PIQA 最不敏感（常识判断，单步）。
+    72.8% avg recovery 意味着 constrained MCKP 恢复了从 baseline 到 uniform 4-bit 退化的 72.8%。
+    best 档下 reviewer 接受 downstream consistency 作为 PPL claim 的 validation。
+
+    '
+  tables:
+  - name: Qwen2.5-7B Downstream (0-shot)
+    rows:
+    - task: ARC-C
+      bf16: 0.529
+      uniform_4bit: 0.481
+      mckp: 0.514
+      delta_pp: '+3.16'
+    - task: HellaSwag
+      bf16: 0.783
+      uniform_4bit: 0.728
+      mckp: 0.768
+      delta_pp: '+4.00'
+    - task: PIQA
+      bf16: 0.793
+      uniform_4bit: 0.766
+      mckp: 0.779
+      delta_pp: '+1.25'
+    - task: WinoGrande
+      bf16: 0.69
+      uniform_4bit: 0.662
+      mckp: 0.682
+      delta_pp: '+1.97'
+  figures_description:
+  - 'Bar chart: BF16 / Uniform / MCKP per task, with recovery % annotation'
+  analysis: 'Downstream eval 是 reviewer 必问项 (Q7)。Qwen 的 consistent gains across 4
+    tasks 验证 PPL→downstream 转化。 HellaSwag +4.00pp 是 headline downstream 数字。
+
+    '
+- name: Qwen2.5-72B profiling (scale test)
+  plan_id: plan_013
+  description: '在 72B 上运行 profiling-only。分析 sensitivity patterns 是否随 model size scale。
+
+    '
+  expected_results:
+    status: killed (GPU memory)
+    partial_result: L0 sensitivity pattern visible in partial profiling
+    paper_treatment: mentioned as future work
+  result_rationale: '72B profiling 在现有 GPU 资源下被 killed (OOM)。best 档下 reviewer 接受这是
+    resource limitation， 不是 methodological flaw。7B/9B/14B 的 cross-scale evidence (Qwen-7B,
+    Qwen-14B) 已经 demonstrate sensitivity pattern scales。72B 是 "nice to have"，论文中列为
+    future work。 reviewer 可能作为 minor revision 要求之一，但不影响 acceptance。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: 72B 是 0-1 个 major objection 的 potential source。best 档下以 future work 处理。
+- name: K/V separation
+  plan_id: plan_014
+  description: 'K 和 V heads 作为独立 MCKP items。测试 K/V asymmetric budget 是否优于 joint K=V。
+
+    '
+  expected_results:
+    kv_sep_ppl: 11.22
+    joint_kv_ppl: 10.91
+    uniform_4bit_ppl: 15.45
+    delta_sep_vs_joint: 0.3
+    sep_k_2bit_count: 16
+    sep_v_uniform_4bit: true
+    kv_asymmetric_heads: 21
+  result_rationale: 'K/V separation 在 Qwen 上略差 (+0.30 PPL)。原因：K heads 的 sensitivity
+    分布与 V heads 不同—— V heads 更 uniform (solver 将 V 全部留 4-bit)，K heads 有更多 heterogeneity
+    (16 个 2-bit vs joint 的 8 个)。 分离后 K side 过度分配 2-bit (少了 V heads 的 budget 共享 buffering)。best
+    档下 reviewer 认可 negative result：K/V joint optimization 更好，framework 自然 handles
+    K/V without asymmetric treatment。 这回答了 reviewer Q6 ("RateQuant does K/V asymmetric
+    allocation, do you?")。
+
+    '
+  tables:
+  - name: K/V Separation Ablation
+    rows:
+    - method: Joint K+V MCKP
+      ppl: 10.91
+      k_2bit: 8
+      v_2bit: 0
+    - method: Separate K/V MCKP
+      ppl: 11.22
+      k_2bit: 16
+      v_2bit: 0
+    - method: Uniform 4-bit
+      ppl: 15.45
+      k_2bit: 0
+      v_2bit: 0
+  figures_description: []
+  analysis: 'Negative result 但有 insight value：V heads 对 quantization 更 robust，K heads
+    更 sensitive。 Joint optimization 通过 budget sharing 自动 discovers 这一点。
+
+    '
+- name: L0-only heuristic baseline
+  plan_id: plan_015
+  description: '最简单的 non-uniform 策略：L0 全部 8-bit，其余 4-bit。以及 L0-constrained random
+    和 naive positional。 测试 MCKP 是否优于 trivial heuristics。
+
+    '
+  expected_results:
+    mckp_constrained_ppl: 10.91
+    l0_random_mean: 11.69
+    l0_random_std: 0.42
+    l0_random_median: 11.52
+    naive_positional_ppl: 12.23
+    uniform_4bit_ppl: 15.45
+    mckp_vs_l0_random_median_gap: -5.2%
+    qwen_mckp_beats_all_heuristics: true
+    llama_mckp_ppl: 8.45
+    llama_l0_random_median: 10.04
+    llama_mckp_vs_l0_gap: -15.8%
+    mistral_mckp_ppl: 7.16
+    mistral_l0_random_median: 7.59
+    mistral_mckp_vs_l0_gap: -5.7%
+  result_rationale: 'L0-random (随机选 k 个非 L0 heads 放 2-bit) 在 Qwen 上 median 11.52 vs
+    MCKP 10.91。 MCKP 的 profiling-based 选择 consistently beats random by 5-16%。naive
+    positional (按 layer 顺序) 更差 (12.23)。关键 insight：L0 sensitivity 是 necessary but not
+    sufficient——MCKP 还需要正确选择 which non-L0 heads 放 2-bit。Llama 上 gap 更大 (15.8%) 因为只有
+    2 个 optimal 2-bit heads， random selection 容易选到 sensitive heads。best 档下 reviewer
+    接受 MCKP 优于 all tested heuristics， profiling 有 genuine value (在 benefit 存在的架构上)。
+
+    '
+  tables:
+  - name: Allocation Baseline Comparison (3 models)
+    rows:
+    - model: Qwen
+      mckp: 10.91
+      l0_random_median: 11.52
+      naive: 12.23
+      uniform: 15.45
+    - model: Llama
+      mckp: 8.45
+      l0_random_median: 10.04
+      naive: 9.94
+      uniform: 8.47
+    - model: Mistral
+      mckp: 7.16
+      l0_random_median: 7.59
+      naive: 7.48
+      uniform: 7.13
+  figures_description:
+  - 'Grouped bar chart: MCKP / L0-random / Naive / Uniform across 3 models'
+  analysis: 'MCKP consistently outperforms all heuristics on all 3 models。但 Llama
+    和 Mistral 上 MCKP 仍不如 uniform， reinforcing Claim 3：profiling 只在 spread 型上有 net
+    value。
+
+    '
+- name: Greedy + cardinality constraint ablation (solver equivalence)
+  plan_id: plan_016
+  description: 'RateQuant greedy + max_2bit=8 vs MCKP + max_2bit=8。验证 constraint 是
+    primary intervention， solver choice 无关。
+
+    '
+  expected_results:
+    greedy_constrained_ppl: 11.2312
+    mckp_constrained_ppl: 11.2312
+    delta: 0.0
+    greedy_unconstrained_ppl: 32.45
+    mckp_unconstrained_ppl: 36.92
+    bit_distribution_both:
+      2: 8
+      4: 100
+      8: 4
+    allocation_identical: true
+  result_rationale: '这是论文最重要的 ablation。Δ=0.0000 意味着 constrained greedy 和 constrained
+    MCKP 产生 IDENTICAL bit allocation。原因：cardinality constraint (k=8) 将 feasible set
+    缩小到 C(100,8)×C(8,4) 个可行解，在这个 reduced space 里 greedy 的 marginal gain ordering 与
+    MCKP 的 global optimal 收敛。unconstrained 下两者都 fail（但 mode 不同：greedy 32.45 vs MCKP
+    36.92）， constrained 下都 succeed 且完全一致。best 档下 reviewer 认可这是 "constraint is THE
+    contribution" 的最 powerful evidence——practitioners 不需要实现 MCKP，只需给现有 greedy 加一个参数。
+    A3 假设 (solver equivalence proves constraint is core) 完全成立。
+
+    '
+  tables:
+  - name: Solver Equivalence (Qwen, k=8)
+    rows:
+    - solver: Greedy unconstrained
+      ppl: 32.45
+      2bit_heads: 68
+    - solver: MCKP unconstrained
+      ppl: 36.92
+      2bit_heads: ~70
+    - solver: Greedy + max_2bit=8
+      ppl: 11.2312
+      2bit_heads: 8
+    - solver: MCKP + max_2bit=8
+      ppl: 11.2312
+      2bit_heads: 8
+    - solver: Uniform 4-bit
+      ppl: 15.45
+      2bit_heads: 0
+  figures_description:
+  - '2×2 matrix: {unconstrained, constrained} × {greedy, MCKP} — the key figure showing
+    constraint is what matters'
+  analysis: 'Solver equivalence table 是 Claim 2 的 crown jewel。建议作为 Table 1 or prominently
+    in §4。 Reviewer 在 best 档下将 Δ=0.0000 视为 compelling evidence that "the cardinality
+    constraint, not the solver, is the core contribution." 同时在 Qwen-14B 上 greedy=MCKP
+    (Δ=0.0000) 复现。
+
+    '
+- name: Multi-seed error bars
+  plan_id: plan_017
+  description: '3 个不同 calibration seeds 的 constrained MCKP 和 uniform 4-bit on Qwen2.5-7B。
+    报告 mean±std。
+
+    '
+  expected_results:
+    mckp_mean: 10.99
+    mckp_std: 0.065
+    mckp_seeds:
+    - 11.02
+    - 10.9
+    - 11.05
+    uniform_4bit_ppl: 15.45
+    bit_dist_all_seeds: 2:8, 4:100, 8:4
+    allocation_agreement_3way: 0.902
+    pairwise_agreement_range:
+    - 0.911
+    - 0.946
+  result_rationale: 'std=0.065 在 mean=10.99 上是 0.59% CV——非常稳定。所有 3 seeds 产生 identical
+    macro allocation (2:8, 4:100, 8:4)，90.2% heads 在 3 seeds 间完全一致。不一致的 ~10% heads
+    是 sensitivity 接近的 mid-range heads (borderline 2-bit vs 4-bit)，对 PPL 影响 <0.1。uniform
+    是 deterministic (15.45)， MCKP mean 10.99 与 hires single-run 10.91 差 0.08——来自 calibration
+    data sampling variance。 best 档下 reviewer 接受 error bar 证明 robustness，不要求更多 seeds。
+    "MCKP 10.99±0.065 vs Uniform 15.45" 的 confidence interval 完全不重叠。
+
+    '
+  tables:
+  - name: Multi-Seed Results (Qwen, 4×)
+    rows:
+    - seed: 0
+      mckp_ppl: 11.02
+      bit_dist: 2:8 4:100 8:4
+    - seed: 1
+      mckp_ppl: 10.9
+      bit_dist: 2:8 4:100 8:4
+    - seed: 2
+      mckp_ppl: 11.05
+      bit_dist: 2:8 4:100 8:4
+    - summary: Mean±Std
+      mckp_ppl: 10.99±0.065
+      bit_dist: identical
+    - reference: Uniform 4-bit
+      ppl: 15.45
+      bit_dist: all 4-bit
+  figures_description:
+  - 'Error bar plot: MCKP (3 seeds) vs Uniform, with CI bands'
+  analysis: 'Error bars 是 reviewer 必问项。std=0.065 证明 single-run results 是 representative。
+    macro allocation 在 seeds 间 stable。remaining variance 来自 borderline heads 的 ordering。
+
+    '
+- name: Runtime/latency benchmark
+  plan_id: plan_018
+  description: '端到端 inference latency 和 throughput：mixed-precision KV cache vs uniform
+    4-bit vs BF16。
+
+    '
+  expected_results:
+    bf16_decode_ms: 33.78
+    uniform_4bit_decode_ms: 42.46
+    mckp_decode_ms: 46.09
+    mckp_solver_sec: 0.005
+    bf16_throughput: 29.6
+    uniform_4bit_throughput: 23.6
+    mckp_throughput: 21.8
+    theoretical_memory_4x_compression: true
+    mckp_overhead_vs_uniform_pct: 8.5%
+  result_rationale: 'mixed-precision KV cache 比 uniform 4-bit 慢 8.5% (46.09 vs 42.46
+    ms/tok)。原因： per-head 不同 bit-width 需要 dynamic dequantization dispatch，而 uniform
+    可以 batch all heads 同一 kernel。MCKP solver 本身只需 0.005 sec (negligible)。memory 完全相同
+    (5.25 MB, 4× compression)。 best 档下 reviewer 接受 8.5% latency overhead 作为 reasonable
+    trade-off——PPL 从 15.45 降到 10.91 (29% improvement) 的代价是 8.5% latency。论文应该诚实报告 latency
+    overhead 而非隐藏。 reviewer 可能作为 minor revision 要求 longer-sequence latency 数据（长序列下
+    KV cache decode 是 bottleneck，overhead 比例可能变化）。
+
+    '
+  tables:
+  - name: Runtime Benchmark (Qwen, seq_len=2048)
+    rows:
+    - method: BF16
+      prefill_ms: 45.86
+      decode_ms: 33.78
+      throughput: 29.6
+      memory_MB: 21
+    - method: Uniform 4-bit
+      prefill_ms: 54.25
+      decode_ms: 42.46
+      throughput: 23.6
+      memory_MB: 5.25
+    - method: Constrained MCKP
+      prefill_ms: 57.03
+      decode_ms: 46.09
+      throughput: 21.8
+      memory_MB: 5.25
+  figures_description:
+  - Latency breakdown bar chart with memory footprint overlay
+  analysis: 'Runtime benchmark 回答 systems reviewer concern。8.5% overhead 是 honest
+    cost。 但 long-context scenario (8K tokens) 是 deployment motivation：uniform 4-bit
+    at 8K degrades 11.15× while MCKP stays at 1.23× — the quality gap more than justifies
+    the latency cost. MCKP solver overhead (5ms) 是 one-time cost, amortized over entire
+    inference session.
+
+    '
+- name: Gemma-2-9B full pipeline
+  plan_id: gemma2_9b_full_pipeline
+  description: 'Gemma-2-9B (GQA 2:1, 336 KV heads) 完整 pipeline。最低 GQA ratio 的 anchor
+    point。
+
+    '
+  expected_results:
+    baseline_ppl: 6.03
+    uniform_4bit_ppl: 6.17
+    constrained_mckp_ppl: 6.2
+    unconstrained_degradation_ratio: 1.47
+    concentration: 0.23
+    distribution_shape: Flat
+    n_2bit_unconstrained: 106
+  result_rationale: 'Gemma-2 是 flat 型 (concentration=0.23, CV=1.28)。solver 无法区分 heads，unconstrained
+    将 106/336=31.5% heads 分到 2-bit。每个 head 的 per-head delta 很小但累积效应产生 1.47× degradation——
+    这是 "moderate" tier，不是 catastrophic 也不是 mild。best 档下 reviewer 要求 paper 讨论 three-tier
+    labeling (catastrophic 3.31× / moderate 1.47× / mild 1.07-1.08×)，这 strengthens
+    "constraint 对所有架构都有价值" 的 claim。constrained MCKP 将 2-bit 从 106 减到 8，PPL 6.20 vs
+    uniform 6.17—— delta 在噪声范围，确认 flat 型不需要 non-uniform。
+
+    '
+  tables:
+  - name: Gemma-2-9B Results
+    rows:
+    - method: BF16 baseline
+      ppl: 6.03
+    - method: Uniform 4-bit
+      ppl: 6.17
+    - method: MCKP constrained (k=8)
+      ppl: 6.2
+    - method: MCKP unconstrained
+      ppl: 8.85
+      note: 1.47× baseline
+  figures_description: []
+  analysis: 'Gemma-2 的 1.47× moderate degradation 是论文需要主动讨论的 point。 它证明 constraint
+    即使在 flat 型上也有 value (106→8 2-bit heads)，strengthens universality claim。
+
+    '
+- name: Yi-1.5-9B full pipeline
+  plan_id: yi15_9b_full_pipeline
+  description: 'Yi-1.5-9B (GQA 8:1, 192 KV heads) 完整 pipeline。最高 GQA ratio 的 counterexample。
+
+    '
+  expected_results:
+    baseline_ppl: 7.02
+    uniform_4bit_ppl: 7.22
+    hires_mckp_ppl: 7.22
+    unconstrained_degradation_ratio: 1.08
+    concentration: 0.71
+    distribution_shape: Spike
+    t1_t5: 0.9
+    l4h3_dominance: single outlier, 64% of total delta
+  result_rationale: 'Yi-1.5 是 spike 型 (L4H3 single extreme outlier, concentration
+    0.71 但 t₁/t₅=0.90)。 GQA 8:1 是所有测试模型中最高，但 benefit = 0%。原因：single outlier 不 create
+    optimization opportunity—— solver 给 L4H3 升 8-bit 后，剩余 heads 全部 near-identical
+    sensitivity，无法区分。 这 disproves "higher GQA = more benefit" naive hypothesis。best
+    档下 reviewer 认可 Yi-1.5 是 diagnostic 的 critical validation：concentration 0.71 >
+    0.50 threshold，但 t₁/t₅=0.90 > 0.70—— joint diagnostic 正确预测 "no benefit"。单用 concentration
+    会误判。
+
+    '
+  tables:
+  - name: Yi-1.5-9B Results
+    rows:
+    - method: BF16 baseline
+      ppl: 7.02
+    - method: Uniform 4-bit
+      ppl: 7.22
+    - method: MCKP constrained (k=2)
+      ppl: 7.22
+    - method: Diagnostic prediction
+      result: No benefit (conc=0.71 BUT t₁/t₅=0.90 > 0.70)
+  figures_description:
+  - 'Scatter: Yi-1.5 vs Qwen in (concentration, t₁/t₅) space — both high concentration
+    but different t₁/t₅'
+  analysis: 'Yi-1.5 是 Claim 3 的 strongest supporting evidence。GQA 最高但 benefit 最低——
+    joint diagnostic 的 necessity 因此建立。
+
+    '
+- name: Cross-architecture compounding sweeps
+  plan_id: llama_compounding_sweep + mistral_compounding_sweep_v2 + qwen_compounding_sweep_v2
+  description: 'Llama, Mistral, Qwen 各自的 compounding sweep (PPL vs k)。三个 regime 对比。
+
+    '
+  expected_results:
+    qwen_curve: U-shaped, optimal k=8, catastrophic k>32
+    llama_curve: Monotonic but gentle, k=0 optimal at 4×, catastrophic k>128
+    mistral_curve: Monotonic, k=0 optimal, catastrophic k>128
+    qwen_k8_degradation_pct: 2.4
+    llama_k8_degradation_pct: 1.7
+    mistral_k8_degradation_pct: 0.4
+    universally_safe_k: 8
+  result_rationale: '三种 curve 形状反映三种 sensitivity distribution： - Qwen (spread): k=8
+    释放 budget 给 L0 cluster → PPL 下降；k>8 compounding → PPL 上升 = U-shape - Llama (spike):
+    每增加一个 2-bit head 都轻微增加 PPL，但 sensitivity 分散所以增速慢 - Mistral (flat): 与 Llama 类似但更
+    flat，所有 head 贡献相似 compounding 关键：k≤8 在所有三种 regime 下 degradation < 2.5%，证明 k=8
+    是 universally safe threshold。 best 档下 reviewer 接受 3-architecture sweep 作为 constraint
+    parameterization 的实证基础。
+
+    '
+  tables:
+  - name: Compounding Sweep Summary (k=8)
+    rows:
+    - model: Qwen
+      k8_ppl: 10.05
+      baseline: 9.81
+      degradation_pct: 2.4
+      curve: U-shaped
+    - model: Llama
+      k8_ppl: 8.23
+      baseline: 8.09
+      degradation_pct: 1.7
+      curve: Monotonic gentle
+    - model: Mistral
+      k8_ppl: 7.06
+      baseline: 7.04
+      degradation_pct: 0.4
+      curve: Monotonic flat
+  figures_description:
+  - 'Three-panel compounding curve: Qwen / Llama / Mistral, with k=8 safe zone shaded'
+  analysis: 'Cross-architecture compounding sweep 是 universality claim 的 quantitative
+    backbone。 三种 curve 形状 + 一个 universally safe k = principled parameterization。
+
+    '
+- name: 8K long-context evaluation
+  plan_id: qwen7b_8k_context_eval
+  description: 'Qwen2.5-7B 在 8K token context 下的 PPL 评估。Long-context amplification
+    effect。
+
+    '
+  expected_results:
+    ppl_bf16_8k: 6.97
+    ppl_mckp_8k: 8.59
+    ppl_uniform_4bit_8k: 77.75
+    mckp_degradation_ratio_8k: 1.23
+    uniform_degradation_ratio_8k: 11.15
+    degradation_gap: 9×
+    ppl_bf16_2k: 9.81
+    ppl_mckp_2k: 10.91
+    ppl_uniform_4bit_2k: 15.45
+  result_rationale: 'Long context 放大 2-bit compounding：uniform 4-bit 在 8K 下 PPL 77.75
+    (11.15× baseline)。 原因：每个 decode step 的 attention 覆盖更多 KV cache entries，2-bit quantization
+    error 在 longer attention span 上累积更多。constrained MCKP 通过保护 sensitive heads 在 higher
+    bit-width， 仅 1.23× degradation。9× gap in degradation rate 是 deployment motivation
+    的 headline 数字。 best 档下 reviewer 认可 long-context 结果作为 practical impact evidence——real
+    deployment 通常 operates at 4K-32K context，uniform 4-bit 在此范围内 unacceptable。
+
+    '
+  tables:
+  - name: Long Context PPL (Qwen, 4×)
+    rows:
+    - context: 2K
+      bf16: 9.81
+      mckp: 10.91
+      uniform: 15.45
+      mckp_ratio: 1.11×
+      uniform_ratio: 1.57×
+    - context: 8K
+      bf16: 6.97
+      mckp: 8.59
+      uniform: 77.75
+      mckp_ratio: 1.23×
+      uniform_ratio: 11.15×
+  figures_description:
+  - 'PPL vs context length: MCKP stays flat while uniform 4-bit explodes — the deployment
+    motivation figure'
+  analysis: 'Long-context result 是 paper 的 deployment hook。"11.15× vs 1.23×" 在 abstract
+    中出现。 Reviewer 在 best 档下将此视为 constraint 的 practical value 的 strongest evidence。
+
+    '
+- name: Qwen-14B constrained pipeline + solver equivalence
+  plan_id: qwen14b_constrained_pipeline + qwen14b_greedy_constrained
+  description: 'Qwen2.5-14B (384 KV heads) 验证 scale generalization 和 solver equivalence。
+
+    '
+  expected_results:
+    baseline_ppl: 6.87
+    uniform_4bit_ppl: 7.2
+    constrained_mckp_ppl: 7.22
+    unconstrained_mckp_ppl: 7.69
+    greedy_constrained_ppl: 7.22
+    delta_greedy_vs_mckp: 0.0
+    concentration: 0.33
+    shape: Flat
+    unconstrained_over_uniform: true
+  result_rationale: 'Qwen-14B (384 heads, flat 型 concentration=0.33) 展示两点： (1) unconstrained
+    still fails (7.69 > 7.20 uniform)，即使在 14B scale (2) solver equivalence 完美复现 (greedy
+    constrained = MCKP constrained, Δ=0.0000) 14B 是 flat 型所以 non-uniform benefit ≈
+    0%，与 Claim 3 一致。 best 档下 reviewer 认可 14B 作为 scale validation + solver equivalence
+    的 second data point。
+
+    '
+  tables:
+  - name: Qwen-14B Results
+    rows:
+    - method: BF16
+      ppl: 6.87
+    - method: Uniform 4-bit
+      ppl: 7.2
+    - method: MCKP constrained
+      ppl: 7.22
+    - method: Greedy constrained
+      ppl: 7.22
+      note: Δ=0.0000 vs MCKP
+    - method: MCKP unconstrained
+      ppl: 7.69
+  figures_description: []
+  analysis: 'Solver equivalence 在 14B 上完美复现，strengthens "constraint makes solver irrelevant"
+    universality。
+
+    '
+- name: Pythia-1.4B constrained pipeline
+  plan_id: pythia14b_constrained_pipeline
+  description: 'Pythia-1.4B (MHA, 384 KV heads) 在非 GQA 架构上验证。
+
+    '
+  expected_results:
+    baseline_ppl: 16.49
+    uniform_4bit_ppl: 24.29
+    constrained_mckp_ppl: 24.45
+    unconstrained_mckp_ppl: 31.54
+    delta_constrained_vs_uniform: -0.16
+    concentration: 0.24
+    shape: Flat
+  result_rationale: 'Pythia 是 MHA (non-GQA) 架构，384 KV heads，flat 型 (concentration=0.24)。
+    unconstrained 显著 fail (31.54 vs 24.29 uniform, 1.30×)。constrained 与 uniform 几乎持平。
+    best 档下 reviewer 认可：(1) compounding 不仅影响 GQA 架构，MHA 同样受害，strengthens universality；
+    (2) flat 型 non-uniform 无价值，consistent with diagnostic prediction。
+
+    '
+  tables:
+  - name: Pythia-1.4B Results
+    rows:
+    - method: BF16
+      ppl: 16.49
+    - method: Uniform 4-bit
+      ppl: 24.29
+    - method: MCKP constrained
+      ppl: 24.45
+    - method: MCKP unconstrained
+      ppl: 31.54
+  figures_description: []
+  analysis: 'Pythia 扩展 architecture coverage 到 MHA (GQA ratio 1:1)。8/8 unconstrained
+    degradation confirmed。
+
+    '
+- name: Phi-3-medium hires profiling
+  plan_id: phi3_medium_hires_profiling_v2
+  description: 'Phi-3-medium (400 KV heads) profiling。第 8 个架构，完成 8/8 universality。
+
+    '
+  expected_results:
+    concentration: 0.17
+    t1_t5: 0.24
+    shape: Spread (low concentration)
+    cv: 0.89
+    top1_head: L9H6
+    total_heads: 400
+  result_rationale: 'Phi-3-medium concentration=0.17 (lowest in our test set)，但 t₁/t₅=0.24
+    suggests sensitivity spread across multiple mid-layer heads (L8-L11 cluster)。低
+    concentration + low t₁/t₅ 是 "diffuse spread" pattern——sensitivity exists but not
+    concentrated enough for MCKP to exploit at 4×。 best 档下这补全了第 8 个架构的 profiling data，支持
+    8/8 unconstrained degradation universality claim。 full constrained pipeline 未完成（资源限制），但
+    profiling pattern is sufficient for diagnostic validation。
+
+    '
+  tables:
+  - name: Phi-3-medium Profiling Summary
+    rows:
+    - metric: Top-5% concentration
+      value: 0.17
+    - metric: t₁/t₅
+      value: 0.24
+    - metric: Distribution shape
+      value: Diffuse spread
+    - metric: Diagnostic prediction
+      value: No benefit at 4× (conc < 0.50)
+  figures_description: []
+  analysis: 'Phi-3-medium 是 diagnostic 的 edge case：concentration 低但 t₁/t₅ 也低。 Joint
+    diagnostic 预测 no benefit (concentration < 0.50)。9/9 accuracy 如果 full pipeline
+    确认。
+
+    '
+- name: CodeLlama-7B profiling
+  plan_id: codellama_hires_profiling
+  description: 'CodeLlama-7B (MHA, 1024 KV heads) profiling。Spike pattern validation。
+
+    '
+  expected_results:
+    concentration: 0.8
+    t1_t5: 0.81
+    shape: Spike
+    top1_head: L1H1 (delta=23.0)
+    total_heads: 1024
+    diagnostic_prediction: No benefit (t₁/t₅=0.81 > 0.70)
+  result_rationale: 'CodeLlama 是 extreme spike：L1H1 delta=23.0，next head 仅 2.04。concentration
+    0.80 (highest tested) 但 t₁/t₅=0.81——single dominant outlier。与 Yi-1.5 (0.71/0.90)
+    类似的 spike pattern。 Joint diagnostic 正确预测 no benefit (t₁/t₅ > 0.70)。best 档下 reviewer
+    认可 CodeLlama 作为 concentration alone 不够的 second example (alongside Yi-1.5)，justifying
+    joint diagnostic。
+
+    '
+  tables:
+  - name: CodeLlama-7B Profiling
+    rows:
+    - metric: Concentration
+      value: 0.8
+    - metric: t₁/t₅
+      value: 0.81
+    - metric: Shape
+      value: Spike (L1H1 dominant)
+    - metric: Diagnostic
+      value: No benefit (conc>0.50 BUT t₁/t₅>0.70)
+  figures_description: []
+  analysis: 'CodeLlama 与 Yi-1.5 形成 spike-pattern pair。两者都有 high concentration 但 high
+    t₁/t₅—— single outlier cannot be exploited by MCKP。9/9 diagnostic accuracy (9th
+    model)。
+
+    '
+- name: KIVI baseline comparison
+  plan_id: kivi_baseline_qwen_llama + kivi_baseline_qwen7b_v2
+  description: 'KIVI (per-channel group quantization) 作为 orthogonal baseline。验证 per-head
+    方法的 positioning。
+
+    '
+  expected_results:
+    qwen_kivi_4bit_g32_r128: 9.9
+    qwen_kivi_4bit_g32_r0: 9.91
+    qwen_mckp_constrained: 10.91
+    qwen_uniform_4bit: 15.45
+    llama_kivi_4bit_r128: 8.14
+    llama_uniform_4bit: 8.47
+  result_rationale: 'KIVI 4-bit (g32, r128) 在 Qwen 上 PPL 9.90——比我们的 constrained MCKP
+    10.91 更好。 但两者是 orthogonal 且 complementary：KIVI 优化 per-channel group quantization
+    granularity， 我们优化 per-head bit-width allocation。best 档下 reviewer 理解 positioning：
+    (1) 我们的 contribution 是 compounding failure mode 的 discovery + constraint fix，不是
+    beat KIVI (2) KIVI + 我们的 constraint 可以 combine (per-head allocation + per-channel
+    group quantization) (3) KIVI 的 group quantization 减轻了 per-value quantization error，所以在
+    uniform bit-width 下更好 Paper 应清晰 position as complementary，不 compete on PPL numbers。
+
+    '
+  tables:
+  - name: KIVI Comparison (Qwen, 4×)
+    rows:
+    - method: KIVI 4-bit (g32, r128)
+      ppl: 9.9
+      approach: per-channel
+    - method: Constrained MCKP
+      ppl: 10.91
+      approach: per-head
+    - method: Uniform 4-bit (ours)
+      ppl: 15.45
+      approach: per-head
+    - method: BF16 baseline
+      ppl: 9.81
+      approach: —
+  figures_description: []
+  analysis: 'KIVI 是 orthogonal method。论文 position：KIVI 优化 within-bit quantization
+    quality， 我们优化 cross-bit allocation + discover failure mode。两者 combine for further
+    improvement。
+
+    '
+- name: Cross-architecture downstream eval (Yi, Llama, Mistral, Gemma-2)
+  plan_id: w3_downstream_eval + gemma2_downstream_k8_4task_v2
+  description: '5 个模型的完整 downstream eval (5 tasks, 0-shot)。验证 PPL→downstream consistency。
+
+    '
+  expected_results:
+    qwen_avg_delta_vs_uniform: +1.92pp
+    yi_avg_delta_vs_uniform: -0.77pp
+    llama_avg_delta_vs_uniform: -0.99pp
+    mistral_avg_delta_vs_uniform: -0.48pp
+    gemma2_avg_delta_vs_uniform: +0.14pp (noise)
+    downstream_consistency_with_ppl: 5/5
+    arc_challenge_systematic_degradation: true
+  result_rationale: 'Downstream results 完美 mirror PPL patterns：Qwen (spread) 是唯一 consistent
+    gainer (+1.25 to +4.00pp)。 4 个 non-spread 模型显示 minor systematic degradation (Yi
+    -0.77, Llama -0.99, Mistral -0.48) 或 noise (Gemma-2 +0.14)。arc_challenge 是 worst-case
+    task (Yi -3.24pp, Llama -2.65pp)—— multi-step reasoning 对 KV cache error 最敏感。best
+    档下 reviewer 要求 paper 诚实报告 per-task tables 并讨论 arc_challenge 系统性信号，但接受 diagnostic
+    正确预测 downstream outcomes (5/5) 作为 Claim 3 的 strong validation。
+
+    '
+  tables:
+  - name: Downstream Summary (5 models, 0-shot avg)
+    rows:
+    - model: Qwen (Spread)
+      delta_pp: '+1.92'
+      prediction: Benefit
+      correct: ✓
+    - model: Yi-1.5 (Spike)
+      delta_pp: '-0.77'
+      prediction: No benefit
+      correct: ✓
+    - model: Llama (Spike)
+      delta_pp: '-0.99'
+      prediction: No benefit
+      correct: ✓
+    - model: Mistral (Flat)
+      delta_pp: '-0.48'
+      prediction: No benefit
+      correct: ✓
+    - model: Gemma-2 (Flat)
+      delta_pp: '+0.14'
+      prediction: No benefit
+      correct: ✓
+  figures_description:
+  - 'Per-task heatmap: 5 models × 5 tasks, color-coded by delta vs uniform'
+  analysis: '5/5 downstream consistency 是 diagnostic 的 ultimate validation。论文必须： (a)
+    报告完整 per-task tables，(b) 用 "shows minor degradation" 不用 "preserves accuracy"，
+    (c) 主动讨论 arc_challenge 作为 worst-case。
+
+    '
+- name: Qwen 3-seed downstream CI
+  plan_id: qwen_3seed_downstream_ci
+  description: '3 个 calibration seeds 的 downstream eval，提供 confidence intervals。
+
+    '
+  expected_results:
+    hellaswag_delta: +4.13pp
+    hellaswag_std: 0.0022
+    winogrande_delta: +1.58pp
+    winogrande_std: 0.0115
+    piqa_delta: +1.96pp
+    piqa_std: 0.0023
+    arc_challenge_delta: 0.00pp
+    arc_challenge_std: 0.0035
+    avg_delta: +1.92pp
+  result_rationale: '3-seed downstream CI 显示 low variance (std 0.002-0.012)。HellaSwag
+    和 PIQA 的 gain 是 robust (CI 不含 0)。arc_challenge delta=0 with std=0.0035 说明 arc_challenge
+    上 MCKP 和 uniform 差异 在统计噪声内——但 mean 仍正（与单 seed 的 +3.16pp 不矛盾，因为 3-seed 用了不同 calibration
+    data）。 WinoGrande std=0.0115 较高，反映 task 的 inherent variance。best 档下 reviewer 接受
+    3-seed CI 证明 downstream gains 是 robust，不要求更多 seeds。
+
+    '
+  tables:
+  - name: 3-Seed Downstream CI (Qwen)
+    rows:
+    - task: HellaSwag
+      delta: +4.13pp
+      std: 0.0022
+      robust: ✓
+    - task: PIQA
+      delta: +1.96pp
+      std: 0.0023
+      robust: ✓
+    - task: WinoGrande
+      delta: +1.58pp
+      std: 0.0115
+      robust: ✓
+    - task: ARC-C
+      delta: 0.00pp
+      std: 0.0035
+      robust: borderline
+  figures_description: []
+  analysis: '3-seed CI 是 statistical credibility 的必要 evidence。HellaSwag/PIQA robust，
+    ARC-C borderline（可能需要 more seeds 作为 minor revision）。
+
+    '
+- name: W9 compounding scaling (top-k vs random-k)
+  plan_id: w9_compounding_v2
+  description: 'Compounding scaling test: top-k (most sensitive) vs random-k heads
+    at 2-bit。 证明 compounding 是 universal，不依赖 which heads selected。
+
+    '
+  expected_results:
+    k8_topk_ppl: 10.04
+    k8_randomk_mean: 11.07
+    k8_randomk_std: 0.69
+    k16_topk_ppl: 10.42
+    k16_randomk_mean: 12.91
+    k32_topk_ppl: 11.6
+    k32_randomk_mean: 18.33
+    k64_topk_ppl: 22.95
+    k64_randomk_mean: 55.94
+    compounding_ratio_k64_topk: 4.89
+    compounding_ratio_k64_randomk: 8.88
+  result_rationale: 'top-k 选最 sensitive heads 放 2-bit——每个 head 的 per-head impact 最大但
+    compounding 仍然发生。 random-k compounding 更严重因为随机可能选到 correlated heads（同一 layer 的多个
+    head 同时 2-bit 导致该 layer 的 representation 整体崩溃）。两者都展示超线性增长：k=8→k=64 的 PPL 增长远超
+    8× ratio。 best 档下这是 Claim 1 (non-additivity) 的 controlled experiment evidence：
+    如果 distortion 是 additive，random-k 应该 ≈ sum of individual deltas，但实际 8.88× > linear
+    prediction。
+
+    '
+  tables:
+  - name: Top-k vs Random-k Compounding
+    rows:
+    - k: 8
+      topk: 10.04
+      randomk_mean: 11.07±0.69
+      ratio_topk: 1.56×
+      ratio_randomk: 1.76×
+    - k: 16
+      topk: 10.42
+      randomk_mean: 12.91±0.40
+      ratio_topk: 1.56×
+      ratio_randomk: 2.10×
+    - k: 32
+      topk: 11.6
+      randomk_mean: 18.33±2.53
+      ratio_topk: 1.78×
+      ratio_randomk: 2.73×
+    - k: 64
+      topk: 22.95
+      randomk_mean: 55.94±9.73
+      ratio_topk: 4.89×
+      ratio_randomk: 8.88×
+  figures_description:
+  - 'Log-scale PPL vs k: top-k vs random-k with variance bands — superlinear growth
+    = non-additivity evidence'
+  analysis: Top-k vs random-k 是 non-additivity 的 cleanest experimental evidence。 Random-k
+    的 higher variance 和 worse mean 说明 head selection matters —— 但即使 top-k (best case)
+    也展示 compounding。这支持 "constraint is needed regardless of solver quality"。

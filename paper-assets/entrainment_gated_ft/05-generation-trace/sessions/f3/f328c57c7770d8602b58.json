@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_exp_008_statistical_robustness_20260519T141416_result.json",
     "occurrence": 1,
-    "bytes": 1058,
-    "sha256": "c68d987b14de80fd3f1f7cfa3f7fe83edd28c1e4d281b08b285969631b0364e4"
+    "bytes": 1057,
+    "sha256": "f68d8e3f5888a2b1a8c2fe4162634c1d8830f8d1eb8cce06e6fe30169f2ae3b8"
   },
   "statistics": {
     "messages": 1,

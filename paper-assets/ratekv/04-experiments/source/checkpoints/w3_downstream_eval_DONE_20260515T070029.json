@@ -1,0 +1,90 @@
+{
+  "exp_id": "w3_downstream_eval",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T05:47:24.892Z",
+    "updated_at": "2026-05-15T07:00:29.115Z",
+    "spec": {
+      "hypothesis": "Constrained MCKP allocation preserves downstream task accuracy (arc_easy, arc_challenge, hellaswag, winogrande, piqa) vs uniform 4-bit baseline on Llama-3.1-8B and Yi-1.5-9B",
+      "description": "W3: 0-shot downstream task evaluation via lm-eval-harness under bf16/uniform-4bit/constrained-MCKP conditions",
+      "plan_id": "w3",
+      "command": "CUDA_VISIBLE_DEVICES=1 python run_w3_downstream_eval.py --model yi",
+      "server": "westd-37397",
+      "gpu": "cuda:1",
+      "pid": 296673,
+      "data_path": "lm-eval-harness tasks (arc_easy, arc_challenge, hellaswag, winogrande, piqa)",
+      "data_count": "60566 loglikelihood requests per condition",
+      "model_name": "Yi-1.5-9B (first, then Llama-3.1-8B)",
+      "seed": "N/A (eval only)",
+      "log_path": "/root/ratekv/logs/w3_downstream_yi.log, /root/ratekv/logs/w3_downstream_llama.log",
+      "eval_data": "arc_easy, arc_challenge, hellaswag, winogrande, piqa (0-shot)",
+      "checkpoint_path": "N/A (eval only)"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "yi15_baseline_avg": 0.6912,
+      "yi15_uniform_avg": 0.6822,
+      "yi15_mckp_avg": 0.6745,
+      "yi15_mckp_vs_uniform_pp": -0.77,
+      "yi15_mckp_vs_baseline_pp": -1.67,
+      "yi15_baseline": {
+        "arc_easy": 0.8093,
+        "arc_challenge": 0.5265,
+        "hellaswag": 0.5913,
+        "piqa": 0.7949,
+        "winogrande": 0.734
+      },
+      "yi15_uniform": {
+        "arc_easy": 0.7946,
+        "arc_challenge": 0.5205,
+        "hellaswag": 0.5857,
+        "piqa": 0.7927,
+        "winogrande": 0.7174
+      },
+      "yi15_mckp": {
+        "arc_easy": 0.7854,
+        "arc_challenge": 0.4881,
+        "hellaswag": 0.5797,
+        "piqa": 0.7894,
+        "winogrande": 0.7301
+      },
+      "llama_baseline_avg": 0.696,
+      "llama_uniform_avg": 0.6915,
+      "llama_mckp_avg": 0.6816,
+      "llama_mckp_vs_uniform_pp": -0.99,
+      "llama_mckp_vs_baseline_pp": -1.44,
+      "llama_baseline": {
+        "arc_easy": 0.8228,
+        "arc_challenge": 0.5188,
+        "hellaswag": 0.6073,
+        "piqa": 0.7922,
+        "winogrande": 0.7388
+      },
+      "llama_uniform": {
+        "arc_easy": 0.8173,
+        "arc_challenge": 0.5256,
+        "hellaswag": 0.6026,
+        "piqa": 0.7867,
+        "winogrande": 0.7253
+      },
+      "llama_mckp": {
+        "arc_easy": 0.8039,
+        "arc_challenge": 0.4991,
+        "hellaswag": 0.6012,
+        "piqa": 0.7802,
+        "winogrande": 0.7238
+      },
+      "eval_harness_version": "0.4.11",
+      "num_fewshot": 0,
+      "yi_elapsed_s": 1563.2,
+      "llama_elapsed_s": 1446.4
+    },
+    "completed_at": "2026-05-15T06:40:48.703Z"
+  },
+  "timestamp": "2026-05-15T07:00:29.260589+00:00",
+  "trigger": "update_registry"
+}

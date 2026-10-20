@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_gpu_d048_hires_profiler_fix_rerun_20260514T181102_result.json",
     "occurrence": 1,
-    "bytes": 1060,
-    "sha256": "8acd6cb2eb122a6d9b83b64620b8171799e7c3a2ee22b4ed6d09d5431f7e6072"
+    "bytes": 1059,
+    "sha256": "b7c437544485c6c6b385381d82b8049a7fddc6a03c0488aa2b9db8d3fdffcb45"
   },
   "statistics": {
     "messages": 1,

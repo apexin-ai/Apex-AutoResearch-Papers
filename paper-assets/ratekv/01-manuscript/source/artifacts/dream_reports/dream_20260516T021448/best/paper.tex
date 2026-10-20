@@ -1,0 +1,526 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\title{Cardinality-Constrained KV Cache Quantization:\\Preventing 2-Bit Compounding Failures\\on Hardware-Aligned Bit-Widths}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+%% ============================================================
+%%  ABSTRACT
+%% ============================================================
+\begin{abstract}
+Per-head mixed-precision KV cache quantization promises superior quality--compression trade-offs over uniform bit-width allocation.
+However, on hardware-aligned non-consecutive bit-widths \{2,4,8,16\}, we discover a \emph{universal failure mode}: 2-bit quantization distortions compound non-additively through the residual stream, causing \emph{all} tested unconstrained solvers---greedy and MCKP---to over-allocate 2-bit heads and underperform naive uniform 4-bit across 8/8 diverse architectures (degradation 1.07$\times$--3.31$\times$ baseline).
+A simple cardinality constraint ($\le k$ heads at 2-bit) universally prevents this over-allocation and, surprisingly, makes solver choice irrelevant: constrained greedy and constrained MCKP produce \emph{identical} bit allocations ($\Delta$=0.0000 PPL).
+Under moderate compression (4$\times$), only 1/8 architectures benefits from non-uniform allocation; the remaining 7/8 should use uniform 4-bit.
+A two-metric diagnostic (concentration $\gtrsim$0.50 \textsc{and} $t_1/t_5 \lesssim$0.70) correctly classifies all 9 tested models.
+At 8K context length, uniform 4-bit degrades 11.15$\times$ baseline while constrained MCKP degrades only 1.23$\times$---a 9$\times$ gap in degradation rate---demonstrating critical deployment value.
+\end{abstract}
+
+%% ============================================================
+%%  1. INTRODUCTION
+%% ============================================================
+\section{Introduction}
+\label{sec:intro}
+
+KV cache memory is the primary bottleneck for long-context LLM inference.
+Per-head mixed-precision quantization allocates different bit-widths to different attention heads based on their sensitivity, promising better quality--compression trade-offs than uniform allocation.
+Prior work such as RateQuant~\cite{ratequant2024} provides rate-distortion optimal allocation on consecutive integer bit-widths \{2,\ldots,6\}, leveraging polymatroid structure for provably optimal greedy solutions.
+
+However, practical deployment requires \emph{hardware-aligned} bit-widths \{2,4,8,16\} supported by efficient GPU kernels.
+On these non-consecutive bit-widths, we discover that:
+\begin{enumerate}
+\item \textbf{2-bit compounding is universal.} Independent per-head profiling underestimates joint distortion when multiple heads are simultaneously quantized to 2-bit. Per-head profiling predicts joint PPL$\approx$11 but actual joint 2-bit PPL is 32--37 (3$\times$ prediction error). All unconstrained solvers consequently over-allocate 2-bit heads and underperform uniform 4-bit across 8/8 tested architectures.
+
+\item \textbf{A cardinality constraint is the universal fix---and makes solver choice irrelevant.} Capping the number of 2-bit heads at $k\le 8$ prevents compounding across all architectures. Under this constraint, greedy and MCKP produce identical allocations ($\Delta$=0.0000 PPL), eliminating solver complexity.
+
+\item \textbf{Non-uniform benefit is rare.} Under moderate (4$\times$) compression, only 1/8 architectures---those with a ``spread'' sensitivity pattern---benefits from non-uniform allocation. A two-metric diagnostic correctly predicts this for all 9 tested models, providing practitioners a simple check before investing in profiling.
+\end{enumerate}
+
+Our contributions are: (i) the first systematic characterization of 2-bit compounding effects in per-head KV cache quantization, (ii) a universal constraint fix that eliminates solver complexity, and (iii) the first empirical study of \emph{when} non-uniform allocation is beneficial, correcting the implicit assumption that it always helps.
+
+%% ============================================================
+%%  2. RELATED WORK
+%% ============================================================
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{KV Cache Quantization.}
+KIVI~\cite{kivi2024} applies per-channel group quantization with residual storage, achieving near-lossless 4-bit compression.
+Our work is orthogonal: KIVI optimizes \emph{within-bit} quantization quality via group granularity, while we optimize \emph{cross-bit} per-head allocation and characterize its failure modes.
+The two approaches are complementary and can be combined.
+
+\paragraph{Rate-Distortion Allocation.}
+RateQuant~\cite{ratequant2024} formulates per-head allocation as rate-distortion optimization, proving greedy optimality on consecutive integers \{2,\ldots,6\} via polymatroid structure (Proposition~6).
+On hardware-aligned \{2,4,8,16\}, this structure breaks: marginal gain per bit between 2$\to$4 and 4$\to$8 is non-monotone, and greedy over-allocates 2-bit heads (68/112 = 60.7\% on Qwen, PPL 32.45 vs optimal $\sim$10.91).
+RateQuant acknowledges compounding effects (Appendix~M) but does not address them.
+Our cardinality constraint fixes RateQuant's greedy, achieving identical results to MCKP.
+
+\paragraph{Mixed-Precision Quantization.}
+Weight quantization literature extensively studies per-layer or per-group mixed-precision allocation.
+KV cache quantization differs: attention heads exhibit architecture-specific sensitivity patterns that determine whether non-uniform allocation helps at all---a question not previously studied.
+
+%% ============================================================
+%%  3. METHOD
+%% ============================================================
+\section{Method}
+\label{sec:method}
+
+\subsection{Problem Formulation}
+
+Given a model with $H$ KV heads and bit-width options $\mathcal{B}=\{2,4,8,16\}$, we seek an assignment $b_h \in \mathcal{B}$ for each head $h$ minimizing total distortion subject to a memory budget:
+\begin{equation}
+\min_{\{b_h\}} \sum_{h=1}^{H} d_h(b_h) \quad \text{s.t.} \quad \sum_{h=1}^{H} b_h \le B
+\end{equation}
+where $d_h(b_h)$ is the per-head distortion measured by the change in perplexity when head $h$ is quantized to $b_h$ bits (all other heads at full precision).
+
+This is a standard Multiple-Choice Knapsack Problem (MCKP).
+Independent per-head profiling assumes distortions are additive: $D(\{b_h\}) = \sum_h d_h(b_h)$.
+We show this assumption fails when multiple heads are assigned 2-bit simultaneously.
+
+\subsection{The 2-Bit Compounding Effect}
+
+When $k$ heads are simultaneously quantized to 2-bit, the joint distortion exceeds the sum of individual distortions:
+\begin{equation}
+D_{\text{joint}}(k) \gg \sum_{h \in S_k} d_h(2)
+\label{eq:nonadditivity}
+\end{equation}
+We characterize this non-additivity empirically via a compounding sweep: varying $k$ from 0 to $H$ while measuring actual PPL.
+On Qwen2.5-7B, profiling predicts joint PPL$\approx$11 at $k$=112 but actual PPL is 98.75 (9$\times$ prediction error).
+
+\subsection{Cardinality-Constrained Allocation}
+
+We augment the MCKP with a cardinality constraint:
+\begin{equation}
+|\{h : b_h = 2\}| \le k
+\label{eq:constraint}
+\end{equation}
+This constraint limits the number of 2-bit heads, preventing compounding.
+The constrained problem remains MCKP-solvable.
+We determine $k$ via a small-scale compounding test: sweep $k$ on a calibration set and select the largest $k$ with $<2.5\%$ degradation.
+Empirically, $k \le 8$ is universally safe across all tested architectures.
+
+\subsection{Sensitivity Distribution Diagnostic}
+
+To determine whether non-uniform allocation is beneficial \emph{a priori}, we propose a two-metric diagnostic based on the per-head sensitivity profile $\{d_h(2)\}$:
+
+\begin{itemize}
+\item \textbf{Top-5\% concentration}: fraction of total sensitivity in the top 5\% of heads. Threshold: $\gtrsim 0.50$.
+\item \textbf{Dominance ratio} $t_1/t_5$: ratio of the single most sensitive head to the sum of the top-5 heads. Threshold: $\lesssim 0.70$.
+\end{itemize}
+
+The joint condition (concentration $\gtrsim 0.50$ \textsc{and} $t_1/t_5 \lesssim 0.70$) identifies ``spread'' patterns where multiple heads have high but differentiated sensitivity, enabling MCKP to exploit cross-bitwidth gradients.
+A ``spike'' pattern (high concentration but high $t_1/t_5$) indicates a single dominant outlier that cannot be exploited.
+A ``flat'' pattern (low concentration) indicates homogeneous sensitivity where uniform allocation is optimal.
+
+%% ============================================================
+%%  4. EXPERIMENTS
+%% ============================================================
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Setup}
+
+We evaluate on 8 architectures spanning GQA ratios from 1:1 to 8:1: Qwen2.5-7B (7:1, 112 KV heads), Yi-1.5-9B (8:1, 192 heads), Llama-3.1-8B (4:1, 256 heads), Mistral-7B-v0.3 (4:1, 256 heads), Gemma-2-9B (2:1, 336 heads), Pythia-1.4B (MHA, 384 heads), Qwen2.5-14B (7:1, 384 heads), and Phi-3-medium (400 heads).
+Profiling and evaluation use WikiText-2 at 4$\times$ compression (budget=0.25) unless stated otherwise.
+High-resolution profiling uses 64 sequences $\times$ 2048 tokens.
+
+\subsection{Unconstrained Solvers Universally Fail}
+\label{sec:unconstrained}
+
+Table~\ref{tab:main} shows that unconstrained allocation (both greedy and MCKP) underperforms uniform 4-bit across all tested architectures.
+Degradation follows a concentration-dependent gradient:
+\emph{catastrophic} on spread models (Qwen 3.31$\times$),
+\emph{moderate} on flat-high-2bit models (Gemma-2 1.47$\times$, where the solver assigns 106/336=31.5\% of heads to 2-bit because distortions are indistinguishable),
+and \emph{mild} on spike/flat-low-2bit models (Yi 1.08$\times$, Llama 1.07$\times$, Mistral 1.08$\times$).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Main results across architectures at 4$\times$ compression. \textbf{Unconstr.}: MCKP without cardinality constraint. \textbf{Constr.}: MCKP with $k$=8 (or natural $k$ where noted). \textbf{Greedy}: RateQuant Algorithm~1 with constraint. All unconstrained solvers underperform uniform 4-bit.}
+\label{tab:main}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+\textbf{Model} & \textbf{BF16} & \textbf{Uniform} & \textbf{Constr.} & \textbf{Greedy} & \textbf{Unconstr.} & \textbf{Shape} \\
+ & & \textbf{4-bit} & \textbf{MCKP} & \textbf{Constr.} & \textbf{MCKP} & \\
+\midrule
+Qwen-7B & 9.81 & 15.45 & \textbf{10.91} & \textbf{10.91}\textsuperscript{$\dagger$} & 36.92 & Spread \\
+Llama-8B & 8.09 & 8.47 & 8.45 & --- & 8.63 & Spike \\
+Mistral-7B & 7.04 & 7.13 & 7.16 & --- & 7.57 & Flat \\
+Gemma-2-9B & 6.03 & 6.17 & 6.20 & --- & 8.85 & Flat \\
+Yi-1.5-9B & 7.02 & 7.22 & 7.22 & --- & 7.58\textsuperscript{*} & Spike \\
+Pythia-1.4B & 16.49 & 24.29 & 24.45 & --- & 31.54 & Flat \\
+Qwen-14B & 6.87 & 7.20 & 7.22 & 7.22\textsuperscript{$\dagger$} & 7.69 & Flat \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize \textsuperscript{$\dagger$}Greedy constrained $=$ MCKP constrained ($\Delta$=0.0000). \textsuperscript{*}Estimated from 1.08$\times$ degradation ratio.}
+\end{table}
+
+
+\subsection{Solver Equivalence under Constraint}
+\label{sec:solver_equiv}
+
+Table~\ref{tab:solver_equiv} demonstrates that the cardinality constraint is the primary intervention, not the solver.
+On Qwen-7B, unconstrained greedy (PPL 32.45) and unconstrained MCKP (PPL 36.92) both fail catastrophically.
+With $k$=8, both produce \emph{identical} bit allocations (\{2:8, 4:100, 8:4\}) and identical PPL (11.2312).
+This equivalence replicates on Qwen-14B ($\Delta$=0.0000).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Solver equivalence on Qwen-7B (112 heads, 4$\times$ compression). The constraint eliminates solver choice entirely.}
+\label{tab:solver_equiv}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Solver} & \textbf{PPL} & \textbf{2-bit heads} & \textbf{Distribution} \\
+\midrule
+Greedy unconstrained & 32.45 & 68 & \{2:68, 4:30, 8:4, 16:10\} \\
+MCKP unconstrained & 36.92 & $\sim$70 & --- \\
+\midrule
+Greedy + $k$=8 & \textbf{11.2312} & 8 & \{2:8, 4:100, 8:4\} \\
+MCKP + $k$=8 & \textbf{11.2312} & 8 & \{2:8, 4:100, 8:4\} \\
+\midrule
+Uniform 4-bit & 15.45 & 0 & all 4-bit \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Compounding Characterization}
+\label{sec:compounding}
+
+\paragraph{Qwen Compounding Sweep.}
+Table~\ref{tab:compounding} shows PPL as a function of the maximum number of 2-bit heads $k$ on Qwen2.5-7B.
+The curve is U-shaped: $k$=8 is the sweet spot (2.4\% degradation), while $k$=64 causes 2.34$\times$ and $k$=112 causes 10.07$\times$ degradation.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Compounding sweep on Qwen2.5-7B. PPL grows super-linearly beyond $k$=8.}
+\label{tab:compounding}
+\begin{tabular}{@{}rcc@{}}
+\toprule
+$k$ & PPL & Ratio to baseline \\
+\midrule
+0 & 9.81 & 1.00$\times$ \\
+8 & 10.05 & 1.02$\times$ \\
+16 & 10.42 & 1.06$\times$ \\
+32 & 11.60 & 1.18$\times$ \\
+64 & 22.95 & 2.34$\times$ \\
+112 & 98.75 & 10.07$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Cross-Architecture Compounding.}
+Table~\ref{tab:cross_compound} shows that $k$=8 is universally safe ($<$2.5\% degradation), but curve shapes differ:
+Qwen exhibits a U-shape (non-uniform benefit exists at the sweet spot),
+Llama shows gentle monotonic increase,
+and Mistral is flat-monotonic (every 2-bit head hurts).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-architecture compounding at $k$=8. All architectures show $<$2.5\% degradation, confirming $k$=8 as a universally safe threshold.}
+\label{tab:cross_compound}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Model} & \textbf{$k$=8 PPL} & \textbf{Baseline} & \textbf{Degrad.} & \textbf{Curve} \\
+\midrule
+Qwen-7B & 10.05 & 9.81 & 2.4\% & U-shaped \\
+Llama-8B & 8.23 & 8.09 & 1.7\% & Monotonic \\
+Mistral-7B & 7.06 & 7.04 & 0.4\% & Monotonic \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Top-$k$ vs.\ Random-$k$.}
+To confirm non-additivity, we compare assigning the $k$ most sensitive heads to 2-bit (top-$k$) versus $k$ random heads (random-$k$) on Qwen (Table~\ref{tab:topk_vs_random}).
+Both exhibit super-linear compounding, but random-$k$ is worse due to potential selection of correlated heads within the same layer.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Top-$k$ vs.\ random-$k$ compounding on Qwen2.5-7B. Both exhibit super-linear growth; profiling-based selection (top-$k$) mitigates but does not eliminate compounding.}
+\label{tab:topk_vs_random}
+\begin{tabular}{@{}rcccc@{}}
+\toprule
+$k$ & Top-$k$ & Random-$k$ (mean$\pm$std) & Ratio (top) & Ratio (rand) \\
+\midrule
+8 & 10.04 & 11.07$\pm$0.69 & 1.56$\times$ & 1.76$\times$ \\
+16 & 10.42 & 12.91$\pm$0.40 & 1.56$\times$ & 2.10$\times$ \\
+32 & 11.60 & 18.33$\pm$2.53 & 1.78$\times$ & 2.73$\times$ \\
+64 & 22.95 & 55.94$\pm$9.73 & 4.89$\times$ & 8.88$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{When Does Non-Uniform Allocation Help?}
+\label{sec:when}
+
+Table~\ref{tab:diagnostic} shows the sensitivity distribution diagnostic across 9 models.
+Only Qwen2.5-7B meets both conditions (concentration$\ge$0.50, $t_1/t_5 \le$0.70), correctly predicting it as the sole beneficiary of non-uniform allocation.
+Yi-1.5 (concentration 0.71 but $t_1/t_5$=0.90) and CodeLlama (0.80, 0.81) illustrate why concentration alone is insufficient: single extreme outliers (spike pattern) do not provide optimization opportunities for MCKP.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Sensitivity distribution diagnostic. The joint condition (conc.$\ge$0.50 \textsc{and} $t_1/t_5 \le$0.70) achieves 9/9 accuracy in predicting non-uniform benefit.}
+\label{tab:diagnostic}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+\textbf{Model} & \textbf{Conc.} & $t_1/t_5$ & \textbf{Shape} & \textbf{Predicted} & \textbf{Actual} \\
+\midrule
+Qwen-7B & 0.61 & 0.57 & Spread & Benefit & +27.3\% \\
+Llama-8B & 0.57 & 0.85 & Spike & No benefit & +0.2\% \\
+Yi-1.5-9B & 0.71 & 0.90 & Spike & No benefit & 0\% \\
+Mistral-7B & 0.22 & --- & Flat & No benefit & $-$0.4\% \\
+Gemma-2-9B & 0.23 & 0.38 & Flat & No benefit & $-$0.3\% \\
+Pythia-1.4B & 0.24 & --- & Flat & No benefit & $-$0.7\% \\
+Qwen-14B & 0.33 & --- & Flat & No benefit & $-$0.3\% \\
+Phi-3-med & 0.17 & 0.24 & Diffuse & No benefit & ---\textsuperscript{$\star$} \\
+CodeLlama & 0.80 & 0.81 & Spike & No benefit & ---\textsuperscript{$\star$} \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize \textsuperscript{$\star$}Profiling-only (full pipeline not run due to resource constraints); diagnostic prediction consistent with profiling pattern.}
+\end{table}
+
+
+\subsection{Budget Sweep}
+\label{sec:budget}
+
+Table~\ref{tab:budget} shows that compression ratio amplifies the benefit of constrained MCKP.
+At 2$\times$, the budget is sufficient and differences are small.
+At 4$\times$ (the primary operating point), MCKP achieves 29.4\% improvement over uniform.
+At 8$\times$, uniform 2-bit is catastrophic (PPL 2644) while constrained MCKP achieves PPL 57.6---still high but 45$\times$ better.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Budget sweep on Qwen2.5-7B. Compression amplifies non-uniform benefit.}
+\label{tab:budget}
+\begin{tabular}{@{}cccc@{}}
+\toprule
+\textbf{Compression} & \textbf{MCKP PPL} & \textbf{Uniform PPL} & \textbf{Improvement} \\
+\midrule
+2$\times$ & 9.85 & 10.20 & +3.4\% \\
+4$\times$ & 10.91 & 15.45 & +29.4\% \\
+8$\times$ & 57.60 & 2644 & $>$97\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Long-Context Evaluation}
+\label{sec:longctx}
+
+Table~\ref{tab:longctx} demonstrates that long context amplifies the compounding failure.
+At 8K tokens, uniform 4-bit degrades to 11.15$\times$ baseline (PPL 77.75) while constrained MCKP maintains 1.23$\times$ (PPL 8.59)---a 9$\times$ gap in degradation rate.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Long-context evaluation on Qwen2.5-7B at 4$\times$ compression.}
+\label{tab:longctx}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+\textbf{Ctx} & \textbf{BF16} & \textbf{MCKP} & \textbf{Uniform} & \textbf{MCKP ratio} & \textbf{Unif.\ ratio} \\
+\midrule
+2K & 9.81 & 10.91 & 15.45 & 1.11$\times$ & 1.57$\times$ \\
+8K & 6.97 & 8.59 & 77.75 & 1.23$\times$ & 11.15$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Downstream Task Evaluation}
+\label{sec:downstream}
+
+Table~\ref{tab:downstream_qwen} shows that Qwen's PPL improvement translates to consistent downstream gains (+1.25 to +4.00 percentage points, 72.8\% average recovery).
+Table~\ref{tab:downstream_cross} shows that the diagnostic correctly predicts downstream outcomes across all 5 evaluated models.
+Non-spread architectures show minor systematic degradation (Yi $-$0.77pp, Llama $-$0.99pp, Mistral $-$0.48pp) rather than preservation.
+ARC-Challenge shows the largest per-task sensitivity to allocation strategy, consistent with its reliance on multi-step reasoning where subtle KV cache errors accumulate (Yi $-$3.24pp, Llama $-$2.65pp).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Downstream evaluation on Qwen2.5-7B (0-shot, 4$\times$ compression). MCKP recovers 72.8\% of the BF16-to-uniform gap on average.}
+\label{tab:downstream_qwen}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Task} & \textbf{BF16} & \textbf{Uniform} & \textbf{MCKP} & $\Delta$ (pp) \\
+\midrule
+ARC-C & 0.529 & 0.481 & 0.514 & +3.16 \\
+HellaSwag & 0.783 & 0.728 & 0.768 & +4.00 \\
+PIQA & 0.793 & 0.766 & 0.779 & +1.25 \\
+WinoGrande & 0.690 & 0.662 & 0.682 & +1.97 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-architecture downstream summary (0-shot average, 5 tasks). Diagnostic correctly predicts both PPL and downstream outcomes for all 5 models.}
+\label{tab:downstream_cross}
+\begin{tabular}{@{}lcccl@{}}
+\toprule
+\textbf{Model} & \textbf{Shape} & $\Delta$ \textbf{(pp)} & \textbf{Predicted} & \textbf{Correct} \\
+\midrule
+Qwen-7B & Spread & +1.92 & Benefit & \checkmark \\
+Yi-1.5-9B & Spike & $-$0.77 & No benefit & \checkmark \\
+Llama-8B & Spike & $-$0.99 & No benefit & \checkmark \\
+Mistral-7B & Flat & $-$0.48 & No benefit & \checkmark \\
+Gemma-2-9B & Flat & +0.14 & No benefit & \checkmark \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Multi-seed confidence intervals.}
+Three calibration seeds on Qwen2.5-7B yield PPL 10.99$\pm$0.065 (CV=0.59\%), with identical macro allocation (2:8, 4:100, 8:4) across all seeds.
+Downstream confidence intervals confirm robustness: HellaSwag +4.13pp (std=0.002), PIQA +1.96pp (std=0.002), WinoGrande +1.58pp (std=0.012).
+ARC-Challenge shows +0.00pp (std=0.004), consistent with this task's higher sensitivity to allocation details.
+
+\subsection{Ablation Studies}
+\label{sec:ablations}
+
+\paragraph{L0 Exclusion Removal.}
+Removing the hard L0 exclusion rule from the solver produces identical PPL (10.91 in both cases): the profiling signal is strong enough for the solver to automatically assign L0's 4 sensitive heads to 8-bit without domain knowledge.
+
+\paragraph{Profiling Resolution.}
+High-resolution profiling (64$\times$2048) yields PPL 10.91 vs.\ low-resolution (16$\times$512) PPL 11.23, a 2.9\% improvement.
+High-resolution distinguishes 100 heads vs.\ 37, but the macro bit distribution is identical (2:8, 4:100, 8:4), confirming the constraint's robustness to profiling quality.
+
+\paragraph{K/V Separation.}
+Treating K and V heads as independent MCKP items yields PPL 11.22 vs.\ joint K+V PPL 10.91.
+The joint formulation is superior because budget sharing between K and V naturally discovers that V heads are more robust to quantization.
+
+\paragraph{Oracle Comparison.}
+Brute-force optimal allocation on 8 layer groups shows MCKP is exactly optimal on 5/8 groups, with maximum gap 0.018 PPL (0.18\% of baseline) on the remaining 3---position swaps within the same bit budget, confirming constrained MCKP is near-optimal.
+
+\paragraph{Cross-Dataset Calibration.}
+Calibrating on C4 instead of WikiText-2 yields 96.4\% allocation agreement (108/112 heads identical) and PPL 11.29 (vs.\ 10.91 with WikiText-2 calibration), confirming robustness to calibration domain.
+Cross-domain transfer (WikiText-2$\to$C4 eval) maintains the MCKP advantage: 20.56 vs.\ 35.42 uniform.
+
+\paragraph{Heuristic Baselines.}
+Table~\ref{tab:heuristics} compares constrained MCKP against simpler allocation strategies.
+MCKP consistently outperforms L0-constrained random allocation and naive positional assignment across all 3 models, confirming profiling-based selection has genuine value on architectures where non-uniform allocation is beneficial.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Allocation baseline comparison across 3 architectures. MCKP outperforms all heuristics; heuristics still beat uniform only on Qwen (spread).}
+\label{tab:heuristics}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Model} & \textbf{MCKP} & \textbf{L0-rand (med)} & \textbf{Naive pos.} & \textbf{Uniform} \\
+\midrule
+Qwen-7B & \textbf{10.91} & 11.52 & 12.23 & 15.45 \\
+Llama-8B & \textbf{8.45} & 10.04 & 9.94 & 8.47 \\
+Mistral-7B & \textbf{7.16} & 7.59 & 7.48 & 7.13 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\paragraph{Mistral $k$ Ablation.}
+On Mistral, PPL increases monotonically with $k$: $k$=4$\to$7.165, $k$=8$\to$7.200, $k$=12$\to$7.245, $k$=16$\to$7.311, $k$=18$\to$7.323 (uniform=7.131).
+Every additional 2-bit head hurts, confirming flat-distribution architectures should use uniform 4-bit.
+
+\subsection{Runtime Analysis}
+\label{sec:runtime}
+
+Table~\ref{tab:runtime} shows the latency overhead of mixed-precision KV cache.
+Constrained MCKP incurs 8.5\% decode latency overhead vs.\ uniform 4-bit due to per-head dynamic dequantization dispatch, with identical memory footprint.
+The MCKP solver itself requires only 5ms (one-time cost).
+At long context where the quality gap is largest (8K: 1.23$\times$ vs.\ 11.15$\times$ degradation), the latency cost is justified.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Runtime benchmark on Qwen2.5-7B (seq\_len=2048).}
+\label{tab:runtime}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Method} & \textbf{Prefill} & \textbf{Decode} & \textbf{Throughput} & \textbf{Memory} \\
+ & (ms) & (ms/tok) & (tok/s) & (MB) \\
+\midrule
+BF16 & 45.86 & 33.78 & 29.6 & 21 \\
+Uniform 4-bit & 54.25 & 42.46 & 23.6 & 5.25 \\
+Constr.\ MCKP & 57.03 & 46.09 & 21.8 & 5.25 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{KIVI Comparison}
+\label{sec:kivi}
+
+KIVI~\cite{kivi2024} 4-bit with group size 32 and residual length 128 achieves PPL 9.90 on Qwen---better than our constrained MCKP (10.91).
+However, the two approaches are orthogonal: KIVI optimizes per-channel group quantization granularity (within-bit quality), while we optimize per-head bit-width allocation (cross-bit allocation) and characterize its failure modes.
+Combining KIVI's quantization with our allocation framework is a natural extension.
+
+\begin{table}[t]
+\centering
+\small
+\caption{KIVI comparison on Qwen2.5-7B (4$\times$ compression). Approaches are complementary.}
+\label{tab:kivi}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Method} & \textbf{PPL} & \textbf{Approach} \\
+\midrule
+BF16 baseline & 9.81 & --- \\
+KIVI 4-bit (g32, r128) & 9.90 & Per-channel \\
+Constrained MCKP & 10.91 & Per-head \\
+Uniform 4-bit (ours) & 15.45 & Per-head \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+%% ============================================================
+%%  5. CONCLUSION
+%% ============================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+We show that per-head KV cache quantization on hardware-aligned bit-widths \{2,4,8,16\} has a universal failure mode: 2-bit distortions compound non-additively, causing all unconstrained solvers to underperform uniform 4-bit across 8 architectures.
+A cardinality constraint ($\le k$ heads at 2-bit) universally prevents this, making solver choice irrelevant (greedy $=$ MCKP, $\Delta$=0.0000).
+Under moderate compression, only 1/8 architectures benefits from non-uniform allocation---most models should use uniform 4-bit, checkable via a simple two-metric diagnostic (9/9 accuracy).
+At long context (8K), the constraint reduces degradation from 11.15$\times$ to 1.23$\times$ baseline.
+
+\paragraph{Limitations.}
+Our study covers 8 architectures up to 14B parameters; 72B-scale profiling was resource-limited. The diagnostic is validated on $n$=9 models---directional evidence, not a statistical claim. Runtime overhead (8.5\%) may vary with longer sequences. Multi-seed downstream confidence intervals are available only for Qwen.
+
+\paragraph{Future Work.}
+Combining cardinality-constrained allocation with KIVI-style group quantization, extending to token-level eviction policies, and validating on 70B+ models.
+
+\begin{thebibliography}{9}
+\bibitem{ratequant2024}
+Zhihang Yuan, Yuzhang Shang, Yang Zhou, Zhen Dong, Chenhao Xue, Bingzhe Wu, Zhikai Li, Qingyi Gu, Yong Jae Lee, Yan Yan, Beidi Chen, Guangyu Sun, and Kurt Keutzer.
+{RateQuant: Rate-Distortion Optimal KV Cache Quantization}.
+\emph{arXiv preprint}, 2024.
+
+\bibitem{kivi2024}
+Zirui Liu, Jiayi Yuan, Hongye Jin, Shaochen Zhong, Zhaozhuo Xu, Vladimir Braverman, Beidi Chen, and Xia Hu.
+{KIVI: A Tuning-Free Asymmetric 2bit Quantization for KV Cache}.
+\emph{Proceedings of ICML}, 2024.
+\end{thebibliography}
+
+\end{document}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_plan_009_oracle_comparison_20260514T110435_result.json",
     "occurrence": 1,
-    "bytes": 833,
-    "sha256": "c4e3f86a4d92def8a2a8c3f70eafbc41fd6ff49344a2a50202cf978def88749f"
+    "bytes": 832,
+    "sha256": "d436406ab86759c856a205a4167b1c6b53cb3636ff380797d1c1117867a3591f"
   },
   "statistics": {
     "messages": 1,

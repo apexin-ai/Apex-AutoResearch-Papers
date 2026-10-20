@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad8716bd4f43ab97b7b3",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "ops kill llama verify dpo003",
+  "task_key": "worker_ops_kill-llama-verify-dpo003_20260512T182700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-llama-verify-dpo003_20260512T182700_result.json",
+    "occurrence": 1,
+    "bytes": 909,
+    "sha256": "457d03c04b661d1e5ba026ccca9e8c9f1fa02a8455103e5a1f15e73c74f7a284"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认完毕。\n\n## 报告\n\n**1. llama-bcp-001 进程：已清理**\n- 未找到任何 vllm/8002/Meta-Llama/run_mvp_experiment 相关进程，llama-bcp-001 已不在运行。\n\n**2. dpo-003 训练：健康**\n- PID 299960（bash wrapper）→ PID 299965（python train_dpo_v3.py），运行 ~3 分钟\n- 进度：34/1173 steps（~3%），预计剩余 ~1.5h\n- Loss：从 ~0.695 下降到 ~0.67-0.68，趋势正常\n- rewards/margins 逐步增大（从负值到 ~0.03-0.05），DPO 训练在学习区分 chosen/rejected\n- rewards/accuracies 在 0.5-1.0 之间波动，开始分离\n\n**3. GPU 占用状态**\n\n| GPU | 显存占用 | 利用率 | 进程 |\n|-----|---------|--------|------|\n| cuda:2 | 23031/24564 MiB | 100% | PID 299965 — dpo-003（仅此一个） |\n| cuda:3 | 23201/24564 MiB | 96% | PID 276055 — dpo-002 |\n\ncuda:2 干净，仅 dpo-003 占用，无残留进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-llama-verify-dpo003.md"
+}

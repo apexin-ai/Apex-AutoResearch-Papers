@@ -1,0 +1,1284 @@
+{
+  "experiment": "exp-005",
+  "date": "2026-05-23",
+  "scale": "340M-20B",
+  "description": "5-architecture pairwise Jaccard extended to 4 benchmarks (h3-1 vs pure)",
+  "benchmarks": {
+    "lambada_openai": {
+      "n_samples": 5153,
+      "architectures": [
+        "GDN",
+        "RetNet",
+        "HGRN2",
+        "GLA",
+        "DeltaNet"
+      ],
+      "per_arch": {
+        "GDN": {
+          "helped": 483,
+          "hurt": 412,
+          "net": 71,
+          "pure_acc": 0.343489,
+          "h31_acc": 0.357268
+        },
+        "RetNet": {
+          "helped": 383,
+          "hurt": 476,
+          "net": -93,
+          "pure_acc": 0.367165,
+          "h31_acc": 0.349117
+        },
+        "HGRN2": {
+          "helped": 571,
+          "hurt": 335,
+          "net": 236,
+          "pure_acc": 0.319232,
+          "h31_acc": 0.36503
+        },
+        "GLA": {
+          "helped": 532,
+          "hurt": 312,
+          "net": 220,
+          "pure_acc": 0.33922,
+          "h31_acc": 0.381913
+        },
+        "DeltaNet": {
+          "helped": 498,
+          "hurt": 345,
+          "net": 153,
+          "pure_acc": 0.323889,
+          "h31_acc": 0.35358
+        }
+      },
+      "pairwise": {
+        "GDN-RetNet": {
+          "J_helped": 0.127604,
+          "J_hurt": 0.121212,
+          "|helped_a|": 483,
+          "|helped_b|": 383,
+          "|hurt_a|": 412,
+          "|hurt_b|": 476,
+          "|helped_inter|": 98,
+          "|hurt_inter|": 96
+        },
+        "GDN-HGRN2": {
+          "J_helped": 0.122471,
+          "J_hurt": 0.082609,
+          "|helped_a|": 483,
+          "|helped_b|": 571,
+          "|hurt_a|": 412,
+          "|hurt_b|": 335,
+          "|helped_inter|": 115,
+          "|hurt_inter|": 57
+        },
+        "GDN-GLA": {
+          "J_helped": 0.124031,
+          "J_hurt": 0.100304,
+          "|helped_a|": 483,
+          "|helped_b|": 532,
+          "|hurt_a|": 412,
+          "|hurt_b|": 312,
+          "|helped_inter|": 112,
+          "|hurt_inter|": 66
+        },
+        "GDN-DeltaNet": {
+          "J_helped": 0.114773,
+          "J_hurt": 0.100291,
+          "|helped_a|": 483,
+          "|helped_b|": 498,
+          "|hurt_a|": 412,
+          "|hurt_b|": 345,
+          "|helped_inter|": 101,
+          "|hurt_inter|": 69
+        },
+        "RetNet-HGRN2": {
+          "J_helped": 0.108014,
+          "J_hurt": 0.082777,
+          "|helped_a|": 383,
+          "|helped_b|": 571,
+          "|hurt_a|": 476,
+          "|hurt_b|": 335,
+          "|helped_inter|": 93,
+          "|hurt_inter|": 62
+        },
+        "RetNet-GLA": {
+          "J_helped": 0.122699,
+          "J_hurt": 0.106742,
+          "|helped_a|": 383,
+          "|helped_b|": 532,
+          "|hurt_a|": 476,
+          "|hurt_b|": 312,
+          "|helped_inter|": 100,
+          "|hurt_inter|": 76
+        },
+        "RetNet-DeltaNet": {
+          "J_helped": 0.11519,
+          "J_hurt": 0.096128,
+          "|helped_a|": 383,
+          "|helped_b|": 498,
+          "|hurt_a|": 476,
+          "|hurt_b|": 345,
+          "|helped_inter|": 91,
+          "|hurt_inter|": 72
+        },
+        "HGRN2-GLA": {
+          "J_helped": 0.12666,
+          "J_hurt": 0.08557,
+          "|helped_a|": 571,
+          "|helped_b|": 532,
+          "|hurt_a|": 335,
+          "|hurt_b|": 312,
+          "|helped_inter|": 124,
+          "|hurt_inter|": 51
+        },
+        "HGRN2-DeltaNet": {
+          "J_helped": 0.125263,
+          "J_hurt": 0.089744,
+          "|helped_a|": 571,
+          "|helped_b|": 498,
+          "|hurt_a|": 335,
+          "|hurt_b|": 345,
+          "|helped_inter|": 119,
+          "|hurt_inter|": 56
+        },
+        "GLA-DeltaNet": {
+          "J_helped": 0.134361,
+          "J_hurt": 0.080592,
+          "|helped_a|": 532,
+          "|helped_b|": 498,
+          "|hurt_a|": 312,
+          "|hurt_b|": 345,
+          "|helped_inter|": 122,
+          "|hurt_inter|": 49
+        }
+      },
+      "mean_J_helped": 0.122107,
+      "mean_J_hurt": 0.094597,
+      "z_range_helped": [
+        9.03,
+        12.21
+      ],
+      "z_range_hurt": [
+        6.33,
+        10.89
+      ],
+      "sig_pairs_helped": 10,
+      "sig_pairs_hurt": 10,
+      "permutation_test_helped": {
+        "GDN-RetNet": {
+          "J_obs": 0.127604,
+          "J_null_mean": 0.043242,
+          "J_null_std": 0.006907,
+          "z": 12.21,
+          "p": 0.0
+        },
+        "GDN-HGRN2": {
+          "J_obs": 0.122471,
+          "J_null_mean": 0.053655,
+          "J_null_std": 0.006872,
+          "z": 10.01,
+          "p": 0.0
+        },
+        "GDN-GLA": {
+          "J_obs": 0.124031,
+          "J_null_mean": 0.051699,
+          "J_null_std": 0.006921,
+          "z": 10.45,
+          "p": 0.0
+        },
+        "GDN-DeltaNet": {
+          "J_obs": 0.114773,
+          "J_null_mean": 0.05002,
+          "J_null_std": 0.006975,
+          "z": 9.28,
+          "p": 0.0
+        },
+        "RetNet-HGRN2": {
+          "J_obs": 0.108014,
+          "J_null_mean": 0.046588,
+          "J_null_std": 0.006799,
+          "z": 9.03,
+          "p": 0.0
+        },
+        "RetNet-GLA": {
+          "J_obs": 0.122699,
+          "J_null_mean": 0.045193,
+          "J_null_std": 0.006802,
+          "z": 11.39,
+          "p": 0.0
+        },
+        "RetNet-DeltaNet": {
+          "J_obs": 0.11519,
+          "J_null_mean": 0.04396,
+          "J_null_std": 0.00692,
+          "z": 10.29,
+          "p": 0.0
+        },
+        "HGRN2-GLA": {
+          "J_obs": 0.12666,
+          "J_null_mean": 0.056559,
+          "J_null_std": 0.00693,
+          "z": 10.12,
+          "p": 0.0
+        },
+        "HGRN2-DeltaNet": {
+          "J_obs": 0.125263,
+          "J_null_mean": 0.054463,
+          "J_null_std": 0.007042,
+          "z": 10.05,
+          "p": 0.0
+        },
+        "GLA-DeltaNet": {
+          "J_obs": 0.134361,
+          "J_null_mean": 0.052491,
+          "J_null_std": 0.006987,
+          "z": 11.72,
+          "p": 0.0
+        }
+      },
+      "permutation_test_hurt": {
+        "GDN-RetNet": {
+          "J_obs": 0.121212,
+          "J_null_mean": 0.044959,
+          "J_null_std": 0.007002,
+          "z": 10.89,
+          "p": 0.0
+        },
+        "GDN-HGRN2": {
+          "J_obs": 0.082609,
+          "J_null_mean": 0.037132,
+          "J_null_std": 0.006853,
+          "z": 6.64,
+          "p": 0.0
+        },
+        "GDN-GLA": {
+          "J_obs": 0.100304,
+          "J_null_mean": 0.035731,
+          "J_null_std": 0.006844,
+          "z": 9.44,
+          "p": 0.0
+        },
+        "GDN-DeltaNet": {
+          "J_obs": 0.100291,
+          "J_null_mean": 0.037791,
+          "J_null_std": 0.006961,
+          "z": 8.98,
+          "p": 0.0
+        },
+        "RetNet-HGRN2": {
+          "J_obs": 0.082777,
+          "J_null_mean": 0.039573,
+          "J_null_std": 0.006823,
+          "z": 6.33,
+          "p": 0.0
+        },
+        "RetNet-GLA": {
+          "J_obs": 0.106742,
+          "J_null_mean": 0.038014,
+          "J_null_std": 0.006704,
+          "z": 10.25,
+          "p": 0.0
+        },
+        "RetNet-DeltaNet": {
+          "J_obs": 0.096128,
+          "J_null_mean": 0.040468,
+          "J_null_std": 0.006879,
+          "z": 8.09,
+          "p": 0.0
+        },
+        "HGRN2-GLA": {
+          "J_obs": 0.08557,
+          "J_null_mean": 0.032442,
+          "J_null_std": 0.007037,
+          "z": 7.55,
+          "p": 0.0
+        },
+        "HGRN2-DeltaNet": {
+          "J_obs": 0.089744,
+          "J_null_mean": 0.034125,
+          "J_null_std": 0.006998,
+          "z": 7.95,
+          "p": 0.0
+        },
+        "GLA-DeltaNet": {
+          "J_obs": 0.080592,
+          "J_null_mean": 0.032902,
+          "J_null_std": 0.006842,
+          "z": 6.97,
+          "p": 0.0
+        }
+      }
+    },
+    "arc_easy": {
+      "n_samples": 2376,
+      "architectures": [
+        "GDN",
+        "RetNet",
+        "HGRN2",
+        "GLA",
+        "DeltaNet"
+      ],
+      "per_arch": {
+        "GDN": {
+          "helped": 253,
+          "hurt": 248,
+          "net": 5,
+          "pure_acc": 0.566919,
+          "h31_acc": 0.569024
+        },
+        "RetNet": {
+          "helped": 190,
+          "hurt": 223,
+          "net": -33,
+          "pure_acc": 0.604377,
+          "h31_acc": 0.590488
+        },
+        "HGRN2": {
+          "helped": 199,
+          "hurt": 205,
+          "net": -6,
+          "pure_acc": 0.611111,
+          "h31_acc": 0.608586
+        },
+        "GLA": {
+          "helped": 206,
+          "hurt": 243,
+          "net": -37,
+          "pure_acc": 0.582912,
+          "h31_acc": 0.56734
+        },
+        "DeltaNet": {
+          "helped": 197,
+          "hurt": 205,
+          "net": -8,
+          "pure_acc": 0.604377,
+          "h31_acc": 0.60101
+        }
+      },
+      "pairwise": {
+        "GDN-RetNet": {
+          "J_helped": 0.088452,
+          "J_hurt": 0.113475,
+          "|helped_a|": 253,
+          "|helped_b|": 190,
+          "|hurt_a|": 248,
+          "|hurt_b|": 223,
+          "|helped_inter|": 36,
+          "|hurt_inter|": 48
+        },
+        "GDN-HGRN2": {
+          "J_helped": 0.121588,
+          "J_hurt": 0.104878,
+          "|helped_a|": 253,
+          "|helped_b|": 199,
+          "|hurt_a|": 248,
+          "|hurt_b|": 205,
+          "|helped_inter|": 49,
+          "|hurt_inter|": 43
+        },
+        "GDN-GLA": {
+          "J_helped": 0.114078,
+          "J_hurt": 0.105856,
+          "|helped_a|": 253,
+          "|helped_b|": 206,
+          "|hurt_a|": 248,
+          "|hurt_b|": 243,
+          "|helped_inter|": 47,
+          "|hurt_inter|": 47
+        },
+        "GDN-DeltaNet": {
+          "J_helped": 0.084337,
+          "J_hurt": 0.10219,
+          "|helped_a|": 253,
+          "|helped_b|": 197,
+          "|hurt_a|": 248,
+          "|hurt_b|": 205,
+          "|helped_inter|": 35,
+          "|hurt_inter|": 42
+        },
+        "RetNet-HGRN2": {
+          "J_helped": 0.086592,
+          "J_hurt": 0.114583,
+          "|helped_a|": 190,
+          "|helped_b|": 199,
+          "|hurt_a|": 223,
+          "|hurt_b|": 205,
+          "|helped_inter|": 31,
+          "|hurt_inter|": 44
+        },
+        "RetNet-GLA": {
+          "J_helped": 0.11236,
+          "J_hurt": 0.109524,
+          "|helped_a|": 190,
+          "|helped_b|": 206,
+          "|hurt_a|": 223,
+          "|hurt_b|": 243,
+          "|helped_inter|": 40,
+          "|hurt_inter|": 46
+        },
+        "RetNet-DeltaNet": {
+          "J_helped": 0.138235,
+          "J_hurt": 0.12336,
+          "|helped_a|": 190,
+          "|helped_b|": 197,
+          "|hurt_a|": 223,
+          "|hurt_b|": 205,
+          "|helped_inter|": 47,
+          "|hurt_inter|": 47
+        },
+        "HGRN2-GLA": {
+          "J_helped": 0.097561,
+          "J_hurt": 0.087379,
+          "|helped_a|": 199,
+          "|helped_b|": 206,
+          "|hurt_a|": 205,
+          "|hurt_b|": 243,
+          "|helped_inter|": 36,
+          "|hurt_inter|": 36
+        },
+        "HGRN2-DeltaNet": {
+          "J_helped": 0.109244,
+          "J_hurt": 0.087533,
+          "|helped_a|": 199,
+          "|helped_b|": 197,
+          "|hurt_a|": 205,
+          "|hurt_b|": 205,
+          "|helped_inter|": 39,
+          "|hurt_inter|": 33
+        },
+        "GLA-DeltaNet": {
+          "J_helped": 0.128852,
+          "J_hurt": 0.098039,
+          "|helped_a|": 206,
+          "|helped_b|": 197,
+          "|hurt_a|": 243,
+          "|hurt_b|": 205,
+          "|helped_inter|": 46,
+          "|hurt_inter|": 40
+        }
+      },
+      "mean_J_helped": 0.10813,
+      "mean_J_hurt": 0.104682,
+      "z_range_helped": [
+        3.49,
+        9.19
+      ],
+      "z_range_hurt": [
+        3.72,
+        7.48
+      ],
+      "sig_pairs_helped": 10,
+      "sig_pairs_hurt": 10,
+      "permutation_test_helped": {
+        "GDN-RetNet": {
+          "J_obs": 0.088452,
+          "J_null_mean": 0.047932,
+          "J_null_std": 0.010121,
+          "z": 4.0,
+          "p": 0.0003
+        },
+        "GDN-HGRN2": {
+          "J_obs": 0.121588,
+          "J_null_mean": 0.049421,
+          "J_null_std": 0.01024,
+          "z": 7.05,
+          "p": 0.0
+        },
+        "GDN-GLA": {
+          "J_obs": 0.114078,
+          "J_null_mean": 0.050461,
+          "J_null_std": 0.010265,
+          "z": 6.2,
+          "p": 0.0
+        },
+        "GDN-DeltaNet": {
+          "J_obs": 0.084337,
+          "J_null_mean": 0.048998,
+          "J_null_std": 0.010117,
+          "z": 3.49,
+          "p": 0.0019
+        },
+        "RetNet-HGRN2": {
+          "J_obs": 0.086592,
+          "J_null_mean": 0.042749,
+          "J_null_std": 0.010419,
+          "z": 4.21,
+          "p": 0.0
+        },
+        "RetNet-GLA": {
+          "J_obs": 0.11236,
+          "J_null_mean": 0.043587,
+          "J_null_std": 0.010298,
+          "z": 6.68,
+          "p": 0.0
+        },
+        "RetNet-DeltaNet": {
+          "J_obs": 0.138235,
+          "J_null_mean": 0.042445,
+          "J_null_std": 0.01042,
+          "z": 9.19,
+          "p": 0.0
+        },
+        "HGRN2-GLA": {
+          "J_obs": 0.097561,
+          "J_null_mean": 0.044578,
+          "J_null_std": 0.010372,
+          "z": 5.11,
+          "p": 0.0
+        },
+        "HGRN2-DeltaNet": {
+          "J_obs": 0.109244,
+          "J_null_mean": 0.04368,
+          "J_null_std": 0.010381,
+          "z": 6.32,
+          "p": 0.0
+        },
+        "GLA-DeltaNet": {
+          "J_obs": 0.128852,
+          "J_null_mean": 0.044476,
+          "J_null_std": 0.010219,
+          "z": 8.26,
+          "p": 0.0
+        }
+      },
+      "permutation_test_hurt": {
+        "GDN-RetNet": {
+          "J_obs": 0.113475,
+          "J_null_mean": 0.051934,
+          "J_null_std": 0.010029,
+          "z": 6.14,
+          "p": 0.0
+        },
+        "GDN-HGRN2": {
+          "J_obs": 0.104878,
+          "J_null_mean": 0.049473,
+          "J_null_std": 0.010226,
+          "z": 5.42,
+          "p": 0.0
+        },
+        "GDN-GLA": {
+          "J_obs": 0.105856,
+          "J_null_mean": 0.054674,
+          "J_null_std": 0.010229,
+          "z": 5.0,
+          "p": 0.0
+        },
+        "GDN-DeltaNet": {
+          "J_obs": 0.10219,
+          "J_null_mean": 0.0497,
+          "J_null_std": 0.010203,
+          "z": 5.14,
+          "p": 0.0
+        },
+        "RetNet-HGRN2": {
+          "J_obs": 0.114583,
+          "J_null_mean": 0.047145,
+          "J_null_std": 0.010199,
+          "z": 6.61,
+          "p": 0.0
+        },
+        "RetNet-GLA": {
+          "J_obs": 0.109524,
+          "J_null_mean": 0.051632,
+          "J_null_std": 0.010143,
+          "z": 5.71,
+          "p": 0.0
+        },
+        "RetNet-DeltaNet": {
+          "J_obs": 0.12336,
+          "J_null_mean": 0.047162,
+          "J_null_std": 0.010182,
+          "z": 7.48,
+          "p": 0.0
+        },
+        "HGRN2-GLA": {
+          "J_obs": 0.087379,
+          "J_null_mean": 0.049072,
+          "J_null_std": 0.010284,
+          "z": 3.72,
+          "p": 0.0004
+        },
+        "HGRN2-DeltaNet": {
+          "J_obs": 0.087533,
+          "J_null_mean": 0.045075,
+          "J_null_std": 0.010244,
+          "z": 4.14,
+          "p": 0.0004
+        },
+        "GLA-DeltaNet": {
+          "J_obs": 0.098039,
+          "J_null_mean": 0.049195,
+          "J_null_std": 0.010183,
+          "z": 4.8,
+          "p": 0.0
+        }
+      }
+    },
+    "hellaswag": {
+      "n_samples": 10042,
+      "architectures": [
+        "GDN",
+        "RetNet",
+        "HGRN2",
+        "GLA",
+        "DeltaNet"
+      ],
+      "per_arch": {
+        "GDN": {
+          "helped": 362,
+          "hurt": 348,
+          "net": 14,
+          "pure_acc": 0.344453,
+          "h31_acc": 0.345847
+        },
+        "RetNet": {
+          "helped": 218,
+          "hurt": 273,
+          "net": -55,
+          "pure_acc": 0.346545,
+          "h31_acc": 0.341068
+        },
+        "HGRN2": {
+          "helped": 289,
+          "hurt": 235,
+          "net": 54,
+          "pure_acc": 0.35232,
+          "h31_acc": 0.357698
+        },
+        "GLA": {
+          "helped": 327,
+          "hurt": 236,
+          "net": 91,
+          "pure_acc": 0.338279,
+          "h31_acc": 0.347341
+        },
+        "DeltaNet": {
+          "helped": 301,
+          "hurt": 227,
+          "net": 74,
+          "pure_acc": 0.34057,
+          "h31_acc": 0.347939
+        }
+      },
+      "pairwise": {
+        "GDN-RetNet": {
+          "J_helped": 0.076067,
+          "J_hurt": 0.072539,
+          "|helped_a|": 362,
+          "|helped_b|": 218,
+          "|hurt_a|": 348,
+          "|hurt_b|": 273,
+          "|helped_inter|": 41,
+          "|hurt_inter|": 42
+        },
+        "GDN-HGRN2": {
+          "J_helped": 0.086811,
+          "J_hurt": 0.063869,
+          "|helped_a|": 362,
+          "|helped_b|": 289,
+          "|hurt_a|": 348,
+          "|hurt_b|": 235,
+          "|helped_inter|": 52,
+          "|hurt_inter|": 35
+        },
+        "GDN-GLA": {
+          "J_helped": 0.1024,
+          "J_hurt": 0.075506,
+          "|helped_a|": 362,
+          "|helped_b|": 327,
+          "|hurt_a|": 348,
+          "|hurt_b|": 236,
+          "|helped_inter|": 64,
+          "|hurt_inter|": 41
+        },
+        "GDN-DeltaNet": {
+          "J_helped": 0.106845,
+          "J_hurt": 0.086957,
+          "|helped_a|": 362,
+          "|helped_b|": 301,
+          "|hurt_a|": 348,
+          "|hurt_b|": 227,
+          "|helped_inter|": 64,
+          "|hurt_inter|": 46
+        },
+        "RetNet-HGRN2": {
+          "J_helped": 0.062893,
+          "J_hurt": 0.092473,
+          "|helped_a|": 218,
+          "|helped_b|": 289,
+          "|hurt_a|": 273,
+          "|hurt_b|": 235,
+          "|helped_inter|": 30,
+          "|hurt_inter|": 43
+        },
+        "RetNet-GLA": {
+          "J_helped": 0.085657,
+          "J_hurt": 0.094624,
+          "|helped_a|": 218,
+          "|helped_b|": 327,
+          "|hurt_a|": 273,
+          "|hurt_b|": 236,
+          "|helped_inter|": 43,
+          "|hurt_inter|": 44
+        },
+        "RetNet-DeltaNet": {
+          "J_helped": 0.097252,
+          "J_hurt": 0.082251,
+          "|helped_a|": 218,
+          "|helped_b|": 301,
+          "|hurt_a|": 273,
+          "|hurt_b|": 227,
+          "|helped_inter|": 46,
+          "|hurt_inter|": 38
+        },
+        "HGRN2-GLA": {
+          "J_helped": 0.111913,
+          "J_hurt": 0.080275,
+          "|helped_a|": 289,
+          "|helped_b|": 327,
+          "|hurt_a|": 235,
+          "|hurt_b|": 236,
+          "|helped_inter|": 62,
+          "|hurt_inter|": 35
+        },
+        "HGRN2-DeltaNet": {
+          "J_helped": 0.104869,
+          "J_hurt": 0.089623,
+          "|helped_a|": 289,
+          "|helped_b|": 301,
+          "|hurt_a|": 235,
+          "|hurt_b|": 227,
+          "|helped_inter|": 56,
+          "|hurt_inter|": 38
+        },
+        "GLA-DeltaNet": {
+          "J_helped": 0.095986,
+          "J_hurt": 0.076744,
+          "|helped_a|": 327,
+          "|helped_b|": 301,
+          "|hurt_a|": 236,
+          "|hurt_b|": 227,
+          "|helped_inter|": 55,
+          "|hurt_inter|": 33
+        }
+      },
+      "mean_J_helped": 0.093069,
+      "mean_J_hurt": 0.081486,
+      "z_range_helped": [
+        10.31,
+        19.2
+      ],
+      "z_range_hurt": [
+        10.2,
+        16.33
+      ],
+      "sig_pairs_helped": 10,
+      "sig_pairs_hurt": 10,
+      "permutation_test_helped": {
+        "GDN-RetNet": {
+          "J_obs": 0.076067,
+          "J_null_mean": 0.013781,
+          "J_null_std": 0.004839,
+          "z": 12.87,
+          "p": 0.0
+        },
+        "GDN-HGRN2": {
+          "J_obs": 0.086811,
+          "J_null_mean": 0.016286,
+          "J_null_std": 0.005031,
+          "z": 14.02,
+          "p": 0.0
+        },
+        "GDN-GLA": {
+          "J_obs": 0.1024,
+          "J_null_mean": 0.01735,
+          "J_null_std": 0.005031,
+          "z": 16.91,
+          "p": 0.0
+        },
+        "GDN-DeltaNet": {
+          "J_obs": 0.106845,
+          "J_null_mean": 0.016643,
+          "J_null_std": 0.004951,
+          "z": 18.22,
+          "p": 0.0
+        },
+        "RetNet-HGRN2": {
+          "J_obs": 0.062893,
+          "J_null_mean": 0.012501,
+          "J_null_std": 0.004889,
+          "z": 10.31,
+          "p": 0.0
+        },
+        "RetNet-GLA": {
+          "J_obs": 0.085657,
+          "J_null_mean": 0.013203,
+          "J_null_std": 0.004871,
+          "z": 14.88,
+          "p": 0.0
+        },
+        "RetNet-DeltaNet": {
+          "J_obs": 0.097252,
+          "J_null_mean": 0.01271,
+          "J_null_std": 0.00494,
+          "z": 17.11,
+          "p": 0.0
+        },
+        "HGRN2-GLA": {
+          "J_obs": 0.111913,
+          "J_null_mean": 0.015625,
+          "J_null_std": 0.005015,
+          "z": 19.2,
+          "p": 0.0
+        },
+        "HGRN2-DeltaNet": {
+          "J_obs": 0.104869,
+          "J_null_mean": 0.014914,
+          "J_null_std": 0.005007,
+          "z": 17.96,
+          "p": 0.0
+        },
+        "GLA-DeltaNet": {
+          "J_obs": 0.095986,
+          "J_null_mean": 0.015879,
+          "J_null_std": 0.005026,
+          "z": 15.94,
+          "p": 0.0
+        }
+      },
+      "permutation_test_hurt": {
+        "GDN-RetNet": {
+          "J_obs": 0.072539,
+          "J_null_mean": 0.015536,
+          "J_null_std": 0.004929,
+          "z": 11.57,
+          "p": 0.0
+        },
+        "GDN-HGRN2": {
+          "J_obs": 0.063869,
+          "J_null_mean": 0.014173,
+          "J_null_std": 0.004871,
+          "z": 10.2,
+          "p": 0.0
+        },
+        "GDN-GLA": {
+          "J_obs": 0.075506,
+          "J_null_mean": 0.014243,
+          "J_null_std": 0.004918,
+          "z": 12.46,
+          "p": 0.0
+        },
+        "GDN-DeltaNet": {
+          "J_obs": 0.086957,
+          "J_null_mean": 0.013821,
+          "J_null_std": 0.00488,
+          "z": 14.99,
+          "p": 0.0
+        },
+        "RetNet-HGRN2": {
+          "J_obs": 0.092473,
+          "J_null_mean": 0.012824,
+          "J_null_std": 0.005016,
+          "z": 15.88,
+          "p": 0.0
+        },
+        "RetNet-GLA": {
+          "J_obs": 0.094624,
+          "J_null_mean": 0.012706,
+          "J_null_std": 0.005015,
+          "z": 16.33,
+          "p": 0.0
+        },
+        "RetNet-DeltaNet": {
+          "J_obs": 0.082251,
+          "J_null_mean": 0.012475,
+          "J_null_std": 0.004976,
+          "z": 14.02,
+          "p": 0.0
+        },
+        "HGRN2-GLA": {
+          "J_obs": 0.080275,
+          "J_null_mean": 0.011873,
+          "J_null_std": 0.004984,
+          "z": 13.72,
+          "p": 0.0
+        },
+        "HGRN2-DeltaNet": {
+          "J_obs": 0.089623,
+          "J_null_mean": 0.011594,
+          "J_null_std": 0.00493,
+          "z": 15.83,
+          "p": 0.0
+        },
+        "GLA-DeltaNet": {
+          "J_obs": 0.076744,
+          "J_null_mean": 0.011727,
+          "J_null_std": 0.005004,
+          "z": 12.99,
+          "p": 0.0
+        }
+      }
+    },
+    "piqa": {
+      "n_samples": 1838,
+      "architectures": [
+        "GDN",
+        "RetNet",
+        "HGRN2",
+        "GLA",
+        "DeltaNet"
+      ],
+      "per_arch": {
+        "GDN": {
+          "helped": 128,
+          "hurt": 119,
+          "net": 9,
+          "pure_acc": 0.656692,
+          "h31_acc": 0.661589
+        },
+        "RetNet": {
+          "helped": 101,
+          "hurt": 82,
+          "net": 19,
+          "pure_acc": 0.662133,
+          "h31_acc": 0.67247
+        },
+        "HGRN2": {
+          "helped": 96,
+          "hurt": 78,
+          "net": 18,
+          "pure_acc": 0.668662,
+          "h31_acc": 0.678455
+        },
+        "GLA": {
+          "helped": 95,
+          "hurt": 81,
+          "net": 14,
+          "pure_acc": 0.668118,
+          "h31_acc": 0.675734
+        },
+        "DeltaNet": {
+          "helped": 95,
+          "hurt": 111,
+          "net": -16,
+          "pure_acc": 0.66975,
+          "h31_acc": 0.661045
+        }
+      },
+      "pairwise": {
+        "GDN-RetNet": {
+          "J_helped": 0.070093,
+          "J_hurt": 0.074866,
+          "|helped_a|": 128,
+          "|helped_b|": 101,
+          "|hurt_a|": 119,
+          "|hurt_b|": 82,
+          "|helped_inter|": 15,
+          "|hurt_inter|": 14
+        },
+        "GDN-HGRN2": {
+          "J_helped": 0.066667,
+          "J_hurt": 0.082418,
+          "|helped_a|": 128,
+          "|helped_b|": 96,
+          "|hurt_a|": 119,
+          "|hurt_b|": 78,
+          "|helped_inter|": 14,
+          "|hurt_inter|": 15
+        },
+        "GDN-GLA": {
+          "J_helped": 0.072115,
+          "J_hurt": 0.081081,
+          "|helped_a|": 128,
+          "|helped_b|": 95,
+          "|hurt_a|": 119,
+          "|hurt_b|": 81,
+          "|helped_inter|": 15,
+          "|hurt_inter|": 15
+        },
+        "GDN-DeltaNet": {
+          "J_helped": 0.077295,
+          "J_hurt": 0.116505,
+          "|helped_a|": 128,
+          "|helped_b|": 95,
+          "|hurt_a|": 119,
+          "|hurt_b|": 111,
+          "|helped_inter|": 16,
+          "|hurt_inter|": 24
+        },
+        "RetNet-HGRN2": {
+          "J_helped": 0.138728,
+          "J_hurt": 0.09589,
+          "|helped_a|": 101,
+          "|helped_b|": 96,
+          "|hurt_a|": 82,
+          "|hurt_b|": 78,
+          "|helped_inter|": 24,
+          "|hurt_inter|": 14
+        },
+        "RetNet-GLA": {
+          "J_helped": 0.101124,
+          "J_hurt": 0.065359,
+          "|helped_a|": 101,
+          "|helped_b|": 95,
+          "|hurt_a|": 82,
+          "|hurt_b|": 81,
+          "|helped_inter|": 18,
+          "|hurt_inter|": 10
+        },
+        "RetNet-DeltaNet": {
+          "J_helped": 0.126437,
+          "J_hurt": 0.109195,
+          "|helped_a|": 101,
+          "|helped_b|": 95,
+          "|hurt_a|": 82,
+          "|hurt_b|": 111,
+          "|helped_inter|": 22,
+          "|hurt_inter|": 19
+        },
+        "HGRN2-GLA": {
+          "J_helped": 0.110465,
+          "J_hurt": 0.06,
+          "|helped_a|": 96,
+          "|helped_b|": 95,
+          "|hurt_a|": 78,
+          "|hurt_b|": 81,
+          "|helped_inter|": 19,
+          "|hurt_inter|": 9
+        },
+        "HGRN2-DeltaNet": {
+          "J_helped": 0.097701,
+          "J_hurt": 0.105263,
+          "|helped_a|": 96,
+          "|helped_b|": 95,
+          "|hurt_a|": 78,
+          "|hurt_b|": 111,
+          "|helped_inter|": 17,
+          "|hurt_inter|": 18
+        },
+        "GLA-DeltaNet": {
+          "J_helped": 0.067416,
+          "J_hurt": 0.072626,
+          "|helped_a|": 95,
+          "|helped_b|": 95,
+          "|hurt_a|": 81,
+          "|hurt_b|": 111,
+          "|helped_inter|": 12,
+          "|hurt_inter|": 13
+        }
+      },
+      "mean_J_helped": 0.092804,
+      "mean_J_hurt": 0.08632,
+      "z_range_helped": [
+        3.08,
+        9.46
+      ],
+      "z_range_hurt": [
+        3.17,
+        7.16
+      ],
+      "sig_pairs_helped": 10,
+      "sig_pairs_hurt": 10,
+      "permutation_test_helped": {
+        "GDN-RetNet": {
+          "J_obs": 0.070093,
+          "J_null_mean": 0.031976,
+          "J_null_std": 0.011647,
+          "z": 3.27,
+          "p": 0.0031
+        },
+        "GDN-HGRN2": {
+          "J_obs": 0.066667,
+          "J_null_mean": 0.030919,
+          "J_null_std": 0.011592,
+          "z": 3.08,
+          "p": 0.0058
+        },
+        "GDN-GLA": {
+          "J_obs": 0.072115,
+          "J_null_mean": 0.030756,
+          "J_null_std": 0.011744,
+          "z": 3.52,
+          "p": 0.0019
+        },
+        "GDN-DeltaNet": {
+          "J_obs": 0.077295,
+          "J_null_mean": 0.03066,
+          "J_null_std": 0.011455,
+          "z": 4.07,
+          "p": 0.0004
+        },
+        "RetNet-HGRN2": {
+          "J_obs": 0.138728,
+          "J_null_mean": 0.027603,
+          "J_null_std": 0.011744,
+          "z": 9.46,
+          "p": 0.0
+        },
+        "RetNet-GLA": {
+          "J_obs": 0.101124,
+          "J_null_mean": 0.027509,
+          "J_null_std": 0.011633,
+          "z": 6.33,
+          "p": 0.0
+        },
+        "RetNet-DeltaNet": {
+          "J_obs": 0.126437,
+          "J_null_mean": 0.027612,
+          "J_null_std": 0.011749,
+          "z": 8.41,
+          "p": 0.0
+        },
+        "HGRN2-GLA": {
+          "J_obs": 0.110465,
+          "J_null_mean": 0.026739,
+          "J_null_std": 0.011846,
+          "z": 7.07,
+          "p": 0.0
+        },
+        "HGRN2-DeltaNet": {
+          "J_obs": 0.097701,
+          "J_null_mean": 0.027003,
+          "J_null_std": 0.01173,
+          "z": 6.03,
+          "p": 0.0
+        },
+        "GLA-DeltaNet": {
+          "J_obs": 0.067416,
+          "J_null_mean": 0.026597,
+          "J_null_std": 0.011661,
+          "z": 3.5,
+          "p": 0.0025
+        }
+      },
+      "permutation_test_hurt": {
+        "GDN-RetNet": {
+          "J_obs": 0.074866,
+          "J_null_mean": 0.027286,
+          "J_null_std": 0.011426,
+          "z": 4.16,
+          "p": 0.001
+        },
+        "GDN-HGRN2": {
+          "J_obs": 0.082418,
+          "J_null_mean": 0.026625,
+          "J_null_std": 0.011343,
+          "z": 4.92,
+          "p": 0.0001
+        },
+        "GDN-GLA": {
+          "J_obs": 0.081081,
+          "J_null_mean": 0.026923,
+          "J_null_std": 0.011461,
+          "z": 4.73,
+          "p": 0.0001
+        },
+        "GDN-DeltaNet": {
+          "J_obs": 0.116505,
+          "J_null_mean": 0.032397,
+          "J_null_std": 0.011771,
+          "z": 7.15,
+          "p": 0.0
+        },
+        "RetNet-HGRN2": {
+          "J_obs": 0.09589,
+          "J_null_mean": 0.022359,
+          "J_null_std": 0.011834,
+          "z": 6.21,
+          "p": 0.0
+        },
+        "RetNet-GLA": {
+          "J_obs": 0.065359,
+          "J_null_mean": 0.022915,
+          "J_null_std": 0.011716,
+          "z": 3.62,
+          "p": 0.0023
+        },
+        "RetNet-DeltaNet": {
+          "J_obs": 0.109195,
+          "J_null_mean": 0.026443,
+          "J_null_std": 0.011562,
+          "z": 7.16,
+          "p": 0.0
+        },
+        "HGRN2-GLA": {
+          "J_obs": 0.06,
+          "J_null_mean": 0.022418,
+          "J_null_std": 0.011838,
+          "z": 3.17,
+          "p": 0.0072
+        },
+        "HGRN2-DeltaNet": {
+          "J_obs": 0.105263,
+          "J_null_mean": 0.025679,
+          "J_null_std": 0.01136,
+          "z": 7.01,
+          "p": 0.0
+        },
+        "GLA-DeltaNet": {
+          "J_obs": 0.072626,
+          "J_null_mean": 0.026226,
+          "J_null_std": 0.011557,
+          "z": 4.01,
+          "p": 0.0011
+        }
+      }
+    }
+  },
+  "cross_benchmark_summary": {
+    "mean_J_helped_lambada_openai": 0.122107,
+    "mean_J_hurt_lambada_openai": 0.094597,
+    "z_range_helped_lambada_openai": [
+      9.03,
+      12.21
+    ],
+    "z_range_hurt_lambada_openai": [
+      6.33,
+      10.89
+    ],
+    "sig_pairs_helped_lambada_openai": 10,
+    "sig_pairs_hurt_lambada_openai": 10,
+    "mean_J_helped_arc_easy": 0.10813,
+    "mean_J_hurt_arc_easy": 0.104682,
+    "z_range_helped_arc_easy": [
+      3.49,
+      9.19
+    ],
+    "z_range_hurt_arc_easy": [
+      3.72,
+      7.48
+    ],
+    "sig_pairs_helped_arc_easy": 10,
+    "sig_pairs_hurt_arc_easy": 10,
+    "mean_J_helped_hellaswag": 0.093069,
+    "mean_J_hurt_hellaswag": 0.081486,
+    "z_range_helped_hellaswag": [
+      10.31,
+      19.2
+    ],
+    "z_range_hurt_hellaswag": [
+      10.2,
+      16.33
+    ],
+    "sig_pairs_helped_hellaswag": 10,
+    "sig_pairs_hurt_hellaswag": 10,
+    "mean_J_helped_piqa": 0.092804,
+    "mean_J_hurt_piqa": 0.08632,
+    "z_range_helped_piqa": [
+      3.08,
+      9.46
+    ],
+    "z_range_hurt_piqa": [
+      3.17,
+      7.16
+    ],
+    "sig_pairs_helped_piqa": 10,
+    "sig_pairs_hurt_piqa": 10,
+    "grand_mean_J_helped": 0.104027,
+    "grand_mean_J_hurt": 0.091771,
+    "n_benchmarks": 4,
+    "total_sig_helped": 40,
+    "total_sig_hurt": 40,
+    "total_pairs_tested": 40
+  }
+}

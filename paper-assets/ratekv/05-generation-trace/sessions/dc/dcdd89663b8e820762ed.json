@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_spread_candidate_model_check_20260515T220524_result.json",
     "occurrence": 1,
-    "bytes": 1930,
-    "sha256": "7dbe6db265435238ee182e35a5377a0e8e3f6ba62e190f082543fae7268ef89a"
+    "bytes": 1929,
+    "sha256": "c05a352b2f0d4450d78f6f5f9852a001de91c9e3252f2f9639278243f2d970c4"
   },
   "statistics": {
     "messages": 1,

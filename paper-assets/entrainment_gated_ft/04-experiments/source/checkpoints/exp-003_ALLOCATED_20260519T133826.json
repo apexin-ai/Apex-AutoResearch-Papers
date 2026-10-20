@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-003",
+  "project": "entrainment_gated_ft",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:38:18.995Z",
+    "updated_at": "2026-05-19T13:38:26.087Z",
+    "hypothesis": "Architecture-specific helped/hurt samples on LAMBADA differ in surface features (token frequency, context length, lexical complexity), AND these feature profiles differ across GDN/HGRN2/RetNet — indicating architecture-specific mechanisms rather than generic attention benefit"
+  },
+  "timestamp": "2026-05-19T13:38:26.099457+00:00",
+  "trigger": "update_registry"
+}

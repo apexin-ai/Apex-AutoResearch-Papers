@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8dab336b1c24c7d3365",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "exp mvp h1 h2 run",
+  "task_key": "worker_exp_mvp-h1-h2-run_20260512T104943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_mvp-h1-h2-run_20260512T104943_result.json",
+    "occurrence": 1,
+    "bytes": 370,
+    "sha256": "e3f9f92929c1ead522ed607dddf9ded704527afae8abed5c8e8d61dda1aabaa9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验启动成功：\n\n- **PID**: 17925，运行中\n- **vLLM server**: 30 秒内就绪（GPU cuda:2）\n- **Phase 1**: Uncalibrated baseline 已开始运行\n\n预计总运行时间 3-10 小时（20 tasks × 6 组 × 1-5 min/task）。日志在 `/root/democalib/results/experiment.log`，最终结果写入 `/root/democalib/results/mvp_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-mvp-h1-h2-run.md"
+}

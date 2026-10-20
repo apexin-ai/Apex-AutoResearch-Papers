@@ -1,0 +1,64 @@
+{
+  "exp_id": "w1_pythia14b_hires_profiling",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T10:06:13.572Z",
+    "updated_at": "2026-05-15T10:44:56.798Z",
+    "hypothesis": "W1 new MHA model: Pythia-1.4B hires bf16 2-bit-only profiling. 24L x 16H (MHA 1:1), 384 total heads, GPT-NeoX architecture. Tests whether concentration-dependent diagnostic generalizes to smaller MHA models outside Llama family.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u run_pythia14b_hires_profiling.py",
+      "server": "westd-37397",
+      "gpu": "cuda:0",
+      "data_path": "/root/ratekv/calibration_hires.json",
+      "data_count": "64 samples x 2048 tokens",
+      "model_name": "Pythia-1.4B",
+      "seed": "N/A",
+      "log_path": "/root/ratekv/logs/w1_pythia14b_hires_profiling.log",
+      "model_path": "/root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b",
+      "gpu_model": "RTX PRO 6000 96GB",
+      "checkpoint_path": "N/A (profiling-only)"
+    },
+    "metrics": {
+      "baseline_ppl": 13.6347,
+      "concentration": 0.2439,
+      "t1_t5": 1.94,
+      "shape": "Spike",
+      "l0_dominance": 0.51,
+      "cv": 1.2172,
+      "positive_heads": 362,
+      "total_heads": 384,
+      "top5_heads": [
+        {
+          "head": "L1H11",
+          "delta": 1.016355
+        },
+        {
+          "head": "L12H14",
+          "delta": 0.784513
+        },
+        {
+          "head": "L8H4",
+          "delta": 0.759118
+        },
+        {
+          "head": "L11H2",
+          "delta": 0.632357
+        },
+        {
+          "head": "L13H2",
+          "delta": 0.522849
+        }
+      ],
+      "elapsed_min": 25.7
+    },
+    "conclusion": "success",
+    "notes": "Pythia-1.4B (MHA 1:1, GPT-NeoX): Spike shape — concentration=0.24, t1/t5=1.94. Low concentration + high t1/t5 = few extreme outlier heads but bulk is moderate. L0 NOT dominant (0.51x), spikes in mid-layers (L1,L8-L17). Top head L1H11 delta=1.02, 2x the 5th head. MHA model showing Spike pattern like Yi/Llama despite different architecture family. Predicts: unconstrained MCKP should be safe (no catastrophe), MCKP may offer mild improvement over uniform.",
+    "completed_at": "2026-05-15T10:44:56.798Z"
+  },
+  "timestamp": "2026-05-15T10:44:57.058514+00:00",
+  "trigger": "update_registry"
+}

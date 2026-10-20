@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_kivi_mckp_combined_20260515T144828_result.json",
     "occurrence": 1,
-    "bytes": 930,
-    "sha256": "08df201c0054dfcff15ac53ab5ec30f33b9480d49d87f60f62e7486a8407c568"
+    "bytes": 929,
+    "sha256": "685e2770e90cc0cf23b6f890498099da6ce95ae06c2a13701f34eb3dddc32add"
   },
   "statistics": {
     "messages": 1,

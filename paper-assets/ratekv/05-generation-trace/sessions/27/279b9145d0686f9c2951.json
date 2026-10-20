@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_codellama_hires_profiling_20260515T224100_result.json",
     "occurrence": 1,
-    "bytes": 1667,
-    "sha256": "8be0f2f1f2f2ab3f7e882ade1657b62d03707a7e0f56f00766d3889b49625353"
+    "bytes": 1666,
+    "sha256": "260b030c8e9132ea3757d62eff5165863e958bce786fa036bb5cd89bc35e6e10"
   },
   "statistics": {
     "messages": 1,

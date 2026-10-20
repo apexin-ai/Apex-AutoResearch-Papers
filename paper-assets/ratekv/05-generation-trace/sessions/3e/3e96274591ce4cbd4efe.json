@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_check_both_profiling_status_20260515T104213_result.json",
     "occurrence": 1,
-    "bytes": 1500,
-    "sha256": "2bd4debea4257208200491c028373086417ade286dd9a212212aafb5d991285d"
+    "bytes": 1499,
+    "sha256": "2455ec64c0fb37d55cc56065ffebb43497f6c1ce689603ca7d54bc0b0e1c2e26"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,397 @@
+narrative_guidance: '放弃 taxonomy 框架。重新定位为警示性实证研究：''Prompt-based and training-based
+  calibration are unreliable for behavioral correction in agentic user simulation
+  — here is the evidence.'' 领头的两个无争议效应：FM1 completion collapse（7B completion 下降 72.8%，该量级不需要
+  CI）和 C3 scale-dependent severity（7B 灾难性 vs 14B 免疫但未校准）。FM4 reversal 作为次要发现，强调 10/12
+  方向一致性而非效应量。FM2 和 FM3 不再作为命名机制——残余证据折叠进 ''BCP perturbation produces unpredictable
+  side effects'' 段落。标题改为 ''Calibration Considered Harmful? Evidence That Behavioral
+  Correction Fails Across Scales in LLM User Simulation.'' 仍然投 Findings，但作为 empirical
+  warning paper，不是 taxonomy paper。 plan_005b 的多 run 数据在 worst 档下反而暴露 FM2/FM3 的不稳定性，为
+  reviewer 提供弹药。 plan_005 的 Bootstrap CI 让 FM3 和 FM4 的 CI 都跨零，仅 scale completion difference
+  和 FM1 collapse 幸存。plan_006 因 GPU 不可用未执行，C2 reversal 停留在单 scale 证据， reviewer 可攻击
+  ''maybe reversal is a 7B artifact''。预估接收率 10-25%。
+
+  '
+imagined_experiments:
+- name: 7B BCP Multi-Run Replication
+  plan_id: plan_005b
+  description: '在 Qwen2.5-7B-Instruct 上复制 mvp-004（7B base BCP）3 个额外 run， 使 C1 证据从单
+    run (n=19-20) 提升到 4 runs 总计。验证 FM1/FM2/FM3 在 base BCP（无 DPO）条件下的 run-to-run 稳定性。
+
+    '
+  expected_results:
+    run2_baseline_completion: 0.4
+    run2_baseline_politeness: 0.52
+    run2_baseline_question_rate: 0.05
+    run2_aave_completion: 0.2
+    run2_aave_politeness: 0.48
+    run2_indian_completion: 0.25
+    run2_indian_politeness: 0.44
+    run2_overcorrected_politeness: 0.49
+    run2_overcorrected_minus_baseline_pp: -3.0
+    run2_single_dim_question_pol_nontarget_shift_pct: -3.8
+    run2_single_dim_politeness_qrate_nontarget_abs_delta: -0.012
+    run3_baseline_completion: 0.35
+    run3_baseline_politeness: 0.54
+    run3_baseline_question_rate: 0.04
+    run3_aave_completion: 0.1
+    run3_aave_politeness: 0.5
+    run3_indian_completion: 0.1
+    run3_indian_politeness: 0.47
+    run3_overcorrected_politeness: 0.57
+    run3_overcorrected_minus_baseline_pp: 3.0
+    run3_single_dim_question_pol_nontarget_shift_pct: -29.6
+    run3_single_dim_politeness_qrate_nontarget_abs_delta: -0.005
+    run4_baseline_completion: 0.42
+    run4_baseline_politeness: 0.5
+    run4_baseline_question_rate: 0.048
+    run4_aave_completion: 0.15
+    run4_aave_politeness: 0.46
+    run4_indian_completion: 0.2
+    run4_indian_politeness: 0.43
+    run4_overcorrected_politeness: 0.47
+    run4_overcorrected_minus_baseline_pp: -3.0
+    run4_single_dim_question_pol_nontarget_shift_pct: -4.0
+    run4_single_dim_politeness_qrate_nontarget_abs_delta: -0.008
+    agg_mean_baseline_completion: 0.393
+    agg_mean_aave_completion: 0.138
+    agg_mean_indian_completion: 0.175
+    agg_fm1_aave_retention_pct: 35.1
+    agg_fm1_indian_retention_pct: 44.5
+    agg_fm1_survives: true
+    agg_fm2_pol_nontarget_shifts_pct:
+    - -25.6
+    - -3.8
+    - -29.6
+    - -4.0
+    agg_fm2_pol_nontarget_mean_pct: -15.8
+    agg_fm2_pol_nontarget_sd_pct: 13.1
+    agg_fm2_pol_nontarget_2of4_minimal: true
+    agg_fm2_qrate_nontarget_abs_deltas:
+    - -0.023
+    - -0.012
+    - -0.005
+    - -0.008
+    agg_fm2_qrate_nontarget_mean_abs: -0.012
+    agg_fm2_qrate_bootstrap_ci_crosses_zero: true
+    agg_fm2_survives: false
+    agg_fm3_rebound_pp:
+    - 4.6
+    - -3.0
+    - 3.0
+    - -3.0
+    agg_fm3_rebound_mean_pp: 0.4
+    agg_fm3_positive_direction_count: 2/4
+    agg_fm3_bootstrap_ci_crosses_zero: true
+    agg_fm3_survives: false
+    agg_H3_pass_rate: 0/4
+  result_rationale: 'FM1（completion collapse）在 worst 档下仍然复现：aave/indian completion
+    在所有 run 均远低于 80% baseline retention 阈值，因为 7B 模型处理 BCP prompt 时的 capacity bottleneck
+    是结构性的——BCP 指令与 16-tool tau-bench 系统 prompt 竞争有限的注意力容量，导致 tool-calling 能力系统性退化。这与
+    basil2025 persona-accuracy trade-off 一致，不依赖采样运气。
+
+    FM2（cross-dim interference）在 multi-run 下暴露为高方差伪影：politeness non-target shift 在
+    4 runs 中 SD=13.1%，2/4 runs 仅显示 -3.8% 和 -4.0% 的微弱干扰。根因是 BCP prompt 的任何 variant
+    都引入额外指令负载，politeness 波动可能是 FM1 completion collapse 的附带效应 （任务失败的对话自然呈现不同 politeness
+    分布），而非独立的 cross-dim 传导机制。question_rate non-target arm 更弱——base rate 0.044 意味着绝对变化
+    <0.025 questions/task，4-run 均值 absolute Δ=−0.012，bootstrap CI 跨零。Reviewer 攻击面：''FM2
+    is FM1 in disguise —  completion collapse changes the conversation distribution,
+    politeness shift is  an epiphenomenon, not a causal cross-dimension mechanism.''
+
+    FM3（overcorrection rebound）在 base BCP 条件下崩塌：4 runs 中仅 2 runs 显示正向 rebound （+4.6pp,
+    +3.0pp），另 2 runs 显示 overcorrected politeness 反而低于 baseline（−3.0pp, −3.0pp）。均值
+    +0.4pp 与零无区别。这表明 mvp-004 单 run 的 +4.6pp rebound 是采样噪声。 注意 FM3 在 DPO+BCP（hgate-dpo003-merged）的
+    4/4 一致性更强（+7.2pp mean），但 base BCP 的不一致性削弱了 ''rebound 是 BCP 的固有机制'' 这一叙事——reviewer
+    会说 ''rebound only appears  when DPO is involved, so it is a DPO artifact, not
+    a BCP failure mode.''
+
+    净效应：multi-run 数据确认 FM1 但击溃 FM2 和 FM3 作为 base BCP 的独立命名机制。Taxonomy 从 4 个 failure
+    mode 缩水到实质 2 个（FM1 + FM4），支撑 worst tier 的叙事转向。
+
+    '
+  tables:
+  - name: 'Table: 7B Base BCP 4-Run Summary'
+    description: '6 variants × 4 runs 矩阵，每格报告 completion / politeness / question_rate。
+      最后一列标注 FM 复现状态（✅ replicated / ❌ not replicated / ⚠️ inconsistent）。 Footer 注明
+      Run 1 = mvp-004 原始数据。
+
+      '
+    columns:
+    - variant
+    - run1_comp
+    - run1_pol
+    - run2_comp
+    - run2_pol
+    - run3_comp
+    - run3_pol
+    - run4_comp
+    - run4_pol
+    - fm_status
+  - name: 'Table: FM Replication Scorecard (Base BCP)'
+    description: 'FM1/FM2/FM3 × 4 runs 的 pass/fail 矩阵。FM1 判据：calibrated variant completion  <
+      80% of baseline。FM2 判据：non-target dimension shift > 10% and absolute Δ > 0.02。
+      FM3 判据：overcorrected politeness > baseline + 2pp。汇总行显示 pass rate。
+
+      '
+    columns:
+    - failure_mode
+    - run1
+    - run2
+    - run3
+    - run4
+    - pass_rate
+    - survives_as_named_mechanism
+  figures_description:
+  - 'Forest plot: FM3 rebound effect size (overcorrected_pol − baseline_pol, in pp)
+    across 4 runs, with per-run 95% Wilson CI。中心线标 0。Run 1 和 Run 3 的 CI  偏右但宽，Run
+    2 和 Run 4 的 CI 跨零偏左。底部 diamond 显示 pooled mean +0.4pp， CI 宽幅跨零。视觉效果：一目了然 FM3 不
+    robust。
+
+    '
+  - 'Paired bar chart: FM2 politeness non-target shift across 4 runs。每 run 两根 bar
+    （absolute shift 和 % shift），颜色深浅区分。Run 1 和 Run 3 显示明显 shift， Run 2 和 Run 4 近乎为零。标注
+    ''high inter-run variance undermines systematic  interference claim''。
+
+    '
+  analysis: 'plan_005b 在 worst 档下是双刃剑：它加固了 FM1（completion collapse 跨 4 runs 无争议） 但同时暴露了
+    FM2 和 FM3 在 base BCP 条件下的不稳定性。这直接削弱了 ''taxonomy of 4 failure  modes'' 的叙事，因为其中
+    2 个在 multi-run 下不 robust。Reviewer 会指出：(1) FM2 可能是  FM1 的表观效应而非独立机制，(2) FM3 base
+    BCP rebound 是随机波动，仅在 DPO+BCP 条件下一致 但那更可能是 DPO interaction effect（即 FM4 的一部分）而非独立的
+    BCP 机制。
+
+    应对策略：放弃 4-mechanism taxonomy。FM1 保留为主要发现，FM4 保留为次要发现（来自 plan_003  的 4-run 数据）。FM2/FM3
+    降级为 ''BCP perturbation side effects'' 段落中的辅助观察， 不再作为命名机制。这与 worst tier narrative
+    guidance 一致。
+
+    隐性风险：如果 reviewer 进一步追问 ''why run multi-run for base BCP but not for 14B?'' 答案是
+    14B 已有 4 runs（qwen14b-bcp-001），但 base 7B BCP 原本只有 1 run。然而暴露 出的不一致性本身成为攻击面——''the
+    authors'' own replication attempt undermines their  claimed failure modes.''
+
+    '
+- name: Bootstrap CI for Key Comparisons
+  plan_id: plan_005
+  description: '纯计算实验。对 plan_001/plan_003/plan_004 的已有数据计算 Bootstrap 95% CI， 覆盖 FM4
+    reversal、FM3 rebound、7B-vs-14B completion 差异、H2 calibration gap。 10,000 bootstrap
+    resamples，BCa 法校正。
+
+    '
+  expected_results:
+    fm4_gap_reversal_mean_pp: 17.0
+    fm4_gap_reversal_95ci_pp:
+    - -3
+    - 37
+    fm4_gap_reversal_ci_includes_zero: true
+    fm4_directional_count: 10/12
+    fm3_rebound_mean_pp: 7.2
+    fm3_rebound_95ci_pp:
+    - -2.0
+    - 16.5
+    fm3_rebound_ci_includes_zero: true
+    fm3_rebound_4of4_directional: true
+    fm3_rebound_note: directional consistency does not compensate for CI crossing
+      zero at n=80
+    scale_completion_diff_mean_pp: 24.8
+    scale_completion_diff_95ci_pp:
+    - 1
+    - 49
+    scale_completion_diff_ci_excludes_zero: true
+    scale_completion_diff_note: survives but extremely wide — 48pp span reflects high
+      per-run variance
+    h2_best_gap_reduction_95ci_pct:
+    - 12
+    - 28
+    h2_best_gap_reduction_below_threshold: true
+    h2_note: even upper bound 28% < 30% threshold — BCP calibration definitively fails
+    fm2_pol_nontarget_shift_95ci_pp:
+    - -42
+    - -5
+    fm2_pol_nontarget_ci_excludes_zero: true
+    fm2_confounding_argument_survives: true
+    fm2_qrate_nontarget_abs_95ci:
+    - -0.038
+    - 0.004
+    fm2_qrate_nontarget_ci_includes_zero: true
+    fm1_completion_collapse_95ci_pct:
+    - -82
+    - -55
+    fm1_ci_excludes_zero: true
+    effective_taxonomy_size: 2
+    surviving_mechanisms:
+    - FM1 (completion collapse)
+    - FM4 (directional reversal, but CI crosses zero)
+    dropped_mechanisms:
+    - FM2 (confounded with FM1)
+    - FM3 (CI crosses zero)
+    estimated_acceptance_pct_range:
+    - 10
+    - 25
+  result_rationale: 'Bootstrap CI 在 worst 档下系统性削弱 FM3 和 FM2，部分削弱 FM4：
+
+    FM3 rebound CI [-2.0, 16.5]pp 跨零的根因是 per-run variance。hgate-dpo003-merged 4 runs
+    的 overcorrected-minus-baseline politeness gap 分别为 +9.5pp, +4.2pp, +4.9pp, +10.4pp（从
+    paper_framing 数据推算）。尽管 4/4 方向一致，但 n=20 per run、每个 episode  的 politeness score
+    本身是多 turn 对话的均值（turn 级方差大），bootstrap resample 时 per-episode 方差主导了 CI 宽度。BCa 校正无法修复小样本
+    + 高方差的基本问题。Reviewer 攻击： ''with n=80 and this variance, you cannot distinguish
+    +7.2pp from zero —  the 4/4 directional consistency is expected by chance at p≈0.06
+    (one-sided binomial).''
+
+    FM4 gap reversal CI [-3, 37]pp 跨零的根因是 variant×run 异质性。10/12 方向一致意味着 2 counter-examples（run
+    3 indian +6.8pp gap_change > 0 即 gap 扩大方向错误， run 4 aave +5.9pp）。这 2 个 counter-examples
+    在 bootstrap resample 中被高频抽到时 将 CI 下界拉至负值。均值 +17pp 看起来大，但 SD 也大（~20pp），t-statistic
+    ≈ 0.85， 远不显著。Reviewer 攻击：''FM4 is directionally suggestive but statistically  indistinguishable
+    from noise. The 10/12 count is a sign test with p=0.039  (two-sided binomial),
+    marginally significant at best.''
+
+    Scale completion diff CI [1, 49]pp 幸存但宽。7B mean completion 36.8%  (runs: 27.8%,
+    15.0%, 40.0%, 35.0%) vs 14B 61.6% (runs: 73.7%, 55.0%, 57.9%, 60.0%)。 差异方向 unambiguous（4/4
+    runs 14B > 7B），但 7B run 2 的 15.0% 异常低值和 14B run 1  的 73.7% 异常高值共同撑开 CI。CI 不跨零意味着
+    ''scaling improves completion'' 这一 claim  统计上成立，但 48pp span 意味着 effect size 估计精度很差。
+
+    H2 gap reduction CI [12, 28]% 上界仍低于 30% 阈值。这实际上是 worst 档的一个正面结果： 即使在最乐观的 bootstrap
+    resample 下，BCP 校准效果仍不达标。这支撑了 ''BCP calibration  definitively fails'' 的结论，不需要依赖
+    taxonomy。
+
+    FM2 politeness non-target CI [-42, -5]pp 技术上不跨零，但 confounding argument 仍然成立： reviewer
+    会说 ''any BCP variant introduces instruction overhead that degrades  conversation
+    quality (FM1), and degraded conversations have different politeness  distributions
+    — this is an artifact of FM1, not an independent cross-dimension  mechanism.''
+    更致命的是 question_rate arm 的 CI [-0.038, +0.004] 跨零——FM2 的 ''bidirectional interference''
+    claim 仅半边成立，reviewer 会视此为 cherry-picking。
+
+    净效应：effective taxonomy size = 2。FM1 通过 CI 检验（effect magnitude 太大无需 CI）， FM4 方向上
+    real 但 CI 提供了 ''could be noise'' 的合理攻击面。FM2 和 FM3 作为独立命名 机制无法通过 rigorous statistical
+    scrutiny。
+
+    '
+  tables:
+  - name: 'Table: Bootstrap 95% CI Summary'
+    description: '每行一个 key comparison，列报 point estimate / 95% CI lower / 95% CI upper
+      /  CI includes zero? / n (episodes) / effective n (independent runs)。 Footer
+      标注 BCa correction, 10,000 resamples, episode-level resampling  stratified by
+      run。
+
+      '
+    columns:
+    - comparison
+    - point_est
+    - ci_lower
+    - ci_upper
+    - includes_zero
+    - n_episodes
+    - n_runs
+    - verdict
+  - name: 'Table: Mechanism Survival Scorecard'
+    description: 'FM1-FM4 × {CI test, directional consistency, confounding check,
+      multi-run  replication (plan_005b)} 矩阵。每格 PASS/FAIL/NA。最后一列：survives as named  mechanism?
+      仅 FM1 全 PASS。FM4 CI FAIL + directional PASS = ''suggestive''。 FM2/FM3 multiple
+      FAILs。
+
+      '
+    columns:
+    - mechanism
+    - ci_test
+    - directional
+    - confounding
+    - multirun
+    - overall_verdict
+  figures_description:
+  - 'CI forest plot (横向)：6 个 key comparison 垂直排列，每行显示 point estimate (圆点)  和 95% CI
+    (水平线)。垂直虚线标 0。FM1 completion collapse 的 CI 完全在左侧（远离零）， scale completion diff 的
+    CI 刚好不跨零但极宽。FM3 rebound 和 FM4 reversal 的 CI  明确跨零。H2 gap reduction 的 CI 完全在 30%
+    threshold 以下（标注阈值虚线）。 视觉一目了然：只有 FM1 和 scale diff 在统计上 robust。
+
+    '
+  - 'Bootstrap distribution histogram (2×2 panel)：FM3 rebound / FM4 reversal /  scale
+    completion diff / H2 gap reduction 的 10,000 resample 分布。 FM3 和 FM4 的分布明显跨零（阴影标注零左侧面积），scale
+    diff 和 H2 不跨零。 每个 panel 标注 observed statistic 竖线和 95% CI 区间。
+
+    '
+  analysis: 'Bootstrap CI 在 worst 档下是 taxonomy paper 的致命一击。数据本身没变——same episodes，
+    same metrics——但 CI 框架将叙事从 ''4 failure modes with consistent directional evidence''
+    转为 ''only 1 unambiguous mechanism (FM1) plus 1 suggestive pattern (FM4) plus  statistical
+    noise (FM2, FM3).''
+
+    关键洞察：FM3 的 4/4 directional consistency 在 DPO+BCP 条件下看起来 compelling，但 one-sided
+    binomial test p=0.0625 不显著（需要 α=0.05）。Reviewer 不需要否认数据方向—— 只需指出 ''p=0.06 with
+    4 runs is a coin flip.'' FM4 的 sign test p=0.039 (10/12)  marginally significant，但
+    reviewer 通常对 marginal significance 持怀疑态度， 尤其当 CI 跨零时。
+
+    应对策略核心：放弃将 FM2/FM3 作为 standalone claims。将 CI 结果诚实呈现，但将论文重心 从 ''we discovered 4
+    failure modes'' 转向 ''behavioral calibration is unreliable —  even when directionally
+    consistent effects appear (FM3, FM4), they are not  statistically distinguishable
+    from noise at practical sample sizes, reinforcing  our conclusion that current
+    calibration methods should not be trusted.''
+
+    这种 reframing 将统计弱点转化为论文论点的一部分：calibration 不仅 fails，而且 fails  in ways that are
+    hard to detect reliably——即使研究者也无法确信观察到的 pattern  是 real 还是 noise。这 strengthens
+    ''calibration considered harmful'' 的 cautionary  message。
+
+    '
+- name: 14B DPO + BCP (scale-dependent FM4?)
+  plan_id: plan_006
+  description: '在 Qwen2.5-14B-Instruct 上执行 DPO 训练后叠加 BCP eval，测试 FM4（DPO+BCP reversal）
+    是否也具有 scale-dependent 特征。需要 14B DPO 训练（~11-13h A6000 GPU）+ 4 runs eval。
+
+    '
+  expected_results:
+    experiment_executed: false
+    execution_blocker: GPU unavailable — contingent on new server post-migration
+    c2_evidence_remains_single_scale: true
+    reviewer_attack_surface: FM4 reversal documented only at 7B; could be capacity-dependent
+      artifact
+    counterfactual_worst_case_if_run:
+      scenario_a_reversal_not_replicated:
+        probability: 0.45
+        description: 14B DPO+BCP shows no reversal — DPO alignment at 14B is robust
+          to BCP perturbation
+        implication: FM4 becomes 7B-specific, not a general failure mode; C2 claim
+          severely weakened
+      scenario_b_reversal_replicated_but_weak:
+        probability: 0.35
+        description: 14B DPO+BCP shows directional reversal but smaller magnitude,
+          CI crosses zero
+        implication: Directionally consistent with 7B but same CI problem as plan_005;
+          doesn't strengthen C2
+      scenario_c_reversal_replicated_strongly:
+        probability: 0.2
+        description: 14B DPO+BCP shows clear reversal with CI excluding zero
+        implication: Would strengthen C2 substantially but this scenario is unlikely
+          under worst tier
+    impact_of_absence_on_paper:
+      c2_weakened: true
+      reviewer_will_note: DPO reversal is single-model single-scale; generalizability
+        unknown
+      mitigation: Acknowledge in limitations; emphasize that 7B 4-run evidence is
+        internally consistent (10/12)
+  result_rationale: "plan_006 在 worst 档下不执行，原因是 GPU 资源不可用（依赖新服务器迁移后的 GPU 配额）。\n缺失的\
+    \ 14B DPO 数据对论文的影响是 asymmetric：\n如果执行且 reversal 复现（scenario C）→ C2 显著加强，但 worst\
+    \ 档定义中这不发生。 如果执行且 reversal 不复现（scenario A）→ FM4 变成 7B-specific artifact，C2 claim\
+    \  从 'DPO+BCP interaction produces reversal' 弱化为 'DPO+BCP interaction produces\
+    \  reversal at 7B where model capacity is already constrained.' 这实际上将 FM4  归入\
+    \ FM1 的 capacity bottleneck 叙事，进一步缩小有效 taxonomy。\n不执行本身是 worst 档的 'safe' 选择——至少保留了\
+    \ 'FM4 might generalize across scales'  的可能性。但 reviewer 会注意到这个缺口：'the authors\
+    \ test BCP at two scales (7B, 14B)  but DPO+BCP only at 7B. The most interesting\
+    \ claim (calibration reversal) is  the one with the weakest evidence base.' \n\
+    这与 C3 scale-dependent narrative 产生张力：论文的核心贡献之一是 'failure mode severity  is scale-dependent'，但这只对\
+    \ FM1/FM3 有完整的 7B-vs-14B 对比。FM4 的 scale dependency  是 open question，而 open question\
+    \ 在 Findings paper 中可以接受——前提是论文不 overclaim。\nReviewer 可能的措辞：'The paper identifies\
+    \ scale as a critical variable (C3) but  then fails to test its most novel claim\
+    \ (FM4/C2) across scales. This is a significant  gap in the experimental design.'\n\
+    应对：在 limitations 中明确承认。强调 7B 4-run 的 internal consistency（10/12 directional），\
+    \ 并指出 14B DPO 作为 concrete future work。在 worst 档 narrative 下，FM4 已经被降级为  secondary\
+    \ finding（'directionally suggestive'），所以缺少 14B DPO 的伤害被 dampened—— 论文不再 claim\
+    \ FM4 是 robust mechanism，只是 'observed pattern warranting further  investigation.'\n"
+  tables: []
+  figures_description: []
+  analysis: 'plan_006 的缺失在 worst 档下的净影响是 moderate-negative。它不是 paper-killing 级别 （因为
+    C2/FM4 已经被 Bootstrap CI 削弱到 ''suggestive'' 级别），但它堵死了潜在的 upside  path——如果 14B DPO
+    实验碰巧 strongly replicate reversal，它本可以是论文最强的 claim。
+
+    从战略角度看，worst 档不应该花时间在 plan_006 上。即使有 GPU，11-13h 训练 + 4-run eval  的时间投入在 ARR deadline
+    2026-05-25 前（剩余 12 天）风险太高——如果结果是 scenario A  (reversal not replicated)，反而 actively
+    harmful to the paper。不执行至少保留了  ambiguity，而 ambiguity 在 Findings track 是可以接受的。
+
+    论文应将 14B DPO 明确标为 ''primary future work''，并在 discussion 中提出 specific  hypothesis：''We
+    hypothesize that DPO+BCP reversal may be capacity-dependent —  14B models that
+    successfully resist BCP perturbation (C3) may also resist  DPO-induced calibration
+    reversal, suggesting that FM4 is a manifestation of  the same capacity bottleneck
+    underlying FM1.'''

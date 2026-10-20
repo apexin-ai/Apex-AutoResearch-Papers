@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3baeebd86dd0123f963",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "fix skeleton reviewer2 corrections",
+  "task_key": "worker_fix_skeleton-reviewer2-corrections_20260513T082220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_skeleton-reviewer2-corrections_20260513T082220_result.json",
+    "occurrence": 1,
+    "bytes": 940,
+    "sha256": "0f9948fec3fb5dce72fe4411007b6022158e0533a922ce91b8f28d83b635cc09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修正完成。总结：\n\n| 修正项 | 改动 |\n|--------|------|\n| **硬伤 1: LoRA 引用** | `\\cite{rafailov2023dpo}` → `\\cite{hu2021lora}`，`literature_map.yaml` 新增 `hu2021lora` 条目 |\n| **硬伤 2: DPO pair 数量** | 1,563 确认正确（服务器 `dpo_pairs_v2.jsonl` = 1563 行，`max_steps=1173` = `ceil(1563/4)*3`）；数据源从 `[dpo-002, dpo-003]` 改为 `[aave-corpus-gen]` |\n| **建议 3: Table 2 格式** | per-run 原始值改为 mean±SD（aave: $-23.3±23.4$, indian: $-21.9±19.3$, overcorrected: $-18.0±7.5$），加脚注 \"See Appendix for per-run breakdown\" |\n| **建议 4: 18-turn** | \"18-turn task\" → \"multi-turn task episode\"（服务器无 turn 数日志） |\n| **建议 5: mvp-003** | \"precision-validated in mvp-003\" → \"precision-validated on a held-out annotation set\" |\n\n`artifacts/` 和 `artifacts/_project/paper/` 两份副本均已同步修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-skeleton-reviewer2-corrections.md"
+}

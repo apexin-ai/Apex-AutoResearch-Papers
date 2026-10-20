@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_w2_unconstrained_baselines_20260515T043931_result.json",
     "occurrence": 1,
-    "bytes": 89,
-    "sha256": "6451c1d79479882c56d3e588c8d625c697548fc08e0ae5017db217921197a2e7"
+    "bytes": 88,
+    "sha256": "fc575328fe853c0d46686e453001ff0a104f868cc35bf2d50df99f8151f58f96"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_qwen14b_greedy_constrained_20260515T145632_result.json",
     "occurrence": 1,
-    "bytes": 549,
-    "sha256": "ed40f372dc9ce7803e7514e0c551fc5b4d9969342edadaf52bebbbe7893c56b5"
+    "bytes": 548,
+    "sha256": "36d9b309f78ca538c7687c0a3a211100b8fe9c6fb736fe239b3b54a40c6e2104"
   },
   "statistics": {
     "messages": 1,

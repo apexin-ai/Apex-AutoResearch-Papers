@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_340m_retnet_hgrn2_eval_20260519T034356_result.json",
     "occurrence": 1,
-    "bytes": 245,
-    "sha256": "439f709da9bfe257fe79e563969120e53f081e99d36c270e1deaa1ecffa93374"
+    "bytes": 244,
+    "sha256": "73e338fe712d83d71b1020e3b9485b3f516008d42adc4887263b6414f16892d6"
   },
   "statistics": {
     "messages": 1,

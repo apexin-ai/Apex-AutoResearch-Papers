@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_mistral_hires_pipeline_20260514T023143_result.json",
     "occurrence": 1,
-    "bytes": 595,
-    "sha256": "0e10b414ad84f91e881893a14bff7c1712f2f16981bf844bb7895de9e85fb595"
+    "bytes": 594,
+    "sha256": "c64ba4acb483e13b0dca5cd6c5d70e1dd93e649e40539b8b4ab0cd301bcd79d4"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_debug_l0_heuristic_token_mismatch_20260514T063920_result.json",
     "occurrence": 1,
-    "bytes": 1673,
-    "sha256": "8c2ec703d816b828ca9e4c3781ede56aefeaaa1ffdacb4a93d41c0c4c5666de5"
+    "bytes": 1672,
+    "sha256": "54ed01d69b3d5db4ff43d3fe87339f577155442dbed5671a734241750028e54e"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_gpu_yi15_phase5_fix_rerun_20260514T182903_result.json",
     "occurrence": 1,
-    "bytes": 1919,
-    "sha256": "254f2564ff913b1ef5c0512787479870d4ba43fa1d9f0c1e703e7ae1b7e3f100"
+    "bytes": 1918,
+    "sha256": "2956bf465747be4232b37988d8b9ec2ff05eee32bd87ef51891bb7f8d45e6dc2"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_340m-eval-script-fix_20260521T222448_result.json",
     "occurrence": 1,
-    "bytes": 1409,
-    "sha256": "650f05dd41d22d0fee27a6c2d0bea7ad97b30259bd0d5f4834205c2101a122a0"
+    "bytes": 1408,
+    "sha256": "fa12c8c0e3a78c07a99a008c95bbcea62ae8ed6b8fd444692267890309ac967a"
   },
   "statistics": {
     "messages": 1,

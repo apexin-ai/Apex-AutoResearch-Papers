@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_llama_hires_shape_metrics_20260515T142158_result.json",
     "occurrence": 1,
-    "bytes": 779,
-    "sha256": "ff2982b0b5f9490be9e134eef5921d142b0f129100463312e10edab03c6461ba"
+    "bytes": 778,
+    "sha256": "f66776c53073ec398b4e4d4bb09fd412c63ad2745c5bdbd8b3414ae9bbcd3926"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_phi3_flat_update_20260516T023633_result.json",
     "occurrence": 1,
-    "bytes": 2005,
-    "sha256": "fb29a186189eff6dbc28261a1d41d8bd188aeb7bb7e85575d6e4def504f06efd"
+    "bytes": 2004,
+    "sha256": "fdd452076d8f2f8d98678ddb8c844dc6e3079bd56d16fb1c23ea5c279659f1ad"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_greedy_cardinality_ablation_20260514T062233_result.json",
     "occurrence": 1,
-    "bytes": 666,
-    "sha256": "40b7524bcce433f5dbc51409b508d10ab5fa7fcba1affc705e8d4694973f1f70"
+    "bytes": 665,
+    "sha256": "a1847d1a6738dc3b6e98a4640c01d63e9d6a94b28d320122fa2c289f6faaa680"
   },
   "statistics": {
     "messages": 1,

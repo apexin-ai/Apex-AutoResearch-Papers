@@ -1,46 +1,39 @@
 # Aggregate Equivalence̸=Behavioral Equivalence: Per-Example Multiplicity in Hybrid Linear Recurrent Models
 
-Project directory: `entrainment_gated_ft`
+Project: `entrainment_gated_ft`
 
-## Browse generation traces
-
-[Visual browser](../../traces/index.html?project=entrainment_gated_ft) · [Offline preview](../../traces/demo.html?project=entrainment_gated_ft) · [GitHub trace guide](05-generation-trace/README.md) · [JSON catalogue](05-generation-trace/catalog.json)
-
-Includes 599 source files and 80,801 recorded messages/events. Use the trace guide's Readable Markdown pages for human review; the adjacent JSON links and browser provide structured and per-round inspection. Counts include overlapping source snapshots.
+[Manuscript](01-manuscript/paper.pdf) · [Research code](03-code/source/) · [Experiment assets](04-experiments/source/) · [Readable conversations](05-generation-trace/readable/README.md) · [Trace browser](../../traces/index.html?project=entrainment_gated_ft)
 
 ## Asset review matrix
 
-| Requirement | Status | Organized contents and evidence | Still to verify |
+| Requirement | Status | Included evidence | Verification limit |
 |---|---|---|---|
-| Manuscript and versions | Available | paper.pdf; 13 TeX/Bib source files; 26 archive version candidates | The author must confirm which files are the submitted and public revision versions; candidates were not automatically designated as official versions. |
-| Academic status | Unverified | As of 2026-05-23, the project record states that the paper is locked and awaiting ARR / EMNLP 2026 submission; checklist fields are prepared. Manuscript cover marker: Anonymous ACL submission. | This status reflects only the project files available on that date; official submission receipts, review/acceptance decisions, and publication records were not verified in the archive. |
-| AI / human contribution | Partial | 3 role/task descriptions; the conversations record user/assistant/tool roles | Role labels cannot verify real-person identity, human decisions, edit ownership, or author contribution statements. |
-| Generation trace | Organized | 99 conversation JSONL files; 489 worker logs/results; text traces were packaged | Obvious credentials were redacted and binary payloads such as images were omitted; consult the source archive for the complete original. |
-| Reproduction code | Available | 25 project code/command files; 0 dependency/environment manifests | Reproduction is needed to verify that the environment remains installable and that the code matches the manuscript version. |
-| Experiments and environment | Partial | 92 data/result files; datasets, configurations, and dependency manifests were collected | Data permissions, hardware budget, completeness of failed runs, and cross-environment reproduction require item-by-item verification. |
-| Validation evidence | Partial | 20 internal review reports; 5 audit/validation files; source identity not verified | These files do not establish that human verification, independent reproduction, or public external review has been completed. |
-| Maintenance | Partial | 1 provenance files; 2 submission forms/checklists/metadata files; 0 license files; Project plans, roadmaps, and issue records are archived. See 01-manuscript/ for reference files. | The maintainer still needs to confirm license scope, closure of known issues, and the complete revision history. |
+| Manuscript and versions | Available | 27 source files; 43 PDF candidates | Candidate filenames do not establish official submission or publication. |
+| Academic status | Unverified | The ROADMAP records that the paper is locked and awaiting ARR / EMNLP 2026 submission; checklist fields are prepared. | Official submission, acceptance, and publication were not independently checked. |
+| AI / human contribution | Partial | 3 task/role records | User and assistant roles do not identify people or establish author contributions. |
+| Generation trace | Organized | 99 conversations; 489 worker logs/results; 599 source files | Overlapping snapshots are retained; credentials and binary attachments are redacted. |
+| Reproduction code | Available | 150 code/configuration files; 0 environment manifests | The code is archived; experiments were not rerun for this release. |
+| Experiments and environment | Partial | 431 data/result files | Original data permissions and completeness require project-specific review. |
+| Validation evidence | Partial | 20 internal review records; 5 other audit records | Internal reviews are project evidence, not independently verified external reviews. |
+| Maintenance | Partial | 44 project documentation files; 0 license files | A project license file applies only within its stated scope. |
 
-## Organized directories
+## What each directory contains
 
-- `01-manuscript/`: Current paper PDF, LaTeX source, references, and typesetting assets.
-- `02-contributions/`: Agent role descriptions and human/AI contribution review notes.
-- `03-code/`: Project code, figure-generation code, and environment manifests.
-- `04-experiments/`: Data, result tables, analysis artifacts, and related notes.
-- `05-generation-trace/`: Redacted conversation, tool-call, worker-log, and loop-note archive; binary attachment payloads omitted.
-- `06-validation/`: Internal review reports and audit status files.
-- `07-maintenance/`: Plans, provenance, roadmaps, references, and license files.
-- `08-index/`: Source archive paths, version candidates, and per-category asset manifests.
+- `01-manuscript/`: Manuscript PDF, source, references, figures, and version candidates.
+- `02-contributions/`: Recorded agent roles and task instructions.
+- `03-code/`: Research code, scripts, configurations, and dependency manifests.
+- `04-experiments/`: Data, experiment outputs, metrics, and supporting artifacts.
+- `05-generation-trace/`: Readable Markdown conversations, complete normalized JSON, and sanitized source logs.
+- `06-validation/`: Internal reviews, audits, and verification records.
+- `07-maintenance/`: Project documentation, roadmaps, provenance, and maintenance notes.
+- `08-index/`: File manifests, original paths, exclusions, and source checksums.
 
-## Important interpretation
+## Source and scope
 
-- Manuscript marker: `Anonymous ACL submission`. This is cover text only and does not by itself establish submission, acceptance, or publication.
-- Academic status snapshot (2026-05-23): The ROADMAP records that the paper is locked and awaiting ARR / EMNLP 2026 submission; checklist fields are prepared. Official submission receipts, review decisions, or publication records were not verified in this archive. Source: `07-maintenance/source/ROADMAP.md`.
-- Source archive: `entrainment_gated_ft/workspace.tar.gz`. The generation-trace copy redacts obvious credential fields and omits binary attachment payloads; the source archive itself was not modified.
-- Archive read status: `Archive scan completed`.
+Source: `s3://agent-ml-research-project-backups-20260531/entrainment_gated_ft/workspace.tar.gz`. Archive SHA-256 (derived archive for export snapshots): `6c9d78da9ac8f06b5b71dd682841aa662127685bd00477d310d927c818bf9418`.
 
-## Directory counts
+150 code/configuration files; 431 data/result files; 599 trace sources. The selected manuscript has 22 pages; 43 PDF candidates are indexed.
 
-25 source files; 92 experiment data/result files; 20 internal review reports; 5 audit/validation files; 99 conversation records; 489 worker logs/results; main PDF (22 pages).
+Original project paths and release paths are mapped in [the file manifest](08-index/asset-manifest.csv). Selected PDFs are copied to `01-manuscript/paper.pdf`; other versions remain under manuscript source. Files exceeding the GitHub size limit are split into checksum-verified parts. Dependency installations, caches, Git internals, credential/account files, and non-regular archive entries are excluded and recorded in [the exclusion manifest](08-index/excluded-files.csv).
 
-Manifests are organized by filename and archive path. The presence of evidence files does not establish independent reproduction or completion of external peer review.
+Generated documentation is English. Source files and conversations retain their original language. Credentials and inline attachment payloads are redacted. No project code was executed as part of asset collection; archived code and internal reviews do not establish independent reproduction or external acceptance.

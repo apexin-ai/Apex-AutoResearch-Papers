@@ -1,0 +1,323 @@
+{
+  "analysis": "a2_confidence_margin_prediction",
+  "date": "2026-05-22",
+  "method": {
+    "model": "LogisticRegression (sklearn, L2, lbfgs)",
+    "feature": "abs(target_loglikelihood) from pure model",
+    "within_arch_cv": "stratified 5-fold",
+    "cross_arch_transfer": "leave-one-architecture-out (train on 2, test on 1)",
+    "hybrid_config": "h3-1 (25% attention) for all architectures",
+    "note": "Helped population = pure-wrong examples; Hurt population = pure-correct examples"
+  },
+  "within_arch": {
+    "lambada": {
+      "GDN": {
+        "n_helped": 461,
+        "n_hurt": 616,
+        "n_stayed_right": 2184,
+        "n_stayed_wrong": 1892,
+        "helped_prediction": {
+          "population": 2353,
+          "auc_mean": 0.7519,
+          "auc_std": 0.018,
+          "cv_folds": 5
+        },
+        "hurt_prediction": {
+          "population": 2800,
+          "auc_mean": 0.7349,
+          "auc_std": 0.0215,
+          "cv_folds": 5
+        }
+      },
+      "RetNet": {
+        "n_helped": 420,
+        "n_hurt": 497,
+        "n_stayed_right": 2169,
+        "n_stayed_wrong": 2067,
+        "helped_prediction": {
+          "population": 2487,
+          "auc_mean": 0.7542,
+          "auc_std": 0.0116,
+          "cv_folds": 5
+        },
+        "hurt_prediction": {
+          "population": 2666,
+          "auc_mean": 0.7357,
+          "auc_std": 0.0262,
+          "cv_folds": 5
+        }
+      },
+      "HGRN2": {
+        "n_helped": 548,
+        "n_hurt": 392,
+        "n_stayed_right": 2102,
+        "n_stayed_wrong": 2111,
+        "helped_prediction": {
+          "population": 2659,
+          "auc_mean": 0.7646,
+          "auc_std": 0.0242,
+          "cv_folds": 5
+        },
+        "hurt_prediction": {
+          "population": 2494,
+          "auc_mean": 0.7492,
+          "auc_std": 0.0175,
+          "cv_folds": 5
+        }
+      }
+    },
+    "hellaswag": {
+      "GDN": {
+        "n_helped": 533,
+        "n_hurt": 578,
+        "n_stayed_right": 5524,
+        "n_stayed_wrong": 3407,
+        "helped_prediction": {
+          "population": 3940,
+          "auc_mean": 0.5624,
+          "auc_std": 0.021,
+          "cv_folds": 5
+        },
+        "hurt_prediction": {
+          "population": 6102,
+          "auc_mean": 0.514,
+          "auc_std": 0.0269,
+          "cv_folds": 5
+        }
+      },
+      "RetNet": {
+        "n_helped": 412,
+        "n_hurt": 433,
+        "n_stayed_right": 5389,
+        "n_stayed_wrong": 3808,
+        "helped_prediction": {
+          "population": 4220,
+          "auc_mean": 0.5365,
+          "auc_std": 0.0344,
+          "cv_folds": 5
+        },
+        "hurt_prediction": {
+          "population": 5822,
+          "auc_mean": 0.5105,
+          "auc_std": 0.0234,
+          "cv_folds": 5
+        }
+      },
+      "HGRN2": {
+        "n_helped": 446,
+        "n_hurt": 396,
+        "n_stayed_right": 5619,
+        "n_stayed_wrong": 3581,
+        "helped_prediction": {
+          "population": 4027,
+          "auc_mean": 0.5463,
+          "auc_std": 0.0228,
+          "cv_folds": 5
+        },
+        "hurt_prediction": {
+          "population": 6015,
+          "auc_mean": 0.5162,
+          "auc_std": 0.0125,
+          "cv_folds": 5
+        }
+      }
+    },
+    "arc_easy": {
+      "GDN": {
+        "n_helped": 171,
+        "n_hurt": 180,
+        "n_stayed_right": 1512,
+        "n_stayed_wrong": 513,
+        "helped_prediction": {
+          "population": 684,
+          "auc_mean": 0.7074,
+          "auc_std": 0.0422,
+          "cv_folds": 5
+        },
+        "hurt_prediction": {
+          "population": 1692,
+          "auc_mean": 0.604,
+          "auc_std": 0.0246,
+          "cv_folds": 5
+        }
+      },
+      "RetNet": {
+        "n_helped": 144,
+        "n_hurt": 184,
+        "n_stayed_right": 1510,
+        "n_stayed_wrong": 538,
+        "helped_prediction": {
+          "population": 682,
+          "auc_mean": 0.669,
+          "auc_std": 0.0607,
+          "cv_folds": 5
+        },
+        "hurt_prediction": {
+          "population": 1694,
+          "auc_mean": 0.5678,
+          "auc_std": 0.0353,
+          "cv_folds": 5
+        }
+      },
+      "HGRN2": {
+        "n_helped": 164,
+        "n_hurt": 146,
+        "n_stayed_right": 1548,
+        "n_stayed_wrong": 518,
+        "helped_prediction": {
+          "population": 682,
+          "auc_mean": 0.6598,
+          "auc_std": 0.045,
+          "cv_folds": 5
+        },
+        "hurt_prediction": {
+          "population": 1694,
+          "auc_mean": 0.5358,
+          "auc_std": 0.0636,
+          "cv_folds": 5
+        }
+      }
+    },
+    "piqa": {
+      "GDN": {
+        "n_helped": 105,
+        "n_hurt": 79,
+        "n_stayed_right": 1251,
+        "n_stayed_wrong": 403,
+        "helped_prediction": {
+          "population": 508,
+          "auc_mean": 0.5629,
+          "auc_std": 0.0423,
+          "cv_folds": 5
+        },
+        "hurt_prediction": {
+          "population": 1330,
+          "auc_mean": 0.4709,
+          "auc_std": 0.0601,
+          "cv_folds": 5
+        }
+      },
+      "RetNet": {
+        "n_helped": 80,
+        "n_hurt": 75,
+        "n_stayed_right": 1260,
+        "n_stayed_wrong": 423,
+        "helped_prediction": {
+          "population": 503,
+          "auc_mean": 0.6046,
+          "auc_std": 0.0765,
+          "cv_folds": 5
+        },
+        "hurt_prediction": {
+          "population": 1335,
+          "auc_mean": 0.4657,
+          "auc_std": 0.039,
+          "cv_folds": 5
+        }
+      },
+      "HGRN2": {
+        "n_helped": 72,
+        "n_hurt": 80,
+        "n_stayed_right": 1270,
+        "n_stayed_wrong": 416,
+        "helped_prediction": {
+          "population": 488,
+          "auc_mean": 0.5781,
+          "auc_std": 0.0355,
+          "cv_folds": 5
+        },
+        "hurt_prediction": {
+          "population": 1350,
+          "auc_mean": 0.4521,
+          "auc_std": 0.0545,
+          "cv_folds": 5
+        }
+      }
+    }
+  },
+  "cross_arch_transfer": {
+    "lambada": {
+      "GDN": {
+        "helped_transfer_auc": 0.7521,
+        "hurt_transfer_auc": 0.7347
+      },
+      "RetNet": {
+        "helped_transfer_auc": 0.7535,
+        "hurt_transfer_auc": 0.7345
+      },
+      "HGRN2": {
+        "helped_transfer_auc": 0.765,
+        "hurt_transfer_auc": 0.7477
+      }
+    },
+    "hellaswag": {
+      "GDN": {
+        "helped_transfer_auc": 0.5625,
+        "hurt_transfer_auc": 0.5144
+      },
+      "RetNet": {
+        "helped_transfer_auc": 0.5367,
+        "hurt_transfer_auc": 0.5108
+      },
+      "HGRN2": {
+        "helped_transfer_auc": 0.5462,
+        "hurt_transfer_auc": 0.5164
+      }
+    },
+    "arc_easy": {
+      "GDN": {
+        "helped_transfer_auc": 0.7055,
+        "hurt_transfer_auc": 0.6031
+      },
+      "RetNet": {
+        "helped_transfer_auc": 0.6683,
+        "hurt_transfer_auc": 0.5674
+      },
+      "HGRN2": {
+        "helped_transfer_auc": 0.6607,
+        "hurt_transfer_auc": 0.5364
+      }
+    },
+    "piqa": {
+      "GDN": {
+        "helped_transfer_auc": 0.5671,
+        "hurt_transfer_auc": 0.5105
+      },
+      "RetNet": {
+        "helped_transfer_auc": 0.607,
+        "hurt_transfer_auc": 0.4977
+      },
+      "HGRN2": {
+        "helped_transfer_auc": 0.5815,
+        "hurt_transfer_auc": 0.4974
+      }
+    }
+  },
+  "summary": {
+    "within_arch_helped": {
+      "mean": 0.6415,
+      "std": 0.0834,
+      "n": 12
+    },
+    "within_arch_hurt": {
+      "mean": 0.5714,
+      "std": 0.1054,
+      "n": 12
+    },
+    "transfer_helped": {
+      "mean": 0.6422,
+      "std": 0.0826,
+      "n": 12
+    },
+    "transfer_hurt": {
+      "mean": 0.5809,
+      "std": 0.0958,
+      "n": 12
+    },
+    "specificity_delta": {
+      "helped": -0.0007,
+      "hurt": -0.0095,
+      "interpretation": "positive = within > transfer = architecture-specific component"
+    }
+  }
+}

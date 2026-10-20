@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_kivi_eval_param_audit_20260515T115659_result.json",
     "occurrence": 1,
-    "bytes": 3723,
-    "sha256": "33ead9fb372ef291f137294cbe86e7ae343ee7bd4e2ef6fab3c72e125d2766de"
+    "bytes": 3722,
+    "sha256": "fae1b71cc2b99d7331b0368d84067fb08be2845d835d557aac3908de0c53ebda"
   },
   "statistics": {
     "messages": 1,

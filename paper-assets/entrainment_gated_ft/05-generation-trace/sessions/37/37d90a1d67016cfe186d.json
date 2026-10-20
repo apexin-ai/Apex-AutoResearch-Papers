@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_fix-tying-v4_20260518T112818_result.json",
     "occurrence": 1,
-    "bytes": 213,
-    "sha256": "fdf1d7e87efd014be84fae096dba4fecc9f177d77ad3622def94c2bc42c4b0a3"
+    "bytes": 212,
+    "sha256": "59983935a8cd5ee532862c47af2dfd879d62790e821af209dc59d2ec564cfe71"
   },
   "statistics": {
     "messages": 1,

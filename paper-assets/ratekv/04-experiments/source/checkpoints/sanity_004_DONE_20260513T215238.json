@@ -1,0 +1,29 @@
+{
+  "exp_id": "sanity_004",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T21:51:10.636Z",
+    "updated_at": "2026-05-13T21:52:38.076Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python run_mvp.py --model /root/autodl-tmp/models/Qwen2.5-1.5B --calibration_data calibration_data.json --device cuda:0 --output sanity_foreground_results.json",
+      "server": "westd-37397",
+      "gpu": "cuda:1",
+      "data_path": "WikiText-103 concatenated calibration + WikiText-2 eval",
+      "data_count": "20 calibration samples",
+      "model_name": "Qwen/Qwen2.5-1.5B",
+      "seed": 42,
+      "checkpoint_path": "N/A (inference only)",
+      "log_path": "/root/ratekv/sanity_foreground_results.json"
+    },
+    "hypothesis": "前台验证: Qwen2.5-1.5B 完整 pipeline (profiling→solver→eval→crossover). 验证 pipeline 端到端正确性.",
+    "conclusion": "success",
+    "notes": "Pipeline PASS. Crossover: 89.3% heads prefer eviction at 0.125 budget. PPL: baseline 12.46, 2x 12.52/12.52, 4x 22.67/19.91, 8x 14065/14700. Full MCKP +635 better at 8x. WARNING: 4x budget Full MCKP (22.67) WORSE than quant-only (19.91). WARNING: profiles loaded from cached profiles.json (may be from old calibration data).",
+    "completed_at": "2026-05-13T21:52:38.076Z"
+  },
+  "timestamp": "2026-05-13T21:52:38.090919+00:00",
+  "trigger": "update_registry"
+}

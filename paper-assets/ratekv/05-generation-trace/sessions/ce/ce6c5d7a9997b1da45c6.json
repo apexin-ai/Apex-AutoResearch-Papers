@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analyze_llama_hires_mckp_results_20260514T215502_result.json",
     "occurrence": 1,
-    "bytes": 893,
-    "sha256": "262c085ad62a57754604af35abb4b1810c76974a7ca7e71e735ca997c81341fd"
+    "bytes": 892,
+    "sha256": "9830d4dd78ad7a4f204e2a0a7668acecbefb8742770a1468ad4e9cae3d72dca2"
   },
   "statistics": {
     "messages": 1,

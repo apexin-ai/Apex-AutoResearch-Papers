@@ -1,0 +1,39 @@
+{
+  "exp_id": "codellama_hires_profiling",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:53:13.469Z",
+    "updated_at": "2026-05-15T18:55:10.645Z",
+    "spec": {
+      "command": "bash -c \"cd /root/ratekv && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_codellama_hires_profiling.py --model /root/autodl-tmp/.hf_cache/AI-ModelScope/CodeLlama-7b-hf/ --gpu cuda:0\"",
+      "server": "westd-37397",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "362945",
+      "log_path": "~/runs/ratekv/codellama_hires_profiling.log",
+      "submitted_at": "2026-05-15T18:53:13.052Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "CodeLlama-7b",
+      "data_path": "calibration_hires.json",
+      "data_count": 64,
+      "seed": 42,
+      "wall_clock_seconds": 117.6,
+      "gpu_hours": 0.03
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T18:55:09.285Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T18:55:10.645Z"
+  },
+  "timestamp": "2026-05-15T18:55:10.819788+00:00",
+  "trigger": "update_registry"
+}

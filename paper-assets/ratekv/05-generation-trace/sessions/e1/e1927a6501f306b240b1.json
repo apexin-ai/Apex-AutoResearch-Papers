@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_prep_long_context_eval_20260516T023901_result.json",
     "occurrence": 1,
-    "bytes": 722,
-    "sha256": "138efc6cf68e69e2849050da64a15a23bb0231f3946eebc5a25b063c01762444"
+    "bytes": 721,
+    "sha256": "216cf476fce5196a629f14bd32f23daa285ec55355381af8059547231bced693"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_unconstrained_greedy_solver_comparison_20260515T150027_result.json",
     "occurrence": 1,
-    "bytes": 494,
-    "sha256": "c3e71bb01f0107e9287cf37d120d40127ae4a132fe496e59596f845fefad7f19"
+    "bytes": 493,
+    "sha256": "b03f6d8dfb1af587bb136e14f731b69258539f3c7448a3ae684d3eaa7bda3ec7"
   },
   "statistics": {
     "messages": 1,

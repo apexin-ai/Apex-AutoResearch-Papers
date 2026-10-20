@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_verify_qwen3seed_running_20260515T195045_result.json",
     "occurrence": 1,
-    "bytes": 492,
-    "sha256": "701c5df7f0d72f5a68468cbe5f36988c4988834f3dad841713bbf0a90a9351b3"
+    "bytes": 491,
+    "sha256": "72343073be9b465c5748959e5c45dde116dd77387cece18c981741bf7476f515"
   },
   "statistics": {
     "messages": 1,

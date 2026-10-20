@@ -1,0 +1,15 @@
+{
+  "exp_id": "sanity_002",
+  "project": "ratekv",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T19:58:52.606Z",
+    "updated_at": "2026-05-13T19:59:11.012Z",
+    "hypothesis": "Retry of sanity_001: Qwen2.5-1.5B pipeline 端到端正确性验证"
+  },
+  "timestamp": "2026-05-13T19:59:11.020850+00:00",
+  "trigger": "update_registry"
+}

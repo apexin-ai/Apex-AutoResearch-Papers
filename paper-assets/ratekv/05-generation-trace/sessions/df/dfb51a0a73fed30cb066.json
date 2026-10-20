@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp_d_no_l0_exclusion_20260514T002131_result.json",
     "occurrence": 1,
-    "bytes": 757,
-    "sha256": "10cd2d1298afcc0ddbf235e060dd168920584d6181f33666a6c68f71e88c40e0"
+    "bytes": 756,
+    "sha256": "47c463c61d45c7f497b25f92fb9fa14ce0761db0307ac782d904a0cd49908058"
   },
   "statistics": {
     "messages": 1,

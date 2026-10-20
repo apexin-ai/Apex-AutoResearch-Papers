@@ -1,0 +1,85 @@
+baseline: null
+experiments:
+  exp_001_gin_supcon_mvp:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T06:57:15.820Z'
+    updated_at: '2026-05-17T12:08:08.873Z'
+    hypothesis: GIN+SupCon on tool-call dependency graphs achieves cross-failure-mode
+      holdout AUROC > 0.70, demonstrating that graph structure captures generalizable
+      attack patterns beyond specific failure modes
+    spec:
+      command: python3 src/train_mvp.py --epochs 100 --patience 20 (10x leave-one-out
+        holdout + 5-fold CV)
+      server: bjb2-32660
+      data_path: /root/contrastive_graph_jailbreak_detect/data/graphs.pt
+      data_count: 1083
+      model_name: GIN-3layer+SupCon
+      seed: 42
+    conclusion: failed
+    metrics:
+      cv_auroc: 0.876
+      cv_f1: 0.611
+      holdout_auroc_mean: 0.845
+      holdout_modes:
+        FM2: 0.9095
+        FM4: 0.7594
+        FM7: 0.8652
+      vs_rf_delta_pp: -1.8
+    failure_reason: 'startup recovery: RUNNING with no cron and no server/pid info'
+    completed_at: '2026-05-17T12:08:08.873Z'
+  exp_002_rf_baseline:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T06:57:17.452Z'
+    updated_at: '2026-05-17T12:08:08.933Z'
+    hypothesis: Hand-crafted graph features + RF provides a weaker baseline than learned
+      GNN representations, with GIN+SupCon exceeding RF by >5pp AUROC on cross-mode
+      holdout
+    spec:
+      command: python3 src/baselines/random_forest.py (10x leave-one-out holdout +
+        5-fold CV)
+      server: bjb2-32660
+      data_path: /root/contrastive_graph_jailbreak_detect/data/graphs.pt
+      data_count: 1083
+      model_name: RandomForest+HandcraftedFeatures
+      seed: 42
+    metrics:
+      cv_auroc: 0.88
+      cv_f1: 0.7
+      holdout_auroc_mean: 0.862
+      holdout_modes:
+        FM2: 0.8728
+        FM4: 0.8753
+        FM7: 0.8389
+    failure_reason: 'startup recovery: RUNNING with no cron and no server/pid info'
+    conclusion: failed
+    completed_at: '2026-05-17T12:08:08.933Z'
+  exp_003_gin_semantic_mvp:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-17T07:03:55.323Z'
+    updated_at: '2026-05-17T12:08:08.996Z'
+    hypothesis: Semantic MiniLM-L6 node embeddings remove tool-identity shortcut,
+      allowing GIN+SupCon to learn structural patterns and exceed RF by >5pp AUROC
+      on cross-mode holdout (final MVP gate)
+    spec:
+      command: python3 run_mvp_round2.py (semantic MiniLM-L6 embeddings, 10x leave-one-out)
+      server: bjb2-32660
+      data_path: /root/contrastive_graph_jailbreak_detect/data/graphs_semantic.pt
+      data_count: 1083
+      model_name: GIN-3layer+SupCon+MiniLM-L6-semantic
+      seed: 42
+    conclusion: failed
+    metrics:
+      cv_auroc: 0.8687
+      cv_auroc_std: 0.0303
+      holdout_auroc_mean: 0.8475
+      holdout_auroc_std: 0.0431
+      rf_cv_auroc: 0.9704
+      rf_holdout_auroc_mean: 0.9622
+      gin_vs_rf_delta_pp: -11.5
+      graphs_with_zero_edges_pct: 61.5
+      graphs_with_ge2_edges_pct: 6.1
+    failure_reason: 'startup recovery: RUNNING with no cron and no server/pid info'
+    completed_at: '2026-05-17T12:08:08.996Z'

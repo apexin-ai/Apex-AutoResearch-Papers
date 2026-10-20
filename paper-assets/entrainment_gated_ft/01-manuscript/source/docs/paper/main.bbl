@@ -1,0 +1,360 @@
+\begin{thebibliography}{54}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Ali et~al.(2025)Ali, Zimerman, and Wolf}]{ali2025hidden}
+Ameen Ali, Itamar Zimerman, and Lior Wolf. 2025.
+\newblock The hidden attention of mamba models.
+\newblock In \emph{Proceedings of ACL}.
+
+\bibitem[{Arora et~al.(2024{\natexlab{a}})Arora, Eyuboglu, Timalsina, Johnson,
+  Poli, Zou, Rudra, and R{\'e}}]{arora2024zoology}
+Simran Arora, Sabri Eyuboglu, Aman Timalsina, Isys Johnson, Michael Poli, James
+  Zou, Atri Rudra, and Christopher R{\'e}. 2024{\natexlab{a}}.
+\newblock Zoology: Measuring and improving recall in efficient language models.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[{Arora et~al.(2024{\natexlab{b}})Arora, Eyuboglu, Zhang, Timalsina,
+  Alberti, Bornschein et~al.}]{arora2024based}
+Simran Arora, Sabri Eyuboglu, Michael Zhang, Aman Timalsina, Frederic Alberti,
+  James Bornschein, and 1 others. 2024{\natexlab{b}}.
+\newblock Simple linear attention language models balance the recall-throughput
+  tradeoff.
+\newblock In \emph{Proceedings of ICML}.
+
+\bibitem[{Basu(2026)}]{basu2026routing}
+Abhinaba Basu. 2026.
+\newblock When does content-based routing work? representation requirements for
+  selective attention in hybrid sequence models.
+\newblock \emph{arXiv preprint arXiv:2603.20997}.
+
+\bibitem[{Beck et~al.(2024)Beck, P{\"o}ppel, Spanring, Auer, Prudnikova, Kopp,
+  Klambauer, Brandstetter, and Hochreiter}]{beck2024xlstm}
+Maximilian Beck, Korbinian P{\"o}ppel, Markus Spanring, Andreas Auer,
+  Oleksandra Prudnikova, Michael Kopp, G{\"u}nter Klambauer, Johannes
+  Brandstetter, and Sepp Hochreiter. 2024.
+\newblock xlstm: Extended long short-term memory.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~37.
+
+\bibitem[{Biderman et~al.(2023)Biderman, Schoelkopf, Anthony, Bradley, O'Brien,
+  Hallahan, Khan, Purohit, Prashanth, Raff, Skowron, Sutawika, and van~der
+  Wal}]{biderman2023pythia}
+Stella Biderman, Hailey Schoelkopf, Quentin~Gregory Anthony, Herbie Bradley,
+  Kyle O'Brien, Eric Hallahan, Mohammad~Aflah Khan, Shivanshu Purohit,
+  USVSN~Sai Prashanth, Edward Raff, Aviya Skowron, Lintang Sutawika, and Oskar
+  van~der Wal. 2023.
+\newblock Pythia: A suite for analyzing large language models across training
+  and scaling.
+\newblock In \emph{Proceedings of ICML}.
+
+\bibitem[{Bisk et~al.(2020)Bisk, Zellers, Bras, Gao, and Choi}]{bisk2020piqa}
+Yonatan Bisk, Rowan Zellers, Ronan~Le Bras, Jianfeng Gao, and Yejin Choi. 2020.
+\newblock {PIQA}: Reasoning about physical commonsense in natural language.
+\newblock In \emph{Proceedings of AAAI}.
+
+\bibitem[{Botev et~al.(2024)Botev, De, Smith et~al.}]{botev2024recurrentgemma}
+Aleksandar Botev, Soham De, Samuel~L. Smith, and 1 others. 2024.
+\newblock Recurrentgemma: Moving past transformers for efficient open language
+  models.
+\newblock \emph{arXiv preprint arXiv:2404.07839}.
+
+\bibitem[{Caruana et~al.(2004)Caruana, Niculescu-Mizil, Crew, and
+  Ksikes}]{caruana2004ensemble}
+Rich Caruana, Alexandru Niculescu-Mizil, Geoff Crew, and Alex Ksikes. 2004.
+\newblock Ensemble selection from libraries of models.
+\newblock In \emph{Proceedings of the 21st International Conference on Machine
+  Learning}.
+
+\bibitem[{Clark et~al.(2019)Clark, Lee, Chang, Kwiatkowski, Collins, and
+  Toutanova}]{clark2019boolq}
+Christopher Clark, Kenton Lee, Ming-Wei Chang, Tom Kwiatkowski, Michael
+  Collins, and Kristina Toutanova. 2019.
+\newblock {BoolQ}: Exploring the surprising difficulty of natural yes/no
+  questions.
+\newblock In \emph{Proceedings of NAACL}.
+
+\bibitem[{Clark et~al.(2018)Clark, Cowhey, Etzioni, Khot, Sabharwal, Schoenick,
+  and Tafjord}]{clark2018arc}
+Peter Clark, Isaac Cowhey, Oren Etzioni, Tushar Khot, Ashish Sabharwal, Carissa
+  Schoenick, and Oyvind Tafjord. 2018.
+\newblock Think you have solved question answering? try {ARC}, the {AI2}
+  reasoning challenge.
+\newblock \emph{arXiv preprint arXiv:1803.05457}.
+
+\bibitem[{D'Amour et~al.(2022)D'Amour, Heller, Moldovan, Adlam, Alipanahi,
+  Beutel, Chen, Deaton, Eisenstein, Hoffman
+  et~al.}]{damour2022underspecification}
+Alexander D'Amour, Katherine Heller, Dan Moldovan, Ben Adlam, Babak Alipanahi,
+  Alex Beutel, Christina Chen, Jonathan Deaton, Jacob Eisenstein, Matthew~D.
+  Hoffman, and 1 others. 2022.
+\newblock Underspecification presents challenges for credibility in modern
+  machine learning.
+\newblock \emph{Journal of Machine Learning Research}, 23(226):1--61.
+
+\bibitem[{Dao and Gu(2024)}]{dao2024mamba2}
+Tri Dao and Albert Gu. 2024.
+\newblock Transformers are {SSMs}: Generalized models and efficient algorithms
+  through structured state space duality.
+\newblock In \emph{Proceedings of ICML}.
+
+\bibitem[{De et~al.(2024)De, Smith, Fernando et~al.}]{de2024griffin}
+Soham De, Samuel~L. Smith, Anushan Fernando, and 1 others. 2024.
+\newblock Griffin: Mixing gated linear recurrences with local attention for
+  efficient language models.
+\newblock \emph{arXiv preprint arXiv:2402.19427}.
+
+\bibitem[{Dong et~al.(2024)}]{dong2024hymba}
+Xin Dong and 1 others. 2024.
+\newblock Hymba: A hybrid-head architecture for small language models.
+\newblock \emph{arXiv preprint arXiv:2411.13676}.
+
+\bibitem[{Du et~al.(2025)Du, Ngo, and Wu}]{du2025reconciling}
+Ally~Yalei Du, Dung~Daniel Ngo, and Zhiwei~Steven Wu. 2025.
+\newblock Reconciling model multiplicity for downstream decision making.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[{Fisher et~al.(2019)Fisher, Rudin, and Dominici}]{fisher2019all}
+Aaron Fisher, Cynthia Rudin, and Francesca Dominici. 2019.
+\newblock All models are wrong, but many are useful: Learning a variable's
+  importance by studying an entire class of prediction models simultaneously.
+\newblock \emph{Journal of Machine Learning Research}, 20(177):1--81.
+
+\bibitem[{Gao et~al.(2024)Gao, Tow, Abbasi, Biderman et~al.}]{gao2024lmeval}
+Leo Gao, Jonathan Tow, Baber Abbasi, Stella Biderman, and 1 others. 2024.
+\newblock \href {https://doi.org/10.5281/zenodo.12608602} {A framework for
+  few-shot language model evaluation}.
+\newblock Zenodo.
+
+\bibitem[{Geifman and El-Yaniv(2017)}]{geifman2017selective}
+Yonatan Geifman and Ran El-Yaniv. 2017.
+\newblock Selective classification for deep neural networks.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Gorbett and Jana(2026)}]{gorbett2026crossmodel}
+Matt Gorbett and Suman Jana. 2026.
+\newblock Cross-model disagreement as a label-free correctness signal.
+\newblock \emph{arXiv preprint arXiv:2603.25450}.
+
+\bibitem[{Gu and Dao(2024)}]{gu2024mamba}
+Albert Gu and Tri Dao. 2024.
+\newblock Mamba: Linear-time sequence modeling with selective state spaces.
+\newblock \emph{arXiv preprint arXiv:2312.00752}.
+
+\bibitem[{Gu et~al.(2022)Gu, Goel, and R{\'e}}]{gu2022s4}
+Albert Gu, Karan Goel, and Christopher R{\'e}. 2022.
+\newblock Efficiently modeling long sequences with structured state spaces.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[{Guo et~al.(2017)Guo, Pleiss, Sun, and
+  Weinberger}]{guo2017calibration}
+Chuan Guo, Geoff Pleiss, Yu~Sun, and Kilian~Q. Weinberger. 2017.
+\newblock On calibration of modern neural networks.
+\newblock In \emph{Proceedings of ICML}, pages 1321--1330.
+
+\bibitem[{Haghighat et~al.(2026)Haghighat, Anahideh, and
+  Rudin}]{haghighat2026resolving}
+Parian Haghighat, Hadis Anahideh, and Cynthia Rudin. 2026.
+\newblock Resolving predictive multiplicity for the rashomon set.
+\newblock In \emph{Proceedings of AAAI}.
+
+\bibitem[{Hendrycks et~al.(2021)Hendrycks, Burns, Basart, Zou, Mazeika, Song,
+  and Steinhardt}]{hendrycks2021mmlu}
+Dan Hendrycks, Collin Burns, Steven Basart, Andy Zou, Mantas Mazeika, Dawn
+  Song, and Jacob Steinhardt. 2021.
+\newblock Measuring massive multitask language understanding.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[{Hsu and Calmon(2022)}]{hsu2022rashomon}
+Hsiang Hsu and Flavio Calmon. 2022.
+\newblock Rashomon capacity: A metric for predictive multiplicity in
+  classification.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~35.
+
+\bibitem[{Katharopoulos et~al.(2020)Katharopoulos, Vyas, Pappas, and
+  Fleuret}]{katharopoulos2020transformers}
+Angelos Katharopoulos, Apoorv Vyas, Nikolaos Pappas, and Fran{\c{c}}ois
+  Fleuret. 2020.
+\newblock Transformers are {RNNs}: Fast autoregressive transformers with linear
+  attention.
+\newblock In \emph{Proceedings of ICML}.
+
+\bibitem[{Lieber et~al.(2024)Lieber, Lenz, Bata et~al.}]{lieber2024jamba}
+Opher Lieber, Barak Lenz, Hofit Bata, and 1 others. 2024.
+\newblock Jamba: A hybrid transformer-mamba language model.
+\newblock \emph{arXiv preprint arXiv:2403.19887}.
+
+\bibitem[{Lin et~al.(2022)Lin, Mihaylov, Artetxe, Wang, Chen, Simig, Ott,
+  Goyal, Bhosale, Du et~al.}]{lin2022xstorycloze}
+Xi~Victoria Lin, Todor Mihaylov, Mikel Artetxe, Tianlu Wang, Shuohui Chen,
+  Daniel Simig, Myle Ott, Naman Goyal, Shruti Bhosale, Jingfei Du, and 1
+  others. 2022.
+\newblock Few-shot learning with multilingual generative language models.
+\newblock In \emph{Proceedings of EMNLP}.
+
+\bibitem[{Marx et~al.(2020)Marx, Calmon, and Ustun}]{marx2020predictive}
+Charles Marx, Flavio Calmon, and Berk Ustun. 2020.
+\newblock Predictive multiplicity in classification.
+\newblock In \emph{Proceedings of ICML}, pages 6765--6774.
+
+\bibitem[{McCoy et~al.(2020)McCoy, Min, and Linzen}]{mccoy2020berts}
+R.~Thomas McCoy, Junghyun Min, and Tal Linzen. 2020.
+\newblock {BERTs} of a feather do not generalize together: Large variability in
+  generalization across models with similar test set performance.
+\newblock In \emph{Proceedings of the Third BlackboxNLP Workshop on Analyzing
+  and Interpreting Neural Networks for NLP}.
+
+\bibitem[{Paperno et~al.(2016)Paperno, Kruszewski, Lazaridou
+  et~al.}]{paperno2016lambada}
+Denis Paperno, Germ{\'a}n Kruszewski, Angeliki Lazaridou, and 1 others. 2016.
+\newblock The {LAMBADA} dataset: Word prediction requiring a broad discourse
+  context.
+\newblock In \emph{Proceedings of ACL}.
+
+\bibitem[{Peng et~al.(2024)}]{peng2024eagle}
+Bo~Peng and 1 others. 2024.
+\newblock Eagle and finch: {RWKV} with matrix-valued states and dynamic
+  recurrence.
+\newblock \emph{arXiv preprint arXiv:2404.05892}.
+
+\bibitem[{Qin et~al.(2023)Qin, Yang, and Zhong}]{qin2023hierarchically}
+Zhen Qin, Songlin Yang, and Yiran Zhong. 2023.
+\newblock Hierarchically gated recurrent neural network for sequence modeling.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Qin et~al.(2024)}]{qin2024hgrn2}
+Zhen Qin and 1 others. 2024.
+\newblock {HGRN2}: Gated linear {RNNs} with state expansion.
+\newblock \emph{arXiv preprint arXiv:2404.07904}.
+
+\bibitem[{Ren et~al.(2025)Ren, Liu, Lu, Shen, Liang, and Chen}]{ren2024samba}
+Liliang Ren, Yang Liu, Yadong Lu, Yelong Shen, Chen Liang, and Weizhu Chen.
+  2025.
+\newblock Samba: Simple hybrid state space models for efficient unlimited
+  context language modeling.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[{Roemmele et~al.(2011)Roemmele, Bejan, and Gordon}]{roemmele2011copa}
+Melissa Roemmele, Cosmin~Adrian Bejan, and Andrew~S. Gordon. 2011.
+\newblock Choice of plausible alternatives: An evaluation of commonsense causal
+  reasoning.
+\newblock In \emph{AAAI Spring Symposium: Logical Formalizations of Commonsense
+  Reasoning}.
+
+\bibitem[{Sakaguchi et~al.(2020)Sakaguchi, Bras, Bhagavatula, and
+  Choi}]{sakaguchi2020winogrande}
+Keisuke Sakaguchi, Ronan~Le Bras, Chandra Bhagavatula, and Yejin Choi. 2020.
+\newblock {WinoGrande}: An adversarial winograd schema challenge at scale.
+\newblock In \emph{Proceedings of AAAI}.
+
+\bibitem[{Sellam et~al.(2022)Sellam, Yadlowsky, Tenney, Wei, Saphra, D'Amour,
+  Linzen, Bastings, Turc, Eisenstein, Das, and Pavlick}]{sellam2022multiberts}
+Thibault Sellam, Steve Yadlowsky, Ian Tenney, Jason Wei, Naomi Saphra,
+  Alexander D'Amour, Tal Linzen, Jasmijn Bastings, Iulia~Raluca Turc, Jacob
+  Eisenstein, Dipanjan Das, and Ellie Pavlick. 2022.
+\newblock The {MultiBERTs}: {BERT} reproductions for robustness analysis.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[{Semenova et~al.(2022)Semenova, Rudin, and
+  Parr}]{semenova2022existence}
+Lesia Semenova, Cynthia Rudin, and Ronald Parr. 2022.
+\newblock On the existence of simpler machine learning models.
+\newblock In \emph{Proceedings of FAccT}, pages 1827--1858.
+
+\bibitem[{Sun et~al.(2023)Sun, Dong, Huang, Ma, Xia, Xue, Wang, and
+  Wei}]{sun2023retnet}
+Yutao Sun, Li~Dong, Shaohan Huang, Shuming Ma, Yuqing Xia, Jilong Xue, Jianyong
+  Wang, and Furu Wei. 2023.
+\newblock Retentive network: A successor to transformer for large language
+  models.
+\newblock \emph{arXiv preprint arXiv:2307.08621}.
+
+\bibitem[{van~der Wal et~al.(2025)van~der Wal, Lesci, M{\"u}ller-Eberstein,
+  Saphra, Schoelkopf, Zuidema, and Biderman}]{vanderwal2025polypythias}
+Oskar van~der Wal, Pietro Lesci, Max M{\"u}ller-Eberstein, Naomi Saphra, Hailey
+  Schoelkopf, Willem Zuidema, and Stella~R. Biderman. 2025.
+\newblock Polypythias: Stability and outliers across fifty language model
+  pre-training runs.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[{Waleffe et~al.(2024)Waleffe, Byeon, Riach, Norick
+  et~al.}]{waleffe2024empirical}
+Roger Waleffe, Wonmin Byeon, Duncan Riach, Brandon Norick, and 1 others. 2024.
+\newblock An empirical study of mamba-based language models.
+\newblock \emph{arXiv preprint arXiv:2406.07887}.
+
+\bibitem[{Wang et~al.(2025)Wang, Zhu, Abreu, Shan, Kergan, Pan, Chou, Li,
+  Zhang, Huang, and Eshraghian}]{wang2025hybrid}
+Dustin Wang, Rui-Jie Zhu, Steven Abreu, Yong Shan, Taylor Kergan, Yuqi Pan,
+  Yuhong Chou, Zheng Li, Ge~Zhang, Wenhao Huang, and Jason Eshraghian. 2025.
+\newblock A systematic analysis of hybrid linear attention.
+\newblock \emph{arXiv preprint arXiv:2507.06457}.
+
+\bibitem[{Watson-Daniels et~al.(2023)Watson-Daniels, Parkes, and
+  Ustun}]{watson2023predictive}
+Jamelle Watson-Daniels, David~C. Parkes, and Berk Ustun. 2023.
+\newblock Predictive multiplicity in probabilistic classification.
+\newblock In \emph{Proceedings of AAAI}, volume~37, pages 10306--10314.
+
+\bibitem[{Welbl et~al.(2017)Welbl, Liu, and Gardner}]{welbl2017sciq}
+Johannes Welbl, Nelson~F. Liu, and Matt Gardner. 2017.
+\newblock Crowdsourcing multiple choice science questions.
+\newblock In \emph{Proceedings of the 3rd Workshop on Noisy User-generated
+  Text}.
+
+\bibitem[{Wortsman et~al.(2022)Wortsman, Ilharco, Gadre, Roelofs,
+  Gontijo-Lopes, Morcos, Namkoong, Farhadi, Carmon, Kornblith, and
+  Schmidt}]{wortsman2022model}
+Mitchell Wortsman, Gabriel Ilharco, Samir~Yitzhak Gadre, Rebecca Roelofs,
+  Raphael Gontijo-Lopes, Ari~S. Morcos, Hongseok Namkoong, Ali Farhadi, Yair
+  Carmon, Simon Kornblith, and Ludwig Schmidt. 2022.
+\newblock Model soups: Averaging weights of multiple fine-tuned models improves
+  accuracy without increasing inference time.
+\newblock In \emph{Proceedings of ICML}, pages 23965--23998.
+
+\bibitem[{Yang and Wang(2026)}]{yang2026benchmark}
+Eddie Yang and Dashun Wang. 2026.
+\newblock Benchmark illusion: Disagreement among {LLMs} and its scientific
+  consequences.
+\newblock \emph{arXiv preprint arXiv:2602.11898}.
+
+\bibitem[{Yang et~al.(2025)Yang, Kautz, and
+  Hatamizadeh}]{yang2024gateddeltanet}
+Songlin Yang, Jan Kautz, and Ali Hatamizadeh. 2025.
+\newblock Gated delta networks: Improving mamba2 with delta rule.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[{Yang et~al.(2024{\natexlab{a}})Yang, Wang, Shen, Panda, and
+  Kim}]{yang2024gla}
+Songlin Yang, Bailin Wang, Yikang Shen, Rameswar Panda, and Yoon Kim.
+  2024{\natexlab{a}}.
+\newblock Gated linear attention transformers with hardware-efficient training.
+\newblock In \emph{Proceedings of ICML}, pages 56501--56523.
+
+\bibitem[{Yang et~al.(2024{\natexlab{b}})Yang, Wang, Zhang, Shen, and
+  Kim}]{yang2024deltanet}
+Songlin Yang, Bailin Wang, Yu~Zhang, Yikang Shen, and Yoon Kim.
+  2024{\natexlab{b}}.
+\newblock Parallelizing linear transformers with the delta rule over sequence
+  length.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~37.
+
+\bibitem[{Ye et~al.(2026)Ye, He, Liao, Wu, and Lu}]{ye2026provable}
+Xiaowei Ye, Xiaoyu He, Chao Liao, Chen Wu, and Pinyan Lu. 2026.
+\newblock A provable expressiveness hierarchy in hybrid linear-full attention.
+\newblock \emph{arXiv preprint arXiv:2602.01763}.
+
+\bibitem[{Zellers et~al.(2019)Zellers, Holtzman, Bisk, Farhadi, and
+  Choi}]{zellers2019hellaswag}
+Rowan Zellers, Ari Holtzman, Yonatan Bisk, Ali Farhadi, and Yejin Choi. 2019.
+\newblock {HellaSwag}: Can a machine really finish your sentence?
+\newblock In \emph{Proceedings of ACL}.
+
+\bibitem[{Zimerman et~al.(2025)Zimerman, Ali, and Wolf}]{zimerman2025unified}
+Itamar Zimerman, Ameen Ali, and Lior Wolf. 2025.
+\newblock Explaining modern gated-linear {RNN}s via a unified implicit
+  attention formulation.
+\newblock In \emph{Proceedings of ICLR}.
+
+\end{thebibliography}

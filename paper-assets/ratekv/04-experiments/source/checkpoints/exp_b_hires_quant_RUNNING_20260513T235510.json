@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp_b_hires_quant",
+  "project": "ratekv",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T23:22:41.820Z",
+    "updated_at": "2026-05-13T23:55:10.604Z",
+    "hypothesis": "PPL-guided quant-only MCKP with full bit-width action space {2,4,8,16-bit}. 之前 quant-only=uniform 是 tautology (只有 4-bit 选项)。现在 solver 可给 sensitive heads (Layer 0) 分 8/16-bit 保护, tolerant heads 分 2-bit 节省 budget。Budget=0.25 (4x 压缩). Pass: PPL < uniform 4-bit (15.45) by ≥0.5. Fail = 项目 archive.",
+    "conclusion": "negative",
+    "notes": "NEGATIVE (MCKP solver): MCKP PPL=36.92, 远差于 uniform 4-bit (15.45)。根因：PPL profiler 分辨率坍缩——112 heads 中仅 ~15 个有 non-zero 2-bit delta，其余全为 0.0。Solver 错误分配 75/112 heads 到 2-bit，实际 memory ratio 仅 0.18（target 0.25）。\n\nBUT 手工策略验证概念成立：\n- S1 (L0@8bit, rest@4bit, budget=0.259): PPL=10.62 (+4.82 vs uniform)\n- Budget-matched (L0@8bit, 8×least-sensitive@2bit, rest@4bit, budget=0.25): PPL=11.69 (+3.76 vs uniform)\n- S2 (L0@16bit, 24@2bit, rest@4bit): PPL=17.74 (-2.30, 2-bit 太多)\n\n结论：非均匀分配概念被手工实验强力验证。问题在 profiler 信号质量（calibration PPL delta 对大部分 head 无区分度），而非优化框架本身。",
+    "spec": {
+      "command": "python full_bitwidth_mckp.py + budget_matched_test.py + manual_strategy_test.py",
+      "server": "westd-37397",
+      "gpu": "cuda:0",
+      "data_path": "calibration_data.json + WikiText-2",
+      "data_count": "16 calibration seqs x 512 tokens + WikiText-2 298938 tokens eval",
+      "model_name": "Qwen/Qwen2.5-7B",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-13T23:55:10.626298+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,27 @@
+{
+  "exp_id": "mistral_uniform_reeval",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:06:18.986Z",
+    "updated_at": "2026-05-15T15:07:03.121Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python -u run_mistral_uniform_fix.py",
+      "server": "westd-37397",
+      "data_path": "/root/ratekv/artifacts/mistral_hires_constrained_results.json",
+      "data_count": 1,
+      "model_name": "Mistral-7B-v0.3",
+      "seed": 42,
+      "note": "Fix uniform 4-bit eval: bits=0.25 bug -> bits=4",
+      "checkpoint_path": "/root/ratekv/artifacts/mistral_hires_constrained_results.json",
+      "log_path": "/tmp/mistral_uniform_fix.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T15:07:03.121Z"
+  },
+  "timestamp": "2026-05-15T15:07:03.269181+00:00",
+  "trigger": "update_registry"
+}

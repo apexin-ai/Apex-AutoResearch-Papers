@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_storycloze_investigation_20260519T143651_result.json",
     "occurrence": 1,
-    "bytes": 2546,
-    "sha256": "0bc9b85ad55284058e5e65e15c98aeb5b3d24c1377f03188baeff0f0c06dc58d"
+    "bytes": 2545,
+    "sha256": "1adbdcd7a47129e96e47cf9fcbac0e90e64bbaffc30c904a0f22792536bc64f8"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,474 @@
+{
+  "figures_found": [
+    {
+      "number": "1",
+      "env_type": "figure",
+      "image_path": "figures/fig1_decoupling_hero.pdf",
+      "caption": "Aggregate variance and per-example overlap follow independent trajectories (helped: correct only with attention; hurt: correct only without). (a) Cross-architecture standard deviation on LAMBADA decre",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": true,
+      "source_file": "sections/introduction.tex"
+    },
+    {
+      "number": "2",
+      "env_type": "figure",
+      "image_path": "figures/fig_per_example_bars.pdf",
+      "caption": "Per-example effects of adding attention (pure $\\to$ h3-1) on LAMBADA at 1.3B scale. Helped: correct only in the hybrid; hurt: correct only in the pure model. HGRN2 is the only architecture with a net ",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "sections/experiments.tex"
+    },
+    {
+      "number": "3",
+      "env_type": "figure",
+      "image_path": "figures/fig2_task_specificity.pdf",
+      "caption": "Spearman $\\rho$ between attention ratio and cross-architecture $\\sigma$ for each benchmark at 1.3B scale. LAMBADA ($\\rho = -1.0$; BCa 95\\% CI $[-1.0,\\,-0.7]$, heuristic) is the only benchmark with a n",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "sections/experiments.tex"
+    },
+    {
+      "number": "4",
+      "env_type": "figure*",
+      "image_path": "figures/jaccard_heatmap_5arch.pdf",
+      "caption": "Pairwise Jaccard heatmap across five architectures (340M, h3-1), where helped (hurt) examples are those correct only with (without) attention. Upper triangle: $J_{\\text{helped}}$; lower triangle: $J_{",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "sections/experiments.tex"
+    },
+    {
+      "number": "5",
+      "env_type": "figure",
+      "image_path": "figures/fig4_jaccard_saturation.pdf",
+      "caption": "Cross-benchmark Jaccard saturation. Mean pairwise $\\bar{J}$ (averaged over helped and hurt sets) remains flat across attention ratios on all four benchmarks (all $\\rho \\leq 0.80$, $p \\geq .333$), conf",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "sections/experiments.tex"
+    },
+    {
+      "number": "6",
+      "env_type": "figure",
+      "image_path": "figures/fig_jaccard_hierarchy.pdf",
+      "caption": "Jaccard hierarchy on LAMBADA (1.3B). Cross-architecture overlap ($\\bar{J} \\approx 0.09$) is $2\\times$ the independence baseline but only one-third of within-architecture overlap ($\\bar{J} \\approx 0.33",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "sections/experiments.tex"
+    }
+  ],
+  "results": [
+    {
+      "number": "1",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "2",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "3",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "4",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "5",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "6",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    }
+  ],
+  "post_review": {
+    "compile": {
+      "success": true,
+      "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/_latex_iso_a0e0ho4y/main.pdf"
+    },
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{app:normalized_es} has no matching \\label",
+          "location": "author_response_r7.tex:253"
+        },
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{app:seed_calibration} has no matching \\label",
+          "location": "main.tex:54"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "2 critical, 1 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper",
+      "sections": [
+        {
+          "file": "arr_checklist.tex",
+          "role": "other",
+          "num_numbers": 2,
+          "num_cites": 3
+        },
+        {
+          "file": "author_response.tex",
+          "role": "other",
+          "num_numbers": 66,
+          "num_cites": 0
+        },
+        {
+          "file": "author_response_r7.tex",
+          "role": "other",
+          "num_numbers": 61,
+          "num_cites": 0
+        }
+      ],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'ali2025hidden' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'arora2024based' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'arora2024zoology' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'basu2026routing' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'biderman2023pythia' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'black2022model' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'botev2024recurrentgemma' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'brown2005diversity' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'clark2018arc' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'cooper2024arbitrariness' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'damour2022underspecification' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'dao2024mamba2' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'de2024griffin' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'dodge2020finetuning' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'dong2024hymba' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'du2025reconciling' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'fehlauer2025convergence' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'fisher2019all' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'fort2019deep' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'fu2023hungry' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'ganesh2025systemizing' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'gorbett2026crossmodel' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'gu2022s4' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'gu2024mamba' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'guo2017calibration' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'haghighat2026resolving' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'hsu2022rashomon' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'jain2025allocation' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'katharopoulos2020transformers' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'kuncheva2003measures' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'lahoti2026mamba3' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'lieber2024jamba' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'mccoy2020berts' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'milanifard2016launch' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'niven2019probing' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'paperno2016lambada' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'peng2024eagle' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'poli2023hyena' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'qin2023hierarchically' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'qin2024hgrn2' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'ren2024samba' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'robinson1950ecological' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'sellam2022multiberts' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'semenova2022existence' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'sun2023retnet' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'swayamdipta2020dataset' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'vanderwal2025polypythias' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'waleffe2024empirical' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'watson2023predictive' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'wortsman2022model' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'yang2024gateddeltanet' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'ye2026provable' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "arr_checklist": [
+              "\\alpha",
+              "\\times"
+            ],
+            "author_response": [
+              "\\alpha",
+              "\\approx",
+              "\\bar",
+              "\\geq",
+              "\\leq",
+              "\\rho",
+              "\\sigma",
+              "\\sim",
+              "\\times"
+            ],
+            "author_response_r7": [
+              "\\Delta",
+              "\\alpha",
+              "\\approx",
+              "\\bar",
+              "\\cap",
+              "\\emptyset",
+              "\\geq",
+              "\\kappa",
+              "\\leq",
+              "\\log",
+              "\\max",
+              "\\neq",
+              "\\rho",
+              "\\sigma",
+              "\\sim",
+              "\\times",
+              "\\to"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 52,
+        "info": 1
+      }
+    }
+  },
+  "backup_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/_figure_backups/20260524_093814",
+  "error": "",
+  "timestamp": "2026-05-24T09:52:11.053830+00:00"
+}

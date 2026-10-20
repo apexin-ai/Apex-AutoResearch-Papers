@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_internlm2_log_check_20260516T025129_result.json",
     "occurrence": 1,
-    "bytes": 845,
-    "sha256": "414fe2d3a7c21926977d6faac867ee43fe69a21cb86733fa40f61a49a9a1a8dc"
+    "bytes": 844,
+    "sha256": "669288ccfb08779675f42a81ac1c5271e90eafca855d426d37107c46fc4ddc9c"
   },
   "statistics": {
     "messages": 1,

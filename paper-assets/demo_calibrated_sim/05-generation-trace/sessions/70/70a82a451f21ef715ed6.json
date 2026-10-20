@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0",
+  "id": "70a82a451f21ef715ed6",
+  "project": "demo_calibrated_sim",
+  "kind": "worker",
+  "title": "eval qwen14b bcp 001",
+  "task_key": "worker_eval_qwen14b-bcp-001_20260513T072703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen14b-bcp-001_20260513T072703.log",
+    "occurrence": 1,
+    "bytes": 2143898,
+    "sha256": "68a88fa0761b2998b96dbb2c0735311e12b2b8b61adbb851c784d42faa9f320f"
+  },
+  "statistics": {
+    "messages": 1470,
+    "user_turns": 1,
+    "tool_calls": 593,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 276,
+      "tool_call": 593,
+      "tool_result": 593,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 624,
+      "chunks": [
+        {
+          "path": "70a82a451f21ef715ed6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "70a82a451f21ef715ed6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "70a82a451f21ef715ed6-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "70a82a451f21ef715ed6-part-0004.json",
+          "message_count": 84
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 846,
+      "chunks": [
+        {
+          "path": "70a82a451f21ef715ed6-part-0004.json",
+          "message_count": 96
+        },
+        {
+          "path": "70a82a451f21ef715ed6-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "70a82a451f21ef715ed6-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "70a82a451f21ef715ed6-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "70a82a451f21ef715ed6-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "70a82a451f21ef715ed6-part-0009.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-qwen14b-bcp-001.md"
+}

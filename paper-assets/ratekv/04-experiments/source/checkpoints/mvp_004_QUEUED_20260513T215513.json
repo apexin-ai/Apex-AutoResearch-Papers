@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp_004",
+  "project": "ratekv",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T21:55:09.878Z",
+    "updated_at": "2026-05-13T21:55:13.008Z",
+    "hypothesis": "Fresh profiling: per-KV-head eviction/quantization crossover on Qwen2.5-7B (112 KV heads), joint MCKP 优于 quant-only ≥0.5 PPL. 使用新 calibration 数据 (拼接 WikiText-103, ≥1000 tokens/sample), 删除缓存 profiles.json 强制重新 profile."
+  },
+  "timestamp": "2026-05-13T21:55:13.044252+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,25 @@
+{
+  "exp_id": "yi15_hires_bf16_2bitonly",
+  "project": "ratekv",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T19:15:01.523Z",
+    "updated_at": "2026-05-14T20:13:07.055Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_yi15_hires_bf16_2bitonly.py --model /root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B --gpu cuda:1",
+      "server": "westd-37397",
+      "data_path": "/root/ratekv/calibration_hires.json",
+      "data_count": 64,
+      "model_name": "Yi-1.5-9B",
+      "seed": 42
+    },
+    "pid": 252214,
+    "hypothesis": "Yi-1.5-9B hires bf16 2-bit-only profiling: 测量 bf16 下 top-5% concentration。bf16 是 concentration 上界（bf16 bug 抬高 concentration），如果 hires bf16 仍 < 0.50 则结论定论。",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T20:13:07.167774+00:00",
+  "trigger": "update_registry"
+}

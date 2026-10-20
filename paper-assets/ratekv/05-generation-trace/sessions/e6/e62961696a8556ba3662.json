@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_investigate_concentration_discrepancy_20260514T200222_result.json",
     "occurrence": 1,
-    "bytes": 828,
-    "sha256": "d78b5c01c1e032ce59e9937927fa07b231df814ddd2f63669eb67ecf547e6784"
+    "bytes": 827,
+    "sha256": "22dc4457e26b73ff29dcf0a88d408dc00aee40193d21495450ed2f95edad2472"
   },
   "statistics": {
     "messages": 1,

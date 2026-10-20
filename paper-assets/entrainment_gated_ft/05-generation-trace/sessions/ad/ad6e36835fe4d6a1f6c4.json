@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_hellaswag-acc-norm_20260521T101458_result.json",
     "occurrence": 1,
-    "bytes": 2922,
-    "sha256": "a808c1b77c9a2e0f5e630a102c181939ba288d3552ba6a58716192c3f5e78ae7"
+    "bytes": 2921,
+    "sha256": "4232a8d6b948f366c36202c02e78a78b3d57c9bfb6a5002da79ee0d33ab74ca0"
   },
   "statistics": {
     "messages": 1,

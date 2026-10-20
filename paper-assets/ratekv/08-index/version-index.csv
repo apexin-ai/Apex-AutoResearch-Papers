@@ -1,10 +1,19 @@
-﻿Source archive,Candidate version path in archive,Bytes,Status note
-entrainment_gated_ft/workspace.tar.gz,artifacts/dream_reports/dream_20260514T002109/median/paper.pdf,144111,Archive candidate; official submission/public version not verified
-entrainment_gated_ft/workspace.tar.gz,artifacts/dream_reports/dream_20260514T002109/worst/paper.pdf,214049,Archive candidate; official submission/public version not verified
-entrainment_gated_ft/workspace.tar.gz,artifacts/dream_reports/dream_20260514T002109/best/paper.pdf,202626,Archive candidate; official submission/public version not verified
-entrainment_gated_ft/workspace.tar.gz,artifacts/dream_reports/dream_20260515T085855/median/paper.pdf,217766,Archive candidate; official submission/public version not verified
-entrainment_gated_ft/workspace.tar.gz,artifacts/dream_reports/dream_20260515T085855/worst/paper.pdf,158564,Archive candidate; official submission/public version not verified
-entrainment_gated_ft/workspace.tar.gz,artifacts/dream_reports/dream_20260515T085855/best/paper.pdf,279740,Archive candidate; official submission/public version not verified
-entrainment_gated_ft/workspace.tar.gz,artifacts/dream_reports/dream_20260516T021448/median/paper.pdf,254446,Archive candidate; official submission/public version not verified
-entrainment_gated_ft/workspace.tar.gz,artifacts/dream_reports/dream_20260516T021448/worst/paper.pdf,251484,Archive candidate; official submission/public version not verified
-entrainment_gated_ft/workspace.tar.gz,artifacts/dream_reports/dream_20260516T021448/best/paper.pdf,212291,Archive candidate; official submission/public version not verified
+archive_path,source_bytes,output_path
+figures/paper/fig3_allocation_comparison.pdf,20551,01-manuscript/source/figures/paper/fig3_allocation_comparison.pdf
+figures/paper/fig1_head_delta_heatmap.pdf,34672,01-manuscript/source/figures/paper/fig1_head_delta_heatmap.pdf
+figures/paper/fig2_compounding_curve.pdf,17735,01-manuscript/source/figures/paper/fig2_compounding_curve.pdf
+docs/paper/figures/fig3_allocation_comparison.pdf,20551,01-manuscript/source/docs/paper/figures/fig3_allocation_comparison.pdf
+docs/paper/figures/fig_compounding_curves.pdf,23567,01-manuscript/source/docs/paper/figures/fig_compounding_curves.pdf
+docs/paper/figures/fig_concentration_scatter.pdf,29808,01-manuscript/source/docs/paper/figures/fig_concentration_scatter.pdf
+docs/paper/figures/fig1_head_delta_heatmap.pdf,57855,01-manuscript/source/docs/paper/figures/fig1_head_delta_heatmap.pdf
+docs/paper/figures/fig2_compounding_curve.pdf,17735,01-manuscript/source/docs/paper/figures/fig2_compounding_curve.pdf
+docs/paper/main.pdf,401475,01-manuscript/source/docs/paper/main.pdf
+artifacts/dream_reports/dream_20260514T002109/median/paper.pdf,144111,01-manuscript/source/artifacts/dream_reports/dream_20260514T002109/median/paper.pdf
+artifacts/dream_reports/dream_20260514T002109/worst/paper.pdf,214049,01-manuscript/source/artifacts/dream_reports/dream_20260514T002109/worst/paper.pdf
+artifacts/dream_reports/dream_20260514T002109/best/paper.pdf,202626,01-manuscript/source/artifacts/dream_reports/dream_20260514T002109/best/paper.pdf
+artifacts/dream_reports/dream_20260515T085855/median/paper.pdf,217766,01-manuscript/source/artifacts/dream_reports/dream_20260515T085855/median/paper.pdf
+artifacts/dream_reports/dream_20260515T085855/worst/paper.pdf,158564,01-manuscript/source/artifacts/dream_reports/dream_20260515T085855/worst/paper.pdf
+artifacts/dream_reports/dream_20260515T085855/best/paper.pdf,279740,01-manuscript/source/artifacts/dream_reports/dream_20260515T085855/best/paper.pdf
+artifacts/dream_reports/dream_20260516T021448/median/paper.pdf,254446,01-manuscript/source/artifacts/dream_reports/dream_20260516T021448/median/paper.pdf
+artifacts/dream_reports/dream_20260516T021448/worst/paper.pdf,251484,01-manuscript/source/artifacts/dream_reports/dream_20260516T021448/worst/paper.pdf
+artifacts/dream_reports/dream_20260516T021448/best/paper.pdf,212291,01-manuscript/source/artifacts/dream_reports/dream_20260516T021448/best/paper.pdf

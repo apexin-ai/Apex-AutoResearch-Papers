@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_diagnose_mistral_distortion_zero_20260515T185328_result.json",
     "occurrence": 1,
-    "bytes": 1695,
-    "sha256": "8cb666d003dc8d031e19edeb45a7eba15e2a328074e43644385a6c8cb4237d85"
+    "bytes": 1694,
+    "sha256": "73fd32d7b72e7319341e30d6d33a131407d3b95cfe73a9e5fb0e8b1c0e3275bb"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,34 @@
+{
+  "exp_id": "w9_compounding_scaling",
+  "project": "ratekv",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T04:36:08.115Z",
+    "updated_at": "2026-05-15T05:04:32.990Z",
+    "hypothesis": "审稿 W9 WARNING: 量化 non-additive compounding effect。在 Qwen2.5-7B 上同时把 n 个 head 设为 2-bit (n=1..64)，测量 joint vs sum-of-individual PPL degradation，计算 super-additive ratio。",
+    "notes": "Director 追加要求：完成 top-k 后需补 random-k 控制组 + per-layer 分布 + 扩展 Llama/Mistral + 拟合 f(n) empirical model。总 GPU 时间 ~5-10h。",
+    "spec": {
+      "command": "python run_w9_compounding_scaling.py",
+      "server": "westd-37397",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "291410",
+      "log_path": "/root/ratekv/w9_compounding_scaling.log",
+      "submitted_at": "2026-05-15T05:04:22.871Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "calibration_hires.json",
+      "data_count": 64,
+      "model_name": "Qwen2.5-7B",
+      "seed": 0,
+      "checkpoint_path": "w9_compounding_scaling_results.json"
+    }
+  },
+  "timestamp": "2026-05-15T05:04:33.215269+00:00",
+  "trigger": "update_registry"
+}

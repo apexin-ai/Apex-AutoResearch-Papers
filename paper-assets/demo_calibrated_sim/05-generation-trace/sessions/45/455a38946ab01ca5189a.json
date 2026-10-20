@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "455a38946ab01ca5189a",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "research literature scan retry",
+  "task_key": "worker_research_literature-scan-retry_20260513T054551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-scan-retry_20260513T054551_result.json",
+    "occurrence": 1,
+    "bytes": 1528,
+    "sha256": "8132f895cec822b4aae8b5075eecb76cde566921430fd54c4a7a4cea95a01c2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "更新完成。总结：\n\n## 文献扫描结果（2026-05-13）\n\n**新增 4 篇论文，无 direct competitor。DemoCalib 新颖性不变。**\n\n### 重点关注\n\n**sim2real2026gap** (arXiv 2603.11245) — \"Mind the Sim2Real Gap in User Simulation for Agentic Tasks\"\n- 首次在 τ-bench 上跑 451 名真人用户，量化 sim2real 行为差距\n- 结论：LLM 模拟器\"过度合作、风格单一、缺乏真实挫败感\"，虚增 agent 成功率\n- **与我们最接近**：同一问题空间（τ-bench 模拟器保真度），但只诊断不开药。DemoCalib 的 DPO 校准是对他们发现的直接解决方案。论文中应作为核心 motivation 引用。\n\n### 其他新增\n\n| ID | 论文 | 类别 | 与我们的关系 |\n|---|---|---|---|\n| khan2026decoding | Decoding-Time Debiasing via PRM (2605.02348, May 4) | method-component | 互补：推理时去偏 vs 我们训练时 DPO |\n| gupta2025endive | EnDive: Cross-Dialect Benchmark (EMNLP 2025 Findings) | evaluation | 覆盖 AAVE + Indian English，可引用为评估参照 |\n| nakash2026divert | DIVERT: Diversity-Guided User Simulation (2604.21480) | background | 评估效率优化，间接相关 |\n\n### 未收录但值得留意\n\n- ϕ-DPO (2602.22601)：Fairness DPO 变体，但针对多模态持续学习\n- Intra-Fairness Dynamics (2602.16438)：DPO 做公平性对齐时的 spillover 效应，写 limitation 时可引用\n- Linguistic Stereotypes (2603.18729)：SAE vs AAE 在多 agent 架构中的刻板印象分析"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-scan-retry.md"
+}

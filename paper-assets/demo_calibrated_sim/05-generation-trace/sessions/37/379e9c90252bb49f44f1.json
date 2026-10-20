@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "379e9c90252bb49f44f1",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "code fix question detector",
+  "task_key": "worker_code_fix-question-detector_20260512T124406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-question-detector_20260512T124406_result.json",
+    "occurrence": 1,
+    "bytes": 1494,
+    "sha256": "e8c0f69c27a57820be9f3fa00b5f9fe022ed9ef7b5a52d234e1c305ebc306e34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Code looks clean. Here's the summary:\n\n## 修改结果\n\n**文件**: `artifacts/code/behavioral_fingerprint.py` — `QuestionDetector` 内部逻辑重写，接口不变。\n\n### 新增过滤层\n| 过滤器 | 正则 | 作用 |\n|--------|------|------|\n| `_MODAL_REQUEST_RE` | `^(Can\\|Could\\|Would\\|Will\\|Shall\\|May) (you\\|we\\|I) .+\\?$` | 过滤 \"Can you check my order?\" 类请求 |\n| `_CONFIRMATION_RE` | `^Aux that (correct\\|right\\|ok\\|work\\|sound...)...\\?$` | 过滤 \"Is that correct?\" 类确认 |\n| `_IS_THERE_CHANCE_RE` | `^Is there any chance you could...\\?` | 过滤伪装成 yes/no 的礼貌请求 |\n| `_AUX_YOU_RE` | `^Aux you ...` | 过滤 \"Do you have access?\" 类请求 |\n| `_WH_QUESTION_RE` (增强) | 支持前导连词 And/But/So... | 捕获 \"And what payment methods...?\" |\n\n### 82-turn 验证结果\n\n| 指标 | OLD | NEW |\n|------|-----|-----|\n| 检出 turns | 42/82 (51.2%) | 2/82 (2.4%) |\n| Precision | ~19% | **100%** (2/2 均为真实信息查询) |\n| 检出内容 | — | \"What color options are available for the glass bookshelf?\" + \"And what payment methods do you offer for the refund?\" |\n\n### H1 阈值影响\n\n**H1 (question_rate ≥ 15%) 不再成立。** 3-task quick test 基线：\n\n- OLD: 7/7 traces PASS，mean = 68.8%\n- NEW: 3/7 traces PASS，mean = 11.4%\n\nH1 阈值需要从 15% 下调（建议 ≥ 5%）来适配修正后的检测器，否则多数 trace 会被误判为\"无问题行为\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-question-detector.md"
+}

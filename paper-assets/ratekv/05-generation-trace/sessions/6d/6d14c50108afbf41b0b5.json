@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_p0-2-2bit-cliff_20260513T221743_result.json",
     "occurrence": 1,
-    "bytes": 3027,
-    "sha256": "e28fb4104c4e6946dfc61f26921cda2265a80a4c3c7b3d3aad0b3593f5b6b431"
+    "bytes": 3026,
+    "sha256": "e7927f749e3968bdaa1a3da4c6a4a2cef0245160f13956f229c98597e1f7f048"
   },
   "statistics": {
     "messages": 1,

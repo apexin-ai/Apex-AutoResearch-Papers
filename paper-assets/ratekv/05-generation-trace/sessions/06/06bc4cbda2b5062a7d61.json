@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_transfer_scp_figures_to_local_20260514T074635_result.json",
     "occurrence": 1,
-    "bytes": 182,
-    "sha256": "8d3db8e8da91b225fa08a90b9a605755a56219080360beb66562431b99070fff"
+    "bytes": 181,
+    "sha256": "76f7c01fbfbfcabadb7bcef13914b10ac77f562e86f8357ede40b1d482332204"
   },
   "statistics": {
     "messages": 1,

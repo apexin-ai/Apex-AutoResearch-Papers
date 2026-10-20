@@ -1,0 +1,28 @@
+{
+  "exp_id": "cross_domain_calibration_v2",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:06:12.622Z",
+    "updated_at": "2026-05-15T15:13:43.668Z",
+    "spec": {
+      "hypothesis": "Rerun plan_010 with verified C4 data (D032). Bidirectional calibration-eval cross: (1) Cal=C4 → eval=WT2, (2) Cal=WT2 → eval=C4. Report PPL + per-head allocation agreement rate.",
+      "plan_id": "plan_010",
+      "claim": [
+        1,
+        2
+      ],
+      "model_name": "Qwen2.5-7B",
+      "server": "westd-37397",
+      "parent": "cross_domain_calibration"
+    },
+    "notes": "不再需要。Director D038 决定 c4_rerun_d032 已覆盖 plan_010 全部需求（C4↔WT2 双向 + agreement rate 96.4%）。Llama/Mistral 跨域不需要，n=1 模型足够。",
+    "conclusion": "killed",
+    "completed_at": "2026-05-15T15:13:43.668Z"
+  },
+  "timestamp": "2026-05-15T15:13:43.818785+00:00",
+  "trigger": "update_registry"
+}

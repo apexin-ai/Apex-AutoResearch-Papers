@@ -1,0 +1,106 @@
+{
+  "project": "demo_calibrated_sim",
+  "code_count": 161,
+  "data_count": 167,
+  "env_count": 0,
+  "tex_count": 6,
+  "bib_count": 0,
+  "review_count": 0,
+  "validation_count": 2,
+  "contribution_count": 3,
+  "chat_count": 37,
+  "worker_count": 160,
+  "trace_count": 203,
+  "trace_bytes": 33864062,
+  "maintenance_count": 36,
+  "provenance_count": 0,
+  "submission_count": 0,
+  "license_count": 1,
+  "paper_pdf": "paper.pdf",
+  "paper_sha256": "41423942f9011840f0e781789f057de99c437cf71a37f4a1492361b82e41c137",
+  "title": "Why Calibration Fails: A Taxonomy of Failure Modes in Dialect-Aware LLM User Simulation",
+  "pages": 9,
+  "status_marker": "",
+  "version_count": 6,
+  "version_paths": [
+    "artifacts/dream_reports/dream_20260513T163256/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260513T163256/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260513T163256/best/paper.pdf",
+    "artifacts/dream_reports/dream_20260513T153032/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260513T153032/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260513T153032/best/paper.pdf"
+  ],
+  "archive_rel": "entrainment_gated_ft/workspace.tar.gz",
+  "archive_note": "Archive scan completed",
+  "archive_error": null,
+  "source_s3": {
+    "bucket": "agent-ml-research-project-backups-20260531",
+    "key": "entrainment_gated_ft/workspace.tar.gz",
+    "sha256": "6c9d78da9ac8f06b5b71dd682841aa662127685bd00477d310d927c818bf9418",
+    "bytes": 328475861,
+    "etag": "\"d6bb644e973d957bced6390b48cc74ab-40\"",
+    "modified": "2026-05-31T17:31:29+00:00"
+  },
+  "academic_record": {
+    "date": "2026-05-31",
+    "record": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified."
+  },
+  "criteria": [
+    {
+      "name": "Manuscript and versions",
+      "status": "Available",
+      "evidence": "6 source files; 6 PDF candidates",
+      "gap": "Candidate filenames do not establish official submission or publication.",
+      "path": "01-manuscript/"
+    },
+    {
+      "name": "Academic status",
+      "status": "Unverified",
+      "evidence": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified.",
+      "gap": "Official submission, acceptance, and publication were not independently checked.",
+      "path": "07-maintenance/"
+    },
+    {
+      "name": "AI / human contribution",
+      "status": "Partial",
+      "evidence": "3 task/role records",
+      "gap": "User and assistant roles do not identify people or establish author contributions.",
+      "path": "02-contributions/"
+    },
+    {
+      "name": "Generation trace",
+      "status": "Organized",
+      "evidence": "37 conversations; 160 worker logs/results; 203 source files",
+      "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
+      "path": "05-generation-trace/"
+    },
+    {
+      "name": "Reproduction code",
+      "status": "Available",
+      "evidence": "161 code/configuration files; 0 environment manifests",
+      "gap": "The code is archived; experiments were not rerun for this release.",
+      "path": "03-code/"
+    },
+    {
+      "name": "Experiments and environment",
+      "status": "Partial",
+      "evidence": "167 data/result files",
+      "gap": "Original data permissions and completeness require project-specific review.",
+      "path": "04-experiments/"
+    },
+    {
+      "name": "Validation evidence",
+      "status": "Partial",
+      "evidence": "0 internal review records; 2 other audit records",
+      "gap": "Internal reviews are project evidence, not independently verified external reviews.",
+      "path": "06-validation/"
+    },
+    {
+      "name": "Maintenance",
+      "status": "Partial",
+      "evidence": "36 project documentation files; 1 license files",
+      "gap": "A project license file applies only within its stated scope.",
+      "path": "07-maintenance/"
+    }
+  ]
+}

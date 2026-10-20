@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_a_targeted_hybrid",
+  "project": "ratekv",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T23:22:39.045Z",
+    "updated_at": "2026-05-13T23:29:14.280Z",
+    "hypothesis": "Targeted Hybrid: Layer 0 cliff heads 用 eviction (因对 quant 极敏感), 其余 108 heads 用 4-bit quant. 假设: Layer 0 eviction 损伤 < Layer 0 量化损伤, 整体 PPL 优于 uniform 4-bit (15.45)."
+  },
+  "timestamp": "2026-05-13T23:29:14.302330+00:00",
+  "trigger": "update_registry"
+}

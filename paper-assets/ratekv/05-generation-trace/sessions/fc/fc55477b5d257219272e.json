@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_compounding_figure_integration_20260515T194603_result.json",
     "occurrence": 1,
-    "bytes": 783,
-    "sha256": "deca9fa6d28cc719bed49f04b393d6a4375a431fdfe468ecaa3c06944528b8db"
+    "bytes": 782,
+    "sha256": "414195e0f482c80bb5458565781d89429cb0f33ff6083b44bd75c3c7f2441ddd"
   },
   "statistics": {
     "messages": 1,

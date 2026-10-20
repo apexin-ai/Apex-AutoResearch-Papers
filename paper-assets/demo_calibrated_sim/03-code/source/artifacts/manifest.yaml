@@ -1,0 +1,301 @@
+- id: art_20260512_496b95
+  name: tau_bench_analysis
+  type: report
+  description: τ-Bench 代码分析报告：115 test + 500 train 任务，评估机制（DB状态哈希+文本匹配），DemoCalib
+    hook 点（build_system_prompt / solve / calculate_reward）
+  path: projects/demo_calibrated_sim/artifacts/_project/report/tau_bench_analysis.md
+  url: null
+  project: demo_calibrated_sim
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T10:20:15.021045+00:00'
+  tags:
+  - phase-a
+  - tau-bench
+  - survey
+- id: art_20260512_12d812
+  name: behavioral_fingerprint
+  type: intermediate
+  description: 行为指纹提取器：QuestionDetector + PolitenessDetector + BehavioralFingerprint
+    + analyze_traces，16/16 测试通过
+  path: projects/demo_calibrated_sim/artifacts/_project/intermediate/behavioral_fingerprint.py
+  url: null
+  project: demo_calibrated_sim
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T10:20:17.856229+00:00'
+  tags:
+  - phase-a
+  - fingerprint
+  - code
+- id: art_20260512_68730e
+  name: behavioral_fingerprint_tests
+  type: intermediate
+  description: 行为指纹提取器测试：16 个 pytest 用例，覆盖问题检测、礼貌检测、指纹提取、批量分析及边界情况
+  path: projects/demo_calibrated_sim/artifacts/_project/intermediate/test_behavioral_fingerprint.py
+  url: null
+  project: demo_calibrated_sim
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T10:20:20.747950+00:00'
+  tags:
+  - phase-a
+  - fingerprint
+  - test
+- id: art_20260512_cca389
+  name: bcp_prompts
+  type: intermediate
+  description: BCP prompt 模板：base_user_simulator.txt + bcp_user_simulator.txt（含占位符）+
+    bcp_variants.yaml（6组参数）+ prompt_loader.py
+  path: projects/demo_calibrated_sim/artifacts/_project/intermediate/prompt_loader.py
+  url: null
+  project: demo_calibrated_sim
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T10:20:23.386176+00:00'
+  tags:
+  - phase-b
+  - bcp
+  - prompts
+- id: art_20260512_791bf6
+  name: run_mvp_experiment
+  type: intermediate
+  description: MVP 主实验脚本：vLLM 启动 → monkey-patch τ-Bench user simulator → uncalibrated
+    baseline + BCP variants → 行为指纹提取 → H-gate 评估 → mvp_results.json
+  path: projects/demo_calibrated_sim/artifacts/_project/intermediate/run_mvp_experiment.py
+  url: null
+  project: demo_calibrated_sim
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T10:26:46.181412+00:00'
+  tags:
+  - phase-a
+  - phase-b
+  - mvp
+  - integration
+- id: art_20260512_23489c
+  name: h_gate_evaluator
+  type: intermediate
+  description: H1/H2/H3 gate 评估器：H1(行为偏差存在性) H2(BCP校准效果≥30%相对改善) H3(任务完成率保持≥80%)，所有阈值可配置
+  path: projects/demo_calibrated_sim/artifacts/_project/intermediate/h_gate_evaluator.py
+  url: null
+  project: demo_calibrated_sim
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T10:26:49.530252+00:00'
+  tags:
+  - mvp
+  - evaluation
+  - h-gate
+- id: art_20260512_fa3f5c
+  name: literature_map
+  type: report
+  description: 初始文献地图：20篇论文（0 直接竞品确认新颖性，4 foundation，7 method-component，5 evaluation，5
+    background），8篇高相关
+  path: projects/demo_calibrated_sim/artifacts/_project/report/literature_map.yaml
+  url: null
+  project: demo_calibrated_sim
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T10:36:25.187070+00:00'
+  tags:
+  - literature
+  - novelty
+  - survey
+- id: art_20260512_02191c
+  name: mvp_contingency
+  type: report
+  description: MVP 三场景预案：BCP 部分成功 / BCP 完全失败 / Baseline 率异常，含决策树和时间线
+  path: projects/demo_calibrated_sim/artifacts/_project/report/mvp_contingency.md
+  url: null
+  project: demo_calibrated_sim
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T12:34:57.533868+00:00'
+  tags:
+  - mvp
+  - contingency
+  - planning
+- id: art_20260512_e4c3b6
+  name: Mistral-7B-Instruct-v0.3 Verification Report
+  type: report
+  description: Verification that Mistral-7B-Instruct-v0.3 model exists and is complete
+    on cqa1-21977 server. 3 safetensors shards (14G), tokenizer loads correctly (vocab_size=32768).
+  path: projects/demo_calibrated_sim/artifacts/_project/report/mistral_verify_report.txt
+  url: null
+  project: demo_calibrated_sim
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T22:55:54.014622+00:00'
+  tags:
+  - mistral
+  - model-verification
+  - infra
+- id: art_20260512_a44f97
+  name: eval_mistral_bcp.sh
+  type: intermediate
+  description: Mistral-7B-Instruct-v0.3 BCP evaluation shell script for tau-Bench
+    retail benchmark
+  path: projects/demo_calibrated_sim/artifacts/_project/intermediate/eval_mistral_bcp_readme.txt
+  url: null
+  project: demo_calibrated_sim
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T23:00:37.401581+00:00'
+  tags:
+  - mistral
+  - bcp
+  - eval
+  - tau-bench
+- id: art_20260513_b8f3fe
+  name: Plan B Evidence Table
+  type: report
+  description: BCP 失败机制证据表：4 个失败机制（FM1-FM4）按实验数据分类，含跨模型/跨方法汇总。Plan B empirical analysis
+    论文核心素材。
+  path: projects/demo_calibrated_sim/artifacts/_project/report/plan_b_evidence_table.md
+  url: null
+  project: demo_calibrated_sim
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T06:33:13.491281+00:00'
+  tags:
+  - plan-b
+  - evidence
+  - bcp-failure
+- id: art_20260513_c8d9a1
+  name: Reference Audit Report
+  type: report
+  description: 8篇新增论文引用验证报告：全部真实存在，1篇必须修正作者（gupta2026intra_fairness→Paraschou），2篇建议补充实名作者。
+  path: projects/demo_calibrated_sim/artifacts/_project/report/reference_audit_report.md
+  url: null
+  project: demo_calibrated_sim
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T06:37:41.310372+00:00'
+  tags:
+  - reference-audit
+  - plan-b
+- id: art_20260513_359d0b
+  name: mistral-bcp-001-results
+  type: report
+  description: 'Mistral-7B BCP eval results: 0% completion, model cannot generate
+    tool calls via vLLM. Plan B KILL decision.'
+  path: projects/demo_calibrated_sim/artifacts/mistral-bcp-001/report/mistral-bcp-001-report.md
+  url: null
+  project: demo_calibrated_sim
+  exp_id: mistral-bcp-001
+  skill: ''
+  created_at: '2026-05-13T06:49:55.503701+00:00'
+  tags:
+  - eval
+  - mistral
+  - bcp
+  - kill-decision
+- id: art_20260513_448e22
+  name: section_method_draft
+  type: paper
+  description: 'Method section (§3) draft: Task Environment, BCP design, DPO protocol,
+    Evaluation protocol'
+  path: projects/demo_calibrated_sim/artifacts/_project/paper/section_method_draft.md
+  url: null
+  project: demo_calibrated_sim
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T08:18:31.091455+00:00'
+  tags:
+  - paper
+  - method
+  - draft
+- id: art_20260513_f5978f
+  name: section_experiments_draft
+  type: paper
+  description: 'Experiments section (§4) draft: Setup, BCP failure mechanisms, DPO+BCP
+    reversal, cross-scale placeholder, analysis'
+  path: projects/demo_calibrated_sim/artifacts/_project/paper/section_experiments_draft.md
+  url: null
+  project: demo_calibrated_sim
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T08:18:32.836090+00:00'
+  tags:
+  - paper
+  - experiments
+  - draft
+- id: art_20260513_4cc139
+  name: section_related_work_draft
+  type: paper
+  description: 'Related Work section draft (4 subsections: user simulation, behavioral
+    calibration, preference optimization, dialect bias) for Plan B EMNLP 2026 paper'
+  path: projects/demo_calibrated_sim/artifacts/_project/paper/section_related_work_draft.md
+  url: null
+  project: demo_calibrated_sim
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T08:21:15.160787+00:00'
+  tags:
+  - paper
+  - related-work
+  - plan-b
+  - emnlp2026
+- id: art_20260513_fad2b4
+  name: qwen14b-bcp-001 FM Replication Analysis
+  type: report
+  description: Per-variant analysis of FM1/FM2/FM3 replication at 14B scale vs 7B,
+    with detailed per-run data tables and cross-scale comparison
+  path: projects/demo_calibrated_sim/artifacts/qwen14b-bcp-001/report/fm_replication_analysis.md
+  url: null
+  project: demo_calibrated_sim
+  exp_id: qwen14b-bcp-001
+  skill: ''
+  created_at: '2026-05-13T15:22:13.525545+00:00'
+  tags:
+  - bcp
+  - 14b
+  - failure-mode
+  - replication
+- id: art_20260513_3da49b
+  name: post-mvp-data-summary
+  type: report
+  description: Post-MVP 全实验数据汇总：7B BCP / 7B DPO+BCP / 14B BCP per-variant 指标 + FM
+    对比 + scale-dependent failure analysis
+  path: projects/demo_calibrated_sim/artifacts/_project/report/post_mvp_data_summary.md
+  url: null
+  project: demo_calibrated_sim
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T15:27:07.465114+00:00'
+  tags:
+  - post-mvp
+  - data-summary
+  - paper-ready
+- id: art_20260513_da866c
+  name: bootstrap_ci_report
+  type: report
+  description: Bootstrap 95% CI report for 4 key paper comparisons (C1-C4)
+  path: projects/demo_calibrated_sim/artifacts/bootstrap-ci-001/report/bootstrap_ci_report.md
+  url: null
+  project: demo_calibrated_sim
+  exp_id: bootstrap-ci-001
+  skill: ''
+  created_at: '2026-05-13T15:42:11.242735+00:00'
+  tags:
+  - bootstrap
+  - ci
+  - statistics
+  - paper
+- id: art_20260513_904f2f
+  name: FM4 Gap-Difference Bootstrap Results
+  type: data
+  description: 'Bootstrap CI for FM4 gap-difference test: (DPO+BCP_gap - Base_BCP_gap)
+    > 0. AAVE p=0.081, Indian p=0.069. Neither significant at alpha=0.05.'
+  path: projects/demo_calibrated_sim/artifacts/bootstrap-ci-001/data/bootstrap_fm4_gap_diff_results.json
+  url: null
+  project: demo_calibrated_sim
+  exp_id: bootstrap-ci-001
+  skill: ''
+  created_at: '2026-05-13T15:58:42.932409+00:00'
+  tags:
+  - bootstrap
+  - fm4
+  - gap-difference
+  - statistical-test

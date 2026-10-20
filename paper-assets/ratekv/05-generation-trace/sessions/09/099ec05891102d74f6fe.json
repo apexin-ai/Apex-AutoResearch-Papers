@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_kivi_result_preplan_20260516T092306_result.json",
     "occurrence": 1,
-    "bytes": 286,
-    "sha256": "42f88745244a14a464458ccd71faf73e106819d9c248383b5b23ef64f50a3894"
+    "bytes": 285,
+    "sha256": "8eb3801327d65be6af0cac6f090187d175c7463b94fa3b0db9ac1fa2eba5db0d"
   },
   "statistics": {
     "messages": 1,

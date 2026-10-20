@@ -1,0 +1,15 @@
+{
+  "exp_id": "p0_2_cliff_1.5B",
+  "project": "ratekv",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:23:57.228Z",
+    "updated_at": "2026-05-13T22:24:00.018Z",
+    "hypothesis": "2-bit quantization cliff effect 隔离测试 (Qwen2.5-1.5B): 逐个 KV head 设为 2/4/8-bit, 检测是否存在 \"任一 head 低 bit 即灾难\" 的 cliff effect"
+  },
+  "timestamp": "2026-05-13T22:24:00.093133+00:00",
+  "trigger": "update_registry"
+}

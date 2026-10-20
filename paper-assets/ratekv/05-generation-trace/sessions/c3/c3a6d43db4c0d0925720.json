@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_kill_mistral_v3_20260514T214017_result.json",
     "occurrence": 1,
-    "bytes": 271,
-    "sha256": "852e0e2d50a286817f71099f39b7264dfa479ba8c3dbaba2808ecd2d797acc78"
+    "bytes": 270,
+    "sha256": "ab037184a995e5de4d9dbd500508328b31cffbc2745fff537aa29edb4bd10634"
   },
   "statistics": {
     "messages": 1,

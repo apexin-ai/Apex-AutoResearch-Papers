@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_kill_orphan_check_kivi_20260515T144123_result.json",
     "occurrence": 1,
-    "bytes": 1004,
-    "sha256": "dafbfb5c24b3cfa70b6b2d89f321204b41c4092de8b3ca09b7bcc944f9e7d2c1"
+    "bytes": 1003,
+    "sha256": "89e847ddf5bd93363296d800bd1e40e74444e21854b5e36cdfc77d3a08e16a81"
   },
   "statistics": {
     "messages": 1,

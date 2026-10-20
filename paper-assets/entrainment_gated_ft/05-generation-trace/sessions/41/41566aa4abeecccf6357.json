@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_a2_confidence_prediction_20260522T081521_result.json",
     "occurrence": 1,
-    "bytes": 1306,
-    "sha256": "1ec20761c9b756a3c9bf578bf05d91921601f3c0ab3205ec95f419dddc7e36d6"
+    "bytes": 1305,
+    "sha256": "4cde1ce69ba9d279835fba1d81f3097282593707b62bf8dcc28abd54aa706a1f"
   },
   "statistics": {
     "messages": 1,

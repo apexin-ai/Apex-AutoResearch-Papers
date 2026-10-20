@@ -1,0 +1,25 @@
+% Draft: Cross-architecture compounding curve analysis
+% For integration into §5 (analysis.tex), after the heterogeneity characterization
+% All numbers verified against registry experiments:
+%   llama_compounding_sweep, mistral_compounding_sweep (registry.yaml)
+%   llama_hires_bf16_2bitonly (concentration/t1_t5)
+%   mistral_hires_bf16_2bitonly_v4 (concentration/t1_t5)
+
+\paragraph{Distribution shape predicts compounding severity.}
+To quantify how per-head 2-bit distortions interact when multiple heads are simultaneously downgraded, we sweep the cardinality constraint~$k$ from~0 (uniform 4-bit) to the total number of KV heads (fully unconstrained) on two models representing opposite ends of the distribution-shape spectrum: Llama-3.1-8B (spike; concentration~$0.57$, $t_1/t_5{=}0.85$) and Mistral-7B-v0.3 (flat; concentration~$0.24$, $t_1/t_5{=}0.41$). %exp_id=llama_compounding_sweep %exp_id=mistral_compounding_sweep
+
+The contrast is stark.
+On Llama, perplexity remains near-uniform for small~$k$ ($k{=}2$: 8.12, $k{=}8$: 8.23) but exhibits a sharp elbow beyond $k{\approx}32$: $k{=}32$ yields 9.05 ($1.12\times$ uniform), $k{=}64$ yields 11.99 ($1.48\times$), $k{=}128$ reaches 40.21 ($4.97\times$), and the fully unconstrained allocation ($k{=}256$) collapses to 1519.19---a $188\times$ degradation over uniform 4-bit (8.09). %exp_id=llama_compounding_sweep
+On Mistral, the entire sweep stays within a $1.065\times$ band: $k{=}0$ (uniform) gives 7.13, $k{=}256$ gives~7.59, and the solver saturates at $k{\geq}64$ with only 41 heads actually assigned to 2-bit even when unconstrained.
+The ratio of unconstrained-to-uniform perplexity ($k_\text{max}/k_0$) thus differs by over two orders of magnitude between the two models ($188\times$ vs.\ $1.065\times$), on our evaluated models directly attributable to distribution shape. %exp_id=mistral_compounding_sweep
+
+This divergence has a straightforward mechanistic explanation.
+Llama's spike distribution concentrates 57\% of total 2-bit distortion in its top-5\% heads, dominated by a single outlier (L2H5, $\delta_{2\text{-bit}}{=}15.26$). %exp_id=llama_hires_bf16_2bitonly
+When the solver assigns many heads to 2-bit, the per-head profiling assumption of independence breaks: distortions from the dominant head interact non-additively with distortions from less-sensitive heads, producing compounding that grows super-linearly with~$k$.
+Mistral's flat distribution ($\text{CV}{=}1.31$, top head $\delta_{2\text{-bit}}{=}0.32$) lacks any strong outlier; individual 2-bit distortions are small enough that their joint effect remains near-additive even at high~$k$. %exp_id=mistral_hires_bf16_2bitonly_v4
+
+These results clarify the role of the cardinality constraint across distribution shapes.
+For spike-distribution models such as Llama, the constraint is \emph{essential}: although constrained MCKP does not improve over uniform at $4\times$ compression ($+$0.36 vs.\ $+$0.38; \S\ref{sec:heterogeneity}), relaxing the constraint triggers catastrophic compounding ($188\times$).
+The constraint acts as a safety mechanism, preventing the solver from exploiting per-head profiling artifacts.
+For flat-distribution models such as Mistral, the constraint is \emph{redundant}: the unconstrained solver already produces near-uniform allocations (7.59 vs.\ 7.13), and adding a cardinality bound has negligible effect.
+In both cases, the diagnostic rule (\S\ref{sec:diagnostic}) correctly predicts the outcome: neither spike nor flat models benefit from non-uniform allocation, but only spike models require the constraint to prevent catastrophic failure under unconstrained optimization.

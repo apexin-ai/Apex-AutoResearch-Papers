@@ -1,0 +1,53 @@
+{
+  "exp_id": "exp-003",
+  "project": "entrainment_gated_ft",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:38:18.995Z",
+    "updated_at": "2026-05-19T13:38:51.683Z",
+    "hypothesis": "Architecture-specific helped/hurt samples on LAMBADA differ in surface features (token frequency, context length, lexical complexity), AND these feature profiles differ across GDN/HGRN2/RetNet — indicating architecture-specific mechanisms rather than generic attention benefit",
+    "spec": {
+      "command": "python analysis/sample_characterization.py — surface feature analysis of helped/hurt samples",
+      "server": "westb-48145",
+      "data_path": "/root/entrainment_gated_ft/lm_eval_clean/ (per-example logprob data)",
+      "data_count": 5153,
+      "model_name": "GDN/HGRN2/RetNet 1.3B h3-1 vs pure",
+      "seed": 0
+    },
+    "checkpoint_path": "/root/entrainment_gated_ft/analysis/sample_characterization_results.csv",
+    "log_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_analysis_exp_003_sample_characterization_20260519T131141.log",
+    "conclusion": "negative",
+    "metrics": {
+      "GDN": {
+        "helped": 462,
+        "hurt": 615,
+        "net": -153,
+        "surface_features_significant": false
+      },
+      "HGRN2": {
+        "helped": 548,
+        "hurt": 395,
+        "net": 153,
+        "surface_features_significant": false
+      },
+      "RetNet": {
+        "helped": 426,
+        "hurt": 495,
+        "net": -69,
+        "context_length_p": 0.012,
+        "context_length_r": -0.096,
+        "unique_tokens_p": 0.009,
+        "unique_tokens_r": -0.099
+      },
+      "cross_arch_difference": "not_significant",
+      "pass_fail": "FAIL — RetNet context_unique_tokens p=0.009 passes criterion 1 for one arch only; criterion 2 (cross-arch difference) fails",
+      "summary": "Surface features do not explain helped/hurt identity. Rules out trivial explanations (frequency, length, diversity). RetNet shows weak context-length signal (p=0.012, r=-0.096)."
+    },
+    "completed_at": "2026-05-19T13:38:51.683Z"
+  },
+  "timestamp": "2026-05-19T13:38:51.696398+00:00",
+  "trigger": "update_registry"
+}

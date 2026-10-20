@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_plan_017_multi_seed_20260514T073854_result.json",
     "occurrence": 1,
-    "bytes": 799,
-    "sha256": "07f9b42618d0ef74b0b9bdeeea76bae0f5143093977ca89a581bb518ebc3194a"
+    "bytes": 798,
+    "sha256": "5c7f479077dc6b3b083eaf2dd49c4b32db974ec6d0066f0bd9f9d987853e1738"
   },
   "statistics": {
     "messages": 1,

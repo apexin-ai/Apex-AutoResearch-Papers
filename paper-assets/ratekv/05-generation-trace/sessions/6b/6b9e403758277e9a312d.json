@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_spread_profiling_scripts_20260515T220542_result.json",
     "occurrence": 1,
-    "bytes": 1307,
-    "sha256": "33b8766af71bd35194425e3690edf69af0dee8abbe7bc6fd488c50ca9027f734"
+    "bytes": 1306,
+    "sha256": "51fbe3ca5f9c3e697b2fc175fcccfc24d7bc1538a613c84585b18a5a7366b74c"
   },
   "statistics": {
     "messages": 1,

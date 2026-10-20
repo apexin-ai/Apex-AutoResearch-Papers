@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_fix-bugs_20260513T203340_result.json",
     "occurrence": 1,
-    "bytes": 1354,
-    "sha256": "28ecb75019625b47734463b4191a2fa27fcd770f8e13a4391d11763eca1644cc"
+    "bytes": 1353,
+    "sha256": "f6d9b23567a425975792dc39921a43933040633f8c17fe7e452750b3146a876e"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,35 @@
+{
+  "exp_id": "sanity_003",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T20:56:03.562Z",
+    "updated_at": "2026-05-13T21:35:28.933Z",
+    "hypothesis": "Retry of sanity_001/002: Qwen2.5-1.5B pipeline 端到端正确性验证. Fixed cache_position bug.",
+    "spec": {
+      "command": "python run_mvp.py --model /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B/ --device cuda:0 --calibration_data /root/ratekv/c4_calibration.json --output sanity_results.json",
+      "server": "westd-37397",
+      "gpu": "cuda:1",
+      "pid": 135075,
+      "log_path": "~/runs/ratekv/sanity_003.log",
+      "submitted_at": "2026-05-13T20:56:34.089Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "WikiText-103 subset (calibration local JSON) + WikiText-2 (eval HF cache)",
+      "data_count": "100 calibration samples, 16 used",
+      "model_name": "Qwen/Qwen2.5-1.5B",
+      "seed": 42,
+      "wall_clock_seconds": 2334.8,
+      "gpu_hours": 0.65
+    },
+    "conclusion": "failed",
+    "notes": "FAILED: ModelScope path Qwen2___5-1___5B with ___ treated as HF repo ID, HFValidationError",
+    "completed_at": "2026-05-13T21:35:28.933Z"
+  },
+  "timestamp": "2026-05-13T21:35:28.946060+00:00",
+  "trigger": "update_registry"
+}

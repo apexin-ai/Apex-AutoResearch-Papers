@@ -1,0 +1,29 @@
+{
+  "exp_id": "multi_seed_lowres",
+  "project": "ratekv",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:02:06.329Z",
+    "updated_at": "2026-05-14T11:45:09.509Z",
+    "spec": {
+      "hypothesis": "Lowres multi-seed error bars (plan_017 补充): 3 seeds × standard profiling (16×512) on Qwen2.5-7B, constrained MCKP (k=8). 验证论文主表数字 11.23 的统计稳定性。Reviewer 指出 hires multi-seed (10.99±0.065) 不直接适用于 standard profiling 主结果。",
+      "plan_id": "plan_017",
+      "claim": [
+        1,
+        2
+      ],
+      "model_name": "Qwen2.5-7B",
+      "server": "westd-37397",
+      "data_path": "wikitext-103-raw-v1 train (calibration) + wikitext-2-raw-v1 test (eval)",
+      "data_count": "16 seqs x 512 tokens x 3 seeds",
+      "seed": "0,1,2"
+    },
+    "notes": "Director 取消：bit distribution 三 seed 完全一致且 solver 是确定性的，standard profiling multi-seed 不需要做。",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-14T11:45:09.653676+00:00",
+  "trigger": "update_registry"
+}

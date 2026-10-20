@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_exp-010-convergence-divergence-bridge_20260519T150134_result.json",
     "occurrence": 1,
-    "bytes": 1294,
-    "sha256": "e808be7cd354bf5f53502fc27a2a7f919a5ab811bbf8cb9cae1679d08195d565"
+    "bytes": 1293,
+    "sha256": "9a594d3ce87bd00b065763d6282b76916e2df9b7247ea27791b519e05a4a90a7"
   },
   "statistics": {
     "messages": 1,

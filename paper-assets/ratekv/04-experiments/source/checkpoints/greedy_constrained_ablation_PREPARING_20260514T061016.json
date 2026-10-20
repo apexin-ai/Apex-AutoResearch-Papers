@@ -1,0 +1,14 @@
+{
+  "exp_id": "greedy_constrained_ablation",
+  "project": "ratekv",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:10:16.539Z",
+    "updated_at": "2026-05-14T06:10:16.539Z"
+  },
+  "timestamp": "2026-05-14T06:10:16.584246+00:00",
+  "trigger": "update_registry"
+}

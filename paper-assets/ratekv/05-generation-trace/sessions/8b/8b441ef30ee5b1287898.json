@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_gpu_mistral_hires_bf16_v3_20260514T212508_result.json",
     "occurrence": 1,
-    "bytes": 370,
-    "sha256": "802a9c73fccf9aea82eff88641b3b6c0693bc5b37571af37a7fddc5fe25d7a9a"
+    "bytes": 369,
+    "sha256": "d35917a47485239d08cb58646d6bdd90048fbf13429235a19d01b2f055cb4497"
   },
   "statistics": {
     "messages": 1,

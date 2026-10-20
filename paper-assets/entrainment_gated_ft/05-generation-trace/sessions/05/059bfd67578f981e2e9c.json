@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_gpu-now_20260518T110345_result.json",
     "occurrence": 1,
-    "bytes": 753,
-    "sha256": "be3f1984007180228c5bcc7948d246d864f7b39af4f913bb4da74f24dc5ac3ff"
+    "bytes": 752,
+    "sha256": "9035cce65d4c7301722784d3c2aecaa5e428d8e6b3bbce18c41f24bf1a8a87c5"
   },
   "statistics": {
     "messages": 1,

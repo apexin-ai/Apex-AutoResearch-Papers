@@ -1,0 +1,30 @@
+{
+  "exp_id": "mvp_002",
+  "project": "ratekv",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T19:58:52.295Z",
+    "updated_at": "2026-05-13T19:59:29.516Z",
+    "hypothesis": "Retry of mvp_001: per-KV-head eviction/quantization crossover on Qwen2.5-7B, joint MCKP 优于 quant-only ≥0.5 PPL",
+    "spec": {
+      "command": "python run_mvp.py --model /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B/ --device cuda:0 --calibration_data /root/ratekv/c4_calibration.json",
+      "server": "westd-37397",
+      "gpu": "cuda:0",
+      "pid": 131672,
+      "log_path": "~/runs/ratekv/mvp_002.log",
+      "submitted_at": "2026-05-13T19:59:20.350Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "WikiText-103 subset (calibration, local JSON) + WikiText-2 (eval, HF cache)",
+      "data_count": "100 calibration samples, 16 used",
+      "model_name": "Qwen/Qwen2.5-7B",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-13T19:59:29.527291+00:00",
+  "trigger": "update_registry"
+}

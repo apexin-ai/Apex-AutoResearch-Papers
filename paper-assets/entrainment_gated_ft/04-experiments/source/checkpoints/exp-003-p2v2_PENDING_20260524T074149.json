@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp-003-p2v2",
+  "project": "entrainment_gated_ft",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:13:12.772Z",
+    "updated_at": "2026-05-24T07:41:49.604Z",
+    "hypothesis": "Helped samples have higher pure-model perplexity (model uncertain → attention helped) while hurt samples have lower perplexity (model confident → attention interfered), with architecture-specific patterns across GDN/RetNet/HGRN2. Retry with HGRN2 monkey-patch fix for _tied_weights_keys AttributeError.",
+    "parent": "exp-003-p2",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-24T07:41:49.677558+00:00",
+  "trigger": "update_registry"
+}

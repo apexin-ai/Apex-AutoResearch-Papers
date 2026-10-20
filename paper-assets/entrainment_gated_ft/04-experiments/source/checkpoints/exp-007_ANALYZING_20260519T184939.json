@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp-007",
+  "project": "entrainment_gated_ft",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T17:08:19.724Z",
+    "updated_at": "2026-05-19T18:49:39.379Z",
+    "hypothesis": "340M models show non-monotonic rebound in cross-architecture convergence at attn=8 (h3-1) on LAMBADA, caused by capacity-limited interaction between attention and recurrent components — the rebound mechanism differs from 1.3B's complete convergence, establishing scale as a necessary condition for full equalization",
+    "parent": "exp-001",
+    "spec": {
+      "command": "bash run_exp007_logsamples.sh (run_lmeval_clean.py with allow_neg_eigval=True, --log_samples, --tasks lambada_openai)",
+      "server": "westb-48145",
+      "gpu": "cuda:0",
+      "pid": 530432,
+      "log_path": "~/runs/entrainment_gated_ft/exp-007.log",
+      "submitted_at": "2026-05-19T17:51:40.355Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "lambada_openai (lm-eval built-in)",
+      "data_count": "5153 per model x 27 models",
+      "model_name": "340M x16 + 1.3B x11 (GDN/RetNet/HGRN2 hybrids + Transformer)",
+      "seed": "default",
+      "checkpoint_source": "m-a-p pretrained (340M: /root/autodl-tmp/models/, 1.3B: /root/autodl-tmp/models_1.3b/)",
+      "eval_data": "lambada_openai (lm-eval built-in, 5153 samples)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T18:49:39.310Z"
+    }
+  },
+  "timestamp": "2026-05-19T18:49:39.413310+00:00",
+  "trigger": "update_registry"
+}

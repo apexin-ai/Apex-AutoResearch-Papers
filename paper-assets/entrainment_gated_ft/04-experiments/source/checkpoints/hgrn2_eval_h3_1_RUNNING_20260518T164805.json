@@ -1,0 +1,22 @@
+{
+  "exp_id": "hgrn2_eval_h3_1",
+  "project": "entrainment_gated_ft",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:47:57.853Z",
+    "updated_at": "2026-05-18T16:48:05.019Z",
+    "spec": {
+      "command": "HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python run_lmeval_clean.py --model_path 1.3B-100B-HGRN2-hybrid-3-1 --tasks 6tasks --batch_size 8",
+      "server": "westb-48145",
+      "data_path": "/root/autodl-tmp/models_1.3b/1.3B-100B-HGRN2-hybrid-3-1",
+      "data_count": 1,
+      "model_name": "HGRN2-1.3B-hybrid-3-1",
+      "seed": 0
+    }
+  },
+  "timestamp": "2026-05-18T16:48:05.025909+00:00",
+  "trigger": "update_registry"
+}

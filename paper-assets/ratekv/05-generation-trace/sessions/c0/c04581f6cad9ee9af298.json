@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_mistral_aggressive_diagnosis_20260514T060920_result.json",
     "occurrence": 1,
-    "bytes": 773,
-    "sha256": "3034f5346a3ae157d681e4537ef8880212843ebcd29074518ff3f76b972319be"
+    "bytes": 772,
+    "sha256": "8cb63782a0a1b5697ff77969c53362db5a23cfbc8384d78b14a03fc1cc46d759"
   },
   "statistics": {
     "messages": 1,

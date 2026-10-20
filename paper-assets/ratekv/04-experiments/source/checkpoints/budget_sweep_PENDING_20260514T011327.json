@@ -1,0 +1,29 @@
+{
+  "exp_id": "budget_sweep",
+  "project": "ratekv",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:51:52.095Z",
+    "updated_at": "2026-05-14T01:13:27.794Z",
+    "spec": {
+      "hypothesis": "Budget sweep: constrained MCKP at compression ratios 2x/4x/8x (budget=0.5/0.25/0.125). Compare each against uniform baseline at same budget. Qwen2.5-7B, WikiText-2.",
+      "plan_id": "plan_005",
+      "claim": [
+        2
+      ],
+      "command": "CUDA_VISIBLE_DEVICES=0 python run_budget_sweep.py",
+      "server": "westd-37397",
+      "data_path": "/root/ratekv/full_bitwidth_results.json",
+      "data_count": 112,
+      "model_name": "Qwen2.5-7B",
+      "seed": 42,
+      "checkpoint_path": "/root/ratekv/budget_sweep_results.json",
+      "log_path": "/root/ratekv/budget_sweep.log"
+    }
+  },
+  "timestamp": "2026-05-14T01:13:27.845156+00:00",
+  "trigger": "update_registry"
+}

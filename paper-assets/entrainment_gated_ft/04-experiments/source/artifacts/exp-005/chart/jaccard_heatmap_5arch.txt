@@ -1,0 +1,2 @@
+Remote path: westb-48145:/root/entrainment_gated_ft/results/figures/jaccard_heatmap_5arch.pdf
+Also available as PNG: westb-48145:/root/entrainment_gated_ft/results/figures/jaccard_heatmap_5arch.png

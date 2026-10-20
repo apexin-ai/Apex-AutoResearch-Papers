@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_reviewer_framing_fixes_20260516T073046_result.json",
     "occurrence": 1,
-    "bytes": 693,
-    "sha256": "958793af02cc9827fa1b199dae94b4f19d02c41d89b3b442edb2aa64e8cb17d3"
+    "bytes": 692,
+    "sha256": "9d8ed55e65ea40a238e6f2514e0912d6a74d01e603fcdf6bff904cb58233fa0d"
   },
   "statistics": {
     "messages": 1,

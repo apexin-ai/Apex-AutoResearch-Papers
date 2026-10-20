@@ -1,0 +1,3 @@
+Remote: westd-37397:/root/ratekv/figures/fig2_compounding_curve.pdf (18K) + .png (124K)
+Script: /root/ratekv/generate_figures.py
+Content: k vs PPL curve, 10 data points, k=8 optimal (11.23) annotated, uniform 4-bit baseline dashed line (15.45)

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_kill_gemma2_duplicate_20260514T221022_result.json",
     "occurrence": 1,
-    "bytes": 405,
-    "sha256": "3e274f8f00f218aa9ee12b01184d3ec82eef63213f84e31df65a72e290cb4f82"
+    "bytes": 404,
+    "sha256": "4747e46cf5e8e1f630c359ed0069e128942ad67dd1294033d8be22630cc46861"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_fix-gdn-shard_20260518T114249_result.json",
     "occurrence": 1,
-    "bytes": 573,
-    "sha256": "65e76dd4ed6ea9ed5b10388ebd492c8fdcf13d4607d0ad076bfd9750ff45b7b8"
+    "bytes": 572,
+    "sha256": "dd22691b283d79a4d051bc13f3a83cf583917fe57224b0ca5aef95273e9a1d15"
   },
   "statistics": {
     "messages": 1,

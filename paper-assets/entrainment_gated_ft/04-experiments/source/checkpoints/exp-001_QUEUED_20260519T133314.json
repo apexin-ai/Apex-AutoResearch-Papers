@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-001",
+  "project": "entrainment_gated_ft",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:32:43.793Z",
+    "updated_at": "2026-05-19T13:33:14.798Z",
+    "hypothesis": "Cross-architecture variance (std) on retrieval-dependent tasks decreases monotonically with attention ratio at 1.3B scale, while reasoning-dependent tasks show no convergence — establishing task-specificity as a principled feature of the equalizer effect, not a limitation"
+  },
+  "timestamp": "2026-05-19T13:33:14.849027+00:00",
+  "trigger": "update_registry"
+}

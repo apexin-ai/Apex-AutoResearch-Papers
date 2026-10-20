@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_debug_gemma2_baseline_ppl_20260514T152217_result.json",
     "occurrence": 1,
-    "bytes": 1175,
-    "sha256": "401712e9d5d712b69ad14c52a485b2ca1d248afe389ee740c614a4e087cdc168"
+    "bytes": 1174,
+    "sha256": "c661c7735eb22fa311cd41e97a3c7be7a92ea7f882d66219e20f66ab8938d7e2"
   },
   "statistics": {
     "messages": 1,

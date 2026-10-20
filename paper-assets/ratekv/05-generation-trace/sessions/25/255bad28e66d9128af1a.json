@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_w9_compounding_scaling_20260515T050328_result.json",
     "occurrence": 1,
-    "bytes": 527,
-    "sha256": "63e8483eccecab6a8ac2acc3ec67d0f06e6a7e6860d21387e4a287eefa506350"
+    "bytes": 526,
+    "sha256": "111d618f0bc3fdf9ae7bcbd347122a23a37be38a301c1b5bff9d43b09b92340b"
   },
   "statistics": {
     "messages": 1,

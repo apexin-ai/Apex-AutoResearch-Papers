@@ -126,6 +126,21 @@
       }
     },
     {
+      "project": "contrastive_graph_jailbreak_detect",
+      "title": "contrastive graph jailbreak detect",
+      "catalog": "../paper-assets/contrastive_graph_jailbreak_detect/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 28,
+        "messages": 3080,
+        "user_turns": 61,
+        "tool_calls": 1262,
+        "unparsed_lines": 10,
+        "result": 9,
+        "worker": 10,
+        "conversation": 9
+      }
+    },
+    {
       "project": "contrastive_trace_safety",
       "title": "Layer Selection Sensitivity in Hidden-State Safety Probes for Reasoning Models",
       "catalog": "../paper-assets/contrastive_trace_safety/05-generation-trace/catalog.json",
@@ -170,6 +185,22 @@
         "result": 6,
         "worker": 9,
         "conversation": 5
+      }
+    },
+    {
+      "project": "demo_calibrated_sim",
+      "title": "Why Calibration Fails: A Taxonomy of Failure Modes in Dialect-Aware LLM User Simulation",
+      "catalog": "../paper-assets/demo_calibrated_sim/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 203,
+        "messages": 18086,
+        "user_turns": 459,
+        "tool_calls": 7249,
+        "unparsed_lines": 82,
+        "worker": 84,
+        "result": 76,
+        "conversation": 37,
+        "history": 6
       }
     },
     {

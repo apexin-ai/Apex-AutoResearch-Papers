@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_dont_waste_bits_citation_20260515T052854_result.json",
     "occurrence": 1,
-    "bytes": 2324,
-    "sha256": "65de7e6a0d5009a64b19bc8ed148c253de6023bc04d79ba8177ad32510a685db"
+    "bytes": 2323,
+    "sha256": "8bcd3a0028245ba192c6e9b3d5b24ac8f10b6f649193c9d82be03742dd44c61d"
   },
   "statistics": {
     "messages": 1,

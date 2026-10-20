@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp-003",
+  "project": "entrainment_gated_ft",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:38:18.995Z",
+    "updated_at": "2026-05-19T13:38:43.032Z",
+    "hypothesis": "Architecture-specific helped/hurt samples on LAMBADA differ in surface features (token frequency, context length, lexical complexity), AND these feature profiles differ across GDN/HGRN2/RetNet — indicating architecture-specific mechanisms rather than generic attention benefit",
+    "spec": {
+      "command": "python analysis/sample_characterization.py — surface feature analysis of helped/hurt samples",
+      "server": "westb-48145",
+      "data_path": "/root/entrainment_gated_ft/lm_eval_clean/ (per-example logprob data)",
+      "data_count": 5153,
+      "model_name": "GDN/HGRN2/RetNet 1.3B h3-1 vs pure",
+      "seed": 0
+    },
+    "checkpoint_path": "/root/entrainment_gated_ft/analysis/sample_characterization_results.csv",
+    "log_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/workers/worker_analysis_exp_003_sample_characterization_20260519T131141.log",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-19T13:38:43.046281+00:00",
+  "trigger": "update_registry"
+}

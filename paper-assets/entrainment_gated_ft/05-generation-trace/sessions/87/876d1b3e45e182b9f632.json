@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_eval_exp-004-r2-attention-extraction_20260519T165830_result.json",
     "occurrence": 1,
-    "bytes": 856,
-    "sha256": "334bd8c45add71517f52d84d9755656022d72f78298a10843333437e40f483be"
+    "bytes": 855,
+    "sha256": "fdd3182e921d3f46c69288b2fb92016372ea0737406ad79519d5e79d5e8b9ca7"
   },
   "statistics": {
     "messages": 1,

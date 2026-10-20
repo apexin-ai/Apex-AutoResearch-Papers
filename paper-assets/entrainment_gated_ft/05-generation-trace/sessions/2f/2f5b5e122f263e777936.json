@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_r16-w1-routing-variance_20260523T135203_result.json",
     "occurrence": 1,
-    "bytes": 1641,
-    "sha256": "32633ccb0339a7198334a587802c02a8afc1220a6c203859056f3d1f133199a0"
+    "bytes": 1640,
+    "sha256": "2db4d8f6b2a8e9c2d0c42b70a27e580ec1ff24ed4c6403ccfec7ac8066793866"
   },
   "statistics": {
     "messages": 1,

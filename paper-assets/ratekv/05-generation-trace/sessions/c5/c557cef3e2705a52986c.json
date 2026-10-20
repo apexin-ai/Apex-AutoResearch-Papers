@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_gpu_dual_rerun_sync_20260514T164828_result.json",
     "occurrence": 1,
-    "bytes": 780,
-    "sha256": "16d14d9948d25febdbdf79aa6c0ed00a79b75c29045cfdd8880d1ffbd77797b8"
+    "bytes": 779,
+    "sha256": "a67d1509c8fb0343c18c2c680208e3c455975d66bdb8344260913b3780fbd4c7"
   },
   "statistics": {
     "messages": 1,

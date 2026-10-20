@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_gpu_yi15_hires_constrained_mckp_20260514T201826_result.json",
     "occurrence": 1,
-    "bytes": 1261,
-    "sha256": "d1257e68d36658cc2128d9ab609a71a2d2a9c9c0fb3ea8bcb12af2a642ab15c8"
+    "bytes": 1260,
+    "sha256": "eb758eff9b5017112a54a929f24c059ce913aee6287050401c8fe59264885fc9"
   },
   "statistics": {
     "messages": 1,

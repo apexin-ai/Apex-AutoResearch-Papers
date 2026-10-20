@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_p2-scatter-delta-fix_20260514T223349_result.json",
     "occurrence": 1,
-    "bytes": 389,
-    "sha256": "3d0e1ce69a234c4dfd088547933c761989ddef253ccae1f3c79db58fdb391916"
+    "bytes": 388,
+    "sha256": "03b2567c15652d7103636ea547b452932ae0b525f2e38b2156dd4f6a3aca8ee4"
   },
   "statistics": {
     "messages": 1,

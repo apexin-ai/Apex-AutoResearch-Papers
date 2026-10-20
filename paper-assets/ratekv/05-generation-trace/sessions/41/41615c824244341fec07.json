@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_submit_yi_8k_eval_20260516T053121_result.json",
     "occurrence": 1,
-    "bytes": 912,
-    "sha256": "41b1bf30593b77063e4c1e30cd60915997f4da5d3db4f2eabc749a5693beff15"
+    "bytes": 911,
+    "sha256": "273f5ce6f096e2dc6522995f53a0df67083c9783cb65c399641bf487f9278559"
   },
   "statistics": {
     "messages": 1,

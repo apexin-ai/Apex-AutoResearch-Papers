@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_loglik-range-diagnostic_20260520T173004_result.json",
     "occurrence": 1,
-    "bytes": 1056,
-    "sha256": "867a2eedbbf656f3272377519482d84363b2fcf2a565270fffbba8f836f5625c"
+    "bytes": 1055,
+    "sha256": "c8bd0423b8650aba3ad85bcbbf077f765aed663d03a4d4f5fdfeb75d6a39b82d"
   },
   "statistics": {
     "messages": 1,

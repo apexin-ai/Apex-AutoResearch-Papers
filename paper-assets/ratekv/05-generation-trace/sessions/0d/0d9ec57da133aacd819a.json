@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_kill_zombie_gpu0_20260514T063856_result.json",
     "occurrence": 1,
-    "bytes": 370,
-    "sha256": "f6c3cf325da05f086e369bc6ad4f22fa7a042ba31e5b773001a861be1c76b88d"
+    "bytes": 369,
+    "sha256": "c8b38c99a35a593c971c688925f201529a3534768d64ad93293b2314eae9afb2"
   },
   "statistics": {
     "messages": 1,

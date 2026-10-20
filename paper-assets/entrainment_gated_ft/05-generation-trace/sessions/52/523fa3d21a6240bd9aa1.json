@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_wang-models-survey_20260518T045105_result.json",
     "occurrence": 1,
-    "bytes": 729,
-    "sha256": "ee62a060db415044c1c2e34923dc44cb2a6117470ccd8453e58f627ab226ef2e"
+    "bytes": 728,
+    "sha256": "6d72c2aee546bd78a77cddb8a1aeeaf9880f24f2b8423dfe534695ee1acdc2b1"
   },
   "statistics": {
     "messages": 1,

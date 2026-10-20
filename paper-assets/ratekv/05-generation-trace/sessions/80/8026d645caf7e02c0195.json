@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_fig3_yaxis_20260514T080121_result.json",
     "occurrence": 1,
-    "bytes": 286,
-    "sha256": "2e8202e4112911a7040cd0001fc0b5acff2826feb22552a85eaaeb6ed412e1ab"
+    "bytes": 285,
+    "sha256": "4a1d5669835823af56941083f0cb557e6dc1dea0f6624a013435945c8289a8e9"
   },
   "statistics": {
     "messages": 1,

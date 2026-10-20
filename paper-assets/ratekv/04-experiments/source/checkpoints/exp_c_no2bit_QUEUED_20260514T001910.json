@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_c_no2bit",
+  "project": "ratekv",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:16:07.045Z",
+    "updated_at": "2026-05-14T00:19:10.577Z",
+    "hypothesis": "Path B: MCKP solver with {4,8,16}-bit action space (去掉 2-bit). 使用现有 profiling 数据重跑 solver. Pass: auto solver PPL < uniform 4-bit (15.45) by ≥0.5, budget ≤ 0.2500.",
+    "parent": "exp_b_hires_quant",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python3 run_exp_c_no2bit.py 2>&1 | tee exp_c_no2bit.log\"",
+      "server": "westd-37397",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "150093",
+      "log_path": "~/runs/ratekv/exp_c_no2bit.log",
+      "submitted_at": "2026-05-14T00:19:01.105Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-14T00:19:10.621954+00:00",
+  "trigger": "update_registry"
+}

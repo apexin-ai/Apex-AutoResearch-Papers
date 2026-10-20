@@ -1,0 +1,46 @@
+{
+  "exp_id": "llama_8k_spotcheck",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:36:11.364Z",
+    "updated_at": "2026-05-15T14:11:11.590Z",
+    "hypothesis": "Llama-3.1-8B (Spike, conc=0.34, t1/t5=0.71, native 128K context) should show minimal MCKP vs uniform gap at 8K, contrasting Qwen-7B Spread 97.7% improvement",
+    "spec": {
+      "command": "python run_llama_8k_spotcheck.py",
+      "server": "westd-37397",
+      "data_path": "WikiText-2",
+      "data_count": 0,
+      "model_name": "Llama-3.1-8B",
+      "seed": 0
+    },
+    "checkpoint_path": "/root/ratekv/artifacts/llama_8k_spotcheck_results.json",
+    "log_path": "/root/ratekv/logs/llama_8k_spotcheck.log",
+    "metrics": {
+      "ppl_bf16_8k": 5.5958,
+      "ppl_constrained_mckp_8k": 6.0537,
+      "ppl_uniform_4bit_8k": 6.0364,
+      "mckp_improvement_over_uniform_8k": -0.0174,
+      "mckp_improvement_pct_8k": -3.94,
+      "ppl_bf16_2k": 8.0922,
+      "ppl_constrained_mckp_2k": 8.5042,
+      "ppl_uniform_4bit_2k": 8.4701,
+      "shape": "Spike",
+      "concentration": 0.5749,
+      "t1_over_t5": 0.71,
+      "context_length": 8192,
+      "bit_distribution": {
+        "2": 2,
+        "4": 253,
+        "8": 1
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T14:11:11.590Z"
+  },
+  "timestamp": "2026-05-15T14:11:11.732488+00:00",
+  "trigger": "update_registry"
+}

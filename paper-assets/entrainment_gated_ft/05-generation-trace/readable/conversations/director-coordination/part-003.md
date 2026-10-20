@@ -3071,7 +3071,7 @@ Preview (first 2KB):
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/artifacts/dream_reports/dream_20260519T131014/logs/paper_agent_best.log:53:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/chats/feishu_group_oc_40962fa57a434c0fa984bdc62b106f2e_reviewer.jsonl:1:[Omitted long matching line]
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/_anonymous_repo.json:2:  "repo_public": "https://github.com/anonymous-nlp-2026-2/entrainment_gated_ft",
-/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/_anonymous_repo.json:3:  "push_url": "https://caoxiaoyu001:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git",
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/_anonymous_repo.json:3:  "push_url": "https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git",
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/logs/chats/feishu_group_oc_
 …[truncated 325 chars]
 
@@ -3131,7 +3131,7 @@ _source line 1359 · 2026-05-26T12:24:29.458618+00:00_
 
 1	{
 2	  "repo_public": "https://github.com/anonymous-nlp-2026-2/entrainment_gated_ft",
-3	  "push_url": "https://caoxiaoyu001:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git",
+3	  "push_url": "https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git",
 4	  "github_user": "caoxiaoyu001",
 5	  "repo_name": "entrainment_gated_ft"
 6	}
@@ -5621,13 +5621,13 @@ _source line 1431 · 2026-05-26T12:36:49.685297+00:00_
 
 你的仓库信息：
 - 仓库地址：https://github.com/anonymous-nlp-2026-2/entrainment_gated_ft
-- Push URL：https://caoxiaoyu001:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git
+- Push URL：https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git
 
 操作步骤：
 ```
 git config --global user.name "Anonymous"
 git config --global user.email "anonymous@example.com"
-git clone https://caoxiaoyu001:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git
+git clone https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git
 cd entrainment_gated_ft
 # 对照论文最新版本，更新 README（标题、摘要）、代码等不一致的内容
 git add -A && git commit -m "sync with final paper" && git push
@@ -5662,7 +5662,7 @@ called Bash
 
 ```json
 {
-  "command": "rm -rf /tmp/entrainment_gated_ft_repo && git clone https://caoxiaoyu001:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git /tmp/entrainment_gated_ft_repo 2>&1",
+  "command": "rm -rf /tmp/entrainment_gated_ft_repo && git clone https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git /tmp/entrainment_gated_ft_repo 2>&1",
   "description": "Fresh clone of the GitHub repo"
 }
 ```
@@ -5677,7 +5677,7 @@ called Bash
   "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "rm -rf /tmp/entrainment_gated_ft_repo && git clone https://caoxiaoyu001:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git /tmp/entrainment_gated_ft_repo 2>&1",
+    "command": "rm -rf /tmp/entrainment_gated_ft_repo && git clone https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git /tmp/entrainment_gated_ft_repo 2>&1",
     "description": "Fresh clone of the GitHub repo"
   }
 }

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_cleanup_and_qwen32b_prep_20260516T023622_result.json",
     "occurrence": 1,
-    "bytes": 818,
-    "sha256": "497e0e9a83c969d70fc1a927a5b1d3c9526adc3533e308d12c798f3c220d8027"
+    "bytes": 817,
+    "sha256": "4fcf6e997309ab97b2c2f74a9279897b5a8739d01afb2155d439aa9d787aefe4"
   },
   "statistics": {
     "messages": 1,

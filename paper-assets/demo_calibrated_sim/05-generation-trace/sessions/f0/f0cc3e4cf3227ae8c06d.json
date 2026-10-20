@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0cc3e4cf3227ae8c06d",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "exp aave corpus gen cuda3",
+  "task_key": "worker_exp_aave-corpus-gen-cuda3_20260512T142200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_aave-corpus-gen-cuda3_20260512T142200_result.json",
+    "occurrence": 1,
+    "bytes": 1068,
+    "sha256": "26568860f2a5f2194a2395f653869788fc11977e749bb515be2a3f97bf2970a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部正常运行。\n\n## 汇总\n\n| 项目 | 值 |\n|------|-----|\n| vLLM gen PID | 141024 (worker: 141319) |\n| vLLM 端口 | 8001，served-model: `democalib-qwen-gen` |\n| vLLM 额外参数 | `--enable-auto-tool-choice --tool-call-parser hermes`（脚本的 agent 端需要 tool calling） |\n| Corpus gen PID | 142096 |\n| 实际参数 | `--model-name democalib-qwen-gen --base-url http://localhost:8001 --dialect aave --num-tasks 20 --num-trials 5 --target-question-rate 0.10 --target-politeness-rate 0.20 --output-dir /root/democalib/synthetic_corpus --gpu-id 0` |\n| GPU 2 (mvp-004) | PID 110596, 22096 MiB — 未受影响 |\n| GPU 3 (corpus gen) | PID 141319, 22094 MiB |\n| 日志 | `/root/democalib/results/aave_corpus_gen.log` |\n| 状态 | LiteLLM 持续调用中，无报错，trace 正在生成到 `synthetic_corpus/tau_bench_logs/` |\n\n注：首次启动未加 `--enable-auto-tool-choice --tool-call-parser hermes`，导致 agent 端 tool_choice=\"auto\" 报 400 错误。已重启 vLLM 加上该参数，语料生成正常进行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-aave-corpus-gen-cuda3.md"
+}

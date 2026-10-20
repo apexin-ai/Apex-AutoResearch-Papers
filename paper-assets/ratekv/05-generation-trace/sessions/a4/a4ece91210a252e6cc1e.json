@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_analysis_granularity_delta_20260515T053026_result.json",
     "occurrence": 1,
-    "bytes": 189,
-    "sha256": "595a2915b2ad00320ef75d3af33ce1875118220311543b22c2412b97773293d6"
+    "bytes": 188,
+    "sha256": "cf02af385b4a20f5da6293ce29b8384d9e80a02d8c195fabd18c5df2be663d49"
   },
   "statistics": {
     "messages": 1,

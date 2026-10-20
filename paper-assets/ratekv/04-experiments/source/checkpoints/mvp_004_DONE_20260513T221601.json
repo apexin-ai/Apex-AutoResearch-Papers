@@ -1,0 +1,29 @@
+{
+  "exp_id": "mvp_004",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T21:55:09.878Z",
+    "updated_at": "2026-05-13T22:16:01.600Z",
+    "hypothesis": "Fresh profiling: per-KV-head eviction/quantization crossover on Qwen2.5-7B (112 KV heads), joint MCKP 优于 quant-only ≥0.5 PPL. 使用新 calibration 数据 (拼接 WikiText-103, ≥1000 tokens/sample), 删除缓存 profiles.json 强制重新 profile.",
+    "spec": {
+      "command": "bash -c '...' (see mvp_004 original)",
+      "server": "westd-37397",
+      "gpu": "cuda:0",
+      "data_path": "WikiText-103 concatenated calibration + WikiText-2 eval",
+      "data_count": "20 calibration samples",
+      "model_name": "Qwen/Qwen2.5-7B",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "~/runs/ratekv/mvp_004.log"
+    },
+    "conclusion": "negative",
+    "notes": "NEGATIVE: MSE distortion metric falsified. MSE-guided MCKP 在 4x budget 下 PPL 比 uniform 4-bit 差 70×（1355 vs 19.26）。quant-only MCKP (MSE-guided) 也比 uniform 差 360×（6926 vs 19.26）。MSE 与实际 PPL 完全不相关——不仅 eviction 有问题，MSE 对 quantization bit 分配也失效。需要 pivot 到 PPL-based distortion metric。",
+    "completed_at": "2026-05-13T22:16:01.600Z"
+  },
+  "timestamp": "2026-05-13T22:16:01.615530+00:00",
+  "trigger": "update_registry"
+}

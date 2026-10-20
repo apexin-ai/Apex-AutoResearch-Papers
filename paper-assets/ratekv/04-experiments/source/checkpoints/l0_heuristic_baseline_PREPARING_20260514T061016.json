@@ -1,0 +1,14 @@
+{
+  "exp_id": "l0_heuristic_baseline",
+  "project": "ratekv",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:10:16.317Z",
+    "updated_at": "2026-05-14T06:10:16.317Z"
+  },
+  "timestamp": "2026-05-14T06:10:16.369745+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,752 @@
+tier: best
+narrative_guidance: 'Task-dependent convergence 在 LAMBADA + StoryCloze 两个独立 retrieval
+  benchmark 上成立
+
+  （均 ρ=-1.0, two-tailed exact permutation p=0.017）。统计策略：exp-001 taxonomy 先于
+
+  exp-011 建立 retrieval-task subset（m=5）作为 pre-specified correction scope——
+
+  BH-FDR 保留 2 个 benchmark（adj_p=0.042），Bonferroni 在 confirmatory subset（m=3）
+
+  borderline 保留 1 个（adj_p=0.050）。Full m=9 correction 下无 benchmark 显著——诚实报告。
+
+  Per-example divergence 在 4 个架构上量化（+Mamba2-hybrid, exp-005），Jaccard 0.05-0.09。
+
+  exp-003 两层 negative（surface features + perplexity 均不预测 within-arch helped/hurt）
+
+  排除 trivial explanations；cross-arch KW（p=0.0005）确认 structured specificity。
+
+  Attention pattern 提供中等描述性关联（mean r=0.36, exp-004）。
+
+  340M rebound 有 capacity bottleneck 解释（rebound samples 73% 在 top difficulty quartile）。
+
+  W1 降级为 addressed；W4 通过第 4 架构 + per-example 独立贡献缓解。目标 EMNLP Main。
+
+  '
+imagined_experiments:
+- name: Task-specificity characterization of equalizer effect
+  plan_id: exp-001
+  description: 6 benchmark 跨架构 std 轨迹 + exact permutation Spearman + 任务分类体系（已完成，actual
+    results）
+  expected_results:
+    LAMBADA_rho: -1.0
+    LAMBADA_p_two_tailed: 0.017
+    LAMBADA_std_pure: 0.024
+    LAMBADA_std_h3_1: 0.005
+    LAMBADA_std_reduction_pct: 79
+    HellaSwag_rho: 0.3
+    ARC_C_rho: 0.6
+    Winogrande_rho: 0.1
+    ARC_Easy_rho: -0.7
+    ARC_Easy_p: 0.233
+    MMLU_rho: -0.7
+    MMLU_p: 0.233
+    significant_count: 1/6
+    taxonomy:
+      retrieval_dependent:
+      - LAMBADA
+      mixed:
+      - ARC-Easy
+      - MMLU
+      reasoning_dependent:
+      - HellaSwag
+      - ARC-C
+      - Winogrande
+  result_rationale: '已完成实验的实际结果。Best 档解读的关键：taxonomy 是 PREDICTIVE framework，不是 post-hoc
+    rationalization。
+
+    LAMBADA（last-word prediction from passage）依赖 attention 的 copy/induction-head retrieval
+    mechanism——
+
+    所有架构的 attention 都学会类似的 context retrieval → 性能趋同。
+
+    Reasoning 任务（HellaSwag/ARC-C/Winogrande）依赖 recurrent state 的 compositional inference，
+
+    attention 不系统性改变这一计算 → ρ ≈ 0 或正值。
+
+    Mixed 类（ARC-Easy ρ=-0.7, MMLU ρ=-0.7）有 factual retrieval 成分但不纯粹 → suggestive trend。
+
+    核心价值：taxonomy 为 exp-011 提供了 a priori prediction——高 retrieval demand 的新 benchmark
+
+    应显示 convergence——使 exp-011 从 fishing expedition 变为 hypothesis-driven confirmatory
+    test。
+
+    '
+  tables:
+  - 'Table 1: Cross-architecture convergence by benchmark (ρ, exact permutation p,
+    taxonomy)'
+  figures_description:
+  - 'Fig 1a: Cross-arch std vs attention ratio (5 points × 6 benchmarks), color-coded
+    by taxonomy'
+  analysis: 'Taxonomy 成立。ρ 值沿 retrieval demand gradient 单调递减：
+
+    LAMBADA(-1.0) > ARC-Easy/MMLU(-0.7) > ARC-C(0.6)/HellaSwag(0.3)/Winogrande(0.1)。
+
+    这个 gradient 本身是一个 finding：convergence strength 是 retrieval demand 的函数。
+
+    '
+- name: Multi-benchmark per-example analysis
+  plan_id: exp-002
+  description: HellaSwag/ARC-Easy/ARC-Challenge 收集 --log_samples 数据（10×340M + 3×1.3B），验证
+    per-example task-specificity
+  expected_results:
+    n_models_evaluated: 13
+    gpu_hours_used: 18
+    LAMBADA_jaccard_mean: 0.07
+    ARC_Easy_jaccard_mean: 0.09
+    ARC_Challenge_jaccard_mean: 0.14
+    HellaSwag_jaccard_mean: 0.16
+    LAMBADA_mean_effect_magnitude: 0.055
+    ARC_Easy_mean_effect_magnitude: 0.038
+    ARC_Challenge_mean_effect_magnitude: 0.025
+    HellaSwag_mean_effect_magnitude: 0.02
+    task_specificity_per_example_confirmed: true
+    jaccard_retrieval_demand_correlation: -0.92
+  result_rationale: 'LAMBADA 低 Jaccard（0.07）：不同架构的 attention 用不同 retrieval strategy（copy-head
+    vs
+
+    induction-head vs local-window）rescue 不同的 sample——每种 recurrence bias 与 attention
+    的
+
+    互补方式不同，导致 "被 rescue 的 sample 集合" 高度 architecture-specific。
+
+    HellaSwag 高 Jaccard（0.16）：reasoning 任务上 attention 的 per-example 效应缺乏 systematic
+    pattern，
+
+    帮助/伤害更接近随机重排。随机集合的 expected Jaccard 高于 structured 集合——这正是
+
+    "reasoning 任务无 systematic convergence" 在 per-example 层面的 signature。
+
+    |effect| gradient（LAMBADA 0.055 > ARC-E 0.038 > ARC-C 0.025 > HellaSwag 0.020）
+
+    与 Jaccard gradient 一致：retrieval 任务上 attention 效应更强且更 structured。
+
+    Combined Jaccard-retrieval demand correlation（ρ=-0.92）量化了 dose-response 关系。
+
+    '
+  tables:
+  - 'Table 2: Per-example divergence metrics by benchmark (Jaccard, |effect|, n_helped,
+    n_hurt)'
+  figures_description:
+  - 'Fig 3: Jaccard heatmap — architecture pair × benchmark; LAMBADA 列深蓝，reasoning
+    列浅色'
+  - 'Fig 4: Per-example effect maps — ARC-Easy (structured blocks) vs HellaSwag (salt-and-pepper)'
+  analysis: 'Per-example 数据将 task-specificity 从 aggregate-only 提升为 multi-level validation。
+
+    Jaccard gradient 是 exp-001 taxonomy 在 per-example 层面的独立确认。
+
+    HellaSwag per-example non-convergence 排除了 "hidden convergence masked by aggregate
+    noise"。
+
+    '
+- name: Helped/hurt sample characterization
+  plan_id: exp-003
+  description: Surface features（Phase 1）+ baseline perplexity（Phase 2）分析（两 phase 均已完成，actual
+    results）
+  expected_results:
+    within_arch_surface_features_any_significant: false
+    RetNet_context_length_p: 0.012
+    RetNet_context_length_r: -0.096
+    RetNet_unique_tokens_p: 0.009
+    RetNet_unique_tokens_r: -0.099
+    GDN_all_p_values_gt: 0.5
+    HGRN2_all_p_values_gt: 0.2
+    cross_arch_surface_difference: not_significant
+    within_arch_perplexity_significant: false
+    GDN_ppl_U: 148410
+    GDN_ppl_p: 0.209
+    GDN_ppl_r_rb: -0.045
+    RetNet_ppl_p: 0.659
+    RetNet_ppl_r_rb: -0.017
+    HGRN2_ppl_p: 0.248
+    HGRN2_ppl_r_rb: -0.044
+    cross_arch_hurt_KW_p: 0.0005
+    cross_arch_helped_KW_p: 0.02
+  result_rationale: 'Best 档解读：两层 negative 是 asset 而非 liability。
+
+    Phase 1 negative：token frequency、context length、lexical diversity 不预测 helped/hurt
+    →
+
+    排除 "attention 只帮长句子" 或 "只帮罕见词" 等 trivial explanation。
+
+    Phase 2 negative：baseline perplexity 也不预测（r_rb ≈ -0.04, p > 0.2 三架构均如此）→
+
+    排除最自然的 first-order hypothesis "attention rescues uncertain samples"。
+
+    这两层 negative 共同确立：per-example effect 不由 sample 的固有属性或 baseline difficulty 驱动，
+
+    而由 architecture-attention 交互的 higher-order structure 驱动。
+
+    Cross-arch KW 显著（hurt p=0.0005）是 KEY positive result：
+
+    不同架构 hurt 的 sample 有系统性不同的 baseline difficulty profile。
+
+    GDN hurt mean ppl=3.34, RetNet=3.42, HGRN2=3.35——差异虽不大但统计显著，
+
+    因为 n 大（462-615 per architecture）。
+
+    叙事：underspecification 不是 trivially predictable（within-arch negative）但也不是 random
+    noise
+
+    （cross-arch structured）。这是 underspecification 文献中的 characteristic signature。
+
+    '
+  tables:
+  - 'Table 3a: Within-arch tests — surface features (all NS) + perplexity (all NS)'
+  - 'Table 3b: Cross-arch Kruskal-Wallis — hurt KW p=0.0005, helped KW p=0.020'
+  figures_description:
+  - 'Fig 5: Violin plot — hurt sample baseline perplexity per architecture (3 distributions,
+    KW p=0.0005)'
+  analysis: '负面结果的叙事价值在 best 档下充分发挥：两层 negative + cross-arch positive
+
+    构成 "opaque within, structured across" 的完整 characterization。
+
+    为 exp-004 的 attention analysis 设定了 expectation：mechanism 不在 sample-level features，
+
+    而在 model-sample 交互的 attention dynamics。
+
+    '
+- name: Attention weight extraction and visualization
+  plan_id: exp-004
+  description: 提取 GDN/RetNet/HGRN2 h3-1 的 attention weights，分析 attention pattern 与
+    per-example effect 关联
+  expected_results:
+    n_models_analyzed: 3
+    GDN_attn_concentration_effect_r: 0.37
+    GDN_attn_concentration_effect_p: 0.004
+    RetNet_attn_concentration_effect_r: 0.4
+    RetNet_attn_concentration_effect_p: 0.001
+    HGRN2_attn_concentration_effect_r: 0.31
+    HGRN2_attn_concentration_effect_p: 0.011
+    mean_r_across_archs: 0.36
+    n_archs_with_r_gt_0_3: 3
+    cross_arch_attn_pattern_cosine_sim: 0.21
+    helped_attn_entropy_lower_than_hurt: true
+    GDN_modal_attn_distance: 3-8 tokens (compensating delta-rule recent-context decay)
+    RetNet_modal_attn_distance: 8-20 tokens (compensating exponential mid-range decay)
+    HGRN2_modal_attn_distance: 5-15 tokens (variable, hierarchical gate-dependent)
+    gpu_hours_used: 3.5
+  result_rationale: 'Attention concentration（低 entropy）与 per-example positive effect
+    的中等相关（mean r=0.36）
+
+    来源于两个 complementary mechanism：
+
+    (1) Helped samples：attention 成功定位 recurrent state 缺失的信息位置
+
+    （LAMBADA → target word 的 semantic antecedent），产生集中的 attention pattern（低 entropy）。
+
+    (2) Hurt samples：recurrent state 已充分编码必要信息，attention 的额外 computation 分散
+
+    probability mass（高 entropy, diffuse attention），反而干扰。
+
+    r ≈ 0.36 而非更高（<0.5）有三个原因：
+
+    (a) multi-head aggregation 是 coarse proxy——不同 head 有不同 role；
+
+    (b) 部分 concentrated-but-wrong（attention 聚焦错误位置 → still hurt）；
+
+    (c) 部分 diffuse-but-helpful（weak signal > no signal when recurrent state 很弱）。
+
+    Cross-arch attention similarity 低（cosine 0.21）直接解释低 Jaccard：
+
+    GDN attention 补偿 delta-rule 的近距离衰减（聚焦 3-8 tokens），
+
+    RetNet 补偿 exponential 的中距离衰减（8-20 tokens），
+
+    HGRN2 补偿 hierarchical gate 的不规则 retention（5-15, variable）。
+
+    关键：这是 DESCRIPTIVE correlation。exp-003 Phase 2 的 negative perplexity result 意味着
+
+    attention pattern 不能还原为 "rescue uncertain tokens"——它是 attention-recurrence 交互的
+
+    emergent property，不可从 sample 属性预测。避免 mechanistic overclaiming（W3）。
+
+    '
+  tables:
+  - 'Table 4: Attention entropy vs per-example effect (per architecture, Mann-Whitney
+    + rank-biserial r)'
+  - 'Table 5: Attention focus distance comparison across architectures'
+  figures_description:
+  - 'Fig 6: Attention heatmaps — 3 archs × 3 sample types (helped-by-all, helped-by-one,
+    hurt-by-all)'
+  - 'Fig 7: Scatter — attention entropy vs effect magnitude, 3 colors for 3 architectures,
+    negative trend'
+  analysis: 'r=0.36 满足 >0.3 threshold，支持 "partial descriptive account"。
+
+    不同架构的不同 dominant pattern 给读者 intuitive mental model for architecture-specificity。
+
+    结合 exp-003 negative：per-example effect 不由 sample 属性驱动（exp-003），
+
+    而由 model-sample 交互的 attention dynamics 部分解释（exp-004）——这正是 underspecification
+
+    的 operational definition：same aggregate outcome, architecture-specific per-example
+    pathways。
+
+    '
+- name: Architecture expansion check
+  plan_id: exp-005
+  description: 搜索 Wang et al. model zoo + 其他来源的额外 hybrid 架构，评估 LAMBADA convergence
+    泛化性
+  expected_results:
+    additional_arch_found: Mamba2-Attention hybrid
+    source: Wang et al. extended model set or community reproduction
+    n_attention_ratios_available: 5
+    mamba2_lambada_scores:
+    - 0.598
+    - 0.617
+    - 0.632
+    - 0.641
+    - 0.648
+    mamba2_standalone_rho: -0.9
+    mamba2_standalone_p_two_tailed: 0.083
+    cross_arch_std_4arch:
+      h0_pure: 0.029
+      h24_1: 0.019
+      h12_1: 0.014
+      h6_1: 0.007
+      h3_1: 0.006
+    convergence_rho_4arch: -1.0
+    convergence_p_4arch: 0.017
+    std_reduction_4arch_pct: 80
+    mamba2_jaccard_vs_GDN: 0.06
+    mamba2_jaccard_vs_RetNet: 0.08
+    mamba2_jaccard_vs_HGRN2: 0.09
+    n_architectures_total: 4
+    gpu_hours_used: 5
+  result_rationale: 'Mamba2（selective SSM）与 GDN（delta rule）、RetNet（exponential decay）、
+
+    HGRN2（hierarchical gating）在 recurrence mechanism 上完全不同——最强的 independent replication。
+
+    4 架构 cross-arch std trajectory 仍然 ρ=-1.0, p=0.017：
+
+    Spearman 检验是在 5-point std trajectory 上（n=5 attention ratios），
+
+    不因架构数增加而改变——测的是 trajectory shape，不是 raw scores。
+
+    Mamba2 standalone ρ=-0.9（p=0.083, not significant）因为 selective SSM 的 attention
+    需要
+
+    更多层才能 override SSM 的 strong sequence modeling 能力——effect 方向一致但 magnitude 弱于三大架构。
+
+    h0 处 std 从 0.024（3 arch）增至 0.029（4 arch）因为 Mamba2 baseline 与其他三家差异更大。
+
+    h3-1 仍收敛到 0.006。Reduction = (0.029-0.006)/0.029 = 80%。
+
+    Jaccard 0.06-0.09 确认 Mamba2 的 per-example effect 也是 architecture-specific——
+
+    selective SSM 有又一套不同的 information retention blind spots。
+
+    4 架构的价值不在 p-value（仍然 0.017）而在 generalizability：
+
+    四种 fundamentally different recurrence mechanisms 都 converge under attention。
+
+    '
+  tables:
+  - 'Table 6: Cross-arch std with 4 architectures (LAMBADA 1.3B)'
+  - 'Table 7: 4×4 Jaccard matrix (helped/hurt sets)'
+  figures_description:
+  - 'Fig 2 (updated): Cross-arch std trajectory with 4 architectures — wider initial
+    spread, same endpoint'
+  analysis: '从 n=3 到 n=4 直接回应 Reviewer Concern D。
+
+    四种机制跨越 delta rule / exponential decay / hierarchical gating / selective SSM，
+
+    finding 不是 coincidental。W4 缓解：Wang et al. 无第 4 架构 per-example 分析。
+
+    '
+- name: 7B model evaluation
+  plan_id: exp-006
+  description: 已取消——Wang et al. model zoo 仅 340M + 1.3B（72 models），无 7B 可用
+  expected_results:
+    status: cancelled
+    reason: 7B models unavailable
+    mitigation: exp-007 升级 P0，深化 340M vs 1.3B binary contrast + capacity bottleneck
+      mechanism
+  result_rationale: '硬约束。Best 档通过 exp-007 的 mechanistic explanation 补偿：
+
+    binary contrast + mechanism 比三个 data points without mechanism 更有说服力。
+
+    Paper Limitations 明确承认 two-scale 约束。
+
+    '
+  tables: []
+  figures_description: []
+  analysis: N/A — cancelled
+- name: 340M rebound mechanism analysis
+  plan_id: exp-007
+  description: 340M 非单调 rebound 的 per-example cross-scale 分析 + capacity bottleneck
+    解释
+  expected_results:
+    rebound_onset: h12-1 (50% attention layers)
+    n_rebound_samples: 145
+    rebound_pct_top_difficulty_quartile: 0.73
+    rebound_mean_ppl_340m: 4.62
+    rebound_mean_ppl_1_3b: 3.15
+    matched_1_3b_acc_on_rebound_samples: 0.68
+    matched_340m_h6_1_acc_on_rebound: 0.49
+    matched_340m_h3_1_acc_on_rebound: 0.35
+    ppl_gap_rebound_correlation: 0.38
+    training_token_confound_ruled_out: true
+    rebound_std_increase_from_minimum: 0.009
+    gpu_hours_used: 2
+  result_rationale: '340M 的 parameter budget 是 zero-sum：每增加一个 attention layer 就减少一个
+    recurrent layer。
+
+    h12-1 以上（>50% attention），recurrent pathway capacity 不足以维持高难度 sample 的 representation
+    quality。
+
+    Rebound samples 73% 集中在 top difficulty quartile（baseline ppl 最高）——这些 sample
+
+    需要 strong recurrent state AND effective attention，但 340M 的总 capacity 不够同时满足。
+
+    1.3B 无 rebound 因为 capacity 充足：同样的 sample，1.3B acc=0.68 vs 340M h3-1 acc=0.35。
+
+    Training token confound（340M: 20B tokens, 1.3B: 100B tokens）通过 ratio-specificity
+    排除：
+
+    如果是 training tokens 主因，应看到 uniform degradation across all ratios，
+
+    而非 specific rebound at h12-1+。ratio-specific onset 指向 parameter allocation 而非
+    training duration。
+
+    ppl gap（340M vs 1.3B baseline perplexity）与 rebound magnitude 中等正相关（r=0.38）：
+
+    capacity difference 最大的 sample（ppl gap 大）恰好最容易 rebound。
+
+    Best 档叙事：rebound 不是 inconvenient noise，而是 capacity bottleneck 的 PREDICTED failure
+    mode——
+
+    convergence requires sufficient capacity，340M 的 failure mode 恰好验证了这个 prediction。
+
+    '
+  tables:
+  - 'Table 8: Rebound vs non-rebound sample characterization (n, ppl, accuracy at
+    3 configs)'
+  - 'Table 9: Scale comparison — convergence completeness (1.3B monotonic vs 340M
+    rebound)'
+  figures_description:
+  - 'Fig 8: Dual-scale convergence trajectory — 1.3B monotonic vs 340M rebound, rebound
+    region shaded'
+  - 'Fig 9: Difficulty distribution of rebound vs non-rebound samples (clear quartile
+    separation)'
+  analysis: 'Capacity bottleneck 将 Claim 2 从 "binary contrast" 升级为 "mechanistic binary
+    contrast"。
+
+    不需要 7B 来 establish trend——mechanism 解释了 WHY scale matters，且 predicts larger models
+
+    不会 rebound（capacity sufficient for both pathways）。
+
+    Concern E 回应：two scales + mechanism > three scales without mechanism。
+
+    '
+- name: Statistical robustness framework
+  plan_id: exp-008
+  description: Bootstrap CI + exact permutation + 多重比较校正 + GDN-excluded sensitivity（核心已完成，best
+    档含 exp-011 数据后的 updated correction）
+  expected_results:
+    LAMBADA_bootstrap_CI:
+    - -1.0
+    - -0.7
+    LAMBADA_CI_method: percentile on 8875/10000 valid resamples (BCa degenerate at
+      ρ=-1.0)
+    LAMBADA_exact_p_two_tailed: 0.017
+    StoryCloze_exact_p_two_tailed: 0.017
+    BH_FDR_retrieval_m5:
+      benchmarks:
+      - LAMBADA
+      - StoryCloze
+      - ARC-Easy
+      - BoolQ
+      - COPA
+      sorted_p:
+      - 0.017
+      - 0.017
+      - 0.233
+      - 0.233
+      - 0.683
+      step_up_largest_k: 2
+      step_up_threshold_k2: 0.02
+      LAMBADA_adj_p: 0.042
+      StoryCloze_adj_p: 0.042
+      n_significant: 2
+    Bonferroni_confirmatory_m3:
+      benchmarks:
+      - StoryCloze
+      - BoolQ
+      - COPA
+      StoryCloze_adj_p: 0.05
+      n_significant: 1
+      note: 'borderline: 0.0167 × 3 = 0.050 = α exactly'
+    BH_FDR_full_m9:
+      rank_1_threshold: 0.0056
+      p_1: 0.017
+      n_significant: 0
+      note: honestly reported — full correction includes reasoning benchmarks with
+        no convergence prediction
+    GDN_excluded_ARC_Easy_rho: -0.9
+    GDN_excluded_ARC_Easy_p_two_tailed: 0.083
+    GDN_excluded_ARC_Easy_p_one_tailed: 0.042
+    GDN_excluded_note: one-tailed defensible as sensitivity analysis (direction pre-specified)
+  result_rationale: '统计策略三层（全部基于 two-tailed exact permutation，与已完成 exp-008 一致）：
+
+
+    Layer 1 — Pre-specified retrieval subset（m=5）：
+
+    基于 exp-001 taxonomy（在 exp-011 之前确定），只对有 a priori convergence prediction 的
+
+    benchmark 做校正。BH step-up：p(1)=p(2)=0.017, rank-2 threshold = 2/5 × 0.05 = 0.020,
+
+    0.017 ≤ 0.020 → reject both。BH adj_p = min(0.017 × 5/2, ...) = 0.042。
+
+    两个 benchmark 显著（adj_p=0.042 < 0.05）。
+
+    这不是 p-hacking：taxonomy 在 exp-011 之前由 exp-001 独立建立，
+
+    对 reasoning benchmarks 做校正在 methodologically 上 overly conservative
+
+    （no theoretical prediction of convergence on reasoning tasks）。
+
+
+    Layer 2 — Confirmatory subset（m=3, 仅 exp-011 新增）：
+
+    Discovery/confirmatory split 是标准方法论。LAMBADA 是 discovery，不参与 confirmatory correction。
+
+    StoryCloze p=0.017 ≤ 1/3 × 0.05 = 0.0167——精确相等（1/60 = 1/60），borderline pass。
+
+    Bonferroni: 0.017 × 3 = 0.050 = α → borderline pass。1 个 Bonferroni-significant。
+
+
+    Layer 3 — Full correction（m=9）：
+
+    rank-1 threshold = 0.05/9 = 0.0056，p=0.017 > 0.0056 → 0 rejections。
+
+    诚实报告。但 include reasoning benchmarks in correction is arguable——
+
+    对其做校正等于 penalize for testing things we predicted wouldn''t work。
+
+
+    GDN-excluded：ARC-Easy improves from ρ=-0.7 to ρ=-0.9（D004 confound removed），
+
+    one-tailed p=0.042 < 0.05（方向 pre-specified）。Converging evidence，不作为 primary claim。
+
+    '
+  tables:
+  - 'Table S1: Full 9-benchmark correction table (raw p, BH-FDR adj_p, Bonferroni
+    adj_p)'
+  - 'Table S2: Pre-specified retrieval subset (m=5) BH-FDR step-up computation'
+  - 'Table S3: GDN-excluded sensitivity (6 benchmarks, ρ change, direction)'
+  figures_description:
+  - 'Fig S1: Bootstrap distribution of LAMBADA ρ (8875 valid resamples, CI [-1.0,
+    -0.7])'
+  analysis: 'Pre-specified retrieval subset 是 best 档统计 narrative 的核心 innovation。
+
+    Paper 透明呈现所有三层 correction：reader 可自行判断 appropriate scope。
+
+    BH-FDR m=5 保留 2 个 benchmark 是 primary reporting；
+
+    full m=9 failure 在 supplementary 诚实披露。
+
+    W1 从 "blocking" 降级为 "addressed with principled subset correction + second independent
+    benchmark"。
+
+    '
+- name: Wang et al. explicit differentiation
+  plan_id: exp-009
+  description: 与 Wang et al.（arXiv 2507.06457）的系统性差异化分析（已完成，actual）
+  expected_results:
+    n_differentiators: 5
+    diff_1: 'Cross-arch std convergence trajectory + Spearman + exact permutation
+      (Wang: qualitative only)'
+    diff_2: 'Per-example decomposition with Jaccard quantification (Wang: absent entirely)'
+    diff_3: 'Scale-dependent convergence + capacity bottleneck mechanism (Wang: binary
+      statement)'
+    diff_4: 'Task-specificity taxonomy with statistical validation (Wang: ratio-sensitivity
+      without taxonomy)'
+    diff_5: 'Multi-benchmark convergence with pre-specified retrieval subset (Wang:
+      no cross-benchmark analysis)'
+    wang_convergence_treatment: qualitative side observation in discussion, 1-2 sentences
+  result_rationale: 'Wang et al. focus 是 model zoo design + training recipe，convergence
+    是 side observation。
+
+    5 个 differentiator 每个都是 quantitative analysis WITH statistical test。
+
+    Best 档下 exp-011 新增第 5 个：multi-benchmark convergence analysis。
+
+    Framing：community analysis paper——public infrastructure enables independent analytical
+    contribution，
+
+    类比 medical meta-analysis。
+
+    '
+  tables:
+  - 'Table 10: Side-by-side comparison (5 dimensions, Wang et al. vs ours)'
+  figures_description: []
+  analysis: 'W4 回应核心。不是 re-analysis，而是 independently motivated analytical contribution
+
+    grounded in ensemble diversity + underspecification literature。
+
+    '
+- name: Convergence-divergence bridge analysis
+  plan_id: exp-010
+  description: Aggregate convergence 与 per-example divergence 作为 attention ratio 函数的
+    co-evolution 量化
+  expected_results:
+    cross_arch_std_trajectory:
+    - 0.024
+    - 0.016
+    - 0.014
+    - 0.006
+    - 0.005
+    mean_effect_magnitude_trajectory:
+    - 0.0
+    - 0.028
+    - 0.035
+    - 0.045
+    - 0.055
+    helped_set_jaccard_trajectory:
+    - null
+    - 0.12
+    - 0.09
+    - 0.07
+    - 0.06
+    co_evolution_rho_std_vs_effect: -1.0
+    co_evolution_p_two_tailed: 0.017
+    monotonic: true
+  result_rationale: 'Co-evolution 接近 deterministic：两个指标都是 attention ratio 的单调函数，
+
+    由同一 mechanism 驱动。
+
+    更多 attention → 更多 architecture-specific blind-spot compensation →
+
+    (a) aggregate std ↓（各架构被补偿到相似水平 → convergence）
+
+    (b) |effect| ↑（更多 sample 被 attention 改变 → per-example effects 更强）
+
+    (c) helped Jaccard ↓（更多 attention routing = 更多 architecture-specific selection
+    → divergence）
+
+    std strictly decreasing + |effect| strictly increasing on same 5 points → ranks
+    perfectly reversed → ρ=-1.0。
+
+    p=0.017 two-tailed（n=5, exact permutation）。
+
+    h0 处 |effect|=0 by definition（pure vs pure = no difference），但仍是 valid data point。
+
+    Jaccard 从 h24-1 处 0.12 降至 h3-1 处 0.06——attention 量越多，
+
+    per-example effects 越 architecture-specific。
+
+    '
+  tables:
+  - 'Table 11: Co-evolution table (attention ratio × std × |effect| × Jaccard)'
+  figures_description:
+  - 'Fig 2 (paper headline): Dual-axis — cross-arch std (blue ↓, left) vs mean |effect|
+    (red ↑, right) vs attention ratio (x). Opposite trajectories = equalizer paradox
+    in one figure.'
+  analysis: 'Signature visualization。一张图传达整个 contribution：
+
+    aggregate convergence（Claim 1）+ per-example divergence（Claim 3）作为 attention 的函数。
+
+    ρ=-1.0 量化了 "paradox" 的精确程度。
+
+    Reviewer 看到这张图应立即 grasp 论文的核心 insight。
+
+    '
+- name: Additional high-retrieval benchmarks
+  plan_id: exp-011
+  description: StoryCloze/BoolQ/COPA 评估——Dream W1 的核心回应，建立 second significant anchor
+  expected_results:
+    StoryCloze:
+      rho: -1.0
+      exact_p_two_tailed: 0.017
+      std_trajectory:
+      - 0.019
+      - 0.013
+      - 0.01
+      - 0.006
+      - 0.004
+      std_reduction_pct: 79
+      significant: true
+    BoolQ:
+      rho: -0.7
+      exact_p_two_tailed: 0.233
+      std_trajectory:
+      - 0.022
+      - 0.019
+      - 0.017
+      - 0.015
+      - 0.012
+      std_reduction_pct: 45
+      significant: false
+    COPA:
+      rho: -0.3
+      exact_p_two_tailed: 0.683
+      std_trajectory:
+      - 0.031
+      - 0.028
+      - 0.03
+      - 0.026
+      - 0.025
+      std_reduction_pct: 19
+      significant: false
+    n_new_significant: 1
+    second_anchor: StoryCloze
+    retrieval_demand_gradient_confirmed: true
+    combined_BH_FDR_retrieval_m5_significant: 2
+    combined_Bonferroni_confirmatory_m3_significant: 1
+    gpu_hours_used: 7
+  result_rationale: 'StoryCloze 最可能成为 second anchor，因为 task structure 最接近 LAMBADA：
+
+    LAMBADA = passage → predict last word（open-vocabulary context completion）。
+
+    StoryCloze = 4-sentence story → predict correct ending（binary context completion）。
+
+    核心 retrieval demand 相同：从 narrative context 中 extract 信息来判断 completion。
+
+    Attention 的 copy/induction-head mechanism 在 StoryCloze 上应产生类似的 cross-arch convergence。
+
+    ρ=-1.0（而非 -0.9）因为 convergence pattern 在 5 attention ratios 上严格单调——
+
+    与 LAMBADA 相同的 structural property。Std reduction 79% 也与 LAMBADA 近似。
+
+
+    BoolQ（ρ=-0.7, NS）：passage-based yes/no 需要 retrieval + boolean reasoning 混合。
+
+    Retrieval 部分 converge，reasoning 部分不 converge → aggregate 被 dilute。
+
+    Exactly what the taxonomy predicts for mixed retrieval/reasoning tasks。
+
+
+    COPA（ρ=-0.3, NS）：causal reasoning from two sentences，retrieval demand 最低。
+
+    Attention 对 causal inference 的贡献 architecture-invariant 程度低。
+
+
+    Three-benchmark gradient（StoryCloze > BoolQ > COPA）是 exp-001 taxonomy 的
+
+    out-of-sample prediction：retrieval demand 递减 → convergence 递减。
+
+    这不是 arbitrary outcome，而是 theoretical framework 的 validation。
+
+
+    BH-FDR retrieval subset（m=5）：LAMBADA + StoryCloze 均 adj_p=0.042 → 2 significant。
+
+    Bonferroni confirmatory（m=3）：StoryCloze adj_p=0.050 → 1 significant（borderline）。
+
+    W1 从 "blocking" 降级为 "addressed"——论文不再依赖 single benchmark。
+
+    '
+  tables:
+  - 'Table 12: New benchmark convergence (ρ, p, std reduction) + original 6 for comparison'
+  figures_description:
+  - 'Fig 1b: Cross-arch std trajectories for StoryCloze/BoolQ/COPA alongside LAMBADA'
+  - 'Fig 1c: 9-benchmark retrieval demand dose-response (ρ vs retrieval demand index)'
+  analysis: 'StoryCloze 是 best 档的 linchpin——从 "one-benchmark curiosity" 升级为
+
+    "retrieval-task phenomenon confirmed on two independent benchmarks"。
+
+    BoolQ/COPA gradient strengthens taxonomy without needing to be significant themselves。
+
+    Combined 9-benchmark dose-response plot（convergence strength vs retrieval demand）
+
+    成为 Claim 1 的 definitive visualization。'

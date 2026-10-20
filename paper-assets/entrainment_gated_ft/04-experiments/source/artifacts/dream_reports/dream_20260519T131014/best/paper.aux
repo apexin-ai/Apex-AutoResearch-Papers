@@ -1,0 +1,84 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2025mamba,de2024griffin,dao2024transformers}
+\citation{wang2025mamba}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Claim 1: Task-Specific Convergence.}{1}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Claim 2: Scale-Dependent Convergence.}{1}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Claim 3: The Equalizer Paradox.}{1}{section*.4}\protected@file@percent }
+\citation{yang2024gated}
+\citation{sun2023retentive}
+\citation{qin2024hgrn2}
+\citation{dao2024transformers}
+\citation{wang2025mamba}
+\citation{srivastava2023beyond}
+\citation{gao2024framework}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Linear Recurrent Models.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hybrid Architectures.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Wang et al.\ Model Zoo.}{2}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{2}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{2}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{2}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{2}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{2}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Task-Specific Convergence Spectrum}{2}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:task-specificity}{{4.1}{2}{Task-Specific Convergence Spectrum}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Cross-architecture convergence by benchmark at 1.3B scale. $\rho $: Spearman correlation between attention ratio and cross-architecture std. Retrieval demand follows BIG-bench taxonomy. Std$_0$ and Std$_{24}$: cross-architecture std at attention ratio 0 and 24 respectively.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:convergence}{{1}{3}{Cross-architecture convergence by benchmark at 1.3B scale. $\rho $: Spearman correlation between attention ratio and cross-architecture std. Retrieval demand follows BIG-bench taxonomy. Std$_0$ and Std$_{24}$: cross-architecture std at attention ratio 0 and 24 respectively}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Per-example convergence metrics. $\rho _{\text  {agg}}$: aggregate Spearman correlation. $\rho _{\text  {per-ex}}$: per-example filtered correlation. Jacc.: mean pairwise Jaccard of helped/hurt sets. 23 models evaluated across 18,743 total samples.}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:per-example}{{2}{3}{Per-example convergence metrics. $\rho _{\text {agg}}$: aggregate Spearman correlation. $\rho _{\text {per-ex}}$: per-example filtered correlation. Jacc.: mean pairwise Jaccard of helped/hurt sets. 23 models evaluated across 18,743 total samples}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Per-Example Analysis Confirms and Refines the Spectrum}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:per-example}{{4.2}{3}{Per-Example Analysis Confirms and Refines the Spectrum}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces AUC for helped/hurt classification by feature and architecture on LAMBADA. $p_{\text  {cross}}$: significance of cross-architecture profile difference. Three features achieve $p < 0.001$ overall; Cohen's $d$=0.72 for the best feature.}}{3}{table.3}\protected@file@percent }
+\newlabel{tab:features}{{3}{3}{AUC for helped/hurt classification by feature and architecture on LAMBADA. $p_{\text {cross}}$: significance of cross-architecture profile difference. Three features achieve $p < 0.001$ overall; Cohen's $d$=0.72 for the best feature}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Mechanistic Analysis: Sample Features and Attention Patterns}{3}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:mechanism}{{4.3}{3}{Mechanistic Analysis: Sample Features and Attention Patterns}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Sample Feature Characterization.}{3}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Attention Pattern Analysis.}{3}{section*.13}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Attention pattern analysis on LAMBADA. $r$ (h/h): correlation between attention weights and helped/hurt identity. All $p < 5 \times 10^{-4}$.}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:attention}{{4}{4}{Attention pattern analysis on LAMBADA. $r$ (h/h): correlation between attention weights and helped/hurt identity. All $p < 5 \times 10^{-4}$}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-architecture attention similarity (cosine). All pairs significantly \emph  {below} random baseline, indicating architecture-specific attention behavior.}}{4}{table.5}\protected@file@percent }
+\newlabel{tab:attn-sim}{{5}{4}{Cross-architecture attention similarity (cosine). All pairs significantly \emph {below} random baseline, indicating architecture-specific attention behavior}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Architecture Generalization}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:expansion}{{4.4}{4}{Architecture Generalization}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Scale-Dependent Convergence and Capacity Bottleneck}{4}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:scale}{{4.5}{4}{Scale-Dependent Convergence and Capacity Bottleneck}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Architecture expansion on LAMBADA. Std$\downarrow $: std reduction from ratio=0 to ratio=24. Jacc.: range of pairwise Jaccard with other architectures. Four distinct recurrence mechanisms all exhibit the convergence pattern.}}{4}{table.6}\protected@file@percent }
+\newlabel{tab:expansion}{{6}{4}{Architecture expansion on LAMBADA. Std$\downarrow $: std reduction from ratio=0 to ratio=24. Jacc.: range of pairwise Jaccard with other architectures. Four distinct recurrence mechanisms all exhibit the convergence pattern}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces 340M rebound characterization. At ratio=8, attention parameters consume 31\% of the 340M budget, causing capacity bottleneck. Rebound samples concentrate on recurrence-demanding features.}}{4}{table.7}\protected@file@percent }
+\newlabel{tab:rebound}{{7}{4}{340M rebound characterization. At ratio=8, attention parameters consume 31\% of the 340M budget, causing capacity bottleneck. Rebound samples concentrate on recurrence-demanding features}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}The Convergence-Divergence Bridge}{4}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:bridge}{{4.6}{4}{The Convergence-Divergence Bridge}{subsection.4.6}{}}
+\citation{wang2025mamba}
+\citation{wang2025mamba}
+\citation{wang2025mamba}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Convergence-divergence co-evolution on LAMBADA by attention ratio. Std: cross-architecture standard deviation. Jacc.: mean pairwise Jaccard. GDN/Ret/HGRN2: net effect on accuracy. Aggregate convergence and per-example divergence are anti-correlated ($r$=$-$0.94, $p$=0.005).}}{5}{table.8}\protected@file@percent }
+\newlabel{tab:bridge}{{8}{5}{Convergence-divergence co-evolution on LAMBADA by attention ratio. Std: cross-architecture standard deviation. Jacc.: mean pairwise Jaccard. GDN/Ret/HGRN2: net effect on accuracy. Aggregate convergence and per-example divergence are anti-correlated ($r$=$-$0.94, $p$=0.005)}{table.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Statistical Robustness}{5}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:robustness}{{4.7}{5}{Statistical Robustness}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Bootstrap and Correction.}{5}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GDN Exclusion Sensitivity.}{5}{section*.15}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces GDN exclusion sensitivity. All three claims survive removal of GatedDeltaNet, confirming robustness to potential D004 confounds.}}{5}{table.9}\protected@file@percent }
+\newlabel{tab:gdn-exclusion}{{9}{5}{GDN exclusion sensitivity. All three claims survive removal of GatedDeltaNet, confirming robustness to potential D004 confounds}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Systematic comparison with Wang et al.\ \cite  {wang2025mamba}.}}{5}{table.10}\protected@file@percent }
+\newlabel{tab:wang-comparison}{{10}{5}{Systematic comparison with Wang et al.\ \cite {wang2025mamba}}{table.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Comparison with Wang et al.}{5}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{5}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for Architecture Selection.}{5}{section*.16}\protected@file@percent }
+\bibcite{wang2025mamba}{{1}{}{{}}{{}}}
+\bibcite{yang2024gated}{{2}{}{{}}{{}}}
+\bibcite{sun2023retentive}{{3}{}{{}}{{}}}
+\bibcite{qin2024hgrn2}{{4}{}{{}}{{}}}
+\bibcite{dao2024transformers}{{5}{}{{}}{{}}}
+\bibcite{de2024griffin}{{6}{}{{}}{{}}}
+\bibcite{srivastava2023beyond}{{7}{}{{}}{{}}}
+\bibcite{gao2024framework}{{8}{}{{}}{{}}}
+\providecommand\NAT@force@numbers{}\NAT@force@numbers
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{6}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Theoretical Interpretation.}{6}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{6}{section.7}\protected@file@percent }
+\gdef \@abspage@last{6}

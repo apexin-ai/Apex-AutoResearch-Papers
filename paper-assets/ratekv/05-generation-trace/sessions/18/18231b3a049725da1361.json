@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_gemma2_downstream_k8_script_20260515T192450_result.json",
     "occurrence": 1,
-    "bytes": 760,
-    "sha256": "9707a4bd82f4d49b0b521df63991f75c5e74340b4e37a35f6867fbad179a0ab8"
+    "bytes": 759,
+    "sha256": "985182655f11233df0f5ff75d1ed834788a667c99f7abfd8939fb9bfd39d7971"
   },
   "statistics": {
     "messages": 1,

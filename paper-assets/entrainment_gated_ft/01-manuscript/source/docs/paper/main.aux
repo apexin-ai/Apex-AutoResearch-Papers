@@ -1,0 +1,1986 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2025hybrid}
+\citation{marx2020predictive}
+\citation{yang2026benchmark}
+\citation{yang2024gateddeltanet,sun2023retnet,qin2024hgrn2,yang2024gla,yang2024deltanet}
+\citation{lieber2024jamba}
+\citation{de2024griffin}
+\citation{peng2024eagle}
+\citation{botev2024recurrentgemma}
+\citation{wang2025hybrid}
+\citation{marx2020predictive}
+\citation{damour2022underspecification,mccoy2020berts}
+\citation{wang2025hybrid}
+\citation{paperno2016lambada}
+\citation{zellers2019hellaswag}
+\citation{bisk2020piqa}
+\citation{clark2018arc}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@LN{28}{0}
+\@LN{29}{0}
+\@LN{30}{0}
+\@LN{31}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@LN{32}{0}
+\@LN{33}{0}
+\@LN{34}{0}
+\@LN{35}{0}
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN{38}{0}
+\@LN{39}{0}
+\@LN@col{2}
+\@LN{40}{0}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\@LN{69}{0}
+\@LN{70}{0}
+\@LN{71}{0}
+\@LN{72}{0}
+\@LN{73}{0}
+\@LN{74}{0}
+\@LN{75}{0}
+\@LN{76}{0}
+\@LN{77}{0}
+\@LN{78}{0}
+\@LN{79}{0}
+\@LN{80}{0}
+\citation{marx2020predictive}
+\citation{lieber2024jamba}
+\citation{de2024griffin,botev2024recurrentgemma}
+\citation{peng2024eagle}
+\citation{dong2024hymba}
+\citation{ren2024samba}
+\citation{dao2024mamba2}
+\citation{ali2025hidden}
+\citation{waleffe2024empirical}
+\citation{basu2026routing}
+\citation{ye2026provable}
+\citation{wang2025hybrid}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Per-example overlap appears stable from minimal attention across benchmarks. (a,\,b) LAMBADA: cross-architecture $\sigma $ shows a non-significant decreasing trend at 1.3B (solid; Bonferroni-adjusted $p = .167$) but partially rebounds at 340M (dashed), while pairwise Jaccard of helped/hurt sets appears stable from 4\% attention onward. (c) This pattern holds across all four main benchmarks: mean pairwise $\bar  {J}$ remains flat across attention ratios (all $\rho \leq 0.80$, $p \geq .333$). Shaded bands are illustrative ($n = 3$).}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:decoupling}{{1}{2}{Per-example overlap appears stable from minimal attention across benchmarks. (a,\,b) LAMBADA: cross-architecture $\sigma $ shows a non-significant decreasing trend at 1.3B (solid; Bonferroni-adjusted $p = .167$) but partially rebounds at 340M (dashed), while pairwise Jaccard of helped/hurt sets appears stable from 4\% attention onward. (c) This pattern holds across all four main benchmarks: mean pairwise $\bar {J}$ remains flat across attention ratios (all $\rho \leq 0.80$, $p \geq .333$). Shaded bands are illustrative ($n = 3$)}{figure.caption.1}{}}
+\@LN@col{1}
+\@LN{81}{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN{105}{1}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN{108}{1}
+\@LN{109}{1}
+\@LN{110}{1}
+\@LN{111}{1}
+\@LN{112}{1}
+\@LN{113}{1}
+\@LN{114}{1}
+\@LN{115}{1}
+\@LN@col{2}
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@LN{119}{1}
+\@LN{120}{1}
+\@LN{121}{1}
+\@LN{122}{1}
+\@LN{123}{1}
+\@LN{124}{1}
+\@LN{125}{1}
+\@LN{126}{1}
+\@LN{127}{1}
+\@LN{128}{1}
+\@LN{129}{1}
+\@LN{130}{1}
+\@LN{131}{1}
+\@LN{132}{1}
+\@LN{133}{1}
+\@LN{134}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hybrid Recurrent Architectures.}{2}{section*.2}\protected@file@percent }
+\@LN{135}{1}
+\@LN{136}{1}
+\@LN{137}{1}
+\@LN{138}{1}
+\@LN{139}{1}
+\@LN{140}{1}
+\@LN{141}{1}
+\@LN{142}{1}
+\@LN{143}{1}
+\@LN{144}{1}
+\@LN{145}{1}
+\@LN{146}{1}
+\@LN{147}{1}
+\@LN{148}{1}
+\@LN{149}{1}
+\citation{sun2023retnet}
+\citation{qin2024hgrn2}
+\citation{yang2024gateddeltanet}
+\citation{yang2024gla}
+\citation{yang2024deltanet}
+\citation{gu2022s4}
+\citation{gu2024mamba}
+\citation{katharopoulos2020transformers}
+\citation{beck2024xlstm}
+\citation{zimerman2025unified}
+\citation{arora2024based}
+\citation{damour2022underspecification}
+\citation{mccoy2020berts,sellam2022multiberts}
+\citation{marx2020predictive}
+\citation{watson2023predictive}
+\citation{hsu2022rashomon}
+\citation{du2025reconciling,haghighat2026resolving}
+\citation{fisher2019all,semenova2022existence}
+\citation{wortsman2022model}
+\citation{geifman2017selective}
+\citation{caruana2004ensemble}
+\citation{yang2026benchmark}
+\citation{wang2025hybrid}
+\citation{wang2025hybrid}
+\citation{wang2025hybrid}
+\citation{yang2024gateddeltanet}
+\citation{sun2023retnet}
+\citation{qin2024hgrn2}
+\citation{arora2024zoology}
+\citation{paperno2016lambada}
+\@LN@col{1}
+\@LN{150}{2}
+\@LN{151}{2}
+\@LN{152}{2}
+\@LN{153}{2}
+\@LN{154}{2}
+\@LN{155}{2}
+\@LN{156}{2}
+\@LN{157}{2}
+\@writefile{toc}{\contentsline {paragraph}{Linear Recurrent Models.}{3}{section*.3}\protected@file@percent }
+\@LN{158}{2}
+\@LN{159}{2}
+\@LN{160}{2}
+\@LN{161}{2}
+\@LN{162}{2}
+\@LN{163}{2}
+\@LN{164}{2}
+\@LN{165}{2}
+\@LN{166}{2}
+\@LN{167}{2}
+\@LN{168}{2}
+\@LN{169}{2}
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@LN{173}{2}
+\@LN{174}{2}
+\@LN{175}{2}
+\@LN{176}{2}
+\@LN{177}{2}
+\@LN{178}{2}
+\@LN{179}{2}
+\@LN{180}{2}
+\@writefile{toc}{\contentsline {paragraph}{Underspecification and Predictive Multiplicity.}{3}{section*.4}\protected@file@percent }
+\@LN{181}{2}
+\@LN{182}{2}
+\@LN{183}{2}
+\@LN{184}{2}
+\@LN{185}{2}
+\@LN{186}{2}
+\@LN{187}{2}
+\@LN{188}{2}
+\@LN{189}{2}
+\@LN{190}{2}
+\@LN{191}{2}
+\@LN{192}{2}
+\@LN{193}{2}
+\@LN{194}{2}
+\@LN{195}{2}
+\@LN{196}{2}
+\@LN{197}{2}
+\@LN{198}{2}
+\@LN{199}{2}
+\@LN{200}{2}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Model zoo summary \citep  {wang2025hybrid}. All configurations share training data, tokenizer, and hyperparameters; they differ only in backbone and attention ratio.}}{3}{table.caption.5}\protected@file@percent }
+\newlabel{tab:model_zoo}{{1}{3}{Model zoo summary \citep {wang2025hybrid}. All configurations share training data, tokenizer, and hyperparameters; they differ only in backbone and attention ratio}{table.caption.5}{}}
+\@LN{201}{2}
+\@LN{202}{2}
+\@LN{203}{2}
+\@LN{204}{2}
+\@LN{205}{2}
+\@LN{206}{2}
+\@LN{207}{2}
+\@LN{208}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@LN{209}{2}
+\@LN{210}{2}
+\@LN{211}{2}
+\@LN{212}{2}
+\@LN{213}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Model Zoo}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{ssec:model_zoo}{{3.1}{3}{Model Zoo}{subsection.3.1}{}}
+\@LN{214}{2}
+\@LN{215}{2}
+\@LN{216}{2}
+\@LN{217}{2}
+\@LN{218}{2}
+\@LN{219}{2}
+\@LN{220}{2}
+\@LN{221}{2}
+\@LN{222}{2}
+\@LN{223}{2}
+\@LN{224}{2}
+\@LN{225}{2}
+\@LN{226}{2}
+\@LN{227}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Task Taxonomy}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{ssec:task_taxonomy}{{3.2}{3}{Task Taxonomy}{subsection.3.2}{}}
+\@LN{228}{2}
+\@LN{229}{2}
+\@LN{230}{2}
+\@LN{231}{2}
+\@LN{232}{2}
+\@LN{233}{2}
+\@LN{234}{2}
+\@LN{235}{2}
+\@LN{236}{2}
+\@LN{237}{2}
+\@LN{238}{2}
+\@LN{239}{2}
+\citation{clark2019boolq}
+\citation{zellers2019hellaswag}
+\citation{clark2018arc}
+\citation{sakaguchi2020winogrande}
+\citation{bisk2020piqa}
+\citation{roemmele2011copa}
+\citation{clark2018arc}
+\citation{hendrycks2021mmlu}
+\citation{welbl2017sciq}
+\citation{lin2022xstorycloze}
+\citation{gao2024lmeval}
+\@LN@col{1}
+\@LN{240}{3}
+\@LN{241}{3}
+\@LN{242}{3}
+\@LN{243}{3}
+\@LN{244}{3}
+\@LN{245}{3}
+\@LN{246}{3}
+\@LN{247}{3}
+\@LN{248}{3}
+\@LN{249}{3}
+\@LN{250}{3}
+\@LN{251}{3}
+\@LN{252}{3}
+\@LN{253}{3}
+\@LN{254}{3}
+\@LN{255}{3}
+\@LN{256}{3}
+\@LN{257}{3}
+\@LN{258}{3}
+\@LN{259}{3}
+\@LN{260}{3}
+\@LN{261}{3}
+\@LN{262}{3}
+\@LN{263}{3}
+\@LN{264}{3}
+\@LN{265}{3}
+\@LN{266}{3}
+\@LN{267}{3}
+\@LN{268}{3}
+\@LN{269}{3}
+\@LN{270}{3}
+\@LN{271}{3}
+\@LN{272}{3}
+\@LN{273}{3}
+\@LN{274}{3}
+\@LN{275}{3}
+\@LN{276}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Convergence Metrics}{4}{subsection.3.3}\protected@file@percent }
+\newlabel{ssec:convergence_metrics}{{3.3}{4}{Convergence Metrics}{subsection.3.3}{}}
+\@LN{277}{3}
+\@LN{278}{3}
+\@LN{279}{3}
+\@LN{280}{3}
+\@LN{281}{3}
+\@LN{282}{3}
+\@LN{283}{3}
+\@LN{284}{3}
+\@LN{285}{3}
+\@LN{286}{3}
+\@LN{287}{3}
+\@LN{288}{3}
+\@LN{289}{3}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Experimental framework. For each architecture, we compare the pure-recurrent baseline against its hybrid (+attention) variant, classifying every evaluation example as helped, hurt, or unchanged. Cross-architecture overlap of these per-example effect sets is measured via pairwise Jaccard similarity ($J \approx 0.10$), revealing architecture-specific sensitivity patterns.}}{4}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:method_overview}{{2}{4}{Experimental framework. For each architecture, we compare the pure-recurrent baseline against its hybrid (+attention) variant, classifying every evaluation example as helped, hurt, or unchanged. Cross-architecture overlap of these per-example effect sets is measured via pairwise Jaccard similarity ($J \approx 0.10$), revealing architecture-specific sensitivity patterns}{figure.caption.6}{}}
+\@LN{290}{3}
+\@LN{291}{3}
+\@LN{292}{3}
+\@LN{293}{3}
+\@LN{294}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Per-Example Decomposition}{4}{subsection.3.4}\protected@file@percent }
+\newlabel{ssec:per_example_decomposition}{{3.4}{4}{Per-Example Decomposition}{subsection.3.4}{}}
+\@LN{295}{3}
+\@LN{296}{3}
+\@LN{297}{3}
+\@LN{298}{3}
+\@LN{299}{3}
+\@LN{300}{3}
+\@LN{301}{3}
+\@LN{302}{3}
+\@LN{303}{3}
+\@LN{304}{3}
+\@LN{305}{3}
+\@LN{306}{3}
+\@LN{307}{3}
+\@LN{308}{3}
+\@LN{309}{3}
+\@LN{310}{3}
+\@LN{311}{3}
+\@LN{312}{3}
+\@LN{313}{3}
+\@LN{314}{3}
+\@LN{315}{3}
+\@LN{316}{3}
+\@LN{317}{3}
+\@LN{318}{3}
+\@LN{319}{3}
+\@LN{320}{3}
+\@LN{321}{3}
+\@LN{322}{3}
+\citation{wang2025hybrid}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Per-example effects of adding attention (pure $\to $ h3-1) on LAMBADA (1.3B). Helped: correct only with attention; hurt: correct only without. HGRN2 shows the only net positive effect; overlap is minimal ($\bar  {J} \leq 0.10$, all $p < .0001$).}}{5}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:per_example_bars}{{3}{5}{Per-example effects of adding attention (pure $\to $ h3-1) on LAMBADA (1.3B). Helped: correct only with attention; hurt: correct only without. HGRN2 shows the only net positive effect; overlap is minimal ($\bar {J} \leq 0.10$, all $p < .0001$)}{figure.caption.7}{}}
+\@LN{323}{4}
+\@LN{324}{4}
+\@LN{325}{4}
+\@LN{326}{4}
+\@LN{327}{4}
+\@LN{328}{4}
+\@LN{329}{4}
+\@LN{330}{4}
+\@LN{331}{4}
+\@LN{332}{4}
+\@LN{333}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Statistical Methods}{5}{subsection.3.5}\protected@file@percent }
+\newlabel{ssec:statistical_methods}{{3.5}{5}{Statistical Methods}{subsection.3.5}{}}
+\@LN{334}{4}
+\@LN{335}{4}
+\@LN{336}{4}
+\@LN{337}{4}
+\@LN{338}{4}
+\@LN{339}{4}
+\@LN{340}{4}
+\@LN{341}{4}
+\@LN{342}{4}
+\@LN{343}{4}
+\@LN{344}{4}
+\@LN{345}{4}
+\@LN{346}{4}
+\@LN{347}{4}
+\@LN{348}{4}
+\@LN{349}{4}
+\@LN{350}{4}
+\@LN{351}{4}
+\@LN{352}{4}
+\@LN{353}{4}
+\@LN{354}{4}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Jaccard hierarchy on LAMBADA (1.3B). Cross-architecture overlap ($\bar  {J} \approx 0.09$) is $2\times $ the independence baseline but only one-third of within-architecture overlap ($\bar  {J} \approx 0.33$). Pythia 70M within-seed Jaccard (different scale) falls at a comparable level. Error bars show the helped--hurt range.}}{5}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:jaccard_hierarchy}{{4}{5}{Jaccard hierarchy on LAMBADA (1.3B). Cross-architecture overlap ($\bar {J} \approx 0.09$) is $2\times $ the independence baseline but only one-third of within-architecture overlap ($\bar {J} \approx 0.33$). Pythia 70M within-seed Jaccard (different scale) falls at a comparable level. Error bars show the helped--hurt range}{figure.caption.8}{}}
+\@LN{355}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{5}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{5}{Experiments}{section.4}{}}
+\@LN{356}{4}
+\@LN{357}{4}
+\@LN{358}{4}
+\@LN{359}{4}
+\@LN{360}{4}
+\@LN{361}{4}
+\@LN{362}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Per-Example Divergence}{5}{subsection.4.1}\protected@file@percent }
+\newlabel{ssec:per_example}{{4.1}{5}{Per-Example Divergence}{subsection.4.1}{}}
+\@LN{363}{4}
+\@LN{364}{4}
+\@LN{365}{4}
+\@LN{366}{4}
+\@LN{367}{4}
+\@LN{368}{4}
+\@LN{369}{4}
+\@LN{370}{4}
+\@LN{371}{4}
+\@LN{372}{4}
+\@LN{373}{4}
+\@LN{374}{4}
+\@LN{375}{4}
+\@LN{376}{4}
+\@LN{377}{4}
+\@LN{378}{4}
+\@LN{379}{4}
+\@LN{380}{4}
+\@LN{381}{4}
+\@LN{382}{4}
+\@LN{383}{4}
+\@LN{384}{4}
+\@LN{385}{4}
+\@LN{386}{4}
+\@LN{387}{4}
+\@LN{388}{4}
+\citation{marx2020predictive}
+\citation{marx2020predictive}
+\citation{gorbett2026crossmodel}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces (a) Per-example ambiguity $\alpha $ varies $2\times $ across task types. (b) Confidence-based routing gains track $\alpha $: effective when multiplicity is high (LAMBADA) but counterproductive when low (PIQA). 1.3B, h3-1.}}{6}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:alpha_routing}{{5}{6}{(a) Per-example ambiguity $\alpha $ varies $2\times $ across task types. (b) Confidence-based routing gains track $\alpha $: effective when multiplicity is high (LAMBADA) but counterproductive when low (PIQA). 1.3B, h3-1}{figure.caption.9}{}}
+\@LN@col{1}
+\@LN{389}{5}
+\@LN{390}{5}
+\@LN{391}{5}
+\@writefile{toc}{\contentsline {paragraph}{Confidence margin predictor.}{6}{section*.10}\protected@file@percent }
+\@LN{392}{5}
+\@LN{393}{5}
+\@LN{394}{5}
+\@LN{395}{5}
+\@LN{396}{5}
+\@LN{397}{5}
+\@LN{398}{5}
+\@LN{399}{5}
+\@LN{400}{5}
+\@LN{401}{5}
+\@LN{402}{5}
+\@LN{403}{5}
+\@LN{404}{5}
+\@LN{405}{5}
+\@LN{406}{5}
+\@LN{407}{5}
+\@LN{408}{5}
+\@LN{409}{5}
+\@writefile{toc}{\contentsline {paragraph}{Confidence-based routing.}{6}{section*.11}\protected@file@percent }
+\@LN{410}{5}
+\@LN{411}{5}
+\@LN{412}{5}
+\@LN{413}{5}
+\@LN{414}{5}
+\@LN{415}{5}
+\@LN{416}{5}
+\@LN{417}{5}
+\@LN{418}{5}
+\@LN{419}{5}
+\@LN{420}{5}
+\@LN{421}{5}
+\@LN{422}{5}
+\@LN{423}{5}
+\@LN{424}{5}
+\@LN{425}{5}
+\@LN{426}{5}
+\@LN{427}{5}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Complementarity decomposition at 1.3B h3-1. Fractions of examples where $k$ of 3 architectures answer correctly. MV expl.: fraction of non-unanimous examples where majority vote is correct.}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:complementarity}{{2}{6}{Complementarity decomposition at 1.3B h3-1. Fractions of examples where $k$ of 3 architectures answer correctly. MV expl.: fraction of non-unanimous examples where majority vote is correct}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{Complementarity structure.}{6}{section*.12}\protected@file@percent }
+\@LN{428}{5}
+\@LN{429}{5}
+\@LN{430}{5}
+\@LN{431}{5}
+\@LN{432}{5}
+\@LN{433}{5}
+\@LN{434}{5}
+\@LN{435}{5}
+\@LN{436}{5}
+\@LN{437}{5}
+\@LN{438}{5}
+\@writefile{toc}{\contentsline {paragraph}{Multiplicity variation.}{6}{section*.14}\protected@file@percent }
+\@LN{439}{5}
+\@LN{440}{5}
+\@LN{441}{5}
+\@LN{442}{5}
+\@LN{443}{5}
+\@LN{444}{5}
+\@LN{445}{5}
+\@LN{446}{5}
+\@LN{447}{5}
+\@LN{448}{5}
+\@LN{449}{5}
+\@LN{450}{5}
+\@LN{451}{5}
+\@LN{452}{5}
+\@LN{453}{5}
+\@LN{454}{5}
+\@LN{455}{5}
+\@LN{456}{5}
+\@LN{457}{5}
+\@LN{458}{5}
+\@LN{459}{5}
+\citation{marx2020predictive}
+\citation{marx2020predictive}
+\citation{biderman2023pythia}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Spearman $\rho $ between attention ratio and cross-architecture $\sigma $ for each benchmark at 1.3B scale. LAMBADA ($\rho = -1.0$; BCa 95\% CI $[-1.0,\,-0.7]$, heuristic) is the only benchmark whose CI excludes zero. Bootstrap CI is heuristic given $n = 3$ architectures.}}{7}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:task_specificity}{{6}{7}{Spearman $\rho $ between attention ratio and cross-architecture $\sigma $ for each benchmark at 1.3B scale. LAMBADA ($\rho = -1.0$; BCa 95\% CI $[-1.0,\,-0.7]$, heuristic) is the only benchmark whose CI excludes zero. Bootstrap CI is heuristic given $n = 3$ architectures}{figure.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Predictive multiplicity at 1.3B, h3-1. $\alpha $: ambiguity \citep  {marx2020predictive}; $\bar  {J}$: mean pairwise Jaccard of helped~(h) / hurt~(u) sets; $\rho _\alpha $: Spearman $\rho $ of $\alpha $ vs.\ attention ratio.}}{7}{table.caption.17}\protected@file@percent }
+\newlabel{tab:multiplicity}{{3}{7}{Predictive multiplicity at 1.3B, h3-1. $\alpha $: ambiguity \citep {marx2020predictive}; $\bar {J}$: mean pairwise Jaccard of helped~(h) / hurt~(u) sets; $\rho _\alpha $: Spearman $\rho $ of $\alpha $ vs.\ attention ratio}{table.caption.17}{}}
+\@LN{460}{6}
+\@LN{461}{6}
+\@LN{462}{6}
+\@LN{463}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Per-Example Overlap Appears Stable from Minimal Attention}{7}{subsection.4.2}\protected@file@percent }
+\newlabel{ssec:decoupling}{{4.2}{7}{Per-Example Overlap Appears Stable from Minimal Attention}{subsection.4.2}{}}
+\@LN{464}{6}
+\@LN{465}{6}
+\@LN{466}{6}
+\@LN{467}{6}
+\@LN{468}{6}
+\@LN{469}{6}
+\@LN{470}{6}
+\@LN{471}{6}
+\@LN{472}{6}
+\@LN{473}{6}
+\@LN{474}{6}
+\@LN{475}{6}
+\@LN{476}{6}
+\@LN{477}{6}
+\@LN{478}{6}
+\@LN{479}{6}
+\@LN{480}{6}
+\@LN{481}{6}
+\@LN{482}{6}
+\@LN{483}{6}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Cross-architecture variance trends across benchmarks (1.3B scale). $\rho $: Spearman correlation between attention ratio and cross-architecture $\sigma $ across five configurations. $p$: exact permutation test (two-tailed). $\sigma $ values $\times 10^{2}$ (accuracy pp). Ratio: $\sigma _{\text  {pure}} / \sigma _{\text  {h3-1}}$. \textbf  {Bold}: only benchmark with $\rho = -1.0$.}}{7}{table.caption.18}\protected@file@percent }
+\newlabel{tab:convergence}{{4}{7}{Cross-architecture variance trends across benchmarks (1.3B scale). $\rho $: Spearman correlation between attention ratio and cross-architecture $\sigma $ across five configurations. $p$: exact permutation test (two-tailed). $\sigma $ values $\times 10^{2}$ (accuracy pp). Ratio: $\sigma _{\text {pure}} / \sigma _{\text {h3-1}}$. \textbf {Bold}: only benchmark with $\rho = -1.0$}{table.caption.18}{}}
+\@LN{484}{6}
+\@LN{485}{6}
+\@LN{486}{6}
+\@LN{487}{6}
+\@LN{488}{6}
+\@LN{489}{6}
+\@LN{490}{6}
+\@LN{491}{6}
+\@LN{492}{6}
+\@LN{493}{6}
+\@LN{494}{6}
+\@LN{495}{6}
+\@LN{496}{6}
+\@LN{497}{6}
+\@LN{498}{6}
+\@LN{499}{6}
+\@LN{500}{6}
+\@LN{501}{6}
+\@LN{502}{6}
+\@LN{503}{6}
+\@LN{504}{6}
+\@LN{505}{6}
+\@LN{506}{6}
+\@LN{507}{6}
+\@LN{508}{6}
+\@LN{509}{6}
+\@LN{510}{6}
+\@LN{511}{6}
+\@LN{512}{6}
+\@LN{513}{6}
+\@LN{514}{6}
+\@LN{515}{6}
+\citation{yang2026benchmark}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Pairwise Jaccard heatmap across five architectures (340M, h3-1), where helped (hurt) examples are those correct only with (without) attention. Upper triangle: $J_{\text  {helped}}$; lower triangle: $J_{\text  {hurt}}$. All values $\leq 0.14$, all permutation tests $p < .005$. HellaSwag and PIQA results in Appendix~\ref {app:extended_arch}.}}{8}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:jaccard_heatmap_5arch}{{7}{8}{Pairwise Jaccard heatmap across five architectures (340M, h3-1), where helped (hurt) examples are those correct only with (without) attention. Upper triangle: $J_{\text {helped}}$; lower triangle: $J_{\text {hurt}}$. All values $\leq 0.14$, all permutation tests $p < .005$. HellaSwag and PIQA results in Appendix~\ref {app:extended_arch}}{figure.caption.16}{}}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Transformer entrainment: Jaccard similarity between each model's correct set and a Transformer baseline on LAMBADA (1.3B). All h3-1 hybrids shift toward the Transformer pattern; the Transformer itself scores lowest (48.1\%), so the shift is not explained by degradation.}}{8}{table.caption.19}\protected@file@percent }
+\newlabel{tab:entrainment}{{5}{8}{Transformer entrainment: Jaccard similarity between each model's correct set and a Transformer baseline on LAMBADA (1.3B). All h3-1 hybrids shift toward the Transformer pattern; the Transformer itself scores lowest (48.1\%), so the shift is not explained by degradation}{table.caption.19}{}}
+\@LN{516}{7}
+\@LN{517}{7}
+\@LN{518}{7}
+\@LN{519}{7}
+\@LN{520}{7}
+\@LN{521}{7}
+\@LN{522}{7}
+\@LN{523}{7}
+\@LN{524}{7}
+\@LN{525}{7}
+\@LN{526}{7}
+\@LN{527}{7}
+\@LN{528}{7}
+\@LN{529}{7}
+\@LN{530}{7}
+\@LN{531}{7}
+\@LN{532}{7}
+\@LN{533}{7}
+\@LN{534}{7}
+\@LN{535}{7}
+\@LN{536}{7}
+\@LN{537}{7}
+\@LN{538}{7}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Robustness}{8}{subsection.4.3}\protected@file@percent }
+\newlabel{ssec:robustness}{{4.3}{8}{Robustness}{subsection.4.3}{}}
+\@LN{539}{7}
+\@LN{540}{7}
+\@LN{541}{7}
+\@LN{542}{7}
+\@LN@col{2}
+\@LN{543}{7}
+\@LN{544}{7}
+\@LN{545}{7}
+\@LN{546}{7}
+\@LN{547}{7}
+\@LN{548}{7}
+\@LN{549}{7}
+\@LN{550}{7}
+\@LN{551}{7}
+\@LN{552}{7}
+\@LN{553}{7}
+\@LN{554}{7}
+\@LN{555}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion and Conclusion}{8}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{8}{Discussion and Conclusion}{section.5}{}}
+\@LN{556}{7}
+\@LN{557}{7}
+\@LN{558}{7}
+\@LN{559}{7}
+\@LN{560}{7}
+\@LN{561}{7}
+\@LN{562}{7}
+\@LN{563}{7}
+\@LN{564}{7}
+\@LN{565}{7}
+\@LN{566}{7}
+\@LN{567}{7}
+\@LN{568}{7}
+\@LN{569}{7}
+\@LN{570}{7}
+\@LN{571}{7}
+\@LN{572}{7}
+\@LN{573}{7}
+\@LN{574}{7}
+\@LN{575}{7}
+\@LN{576}{7}
+\@LN{577}{7}
+\@LN{578}{7}
+\bibdata{references}
+\bibcite{ali2025hidden}{{1}{2025}{{Ali et~al.}}{{Ali, Zimerman, and Wolf}}}
+\bibcite{arora2024zoology}{{2}{2024{a}}{{Arora et~al.}}{{Arora, Eyuboglu, Timalsina, Johnson, Poli, Zou, Rudra, and R{\'e}}}}
+\bibcite{arora2024based}{{3}{2024{b}}{{Arora et~al.}}{{Arora, Eyuboglu, Zhang, Timalsina, Alberti, Bornschein et~al.}}}
+\bibcite{basu2026routing}{{4}{2026}{{Basu}}{{}}}
+\bibcite{beck2024xlstm}{{5}{2024}{{Beck et~al.}}{{Beck, P{\"o}ppel, Spanring, Auer, Prudnikova, Kopp, Klambauer, Brandstetter, and Hochreiter}}}
+\bibcite{biderman2023pythia}{{6}{2023}{{Biderman et~al.}}{{Biderman, Schoelkopf, Anthony, Bradley, O'Brien, Hallahan, Khan, Purohit, Prashanth, Raff, Skowron, Sutawika, and van~der Wal}}}
+\bibcite{bisk2020piqa}{{7}{2020}{{Bisk et~al.}}{{Bisk, Zellers, Bras, Gao, and Choi}}}
+\bibcite{botev2024recurrentgemma}{{8}{2024}{{Botev et~al.}}{{Botev, De, Smith et~al.}}}
+\bibcite{caruana2004ensemble}{{9}{2004}{{Caruana et~al.}}{{Caruana, Niculescu-Mizil, Crew, and Ksikes}}}
+\bibcite{clark2019boolq}{{10}{2019}{{Clark et~al.}}{{Clark, Lee, Chang, Kwiatkowski, Collins, and Toutanova}}}
+\bibcite{clark2018arc}{{11}{2018}{{Clark et~al.}}{{Clark, Cowhey, Etzioni, Khot, Sabharwal, Schoenick, and Tafjord}}}
+\bibcite{damour2022underspecification}{{12}{2022}{{D'Amour et~al.}}{{D'Amour, Heller, Moldovan, Adlam, Alipanahi, Beutel, Chen, Deaton, Eisenstein, Hoffman et~al.}}}
+\bibcite{dao2024mamba2}{{13}{2024}{{Dao and Gu}}{{}}}
+\bibcite{de2024griffin}{{14}{2024}{{De et~al.}}{{De, Smith, Fernando et~al.}}}
+\bibcite{dong2024hymba}{{15}{2024}{{Dong et~al.}}{{}}}
+\bibcite{du2025reconciling}{{16}{2025}{{Du et~al.}}{{Du, Ngo, and Wu}}}
+\bibcite{fisher2019all}{{17}{2019}{{Fisher et~al.}}{{Fisher, Rudin, and Dominici}}}
+\bibcite{gao2024lmeval}{{18}{2024}{{Gao et~al.}}{{Gao, Tow, Abbasi, Biderman et~al.}}}
+\bibcite{geifman2017selective}{{19}{2017}{{Geifman and El-Yaniv}}{{}}}
+\bibcite{gorbett2026crossmodel}{{20}{2026}{{Gorbett and Jana}}{{}}}
+\bibcite{gu2024mamba}{{21}{2024}{{Gu and Dao}}{{}}}
+\bibcite{gu2022s4}{{22}{2022}{{Gu et~al.}}{{Gu, Goel, and R{\'e}}}}
+\bibcite{guo2017calibration}{{23}{2017}{{Guo et~al.}}{{Guo, Pleiss, Sun, and Weinberger}}}
+\@LN@col{1}
+\@LN{579}{8}
+\@LN{580}{8}
+\@LN{581}{8}
+\@LN{582}{8}
+\@LN{583}{8}
+\@LN{584}{8}
+\@LN{585}{8}
+\@LN{586}{8}
+\@LN{587}{8}
+\@LN{588}{8}
+\@LN{589}{8}
+\@LN{590}{8}
+\@LN{591}{8}
+\@LN{592}{8}
+\@LN{593}{8}
+\@LN{594}{8}
+\@LN{595}{8}
+\@LN{596}{8}
+\@LN{597}{8}
+\@LN{598}{8}
+\@LN{599}{8}
+\@LN{600}{8}
+\@LN{601}{8}
+\@LN{602}{8}
+\@LN{603}{8}
+\@LN{604}{8}
+\@LN{605}{8}
+\@LN{606}{8}
+\@LN{607}{8}
+\@LN{608}{8}
+\@LN{609}{8}
+\@LN{610}{8}
+\@LN{611}{8}
+\@LN{612}{8}
+\@LN{613}{8}
+\@LN{614}{8}
+\@LN{615}{8}
+\@LN{616}{8}
+\@LN{617}{8}
+\@LN{618}{8}
+\@LN{619}{8}
+\@LN{620}{8}
+\@LN{621}{8}
+\@LN{622}{8}
+\@LN{623}{8}
+\@LN{624}{8}
+\@LN{625}{8}
+\@LN{626}{8}
+\@LN{627}{8}
+\@LN{628}{8}
+\@LN{629}{8}
+\@LN{630}{8}
+\@LN@col{2}
+\@LN{631}{8}
+\@LN{632}{8}
+\@LN{633}{8}
+\@LN{634}{8}
+\@LN{635}{8}
+\@LN{636}{8}
+\@LN{637}{8}
+\@LN{638}{8}
+\@LN{639}{8}
+\@LN{640}{8}
+\@LN{641}{8}
+\@LN{642}{8}
+\@LN{643}{8}
+\@LN{644}{8}
+\@LN{645}{8}
+\@LN{646}{8}
+\@LN{647}{8}
+\@LN{648}{8}
+\@LN{649}{8}
+\@LN{650}{8}
+\@LN{651}{8}
+\@LN{652}{8}
+\@LN{653}{8}
+\@LN{654}{8}
+\@LN{655}{8}
+\@LN{656}{8}
+\@LN{657}{8}
+\@LN{658}{8}
+\@LN{659}{8}
+\@LN{660}{8}
+\@LN{661}{8}
+\@LN{662}{8}
+\@LN{663}{8}
+\@LN{664}{8}
+\@LN{665}{8}
+\@LN{666}{8}
+\@LN{667}{8}
+\@LN{668}{8}
+\@LN{669}{8}
+\@LN{670}{8}
+\@LN{671}{8}
+\@LN{672}{8}
+\@LN{673}{8}
+\@LN{674}{8}
+\@LN{675}{8}
+\@LN{676}{8}
+\@LN{677}{8}
+\@LN{678}{8}
+\@LN{679}{8}
+\@LN{680}{8}
+\@LN{681}{8}
+\@LN{682}{8}
+\bibcite{haghighat2026resolving}{{24}{2026}{{Haghighat et~al.}}{{Haghighat, Anahideh, and Rudin}}}
+\bibcite{hendrycks2021mmlu}{{25}{2021}{{Hendrycks et~al.}}{{Hendrycks, Burns, Basart, Zou, Mazeika, Song, and Steinhardt}}}
+\bibcite{hsu2022rashomon}{{26}{2022}{{Hsu and Calmon}}{{}}}
+\bibcite{katharopoulos2020transformers}{{27}{2020}{{Katharopoulos et~al.}}{{Katharopoulos, Vyas, Pappas, and Fleuret}}}
+\bibcite{lieber2024jamba}{{28}{2024}{{Lieber et~al.}}{{Lieber, Lenz, Bata et~al.}}}
+\bibcite{lin2022xstorycloze}{{29}{2022}{{Lin et~al.}}{{Lin, Mihaylov, Artetxe, Wang, Chen, Simig, Ott, Goyal, Bhosale, Du et~al.}}}
+\bibcite{marx2020predictive}{{30}{2020}{{Marx et~al.}}{{Marx, Calmon, and Ustun}}}
+\bibcite{mccoy2020berts}{{31}{2020}{{McCoy et~al.}}{{McCoy, Min, and Linzen}}}
+\bibcite{paperno2016lambada}{{32}{2016}{{Paperno et~al.}}{{Paperno, Kruszewski, Lazaridou et~al.}}}
+\bibcite{peng2024eagle}{{33}{2024}{{Peng et~al.}}{{}}}
+\bibcite{qin2023hierarchically}{{34}{2023}{{Qin et~al.}}{{Qin, Yang, and Zhong}}}
+\bibcite{qin2024hgrn2}{{35}{2024}{{Qin et~al.}}{{}}}
+\bibcite{ren2024samba}{{36}{2025}{{Ren et~al.}}{{Ren, Liu, Lu, Shen, Liang, and Chen}}}
+\bibcite{roemmele2011copa}{{37}{2011}{{Roemmele et~al.}}{{Roemmele, Bejan, and Gordon}}}
+\bibcite{sakaguchi2020winogrande}{{38}{2020}{{Sakaguchi et~al.}}{{Sakaguchi, Bras, Bhagavatula, and Choi}}}
+\bibcite{sellam2022multiberts}{{39}{2022}{{Sellam et~al.}}{{Sellam, Yadlowsky, Tenney, Wei, Saphra, D'Amour, Linzen, Bastings, Turc, Eisenstein, Das, and Pavlick}}}
+\bibcite{semenova2022existence}{{40}{2022}{{Semenova et~al.}}{{Semenova, Rudin, and Parr}}}
+\bibcite{sun2023retnet}{{41}{2023}{{Sun et~al.}}{{Sun, Dong, Huang, Ma, Xia, Xue, Wang, and Wei}}}
+\bibcite{vanderwal2025polypythias}{{42}{2025}{{van~der Wal et~al.}}{{van~der Wal, Lesci, M{\"u}ller-Eberstein, Saphra, Schoelkopf, Zuidema, and Biderman}}}
+\bibcite{waleffe2024empirical}{{43}{2024}{{Waleffe et~al.}}{{Waleffe, Byeon, Riach, Norick et~al.}}}
+\bibcite{wang2025hybrid}{{44}{2025}{{Wang et~al.}}{{Wang, Zhu, Abreu, Shan, Kergan, Pan, Chou, Li, Zhang, Huang, and Eshraghian}}}
+\bibcite{watson2023predictive}{{45}{2023}{{Watson-Daniels et~al.}}{{Watson-Daniels, Parkes, and Ustun}}}
+\bibcite{welbl2017sciq}{{46}{2017}{{Welbl et~al.}}{{Welbl, Liu, and Gardner}}}
+\bibcite{wortsman2022model}{{47}{2022}{{Wortsman et~al.}}{{Wortsman, Ilharco, Gadre, Roelofs, Gontijo-Lopes, Morcos, Namkoong, Farhadi, Carmon, Kornblith, and Schmidt}}}
+\bibcite{yang2026benchmark}{{48}{2026}{{Yang and Wang}}{{}}}
+\@LN@col{1}
+\@LN{683}{9}
+\@LN{684}{9}
+\@LN{685}{9}
+\@LN{686}{9}
+\@LN{687}{9}
+\@LN{688}{9}
+\@LN{689}{9}
+\@LN{690}{9}
+\@LN{691}{9}
+\@LN{692}{9}
+\@LN{693}{9}
+\@LN{694}{9}
+\@LN{695}{9}
+\@LN{696}{9}
+\@LN{697}{9}
+\@LN{698}{9}
+\@LN{699}{9}
+\@LN{700}{9}
+\@LN{701}{9}
+\@LN{702}{9}
+\@LN{703}{9}
+\@LN{704}{9}
+\@LN{705}{9}
+\@LN{706}{9}
+\@LN{707}{9}
+\@LN{708}{9}
+\@LN{709}{9}
+\@LN{710}{9}
+\@LN{711}{9}
+\@LN{712}{9}
+\@LN{713}{9}
+\@LN{714}{9}
+\@LN{715}{9}
+\@LN{716}{9}
+\@LN{717}{9}
+\@LN{718}{9}
+\@LN{719}{9}
+\@LN{720}{9}
+\@LN{721}{9}
+\@LN{722}{9}
+\@LN{723}{9}
+\@LN{724}{9}
+\@LN{725}{9}
+\@LN{726}{9}
+\@LN{727}{9}
+\@LN{728}{9}
+\@LN{729}{9}
+\@LN{730}{9}
+\@LN{731}{9}
+\@LN{732}{9}
+\@LN{733}{9}
+\@LN{734}{9}
+\@LN@col{2}
+\@LN{735}{9}
+\@LN{736}{9}
+\@LN{737}{9}
+\@LN{738}{9}
+\@LN{739}{9}
+\@LN{740}{9}
+\@LN{741}{9}
+\@LN{742}{9}
+\@LN{743}{9}
+\@LN{744}{9}
+\@LN{745}{9}
+\@LN{746}{9}
+\@LN{747}{9}
+\@LN{748}{9}
+\@LN{749}{9}
+\@LN{750}{9}
+\@LN{751}{9}
+\@LN{752}{9}
+\@LN{753}{9}
+\@LN{754}{9}
+\@LN{755}{9}
+\@LN{756}{9}
+\@LN{757}{9}
+\@LN{758}{9}
+\@LN{759}{9}
+\@LN{760}{9}
+\@LN{761}{9}
+\@LN{762}{9}
+\@LN{763}{9}
+\@LN{764}{9}
+\@LN{765}{9}
+\@LN{766}{9}
+\@LN{767}{9}
+\@LN{768}{9}
+\@LN{769}{9}
+\@LN{770}{9}
+\@LN{771}{9}
+\@LN{772}{9}
+\@LN{773}{9}
+\@LN{774}{9}
+\@LN{775}{9}
+\@LN{776}{9}
+\@LN{777}{9}
+\@LN{778}{9}
+\@LN{779}{9}
+\@LN{780}{9}
+\@LN{781}{9}
+\@LN{782}{9}
+\@LN{783}{9}
+\@LN{784}{9}
+\@LN{785}{9}
+\@LN{786}{9}
+\@LN{787}{9}
+\@LN{788}{9}
+\bibcite{yang2024gateddeltanet}{{49}{2025}{{Yang et~al.}}{{Yang, Kautz, and Hatamizadeh}}}
+\bibcite{yang2024gla}{{50}{2024{a}}{{Yang et~al.}}{{Yang, Wang, Shen, Panda, and Kim}}}
+\bibcite{yang2024deltanet}{{51}{2024{b}}{{Yang et~al.}}{{Yang, Wang, Zhang, Shen, and Kim}}}
+\bibcite{ye2026provable}{{52}{2026}{{Ye et~al.}}{{Ye, He, Liao, Wu, and Lu}}}
+\bibcite{zellers2019hellaswag}{{53}{2019}{{Zellers et~al.}}{{Zellers, Holtzman, Bisk, Farhadi, and Choi}}}
+\bibcite{zimerman2025unified}{{54}{2025}{{Zimerman et~al.}}{{Zimerman, Ali, and Wolf}}}
+\@LN@col{1}
+\@LN{789}{10}
+\@LN{790}{10}
+\@LN{791}{10}
+\@LN{792}{10}
+\@LN{793}{10}
+\@LN{794}{10}
+\@LN{795}{10}
+\@LN{796}{10}
+\@LN{797}{10}
+\@LN{798}{10}
+\@LN{799}{10}
+\@LN{800}{10}
+\@LN{801}{10}
+\@LN{802}{10}
+\@LN{803}{10}
+\@LN{804}{10}
+\@LN{805}{10}
+\@LN{806}{10}
+\@LN{807}{10}
+\@LN{808}{10}
+\@LN{809}{10}
+\@LN{810}{10}
+\@LN{811}{10}
+\@LN{812}{10}
+\@LN{813}{10}
+\@LN{814}{10}
+\@LN{815}{10}
+\@LN{816}{10}
+\@LN{817}{10}
+\@LN{818}{10}
+\@LN{819}{10}
+\@LN{820}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Confirmatory and Exploratory Analyses}{11}{appendix.A}\protected@file@percent }
+\newlabel{app:benchmark_details}{{A}{11}{Confirmatory and Exploratory Analyses}{appendix.A}{}}
+\@LN{821}{10}
+\@LN{822}{10}
+\@LN{823}{10}
+\@LN{824}{10}
+\@LN{825}{10}
+\@LN{826}{10}
+\@LN{827}{10}
+\@LN{828}{10}
+\@LN{829}{10}
+\@LN{830}{10}
+\@LN{831}{10}
+\@LN{832}{10}
+\@LN{833}{10}
+\@LN{834}{10}
+\@LN{835}{10}
+\@writefile{toc}{\contentsline {paragraph}{Confirmatory benchmark set.}{11}{section*.22}\protected@file@percent }
+\@LN{836}{10}
+\@LN{837}{10}
+\@LN{838}{10}
+\@LN@col{2}
+\@LN{839}{10}
+\@LN{840}{10}
+\@LN{841}{10}
+\@LN{842}{10}
+\@LN{843}{10}
+\@LN{844}{10}
+\@LN{845}{10}
+\@LN{846}{10}
+\@LN{847}{10}
+\@LN{848}{10}
+\@LN{849}{10}
+\@LN{850}{10}
+\@LN{851}{10}
+\@LN{852}{10}
+\@writefile{toc}{\contentsline {paragraph}{One-sided test.}{11}{section*.23}\protected@file@percent }
+\@LN{853}{10}
+\@LN{854}{10}
+\@LN{855}{10}
+\@LN{856}{10}
+\@LN{857}{10}
+\@LN{858}{10}
+\@LN{859}{10}
+\@LN{860}{10}
+\@LN{861}{10}
+\@writefile{toc}{\contentsline {paragraph}{Exploratory benchmarks.}{11}{section*.24}\protected@file@percent }
+\@LN{862}{10}
+\@LN{863}{10}
+\@LN{864}{10}
+\@LN{865}{10}
+\@LN{866}{10}
+\@LN{867}{10}
+\@LN{868}{10}
+\@LN{869}{10}
+\@LN{870}{10}
+\@LN{871}{10}
+\@LN{872}{10}
+\@writefile{toc}{\contentsline {paragraph}{Supplementary benchmark.}{11}{section*.25}\protected@file@percent }
+\@LN{873}{10}
+\@LN{874}{10}
+\@LN{875}{10}
+\@LN{876}{10}
+\@LN{877}{10}
+\@LN{878}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Convergence Detail}{11}{appendix.B}\protected@file@percent }
+\newlabel{app:convergence_detail}{{B}{11}{Convergence Detail}{appendix.B}{}}
+\@LN{879}{10}
+\@LN{880}{10}
+\@LN{881}{10}
+\@LN{882}{10}
+\@LN{883}{10}
+\@LN{884}{10}
+\@LN{885}{10}
+\@LN{886}{10}
+\@LN{887}{10}
+\citation{arora2024zoology,arora2024based}
+\@LN@col{1}
+\@LN{888}{11}
+\@LN{889}{11}
+\@LN{890}{11}
+\@LN{891}{11}
+\@LN{892}{11}
+\@LN{893}{11}
+\@LN{894}{11}
+\@LN{895}{11}
+\@LN{896}{11}
+\@LN{897}{11}
+\@LN{898}{11}
+\@LN{899}{11}
+\@LN{900}{11}
+\@LN{901}{11}
+\@writefile{toc}{\contentsline {paragraph}{Regression to the mean.}{12}{section*.26}\protected@file@percent }
+\@LN{902}{11}
+\@LN{903}{11}
+\@LN{904}{11}
+\@LN{905}{11}
+\@LN{906}{11}
+\@LN{907}{11}
+\@LN{908}{11}
+\@LN{909}{11}
+\@LN{910}{11}
+\@LN{911}{11}
+\@LN{912}{11}
+\@LN{913}{11}
+\@LN{914}{11}
+\@LN{915}{11}
+\@LN{916}{11}
+\@LN{917}{11}
+\@LN{918}{11}
+\@LN{919}{11}
+\@LN{920}{11}
+\@LN{921}{11}
+\@LN{922}{11}
+\@LN{923}{11}
+\@LN{924}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Scale-Dependent Convergence}{12}{appendix.C}\protected@file@percent }
+\newlabel{app:scale_convergence}{{C}{12}{Scale-Dependent Convergence}{appendix.C}{}}
+\@LN{925}{11}
+\@LN{926}{11}
+\@LN{927}{11}
+\@LN{928}{11}
+\@LN{929}{11}
+\@LN{930}{11}
+\@LN{931}{11}
+\@LN{932}{11}
+\@LN{933}{11}
+\@LN{934}{11}
+\@LN{935}{11}
+\@LN{936}{11}
+\@LN{937}{11}
+\@LN@col{2}
+\@LN{938}{11}
+\@LN{939}{11}
+\@LN{940}{11}
+\@LN{941}{11}
+\@LN{942}{11}
+\@LN{943}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Sensitivity Analyses}{12}{appendix.D}\protected@file@percent }
+\newlabel{app:sensitivity}{{D}{12}{Sensitivity Analyses}{appendix.D}{}}
+\@LN{944}{11}
+\@writefile{toc}{\contentsline {subsection}{\numberline {D.1}Bootstrap Confidence Intervals}{12}{subsection.D.1}\protected@file@percent }
+\@LN{945}{11}
+\@LN{946}{11}
+\@LN{947}{11}
+\@LN{948}{11}
+\@LN{949}{11}
+\@LN{950}{11}
+\@LN{951}{11}
+\@LN{952}{11}
+\@LN{953}{11}
+\@LN{954}{11}
+\@LN{955}{11}
+\@LN{956}{11}
+\@LN{957}{11}
+\@LN{958}{11}
+\@LN{959}{11}
+\@LN{960}{11}
+\@LN{961}{11}
+\@LN{962}{11}
+\@LN{963}{11}
+\@LN{964}{11}
+\@LN{965}{11}
+\@writefile{toc}{\contentsline {subsection}{\numberline {D.2}GDN Exclusion Sensitivity}{12}{subsection.D.2}\protected@file@percent }
+\@LN{966}{11}
+\@LN{967}{11}
+\@LN{968}{11}
+\@LN{969}{11}
+\@LN{970}{11}
+\@LN{971}{11}
+\@LN{972}{11}
+\@LN{973}{11}
+\@LN{974}{11}
+\@LN{975}{11}
+\@LN{976}{11}
+\@LN{977}{11}
+\@LN{978}{11}
+\@LN{979}{11}
+\@LN{980}{11}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Effect of GDN exclusion on Spearman $\rho $ (attention ratio vs.\ cross-architecture $\sigma $) at 1.3B scale. Only benchmarks with $|\Delta \rho | \geq 0.3$ shown.}}{12}{table.caption.27}\protected@file@percent }
+\newlabel{tab:gdn_sensitivity}{{6}{12}{Effect of GDN exclusion on Spearman $\rho $ (attention ratio vs.\ cross-architecture $\sigma $) at 1.3B scale. Only benchmarks with $|\Delta \rho | \geq 0.3$ shown}{table.caption.27}{}}
+\citation{wang2025hybrid}
+\citation{ali2025hidden}
+\@LN@col{1}
+\@LN{981}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {E}GDN Attention Head Confound}{13}{appendix.E}\protected@file@percent }
+\newlabel{app:gdn_confound}{{E}{13}{GDN Attention Head Confound}{appendix.E}{}}
+\@LN{982}{12}
+\@LN{983}{12}
+\@LN{984}{12}
+\@LN{985}{12}
+\@LN{986}{12}
+\@LN{987}{12}
+\@LN{988}{12}
+\@LN{989}{12}
+\@LN{990}{12}
+\@LN{991}{12}
+\@LN{992}{12}
+\@LN{993}{12}
+\@LN{994}{12}
+\@LN{995}{12}
+\@LN{996}{12}
+\@LN{997}{12}
+\@LN{998}{12}
+\@LN{999}{12}
+\@LN{1000}{12}
+\@LN{1001}{12}
+\@LN{1002}{12}
+\@LN{1003}{12}
+\@LN{1004}{12}
+\@LN{1005}{12}
+\@LN{1006}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Attention Weight Analysis}{13}{appendix.F}\protected@file@percent }
+\newlabel{app:attention_patterns}{{F}{13}{Attention Weight Analysis}{appendix.F}{}}
+\@LN{1007}{12}
+\@LN{1008}{12}
+\@LN{1009}{12}
+\@LN{1010}{12}
+\@LN{1011}{12}
+\@LN{1012}{12}
+\@LN{1013}{12}
+\@LN{1014}{12}
+\@LN{1015}{12}
+\@LN{1016}{12}
+\@LN{1017}{12}
+\@writefile{toc}{\contentsline {subsection}{\numberline {F.1}Cross-Architecture Cosine Similarity}{13}{subsection.F.1}\protected@file@percent }
+\@LN{1018}{12}
+\@LN{1019}{12}
+\@LN{1020}{12}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cosine similarity between mean attention weight distributions of architecture pairs at selected layers (1.3B h3-1 models on LAMBADA).}}{13}{table.caption.28}\protected@file@percent }
+\newlabel{tab:attn_cosine}{{7}{13}{Cosine similarity between mean attention weight distributions of architecture pairs at selected layers (1.3B h3-1 models on LAMBADA)}{table.caption.28}{}}
+\@LN{1021}{12}
+\@LN{1022}{12}
+\@LN@col{2}
+\@LN{1023}{12}
+\@LN{1024}{12}
+\@LN{1025}{12}
+\@LN{1026}{12}
+\@LN{1027}{12}
+\@LN{1028}{12}
+\@LN{1029}{12}
+\@LN{1030}{12}
+\@LN{1031}{12}
+\@writefile{toc}{\contentsline {subsection}{\numberline {F.2}Helped vs.\ Hurt Attention Entropy}{13}{subsection.F.2}\protected@file@percent }
+\@LN{1032}{12}
+\@LN{1033}{12}
+\@LN{1034}{12}
+\@LN{1035}{12}
+\@LN{1036}{12}
+\@LN{1037}{12}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Mean attention entropy difference (helped $-$ hurt) averaged across attention layers (1.3B h3-1 models on LAMBADA). Values near zero indicate that the attention mechanism does not discriminate between helped and hurt examples.}}{13}{table.caption.29}\protected@file@percent }
+\newlabel{tab:attn_entropy}{{8}{13}{Mean attention entropy difference (helped $-$ hurt) averaged across attention layers (1.3B h3-1 models on LAMBADA). Values near zero indicate that the attention mechanism does not discriminate between helped and hurt examples}{table.caption.29}{}}
+\@LN{1038}{12}
+\@LN{1039}{12}
+\@LN{1040}{12}
+\@LN{1041}{12}
+\@LN{1042}{12}
+\@LN{1043}{12}
+\@LN{1044}{12}
+\@LN{1045}{12}
+\@LN{1046}{12}
+\@LN{1047}{12}
+\@writefile{toc}{\contentsline {subsection}{\numberline {F.3}Last-5 Attention Mass}{13}{subsection.F.3}\protected@file@percent }
+\@LN{1048}{12}
+\@LN{1049}{12}
+\@LN{1050}{12}
+\@LN{1051}{12}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Mean attention mass on last-5 tokens for helped and hurt examples, averaged across attention layers (1.3B h3-1 models on LAMBADA).}}{13}{table.caption.30}\protected@file@percent }
+\newlabel{tab:attn_last5}{{9}{13}{Mean attention mass on last-5 tokens for helped and hurt examples, averaged across attention layers (1.3B h3-1 models on LAMBADA)}{table.caption.30}{}}
+\@LN{1052}{12}
+\@LN{1053}{12}
+\@LN{1054}{12}
+\citation{marx2020predictive}
+\@LN@col{1}
+\@LN{1055}{13}
+\@LN{1056}{13}
+\@LN{1057}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {G}Cross-Scale Per-Example Comparisons}{14}{appendix.G}\protected@file@percent }
+\newlabel{app:cross_scale}{{G}{14}{Cross-Scale Per-Example Comparisons}{appendix.G}{}}
+\@LN{1058}{13}
+\@writefile{toc}{\contentsline {subsection}{\numberline {G.1}Within-Scale Pairwise Jaccard}{14}{subsection.G.1}\protected@file@percent }
+\@LN{1059}{13}
+\@LN{1060}{13}
+\@LN{1061}{13}
+\@LN{1062}{13}
+\@LN{1063}{13}
+\@LN{1064}{13}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Within-scale pairwise Jaccard similarity of per-example effects (pure $\to $ h3-1) on LAMBADA. Each row compares the helped (or hurt) sets of two architectures at the same scale.}}{14}{table.caption.31}\protected@file@percent }
+\newlabel{tab:within_scale_jaccard}{{10}{14}{Within-scale pairwise Jaccard similarity of per-example effects (pure $\to $ h3-1) on LAMBADA. Each row compares the helped (or hurt) sets of two architectures at the same scale}{table.caption.31}{}}
+\@LN{1065}{13}
+\@writefile{toc}{\contentsline {subsection}{\numberline {G.2}Cross-Scale Pairwise Jaccard}{14}{subsection.G.2}\protected@file@percent }
+\@LN{1066}{13}
+\@LN{1067}{13}
+\@LN{1068}{13}
+\@LN{1069}{13}
+\@LN{1070}{13}
+\@LN{1071}{13}
+\@LN{1072}{13}
+\@LN{1073}{13}
+\@LN{1074}{13}
+\@LN{1075}{13}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Cross-scale pairwise Jaccard similarity of per-example effects (pure $\to $ h3-1) between 340M and 1.3B on LAMBADA. All values below 0.10.}}{14}{table.caption.32}\protected@file@percent }
+\newlabel{tab:cross_scale_jaccard}{{11}{14}{Cross-scale pairwise Jaccard similarity of per-example effects (pure $\to $ h3-1) between 340M and 1.3B on LAMBADA. All values below 0.10}{table.caption.32}{}}
+\@LN{1076}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {H}Per-Example Effect Counts}{14}{appendix.H}\protected@file@percent }
+\newlabel{app:per_example_counts}{{H}{14}{Per-Example Effect Counts}{appendix.H}{}}
+\@LN{1077}{13}
+\@LN{1078}{13}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Per-example effects of attention (pure $\to $ h3-1) on 5{,}153 LAMBADA examples at 1.3B scale. $\bar  {J}$: mean pairwise Jaccard similarity with other architectures across helped and hurt sets.}}{14}{table.caption.33}\protected@file@percent }
+\newlabel{tab:per_example}{{12}{14}{Per-example effects of attention (pure $\to $ h3-1) on 5{,}153 LAMBADA examples at 1.3B scale. $\bar {J}$: mean pairwise Jaccard similarity with other architectures across helped and hurt sets}{table.caption.33}{}}
+\@LN{1079}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Normalized Jaccard Effect Size}{14}{appendix.I}\protected@file@percent }
+\newlabel{app:normalized_es}{{I}{14}{Normalized Jaccard Effect Size}{appendix.I}{}}
+\@LN{1080}{13}
+\@LN{1081}{13}
+\@LN{1082}{13}
+\@LN{1083}{13}
+\@LN{1084}{13}
+\@LN{1085}{13}
+\@LN{1086}{13}
+\@LN{1087}{13}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Normalized Jaccard effect size for each architecture pair (1.3B h3-1 on LAMBADA). $J_{\max }$: theoretical upper bound given set sizes. Normalized ES: fraction of achievable overlap above chance.}}{14}{table.caption.34}\protected@file@percent }
+\newlabel{tab:normalized_es}{{13}{14}{Normalized Jaccard effect size for each architecture pair (1.3B h3-1 on LAMBADA). $J_{\max }$: theoretical upper bound given set sizes. Normalized ES: fraction of achievable overlap above chance}{table.caption.34}{}}
+\@LN{1088}{13}
+\@LN{1089}{13}
+\@LN{1090}{13}
+\@LN{1091}{13}
+\@LN{1092}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {J}ARC-Easy Per-Example Analysis}{14}{appendix.J}\protected@file@percent }
+\newlabel{app:arceasy}{{J}{14}{ARC-Easy Per-Example Analysis}{appendix.J}{}}
+\@LN{1093}{13}
+\@LN{1094}{13}
+\@LN{1095}{13}
+\@LN{1096}{13}
+\@LN{1097}{13}
+\@LN{1098}{13}
+\@LN{1099}{13}
+\@LN{1100}{13}
+\@LN{1101}{13}
+\@LN{1102}{13}
+\@LN{1103}{13}
+\@LN{1104}{13}
+\@LN{1105}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {K}Jaccard Permutation Test}{14}{appendix.K}\protected@file@percent }
+\newlabel{app:jaccard_permutation}{{K}{14}{Jaccard Permutation Test}{appendix.K}{}}
+\@LN{1106}{13}
+\@LN{1107}{13}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Per-example effects on ARC-Easy at 1.3B scale. Net = helped $-$ hurt.}}{15}{table.caption.35}\protected@file@percent }
+\newlabel{tab:arceasy_effects}{{14}{15}{Per-example effects on ARC-Easy at 1.3B scale. Net = helped $-$ hurt}{table.caption.35}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Ambiguity $\alpha $ across attention ratios (1.3B scale). 95\% CI: BCa bootstrap (10{,}000 resamples) at the pure-recurrent configuration.}}{15}{table.caption.36}\protected@file@percent }
+\newlabel{tab:arceasy_ambiguity}{{15}{15}{Ambiguity $\alpha $ across attention ratios (1.3B scale). 95\% CI: BCa bootstrap (10{,}000 resamples) at the pure-recurrent configuration}{table.caption.36}{}}
+\@LN{1108}{14}
+\@LN{1109}{14}
+\@LN{1110}{14}
+\@LN{1111}{14}
+\@LN{1112}{14}
+\@LN{1113}{14}
+\@LN{1114}{14}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Permutation test for pairwise Jaccard similarity (1.3B h3-1 on LAMBADA, 10{,}000 permutations). All observed values significantly exceed the independence baseline.}}{15}{table.caption.37}\protected@file@percent }
+\newlabel{tab:jaccard_perm}{{16}{15}{Permutation test for pairwise Jaccard similarity (1.3B h3-1 on LAMBADA, 10{,}000 permutations). All observed values significantly exceed the independence baseline}{table.caption.37}{}}
+\@LN{1115}{14}
+\@LN{1116}{14}
+\@LN{1117}{14}
+\@LN{1118}{14}
+\@LN{1119}{14}
+\@LN{1120}{14}
+\@LN{1121}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {L}Transformer Entrainment Comparison}{15}{appendix.L}\protected@file@percent }
+\newlabel{app:transformer_entrainment}{{L}{15}{Transformer Entrainment Comparison}{appendix.L}{}}
+\@LN{1122}{14}
+\@LN{1123}{14}
+\@LN{1124}{14}
+\@LN@col{2}
+\@LN{1125}{14}
+\@LN{1126}{14}
+\@LN{1127}{14}
+\@LN{1128}{14}
+\@LN{1129}{14}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Jaccard similarity between each model's correct set and the Transformer correct set on LAMBADA (1.3B scale). All three h3-1 hybrids are more similar to the Transformer than their pure counterparts.}}{15}{table.caption.38}\protected@file@percent }
+\newlabel{tab:transformer_jaccard}{{17}{15}{Jaccard similarity between each model's correct set and the Transformer correct set on LAMBADA (1.3B scale). All three h3-1 hybrids are more similar to the Transformer than their pure counterparts}{table.caption.38}{}}
+\@LN{1130}{14}
+\@LN{1131}{14}
+\@LN{1132}{14}
+\@LN{1133}{14}
+\@LN{1134}{14}
+\@LN{1135}{14}
+\@LN{1136}{14}
+\@LN{1137}{14}
+\@LN{1138}{14}
+\@LN{1139}{14}
+\@LN{1140}{14}
+\@LN{1141}{14}
+\@LN{1142}{14}
+\@LN{1143}{14}
+\@LN{1144}{14}
+\@writefile{toc}{\contentsline {section}{\numberline {M}Within-Architecture Per-Example Stability}{15}{appendix.M}\protected@file@percent }
+\newlabel{app:within_arch_stability}{{M}{15}{Within-Architecture Per-Example Stability}{appendix.M}{}}
+\@LN{1145}{14}
+\@LN{1146}{14}
+\@LN{1147}{14}
+\@LN{1148}{14}
+\@LN{1149}{14}
+\@LN{1150}{14}
+\@LN{1151}{14}
+\@LN{1152}{14}
+\@LN{1153}{14}
+\@LN{1154}{14}
+\@LN{1155}{14}
+\@LN{1156}{14}
+\@LN{1157}{14}
+\@LN{1158}{14}
+\@LN{1159}{14}
+\@LN{1160}{14}
+\@LN{1161}{14}
+\@LN{1162}{14}
+\@LN{1163}{14}
+\@LN{1164}{14}
+\@LN{1165}{14}
+\@LN{1166}{14}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Mean within-architecture pairwise Jaccard similarity across attention ratios (1.3B, LAMBADA). Each mean is computed over all six ratio pairs per architecture.}}{16}{table.caption.39}\protected@file@percent }
+\newlabel{tab:within_arch_summary}{{18}{16}{Mean within-architecture pairwise Jaccard similarity across attention ratios (1.3B, LAMBADA). Each mean is computed over all six ratio pairs per architecture}{table.caption.39}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Within-architecture pairwise Jaccard similarity between helped and hurt sets at different attention ratios (1.3B, LAMBADA). Each cell compares the per-example effect sets of two attention configurations within the same architecture.}}{16}{table.caption.40}\protected@file@percent }
+\newlabel{tab:within_arch_pairwise}{{19}{16}{Within-architecture pairwise Jaccard similarity between helped and hurt sets at different attention ratios (1.3B, LAMBADA). Each cell compares the per-example effect sets of two attention configurations within the same architecture}{table.caption.40}{}}
+\@LN{1167}{15}
+\@LN{1168}{15}
+\@LN{1169}{15}
+\@LN{1170}{15}
+\@LN{1171}{15}
+\@LN{1172}{15}
+\@LN{1173}{15}
+\@LN{1174}{15}
+\@LN{1175}{15}
+\@LN{1176}{15}
+\@LN{1177}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {N}Cross-Benchmark Jaccard Trajectories}{16}{appendix.N}\protected@file@percent }
+\newlabel{app:cross_bench_jaccard}{{N}{16}{Cross-Benchmark Jaccard Trajectories}{appendix.N}{}}
+\@LN{1178}{15}
+\@LN{1179}{15}
+\@LN{1180}{15}
+\@LN{1181}{15}
+\@LN{1182}{15}
+\@LN{1183}{15}
+\@LN{1184}{15}
+\@LN{1185}{15}
+\@LN{1186}{15}
+\@LN{1187}{15}
+\@LN{1188}{15}
+\@LN{1189}{15}
+\@LN{1190}{15}
+\@LN{1191}{15}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Mean pairwise Jaccard (mean of helped and hurt sets, 3 architecture pairs) across attention ratios and benchmarks (1.3B scale). $\rho $: Spearman correlation between attention ratio and $\bar  {J}$. All $p \geq 0.333$.}}{16}{table.caption.41}\protected@file@percent }
+\newlabel{tab:cross_bench_jaccard}{{20}{16}{Mean pairwise Jaccard (mean of helped and hurt sets, 3 architecture pairs) across attention ratios and benchmarks (1.3B scale). $\rho $: Spearman correlation between attention ratio and $\bar {J}$. All $p \geq 0.333$}{table.caption.41}{}}
+\@LN{1192}{15}
+\@LN{1193}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {O}Continuous-Threshold Jaccard Analysis}{16}{appendix.O}\protected@file@percent }
+\newlabel{app:continuous_jaccard}{{O}{16}{Continuous-Threshold Jaccard Analysis}{appendix.O}{}}
+\@LN{1194}{15}
+\@LN{1195}{15}
+\@LN{1196}{15}
+\@LN{1197}{15}
+\@LN{1198}{15}
+\@LN{1199}{15}
+\@LN{1200}{15}
+\@LN{1201}{15}
+\@LN{1202}{15}
+\@LN{1203}{15}
+\@LN{1204}{15}
+\@LN{1205}{15}
+\@LN{1206}{15}
+\@LN{1207}{15}
+\@LN{1208}{15}
+\@LN{1209}{15}
+\@LN{1210}{15}
+\@LN{1211}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {P}Target-Token Confidence Margin}{16}{appendix.P}\protected@file@percent }
+\newlabel{app:confidence_margin}{{P}{16}{Target-Token Confidence Margin}{appendix.P}{}}
+\@LN{1212}{15}
+\@LN{1213}{15}
+\@LN{1214}{15}
+\@LN{1215}{15}
+\@LN{1216}{15}
+\@LN{1217}{15}
+\@LN{1218}{15}
+\@LN{1219}{15}
+\@LN{1220}{15}
+\@LN{1221}{15}
+\@LN{1222}{15}
+\@LN{1223}{15}
+\@LN{1224}{15}
+\@LN{1225}{15}
+\@LN{1226}{15}
+\@LN{1227}{15}
+\@LN{1228}{15}
+\@LN{1229}{15}
+\@LN{1230}{15}
+\@LN{1231}{15}
+\@LN{1232}{15}
+\@LN@col{1}
+\@LN{1233}{16}
+\@LN{1234}{16}
+\@LN{1235}{16}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Control 1: Pure-correct samples: hurt vs.\ stayed-right. Higher mean $|\log p|$ indicates lower target-token probability (less confident correct).}}{17}{table.caption.42}\protected@file@percent }
+\newlabel{tab:cm_c1}{{21}{17}{Control 1: Pure-correct samples: hurt vs.\ stayed-right. Higher mean $|\log p|$ indicates lower target-token probability (less confident correct)}{table.caption.42}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces Control 2: Pure-wrong samples: helped vs.\ stayed-wrong. Lower mean $|\log p|$ indicates higher target-token probability (near-miss error).}}{17}{table.caption.43}\protected@file@percent }
+\newlabel{tab:cm_c2}{{22}{17}{Control 2: Pure-wrong samples: helped vs.\ stayed-wrong. Lower mean $|\log p|$ indicates higher target-token probability (near-miss error)}{table.caption.43}{}}
+\@LN{1236}{16}
+\@writefile{toc}{\contentsline {subsection}{\numberline {P.1}Cross-Benchmark Extension}{17}{subsection.P.1}\protected@file@percent }
+\newlabel{app:cm_cross}{{P.1}{17}{Cross-Benchmark Extension}{subsection.P.1}{}}
+\@LN{1237}{16}
+\@LN{1238}{16}
+\@LN{1239}{16}
+\@LN{1240}{16}
+\@LN{1241}{16}
+\@LN{1242}{16}
+\@LN{1243}{16}
+\@LN{1244}{16}
+\@LN{1245}{16}
+\@LN{1246}{16}
+\@LN{1247}{16}
+\@LN{1248}{16}
+\@LN{1249}{16}
+\@LN{1250}{16}
+\@LN{1251}{16}
+\@LN{1252}{16}
+\@LN{1253}{16}
+\@LN{1254}{16}
+\@LN{1255}{16}
+\@LN{1256}{16}
+\@LN{1257}{16}
+\@LN{1258}{16}
+\@LN{1259}{16}
+\@LN{1260}{16}
+\@LN{1261}{16}
+\@LN{1262}{16}
+\@LN{1263}{16}
+\@LN{1264}{16}
+\@writefile{toc}{\contentsline {subsection}{\numberline {P.2}Prediction Framework}{17}{subsection.P.2}\protected@file@percent }
+\newlabel{app:prediction_framework}{{P.2}{17}{Prediction Framework}{subsection.P.2}{}}
+\@LN{1265}{16}
+\@LN{1266}{16}
+\@LN{1267}{16}
+\@LN{1268}{16}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces Cross-benchmark rescue analysis (Control 2): helped vs.\ stayed-wrong on HellaSwag and ARC-Easy (1.3B h3-1).}}{17}{table.caption.44}\protected@file@percent }
+\newlabel{tab:cm_cross_c2}{{23}{17}{Cross-benchmark rescue analysis (Control 2): helped vs.\ stayed-wrong on HellaSwag and ARC-Easy (1.3B h3-1)}{table.caption.44}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {24}{\ignorespaces Cross-benchmark disruption analysis (Control 1): hurt vs.\ stayed-right on HellaSwag and ARC-Easy (1.3B h3-1).}}{17}{table.caption.45}\protected@file@percent }
+\newlabel{tab:cm_cross_c1}{{24}{17}{Cross-benchmark disruption analysis (Control 1): hurt vs.\ stayed-right on HellaSwag and ARC-Easy (1.3B h3-1)}{table.caption.45}{}}
+\@LN{1269}{16}
+\@LN{1270}{16}
+\@LN{1271}{16}
+\@LN{1272}{16}
+\@LN{1273}{16}
+\@LN{1274}{16}
+\@LN{1275}{16}
+\@LN{1276}{16}
+\@LN{1277}{16}
+\@LN{1278}{16}
+\@LN{1279}{16}
+\@LN{1280}{16}
+\@LN{1281}{16}
+\@writefile{lot}{\contentsline {table}{\numberline {25}{\ignorespaces Within-architecture prediction of attention effects on LAMBADA (1.3B). AUC$_p$: parametric (from Cohen's $d$); AUC$_e$: empirical (non-parametric).}}{17}{table.caption.46}\protected@file@percent }
+\newlabel{tab:prediction_auc}{{25}{17}{Within-architecture prediction of attention effects on LAMBADA (1.3B). AUC$_p$: parametric (from Cohen's $d$); AUC$_e$: empirical (non-parametric)}{table.caption.46}{}}
+\@writefile{toc}{\contentsline {paragraph}{Normality verification.}{17}{section*.47}\protected@file@percent }
+\@LN{1282}{16}
+\@LN{1283}{16}
+\@LN{1284}{16}
+\@LN{1285}{16}
+\@LN{1286}{16}
+\@LN{1287}{16}
+\@LN{1288}{16}
+\@LN{1289}{16}
+\@LN{1290}{16}
+\citation{guo2017calibration}
+\@LN@col{1}
+\@LN{1291}{17}
+\@LN{1292}{17}
+\@LN{1293}{17}
+\@LN{1294}{17}
+\@LN{1295}{17}
+\@LN{1296}{17}
+\@LN{1297}{17}
+\@LN{1298}{17}
+\@LN{1299}{17}
+\@LN{1300}{17}
+\@LN{1301}{17}
+\@LN{1302}{17}
+\@LN{1303}{17}
+\@LN{1304}{17}
+\@LN{1305}{17}
+\@LN{1306}{17}
+\@LN{1307}{17}
+\@LN{1308}{17}
+\@LN{1309}{17}
+\@LN{1310}{17}
+\@LN{1311}{17}
+\@LN{1312}{17}
+\@writefile{lot}{\contentsline {table}{\numberline {26}{\ignorespaces Gaussian-intersection prediction thresholds ($|\log p|$) across architectures. Relative spread: range/mean.}}{18}{table.caption.48}\protected@file@percent }
+\newlabel{tab:threshold_gap}{{26}{18}{Gaussian-intersection prediction thresholds ($|\log p|$) across architectures. Relative spread: range/mean}{table.caption.48}{}}
+\@LN{1313}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {Q}Calibration Analysis}{18}{appendix.Q}\protected@file@percent }
+\newlabel{app:calibration}{{Q}{18}{Calibration Analysis}{appendix.Q}{}}
+\@LN{1314}{17}
+\@LN{1315}{17}
+\@LN{1316}{17}
+\@LN{1317}{17}
+\@LN{1318}{17}
+\@LN{1319}{17}
+\@LN{1320}{17}
+\@LN{1321}{17}
+\@LN{1322}{17}
+\@LN{1323}{17}
+\@LN{1324}{17}
+\@LN{1325}{17}
+\@LN{1326}{17}
+\@LN{1327}{17}
+\@LN{1328}{17}
+\@LN{1329}{17}
+\@LN{1330}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {R}BoolQ Supplementary Analysis}{18}{appendix.R}\protected@file@percent }
+\newlabel{app:boolq}{{R}{18}{BoolQ Supplementary Analysis}{appendix.R}{}}
+\@LN{1331}{17}
+\@LN{1332}{17}
+\@LN{1333}{17}
+\@LN@col{2}
+\@LN{1334}{17}
+\@LN{1335}{17}
+\@LN{1336}{17}
+\@LN{1337}{17}
+\@LN{1338}{17}
+\@LN{1339}{17}
+\@LN{1340}{17}
+\@writefile{toc}{\contentsline {paragraph}{Binary classification baseline.}{18}{section*.49}\protected@file@percent }
+\@LN{1341}{17}
+\@LN{1342}{17}
+\@LN{1343}{17}
+\@LN{1344}{17}
+\@LN{1345}{17}
+\@LN{1346}{17}
+\@LN{1347}{17}
+\@LN{1348}{17}
+\@LN{1349}{17}
+\@LN{1350}{17}
+\@LN{1351}{17}
+\@LN{1352}{17}
+\@LN{1353}{17}
+\@writefile{toc}{\contentsline {paragraph}{Per-example summary.}{18}{section*.50}\protected@file@percent }
+\@LN{1354}{17}
+\@LN{1355}{17}
+\@LN{1356}{17}
+\@LN{1357}{17}
+\@LN{1358}{17}
+\@LN{1359}{17}
+\@LN{1360}{17}
+\@LN{1361}{17}
+\@LN{1362}{17}
+\@writefile{lot}{\contentsline {table}{\numberline {27}{\ignorespaces BoolQ predictive multiplicity at 1.3B (h3-1).}}{18}{table.caption.51}\protected@file@percent }
+\newlabel{tab:boolq_multiplicity}{{27}{18}{BoolQ predictive multiplicity at 1.3B (h3-1)}{table.caption.51}{}}
+\@LN{1363}{17}
+\@LN{1364}{17}
+\@LN{1365}{17}
+\@LN{1366}{17}
+\@LN{1367}{17}
+\@LN{1368}{17}
+\@LN{1369}{17}
+\@LN{1370}{17}
+\@LN{1371}{17}
+\@writefile{toc}{\contentsline {paragraph}{Confidence margin.}{18}{section*.52}\protected@file@percent }
+\@LN{1372}{17}
+\@LN{1373}{17}
+\@LN{1374}{17}
+\@LN{1375}{17}
+\@LN{1376}{17}
+\@LN{1377}{17}
+\@LN{1378}{17}
+\@LN@col{1}
+\@LN{1379}{18}
+\@LN{1380}{18}
+\@LN{1381}{18}
+\@LN{1382}{18}
+\@LN{1383}{18}
+\@LN{1384}{18}
+\@LN{1385}{18}
+\@LN{1386}{18}
+\@LN{1387}{18}
+\@LN{1388}{18}
+\@LN{1389}{18}
+\@LN{1390}{18}
+\@LN{1391}{18}
+\@LN{1392}{18}
+\@LN{1393}{18}
+\@LN{1394}{18}
+\@writefile{toc}{\contentsline {paragraph}{Interpretation.}{19}{section*.53}\protected@file@percent }
+\@LN{1395}{18}
+\@LN{1396}{18}
+\@LN{1397}{18}
+\@LN{1398}{18}
+\@LN{1399}{18}
+\@LN{1400}{18}
+\@LN{1401}{18}
+\@LN{1402}{18}
+\@LN{1403}{18}
+\@LN{1404}{18}
+\@LN{1405}{18}
+\@LN{1406}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {S}WinoGrande Supplementary Analysis}{19}{appendix.S}\protected@file@percent }
+\newlabel{app:winogrande}{{S}{19}{WinoGrande Supplementary Analysis}{appendix.S}{}}
+\@LN{1407}{18}
+\@LN{1408}{18}
+\@LN{1409}{18}
+\@LN{1410}{18}
+\@LN{1411}{18}
+\@LN{1412}{18}
+\@LN{1413}{18}
+\@LN{1414}{18}
+\@LN{1415}{18}
+\@writefile{toc}{\contentsline {paragraph}{Near-chance accuracy.}{19}{section*.54}\protected@file@percent }
+\@LN{1416}{18}
+\@LN{1417}{18}
+\@LN{1418}{18}
+\@LN{1419}{18}
+\@LN{1420}{18}
+\@LN{1421}{18}
+\@LN{1422}{18}
+\@LN{1423}{18}
+\@LN{1424}{18}
+\@LN{1425}{18}
+\@LN{1426}{18}
+\@LN{1427}{18}
+\@LN@col{2}
+\@LN{1428}{18}
+\@LN{1429}{18}
+\@LN{1430}{18}
+\@writefile{lot}{\contentsline {table}{\numberline {28}{\ignorespaces WinoGrande predictive multiplicity at 1.3B (h3-1).}}{19}{table.caption.55}\protected@file@percent }
+\newlabel{tab:winogrande_multiplicity}{{28}{19}{WinoGrande predictive multiplicity at 1.3B (h3-1)}{table.caption.55}{}}
+\@LN{1431}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {T}340M Per-Example Analysis}{19}{appendix.T}\protected@file@percent }
+\newlabel{app:scale_per_example}{{T}{19}{340M Per-Example Analysis}{appendix.T}{}}
+\@LN{1432}{18}
+\@writefile{toc}{\contentsline {subsection}{\numberline {T.1}LAMBADA}{19}{subsection.T.1}\protected@file@percent }
+\@LN{1433}{18}
+\@LN{1434}{18}
+\@LN{1435}{18}
+\@LN{1436}{18}
+\@LN{1437}{18}
+\@LN{1438}{18}
+\@LN{1439}{18}
+\@LN{1440}{18}
+\@LN{1441}{18}
+\@LN{1442}{18}
+\@LN{1443}{18}
+\@LN{1444}{18}
+\@LN{1445}{18}
+\@LN{1446}{18}
+\@LN{1447}{18}
+\@LN{1448}{18}
+\@LN{1449}{18}
+\@LN{1450}{18}
+\@LN{1451}{18}
+\@LN{1452}{18}
+\@LN{1453}{18}
+\@LN{1454}{18}
+\@LN{1455}{18}
+\@LN{1456}{18}
+\@LN{1457}{18}
+\@LN{1458}{18}
+\@writefile{lot}{\contentsline {table}{\numberline {29}{\ignorespaces 340M vs.\ 1.3B LAMBADA comparison.}}{19}{table.caption.56}\protected@file@percent }
+\newlabel{tab:scale_comparison}{{29}{19}{340M vs.\ 1.3B LAMBADA comparison}{table.caption.56}{}}
+\@LN{1459}{18}
+\@writefile{toc}{\contentsline {subsection}{\numberline {T.2}Cross-Benchmark Scale Comparison}{19}{subsection.T.2}\protected@file@percent }
+\@LN{1460}{18}
+\@LN{1461}{18}
+\@LN{1462}{18}
+\@LN{1463}{18}
+\citation{biderman2023pythia}
+\citation{vanderwal2025polypythias}
+\@LN@col{1}
+\@LN{1464}{19}
+\@LN{1465}{19}
+\@LN{1466}{19}
+\@LN{1467}{19}
+\@LN{1468}{19}
+\@LN{1469}{19}
+\@LN{1470}{19}
+\@LN{1471}{19}
+\@LN{1472}{19}
+\@LN{1473}{19}
+\@LN{1474}{19}
+\@LN{1475}{19}
+\@LN{1476}{19}
+\@LN{1477}{19}
+\@LN{1478}{19}
+\@LN{1479}{19}
+\@writefile{lot}{\contentsline {table}{\numberline {30}{\ignorespaces 340M vs.\ 1.3B per-example multiplicity across four benchmarks. $\alpha $: ambiguity at pure-recurrent configuration. Acc: mean accuracy across three architectures at pure-recurrent. $\bar  {J}_{h}$/$\bar  {J}_{u}$: mean pairwise Jaccard of helped/hurt sets. $\Delta \alpha $: 340M $-$ 1.3B.}}{20}{table.caption.57}\protected@file@percent }
+\newlabel{tab:340m_multi_bench}{{30}{20}{340M vs.\ 1.3B per-example multiplicity across four benchmarks. $\alpha $: ambiguity at pure-recurrent configuration. Acc: mean accuracy across three architectures at pure-recurrent. $\bar {J}_{h}$/$\bar {J}_{u}$: mean pairwise Jaccard of helped/hurt sets. $\Delta \alpha $: 340M $-$ 1.3B}{table.caption.57}{}}
+\@LN{1480}{19}
+\@LN{1481}{19}
+\@LN{1482}{19}
+\@LN{1483}{19}
+\@LN{1484}{19}
+\@LN{1485}{19}
+\@LN{1486}{19}
+\@LN{1487}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {U}Subsample Sensitivity of $\alpha $}{20}{appendix.U}\protected@file@percent }
+\newlabel{app:subsample_sensitivity}{{U}{20}{Subsample Sensitivity of \texorpdfstring {$\alpha $}{α}}{appendix.U}{}}
+\@LN{1488}{19}
+\@LN{1489}{19}
+\@LN{1490}{19}
+\@LN{1491}{19}
+\@writefile{lot}{\contentsline {table}{\numberline {31}{\ignorespaces $\alpha $ estimation stability: 95\% CI width by subsample size.}}{20}{table.caption.58}\protected@file@percent }
+\newlabel{tab:subsample}{{31}{20}{$\alpha $ estimation stability: 95\% CI width by subsample size}{table.caption.58}{}}
+\@LN@col{2}
+\@LN{1492}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Complementarity Decomposition}{20}{appendix.V}\protected@file@percent }
+\newlabel{app:complementarity}{{V}{20}{Complementarity Decomposition}{appendix.V}{}}
+\@LN{1493}{19}
+\@LN{1494}{19}
+\@LN{1495}{19}
+\@LN{1496}{19}
+\@LN{1497}{19}
+\@LN{1498}{19}
+\@LN{1499}{19}
+\@LN{1500}{19}
+\@LN{1501}{19}
+\@LN{1502}{19}
+\@LN{1503}{19}
+\@LN{1504}{19}
+\@LN{1505}{19}
+\@LN{1506}{19}
+\@LN{1507}{19}
+\@LN{1508}{19}
+\@LN{1509}{19}
+\@LN{1510}{19}
+\@writefile{lot}{\contentsline {table}{\numberline {32}{\ignorespaces Complementarity decomposition at 1.3B h3-1. Fractions of total examples in each vote category. MV expl.: fraction of complementary examples where majority vote is correct.}}{20}{table.caption.59}\protected@file@percent }
+\newlabel{tab:complementarity_full}{{32}{20}{Complementarity decomposition at 1.3B h3-1. Fractions of total examples in each vote category. MV expl.: fraction of complementary examples where majority vote is correct}{table.caption.59}{}}
+\@LN{1511}{19}
+\@LN{1512}{19}
+\@LN{1513}{19}
+\@LN{1514}{19}
+\@LN{1515}{19}
+\@LN{1516}{19}
+\@LN{1517}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {W}Seed-Variation Calibration}{20}{appendix.W}\protected@file@percent }
+\newlabel{app:seed_calibration}{{W}{20}{Seed-Variation Calibration}{appendix.W}{}}
+\@LN{1518}{19}
+\@LN{1519}{19}
+\@LN{1520}{19}
+\@LN{1521}{19}
+\@LN{1522}{19}
+\@LN{1523}{19}
+\@LN{1524}{19}
+\@LN{1525}{19}
+\@LN{1526}{19}
+\@LN{1527}{19}
+\@LN{1528}{19}
+\@LN{1529}{19}
+\@LN{1530}{19}
+\@LN{1531}{19}
+\@LN{1532}{19}
+\citation{qin2023hierarchically}
+\citation{wang2025hybrid}
+\@LN@col{1}
+\@LN{1533}{20}
+\@LN{1534}{20}
+\@LN{1535}{20}
+\@LN{1536}{20}
+\@LN{1537}{20}
+\@LN{1538}{20}
+\@LN{1539}{20}
+\@LN{1540}{20}
+\@LN{1541}{20}
+\@LN{1542}{20}
+\@LN{1543}{20}
+\@LN{1544}{20}
+\@LN{1545}{20}
+\@LN{1546}{20}
+\@LN{1547}{20}
+\@LN{1548}{20}
+\@LN{1549}{20}
+\@LN{1550}{20}
+\@LN{1551}{20}
+\@LN{1552}{20}
+\@LN{1553}{20}
+\@LN{1554}{20}
+\@LN{1555}{20}
+\@LN{1556}{20}
+\@LN{1557}{20}
+\@LN{1558}{20}
+\@LN{1559}{20}
+\@writefile{toc}{\contentsline {section}{\numberline {X}Extended Architecture Validation (Five Architectures)}{21}{appendix.X}\protected@file@percent }
+\newlabel{app:extended_arch}{{X}{21}{Extended Architecture Validation (Five Architectures)}{appendix.X}{}}
+\@LN{1560}{20}
+\@LN{1561}{20}
+\@LN{1562}{20}
+\@LN{1563}{20}
+\@LN{1564}{20}
+\@LN{1565}{20}
+\@LN{1566}{20}
+\@LN{1567}{20}
+\@LN{1568}{20}
+\@LN{1569}{20}
+\@writefile{lot}{\contentsline {table}{\numberline {33}{\ignorespaces Pairwise Jaccard similarity across five architectures (340M, h3-1). All 40 permutation tests yield $p \leq .002$ ($z = 3.49$--$12.21$).}}{21}{table.33}\protected@file@percent }
+\newlabel{tab:extended_arch_jaccard}{{33}{21}{Pairwise Jaccard similarity across five architectures (340M, h3-1). All 40 permutation tests yield $p \leq .002$ ($z = 3.49$--$12.21$)}{table.33}{}}
+\@LN@col{2}
+\@LN{1570}{20}
+\@LN{1571}{20}
+\@LN{1572}{20}
+\@LN{1573}{20}
+\@LN{1574}{20}
+\@LN{1575}{20}
+\@LN{1576}{20}
+\@LN{1577}{20}
+\@LN{1578}{20}
+\@LN{1579}{20}
+\@LN{1580}{20}
+\@LN{1581}{20}
+\@LN{1582}{20}
+\@LN{1583}{20}
+\@LN{1584}{20}
+\@LN{1585}{20}
+\@LN{1586}{20}
+\@LN{1587}{20}
+\@LN{1588}{20}
+\@LN{1589}{20}
+\@LN{1590}{20}
+\@LN{1591}{20}
+\@writefile{toc}{\contentsline {section}{\numberline {Y}Code, Data, and Computational Resources}{21}{appendix.Y}\protected@file@percent }
+\newlabel{app:code_data}{{Y}{21}{Code, Data, and Computational Resources}{appendix.Y}{}}
+\@LN{1592}{20}
+\@LN{1593}{20}
+\@LN{1594}{20}
+\@LN{1595}{20}
+\@LN{1596}{20}
+\@writefile{toc}{\contentsline {paragraph}{Compute.}{21}{section*.60}\protected@file@percent }
+\@LN{1597}{20}
+\@LN{1598}{20}
+\@LN{1599}{20}
+\@LN{1600}{20}
+\@LN{1601}{20}
+\@LN@col{1}
+\@LN{1602}{21}
+\@LN{1603}{21}
+\@LN{1604}{21}
+\@writefile{toc}{\contentsline {section}{\numberline {Z}Use of AI Assistance}{22}{appendix.Z}\protected@file@percent }
+\@LN{1605}{21}
+\@LN{1606}{21}
+\@LN@col{2}
+\gdef \@abspage@last{22}

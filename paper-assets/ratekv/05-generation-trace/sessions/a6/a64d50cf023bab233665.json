@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_mistral_bit_dist_check_20260514T100413_result.json",
     "occurrence": 1,
-    "bytes": 1278,
-    "sha256": "3971d35c8f128f4d609110a97869ef6cab62b3083e1c17e26882816bcde8780c"
+    "bytes": 1277,
+    "sha256": "1443510a90db7df23228454e1b1e51ec7573f10b38644c6b4ea59baff0aa6039"
   },
   "statistics": {
     "messages": 1,

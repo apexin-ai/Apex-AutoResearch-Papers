@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp-005-gla",
+  "project": "entrainment_gated_ft",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:41:49.615Z",
+    "updated_at": "2026-05-24T07:45:34.353Z",
+    "spec": {
+      "command": "bash -c \"bash /root/entrainment_gated_ft/results/exp005_zoo_expansion/eval_gla_hardcode.sh\"",
+      "server": "westb-48145",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "878457",
+      "log_path": "~/runs/entrainment_gated_ft/exp-005-gla.log",
+      "submitted_at": "2026-05-22T15:48:24.719Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-24T07:45:34.426463+00:00",
+  "trigger": "update_registry"
+}

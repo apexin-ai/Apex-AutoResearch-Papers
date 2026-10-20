@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp-004-preparation_20260519T160600_result.json",
     "occurrence": 1,
-    "bytes": 2933,
-    "sha256": "a2681d902ee5edcc999714c49329556635050a96f9e0b2c288d6da725f1f288f"
+    "bytes": 2932,
+    "sha256": "815ad8799b2e23af5463c8689bb199d1ae0b008a56ba56632b5748b6d73ae688"
   },
   "statistics": {
     "messages": 1,

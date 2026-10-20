@@ -1,0 +1,15 @@
+{
+  "exp_id": "llama_longctx_8k_eval",
+  "project": "ratekv",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:57:28.650Z",
+    "updated_at": "2026-05-16T02:57:50.111Z",
+    "hypothesis": "Llama-3.1-8B 8K long-context eval: Spike distribution model. Expect constrained MCKP to maintain PPL advantage at 8K context (vs 2K baseline). First long-context validation for 48h experiment pipeline."
+  },
+  "timestamp": "2026-05-16T02:57:50.322850+00:00",
+  "trigger": "update_registry"
+}

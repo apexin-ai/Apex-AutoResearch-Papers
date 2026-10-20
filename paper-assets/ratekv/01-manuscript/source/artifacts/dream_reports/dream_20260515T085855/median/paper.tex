@@ -1,0 +1,500 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{natbib}
+% \usepackage{microtype}
+
+\newcommand{\topkconc}{\ensuremath{c_5}}
+\newcommand{\tratio}{\ensuremath{t_1/t_5}}
+
+\title{When Does Non-Uniform KV Cache Quantization Help?\\
+Cardinality Constraints, Sensitivity Diagnostics,\\and a Six-Architecture Study}
+
+\author{Anonymous}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+%% ============================================================
+%%  ABSTRACT
+%% ============================================================
+\begin{abstract}
+Per-head mixed-precision KV cache quantization promises better quality--compression tradeoffs than uniform quantization, but two fundamental questions remain open: \emph{when} does non-uniform allocation actually help, and \emph{how} should existing solvers (greedy, MCKP) be adapted to hardware-aligned non-consecutive bit-widths \{2,4,8,16\}?
+We present a systematic study across six transformer architectures (Qwen2.5-7B/14B, Yi-1.5-9B, Llama-3.1-8B, Mistral-7B, Gemma-2-9B) spanning GQA ratios from 2:1 to 8:1.
+Our main finding is that a cardinality constraint---limiting the number of heads assigned to extreme (2-bit) quantization---is a simple, sufficient, and universal intervention: it prevents compounding degradation on all tested architectures, reduces the solver search space so that greedy and MCKP produce identical allocations ($\Delta=0.0000$ PPL), and yields up to 27.3\% PPL improvement over uniform 4-bit on architectures with favorable sensitivity distributions.
+We further propose an empirical decision rule based on two profiling metrics (top-5\% concentration $\gtrsim 0.50$ and $t_1/t_5 \lesssim 0.70$) that correctly classifies all five non-borderline architectures as beneficial or non-beneficial.
+The sixth architecture (Qwen2.5-14B) falls on the decision boundary, exhibiting a modest 7.9\% benefit that illustrates the threshold as a soft boundary rather than a hard cutoff.
+These results provide practitioners with both a universal method fix and a two-metric check for when mixed-precision KV cache quantization is worthwhile.
+\end{abstract}
+
+%% ============================================================
+%%  1  INTRODUCTION
+%% ============================================================
+\section{Introduction}
+
+KV cache quantization is a standard approach for reducing memory footprint during autoregressive inference in large language models.
+Most deployed systems apply a \emph{uniform} bit-width---typically 4-bit---to all attention heads.
+Per-head \emph{mixed-precision} allocation, where each head receives a bit-width proportional to its quantization sensitivity, offers a principled route to better quality--compression tradeoffs.
+Algorithms such as the greedy R-D solver of RateQuant and integer-programming formulations (MCKP) provide optimal or near-optimal allocations under additive distortion models.
+
+However, when the target bit-widths are the hardware-aligned non-consecutive set \{2, 4, 8, 16\}, two problems emerge.
+First, \emph{unconstrained} solvers fail catastrophically on certain architectures: on Qwen2.5-7B, both greedy (PPL 32.45) and MCKP (PPL 36.92) produce allocations far worse than uniform 4-bit (PPL 15.45).
+This 3.31$\times$ degradation stems from compounding effects---per-head profiling distortions are non-additive when many heads are simultaneously assigned extreme quantization, and solvers cannot account for this.
+Second, \emph{when} non-uniform allocation helps is unknown: is the benefit universal, or architecture-dependent?
+
+We address both questions through a six-architecture study.
+Our contributions, ordered by generality:
+
+\begin{enumerate}
+    \item \textbf{Cardinality constraint as universal fix.}
+    A single constraint---$\max\_2\text{bit} \le k$---prevents compounding degradation on all six architectures, makes solver choice irrelevant (constrained greedy $=$ constrained MCKP), and yields 27.3\% PPL improvement on the most favorable architecture.
+    The constraint is effective on catastrophic (Qwen-7B, 3.31$\times$), moderate (Gemma-2, 1.47$\times$; Qwen-14B, 1.56$\times$), and mild (Yi, Llama, Mistral, 1.07--1.08$\times$) degradation regimes alike.
+
+    \item \textbf{Sensitivity distribution taxonomy.}
+    Head sensitivity distributions fall into three shapes---Spread (cluster of sensitive heads), Spike (single outlier), and Flat (near-uniform)---that predict whether MCKP can exploit heterogeneity.
+    Neither GQA ratio nor concentration alone is sufficient: Yi-1.5-9B (GQA 8:1, concentration 0.71) gains nothing, while Qwen2.5-7B (GQA 7:1, concentration 0.61) gains 27.3\%.
+
+    \item \textbf{Empirical decision rule.}
+    A joint condition (concentration in the range 0.45--0.55 AND $\tratio \lesssim 0.70$) correctly classifies all five non-borderline architectures.
+    We present this as a directional heuristic, not a hard cutoff, and discuss the boundary case (Qwen2.5-14B, concentration 0.47, $\tratio = 0.72$) that yields a modest but genuine 7.9\% benefit.
+\end{enumerate}
+
+%% ============================================================
+%%  2  METHOD
+%% ============================================================
+\section{Method}
+
+\subsection{Per-Head Sensitivity Profiling}
+
+For each KV head $h$ in a model with $H$ total KV heads, we measure the 2-bit distortion delta $\delta_h$: the perplexity increase when head $h$ alone is quantized from the baseline precision to 2-bit, holding all other heads at 4-bit.
+We use a high-resolution protocol (64 calibration sequences $\times$ 2048 tokens) to obtain stable per-head estimates.
+
+Two summary statistics characterize the sensitivity distribution:
+\begin{itemize}
+    \item \textbf{Top-5\% concentration} (\topkconc): the fraction of total sensitivity mass held by the top 5\% of heads.
+    High \topkconc{} indicates a few heads dominate.
+    \item \textbf{Top-1 / Top-5 ratio} (\tratio): the sensitivity of the single most sensitive head divided by the 5th most sensitive.
+    High \tratio{} indicates a single outlier (spike); low \tratio{} indicates a cluster (spread).
+\end{itemize}
+
+\subsection{Mixed-Precision Allocation via MCKP}
+
+Given a memory budget $B$ (as a fraction of full-precision KV cache size), we allocate each head to a bit-width from $\mathcal{B} = \{2, 4, 8, 16\}$ to minimize total perplexity.
+This is a Multiple-Choice Knapsack Problem (MCKP): each head is an ``item group'' with four choices (one per bit-width), and the knapsack capacity is $B$.
+We solve both the MCKP formulation and a greedy approximation.
+
+\subsection{Cardinality Constraint}
+
+We augment the allocation problem with a cardinality constraint: at most $k$ heads may be assigned 2-bit precision.
+This prevents compounding degradation from non-additive profiling errors.
+The optimal $k$ can be determined via a small-scale ablation: sweep $k \in \{0, 4, 8, \ldots\}$ and select the $k$ minimizing validation PPL.
+
+Under this constraint, the feasible set shrinks sufficiently that greedy and MCKP produce identical bit allocations on all tested models ($\Delta_{\text{PPL}} = 0.0000$).
+
+\subsection{Empirical Decision Rule}
+
+We propose a two-metric decision rule for practitioners:
+\begin{quote}
+    If \topkconc{} is approximately $\ge 0.50$ \textbf{and} \tratio{} is approximately $\le 0.70$, invest in profiling + constrained MCKP.
+    Otherwise, uniform 4-bit quantization suffices at moderate compression.
+\end{quote}
+This is an empirical heuristic validated on six architectures.
+The thresholds represent soft boundaries: models near the boundary (concentration in the range 0.45--0.55) may see modest but real benefits.
+
+%% ============================================================
+%%  3  EXPERIMENTS
+%% ============================================================
+\section{Experiments}
+
+All experiments use WikiText-2 for calibration and test evaluation unless otherwise noted.
+Compression target is 4$\times$ (budget = 0.25) unless stated.
+Downstream evaluations use 0-shot accuracy on ARC-Challenge, HellaSwag, PIQA, and WinoGrande.
+
+\subsection{Sensitivity Profiling: Qwen2.5-14B}
+\label{sec:profiling_14b}
+
+Table~\ref{tab:14b_topheads} shows the top-10 sensitive heads of Qwen2.5-14B (48 layers $\times$ 8 KV heads = 384 total, GQA 5:1).
+Top-5\% concentration is 0.47 and $\tratio = 0.72$, both near the decision boundary.
+Layer~0 contributes 5 of the top 19 heads (26\%), indicating a diluted version of Qwen-7B's Layer-0 cluster.
+We term this pattern \emph{diluted spread}: the architectural signature of sensitivity clustering is present but attenuated by the larger head count.
+
+\begin{table}[t]
+\centering
+\caption{Qwen2.5-14B: top-10 sensitive KV heads by 2-bit distortion delta (hires profiling, 64 seq $\times$ 2048 tok).}
+\label{tab:14b_topheads}
+\begin{tabular}{lc}
+\toprule
+Head & $\delta_{\text{2bit}}$ \\
+\midrule
+L0H0  & 3.21 \\
+L0H3  & 2.78 \\
+L0H5  & 2.14 \\
+L8H2  & 1.82 \\
+L0H1  & 1.53 \\
+L12H6 & 1.31 \\
+L0H7  & 1.18 \\
+L5H4  & 0.98 \\
+L15H1 & 0.87 \\
+L0H2  & 0.82 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The coefficient of variation (CV = 3.85) is higher than flat-distribution models (Mistral 1.31, Gemma-2 1.28) but lower than Qwen-7B, confirming that heterogeneity is intermediate.
+The GQA ratio of 5:1 (vs.\ 7:1 for the 7B model) yields 8 KV heads per layer rather than 4, which may contribute to the dilution of the Layer-0 cluster effect.
+
+\subsection{Constrained Allocation and $k$ Ablation: Qwen2.5-14B}
+\label{sec:constrained_14b}
+
+Table~\ref{tab:14b_k_ablation} shows the $k$-ablation sweep.
+The optimal constraint is $k = 12$, yielding PPL 7.18 versus 7.80 for uniform 4-bit---a 7.9\% improvement.
+The U-shaped PPL curve is shallow: from $k = 8$ to $k = 20$, PPL varies by less than 0.10, reflecting the smoother sensitivity distribution compared to Qwen-7B.
+Beyond $k = 32$, compounding effects become visible.
+
+\begin{table}[t]
+\centering
+\caption{Qwen2.5-14B: $k$-ablation at budget = 0.25 (384 KV heads).}
+\label{tab:14b_k_ablation}
+\begin{tabular}{rll}
+\toprule
+$k$ (max 2-bit) & PPL & Note \\
+\midrule
+0  & 7.80 & = uniform 4-bit \\
+4  & 7.52 & \\
+8  & 7.28 & \\
+12 & \textbf{7.18} & optimal \\
+16 & 7.21 & \\
+20 & 7.28 & \\
+24 & 7.38 & \\
+32 & 7.65 & compounding visible \\
+48 & 8.42 & compounding dominant \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Constrained greedy and constrained MCKP produce identical results at $k = 12$ ($\Delta = 0.0000$), confirming that solver equivalence under cardinality constraint holds on this architecture as well (Table~\ref{tab:14b_allocation}).
+
+\begin{table}[t]
+\centering
+\caption{Qwen2.5-14B: allocation comparison at budget = 0.25.}
+\label{tab:14b_allocation}
+\begin{tabular}{lcl}
+\toprule
+Method & PPL & Note \\
+\midrule
+Baseline BF16        & 6.50 & --- \\
+Uniform 4-bit        & 7.80 & --- \\
+MCKP constrained $k{=}12$  & \textbf{7.18} & +7.9\% vs uniform \\
+Greedy constrained $k{=}12$ & \textbf{7.18} & $\Delta = 0.0000$ vs MCKP \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The 7.9\% improvement far exceeds the noise range observed on flat-distribution models (Gemma-2: $-0.35\%$, Mistral: $-0.48\%$), indicating a genuine positive signal.
+However, it is substantially below Qwen-7B's 27.3\%, consistent with the lower concentration.
+The gap recovery is 47.7\% (vs.\ 80.8\% for the 7B model).
+
+\subsection{Unconstrained vs.\ Constrained: Qwen2.5-14B}
+\label{sec:unconstrained_14b}
+
+Table~\ref{tab:14b_unconstrained} compares unconstrained and constrained allocation.
+Unconstrained greedy produces 1.56$\times$ baseline degradation, placing 14B in the \emph{moderate} tier alongside Gemma-2 (1.47$\times$), between the catastrophic regime (Qwen-7B, 3.31$\times$) and the mild regime (Yi/Llama/Mistral, 1.07--1.08$\times$).
+
+\begin{table}[t]
+\centering
+\caption{Qwen2.5-14B: unconstrained vs.\ constrained comparison.}
+\label{tab:14b_unconstrained}
+\begin{tabular}{lccc}
+\toprule
+Method & PPL & $\times$ baseline & 2-bit heads (\%) \\
+\midrule
+Baseline BF16              & 6.50  & 1.00$\times$ & --- \\
+Uniform 4-bit              & 7.80  & 1.20$\times$ & 0 (0\%) \\
+Greedy unconstrained       & 10.15 & 1.56$\times$ & 58 (15.1\%) \\
+MCKP unconstrained         & 10.35 & 1.59$\times$ & 62 (16.1\%) \\
+Greedy constrained $k{=}12$  & \textbf{7.18}  & 1.10$\times$ & 12 (3.1\%) \\
+MCKP constrained $k{=}12$    & \textbf{7.18}  & 1.10$\times$ & 12 (3.1\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The constraint reduces PPL from 10.15 to 7.18 (29.3\% improvement), confirming that the cardinality constraint is effective not only on catastrophic cases (Qwen-7B) but also on moderate degradation regimes.
+Under unconstrained allocation, solver choice matters (greedy 10.15 vs.\ MCKP 10.35); under the constraint, it does not ($\Delta = 0.0000$).
+This pattern is consistent across all tested architectures.
+
+\subsection{Gemma-2-9B: BOS-Fixed Constrained Evaluation}
+\label{sec:gemma2}
+
+We re-evaluated Gemma-2-9B using corrected BOS-prepend sliding-window evaluation (stride = 512, max\_length = 2048), replacing earlier results affected by a BOS handling bug.
+Table~\ref{tab:gemma2_bos} reports updated numbers.
+
+\begin{table}[t]
+\centering
+\caption{Gemma-2-9B: BOS-fixed results (336 KV heads, budget = 0.25).}
+\label{tab:gemma2_bos}
+\begin{tabular}{lcl}
+\toprule
+Method & PPL & Note \\
+\midrule
+Baseline BF16            & 6.03 & BOS-fixed \\
+Uniform 4-bit            & 6.17 & BOS-fixed \\
+MCKP constrained $k{=}8$  & 6.19 & $-0.35\%$ vs uniform \\
+Greedy unconstrained     & 8.85 & 1.47$\times$ baseline \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Gemma-2-9B: $k$-ablation (BOS-fixed, 336 heads).}
+\label{tab:gemma2_k}
+\begin{tabular}{rcl}
+\toprule
+$k$ & PPL & Note \\
+\midrule
+0  & 6.17 & = uniform \\
+4  & 6.17 & $\approx$ uniform \\
+8  & 6.19 & best $k$ (marginal) \\
+12 & 6.22 & \\
+16 & 6.25 & \\
+24 & 6.31 & monotonic increase \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The BOS fix substantially changes absolute PPL (8.9 $\to$ 6.03 for baseline) but does not change relative conclusions.
+The flat sensitivity distribution (concentration 0.23, CV 1.28) means the profiler cannot meaningfully differentiate heads; any non-uniform allocation is noise-driven.
+The $k$--PPL curve is approximately monotonically increasing, similar to Mistral---every additional 2-bit head adds equal damage.
+The constraint's value on Gemma-2 is not in enabling MCKP optimization but in \emph{preventing over-allocation}: unconstrained solvers assign 106 of 336 heads (31.5\%) to 2-bit, producing the 1.47$\times$ moderate degradation; the constraint caps this at 8 heads, bringing PPL within 0.35\% of uniform.
+
+\subsection{Decision Rule Validation Across Six Architectures}
+\label{sec:decision_rule}
+
+Table~\ref{tab:decision_rule} evaluates the joint diagnostic ($\topkconc \gtrsim 0.50$ AND $\tratio \lesssim 0.70$) on all six architectures.
+
+\begin{table}[t]
+\centering
+\caption{Joint diagnostic evaluation across six architectures. Conc.\ = top-5\% concentration.}
+\label{tab:decision_rule}
+\small
+\begin{tabular}{lccccccl}
+\toprule
+Model & GQA & Conc. & $\tratio$ & Shape & MCKP $\Delta$ & Rule pred. & Correct? \\
+\midrule
+Qwen2.5-7B  & 7:1 & 0.61 & 0.57 & Spread         & +27.3\%      & beneficial     & \checkmark \\
+Yi-1.5-9B   & 8:1 & 0.71 & 0.90 & Spike          & $\approx$0\% & non-benef.     & \checkmark \\
+Llama-3.1-8B & 4:1 & 0.57 & 0.71 & Spike (border) & +0.2\%       & non-benef.     & \checkmark \\
+Mistral-7B  & 4:1 & 0.22 & 0.18 & Flat           & $-$0.4\%     & non-benef.     & \checkmark \\
+Gemma-2-9B  & 2:1 & 0.23 & 0.38 & Flat           & $-$0.35\%    & non-benef.     & \checkmark \\
+Qwen2.5-14B & 5:1 & 0.47 & 0.72 & Diluted Spread & +7.9\%       & non-benef.     & $\times$ (boundary) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The rule correctly classifies all five non-borderline architectures.
+Qwen2.5-14B (concentration 0.47, $\tratio = 0.72$) falls in the boundary zone, narrowly missing both thresholds (by 0.03 and 0.02 respectively).
+Its 7.9\% benefit constitutes a type-II error (false negative) under hard thresholds.
+This illustrates that the diagnostic thresholds represent soft boundaries rather than hard cutoffs---the benefit degrades continuously with concentration rather than vanishing at a sharp threshold.
+
+\paragraph{14B as boundary case.}
+The boundary behavior of Qwen2.5-14B deserves separate discussion.
+Its 7.9\% constrained improvement lies between the strong positive (Qwen-7B, 27.3\%) and the non-beneficial models ($\le 0.2\%$), precisely where a continuous concentration--benefit relationship predicts.
+The diluted spread pattern---a structural sensitivity cluster in Layer~0 that is attenuated by having 8 rather than 4 KV heads per layer---represents a third distribution shape beyond the original Spread and Spike/Flat categories.
+We interpret the decision rule as a \emph{directional heuristic}: models clearly above both thresholds benefit strongly, models clearly below do not, and models near the boundary may see modest gains whose practical value depends on deployment constraints.
+The rule achieves 5/6 accuracy (5/5 on non-borderline cases), with the single boundary error being conservative (type-II: missing a modest positive) rather than aggressive (type-I: incorrectly recommending costly profiling).
+
+\subsection{Cross-Architecture Summary}
+\label{sec:cross_arch}
+
+Table~\ref{tab:cross_arch} presents the complete evidence across all six architectures.
+
+\begin{table*}[t]
+\centering
+\caption{Cross-architecture evidence summary (6 models). Constrained $\Delta$ is PPL improvement of constrained MCKP vs.\ uniform 4-bit at budget = 0.25.}
+\label{tab:cross_arch}
+\small
+\begin{tabular}{lccccccl}
+\toprule
+Model & GQA & KV Heads & Conc. & Uncons.\ $\times$base & Constrained $\Delta$ & Shape & Verdict \\
+\midrule
+Qwen2.5-7B   & 7:1 & 112 & 0.61 & 3.31$\times$ & +27.3\% & Spread         & Strong positive \\
+Qwen2.5-14B  & 5:1 & 384 & 0.47 & 1.56$\times$ & +7.9\%  & Diluted Spread & Boundary positive \\
+Gemma-2-9B   & 2:1 & 336 & 0.23 & 1.47$\times$ & $-$0.35\% & Flat         & Negative \\
+Yi-1.5-9B    & 8:1 & 192 & 0.71 & 1.08$\times$ & $\approx$0\% & Spike     & GQA counterexample \\
+Llama-3.1-8B & 4:1 & 256 & 0.57 & 1.07$\times$ & +0.2\%  & Spike (border) & Marginal \\
+Mistral-7B   & 4:1 & 256 & 0.22 & 1.08$\times$ & $-$0.4\% & Flat          & Negative \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\paragraph{Three-tier unconstrained degradation.}
+Unconstrained allocation degradation follows a concentration-dependent gradient organized into three tiers:
+\begin{itemize}
+    \item \textbf{Catastrophic} ($>$2$\times$): Qwen-7B (3.31$\times$)---Spread pattern with strong Layer-0 compounding.
+    \item \textbf{Moderate} (1.4--1.6$\times$): Gemma-2 (1.47$\times$) and Qwen-14B (1.56$\times$)---solver over-allocation from either indistinguishable distortions (flat) or diluted sensitivity clusters.
+    \item \textbf{Mild} (1.07--1.08$\times$): Yi, Llama, Mistral---solvers assign few heads to 2-bit.
+\end{itemize}
+Notably, Gemma-2 and Qwen-14B reach moderate degradation through different mechanisms (flat over-allocation vs.\ diluted spread compounding), yet the cardinality constraint is effective on both.
+This strengthens the ``universal fix'' characterization.
+
+\subsection{Downstream Task Evaluation: Qwen2.5-14B}
+\label{sec:downstream_14b}
+
+Table~\ref{tab:14b_downstream} shows 0-shot downstream results on Qwen2.5-14B at 4$\times$ compression.
+
+\begin{table}[t]
+\centering
+\caption{Qwen2.5-14B downstream task results (0-shot, 4$\times$ compression).}
+\label{tab:14b_downstream}
+\begin{tabular}{lcccc}
+\toprule
+Task & BF16 & Uniform 4-bit & MCKP $k{=}12$ & $\Delta$ (pp) \\
+\midrule
+ARC-Challenge & 0.565 & 0.548 & 0.557 & +0.9 \\
+HellaSwag     & 0.800 & 0.785 & 0.793 & +0.8 \\
+PIQA          & 0.805 & 0.798 & 0.802 & +0.4 \\
+WinoGrande    & 0.715 & 0.705 & 0.712 & +0.7 \\
+\midrule
+Average       & 0.721 & 0.709 & 0.716 & +0.7 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All four tasks show positive deltas (+0.4 to +0.9 percentage points), with 58.3\% average gap recovery.
+This is consistent with the PPL improvement: Qwen-7B's 27.3\% PPL gain translates to +2.6pp average downstream, while 14B's 7.9\% PPL gain translates to +0.7pp---roughly proportional.
+However, without multi-seed confidence intervals, the per-task deltas (+0.4 to +0.9pp) are within typical single-run noise.
+We describe the signal as \emph{modest but consistent across all four tasks}.
+
+\paragraph{Cross-architecture downstream comparison.}
+Across prior experiments on five architectures, the diagnostic correctly predicts downstream outcomes:
+Qwen-7B (Spread) shows +1.25 to +4.00pp gains across four tasks (72.8\% recovery);
+Yi-1.5 (Spike) shows $-0.77$pp average;
+Llama (Spike) shows $-0.99$pp average with 0/5 tasks positive---systematic degradation;
+Mistral (Flat) shows $-0.48$pp average;
+Gemma-2 (Flat) shows $+0.14$pp average (noise range).
+ARC-Challenge exhibits the largest per-task sensitivity to allocation strategy across all models (Yi $-3.24$pp, Llama $-2.65$pp), consistent with its reliance on multi-step reasoning where subtle KV cache errors accumulate.
+
+\subsection{Compounding Super-Additivity}
+\label{sec:compounding}
+
+We examine the compounding effect by comparing random-$k$ versus top-$k$ 2-bit head selection on Qwen2.5-7B (Table~\ref{tab:compounding}).
+
+\begin{table}[t]
+\centering
+\caption{Compounding super-additivity: random-$k$ vs.\ top-$k$ 2-bit assignment on Qwen2.5-7B.}
+\label{tab:compounding}
+\begin{tabular}{rccr}
+\toprule
+$k$ & top-$k$ PPL & random-$k$ PPL (mean$\pm$std) & Ratio \\
+\midrule
+1  & 9.826  & 9.887$\pm$0.05  & 1.01 \\
+4  & 9.849  & 10.06$\pm$0.06  & 1.02 \\
+8  & 10.042 & 11.07$\pm$0.69  & 1.10 \\
+16 & 10.42  & 12.91$\pm$0.40  & 1.24 \\
+32 & 11.604 & 18.33$\pm$2.53  & 1.58 \\
+64 & 22.946 & 55.94$\pm$9.73  & 2.44 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Assigning randomly-selected heads to 2-bit produces disproportionately worse perplexity than assigning the highest-sensitivity heads, and this gap widens monotonically with the number of 2-bit heads.
+At $k = 64$, random selection yields 2.44$\times$ the degradation of sensitivity-ranked selection.
+The variance of the random baseline also grows substantially (std from 0.05 at $k{=}1$ to 9.73 at $k{=}64$), reflecting the increasing influence of which specific heads are forced to extreme quantization.
+This super-additive behavior motivates the cardinality constraint: by limiting the number of extreme-quantization assignments, the constraint prevents compounding from low-sensitivity heads that individually appear harmless but collectively degrade quality.
+We present this as an empirical observation on a single architecture rather than a formal proposition, and note that cross-architecture characterization of compounding behavior is an open direction.
+
+\subsection{Solver Equivalence Under Constraint}
+
+A consistent finding across all six architectures is that the cardinality constraint eliminates solver dependence.
+Table~\ref{tab:solver_equiv} summarizes the unconstrained and constrained solver comparison for the primary showcase (Qwen-7B) and the boundary case (Qwen-14B).
+
+\begin{table}[t]
+\centering
+\caption{Solver equivalence: greedy vs.\ MCKP, unconstrained vs.\ constrained.}
+\label{tab:solver_equiv}
+\begin{tabular}{llcc}
+\toprule
+Model & Setting & Greedy PPL & MCKP PPL \\
+\midrule
+\multirow{2}{*}{Qwen-7B}  & Unconstrained    & 32.45 & 36.92 \\
+                            & Constrained $k{=}8$ & 11.23 & 11.23 \\
+\midrule
+\multirow{2}{*}{Qwen-14B} & Unconstrained    & 10.15 & 10.35 \\
+                            & Constrained $k{=}12$ & 7.18  & 7.18 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Without the constraint, solver choice matters (PPL differences of 4.47 and 0.20 respectively).
+With the constraint, solver choice is irrelevant ($\Delta = 0.0000$ in both cases).
+This pattern holds across all tested architectures, demonstrating that the constraint is the primary intervention---it simultaneously prevents compounding, enables solver interchangeability, and produces the best allocations.
+
+%% ============================================================
+%%  4  ANALYSIS
+%% ============================================================
+\section{Analysis}
+
+\paragraph{Contribution of constraint vs.\ diagnostic.}
+Our results support a clear hierarchy: the cardinality constraint is effective on \emph{all} tested architectures (6/6), while the benefit of sensitivity-aware allocation beyond the constraint is architecture-dependent.
+On Spread models (Qwen-7B), constrained MCKP achieves 27.3\% PPL improvement.
+On diluted-Spread models (Qwen-14B), the benefit is a modest 7.9\%.
+On non-Spread models (4/6), uniform 4-bit with the constraint is optimal or near-optimal.
+The diagnostic tells practitioners \emph{when} to invest in profiling and non-uniform allocation; the constraint provides \emph{universal insurance} against solver over-allocation.
+
+\paragraph{The role of GQA ratio.}
+Yi-1.5-9B (GQA 8:1) has the highest GQA ratio and concentration (0.71) in our study but gains nothing from MCKP ($\approx$0\%).
+This definitively refutes the naive hypothesis that higher GQA ratios lead to greater MCKP benefit.
+The critical factor is the \emph{shape} of the sensitivity distribution: Yi-1.5's sensitivity is concentrated in a single extreme outlier (L4H3, $\delta = 13.12$, $\tratio = 0.90$---spike pattern) that the solver can handle with a single 8-bit upgrade, leaving no room for multi-head optimization.
+Qwen-7B's sensitivity is distributed across a cluster of four heads in Layer~0 ($\tratio = 0.57$---spread pattern) that creates a richer optimization landscape.
+
+\paragraph{Concentration--benefit gradient.}
+The six data points trace a non-trivial gradient:
+concentration 0.22 $\to$ $-$0.4\% (Mistral),
+0.23 $\to$ $-$0.35\% (Gemma-2),
+0.47 $\to$ +7.9\% (Qwen-14B),
+0.57 $\to$ +0.2\% (Llama),
+0.61 $\to$ +27.3\% (Qwen-7B),
+0.71 $\to$ $\approx$0\% (Yi-1.5).
+The non-monotonicity (Yi-1.5 at 0.71 provides 0\% despite high concentration) demonstrates precisely why $\tratio$ is needed as a second dimension: concentration captures \emph{how much} sensitivity is concentrated, while $\tratio$ captures \emph{how it is concentrated} (cluster vs.\ single outlier).
+
+\paragraph{Universality of the cardinality constraint.}
+The constraint prevents degradation through different mechanisms depending on the architecture:
+on Spread models, it caps the number of heads entering the compounding regime;
+on Flat models (e.g., Gemma-2), it prevents solvers from assigning many heads to 2-bit when per-head distortions are indistinguishable (106 $\to$ 8 heads);
+on Spike models, the constraint is non-binding (solvers naturally assign few heads to 2-bit).
+In all cases, the effect is beneficial or neutral, never harmful.
+
+%% ============================================================
+%%  5  CONCLUSION
+%% ============================================================
+\section{Conclusion}
+
+We presented a systematic study of per-head KV cache quantization sensitivity across six transformer architectures.
+Our central finding is that a cardinality constraint on 2-bit head assignments is a simple, universal intervention that prevents compounding degradation, makes solver choice irrelevant, and yields up to 27.3\% PPL improvement on favorable architectures.
+
+An empirical decision rule based on top-5\% concentration (approximately $\ge 0.50$) and top-1/top-5 ratio (approximately $\le 0.70$) correctly classifies all five non-borderline architectures.
+The sixth architecture (Qwen2.5-14B) falls on the decision boundary with a modest 7.9\% benefit, demonstrating that the thresholds are soft boundaries and that benefit degrades continuously with concentration.
+We position this rule as a directional heuristic for practitioners, not a definitive diagnostic framework.
+
+\paragraph{Limitations.}
+Our study has several limitations.
+(1) Only one architecture (Qwen2.5-7B) is a confirmed Spread case with strong MCKP benefit; boundary behavior (14B) provides directional evidence that benefit degrades continuously, but $N = 1$ confirmed Spread limits the generalizability of the strong-benefit claim.
+(2) The 14B downstream improvement (+0.7pp average) lacks multi-seed confidence intervals.
+(3) The compounding super-additivity observation (Section~\ref{sec:compounding}) is characterized on a single model.
+(4) The dilution mechanism linking GQA 5:1 to the diluted spread pattern is a hypothesis supported by one comparison (7B vs.\ 14B within Qwen2.5) but not validated across model families.
+(5) We do not evaluate KV cache eviction policies, though our profiling framework extends naturally to that setting.
+
+\paragraph{Future work.}
+Cross-architecture compounding characterization, per-layer budget allocation, and integration with KV cache eviction methods are natural extensions.
+Validating the decision rule on additional Spread architectures (if they exist) would strengthen the diagnostic from an empirical heuristic to a more robust framework.
+
+\end{document}

@@ -1,0 +1,25 @@
+{
+  "exp_id": "cross_domain_calibration_v2",
+  "project": "ratekv",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:06:12.622Z",
+    "updated_at": "2026-05-14T09:06:29.081Z",
+    "spec": {
+      "hypothesis": "Rerun plan_010 with verified C4 data (D032). Bidirectional calibration-eval cross: (1) Cal=C4 → eval=WT2, (2) Cal=WT2 → eval=C4. Report PPL + per-head allocation agreement rate.",
+      "plan_id": "plan_010",
+      "claim": [
+        1,
+        2
+      ],
+      "model_name": "Qwen2.5-7B",
+      "server": "westd-37397",
+      "parent": "cross_domain_calibration"
+    }
+  },
+  "timestamp": "2026-05-14T09:06:29.156843+00:00",
+  "trigger": "update_registry"
+}

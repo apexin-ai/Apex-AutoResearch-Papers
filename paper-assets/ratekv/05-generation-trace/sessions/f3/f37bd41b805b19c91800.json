@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_util_disk_cleanup_and_72b_download_20260514T135337_result.json",
     "occurrence": 1,
-    "bytes": 871,
-    "sha256": "f91cd4a78106ff7b1f81af5bb40f14ac541ee2c12afaff79cde04ce3d6629c8a"
+    "bytes": 870,
+    "sha256": "43ca0183a8bfb5b4280f2073485c572531f1c507ab1bcb9aec3ee888bd3ddd94"
   },
   "statistics": {
     "messages": 1,

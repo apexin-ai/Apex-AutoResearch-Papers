@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_llama_compounding_sweep_20260515T161906_result.json",
     "occurrence": 1,
-    "bytes": 444,
-    "sha256": "2cca115732976c9407d8107559c322172cba047e8973b94fc1fe87717153786c"
+    "bytes": 443,
+    "sha256": "94b002599375aa669c8fd40405d90660332ba5443a2d5eaf9e415f4278d07975"
   },
   "statistics": {
     "messages": 1,

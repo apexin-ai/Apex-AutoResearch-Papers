@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_bib_reviewer_warnings_20260514T091252_result.json",
     "occurrence": 1,
-    "bytes": 982,
-    "sha256": "4b48e07a8caebc89bb58c203a9995e85e3896066937ab9bf9c320b86100fcdfa"
+    "bytes": 981,
+    "sha256": "b16e4b8e24f0bc4561fb99e31c82514b78c1be567bda45e144028b2c73bc4cb2"
   },
   "statistics": {
     "messages": 1,

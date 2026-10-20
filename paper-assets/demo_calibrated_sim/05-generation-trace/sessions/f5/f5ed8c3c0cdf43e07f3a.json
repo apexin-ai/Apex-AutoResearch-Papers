@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5ed8c3c0cdf43e07f3a",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "monitor qwen14b find pid",
+  "task_key": "worker_monitor_qwen14b-find-pid_20260513T085700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_qwen14b-find-pid_20260513T085700_result.json",
+    "occurrence": 1,
+    "bytes": 830,
+    "sha256": "6a134669aff9680f15987be0661ec4f56723ced9541ac03c26035bbe1524e2ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 项目 | 详情 |\n|------|------|\n| **Eval 进程** | PID **138858** — `python run_mvp_experiment.py --skip-vllm --end-index 20 --num-trials 1 --output-dir .../qwen14b_bcp/run_1 --vllm-port 8005` |\n| **Eval 外壳脚本** | PID **138748** — `bash eval_qwen14b_fp16_bcp.sh`（无独立 tmux session，由 nohup 后台启动） |\n| **vLLM 进程** | PID **10408** — Qwen2.5-14B-Instruct on port 8005, tensor-parallel=2, GPU 2,3 |\n| **Eval 进度** | run_1 下已产生 1 个结果 JSON（range 0-20），eval.log 最新活动 16:57，正在执行中 |\n| **GPU 占用** | GPU 0: 21%, 12.6GB (datagen) / GPU 1: 10%, 13.7GB (datagen) / **GPU 2: 45%, 21.9GB (vLLM)** / **GPU 3: 100%, 21.9GB (vLLM)** / GPU 4: 20%, 12.6GB (datagen) / GPU 5: 空闲 |\n\nBCP eval 正在运行中，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-qwen14b-find-pid.md"
+}

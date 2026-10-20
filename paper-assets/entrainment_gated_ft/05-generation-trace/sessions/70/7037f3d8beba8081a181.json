@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_pvalue_sweep_fix_20260519T063141_result.json",
     "occurrence": 1,
-    "bytes": 1815,
-    "sha256": "7ed4dfefad210a11ee7928a452fc4cc8f39a62f00a7b5a28fedfc37a61ee662d"
+    "bytes": 1814,
+    "sha256": "99f85a75ea2268332eb9fb8cb5884cb1fa3e9c4b8899b3096c6a1f3327c05406"
   },
   "statistics": {
     "messages": 1,

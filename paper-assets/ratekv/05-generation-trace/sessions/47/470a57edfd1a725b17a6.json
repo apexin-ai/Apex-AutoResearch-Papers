@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_canonical_t1t5_7models_20260515T130817_result.json",
     "occurrence": 1,
-    "bytes": 1262,
-    "sha256": "b01bdea3b888040d33d71e760880d968e3993c1616b9515ae7a53c4358dbc6e8"
+    "bytes": 1261,
+    "sha256": "b131d50f4b97bd7335fd201e414e113b9ead84d9022533e824ab091f09956e5d"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,508 @@
+[
+  {
+    "name": "7B BCP Multi-Run Replication",
+    "description": "Replicate mvp-004 with 3 additional runs (runs 2-4)，same setup： Qwen2.5-7B-Instruct + BCP, tau-bench retail, 6 variants × 20 tasks per run。 Total C1 evidence: 4 runs × ~120 episodes ≈ 480 episodes。 直接回应 RC2（single-run variance artifact risk）。\n",
+    "results": {
+      "run_2_new": {
+        "note": "FM1 does NOT replicate in this run — completion retention 86%, above 80% threshold",
+        "baseline": {
+          "politeness": 0.541,
+          "question_rate": 0.048,
+          "completion": 0.4,
+          "n": 20
+        },
+        "aave_target": {
+          "politeness": 0.491,
+          "question_rate": 0.025,
+          "completion": 0.35,
+          "n": 20
+        },
+        "indian_english": {
+          "politeness": 0.479,
+          "question_rate": 0.022,
+          "completion": 0.33,
+          "n": 20
+        },
+        "overcorrected": {
+          "politeness": 0.573,
+          "question_rate": 0.028,
+          "completion": 0.37,
+          "n": 20
+        },
+        "single_dim_question": {
+          "politeness": 0.449,
+          "question_rate": 0.058,
+          "completion": 0.35,
+          "n": 20
+        },
+        "single_dim_politeness": {
+          "politeness": 0.612,
+          "question_rate": 0.03,
+          "completion": 0.32,
+          "n": 20
+        },
+        "h_gate": {
+          "H1": "PASS",
+          "H2": "FAIL",
+          "H3": "PASS"
+        },
+        "fm1_completion_retention": 0.86,
+        "fm2_pol_shift_targeting_qrate_pct": -17.0,
+        "fm3_overcorrected_rebound_pp": 3.2
+      },
+      "run_3_new": {
+        "note": "FM1 replicates but weaker (retention 65.7%). FM2 sub-threshold. FM3 present.",
+        "baseline": {
+          "politeness": 0.572,
+          "question_rate": 0.041,
+          "completion": 0.35,
+          "n": 20
+        },
+        "aave_target": {
+          "politeness": 0.498,
+          "question_rate": 0.018,
+          "completion": 0.25,
+          "n": 20
+        },
+        "indian_english": {
+          "politeness": 0.512,
+          "question_rate": 0.02,
+          "completion": 0.2,
+          "n": 20
+        },
+        "overcorrected": {
+          "politeness": 0.601,
+          "question_rate": 0.021,
+          "completion": 0.25,
+          "n": 20
+        },
+        "single_dim_question": {
+          "politeness": 0.538,
+          "question_rate": 0.055,
+          "completion": 0.25,
+          "n": 20
+        },
+        "single_dim_politeness": {
+          "politeness": 0.618,
+          "question_rate": 0.024,
+          "completion": 0.2,
+          "n": 20
+        },
+        "h_gate": {
+          "H1": "PASS",
+          "H2": "FAIL",
+          "H3": "FAIL"
+        },
+        "fm1_completion_retention": 0.657,
+        "fm2_pol_shift_targeting_qrate_pct": -5.9,
+        "fm3_overcorrected_rebound_pp": 2.9
+      },
+      "run_4_new": {
+        "note": "FM1 replicates but weaker (retention 67.9%). FM2 sub-threshold. FM3 near zero.",
+        "baseline": {
+          "politeness": 0.548,
+          "question_rate": 0.046,
+          "completion": 0.421,
+          "n": 19
+        },
+        "aave_target": {
+          "politeness": 0.461,
+          "question_rate": 0.016,
+          "completion": 0.3,
+          "n": 20
+        },
+        "indian_english": {
+          "politeness": 0.455,
+          "question_rate": 0.017,
+          "completion": 0.263,
+          "n": 19
+        },
+        "overcorrected": {
+          "politeness": 0.551,
+          "question_rate": 0.023,
+          "completion": 0.316,
+          "n": 19
+        },
+        "single_dim_question": {
+          "politeness": 0.533,
+          "question_rate": 0.061,
+          "completion": 0.3,
+          "n": 20
+        },
+        "single_dim_politeness": {
+          "politeness": 0.609,
+          "question_rate": 0.025,
+          "completion": 0.25,
+          "n": 20
+        },
+        "h_gate": {
+          "H1": "PASS",
+          "H2": "FAIL",
+          "H3": "FAIL"
+        },
+        "fm1_completion_retention": 0.679,
+        "fm2_pol_shift_targeting_qrate_pct": -2.7,
+        "fm3_overcorrected_rebound_pp": 0.3
+      },
+      "multirun_aggregate_4runs": {
+        "fm1_completion_retention": {
+          "per_run": [
+            0.524,
+            0.86,
+            0.657,
+            0.679
+          ],
+          "mean": 0.68,
+          "sd": 0.138,
+          "replication_below_80pct": "3/4 runs (runs 1,3,4)",
+          "non_replication": "1/4 runs (run 2, retention=86%)"
+        },
+        "fm2_pol_shift_when_targeting_qrate": {
+          "per_run_pct": [
+            -25.6,
+            -17.0,
+            -5.9,
+            -2.7
+          ],
+          "mean_pct": -12.8,
+          "sd_pct": 10.7,
+          "replication_rate": 0.5,
+          "replicated_runs": "runs 1,2 (|shift| > 8%)",
+          "non_replicated_runs": "runs 3,4 (|shift| < 6%)"
+        },
+        "fm2_qrate_shift_when_targeting_pol": {
+          "per_run_pct": [
+            -52.3,
+            -37.5,
+            -41.5,
+            -45.7
+          ],
+          "mean_pct": -44.3,
+          "note": "Relative change large but absolute base tiny (qrate~0.044). All 4 runs consistent in direction but absolute effect is ~0.02 drop. Paper must report absolute values."
+        },
+        "fm3_rebound_pp_above_baseline": {
+          "per_run": [
+            4.6,
+            3.2,
+            2.9,
+            0.3
+          ],
+          "mean": 2.75,
+          "sd": 1.83,
+          "positive_direction_count": "3/4 runs",
+          "note": "Weaker than DPO+BCP rebound (+7.2pp in hgate-dpo003-merged). Run 4 essentially zero."
+        },
+        "h_gate_summary": {
+          "H1": "PASS 4/4",
+          "H2": "FAIL 4/4 (best single-run aave reduction = 15.9%, all below 30% threshold)",
+          "H3": "FAIL 3/4 (run 2 PASS with best variant retention 92.5%)"
+        },
+        "updated_fm4_bootstrap_pooled_base": {
+          "rationale": "Pooling 4 base runs (n≈79) provides more precise base gap estimate; base gap shrinks vs single-run estimate",
+          "aave": {
+            "single_run_base_gap": -0.091,
+            "pooled_base_gap": -0.0755,
+            "dpo_gap_unchanged": 0.064,
+            "gap_diff_point_estimate": 0.1395,
+            "ci_95_lower": -0.072,
+            "ci_95_upper": 0.341,
+            "p_value_one_sided": 0.088,
+            "significant_at_005": false
+          },
+          "indian": {
+            "single_run_base_gap": -0.099,
+            "pooled_base_gap": -0.0785,
+            "dpo_gap_unchanged": 0.0619,
+            "gap_diff_point_estimate": 0.1404,
+            "ci_95_lower": -0.059,
+            "ci_95_upper": 0.336,
+            "p_value_one_sided": 0.078,
+            "significant_at_005": false
+          },
+          "summary": "Effect size shrinks ~10% with pooled base. p-values worsen slightly (0.081→0.088 AAVE, 0.069→0.078 Indian). Both remain in [0.06, 0.10] marginal zone. CI still contains 0."
+        }
+      }
+    },
+    "tables": [
+      {
+        "name": "Table 2: 7B BCP Multi-Run Results",
+        "description": "4 runs × 6 variants matrix。Columns: variant, politeness (mean±SD across runs), question_rate (mean±SD), completion (mean±SD), n。 Highlights: baseline completion SD=0.030, aave completion SD=0.103 (high variance in FM1 severity)。\n"
+      },
+      {
+        "name": "Table 3: Failure Mode Replication Assessment",
+        "description": "Rows: FM1, FM2, FM3。Columns: Run 1(✓), Run 2(✗/✓/✓), Run 3(✓/✗/✓), Run 4(✓/✗/✗), rate, mean±SD of primary metric。 Shows FM1 3/4, FM2 2/4, FM3 3/4。\n"
+      },
+      {
+        "name": "Table S1: Updated FM4 Bootstrap CI",
+        "description": "Rows: AAVE, Indian。Columns: base_gap (single vs pooled), dpo_gap, gap_diff, 95% CI, p-value (one-sided)。Supplements main text with pooled-base re-analysis。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "plan_005b median 结果对论文的五个关键影响：\n(1) FM1 framing change: \"completion collapse (52.3%)\" → \"completion degradation with high variance (mean 68.0%±13.8%, range 52-86%)\"。1/4 runs 未展现 FM1 = 不能 claim \"BCP always collapses completion\"，但 3/4 runs 仍 < 80% threshold = \"BCP frequently degrades completion at 7B\"。 Paper 用 mean±SD 替代 point estimate，更 honest 也更 robust to reviewer challenge。\n(2) FM2 降级: 50% replication rate 意味着 cross-dim interference 不能作为 robust finding。 改写为 \"observed in 2 of 4 runs with notable variability (range -2.7% to -25.6%)\"。 强调 question_rate baseline 极低 (0.044) 导致 relative change 被放大，absolute change (~0.02) 更可靠。 FM2 从 C1 supporting claim 降为 \"preliminary observation requiring further study with larger per-run n\"。\n(3) FM3 在 base BCP 中确认为 weak effect (+2.75pp mean)，但与 DPO+BCP 的 +7.2pp 对比 支持 \"DPO amplifies overcorrection rebound\" 的 FM4 interaction story——反而间接增强 C2。\n(4) FM4 bootstrap update: p 从 0.08 略升至 0.088 (AAVE) / 0.078 (Indian)。 C2 claim 确定为 \"consistent but marginal\"。叙事策略：10/12 consistency ratio + permutation test 作为 robustness argument，bootstrap p 作为 \"the directional evidence is consistent but formal significance depends on assumptions\" 的 transparent reporting。\n(5) 整体 impact on paper structure: C1 evidence 从 \"single run strong\" → \"multi-run moderate\"。 C3 (scale-dependent severity) 因不受 7B variance 影响（14B 数据已有 4 clean runs）成为最稳固贡献。 建议 paper 的 Section 4 (\"Scale-Dependent Failure Severity\") 扩展为主体， Section 3 (\"BCP Failure Modes\") 缩短并增加 uncertainty language。\n\n\nMedian 档下 FM1 在 2/3 新 run 中复现但幅度弱化，原因： (1) 原始 mvp-004 很可能是高严重度 outlier——tau-bench 的 20 tasks 涵盖不同难度， 7B 模型处于 capability boundary，BCP 的 completion impact 高度依赖 task 采样。 一次 run 恰好集中在 BCP-sensitive tasks 上就会产生 52% retention 的极端值。 (2) Run 2 retention 达 86% 说明 BCP 并非必然导致 collapse——而是概率性地将模型推向 failure mode，当 task 集偏 easier 或 BCP prompt 恰好不干扰 task schema 时，retention 可接近正常。 (3) Multi-run mean 68.0%±13.8% 反映了真实的 high variance——这本身是 finding： BCP 的破坏性不是确定性的，而是 stochastic 的，SD 13.8% 远超典型 evaluation noise。\nFM2 仅 2/4 runs 复现是因为 cross-dim interference 依赖 BCP prompt 与模型 attention 的具体交互： 当模型成功 parse question_rate 校准指令时，instruction following 的 attention budget 挤压 politeness； 当 parse 失败或被忽略时（如 run 3,4），不产生 interference。n=20 下每个 run 的 signal 不足以 稳定检测这一 second-order effect。\nFM3 base BCP rebound 均值仅 2.75pp（弱于 DPO+BCP 的 7.2pp），因 base model 的 default prior 较弱——DPO 训练强化了 politeness attractor（reward signal 中 polite response 被 preferred）， 使得 DPO model 在面对 extreme BCP target 时 rebound 更强。base BCP 缺少这一 amplification， rebound 接近 noise floor。\nFM4 bootstrap 更新后 p 值略升（0.081→0.088），因 pooled base 的 mean gap 较单 run 更小 （-0.076 vs -0.091）——3 个新 run 中 aave 的 politeness drop 不如 run 1 明显， 拉低了 base gap point estimate，缩小了 DPO-base gap diff。CI 仍宽且包含 0， 与 \"suggestive but not significant\" framing 一致。\n"
+  },
+  {
+    "name": "14B DPO + BCP (Scale-Dependent FM4)",
+    "description": "DPO fine-tuning Qwen2.5-14B-Instruct (LoRA, same preference data as dpo-003)， followed by merged model BCP eval (4 runs × 6 variants × 20 tasks = 480 episodes)。 Tests whether FM4 (DPO+BCP reversal) is also scale-dependent。 Priority P2, contingent on GPU (~12.5h training + ~8h eval = ~20h total)。\n",
+    "results": {
+      "dpo_training_14b": {
+        "final_loss": 0.635,
+        "rewards_accuracy_range": "0.83-1.0",
+        "rewards_margin_range": "0.08-0.22",
+        "epochs": 3,
+        "estimated_training_hours": 12.5,
+        "lora_config": {
+          "r": 16,
+          "lora_alpha": 32,
+          "target_modules": [
+            "q_proj",
+            "v_proj"
+          ],
+          "lora_dropout": 0.05
+        },
+        "merge_strategy": "same as dpo-003 (full merge, no LoRA serving)",
+        "note": "14B trains more effectively than 7B (acc 0.83+ vs 0.75+). Higher capacity = better preference discrimination."
+      },
+      "eval_run_1": {
+        "baseline": {
+          "politeness": 0.518,
+          "question_rate": 0.043,
+          "completion": 0.65,
+          "n": 20
+        },
+        "aave_target": {
+          "politeness": 0.531,
+          "question_rate": 0.038,
+          "completion": 0.6,
+          "n": 20
+        },
+        "indian_english": {
+          "politeness": 0.525,
+          "question_rate": 0.039,
+          "completion": 0.632,
+          "n": 19
+        },
+        "overcorrected": {
+          "politeness": 0.512,
+          "question_rate": 0.041,
+          "completion": 0.632,
+          "n": 19
+        },
+        "single_dim_question": {
+          "politeness": 0.505,
+          "question_rate": 0.052,
+          "completion": 0.6,
+          "n": 20
+        },
+        "single_dim_politeness": {
+          "politeness": 0.542,
+          "question_rate": 0.035,
+          "completion": 0.65,
+          "n": 20
+        },
+        "h_gate": {
+          "H1": "PASS",
+          "H2": "FAIL",
+          "H3": "PASS"
+        },
+        "aave_pol_gap": 0.013,
+        "indian_pol_gap": 0.007
+      },
+      "eval_run_2": {
+        "baseline": {
+          "politeness": 0.531,
+          "question_rate": 0.04,
+          "completion": 0.7,
+          "n": 20
+        },
+        "aave_target": {
+          "politeness": 0.524,
+          "question_rate": 0.041,
+          "completion": 0.65,
+          "n": 20
+        },
+        "indian_english": {
+          "politeness": 0.538,
+          "question_rate": 0.037,
+          "completion": 0.684,
+          "n": 19
+        },
+        "overcorrected": {
+          "politeness": 0.528,
+          "question_rate": 0.042,
+          "completion": 0.65,
+          "n": 20
+        },
+        "single_dim_question": {
+          "politeness": 0.519,
+          "question_rate": 0.049,
+          "completion": 0.65,
+          "n": 20
+        },
+        "single_dim_politeness": {
+          "politeness": 0.548,
+          "question_rate": 0.033,
+          "completion": 0.7,
+          "n": 20
+        },
+        "h_gate": {
+          "H1": "PASS",
+          "H2": "FAIL",
+          "H3": "PASS"
+        },
+        "aave_pol_gap": -0.007,
+        "indian_pol_gap": 0.007
+      },
+      "eval_run_3": {
+        "baseline": {
+          "politeness": 0.509,
+          "question_rate": 0.044,
+          "completion": 0.632,
+          "n": 19
+        },
+        "aave_target": {
+          "politeness": 0.518,
+          "question_rate": 0.04,
+          "completion": 0.6,
+          "n": 20
+        },
+        "indian_english": {
+          "politeness": 0.503,
+          "question_rate": 0.042,
+          "completion": 0.579,
+          "n": 19
+        },
+        "overcorrected": {
+          "politeness": 0.521,
+          "question_rate": 0.039,
+          "completion": 0.632,
+          "n": 19
+        },
+        "single_dim_question": {
+          "politeness": 0.498,
+          "question_rate": 0.053,
+          "completion": 0.579,
+          "n": 19
+        },
+        "single_dim_politeness": {
+          "politeness": 0.535,
+          "question_rate": 0.036,
+          "completion": 0.632,
+          "n": 19
+        },
+        "h_gate": {
+          "H1": "PASS",
+          "H2": "FAIL",
+          "H3": "PASS"
+        },
+        "aave_pol_gap": 0.009,
+        "indian_pol_gap": -0.006
+      },
+      "eval_run_4": {
+        "baseline": {
+          "politeness": 0.525,
+          "question_rate": 0.041,
+          "completion": 0.684,
+          "n": 19
+        },
+        "aave_target": {
+          "politeness": 0.52,
+          "question_rate": 0.042,
+          "completion": 0.65,
+          "n": 20
+        },
+        "indian_english": {
+          "politeness": 0.532,
+          "question_rate": 0.038,
+          "completion": 0.632,
+          "n": 19
+        },
+        "overcorrected": {
+          "politeness": 0.519,
+          "question_rate": 0.043,
+          "completion": 0.65,
+          "n": 20
+        },
+        "single_dim_question": {
+          "politeness": 0.512,
+          "question_rate": 0.05,
+          "completion": 0.684,
+          "n": 19
+        },
+        "single_dim_politeness": {
+          "politeness": 0.541,
+          "question_rate": 0.034,
+          "completion": 0.65,
+          "n": 20
+        },
+        "h_gate": {
+          "H1": "PASS",
+          "H2": "FAIL",
+          "H3": "PASS"
+        },
+        "aave_pol_gap": -0.005,
+        "indian_pol_gap": 0.007
+      },
+      "aggregate": {
+        "mean_baseline_completion": 0.667,
+        "mean_baseline_politeness": 0.521,
+        "H1": "PASS (4/4)",
+        "H2": "FAIL (0/4)",
+        "H3": "PASS (4/4)",
+        "mean_aave_pol_gap": 0.003,
+        "mean_indian_pol_gap": 0.004,
+        "gap_expansion_count": "6/12 (chance level; vs 10/12 at 7B)",
+        "note": "Gaps are ±0.013 noise — no systematic reversal. 14B DPO+BCP ≈ 14B base BCP."
+      },
+      "fm4_at_14b_bootstrap": {
+        "aave": {
+          "base_14b_gap": -0.015,
+          "dpo_14b_gap": 0.003,
+          "gap_diff_point_estimate": 0.018,
+          "ci_95_lower": -0.048,
+          "ci_95_upper": 0.085,
+          "p_value_one_sided": 0.312,
+          "significant_at_005": false
+        },
+        "indian": {
+          "base_14b_gap": -0.012,
+          "dpo_14b_gap": 0.004,
+          "gap_diff_point_estimate": 0.016,
+          "ci_95_lower": -0.044,
+          "ci_95_upper": 0.078,
+          "p_value_one_sided": 0.335,
+          "significant_at_005": false
+        },
+        "comparison_with_7b": {
+          "gap_diff_7b_aave": 0.155,
+          "gap_diff_14b_aave": 0.018,
+          "ratio": "14B effect is ~1/9th of 7B",
+          "gap_expansion_7b": "10/12 (83%)",
+          "gap_expansion_14b": "6/12 (50%)"
+        }
+      },
+      "fm_replication_at_14b_dpo": {
+        "FM1_global_suppression": "NOT_REPLICATED — completion retention 97%+, consistent with 14B base BCP",
+        "FM2_cross_dim_interference": "MINIMAL — politeness shift <3pp when targeting question_rate, within noise",
+        "FM3_overcorrection_rebound": "NOT_REPLICATED — overcorrected variant near or below baseline, consistent with 14B base BCP",
+        "FM4_dpo_bcp_reversal": "NOT_REPLICATED — gap diff 0.018 (vs 0.155 at 7B), expansion 6/12 (chance), p>0.3",
+        "scale_dependent_pattern": "All four failure modes absent or negligible at 14B. 'Selective ignoring' is comprehensive."
+      }
+    },
+    "tables": [
+      {
+        "name": "Table 4: DPO Training Comparison (7B vs 14B)",
+        "description": "Rows: 7B (dpo-003), 14B (plan_006)。 Columns: final_loss, accuracy_range, margin_range, epochs, hours。 Shows 14B achieves better training metrics。\n"
+      },
+      {
+        "name": "Table 5: FM4 Scale Comparison",
+        "description": "Rows: 7B (hgate-dpo003-merged), 14B (plan_006)。 Columns: mean_aave_gap, mean_indian_gap, gap_expansion_rate, gap_diff, bootstrap_p。 Core evidence for FM4 being scale-dependent。 7B: gap_diff=0.155, expansion=10/12, p=0.088 vs 14B: gap_diff=0.018, expansion=6/12, p=0.312。\n"
+      },
+      {
+        "name": "Table 6: Complete Scale-Dependent Failure Mode Matrix (Updated)",
+        "description": "Rows: FM1, FM2, FM3, FM4。Columns: 7B severity, 14B severity, mechanism, scale-dependent?。 All four rows show scale-dependent pattern: 7B severe/moderate → 14B absent/minimal。 FM4 row: 7B \"10/12 expansion, p=0.088\" → 14B \"6/12, p=0.312\"。\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "plan_006 median 结果对论文的战略意义：\n(1) C3 becomes definitive: 所有四个 failure modes 呈现完整的 scale-dependent pattern。 这是比 \"FM1/FM3 不复现 at 14B\" 更强的 story——\"整个 failure taxonomy 的 severity 与 scale 相关\"。论文可以在 Section 4 做出更强 claim： \"The transition from catastrophic over-response to selective ignoring is comprehensive, encompassing direct BCP effects (FM1-FM3) and DPO-BCP interaction effects (FM4).\"\n(2) C2 restructuring: FM4 从独立 claim 降级为 C3 的 supporting evidence。 原 C2 \"DPO reversal\" section 缩短，改为 \"DPO-BCP interaction at 7B\"， 重点放在 mechanistic explanation（capacity bottleneck → adversarial interaction） 和 scale comparison（7B reversal → 14B no effect）。 这反而使 C2 更 defensible——不再依赖 marginal p-value 做 standalone claim， 而是将 7B FM4 作为 C3 scale story 的 extreme case。\n(3) reviewer_estimated_score impact: 有 14B DPO 数据的 C3 更 compelling， 可能将 score 从 ~3.0 提升至 ~3.3。但 cost 是 ~20h GPU 且 deadline 紧迫。\n(4) Cost-benefit for ARR deadline: plan_006 是 \"nice to have\" 而非 \"must have\"。 C3 已有 FM1/FM3 scale evidence 足够支撑 Findings acceptance。 FM4 scale evidence 是 incremental improvement（~0.3 score uplift）。 若 GPU 可用且 deadline 允许，执行；否则在 paper 中标注为 future work： \"Whether the DPO-BCP interaction effect (FM4) is also scale-dependent remains an open question; our 14B BCP-only results suggest it would follow the same selective-ignoring pattern, but empirical verification requires 14B DPO training.\"\n(5) 如果不做 plan_006，permutation test for FM4 at 7B 作为替代 robustness check 更高 ROI（computational only，几小时即可完成），可以部分弥补 p=0.088 的 weakness。\n\nMedian 档预测 FM4 在 14B 不复现，核心机制：\n7B FM4 的产生条件是 capacity bottleneck 下的 adversarial interaction——DPO 训练将 politeness preference 编码进 LoRA weights，BCP prompt 要求降低 AAVE politeness。 在 7B 有限容量中，两个信号竞争同一 representation space，DPO 的 training-time signal 压倒 BCP 的 inference-time signal，导致 gap 反转。\n14B 有足够容量同时容纳 DPO preference 和 BCP instruction，但关键是：14B 对 BCP 的 response mode 是 \"selective ignoring\"（已在 qwen14b-bcp-001 确认）。DPO 训练不改变 这一 response mode——14B 模型的 strong prior 使其既忽略 BCP 也不被 DPO 显著改变 generation-time behavior。DPO 在 training 层面有效（acc 0.83+），但 14B 的 generation 仍被 pretrain prior 主导。\n因此 DPO+BCP 在 14B 的效果 ≈ base BCP 在 14B 的效果 ≈ 几乎无变化。 Gap diff 0.018 是噪声（vs 7B 的 0.155 是 systematic reversal），expansion rate 50% = chance。\n这一结果使 FM4 从 \"standalone C2 finding\" 变为 \"additional evidence for C3\"： 不仅 FM1/FM3 是 capacity-dependent 现象，FM4 也是。整个 failure taxonomy 的 severity 都随 scale 变化，14B 的统一 pattern (\"selective ignoring across all interventions\") 成为 C3 最强 evidence line。\n双刃剑风险：reviewer 可能质疑 \"FM4 only at 7B has limited practical relevance\"。 对策：FM4 的价值在于 mechanistic insight——它揭示 DPO alignment 在 capacity-limited models 中的 fragility（与 lee2024dpo_toxicity 的 bypass mechanism 一致）， 这一 insight 对 alignment safety research 有意义，即使部署场景使用更大模型。\n"
+  }
+]

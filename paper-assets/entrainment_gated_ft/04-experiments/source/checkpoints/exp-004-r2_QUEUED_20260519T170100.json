@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-004-r2",
+  "project": "entrainment_gated_ft",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T16:58:01.256Z",
+    "updated_at": "2026-05-19T17:01:00.930Z",
+    "hypothesis": "Attention weight patterns in hybrid h3-1 models differ systematically between helped and hurt samples on LAMBADA, with cross-architecture attention pattern similarity lower than expected given aggregate convergence — providing mechanistic evidence for architecture-specific per-example effects (Claim 3)",
+    "parent": "exp-004"
+  },
+  "timestamp": "2026-05-19T17:01:00.980534+00:00",
+  "trigger": "update_registry"
+}

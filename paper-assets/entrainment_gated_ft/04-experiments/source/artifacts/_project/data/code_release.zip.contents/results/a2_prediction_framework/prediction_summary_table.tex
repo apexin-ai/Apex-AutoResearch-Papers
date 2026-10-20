@@ -1,0 +1,28 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Confidence-margin logistic regression: within-architecture (5-fold CV) vs.\ cross-architecture (leave-one-out) AUC-ROC. Baseline (random) = 0.50.}
+\label{tab:prediction_auc}
+\begin{tabular}{llcccccc}
+\toprule
+ & & \multicolumn{2}{c}{GDN} & \multicolumn{2}{c}{RetNet} & \multicolumn{2}{c}{HGRN2} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8}
+Benchmark & Type & Within & Transfer & Within & Transfer & Within & Transfer \\
+\midrule
+LAMBADA & Helped & 0.75 & 0.75 & 0.75 & 0.75 & 0.76 & 0.77 \\
+LAMBADA & Hurt & 0.73 & 0.73 & 0.74 & 0.73 & 0.75 & 0.75 \\
+\addlinespace
+HellaSwag & Helped & 0.56 & 0.56 & 0.54 & 0.54 & 0.55 & 0.55 \\
+HellaSwag & Hurt & 0.51 & 0.51 & 0.51 & 0.51 & 0.52 & 0.52 \\
+\addlinespace
+ARC-Easy & Helped & 0.71 & 0.71 & 0.67 & 0.67 & 0.66 & 0.66 \\
+ARC-Easy & Hurt & 0.60 & 0.60 & 0.57 & 0.57 & 0.54 & 0.54 \\
+\addlinespace
+PIQA & Helped & 0.56 & 0.57 & 0.60 & 0.61 & 0.58 & 0.58 \\
+PIQA & Hurt & 0.47 & 0.51 & 0.47 & 0.50 & 0.45 & 0.50 \\
+\midrule
+ & \textbf{Mean} Helped & 0.65 & 0.65 & 0.64 & 0.64 & 0.64 & 0.64 \\
+ & \textbf{Mean} Hurt & 0.58 & 0.59 & 0.57 & 0.58 & 0.56 & 0.57 \\
+\bottomrule
+\end{tabular}
+\end{table}

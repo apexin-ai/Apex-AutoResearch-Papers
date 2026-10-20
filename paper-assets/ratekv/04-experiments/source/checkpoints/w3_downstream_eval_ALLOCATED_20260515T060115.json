@@ -1,0 +1,19 @@
+{
+  "exp_id": "w3_downstream_eval",
+  "project": "ratekv",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T05:47:24.892Z",
+    "updated_at": "2026-05-15T06:01:15.059Z",
+    "spec": {
+      "hypothesis": "Constrained MCKP allocation preserves downstream task accuracy (arc_easy, arc_challenge, hellaswag, winogrande, piqa) vs uniform 4-bit baseline on Llama-3.1-8B and Yi-1.5-9B",
+      "description": "W3: 0-shot downstream task evaluation via lm-eval-harness under bf16/uniform-4bit/constrained-MCKP conditions",
+      "plan_id": "w3"
+    }
+  },
+  "timestamp": "2026-05-15T06:01:15.184901+00:00",
+  "trigger": "update_registry"
+}

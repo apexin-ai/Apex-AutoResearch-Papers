@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp_c_constrained_mckp_20260514T000238_result.json",
     "occurrence": 1,
-    "bytes": 657,
-    "sha256": "d5317586eb3bb1feb3864dec85d31b67e25cfd4a5925024ee4b1e73c3d01e2c0"
+    "bytes": 656,
+    "sha256": "2d1af4ebba5556571bd0151d1342d14113027253bc4d672da7c71dafec3ecdd7"
   },
   "statistics": {
     "messages": 1,

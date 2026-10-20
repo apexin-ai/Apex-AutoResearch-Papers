@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_r16-shapiro-wilk_20260523T164518_result.json",
     "occurrence": 1,
-    "bytes": 2234,
-    "sha256": "8e326984f95c438716056a18c6f36d5e4fb9363ab5daed025c2871123f4a90a1"
+    "bytes": 2233,
+    "sha256": "e9b69b01bd8fafca0e96e5e51242888b6d748913a0c5016cc8ca8d43e3db25cd"
   },
   "statistics": {
     "messages": 1,

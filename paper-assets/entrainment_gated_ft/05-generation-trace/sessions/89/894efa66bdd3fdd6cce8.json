@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_fig1-340m-sigma-update_20260519T191646_result.json",
     "occurrence": 1,
-    "bytes": 481,
-    "sha256": "8a7e1e7ee4652b1f6ce6bf3101132725f679d89fa24a1dd854484eba5a8b6531"
+    "bytes": 480,
+    "sha256": "aa126e630b2aa794b65917c124530c568588bc15015d5227a8ba4e765524ea1c"
   },
   "statistics": {
     "messages": 1,

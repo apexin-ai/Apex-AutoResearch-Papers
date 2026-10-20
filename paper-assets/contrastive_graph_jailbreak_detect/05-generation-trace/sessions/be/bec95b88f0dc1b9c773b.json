@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bec95b88f0dc1b9c773b",
+  "project": "contrastive_graph_jailbreak_detect",
+  "kind": "result",
+  "title": "research stac dataset check",
+  "task_key": "worker_research_stac-dataset-check_20260517T052916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_stac-dataset-check_20260517T052916_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "c957622d105d4503f87a8ed048ca9de1786b7ce153c132fe510bdb5c7f91f99d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。核心发现:\n\n1. **Repo public，数据可直接获取** — `data/STAC_benchmark_data.json` (4.73MB, 483 traces)\n2. **数据格式清晰** — JSON array，每个 trace 包含 `generation_config`(含 failure_mode 标注)、`attack_plan`(含 verified_tool_chain)、`interaction_history`(OpenAI chat format with tool calls)、`planner_history`\n3. **关键限制: 无 benign traces** — 这是纯攻击 benchmark。要做 contrastive 检测，需要另外构造/获取正常 agent 交互数据（可从 SHADE-Arena 或 Agent-SafetyBench 原始 repo 获取）\n4. **无 train/test split** — 需自行划分\n5. **License CC BY-NC 4.0** — 学术研究可用，不可商用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-stac-dataset-check.md"
+}

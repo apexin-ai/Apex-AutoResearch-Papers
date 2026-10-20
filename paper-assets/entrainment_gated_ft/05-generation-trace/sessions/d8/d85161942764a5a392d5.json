@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_config_restore_hgrn2_20260518T142334_result.json",
     "occurrence": 1,
-    "bytes": 2293,
-    "sha256": "cd1050f931aa21851d19c8441c70cf5a3075444f8ab52273b7d7fec563367ba3"
+    "bytes": 2292,
+    "sha256": "cefe78678c698f31b7fa7685d71a5c1e3f973939cb86c22367d4a8ff4c105cce"
   },
   "statistics": {
     "messages": 1,

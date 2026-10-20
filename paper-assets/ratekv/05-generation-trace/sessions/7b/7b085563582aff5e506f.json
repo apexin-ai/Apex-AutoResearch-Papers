@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_cross_domain_calibration_v2_20260514T101754_result.json",
     "occurrence": 1,
-    "bytes": 1201,
-    "sha256": "147fb4aefac9ee1cf2c1f14e08183f09b136b89937a96db19e678e8fcd100ee9"
+    "bytes": 1200,
+    "sha256": "7d1d9b96e866cf4f4d2ca8b0e4ab981866ada5b9ab8fb964d5265b1e8b1255b4"
   },
   "statistics": {
     "messages": 1,

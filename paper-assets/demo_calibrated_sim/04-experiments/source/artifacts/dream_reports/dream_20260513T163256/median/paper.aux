@@ -1,0 +1,88 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{yao2024taubench}
+\citation{seshadri2026lost,sim2real2026gap}
+\citation{rafailov2023dpo}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{yao2024taubench}
+\citation{sim2real2026gap}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Experimental Setup}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Task and Evaluation Framework}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Behavioral metrics.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hypothesis gates.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Calibration Strategies}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Behavioral Calibration Prompting (BCP).}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Direct Preference Optimization (DPO).}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Models and Scale}{2}{subsection.2.3}\protected@file@percent }
+\citation{basil2025playing_pretend}
+\citation{hu2026expert_persona}
+\citation{gupta2026intra_fairness}
+\@writefile{toc}{\contentsline {section}{\numberline {3}BCP Failure Modes at 7B (C1)}{3}{section.3}\protected@file@percent }
+\newlabel{sec:c1}{{3}{3}{BCP Failure Modes at 7B (C1)}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}FM1: Global Behavior Suppression}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}FM2: Cross-Dimension Interference}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}FM3: Overcorrection Rebound}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hypothesis gate summary at 7B.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Scale-Dependent Failure Severity (C3)}{3}{section.4}\protected@file@percent }
+\newlabel{sec:c3}{{4}{3}{Scale-Dependent Failure Severity (C3)}{section.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces 7B BCP multi-run results (Qwen2.5-7B-Instruct, 4 runs $\times $ 20 tasks). Values are mean $\pm $ SD across runs. Pol.\ = politeness, QR = question rate, Comp.\ = task completion rate.}}{4}{table.caption.5}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:7b-multirun}{{1}{4}{7B BCP multi-run results (Qwen2.5-7B-Instruct, 4 runs $\times $ 20 tasks). Values are mean $\pm $ SD across runs. Pol.\ = politeness, QR = question rate, Comp.\ = task completion rate}{table.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Failure mode replication across 4 runs at 7B. Primary metric and threshold for each FM. A run ``replicates'' if its metric exceeds the threshold.}}{4}{table.caption.6}\protected@file@percent }
+\newlabel{tab:fm-replication}{{2}{4}{Failure mode replication across 4 runs at 7B. Primary metric and threshold for each FM. A run ``replicates'' if its metric exceeds the threshold}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}14B Base BCP: Selective Ignoring}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}14B DPO+BCP: Comprehensive Absence of Failure Modes}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Scale-dependent failure mode matrix. Severity assessment based on multi-run evidence (4 runs per scale-method combination).}}{5}{table.caption.8}\protected@file@percent }
+\newlabel{tab:scale-matrix}{{3}{5}{Scale-dependent failure mode matrix. Severity assessment based on multi-run evidence (4 runs per scale-method combination)}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces DPO training comparison across scales. Both models use identical LoRA configuration and preference data.}}{5}{table.caption.9}\protected@file@percent }
+\newlabel{tab:dpo-comparison}{{4}{5}{DPO training comparison across scales. Both models use identical LoRA configuration and preference data}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}The Safety-Efficacy Gap}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Mechanistic Interpretation}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces 14B DPO+BCP evaluation results (Qwen2.5-14B-Instruct, 4 runs $\times $ 20 tasks). Values are mean $\pm $ SD across runs.}}{6}{table.caption.10}\protected@file@percent }
+\newlabel{tab:14b-dpo-results}{{5}{6}{14B DPO+BCP evaluation results (Qwen2.5-14B-Instruct, 4 runs $\times $ 20 tasks). Values are mean $\pm $ SD across runs}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}DPO-BCP Interaction Effects (C2)}{6}{section.5}\protected@file@percent }
+\newlabel{sec:c2}{{5}{6}{DPO-BCP Interaction Effects (C2)}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Observation: Direction Reversal at 7B}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Statistical Assessment}{6}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Scale Comparison for FM4}{6}{subsection.5.3}\protected@file@percent }
+\citation{lee2024dpo_toxicity}
+\citation{khan2026decoding}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces FM4 (DPO-BCP interaction) bootstrap analysis. Base gap uses pooled 4-run estimate at 7B and 4-run estimate at 14B. Gap diff $=$ DPO gap $-$ base gap (positive $=$ reversal toward expansion).}}{7}{table.caption.11}\protected@file@percent }
+\newlabel{tab:fm4-bootstrap}{{6}{7}{FM4 (DPO-BCP interaction) bootstrap analysis. Base gap uses pooled 4-run estimate at 7B and 4-run estimate at 14B. Gap diff $=$ DPO gap $-$ base gap (positive $=$ reversal toward expansion)}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Mechanistic Interpretation}{7}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Implications for Calibration Research}{7}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{1.\ The scale dilemma.}{7}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{2.\ Dimension coupling.}{7}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{3.\ Calibration method interactions.}{7}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{4.\ Overcorrection sensitivity.}{7}{section*.15}\protected@file@percent }
+\citation{sim2real2026gap}
+\citation{seshadri2026lost}
+\citation{basil2025playing_pretend}
+\citation{hu2026expert_persona}
+\citation{lee2024dpo_toxicity}
+\citation{gupta2026intra_fairness}
+\bibstyle{plainnat}
+\bibcite{basil2025playing_pretend}{{1}{2025}{{Basil et~al.}}{{}}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Limitations}{8}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Single model family.}{8}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sample size.}{8}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Single evaluation domain.}{8}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Two scales.}{8}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Related Work}{8}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sim-to-real gaps in LLM evaluation.}{8}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Persona prompting and capability trade-offs.}{8}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Alignment interactions.}{8}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fairness in targeted interventions.}{8}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{8}{section.8}\protected@file@percent }
+\bibcite{gupta2026intra_fairness}{{2}{2026}{{Gupta et~al.}}{{}}}
+\bibcite{hu2026expert_persona}{{3}{2026}{{Hu et~al.}}{{}}}
+\bibcite{khan2026decoding}{{4}{2026}{{Khan et~al.}}{{}}}
+\bibcite{lee2024dpo_toxicity}{{5}{2024}{{Lee et~al.}}{{}}}
+\bibcite{rafailov2023dpo}{{6}{2023}{{Rafailov et~al.}}{{}}}
+\bibcite{seshadri2026lost}{{7}{2026}{{Seshadri et~al.}}{{}}}
+\bibcite{sim2real2026gap}{{8}{2026}{{Sim et~al.}}{{}}}
+\bibcite{yao2024taubench}{{9}{2024}{{Yao et~al.}}{{}}}
+\gdef \@abspage@last{9}

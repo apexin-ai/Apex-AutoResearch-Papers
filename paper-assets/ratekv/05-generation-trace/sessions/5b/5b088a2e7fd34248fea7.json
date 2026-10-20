@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_qwen_hires_f32_mckp_fix_20260514T200644_result.json",
     "occurrence": 1,
-    "bytes": 888,
-    "sha256": "bda2af643ff4a4665e2b050e1be23cb577a0d0ae49fe6d4ee9ca041a42d107be"
+    "bytes": 887,
+    "sha256": "b2c212f6183905844af2f8bba6d4a4a637a24ee74e9f4d78e258c3ff0c230d69"
   },
   "statistics": {
     "messages": 1,

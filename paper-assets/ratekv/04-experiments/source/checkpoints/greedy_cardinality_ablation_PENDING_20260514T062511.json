@@ -1,0 +1,33 @@
+{
+  "exp_id": "greedy_cardinality_ablation",
+  "project": "ratekv",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:09:05.394Z",
+    "updated_at": "2026-05-14T06:25:11.671Z",
+    "spec": {
+      "command": "python -u run_greedy_constrained.py --gpu 0 --max_2bit 8 --budget 0.25",
+      "server": "westd-37397",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "188833",
+      "log_path": "/root/ratekv/greedy_constrained_k8_results.json",
+      "submitted_at": "2026-05-14T06:15:29.318Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/ratekv/full_bitwidth_results.json",
+      "model_name": "Qwen2.5-7B",
+      "seed": null,
+      "data_count": null,
+      "checkpoint_path": "/root/ratekv/greedy_constrained_k8_results.json"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T06:25:11.727785+00:00",
+  "trigger": "update_registry"
+}

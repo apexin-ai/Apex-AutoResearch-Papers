@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d656b34bdb54fccec87",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "analysis qwen14b bcp 001 fm",
+  "task_key": "worker_analysis_qwen14b-bcp-001-fm_20260513T151952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen14b-bcp-001-fm_20260513T151952_result.json",
+    "occurrence": 1,
+    "bytes": 757,
+    "sha256": "c85dfbd42488e1e8cbe105fe85b8d23c4fbf3f599f5545357c6a15d885a432c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已生成并注册。核心结论：\n\n**FM1 未复现** — 所有 BCP variant completion 保持率 > 97%，14B 无行为抑制。\n\n**FM2 弱复现** — 跨维度干扰存在但幅度小（politeness -8%, question_rate -2.2pp），远弱于 7B。\n\n**FM3 未复现** — overcorrected politeness 比 baseline **低** 7.1pp，方向相反。\n\n**关键发现：14B 的 BCP 失败机制与 7B 根本不同。** 7B 是\"灾难性崩溃\"（BCP prompt 摧毁了模型行为），14B 是\"选择性忽略\"（模型正常工作但无视 BCP 校准指令）。两者 H2 都 FAIL，但原因相反：7B 过度响应，14B 不够响应。这是一个 scale-dependent failure mode transition，说明 BCP 的缺陷是方法论层面的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen14b-bcp-001-fm.md"
+}

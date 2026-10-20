@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_cross_scale_convergence_20260519T045618_result.json",
     "occurrence": 1,
-    "bytes": 2116,
-    "sha256": "c6b986b1775e5eb170796a8e0320379c59d4052606de8d056f9c95122aeb30d4"
+    "bytes": 2115,
+    "sha256": "3665dc633816327e5934127330caa58b19d94262ccd275ac50ed8468b17a2854"
   },
   "statistics": {
     "messages": 1,

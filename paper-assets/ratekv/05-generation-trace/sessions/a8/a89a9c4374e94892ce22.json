@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_kv_separation_20260514T083637_result.json",
     "occurrence": 1,
-    "bytes": 1573,
-    "sha256": "99ea3ecb345cec30a36fe6a072c6beda6b1097435a7152dd8ea6b9a4cf82f1a3"
+    "bytes": 1572,
+    "sha256": "bfe7a4799d500ad97e9949ff65038371b29ed52dd5d782817fff0d28fd6fb786"
   },
   "statistics": {
     "messages": 1,

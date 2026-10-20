@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_qwen_hires_float32_d048_20260514T194026_result.json",
     "occurrence": 1,
-    "bytes": 2346,
-    "sha256": "11ca99fe85c033965a49a0a47d118a1229d86c3130975801f9a0410732bfac04"
+    "bytes": 2345,
+    "sha256": "9c24cbd6a9811f261c9e5079ea05693c35bf6072ac350719a4836efa35cad91f"
   },
   "statistics": {
     "messages": 1,

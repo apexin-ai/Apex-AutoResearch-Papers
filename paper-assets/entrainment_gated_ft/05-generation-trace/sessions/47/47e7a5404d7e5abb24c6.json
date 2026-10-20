@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_attn-heads-audit_20260518T055457_result.json",
     "occurrence": 1,
-    "bytes": 2204,
-    "sha256": "53a210f4cced2e974104d5a065a5b3d2730a90de20d01cbc25aba7295bb4668c"
+    "bytes": 2203,
+    "sha256": "00a54d7dfcaaadf110d92e29cbdd75f2f37778014cddc9a3f1829501a5013de5"
   },
   "statistics": {
     "messages": 1,

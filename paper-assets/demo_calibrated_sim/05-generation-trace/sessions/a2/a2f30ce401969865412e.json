@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2f30ce401969865412e",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "eval hgate merged launch",
+  "task_key": "worker_eval_hgate-merged-launch_20260513T014522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_hgate-merged-launch_20260513T014522_result.json",
+    "occurrence": 1,
+    "bytes": 557,
+    "sha256": "731e5be79870de2c5fb3fbe74cc8ddee31b302e980d8f1bf6f9f50ae5b4b1f44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成，汇总：\n\n| 项目 | 状态 |\n|------|------|\n| **GPU 2** | 22099/24564 MiB, vLLM PID 688649, port 8002, run 1-2 |\n| **GPU 3** | 22099/24564 MiB, vLLM PID 688650, port 8003, run 3-4 |\n| **主进程** | PID 688636 |\n| **Group A** | PID 688675, 推理进行中 |\n| **Group B** | PID 688676, 推理进行中 |\n| **日志** | `/tmp/hgate-merged-full.log`, `results/hgate_dpo003_merged/group_{a,b}.log` |\n| **Registry** | `hgate-dpo003-merged` → RUNNING |\n\n两个 GPU 均已满载运行 merged 模型 eval，无报错。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-hgate-merged-launch.md"
+}

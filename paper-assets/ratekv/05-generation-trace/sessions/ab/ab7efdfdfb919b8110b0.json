@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_kill_duplicate_gemma2_20260515T191937_result.json",
     "occurrence": 1,
-    "bytes": 436,
-    "sha256": "c81602aa4ae17ec50b8f1857f11901e6118f785800c85c6f4b9916cf5685a776"
+    "bytes": 435,
+    "sha256": "25f8fdc5772ff12f46c1e831671498a66b8f4188d4363fdd4fc4369aee91f53f"
   },
   "statistics": {
     "messages": 1,

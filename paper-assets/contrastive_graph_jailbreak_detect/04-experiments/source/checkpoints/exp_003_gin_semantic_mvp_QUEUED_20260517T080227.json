@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_003_gin_semantic_mvp",
+  "project": "contrastive_graph_jailbreak_detect",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T07:03:55.323Z",
+    "updated_at": "2026-05-17T08:02:27.959Z",
+    "hypothesis": "Semantic MiniLM-L6 node embeddings remove tool-identity shortcut, allowing GIN+SupCon to learn structural patterns and exceed RF by >5pp AUROC on cross-mode holdout (final MVP gate)"
+  },
+  "timestamp": "2026-05-17T08:02:27.989344+00:00",
+  "trigger": "update_registry"
+}

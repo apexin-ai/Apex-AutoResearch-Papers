@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_check_internlm2_and_start_profiling_20260516T015144_result.json",
     "occurrence": 1,
-    "bytes": 393,
-    "sha256": "059e5c5b0f8185d6662cfe9ecbaaa598bd103c2a3a3d7d233666fb190623d627"
+    "bytes": 392,
+    "sha256": "4360dc1b3cca1315324a8a15d0ae177af75d40c485b7af0064609ae6f40cc1dc"
   },
   "statistics": {
     "messages": 1,

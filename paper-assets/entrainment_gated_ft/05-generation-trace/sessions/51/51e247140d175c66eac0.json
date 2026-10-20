@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_e2_e3_continuous_jaccard_calibration_20260522T095214_result.json",
     "occurrence": 1,
-    "bytes": 1268,
-    "sha256": "99c256f41b3648ad8549c1e1fca4ed2d2385d962eb7c6de96aa5581e41262c32"
+    "bytes": 1267,
+    "sha256": "64b6349d9adc8d7c510de233555bfdede8d2b9f09dd16f1d88c5370ac52ffbe0"
   },
   "statistics": {
     "messages": 1,

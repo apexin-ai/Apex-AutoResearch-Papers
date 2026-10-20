@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_gemma2_downstream_headfix_v3_20260515T194418_result.json",
     "occurrence": 1,
-    "bytes": 594,
-    "sha256": "b2b5f8168445cf3201d5cd8f2194f408de2533e95d89548983285650ed6c94da"
+    "bytes": 593,
+    "sha256": "e683e7a2ea9d453bca970f076aee8c891c8bd4caba79d84ac5924395aca1fbcc"
   },
   "statistics": {
     "messages": 1,

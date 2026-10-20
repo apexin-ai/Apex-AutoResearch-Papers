@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_appendix-i-confidence-margin_20260520T043352_result.json",
     "occurrence": 1,
-    "bytes": 374,
-    "sha256": "46de23d1722395b039b42057f990121d98182a88322045f692945f6e7c8c2488"
+    "bytes": 373,
+    "sha256": "010a19b764a8188e03e3bb3712359d0226b72dd9a47c492425a31a52579fb998"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,16 @@
+{
+  "exp_id": "mistral_aggressive_compression",
+  "project": "ratekv",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:59:01.736Z",
+    "updated_at": "2026-05-14T06:02:17.501Z",
+    "hypothesis": "Aggressive compression (5.3x + 8x) 在低异质性架构 Mistral-7B (GQA 4:1, 256 heads) 上是否也能放大 MCKP 优势。与 Llama aggressive (success: 45x better at 5.3x) 对称验证。如果 MCKP 优势随压缩率增加而放大，即使在低异质性架构上也应显现。",
+    "parent": "mistral_hires_pipeline"
+  },
+  "timestamp": "2026-05-14T06:02:17.618272+00:00",
+  "trigger": "update_registry"
+}

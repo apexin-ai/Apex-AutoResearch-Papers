@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_audit_hellaswag_metric_consistency_20260515T215529_result.json",
     "occurrence": 1,
-    "bytes": 3259,
-    "sha256": "12c56a8198341c0142906bafe04fddb8db3228c148d67078253ef987e1c627a8"
+    "bytes": 3258,
+    "sha256": "3e509578862d34267de5bd5aea63f6759d3ab401a56c251e697829b9a32cfdb2"
   },
   "statistics": {
     "messages": 1,

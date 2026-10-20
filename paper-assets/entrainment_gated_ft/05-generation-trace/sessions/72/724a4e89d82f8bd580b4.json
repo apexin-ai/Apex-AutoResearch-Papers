@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_figure_fig1_decoupling_hero_20260519T172700_result.json",
     "occurrence": 1,
-    "bytes": 519,
-    "sha256": "26412741dce762881efee9d4d1e1a11d13392539f030d9ecf3457e35dbb26109"
+    "bytes": 518,
+    "sha256": "21009d3f967ae9d57df4817ad90aacf11873828dd77169838820bb29830ff05c"
   },
   "statistics": {
     "messages": 1,

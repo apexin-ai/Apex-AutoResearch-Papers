@@ -1,0 +1,95 @@
+{
+  "transformer_acc": 0.4809,
+  "model_accuracies": {
+    "Transformer": 0.4809,
+    "GDN-pure": 0.5434,
+    "GDN-h3-1": 0.5133,
+    "RetNet-pure": 0.5174,
+    "RetNet-h3-1": 0.5024,
+    "HGRN2-pure": 0.484,
+    "HGRN2-h3-1": 0.5143
+  },
+  "agreement_rates": {
+    "GDN-pure_vs_Transformer": 0.7788,
+    "GDN-h3-1_vs_Transformer": 0.7887,
+    "RetNet-pure_vs_Transformer": 0.809,
+    "RetNet-h3-1_vs_Transformer": 0.8224,
+    "HGRN2-pure_vs_Transformer": 0.8106,
+    "HGRN2-h3-1_vs_Transformer": 0.825
+  },
+  "correct_set_jaccard": {
+    "GDN-pure_vs_Transformer": 0.6447,
+    "GDN-h3-1_vs_Transformer": 0.6494,
+    "RetNet-pure_vs_Transformer": 0.6789,
+    "RetNet-h3-1_vs_Transformer": 0.6941,
+    "HGRN2-pure_vs_Transformer": 0.6718,
+    "HGRN2-h3-1_vs_Transformer": 0.7008
+  },
+  "pairwise_jaccard": {
+    "GDN-pure_vs_GDN-h3-1": 0.6697,
+    "GDN-pure_vs_RetNet-pure": 0.6716,
+    "GDN-pure_vs_RetNet-h3-1": 0.6679,
+    "GDN-pure_vs_HGRN2-pure": 0.6539,
+    "GDN-pure_vs_HGRN2-h3-1": 0.6601,
+    "GDN-h3-1_vs_RetNet-pure": 0.668,
+    "GDN-h3-1_vs_RetNet-h3-1": 0.6733,
+    "GDN-h3-1_vs_HGRN2-pure": 0.6466,
+    "GDN-h3-1_vs_HGRN2-h3-1": 0.6588,
+    "RetNet-pure_vs_RetNet-h3-1": 0.7029,
+    "RetNet-pure_vs_HGRN2-pure": 0.6813,
+    "RetNet-pure_vs_HGRN2-h3-1": 0.6887,
+    "RetNet-h3-1_vs_HGRN2-pure": 0.6753,
+    "RetNet-h3-1_vs_HGRN2-h3-1": 0.696,
+    "HGRN2-pure_vs_HGRN2-h3-1": 0.691
+  },
+  "unique_correct": {
+    "GDN-pure": {
+      "shared_with_transformer": 2069,
+      "only_GDN-pure": 731,
+      "only_transformer": 409
+    },
+    "GDN-h3-1": {
+      "shared_with_transformer": 2017,
+      "only_GDN-h3-1": 628,
+      "only_transformer": 461
+    },
+    "RetNet-pure": {
+      "shared_with_transformer": 2080,
+      "only_RetNet-pure": 586,
+      "only_transformer": 398
+    },
+    "RetNet-h3-1": {
+      "shared_with_transformer": 2076,
+      "only_RetNet-h3-1": 513,
+      "only_transformer": 402
+    },
+    "HGRN2-pure": {
+      "shared_with_transformer": 1998,
+      "only_HGRN2-pure": 496,
+      "only_transformer": 480
+    },
+    "HGRN2-h3-1": {
+      "shared_with_transformer": 2113,
+      "only_HGRN2-h3-1": 537,
+      "only_transformer": 365
+    }
+  },
+  "key_comparison": {
+    "GDN": {
+      "pure_J_vs_transformer": 0.6447,
+      "h3_1_J_vs_transformer": 0.6494,
+      "delta": 0.0047
+    },
+    "RetNet": {
+      "pure_J_vs_transformer": 0.6789,
+      "h3_1_J_vs_transformer": 0.6941,
+      "delta": 0.0152
+    },
+    "HGRN2": {
+      "pure_J_vs_transformer": 0.6718,
+      "h3_1_J_vs_transformer": 0.7008,
+      "delta": 0.029
+    }
+  },
+  "conclusion": "GDN-h3-1 shows minimal change vs Transformer (J delta=+0.0047); RetNet-h3-1 moves toward Transformer (J delta=+0.0152); HGRN2-h3-1 moves toward Transformer (J delta=+0.0290)"
+}

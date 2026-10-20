@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bee134571bc96b1fedce",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "code bcp prompts",
+  "task_key": "worker_code_bcp-prompts_20260512T100012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bcp-prompts_20260512T100012_result.json",
+    "occurrence": 1,
+    "bytes": 595,
+    "sha256": "e4dfc0367a94bb1492b17813ed791f7d6c1fd1962201516ec2010223a9c0e2db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。四个文件已创建在 `artifacts/prompts/` 下：\n\n| 文件 | 说明 |\n|------|------|\n| `base_user_simulator.txt` | 基础 τ-Bench retail user simulator prompt，无行为约束 |\n| `bcp_user_simulator.txt` | BCP 变体，含 `{question_rate}%` / `{politeness_rate}%` 占位符 |\n| `bcp_variants.yaml` | 6 组参数变体（aave_target / uncalibrated_baseline / overcorrected / 两个单维消融） |\n| `prompt_loader.py` | `PromptLoader` 类，支持 `load_base` / `load_bcp` / `load_variant`，单维消融时自动生成只含对应约束的模板 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bcp-prompts.md"
+}

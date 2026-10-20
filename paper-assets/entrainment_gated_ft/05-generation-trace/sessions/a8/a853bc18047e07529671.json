@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_verify_tab7-fix-data_20260523T194255_result.json",
     "occurrence": 1,
-    "bytes": 4275,
-    "sha256": "b6580db57d4cdf718fab59460981b89d029f39692dd9b5de1cf12a960bc61dec"
+    "bytes": 4274,
+    "sha256": "87bf4fcd006d58e280627429805d6cdae743fc83e669a9be9993b145b15d57ae"
   },
   "statistics": {
     "messages": 1,

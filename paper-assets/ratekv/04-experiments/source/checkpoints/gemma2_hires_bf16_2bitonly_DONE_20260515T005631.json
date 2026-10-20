@@ -1,0 +1,48 @@
+{
+  "exp_id": "gemma2_hires_bf16_2bitonly",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:03:50.846Z",
+    "updated_at": "2026-05-15T00:56:31.236Z",
+    "spec": {
+      "command": "python run_gemma2_hires_bf16_2bitonly.py --model /root/autodl-tmp/.hf_cache/google/gemma-2-9b --gpu cuda:0 --batch_size 2",
+      "server": "westd-37397",
+      "data_path": "calibration_hires.json",
+      "data_count": 64,
+      "model_name": "Gemma-2-9B",
+      "seed": 0,
+      "hypothesis": "Gemma-2-9B hires bf16 2-bit only profiling (64seq x 2048tok). 补全 5 模型 hires 全景图，允许去掉 Table 3 的 ddagger 标注。Standard concentration=0.23, 预期 hires 类似。336 heads x ~20s/head ≈ 1.9h。",
+      "log_path": "/root/runs/ratekv/gemma2_hires_bf16_2bitonly.log",
+      "checkpoint_path": "/root/ratekv/gemma2_hires_bf16_2bitonly_profiles.json"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T22:11:06.093Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T22:11:09.150766+00:00"
+        }
+      ]
+    },
+    "notes": "Registry 状态 ANALYZING 是 cron 误判（重复 PID 269018 退出触发），实际 PID 268242 仍在运行 (164/336 heads, ETA ~23:40 UTC)。状态机不允许 ANALYZING→RUNNING 回退，cron 已重新注册监控 PID 268242。完成后正常推进 ANALYZING→DONE。",
+    "conclusion": "success",
+    "metrics": {
+      "concentration_top5pct": 0.2291,
+      "l0_dominance_ratio": 2.05,
+      "cv_delta_2bit": 1.2834,
+      "positive_delta_heads": "310/336",
+      "top_head": "L0H1 delta=0.1906",
+      "total_time_hours": 1.59
+    },
+    "completed_at": "2026-05-15T00:55:20.083Z"
+  },
+  "timestamp": "2026-05-15T00:56:31.352323+00:00",
+  "trigger": "update_registry"
+}

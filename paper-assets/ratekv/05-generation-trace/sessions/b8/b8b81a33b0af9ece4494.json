@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_llama_heuristic_k2_exit_20260514T120541_result.json",
     "occurrence": 1,
-    "bytes": 769,
-    "sha256": "7c2122d6d3aa779558c255210766232b713691225401515150a02778416fcda4"
+    "bytes": 768,
+    "sha256": "c7072dd5a6a4e97dfba5c458380c56c5c8a1d9787a0fa3e9a0d907e093e4221f"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_flat-definition-clarify_20260514T224717_result.json",
     "occurrence": 1,
-    "bytes": 313,
-    "sha256": "08dfb15f5c00aebc990373c58591c9ae725650a1029f71f8a628b98b016f621c"
+    "bytes": 312,
+    "sha256": "e95403ad40192872d5dfac7dc19836fe16d01578871817cec8183cbf092bdf66"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,30 @@
+{
+  "exp_id": "hgate-dpo003-merged",
+  "project": "demo_calibrated_sim",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T01:39:06.861Z",
+    "updated_at": "2026-05-13T01:46:53.914Z",
+    "hypothesis": "DPO-003 (Fix B, merged model) calibration reduces politeness bias while maintaining task completion — MVP final decision via merged model serving (bypass vLLM LoRA bug)",
+    "parent": "dpo-003",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/democalib && bash eval_dpo003_merged.sh\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "668063",
+      "log_path": "~/runs/demo_calibrated_sim/hgate-dpo003-merged.log",
+      "submitted_at": "2026-05-13T01:44:18.613Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-13T01:46:53.984151+00:00",
+  "trigger": "update_registry"
+}

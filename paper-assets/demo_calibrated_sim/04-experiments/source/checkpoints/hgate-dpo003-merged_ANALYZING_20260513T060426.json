@@ -1,0 +1,40 @@
+{
+  "exp_id": "hgate-dpo003-merged",
+  "project": "demo_calibrated_sim",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T01:39:06.861Z",
+    "updated_at": "2026-05-13T06:04:26.291Z",
+    "hypothesis": "DPO-003 (Fix B, merged model) calibration reduces politeness bias while maintaining task completion — MVP final decision via merged model serving (bypass vLLM LoRA bug)",
+    "parent": "dpo-003",
+    "spec": {
+      "command": "bash eval_dpo003_merged.sh",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "668063",
+      "log_path": "~/runs/demo_calibrated_sim/hgate-dpo003-merged.log",
+      "submitted_at": "2026-05-13T01:44:18.613Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/democalib",
+      "data_count": 20,
+      "model_name": "Qwen2.5-7B-DPO003-merged",
+      "seed": "multi-run-4",
+      "checkpoint_source": "/root/autodl-tmp/models/Qwen2.5-7B-DPO003-merged",
+      "eval_data": "hgate_20tasks_6variants",
+      "notes": "Dual GPU eval: cuda:2 (port 8002, run 1-2) + cuda:3 (port 8003, run 3-4). Main PID=688636, vLLM PIDs=688649/688650. Log: /tmp/hgate-merged-full.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-13T06:04:26.226Z"
+    }
+  },
+  "timestamp": "2026-05-13T06:04:26.341219+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,85 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2025mzoobenchmarkinghybridllms}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{yang2024gateddeltanetworks}
+\citation{sun2023retentive}
+\citation{qin2024hgrn2}
+\citation{lieber2024jamba}
+\citation{de2024griffin}
+\citation{swayamdipta2020dataset}
+\citation{koh2017understanding}
+\citation{ethayarajh2022understanding}
+\citation{clark2018arc}
+\citation{zellers2019hellaswag}
+\citation{sakaguchi2021winogrande}
+\citation{hendrycks2021mmlu}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Linear recurrent architectures.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hybrid architectures.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Per-example analysis in NLP.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Model Zoo}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Cross-architecture convergence strength by benchmark (1.3B scale). $\rho $: Spearman correlation between attention ratio and cross-architecture std. Significance: **$p<0.01$, *$p<0.05$.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:convergence}{{1}{3}{Cross-architecture convergence strength by benchmark (1.3B scale). $\rho $: Spearman correlation between attention ratio and cross-architecture std. Significance: **$p<0.01$, *$p<0.05$}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Evaluation Protocol}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Convergence Metrics}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Per-Example Analysis}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Task-Specific Convergence (Claim 1)}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:task-specific}{{4.1}{3}{Task-Specific Convergence (Claim 1)}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Per-example convergence indicators across benchmarks (1.3B, h24-1 vs.\ h0).}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:perexample}{{2}{4}{Per-example convergence indicators across benchmarks (1.3B, h24-1 vs.\ h0)}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Feature comparison between helped and hurt samples per architecture (LAMBADA, 1.3B, h24-1 vs.\ h0). $d$: Cohen's $d$; negative $d$ for token frequency indicates attention helps rare tokens.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:features}{{3}{4}{Feature comparison between helped and hurt samples per architecture (LAMBADA, 1.3B, h24-1 vs.\ h0). $d$: Cohen's $d$; negative $d$ for token frequency indicates attention helps rare tokens}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Per-Example Convergence Analysis}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:per-example}{{4.2}{4}{Per-Example Convergence Analysis}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Sample Feature Characterization}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:features}{{4.3}{4}{Sample Feature Characterization}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Attention Pattern Analysis}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:attention}{{4.4}{4}{Attention Pattern Analysis}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Attention pattern analysis for h3-1 models on LAMBADA (1.3B). Cross-arch cosine similarities are between architectures (GDN/RetNet/HGRN2).}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:attention}{{4}{5}{Attention pattern analysis for h3-1 models on LAMBADA (1.3B). Cross-arch cosine similarities are between architectures (GDN/RetNet/HGRN2)}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces 340M rebound analysis: per-example comparison at attention ratio 8.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:rebound}{{5}{5}{340M rebound analysis: per-example comparison at attention ratio 8}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Scale-Dependent Convergence}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:scale}{{4.5}{5}{Scale-Dependent Convergence}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}The Equalizer Paradox: Convergence--Divergence Co-evolution}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:paradox}{{4.6}{5}{The Equalizer Paradox: Convergence--Divergence Co-evolution}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Co-evolution of aggregate convergence and per-example divergence (LAMBADA, 1.3B). Net effect asymmetry measures the divergence in per-architecture improvement directions.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:coevolution}{{6}{6}{Co-evolution of aggregate convergence and per-example divergence (LAMBADA, 1.3B). Net effect asymmetry measures the divergence in per-architecture improvement directions}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Bootstrap confidence intervals and sensitivity analysis. ``Full'' uses all three architectures; ``Excl.\ GDN'' removes GatedDeltaNet.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:robustness}{{7}{6}{Bootstrap confidence intervals and sensitivity analysis. ``Full'' uses all three architectures; ``Excl.\ GDN'' removes GatedDeltaNet}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Statistical Robustness}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:robustness}{{4.7}{6}{Statistical Robustness}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Relationship to Wang et al.\ (2025)}{6}{section.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Analytical contributions beyond Wang et al.\ (2025).}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:differentiation}{{8}{7}{Analytical contributions beyond Wang et al.\ (2025)}{table.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{7}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mechanistic interpretation.}{7}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why retrieval tasks?}{7}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{7}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Architecture coverage (n=3).}{7}{section*.7}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{clark2018arc}{{1}{2018}{{Clark et al.}}{{}}}
+\bibcite{de2024griffin}{{2}{2024}{{De~Mesmay et al.}}{{}}}
+\bibcite{ethayarajh2022understanding}{{3}{2022}{{Ethayarajh et al.}}{{}}}
+\bibcite{hendrycks2021mmlu}{{4}{2021}{{Hendrycks et al.}}{{}}}
+\bibcite{koh2017understanding}{{5}{2017}{{Koh and Liang}}{{}}}
+\bibcite{lieber2024jamba}{{6}{2024}{{Lieber et al.}}{{}}}
+\bibcite{qin2024hgrn2}{{7}{2024}{{Qin et al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Task coverage.}{8}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scale confound.}{8}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Statistical power.}{8}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{GDN dependency.}{8}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{8}{section.8}\protected@file@percent }
+\bibcite{sakaguchi2021winogrande}{{8}{2021}{{Sakaguchi et al.}}{{}}}
+\bibcite{sun2023retentive}{{9}{2023}{{Sun et al.}}{{}}}
+\bibcite{swayamdipta2020dataset}{{10}{2020}{{Swayamdipta et al.}}{{}}}
+\bibcite{wang2025mzoobenchmarkinghybridllms}{{11}{2025}{{Wang et al.}}{{}}}
+\bibcite{yang2024gateddeltanetworks}{{12}{2024}{{Yang et al.}}{{}}}
+\bibcite{zellers2019hellaswag}{{13}{2019}{{Zellers et al.}}{{}}}
+\gdef \@abspage@last{9}

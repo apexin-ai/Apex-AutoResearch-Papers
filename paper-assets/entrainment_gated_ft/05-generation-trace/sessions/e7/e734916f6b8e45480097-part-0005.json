@@ -416,7 +416,7 @@
           "content": [
             {
               "type": "text",
-              "text": "[飞书用户 运维(匿名仓库分发)]: 📦 **匿名仓库已建好，请将本项目代码 push 到匿名仓库（EMNLP 2026 投稿用）**\n\n**仓库地址：** https://github.com/anonymous-nlp-2026-2/entrainment_gated_ft\n**带 token 的 push URL：** https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git\n\n**任务：**\n请整理本项目的代码到一个匿名分支并 push 到上述仓库。\n\n**清单：**\n1. **包含**：所有 .py / .sh 代码、configs（清理密钥后）、README（去身份化）\n2. **排除**：实验日志、checkpoints、wandb/、data/、本框架的 .agent-ml-research-* 元数据（registry.yaml / decisions.yaml / dream_* / mistakes.yaml / AGENTS.md / ROADMAP.md 等）、.env、任何 token\n3. **匿名化（必须）**：\n   - 替换代码 / commit message / git author 里的：caoxiaoyu、caoxiaoyuyuyuyuyu、1844118046@qq.com、合作者姓名（你知道的话）、机构名、wandb entity 名\n   - git author 改成 `Anonymous <anonymous@example.com>`\n   - 重写历史：`git filter-branch` 或新建仓库重新提交一次都行\n4. **审稿人能复现**：保留 requirements/setup 脚本，README 写清楚怎么跑\n\n**完成后向我汇报**：repo URL、文件数、commit 数。如果有疑问（敏感词不确定等）先问我再动。"
+              "text": "[飞书用户 运维(匿名仓库分发)]: 📦 **匿名仓库已建好，请将本项目代码 push 到匿名仓库（EMNLP 2026 投稿用）**\n\n**仓库地址：** https://github.com/anonymous-nlp-2026-2/entrainment_gated_ft\n**带 token 的 push URL：** https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git\n\n**任务：**\n请整理本项目的代码到一个匿名分支并 push 到上述仓库。\n\n**清单：**\n1. **包含**：所有 .py / .sh 代码、configs（清理密钥后）、README（去身份化）\n2. **排除**：实验日志、checkpoints、wandb/、data/、本框架的 .agent-ml-research-* 元数据（registry.yaml / decisions.yaml / dream_* / mistakes.yaml / AGENTS.md / ROADMAP.md 等）、.env、任何 token\n3. **匿名化（必须）**：\n   - 替换代码 / commit message / git author 里的：caoxiaoyu、caoxiaoyuyuyuyuyu、1844118046@qq.com、合作者姓名（你知道的话）、机构名、wandb entity 名\n   - git author 改成 `Anonymous <anonymous@example.com>`\n   - 重写历史：`git filter-branch` 或新建仓库重新提交一次都行\n4. **审稿人能复现**：保留 requirements/setup 脚本，README 写清楚怎么跑\n\n**完成后向我汇报**：repo URL、文件数、commit 数。如果有疑问（敏感词不确定等）先问我再动。"
             }
           ],
           "metadata": {
@@ -3354,7 +3354,7 @@
             "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /tmp/anon_repo && \\\ngit remote add origin https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git && \\\ngit push -u origin main 2>&1",
+              "command": "cd /tmp/anon_repo && \\\ngit remote add origin https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git && \\\ngit push -u origin main 2>&1",
               "description": "Push to anonymous GitHub repo"
             }
           },

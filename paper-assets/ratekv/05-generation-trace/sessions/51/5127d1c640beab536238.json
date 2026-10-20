@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_csv_fix_and_hires_check_20260514T040119_result.json",
     "occurrence": 1,
-    "bytes": 823,
-    "sha256": "59dce3aad8d9b822c46635e7a46204713d5290bb6ef5390687fdcb24c792d1d1"
+    "bytes": 822,
+    "sha256": "5cd2fa361c3b159e689f11c750d59614691f0ab4d16c6200736a5b98735d43b4"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,14 @@
+{
+  "exp_id": "mistral_hires_bf16_2bitonly_v2",
+  "project": "ratekv",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:11:12.157Z",
+    "updated_at": "2026-05-14T21:11:12.157Z"
+  },
+  "timestamp": "2026-05-14T21:11:12.342466+00:00",
+  "trigger": "update_registry"
+}

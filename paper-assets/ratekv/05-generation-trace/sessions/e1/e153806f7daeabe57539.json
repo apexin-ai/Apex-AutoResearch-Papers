@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_qwen_hires_constrained_mckp_20260514T194934_result.json",
     "occurrence": 1,
-    "bytes": 899,
-    "sha256": "8c2e883bc5ffc6afa1e89765b665a64660796fbc19bdbf25c1a3597f481f549f"
+    "bytes": 898,
+    "sha256": "ed2408207ba5bd1f188f6467359bd92e1f384d14a4f031b0bce86f77cd8a3296"
   },
   "statistics": {
     "messages": 1,

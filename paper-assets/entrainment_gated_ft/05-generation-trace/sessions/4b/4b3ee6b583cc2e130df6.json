@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_r16-w5-watson-daniels_20260523T141204_result.json",
     "occurrence": 1,
-    "bytes": 1627,
-    "sha256": "4421c06dd8fc5d126b2c34408ce944e29a6d48354f6df3f66570d74d935d547f"
+    "bytes": 1626,
+    "sha256": "c6e48ee81a2c8f51698f7f721f25b30a1b3d873861d2ced168076847b5c29e63"
   },
   "statistics": {
     "messages": 1,

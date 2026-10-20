@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_experiments-tex-consistency_20260519T183051_result.json",
     "occurrence": 1,
-    "bytes": 914,
-    "sha256": "a38a3ca6e5d590284fd9aa058983997b1ca4a9a0fc91b8cd2fa6047a5be9ea34"
+    "bytes": 913,
+    "sha256": "46b24f1ced5ac2dd5564084d4a3ff0804f5d7803ecdb111156224d0aefc2d91e"
   },
   "statistics": {
     "messages": 1,

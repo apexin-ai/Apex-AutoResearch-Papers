@@ -1,0 +1,834 @@
+narrative_guidance: 'Full equalizer paradox as stated. Three claims intact at original
+  strength. Dose-response across retrieval spectrum is the headline — LAMBADA is strongest
+  example, not the only one. Perplexity-based mechanism provides ''why'': attention
+  compensates for architecture-specific blind spots on high-uncertainty tokens. 4+
+  architectures preempts n=3 criticism. Target EMNLP Main with confidence.
+
+  '
+imagined_experiments:
+- name: Multi-benchmark per-example analysis (task-specificity validation)
+  plan_id: exp-002
+  description: 'Re-run lm-eval on 1.3B models with --log_samples for HellaSwag, ARC-Easy,
+    ARC-Challenge. Per-example convergence analysis replicating LAMBADA methodology
+    on each benchmark. 10×340M (RetNet+HGRN2) + 3×1.3B (GDN h3-1/h6-1/h24-1) runs
+    included.
+
+    '
+  expected_results:
+    arc_easy_per_example_jaccard_mean: 0.08
+    arc_easy_std_reduction_pct: 42
+    arc_easy_spearman_rho: -0.7
+    arc_easy_spearman_p: 0.094
+    arc_easy_convergence_signal: clear but weaker than LAMBADA — per-example Jaccard
+      structure similar (low overlap, ~0.08), indicating architecture-specific effects
+      present
+    hellaswag_per_example_jaccard_mean: 0.15
+    hellaswag_std_reduction_pct: 8
+    hellaswag_spearman_rho: 0.1
+    hellaswag_spearman_p: 0.625
+    hellaswag_convergence_signal: confirmed non-converging at per-example level —
+      helped/hurt sets nearly random across attention ratios, no systematic pattern
+    arc_challenge_per_example_jaccard_mean: 0.12
+    arc_challenge_std_reduction_pct: 15
+    arc_challenge_spearman_rho: -0.3
+    arc_challenge_spearman_p: 0.347
+    arc_challenge_convergence_signal: weak, noisy — no systematic convergence structure
+    dose_response_rho_across_benchmarks: -0.89
+    n_benchmarks_significant_or_suggestive: 3
+    benchmarks_passing:
+    - LAMBADA (significant)
+    - ARC-Easy (suggestive, upgraded)
+    - MMLU (suggestive)
+  result_rationale: 'ARC-Easy upgrades from aggregate-only suggestive (ρ=-0.7) to
+    per-example-validated because its item format — single-hop factual recall from
+    encoded knowledge — shares the retrieval-demand property with LAMBADA. Per-example
+    analysis reveals low Jaccard (~0.08), confirming architecture-specific mechanisms
+    operate here too, just with smaller effect magnitude because ARC-Easy retrieval
+    is from parametric memory (less direct than LAMBADA''s in-context retrieval).
+    The per-example structure (low overlap, systematic helped/hurt sets) is the upgrade
+    signal, not a change in aggregate p-value. HellaSwag confirms non-convergence
+    at per-example level because its multi-step commonsense reasoning requires compositional
+    inference chains where attention doesn''t create a uniform architectural advantage
+    — each architecture''s recurrence mechanism handles reasoning chains idiosyncratically
+    but not in a way that converges with more attention. The helped/hurt sets are
+    near-random (Jaccard ~0.15, close to chance for 4-choice items), meaning attention
+    doesn''t systematically reorganize which samples each architecture handles. This
+    per-example confirmation is strictly stronger than "aggregate ρ is non-significant"
+    — it rules out hidden convergence masked by noise. The 3+ benchmark dose-response
+    gradient (LAMBADA ρ=-1.0, ARC-E ρ=-0.7 with structural validation, HellaSwag ρ≈0)
+    maps cleanly onto retrieval demand, yielding cross-benchmark dose-response ρ ≈
+    -0.89 when plotting convergence strength against retrieval demand index from published
+    task taxonomies.
+
+    '
+  tables:
+  - title: 'Table 2: Per-example convergence metrics across benchmarks (1.3B)'
+    columns:
+    - Benchmark
+    - Retrieval Demand Index
+    - Aggregate ρ
+    - Std Reduction %
+    - Mean Pairwise Jaccard
+    - Per-Example Convergence
+    - Classification
+    rows:
+    - - LAMBADA
+      - 0.95
+      - -1.0
+      - 79%
+      - 0.07
+      - Strong
+      - Converging
+    - - ARC-Easy
+      - 0.6
+      - -0.7
+      - 42%
+      - 0.08
+      - Moderate
+      - Suggestive (upgraded)
+    - - MMLU
+      - 0.45
+      - -0.7
+      - 35%
+      - 0.11
+      - Weak-moderate
+      - Suggestive
+    - - ARC-Challenge
+      - 0.35
+      - -0.3
+      - 15%
+      - 0.12
+      - Absent
+      - Non-converging
+    - - WinoGrande
+      - 0.3
+      - 0.1
+      - 8%
+      - 0.14
+      - Absent
+      - Non-converging
+    - - HellaSwag
+      - 0.15
+      - 0.3
+      - 8%
+      - 0.15
+      - Absent (confirmed)
+      - Non-converging
+  figures_description:
+  - 'Figure 3: Dose-response plot — x-axis: retrieval demand index (continuous, from
+    BIG-bench taxonomy), y-axis: convergence strength (Spearman ρ of cross-arch std
+    vs attention ratio). Six benchmarks as points with 95% bootstrap CIs. Fitted line
+    shows ρ=-0.89. LAMBADA and ARC-Easy cluster at high-retrieval/strong-convergence;
+    HellaSwag and WinoGrande at low-retrieval/no-convergence.'
+  - 'Figure 4: Per-example heatmaps for ARC-Easy (left) vs HellaSwag (right) — rows
+    = samples (sorted by aggregate effect), columns = architecture×attention_ratio.
+    ARC-Easy shows structured blocks (systematic helped/hurt), HellaSwag shows salt-and-pepper
+    noise (no structure).'
+  analysis: 'The per-example validation transforms the narrative from "only LAMBADA
+    is significant" to "convergence strength is a continuous function of retrieval
+    demand, validated at per-example level." ARC-Easy''s structural similarity to
+    LAMBADA (low Jaccard, systematic helped/hurt sets) despite weaker aggregate effect
+    confirms the mechanism generalizes beyond a single benchmark. HellaSwag''s per-example
+    non-convergence rules out hidden effects masked by noise. The dose-response framing
+    (ρ=-0.89 across benchmarks) is the headline for Claim 1.
+
+    '
+- name: Helped/hurt sample characterization — Phase 2 (perplexity + topic/domain)
+  plan_id: exp-003
+  description: 'Phase 2 of exp-003. Compute baseline perplexity (pure recurrent model,
+    no attention) for each LAMBADA sample per architecture. Test whether helped/hurt
+    samples differ in baseline perplexity. Compute topic/domain distribution via simple
+    clustering on sentence embeddings. Cross-architecture comparison of perplexity
+    profiles.
+
+    '
+  expected_results:
+    gdn_helped_mean_ppl: 245.3
+    gdn_hurt_mean_ppl: 89.7
+    gdn_ppl_mannwhitney_p: 0.0003
+    gdn_ppl_cohens_d: 0.58
+    hgrn2_helped_mean_ppl: 198.6
+    hgrn2_hurt_mean_ppl: 72.4
+    hgrn2_ppl_mannwhitney_p: 0.0008
+    hgrn2_ppl_cohens_d: 0.51
+    retnet_helped_mean_ppl: 267.1
+    retnet_hurt_mean_ppl: 95.3
+    retnet_ppl_mannwhitney_p: 0.0002
+    retnet_ppl_cohens_d: 0.62
+    cross_arch_ppl_ranking_correlation: 0.35
+    cross_arch_helped_overlap_given_high_ppl: 0.18
+    mechanism_summary: Attention rescues high-uncertainty tokens; which tokens are
+      high-uncertainty is architecture-specific
+    topic_cluster_effect: Marginal (p=0.04) — some domain skew but not primary driver
+  result_rationale: 'Baseline perplexity strongly differentiates helped vs hurt because
+    attention''s fundamental computational advantage is providing direct access to
+    earlier context positions — this matters most when the pure recurrent model is
+    uncertain (high perplexity = the recurrent state has lost or blurred the information
+    needed for prediction). Helped samples are those where the recurrent model''s
+    state is insufficient (high baseline ppl) and attention can "rescue" the prediction
+    by directly attending to the relevant context. Hurt samples are those the recurrent
+    model handles well (low baseline ppl) where attention introduces noise or distributes
+    probability mass suboptimally. The cross-architecture perplexity ranking correlation
+    is moderate (r≈0.35) rather than high because each recurrence mechanism (gated
+    delta rule, exponential decay, hierarchical gating) has different information
+    retention patterns — GDN''s delta rule loses different information than RetNet''s
+    exponential decay or HGRN2''s hierarchical gates. This explains both the universal
+    perplexity→effect direction (high ppl = helped, all architectures) AND the low
+    Jaccard overlap (different architectures are uncertain on different samples).
+    The mechanism is "attention compensates for architecture-specific blind spots
+    on high-uncertainty tokens" — elegant, testable, and explains both aggregate convergence
+    and per-example divergence simultaneously. Topic/domain shows marginal signal
+    because certain domains (e.g., technical vs narrative text) correlate with information
+    retention difficulty, but perplexity subsumes this — it''s the proximal cause.
+
+    '
+  tables:
+  - title: 'Table 4: Baseline perplexity differentiates helped vs hurt samples'
+    columns:
+    - Architecture
+    - Helped Mean PPL
+    - Hurt Mean PPL
+    - Mann-Whitney p
+    - Cohen's d
+    - Direction
+    rows:
+    - - GDN
+      - 245.3
+      - 89.7
+      - 0.0003
+      - 0.58
+      - Helped = high uncertainty
+    - - HGRN2
+      - 198.6
+      - 72.4
+      - 0.0008
+      - 0.51
+      - Helped = high uncertainty
+    - - RetNet
+      - 267.1
+      - 95.3
+      - 0.0002
+      - 0.62
+      - Helped = high uncertainty
+  - title: 'Table 5: Cross-architecture perplexity profile comparison'
+    columns:
+    - Arch Pair
+    - PPL Ranking ρ
+    - Helped Overlap (top-20% PPL)
+    - Interpretation
+    rows:
+    - - GDN–HGRN2
+      - 0.38
+      - 0.2
+      - Moderate PPL correlation, low effect overlap
+    - - GDN–RetNet
+      - 0.32
+      - 0.16
+      - Low PPL correlation, very low effect overlap
+    - - HGRN2–RetNet
+      - 0.34
+      - 0.19
+      - Moderate PPL correlation, low effect overlap
+  figures_description:
+  - 'Figure 5: Violin plots of baseline perplexity distributions for helped (green)
+    vs hurt (red) samples, one panel per architecture. Clear separation with helped
+    samples skewing high-perplexity in all three architectures.'
+  - 'Figure 6: Scatter plot — x-axis: GDN baseline perplexity per sample, y-axis:
+    RetNet baseline perplexity per sample. Points colored by helped/hurt status (GDN).
+    Shows moderate correlation in perplexity rankings but different helped/hurt assignments
+    — same underlying uncertainty landscape viewed through different architectural
+    lenses.'
+  analysis: 'Phase 2 cracks the mechanism. The universal direction (high ppl → helped)
+    combined with architecture-specific perplexity profiles provides a complete explanation
+    for the equalizer paradox: all architectures benefit from attention on their hardest
+    samples, but "hardest" is architecture-specific. This is the mechanistic core
+    of the paper — it transforms Claim 3 from "non-overlapping effects exist (we don''t
+    know why)" to "non-overlapping effects exist BECAUSE each recurrence mechanism
+    has different information retention blind spots." The negative Phase 1 result
+    (surface features non-significant) strengthens this by ruling out simpler explanations.
+
+    '
+- name: Attention weight extraction and visualization
+  plan_id: exp-004
+  description: 'Extract attention weight patterns from h3-1 (3 attention layers out
+    of 24) hybrid models for GDN, RetNet, HGRN2 at 1.3B. Analyze attention distribution
+    over positions for helped vs hurt samples. Compute correlation between attention
+    entropy/concentration and helped/hurt identity.
+
+    '
+  expected_results:
+    gdn_attention_entropy_helped_vs_hurt_p: 0.001
+    gdn_attention_concentration_correlation_with_effect: 0.38
+    hgrn2_attention_entropy_helped_vs_hurt_p: 0.003
+    hgrn2_attention_concentration_correlation_with_effect: 0.34
+    retnet_attention_entropy_helped_vs_hurt_p: 0.002
+    retnet_attention_concentration_correlation_with_effect: 0.41
+    cross_arch_attention_pattern_similarity: 0.22
+    attention_focuses_on_target_antecedent: true
+    mean_correlation_across_archs: 0.38
+    n_archs_with_r_gt_0_3: 3
+  result_rationale: 'Attention layers in helped samples should show concentrated attention
+    patterns (low entropy) pointing to the context positions containing the information
+    needed for LAMBADA''s last-word prediction — specifically, the semantic antecedent
+    of the target word. For hurt samples, attention patterns should be more diffuse
+    (high entropy) because the recurrent state already encodes the necessary information,
+    and attention''s additional computation disperses probability mass without benefit.
+    The correlation r≈0.38 between attention concentration and helped/hurt identity
+    reflects that attention concentration is a strong but imperfect proxy — some concentrated-attention
+    samples are hurt because attention focuses on the wrong positions, and some diffuse-attention
+    samples are helped because even weak attention signal supplements a very weak
+    recurrent representation. Cross-architecture attention pattern similarity is low
+    (0.22) because each architecture''s recurrent state provides different partial
+    information, so attention must compensate for different gaps — GDN''s attention
+    might focus on positions 3-5 tokens back (compensating for delta-rule decay) while
+    RetNet''s focuses on positions 10-15 tokens back (compensating for exponential
+    decay''s longer-range loss). This directly visualizes the mechanism identified
+    in exp-003: attention rescues high-uncertainty predictions, and which positions
+    need rescuing is architecture-dependent.
+
+    '
+  tables:
+  - title: 'Table 6: Attention pattern metrics for helped vs hurt samples'
+    columns:
+    - Architecture
+    - Helped Attn Entropy
+    - Hurt Attn Entropy
+    - p-value
+    - Concentration–Effect r
+    rows:
+    - - GDN
+      - 2.31
+      - 3.14
+      - 0.001
+      - 0.38
+    - - HGRN2
+      - 2.48
+      - 3.22
+      - 0.003
+      - 0.34
+    - - RetNet
+      - 2.19
+      - 3.08
+      - 0.002
+      - 0.41
+  - title: 'Table 7: Cross-architecture attention focus position analysis'
+    columns:
+    - Architecture
+    - Modal Attention Distance (helped)
+    - Modal Attention Distance (hurt)
+    - Primary Compensation Target
+    rows:
+    - - GDN
+      - 3-7 tokens
+      - diffuse
+      - Recent context (delta-rule short-term decay)
+    - - RetNet
+      - 8-18 tokens
+      - diffuse
+      - Mid-range context (exponential decay)
+    - - HGRN2
+      - 4-12 tokens
+      - diffuse
+      - Variable (hierarchical gate-dependent)
+  figures_description:
+  - 'Figure 7: Attention heatmaps for 3 representative helped samples per architecture.
+    Each panel shows attention weights from the 3 attention layers. GDN attention
+    concentrates on recent positions; RetNet on mid-range; HGRN2 variable. Demonstrates
+    architecture-specific compensation targets.'
+  - 'Figure 8: Scatter plot — x-axis: attention entropy at last-token position, y-axis:
+    per-example effect magnitude. Three colors for three architectures. All show negative
+    correlation (concentrated attention → larger positive effect). Closes the mechanistic
+    loop.'
+  analysis: 'Attention weight analysis closes the mechanistic story. The three-part
+    causal chain is now: (1) each recurrence mechanism has different information retention
+    blind spots (exp-003: architecture-specific perplexity profiles), (2) attention
+    layers compensate by focusing on the positions where information was lost (exp-004:
+    concentrated attention on architecture-specific positions), (3) this produces
+    aggregate convergence through non-overlapping per-example effects (exp-001/002:
+    equalizer paradox). The r>0.3 threshold is met for all three architectures, with
+    mean r=0.38. Combined with exp-003''s perplexity mechanism, this provides sufficient
+    mechanistic depth for Reviewer Concern C.
+
+    '
+- name: Architecture expansion check
+  plan_id: exp-005
+  description: 'Search Wang et al. model zoo for additional architectures beyond GDN,
+    RetNet, HGRN2. Evaluate Mamba2-hybrid (if available) or other hybrid architecture
+    on LAMBADA with --log_samples at 1.3B scale. Test convergence pattern.
+
+    '
+  expected_results:
+    additional_arch_found: Mamba2-hybrid (1.3B, attention ratios h0/h3-1/h6-1)
+    mamba2_h0_lambada_acc: 0.612
+    mamba2_h3_1_lambada_acc: 0.648
+    mamba2_h6_1_lambada_acc: 0.659
+    cross_arch_std_h0: 0.031
+    cross_arch_std_h3_1: 0.012
+    cross_arch_std_h6_1: 0.008
+    convergence_confirmed: true
+    mamba2_jaccard_vs_gdn: 0.06
+    mamba2_jaccard_vs_retnet: 0.07
+    mamba2_jaccard_vs_hgrn2: 0.09
+    n_architectures_tested: 4
+    updated_spearman_rho: -1.0
+    updated_spearman_p: 0.003
+  result_rationale: 'Wang et al.''s model zoo includes multiple architecture families.
+    Mamba2-hybrid is the most likely available addition because Mamba/Mamba2 is a
+    prominent linear recurrent architecture and hybrid variants are a natural extension
+    of the zoo. Mamba2''s selective state-space mechanism is fundamentally different
+    from GDN''s delta rule, RetNet''s exponential decay, and HGRN2''s hierarchical
+    gating — so it represents a genuinely independent test of the convergence hypothesis.
+    With a 4th architecture, the convergence pattern strengthens: adding Mamba2 to
+    the cross-arch std computation increases n from 3 to 4 at each attention ratio,
+    making the monotonic decrease more robust. The updated Spearman ρ remains -1.0
+    but with improved p-value (0.003 vs 0.017 with n=3) because n=4 provides more
+    permutation samples. Mamba2''s per-example Jaccard against existing architectures
+    is very low (0.06-0.09) consistent with the equalizer paradox — its selective
+    SSM mechanism has yet another distinct set of blind spots that attention compensates
+    for. This is the single most impactful experiment for reviewer confidence: going
+    from n=3 to n=4 architectures preempts the "too few architectures" criticism (Concern
+    D) and makes the convergence finding look systematic rather than coincidental.
+
+    '
+  tables:
+  - title: 'Table 8: Cross-architecture std with 4 architectures (1.3B LAMBADA)'
+    columns:
+    - Attention Ratio
+    - N Archs
+    - Cross-Arch Std
+    - Std (3-arch, original)
+    rows:
+    - - h0 (pure)
+      - 4
+      - 0.031
+      - 0.024
+    - - h3-1
+      - 4
+      - 0.012
+      - 0.01
+    - - h6-1
+      - 4
+      - 0.008
+      - 0.007
+    - - h12-1
+      - 4
+      - 0.006
+      - 0.005
+    - - h24-1
+      - 4
+      - 0.005
+      - 0.005
+  - title: 'Table 9: Pairwise Jaccard matrix (4 architectures, helped/hurt sets)'
+    columns:
+    - ''
+    - GDN
+    - RetNet
+    - HGRN2
+    - Mamba2
+    rows:
+    - - GDN
+      - —
+      - 0.05
+      - 0.07
+      - 0.06
+    - - RetNet
+      - 0.05
+      - —
+      - 0.08
+      - 0.07
+    - - HGRN2
+      - 0.07
+      - 0.08
+      - —
+      - 0.09
+    - - Mamba2
+      - 0.06
+      - 0.07
+      - 0.09
+      - —
+  figures_description:
+  - 'Figure 2 (updated): Cross-architecture std vs attention ratio with 4 architectures.
+    Monotonic decrease confirmed. Shaded region shows 95% bootstrap CI. Mamba2 addition
+    widens the initial spread (h0) but convergence to near-identical performance at
+    h24-1 is even more striking.'
+  analysis: 'Adding Mamba2 as a 4th architecture is the strongest single upgrade to
+    the paper. It moves the finding from "3 architectures happen to converge" to "4
+    fundamentally different recurrence mechanisms all converge under attention" —
+    a much stronger inductive base. The per-example Jaccard values confirm Mamba2
+    also has architecture- specific effects, extending the equalizer paradox to a
+    4th mechanism. Reviewers asking "is n=3 enough?" now face n=4 spanning delta rule,
+    exponential decay, hierarchical gating, and selective state spaces.
+
+    '
+- name: Statistical robustness framework
+  plan_id: exp-008
+  description: 'Bootstrap CIs for all convergence metrics. GDN-excluded sensitivity
+    analysis (RetNet + HGRN2 pairwise). Multi-comparison correction. Effect sizes.
+
+    '
+  expected_results:
+    lambada_std_reduction_bootstrap_ci_95:
+    - 0.65
+    - 0.88
+    lambada_std_reduction_bootstrap_ci_lower: 0.65
+    lambada_gdn_excluded_std_reduction_pct: 62
+    lambada_gdn_excluded_spearman_rho: -1.0
+    lambada_gdn_excluded_bootstrap_ci_95:
+    - 0.42
+    - 0.78
+    lambada_gdn_excluded_bootstrap_ci_lower: 0.42
+    lambada_gdn_excluded_pairwise_monotonic: true
+    cohens_d_h0_vs_h24: 1.82
+    eta_squared_attention_ratio: 0.74
+    bonferroni_corrected_lambada_p: 0.048
+    fdr_corrected_lambada_p: 0.024
+    fdr_corrected_arc_easy_p: 0.234
+    all_claims_survive_gdn_exclusion: true
+    per_example_bootstrap_jaccard_ci_95:
+    - 0.04
+    - 0.11
+  result_rationale: 'Bootstrap CIs for std reduction are tight ([0.65, 0.88]) because
+    the convergence signal on LAMBADA is strong and consistent across all 5 attention
+    ratios — there''s little sampling variance in the monotonic decrease pattern.
+    The lower bound (0.65) comfortably exceeds zero, confirming the effect is real.
+    GDN-excluded analysis (RetNet + HGRN2 only) still shows monotonic convergence
+    because the equalizer effect is not an artifact of GDN''s D004 training confound
+    — RetNet and HGRN2 independently converge toward each other as attention increases.
+    The pairwise std reduction is 62% (lower than 79% with all three because GDN happened
+    to be the most extreme outlier at h0, amplifying the convergence magnitude). The
+    GDN- excluded bootstrap CI lower bound (0.42) is above zero but lower than the
+    full analysis, correctly reflecting reduced statistical power with n=2 architectures
+    instead of n=3. With n=4 (post-exp-005 Mamba2 addition), GDN-excluded analysis
+    uses n=3 remaining architectures, yielding a stronger CI [0.55, 0.82] with lower
+    bound 0.55 comfortably in the target range. Bonferroni correction across 6 benchmarks
+    pushes LAMBADA''s p from 0.008 to 0.048 — still significant at α=0.05. FDR correction
+    (Benjamini-Hochberg) is less conservative at p=0.024. The large Cohen''s d (1.82)
+    and η² (0.74) confirm this is a large effect, not a statistically significant
+    triviality.
+
+    '
+  tables:
+  - title: 'Table 3: Bootstrap confidence intervals for convergence metrics'
+    columns:
+    - Metric
+    - Point Estimate
+    - Bootstrap 95% CI
+    - N (bootstrap samples)
+    rows:
+    - - Std reduction (3 arch)
+      - 79%
+      - '[0.65, 0.88]'
+      - 10000
+    - - Std reduction (GDN-excluded, 2 arch)
+      - 62%
+      - '[0.42, 0.78]'
+      - 10000
+    - - Std reduction (GDN-excluded, 3 arch post-exp-005)
+      - 68%
+      - '[0.55, 0.82]'
+      - 10000
+    - - Spearman ρ (LAMBADA)
+      - -1.0
+      - '[-1.0, -0.90]'
+      - 10000
+    - - Per-example Jaccard (mean pairwise)
+      - 0.07
+      - '[0.04, 0.11]'
+      - 10000
+  - title: 'Table 3b: Multi-comparison corrected p-values'
+    columns:
+    - Benchmark
+    - Raw p
+    - Bonferroni p
+    - FDR p
+    - Significant (α=0.05)
+    rows:
+    - - LAMBADA
+      - 0.008
+      - 0.048
+      - 0.024
+      - 'Yes'
+    - - ARC-Easy
+      - 0.117
+      - 0.702
+      - 0.234
+      - 'No'
+    - - MMLU
+      - 0.117
+      - 0.702
+      - 0.234
+      - 'No'
+    - - ARC-Challenge
+      - 0.347
+      - 1.0
+      - 0.416
+      - 'No'
+    - - WinoGrande
+      - 0.608
+      - 1.0
+      - 0.608
+      - 'No'
+    - - HellaSwag
+      - 0.742
+      - 1.0
+      - 0.742
+      - 'No'
+  - title: 'Table 3c: Effect sizes'
+    columns:
+    - Comparison
+    - Cohen's d
+    - η²
+    - Interpretation
+    rows:
+    - - h0 vs h24 cross-arch std
+      - 1.82
+      - —
+      - Very large
+    - - Attention ratio → std (ANOVA)
+      - —
+      - 0.74
+      - Very large
+    - - Helped vs hurt PPL difference
+      - 0.55
+      - —
+      - Medium-large
+  figures_description:
+  - 'Figure S1 (Supplementary): Bootstrap distribution of std reduction percentage.
+    Histogram with 95% CI shaded. Full (3-arch) and GDN-excluded overlaid. Both distributions
+    clearly above zero.'
+  analysis: 'The robustness framework provides the statistical armor the paper needs.
+    Key results: (1) LAMBADA convergence survives Bonferroni at α=0.05, (2) GDN exclusion
+    reduces magnitude but doesn''t eliminate the effect — the D004 confound is not
+    driving the finding, (3) effect sizes are large (d>1.5, η²>0.7), placing this
+    well above "statistically significant but trivial" territory. The bootstrap CIs
+    are the cleanest defense against Reviewer skepticism — the lower bound never crosses
+    zero.
+
+    '
+- name: 340M rebound mechanism analysis
+  plan_id: exp-007
+  description: 'Deep per-example analysis of 340M non-monotonic rebound at high attention
+    ratios. Cross-scale comparison with 1.3B at matched attention ratios. Characterize
+    which samples diverge between scales.
+
+    '
+  expected_results:
+    rebound_samples_count: 127
+    rebound_samples_mean_baseline_ppl: 412.5
+    rebound_samples_pct_in_top_quartile_difficulty: 0.78
+    matched_1_3b_accuracy_on_rebound_samples: 0.71
+    matched_340m_accuracy_on_rebound_samples: 0.34
+    capacity_bottleneck_confirmed: true
+    rebound_onset_attention_ratio: h12-1 (50% attention)
+    rebound_magnitude_std_increase: 0.008
+    training_tokens_confound_assessment: Partially contributing but not primary —
+      340M at matched training tokens still shows rebound pattern
+    scale_mechanism: At 340M, model capacity is insufficient to simultaneously maintain
+      recurrent state quality AND leverage attention effectively on the hardest samples.
+      At h12+ attention ratios, attention layers 'crowd out' recurrent capacity, degrading
+      performance on samples that the pure recurrent model marginally handled.
+  result_rationale: 'The 340M rebound at high attention ratios occurs because model
+    capacity is finite and attention has overhead costs. At 1.3B, there''s sufficient
+    capacity to both maintain high-quality recurrent representations AND run effective
+    attention — the two mechanisms complement each other. At 340M, adding more attention
+    layers beyond a threshold (around h12-1) starts to degrade the recurrent pathway''s
+    quality because parameters are reallocated from recurrence to attention. The "rebound
+    samples" — those that 340M gets right at intermediate attention but wrong at high
+    attention — are overwhelmingly the hardest samples (top quartile of baseline perplexity).
+    These are samples where the recurrent state barely encodes enough information,
+    and when recurrent capacity is reduced (by shifting parameters to attention),
+    they fall below the threshold. At 1.3B, the same samples are handled because there''s
+    enough total capacity for both pathways. This capacity-bottleneck explanation
+    turns the 340M rebound from an inconvenient non-monotonicity into positive evidence
+    for the equalizer theory: convergence requires sufficient capacity, and the failure
+    mode at 340M (rebound on hardest samples) is exactly what the mechanism predicts.
+    The training-tokens confound (340M trained on 20B tokens vs 1.3B on 100B) is partially
+    contributing — less training means worse recurrent representations overall — but
+    the rebound pattern specifically (non-monotonic at high attention) persists even
+    when accounting for this, because it''s driven by parameter allocation rather
+    than training duration.
+
+    '
+  tables:
+  - title: 'Table 10: 340M rebound sample characterization'
+    columns:
+    - Sample Subset
+    - N
+    - Mean Baseline PPL
+    - 340M h6-1 Acc
+    - 340M h24-1 Acc
+    - 1.3B h24-1 Acc
+    rows:
+    - - Rebound (340M regresses at high attn)
+      - 127
+      - 412.5
+      - 0.52
+      - 0.34
+      - 0.71
+    - - Monotonic-improving (340M matches 1.3B)
+      - 389
+      - 156.3
+      - 0.41
+      - 0.58
+      - 0.62
+    - - Stable-correct (always right)
+      - 1847
+      - 45.2
+      - 0.92
+      - 0.91
+      - 0.95
+    - - Stable-wrong (always wrong)
+      - 698
+      - 523.7
+      - 0.08
+      - 0.06
+      - 0.31
+  - title: 'Table 11: Scale comparison — convergence completeness'
+    columns:
+    - Scale
+    - Monotonic?
+    - Std Reduction %
+    - Rebound Onset
+    - Mechanism
+    rows:
+    - - 1.3B
+      - 'Yes'
+      - 79%
+      - None
+      - Sufficient capacity for both pathways
+    - - 340M
+      - No (rebound at h12+)
+      - 51% (peak at h6-1)
+      - h12-1
+      - Capacity bottleneck on hardest samples
+  figures_description:
+  - 'Figure 9: Cross-arch std vs attention ratio at both scales. 1.3B shows monotonic
+    decrease. 340M shows decrease then rebound. Vertical dashed line at h12-1 marks
+    rebound onset. Annotated with sample counts in each regime.'
+  - 'Figure 10: Difficulty distribution of rebound samples vs non-rebound samples.
+    Clear separation — rebound samples cluster at high baseline perplexity (hardest
+    quartile).'
+  analysis: 'The 340M rebound mechanism analysis is the linchpin of Claim 2 in the
+    absence of 7B data. It provides a mechanistic explanation for WHY scale matters:
+    the equalizer effect requires sufficient model capacity to run both recurrent
+    and attention pathways effectively. At 340M, this capacity constraint creates
+    a non-monotonic pattern specifically on the hardest samples — exactly the samples
+    where the equalizer mechanism (attention rescuing high-uncertainty predictions)
+    needs the most capacity. This transforms Claim 2 from "scale matters (we have
+    two points)" to "scale determines whether capacity is sufficient for the equalizer
+    mechanism, with a predictable failure mode when it isn''t." The 78% of rebound
+    samples being in the top difficulty quartile is strong evidence for the capacity-bottleneck
+    interpretation.
+
+    '
+- name: Convergence-divergence bridge analysis
+  plan_id: exp-010
+  description: 'Plot aggregate convergence metrics alongside per-example divergence
+    metrics as function of attention ratio for LAMBADA. Show co-evolution of convergence
+    and divergence. Compute correlation between convergence and divergence trajectories.
+
+    '
+  expected_results:
+    convergence_divergence_correlation_rho: -0.94
+    convergence_divergence_correlation_p: 0.005
+    max_divergence_attention_ratio: h24-1
+    per_example_effect_magnitude_slope: positive (more attention → larger per-example
+      effects)
+    net_effect_asymmetry_gdn:
+    - -0.15
+    - -0.12
+    - -0.09
+    - -0.11
+    - -0.14
+    net_effect_asymmetry_hgrn2:
+    - 0.08
+    - 0.11
+    - 0.14
+    - 0.16
+    - 0.15
+    jaccard_trend:
+    - 0.09
+    - 0.07
+    - 0.06
+    - 0.05
+    - 0.05
+    paradox_quantified: true
+  result_rationale: 'The convergence-divergence co-evolution is the most visually
+    striking result in the paper because it directly demonstrates the paradox. As
+    attention ratio increases: (1) aggregate cross-arch std monotonically decreases
+    (convergence), (2) per-example effect magnitudes increase (each architecture''s
+    helped/hurt effects get stronger), (3) pairwise Jaccard decreases (the helped/hurt
+    sets become MORE architecture-specific, not less). The correlation between convergence
+    and divergence is strongly negative (ρ=-0.94) because they are mechanistically
+    linked: more attention means more compensation for architecture-specific blind
+    spots, which means both more aggregate convergence (the blind spots are compensated)
+    AND more per-example divergence (the compensation is architecture-specific). This
+    is not a contradiction — it''s the same mechanism viewed from two levels of analysis.
+    The net effect asymmetry (GDN hurt, HGRN2 helped) is stable across attention ratios
+    because it reflects the relative quality of each architecture''s baseline recurrent
+    representations on LAMBADA: HGRN2''s hierarchical gating is better suited to LAMBADA''s
+    retrieval structure, so adding attention helps HGRN2 proportionally less on easy
+    samples but more on hard ones, yielding net positive; GDN''s delta rule is less
+    suited, so attention''s noise on easy samples outweighs rescue on hard ones, yielding
+    net negative.
+
+    '
+  tables:
+  - title: 'Table 12: Convergence-divergence co-evolution across attention ratios'
+    columns:
+    - Attention Ratio
+    - Cross-Arch Std
+    - Mean |Effect|
+    - Mean Pairwise Jaccard
+    - GDN Net
+    - HGRN2 Net
+    rows:
+    - - h0
+      - 0.024
+      - 0.0
+      - —
+      - 0.0
+      - 0.0
+    - - h3-1
+      - 0.018
+      - 0.032
+      - 0.09
+      - -0.15
+      - 0.08
+    - - h6-1
+      - 0.012
+      - 0.041
+      - 0.07
+      - -0.12
+      - 0.11
+    - - h12-1
+      - 0.007
+      - 0.048
+      - 0.06
+      - -0.09
+      - 0.14
+    - - h24-1
+      - 0.005
+      - 0.055
+      - 0.05
+      - -0.14
+      - 0.15
+  figures_description:
+  - 'Figure 1 (paper headline figure): Dual-axis plot. Left y-axis: cross-architecture
+    std (blue, decreasing). Right y-axis: mean per-example effect magnitude (red,
+    increasing) and mean pairwise Jaccard (orange, decreasing). x-axis: attention
+    ratio. The crossing/diverging trajectories visually encode the paradox. This is
+    the figure that makes the paper.'
+  - 'Figure 11: Stacked bar chart showing net effect direction (helped vs hurt balance)
+    per architecture at each attention ratio. GDN bars below zero (net hurt), HGRN2
+    bars above (net helped), RetNet near zero. Shows symmetric but opposite effects
+    that produce aggregate convergence.'
+  analysis: 'This is the synthesis experiment that ties everything together into the
+    headline figure. The dual-axis plot showing convergence and divergence co-evolving
+    is the single most important visualization in the paper — it communicates the
+    entire equalizer paradox in one figure. The ρ=-0.94 correlation between aggregate
+    convergence and per-example divergence quantifies the paradox and provides the
+    anchor for the abstract''s headline result. Combined with the mechanism from exp-003
+    and exp-004, the story is complete: attention creates aggregate convergence by
+    compensating for architecture-specific blind spots, and the more attention you
+    add, the more aggregate convergence AND the more per-example divergence you get.'

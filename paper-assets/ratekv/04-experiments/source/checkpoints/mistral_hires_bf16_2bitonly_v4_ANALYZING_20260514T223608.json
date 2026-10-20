@@ -1,0 +1,73 @@
+{
+  "exp_id": "mistral_hires_bf16_2bitonly_v4",
+  "project": "ratekv",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:37:30.245Z",
+    "updated_at": "2026-05-14T22:36:08.165Z",
+    "hypothesis": "Mistral-7B-v0.3 hires bf16 2-bit only profiling (model re-downloaded from HF, fixed cuda device). 64seq x 2048tok, 224 heads x ~20s/head ≈ 1.2h.",
+    "spec": {
+      "command": "python run_mistral_hires_bf16_2bitonly.py --model /root/autodl-tmp/models/Mistral-7B-v0.3 --gpu cuda:0 --batch_size 2",
+      "server": "westd-37397",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "264489",
+      "log_path": "~/runs/ratekv/mistral_hires_bf16_2bitonly_v4.log",
+      "submitted_at": "2026-05-14T21:37:37.281Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/ratekv/calibration_hires.json",
+      "data_count": 64,
+      "model_name": "Mistral-7B-v0.3",
+      "seed": 0,
+      "model_path": "/root/autodl-tmp/models/Mistral-7B-v0.3",
+      "gpu_model": "RTX PRO 6000 96GB",
+      "checkpoint_path": "/root/ratekv/mistral_hires_bf16_2bitonly_results.json"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T22:33:55.762Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T22:34:00.058792+00:00"
+        }
+      ]
+    },
+    "log_path": "/root/runs/ratekv/mistral_hires_bf16_2bitonly_v4.log",
+    "checkpoint_path": "/root/ratekv/mistral_hires_bf16_2bitonly_profiles.json",
+    "metrics": {
+      "top5_concentration": 0.241,
+      "top5_n_heads": 12,
+      "baseline_ppl": 5.8702,
+      "top1_head": "L2H5",
+      "top1_delta_2bit": 0.3236,
+      "top2_head": "L12H1",
+      "top2_delta_2bit": 0.1435,
+      "top3_head": "L0H7",
+      "top3_delta_2bit": 0.1403,
+      "delta_2bit_mean": 0.020073,
+      "delta_2bit_std": 0.026278,
+      "delta_2bit_cv": 1.3091,
+      "layer0_mean_delta_2bit": 0.034073,
+      "other_layers_mean_delta_2bit": 0.019621,
+      "l0_dominance_ratio": 1.74,
+      "positive_delta_heads": 252,
+      "total_heads": 256,
+      "distribution_shape": "flat",
+      "total_hours": 0.94,
+      "profile_seconds": 3371.7
+    },
+    "notes": "Mistral-7B-v0.3 hires bf16 2-bit profiling completed (v4, after 3 prior failures from corrupted model files). 256 KV heads (32L x 8H, GQA 4:1). Top-5% concentration = 0.241 (12 heads) → FLAT distribution, confirming Mistral standard profiling result (0.22). L0 dominance only 1.74x (weak). Top-3 sensitive heads: L2H5 (0.324, single-head outlier ~6% of total delta), L12H1 (0.144), L0H7 (0.140). 252/256 heads have positive delta (high diffusion). CV=1.31. Baseline PPL=5.87. Profiling time 56.2min. Mistral confirmed as genuine flat/low-heterogeneity model — single L2H5 spike does not concentrate enough mass to qualify as 'spike' pattern. Complements 5-model hires concentration panorama: Llama 0.51, Yi-1.5 0.27, Gemma-2 (pending), Qwen2.5 0.61, Mistral 0.24.",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T22:36:08.274796+00:00",
+  "trigger": "update_registry"
+}

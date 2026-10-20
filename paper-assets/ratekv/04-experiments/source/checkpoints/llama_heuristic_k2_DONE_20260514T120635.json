@@ -1,0 +1,51 @@
+{
+  "exp_id": "llama_heuristic_k2",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:54:18.622Z",
+    "updated_at": "2026-05-14T12:06:35.360Z",
+    "spec": {
+      "hypothesis": "D041 Reviewer critical fix: Llama-3.1-8B heuristic baselines 用 per-model optimal k=2 (而非 k=16) 重跑。L0-random (5 seeds) + Naive Positional。k=2 匹配 MCKP 的 max_2bit=2，消除 compounding 不公平比较。",
+      "plan_id": "plan_015",
+      "claim": [
+        2
+      ],
+      "model_name": "Llama-3.1-8B",
+      "server": "westd-37397",
+      "data_path": "wikitext-103-raw-v1 train + wikitext-2-raw-v1 test",
+      "data_count": "hires 64x2048",
+      "seed": "0,1,2,3,4",
+      "parent": "l0_heuristic_corrected",
+      "command": "python /root/ratekv/run_llama_heuristic_k2.py",
+      "gpu": "cuda:0",
+      "log_path": "/root/ratekv/d041_llama_heuristic_k2.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "l0_random_seeds": [
+        8.5479,
+        8.7595,
+        8.624,
+        8.5721,
+        8.6192
+      ],
+      "l0_random_mean": 8.6245,
+      "l0_random_std": 0.0733,
+      "l0_random_median": 8.6192,
+      "naive_positional_ppl": 8.5781,
+      "mckp_ppl": 8.4498,
+      "uniform_ppl": 8.469,
+      "baseline_ppl": 8.0918,
+      "mckp_vs_l0_random_gap": 0.1747,
+      "mckp_vs_naive_gap": 0.1283
+    },
+    "checkpoint_path": "/root/ratekv/d041_llama_heuristic_k2_results.json",
+    "completed_at": "2026-05-14T12:06:35.360Z"
+  },
+  "timestamp": "2026-05-14T12:06:35.435957+00:00",
+  "trigger": "update_registry"
+}

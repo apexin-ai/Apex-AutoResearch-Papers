@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_gpu_status_and_mistral_launch_20260514T020231_result.json",
     "occurrence": 1,
-    "bytes": 1199,
-    "sha256": "ae7c305616acbd41c7dd1d26ffc2e94e93ef5b1a7558f6b2197eb2c5216c807f"
+    "bytes": 1198,
+    "sha256": "e37cb9cf36bc7b58be44193b41f9fc6254b212c3b1479022f15579418ff3b7c8"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99d (TeX Live 2025/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: acl_natbib.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: references.bib
+Warning--can't use both volume and number fields in watson2023predictive
+You've used 54 entries,
+            3764 wiz_defined-function locations,
+            954 strings with 16086 characters,
+and the built_in function-call counts, 42225 in all, are:
+= -- 3424
+> -- 2581
+< -- 24
++ -- 1076
+- -- 799
+* -- 2804
+:= -- 6290
+add.period$ -- 216
+call.type$ -- 54
+change.case$ -- 604
+chr.to.int$ -- 59
+cite$ -- 55
+duplicate$ -- 2586
+empty$ -- 2735
+format.name$ -- 961
+if$ -- 8954
+int.to.chr$ -- 3
+int.to.str$ -- 13
+missing$ -- 620
+newline$ -- 274
+num.names$ -- 216
+pop$ -- 1744
+preamble$ -- 1
+purify$ -- 478
+quote$ -- 0
+skip$ -- 2117
+stack$ -- 0
+substring$ -- 909
+swap$ -- 1283
+text.length$ -- 11
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 486
+warning$ -- 1
+while$ -- 184
+width$ -- 0
+write$ -- 663
+(There was 1 warning)

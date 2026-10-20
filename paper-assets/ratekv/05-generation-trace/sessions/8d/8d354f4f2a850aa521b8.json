@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_verify_yi_hires_t1t5_20260515T131537_result.json",
     "occurrence": 1,
-    "bytes": 1051,
-    "sha256": "4379237332c7d50141eecac5418cdc332e4b642f3a3a87369299ca5be44de94b"
+    "bytes": 1050,
+    "sha256": "01cb28460121cfd10292aeca204b10ee605511c37c869afba97851ab69398793"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_research_kv_cache_eviction_20260514T080659_result.json",
     "occurrence": 1,
-    "bytes": 649,
-    "sha256": "9ebded35ab850bdaf932142d8dec95fbc7b4ead3385fcbf4804c79ec29619521"
+    "bytes": 648,
+    "sha256": "e0c96cd34c32c9bde11076e0f63f8e9f767db21c39b0684c742b65791c692d53"
   },
   "statistics": {
     "messages": 1,

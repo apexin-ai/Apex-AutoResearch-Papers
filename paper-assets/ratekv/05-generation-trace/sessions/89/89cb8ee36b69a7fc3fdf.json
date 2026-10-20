@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_sync-llama-c4-script_20260514T224021_result.json",
     "occurrence": 1,
-    "bytes": 65,
-    "sha256": "8756abf08210eb23dc60396328db134f0cf8b7e4808cc2fdb3ec305fa4a3481a"
+    "bytes": 64,
+    "sha256": "d6f99ae8e07d4d1ab9f3ef60ed4f387d54bc17370b12d1fc0110e3fcd260a8fa"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,31 @@
+{
+  "exp_id": "codellama_constrained_mckp",
+  "project": "ratekv",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:11:59.301Z",
+    "updated_at": "2026-05-16T03:35:51.823Z",
+    "hypothesis": "CodeLlama-7B constrained MCKP: Spike shape (c=0.80, t1/t5=0.81). Expect no benefit from non-uniform — confirming profiling-based classification. Converts 9/9 claim from '8/8 confirmed + 1 predicted' to fully experimentally confirmed.",
+    "parent": "codellama_hires_profiling",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_codellama_constrained_mckp.py --gpu 0\"",
+      "server": "westd-37397",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "396720",
+      "log_path": "~/runs/ratekv/codellama_constrained_mckp.log",
+      "submitted_at": "2026-05-16T03:18:38.926Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "log_path": "~/runs/ratekv/codellama_constrained_mckp.log",
+    "checkpoint_path": "artifacts/codellama_constrained_mckp_results.json"
+  },
+  "timestamp": "2026-05-16T03:35:52.099223+00:00",
+  "trigger": "update_registry"
+}

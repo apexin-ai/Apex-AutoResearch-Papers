@@ -1,0 +1,2 @@
+2026-05-14 00:48:15,236 INFO    core.tools.feishu  create_chat: name='审稿-ratekv' → chat_id=oc_ec66209ede0ea4e3bda924778c210d8e
+2026-05-14 00:48:15,239 INFO    core.tools.dream  [dream] auto-created Group C for project=ratekv: oc_ec66209ede0ea4e3bda924778c210d8e

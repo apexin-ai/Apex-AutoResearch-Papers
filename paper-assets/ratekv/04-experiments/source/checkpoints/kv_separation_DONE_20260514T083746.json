@@ -1,0 +1,73 @@
+{
+  "exp_id": "kv_separation",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:01:37.522Z",
+    "updated_at": "2026-05-14T08:37:46.435Z",
+    "hypothesis": "K 和 V heads 作为独立 MCKP items 分别优化 bit-width，允许 K/V 不对称分配（如 K avg 2.85 bits, V avg 2.15 bits）。对比 joint K+V optimization vs 当前 uniform K=V 方案。RateQuant 支持不对称 K/V，MCKP 应能自然处理。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python -u run_kv_separation.py 2>&1 | tee kv_separation.log\"",
+      "server": "westd-37397",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "188298",
+      "log_path": "~/runs/ratekv/kv_separation.log",
+      "submitted_at": "2026-05-14T06:14:06.782Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 8619.7,
+      "gpu_hours": 2.39
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T08:35:41.293Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T08:35:42.705546+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "checkpoint_path": "/root/ratekv/kv_separation_results.json",
+    "log_path": "/root/ratekv/kv_separation.log",
+    "metrics": {
+      "baseline_ppl": 9.8106,
+      "uniform_4bit_ppl": 15.4454,
+      "joint_kv_ppl": 10.9131,
+      "kv_separated_ppl": 11.2162,
+      "delta_sep_vs_joint": 0.303,
+      "delta_sep_vs_uniform": -4.2292,
+      "sep_memory_ratio": 0.2489,
+      "joint_memory_ratio": 0.25,
+      "asymmetric_heads": 21,
+      "total_heads": 112,
+      "k_bit_dist": {
+        "2": 16,
+        "4": 91,
+        "8": 4,
+        "16": 1
+      },
+      "v_bit_dist": {
+        "4": 112
+      },
+      "joint_bit_dist": {
+        "2": 8,
+        "4": 100,
+        "8": 4
+      },
+      "total_time_min": 141.1
+    },
+    "completed_at": "2026-05-14T08:37:46.435Z"
+  },
+  "timestamp": "2026-05-14T08:37:46.592264+00:00",
+  "trigger": "update_registry"
+}

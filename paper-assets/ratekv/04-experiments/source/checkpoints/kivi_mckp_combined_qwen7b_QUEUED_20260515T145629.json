@@ -1,0 +1,15 @@
+{
+  "exp_id": "kivi_mckp_combined_qwen7b",
+  "project": "ratekv",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:53:01.424Z",
+    "updated_at": "2026-05-15T14:56:28.947Z",
+    "hypothesis": "KIVI (intra-head) + MCKP (inter-head) should achieve lower PPL than either alone, proving orthogonal complementarity"
+  },
+  "timestamp": "2026-05-15T14:56:29.118116+00:00",
+  "trigger": "update_registry"
+}

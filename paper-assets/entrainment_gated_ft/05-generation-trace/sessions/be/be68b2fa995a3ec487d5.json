@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_exp_009_wang_differentiation_20260519T131120_result.json",
     "occurrence": 1,
-    "bytes": 1139,
-    "sha256": "25a38496a7b0525556bce764f70f6976c590234a0ad769c5c8fb87995da88362"
+    "bytes": 1138,
+    "sha256": "d040104676f07fdd9094e00abbaaf071fec1773c5a9188d60bcfb89c3fc986ba"
   },
   "statistics": {
     "messages": 1,

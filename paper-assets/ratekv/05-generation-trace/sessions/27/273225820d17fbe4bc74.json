@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_figure_heatmap_hires_regen_20260514T215716_result.json",
     "occurrence": 1,
-    "bytes": 831,
-    "sha256": "db621775defec898f763437575e4232918e258d85e133ae92b2851744917181c"
+    "bytes": 830,
+    "sha256": "19dd0f5f51813e2766392a326484359cc3220484f35b7227e9b65b8a599251f9"
   },
   "statistics": {
     "messages": 1,

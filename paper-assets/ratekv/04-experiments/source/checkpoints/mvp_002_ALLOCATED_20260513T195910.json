@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp_002",
+  "project": "ratekv",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T19:58:52.295Z",
+    "updated_at": "2026-05-13T19:59:10.465Z",
+    "hypothesis": "Retry of mvp_001: per-KV-head eviction/quantization crossover on Qwen2.5-7B, joint MCKP 优于 quant-only ≥0.5 PPL"
+  },
+  "timestamp": "2026-05-13T19:59:10.473926+00:00",
+  "trigger": "update_registry"
+}

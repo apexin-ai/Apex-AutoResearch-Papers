@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_boolq-confidence-margin_20260520T144742_result.json",
     "occurrence": 1,
-    "bytes": 1323,
-    "sha256": "4d5de6ee27d930deff0fc92f60ea8a15dcc44bf0a5a0cc434a79a55af0cd2376"
+    "bytes": 1322,
+    "sha256": "1b29270785cf5271eff59a866b9adab3f1c9de456990622871fb84ce8f3c32ed"
   },
   "statistics": {
     "messages": 1,

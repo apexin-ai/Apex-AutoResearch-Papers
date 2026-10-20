@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_l0_only_heuristic_20260514T061550_result.json",
     "occurrence": 1,
-    "bytes": 696,
-    "sha256": "9fb077954084f1c55fcf2894aa795395bf2b2507fbfc53dc2820812816a43d93"
+    "bytes": 695,
+    "sha256": "040fef81376213dfe8154b41610a519acfc4f7354849f738c6378fd4ea53f8d1"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_eval_arc-easy-recovery_20260520T092339_result.json",
     "occurrence": 1,
-    "bytes": 996,
-    "sha256": "904abfc9d1c2cf027a7c080f18ccc72b79d2f4f96250cacdc51787fe64cfab6c"
+    "bytes": 995,
+    "sha256": "7e9fbba04f39aab879933ade233df936b85292a0e46baeb8e1c7a160bf759737"
   },
   "statistics": {
     "messages": 1,

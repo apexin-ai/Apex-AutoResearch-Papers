@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_full-benchmark-run_20260518T113450_result.json",
     "occurrence": 1,
-    "bytes": 88,
-    "sha256": "d701f60ed90a19670a6de544cb7dacf579feaeff6ce309273d47dd92bf0b8b74"
+    "bytes": 87,
+    "sha256": "5acd723e2133a240db24e4789c6a30c4d973d40c74fc11d15f63e15ff0028c21"
   },
   "statistics": {
     "messages": 1,

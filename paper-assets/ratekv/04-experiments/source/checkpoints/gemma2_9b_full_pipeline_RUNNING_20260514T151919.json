@@ -1,0 +1,55 @@
+{
+  "exp_id": "gemma2_9b_full_pipeline",
+  "project": "ratekv",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:45:38.863Z",
+    "updated_at": "2026-05-14T15:19:19.263Z",
+    "spec": {
+      "hypothesis": "Gemma-2-9B full pipeline: 架构更正后为 GQA 2:1 (8 KV heads/layer, 42 layers, 336 total heads)。如果低 GQA ratio 对应低异质性（类似 Llama/Mistral），则进一步支持 'GQA ratio 决定异质性' hypothesis。如果意外呈现高异质性，则异质性来源不仅是 GQA ratio。",
+      "plan_id": "gemma2_full",
+      "claim": [
+        1,
+        2,
+        3
+      ],
+      "model_name": "Gemma-2-9B",
+      "server": "westd-37397",
+      "data_count": 16,
+      "seed": 0,
+      "gpu": [
+        "cuda:0"
+      ],
+      "architecture": {
+        "num_layers": 42,
+        "num_kv_heads": 8,
+        "num_attention_heads": 16,
+        "gqa_ratio": "2:1",
+        "head_dim": 256,
+        "total_kv_heads": 336,
+        "attn_logit_softcapping": 50
+      }
+    },
+    "notes": "架构更正：Gemma-2-9B 实际 GQA 2:1（8 KV heads/layer, 42 layers, 336 total heads），不是预期的 8:1。head_dim=256, attn_logit_softcapping=50.0。脚本已提交，等待模型下载（~36GB, 3-4h），下载完成后 pipeline 自动启动。",
+    "metrics": {
+      "baseline_ppl": 711.38,
+      "mckp_ppl": 514.62,
+      "uniform4bit_ppl": 579.91,
+      "mckp_improvement": 65.29,
+      "best_k": 16,
+      "best_k_ppl": 377.87,
+      "top5_concentration": 1.6361,
+      "l0_dominance": 5.34,
+      "total_seconds": 1254.8,
+      "verdict": "PASS"
+    },
+    "log_path": "/root/runs/ratekv/gemma2_9b_full_pipeline.log",
+    "checkpoint_path": "/root/ratekv/gemma2_full_results.json",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T15:19:19.347924+00:00",
+  "trigger": "update_registry"
+}

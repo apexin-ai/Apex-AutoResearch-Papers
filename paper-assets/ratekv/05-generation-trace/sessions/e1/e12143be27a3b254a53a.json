@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_llama_hires_pipeline_20260514T021824_result.json",
     "occurrence": 1,
-    "bytes": 1297,
-    "sha256": "863361a517c02e230593b8ac8d506a7e6cd24084d880fbfa9a7f8a0a288add9d"
+    "bytes": 1296,
+    "sha256": "08d78d0ff3f655a980fd67f1e05afb026c6658f579e3ca5207da7711d52aa0e9"
   },
   "statistics": {
     "messages": 1,

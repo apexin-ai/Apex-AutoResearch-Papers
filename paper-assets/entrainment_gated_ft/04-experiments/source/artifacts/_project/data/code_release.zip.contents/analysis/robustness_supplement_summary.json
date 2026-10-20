@@ -1,0 +1,183 @@
+{
+  "analysis": "exp-008 supplementary statistical analyses",
+  "date": "2026-05-19",
+  "part_a_bootstrap_ci": {
+    "method": "architecture_resampling_percentile",
+    "rho_obs": -0.9999999999999999,
+    "ci_lower": -0.9999999999999999,
+    "ci_upper": -0.7,
+    "crosses_zero": false,
+    "ci_lower_with_degen": -0.9999999999999999,
+    "ci_upper_with_degen": 0.0,
+    "n_bootstrap": 10000,
+    "n_valid": 8875,
+    "n_degenerate": 1125,
+    "seed": 42,
+    "p_rho_negative_all": 0.8875,
+    "p_rho_negative_valid": 1.0,
+    "p_rho_positive": 0.0,
+    "boot_mean_valid": -0.8482591549295775,
+    "jackknife": {
+      "GDN": -0.7,
+      "HGRN2": -0.7,
+      "RetNet": -0.9999999999999999
+    },
+    "bca_z0": -3.8615367566299645,
+    "bca_a": 0.0680413816668167,
+    "bca_note": "BCa degenerate at rho=-1.0 boundary (z0=-3.86); percentile CI used instead"
+  },
+  "part_b_gdn_excluded": {
+    "LAMBADA": {
+      "rho_full": -0.9999999999999999,
+      "p_full": 0.016666666666666666,
+      "rho_gdn_excluded": -0.7,
+      "p_gdn_excluded": 0.23333333333333334,
+      "mono_full": true,
+      "mono_gdn_excluded": false,
+      "direction": "WEAKER",
+      "stds_full": [
+        0.02404712697705703,
+        0.016238171620323174,
+        0.013595712311665278,
+        0.006055084765553574,
+        0.004942545182713789
+      ],
+      "stds_gdn_excluded": [
+        0.016204152920628795,
+        0.007471375897535437,
+        0.0020376479720551344,
+        0.005821851348728924,
+        0.0053366970696681615
+      ]
+    },
+    "HellaSwag": {
+      "rho_full": 0.3,
+      "p_full": 0.6833333333333333,
+      "rho_gdn_excluded": 0.49999999999999994,
+      "p_gdn_excluded": 0.45,
+      "mono_full": false,
+      "mono_gdn_excluded": false,
+      "direction": "STRONGER",
+      "stds_full": [
+        0.011684919531365781,
+        0.008615212910147578,
+        0.00946859081425128,
+        0.009201244143823003,
+        0.01183082679011367
+      ],
+      "stds_gdn_excluded": [
+        0.009211312487552303,
+        0.01020713005377416,
+        0.008564031069508038,
+        0.009808803027285373,
+        0.012447719577773353
+      ]
+    },
+    "WinoGrande": {
+      "rho_full": 0.09999999999999999,
+      "p_full": 0.95,
+      "rho_gdn_excluded": 0.3,
+      "p_gdn_excluded": 0.6833333333333333,
+      "mono_full": false,
+      "mono_gdn_excluded": false,
+      "direction": "STRONGER",
+      "stds_full": [
+        0.0067074710781278545,
+        0.021181496667056418,
+        0.009652163287473934,
+        0.007597752737802509,
+        0.007839865522626334
+      ],
+      "stds_gdn_excluded": [
+        0.005919494869771114,
+        0.01617995264404104,
+        0.008287292817679592,
+        0.006314127861089203,
+        0.008681925808997626
+      ]
+    },
+    "ARC-Easy": {
+      "rho_full": -0.7,
+      "p_full": 0.23333333333333334,
+      "rho_gdn_excluded": -0.8999999999999998,
+      "p_gdn_excluded": 0.08333333333333333,
+      "mono_full": false,
+      "mono_gdn_excluded": false,
+      "direction": "STRONGER",
+      "stds_full": [
+        0.010014909257898295,
+        0.019452560645897617,
+        0.016761201811228865,
+        0.004576180255415263,
+        0.001301012695776599
+      ],
+      "stds_gdn_excluded": [
+        0.008838383838383868,
+        0.01704545454545453,
+        0.006944444444444475,
+        0.0050505050505050275,
+        0.00021043771043771642
+      ]
+    },
+    "ARC-Challenge": {
+      "rho_full": 0.6,
+      "p_full": 0.35,
+      "rho_gdn_excluded": -0.19999999999999998,
+      "p_gdn_excluded": 0.7833333333333333,
+      "mono_full": false,
+      "mono_gdn_excluded": false,
+      "direction": "WEAKER",
+      "stds_full": [
+        0.009577621297202906,
+        0.007705470525679222,
+        0.007673912152009124,
+        0.012565825958119756,
+        0.013242829040754071
+      ],
+      "stds_gdn_excluded": [
+        0.011518771331057998,
+        0.00938566552901024,
+        0.004266211604095599,
+        0.015358361774744034,
+        0.007679180887372017
+      ]
+    },
+    "MMLU": {
+      "rho_full": -0.7,
+      "p_full": 0.23333333333333334,
+      "rho_gdn_excluded": 0.6,
+      "p_gdn_excluded": 0.35,
+      "mono_full": false,
+      "mono_gdn_excluded": false,
+      "direction": "WEAKER",
+      "stds_full": [
+        0.009200975872321134,
+        0.005255878164789419,
+        0.008432748146591302,
+        0.007086829501826489,
+        0.004045832460787097
+      ],
+      "stds_gdn_excluded": [
+        0.0032402791625124466,
+        0.0007477567298105614,
+        0.0022788776527560006,
+        0.005732801595214346,
+        0.004628970232160662
+      ]
+    }
+  },
+  "attention_layers": [
+    0,
+    1,
+    2,
+    4,
+    8
+  ],
+  "attention_ratios": [
+    0.0,
+    0.04,
+    0.07692307692307693,
+    0.14285714285714285,
+    0.25
+  ]
+}

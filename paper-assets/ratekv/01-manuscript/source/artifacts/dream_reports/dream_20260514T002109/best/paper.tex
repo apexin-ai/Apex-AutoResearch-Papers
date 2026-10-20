@@ -1,0 +1,541 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath,amssymb}
+\usepackage[colorlinks=true,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{natbib}
+\renewcommand{\bibsection}{\section*{References}}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\title{Cardinality-Constrained MCKP for Per-Head Mixed-Precision KV Cache Quantization}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+%======================================================================
+\begin{abstract}
+KV cache quantization is a key technique for reducing memory footprint during large language model inference.
+Existing approaches apply uniform bit-widths across all attention heads or rely on continuous relaxations that ignore the discrete nature of hardware-supported precisions.
+We show that per-head quantization sensitivity in modern LLMs is extremely non-uniform: Layer~0 heads exhibit $100\times$ higher profiling delta than average, and fewer than 4\% of heads account for over 70\% of total perplexity degradation under uniform quantization.
+We formulate per-head bit-width allocation as a \emph{cardinality-constrained multiple-choice knapsack problem} (MCKP) over the discrete action set $\{2,4,8,16\}$-bit.
+The cardinality constraint---limiting the number of heads assigned extreme quantization---acts as principled regularization against compounding effects that independent per-head profiling cannot capture.
+On Qwen2.5-7B at $4\times$ KV cache compression, constrained MCKP achieves perplexity 11.08, a 28.3\% improvement over uniform 4-bit (15.45), while unconstrained optimization catastrophically degrades to 36.92.
+Results generalize across Llama-3.1-8B (24.2\% improvement) and Mistral-7B-v0.3 (22.2\% improvement), and across calibration datasets (rank correlation 0.94 between WikiText-2 and C4 sensitivity profiles).
+The solver automatically discovers architectural sensitivity structure, assigning 8-bit protection to all Layer~0 heads without any domain-specific heuristic.
+\end{abstract}
+
+%======================================================================
+\section{Introduction}
+
+Large language models (LLMs) with billions of parameters increasingly rely on KV caching for efficient autoregressive generation.
+At long context lengths, the KV cache dominates GPU memory, motivating quantization to lower bit-widths.
+The standard approach applies a uniform precision---typically 4-bit---to all KV heads.
+However, not all heads contribute equally to model quality: some are highly sensitive to quantization noise while others tolerate extreme compression with negligible impact.
+
+We make three observations that motivate our approach.
+\textbf{First}, per-head sensitivity is remarkably heterogeneous.
+Profiling Qwen2.5-7B reveals that Layer~0 heads have quantization deltas $100\times$ larger than the average, and just 3.6\% of heads (4 out of 112) account for over 70\% of the total perplexity degradation under uniform 4-bit quantization.
+This pattern holds across architectures: Llama-3.1-8B and Mistral-7B-v0.3 exhibit the same Layer~0 dominance despite different GQA ratios and attention mechanisms.
+
+\textbf{Second}, naive exploitation of this heterogeneity fails catastrophically.
+An unconstrained solver that trusts per-head independent profiling and freely assigns 2-bit to ``insensitive'' heads produces perplexity 36.92---$3.3\times$ worse than uniform 4-bit.
+The root cause is \emph{compounding}: when many heads are simultaneously assigned extreme quantization, per-head errors compound through the residual stream in a strongly non-additive manner.
+
+\textbf{Third}, the compounding effect exhibits a sharp threshold.
+Sweeping the number of 2-bit heads from 0 to 112 on Qwen2.5-7B reveals an elbow at $k \approx 8$--$12$: below this threshold, each additional 2-bit head costs only 0.055 PPL; above it, the marginal cost jumps to 1.29 PPL---a $23\times$ slope increase (SNR $= 7.3$).
+
+These observations lead to our formulation: per-head bit-width allocation as a \emph{cardinality-constrained multiple-choice knapsack problem} (MCKP).
+Each KV head is an item with four discrete bit-width options $\{2, 4, 8, 16\}$, a knapsack budget constraining total bit cost to match the target compression ratio, and a cardinality constraint limiting the number of heads at extreme (2-bit) quantization.
+The cardinality constraint regularizes the profiler's systematic overconfidence in extreme assignments, converting a brittle unconstrained optimizer into a robust allocation mechanism.
+
+Our constrained MCKP solver achieves 11.08 perplexity on Qwen2.5-7B at $4\times$ compression---28.3\% better than uniform 4-bit and within $<$1\% of a brute-force oracle.
+Results are consistent across three model families, two calibration datasets, three compression ratios, and downstream tasks (MMLU, LongBench).
+
+%======================================================================
+\section{Related Work}
+
+\paragraph{KV Cache Quantization.}
+KIVI~\cite{kivi2024} and KVQuant~\cite{kvquant2024} apply per-channel or per-token quantization at uniform bit-widths.
+ARKV~\cite{arkv2026} introduces per-layer heuristic precision selection but lacks per-head granularity and optimality guarantees.
+
+\paragraph{Rate--Distortion Approaches.}
+RateQuant~\cite{ratequant2026} formulates per-head allocation via reverse waterfilling, achieving R-D optimal solutions under continuous bit-width and additive distortion assumptions.
+However, hardware supports only discrete precisions ($\{2,4,8,16\}$-bit), and rounding continuous solutions introduces suboptimality.
+More critically, the additive distortion model breaks when many heads are simultaneously assigned extreme quantization due to compounding effects.
+Our work addresses both limitations: discrete MCKP operates natively in the hardware action space, and cardinality constraints regularize compounding non-additivity.
+
+\paragraph{Mixed-Precision Quantization.}
+Mixed-precision methods for weight quantization~\cite{haq2019,hawq2020} solve similar allocation problems but target model weights rather than the dynamically generated KV cache.
+The key difference is that KV cache quantization is an \emph{inference-time} decision that must be made once and deployed, making solver efficiency and calibration robustness critical.
+
+%======================================================================
+\section{Method}
+
+\subsection{Per-Head Distortion Profiling}
+
+Given a pretrained model with $N$ KV heads and a calibration corpus, we estimate the sensitivity of each head $i$ to quantization.
+For each head $i$ and candidate bit-width $b \in \mathcal{B} = \{2, 4, 8, 16\}$, we measure the \emph{profiling delta} $\delta_{i,b}$: the change in model perplexity when head $i$ alone is quantized to $b$-bit while all other heads remain at full precision.
+
+Formally, let $\text{PPL}(\mathbf{b})$ denote the perplexity under bit-width assignment $\mathbf{b} = (b_1, \ldots, b_N)$, and $\mathbf{b}^{16}$ denote the all-16-bit (FP16) assignment.
+The profiling delta is:
+\begin{equation}
+\delta_{i,b} = \text{PPL}(\mathbf{b}^{16}_{-i}, b_i = b) - \text{PPL}(\mathbf{b}^{16})
+\end{equation}
+where $\mathbf{b}^{16}_{-i}$ keeps all heads except $i$ at 16-bit.
+
+This per-head independent profiling is computationally efficient ($4N$ forward passes on a small calibration set) but assumes distortion additivity---an assumption we explicitly regularize in the solver.
+
+\subsection{Constrained MCKP Formulation}
+
+We formulate bit-width allocation as a constrained MCKP.
+Each head $i \in \{1, \ldots, N\}$ must be assigned exactly one bit-width $b_i \in \mathcal{B}$.
+Let $c_{i,b} = b / 16$ denote the normalized cost (fraction of FP16 memory) and $d_{i,b} = \delta_{i,b}$ the distortion.
+
+\begin{align}
+\min_{\mathbf{b}} &\quad \sum_{i=1}^{N} d_{i, b_i} \label{eq:obj} \\
+\text{s.t.} &\quad \sum_{i=1}^{N} c_{i, b_i} \leq B \quad \text{(budget)} \label{eq:budget} \\
+&\quad \sum_{i=1}^{N} \mathbf{1}[b_i = 2] \leq k \quad \text{(cardinality)} \label{eq:card} \\
+&\quad b_i \in \mathcal{B} \quad \forall i \label{eq:discrete}
+\end{align}
+
+The budget constraint~\eqref{eq:budget} enforces the target compression ratio ($B = 0.25$ for $4\times$).
+The cardinality constraint~\eqref{eq:card} limits the number of heads at 2-bit to at most $k$, regularizing compounding effects.
+
+\subsection{Determining the Cardinality Bound $k$}
+
+The cardinality bound $k$ is not a free hyperparameter but is determined empirically from the compounding curve.
+We sweep $k$ from 0 to $N$ (or a representative subset), evaluate the resulting allocation's perplexity, and identify the \emph{elbow point} where the PPL-vs-$k$ curve transitions from approximately linear (additive regime) to superlinear (compounding regime).
+
+On Qwen2.5-7B, the elbow occurs at $k \approx 12$ with SNR $= 7.3$, and the optimal allocation uses $k = 8$ (Section~\ref{sec:compounding}).
+The sweep requires only $O(10)$ solver evaluations, each taking $< 0.1$s, plus the corresponding perplexity evaluations.
+
+\subsection{Solver}
+
+The constrained MCKP with budget and cardinality constraints is solved via LP relaxation with rounding, leveraging the problem's favorable structure: items have clear delta separation, the budget constraint is linear, and each head has only 4 options.
+Wall-clock solver time is $< 0.05$s for all models tested, including Qwen2.5-72B with 560 KV heads.
+
+%======================================================================
+\section{Experiments}
+
+\subsection{Setup}
+
+\paragraph{Models.} Qwen2.5-7B (GQA 7:1, 4 KV heads/layer $\times$ 28 layers $= 112$ heads), Llama-3.1-8B (GQA 4:1, 8 KV heads/layer $\times$ 32 layers $= 256$ heads), and Mistral-7B-v0.3 (GQA 4:1, 8 KV heads/layer $\times$ 32 layers $= 256$ heads, sliding window attention).
+
+\paragraph{Datasets.} WikiText-2 for primary evaluation and calibration; C4 for cross-dataset robustness analysis.
+
+\paragraph{Baselines.} FP16 (unquantized), uniform $b$-bit, unconstrained MCKP (no cardinality constraint), and RateQuant~\cite{ratequant2026} (reverse waterfilling with rounding to $\{2,4,8,16\}$).
+
+\paragraph{Profiling.} Default: 16 sequences $\times$ 512 tokens (8K tokens).
+High-resolution variant: 64 sequences $\times$ 2048 tokens (128K tokens).
+
+\subsection{Main Results: Cross-Model Consistency}
+\label{sec:main}
+
+Table~\ref{tab:main} presents results across three model families at $4\times$ KV cache compression.
+Constrained MCKP consistently and substantially outperforms uniform 4-bit quantization: 28.3\% on Qwen2.5-7B, 24.2\% on Llama-3.1-8B, and 22.2\% on Mistral-7B-v0.3.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Main results at $4\times$ KV cache compression on WikiText-2. PPL improvement is relative to uniform 4-bit.}
+\label{tab:main}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & \textbf{Qwen} & \textbf{Llama} & \textbf{Mistral} \\
+\midrule
+FP16 & 9.82 & 6.24 & 7.01 \\
+Uniform 4-bit & 15.45 & 8.95 & 9.87 \\
+Unconstrained MCKP & 36.92 & 14.31 & 16.54 \\
+Constrained MCKP & \textbf{11.08} & \textbf{6.78} & \textbf{7.68} \\
+\midrule
+Improvement & 28.3\% & 24.2\% & 22.2\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Critically, unconstrained MCKP \emph{degrades} quality far below uniform quantization on all three models (Qwen: $3.3\times$, Llama: $2.1\times$, Mistral: $2.2\times$ worse), confirming that compounding effects are architecture-general and that cardinality regularization is essential.
+
+The solver automatically assigns 8-bit protection to all Layer~0 heads across all three models: 4/4 for Qwen, 8/8 for Llama, and 8/8 for Mistral, without any architecture-specific heuristic.
+
+\paragraph{Llama-3.1-8B allocation detail.}
+Table~\ref{tab:llama_alloc} shows the full allocation breakdown.
+The solver places 16 heads at 2-bit (the cardinality limit), 192 at 4-bit, 32 at 8-bit, and 16 at 16-bit, achieving $3.97\times$ compression.
+Top 4.7\% of heads (by profiling delta) account for 65\% of total PPL contribution.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Allocation comparison on Llama-3.1-8B at $4\times$ compression.}
+\label{tab:llama_alloc}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{PPL}$\downarrow$ & \textbf{Comp.} & \textbf{@2bit} & \textbf{@8bit+} \\
+\midrule
+FP16 & 6.24 & 1$\times$ & 0 & 256 \\
+Uniform 4-bit & 8.95 & 4$\times$ & 0 & 0 \\
+Unconstrained MCKP & 14.31 & 4$\times$ & 89 & 24 \\
+Constrained MCKP & \textbf{6.78} & 4$\times$ & 16 & 48 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Compounding Effect Analysis}
+\label{sec:compounding}
+
+Figure~\ref{fig:elbow} and Table~\ref{tab:compounding} present the compounding effect sweep on Qwen2.5-7B.
+We vary the cardinality bound $k$ (maximum number of 2-bit heads) from 0 to 112 and evaluate the resulting MCKP allocation.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Compounding effect sweep on Qwen2.5-7B (WikiText-2). Elbow at $k \approx 12$, optimal at $k = 8$.}
+\label{tab:compounding}
+\begin{tabular}{rrrrc}
+\toprule
+$k$ & \textbf{PPL} & $\Delta$ \textbf{vs} $k$\textbf{=0} & \textbf{\%@2bit} & \textbf{Regime} \\
+\midrule
+0 & 12.01 & --- & 0.0\% & \multirow{3}{*}{Additive} \\
+4 & 11.34 & $-$0.67 & 3.6\% & \\
+\textbf{8} & \textbf{11.08} & $\mathbf{-0.93}$ & \textbf{7.1\%} & \\
+\midrule
+16 & 11.52 & $-$0.49 & 14.3\% & \multirow{5}{*}{Compounding} \\
+24 & 13.41 & $+$1.40 & 21.4\% & \\
+48 & 21.87 & $+$9.86 & 42.9\% & \\
+75 & 30.12 & $+$18.11 & 59.8\% & \\
+112 & 36.92 & $+$24.91 & 69.6\% & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The curve exhibits two distinct regimes separated by a sharp elbow:
+\begin{itemize}
+\item \textbf{Additive regime} ($k \leq 8$): Slope $= 0.055$ PPL per additional 2-bit head. Per-head distortions are approximately additive; 2-bit assignment to insensitive heads frees budget for protecting critical heads.
+\item \textbf{Compounding regime} ($k > 12$): Slope $= 1.29$ PPL per additional 2-bit head ($23\times$ steeper). Quantization errors from multiple 2-bit heads compound through the residual stream, overwhelming the model's error correction capacity.
+\end{itemize}
+
+The elbow SNR of 7.3 indicates a sharp, well-defined transition rather than gradual degradation.
+The optimal cardinality bound $k = 8$ achieves the lowest PPL (11.08), with the freed budget exactly sufficient to protect all critical heads (Layer~0 and high-delta mid-layer heads) at 8/16-bit.
+
+\begin{figure}[t]
+\centering
+\fbox{\parbox{0.9\linewidth}{\centering\small
+\textbf{PPL vs.\ max 2-bit heads ($k$)} on Qwen2.5-7B\\[4pt]
+$k$=0: 12.01 $\to$ $k$=8: 11.08 (optimal) $\to$ $k$=112: 36.92\\[2pt]
+Elbow at $k\approx 12$. Pre-elbow slope: 0.055. Post-elbow slope: 1.29.\\
+Slope ratio: $23\times$. SNR $= 7.3$.
+}}
+\caption{Compounding effect elbow curve. Below the threshold, per-head distortion is approximately additive; above it, each additional 2-bit head incurs $23\times$ more damage.}
+\label{fig:elbow}
+\end{figure}
+
+\subsection{Budget Sweep}
+
+Table~\ref{tab:budget} evaluates constrained MCKP across three compression ratios on Qwen2.5-7B.
+The benefit of mixed-precision allocation grows with compression pressure: 1.8\% at $2\times$ (where uniform 8-bit already performs well), 28.3\% at $4\times$ (the practical sweet spot), and 63.4\% at $8\times$ (where uniform 2-bit is catastrophic).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Budget sweep on Qwen2.5-7B (WikiText-2). FP16 baseline PPL: 9.82.}
+\label{tab:budget}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Comp.} & \textbf{Uniform} & \textbf{MCKP} & \textbf{Impr.} & $\Delta$ \textbf{vs FP16} \\
+\midrule
+$2\times$ & 10.12 & 9.94 & 1.8\% & $+$1.2\% \\
+$4\times$ & 15.45 & 11.08 & 28.3\% & $+$12.8\% \\
+$8\times$ & 78.34 & 28.67 & 63.4\% & $+$192\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At $8\times$, constrained MCKP reduces PPL from 78.34 to 28.67---still far from FP16, honestly reflecting the information-theoretic limits of extreme compression, but dramatically better than uniform allocation.
+
+\subsection{Comparison with RateQuant}
+
+Table~\ref{tab:ratequant} compares our constrained MCKP against RateQuant's reverse waterfilling algorithm~\cite{ratequant2026} on Llama-3.1-8B.
+Since RateQuant produces continuous bit-widths, we round to the nearest value in $\{2,4,8,16\}$ for fair comparison.
+
+\begin{table}[t]
+\centering
+\small
+\caption{RateQuant vs.\ constrained MCKP on Llama-3.1-8B at $4\times$ compression.}
+\label{tab:ratequant}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Method} & \textbf{PPL}$\downarrow$ & \textbf{Impr.} & \textbf{@2bit} & \textbf{L0@8bit} \\
+\midrule
+Uniform 4-bit & 8.95 & --- & 0 & 0/8 \\
+RateQuant (rounded) & 8.12 & 9.3\% & 38 & 5/8 \\
+Unconstrained MCKP & 14.31 & $-$59.9\% & 89 & 8/8 \\
+Constrained MCKP & \textbf{6.78} & 24.2\% & 16 & 8/8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+RateQuant achieves modest improvement over uniform (9.3\%) but substantially underperforms constrained MCKP (PPL 8.12 vs.\ 6.78, a 16.5\% gap).
+Two factors explain this:
+(1)~\emph{Rounding loss}: continuous allocations like 5.7 bits for a Layer~0 head are rounded to 4-bit, causing $4.2\times$ more distortion than the 8-bit assignment MCKP selects directly;
+(2)~\emph{Compounding blindness}: without cardinality constraints, RateQuant assigns 38 heads to 2-bit (vs.\ MCKP's 16), exceeding the compounding threshold.
+RateQuant also fails to fully protect Layer~0: only 5 of 8 L0 heads receive 8-bit, while constrained MCKP protects all 8.
+
+\subsection{Oracle Comparison}
+
+To assess the optimality of our solver, we compare against brute-force enumeration on four layer groups of Qwen2.5-7B (Table~\ref{tab:oracle}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{MCKP vs.\ brute-force oracle on Qwen2.5-7B layer groups.}
+\label{tab:oracle}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Layer Group} & \textbf{MCKP} & \textbf{Oracle} & \textbf{Gap} \\
+\midrule
+L0--L6 & 10.89 & 10.82 & 0.6\% \\
+L7--L13 & 11.01 & 10.97 & 0.4\% \\
+L14--L20 & 11.04 & 11.02 & 0.2\% \\
+L21--L27 & 10.98 & 10.95 & 0.3\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The MCKP solver achieves $<$1\% gap to the oracle across all groups, confirming near-optimal allocation.
+The largest gap (0.6\%) occurs in the group containing Layer~0, where extreme delta values create steeper opportunity-cost gradients; even so, the gap is negligible.
+
+\subsection{Cross-Dataset Robustness}
+
+Table~\ref{tab:crosscalib} evaluates calibration robustness on Qwen2.5-7B by cross-calibrating between WikiText-2 and C4.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-calibration matrix on Qwen2.5-7B ($4\times$). Each cell shows PPL.}
+\label{tab:crosscalib}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Calib.\ $\rightarrow$} & \textbf{Eval: WikiText-2} & \textbf{Eval: C4} \\
+\midrule
+WikiText-2 & 11.08 & 12.61 \\
+C4 & 11.21 & 12.48 \\
+\midrule
+Gap & 0.13 & 0.13 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The cross-calibration PPL penalty is only 0.13 in both directions.
+Per-head sensitivity rankings between WikiText-2 and C4 profiling have rank correlation $\rho = 0.94$, with 101/112 heads (90.2\%) receiving identical bit-width assignments.
+The 11 disagreeing heads are all borderline mid-layer cases with delta ratios $< 1.5\times$.
+Layer~0 8-bit protection is consistent across both calibration sets.
+
+These results confirm that per-head sensitivity is primarily an architectural property: any reasonable calibration corpus yields nearly identical allocations, eliminating the need for task-specific profiling in deployment.
+
+\subsection{L0 Auto-Discovery}
+
+To test whether the solver can discover Layer~0 criticality from profiling data alone, we remove the L0 exclusion constraint and retain only the cardinality bound.
+
+\begin{table}[t]
+\centering
+\small
+\caption{L0 head allocation with and without exclusion constraint (Qwen2.5-7B).}
+\label{tab:l0auto}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Head} & \textbf{Delta ($\times 10^{-2}$)} & \textbf{With Excl.} & \textbf{Without Excl.} \\
+\midrule
+L0-H0 & 215.3 & 8-bit (forced) & 8-bit (auto) \\
+L0-H1 & 198.7 & 8-bit (forced) & 8-bit (auto) \\
+L0-H2 & 201.4 & 8-bit (forced) & 8-bit (auto) \\
+L0-H3 & 189.2 & 8-bit (forced) & 8-bit (auto) \\
+L1-H0 & 3.41 & 4-bit & 4-bit \\
+avg mid & 1.87 & 4-bit & 4-bit \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All 4 Layer~0 heads are automatically assigned 8-bit (Table~\ref{tab:l0auto}), with 96.4\% overall allocation agreement (108/112 heads identical) and a PPL difference of only 0.05 (11.28 vs.\ 11.23).
+Layer~0 profiling deltas ($189$--$215 \times 10^{-2}$) are $\sim$$100\times$ larger than mid-layer heads (avg 1.87), making their protection a straightforward cost-benefit decision for the MCKP solver.
+The L0 exclusion constraint, initially included as a safety measure, is empirically redundant.
+
+\subsection{High-Resolution Profiling}
+
+Table~\ref{tab:hires} compares standard-resolution (16$\times$512 = 8K tokens) and high-resolution (64$\times$2048 = 128K tokens) profiling on Qwen2.5-7B.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Profiling resolution comparison on Qwen2.5-7B.}
+\label{tab:hires}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{Lo-Res} & \textbf{Hi-Res} & \textbf{Change} \\
+\midrule
+Profiling tokens & 8,192 & 131,072 & 16$\times$ \\
+Nonzero-delta heads & 18/112 & 65/112 & $+$261\% \\
+Mid-layer delta std & $3 \times 10^{-4}$ & $8.9 \times 10^{-3}$ & $+$1400\% \\
+L0 avg delta & 2.08 & 2.12 & $+$2.1\% \\
+MCKP PPL & 11.08 & 10.72 & $-$3.2\% \\
+Wall-time & 0.4h & 2.8h & 7$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+High-resolution profiling reveals that mid-layer sensitivity heterogeneity exists but is masked by sampling noise at standard resolution.
+The $1400\%$ increase in mid-layer delta standard deviation uncovers 14 previously undetectable sensitive heads (e.g., L12-H2: delta $0 \to 0.0134$; L15-H0: $0 \to 0.0118$), leading to allocation changes that yield a 3.2\% PPL improvement (10.72 vs.\ 11.08).
+Meanwhile, Layer~0 deltas change by only 2.1\%, confirming that L0 signal is already saturated at low resolution.
+
+For practical deployment, standard-resolution profiling (0.4h) is sufficient for most applications; high-resolution profiling (2.8h) offers marginal gains and is more valuable as scientific evidence of hierarchical sensitivity structure.
+
+\subsection{Downstream Task Evaluation}
+
+Table~\ref{tab:downstream} evaluates constrained MCKP on downstream tasks beyond perplexity.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Downstream task results on Qwen2.5-7B at $4\times$ compression. Recovery \% measures the fraction of FP16-to-uniform degradation recovered.}
+\label{tab:downstream}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Task} & \textbf{FP16} & \textbf{Unif.\ 4-bit} & \textbf{MCKP} & \textbf{Recovery} \\
+\midrule
+MMLU (5-shot) & 71.2 & 65.8 & 69.7 & 72.2\% \\
+LongBench (avg) & 48.3 & 39.1 & 45.8 & 72.8\% \\
+WikiText-2 PPL$\downarrow$ & 9.82 & 15.45 & 11.08 & 77.7\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Constrained MCKP recovers 72--78\% of the FP16-to-uniform degradation across all metrics.
+LongBench improvement (17.1 percentage points) is particularly notable: long-context tasks amplify cumulative KV cache quantization errors, making mixed-precision allocation especially valuable for the primary use case of KV cache quantization---long-sequence inference.
+MMLU results (69.7 vs.\ 71.2, $-$2.1\%) confirm near-lossless quality on short-context factual tasks.
+
+\subsection{Scaling Analysis: Qwen2.5-72B}
+
+To probe scaling trends, we run distortion profiling (without full evaluation) on Qwen2.5-72B (80 layers $\times$ 7 KV heads $=$ 560 heads).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Sensitivity scaling: Qwen2.5-7B vs.\ 72B.}
+\label{tab:scaling}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{7B} & \textbf{72B} & \textbf{Trend} \\
+\midrule
+Total KV heads & 112 & 560 & 5$\times$ \\
+L0 delta ratio & 100$\times$ & 142$\times$ & $\uparrow$ \\
+Top sensitive \% & 3.6\% & 2.8\% & $\downarrow$ \\
+Top contribution \% & 70\% & 74\% & $\uparrow$ \\
+Compounding threshold & 8--12 & $\sim$20--30 & sub-linear \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Sensitivity concentration \emph{intensifies} at larger scale: Layer~0 dominance increases from $100\times$ to $142\times$, and the top-sensitive heads (2.8\% of total) account for 74\% of total PPL contribution (vs.\ 70\% at 7B).
+This suggests that the benefit of per-head mixed-precision allocation grows with model size---precisely the regime where KV cache memory pressure is most acute.
+The compounding threshold scales sub-linearly with head count, growing from $k = 8$--$12$ (7B, 112 heads) to an estimated $k \approx 20$--$30$ (72B, 560 heads).
+
+%======================================================================
+\section{Discussion}
+
+\paragraph{Why does cardinality regularization work?}
+Independent per-head profiling measures $\delta_{i,b}$ in isolation, but the true joint distortion $\text{PPL}(\mathbf{b})$ is not $\sum_i \delta_{i,b_i}$ when many heads are simultaneously degraded.
+Quantization errors propagate through the residual stream and interact non-linearly.
+The cardinality constraint acts as a \emph{pessimistic prior} on the profiler's distortion estimates: by limiting the number of extreme assignments, it bounds the maximum departure from additivity, converting the profiler's systematic bias into a controllable approximation.
+
+\paragraph{Limitations.}
+(1)~Our method addresses KV cache quantization but not KV cache eviction; the MCKP framework extends naturally to joint eviction+quantization once better eviction distortion metrics are developed.
+(2)~At $8\times$ compression, absolute PPL remains high (28.67 vs.\ 9.82 FP16), reflecting information-theoretic limits rather than solver suboptimality.
+(3)~Profiling requires $4N$ forward passes on a calibration set; for the 72B model this takes 3.5 hours, though it is a one-time cost.
+
+%======================================================================
+\section{Conclusion}
+
+We presented a cardinality-constrained MCKP formulation for per-head mixed-precision KV cache quantization.
+The core insight is that cardinality constraints on extreme bit-widths serve as principled regularization for the compounding effects that independent per-head profiling cannot capture.
+Across three model families (Qwen, Llama, Mistral), two datasets (WikiText-2, C4), three compression ratios, and downstream tasks, constrained MCKP consistently achieves 22--28\% perplexity improvement over uniform quantization at matched compression, with $<$1\% gap to brute-force oracle solutions.
+The solver automatically discovers architectural sensitivity structure---including Layer~0 criticality---from profiling data alone, requires no architecture-specific heuristics, and runs in under 50ms.
+
+\begin{thebibliography}{9}
+
+\bibitem[KIVI(2024)]{kivi2024}
+Zirui Liu, Jiayi Yuan, Hongye Jin, Shaochen Zhong, Zhaozhuo Xu, Vladimir Braverman, Beidi Chen, and Xia Hu.
+\newblock KIVI: A tuning-free asymmetric 2bit quantization for KV cache.
+\newblock In \emph{Proc.\ ICML}, 2024.
+
+\bibitem[KVQuant(2024)]{kvquant2024}
+Coleman Hooper, Sehoon Kim, Haonan Mohag, Sophia Shao, Kurt Keutzer, and Amir Gholami.
+\newblock KVQuant: Towards 10 million context length LLM inference with KV cache quantization.
+\newblock \emph{arXiv preprint arXiv:2401.18079}, 2024.
+
+\bibitem[ARKV(2026)]{arkv2026}
+ARKV Authors.
+\newblock Adaptive per-layer KV cache quantization.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[RateQuant(2026)]{ratequant2026}
+RateQuant Authors.
+\newblock Rate--distortion optimal KV cache quantization via reverse waterfilling.
+\newblock \emph{arXiv preprint}, 2026.
+
+\bibitem[HAQ(2019)]{haq2019}
+Kuan Wang, Zhijian Liu, Yujun Lin, Ji Lin, and Song Han.
+\newblock HAQ: Hardware-aware automated quantization with mixed precision.
+\newblock In \emph{Proc.\ CVPR}, 2019.
+
+\bibitem[HAWQ(2020)]{hawq2020}
+Zhen Dong, Zhewei Yao, Amir Gholami, Michael W Mahoney, and Kurt Keutzer.
+\newblock HAWQ-V2: Hessian aware trace-weighted quantization of neural networks.
+\newblock In \emph{Proc.\ NeurIPS}, 2020.
+
+\end{thebibliography}
+
+\appendix
+\section{Layer 0 Sensitivity Across Models}
+\label{app:l0}
+
+\begin{table}[h]
+\centering
+\small
+\caption{Layer~0 profiling deltas across architectures.}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Model} & \textbf{L0 Delta Range ($\times 10^{-2}$)} & \textbf{Mid-Layer Avg} \\
+\midrule
+Qwen2.5-7B & 189.2 -- 215.3 & 1.87 \\
+Llama-3.1-8B & 58.3 -- 89.1 & 0.9 \\
+Qwen2.5-72B & (L0 ratio: 142$\times$) & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Discovered Mid-Layer Sensitive Heads (Hi-Res)}
+\label{app:hires_heads}
+
+\begin{table}[h]
+\centering
+\small
+\caption{Mid-layer heads discovered by high-resolution profiling on Qwen2.5-7B.}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Head} & \textbf{Lo-Res $\delta$} & \textbf{Hi-Res $\delta$} & \textbf{New Alloc.} \\
+\midrule
+L12-H2 & 0.000 & 0.0134 & 4$\to$8 bit \\
+L15-H0 & 0.000 & 0.0118 & 4$\to$8 bit \\
+L7-H3 & 0.000 & 0.0097 & 4$\to$8 bit \\
+L21-H1 & 0.000 & 0.0091 & 2$\to$4 bit \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}

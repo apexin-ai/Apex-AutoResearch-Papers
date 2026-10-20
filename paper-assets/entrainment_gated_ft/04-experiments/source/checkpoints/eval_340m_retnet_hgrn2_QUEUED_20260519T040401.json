@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_340m_retnet_hgrn2",
+  "project": "entrainment_gated_ft",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T04:03:58.762Z",
+    "updated_at": "2026-05-19T04:04:01.721Z",
+    "hypothesis": "340M RetNet and HGRN2 models will show the same architecture-dependent attention effect observed at 1.3B scale: HGRN2 benefits from attention while RetNet shows minimal benefit, with task-dependent equalizer effect on LAMBADA"
+  },
+  "timestamp": "2026-05-19T04:04:01.753395+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,30 @@
+{
+  "exp_id": "p0_2_cliff_7B",
+  "project": "ratekv",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:24:27.822Z",
+    "updated_at": "2026-05-13T22:26:42.406Z",
+    "hypothesis": "2-bit cliff effect 隔离测试 (Qwen2.5-7B, 112 KV heads): 验证 1.5B 上发现的 Layer 0 cliff 是否在 7B 上复现, 以及是否有额外敏感 head",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python cliff_test.py --model Qwen2.5-7B --bits 2,4,8 --max_eval_tokens 10000",
+      "server": "westd-37397",
+      "gpu": "cuda:1",
+      "pid": "141907",
+      "log_path": "~/runs/ratekv/p0_2_cliff_7B.log",
+      "submitted_at": "2026-05-13T22:24:51.697Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "calibration_data.json",
+      "data_count": "10000 eval tokens",
+      "model_name": "Qwen/Qwen2.5-7B",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-13T22:26:42.423814+00:00",
+  "trigger": "update_registry"
+}

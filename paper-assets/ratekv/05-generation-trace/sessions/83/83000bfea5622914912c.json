@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_cuda0_sequence_20260514T005232_result.json",
     "occurrence": 1,
-    "bytes": 605,
-    "sha256": "e0dbb096ecdc226c414809e36942d1cea05bbc88bebc3521f6938ba65c755587"
+    "bytes": 604,
+    "sha256": "0d0a82bac2a4650339fd257e21f4a6b163a3078228f0e29099b5bee483b5f2c0"
   },
   "statistics": {
     "messages": 1,

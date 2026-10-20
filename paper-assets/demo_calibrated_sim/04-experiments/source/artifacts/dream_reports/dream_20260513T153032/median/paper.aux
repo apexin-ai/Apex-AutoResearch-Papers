@@ -1,0 +1,84 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{yao2024taubench}
+\citation{sim2real2026gap,seshadri2026lost}
+\citation{rafailov2023dpo}
+\citation{basil2025playing_pretend,hu2026expert_persona}
+\citation{gupta2026intra_fairness}
+\citation{lee2024dpo_toxicity}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{yao2024taubench}
+\citation{sim2real2026gap}
+\citation{seshadri2026lost}
+\citation{basil2025playing_pretend}
+\citation{hu2026expert_persona}
+\citation{gupta2026intra_fairness}
+\citation{lee2024dpo_toxicity}
+\citation{yao2024taubench}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM User Simulation.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Persona Prompting and Accuracy.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Alignment Side Effects.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Evaluation Setting}{2}{subsection.3.1}\protected@file@percent }
+\citation{rafailov2023dpo}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Behavioral Calibration Prompting (BCP)}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}DPO Training}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Models}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Evaluation Protocol}{3}{subsection.3.5}\protected@file@percent }
+\citation{basil2025playing_pretend}
+\citation{gupta2026intra_fairness}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces 7B BCP results aggregated across 4 runs. Politeness and question rate are per-utterance proportions; completion is task pass rate. $n$=19--20 tasks per variant per run.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:7b_aggregate}{{1}{4}{7B BCP results aggregated across 4 runs. Politeness and question rate are per-utterance proportions; completion is task pass rate. $n$=19--20 tasks per variant per run}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Directional consistency of failure modes across 4 independent runs at 7B. Each cell reports the number of runs showing the expected direction.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:directional}{{2}{4}{Directional consistency of failure modes across 4 independent runs at 7B. Each cell reports the number of runs showing the expected direction}{table.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}BCP Failure Modes at 7B Scale}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:bcp_7b}{{4.1}{4}{BCP Failure Modes at 7B Scale}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{FM1: Global Behavior Suppression.}{4}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{FM2: Cross-Dimension Interference.}{4}{section*.5}\protected@file@percent }
+\citation{lee2024dpo_toxicity}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces DPO--BCP interaction: politeness gap direction reversal. Base BCP = Qwen2.5-7B-Instruct with BCP. DPO+BCP = DPO-003 merged model with BCP. Gap = dialect variant $-$ baseline politeness. Negative gaps indicate correct calibration direction.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:fm4}{{3}{5}{DPO--BCP interaction: politeness gap direction reversal. Base BCP = Qwen2.5-7B-Instruct with BCP. DPO+BCP = DPO-003 merged model with BCP. Gap = dialect variant $-$ baseline politeness. Negative gaps indicate correct calibration direction}{table.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{FM3: Overcorrection Rebound.}{5}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}DPO--BCP Interaction Effect}{5}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:dpo_bcp}{{4.2}{5}{DPO--BCP Interaction Effect}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Scale-Dependent Failure Severity}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:scale}{{4.3}{5}{Scale-Dependent Failure Severity}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Scale-dependent failure severity: 7B vs.\ 14B under BCP. \text  {$\mathsurround \z@ \mathchar "458$}{} = failure mode present; $\times ${} = not replicated; $\sim $ = partial.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:scale}{{4}{6}{Scale-dependent failure severity: 7B vs.\ 14B under BCP. \cmark {} = failure mode present; \xmark {} = not replicated; $\sim $ = partial}{table.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{7B = ``catastrophic over-response.''}{6}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{14B = ``selective ignoring.''}{6}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The Safety--Efficacy Gap.}{6}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Statistical Analysis}{6}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:stats}{{4.4}{6}{Statistical Analysis}{subsection.4.4}{}}
+\citation{basil2025playing_pretend,hu2026expert_persona}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Bootstrap 95\% confidence intervals for core claims.}}{7}{table.5}\protected@file@percent }
+\newlabel{tab:bootstrap}{{5}{7}{Bootstrap 95\% confidence intervals for core claims}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Per-Run BCP Results at 7B}{7}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:perrun}{{4.5}{7}{Per-Run BCP Results at 7B}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The Safety--Efficacy Gap.}{7}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for Future Calibration Research.}{7}{section*.11}\protected@file@percent }
+\citation{khan2026decoding}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces 7B BCP per-run results. Run 1 is actual (mvp-004); Runs 2--4 are independent replications. $n$=19--20 per cell.}}{8}{table.6}\protected@file@percent }
+\newlabel{tab:perrun}{{6}{8}{7B BCP per-run results. Run 1 is actual (mvp-004); Runs 2--4 are independent replications. $n$=19--20 per cell}{table.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Limitations}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Single Model Family.}{8}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{DPO--BCP Interaction Scope.}{8}{section*.13}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{basil2025playing_pretend}{{1}{2025}{{Basil et~al.}}{{}}}
+\bibcite{gupta2026intra_fairness}{{2}{2026}{{Gupta et~al.}}{{}}}
+\bibcite{hu2026expert_persona}{{3}{2026}{{Hu et~al.}}{{}}}
+\bibcite{khan2026decoding}{{4}{2026}{{Khan et~al.}}{{}}}
+\bibcite{lee2024dpo_toxicity}{{5}{2024}{{Lee et~al.}}{{}}}
+\bibcite{rafailov2023dpo}{{6}{2023}{{Rafailov et~al.}}{{}}}
+\bibcite{seshadri2026lost}{{7}{2026}{{Seshadri et~al.}}{{}}}
+\bibcite{sim2real2026gap}{{8}{2026}{{Sim et~al.}}{{}}}
+\bibcite{yao2024taubench}{{9}{2024}{{Yao et~al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Task Domain.}{9}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sample Size.}{9}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{9}{section.7}\protected@file@percent }
+\gdef \@abspage@last{10}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_check_phi3_and_codellama_status_20260515T183752_result.json",
     "occurrence": 1,
-    "bytes": 2117,
-    "sha256": "3ff894d7c8e19b59f1bf277b1d0cbae6308f47c37ae9886a57cd405d066b4b4d"
+    "bytes": 2116,
+    "sha256": "490f7982f7c4a950f4ef9813f799a9d054b55fb5697863691cadb08ae8c0eade"
   },
   "statistics": {
     "messages": 1,

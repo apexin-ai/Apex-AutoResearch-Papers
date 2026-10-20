@@ -1,0 +1,63 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{ratequant2026}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Method}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Per-Head Sensitivity Profiling}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Distribution Shape Taxonomy}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Top-5\% concentration.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{$t_1/t_5$ ratio.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Constrained Allocation}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Evaluation.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Budget.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments and Results}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Profiling: Qwen2.5-14B Confirms Spread Pattern}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:profiling14b}{{4.1}{3}{Profiling: Qwen2.5-14B Confirms Spread Pattern}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Profiling summary: Qwen2.5-7B vs.\ 14B. Both exhibit Spread pattern despite different scales.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:profiling14b}{{1}{3}{Profiling summary: Qwen2.5-7B vs.\ 14B. Both exhibit Spread pattern despite different scales}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Constrained Allocation: Qwen2.5-14B}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:alloc14b}{{4.2}{3}{Constrained Allocation: Qwen2.5-14B}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Unconstrained Catastrophe on Spread Models}{3}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:unconstrained}{{4.3}{3}{Unconstrained Catastrophe on Spread Models}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Qwen2.5-14B top-10 sensitive heads. Layer 0 dominates, with secondary clusters at L3 and L5.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:top10_14b}{{2}{4}{Qwen2.5-14B top-10 sensitive heads. Layer 0 dominates, with secondary clusters at L3 and L5}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Qwen2.5-14B allocation results (budget = 0.25).}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:alloc14b}{{3}{4}{Qwen2.5-14B allocation results (budget = 0.25)}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Compounding Sweep: $k$ Ablation}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:kablation}{{4.4}{4}{Compounding Sweep: $k$ Ablation}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Constrained MCKP: 7B vs.\ 14B. Both Spread models benefit; gain magnitude scales with L0 share.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:7bvs14b}{{4}{5}{Constrained MCKP: 7B vs.\ 14B. Both Spread models benefit; gain magnitude scales with L0 share}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Qwen2.5-14B: unconstrained vs.\ constrained allocation. Without the cardinality constraint, both solvers assign $>$50\% of heads to 2-bit, causing 2.83--3.00$\times $ baseline degradation.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:unconstrained14b}{{5}{5}{Qwen2.5-14B: unconstrained vs.\ constrained allocation. Without the cardinality constraint, both solvers assign $>$50\% of heads to 2-bit, causing 2.83--3.00$\times $ baseline degradation}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Super-Additive Compounding}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:superadditive}{{4.5}{5}{Super-Additive Compounding}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Gemma-2-9B: BOS Fix Validation}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:gemma2bos}{{4.6}{5}{Gemma-2-9B: BOS Fix Validation}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Three-tier unconstrained degradation taxonomy. Catastrophic failure is Spread-specific; the cardinality constraint is universally effective.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:threetier}{{6}{6}{Three-tier unconstrained degradation taxonomy. Catastrophic failure is Spread-specific; the cardinality constraint is universally effective}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Qwen2.5-14B $k$-PPL ablation. The U-shaped curve is a Spread-specific signature: small $k$ under-exploits heterogeneity, large $k$ triggers compounding.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:kablation14b}{{7}{6}{Qwen2.5-14B $k$-PPL ablation. The U-shaped curve is a Spread-specific signature: small $k$ under-exploits heterogeneity, large $k$ triggers compounding}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Downstream Task Evaluation}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:downstream}{{4.7}{6}{Downstream Task Evaluation}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.7.1}Qwen2.5-14B Downstream Results}{6}{subsubsection.4.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.7.2}Six-Model Downstream Summary}{6}{subsubsection.4.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Diagnostic Decision Matrix}{6}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:diagnostic}{{4.8}{6}{Diagnostic Decision Matrix}{subsection.4.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Super-additive compounding evidence (Qwen2.5-7B, L0 excluded). The excess $\Delta (k)$ grows super-linearly: consecutive ratios are all $>$1, confirming compounding is super-additive.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:superadditive}{{8}{7}{Super-additive compounding evidence (Qwen2.5-7B, L0 excluded). The excess $\Delta (k)$ grows super-linearly: consecutive ratios are all $>$1, confirming compounding is super-additive}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Gemma-2-9B evaluation before and after BOS fix. Absolute PPL values change, but the relative pattern holds: constrained $\approx $ uniform, and unconstrained shows moderate 1.47$\times $ degradation.}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:gemma2bos}{{9}{7}{Gemma-2-9B evaluation before and after BOS fix. Absolute PPL values change, but the relative pattern holds: constrained $\approx $ uniform, and unconstrained shows moderate 1.47$\times $ degradation}{table.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.6}\protected@file@percent }
+\bibcite{ratequant2026}{1}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Qwen2.5-14B downstream evaluation (0-shot). MCKP improves on all five tasks.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:downstream14b}{{10}{8}{Qwen2.5-14B downstream evaluation (0-shot). MCKP improves on all five tasks}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Six-model downstream summary. The diagnostic achieves 6/6 accuracy at both PPL and downstream levels. Spread models gain; non-Spread models show minor degradation or noise.}}{8}{table.11}\protected@file@percent }
+\newlabel{tab:downstream6model}{{11}{8}{Six-model downstream summary. The diagnostic achieves 6/6 accuracy at both PPL and downstream levels. Spread models gain; non-Spread models show minor degradation or noise}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Six-model diagnostic decision matrix. The joint condition achieves 6/6 accuracy. Yi-1.5 (highest concentration, 0.71) is correctly excluded by the $t_1/t_5$ condition---concentration alone would misclassify it.}}{9}{table.12}\protected@file@percent }
+\newlabel{tab:diagnostic}{{12}{9}{Six-model diagnostic decision matrix. The joint condition achieves 6/6 accuracy. Yi-1.5 (highest concentration, 0.71) is correctly excluded by the $\ttf $ condition---concentration alone would misclassify it}{table.12}{}}
+\gdef \@abspage@last{9}

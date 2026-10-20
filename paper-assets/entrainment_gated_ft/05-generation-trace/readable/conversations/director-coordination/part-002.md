@@ -1854,8 +1854,8 @@ AWS 凭证已在 BE 的 ~/.agent-ml-be-backup.yaml 文件里。命令模板（�
 
 如果从远程 GPU 服务器上跑，需要先把凭证 scp 过去 + export：
 
-  export AWS_ACCESS_KEY_ID=...
-  export AWS_SECRET_ACCESS_KEY=...
+  export AWS_ACCESS_KEY_ID=[REDACTED]
+  export AWS_SECRET_ACCESS_KEY=[REDACTED]
   export AWS_DEFAULT_REGION=ap-northeast-1
 
 完成后汇报：
@@ -2767,8 +2767,8 @@ from pathlib import Path
 
 cfg = yaml.safe_load(open('/home/ubuntu/.agent-ml-be-backup.yaml'))
 s3 = boto3.client('s3',
-    aws_access_key_id=cfg['aws_access_key_id'],
-    aws_secret_access_key=cfg['aws_secret_access_key'],
+    aws_access_key_id=[REDACTED]'aws_access_key_id'],
+    aws_secret_access_key=[REDACTED]'aws_secret_access_key'],
     region_name=cfg['s3_region'])
 
 src = sys.argv[1]
@@ -2844,7 +2844,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ````json
 {
-  "text": "S3 备份任务，一气呵成不要停。按以下 3 步执行：\n\n**Step 1：在 westb-48145 上创建 tarball**\n\n```bash\nTS=$(date -u +%Y%m%dT%H%M%SZ)\ncd /root && tar czf /tmp/entrainment_gated_ft-final-$TS.tar.gz entrainment_gated_ft_archive/\nls -lh /tmp/entrainment_gated_ft-final-*.tar.gz\n```\n\n**Step 2：SCP tarball 到 BE 本地**\n\n从 westb-48145 拉到 BE 的 /tmp/：\n```bash\nscp westb-48145:/tmp/entrainment_gated_ft-final-*.tar.gz /tmp/\nls -lh /tmp/entrainment_gated_ft-final-*.tar.gz\n```\n\n如果文件太大 SCP 太慢（>30min），可以改为在远程装 boto3 + pyyaml 后直接上传（把 BE 的凭证 scp 过去）。\n\n**Step 3：在 BE 上用 boto3 上传到 S3**\n\n先确认 boto3 和 pyyaml 可用：\n```bash\npython3 -c \"import boto3, yaml; print('OK')\"\n```\n\n然后写并执行上传脚本：\n```python\n# /tmp/upload_to_s3.py\nimport yaml, boto3, sys, time\nfrom pathlib import Path\n\ncfg = yaml.safe_load(open('/home/ubuntu/.agent-ml-be-backup.yaml'))\ns3 = boto3.client('s3',\n    aws_access_key_id=cfg['aws_access_key_id'],\n    aws_secret_access_key=cfg['aws_secret_access_key'],\n    region_name=cfg['s3_region'])\n\nsrc = sys.argv[1]\nsize = Path(src).stat().st_size\nkey = f'manager-backup/backends/entrainment_gated_ft/project-archive/' + Path(src).name\nprint(f'Uploading {src} ({size/1024/1024:.1f} MB) → s3://agent-ml-manager-backups-emnlp/{key}')\nt0 = time.time()\ns3.upload_file(src, 'agent-ml-manager-backups-emnlp', key)\nelapsed = time.time() - t0\nprint(f'✅ UPLOAD OK: {elapsed:.1f}s ({size/1024/1024/elapsed:.1f} MB/s)')\nprint(f'S3 URI: s3://agent-ml-manager-backups-emnlp/{key}')\nprint(f'File size: {size} bytes')\n```\n\n执行：\n```bash\npython3 /tmp/upload_to_s3.py /tmp/entrainment_gated_ft-final-*.tar.gz\n```\n\n**完成后汇报**：tarball 路径+大小、S3 URI、上传速率。\n\n注意：S3 凭证是 PUT-only，不能 list/delete。upload_file 没抛异常 = 成功。如果 SCP 超时就汇报，我们改方案。",
+  "text": "S3 备份任务，一气呵成不要停。按以下 3 步执行：\n\n**Step 1：在 westb-48145 上创建 tarball**\n\n```bash\nTS=$(date -u +%Y%m%dT%H%M%SZ)\ncd /root && tar czf /tmp/entrainment_gated_ft-final-$TS.tar.gz entrainment_gated_ft_archive/\nls -lh /tmp/entrainment_gated_ft-final-*.tar.gz\n```\n\n**Step 2：SCP tarball 到 BE 本地**\n\n从 westb-48145 拉到 BE 的 /tmp/：\n```bash\nscp westb-48145:/tmp/entrainment_gated_ft-final-*.tar.gz /tmp/\nls -lh /tmp/entrainment_gated_ft-final-*.tar.gz\n```\n\n如果文件太大 SCP 太慢（>30min），可以改为在远程装 boto3 + pyyaml 后直接上传（把 BE 的凭证 scp 过去）。\n\n**Step 3：在 BE 上用 boto3 上传到 S3**\n\n先确认 boto3 和 pyyaml 可用：\n```bash\npython3 -c \"import boto3, yaml; print('OK')\"\n```\n\n然后写并执行上传脚本：\n```python\n# /tmp/upload_to_s3.py\nimport yaml, boto3, sys, time\nfrom pathlib import Path\n\ncfg = yaml.safe_load(open('/home/ubuntu/.agent-ml-be-backup.yaml'))\ns3 = boto3.client('s3',\n    aws_access_key_id=[REDACTED]'aws_access_key_id'],\n    aws_secret_access_key=[REDACTED]'aws_secret_access_key'],\n    region_name=cfg['s3_region'])\n\nsrc = sys.argv[1]\nsize = Path(src).stat().st_size\nkey = f'manager-backup/backends/entrainment_gated_ft/project-archive/' + Path(src).name\nprint(f'Uploading {src} ({size/1024/1024:.1f} MB) → s3://agent-ml-manager-backups-emnlp/{key}')\nt0 = time.time()\ns3.upload_file(src, 'agent-ml-manager-backups-emnlp', key)\nelapsed = time.time() - t0\nprint(f'✅ UPLOAD OK: {elapsed:.1f}s ({size/1024/1024/elapsed:.1f} MB/s)')\nprint(f'S3 URI: s3://agent-ml-manager-backups-emnlp/{key}')\nprint(f'File size: {size} bytes')\n```\n\n执行：\n```bash\npython3 /tmp/upload_to_s3.py /tmp/entrainment_gated_ft-final-*.tar.gz\n```\n\n**完成后汇报**：tarball 路径+大小、S3 URI、上传速率。\n\n注意：S3 凭证是 PUT-only，不能 list/delete。upload_file 没抛异常 = 成功。如果 SCP 超时就汇报，我们改方案。",
   "project": "entrainment_gated_ft"
 }
 ````
@@ -2859,7 +2859,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
   "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
   "tool": "mcp__agent-ml-research__director_post_to_main_agent",
   "tool_args": {
-    "text": "S3 备份任务，一气呵成不要停。按以下 3 步执行：\n\n**Step 1：在 westb-48145 上创建 tarball**\n\n```bash\nTS=$(date -u +%Y%m%dT%H%M%SZ)\ncd /root && tar czf /tmp/entrainment_gated_ft-final-$TS.tar.gz entrainment_gated_ft_archive/\nls -lh /tmp/entrainment_gated_ft-final-*.tar.gz\n```\n\n**Step 2：SCP tarball 到 BE 本地**\n\n从 westb-48145 拉到 BE 的 /tmp/：\n```bash\nscp westb-48145:/tmp/entrainment_gated_ft-final-*.tar.gz /tmp/\nls -lh /tmp/entrainment_gated_ft-final-*.tar.gz\n```\n\n如果文件太大 SCP 太慢（>30min），可以改为在远程装 boto3 + pyyaml 后直接上传（把 BE 的凭证 scp 过去）。\n\n**Step 3：在 BE 上用 boto3 上传到 S3**\n\n先确认 boto3 和 pyyaml 可用：\n```bash\npython3 -c \"import boto3, yaml; print('OK')\"\n```\n\n然后写并执行上传脚本：\n```python\n# /tmp/upload_to_s3.py\nimport yaml, boto3, sys, time\nfrom pathlib import Path\n\ncfg = yaml.safe_load(open('/home/ubuntu/.agent-ml-be-backup.yaml'))\ns3 = boto3.client('s3',\n    aws_access_key_id=cfg['aws_access_key_id'],\n    aws_secret_access_key=cfg['aws_secret_access_key'],\n    region_name=cfg['s3_region'])\n\nsrc = sys.argv[1]\nsize = Path(src).stat().st_size\nkey = f'manager-backup/backends/entrainment_gated_ft/project-archive/' + Path(src).name\nprint(f'Uploading {src} ({size/1024/1024:.1f} MB) → s3://agent-ml-manager-backups-emnlp/{key}')\nt0 = time.time()\ns3.upload_file(src, 'agent-ml-manager-backups-emnlp', key)\nelapsed = time.time() - t0\nprint(f'✅ UPLOAD OK: {elapsed:.1f}s ({size/1024/1024/elapsed:.1f} MB/s)')\nprint(f'S3 URI: s3://agent-ml-manager-backups-emnlp/{key}')\nprint(f'File size: {size} bytes')\n```\n\n执行：\n```bash\npython3 /tmp/upload_to_s3.py /tmp/entrainment_gated_ft-final-*.tar.gz\n```\n\n**完成后汇报**：tarball 路径+大小、S3 URI、上传速率。\n\n注意：S3 凭证是 PUT-only，不能 list/delete。upload_file 没抛异常 = 成功。如果 SCP 超时就汇报，我们改方案。",
+    "text": "S3 备份任务，一气呵成不要停。按以下 3 步执行：\n\n**Step 1：在 westb-48145 上创建 tarball**\n\n```bash\nTS=$(date -u +%Y%m%dT%H%M%SZ)\ncd /root && tar czf /tmp/entrainment_gated_ft-final-$TS.tar.gz entrainment_gated_ft_archive/\nls -lh /tmp/entrainment_gated_ft-final-*.tar.gz\n```\n\n**Step 2：SCP tarball 到 BE 本地**\n\n从 westb-48145 拉到 BE 的 /tmp/：\n```bash\nscp westb-48145:/tmp/entrainment_gated_ft-final-*.tar.gz /tmp/\nls -lh /tmp/entrainment_gated_ft-final-*.tar.gz\n```\n\n如果文件太大 SCP 太慢（>30min），可以改为在远程装 boto3 + pyyaml 后直接上传（把 BE 的凭证 scp 过去）。\n\n**Step 3：在 BE 上用 boto3 上传到 S3**\n\n先确认 boto3 和 pyyaml 可用：\n```bash\npython3 -c \"import boto3, yaml; print('OK')\"\n```\n\n然后写并执行上传脚本：\n```python\n# /tmp/upload_to_s3.py\nimport yaml, boto3, sys, time\nfrom pathlib import Path\n\ncfg = yaml.safe_load(open('/home/ubuntu/.agent-ml-be-backup.yaml'))\ns3 = boto3.client('s3',\n    aws_access_key_id=[REDACTED]'aws_access_key_id'],\n    aws_secret_access_key=[REDACTED]'aws_secret_access_key'],\n    region_name=cfg['s3_region'])\n\nsrc = sys.argv[1]\nsize = Path(src).stat().st_size\nkey = f'manager-backup/backends/entrainment_gated_ft/project-archive/' + Path(src).name\nprint(f'Uploading {src} ({size/1024/1024:.1f} MB) → s3://agent-ml-manager-backups-emnlp/{key}')\nt0 = time.time()\ns3.upload_file(src, 'agent-ml-manager-backups-emnlp', key)\nelapsed = time.time() - t0\nprint(f'✅ UPLOAD OK: {elapsed:.1f}s ({size/1024/1024/elapsed:.1f} MB/s)')\nprint(f'S3 URI: s3://agent-ml-manager-backups-emnlp/{key}')\nprint(f'File size: {size} bytes')\n```\n\n执行：\n```bash\npython3 /tmp/upload_to_s3.py /tmp/entrainment_gated_ft-final-*.tar.gz\n```\n\n**完成后汇报**：tarball 路径+大小、S3 URI、上传速率。\n\n注意：S3 凭证是 PUT-only，不能 list/delete。upload_file 没抛异常 = 成功。如果 SCP 超时就汇报，我们改方案。",
     "project": "entrainment_gated_ft"
   }
 }
@@ -10965,7 +10965,7 @@ _source line 956 · 2026-05-26T06:39:59.046119+00:00_
 19	    "guidelines_path": "data/guidelines",
 20	    "output_dir": "docs/paper/figures",
 21	    "save_iterations": true,
-22	    "openrouter_api_key": null,
+22	    "openrouter_api_key": [REDACTED],
 23	    "skip_ssl_verification": false
 24	  }
 25	}
@@ -11045,7 +11045,7 @@ _source line 958 · 2026-05-26T06:39:59.595587+00:00_
     "guidelines_path": "data/guidelines",
     "output_dir": "docs/paper/figures",
     "save_iterations": true,
-    "openrouter_api_key": null,
+    "openrouter_api_key": [REDACTED],
     "skip_ssl_verification": false
   }
 }{
@@ -11069,7 +11069,7 @@ _source line 958 · 2026-05-26T06:39:59.595587+00:00_
     "guidelines_path": "data/guidelines",
     "output_dir": "docs/paper/figures",
     "save_iterations": true,
-    "openrouter_api_key": null,
+    "openrouter_api_key": [REDACTED],
     "skip_ssl_verification": false
   }
 }{
@@ -11632,15 +11632,15 @@ called Bash
 
 _source line 974 · 2026-05-26T06:40:09.734064+00:00_
 
-/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_171243_47aaca/metadata.json:    "openrouter_api_key": null,
-/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_171248_baaf2b/metadata.json:    "openrouter_api_key": null,
-/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_164012_8e997e/metadata.json:    "openrouter_api_key": null,
-/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_164015_0ca67b/metadata.json:    "openrouter_api_key": null,
-/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_163134_f79e64/metadata.json:    "openrouter_api_key": null,
-/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_164018_2afe50/metadata.json:    "openrouter_api_key": null,
-/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_163839_847a86/metadata.json:    "openrouter_api_key": null,
-/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_204214_42050a/metadata.json:    "openrouter_api_key": null,
-/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_191519_f2f075/metadata.json:    "openrouter_api_key": null,
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_171243_47aaca/metadata.json:    "openrouter_api_key": [REDACTED],
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_171248_baaf2b/metadata.json:    "openrouter_api_key": [REDACTED],
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_164012_8e997e/metadata.json:    "openrouter_api_key": [REDACTED],
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_164015_0ca67b/metadata.json:    "openrouter_api_key": [REDACTED],
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_163134_f79e64/metadata.json:    "openrouter_api_key": [REDACTED],
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_164018_2afe50/metadata.json:    "openrouter_api_key": [REDACTED],
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_163839_847a86/metadata.json:    "openrouter_api_key": [REDACTED],
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_204214_42050a/metadata.json:    "openrouter_api_key": [REDACTED],
+/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/figures/run_20260524_191519_f2f075/metadata.json:    "openrouter_api_key": [REDACTED],
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/paper/author_response_r7.tex:\item \textbf{Confidence-margin screening}: Use pure-model target-token probability to identify examples at risk of disruption (low confidence among correct predictions) or rescue (high confidence among incorrect predictions). This is actionable with a single forward pass.
 /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/docs/p
 …[truncated 8848 chars]
@@ -12628,7 +12628,7 @@ _source line 1002 · 2026-05-26T06:41:42.436335+00:00_
 19	    "guidelines_path": "data/guidelines",
 20	    "output_dir": "docs/paper/figures",
 21	    "save_iterations": true,
-22	    "openrouter_api_key": null,
+22	    "openrouter_api_key": [REDACTED],
 23	    "skip_ssl_verification": false
 24	  }
 25	}

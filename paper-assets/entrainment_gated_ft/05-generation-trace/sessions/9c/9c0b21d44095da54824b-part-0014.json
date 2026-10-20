@@ -591,7 +591,7 @@
             "session": "feishu:group:oc_40962fa57a434c0fa984bdc62b106f2e",
             "tool": "Bash",
             "tool_args": {
-              "command": "cd /tmp/anon_repo && git remote add origin https://caoxiaoyu001:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git && git push -f origin main 2>&1",
+              "command": "cd /tmp/anon_repo && git remote add origin https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git && git push -f origin main 2>&1",
               "description": "Push anonymous repo to GitHub",
               "timeout": "60000"
             }

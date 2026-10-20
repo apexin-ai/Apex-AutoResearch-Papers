@@ -1,0 +1,38 @@
+{
+  "exp_id": "internlm2_constrained_mckp_v2",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:10:21.809Z",
+    "updated_at": "2026-05-16T03:36:27.689Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_internlm2_constrained_mckp.py --gpu 0\"",
+      "server": "westd-37397",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "395573",
+      "log_path": "~/runs/ratekv/internlm2_constrained_mckp_v2.log",
+      "submitted_at": "2026-05-16T03:10:42.526Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "N/A",
+      "wall_clock_seconds": 1365.2,
+      "gpu_hours": 0.38
+    },
+    "metrics": {
+      "ppl_constrained_mckp": 9.901,
+      "ppl_uniform_4bit": 9.919,
+      "constrained_vs_uniform_delta": -0.018,
+      "shape_confirmed": "Flat"
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-16T03:33:27.756Z"
+  },
+  "timestamp": "2026-05-16T03:36:28.453988+00:00",
+  "trigger": "update_registry"
+}

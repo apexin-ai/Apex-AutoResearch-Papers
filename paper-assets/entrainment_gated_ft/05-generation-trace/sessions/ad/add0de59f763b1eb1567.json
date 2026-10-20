@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_1_3b_remaining_eval_20260518T151747_result.json",
     "occurrence": 1,
-    "bytes": 1284,
-    "sha256": "5a6d21c6473e0d5c53714b38a88e423df35d84c7352a5aa81833cc542cef1cbc"
+    "bytes": 1283,
+    "sha256": "88c58605fb41cd77be1204d24406e077832475e9b9b8b1359e0346459411c9bb"
   },
   "statistics": {
     "messages": 1,

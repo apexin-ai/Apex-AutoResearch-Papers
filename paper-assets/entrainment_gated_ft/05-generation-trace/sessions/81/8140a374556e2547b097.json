@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_wang_differentiation_stats_20260519T133238_result.json",
     "occurrence": 1,
-    "bytes": 916,
-    "sha256": "a24d6b4d681dc3d61a5588e4524d4377b45d9553c3f6837d53cb0f33c15216ed"
+    "bytes": 915,
+    "sha256": "9fb7e7a72c20bca2774724b662f0c4bda97d52ebea3a903def12936a4994ef2e"
   },
   "statistics": {
     "messages": 1,

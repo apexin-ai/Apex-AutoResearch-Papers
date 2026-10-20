@@ -1,0 +1,17 @@
+{
+  "exp_id": "greedy_constrained_ablation",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:10:16.539Z",
+    "updated_at": "2026-05-15T15:13:42.759Z",
+    "conclusion": "killed",
+    "notes": "KILLED: 已被 solver equivalence 实验覆盖（Table 2 greedy vs MCKP Δ=0.0000）。不再需要单独 ablation。",
+    "completed_at": "2026-05-15T15:13:42.759Z"
+  },
+  "timestamp": "2026-05-15T15:13:42.907197+00:00",
+  "trigger": "update_registry"
+}

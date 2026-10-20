@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_diagnose_llama_hires_bf16_2bitonly_20260514T214449_result.json",
     "occurrence": 1,
-    "bytes": 1160,
-    "sha256": "d305cc37f9d9a8599bde1bf4fdd13717b967eae9e8088f94230c2f274d59fa3c"
+    "bytes": 1159,
+    "sha256": "d6d3be0209fbe50c8ec466b3226581e4c92f3eecc8a8a0a9608211c3343434e1"
   },
   "statistics": {
     "messages": 1,

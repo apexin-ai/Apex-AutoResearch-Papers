@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_aria2c-batch-download_20260518T102414_result.json",
     "occurrence": 1,
-    "bytes": 506,
-    "sha256": "09c922deab9f974e4ec10b85a1d892aa191c0b82a31d08f10691e7056e9b68e4"
+    "bytes": 505,
+    "sha256": "1aec303c56f27a97d22fa515a7d04940b04726121e856a6f927ecc5bff95075d"
   },
   "statistics": {
     "messages": 1,

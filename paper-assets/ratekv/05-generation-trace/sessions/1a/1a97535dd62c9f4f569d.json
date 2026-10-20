@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_investigation_mistral_concentration_20260514T211724_result.json",
     "occurrence": 1,
-    "bytes": 1370,
-    "sha256": "7fb380ae0230e04bd5010dff3ce27b12d9528214b3ed4099af1b36c5e4f59a98"
+    "bytes": 1369,
+    "sha256": "fc356b6ac85ea1485d33d405631166f6f1209882847ed471b6e68c6ef2f6ed4f"
   },
   "statistics": {
     "messages": 1,

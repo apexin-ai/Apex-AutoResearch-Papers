@@ -1,0 +1,35 @@
+{
+  "exp_id": "qwen_compounding_sweep",
+  "project": "ratekv",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:40:25.450Z",
+    "updated_at": "2026-05-15T18:42:27.929Z",
+    "hypothesis": "Qwen compounding sweep with bf16 hires profiles (hires_profiles.json) to match Llama/Mistral protocol. Must use bf16 profiles for cross-model consistency in compounding figure.",
+    "parent": "w9_compounding_v2",
+    "spec": {
+      "command": "bash -c \"cd /root/ratekv && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python run_k_ablation.py --model /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B/ --profiles /root/ratekv/hires_profiles.json --k_values 0,2,4,8,16,32,64,128,256 --budget 0.25 --output /root/ratekv/artifacts/qwen_compounding_sweep_results.json --gpu cuda:0\"",
+      "server": "westd-37397",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "361571",
+      "log_path": "~/runs/ratekv/qwen_compounding_sweep.log",
+      "submitted_at": "2026-05-15T18:41:57.878Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "WikiText-2 (cached)",
+      "data_count": "stride eval",
+      "model_name": "Qwen2.5-7B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B/",
+      "eval_data": "WikiText-2 (cached)"
+    }
+  },
+  "timestamp": "2026-05-15T18:42:28.157527+00:00",
+  "trigger": "update_registry"
+}

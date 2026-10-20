@@ -1,0 +1,30 @@
+{
+  "exp_id": "llama-bcp-001",
+  "project": "demo_calibrated_sim",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T17:47:35.027Z",
+    "updated_at": "2026-05-12T18:26:38.352Z",
+    "spec": {
+      "command": "SERVED_MODEL_NAME=democalib-llama python run_mvp_experiment.py --model-path /root/autodl-tmp/models/Meta-Llama-3-8B-Instruct/LLM-Research/Meta-Llama-3-8B-Instruct --skip-vllm --vllm-port 8002 --gpu 2 --end-index 20 --variants aave_target,single_dim_politeness --output-dir /root/democalib/results/llama_bcp",
+      "server": "cqa1-21977",
+      "model_name": "Meta-Llama-3-8B-Instruct",
+      "data_path": "/root/democalib/prompts/bcp_variants.yaml",
+      "data_count": 60,
+      "seed": 0
+    },
+    "hypothesis": "BCP failure mechanisms (global suppression, cross-dim interference, overcorrection) generalize to Llama-3-8B-Instruct",
+    "parent": "mvp-004",
+    "conclusion": "killed",
+    "completed_at": "2026-05-12T18:26:26.050Z",
+    "metrics": {
+      "kill_reason": "D007/D008: Llama-3-8B tool-calling 能力不足(completion=5%), BCP generalizability 证据不充分。Reviewer 修正：三 variant completion 完全一致(均 task 17), BCP 对 completion 效果严格为零。过校正反弹 claim 需限定——politeness 飙升发生在 95% 失败对话中，最多支持'低能力模型在 BCP 下也展现行为偏移'。数据降级为辅助证据。",
+      "reviewer_correction": "不能 claim BCP 失败机制跨模型复现，仅支持低能力模型行为偏移"
+    }
+  },
+  "timestamp": "2026-05-12T18:26:38.370887+00:00",
+  "trigger": "update_registry"
+}

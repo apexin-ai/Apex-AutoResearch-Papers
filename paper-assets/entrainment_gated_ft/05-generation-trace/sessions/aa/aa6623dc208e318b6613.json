@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_exp-011-convergence_20260519T161625_result.json",
     "occurrence": 1,
-    "bytes": 1349,
-    "sha256": "b73256920723be6ac5e9c791f0918dc46d234d1065cf6587983df3c2bc62c76a"
+    "bytes": 1348,
+    "sha256": "64e5682f79438635252b01a5b07b16c23cf7b059ef623f0ded982dee8e690a80"
   },
   "statistics": {
     "messages": 1,

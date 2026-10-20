@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_cleanup_and_download_20260515T222523_result.json",
     "occurrence": 1,
-    "bytes": 1237,
-    "sha256": "ea6a33c38ad3a1a30d78c22513870c8e2284bee3b2142e8198eeef80cd99f170"
+    "bytes": 1236,
+    "sha256": "25966ee5858eff33d3a2bf2f106232cbf13f0a665e3677b77beb49b0b36f09ec"
   },
   "statistics": {
     "messages": 1,

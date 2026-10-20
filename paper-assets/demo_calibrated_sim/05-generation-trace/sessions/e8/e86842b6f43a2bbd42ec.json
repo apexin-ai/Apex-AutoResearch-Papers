@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e86842b6f43a2bbd42ec",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "infra env setup cqa1",
+  "task_key": "worker_infra_env-setup-cqa1_20260512T102236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup-cqa1_20260512T102236_result.json",
+    "occurrence": 1,
+    "bytes": 1957,
+    "sha256": "e04b83f6ab60d1c5ae19d4565e8a316c08631bdf14cebd6eeb2d16b474dadc4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "vLLM 加载成功！需要 `enforce_eager=True` + `TORCHDYNAMO_DISABLE=1` + `VLLM_USE_V1=0` 来绕过 torch.compile 兼容性问题。\n\n模型占用 14.25 GiB，剩余 4.56 GiB KV cache。在单张 RTX 4090 D（24GB）上运行正常。\n\n---\n\n## 环境搭建汇报\n\n### 1. Python/CUDA/PyTorch 版本\n| 组件 | 版本 |\n|------|------|\n| Python | 3.12.3 (conda base) |\n| CUDA | 12.8 |\n| PyTorch | 2.10.0+cu128 |\n\n### 2. GPU\n6x NVIDIA GeForce RTX 4090 D, 各 24GB。指定使用 cuda:2 和 cuda:3。\n\n### 3. 模型\n- 路径: `/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct`\n- 符号链接: `/root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct`\n- 大小: 15GB (4 shards, 3.4-3.7GB each)\n\n### 4. τ-Bench\n- 版本: 0.1.0 (editable install at /root/tau-bench)\n- import OK: `from tau_bench.envs.retail import MockRetailDomainEnv`\n- 注意: 移除了 `mistralai` 依赖（不需要）\n\n### 5. vLLM\n- 版本: 0.18.1\n- 加载测试: **通过**（需要特定参数，见下方）\n\n### 6. 项目文件\n- `/root/democalib/code/behavioral_fingerprint.py` ✓\n- `/root/democalib/prompts/base_user_simulator.txt` ✓\n- `/root/democalib/prompts/bcp_user_simulator.txt` ✓\n- `/root/democalib/prompts/bcp_variants.yaml` ✓\n- `/root/democalib/prompts/prompt_loader.py` ✓\n\n### 7. 已知问题\nvLLM 0.18.1 + PyTorch 2.10.0 存在 `torch._inductor` 兼容性问题（duplicate template name assertion），启动 vLLM 时需要：\n```bash\nCUDA_VISIBLE_DEVICES=2 TORCHDYNAMO_DISABLE=1 VLLM_USE_V1=0 python -c \"\nfrom vllm import LLM\nllm = LLM(model='/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct', \n          tensor_parallel_size=1, gpu_memory_utilization=0.85, enforce_eager=True)\n\"\n```\n性能影响：禁用了 CUDAGraph 和 torch.compile 优化，推理速度会比最优配置慢一些，但功能完全正常。\n\n### 磁盘\n- 根分区: 30GB (使用 6.6GB)\n- 数据盘: 169GB (模型占用 15GB)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-env-setup-cqa1.md"
+}

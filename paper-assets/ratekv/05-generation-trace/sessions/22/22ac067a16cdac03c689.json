@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_qwen-adapt_20260513T180431_result.json",
     "occurrence": 1,
-    "bytes": 1158,
-    "sha256": "8bfc3e71a7d37918ea56c091059b007582f0fa1e8f5d23c9311cce60c08ca938"
+    "bytes": 1157,
+    "sha256": "24a8c4a0a2ad9f869e8ed6ca593b41014bdf0882b42eaffd416c6ff72b25d9b1"
   },
   "statistics": {
     "messages": 1,

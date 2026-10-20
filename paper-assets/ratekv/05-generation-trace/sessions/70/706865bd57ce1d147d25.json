@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_codellama_download_monitor_20260515T175955_result.json",
     "occurrence": 1,
-    "bytes": 357,
-    "sha256": "c122f3a9eb54cfe78a7dcc9231c72739fdacf9d5c7c770a47b9c7c47a36947ef"
+    "bytes": 356,
+    "sha256": "e082c49851660c6df41f2b59a1dff1bfad071d1db5f4673f74978f5a7a475fef"
   },
   "statistics": {
     "messages": 1,

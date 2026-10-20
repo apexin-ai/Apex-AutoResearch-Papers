@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "7907b91a45ea5b50668d",
+  "project": "demo_calibrated_sim",
+  "kind": "worker",
+  "title": "eval hgate dpo001 merge",
+  "task_key": "worker_eval_hgate-dpo001-merge_20260512T170811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_hgate-dpo001-merge_20260512T170811.log",
+    "occurrence": 1,
+    "bytes": 852954,
+    "sha256": "98c836323fb6ec5cc63f7a1adcb789a7cc7abdff1fddc559e79b0ace78cc6830"
+  },
+  "statistics": {
+    "messages": 763,
+    "user_turns": 0,
+    "tool_calls": 329,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 102,
+      "tool_call": 329,
+      "tool_result": 329
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 763,
+      "chunks": [
+        {
+          "path": "7907b91a45ea5b50668d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7907b91a45ea5b50668d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7907b91a45ea5b50668d-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "7907b91a45ea5b50668d-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "7907b91a45ea5b50668d-part-0005.json",
+          "message_count": 43
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-hgate-dpo001-merge.md"
+}

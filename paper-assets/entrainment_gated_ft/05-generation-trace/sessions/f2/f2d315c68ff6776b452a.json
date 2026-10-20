@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_a3_complementarity_20260522T081553_result.json",
     "occurrence": 1,
-    "bytes": 1400,
-    "sha256": "2a73ebe15e0dc747171ccae10ce66aaf8a0db23a1e9f7bc489fe7a9f74a9a6f9"
+    "bytes": 1399,
+    "sha256": "3916dc60e05aa7046c9a6893cb54bd7f75719b0a157f70338958b5e97eeab415"
   },
   "statistics": {
     "messages": 1,

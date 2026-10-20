@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_audit_tex_concentration_values_20260515T141741_result.json",
     "occurrence": 1,
-    "bytes": 5938,
-    "sha256": "a08d6093cd7f1d158a514db7f6e0c9250a9a246e4660b374411e730ca3899812"
+    "bytes": 5937,
+    "sha256": "600a9b1b92721032bdc5975f0aeffd592518ffffded27e6c54fc18f04d70a97a"
   },
   "statistics": {
     "messages": 1,

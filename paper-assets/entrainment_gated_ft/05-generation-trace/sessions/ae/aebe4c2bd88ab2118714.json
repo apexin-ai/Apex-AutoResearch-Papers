@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_verify_pdf-patches_20260523T174403_result.json",
     "occurrence": 1,
-    "bytes": 2385,
-    "sha256": "bc9f7b51f554ef77d83f5d4e8c5fa10514e453bde6e9bc3f599ec877b77666f1"
+    "bytes": 2384,
+    "sha256": "f85febab074063552f0376c36d16eeb84190e84a17e7640b3470ed4d1e96c945"
   },
   "statistics": {
     "messages": 1,

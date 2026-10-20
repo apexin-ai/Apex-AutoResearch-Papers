@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_mistral_8k_eval_20260516T032251_result.json",
     "occurrence": 1,
-    "bytes": 504,
-    "sha256": "83ac4a2ea333c7d529fb8c4042f48b53af59346c8e4e5341632d54087689f324"
+    "bytes": 503,
+    "sha256": "7cc871ce25b6cb17da9e4d2065f2a244a8a5e2775a80751c502cc0836f6a79e4"
   },
   "statistics": {
     "messages": 1,

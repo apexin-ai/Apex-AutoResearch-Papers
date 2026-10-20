@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_fla-version-online_20260518T123638_result.json",
     "occurrence": 1,
-    "bytes": 2176,
-    "sha256": "6ab4699245761d8b05870f5d44fde93e2876e96b081ab9cbe840c4bf8d9be053"
+    "bytes": 2175,
+    "sha256": "4f68f4f1360edc65cc1659cb1dbf30df066d95ee7b740a1009569d4dec07565c"
   },
   "statistics": {
     "messages": 1,

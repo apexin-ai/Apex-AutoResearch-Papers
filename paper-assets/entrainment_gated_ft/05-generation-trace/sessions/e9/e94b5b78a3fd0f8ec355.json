@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_multiseed_lambada_eval_20260518T181921_result.json",
     "occurrence": 1,
-    "bytes": 1281,
-    "sha256": "a65e80509eeb41b6b34b2d07274a5c62978683b8ac049285791b678cc31c4ceb"
+    "bytes": 1280,
+    "sha256": "06088c42f91572a3ce5eb31967426f3b14c7b3d018079825a43dac84c43c28a1"
   },
   "statistics": {
     "messages": 1,

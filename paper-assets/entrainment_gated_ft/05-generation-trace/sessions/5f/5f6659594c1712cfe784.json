@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_exp_008_bca_gdn_excluded_20260519T142112_result.json",
     "occurrence": 1,
-    "bytes": 1368,
-    "sha256": "4aa4c435194942c5b07094fd2118aa21d0c8bfd39aacab40c901e5cb45576338"
+    "bytes": 1367,
+    "sha256": "c237ec129afc5092e8b40b1ef3be4408e89bf93db9b5c2ef8e355a53d2da465a"
   },
   "statistics": {
     "messages": 1,

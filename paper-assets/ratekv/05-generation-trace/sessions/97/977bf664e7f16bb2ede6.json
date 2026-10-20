@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_investigate_c4_data_authenticity_20260514T085841_result.json",
     "occurrence": 1,
-    "bytes": 2539,
-    "sha256": "f8fbee7cfe65ae7b6f0a3bc6204ed7e22d0560b6f3d5c0ae7b581024b8a16d3b"
+    "bytes": 2538,
+    "sha256": "4a2d39bf42e1583ea5d05a255b7decc66f42c1145b354b6fc01b2e6f9fc58d01"
   },
   "statistics": {
     "messages": 1,

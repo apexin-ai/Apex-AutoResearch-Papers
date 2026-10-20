@@ -1,0 +1,15 @@
+{
+  "exp_id": "qwen7b_8k_context_eval",
+  "project": "ratekv",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:14:15.868Z",
+    "updated_at": "2026-05-15T13:14:23.516Z",
+    "hypothesis": "Qwen-7B (Spread) concentration-dependent benefit persists at 8K context length"
+  },
+  "timestamp": "2026-05-15T13:14:23.751879+00:00",
+  "trigger": "update_registry"
+}

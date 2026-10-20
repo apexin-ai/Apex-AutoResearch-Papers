@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a018dc9dcd03118b7218",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "code dpo lr fix",
+  "task_key": "worker_code_dpo-lr-fix_20260512T124049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dpo-lr-fix_20260512T124049_result.json",
+    "occurrence": 1,
+    "bytes": 366,
+    "sha256": "f881af10b29680b92610dfb7ce93c75ee4bb13de5946b3388f2ae0f22b779cfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处已修复：\n\n1. **train_dpo.py:220** — `default=5e-5` → `default=5e-6`，help 文本同步更新。代码中无其他 5e-5 硬编码。\n2. **mvp_contingency.md:13** — \"question_rate 或 politeness_rate 偏差缩小\" → \"question_rate 且 politeness_rate 偏差**均**缩小\"。文件中无其他 H2 判定处使用\"或\"逻辑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dpo-lr-fix.md"
+}

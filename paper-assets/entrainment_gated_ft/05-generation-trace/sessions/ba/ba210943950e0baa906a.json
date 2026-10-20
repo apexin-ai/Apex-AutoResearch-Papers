@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_arc-easy-per-example-full_20260520T092702_result.json",
     "occurrence": 1,
-    "bytes": 2142,
-    "sha256": "fa732ef97e2c8d774ebeedd4ca83bf7bc65b65e9c4c6bd36d652ddc5f80373bb"
+    "bytes": 2141,
+    "sha256": "f54f98353c35da4185ffc7806b4513e400b593855c7bb88dcc93666a03df5d2b"
   },
   "statistics": {
     "messages": 1,

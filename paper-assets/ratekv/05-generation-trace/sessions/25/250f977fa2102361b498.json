@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_yi15_8k_spotcheck_20260515T132509_result.json",
     "occurrence": 1,
-    "bytes": 674,
-    "sha256": "cf4839e9e51120ad28c70c62658661aac8efd068aa1ad39d10438e6b1baea847"
+    "bytes": 673,
+    "sha256": "5fcb32ae793012206472936fe4aa024d754b3b73e585b69d73db88b02d3c796b"
   },
   "statistics": {
     "messages": 1,

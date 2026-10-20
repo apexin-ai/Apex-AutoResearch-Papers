@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_arch-extension-check_20260520T010550_result.json",
     "occurrence": 1,
-    "bytes": 307,
-    "sha256": "dfbed607f99397813ef5a90add2c9de430f4d9cf9f48e8b5843951d7e677db17"
+    "bytes": 306,
+    "sha256": "31ac3d21a3c91c7942b0bd8b7d6881813ee9684ac85718811359764d270ffd21"
   },
   "statistics": {
     "messages": 1,

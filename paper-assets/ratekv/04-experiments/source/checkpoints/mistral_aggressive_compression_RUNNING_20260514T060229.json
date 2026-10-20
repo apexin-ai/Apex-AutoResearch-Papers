@@ -1,0 +1,36 @@
+{
+  "exp_id": "mistral_aggressive_compression",
+  "project": "ratekv",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:59:01.736Z",
+    "updated_at": "2026-05-14T06:02:29.324Z",
+    "hypothesis": "Aggressive compression (5.3x + 8x) 在低异质性架构 Mistral-7B (GQA 4:1, 256 heads) 上是否也能放大 MCKP 优势。与 Llama aggressive (success: 45x better at 5.3x) 对称验证。如果 MCKP 优势随压缩率增加而放大，即使在低异质性架构上也应显现。",
+    "parent": "mistral_hires_pipeline",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_mistral_aggressive.py",
+      "server": "westd-37397",
+      "data_path": "/root/ratekv/mistral_ppl_profiles_hires.json",
+      "data_count": "64seq x 2048tok",
+      "model_name": "Mistral-7B-v0.3",
+      "seed": 42,
+      "gpu": "cuda:0",
+      "budgets": [
+        0.1875,
+        0.125
+      ],
+      "compression_levels": [
+        "5.3x",
+        "8x"
+      ],
+      "dtype": "bf16",
+      "checkpoint_source": "mistral_hires_pipeline",
+      "eval_data": "wikitext-2-raw-v1 (test split)"
+    }
+  },
+  "timestamp": "2026-05-14T06:02:29.374050+00:00",
+  "trigger": "update_registry"
+}

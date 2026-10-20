@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_qwen_bf16_reeval_20260514T062423_result.json",
     "occurrence": 1,
-    "bytes": 724,
-    "sha256": "77b9a38df4d174c1f4f672a39ba30618c8bfa8fe2a49039de9f5ed0e7f39b92d"
+    "bytes": 723,
+    "sha256": "a71af584032873d11b583e4de03e988f38b5f0528d725a898ccde0326d70d24d"
   },
   "statistics": {
     "messages": 1,

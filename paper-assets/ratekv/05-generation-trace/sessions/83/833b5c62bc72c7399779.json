@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_cleanup_tmux_qwen3seed_20260515T194905_result.json",
     "occurrence": 1,
-    "bytes": 334,
-    "sha256": "89b7d04bc1e2c21d2ae91b4539dff12388e974230dd7caef73a6e1b215564bd7"
+    "bytes": 333,
+    "sha256": "70b4bf7faba9d38940a8590430f01378b9dde97d67014374cab14d23f3335819"
   },
   "statistics": {
     "messages": 1,

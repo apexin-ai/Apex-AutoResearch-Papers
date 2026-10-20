@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_data_exp-005-6arch-extract_20260522T181203_result.json",
     "occurrence": 1,
-    "bytes": 2654,
-    "sha256": "7e907b464412505996ef04ee66ad76af986072ac51eed22b0b11d4fb45eddbab"
+    "bytes": 2653,
+    "sha256": "36463beb1666a5e1f93481516224256b553553dee81641c45f712081bc6b1672"
   },
   "statistics": {
     "messages": 1,

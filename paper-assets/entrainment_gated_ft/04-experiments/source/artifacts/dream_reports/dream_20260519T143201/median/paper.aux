@@ -1,0 +1,134 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{wang2025mamba}
+\citation{sun2023retentive}
+\citation{qin2024hgrn2}
+\citation{yang2024gated}
+\citation{peng2023rwkv}
+\citation{gu2023mamba}
+\citation{vaswani2017attention}
+\citation{lieber2024jamba,de2024griffin}
+\citation{wang2025mamba}
+\citation{krogh1994neural,kuncheva2003measures}
+\citation{damour2022underspecification}
+\citation{swayamdipta2020dataset}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{lieber2024jamba}
+\citation{de2024griffin}
+\citation{dao2024transformers}
+\citation{arora2024simple}
+\citation{wang2025mamba}
+\citation{krogh1994neural}
+\citation{kuncheva2003measures}
+\citation{damour2022underspecification}
+\citation{fort2019deep}
+\citation{mccoy2020berts}
+\citation{swayamdipta2020dataset}
+\citation{clark2019what,vig2019multiscale}
+\citation{jain2019attention,wiegreffe2019attention}
+\citation{wang2025mamba}
+\citation{gao2023framework}
+\citation{paperno2016lambada}
+\citation{zellers2019hellaswag}
+\citation{clark2018think}
+\citation{hendrycks2021measuring}
+\citation{sakaguchi2020winogrande}
+\citation{mostafazadeh2016corpus}
+\citation{clark2019boolq}
+\citation{roemmele2011choice}
+\citation{benjamini1995controlling}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hybrid recurrent architectures.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Underspecification and ensemble diversity.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Attention interpretability.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{2}{section.3}\protected@file@percent }
+\newlabel{sec:setup}{{3}{2}{Experimental Setup}{section.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Model zoo.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Benchmarks.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{2}{section*.7}\protected@file@percent }
+\citation{efron1993introduction}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Task-Dependent Convergence}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:task-convergence}{{4.1}{3}{Task-Dependent Convergence}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Statistical Robustness}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:stats}{{4.2}{3}{Statistical Robustness}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Convergence analysis across benchmarks (1.3B). $\rho $: Spearman correlation between attention ratio and cross-architecture std. $^\dagger $Excluded (GDN artifact). $^*$GDN-excluded $\rho $ in parentheses.}}{3}{table.caption.8}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:convergence}{{1}{3}{Convergence analysis across benchmarks (1.3B). $\rho $: Spearman correlation between attention ratio and cross-architecture std. $^\dagger $Excluded (GDN artifact). $^*$GDN-excluded $\rho $ in parentheses}{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces GDN-excluded sensitivity analysis. Removing GDN tests whether convergence is driven by one architecture. Direction changes flag artifacts.}}{3}{table.caption.9}\protected@file@percent }
+\newlabel{tab:sensitivity}{{2}{3}{GDN-excluded sensitivity analysis. Removing GDN tests whether convergence is driven by one architecture. Direction changes flag artifacts}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {paragraph}{Multiple comparison correction.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Bootstrap confidence interval.}{3}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Scale-Dependent Convergence}{3}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:scale-convergence}{{4.3}{3}{Scale-Dependent Convergence}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Benjamini--Hochberg FDR correction across nine benchmarks. No benchmark survives at $\alpha {=}0.05$.}}{4}{table.caption.12}\protected@file@percent }
+\newlabel{tab:fdr}{{3}{4}{Benjamini--Hochberg FDR correction across nine benchmarks. No benchmark survives at $\alpha {=}0.05$}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {paragraph}{Rebound sample characteristics.}{4}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Per-Example Divergence}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:per-example}{{4.4}{4}{Per-Example Divergence}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces 340M rebound characterization by architecture. Std increase is relative to the h6 (minimum) point.}}{4}{table.caption.14}\protected@file@percent }
+\newlabel{tab:rebound}{{4}{4}{340M rebound characterization by architecture. Std increase is relative to the h6 (minimum) point}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Rebound sample characteristics vs.\ non-rebound (340M, LAMBADA). $p$ values from Mann--Whitney U.}}{4}{table.caption.15}\protected@file@percent }
+\newlabel{tab:rebound-chars}{{5}{4}{Rebound sample characteristics vs.\ non-rebound (340M, LAMBADA). $p$ values from Mann--Whitney U}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-benchmark Jaccard analysis.}{4}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sample characterization.}{4}{section*.18}\protected@file@percent }
+\citation{damour2022underspecification}
+\citation{wang2025mamba}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Per-example overlap (Jaccard) at h3, 1.3B. Ref.\ = ratio to LAMBADA.}}{5}{table.caption.17}\protected@file@percent }
+\newlabel{tab:jaccard}{{6}{5}{Per-example overlap (Jaccard) at h3, 1.3B. Ref.\ = ratio to LAMBADA}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Within-architecture perplexity analysis (LAMBADA, 1.3B, h3). $r_{rb}$: rank-biserial correlation.}}{5}{table.caption.19}\protected@file@percent }
+\newlabel{tab:ppl}{{7}{5}{Within-architecture perplexity analysis (LAMBADA, 1.3B, h3). $r_{rb}$: rank-biserial correlation}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Attention Pattern Characterization}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:attention}{{4.5}{5}{Attention Pattern Characterization}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Attention pattern statistics (h3, 1.3B, LAMBADA, 500 samples).}}{5}{table.caption.20}\protected@file@percent }
+\newlabel{tab:attn}{{8}{5}{Attention pattern statistics (h3, 1.3B, LAMBADA, 500 samples)}{table.caption.20}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Convergence--divergence co-evolution (LAMBADA, 1.3B). Effect asymmetry measures the difference in helped/hurt balance across architectures.}}{5}{table.caption.21}\protected@file@percent }
+\newlabel{tab:coevol}{{9}{5}{Convergence--divergence co-evolution (LAMBADA, 1.3B). Effect asymmetry measures the difference in helped/hurt balance across architectures}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Convergence--Divergence Co-evolution}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:bridge}{{4.6}{5}{Convergence--Divergence Co-evolution}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{5}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Relationship to Wang et al.}{5}{section*.22}\protected@file@percent }
+\citation{krogh1994neural}
+\citation{damour2022underspecification,fort2019deep,mccoy2020berts}
+\bibcite{arora2024simple}{{1}{2024}{{Arora et~al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{6}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{What we do not claim.}{6}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Limitations}{6}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{6}{section.7}\protected@file@percent }
+\bibcite{benjamini1995controlling}{{2}{1995}{{Benjamini and Hochberg}}{{}}}
+\bibcite{clark2018think}{{3}{2018}{{Clark et~al.}}{{}}}
+\bibcite{clark2019boolq}{{4}{2019{a}}{{Clark et~al.}}{{}}}
+\bibcite{clark2019what}{{5}{2019{b}}{{Clark et~al.}}{{}}}
+\bibcite{damour2022underspecification}{{6}{2022}{{D'Amour et~al.}}{{}}}
+\bibcite{dao2024transformers}{{7}{2024}{{Dao and Gu}}{{}}}
+\bibcite{de2024griffin}{{8}{2024}{{De et~al.}}{{}}}
+\bibcite{efron1993introduction}{{9}{1993}{{Efron and Tibshirani}}{{}}}
+\bibcite{fort2019deep}{{10}{2019}{{Fort et~al.}}{{}}}
+\bibcite{gao2023framework}{{11}{2023}{{Gao et~al.}}{{}}}
+\bibcite{gu2023mamba}{{12}{2023}{{Gu and Dao}}{{}}}
+\bibcite{hendrycks2021measuring}{{13}{2021}{{Hendrycks et~al.}}{{}}}
+\bibcite{jain2019attention}{{14}{2019}{{Jain and Wallace}}{{}}}
+\bibcite{krogh1994neural}{{15}{1994}{{Krogh and Vedelsby}}{{}}}
+\bibcite{kuncheva2003measures}{{16}{2003}{{Kuncheva and Whitaker}}{{}}}
+\bibcite{lieber2024jamba}{{17}{2024}{{Lieber et~al.}}{{}}}
+\bibcite{mccoy2020berts}{{18}{2020}{{McCoy et~al.}}{{}}}
+\bibcite{mostafazadeh2016corpus}{{19}{2016}{{Mostafazadeh et~al.}}{{}}}
+\bibcite{paperno2016lambada}{{20}{2016}{{Paperno et~al.}}{{}}}
+\bibcite{peng2023rwkv}{{21}{2023}{{Peng et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Cross-architecture attention similarity (cosine) by sample subset (h3, 1.3B, LAMBADA).}}{7}{table.caption.25}\protected@file@percent }
+\newlabel{tab:attn-sim}{{10}{7}{Cross-architecture attention similarity (cosine) by sample subset (h3, 1.3B, LAMBADA)}{table.caption.25}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Additional Tables}{7}{appendix.A}\protected@file@percent }
+\bibcite{qin2024hgrn2}{{22}{2024}{{Qin et~al.}}{{}}}
+\bibcite{roemmele2011choice}{{23}{2011}{{Roemmele et~al.}}{{}}}
+\bibcite{sakaguchi2020winogrande}{{24}{2020}{{Sakaguchi et~al.}}{{}}}
+\bibcite{sun2023retentive}{{25}{2023}{{Sun et~al.}}{{}}}
+\bibcite{swayamdipta2020dataset}{{26}{2020}{{Swayamdipta et~al.}}{{}}}
+\bibcite{vaswani2017attention}{{27}{2017}{{Vaswani et~al.}}{{}}}
+\bibcite{vig2019multiscale}{{28}{2019}{{Vig}}{{}}}
+\bibcite{wang2025mamba}{{29}{2025}{{Wang et~al.}}{{}}}
+\bibcite{wiegreffe2019attention}{{30}{2019}{{Wiegreffe and Pinter}}{{}}}
+\bibcite{yang2024gated}{{31}{2024}{{Yang et~al.}}{{}}}
+\bibcite{zellers2019hellaswag}{{32}{2019}{{Zellers et~al.}}{{}}}
+\gdef \@abspage@last{8}

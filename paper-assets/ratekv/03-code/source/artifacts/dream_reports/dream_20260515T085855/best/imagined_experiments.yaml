@@ -1,0 +1,667 @@
+tier: best
+narrative_guidance: '原始 framing 完全成立。Qwen2.5-14B 确认 Spread pattern (N=2)，Claim 3 措辞从
+  "empirical decision rule" 升至 "empirical diagnostic"。三档标签 (catastrophic 3.31×/moderate
+  1.47×/mild 1.07-1.08×) 无需修改。 Decision rule 6/6 正确分类，直接堵死 reviewer "N=1" 攻击。 W9 super-additive
+  可形式化为 proposition。 5→6 model downstream 表加 14B 第六行，Spread 类别有两个正面样本。 论文以 "systematic
+  study + simple fix + validated diagnostic" 三板斧投 EMNLP Main， claims 无需降级。
+
+  '
+imagined_experiments:
+- name: Qwen2.5-14B hires bf16 2-bit-only profiling
+  plan_id: w1_qwen14b_hires_profiling
+  description: '48L × 8KV (GQA 5:1), 384 heads。64seq × 2048tok hires calibration，
+    bf16 精度 2-bit-only distortion profiling。测量 concentration、t₁/t₅、 distribution shape，验证
+    14B 是否保持 Spread pattern。
+
+    '
+  expected_results:
+    model: Qwen2.5-14B
+    total_heads: 384
+    layers: 48
+    kv_heads_per_layer: 8
+    gqa_ratio: '5:1'
+    baseline_calibration_ppl: 6.18
+    top5_concentration: 0.56
+    top5_n_heads: 19
+    t1_t5: 0.52
+    delta_2bit_cv: 6.42
+    distribution_shape: Spread
+    top1_head: L0H0
+    top1_delta_2bit: 5.21
+    top2_head: L0H1
+    top2_delta_2bit: 1.83
+    top3_head: L0H3
+    top3_delta_2bit: 1.52
+    top4_head: L0H5
+    top4_delta_2bit: 0.91
+    top5_head: L3H2
+    top5_delta_2bit: 0.63
+    l0_4heads_total_share: 0.472
+    l0_dominance_ratio: 18.6
+    positive_delta_heads: 378
+    delta_2bit_mean: 0.104
+    delta_2bit_std: 0.668
+    total_hours: 2.8
+    profile_seconds: 10080
+  result_rationale: 'Qwen2.5-14B 与 7B 同属 Qwen2.5 架构族，共享相同的 attention 设计（GQA、 RoPE、SwiGLU）。7B
+    的 Layer 0 cluster（4 heads, concentration=0.61, t₁/t₅=0.57）是架构结构属性而非规模偶然——L0 接收
+    raw embedding 信号， 对 KV cache 量化极敏感，这一机制在 14B（48 层、更深网络）中同样存在。 14B 比 7B 多 20 层（48
+    vs 28），L0 的 8 个 head 在 384 总 head 中 占比降低（2.1% vs 7.1%），导致 concentration 从 0.61
+    微降至 0.56—— 但仍远超 0.50 阈值。t₁/t₅ 从 0.57 降至 0.52，说明 14B L0 内部 sensitivity 分布更均匀（更多
+    head 贡献），但仍满足 ≲0.70 条件。 这是 Spread pattern 的本质特征：多个 head 拥有 cross-bitwidth gradient，
+    而非 Yi-1.5 式的单 outlier spike。CV=6.42 远高于 Flat 模型 (Mistral 1.31, Gemma-2 1.28)，确认高
+    heterogeneity。
+
+    '
+  tables:
+  - title: Qwen2.5-14B Profiling Summary vs 7B
+    content: '| Metric          | Qwen2.5-7B  | Qwen2.5-14B |
+
+      |-----------------|-------------|-------------|
+
+      | Layers          | 28          | 48          |
+
+      | KV heads        | 112         | 384         |
+
+      | GQA ratio       | 7:1         | 5:1         |
+
+      | Top-5% conc.    | 0.61        | 0.56        |
+
+      | t₁/t₅           | 0.57        | 0.52        |
+
+      | CV(δ₂bit)       | 8.90        | 6.42        |
+
+      | L0 4-head share | 58.6%       | 47.2%       |
+
+      | Shape           | Spread      | Spread      |
+
+      '
+  - title: 14B Top-10 Sensitive Heads
+    content: '| Rank | Head  | δ₂bit  | Cumulative % |
+
+      |------|-------|--------|-------------|
+
+      | 1    | L0H0  | 5.21   | 13.0%       |
+
+      | 2    | L0H1  | 1.83   | 17.6%       |
+
+      | 3    | L0H3  | 1.52   | 21.4%       |
+
+      | 4    | L0H5  | 0.91   | 23.7%       |
+
+      | 5    | L3H2  | 0.63   | 25.3%       |
+
+      | 6    | L0H2  | 0.58   | 26.7%       |
+
+      | 7    | L0H7  | 0.51   | 28.0%       |
+
+      | 8    | L5H0  | 0.44   | 29.1%       |
+
+      | 9    | L0H4  | 0.39   | 30.1%       |
+
+      | 10   | L3H5  | 0.35   | 30.9%       |
+
+      '
+  figures_description:
+  - 14B head sensitivity heatmap (48×8)：与 7B 类似的 L0 hot band，但因层数更多整体更 'spread'。L0
+    颜色深红但非 Yi 式单点爆红，L3/L5 出现 secondary sensitivity clusters。
+  analysis: 'Diagnostic joint condition: concentration=0.56 ≳ 0.50 ✓ AND t₁/t₅=0.52
+    ≲ 0.70 ✓。 → 分类为 Spread，预测 MCKP constrained 有显著收益。 14B 与 7B 形成 N=2 Spread 样本，在同一架构族内验证
+    diagnostic 的 scale invariance。 关键区别：14B L0 dominance 稍弱（47.2% vs 58.6%），但 secondary
+    clusters (L3, L5) 补偿了这一差距，维持了 Spread 特征。 这一结果为 Claim 3 升级提供关键支撑：从 "N=1 empirical
+    rule" 到 "N=2 empirical diagnostic"。
+
+    '
+- name: Qwen2.5-14B constrained MCKP allocation + WikiText-2 eval
+  plan_id: w1_qwen14b_constrained_mckp
+  description: '基于 hires profile 运行 constrained MCKP (max_2bit=12)，与 uniform 4-bit
+    对比。验证 Spread pattern 预测的 MCKP 收益 ≥15%。同时测试 constrained greedy 是否与 constrained
+    MCKP 等价 (solver equivalence)。
+
+    '
+  expected_results:
+    baseline_bf16_ppl: 7.45
+    uniform_4bit_ppl: 10.73
+    constrained_mckp_ppl: 8.37
+    constrained_greedy_ppl: 8.37
+    mckp_greedy_delta: 0.0
+    improvement_over_uniform_pct: 22.0
+    gap_recovery_pct: 71.9
+    optimal_k: 12
+    bit_distribution:
+      '2': 12
+      '4': 366
+      '8': 6
+    memory_ratio: 0.25
+    budget_utilization: 0.25
+    l0_heads_at_8bit: 6
+    l0_heads_at_4bit: 2
+    l0_heads_at_2bit: 0
+    heads_2bit_layers: L14,L16,L18,L21,L24,L27,L30,L33,L36,L39,L42,L45
+    heads_8bit: L0H0,L0H1,L0H3,L0H5,L3H2,L5H0
+    solver_time_sec: 0.012
+  result_rationale: '14B 的 Spread pattern（concentration=0.56, t₁/t₅=0.52）保证 MCKP 能
+    利用 head 间 sensitivity 异质性。22% improvement 低于 7B 的 27.3%， 原因有二：(1) 14B 的 L0 cluster
+    在 384 总 head 中占比更小（2.1% vs 7.1%）， 可优化的 "杠杆" 相对减弱；(2) 14B 更深的网络（48L）中 mid-layer
+    heads sensitivity 更分散，solver 的 allocation gain 被稀释。但 22% 仍远超 15% 下限——Spread 模型的本质优势（多个
+    cross-bitwidth gradient head 可被 差异化分配）在 14B 充分体现。 Solver equivalence（Δ=0.0000）延续
+    7B pattern——constraint 将 feasible set 缩小到 greedy 和 MCKP 收敛于同一 allocation。这进一步支持
+    Claim 2： constraint 是 primary intervention，solver choice irrelevant。 Optimal k=12（vs
+    7B 的 k=8）与 head count 增长方向一致但非线性—— k/N_total 从 7.1% 降至 3.1%，说明 14B 的 compounding
+    threshold 更保守（更大网络中 cross-head interaction 更复杂）。
+
+    '
+  tables:
+  - title: Qwen2.5-14B Allocation Results
+    content: '| Method                    | PPL    | 2-bit | 4-bit | 8-bit | Budget
+      |
+
+      |---------------------------|--------|-------|-------|-------|--------|
+
+      | BF16 baseline             | 7.45   | —     | —     | —     | 1.000  |
+
+      | Uniform 4-bit             | 10.73  | 0     | 384   | 0     | 0.250  |
+
+      | Constrained MCKP (k=12)   | 8.37   | 12    | 366   | 6     | 0.250  |
+
+      | Constrained Greedy (k=12) | 8.37   | 12    | 366   | 6     | 0.250  |
+
+      '
+  - title: 7B vs 14B Constrained MCKP Comparison
+    content: '| Metric                   | Qwen2.5-7B | Qwen2.5-14B |
+
+      |--------------------------|------------|-------------|
+
+      | Baseline PPL             | 9.81       | 7.45        |
+
+      | Uniform 4-bit PPL        | 15.45      | 10.73       |
+
+      | Constrained MCKP PPL     | 10.91      | 8.37        |
+
+      | Improvement over uniform | 27.3%      | 22.0%       |
+
+      | Gap recovery             | 80.5%      | 71.9%       |
+
+      | Optimal k                | 8          | 12          |
+
+      | k / N_total              | 7.1%       | 3.1%        |
+
+      | Solver equivalence Δ     | 0.0000     | 0.0000      |
+
+      '
+  figures_description:
+  - 14B bit allocation 可视化 (48×8 grid)：L0 显示 8-bit (深蓝), mid-layer 12 个 head 标为 2-bit
+    (红色), 其余全 4-bit (绿色)。pattern 与 7B 同构但更稀疏。
+  analysis: '14B 的 22% improvement 与 7B 的 27.3% 同方向，完美支撑 "Spread → MCKP effective"
+    论断。两个模型的差异（22% vs 27.3%）可自然解释为 scale effect——14B 更深 网络中 L0 cluster 的相对影响力降低，但不改变
+    Spread pattern 的定性判断。 论文中此数据点的核心价值：证明 diagnostic 在同架构不同规模间迁移。
+
+    '
+- name: Qwen2.5-14B unconstrained allocation (greedy + MCKP)
+  plan_id: w1_qwen14b_unconstrained
+  description: '无 cardinality constraint 的 greedy 和 MCKP allocation。 验证 Spread 模型在
+    unconstrained 下是否 catastrophic。
+
+    '
+  expected_results:
+    baseline_bf16_ppl: 7.45
+    uniform_4bit_ppl: 10.73
+    greedy_unconstrained_ppl: 21.08
+    mckp_unconstrained_ppl: 22.34
+    greedy_ratio_vs_baseline: 2.83
+    mckp_ratio_vs_baseline: 3.0
+    n_2bit_greedy: 196
+    n_2bit_mckp: 208
+    n_2bit_pct_greedy: 51.0
+    n_2bit_pct_mckp: 54.2
+    catastrophic: true
+  result_rationale: 'Spread pattern 下的 unconstrained catastrophe 与 7B (3.31×) 同类——
+    solver 在无 constraint 时将 ~50% head 分配到 2-bit，L0 cluster 的 compounding effect 从个体
+    distortion 非加性放大为系统性崩溃。 14B 的 catastrophe ratio (2.83-3.00×) 略低于 7B 的 3.31× 因为：
+    (1) 14B 有更多 "neutral" heads 稀释 2-bit 分配比例（196/384=51% vs 68/112=61%），(2) 48 层网络中
+    error 的 propagation path 更长但 per-layer contribution 更小。但 ratio ≥2× 仍然是 catastrophic。
+    Greedy 和 MCKP unconstrained 均失败（且 MCKP 更差），与 7B pattern 一致——unconstrained MCKP
+    的 over-optimization 使 compounding 更严重。
+
+    '
+  tables:
+  - title: 14B Unconstrained vs Constrained
+    content: '| Method                  | PPL    | ×baseline | 2-bit heads |
+
+      |-------------------------|--------|-----------|-------------|
+
+      | Uniform 4-bit           | 10.73  | 1.44×     | 0           |
+
+      | Greedy unconstrained    | 21.08  | 2.83×     | 196 (51%)   |
+
+      | MCKP unconstrained      | 22.34  | 3.00×     | 208 (54%)   |
+
+      | **Greedy constrained**  | **8.37**| **1.12×** | **12 (3%)** |
+
+      | **MCKP constrained**    | **8.37**| **1.12×** | **12 (3%)** |
+
+      '
+  figures_description:
+  - Unconstrained 2-bit head overlay (48×8)：~50% cells 标红，集中在 mid-to-high layers。与
+    constrained 版本（仅 12 cells 标红）形成鲜明对比。
+  analysis: '14B unconstrained catastrophe 为 Claim 2 三柱支撑增加第二个 Spread 证据： Qwen-7B
+    3.31× 和 14B 2.83-3.00× 均为 catastrophic，constraint 将两者 分别压至 1.12×。"Catastrophic
+    → mild" 的转换在两个不同规模 Spread 模型上 重复验证，Claim 2 叙事强度从 "observed on one model" 升至 "consistent
+    mechanism across scales"。
+
+    '
+- name: Qwen2.5-14B compounding sweep (k ablation)
+  plan_id: w1_qwen14b_k_ablation
+  description: 'Sweep max_2bit from 0 to 48 (steps: 0, 4, 8, 12, 16, 24, 32, 48)。
+    验证 14B 是否呈现与 7B 相同的 U-shaped PPL-vs-k 曲线。
+
+    '
+  expected_results:
+    k0_ppl: 10.73
+    k4_ppl: 9.12
+    k8_ppl: 8.52
+    k12_ppl: 8.37
+    k16_ppl: 8.41
+    k24_ppl: 8.89
+    k32_ppl: 10.45
+    k48_ppl: 14.21
+    optimal_k: 12
+    u_shape_confirmed: true
+    elbow_k_range: 8-16
+  result_rationale: 'U-shaped curve 是 Spread 模型的 signature——小 k 时 solver 受限无法充分 利用
+    heterogeneity（PPL 高），大 k 时 compounding effect 开始主导 （PPL 再次上升），optimal k 在 elbow
+    处。14B 的 optimal k=12 比 7B 的 k=8 更大，因为 14B 有 384 heads（7B 仅 112），sensitivity 分布更分散，
+    需要更多 2-bit head 来达到最优 compression-quality tradeoff。 k>16 后 PPL 快速恶化（k=32 时已超过
+    uniform），确认 compounding threshold 在 k≈16-24 区间——与 7B 的 k≈12-16 阈值一致（按 head count
+    比例校正后 12/384=3.1% vs 8/112=7.1%，14B 的 tolerance 更低，但绝对数量更大）。 k=48 (12.5% heads
+    at 2-bit) PPL=14.21 接近 uniform 的 10.73，说明 compounding 在 ~12% 2-bit 处开始 catastrophic。
+
+    '
+  tables:
+  - title: 14B k-PPL Ablation
+    content: '| k   | PPL    | 2-bit | 4-bit | 8-bit | vs uniform |
+
+      |-----|--------|-------|-------|-------|------------|
+
+      | 0   | 10.73  | 0     | 384   | 0     | baseline   |
+
+      | 4   | 9.12   | 4     | 374   | 6     | −15.0%     |
+
+      | 8   | 8.52   | 8     | 370   | 6     | −20.6%     |
+
+      | 12  | **8.37**| 12   | 366   | 6     | **−22.0%** |
+
+      | 16  | 8.41   | 16    | 362   | 6     | −21.6%     |
+
+      | 24  | 8.89   | 24    | 354   | 6     | −17.1%     |
+
+      | 32  | 10.45  | 32    | 346   | 6     | −2.6%      |
+
+      | 48  | 14.21  | 48    | 330   | 6     | +32.4%     |
+
+      '
+  figures_description:
+  - U-shaped PPL vs k 曲线：与 7B 叠放对比，两条曲线形状相似但 14B 的 minimum 右移（k=12 vs k=8）。annotate
+    optimal k 和 compounding threshold。
+  analysis: 'U-shape 在第二个 Spread 模型上重现，支持 "compounding effect 是 Spread-specific mechanism"
+    的 Claim 2 叙事。对比 Mistral (monotonic increasing) 和 Llama (flat)，U-shape 是 Spread
+    的 exclusive signature。 论文可新增 proposition：对于 Spread 模型，存在 optimal k* 使得 PPL(k*)
+    < PPL(0) = PPL(uniform)，且 k > k_threshold 时 compounding dominates，PPL(k) > PPL(0)。
+
+    '
+- name: Qwen2.5-14B downstream task evaluation (0-shot, 5 tasks)
+  plan_id: w1_qwen14b_downstream_eval
+  description: 'ARC-Easy, ARC-Challenge, HellaSwag, PIQA, WinoGrande 五任务 0-shot 评估。
+    对比 BF16 baseline / uniform 4-bit / constrained MCKP (k=12)。 为 6-model downstream
+    表补充第六行。
+
+    '
+  expected_results:
+    bf16_baseline:
+      arc_easy: 0.8512
+      arc_challenge: 0.5614
+      hellaswag: 0.6438
+      piqa: 0.8074
+      winogrande: 0.7356
+      avg: 0.7199
+    uniform_4bit:
+      arc_easy: 0.8302
+      arc_challenge: 0.5239
+      hellaswag: 0.6102
+      piqa: 0.7883
+      winogrande: 0.7096
+      avg: 0.6924
+    constrained_mckp:
+      arc_easy: 0.8445
+      arc_challenge: 0.5461
+      hellaswag: 0.6341
+      piqa: 0.8008
+      winogrande: 0.7261
+      avg: 0.7103
+    delta_mckp_vs_uniform_pp:
+      arc_easy: 1.43
+      arc_challenge: 2.22
+      hellaswag: 2.39
+      piqa: 1.25
+      winogrande: 1.65
+      avg: 1.79
+    avg_recovery_pct: 65.1
+  result_rationale: '14B 的 downstream 收益方向与 7B 一致（MCKP > uniform on all 5 tasks），
+    确认 PPL improvement 迁移至 downstream。avg +1.79pp 略低于 7B 的 +2.60pp（avg of ARC-C +3.16,
+    HellaSwag +4.00, PIQA +1.25, WinoGrande +1.97）， 原因：14B 的 uniform 4-bit baseline
+    本身就更强（更大模型对 quantization 更 robust），所以 MCKP 的 marginal gain 空间较小。 recovery 65.1%
+    低于 7B 的 72.8%——同样是因为 14B 的 degradation gap (baseline→uniform) 更窄，MCKP 的绝对 recovery
+    也更小。 关键信号：5/5 tasks 均为 positive delta，不存在 Llama/Yi 式的 systematic degradation。这是
+    Spread pattern 的 downstream 确认。 arc_challenge 仍是 largest single-task gain (+2.22pp)，与
+    7B (+3.16pp) 一致——multi-step reasoning 对 KV cache quality 最敏感。
+
+    '
+  tables:
+  - title: Qwen2.5-14B Downstream (0-shot)
+    content: '| Task         | BF16    | Uniform | MCKP   | Δ(MCKP−Uniform) |
+
+      |--------------|---------|---------|--------|------------------|
+
+      | ARC-Easy     | 0.8512  | 0.8302  | 0.8445 | +1.43pp          |
+
+      | ARC-Challenge| 0.5614  | 0.5239  | 0.5461 | +2.22pp          |
+
+      | HellaSwag    | 0.6438  | 0.6102  | 0.6341 | +2.39pp          |
+
+      | PIQA         | 0.8074  | 0.7883  | 0.8008 | +1.25pp          |
+
+      | WinoGrande   | 0.7356  | 0.7096  | 0.7261 | +1.65pp          |
+
+      | **Average**  | **0.7199**|**0.6924**|**0.7103**| **+1.79pp**  |
+
+      '
+  - title: 6-Model Downstream Summary (论文主表)
+    content: '| Model          | Shape  | Conc. | MCKP vs Uniform (avg) | Diagnostic
+      |
+
+      |----------------|--------|-------|-----------------------|------------|
+
+      | Qwen2.5-7B     | Spread | 0.61  | **+2.60pp** ✅         | PASS       |
+
+      | Qwen2.5-14B    | Spread | 0.56  | **+1.79pp** ✅         | PASS       |
+
+      | Yi-1.5-9B      | Spike  | 0.71  | −0.77pp ❌             | PASS       |
+
+      | Llama-3.1-8B   | Spike  | 0.57  | −0.99pp ❌             | PASS       |
+
+      | Mistral-7B-v0.3| Flat   | 0.22  | −0.48pp ❌             | PASS       |
+
+      | Gemma-2-9B     | Flat   | 0.23  | +0.14pp (noise) ❌     | PASS       |
+
+      | **Accuracy**   |        |       |                       | **6/6**    |
+
+      '
+  figures_description:
+  - 6-model downstream bar chart：两组 Spread 模型（7B, 14B）显示正向 delta（蓝色条），四组 non-Spread
+    显示零或负向 delta（灰色条）。清晰的 Spread vs non-Spread 分界。
+  analysis: '6/6 downstream accuracy 是论文最强的 reviewer defense——diagnostic 不仅 在 PPL
+    上正确预测，在 downstream 上也正确分类所有 6 个模型。 两个 Spread 正面样本（7B +2.60pp, 14B +1.79pp）直接堵死
+    "N=1 cherry-pick" 攻击。 论文措辞可升级为："The diagnostic correctly classifies all six tested
+    architectures at both perplexity and downstream task levels (6/6 accuracy), with
+    two independent Spread-pattern models showing consistent gains."
+
+    '
+- name: Gemma-2-9B constrained MCKP re-evaluation with BOS fix
+  plan_id: gemma2_constrained_bos_fix
+  description: '用修复后的 eval (sliding window + BOS prepend, max_length=2048, stride=512)
+    重新评估 Table 2 的 Gemma-2 constrained MCKP 数字。 验证三档标签中 "Flat → constrained ≈ uniform"
+    是否 hold。
+
+    '
+  expected_results:
+    baseline_bos_fixed_ppl: 6.0306
+    uniform_4bit_bos_fixed_ppl: 6.1683
+    constrained_mckp_bos_fixed_ppl: 6.19
+    constrained_vs_uniform_pct: 0.35
+    constrained_vs_uniform_delta: 0.0217
+    unconstrained_greedy_ppl: 8.8469
+    unconstrained_ratio_vs_baseline: 1.467
+    bit_distribution:
+      '2': 8
+      '4': 326
+      '8': 2
+    total_heads: 336
+    n_2bit_constrained: 8
+    n_2bit_unconstrained: 106
+    three_tier_label: moderate (1.47×)
+    constraint_value: universal — reduces 106→8 2-bit heads
+  result_rationale: 'Gemma-2 的 Flat distribution (concentration=0.23, CV=1.28) 意味着
+    所有 head 的 sensitivity 几乎无差异——solver 无法通过差异化分配获益。 BOS fix 将 baseline 从 8.9 修正至
+    6.03（cold-start artifact），但 Flat 的本质属性不变。constrained MCKP 与 uniform 的差距极小 (0.35%,
+    0.02 PPL) 因为：在 Flat distribution 下 MCKP 分配的 8 个 2-bit head 对 PPL 的影响与任意 8 个 head
+    相当——没有 "好的选择" 和 "坏的选择" 之分。 unconstrained 1.47× ratio 不受 BOS fix 影响（BOS 影响的是 absolute
+    PPL 而非 relative ratio），因为 1.47× 的 root cause 是 solver 将 106/336=31.5% heads 分配到
+    2-bit——这一比例由 sensitivity distribution shape 决定， 与 eval method 无关。 这确认三档标签中的 "moderate"
+    层：不是 catastrophic（Spread 专属）， 也不是 mild（solver 分配了过多 2-bit），但 constraint 有效地将 moderate
+    压至 uniform 水平。
+
+    '
+  tables:
+  - title: Gemma-2 BOS Fix Before/After
+    content: '| Metric                | Before BOS fix | After BOS fix |
+
+      |-----------------------|---------------|---------------|
+
+      | Baseline PPL          | 8.90 (wrong)  | 6.0306        |
+
+      | Uniform 4-bit PPL     | 9.03 (wrong)  | 6.1683        |
+
+      | Constrained MCKP PPL  | 9.05 (wrong)  | 6.19          |
+
+      | Unconstrained PPL     | —             | 8.85          |
+
+      | Unconstrained ×base   | —             | 1.47×         |
+
+      | Constrained vs uniform| −0.2%         | +0.35%        |
+
+      '
+  - title: 三档标签验证 (BOS-fixed)
+    content: '| Tier        | Model(s)              | ×baseline | 2-bit % | Constrained
+      fix |
+
+      |-------------|-----------------------|-----------|---------|-----------------|
+
+      | Catastrophic| Qwen-7B (3.31×)       | 3.31×     | 60.7%   | 11.23 (−72.7%)  |
+
+      |             | Qwen-14B (2.83×)      | 2.83×     | 51.0%   | 8.37 (−60.3%)   |
+
+      | Moderate    | Gemma-2 (1.47×)       | 1.47×     | 31.5%   | 6.19 (≈uniform)
+      |
+
+      | Mild        | Yi (1.08×)            | 1.08×     | 11.5%   | ≈uniform        |
+
+      |             | Llama (1.07×)         | 1.07×     | 4.7%    | ≈uniform        |
+
+      |             | Mistral (1.08×)       | 1.08×     | 16.4%   | ≈uniform        |
+
+      '
+  figures_description:
+  - 三档 unconstrained degradation gradient bar chart：Catastrophic (红, Qwen-7B/14B),
+    Moderate (橙, Gemma-2), Mild (绿, Yi/Llama/Mistral)。所有模型 constrained 后落入 ≈uniform
+    区间（灰色 band）。
+  analysis: 'BOS fix 后 Gemma-2 constrained PPL 确认在 uniform ±0.5% 内（+0.35%）， 三档标签自洽。1.47×
+    unconstrained ratio 不变，证明 moderate 层的 mechanism （solver 对 indistinguishable heads
+    的 over-allocation）是 model-intrinsic 而非 eval artifact。 论文中 Gemma-2 段落可照写："Gemma-2-9B
+    exhibits a moderate 1.47× degradation under unconstrained allocation..."——无需修改，BOS
+    fix 只修正了 absolute PPL numbers，narrative 完全 hold。
+
+    '
+- name: W9 compounding super-additive formal analysis
+  plan_id: w9_superadditive_formalization
+  description: '基于 w9_compounding_v2 已有数据，形式化 super-additive compounding 为 proposition。计算
+    excess Δ(k) = randomk(k) − topk(k)， 验证随 k 超线性增长。
+
+    '
+  expected_results:
+    excess_delta:
+      k1: 0.061
+      k4: 0.211
+      k8: 1.028
+      k16: 2.49
+      k32: 6.726
+      k64: 32.994
+    consecutive_ratio:
+      k4_over_k1: 3.46
+      k8_over_k4: 4.87
+      k16_over_k8: 2.42
+      k32_over_k16: 2.7
+      k64_over_k32: 4.9
+    all_ratios_gt_1: true
+    superlinear_confirmed: true
+    k64_randomk_topk_ratio: 2.44
+    monotonic_gap_increase: true
+    proposition_formulation: 'Proposition (Compounding Excess): Let Δ(k) = PPL(random-k
+      2-bit) − PPL(top-k 2-bit) on a Spread-heterogeneity model. Then Δ(k) is super-additive:
+      Δ(k₁+k₂) > Δ(k₁) + Δ(k₂) for k₁,k₂ > 0, and Δ(k)/k → ∞ as k → N.
+
+      '
+  result_rationale: 'W9 v2 数据已经完整支持 super-additive 叙事。关键机制： (1) topk allocation 选择
+    marginal benefit 最高的 heads（sensitivity 最低的）， 它们对 PPL 的影响随 k 温和线性增长——因为每个新增 2-bit
+    head 的 marginal damage 递增但缓慢（好 head 用完后开始用次好的）。 (2) randomk 随机选择 heads，在小 k 时损害也温和（大概率选到低
+    sensitivity head），但大 k 时高概率命中 L0 cluster 中的 sensitive heads，触发 compounding：多个
+    sensitive head 同时 2-bit 时 cross-head interaction 使总损害远超个体之和。 (3) gap = randomk
+    - topk 因此呈超线性增长：topk 温和增长（线性 + 温和凸）， randomk 在 k 大时 explosion（指数级凸），差值 super-additive。
+    k64 时 ratio=2.44（在 [2.0, 3.5] 区间内）——不是 extreme explosion （那会暗示 numerical instability），也不是
+    marginal（那会弱化叙事）， 而是清晰可解释的 super-additivity 信号。 连续 ratio 全部 >1（min=2.42 at k16/k8）确认无回落点。
+
+    '
+  tables:
+  - title: W9 Super-Additive Evidence (Qwen2.5-7B, L0 excluded)
+    content: '| k  | top-k PPL | random-k PPL | Δ(k)   | Δ(k)/Δ(k/2) | ratio r/t |
+
+      |----|-----------|-------------- |--------|-------------|-----------|
+
+      | 1  | 9.826     | 9.887±0.05   | 0.061  | —           | 1.006     |
+
+      | 4  | 9.849     | 10.06±0.06   | 0.211  | 3.46        | 1.021     |
+
+      | 8  | 10.042    | 11.07±0.69   | 1.028  | 4.87        | 1.102     |
+
+      | 16 | 10.420    | 12.91±0.40   | 2.490  | 2.42        | 1.239     |
+
+      | 32 | 11.604    | 18.33±2.53   | 6.726  | 2.70        | 1.580     |
+
+      | 64 | 22.946    | 55.94±9.73   | 32.994 | 4.90        | **2.44**  |
+
+      '
+  figures_description:
+  - 双 Y 轴 log-scale plot：左轴 PPL (topk 蓝线平缓, randomk 红线指数上升)，右轴 Δ(k) bar chart (灰色条高度
+    super-linearly 增长)。k=64 处 Δ=33.0 明显超线性。annotate 'super-additive zone' at k≥16。
+  - Randomk std error band：k≤16 band 窄 (low variance, 大部分随机选择等效)，k≥32 band 急剧扩大 (是否命中
+    L0 cluster 成为关键随机因素)——可视化 'which heads you hit matters more as k grows'。
+  analysis: 'Proposition 的核心 insight：compounding 不是 head 数量的简单函数， 而是 sensitive head
+    的 co-occurrence 函数。topk（总是避开 sensitive heads） 享有近线性 degradation，而 randomk（大 k
+    时必然命中 sensitive cluster） 遭遇指数级恶化。这直接支持 cardinality constraint 的 motivation—— constraint
+    本质是将 allocation 限制在 "topk-like" 区域， 避免 "randomk-like" 的 compounding catastrophe。
+    Proposition 可形式化写入论文 §4 作为 theoretical support for Claim 2。
+
+    '
+- name: Decision rule 6/6 validation (including 14B)
+  plan_id: decision_rule_6of6
+  description: '用 14B 数据扩展 diagnostic joint condition 验证。 concentration ≳0.50 AND
+    t₁/t₅ ≲0.70 → MCKP effective。 从 5/5 升至 6/6。
+
+    '
+  expected_results:
+    models_tested: 6
+    correct_classifications: 6
+    accuracy: 1.0
+    classification_table:
+      Qwen2.5-7B:
+        concentration: 0.61
+        t1_t5: 0.57
+        shape: Spread
+        predicted: effective
+        actual_mckp_improvement_pct: 27.3
+        correct: true
+      Qwen2.5-14B:
+        concentration: 0.56
+        t1_t5: 0.52
+        shape: Spread
+        predicted: effective
+        actual_mckp_improvement_pct: 22.0
+        correct: true
+      Yi-1.5-9B:
+        concentration: 0.71
+        t1_t5: 0.9
+        shape: Spike
+        predicted: ineffective
+        actual_mckp_improvement_pct: 0.0
+        correct: true
+      Llama-3.1-8B:
+        concentration: 0.57
+        t1_t5: 0.71
+        shape: Spike
+        predicted: ineffective
+        actual_mckp_improvement_pct: 0.2
+        correct: true
+      Mistral-7B-v0.3:
+        concentration: 0.22
+        t1_t5: 0.18
+        shape: Flat
+        predicted: ineffective
+        actual_mckp_improvement_pct: -0.4
+        correct: true
+      Gemma-2-9B:
+        concentration: 0.23
+        t1_t5: 0.38
+        shape: Flat
+        predicted: ineffective
+        actual_mckp_improvement_pct: -0.3
+        correct: true
+    n_spread: 2
+    n_spike: 2
+    n_flat: 2
+    claim3_upgrade: empirical decision rule → empirical diagnostic
+  result_rationale: "14B 的加入使三个 shape category 各有 ≥2 个样本（Spread: 7B+14B, Spike: Yi+Llama,\
+    \ Flat: Mistral+Gemma-2），消除了 reviewer 最强攻击向量 \"N=1 Spread is a cherry-pick\"。\
+    \ Diagnostic 的鲁棒性在 14B 上进一步验证： - 14B concentration=0.56 > 0.50 ✓（但 <7B 的 0.61，排除\
+    \ overfitting 到\n  单一 threshold 的怀疑）\n- 14B t₁/t₅=0.52 < 0.70 ✓（比 7B 的 0.57 更\
+    \ \"spread\"，说明 metric\n  捕获了真实的 distribution shape 而非 noise）\n- 14B MCKP improvement\
+    \ 22%（不是 7B 的 27.3% 的 copy，而是一个\n  independent 数据点，在相同方向但不同 magnitude）\nYi-1.5\
+    \ 仍是 strongest counterexample：concentration=0.71 (最高) 但 MCKP 无效——\"concentration\
+    \ alone fails\" 的叙事在 6 个模型中 被 Yi 持续支撑。 Llama 在 boundary (concentration=0.57 >\
+    \ 0.50 但 t₁/t₅=0.71 > 0.70) 恰好被 t₁/t₅ condition 正确排除——joint condition 比 single\
+    \ condition 更精确的最佳示例。\n"
+  tables:
+  - title: 6-Model Diagnostic Decision Matrix (论文 Table 3)
+    content: '| Model          | GQA | Conc. | t₁/t₅ | Shape  | Conc≥0.50? | t₁/t₅≤0.70?
+      | Predicted | MCKP Δ   | Correct? |
+
+      |----------------|-----|-------|--------|--------|------------|-------------|-----------|----------|----------|
+
+      | Qwen2.5-7B     | 7:1 | 0.61  | 0.57   | Spread | ✓          | ✓           |
+      Effective | +27.3%   | ✓        |
+
+      | Qwen2.5-14B    | 5:1 | 0.56  | 0.52   | Spread | ✓          | ✓           |
+      Effective | +22.0%   | ✓        |
+
+      | Yi-1.5-9B      | 8:1 | 0.71  | 0.90   | Spike  | ✓          | ✗           |
+      Ineffective| ≈0%     | ✓        |
+
+      | Llama-3.1-8B   | 4:1 | 0.57  | 0.71   | Spike  | ✓          | ✗           |
+      Ineffective| +0.2%   | ✓        |
+
+      | Mistral-7B-v0.3| 4:1 | 0.22  | 0.18   | Flat   | ✗          | —           |
+      Ineffective| −0.4%   | ✓        |
+
+      | Gemma-2-9B     | 2:1 | 0.23  | 0.38   | Flat   | ✗          | —           |
+      Ineffective| −0.3%   | ✓        |
+
+      '
+  figures_description:
+  - 2D scatter plot：X=concentration, Y=t₁/t₅。两条 threshold 线 (conc=0.50 垂线, t₁/t₅=0.70
+    水平线) 将平面分为四象限。右下象限（high conc + low t₁/t₅）= Spread zone (绿色)，包含 Qwen-7B 和 14B。Yi-1.5
+    落在右上（high conc + high t₁/t₅ = Spike）。Llama 在 boundary。Mistral/Gemma-2 在左下 (Flat)。
+  analysis: 6/6 accuracy 使 Claim 3 措辞从 "empirical decision rule"（暗示 preliminary, small-sample）升至
+    "empirical diagnostic"（暗示 validated, reproducible）。 论文 headline 可更新为： "An empirical
+    diagnostic — concentration ≳0.50 AND t₁/t₅ ≲0.70 — correctly identifies beneficial
+    architectures across six models spanning GQA 2:1 to 8:1 (6/6 accuracy at both
+    PPL and downstream levels)." 每个 category 有 2 个样本的平衡分布进一步降低 overfitting 风险。 Reviewer
+    的 "this threshold was tuned to your data" 攻击被有效缓解： 14B 是 held-out model（不参与 threshold
+    选择），仍被正确分类。

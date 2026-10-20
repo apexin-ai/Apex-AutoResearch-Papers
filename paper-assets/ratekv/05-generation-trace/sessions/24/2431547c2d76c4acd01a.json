@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_mistral-hires-table3-patch_20260514T223738_result.json",
     "occurrence": 1,
-    "bytes": 623,
-    "sha256": "4cb3328a8400820dd41d371b9fed8cb6b95ac2c178bd55e9a070685102fefbaa"
+    "bytes": 622,
+    "sha256": "1ae1465032a91536055558c386290f6ed56d9cbdc02db05c9729f7aff121fa95"
   },
   "statistics": {
     "messages": 1,

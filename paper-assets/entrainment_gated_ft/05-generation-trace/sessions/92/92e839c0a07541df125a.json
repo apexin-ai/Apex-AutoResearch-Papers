@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_a1_cross_benchmark_jaccard_20260522T075546_result.json",
     "occurrence": 1,
-    "bytes": 1642,
-    "sha256": "f4e7adf1d52a3ddab50d428979791b23c3f72946e932b185f083c17a6ff283fe"
+    "bytes": 1641,
+    "sha256": "62d1ebca5cf6f4293e632c97308174962332842dcde4427b75bc0aed6451ba2d"
   },
   "statistics": {
     "messages": 1,

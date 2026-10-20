@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_hgrn2_nohup_start_20260518T155445_result.json",
     "occurrence": 1,
-    "bytes": 159,
-    "sha256": "cfab2b11758dcafddc4c4d12c0d3bedd0b9e92a408795301d64ca18791b4ef9a"
+    "bytes": 158,
+    "sha256": "dc627761853da15b1a1aeb763b348aab5418772287d48109bae4ca45640e92ae"
   },
   "statistics": {
     "messages": 1,

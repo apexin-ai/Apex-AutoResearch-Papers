@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "baa7c6d8cabed7d02a26",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "exp dpo dryrun cuda3",
+  "task_key": "worker_exp_dpo-dryrun-cuda3_20260512T133520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_dpo-dryrun-cuda3_20260512T133520_result.json",
+    "occurrence": 1,
+    "bytes": 1655,
+    "sha256": "b80b1266fede9dfd502742885b99e2655725311ea7bff6ab6a1fd94cb27a213a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. 文件部署验证\n\n| 文件 | 行数 | 验证 | 状态 |\n|------|------|------|------|\n| `train_dpo.py` | 247 → 远程修改为 QLoRA 版本 | `learning_rate` ✓ | **PASS** |\n| `build_dpo_pairs.py` | 251 | `wc -l` ✓ | **PASS** |\n| `generate_synthetic_corpus.py` | 665 | `postprocess_traces` ✓ | **PASS** |\n\n### 2. DPO dry-run 结果：**成功**\n\n- 3 steps (10 条 dummy 数据, batch_size=1, grad_accum=4, 1 epoch)\n- **train_loss: 0.5898**\n- loss 从 0.6931 → 0.6931 → 0.3832（第 3 步开始收敛）\n- `rewards/accuracies` 从 0.0 → 1.0（第 3 步）\n- runtime: 9.15s\n\n### 3. GPU 显存\n\n训练完成后 GPU 3 已释放（0 MiB）。训练过程中 QLoRA 4-bit 模型 + LoRA + optimizer 预估 ~10-12 GB（基于 24 GB 卡未 OOM）。\n\n### 4. 参数调整\n\n原始 bf16 代码需要以下修改才能在单 4090D 上跑通：\n- `flash_attention_2` → `sdpa`（flash_attn 未安装）\n- `torch_dtype` → 移除（已废弃）\n- `max_prompt_length` → 移除（TRL 1.4.0 不支持）\n- `device_map=\"auto\"` → `device_map={\"\": 0}`\n- **bf16 → QLoRA 4-bit**（单卡 24GB 无法容纳 bf16 模型 + DPO reference model）\n- `batch_size=1` 即可\n\n### 5. nvidia-smi 确认\n\n| GPU | 显存占用 | 说明 |\n|-----|---------|------|\n| 0 | 7763/24564 MiB | 其他进程 |\n| 1 | 0/24564 MiB | 空闲 |\n| **2** | **22103/24564 MiB** | **mvp-004 实验，未动** |\n| **3** | **0/24564 MiB** | **dry-run 完成，已释放** |\n| 4 | 0/24564 MiB | 空闲 |\n| 5 | 18736/24564 MiB | 其他进程 |\n\nGPU 2 的 mvp-004 实验完好无损。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "": 0
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-dpo-dryrun-cuda3.md"
+}

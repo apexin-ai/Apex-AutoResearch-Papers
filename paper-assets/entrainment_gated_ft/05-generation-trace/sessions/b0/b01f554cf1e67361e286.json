@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_fix-patch-v2_20260518T112230_result.json",
     "occurrence": 1,
-    "bytes": 238,
-    "sha256": "2f9d87529cdd00dcf67fc2040d4edf7b1a13cf7eb26337c2f0178c1838a6114c"
+    "bytes": 237,
+    "sha256": "20d91b3a1a9157d5513945b1c588a614a382dea87ad28a32522866972e8104da"
   },
   "statistics": {
     "messages": 1,

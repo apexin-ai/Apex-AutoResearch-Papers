@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_gpu_qwen_float32_validation_20260514T174811_result.json",
     "occurrence": 1,
-    "bytes": 168,
-    "sha256": "e5eceda7a773eea97fb39c10203bfd4df08461a3e172b3e8882ff890cee58154"
+    "bytes": 167,
+    "sha256": "adc85da7585ca83288188e92e937a735b0281200bcd12fc7dd8e5d51aa25ecd5"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,27 @@
+{
+  "exp_id": "llama_downstream_eval",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:15:00.238Z",
+    "updated_at": "2026-05-15T17:38:38.439Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python run_llama_downstream_eval.py",
+      "server": "westd-37397",
+      "model_name": "Llama-3.1-8B",
+      "data_path": "lm-eval built-in (arc_challenge, hellaswag, piqa, winogrande)",
+      "data_count": 0,
+      "seed": 0,
+      "description": "Downstream eval: constrained MCKP k=2 vs uniform 4-bit, 0-shot"
+    },
+    "checkpoint_path": "/root/ratekv/artifacts/llama_downstream_eval_results.json",
+    "log_path": "/root/ratekv/logs/llama_downstream_eval.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-15T17:38:38.439Z"
+  },
+  "timestamp": "2026-05-15T17:38:38.589389+00:00",
+  "trigger": "update_registry"
+}

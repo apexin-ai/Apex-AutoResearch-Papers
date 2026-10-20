@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_util_scp_pdf_jaccard_20260522T211435_result.json",
     "occurrence": 1,
-    "bytes": 143,
-    "sha256": "64963144ed9d944f39345434123533cbd707060040716542dbf07578504f6e0c"
+    "bytes": 142,
+    "sha256": "e685b6c8ebf9c47f56b0bb1fb68b9ab5b5fedd93528e8c0150dd51355918ed91"
   },
   "statistics": {
     "messages": 1,

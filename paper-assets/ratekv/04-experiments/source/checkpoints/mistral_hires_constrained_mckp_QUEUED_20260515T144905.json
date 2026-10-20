@@ -1,0 +1,15 @@
+{
+  "exp_id": "mistral_hires_constrained_mckp",
+  "project": "ratekv",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:48:40.269Z",
+    "updated_at": "2026-05-15T14:49:05.697Z",
+    "hypothesis": "Mistral-7B (Flat, conc=0.22) constrained MCKP should show minimal improvement over uniform 4-bit"
+  },
+  "timestamp": "2026-05-15T14:49:05.872669+00:00",
+  "trigger": "update_registry"
+}

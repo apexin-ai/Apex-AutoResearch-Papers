@@ -1,0 +1,29 @@
+{
+  "exp_id": "mistral_hires_bf16_2bitonly_v2",
+  "project": "ratekv",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:11:12.157Z",
+    "updated_at": "2026-05-14T21:11:49.268Z",
+    "hypothesis": "Mistral-7B-v0.3 hires bf16 2-bit only profiling (64seq×2048tok): 补全 5 模型 hires concentration 全景图。v1 因 ModelScope 下载路径 config.json 问题失败，v2 修正模型路径为 /root/autodl-tmp/models/mistral-7b-v0.3/LLM-Research/Mistral-7B-v0___3/。",
+    "parent": "mistral_hires_bf16_2bitonly",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_mistral_hires_bf16_2bitonly.py --model /root/autodl-tmp/models/mistral-7b-v0.3/LLM-Research/Mistral-7B-v0___3/ --gpu cuda:0 --calibration_data calibration_hires.json\"",
+      "server": "westd-37397",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "260978",
+      "log_path": "~/runs/ratekv/mistral_hires_bf16_2bitonly_v2.log",
+      "submitted_at": "2026-05-14T21:11:26.023Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-14T21:11:49.385840+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_within_scale_jaccard_20260519T204324_result.json",
     "occurrence": 1,
-    "bytes": 34191,
-    "sha256": "9ee4a10a9a7b12d386fafe3bccb0f3dbfe31e69fbff58d3e1b733eb61164f424"
+    "bytes": 34190,
+    "sha256": "9f65cf9105b53ed42b19e82d30544b388c79bd05a4f726b06dcd1bb89581a1d4"
   },
   "statistics": {
     "messages": 1,

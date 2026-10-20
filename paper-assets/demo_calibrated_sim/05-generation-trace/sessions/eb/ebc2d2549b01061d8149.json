@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebc2d2549b01061d8149",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "verify server state",
+  "task_key": "worker_verify_server-state_20260513T014230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_server-state_20260513T014230_result.json",
+    "occurrence": 1,
+    "bytes": 3561,
+    "sha256": "c77e7ceadc4379bf84a1c8215a3c728040f6651ca4ee0b5a511173f6ae96ecd1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tmux 被 read_only 模式阻止，其他全部完成。以下是原样输出：\n\n---\n\n### CHECK 1: Merged model\n```\n/root/autodl-tmp/models/Qwen2.5-7B-DPO003-merged/\ntotal 14889884\n-rw-r--r-- 1 root root        605 May 13 09:16 added_tokens.json\n-rw-r--r-- 1 root root       2507 May 13 09:16 chat_template.jinja\n-rw-r--r-- 1 root root       1318 May 13 09:15 config.json\n-rw-r--r-- 1 root root        243 May 13 09:15 generation_config.json\n-rw-r--r-- 1 root root    1671853 May 13 09:16 merges.txt\n-rw-r--r-- 1 root root 4877660776 May 13 09:15 model-00001-of-00004.safetensors\n-rw-r--r-- 1 root root 4932751008 May 13 09:16 model-00002-of-00004.safetensors\n-rw-r--r-- 1 root root 4330865200 May 13 09:16 model-00003-of-00004.safetensors\n-rw-r--r-- 1 root root 1089994880 May 13 09:16 model-00004-of-00004.safetensors\n-rw-r--r-- 1 root root      27788 May 13 09:16 model.safetensors.index.json\n-rw-r--r-- 1 root root        613 May 13 09:16 special_tokens_map.json\n-rw-r--r-- 1 root root   11421896 May 13 09:16 tokenizer.json\n-rw-r--r-- 1 root root       4686 May 13 09:16 tokenizer_config.json\n-rw-r--r-- 1 root root    2776833 May 13 09:16 vocab.json\n```\n\n`/root/autodl-tmp/models/` 下的 Qwen 相关目录：\n```\nQwen/\nQwen2.5-7B-DPO003-merged/\nQwen2.5-7B-Instruct/\nQwen2.5-7B-Instruct-DPO-merged/\n```\n\n---\n\n### CHECK 2: cuda:2 processes\n```\nGPU 2: NVIDIA GeForce RTX 4090 D, 0% util, 0MiB / 24564MiB\nNo running processes found\n```\n\n---\n\n### CHECK 3: PID 55024\n```\nPID_55024_NOT_FOUND\n```\n\npgrep -f vllm 也无结果（ps aux 输出中无 vllm 进程）。\n\n---\n\n### CHECK 4: cuda:3 processes\n```\nGPU 3: NVIDIA GeForce RTX 4090 D, 0% util, 0MiB / 24564MiB\nNo running processes found\n```\n\n---\n\n### CHECK 5: Diagnostic trace files\n```\n/root/democalib/results/diag_merged/  (创建于 May 13 09:18)\n  └─ tool-calling-democalib-diag-0.0_range_0-5_user-democalib-diag-llm_0513091751.json\n\n/root/democalib/results/diag_base/    (创建于 May 13 09:33)\n  └─ tool-calling-democalib-diag-0.0_range_0-5_user-democalib-diag-llm_0513092625.json\n  └─ tool-calling-democalib-diag-0.0_range_0-5_user-democalib-diag-llm_0513093332.json\n```\n\n其他 diag/merged 相关文件：\n```\n/root/democalib/results/baseline_merged.json\n/root/democalib/test_mismatch_diagnosis.py\n/root/democalib/eval_dpo003_merged.sh\n```\n\n---\n\n### CHECK 6: Full GPU status\n```\n0, NVIDIA GeForce RTX 4090 D, 0 %, 0 MiB, 24564 MiB\n1, NVIDIA GeForce RTX 4090 D, 0 %, 0 MiB, 24564 MiB\n2, NVIDIA GeForce RTX 4090 D, 0 %, 0 MiB, 24564 MiB\n3, NVIDIA GeForce RTX 4090 D, 0 %, 0 MiB, 24564 MiB\n4, NVIDIA GeForce RTX 4090 D, 0 %, 0 MiB, 24564 MiB\n5, NVIDIA GeForce RTX 4090 D, 0 %, 3 MiB, 24564 MiB\n```\n\n6x RTX 4090 D，全部空闲（0% util），仅 GPU 5 有 3MiB 占用。\n\n---\n\n### CHECK 7: All relevant processes (python/vllm/run_mvp)\n\n**无 vLLM 进程。** 在跑的 python 进程：\n\n| PID | 描述 |\n|-----|------|\n| 821 | tensorboard --port 6007 |\n| 822 | jupyter-lab |\n| 444913 | `huggingface_hub.snapshot_download('bigcode/starcoder2-3b')` |\n| 494664 | `wget` 下载 starcoder2-3b model.safetensors |\n| 570727 | `modelscope.snapshot_download('bigcode/starcoder2-3b')` |\n| 577872 | `python extraction/batch_extract.py` (structfuse m1_extraction, 8 workers) |\n| 577874 | 同上（子进程） |\n| 多个 | codeql java 进程（structfuse 的 CodeQL 查询） |\n\n---\n\n### CHECK 8: tmux sessions\n`tmux list-sessions` 被 read_only 模式阻止，无法执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-server-state.md"
+}

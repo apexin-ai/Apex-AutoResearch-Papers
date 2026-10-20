@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_prep_code-release-cleanup_20260522T191614_result.json",
     "occurrence": 1,
-    "bytes": 1008,
-    "sha256": "8080ec038ebe1c3715cfa890377eb933e9ad622050ef0fe57c4c087a6e0f2bce"
+    "bytes": 1007,
+    "sha256": "2bdd6d60db455f8fc6bf8069edb51a7648c7da427a9df2af46d063e869f3bfa7"
   },
   "statistics": {
     "messages": 1,

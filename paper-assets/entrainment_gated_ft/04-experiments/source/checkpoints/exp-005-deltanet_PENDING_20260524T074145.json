@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp-005-deltanet",
+  "project": "entrainment_gated_ft",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:51:45.169Z",
+    "updated_at": "2026-05-24T07:41:45.859Z",
+    "spec": {
+      "command": "bash -c \"bash /root/entrainment_gated_ft/results/exp005_zoo_expansion/eval_deltanet_hardcode.sh\"",
+      "server": "westb-48145",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "881335",
+      "log_path": "~/runs/entrainment_gated_ft/exp-005-deltanet.log",
+      "submitted_at": "2026-05-22T15:51:45.096Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-24T07:41:45.933387+00:00",
+  "trigger": "update_registry"
+}

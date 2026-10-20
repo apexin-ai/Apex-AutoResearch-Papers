@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_e4-clean-restart_20260522T113236_result.json",
     "occurrence": 1,
-    "bytes": 223,
-    "sha256": "e77e09b8dd64eb4c5b3761da7788f8bc3a20ec674e52413278b48573b0551402"
+    "bytes": 222,
+    "sha256": "136ec8581bed252add5a030d32019996dcc735735cc5eac607fdc292928ae9f5"
   },
   "statistics": {
     "messages": 1,

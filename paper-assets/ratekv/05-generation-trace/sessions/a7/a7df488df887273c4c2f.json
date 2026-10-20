@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_c4_cross_dataset_eval_20260514T011833_result.json",
     "occurrence": 1,
-    "bytes": 767,
-    "sha256": "48ebd4680ffdb819ebabcfba487542447ade9c3fb22df055cbae68b455f0365d"
+    "bytes": 766,
+    "sha256": "f9c929e8294a4b1b4406f9e894b2886046289fd6999d3c73ba955069d0ec85b0"
   },
   "statistics": {
     "messages": 1,

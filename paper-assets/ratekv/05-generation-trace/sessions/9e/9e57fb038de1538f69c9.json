@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_infra_read-expb-results_20260513T235027_result.json",
     "occurrence": 1,
-    "bytes": 4010,
-    "sha256": "155699bdad5a9f428e0d5c8db060d3673742aa8a80771c5733d0a7fc43a30675"
+    "bytes": 4009,
+    "sha256": "2161af6dca08760f508653460eee317dc602be8db2c9640d5a9279529fce7160"
   },
   "statistics": {
     "messages": 1,

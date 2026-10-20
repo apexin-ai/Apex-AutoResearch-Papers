@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_lmeval_clean_v3_20260518T130110_result.json",
     "occurrence": 1,
-    "bytes": 2259753,
-    "sha256": "e786cf71c416d1f59c167256ba521ce74c717f14f655a4c503b9436eece7a120"
+    "bytes": 2259752,
+    "sha256": "2be2ee9d746651d2edd2236e7a1c9d79bb0ce578b853e7010ee1c5da8492e161"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_matched_dose_comparison_20260519T055535_result.json",
     "occurrence": 1,
-    "bytes": 1852,
-    "sha256": "feea37e291c19f7817d72bff9ef427183186c2a8df402d96d693043417c12cbe"
+    "bytes": 1851,
+    "sha256": "50d6806552ae1237b438a09b4b1eaf58467cdfa1d55f7ab7f7d05070d8b0f1d5"
   },
   "statistics": {
     "messages": 1,

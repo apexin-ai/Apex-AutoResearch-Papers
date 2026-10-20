@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp-005",
+  "project": "entrainment_gated_ft",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T02:26:40.718Z",
+    "updated_at": "2026-05-22T14:25:09.383Z",
+    "hypothesis": "Cross-architecture Jaccard overlap of helped/hurt sets will remain significantly above chance when expanded from 3 to 6 linear attention architectures, indicating that attention-mediated sample sensitivity is architecture-independent.",
+    "conclusion": "killed",
+    "metrics": {
+      "cancel_reason": "Wang et al. zoo 仅含 GDN/RetNet/HGRN2，无法扩展 n>3，已由 worker_analysis_arch-extension-check 确认"
+    },
+    "parent": "exp-001",
+    "spec": {
+      "command": "bash -c \"bash /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_priority1_v3.sh\"",
+      "server": "westb-48145",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "860282",
+      "log_path": "~/runs/entrainment_gated_ft/exp-005.log",
+      "submitted_at": "2026-05-22T12:53:28.185Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 5460.9,
+      "gpu_hours": 1.52
+    },
+    "completed_at": "2026-05-22T14:24:29.103Z"
+  },
+  "timestamp": "2026-05-22T14:25:09.468873+00:00",
+  "trigger": "update_registry"
+}

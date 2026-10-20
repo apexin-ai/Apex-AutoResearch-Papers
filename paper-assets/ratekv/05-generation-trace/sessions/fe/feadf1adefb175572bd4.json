@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_mistral_c4_resubmit_20260514T123314_result.json",
     "occurrence": 1,
-    "bytes": 618,
-    "sha256": "300f5a58c9c35899301fde750a686aa63358c6b24b41dc1ba9af0f016ce45ed6"
+    "bytes": 617,
+    "sha256": "f947f4bb70fc6c9f7b451f0231aa76cbacc97db708ebe6fbcc78cf2937b087f4"
   },
   "statistics": {
     "messages": 1,

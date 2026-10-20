@@ -1,0 +1,1236 @@
+- id: art_20260522_813f4f
+  name: arr_checklist_draft
+  type: report
+  description: ARR Responsible NLP Checklist draft answers for OpenReview submission
+    form (EMNLP 2026)
+  path: projects/entrainment_gated_ft/artifacts/arr_checklist_draft.txt
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T18:59:29.964200+00:00'
+  tags:
+  - arr_checklist
+  - submission
+  - emnlp2026
+- id: art_20260519_6bdbaf
+  name: wang_7b_search_results
+  type: report
+  description: Wang et al. (arXiv 2507.06457) 7B模型搜索结果：确认无7B模型，仅有340M和1.3B
+  path: projects/entrainment_gated_ft/artifacts/_project/report/wang_7b_search_results.md
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T12:57:00.452560+00:00'
+  tags:
+  - wang_et_al
+  - 7B
+  - hybrid_linear_attention
+  - model_search
+- id: art_20260519_e33ecb
+  name: per_example_data_audit
+  type: report
+  description: Per-example data completeness audit for lm_eval benchmark results across
+    1.3B and 340M models (GDN, HGRN2, RetNet, Transformer)
+  path: projects/entrainment_gated_ft/artifacts/_project/report/per_example_data_audit.md
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T13:00:31.563610+00:00'
+  tags:
+  - audit
+  - lm_eval
+  - per-example
+  - data-completeness
+- id: art_20260519_900289
+  name: task_specificity_results
+  type: data
+  description: Per-benchmark cross-architecture convergence stats (std at each attention
+    ratio, Spearman rho, exact permutation p-values) for 1.3B and 340M scales
+  path: projects/entrainment_gated_ft/artifacts/exp-001/data/task_specificity_results.csv
+  url: null
+  project: entrainment_gated_ft
+  exp_id: exp-001
+  skill: ''
+  created_at: '2026-05-19T13:14:19.095835+00:00'
+  tags:
+  - task-specificity
+  - convergence
+  - spearman
+  - cross-architecture
+- id: art_20260519_5c4f51
+  name: task_specificity_figure
+  type: chart
+  description: '6-panel figure: cross-arch std vs attention ratio per benchmark (1.3B+340M).
+    LAMBADA convergence significant (red). Remote path: /root/entrainment_gated_ft/analysis/task_specificity_figure.{pdf,png}'
+  path: projects/entrainment_gated_ft/artifacts/exp-001/chart/task_specificity_figure_info.txt
+  url: null
+  project: entrainment_gated_ft
+  exp_id: exp-001
+  skill: ''
+  created_at: '2026-05-19T13:14:21.887264+00:00'
+  tags:
+  - task-specificity
+  - convergence
+  - figure
+- id: art_20260519_35e8b7
+  name: sample_characterization_results
+  type: data
+  description: 'LAMBADA sample characterization: Mann-Whitney U tests for helped vs
+    hurt samples across GDN/HGRN2/RetNet h3-1 architectures'
+  path: projects/entrainment_gated_ft/artifacts/exp-003/data/sample_characterization_results.csv
+  url: null
+  project: entrainment_gated_ft
+  exp_id: exp-003
+  skill: ''
+  created_at: '2026-05-19T13:17:44.204906+00:00'
+  tags:
+  - sample-characterization
+  - lambada
+  - statistics
+- id: art_20260519_69044b
+  name: sample_characterization_figure
+  type: chart
+  description: '6-panel violin plot: upper=per-arch helped vs hurt feature distributions,
+    lower=cross-arch helped comparison. Remote path: /root/entrainment_gated_ft/analysis/sample_characterization.png'
+  path: projects/entrainment_gated_ft/artifacts/exp-003/chart/sample_characterization_figure_pointer.txt
+  url: null
+  project: entrainment_gated_ft
+  exp_id: exp-003
+  skill: ''
+  created_at: '2026-05-19T13:17:46.779137+00:00'
+  tags:
+  - sample-characterization
+  - lambada
+  - visualization
+- id: art_20260519_63ef01
+  name: exp-003-p2 statistical summary
+  type: data
+  description: 'Phase 2 perplexity analysis: Mann-Whitney U tests all p>0.05 (negative
+    result), cross-arch Kruskal-Wallis significant'
+  path: projects/entrainment_gated_ft/artifacts/exp-003-p2/data/exp-003-p2_summary.txt
+  url: null
+  project: entrainment_gated_ft
+  exp_id: exp-003-p2
+  skill: ''
+  created_at: '2026-05-19T14:07:54.810770+00:00'
+  tags:
+  - perplexity
+  - negative-result
+  - lambada
+  - phase2
+- id: art_20260519_34753a
+  name: exp-004 attention extraction script
+  type: intermediate
+  description: Attention weight extraction script for exp-004. Intercepts Q,K via
+    forward hooks on fla.layers.attn.Attention (8 layers at indices [2,5,8,11,14,17,20,23]),
+    manually computes softmax(QK^T/sqrt(d)) with GQA head expansion. Supports GDN/RetNet/HGRN2
+    h3-1 models. Includes helped/hurt entropy analysis and cross-arch cosine similarity.
+  path: projects/entrainment_gated_ft/artifacts/exp-004/intermediate/extract_attention_weights.py
+  url: null
+  project: entrainment_gated_ft
+  exp_id: exp-004
+  skill: ''
+  created_at: '2026-05-19T16:13:09.139801+00:00'
+  tags:
+  - attention
+  - hook
+  - preparation
+- id: art_20260519_1adf01
+  name: paper_data_convergence_table
+  type: data
+  description: 'Table 1: Full 11-benchmark convergence statistics (rho, p-values,
+    Bonferroni corrections, std, convergence ratio)'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/convergence_table.csv
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T16:45:15.536674+00:00'
+  tags:
+  - paper
+  - table1
+  - convergence
+- id: art_20260519_c85296
+  name: paper_data_per_example_table
+  type: data
+  description: 'Table 2: Per-example helped/hurt counts and pairwise Jaccard by architecture
+    (GDN, RetNet, HGRN2)'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/per_example_table.csv
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T16:45:17.176497+00:00'
+  tags:
+  - paper
+  - table2
+  - per-example
+- id: art_20260519_18c708
+  name: paper_data_gdn_sensitivity_table
+  type: data
+  description: 'Table 3: GDN sensitivity analysis - rho/p with vs without GDN across
+    6 benchmarks'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/gdn_sensitivity_table.csv
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T16:45:19.088023+00:00'
+  tags:
+  - paper
+  - table3
+  - gdn-sensitivity
+- id: art_20260519_318a0c
+  name: paper_data_decoupling
+  type: data
+  description: 'D008 decoupling figure data: cross-arch std + Jaccard helped/hurt
+    + net asymmetry by attention ratio'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/decoupling_data.csv
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T16:45:21.420265+00:00'
+  tags:
+  - paper
+  - figure
+  - decoupling
+  - D008
+- id: art_20260519_d07792
+  name: paper_data_bca_ci
+  type: data
+  description: 'BCa bootstrap CI data for LAMBADA rho: CI bounds, degeneracy stats,
+    percentile vs BCa explanation'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/bca_ci_data.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T16:45:23.544793+00:00'
+  tags:
+  - paper
+  - bootstrap
+  - CI
+  - LAMBADA
+- id: art_20260519_24c33b
+  name: D009 Post-Decision Assessment
+  type: report
+  description: Dream-style review simulation (predicted 2.5 borderline findings),
+    exp-002 cost-benefit analysis (recommend NOT executing), and prioritized next
+    steps for EMNLP 2026 submission
+  path: projects/entrainment_gated_ft/artifacts/_project/report/d009_assessment.md
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T16:45:58.937349+00:00'
+  tags:
+  - review
+  - assessment
+  - d009
+  - exp-002
+  - strategy
+- id: art_20260519_721345
+  name: exp007_data_check
+  type: report
+  description: exp-007 前置检查：340M/1.3B LAMBADA per-example logprob 数据可用性报告
+  path: projects/entrainment_gated_ft/artifacts/exp-007/report/exp007_data_check.md
+  url: null
+  project: entrainment_gated_ft
+  exp_id: exp-007
+  skill: ''
+  created_at: '2026-05-19T17:05:21.461426+00:00'
+  tags:
+  - data-check
+  - lambada
+  - logprob
+  - pre-requisite
+- id: art_20260519_8eb8cf
+  name: exp007_script_ready
+  type: report
+  description: 'exp-007 LAMBADA log_samples batch script ready report: scripts, model
+    list, dry-run results, estimated runtime'
+  path: projects/entrainment_gated_ft/artifacts/exp-007/report/exp007_script_ready.md
+  url: null
+  project: entrainment_gated_ft
+  exp_id: exp-007
+  skill: ''
+  created_at: '2026-05-19T17:18:21.845515+00:00'
+  tags:
+  - exp-007
+  - lambada
+  - lm-eval
+  - batch-script
+- id: art_20260519_9565cd
+  name: fig1_decoupling_hero
+  type: chart
+  description: 'Figure 1: 2-panel hero figure showing decoupling of aggregate convergence
+    (cross-arch σ drops 79%) and per-example divergence (Jaccard ~0.10 saturates at
+    4% attention). PDF vector + 300 DPI PNG.'
+  path: projects/entrainment_gated_ft/artifacts/_project/chart/fig1_decoupling_hero.pdf
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-19T17:30:06.122598+00:00'
+  tags:
+  - paper
+  - figure1
+  - hero
+  - decoupling
+- id: art_20260519_66f75a
+  name: fig2_task_specificity
+  type: chart
+  description: 'Figure 2: Forest plot of Spearman ρ across 10 benchmarks. Only LAMBADA
+    shows significant negative correlation (ρ=-1.0, p=0.017). Data source: exp-001
+    convergence analysis.'
+  path: projects/entrainment_gated_ft/artifacts/_project/chart/fig2_task_specificity.pdf
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T17:45:25.565318+00:00'
+  tags:
+  - paper
+  - experiments
+  - forest-plot
+- id: art_20260519_3d0f77
+  name: fig2_task_specificity
+  type: chart
+  description: Fig2 task specificity chart — fixed BoolQ taxonomy from retrieval to
+    comprehension (green), legend moved outside axes to avoid overlap
+  path: projects/entrainment_gated_ft/artifacts/_project/chart/fig2_task_specificity_3d0f77.pdf
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T18:27:01.670587+00:00'
+  tags:
+  - fig2
+  - task_specificity
+  - paper_figure
+- id: art_20260519_08d5ee
+  name: exp007_analysis_summary
+  type: report
+  description: 'exp-007 full analysis: 340M rebound mechanism on LAMBADA, cross-arch
+    std, Spearman rho, per-example Jaccard, comparison with 1.3B'
+  path: projects/entrainment_gated_ft/artifacts/exp-007/report/exp007_analysis_summary.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: exp-007
+  skill: ''
+  created_at: '2026-05-19T18:54:13.438952+00:00'
+  tags:
+  - lambada
+  - 340m
+  - rebound
+  - cross-arch-std
+  - per-example
+- id: art_20260519_058605
+  name: exp007_340m_analysis
+  type: data
+  description: 'exp-007 340M rebound comprehensive analysis: cross-arch convergence
+    (σ values), per-example helped/hurt with Jaccard, cross-scale 340M vs 1.3B Jaccard,
+    rebound sample characterization with Mann-Whitney test, attention ratio evolution'
+  path: projects/entrainment_gated_ft/artifacts/exp-007/data/exp007_340m_analysis.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: exp-007
+  skill: ''
+  created_at: '2026-05-19T19:04:23.274897+00:00'
+  tags:
+  - 340m
+  - rebound
+  - convergence
+  - per-example
+  - lambada
+- id: art_20260520_ef9d08
+  name: exp003_p2_data_check
+  type: report
+  description: exp-003-p2 数据完整性检查：GDN h3-1 log_samples 缺失（用了 h12-1 替代），统计结论不变
+  path: projects/entrainment_gated_ft/artifacts/exp-003-p2/report/exp003_p2_data_check.md
+  url: null
+  project: entrainment_gated_ft
+  exp_id: exp-003-p2
+  skill: ''
+  created_at: '2026-05-20T03:03:17.248808+00:00'
+  tags:
+  - data-integrity
+  - exp-003-p2
+- id: art_20260520_b4610a
+  name: within_arch_helped_stability
+  type: report
+  description: Within-arch Jaccard (~0.33) vs cross-arch (~0.10) 对比：同架构内 helped/hurt
+    overlap 3x 高于跨架构，但仍远低于 1.0；HGRN2 helped 最稳定 hurt 最不稳定
+  path: projects/entrainment_gated_ft/artifacts/exp-010/report/within_arch_helped_stability.md
+  url: null
+  project: entrainment_gated_ft
+  exp_id: exp-010
+  skill: ''
+  created_at: '2026-05-20T03:03:59.292340+00:00'
+  tags:
+  - jaccard
+  - per-example
+  - decoupling
+  - supplementary
+- id: art_20260520_1b57ce
+  name: confidence_margin_analysis
+  type: data
+  description: 'Confidence margin analysis (rebuttal reserve): helped vs hurt samples''
+    pure-model loglikelihood margins on LAMBADA. All 3 archs show hurt samples are
+    near decision boundary, helped are high-confidence errors. Cohen d > 1.2, all
+    p < 1e-60.'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/confidence_margin_analysis.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T03:33:23.144619+00:00'
+  tags:
+  - rebuttal
+  - confidence-margin
+  - lambada
+  - per-example
+  - exp007
+- id: art_20260520_79feb1
+  name: confidence_margin_within_category
+  type: data
+  description: 'Within-category confidence margin analysis (rebuttal reserve). Eliminates
+    definitional confound of across-category comparison. Both controls significant
+    across all 3 architectures (GDN/RetNet/HGRN2): hurt samples were weakly-correct
+    (higher |loglik|, d=0.83-0.92), helped samples were near-miss wrong (lower |loglik|,
+    d=0.73-0.77). Conclusion: confidence margin genuinely predicts attention effect.'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/confidence_margin_within_category.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T03:56:21.312719+00:00'
+  tags:
+  - rebuttal
+  - confidence_margin
+  - within_category
+  - statistical_test
+  - lambada
+- id: art_20260520_c8688f
+  name: RetNet-HGRN2 Only Decoupling Analysis
+  type: data
+  description: 'Cross-arch σ and per-example Jaccard for RetNet+HGRN2 only (excluding
+    GDN due to 16-head confound D004). Responds to MF-3 attack surface. Conclusion:
+    decoupling holds without GDN.'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/retnet_hgrn2_only_decoupling.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T04:58:35.999850+00:00'
+  tags:
+  - decoupling
+  - MF-3
+  - robustness-check
+  - retnet
+  - hgrn2
+  - lambada
+- id: art_20260520_f0ece3
+  name: jaccard_upper_bound
+  type: data
+  description: 'Jaccard theoretical upper bound (J_max) and normalized effect size
+    analysis for all 4 attention ratios × 3 architecture pairs × helped/hurt. Converts
+    floor-effect critique into decoupling evidence: mean J_obs/J_max = 11.1%, normalized
+    ES range [0.03, 0.08].'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/jaccard_upper_bound.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T04:59:42.708984+00:00'
+  tags:
+  - jaccard
+  - upper_bound
+  - normalized_ES
+  - decoupling
+  - paper_data
+- id: art_20260520_fc3e36
+  name: arc_easy_per_example
+  type: data
+  description: ARC-Easy per-example classification (helped/hurt/stayed) + cross-architecture
+    convergence sigma with Spearman test
+  path: projects/entrainment_gated_ft/artifacts/_project/data/arc_easy_per_example.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T09:35:34.620815+00:00'
+  tags:
+  - arc_easy
+  - per_example
+  - convergence
+- id: art_20260520_4ba617
+  name: formal_multiplicity_metrics
+  type: data
+  description: 'Formal Predictive Multiplicity (Marx et al. 2020): ambiguity alpha
+    + discrepancy delta for ARC-Easy and LAMBADA'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/formal_multiplicity_metrics.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T09:35:37.041991+00:00'
+  tags:
+  - multiplicity
+  - arc_easy
+  - lambada
+  - ambiguity
+  - discrepancy
+- id: art_20260520_04d552
+  name: arc_easy_jaccard_analysis
+  type: data
+  description: ARC-Easy cross-architecture Jaccard similarity with null model, normalized
+    ES, and 10K permutation tests
+  path: projects/entrainment_gated_ft/artifacts/_project/data/arc_easy_jaccard_analysis.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T09:35:38.854585+00:00'
+  tags:
+  - arc_easy
+  - jaccard
+  - permutation_test
+  - null_model
+- id: art_20260520_c36cea
+  name: boolq_per_example
+  type: data
+  description: BoolQ per-example classification (helped/hurt/stayed), ambiguity alpha,
+    convergence sigma across 3 architectures x 5 ratios
+  path: projects/entrainment_gated_ft/artifacts/_project/data/boolq_per_example.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T13:03:18.971818+00:00'
+  tags:
+  - eval
+  - boolq
+  - per-example
+  - multiplicity
+- id: art_20260520_d0f9e6
+  name: boolq_jaccard_analysis
+  type: data
+  description: BoolQ pairwise Jaccard similarity of helped/hurt sets across architectures
+    with permutation tests (10k permutations)
+  path: projects/entrainment_gated_ft/artifacts/_project/data/boolq_jaccard_analysis.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T13:03:21.375592+00:00'
+  tags:
+  - eval
+  - boolq
+  - jaccard
+  - multiplicity
+- id: art_20260520_94ce85
+  name: hellaswag_per_example
+  type: data
+  description: HellaSwag per-example classification (helped/hurt/stayed), ambiguity
+    alpha, convergence sigma across 3 architectures x 5 ratios
+  path: projects/entrainment_gated_ft/artifacts/_project/data/hellaswag_per_example.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T13:03:23.237700+00:00'
+  tags:
+  - eval
+  - hellaswag
+  - per-example
+  - multiplicity
+- id: art_20260520_d34d17
+  name: hellaswag_jaccard_analysis
+  type: data
+  description: HellaSwag pairwise Jaccard similarity of helped/hurt sets across architectures
+    with permutation tests (10k permutations)
+  path: projects/entrainment_gated_ft/artifacts/_project/data/hellaswag_jaccard_analysis.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T13:03:24.747142+00:00'
+  tags:
+  - eval
+  - hellaswag
+  - jaccard
+  - multiplicity
+- id: art_20260520_db0c2c
+  name: cross_benchmark_confidence_margin
+  type: data
+  description: Confidence margin within-category controls for ARC-Easy and HellaSwag
+    (replicating LAMBADA analysis). C2 (helped vs stayed-wrong) significant across
+    all 6 conditions (d=0.48-0.60). C1 (hurt vs stayed-right) significant in 4/6 conditions
+    (d=0.13-0.28), non-significant for HGRN2/ARC-Easy (p=0.145) and GDN/HellaSwag
+    (p=0.109).
+  path: projects/entrainment_gated_ft/artifacts/_project/data/cross_benchmark_confidence_margin.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T14:09:11.222076+00:00'
+  tags:
+  - confidence_margin
+  - within_category
+  - arc_easy
+  - hellaswag
+  - cross_benchmark
+  - mechanism
+- id: art_20260520_e18dd2
+  name: boolq_confidence_margin
+  type: data
+  description: 'BoolQ within-category confidence margin analysis: Mann-Whitney U +
+    Cohen''s d for hurt/stayed-right and helped/stayed-wrong splits. GDN h12-1, RetNet
+    h3-1, HGRN2 h3-1.'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/boolq_confidence_margin.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T14:49:16.779716+00:00'
+  tags:
+  - boolq
+  - confidence_margin
+  - within_category
+  - paper_data
+- id: art_20260520_cc8371
+  name: boolq_confidence_margin
+  type: data
+  description: 'BoolQ within-category confidence margin analysis: C1 (hurt vs stayed-right)
+    all n.s., C2 (helped vs stayed-wrong) GDN d=-0.36 p=1.7e-10, HGRN2 d=-0.31 p=5.6e-09,
+    RetNet d=-0.16 p=0.054'
+  path: projects/entrainment_gated_ft/artifacts/exp-boolq-hellaswag-eval/data/boolq_confidence_margin.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: exp-boolq-hellaswag-eval
+  skill: ''
+  created_at: '2026-05-20T14:50:32.140781+00:00'
+  tags:
+  - confidence_margin
+  - boolq
+  - within_category
+  - appendix
+- id: art_20260520_875147
+  name: loglik_range_diagnostic
+  type: data
+  description: 'Per-benchmark loglik distribution statistics for 3 pure architectures
+    (GDN/RetNet/HGRN2). Tests hypothesis that BoolQ confidence margin failure is due
+    to compressed binary MC loglik range. Result: hypothesis NOT supported — BoolQ
+    and LAMBADA have similar IQR (~0.9), both far smaller than HellaSwag (46) and
+    ARC-Easy (7). Driving factor is completion token length, not number of MC choices.'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/loglik_range_diagnostic.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T17:34:25.034291+00:00'
+  tags:
+  - loglik
+  - boolq
+  - confidence_margin
+  - diagnostic
+  - 1.3B
+- id: art_20260521_996d52
+  name: winogrande_per_example
+  type: data
+  description: 'WinoGrande per-example multiplicity analysis: classification (helped/hurt),
+    ambiguity alpha, convergence sigma with exact Spearman test'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/winogrande_per_example.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T09:37:35.602280+00:00'
+  tags:
+  - winogrande
+  - multiplicity
+  - ambiguity
+  - per_example
+- id: art_20260521_fd8ff7
+  name: winogrande_jaccard_analysis
+  type: data
+  description: WinoGrande cross-architecture Jaccard overlap with 10K permutation
+    tests for helped/hurt sets
+  path: projects/entrainment_gated_ft/artifacts/_project/data/winogrande_jaccard_analysis.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T09:37:37.958164+00:00'
+  tags:
+  - winogrande
+  - jaccard
+  - permutation_test
+  - per_example
+- id: art_20260521_eadff9
+  name: piqa_per_example
+  type: data
+  description: 'PIQA per-example multiplicity analysis: classification (helped/hurt),
+    ambiguity alpha, convergence sigma with exact Spearman test'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/piqa_per_example.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T09:37:39.901478+00:00'
+  tags:
+  - piqa
+  - multiplicity
+  - ambiguity
+  - per_example
+- id: art_20260521_7102eb
+  name: piqa_jaccard_analysis
+  type: data
+  description: PIQA cross-architecture Jaccard overlap with 10K permutation tests
+    for helped/hurt sets
+  path: projects/entrainment_gated_ft/artifacts/_project/data/piqa_jaccard_analysis.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T09:37:41.238858+00:00'
+  tags:
+  - piqa
+  - jaccard
+  - permutation_test
+  - per_example
+- id: art_20260521_db901c
+  name: hellaswag_per_example
+  type: data
+  description: 'HellaSwag per-example classification, convergence sigma, ambiguity
+    alpha (FIXED: acc_norm)'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/hellaswag_per_example_db901c.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T10:24:55.587885+00:00'
+  tags:
+  - hellaswag
+  - acc_norm
+  - per_example
+  - paper_data
+- id: art_20260521_8cde16
+  name: hellaswag_jaccard_analysis
+  type: data
+  description: 'HellaSwag cross-architecture Jaccard with null model and normalized
+    ES (FIXED: acc_norm)'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/hellaswag_jaccard_analysis_8cde16.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T10:24:58.014839+00:00'
+  tags:
+  - hellaswag
+  - acc_norm
+  - jaccard
+  - paper_data
+- id: art_20260521_672592
+  name: hellaswag_alpha_by_ratio
+  type: data
+  description: 'HellaSwag ambiguity alpha across 5 attention ratios (FIXED: acc_norm)'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/hellaswag_alpha_by_ratio.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T10:24:59.782862+00:00'
+  tags:
+  - hellaswag
+  - acc_norm
+  - alpha
+  - paper_data
+- id: art_20260521_e8bcdb
+  name: cross_benchmark_confidence_margin
+  type: data
+  description: 'Cross-benchmark confidence margin analysis for arc_easy+hellaswag
+    (FIXED: hellaswag uses acc_norm)'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/cross_benchmark_confidence_margin_e8bcdb.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T10:25:01.740923+00:00'
+  tags:
+  - hellaswag
+  - arc_easy
+  - acc_norm
+  - confidence_margin
+  - paper_data
+- id: art_20260521_31b294
+  name: bootstrap_ci_alpha
+  type: data
+  description: Bootstrap 95% CI for ambiguity α across 4 benchmarks (PIQA, HellaSwag,
+    ARC-Easy, LAMBADA) × 5 attention ratios (pure, h24-1, h12-1, h6-1, h3-1), 10K
+    resamples, 1.3B models
+  path: projects/entrainment_gated_ft/artifacts/_project/data/bootstrap_ci_alpha.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T13:09:48.424269+00:00'
+  tags:
+  - bootstrap
+  - alpha
+  - ambiguity
+  - confidence_interval
+  - 1.3B
+- id: art_20260521_16e9e4
+  name: Subsample Sensitivity Analysis
+  type: data
+  description: Bootstrap subsample sensitivity analysis for α stability across 4 benchmarks
+    (PIQA/HellaSwag/ARC-Easy/LAMBADA). 1000 reps × {100,200,500,1000,N} subsample
+    sizes. Validates COPA exclusion and α stability at current sample sizes.
+  path: projects/entrainment_gated_ft/artifacts/_project/data/subsample_sensitivity.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T13:29:11.289322+00:00'
+  tags:
+  - subsample
+  - bootstrap
+  - alpha
+  - sensitivity
+  - copa
+- id: art_20260521_4c5bb3
+  name: 340M LAMBADA Per-Example Analysis
+  type: data
+  description: '340M LAMBADA per-example multiplicity analysis: ambiguity alpha, per-example
+    classification (helped/hurt), cross-architecture Jaccard with permutation tests,
+    convergence sigma with exact Spearman test, and 1.3B comparison.'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/340m_lambada_per_example.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T13:30:34.366177+00:00'
+  tags:
+  - 340M
+  - lambada
+  - per-example
+  - multiplicity
+  - jaccard
+  - convergence
+- id: art_20260522_4c676a
+  name: 340m_multi_bench_analysis
+  type: data
+  description: 340M × 3 benchmarks (HellaSwag/PIQA/ARC-Easy) per-example multiplicity
+    analysis with 1.3B scale comparison. Includes alpha, Jaccard, convergence rho.
+  path: projects/entrainment_gated_ft/artifacts/exp-340m-multi-bench/data/340m_multi_bench_analysis.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: exp-340m-multi-bench
+  skill: ''
+  created_at: '2026-05-22T00:32:16.076001+00:00'
+  tags:
+  - multiplicity
+  - scale-comparison
+  - 340m
+  - alpha
+  - jaccard
+- id: art_20260522_986d60
+  name: majority_vote_and_rho_analysis
+  type: data
+  description: Majority vote ensemble POC (4 benchmarks) + ρ(σ,J) rank correlation
+    for decoupling formalization. MV gains +0.13-1.99pp vs mean but loses to best
+    single arch. ρ(σ,J_helped)=-0.40, p=0.75 confirms decoupling.
+  path: projects/entrainment_gated_ft/artifacts/_project/data/majority_vote_and_rho_analysis.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T04:57:35.246193+00:00'
+  tags:
+  - majority_vote
+  - decoupling
+  - jaccard
+  - spearman
+- id: art_20260522_78ef48
+  name: fig_cross_benchmark_decoupling
+  type: chart
+  description: 'A1 figure: 4-panel cross-benchmark decoupling plot (σ + Jaccard trajectories)
+    for LAMBADA, HellaSwag, PIQA, ARC-Easy. PDF at server: /root/entrainment_gated_ft/results/a1_cross_benchmark_jaccard/fig_cross_benchmark_decoupling.pdf'
+  path: projects/entrainment_gated_ft/artifacts/_project/chart/fig_cross_benchmark_decoupling_info.txt
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T08:04:25.351119+00:00'
+  tags:
+  - A1
+  - figure
+  - decoupling
+  - cross-benchmark
+- id: art_20260522_e9317e
+  name: cross_benchmark_jaccard_trajectories
+  type: data
+  description: 'A1 analysis: Cross-benchmark Jaccard trajectory data with sigma trajectories
+    and Spearman tests for 4 benchmarks x 5 attention ratios x 3 architectures'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/cross_benchmark_jaccard_summary.txt
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T08:04:49.267348+00:00'
+  tags:
+  - A1
+  - jaccard
+  - decoupling
+  - cross-benchmark
+- id: art_20260522_ca9f7c
+  name: A2 Confidence-Margin Prediction Framework
+  type: data
+  description: 'Logistic regression predicting helped/hurt from pure-model confidence
+    margin. 12 within-arch AUCs (5-fold CV) + 12 cross-arch transfer AUCs (leave-one-out).
+    Key finding: LAMBADA AUC~0.75, transfer≈within (specificity delta≈0), confirming
+    universal architecture-general prediction signal.'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/confidence_margin_prediction.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T08:24:55.161377+00:00'
+  tags:
+  - a2
+  - prediction
+  - confidence_margin
+  - logistic_regression
+  - auc
+  - cross_arch_transfer
+- id: art_20260522_b61994
+  name: A2 Prediction AUC LaTeX Table
+  type: report
+  description: 'LaTeX table: within-arch vs cross-arch transfer AUC for confidence-margin
+    logistic regression across 3 architectures × 4 benchmarks × helped/hurt.'
+  path: projects/entrainment_gated_ft/artifacts/_project/report/prediction_summary_table.tex
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T08:24:56.543125+00:00'
+  tags:
+  - a2
+  - latex
+  - table
+  - prediction_auc
+- id: art_20260522_90cadc
+  name: A3 Complementarity Decomposition Data
+  type: data
+  description: '4-category decomposition (UC/MC/mC/UW) + CI, MV Efficiency, Wasted
+    Complementarity for 4 benchmarks × 5 attention ratios, 1.3B scale. Remote: /root/entrainment_gated_ft/results/a3_complementarity/complementarity_decomposition.json'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/complementarity_decomposition_pointer.txt
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T08:25:21.587335+00:00'
+  tags:
+  - a3
+  - complementarity
+  - multiplicity
+- id: art_20260522_3a6aeb
+  name: A3 Stacked Bar Chart
+  type: chart
+  description: '4-panel stacked bars (UC/MC/mC/UW) with MV+Oracle overlay, 4 benchmarks
+    × 5 ratios. Remote: /root/entrainment_gated_ft/results/a3_complementarity/fig_complementarity_stacked.pdf'
+  path: projects/entrainment_gated_ft/artifacts/_project/chart/fig_complementarity_stacked_pointer.txt
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T08:25:24.866909+00:00'
+  tags:
+  - a3
+  - complementarity
+  - figure
+- id: art_20260522_e0dee2
+  name: A3 CI and MV Efficiency Lines
+  type: chart
+  description: 'CI and MV Efficiency vs attention ratio per benchmark. Remote: /root/entrainment_gated_ft/results/a3_complementarity/fig_complementarity_metrics.pdf'
+  path: projects/entrainment_gated_ft/artifacts/_project/chart/fig_complementarity_metrics_pointer.txt
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T08:25:27.254031+00:00'
+  tags:
+  - a3
+  - complementarity
+  - figure
+- id: art_20260522_c95eee
+  name: A3 Wasted Complementarity Trends
+  type: chart
+  description: 'Wasted complementarity and contested fraction vs attention ratio.
+    Remote: /root/entrainment_gated_ft/results/a3_complementarity/fig_complementarity_trends.pdf'
+  path: projects/entrainment_gated_ft/artifacts/_project/chart/fig_complementarity_trends_pointer.txt
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T08:25:29.054754+00:00'
+  tags:
+  - a3
+  - complementarity
+  - figure
+- id: art_20260522_e4231e
+  name: E1 Confidence-based Architecture Selection
+  type: data
+  description: 'E1 analysis: 3 confidence-based selection strategies (max-confidence,
+    rescue-threshold, confidence-weighted voting) vs baselines (MV, best single, oracle,
+    random) across 4 benchmarks. Rescue-threshold routing achieves +5.3pp over MV
+    on LAMBADA, +1.0pp on ARC-Easy. HellaSwag/PIQA show no improvement (weak confidence
+    signal).'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/e1_confidence_selection_e4231e.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T10:00:30.843913+00:00'
+  tags:
+  - e1
+  - confidence_selection
+  - routing
+  - lambada
+  - hellaswag
+  - piqa
+  - arc_easy
+- id: art_20260522_7adae6
+  name: E2 Continuous-Threshold Jaccard Sensitivity
+  type: data
+  description: Continuous-threshold Jaccard analysis across 4 benchmarks (LAMBADA,
+    HellaSwag, PIQA, ARC-Easy) at 6 tau thresholds (0.0-0.30). Shows Jaccard monotonically
+    decreases with stricter thresholds, confirming low cross-architecture overlap
+    is not a binarization artifact.
+  path: projects/entrainment_gated_ft/artifacts/_project/data/e2_continuous_jaccard_7adae6.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T10:03:31.573746+00:00'
+  tags:
+  - E2
+  - jaccard
+  - robustness
+  - continuous-threshold
+- id: art_20260522_12a31a
+  name: E3 ECE Calibration Analysis
+  type: data
+  description: 'ECE/MCE calibration analysis for 3 architectures x 5 ratios x 4 benchmarks.
+    Key finding: ECE relative spread (17.1%) is much smaller than disruption threshold
+    relative spread (46.7%), meaning calibration differences only partially explain
+    architecture-specific thresholds.'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/e3_calibration_12a31a.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T10:03:34.560741+00:00'
+  tags:
+  - E3
+  - calibration
+  - ECE
+  - disruption-threshold
+- id: art_20260522_466312
+  name: seed_investigation_report
+  type: report
+  description: 'Seed feasibility investigation: Wang et al. model zoo has no multi-seed,
+    training 340M from scratch not feasible in 3 days, recommends Pythia 410m 9-seed
+    experiment as calibration baseline'
+  path: projects/entrainment_gated_ft/artifacts/_project/report/seed_investigation_report.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T10:11:58.410432+00:00'
+  tags:
+  - seed
+  - multiplicity
+  - pythia
+  - reviewer-response
+  - feasibility
+- id: art_20260522_66a829
+  name: e4_pythia_seed_calibration
+  type: data
+  description: 'E4 Pythia 70M multi-seed calibration results: within-seed Jaccard
+    overlap (J_helped, J_hurt, alpha) vs cross-architecture references for LAMBADA
+    and ARC-Easy. 9 seeds evaluated.'
+  path: projects/entrainment_gated_ft/artifacts/e4-pythia-seed-calibration/data/e4_pythia_seed_calibration.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: e4-pythia-seed-calibration
+  skill: ''
+  created_at: '2026-05-22T11:44:09.533293+00:00'
+  tags:
+  - calibration
+  - jaccard
+  - pythia
+  - multi-seed
+  - e4
+- id: art_20260522_a3a511
+  name: exp005_4arch_jaccard
+  type: data
+  description: '4-architecture pairwise Jaccard (GDN/RetNet/HGRN2/GLA) for helped/hurt
+    sets on LAMBADA and ARC-Easy at 340M scale. ARC-Easy: J_helped=0.1034, J_hurt=0.1059.
+    LAMBADA: J_helped=0.1219, J_hurt=0.0965. All 24 permutation tests p<0.001.'
+  path: null
+  url: westb-48145:/root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_4arch.json
+  project: entrainment_gated_ft
+  exp_id: exp-005
+  skill: ''
+  created_at: '2026-05-22T17:09:52.231629+00:00'
+  tags:
+  - jaccard
+  - 4arch
+  - exp-005
+  - 340M
+- id: art_20260522_3f3825
+  name: exp005_5arch_jaccard
+  type: data
+  description: '5-architecture pairwise Jaccard (GDN/RetNet/HGRN2/GLA/DeltaNet) for
+    helped/hurt sets, h3-1 vs pure, 340M-20B scale. Full results on server: /root/entrainment_gated_ft/results/exp005_zoo_expansion/jaccard_5arch.json'
+  path: projects/entrainment_gated_ft/artifacts/exp-005/data/jaccard_5arch_summary.txt
+  url: null
+  project: entrainment_gated_ft
+  exp_id: exp-005
+  skill: ''
+  created_at: '2026-05-22T17:23:59.439514+00:00'
+  tags:
+  - jaccard
+  - 5arch
+  - exp-005
+  - pairwise
+- id: art_20260522_cc1e47
+  name: jaccard_6arch
+  type: data
+  description: 6-architecture pairwise Jaccard analysis (helped/hurt sets, h3-1 vs
+    pure) for GDN, RetNet, HGRN2, GLA, DeltaNet, HGRN on lambada_openai and arc_easy.
+    15 pairs × 2 benchmarks, all significant (p<0.05, 1000 permutations).
+  path: projects/entrainment_gated_ft/artifacts/exp-005/data/jaccard_6arch.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: exp-005
+  skill: ''
+  created_at: '2026-05-22T18:09:28.386282+00:00'
+  tags:
+  - jaccard
+  - 6arch
+  - pairwise
+  - permutation_test
+  - helped_hurt
+- id: art_20260522_c7641f
+  name: jaccard_heatmap_5arch
+  type: chart
+  description: 5-architecture pairwise Jaccard heatmap (LAMBADA + ARC-Easy), upper
+    tri = J_helped, lower tri = J_hurt. File on westb-48145:/root/entrainment_gated_ft/results/figures/jaccard_heatmap_5arch.pdf
+  path: projects/entrainment_gated_ft/artifacts/exp-005/chart/jaccard_heatmap_5arch.txt
+  url: null
+  project: entrainment_gated_ft
+  exp_id: exp-005
+  skill: ''
+  created_at: '2026-05-22T21:05:39.009154+00:00'
+  tags:
+  - jaccard
+  - heatmap
+  - 5arch
+  - exp005
+- id: art_20260523_ead87d
+  name: jaccard_5arch_extended_4benchmarks
+  type: data
+  description: 5-architecture pairwise Jaccard analysis extended to 4 benchmarks (LAMBADA,
+    ARC-Easy, HellaSwag, PIQA). 40/40 pairs significant (p<0.01). Grand mean J_helped=0.1040,
+    J_hurt=0.0918.
+  path: projects/entrainment_gated_ft/artifacts/exp-005/data/jaccard_5arch_extended.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: exp-005
+  skill: ''
+  created_at: '2026-05-23T02:34:10.712924+00:00'
+  tags:
+  - jaccard
+  - pairwise
+  - 5arch
+  - 4benchmarks
+  - permutation_test
+  - hellaswag
+  - piqa
+- id: art_20260523_306589
+  name: jaccard_heatmap_5arch_4bench
+  type: chart
+  description: '2×2 grid heatmap of pairwise Jaccard similarity (J_helped upper triangle,
+    J_hurt lower triangle) across 5 architectures (GDN/RetNet/HGRN2/GLA/DeltaNet)
+    for 4 benchmarks (LAMBADA/ARC-Easy/HellaSwag/PIQA). Files on westb-48145: /root/entrainment_gated_ft/results/figures/jaccard_heatmap_5arch_4bench.pdf
+    and .png'
+  path: projects/entrainment_gated_ft/artifacts/exp-005/chart/jaccard_heatmap_5arch_4bench.md
+  url: null
+  project: entrainment_gated_ft
+  exp_id: exp-005
+  skill: ''
+  created_at: '2026-05-23T02:51:39.058215+00:00'
+  tags:
+  - jaccard
+  - heatmap
+  - 5arch
+  - 4bench
+  - exp005
+- id: art_20260523_9c26fa
+  name: r16_w3_auc_normality_verification
+  type: data
+  description: 'R16-W3 AUC normality verification: empirical vs parametric AUC comparison
+    using Mann-Whitney U, quantile-based normality indicators for all 3 architectures
+    on LAMBADA'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/r16_auc_normality.json
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T14:18:02.729440+00:00'
+  tags:
+  - rebuttal
+  - R16
+  - normality
+  - AUC
+  - confidence-margin
+- id: art_20260523_a98526
+  name: code_release
+  type: data
+  description: 'Anonymized code release: analysis scripts, evaluation outputs, README
+    (129 files, 1.1MB)'
+  path: projects/entrainment_gated_ft/artifacts/_project/data/code_release.zip
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T16:55:29.840075+00:00'
+  tags:
+  - code-release
+  - analysis
+  - reproducibility
+- id: art_20260524_fe74aa
+  name: fig_per_example_bars
+  type: chart
+  description: Per-example effect profiles (helped/hurt) for GDN, RetNet, HGRN2 on
+    LAMBADA at 1.3B scale. Colorblind-friendly Okabe-Ito palette. Added as Figure
+    2 in §4.1 of the paper.
+  path: projects/entrainment_gated_ft/artifacts/_project/chart/fig_per_example_bars.pdf
+  url: null
+  project: entrainment_gated_ft
+  exp_id: null
+  skill: paper-figure-add
+  created_at: '2026-05-24T06:32:15.071398+00:00'
+  tags:
+  - paper
+  - figure
+  - per-example
+  - visualization

@@ -1,0 +1,216 @@
+\begin{thebibliography}{30}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Benjamini and Hochberg(1995)]{benjamini1995controlling}
+Yoav Benjamini and Yosef Hochberg.
+\newblock Controlling the false discovery rate: A practical and powerful
+  approach to multiple testing.
+\newblock \emph{Journal of the Royal Statistical Society: Series B},
+  57\penalty0 (1):\penalty0 289--300, 1995.
+
+\bibitem[Clark et~al.(2019)Clark, Lee, Chang, Kwiatkowski, Collins, and
+  Toutanova]{clark2019boolq}
+Christopher Clark, Kenton Lee, Ming-Wei Chang, Tom Kwiatkowski, Michael
+  Collins, and Kristina Toutanova.
+\newblock {BoolQ}: Exploring the surprising difficulty of natural yes/no
+  questions.
+\newblock In \emph{Proceedings of NAACL}, 2019.
+
+\bibitem[Clark et~al.(2018)Clark, Cowhey, Etzioni, Khot, Sabharwal, Schoenick,
+  and Tafjord]{clark2018think}
+Peter Clark, Isaac Cowhey, Oren Etzioni, Tushar Khot, Ashish Sabharwal, Carissa
+  Schoenick, and Oyvind Tafjord.
+\newblock Think you have solved question answering? try {ARC}, the {AI2}
+  reasoning challenge.
+\newblock \emph{arXiv preprint arXiv:1803.05457}, 2018.
+
+\bibitem[D'Amour et~al.(2022)D'Amour, Heller, Moldovan, Adlam, Alipanahi,
+  Beutel, Chen, Deaton, Eisenstein, et~al.]{damour2022underspecification}
+Alexander D'Amour, Katherine Heller, Dan Moldovan, Ben Adlam, Babak Alipanahi,
+  Alex Beutel, Christina Chen, Jonathan Deaton, Jacob Eisenstein, et~al.
+\newblock Underspecification presents challenges for credibility in modern
+  machine learning.
+\newblock \emph{Journal of Machine Learning Research}, 23\penalty0
+  (226):\penalty0 1--61, 2022.
+
+\bibitem[Dao and Gu(2024)]{dao2024mamba2}
+Tri Dao and Albert Gu.
+\newblock Transformers are {SSM}s: Generalized models and efficient algorithms
+  through structured state space duality.
+\newblock \emph{arXiv preprint arXiv:2405.21060}, 2024.
+
+\bibitem[De et~al.(2024)De, Smith, Fernando, Botev, Cristian-Muraru, Gu,
+  Harber, Hazan, Heeschen, et~al.]{de2024recurrentgemma}
+Soham De, Samuel~L Smith, Anushan Fernando, Aleksandar Botev, George
+  Cristian-Muraru, Albert Gu, Ruba Harber, Lara Hazan, Jean-Baptiste Heeschen,
+  et~al.
+\newblock {RecurrentGemma}: Moving past transformers for efficient open
+  language models.
+\newblock \emph{arXiv preprint arXiv:2404.07839}, 2024.
+
+\bibitem[Fort et~al.(2019)Fort, Hu, and Lakshminarayanan]{fort2019stiffness}
+Stanislav Fort, Huiyi Hu, and Balaji Lakshminarayanan.
+\newblock Stiffness: A new perspective on generalization in neural networks.
+\newblock In \emph{arXiv preprint arXiv:1901.09491}, 2019.
+
+\bibitem[Gao et~al.(2023)Gao, Tow, Abbasi, Biderman, Black, DiPofi, Foster,
+  Golding, Hsu, et~al.]{gao2023framework}
+Leo Gao, Jonathan Tow, Baber Abbasi, Stella Biderman, Sid Black, Anthony
+  DiPofi, Charles Foster, Laurence Golding, Jeffrey Hsu, et~al.
+\newblock A framework for few-shot language model evaluation.
+\newblock \emph{Zenodo}, 2023.
+
+\bibitem[Gu and Dao(2024)]{gu2024mamba}
+Albert Gu and Tri Dao.
+\newblock Mamba: Linear-time sequence modeling with selective state spaces.
+\newblock \emph{arXiv preprint arXiv:2312.00752}, 2024.
+
+\bibitem[Hendrycks et~al.(2021)Hendrycks, Burns, Basart, Zou, Mazeika, Song,
+  and Steinhardt]{hendrycks2021measuring}
+Dan Hendrycks, Collin Burns, Steven Basart, Andy Zou, Mantas Mazeika, Dawn
+  Song, and Jacob Steinhardt.
+\newblock Measuring massive multitask language understanding.
+\newblock \emph{Proceedings of ICLR}, 2021.
+
+\bibitem[Jain and Wallace(2019)]{jain2019attention}
+Sarthak Jain and Byron~C Wallace.
+\newblock Attention is not explanation.
+\newblock In \emph{Proceedings of NAACL}, 2019.
+
+\bibitem[Krogh and Vedelsby(1995)]{krogh1995neural}
+Anders Krogh and Jesper Vedelsby.
+\newblock Neural network ensembles, cross validation, and active learning.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 1995.
+
+\bibitem[Kuncheva and Whitaker(2003)]{kuncheva2003measures}
+Ludmila~I Kuncheva and Christopher~J Whitaker.
+\newblock Measures of diversity in classifier ensembles and their relationship
+  with the ensemble accuracy.
+\newblock \emph{Machine Learning}, 51\penalty0 (2):\penalty0 181--207, 2003.
+
+\bibitem[Lieber et~al.(2024)Lieber, Lenz, Bata, Cohen, Osin, Dalmedigos,
+  Safahi, Meirom, Belinkov, Shalev-Shwartz, and Abadi]{lieber2024jamba}
+Opher Lieber, Barak Lenz, Hofit Bata, Gal Cohen, Jhonathan Osin, Itay
+  Dalmedigos, Erez Safahi, Shaked Meirom, Yonatan Belinkov, Shai
+  Shalev-Shwartz, and Omri Abadi.
+\newblock Jamba: A hybrid transformer-mamba language model.
+\newblock \emph{arXiv preprint arXiv:2403.19887}, 2024.
+
+\bibitem[McCoy et~al.(2020)McCoy, Pavlick, and Linzen]{mccoy2020berts}
+R.~Thomas McCoy, Ellie Pavlick, and Tal Linzen.
+\newblock {BERTs} of a feather do not generalize together: Large variability in
+  generalization across models with similar test set performance.
+\newblock In \emph{Proceedings of the Third BlackboxNLP Workshop}, 2020.
+
+\bibitem[Mostafazadeh et~al.(2016)Mostafazadeh, Chambers, He, Parikh, Batra,
+  Vanderwende, Kohli, and Allen]{mostafazadeh2016corpus}
+Nasrin Mostafazadeh, Nathanael Chambers, Xiaodong He, Devi Parikh, Dhruv Batra,
+  Lucy Vanderwende, Pushmeet Kohli, and James Allen.
+\newblock A corpus and cloze evaluation for deeper understanding of commonsense
+  stories.
+\newblock In \emph{Proceedings of NAACL}, 2016.
+
+\bibitem[Paperno et~al.(2016)Paperno, Kruszewski, Lazaridou, Pham, Bernardi,
+  Pezzelle, Baroni, Boleda, and Fern{\'a}ndez]{paperno2016lambada}
+Denis Paperno, Germ{\'a}n Kruszewski, Angeliki Lazaridou, Quan~Ngoc Pham,
+  Raffaella Bernardi, Sandro Pezzelle, Marco Baroni, Gemma Boleda, and Raquel
+  Fern{\'a}ndez.
+\newblock The {LAMBADA} dataset: Word prediction requiring a broad discourse
+  context.
+\newblock In \emph{Proceedings of ACL}, 2016.
+
+\bibitem[Peng et~al.(2024)Peng, Alcaide, Anthony, Albalak, Arcadinho, Biderman,
+  Cao, Cheng, Chung, et~al.]{peng2024rwkv}
+Bo~Peng, Eric Alcaide, Quentin Anthony, Alon Albalak, Samuel Arcadinho, Stella
+  Biderman, Huanqi Cao, Xin Cheng, Michael Chung, et~al.
+\newblock {RWKV}: Reinventing {RNN}s for the transformer era.
+\newblock \emph{Findings of EMNLP}, 2024.
+
+\bibitem[Qin et~al.(2024)Qin, Li, Sun, Zhong, Yang, and Peng]{qin2024hgrn2}
+Zhen Qin, Songlin Li, Weixuan Sun, Xuyang Zhong, Dong Yang, and Hao Peng.
+\newblock {HGRN2}: Gated linear {RNN}s with state expansion.
+\newblock \emph{arXiv preprint arXiv:2404.07904}, 2024.
+
+\bibitem[Rodriguez et~al.(2021)Rodriguez, Barrow, Hoyle, Lalor, Jia, and
+  Boyd-Graber]{rodriguez2021evaluation}
+Pedro Rodriguez, Joe Barrow, Alexander~Miserlis Hoyle, John~P Lalor, Robin Jia,
+  and Jordan Boyd-Graber.
+\newblock Evaluation examples are not equally informative: How should that
+  change {NLP} leaderboards?
+\newblock In \emph{Proceedings of ACL}, 2021.
+
+\bibitem[Roemmele et~al.(2011)Roemmele, Bejan, and Gordon]{roemmele2011choice}
+Melissa Roemmele, Cosmin~Adrian Bejan, and Andrew~S Gordon.
+\newblock Choice of plausible alternatives: An evaluation of commonsense causal
+  reasoning.
+\newblock In \emph{AAAI Spring Symposium: Logical Formalizations of Commonsense
+  Reasoning}, 2011.
+
+\bibitem[Sakaguchi et~al.(2020)Sakaguchi, Le~Bras, Bhagavatula, and
+  Choi]{sakaguchi2020winogrande}
+Keisuke Sakaguchi, Ronan Le~Bras, Chandra Bhagavatula, and Yejin Choi.
+\newblock {WinoGrande}: An adversarial {Winograd} schema challenge at scale.
+\newblock \emph{Communications of the ACM}, 64\penalty0 (9):\penalty0 99--106,
+  2020.
+
+\bibitem[Sellam et~al.(2022)Sellam, Yadlowsky, Wei, Saphra, D'Amour, Linzen,
+  Bastings, Turc, Eisenstein, Das, Tenney, and Pavlick]{sellam2022multiberts}
+Thibault Sellam, Steve Yadlowsky, Jason Wei, Naomi Saphra, Alexander D'Amour,
+  Tal Linzen, Jasmijn Bastings, Iulia Turc, Jacob Eisenstein, Dipanjan Das, Ian
+  Tenney, and Ellie Pavlick.
+\newblock The {MultiBERTs}: {BERT} reproductions for robustness analysis.
+\newblock In \emph{International Conference on Learning Representations}, 2022.
+
+\bibitem[Sun et~al.(2023)Sun, Dong, Huang, Ma, Xia, Xue, Wang, and
+  Wei]{sun2023retnet}
+Yutao Sun, Li~Dong, Shaohan Huang, Shuming Ma, Yuqing Xia, Jilong Xue, Jianyong
+  Wang, and Furu Wei.
+\newblock Retentive network: A successor to transformer for large language
+  models.
+\newblock \emph{arXiv preprint arXiv:2307.08621}, 2023.
+
+\bibitem[Swayamdipta et~al.(2020)Swayamdipta, Schwartz, Lourie, Wang,
+  Hajishirzi, Smith, and Choi]{swayamdipta2020dataset}
+Swabha Swayamdipta, Roy Schwartz, Nicholas Lourie, Yizhong Wang, Hannaneh
+  Hajishirzi, Noah~A Smith, and Yejin Choi.
+\newblock Dataset cartography: Mapping and diagnosing datasets with training
+  dynamics.
+\newblock In \emph{Proceedings of EMNLP}, 2020.
+
+\bibitem[Vaswani et~al.(2017)Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez,
+  Kaiser, and Polosukhin]{vaswani2017attention}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
+  Aidan~N Gomez, {\L}ukasz Kaiser, and Illia Polosukhin.
+\newblock Attention is all you need.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2017.
+
+\bibitem[Wang et~al.(2025)Wang, Waleffe, Goldstein, Ganguli, Katharopoulos, and
+  Gu]{wang2025mamba}
+Junxiong Wang, Roger Waleffe, Tom Goldstein, Suriya Ganguli, Angelos
+  Katharopoulos, and Albert Gu.
+\newblock Mamba in the llama: Distilling and accelerating hybrid models.
+\newblock \emph{arXiv preprint arXiv:2502.14458}, 2025.
+
+\bibitem[Wiegreffe and Pinter(2019)]{wiegreffe2019attention}
+Sarah Wiegreffe and Yuval Pinter.
+\newblock Attention is not not explanation.
+\newblock In \emph{Proceedings of EMNLP}, 2019.
+
+\bibitem[Yang et~al.(2024)Yang, Keller, Wang, Shi, Sun, Dong, Wei, and
+  Roth]{yang2024gated}
+Songlin Yang, Jan Keller, Bailin Wang, Yikang Shi, Yutao Sun, Li~Dong, Furu
+  Wei, and Dan Roth.
+\newblock Gated delta networks: Improving mamba2 with delta rule.
+\newblock \emph{arXiv preprint arXiv:2412.06464}, 2024.
+
+\bibitem[Zellers et~al.(2019)Zellers, Holtzman, Bisk, Farhadi, and
+  Choi]{zellers2019hellaswag}
+Rowan Zellers, Ari Holtzman, Yonatan Bisk, Ali Farhadi, and Yejin Choi.
+\newblock {HellaSwag}: Can a machine really finish your sentence?
+\newblock In \emph{Proceedings of ACL}, 2019.
+
+\end{thebibliography}

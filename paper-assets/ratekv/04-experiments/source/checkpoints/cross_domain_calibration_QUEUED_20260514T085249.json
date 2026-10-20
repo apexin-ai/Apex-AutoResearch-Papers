@@ -1,0 +1,24 @@
+{
+  "exp_id": "cross_domain_calibration",
+  "project": "ratekv",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:41:31.434Z",
+    "updated_at": "2026-05-14T08:52:49.105Z",
+    "spec": {
+      "hypothesis": "Cross-domain calibration robustness (plan_010): 双向 calibration-eval 交叉验证 MCKP allocation 对 calibration 数据集的鲁棒性。(1) Cal=C4 → eval=WT2, (2) Cal=WT2 → eval=C4。报告 PPL + 逐头 bit allocation agreement rate。与 plan_007 对比。",
+      "plan_id": "plan_010",
+      "claim": [
+        1,
+        2
+      ],
+      "model_name": "Qwen2.5-7B",
+      "server": "westd-37397"
+    }
+  },
+  "timestamp": "2026-05-14T08:52:49.195775+00:00",
+  "trigger": "update_registry"
+}

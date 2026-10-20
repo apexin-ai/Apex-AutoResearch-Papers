@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_decoupling-data-pipeline-verify_20260520T010609_result.json",
     "occurrence": 1,
-    "bytes": 737,
-    "sha256": "412b7b60cd9b818f12086e542a34ebc01f8cf8c2ec8918304c8d59c60766ba00"
+    "bytes": 736,
+    "sha256": "5fb208130807d9cc8000e64831c843abcbd12ef955e26d75c93ac9b6c902f7c5"
   },
   "statistics": {
     "messages": 1,

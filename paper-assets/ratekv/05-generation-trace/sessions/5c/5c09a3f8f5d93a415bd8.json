@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp_e_hires_profile_20260514T002153_result.json",
     "occurrence": 1,
-    "bytes": 173,
-    "sha256": "7c1499326f3b68fb8c57d31c418d98b712fa46b834c86ef3c6216df0fc51be60"
+    "bytes": 172,
+    "sha256": "da945a4f0dc9927979c0f1851d536c55ab5cd3bc9fe72ba9ff41d1a3b54acabc"
   },
   "statistics": {
     "messages": 1,

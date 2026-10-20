@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_check_e4-pythia-monitor_20260522T103213_result.json",
     "occurrence": 1,
-    "bytes": 215,
-    "sha256": "66b6545e27d879cdbd4cf686db364e1862cb2c27407e61919c47e942f98873f5"
+    "bytes": 214,
+    "sha256": "6dfa21c199951ced026bad709b8911d91d6dda0de7857d6a5f8018c08499fd71"
   },
   "statistics": {
     "messages": 1,

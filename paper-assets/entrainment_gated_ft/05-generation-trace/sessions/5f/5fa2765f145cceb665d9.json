@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_eval_exp_011_additional_benchmarks_retry_20260519T143443_result.json",
     "occurrence": 1,
-    "bytes": 344,
-    "sha256": "e860f7e13d55a3b78d29f8929d916587261bb535507133dd73b3e5f4d0421552"
+    "bytes": 343,
+    "sha256": "48b5516cac6760266ae6cc2c2b4ff3edfd44c7260ad716e1a955b98ca0f4141c"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_prep_yi_gemma_multiseed_20260516T053010_result.json",
     "occurrence": 1,
-    "bytes": 2096,
-    "sha256": "1a68c2248d784b7dd2e8f574b61843f44d98ab94792695e80b22c488ac026816"
+    "bytes": 2095,
+    "sha256": "a59f2a93946ac2601220c967a5ca1737f513d741a9064a991ba75e2d059d146c"
   },
   "statistics": {
     "messages": 1,

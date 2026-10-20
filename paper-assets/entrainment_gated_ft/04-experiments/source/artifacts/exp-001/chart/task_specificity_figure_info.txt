@@ -1,0 +1,3 @@
+Figure files on server westb-48145:
+- /root/entrainment_gated_ft/analysis/task_specificity_figure.pdf
+- /root/entrainment_gated_ft/analysis/task_specificity_figure.png

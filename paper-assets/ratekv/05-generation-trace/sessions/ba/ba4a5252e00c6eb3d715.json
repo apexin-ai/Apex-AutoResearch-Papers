@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_yi_mistral_downstream_k2_diagnosis_20260515T184240_result.json",
     "occurrence": 1,
-    "bytes": 1507,
-    "sha256": "b0356ba849b14843c7d35ed8c801e117e3e16cb7d13cac21408d34ffe2041e89"
+    "bytes": 1506,
+    "sha256": "2ef62ea7bec9301b4673b08fa4d234cdcba85c409fcddb13464e798819829d08"
   },
   "statistics": {
     "messages": 1,

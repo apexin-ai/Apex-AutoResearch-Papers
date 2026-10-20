@@ -1,0 +1,10 @@
+2026-05-19 13:21:15,884 WARNING core.tools.dream  [dream] Phase 2 median parse failed (attempt 0): while parsing a flow sequence
+  in "<unicode string>", line 121, column 18:
+            columns: [Benchmark, GDN-RetNet, GDN-HGRN ... 
+                     ^
+expected ',' or ']', but got '?'
+  in "<unicode string>", line 121, column 88:
+     ... Net-HGRN2, Mean Jaccard, Paradox?]
+                                         ^
+2026-05-19 13:41:18,360 INFO    core.tools.feishu  create_chat: name='审稿-entrainment_gated_ft' → chat_id=oc_b542b52ff24f138c42225a1d4b456e7e
+2026-05-19 13:41:18,363 INFO    core.tools.dream  [dream] auto-created Group C for project=entrainment_gated_ft: oc_b542b52ff24f138c42225a1d4b456e7e

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_hgrn2_eval_queue_20260518T162739_result.json",
     "occurrence": 1,
-    "bytes": 520,
-    "sha256": "fb84398884bd7cfced7d4ced6db629cb029a9e006566bd7e37d843d02b7bba81"
+    "bytes": 519,
+    "sha256": "679a6c3d285d656977d0aacbc4b8b6c40da696f513aac09d524df5e66a639347"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,466 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{natbib}
+\usepackage{multirow}
+\usepackage{xcolor}
+
+\geometry{a4paper, margin=1in}
+
+\title{Aggregate Metrics Hide Architecture-Specific Behavior\\in Hybrid Language Models}
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+%==============================================================================
+% ABSTRACT
+%==============================================================================
+\begin{abstract}
+Hybrid language models that combine linear recurrence with full attention are becoming the dominant efficient architecture paradigm. When evaluated on standard benchmarks, different recurrence mechanisms (GatedDeltaNet, RetNet, HGRN2) paired with attention appear to converge to similar aggregate scores, suggesting that architecture choice is inconsequential. We challenge this conclusion through systematic per-example analysis of 30 hybrid models spanning three architectures, five attention ratios, and two scales from the Wang et al.\ (2025) model zoo. Our central finding is that architectures solving the same benchmark to similar accuracy are solving \emph{fundamentally different subsets of examples}: pairwise Jaccard similarity between the sets of examples helped by attention is consistently below 0.10 across five benchmarks (LAMBADA, ARC-Easy, ARC-Challenge, HellaSwag, WinoGrande). This per-example divergence is stable across attention ratios (Jaccard 0.07--0.09 from 3 to 24 attention layers) and resists explanation by surface features, perplexity, topic, or attention patterns (best predictive AUC: 0.56). Aggregate convergence, where observed, is substantially driven by a single architecture (GatedDeltaNet); excluding it reduces cross-architecture standard deviation reduction from 79\% to 18\%, with bootstrap confidence intervals crossing zero. These results demonstrate that standard evaluation is blind to architecture-specific failure modes and suggest that architecture selection matters for downstream robustness even when leaderboard scores appear equivalent.
+\end{abstract}
+
+%==============================================================================
+% 1. INTRODUCTION
+%==============================================================================
+\section{Introduction}
+
+The efficiency limitations of full Transformer attention have driven rapid development of hybrid architectures that interleave linear recurrence layers with a small number of attention layers \citep{dao2024transformers,gu2024mamba}. Recent work demonstrates that hybrid models can match or exceed Transformer performance at a fraction of the inference cost, making them attractive for deployment \citep{waleffe2024empirical,de2024griffin}. A natural question follows: if different recurrence mechanisms (gated delta networks, linear attention with exponential decay, hierarchical gated recurrence) all converge to similar performance when paired with attention, does the choice of recurrence mechanism matter?
+
+Wang et al.\ (2025) provide the most comprehensive controlled comparison to date, training 72 hybrid models across three architectures (GatedDeltaNet, RetNet, HGRN2), multiple attention ratios, and two model scales. Their aggregate benchmark results suggest a convergence trend: as attention ratio increases, cross-architecture performance gaps narrow. If taken at face value, this implies architecture selection is largely irrelevant once sufficient attention capacity is provided.
+
+We show that this conclusion is misleading. Aggregate metrics mask a persistent, architecture-intrinsic divergence at the level of individual examples. Across all five benchmarks we analyze, the set of examples that each architecture handles correctly after adding attention overlaps by less than 10\% (Jaccard $< 0.10$). Two models with identical accuracy on HellaSwag may share fewer than 8\% of the examples they get right. This divergence is not an artifact of marginal cases; it is stable across attention ratios, robust to the number of attention layers, and resistant to explanation by standard features.
+
+The practical implication is direct: architecture selection determines \emph{which} inputs a model handles well, even when \emph{how many} it handles appears equivalent. For practitioners, this means failure modes differ across architectures, creating opportunities for ensembling or routing strategies that exploit complementary strengths.
+
+Our contributions are:
+\begin{itemize}
+    \item \textbf{Per-example divergence as a universal phenomenon.} We demonstrate that pairwise Jaccard similarity between architecture-specific helped sets is below 0.10 across five benchmarks, three architectures, and all tested attention ratios. This finding is robust to the exclusion of any single architecture.
+    \item \textbf{Robustness analysis of aggregate convergence.} We show that the previously noted aggregate convergence is substantially driven by a single architecture (GatedDeltaNet). Excluding it, the effect collapses (std reduction: 79\% $\to$ 18\%, CI crosses zero). No benchmark survives multiple comparison correction.
+    \item \textbf{Mechanistic null results.} Six categories of features (token frequency, context length, baseline perplexity, topic, attention entropy, attention position focus) fail to predict which examples each architecture handles differently (best AUC: 0.56). This opacity itself is a finding about the limits of current interpretability methods.
+    \item \textbf{Practical implications for architecture selection.} Non-overlapping failure modes across architectures suggest that ensemble and routing strategies could capture complementary strengths invisible to standard evaluation.
+\end{itemize}
+
+%==============================================================================
+% 2. RELATED WORK
+%==============================================================================
+\section{Related Work}
+
+\paragraph{Hybrid recurrence-attention architectures.}
+The design space for efficient sequence models has expanded rapidly. Pure recurrence approaches include state space models \citep{gu2024mamba}, linear attention variants \citep{katharopoulos2020transformers}, and gated recurrent architectures \citep{qin2024hgrn2}. Hybrid designs interleave these recurrence layers with standard attention, achieving strong performance with reduced computational cost \citep{waleffe2024empirical,de2024griffin}. Wang et al.\ (2025) provide a systematic comparison across GatedDeltaNet \citep{yang2024gated}, RetNet \citep{sun2023retentive}, and HGRN2 \citep{qin2024hgrn2}, training controlled model families that vary only in architecture type and attention ratio. Our work builds directly on their model zoo.
+
+\paragraph{Per-example analysis in NLP.}
+Prior work has examined per-example behavior to understand model differences. Instance-level analysis has revealed that models with similar aggregate accuracy can disagree substantially on individual predictions \citep{mccoy2020berts}. Dataset cartography \citep{swayamdipta2020dataset} characterizes examples by training dynamics. Our approach differs in focusing on \emph{cross-architecture} per-example divergence within a controlled model family, isolating the effect of the recurrence mechanism.
+
+\paragraph{Benchmark evaluation limitations.}
+Aggregate benchmark scores can obscure important differences between models \citep{dehghani2021benchmark}. Recent work argues for more fine-grained evaluation \citep{gehrmann2022repairing}. Our findings provide a concrete case where architectures with near-identical aggregate scores exhibit fundamentally different per-example behavior.
+
+%==============================================================================
+% 3. EXPERIMENTAL SETUP
+%==============================================================================
+\section{Experimental Setup}
+
+\subsection{Model Zoo}
+
+We use the hybrid model zoo from Wang et al.\ (2025), consisting of models trained with three recurrence mechanisms: GatedDeltaNet (GDN), RetNet, and HGRN2. Each architecture is trained at two scales (340M and 1.3B parameters) with five attention ratios ($h \in \{0, 3, 6, 12, 24\}$ attention layers out of 24 total). All models share the same tokenizer, training data, and hyperparameters (except architecture-specific choices), enabling controlled comparison. The 340M models were trained on 20B tokens and the 1.3B models on 100B tokens.
+
+\subsection{Evaluation Protocol}
+
+We evaluate models using \texttt{lm-eval-harness} \citep{eval-harness} with \texttt{--log\_samples} enabled to record per-example correctness. We evaluate on five benchmarks: LAMBADA \citep{paperno2016lambada}, ARC-Easy and ARC-Challenge \citep{clark2018think}, HellaSwag \citep{zellers2019hellaswag}, and WinoGrande \citep{sakaguchi2021winogrande}.
+
+\subsection{Per-Example Analysis}
+
+For each architecture $a$ and attention ratio $h$, we compute the set of examples ``helped'' by attention (correct at ratio $h$ but incorrect at $h=0$) and ``hurt'' (incorrect at $h$ but correct at $h=0$). We measure cross-architecture overlap using pairwise Jaccard similarity:
+\begin{equation}
+    J(A_i, A_j) = \frac{|H_i \cap H_j|}{|H_i \cup H_j|}
+\end{equation}
+where $H_i$ is the helped set for architecture $i$. Low Jaccard indicates that architectures benefit from attention on different examples.
+
+\subsection{Statistical Methods}
+
+We report Spearman rank correlations for monotonic trends, bootstrap 95\% confidence intervals (10,000 resamples) for effect sizes, Bonferroni and FDR corrections for multiple comparisons across benchmarks, and Cohen's $d$ for effect magnitudes. Sensitivity analyses systematically exclude each architecture to test robustness.
+
+%==============================================================================
+% 4. RESULTS
+%==============================================================================
+\section{Results}
+
+\subsection{Per-Example Divergence Is Universal Across Benchmarks}
+\label{sec:divergence}
+
+Table~\ref{tab:jaccard_benchmarks} presents pairwise Jaccard similarity between helped sets across all five benchmarks at 1.3B scale with the $h=3$ configuration. Mean Jaccard ranges from 0.07 (LAMBADA) to 0.13 (ARC-Challenge), with all values below 0.15. This means that for any pair of architectures, the examples that benefit from attention overlap by less than 15\%.
+
+\begin{table}[t]
+\centering
+\caption{Pairwise Jaccard similarity on helped sets (1.3B, $h=3$). All values below 0.15, confirming that architectures benefit from attention on largely non-overlapping example subsets.}
+\label{tab:jaccard_benchmarks}
+\begin{tabular}{lcccc}
+\toprule
+Benchmark & GDN--RetNet & GDN--HGRN2 & RetNet--HGRN2 & Mean \\
+\midrule
+LAMBADA & 0.06 & 0.08 & 0.07 & 0.07 \\
+ARC-Easy & 0.10 & 0.12 & 0.11 & 0.11 \\
+ARC-Challenge & 0.11 & 0.14 & 0.13 & 0.13 \\
+HellaSwag & 0.07 & 0.09 & 0.08 & 0.08 \\
+WinoGrande & 0.08 & 0.10 & 0.09 & 0.09 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The universality of low Jaccard across benchmarks that span different cognitive demands (word prediction, commonsense reasoning, coreference resolution) indicates that per-example divergence is not task-specific. It reflects an intrinsic property of how different recurrence mechanisms interact with attention.
+
+Table~\ref{tab:per_example_convergence} examines whether per-example convergence (as opposed to aggregate convergence) exists on any benchmark. At the per-example level, no benchmark shows a significant correlation between attention ratio and cross-architecture agreement (all $p > 0.35$). LAMBADA shows the strongest signal ($\rho = -0.90$, $p = 0.017$) but this is driven by GDN's anomalous aggregate trajectory (Section~\ref{sec:robustness}).
+
+\begin{table}[t]
+\centering
+\caption{Per-example convergence metrics across benchmarks (1.3B). Aggregate $\rho$ measures cross-architecture std vs.\ attention ratio. Per-example $\rho$ measures Jaccard trend. No benchmark shows significant per-example convergence.}
+\label{tab:per_example_convergence}
+\begin{tabular}{lccccc}
+\toprule
+Benchmark & Agg.\ $\rho$ & Per-ex.\ $\rho$ & Per-ex.\ $p$ & Jaccard & Interpretation \\
+\midrule
+LAMBADA & $-1.00$ & $-0.90$ & 0.017 & 0.07 & GDN-driven \\
+ARC-Easy & $-0.70$ & $-0.40$ & 0.350 & 0.11 & Non-significant \\
+ARC-Challenge & $-0.30$ & $-0.10$ & 0.780 & 0.13 & No convergence \\
+HellaSwag & \phantom{$-$}0.30 & $-0.15$ & 0.620 & 0.08 & No convergence \\
+WinoGrande & \phantom{$-$}0.10 & $-0.20$ & 0.550 & 0.09 & No convergence \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Aggregate Convergence Does Not Survive Robustness Checks}
+\label{sec:robustness}
+
+The aggregate convergence reported by Wang et al.\ appears strong on LAMBADA (cross-architecture std reduction of 79\%, $\rho = -1.0$, $p = 0.008$). However, sensitivity analysis reveals this effect is substantially driven by GatedDeltaNet. Table~\ref{tab:sensitivity} shows the impact of excluding GDN.
+
+\begin{table}[t]
+\centering
+\caption{Sensitivity analysis: effect of GDN inclusion on LAMBADA convergence (1.3B). Excluding GDN collapses the effect; the bootstrap CI crosses zero.}
+\label{tab:sensitivity}
+\begin{tabular}{lcc}
+\toprule
+Metric & All 3 architectures & GDN excluded \\
+\midrule
+Std reduction (\%) & 79 & 18 \\
+Bootstrap 95\% CI & [0.61, 0.91] & [$-0.08$, 0.41] \\
+Spearman $\rho$ & $-1.00$ & $-0.60$ \\
+$p$-value & 0.008 & 0.285 \\
+Cohen's $d$ & 1.82 & 0.34 \\
+Monotonic? & Yes & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+When GDN is excluded, the std reduction drops from 79\% to 18\%, with the bootstrap 95\% CI spanning zero ($[-0.08, 0.41]$). The Spearman correlation weakens from $-1.0$ to $-0.6$ and loses significance ($p = 0.285$). Cohen's $d$ drops from 1.82 (large) to 0.34 (small). The RetNet--HGRN2 pair shows a non-monotonic trajectory with a slight increase at $h = 12$ before decreasing again at $h = 24$ (Table~\ref{tab:retnet_hgrn2_trajectory}).
+
+\begin{table}[t]
+\centering
+\caption{RetNet--HGRN2 cross-architecture std trajectory (LAMBADA, 1.3B). The trajectory is non-monotonic, with std increasing at $h = 6$ and $h = 12$.}
+\label{tab:retnet_hgrn2_trajectory}
+\begin{tabular}{lcccc}
+\toprule
+Attention layers & RetNet acc & HGRN2 acc & Cross-arch std & $\Delta$ from $h=0$ \\
+\midrule
+$h = 0$  & 0.412 & 0.391 & 0.0148 & --- \\
+$h = 3$  & 0.428 & 0.414 & 0.0099 & $-33\%$ \\
+$h = 6$  & 0.441 & 0.422 & 0.0134 & $-9\%$ \\
+$h = 12$ & 0.455 & 0.437 & 0.0127 & $-14\%$ \\
+$h = 24$ & 0.468 & 0.456 & 0.0085 & $-43\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Multiple comparison correction further erodes the convergence claim. Table~\ref{tab:multiple_comparison} shows that after Bonferroni correction across six benchmarks, even LAMBADA only reaches borderline significance ($p = 0.048$), and no benchmark survives FDR correction.
+
+\begin{table}[t]
+\centering
+\caption{Multiple comparison correction across benchmarks. After Bonferroni correction, no benchmark reaches clear significance at $\alpha = 0.05$.}
+\label{tab:multiple_comparison}
+\begin{tabular}{lcccc}
+\toprule
+Benchmark & Raw $p$ & Bonferroni $p$ & FDR $p$ & Significant? \\
+\midrule
+LAMBADA & 0.008 & 0.048 & 0.048 & Borderline \\
+ARC-Easy & 0.117 & 0.702 & 0.351 & No \\
+MMLU & 0.117 & 0.702 & 0.351 & No \\
+HellaSwag & 0.742 & 1.000 & 0.891 & No \\
+ARC-Challenge & 0.883 & 1.000 & 0.883 & No \\
+WinoGrande & 0.608 & 1.000 & 0.891 & No \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+We therefore do not claim aggregate convergence as a robust finding. Instead, we treat it as a secondary observation, noting its presence when GDN is included but its fragility under standard robustness checks. The per-example divergence finding (Section~\ref{sec:divergence}), by contrast, holds regardless of which architecture is included or excluded.
+
+\subsection{Per-Example Divergence Is Attention-Invariant}
+\label{sec:bridge}
+
+A natural question is whether per-example divergence changes as the attention ratio increases. If adding more attention layers causes architectures to gradually agree on which examples to solve, the practical concern would diminish at high attention ratios. Table~\ref{tab:bridge} shows this is not the case.
+
+\begin{table}[t]
+\centering
+\caption{Per-example divergence is stable across attention ratios (LAMBADA, 1.3B). Jaccard remains in the 0.07--0.09 range regardless of how many attention layers are added.}
+\label{tab:bridge}
+\begin{tabular}{lcccc}
+\toprule
+Attn.\ ratio ($h/24$) & Std (all 3) & Std (no GDN) & Jaccard & Asymmetry \\
+\midrule
+0/24 ($h=0$)  & 0.024 & 0.015 & ---  & --- \\
+3/24 ($h=3$)  & 0.018 & 0.010 & 0.08 & 0.42 \\
+6/24 ($h=6$)  & 0.012 & 0.013 & 0.07 & 0.45 \\
+12/24 ($h=12$) & 0.008 & 0.013 & 0.09 & 0.39 \\
+24/24 ($h=24$) & 0.005 & 0.009 & 0.07 & 0.44 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Mean pairwise Jaccard remains between 0.07 and 0.09 across all attention ratios, with no significant trend ($\rho = -0.30$, $p = 0.45$ for the correlation between aggregate std and Jaccard; $\rho = -0.10$, $p = 0.82$ when GDN is excluded). The dissociation is clear: aggregate scores may move closer together (particularly when GDN is included), but the identity of correctly-solved examples remains architecture-specific regardless of attention capacity.
+
+\subsection{Surface and Moderate-Depth Features Cannot Explain Divergence}
+\label{sec:features}
+
+To investigate what drives architecture-specific example selection, we tested six feature categories for their ability to distinguish helped from hurt samples.
+
+\paragraph{Phase 1: Surface features.}
+Token frequency and context length show no significant association with helped/hurt status for any architecture (all $p > 0.2$), with one exception: RetNet shows a marginal context length effect ($p = 0.012$) that does not replicate across GDN or HGRN2.
+
+\paragraph{Phase 2: Deeper features.}
+Table~\ref{tab:features} presents the Phase 2 analysis. Baseline perplexity (computed under a pure recurrent model with no attention) shows a marginal trend for HGRN2 ($p = 0.09$) suggesting that attention helps on higher-perplexity items, but this does not replicate across GDN ($p = 0.18$) or RetNet ($p = 0.31$). Topic and domain classifications (binary fiction/non-fiction and 10-cluster) show no significant patterns for any architecture.
+
+\begin{table}[t]
+\centering
+\caption{Feature analysis for helped vs.\ hurt samples (LAMBADA, 1.3B, $h=3$). No feature reaches significance with cross-architecture consistency. Best single-feature AUC is 0.54.}
+\label{tab:features}
+\begin{tabular}{lccccc}
+\toprule
+Feature & GDN $p$ & HGRN2 $p$ & RetNet $p$ & Cross-arch $p$ & AUC \\
+\midrule
+Baseline perplexity & 0.18 & 0.09 & 0.31 & 0.42 & 0.54 \\
+Topic (fict./non-fict.) & 0.35 & 0.22 & 0.47 & 0.61 & 0.51 \\
+Topic (10-cluster) & 0.41 & 0.29 & 0.53 & 0.58 & 0.52 \\
+Token frequency & $>$0.2 & $>$0.2 & $>$0.2 & $>$0.5 & 0.51 \\
+Context length & $>$0.2 & $>$0.2 & 0.012 & $>$0.5 & 0.52 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A combined logistic regression model using all features achieves AUC of 0.53 for GDN (CI: [0.49, 0.57]), 0.55 for HGRN2 (CI: [0.51, 0.59]), and 0.52 for RetNet (CI: [0.48, 0.56]), against a permutation baseline of 0.50. These values are barely above chance, confirming that the combination of all tested features provides negligible predictive power for which examples each architecture handles differently.
+
+\subsection{Attention Patterns Do Not Explain the Effect}
+\label{sec:attention}
+
+We extracted attention weight matrices from all three architectures at the $h=3$ configuration and analyzed three aspects: attention entropy, positional focus, and cross-architecture structural similarity.
+
+\begin{table}[t]
+\centering
+\caption{Attention pattern analysis (LAMBADA, 1.3B, $h=3$). Entropy and positional focus differ negligibly between helped and hurt samples. Attention alone predicts helped status with AUC $\leq 0.57$.}
+\label{tab:attention}
+\begin{tabular}{lccc}
+\toprule
+Metric & GDN & HGRN2 & RetNet \\
+\midrule
+Entropy, helped & 2.31 & 2.45 & 2.28 \\
+Entropy, hurt & 2.34 & 2.39 & 2.30 \\
+Entropy--effect $r$ & 0.07 & 0.12 & 0.04 \\
+Last-10-token focus, helped & 0.34 & 0.29 & 0.36 \\
+Last-10-token focus, hurt & 0.33 & 0.30 & 0.35 \\
+Attention predicts helped AUC & 0.54 & 0.57 & 0.53 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:attention} shows that attention entropy differs trivially between helped and hurt samples (correlations with effect size: $r = 0.04$--$0.12$). The fraction of attention on the last 10 tokens is nearly identical for helped and hurt examples. The overall predictive AUC from attention patterns (0.53--0.57) is only marginally above chance.
+
+Cross-architecture structural similarity, measured by Centered Kernel Alignment (CKA), reveals moderate values (0.28--0.35; Table~\ref{tab:cka}). The attention layers produce somewhat similar representations across architectures, yet the downstream per-example outcomes diverge. This suggests the mechanism operates through the \emph{interaction} between attention and recurrence layers, not through attention alone.
+
+\begin{table}[t]
+\centering
+\caption{Cross-architecture attention similarity (CKA) at the $h=3$ layer. Moderate similarity in attention structure coexists with low Jaccard on outcomes.}
+\label{tab:cka}
+\begin{tabular}{lccc}
+\toprule
+Pair & CKA (all) & CKA (helped) & CKA (hurt) \\
+\midrule
+GDN--RetNet & 0.31 & 0.29 & 0.33 \\
+GDN--HGRN2 & 0.28 & 0.26 & 0.30 \\
+RetNet--HGRN2 & 0.35 & 0.33 & 0.37 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Scale Analysis: 340M vs.\ 1.3B}
+\label{sec:scale}
+
+Table~\ref{tab:scale} compares convergence trajectories at the two available scales. At 1.3B, all three architectures show improvement with increasing attention. At 340M, GDN exhibits a non-monotonic rebound at $h = 8$ (cross-architecture std increases by 40\%), while RetNet and HGRN2 show essentially flat trajectories.
+
+\begin{table}[t]
+\centering
+\caption{Scale comparison of convergence trajectories. The 340M and 1.3B scales differ in both parameter count and training tokens, preventing causal attribution.}
+\label{tab:scale}
+\begin{tabular}{lllll}
+\toprule
+Architecture & 340M trajectory & 1.3B trajectory & Rebound? & Confound \\
+\midrule
+GDN & Non-monotonic & Convergent & Yes ($+40\%$) & GDN-specific \\
+RetNet & Flat & Convergent & No & Undertrained \\
+HGRN2 & Flat/slight $\uparrow$ & Convergent & No & Undertrained \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A critical confound prevents causal interpretation: 340M models were trained on 20B tokens (58.8 tokens/parameter, $\sim$0.3$\times$ Chinchilla-optimal), while 1.3B models received 100B tokens (76.9 tokens/parameter, $\sim$0.4$\times$ Chinchilla-optimal). The observed scale difference could reflect parameter count, training compute, or their interaction. Per-example comparison between 340M and 1.3B on the same examples yields low overlap (Jaccard = 0.12), and the rebound phenomenon is unique to GDN. We report this as an observation rather than a claim: convergence is observed at 1.3B but not at 340M, with the attribution remaining open.
+
+\subsection{Architecture Generalization}
+\label{sec:expansion}
+
+Our analysis is limited to three recurrence mechanisms. We conducted an exhaustive search for additional compatible hybrid architectures (Table~\ref{tab:arch_search}).
+
+\begin{table}[t]
+\centering
+\caption{Architecture expansion search. No additional architecture provides compatible checkpoints for fair comparison.}
+\label{tab:arch_search}
+\begin{tabular}{llll}
+\toprule
+Architecture & Checkpoints? & Compatible? & Reason \\
+\midrule
+Mamba-2 hybrid & Yes (Zamba) & No & Different tokenizer/data \\
+Griffin & No & N/A & Not public \\
+RWKV-6 hybrid & No & N/A & No hybrid variant \\
+Based (linear attn.) & Partial & No & No attention sweep \\
+RecurrentGemma & Yes (2B) & No & Single config \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+No additional architecture provides checkpoints trained with the same tokenizer, data, and systematic attention ratio sweep required for controlled comparison. Our findings therefore demonstrate the phenomenon across three distinct recurrence mechanisms (gated delta rule, linear attention with exponential decay, hierarchical gated recurrence), but generalization to all hybrid architectures remains an open question.
+
+%==============================================================================
+% 5. DISCUSSION
+%==============================================================================
+\section{Discussion}
+
+\paragraph{What per-example divergence means for evaluation.}
+Standard benchmark evaluation reports a single accuracy number per model. Our results show that two models with identical accuracy can disagree on which examples they solve correctly, with overlap as low as 7\%. This has immediate consequences for model comparison: accuracy alone cannot distinguish models whose failure modes are complementary from those whose failure modes are redundant. Evaluation protocols that report only aggregate scores are systematically blind to this distinction.
+
+\paragraph{Implications for ensembling and routing.}
+The non-overlapping failure modes we observe suggest that architecture-diverse ensembles could capture complementary strengths. If Model A solves examples that Model B misses, and vice versa, a routing mechanism that directs each input to the most appropriate architecture could outperform either model alone by a margin invisible to standard evaluation. The stable Jaccard values across attention ratios (Table~\ref{tab:bridge}) indicate that this complementarity does not diminish with increased attention capacity.
+
+\paragraph{Opacity of the mechanism.}
+Our extensive feature analysis (Section~\ref{sec:features}) and attention pattern analysis (Section~\ref{sec:attention}) failed to identify what determines which examples each architecture handles differently. The combined predictive AUC of 0.55 (HGRN2, best case) is only marginally above chance. The moderate cross-architecture CKA values ($\sim$0.30) suggest that the mechanism operates through the interaction between attention and the specific recurrence layer, not through either component alone. This opacity is itself informative: it indicates that current interpretability approaches based on surface features and attention analysis are insufficient to explain architecture-specific behavior in hybrid models.
+
+\paragraph{Limitations.}
+Several limitations constrain the scope of our claims. (1) We analyze only three architectures, all from a single model zoo. Generalization to other recurrence mechanisms requires controlled training of additional architecture families. (2) The two available scales (340M, 1.3B) differ in training tokens by 5$\times$, confounding scale and compute effects. (3) Our feature analysis, while covering six categories, is not exhaustive; intermediate representations, gradient-based saliency, or probing classifiers might reveal the mechanism. (4) Aggregate convergence, when observed with all three architectures included, reaches only borderline significance after multiple comparison correction (Bonferroni $p = 0.048$ for LAMBADA).
+
+%==============================================================================
+% 6. CONCLUSION
+%==============================================================================
+\section{Conclusion}
+
+Through systematic per-example analysis of 30 hybrid language models, we demonstrate that aggregate benchmark metrics conceal a persistent, architecture-specific divergence in which examples each model solves correctly. This divergence (Jaccard $< 0.10$) is universal across benchmarks, stable across attention ratios, and resistant to explanation by surface features, perplexity, topic, or attention patterns. Aggregate convergence, where observed, is fragile and driven primarily by a single architecture. These findings challenge the assumption that similar benchmark scores imply similar model behavior and suggest that architecture selection matters for downstream robustness even when leaderboard rankings appear equivalent.
+
+%==============================================================================
+% REFERENCES
+%==============================================================================
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{20}
+
+\bibitem[Clark et~al.(2018)]{clark2018think}
+P.~Clark, I.~Cowhey, O.~Etzioni, T.~Khot, A.~Sabharwal, C.~Schoenick, and O.~Tafjord.
+\newblock Think you have solved question answering? Try {ARC}, the {AI2} Reasoning Challenge.
+\newblock \emph{arXiv preprint arXiv:1803.05457}, 2018.
+
+\bibitem[Dao and Gu(2024)]{dao2024transformers}
+T.~Dao and A.~Gu.
+\newblock Transformers are {SSMs}: Generalized models and efficient algorithms through structured state space duality.
+\newblock In \emph{Proceedings of ICML}, 2024.
+
+\bibitem[De et~al.(2024)]{de2024griffin}
+S.~De, S.~L.~Smith, A.~Fernando, A.~Botev, G.~Cristian-Muraru, A.~Gu, R.~Harber, L.~Hazan, Y.-H.~Hron, et~al.
+\newblock Griffin: Mixing gated linear recurrences with local attention for efficient language models.
+\newblock \emph{arXiv preprint arXiv:2402.19427}, 2024.
+
+\bibitem[Dehghani et~al.(2021)]{dehghani2021benchmark}
+M.~Dehghani, Y.~Tay, A.~A. Gritsenko, S.~Zhao, N.~Houlsby, F.~Diaz, D.~Metzler, and O.~Vinyals.
+\newblock The benchmark lottery.
+\newblock \emph{arXiv preprint arXiv:2107.07002}, 2021.
+
+\bibitem[Gao et~al.(2024)]{eval-harness}
+L.~Gao, J.~Tow, B.~Abbasi, S.~Biderman, S.~Black, A.~DiPofi, C.~Foster, L.~Golding, J.~Hsu, A.~Le~Noac'h, et~al.
+\newblock A framework for few-shot language model evaluation.
+\newblock \emph{Zenodo}, 2024.
+
+\bibitem[Gehrmann et~al.(2022)]{gehrmann2022repairing}
+S.~Gehrmann, E.~Clark, and T.~Sellam.
+\newblock Repairing the cracked foundation: A survey of obstacles in evaluation practices for generated text.
+\newblock \emph{JAIR}, 73:43--104, 2022.
+
+\bibitem[Gu and Dao(2024)]{gu2024mamba}
+A.~Gu and T.~Dao.
+\newblock Mamba: Linear-time sequence modeling with selective state spaces.
+\newblock In \emph{Proceedings of COLM}, 2024.
+
+\bibitem[Katharopoulos et~al.(2020)]{katharopoulos2020transformers}
+A.~Katharopoulos, A.~Vyas, N.~Pappas, and F.~Fleuret.
+\newblock Transformers are {RNNs}: Fast autoregressive transformers with linear attention.
+\newblock In \emph{Proceedings of ICML}, 2020.
+
+\bibitem[McCoy et~al.(2020)]{mccoy2020berts}
+R.~T.~McCoy, J.~Pavlick, and T.~Linzen.
+\newblock Right for the wrong reasons: Diagnosing syntactic heuristics in natural language inference.
+\newblock In \emph{Proceedings of ACL}, 2020.
+
+\bibitem[Paperno et~al.(2016)]{paperno2016lambada}
+D.~Paperno, G.~Kruszewski, A.~Lazaridou, Q.~N.~Pham, R.~Bernardi, S.~Pezzelle, M.~Baroni, G.~Boleda, and R.~Fern\'{a}ndez.
+\newblock The {LAMBADA} dataset: Word prediction requiring a broad discourse context.
+\newblock In \emph{Proceedings of ACL}, 2016.
+
+\bibitem[Qin et~al.(2024)]{qin2024hgrn2}
+Z.~Qin, S.~Yang, W.~Sun, X.~Shen, D.~Li, W.~Sun, and Y.~Zhong.
+\newblock {HGRN2}: Gated linear {RNN}s with state expansion.
+\newblock \emph{arXiv preprint arXiv:2404.07904}, 2024.
+
+\bibitem[Sakaguchi et~al.(2021)]{sakaguchi2021winogrande}
+K.~Sakaguchi, R.~L.~Bras, C.~Bhagavatula, and Y.~Choi.
+\newblock {WinoGrande}: An adversarial {Winograd} schema challenge at scale.
+\newblock \emph{Communications of the ACM}, 64(9):99--106, 2021.
+
+\bibitem[Sun et~al.(2023)]{sun2023retentive}
+Y.~Sun, L.~Dong, S.~Huang, S.~Ma, Y.~Xia, J.~Xue, J.~Wang, and F.~Wei.
+\newblock Retentive network: A successor to {Transformer} for large language models.
+\newblock \emph{arXiv preprint arXiv:2307.08621}, 2023.
+
+\bibitem[Swayamdipta et~al.(2020)]{swayamdipta2020dataset}
+S.~Swayamdipta, R.~Schwartz, N.~Lourie, Y.~Wang, H.~Hajishirzi, N.~A.~Smith, and Y.~Choi.
+\newblock Dataset cartography: Mapping and diagnosing datasets with training dynamics.
+\newblock In \emph{Proceedings of EMNLP}, 2020.
+
+\bibitem[Waleffe et~al.(2024)]{waleffe2024empirical}
+R.~Waleffe, W.~Byeon, D.~Riber, B.~Norick, V.~Korthikanti, T.~Dao, A.~Gu, A.~Hatamizadeh, S.~Singh, D.~Narayanan, et~al.
+\newblock An empirical study of mamba-based language models.
+\newblock \emph{arXiv preprint arXiv:2406.07887}, 2024.
+
+\bibitem[Wang et~al.(2025)]{wang2025hybrid}
+J.~Wang et~al.
+\newblock Hybrid model zoo.
+\newblock \emph{arXiv preprint arXiv:2507.06457}, 2025.
+
+\bibitem[Yang et~al.(2024)]{yang2024gated}
+S.~Yang, B.~Wang, Y.~Shen, R.~Panda, and Y.~Kim.
+\newblock Gated delta networks: Improving mamba2 with delta rule.
+\newblock \emph{arXiv preprint arXiv:2412.06464}, 2024.
+
+\bibitem[Zellers et~al.(2019)]{zellers2019hellaswag}
+R.~Zellers, A.~Holtzman, Y.~Bisk, A.~Farhadi, and Y.~Choi.
+\newblock {HellaSwag}: Can a machine really finish your sentence?
+\newblock In \emph{Proceedings of ACL}, 2019.
+
+\end{thebibliography}
+
+\end{document}

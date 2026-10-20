@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-015",
+  "project": "entrainment_gated_ft",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:05:29.020Z",
+    "updated_at": "2026-05-20T10:05:41.602Z",
+    "hypothesis": "Per-example predictive multiplicity (cross-architecture Jaccard divergence of helped/hurt sets, formal ambiguity α) exists on ARC-Easy (N=2376) even without aggregate convergence, establishing that multiplicity is a general property of hybrid architectures independent of task-specific convergence",
+    "parent": "exp-arc-easy-eval"
+  },
+  "timestamp": "2026-05-20T10:05:41.662282+00:00",
+  "trigger": "update_registry"
+}

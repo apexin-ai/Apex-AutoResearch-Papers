@@ -1,0 +1,26 @@
+{
+  "exp_id": "p0_2_cliff_1.5B",
+  "project": "ratekv",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:23:57.228Z",
+    "updated_at": "2026-05-13T22:24:10.282Z",
+    "hypothesis": "2-bit quantization cliff effect 隔离测试 (Qwen2.5-1.5B): 逐个 KV head 设为 2/4/8-bit, 检测是否存在 \"任一 head 低 bit 即灾难\" 的 cliff effect",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python cliff_test.py --model /root/autodl-tmp/models/Qwen2.5-1.5B --bits 2,4,8 --max_eval_tokens 10000",
+      "server": "westd-37397",
+      "gpu": "cuda:1",
+      "data_path": "calibration_data.json (WikiText-103 concat)",
+      "data_count": "10000 eval tokens",
+      "model_name": "Qwen/Qwen2.5-1.5B",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "/root/ratekv/cliff_1.5B_results.json"
+    }
+  },
+  "timestamp": "2026-05-13T22:24:10.300831+00:00",
+  "trigger": "update_registry"
+}

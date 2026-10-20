@@ -1,0 +1,19 @@
+_next_id: 2
+mistakes:
+- id: M001
+  date: '2026-05-17'
+  category: experiment_design
+  severity: high
+  summary: 立项前未验证数据集的图结构特性是否支撑 graph learning 假设
+  root_cause: IDEA_BRIEF 假设 STAC traces 产生有意义的依赖图结构，但未在立项前检查关键统计：(1) 攻击链长度分布 (84.7%
+    仅 2-3 步)，(2) 建边后实际边数 (61.5% 图有 0 条边)，(3) 图规模与标签的相关性。这些信息只需 10 分钟数据探索即可获得，却在投入
+    GPU 实验后才发现。
+  prevention: 对任何 graph learning 项目，MVP 第一步必须是数据统计：平均节点数、平均边数、边密度、图规模与标签分布相关性。如果 >50%
+    的图有 <2 条边或 <4 个节点，graph learning 假设大概率不成立。这应作为 pre-MVP data feasibility check，在写任何模型代码前完成。
+  status: active
+  context: 'STAC 483 attack traces: 84.7% 为 2-3 步链，string-matching 建边后 61.5% 图有 0
+    条边。GNN 退化为 MLP+pooling。RF 利用 semantic features + graph size 达 0.962 AUROC，GIN+SupCon
+    仅 0.848。'
+  related_decisions:
+  - D001
+  - D002

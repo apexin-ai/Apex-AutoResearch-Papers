@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_appendix-h-within-arch_20260520T030458_result.json",
     "occurrence": 1,
-    "bytes": 567,
-    "sha256": "fded32043d158a0802cf3420ae0ad577058bc18fe4324e929c3b6290844bfc6d"
+    "bytes": 566,
+    "sha256": "ae652b2d04a4746f4b144973d770188b5f3a471ebaffc3e9da92478220d0f5aa"
   },
   "statistics": {
     "messages": 1,

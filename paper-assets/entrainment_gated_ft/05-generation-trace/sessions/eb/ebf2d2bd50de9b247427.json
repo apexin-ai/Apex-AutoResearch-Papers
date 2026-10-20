@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_diagnose_exp-005-eval-failure_20260522T142413_result.json",
     "occurrence": 1,
-    "bytes": 512,
-    "sha256": "b6ac4e7f6cd3b7dbbadc28d5b8ca77db7908cb2c34f4135b69a0a0f7d6f23afa"
+    "bytes": 511,
+    "sha256": "9be4870a0aec2183c02b3ae07580b98d1994f58d16b885dc3029ee9145aa1af1"
   },
   "statistics": {
     "messages": 1,

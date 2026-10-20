@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_remaining_48h_scripts_20260516T024849_result.json",
     "occurrence": 1,
-    "bytes": 1446,
-    "sha256": "a5b015ebd1cf43276ddeac86fa2e6a4fbc831f8a239342d97f19bb5a009687fa"
+    "bytes": 1445,
+    "sha256": "39d091e697da103875fa8b092a08ad6132df372ca527ac81dda9386167b595f4"
   },
   "statistics": {
     "messages": 1,

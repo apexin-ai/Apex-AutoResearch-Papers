@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_1_3b-pipeline-ready_20260518T084744_result.json",
     "occurrence": 1,
-    "bytes": 1902,
-    "sha256": "37108c33567860b15194c1c82ae98ad7e69443c9c6b0a04f2b5fb0d47c8bbe0c"
+    "bytes": 1901,
+    "sha256": "2d6c01418fb147f3494868f5170d07c987a913423c3c5af198ec56e58c0df7f4"
   },
   "statistics": {
     "messages": 1,

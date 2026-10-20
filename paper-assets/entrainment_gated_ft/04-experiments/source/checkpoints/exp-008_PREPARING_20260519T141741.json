@@ -1,0 +1,19 @@
+{
+  "exp_id": "exp-008",
+  "project": "entrainment_gated_ft",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:12:33.026Z",
+    "updated_at": "2026-05-19T14:17:41.119Z",
+    "hypothesis": "Replacing scipy.stats.spearmanr asymptotic p-values with exact permutation tests (n=5, 120 permutations, two-tailed) corrects the spurious p=1.4e-24 bug; expected: LAMBADA raw p≈0.017, Bonferroni adj-p≈0.100 (not significant), confirming need for additional benchmarks",
+    "parent": "exp-001",
+    "checkpoint_path": "/root/entrainment_gated_ft/analysis/robustness_results.csv",
+    "log_path": "/root/entrainment_gated_ft/analysis/robustness_summary.md",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T14:17:41.160412+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,173 @@
+{
+  "xstorycloze_en": {
+    "per_config": {
+      "pure": {
+        "attention_ratio": 0.0,
+        "GDN": 0.7068166776968895,
+        "RetNet": 0.686962276637988,
+        "HGRN2": 0.6949040370615487,
+        "cross_arch_std": 0.008159383193870278,
+        "Transformer": 0.6737260092653872
+      },
+      "hybrid-24-1": {
+        "attention_ratio": 0.04,
+        "GDN": 0.6975512905360688,
+        "RetNet": 0.6671078755790867,
+        "HGRN2": 0.6882859033752482,
+        "cross_arch_std": 0.012741697840894458,
+        "Transformer": 0.6737260092653872
+      },
+      "hybrid-12-1": {
+        "attention_ratio": 0.07692307692307693,
+        "GDN": 0.685638649900728,
+        "RetNet": 0.6730641958967571,
+        "HGRN2": 0.6968894771674388,
+        "cross_arch_std": 0.009731632473025692,
+        "Transformer": 0.6737260092653872
+      },
+      "hybrid-6-1": {
+        "attention_ratio": 0.14285714285714285,
+        "GDN": 0.6915949702183984,
+        "RetNet": 0.6790205162144275,
+        "HGRN2": 0.6882859033752482,
+        "cross_arch_std": 0.005322011066320267,
+        "Transformer": 0.6737260092653872
+      },
+      "hybrid-3-1": {
+        "attention_ratio": 0.25,
+        "GDN": 0.6882859033752482,
+        "RetNet": 0.6796823295830576,
+        "HGRN2": 0.6929185969556585,
+        "cross_arch_std": 0.0054841398167465236,
+        "Transformer": 0.6737260092653872
+      }
+    },
+    "spearman_rho": -0.6,
+    "exact_p": 0.35,
+    "direction": "convergence increases with attention"
+  },
+  "all_10_benchmarks": {
+    "LAMBADA": {
+      "rho": -1.0,
+      "raw_p": 0.0167,
+      "bonferroni_p": 0.16699999999999998,
+      "bh_fdr_p": 0.16699999999999998,
+      "significant_bonferroni": false,
+      "significant_bh": false
+    },
+    "HellaSwag": {
+      "rho": 0.3,
+      "raw_p": 0.6833,
+      "bonferroni_p": 1.0,
+      "bh_fdr_p": 0.95,
+      "significant_bonferroni": false,
+      "significant_bh": false
+    },
+    "WinoGrande": {
+      "rho": 0.1,
+      "raw_p": 0.95,
+      "bonferroni_p": 1.0,
+      "bh_fdr_p": 1.0,
+      "significant_bonferroni": false,
+      "significant_bh": false
+    },
+    "ARC-Easy": {
+      "rho": -0.7,
+      "raw_p": 0.2333,
+      "bonferroni_p": 1.0,
+      "bh_fdr_p": 0.7,
+      "significant_bonferroni": false,
+      "significant_bh": false
+    },
+    "ARC-Challenge": {
+      "rho": 0.6,
+      "raw_p": 0.35,
+      "bonferroni_p": 1.0,
+      "bh_fdr_p": 0.75,
+      "significant_bonferroni": false,
+      "significant_bh": false
+    },
+    "MMLU": {
+      "rho": -0.7,
+      "raw_p": 0.2333,
+      "bonferroni_p": 1.0,
+      "bh_fdr_p": 0.7,
+      "significant_bonferroni": false,
+      "significant_bh": false
+    },
+    "boolq": {
+      "rho": 0.2,
+      "raw_p": 0.7833,
+      "bonferroni_p": 1.0,
+      "bh_fdr_p": 0.95,
+      "significant_bonferroni": false,
+      "significant_bh": false
+    },
+    "piqa": {
+      "rho": -0.5,
+      "raw_p": 0.45,
+      "bonferroni_p": 1.0,
+      "bh_fdr_p": 0.75,
+      "significant_bonferroni": false,
+      "significant_bh": false
+    },
+    "sciq": {
+      "rho": 0.1,
+      "raw_p": 0.95,
+      "bonferroni_p": 1.0,
+      "bh_fdr_p": 0.95,
+      "significant_bonferroni": false,
+      "significant_bh": false
+    },
+    "xstorycloze_en": {
+      "rho": -0.6,
+      "raw_p": 0.35,
+      "bonferroni_p": 1.0,
+      "bh_fdr_p": 0.7,
+      "significant_bonferroni": false,
+      "significant_bh": false
+    }
+  },
+  "copa_supplementary": {
+    "rho": -0.6669,
+    "raw_p": 0.2667
+  },
+  "correction_10_benchmark": {
+    "n_tests": 10,
+    "bonferroni": {
+      "LAMBADA": 0.16699999999999998,
+      "HellaSwag": 1.0,
+      "WinoGrande": 1.0,
+      "ARC-Easy": 1.0,
+      "ARC-Challenge": 1.0,
+      "MMLU": 1.0,
+      "boolq": 1.0,
+      "piqa": 1.0,
+      "sciq": 1.0,
+      "xstorycloze_en": 1.0
+    },
+    "bh_fdr": {
+      "LAMBADA": 0.16699999999999998,
+      "HellaSwag": 0.95,
+      "WinoGrande": 1.0,
+      "ARC-Easy": 0.7,
+      "ARC-Challenge": 0.75,
+      "MMLU": 0.7,
+      "boolq": 0.95,
+      "piqa": 0.75,
+      "sciq": 0.95,
+      "xstorycloze_en": 0.7
+    }
+  },
+  "correction_2_benchmark_lambada_xstorycloze": {
+    "LAMBADA": {
+      "raw_p": 0.0167,
+      "bonf2_p": 0.0334
+    },
+    "xstorycloze_en": {
+      "raw_p": 0.35,
+      "bonf2_p": 0.7
+    }
+  },
+  "conclusion": "xstorycloze_en: rho=-0.6000, exact_p=0.3500; xstorycloze_en is NOT significant after 10-benchmark Bonferroni correction; Significant benchmarks (Bonferroni): none; Significant benchmarks (BH-FDR): none; xstorycloze_en does NOT survive even 2-benchmark Bonferroni => NOT a viable second anchor"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_gdn_h24_extract_20260519T043545_result.json",
     "occurrence": 1,
-    "bytes": 613,
-    "sha256": "e417b3932a601f15e9ce583628317ba9aef10f79d99e242a94522a5ec63cedef"
+    "bytes": 612,
+    "sha256": "4e1163051a26701f4230157e3b4fbc3ebb2f82d7b53e0d819f749197f4776364"
   },
   "statistics": {
     "messages": 1,

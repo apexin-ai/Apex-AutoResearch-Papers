@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_research_spike-vs-spread-literature_20260514T185634_result.json",
     "occurrence": 1,
-    "bytes": 1005,
-    "sha256": "2d5c7db8e84c6dee6a82abd996940b8c248ededcff1171cf33bfa91ee36b26e7"
+    "bytes": 1004,
+    "sha256": "ac401284588e9f896a2f63f86623a521a85756793a87d90c959abd8ef8846a6e"
   },
   "statistics": {
     "messages": 1,

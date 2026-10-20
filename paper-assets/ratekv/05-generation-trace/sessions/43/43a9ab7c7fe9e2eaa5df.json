@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_prep_yi_8k_eval_20260516T053019_result.json",
     "occurrence": 1,
-    "bytes": 1159,
-    "sha256": "97d84dda39c731b9cba108cd6fadb496783e51da96e725ca27f2a9025e355f8c"
+    "bytes": 1158,
+    "sha256": "99dcceb73ca2d425e589756293968205e4e188d3d4c19895906156031b05b6c7"
   },
   "statistics": {
     "messages": 1,

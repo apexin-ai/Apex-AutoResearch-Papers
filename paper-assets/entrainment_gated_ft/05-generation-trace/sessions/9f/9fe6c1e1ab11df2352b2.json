@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_d009-paper-strength-assessment_20260519T164246_result.json",
     "occurrence": 1,
-    "bytes": 647,
-    "sha256": "414750c4beeb796c1c1afe3fd34b053413447985c9882d99aa15d3191a7bbac5"
+    "bytes": 646,
+    "sha256": "74ef1fb7d63b2fd626fdf36a05a494ba0dec65278d84d213588c708f7e03b22a"
   },
   "statistics": {
     "messages": 1,

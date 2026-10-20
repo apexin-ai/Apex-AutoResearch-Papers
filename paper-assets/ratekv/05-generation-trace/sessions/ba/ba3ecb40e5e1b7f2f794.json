@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_yi_8k_longctx_integration_20260516T064812_result.json",
     "occurrence": 1,
-    "bytes": 506,
-    "sha256": "a68184b383669b51298effc10d29c941d92c96570f3148439591e3bc77d047d3"
+    "bytes": 505,
+    "sha256": "fbd3fd44804114e4ba21433674de5136196b8b8ebb37c535c07baaa5004c40f9"
   },
   "statistics": {
     "messages": 1,

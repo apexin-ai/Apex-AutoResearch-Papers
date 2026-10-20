@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_check_yi_mistral_progress_20260515T180004_result.json",
     "occurrence": 1,
-    "bytes": 1493,
-    "sha256": "960cf58ff31cc615be9a9374f94fbe9ea06fe0bff3177c69798f30dd49969255"
+    "bytes": 1492,
+    "sha256": "ba5398af700339ad0a4cf334062ea7331e93daa99c59805e38dc164630b8facd"
   },
   "statistics": {
     "messages": 1,

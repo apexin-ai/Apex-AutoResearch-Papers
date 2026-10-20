@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_kill_and_extract_metrics_20260515T181442_result.json",
     "occurrence": 1,
-    "bytes": 1313,
-    "sha256": "3498c36edb9be930c55e579accf52d146dbd3fccb87b733d56c7386f89412496"
+    "bytes": 1312,
+    "sha256": "a7bb9179307c3c52de8aeed004bfeb3db02c3f26f8184c0608fc1af681c62694"
   },
   "statistics": {
     "messages": 1,

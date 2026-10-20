@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_gpu_gemma2_rerun_20260514T153825_result.json",
     "occurrence": 1,
-    "bytes": 616,
-    "sha256": "6f78df28fd7ab0878c972e50c173c93eeffbc6da445fa099afc966714749ae24"
+    "bytes": 615,
+    "sha256": "6fa97410f2ac22aac70a70f239be7a9a4490b0a1fc27133c2380a53e5be85203"
   },
   "statistics": {
     "messages": 1,

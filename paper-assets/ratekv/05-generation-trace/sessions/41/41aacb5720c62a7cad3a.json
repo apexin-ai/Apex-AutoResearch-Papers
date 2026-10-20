@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_gpu_llama_download_and_profile_20260514T203852_result.json",
     "occurrence": 1,
-    "bytes": 56,
-    "sha256": "1f3c34f6b5b937d76f5378580311b9250c8d2a7054dcdcf9bfc9dcfa6e65aeae"
+    "bytes": 55,
+    "sha256": "3bcd3b2e51639b71cc7fb77260f6323d3db5ef509c1f83ab760d310df8ce107f"
   },
   "statistics": {
     "messages": 1,

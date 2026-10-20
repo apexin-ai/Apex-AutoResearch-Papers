@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_data_340m-accuracy-extract_20260522T004140_result.json",
     "occurrence": 1,
-    "bytes": 714,
-    "sha256": "b92ea08d1ec4680abc66d2e57229a255dcf1f1250d5664b5dd3f8f07c9c4836c"
+    "bytes": 713,
+    "sha256": "a0c398f8a4cf68f097a44533fc83c963a97b9164e419d1ef4c39ffee850f8f6f"
   },
   "statistics": {
     "messages": 1,

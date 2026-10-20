@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69bd1d0f67e62f4a7a66",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "diagnose qwen14b bcp 001",
+  "task_key": "worker_diagnose_qwen14b-bcp-001_20260513T151615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_qwen14b-bcp-001_20260513T151615_result.json",
+    "occurrence": 1,
+    "bytes": 796,
+    "sha256": "da9c2a17b134cb80a558c3a8f00fd3e88fef82c33459423cad00349d2d27bfc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**qwen14b-bcp-001 结果：成功完成，BCP 失败机制在 14B scale 复现。**\n\n| Run | Completion | Politeness | Question Rate | H1 | H2 | H3 | Overall |\n|-----|-----------|------------|---------------|----|----|----|----|\n| 1 | 73.7% | 0.470 | 0.037 | ✅ | ❌ | ✅ | ❌ |\n| 2 | 55.0% | 0.588 | 0.035 | ✅ | ✅ | ✅ | ✅ |\n| 3 | 57.9% | 0.497 | 0.054 | ✅ | ❌ | ✅ | ❌ |\n| 4 | 60.0% | 0.536 | 0.041 | ✅ | ❌ | ✅ | ❌ |\n\n- **Mean completion: 61.6%**\n- **H2（校准改进门）仅 1/4 passes** — 模型无法有效向目标行为 profile 校准\n- H1（基线质量）和 H3（任务完成保持）全部通过\n- 与 7B 模型一致：BCP 失败的核心瓶颈在 H2\n\nRegistry 已更新为 DONE/success，cron 已清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-qwen14b-bcp-001.md"
+}

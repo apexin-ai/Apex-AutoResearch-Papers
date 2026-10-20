@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_check_exp-007-data-availability_20260519T170212_result.json",
     "occurrence": 1,
-    "bytes": 627,
-    "sha256": "2dbc19513f61cc57c1595da401a4af46a4b5ef2bd6347abb9f816c76de5763b7"
+    "bytes": 626,
+    "sha256": "a6e97b827a60d575f70c511e47eedd22f70e9e363d56d00c7ae1af2712375b51"
   },
   "statistics": {
     "messages": 1,

@@ -4966,7 +4966,7 @@ git remote -v
 **如果显示 `git@github.com:...` (SSH)，必须改成 HTTPS+token：**
 
 ```bash
-git remote set-url origin 'https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git'
+git remote set-url origin 'https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git'
 ```
 
 确认显示 `https://...` 之后，正常 push：
@@ -5034,8 +5034,8 @@ called Bash
 
 _source line 1331 · 2026-05-23T18:50:29.937264+00:00_
 
-origin	https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git (fetch)
-origin	https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git (push)
+origin	https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git (fetch)
+origin	https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git (push)
 Shell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/.claude/sessions/director_63b8b789
 
 <details><summary>Recorded metadata</summary>
@@ -5146,7 +5146,7 @@ _source line 1334 · 2026-05-23T18:56:12.338385+00:00_
 
    **正确的 HTTPS+token URL：**
    ```
-   https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git
+   https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git
    ```
 
 4. **完成后向我汇报**：
@@ -10405,7 +10405,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
 
 ```json
 {
-  "text": "[Director 指令] **最后一轮数据自查（运维要求）**\n\n再做一遍论文所有数字的完整核查。之前已查过一遍并修复了 4 项，这次是 DDL 前最终确认。\n\n**核查范围**：\n1. Abstract 所有数字 → 正文对应位置是否一致\n2. Table 1/2 每个 cell → artifacts/ 源数据\n3. Figure 1-5 → plot 脚本 + 源数据文件版本\n4. 正文引用数字（\"Table X shows Y%\"）→ 与 Table 实际值一致性\n5. Appendix 所有表格（特别是上轮刚改过的 Tab 7、Tab 11）\n6. 四舍五入位数全篇统一\n7. Limitations 里的数字\n\n**上轮已修复的 4 项**（确认修复仍到位）：\n- ECE spread 17% → 6%\n- Tab 7 全表替换为 h3-1 数据\n- Tab 11 caption \"helped sets\" → \"mean of helped and hurt sets\"\n- Routing 数值统一 paired t-test（LAMBADA +5.2pp, ARC-Easy +1.2pp）\n\n**操作**：\n- 如发现不一致 → 直接修复论文 → 编译 → commit → push 到匿名仓库（HTTPS+token URL: `https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git`）\n- 如无问题 → 汇报\"自查无问题\"\n\n汇报格式简短：发现 X 处问题已修复 / 自查无问题。"
+  "text": "[Director 指令] **最后一轮数据自查（运维要求）**\n\n再做一遍论文所有数字的完整核查。之前已查过一遍并修复了 4 项，这次是 DDL 前最终确认。\n\n**核查范围**：\n1. Abstract 所有数字 → 正文对应位置是否一致\n2. Table 1/2 每个 cell → artifacts/ 源数据\n3. Figure 1-5 → plot 脚本 + 源数据文件版本\n4. 正文引用数字（\"Table X shows Y%\"）→ 与 Table 实际值一致性\n5. Appendix 所有表格（特别是上轮刚改过的 Tab 7、Tab 11）\n6. 四舍五入位数全篇统一\n7. Limitations 里的数字\n\n**上轮已修复的 4 项**（确认修复仍到位）：\n- ECE spread 17% → 6%\n- Tab 7 全表替换为 h3-1 数据\n- Tab 11 caption \"helped sets\" → \"mean of helped and hurt sets\"\n- Routing 数值统一 paired t-test（LAMBADA +5.2pp, ARC-Easy +1.2pp）\n\n**操作**：\n- 如发现不一致 → 直接修复论文 → 编译 → commit → push 到匿名仓库（HTTPS+token URL: `https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git`）\n- 如无问题 → 汇报\"自查无问题\"\n\n汇报格式简短：发现 X 处问题已修复 / 自查无问题。"
 }
 ```
 
@@ -10419,7 +10419,7 @@ called mcp__agent-ml-research__director_post_to_main_agent
   "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
   "tool": "mcp__agent-ml-research__director_post_to_main_agent",
   "tool_args": {
-    "text": "[Director 指令] **最后一轮数据自查（运维要求）**\n\n再做一遍论文所有数字的完整核查。之前已查过一遍并修复了 4 项，这次是 DDL 前最终确认。\n\n**核查范围**：\n1. Abstract 所有数字 → 正文对应位置是否一致\n2. Table 1/2 每个 cell → artifacts/ 源数据\n3. Figure 1-5 → plot 脚本 + 源数据文件版本\n4. 正文引用数字（\"Table X shows Y%\"）→ 与 Table 实际值一致性\n5. Appendix 所有表格（特别是上轮刚改过的 Tab 7、Tab 11）\n6. 四舍五入位数全篇统一\n7. Limitations 里的数字\n\n**上轮已修复的 4 项**（确认修复仍到位）：\n- ECE spread 17% → 6%\n- Tab 7 全表替换为 h3-1 数据\n- Tab 11 caption \"helped sets\" → \"mean of helped and hurt sets\"\n- Routing 数值统一 paired t-test（LAMBADA +5.2pp, ARC-Easy +1.2pp）\n\n**操作**：\n- 如发现不一致 → 直接修复论文 → 编译 → commit → push 到匿名仓库（HTTPS+token URL: `https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git`）\n- 如无问题 → 汇报\"自查无问题\"\n\n汇报格式简短：发现 X 处问题已修复 / 自查无问题。"
+    "text": "[Director 指令] **最后一轮数据自查（运维要求）**\n\n再做一遍论文所有数字的完整核查。之前已查过一遍并修复了 4 项，这次是 DDL 前最终确认。\n\n**核查范围**：\n1. Abstract 所有数字 → 正文对应位置是否一致\n2. Table 1/2 每个 cell → artifacts/ 源数据\n3. Figure 1-5 → plot 脚本 + 源数据文件版本\n4. 正文引用数字（\"Table X shows Y%\"）→ 与 Table 实际值一致性\n5. Appendix 所有表格（特别是上轮刚改过的 Tab 7、Tab 11）\n6. 四舍五入位数全篇统一\n7. Limitations 里的数字\n\n**上轮已修复的 4 项**（确认修复仍到位）：\n- ECE spread 17% → 6%\n- Tab 7 全表替换为 h3-1 数据\n- Tab 11 caption \"helped sets\" → \"mean of helped and hurt sets\"\n- Routing 数值统一 paired t-test（LAMBADA +5.2pp, ARC-Easy +1.2pp）\n\n**操作**：\n- 如发现不一致 → 直接修复论文 → 编译 → commit → push 到匿名仓库（HTTPS+token URL: `https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git`）\n- 如无问题 → 汇报\"自查无问题\"\n\n汇报格式简短：发现 X 处问题已修复 / 自查无问题。"
   }
 }
 ```
@@ -20025,7 +20025,7 @@ session 销毁时之前发的 HTTPS+token URL 会丢，请把它**写到项目�
 - 公开链接：https://github.com/anonymous-nlp-2026-2/entrainment_gated_ft
 - Push URL（带 token）：
   ```
-  https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git
+  https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git
   ```
 
 **操作（必做）：**
@@ -20034,7 +20034,7 @@ session 销毁时之前发的 HTTPS+token URL 会丢，请把它**写到项目�
    ```json
    {
      "repo_public": "https://github.com/anonymous-nlp-2026-2/entrainment_gated_ft",
-     "push_url": "https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git",
+     "push_url": "https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git",
      "github_user": "anonymous-nlp-2026-2",
      "repo_name": "entrainment_gated_ft"
    }
@@ -20082,7 +20082,7 @@ called Write
 ```json
 {
   "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/_anonymous_repo.json",
-  "content": "{\n  \"repo_public\": \"https://github.com/anonymous-nlp-2026-2/entrainment_gated_ft\",\n  \"push_url\": \"https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git\",\n  \"github_user\": \"anonymous-nlp-2026-2\",\n  \"repo_name\": \"entrainment_gated_ft\"\n}\n"
+  "content": "{\n  \"repo_public\": \"https://github.com/anonymous-nlp-2026-2/entrainment_gated_ft\",\n  \"push_url\": \"https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git\",\n  \"github_user\": \"anonymous-nlp-2026-2\",\n  \"repo_name\": \"entrainment_gated_ft\"\n}\n"
 }
 ```
 
@@ -20097,7 +20097,7 @@ called Write
   "tool": "Write",
   "tool_args": {
     "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/_anonymous_repo.json",
-    "content": "{\n  \"repo_public\": \"https://github.com/anonymous-nlp-2026-2/entrainment_gated_ft\",\n  \"push_url\": \"https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git\",\n  \"github_user\": \"anonymous-nlp-2026-2\",\n  \"repo_name\": \"entrainment_gated_ft\"\n}\n"
+    "content": "{\n  \"repo_public\": \"https://github.com/anonymous-nlp-2026-2/entrainment_gated_ft\",\n  \"push_url\": \"https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git\",\n  \"github_user\": \"anonymous-nlp-2026-2\",\n  \"repo_name\": \"entrainment_gated_ft\"\n}\n"
   }
 }
 ```

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_verify_multiseed_scripts_20260516T064828_result.json",
     "occurrence": 1,
-    "bytes": 1200,
-    "sha256": "be1daef857be3192f3073317a98ca693aa74ac7303e28aad05c80684da31b495"
+    "bytes": 1199,
+    "sha256": "ad28ef506e1b2639e2c1e309748d9adfa99a72a72f4c3302e0840cbb563aed84"
   },
   "statistics": {
     "messages": 1,

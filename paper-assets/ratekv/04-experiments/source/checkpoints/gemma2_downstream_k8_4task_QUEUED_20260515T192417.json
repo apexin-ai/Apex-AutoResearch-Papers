@@ -1,0 +1,15 @@
+{
+  "exp_id": "gemma2_downstream_k8_4task",
+  "project": "ratekv",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:24:09.366Z",
+    "updated_at": "2026-05-15T19:24:17.226Z",
+    "hypothesis": "Gemma-2 downstream eval with k=8 (spread model), 4-task protocol (arc_challenge, hellaswag, piqa, winogrande). Fixes k=2 error from gemma2_downstream_k2_4task. Should produce updated Table 4 numbers with correct 4-task avg."
+  },
+  "timestamp": "2026-05-15T19:24:17.398308+00:00",
+  "trigger": "update_registry"
+}

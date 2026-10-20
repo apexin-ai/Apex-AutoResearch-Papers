@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_confidence-margin-rebuttal-v2_20260520T033050_result.json",
     "occurrence": 1,
-    "bytes": 1074,
-    "sha256": "4d124f4a29ad9ea2d48728c60a551bd7f61ab1531fb85a9f0fbbaf8cb7913c10"
+    "bytes": 1073,
+    "sha256": "b006e2d83faaa767fb5a956987fd73c4dfd24e7b6578ef7b550f9f9e3212e4e8"
   },
   "statistics": {
     "messages": 1,

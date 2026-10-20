@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_multi_seed_exit_check_20260514T105828_result.json",
     "occurrence": 1,
-    "bytes": 1181,
-    "sha256": "070b35bf7bcda4fda3b0dca2c021ee33592447a3bc94538751831d32d50a0776"
+    "bytes": 1180,
+    "sha256": "923b91361139f6f566af7fded43144b103f9fee7b71d5b95da9aa11d4f85547b"
   },
   "statistics": {
     "messages": 1,

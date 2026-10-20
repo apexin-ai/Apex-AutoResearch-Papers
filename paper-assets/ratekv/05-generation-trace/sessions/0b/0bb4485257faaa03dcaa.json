@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_llama_aggressive_compression_20260514T052333_result.json",
     "occurrence": 1,
-    "bytes": 530,
-    "sha256": "c157c3961e3cbc2e436450992a83f642fea39bd3bcbee4ce7272d5a7498fba8e"
+    "bytes": 529,
+    "sha256": "5bc63f18775ab65c65327c6257f9c531e59295ecbb81c77b659003a1cc0620cc"
   },
   "statistics": {
     "messages": 1,

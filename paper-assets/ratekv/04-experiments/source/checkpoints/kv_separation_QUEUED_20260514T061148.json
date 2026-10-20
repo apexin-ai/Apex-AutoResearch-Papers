@@ -1,0 +1,28 @@
+{
+  "exp_id": "kv_separation",
+  "project": "ratekv",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:01:37.522Z",
+    "updated_at": "2026-05-14T06:11:48.747Z",
+    "hypothesis": "K 和 V heads 作为独立 MCKP items 分别优化 bit-width，允许 K/V 不对称分配（如 K avg 2.85 bits, V avg 2.15 bits）。对比 joint K+V optimization vs 当前 uniform K=V 方案。RateQuant 支持不对称 K/V，MCKP 应能自然处理。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_kv_separation.py 2>&1 | tee kv_separation.log\"",
+      "server": "westd-37397",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "186353",
+      "log_path": "~/runs/ratekv/kv_separation.log",
+      "submitted_at": "2026-05-14T06:11:38.237Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-14T06:11:48.826449+00:00",
+  "trigger": "update_registry"
+}

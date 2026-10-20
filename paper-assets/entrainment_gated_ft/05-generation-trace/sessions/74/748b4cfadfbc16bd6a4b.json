@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_fla-version-investigate_20260518T123702_result.json",
     "occurrence": 1,
-    "bytes": 2744,
-    "sha256": "5b0a24a0306e484ba62115902206c7cac68137d976b692d0a769e84478092dbb"
+    "bytes": 2743,
+    "sha256": "96fea5703566df7badb8056c06b529c2035ab6643760c10e7c35140421508f2e"
   },
   "statistics": {
     "messages": 1,

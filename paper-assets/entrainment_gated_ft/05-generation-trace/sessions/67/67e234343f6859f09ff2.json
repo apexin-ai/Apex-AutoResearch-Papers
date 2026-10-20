@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_exp-005-gla-pure-now_20260522T163259_result.json",
     "occurrence": 1,
-    "bytes": 429,
-    "sha256": "e6e9dcbf9cbb62beb800b52c024e6f901c96115a40f46a67ccaed67d80490b3e"
+    "bytes": 428,
+    "sha256": "a06767d2cf4cef0fe70ba81fb620b65311a2e8ecebb01ff3aea3e7ae52f23f2e"
   },
   "statistics": {
     "messages": 1,

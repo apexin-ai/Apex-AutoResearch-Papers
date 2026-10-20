@@ -1,0 +1,16 @@
+{
+  "exp_id": "hgate-dpo003",
+  "project": "demo_calibrated_sim",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-12T21:13:36.209Z",
+    "updated_at": "2026-05-12T21:16:21.410Z",
+    "hypothesis": "DPO LoRA (v3 Fix B, 0% mismatch) calibration reduces politeness bias while maintaining task completion — MVP decision node",
+    "parent": "dpo-003"
+  },
+  "timestamp": "2026-05-12T21:16:21.456571+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_util_72b_cleanup_urgent_20260514T142103_result.json",
     "occurrence": 1,
-    "bytes": 267,
-    "sha256": "b96786f7cd6ad0fb324976edd2fccce72450f6be73ce63d7e7848a0155bd3491"
+    "bytes": 266,
+    "sha256": "b2502bc821733187286af9c42e1c2c47e85f1503134dcb1e396e620107ae9f99"
   },
   "statistics": {
     "messages": 1,

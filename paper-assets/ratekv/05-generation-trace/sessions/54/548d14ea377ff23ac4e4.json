@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_cleanup_pythia14b_residual_20260515T130806_result.json",
     "occurrence": 1,
-    "bytes": 225,
-    "sha256": "cb0296bf885b3451845627b70d20180c8b21243f710fce0c59c46237ffd4c889"
+    "bytes": 224,
+    "sha256": "6d6a30e5de5dc2a8b55370be7bebcc02a60578dcec45a9d60eb8123a2d74fa8a"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_prep_cross_arch_scripts_20260514T012405_result.json",
     "occurrence": 1,
-    "bytes": 1502,
-    "sha256": "786b46fd013edcb41655777dff232d5ab140f15afb17e3e71a360413544af2ed"
+    "bytes": 1501,
+    "sha256": "9bbf1095073e4c41bf37c604b8c050f643d6ddceda703ea313319704397e69bb"
   },
   "statistics": {
     "messages": 1,

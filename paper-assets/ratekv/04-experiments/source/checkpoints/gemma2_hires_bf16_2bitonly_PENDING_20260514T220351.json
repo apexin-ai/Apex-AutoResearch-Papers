@@ -1,0 +1,14 @@
+{
+  "exp_id": "gemma2_hires_bf16_2bitonly",
+  "project": "ratekv",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:03:50.846Z",
+    "updated_at": "2026-05-14T22:03:50.846Z"
+  },
+  "timestamp": "2026-05-14T22:03:51.204544+00:00",
+  "trigger": "update_registry"
+}

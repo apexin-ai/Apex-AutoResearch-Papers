@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp-005-p1-eval",
+  "project": "entrainment_gated_ft",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T16:01:38.958Z",
+    "updated_at": "2026-05-24T07:46:12.093Z",
+    "spec": {
+      "command": "bash -c \"bash /root/entrainment_gated_ft/results/exp005_zoo_expansion/run_eval_p1.sh\"",
+      "server": "westb-48145",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "884365",
+      "log_path": "~/runs/entrainment_gated_ft/exp-005-p1-eval.log",
+      "submitted_at": "2026-05-22T16:01:38.883Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 143073.2,
+      "gpu_hours": 39.74
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-24T07:46:12.093Z"
+  },
+  "timestamp": "2026-05-24T07:46:12.167267+00:00",
+  "trigger": "update_registry"
+}

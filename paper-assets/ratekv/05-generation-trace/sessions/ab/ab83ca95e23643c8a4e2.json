@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_yi_mistral_downstream_k2_20260515T174558_result.json",
     "occurrence": 1,
-    "bytes": 191,
-    "sha256": "651aefee6e15f5e03d424778c35b9683fb2f6fe19ddac02bc12dba74da689488"
+    "bytes": 190,
+    "sha256": "f7dd6fc512251ac625ab83706327ec47803cf24510e7a1c276146b3853035787"
   },
   "statistics": {
     "messages": 1,

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_codellama_constrained_mckp_20260516T031236_result.json",
     "occurrence": 1,
-    "bytes": 644,
-    "sha256": "b6ce65829c1995e7970b7c52657edb07e240b1b44374f13c4b69ea9c32cd414d"
+    "bytes": 643,
+    "sha256": "89cfe1d770cbef49d2d6bb9ffa7b13902826195d4093414bd901d97cc525dc38"
   },
   "statistics": {
     "messages": 1,

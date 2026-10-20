@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_research_lit_cluster_1_hybrid_20260519T182256_result.json",
     "occurrence": 1,
-    "bytes": 1359,
-    "sha256": "d916687a6dd8bcdac7d2f10415ed9f5ec8a5d9d0461a7f8382f9d620d60b752d"
+    "bytes": 1358,
+    "sha256": "cf03e53525e74e10a5c7897dbf230de710907e9ca924cb60da04f43ab39e16f3"
   },
   "statistics": {
     "messages": 1,

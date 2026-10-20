@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_research_mixed_precision_rd_20260514T083730_result.json",
     "occurrence": 1,
-    "bytes": 915,
-    "sha256": "147ebaf864e748b82da13aad29d5c2a0f5eb1fe387762d4db208f51608e59e8d"
+    "bytes": 914,
+    "sha256": "12e204813772dcbe6728700e622bec5ce9287babb65553768b434dd2348c6ed0"
   },
   "statistics": {
     "messages": 1,

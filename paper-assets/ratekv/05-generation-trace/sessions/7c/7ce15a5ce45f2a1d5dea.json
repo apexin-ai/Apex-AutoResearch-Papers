@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_llama_hires_check_20260514T052040_result.json",
     "occurrence": 1,
-    "bytes": 531,
-    "sha256": "bf377b2c33c917ee4e7b0c410dbae835927986effc2f28a9caa404e2177ce593"
+    "bytes": 530,
+    "sha256": "2e2cea4f31fe31e527c03c2eb3cb4b8a573d08d7df25ea9a3843c536f42b1fba"
   },
   "statistics": {
     "messages": 1,

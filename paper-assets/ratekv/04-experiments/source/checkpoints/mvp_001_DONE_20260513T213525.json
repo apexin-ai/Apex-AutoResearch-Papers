@@ -1,0 +1,35 @@
+{
+  "exp_id": "mvp_001",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T17:31:41.823Z",
+    "updated_at": "2026-05-13T21:35:25.403Z",
+    "hypothesis": "在 per-KV-head 粒度上 (Qwen2.5-7B, 28 layers × N KV heads)，eviction 和 quantization 存在 crossover——部分 head 在 matched memory budget 下 eviction distortion &lt; quantization distortion，且 joint allocation 优于 quant-only optimal allocation ≥0.5 PPL",
+    "spec": {
+      "command": "python run_mvp.py --model /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B/ --device cuda:0",
+      "server": "westd-37397",
+      "gpu": "cuda:0",
+      "pid": 128388,
+      "log_path": "~/runs/ratekv/mvp_001.log",
+      "submitted_at": "2026-05-13T19:01:59.773Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "allenai/c4 (calibration) + wikitext-2-raw-v1 (eval)",
+      "data_count": "16 seq × 512 tokens (calibration)",
+      "model_name": "Qwen/Qwen2.5-7B",
+      "seed": 42,
+      "wall_clock_seconds": 9205.6,
+      "gpu_hours": 2.56
+    },
+    "conclusion": "failed",
+    "notes": "FAILED: tmux non-interactive shell 未加载 /etc/network_turbo proxy，C4 数据集下载 ConnectionError: Network is unreachable",
+    "completed_at": "2026-05-13T21:35:25.403Z"
+  },
+  "timestamp": "2026-05-13T21:35:25.419614+00:00",
+  "trigger": "update_registry"
+}

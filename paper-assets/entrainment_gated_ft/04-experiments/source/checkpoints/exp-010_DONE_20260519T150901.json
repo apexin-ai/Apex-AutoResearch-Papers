@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp-010",
+  "project": "entrainment_gated_ft",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T15:08:21.255Z",
+    "updated_at": "2026-05-19T15:09:01.266Z",
+    "hypothesis": "Aggregate convergence (cross-arch std decreasing with attention ratio) and per-example divergence (low Jaccard of helped/hurt sets) co-evolve as attention ratio increases on LAMBADA — demonstrating underspecification: architectures converge in aggregate performance while helping/hurting almost entirely different samples",
+    "parent": "exp-001",
+    "spec": {
+      "command": "python3 /root/entrainment_gated_ft/analysis/exp010_bridge_analysis.py",
+      "server": "westb-48145",
+      "data_path": "/root/entrainment_gated_ft/lm_eval_clean/",
+      "data_count": 5153,
+      "model_name": "GDN/RetNet/HGRN2 x 5 ratios (1.3B)",
+      "seed": 0,
+      "checkpoint_source": "/root/autodl-tmp/models_1.3b/ (Wang et al. pretrained)",
+      "eval_data": "LAMBADA OpenAI per-example logprob (5153 samples)"
+    },
+    "checkpoint_path": "/root/entrainment_gated_ft/analysis/exp010_bridge_results.csv",
+    "log_path": "/root/entrainment_gated_ft/analysis/exp010_bridge_summary.json",
+    "conclusion": "success",
+    "completed_at": "2026-05-19T15:09:01.266Z"
+  },
+  "timestamp": "2026-05-19T15:09:01.290914+00:00",
+  "trigger": "update_registry"
+}

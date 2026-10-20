@@ -1,0 +1,28 @@
+{
+  "exp_id": "kivi_mckp_combined_qwen7b",
+  "project": "ratekv",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:53:01.424Z",
+    "updated_at": "2026-05-15T14:57:00.336Z",
+    "hypothesis": "KIVI (intra-head) + MCKP (inter-head) should achieve lower PPL than either alone, proving orthogonal complementarity",
+    "spec": {
+      "command": "python run_kivi_mckp_combined.py",
+      "server": "westd-37397",
+      "gpu": "cuda:1",
+      "model_name": "Qwen2.5-7B",
+      "pid": 343577,
+      "data_path": "hires_profiles.json",
+      "data_count": 112,
+      "seed": 0
+    },
+    "log_path": "/root/ratekv/logs/kivi_mckp_combined.log",
+    "checkpoint_path": "/root/ratekv/artifacts/kivi_mckp_combined_results.json",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T14:57:00.492970+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,67 @@
+{
+  "exp_id": "llama_c4_cross_dataset",
+  "project": "ratekv",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:13:25.397Z",
+    "updated_at": "2026-05-14T12:38:05.590Z",
+    "hypothesis": "C4 cross-dataset eval for Llama-3.1-8B: 用 C4 calibration 数据 profiling → constrained MCKP allocation，在 WT2 上 eval。对比 allocation agreement rate (C4 vs WT2 calibrated)，验证 Qwen 上发现的 96.4% agreement 是否跨模型成立。",
+    "parent": "c4_rerun_d032",
+    "spec": {
+      "command": "python run_llama_c4_cross_dataset.py",
+      "server": "westd-37397",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "222573",
+      "log_path": "~/runs/ratekv/llama_c4_cross_dataset.log",
+      "submitted_at": "2026-05-14T12:26:08.411Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "c4_calibration_real.json + llama_ppl_profiles_hires.json",
+      "data_count": 200,
+      "model_name": "Llama-3.1-8B",
+      "seed": 0,
+      "checkpoint_path": "/root/ratekv/llama_c4_cross_dataset_results.json",
+      "checkpoint_source": "llama_ppl_profiles_hires.json",
+      "eval_data": "wikitext-2-raw-v1 + c4_calibration_real.json"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T12:36:51.837Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T12:36:53.279965+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "wt2_cal_wt2_eval_ppl": 8.4498,
+      "c4_cal_wt2_eval_ppl": 8.6459,
+      "uniform_4bit_wt2_ppl": 8.469,
+      "bf16_wt2_ppl": 8.0918,
+      "wt2_cal_c4_eval_ppl": 7.654,
+      "c4_cal_c4_eval_ppl": 7.654,
+      "uniform_4bit_c4_ppl": 7.5351,
+      "bf16_c4_ppl": 7.1333,
+      "allocation_agreement_c4_vs_wt2": 0.977,
+      "agreement_heads": "250/256",
+      "bit_dist_wt2_cal": "2bit:2, 4bit:253, 8bit:1",
+      "bit_dist_c4_cal": "2bit:2, 4bit:253, 8bit:1",
+      "wt2_cal_delta_vs_uniform_wt2": 0.0192,
+      "c4_cal_delta_vs_uniform_wt2": -0.1769,
+      "profile_time_s": 419.5,
+      "total_time_s": 541.5
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T12:38:05.671788+00:00",
+  "trigger": "update_registry"
+}

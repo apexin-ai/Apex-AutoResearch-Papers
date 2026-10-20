@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_prep_final-compile-push_20260524T045337.log",
     "occurrence": 1,
-    "bytes": 201334,
-    "sha256": "d9b3e9b02f41267802a802379e19cbaa329c0b1e211f71c83a0fed984462d20b"
+    "bytes": 201266,
+    "sha256": "f6174c5b9ef4b3a9acb5201509e68c9e06be5fcfe3c5cd5b7c57ea39c4642bb8"
   },
   "statistics": {
     "messages": 144,
@@ -4291,7 +4291,7 @@
               "id": "toolu_019ttt1GXiXphddtLcmkiyK5",
               "name": "Bash",
               "input": {
-                "command": "git ls-remote https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git 2>&1 | head -10",
+                "command": "git ls-remote https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git 2>&1 | head -10",
                 "description": "Check anonymous repo status"
               },
               "caller": {
@@ -4451,7 +4451,7 @@
               "id": "toolu_01FhESmW95pNuvo6Fm27bBAX",
               "name": "Bash",
               "input": {
-                "command": "git clone https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git /tmp/anon_repo 2>&1 | tail -5",
+                "command": "git clone https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git /tmp/anon_repo 2>&1 | tail -5",
                 "description": "Clone anonymous repo",
                 "timeout": 60000
               },

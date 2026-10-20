@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "d0ac86e046907516267b",
+  "project": "demo_calibrated_sim",
+  "kind": "worker",
+  "title": "diag lora merge eval",
+  "task_key": "worker_diag_lora-merge-eval_20260513T011320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_lora-merge-eval_20260513T011320.log",
+    "occurrence": 1,
+    "bytes": 836513,
+    "sha256": "134b212d439d7e2fe24e2dc83e169ddfc884cb6a0a4b50162b302ca51dff0218"
+  },
+  "statistics": {
+    "messages": 557,
+    "user_turns": 0,
+    "tool_calls": 230,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 93,
+      "tool_call": 230,
+      "tool_result": 230,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 557,
+      "chunks": [
+        {
+          "path": "d0ac86e046907516267b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d0ac86e046907516267b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d0ac86e046907516267b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d0ac86e046907516267b-part-0004.json",
+          "message_count": 17
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diag-lora-merge-eval.md"
+}

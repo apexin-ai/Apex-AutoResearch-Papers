@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72b1b0f443a7feb9850a",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "exp l1 fix redeploy restart",
+  "task_key": "worker_exp_l1-fix-redeploy-restart_20260512T132518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_l1-fix-redeploy-restart_20260512T132518_result.json",
+    "occurrence": 1,
+    "bytes": 957,
+    "sha256": "ec358c658821ed874aaf3e604e855867aa590042d5bc2f1a3e44ba58d84f0e0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- **Step 5: PASS** — PID 111195 正在运行，已完成 44 次 LiteLLM 调用，tau-Bench 任务执行中。\n\n---\n\n## 汇总\n\n| Step | Result | Detail |\n|------|--------|--------|\n| Step 1 | **PASS** | GPU 1 已清空 (3MiB, 0%) |\n| Step 2 | **PASS** | GPU 2 僵尸 vLLM 已清除 |\n| Step 3a | **PASS** | behavioral_fingerprint.py: 300 行，`_MODAL_REQUEST_RE` / `_is_modal_request` / `_CONFIRMATION_RE` 均存在 |\n| Step 3b | **PASS** | h_gate_evaluator.py: 201 行，`secondary_metric` 存在 |\n| Step 3c | **PASS** | run_mvp_experiment.py: 514 行，`context_overflow` / `ContextWindowExceededError` 存在 |\n| Step 3d | **PASS** | `###STOP###` 在两个 prompt 中，`question_rate: 10` 在 yaml 中，prompt_loader.py 131 行 |\n| Step 4 | **PASS** | vLLM 仅在 GPU 2 (22088MiB)，`/v1/models` 返回 `democalib-qwen`，max_model_len=32768 |\n| Step 5 | **PASS** | PID 111195 运行中，44 次 LiteLLM 调用完成 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-l1-fix-redeploy-restart.md"
+}

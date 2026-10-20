@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp-010",
+  "project": "entrainment_gated_ft",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T15:08:21.255Z",
+    "updated_at": "2026-05-19T15:08:21.255Z"
+  },
+  "timestamp": "2026-05-19T15:08:21.276694+00:00",
+  "trigger": "update_registry"
+}

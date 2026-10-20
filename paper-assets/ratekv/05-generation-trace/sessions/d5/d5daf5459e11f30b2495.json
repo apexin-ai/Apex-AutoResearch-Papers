@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_table1_std_removal_20260515T052846_result.json",
     "occurrence": 1,
-    "bytes": 183,
-    "sha256": "20aca35f34a6e7d18f64026612e298e08d93b8c7023c775d0f2f1af120717a6f"
+    "bytes": 182,
+    "sha256": "4a7a656c74790271455f7cfa8d46e16fefef24a5456e646b492359a48f86094b"
   },
   "statistics": {
     "messages": 1,

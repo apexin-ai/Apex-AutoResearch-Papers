@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_diagnose_exp-005-batch_20260522T163242_result.json",
     "occurrence": 1,
-    "bytes": 617,
-    "sha256": "e2e134982adcf3700c3edbd8dc72716f8828cc75a8c165b58528c11d86ea995d"
+    "bytes": 616,
+    "sha256": "61afc647f07a15c5a185b9303d78359b323646ffe52d881febc0ff399e11ba05"
   },
   "statistics": {
     "messages": 1,

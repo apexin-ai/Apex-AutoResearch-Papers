@@ -3432,7 +3432,7 @@ _source line 741 · 2026-05-23T12:48:09.344771+00:00_
 [飞书用户 运维(匿名仓库分发)]: 📦 **匿名仓库已建好，请将本项目代码 push 到匿名仓库（EMNLP 2026 投稿用）**
 
 **仓库地址：** https://github.com/anonymous-nlp-2026-2/entrainment_gated_ft
-**带 token 的 push URL：** https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git
+**带 token 的 push URL：** https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git
 
 **任务：**
 请整理本项目的代码到一个匿名分支并 push 到上述仓库。
@@ -8953,7 +8953,7 @@ called Bash
 
 ```json
 {
-  "command": "cd /tmp/anon_repo && \\\ngit remote add origin https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git && \\\ngit push -u origin main 2>&1",
+  "command": "cd /tmp/anon_repo && \\\ngit remote add origin https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git && \\\ngit push -u origin main 2>&1",
   "description": "Push to anonymous GitHub repo"
 }
 ```
@@ -8968,7 +8968,7 @@ called Bash
   "session": "feishu:group:oc_1f8f0d6d9482071694045c30143bb993:director",
   "tool": "Bash",
   "tool_args": {
-    "command": "cd /tmp/anon_repo && \\\ngit remote add origin https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git && \\\ngit push -u origin main 2>&1",
+    "command": "cd /tmp/anon_repo && \\\ngit remote add origin https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git && \\\ngit push -u origin main 2>&1",
     "description": "Push to anonymous GitHub repo"
   }
 }

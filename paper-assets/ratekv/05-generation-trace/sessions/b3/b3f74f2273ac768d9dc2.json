@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exec_c4_rerun_launch_20260514T093438_result.json",
     "occurrence": 1,
-    "bytes": 1492,
-    "sha256": "b88c28594dd783e517574b1259821d3e5a4dd3ddda0fb7b466bf18536bb1a632"
+    "bytes": 1491,
+    "sha256": "53f141704b3c1bc753587ef440cde095c66b00764de368349e4c9d207bc2ad6c"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd27e02d4519708c95c4",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "exp check dpo training",
+  "task_key": "worker_exp_check-dpo-training_20260512T153432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_check-dpo-training_20260512T153432_result.json",
+    "occurrence": 1,
+    "bytes": 540,
+    "sha256": "d56868b19892a97f840e9801944962024b312cb5cfaf0b49f4ab07fa7e9913fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**训练状态: RUNNING**\n\n| 项目 | 值 |\n|------|-----|\n| 进度 | **331/1077 steps (31%)** |\n| 已运行 | 23 分 36 秒 |\n| 剩余预估 | ~57 分钟 |\n| Epoch | 0.89 / 3.0 |\n\n**最近 metrics (step ~331):**\n- loss: 0.67–0.70 (波动正常)\n- rewards/accuracies: 0.25–0.75 (不稳定，仍在早期)\n- rewards/margins: -0.02 ~ +0.06 (margin 很小，chosen/rejected 区分度还不高)\n\n**GPU 3**: 23105 / 24564 MiB (94%), utilization 100%\n\n速度约 4.1–4.9 s/it，预计还需 ~57 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-check-dpo-training.md"
+}

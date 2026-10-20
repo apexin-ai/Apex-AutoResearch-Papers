@@ -1,0 +1,35 @@
+{
+  "exp_id": "mistral_hires_bf16_2bitonly_v4",
+  "project": "ratekv",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:37:30.245Z",
+    "updated_at": "2026-05-14T21:39:52.191Z",
+    "hypothesis": "Mistral-7B-v0.3 hires bf16 2-bit only profiling (model re-downloaded from HF, fixed cuda device). 64seq x 2048tok, 224 heads x ~20s/head ≈ 1.2h.",
+    "spec": {
+      "command": "python run_mistral_hires_bf16_2bitonly.py --model /root/autodl-tmp/models/Mistral-7B-v0.3 --gpu cuda:0 --batch_size 2",
+      "server": "westd-37397",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "264489",
+      "log_path": "~/runs/ratekv/mistral_hires_bf16_2bitonly_v4.log",
+      "submitted_at": "2026-05-14T21:37:37.281Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/ratekv/calibration_hires.json",
+      "data_count": 64,
+      "model_name": "Mistral-7B-v0.3",
+      "seed": 0,
+      "model_path": "/root/autodl-tmp/models/Mistral-7B-v0.3",
+      "gpu_model": "RTX PRO 6000 96GB",
+      "checkpoint_path": "/root/ratekv/mistral_hires_bf16_2bitonly_results.json"
+    }
+  },
+  "timestamp": "2026-05-14T21:39:52.300084+00:00",
+  "trigger": "update_registry"
+}

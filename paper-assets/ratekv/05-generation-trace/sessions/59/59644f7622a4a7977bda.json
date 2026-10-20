@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_pythia14b_constrained_pipeline_20260515T123706_result.json",
     "occurrence": 1,
-    "bytes": 820,
-    "sha256": "e6c447749551216d81608fa091b0c6f8b951af11bed3a70c84dfeea89953d44e"
+    "bytes": 819,
+    "sha256": "d31314e5dae3b4df10794ec929ae093da8bbbbffae62316ea68cb8e5cceb0a5e"
   },
   "statistics": {
     "messages": 1,

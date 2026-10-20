@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80650a9faccd0876e880",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "exp critical fix and restart",
+  "task_key": "worker_exp_critical-fix-and-restart_20260512T131249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_critical-fix-and-restart_20260512T131249_result.json",
+    "occurrence": 1,
+    "bytes": 1511,
+    "sha256": "2b42148b5bfde586a040d27c2d2bb61e2db1bab451b8f9f86b69d456fc6f9f21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，汇报如下：\n\n## 产出\n\n1. **behavioral_fingerprint.py 部署验证**：`grep -c \"MODAL_REQUEST\"` = 2，`_is_modal_request` = 2。Bug 1 修复已部署。\n\n2. **vLLM max_model_len**：**32768**（成功，无需 fallback）。运行在 GPU 1（GPU 2 被其他进程占满，改用空闲 GPU 1）。\n\n3. **run_mvp_experiment.py context overflow 处理修改**：\n   - 新增 `_is_context_overflow(result)`: 检查 result.info 是否含 `ContextWindowExceededError` 或 `context_length_exceeded`\n   - 新增 `filter_context_overflow(results, label)`: 过滤掉 overflow 的 task，返回 `(valid_results, skipped_count)`，并对每个跳过的 task 打 warning 日志\n   - Phase 1 (baseline) 和 Phase 2 (variants) 在 `run_tau_bench_experiment` 返回后、计算 completion rate 前调用 filter，H3 的 `task_completion_rate = successful / (total - skipped)`\n   - 额外修复：`PROMPTS_DIR_DEFAULT` 路径修正（`SCRIPT_DIR / \"prompts\"` → 正确指向 `/root/democalib/prompts`）、添加 CLI 别名 `--num-tasks`/`--gpu-id`/`--port`/`--log-dir`\n\n4. **实验新 PID**：**107949**\n\n5. **部署文件验证**：\n   - `behavioral_fingerprint.py` — 300 lines\n   - `h_gate_evaluator.py` — 201 lines\n   - `prompt_loader.py` — 131 lines\n   - `run_mvp_experiment.py` — 514 lines\n   - `prompts/base_user_simulator.txt`, `bcp_user_simulator.txt`, `bcp_variants.yaml` — 全部就位\n   - 实验已在运行，LiteLLM 正常向 vLLM 发请求"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-critical-fix-and-restart.md"
+}

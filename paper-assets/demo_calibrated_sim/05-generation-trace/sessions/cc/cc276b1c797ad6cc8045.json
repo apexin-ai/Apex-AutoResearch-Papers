@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc276b1c797ad6cc8045",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "writing method experiments skeleton",
+  "task_key": "worker_writing_method-experiments-skeleton_20260513T081507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_method-experiments-skeleton_20260513T081507_result.json",
+    "occurrence": 1,
+    "bytes": 1154,
+    "sha256": "2aa1b199b4ca7cd8629c672d05863d22db760c04be67a10c92b9536968d8df32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 section 骨架已完成并注册：\n\n**§3 Method** (`artifacts/section_method_draft.md`)：\n- §3.1 Task Environment — τ-bench retail, 16 tools, reward 定义\n- §3.2 BCP — 6 variants 定义 + 选择 rationale，引用 seshadri2026lost/haq2026dialect\n- §3.3 DPO Training — Fix B 细节、LoRA 配置表、三版 DPO 演进表（dpo-001→003 metrics）\n- §3.4 Evaluation Protocol — H-gate 三假设、480 episodes scale、merged model serving（引用 diag-lora-merge bug）\n\n**§4 Experiments** (`artifacts/section_experiments_draft.md`)：\n- §4.1 Setup — Qwen-7B 配置 + Llama/Mistral 排除原因\n- §4.2 FM1-FM3 — Table 1 全数据（mvp-004）、FM3 用 hgate-dpo003-merged 4-run 主证据，外部文献锚定\n- §4.3 DPO+BCP Reversal — Table 2 聚合、方向反转对比表（gap -0.091→+0.064）、10/12 expansion、overcorrection amplification\n- §4.4 Cross-Scale — Qwen-14B 占位符 Table 3\n- §4.5 Analysis — completion 高方差、DPO quality 演进、vLLM LoRA bug、统计局限\n\n所有数字均标注 exp_id 来源，Qwen-14B 结果用 `[PENDING: qwen14b-bcp-001]` 占位。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-method-experiments-skeleton.md"
+}

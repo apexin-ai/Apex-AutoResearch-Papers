@@ -1,0 +1,85 @@
+{
+  "exp_id": "mvp-004",
+  "project": "demo_calibrated_sim",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T13:33:44.761Z",
+    "updated_at": "2026-05-12T16:10:43.706Z",
+    "spec": {
+      "command": "BCP evaluation with 6 variants (baseline, aave_target, indian_english_target, overcorrected, single_dim_question, single_dim_politeness)",
+      "server": "cqa1-21977",
+      "data_path": "tau-bench retail dev split",
+      "data_count": 20,
+      "model_name": "Qwen/Qwen2.5-7B-Instruct",
+      "seed": 10,
+      "gpu": "cuda:2",
+      "pid": 111195,
+      "log_path": "/root/democalib/results/full_experiment_v4.log",
+      "hypothesis": "BCP prompt-level behavioral calibration can reduce dialect bias",
+      "checkpoint_path": "N/A - evaluation only"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "variants": {
+        "baseline": {
+          "politeness": 0.559,
+          "question_rate": 0.044,
+          "completion": 0.368,
+          "n": 19
+        },
+        "aave_target": {
+          "politeness": 0.468,
+          "question_rate": 0.015,
+          "completion": 0.1,
+          "n": 20
+        },
+        "indian_english": {
+          "politeness": 0.46,
+          "question_rate": 0.014,
+          "completion": 0.15,
+          "n": 20
+        },
+        "overcorrected": {
+          "politeness": 0.605,
+          "question_rate": 0.018,
+          "completion": 0.263,
+          "n": 19
+        },
+        "single_dim_question": {
+          "politeness": 0.416,
+          "question_rate": 0.065,
+          "completion": 0.25,
+          "n": 20
+        },
+        "single_dim_politeness": {
+          "politeness": 0.634,
+          "question_rate": 0.021,
+          "completion": 0.2,
+          "n": 20
+        }
+      },
+      "h_gate": {
+        "H1": "PASS",
+        "H2": "FAIL",
+        "H3": "FAIL",
+        "overall": "FAIL (1/3)"
+      },
+      "h2_detail": {
+        "aave_politeness_reduction": "25.4%",
+        "indian_politeness_reduction": "27.6%",
+        "overcorrected_politeness_reduction": "-10.0%",
+        "threshold": ">=30%"
+      },
+      "h3_detail": {
+        "retention_threshold": "29.5%",
+        "best_completion": "overcorrected 26.3%"
+      }
+    },
+    "completed_at": "2026-05-12T16:10:43.706Z"
+  },
+  "timestamp": "2026-05-12T16:10:43.722017+00:00",
+  "trigger": "update_registry"
+}

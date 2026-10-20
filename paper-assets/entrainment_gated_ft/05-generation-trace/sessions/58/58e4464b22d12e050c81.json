@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_retnet-hgrn2-only-decoupling_20260520T045441_result.json",
     "occurrence": 1,
-    "bytes": 1154,
-    "sha256": "7d70fb059a180ab54c5f1903ea9c155d6e2db48a93fa5373e0380ecc0e7b7a52"
+    "bytes": 1153,
+    "sha256": "e2fefac3bfd8670600f66c400aa73cf0be975cbfa2f34127eaa616b613e13252"
   },
   "statistics": {
     "messages": 1,

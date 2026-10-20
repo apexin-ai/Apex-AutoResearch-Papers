@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_exp-boolq-hellaswag-eval_20260520T124927_result.json",
     "occurrence": 1,
-    "bytes": 1758,
-    "sha256": "c65be2f77ab6fe52215ca048ba7652af5b1835af9b41f77b0f80f94fd276f684"
+    "bytes": 1757,
+    "sha256": "2efeff33bbf7d52bc3ea87649dc523fb37a0c9080b1b6fcb700a9528a91ed0e7"
   },
   "statistics": {
     "messages": 1,

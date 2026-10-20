@@ -1,0 +1,58 @@
+{
+  "exp_id": "llama_aggressive_compression",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:23:06.162Z",
+    "updated_at": "2026-05-14T05:52:41.954Z",
+    "spec": {
+      "hypothesis": "MCKP 优势在激进压缩下放大：Llama-3.1-8B budget=0.125 (8x, ~2-bit avg)，uniform 大幅退化时 MCKP 应有显著优势。用已有 hires profiling 数据，只需 solver+eval。",
+      "parent": "llama_hires_pipeline",
+      "plan_id": "plan_002",
+      "claim": [
+        2
+      ],
+      "model_name": "Llama-3.1-8B",
+      "data_path": "llama_ppl_profiles_hires.json",
+      "data_count": 256,
+      "seed": 0,
+      "eval_data": "WikiText-2",
+      "command": "CUDA_VISIBLE_DEVICES=0 python run_llama_aggressive.py",
+      "server": "westd-37397",
+      "description": "Aggressive compression (5.3x + 8x) MCKP vs uniform 2-bit",
+      "gpu": [
+        "cuda:0"
+      ],
+      "tmux_session": "llama_aggressive",
+      "log_path": "/root/ratekv/llama_aggressive.log",
+      "checkpoint_path": "/root/ratekv/llama_aggressive_results.json"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T05:43:24.965Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-14T05:43:25.254Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T05:43:28.749579+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "mckp_5.3x_ppl": 57.6,
+      "uniform_2bit_ppl": 2643.77,
+      "mckp_8x_ppl": 2372.33,
+      "uniform_2bit_8x_ppl": 2643.77
+    },
+    "notes": "5.3x: MCKP=57.60 vs Uniform 2-bit=2643.77 (MCKP 45× better, 验证假说——激进压缩下 MCKP 优势放大)。8x: MCKP=2372.33 vs Uniform=2643.77 (barely better, 两者都 catastrophic)。结论：MCKP 优势随压缩率增大而增大，但绝对 PPL 在 5.3x 以上不实用。论文定位：5.3x 作为 MCKP 优势放大的证据，8x 作为 stress test。"
+  },
+  "timestamp": "2026-05-14T05:52:41.997577+00:00",
+  "trigger": "update_registry"
+}

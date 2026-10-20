@@ -1,0 +1,90 @@
+{
+  "exp_id": "exp-340m-multi-bench",
+  "project": "entrainment_gated_ft",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T22:23:25.467Z",
+    "updated_at": "2026-05-22T00:34:02.116Z",
+    "hypothesis": "340M models exhibit α spectrum (per-example ambiguity) consistent with 1.3B across HellaSwag/PIQA/ARC-Easy — establishing scale-invariance of the multiplicity phenomenon beyond the single-benchmark (LAMBADA) evidence in §4.3. If α_340M ≈ α_1.3B per benchmark, cross-scale stability is confirmed; if systematically different, the scale-dependency claim needs qualification.",
+    "parent": "exp-007",
+    "spec": {
+      "command": "bash run_340m_multi_eval.sh (run_lmeval_clean.py × 15 models × 3 tasks with --log_samples)",
+      "server": "westb-48145",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "/root/entrainment_gated_ft/models/ (15 × 340M models)",
+      "data_count": "hellaswag=10042, piqa=1838, arc_easy=2376 per model",
+      "model_name": "GDN/RetNet/HGRN2 × 5 ratios (340M, 15 models)",
+      "seed": "default",
+      "checkpoint_source": "/root/entrainment_gated_ft/models/340M-20B-*",
+      "eval_data": "HellaSwag (10042) + PIQA (1838) + ARC-Easy (2376)",
+      "pid": "777365",
+      "log_path": "~/runs/entrainment_gated_ft/exp-340m-multi-bench.log",
+      "submitted_at": "2026-05-21T22:27:20Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/entrainment_gated_ft/lm_eval_clean/340m_multi/",
+      "wall_clock_seconds": 7602.1,
+      "gpu_hours": 2.11
+    },
+    "conclusion": "success",
+    "metrics": {
+      "hellaswag_acc_norm": {
+        "340m_alpha_all": 0.334,
+        "1_3b_alpha_all": 0.302,
+        "delta": 0.031,
+        "340m_alpha_pure": 0.167,
+        "1_3b_alpha_pure": 0.148,
+        "340m_J_helped": 0.084,
+        "1_3b_J_helped": 0.095,
+        "340m_J_hurt": 0.083,
+        "1_3b_J_hurt": 0.085,
+        "340m_convergence_rho": 0.4,
+        "340m_convergence_p": 0.517
+      },
+      "piqa": {
+        "340m_alpha_all": 0.366,
+        "1_3b_alpha_all": 0.278,
+        "delta": 0.089,
+        "340m_alpha_pure": 0.181,
+        "1_3b_alpha_pure": 0.143,
+        "340m_J_helped": 0.09,
+        "1_3b_J_helped": 0.091,
+        "340m_J_hurt": 0.085,
+        "1_3b_J_hurt": 0.094,
+        "340m_convergence_rho": 0.3,
+        "340m_convergence_p": 0.683
+      },
+      "arc_easy": {
+        "340m_alpha_all": 0.564,
+        "1_3b_alpha_all": 0.434,
+        "delta": 0.13,
+        "340m_alpha_pure": 0.289,
+        "1_3b_alpha_pure": 0.205,
+        "340m_J_helped": 0.098,
+        "1_3b_J_helped": 0.092,
+        "340m_J_hurt": 0.103,
+        "1_3b_J_hurt": 0.099,
+        "340m_convergence_rho": -0.1,
+        "340m_convergence_p": 0.95
+      },
+      "summary": {
+        "mean_delta_alpha_all": 0.084,
+        "scenario": "B_mixed",
+        "pattern_invariant": true,
+        "magnitude_scale_dependent": true
+      },
+      "artifacts": [
+        "340m_multi_bench_analysis.json"
+      ]
+    },
+    "completed_at": "2026-05-22T00:34:02.116Z"
+  },
+  "timestamp": "2026-05-22T00:34:02.164707+00:00",
+  "trigger": "update_registry"
+}

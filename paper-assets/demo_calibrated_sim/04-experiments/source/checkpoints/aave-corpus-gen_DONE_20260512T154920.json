@@ -1,0 +1,37 @@
+{
+  "exp_id": "aave-corpus-gen",
+  "project": "demo_calibrated_sim",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T15:02:24.842Z",
+    "updated_at": "2026-05-12T15:49:20.272Z",
+    "spec": {
+      "command": "cd /root/democalib && python generate_synthetic_corpus.py --model-name democalib-qwen-gen --base-url http://localhost:8001 --dialect aave --num-tasks 20 --num-trials 5 --target-question-rate 0.10 --target-politeness-rate 0.20 --output-dir /root/democalib/synthetic_corpus",
+      "server": "cqa1-21977",
+      "data_path": "tau-bench retail dev split",
+      "data_count": "20 tasks x 5 trials = 100 traces target",
+      "model_name": "Qwen/Qwen2.5-7B-Instruct",
+      "seed": 10,
+      "gpu": "cuda:3",
+      "pid": 142096,
+      "log_path": "/root/democalib/results/aave_corpus_gen.log",
+      "hypothesis": "Generate AAVE-calibrated user simulator traces with target question_rate=10%, politeness_rate=20% via BCP + post-processing for DPO preferred data"
+    },
+    "conclusion": "killed",
+    "metrics": {
+      "traces_generated": 32,
+      "traces_failed": 60,
+      "dpo_pairs_built": 1434,
+      "target_met": true,
+      "note": "32 valid AAVE traces + 137 baseline traces → 1434 DPO pairs (target ≥500). Killed early to free cuda:3 for DPO training."
+    },
+    "checkpoint_path": "/root/democalib/synthetic_corpus/",
+    "log_path": "/root/democalib/results/aave_corpus_gen.log",
+    "completed_at": "2026-05-12T15:29:05.507Z"
+  },
+  "timestamp": "2026-05-12T15:49:20.306554+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_monotonicity_enforcement_20260514T005636_result.json",
     "occurrence": 1,
-    "bytes": 1126,
-    "sha256": "ae6abd55eaa4f8ec9287de8dfcae17d28f600993e597cd991a1d75766a50bac8"
+    "bytes": 1125,
+    "sha256": "766fc13cc4b4022520ff8b9fde64962a95e821165e7fd2ea842eba98c3733e16"
   },
   "statistics": {
     "messages": 1,

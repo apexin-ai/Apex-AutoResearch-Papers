@@ -1,0 +1,374 @@
+{
+  "description": "Cross-benchmark Jaccard trajectory analysis (A1)",
+  "benchmarks": [
+    "LAMBADA",
+    "HellaSwag",
+    "PIQA",
+    "ARC-Easy"
+  ],
+  "attention_ratios": [
+    0.0,
+    0.04,
+    0.0769,
+    0.1429,
+    0.25
+  ],
+  "ratio_labels": [
+    "0%",
+    "4%",
+    "7.7%",
+    "14.3%",
+    "25%"
+  ],
+  "variants": [
+    "pure",
+    "h24-1",
+    "h12-1",
+    "h6-1",
+    "h3-1"
+  ],
+  "metrics_used": {
+    "LAMBADA": "acc",
+    "HellaSwag": "acc_norm",
+    "PIQA": "acc",
+    "ARC-Easy": "acc"
+  },
+  "sigma_trajectories": {
+    "LAMBADA": {
+      "pure": 0.024047126977057007,
+      "h24-1": 0.016238171620323174,
+      "h12-1": 0.013595712311665276,
+      "h6-1": 0.006055084765553574,
+      "h3-1": 0.004942545182713789
+    },
+    "HellaSwag": {
+      "pure": 0.011684919531365783,
+      "h24-1": 0.008615212910147576,
+      "h12-1": 0.00946859081425128,
+      "h6-1": 0.009201244143823003,
+      "h3-1": 0.01183082679011367
+    },
+    "PIQA": {
+      "pure": 0.004623702859623485,
+      "h24-1": 0.005123121832363242,
+      "h12-1": 0.0052624657702382525,
+      "h6-1": 0.003450543632651522,
+      "h3-1": 0.003872716087062462
+    },
+    "ARC-Easy": {
+      "pure": 0.000396805152180962,
+      "h24-1": 0.0100208032707231,
+      "h12-1": 0.013861228109911963,
+      "h6-1": 0.011012683449377308,
+      "h3-1": 0.009965656922097678
+    }
+  },
+  "jaccard_trajectories": {
+    "LAMBADA": {
+      "h24-1": {
+        "J_helped": 0.094523,
+        "J_hurt": 0.087332,
+        "J_mean": 0.0909275
+      },
+      "h12-1": {
+        "J_helped": 0.09509,
+        "J_hurt": 0.08087,
+        "J_mean": 0.08798
+      },
+      "h6-1": {
+        "J_helped": 0.09223,
+        "J_hurt": 0.098795,
+        "J_mean": 0.0955125
+      },
+      "h3-1": {
+        "J_helped": 0.100182,
+        "J_hurt": 0.092811,
+        "J_mean": 0.0964965
+      }
+    },
+    "HellaSwag": {
+      "h24-1": {
+        "J_helped": 0.0838,
+        "J_hurt": 0.08456666666666668,
+        "J_mean": 0.08418333333333333,
+        "pair_details": {
+          "GDN-RetNet": {
+            "helped": 0.0605,
+            "hurt": 0.0892
+          },
+          "GDN-HGRN2": {
+            "helped": 0.0942,
+            "hurt": 0.0771
+          },
+          "RetNet-HGRN2": {
+            "helped": 0.0967,
+            "hurt": 0.0874
+          }
+        }
+      },
+      "h12-1": {
+        "J_helped": 0.09493333333333333,
+        "J_hurt": 0.06683333333333334,
+        "J_mean": 0.08088333333333333,
+        "pair_details": {
+          "GDN-RetNet": {
+            "helped": 0.076,
+            "hurt": 0.0589
+          },
+          "GDN-HGRN2": {
+            "helped": 0.092,
+            "hurt": 0.0568
+          },
+          "RetNet-HGRN2": {
+            "helped": 0.1168,
+            "hurt": 0.0848
+          }
+        }
+      },
+      "h6-1": {
+        "J_helped": 0.09449999999999999,
+        "J_hurt": 0.08673333333333333,
+        "J_mean": 0.09061666666666665,
+        "pair_details": {
+          "GDN-RetNet": {
+            "helped": 0.0923,
+            "hurt": 0.0745
+          },
+          "GDN-HGRN2": {
+            "helped": 0.0758,
+            "hurt": 0.0892
+          },
+          "RetNet-HGRN2": {
+            "helped": 0.1154,
+            "hurt": 0.0965
+          }
+        }
+      },
+      "h3-1": {
+        "J_helped": 0.0894,
+        "J_hurt": 0.08333333333333333,
+        "J_mean": 0.08636666666666666,
+        "pair_details": {
+          "GDN-RetNet": {
+            "helped": 0.0867,
+            "hurt": 0.0905
+          },
+          "GDN-HGRN2": {
+            "helped": 0.0879,
+            "hurt": 0.0794
+          },
+          "RetNet-HGRN2": {
+            "helped": 0.0936,
+            "hurt": 0.0801
+          }
+        }
+      }
+    },
+    "PIQA": {
+      "h24-1": {
+        "J_helped": 0.08523333333333334,
+        "J_hurt": 0.09313333333333333,
+        "J_mean": 0.08918333333333334,
+        "pair_details": {
+          "GDN_vs_RetNet": {
+            "helped": 0.0872,
+            "hurt": 0.0608
+          },
+          "GDN_vs_HGRN2": {
+            "helped": 0.0637,
+            "hurt": 0.1241
+          },
+          "RetNet_vs_HGRN2": {
+            "helped": 0.1048,
+            "hurt": 0.0945
+          }
+        }
+      },
+      "h12-1": {
+        "J_helped": 0.08623333333333333,
+        "J_hurt": 0.105,
+        "J_mean": 0.09561666666666666,
+        "pair_details": {
+          "GDN_vs_RetNet": {
+            "helped": 0.071,
+            "hurt": 0.0946
+          },
+          "GDN_vs_HGRN2": {
+            "helped": 0.098,
+            "hurt": 0.1197
+          },
+          "RetNet_vs_HGRN2": {
+            "helped": 0.0897,
+            "hurt": 0.1007
+          }
+        }
+      },
+      "h6-1": {
+        "J_helped": 0.08066666666666666,
+        "J_hurt": 0.09763333333333335,
+        "J_mean": 0.08915000000000001,
+        "pair_details": {
+          "GDN_vs_RetNet": {
+            "helped": 0.0833,
+            "hurt": 0.1039
+          },
+          "GDN_vs_HGRN2": {
+            "helped": 0.0647,
+            "hurt": 0.1046
+          },
+          "RetNet_vs_HGRN2": {
+            "helped": 0.094,
+            "hurt": 0.0844
+          }
+        }
+      },
+      "h3-1": {
+        "J_helped": 0.11223333333333334,
+        "J_hurt": 0.07840000000000001,
+        "J_mean": 0.09531666666666667,
+        "pair_details": {
+          "GDN_vs_RetNet": {
+            "helped": 0.1145,
+            "hurt": 0.0694
+          },
+          "GDN_vs_HGRN2": {
+            "helped": 0.0793,
+            "hurt": 0.1042
+          },
+          "RetNet_vs_HGRN2": {
+            "helped": 0.1429,
+            "hurt": 0.0616
+          }
+        }
+      }
+    },
+    "ARC-Easy": {
+      "h24-1": {
+        "J_helped": 0.07476666666666666,
+        "J_hurt": 0.09343333333333333,
+        "J_mean": 0.0841,
+        "pair_details": {
+          "GDN-RetNet": {
+            "helped": 0.0667,
+            "hurt": 0.0795
+          },
+          "GDN-HGRN2": {
+            "helped": 0.0833,
+            "hurt": 0.1095
+          },
+          "RetNet-HGRN2": {
+            "helped": 0.0743,
+            "hurt": 0.0913
+          }
+        }
+      },
+      "h12-1": {
+        "J_helped": 0.09813333333333334,
+        "J_hurt": 0.0994,
+        "J_mean": 0.09876666666666667,
+        "pair_details": {
+          "GDN-RetNet": {
+            "helped": 0.0935,
+            "hurt": 0.1282
+          },
+          "GDN-HGRN2": {
+            "helped": 0.1167,
+            "hurt": 0.0856
+          },
+          "RetNet-HGRN2": {
+            "helped": 0.0842,
+            "hurt": 0.0844
+          }
+        }
+      },
+      "h6-1": {
+        "J_helped": 0.09353333333333334,
+        "J_hurt": 0.08756666666666667,
+        "J_mean": 0.09055,
+        "pair_details": {
+          "GDN-RetNet": {
+            "helped": 0.0894,
+            "hurt": 0.0896
+          },
+          "GDN-HGRN2": {
+            "helped": 0.0991,
+            "hurt": 0.087
+          },
+          "RetNet-HGRN2": {
+            "helped": 0.0921,
+            "hurt": 0.0861
+          }
+        }
+      },
+      "h3-1": {
+        "J_helped": 0.10233333333333333,
+        "J_hurt": 0.1149,
+        "J_mean": 0.10861666666666667,
+        "pair_details": {
+          "GDN-RetNet": {
+            "helped": 0.1131,
+            "hurt": 0.1131
+          },
+          "GDN-HGRN2": {
+            "helped": 0.1056,
+            "hurt": 0.0976
+          },
+          "RetNet-HGRN2": {
+            "helped": 0.0883,
+            "hurt": 0.134
+          }
+        }
+      }
+    }
+  },
+  "statistics": {
+    "LAMBADA": {
+      "jaccard_mean_rho": 0.8,
+      "jaccard_mean_p": 0.3333333333333333,
+      "jaccard_helped_rho": 0.4,
+      "jaccard_helped_p": 0.5833333333333334,
+      "jaccard_hurt_rho": 0.6,
+      "jaccard_hurt_p": 0.4166666666666667,
+      "sigma_rho": -1.0,
+      "sigma_p": 0.016666666666666666,
+      "n_permutations": 24,
+      "sigma_n_permutations": 120
+    },
+    "HellaSwag": {
+      "jaccard_mean_rho": 0.6,
+      "jaccard_mean_p": 0.4166666666666667,
+      "jaccard_helped_rho": 0.19999999999999996,
+      "jaccard_helped_p": 0.9166666666666666,
+      "jaccard_hurt_rho": 0.0,
+      "jaccard_hurt_p": 1.0,
+      "sigma_rho": 0.30000000000000004,
+      "sigma_p": 0.6833333333333333,
+      "n_permutations": 24,
+      "sigma_n_permutations": 120
+    },
+    "PIQA": {
+      "jaccard_mean_rho": 0.0,
+      "jaccard_mean_p": 1.0,
+      "jaccard_helped_rho": 0.4,
+      "jaccard_helped_p": 0.5833333333333334,
+      "jaccard_hurt_rho": -0.3999999999999999,
+      "jaccard_hurt_p": 0.75,
+      "sigma_rho": -0.5,
+      "sigma_p": 0.45,
+      "n_permutations": 24,
+      "sigma_n_permutations": 120
+    },
+    "ARC-Easy": {
+      "jaccard_mean_rho": 0.8,
+      "jaccard_mean_p": 0.3333333333333333,
+      "jaccard_helped_rho": 0.8,
+      "jaccard_helped_p": 0.3333333333333333,
+      "jaccard_hurt_rho": 0.4,
+      "jaccard_hurt_p": 0.5833333333333334,
+      "sigma_rho": 0.30000000000000004,
+      "sigma_p": 0.6833333333333333,
+      "n_permutations": 24,
+      "sigma_n_permutations": 120
+    }
+  }
+}

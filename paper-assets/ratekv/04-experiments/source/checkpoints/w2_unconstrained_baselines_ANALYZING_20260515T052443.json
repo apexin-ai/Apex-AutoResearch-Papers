@@ -1,0 +1,37 @@
+{
+  "exp_id": "w2_unconstrained_baselines",
+  "project": "ratekv",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T04:36:07.493Z",
+    "updated_at": "2026-05-15T05:24:43.249Z",
+    "hypothesis": "审稿 W2 CRITICAL: 补 Yi-1.5/Llama/Mistral/Gemma-2 的 unconstrained greedy 和 MCKP baselines。预期 Flat 模型不触发 catastrophic failure，Spike 模型可能有 moderate failure。",
+    "notes": "第一次结果无效：用了 2bitonly profiles（只有 delta_2bit），solver 退化为 {2,16} 二分法，所有模型 ~86% 2-bit。Reviewer CRITICAL 要求用完整 {2,4,8,16} profiles 重跑。W2 backfire 预案仍有效。",
+    "spec": {
+      "command": "python run_w2_unconstrained_baselines.py",
+      "server": "westd-37397",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "291727",
+      "log_path": "~/runs/ratekv/w2_unconstrained_baselines.log",
+      "submitted_at": "2026-05-15T05:05:32Z",
+      "submitted_via": "manual_tmux",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "calibration_hires.json",
+      "data_count": 64,
+      "model_name": "Yi-1.5-9B,Llama-3.1-8B,Mistral-7B-v0.3,Gemma-2-9B",
+      "seed": 0,
+      "checkpoint_path": "w2_unconstrained_results.json"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T05:24:42.989Z"
+    }
+  },
+  "timestamp": "2026-05-15T05:24:43.433184+00:00",
+  "trigger": "update_registry"
+}

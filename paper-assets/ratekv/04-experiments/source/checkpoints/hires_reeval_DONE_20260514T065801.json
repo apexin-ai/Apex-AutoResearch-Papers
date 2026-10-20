@@ -1,0 +1,26 @@
+{
+  "exp_id": "hires_reeval",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:46:37.675Z",
+    "updated_at": "2026-05-14T06:58:01.324Z",
+    "spec": {
+      "command": "python run_hires_reeval.py",
+      "server": "westd-37397",
+      "model_name": "Qwen2.5-7B",
+      "data_path": "wikitext-2-raw-v1",
+      "data_count": 298938,
+      "seed": 0
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/ratekv/hires_reeval_results.json",
+    "log_path": "/root/ratekv/hires_reeval_v2.log",
+    "completed_at": "2026-05-14T06:58:01.324Z"
+  },
+  "timestamp": "2026-05-14T06:58:01.407953+00:00",
+  "trigger": "update_registry"
+}

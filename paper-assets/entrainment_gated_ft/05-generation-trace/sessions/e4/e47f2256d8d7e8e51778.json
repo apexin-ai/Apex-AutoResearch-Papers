@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_exp-011-check-and-analyze_20260519T150016_result.json",
     "occurrence": 1,
-    "bytes": 457,
-    "sha256": "a0ff9d81e8cd655618fcdf972375704ad625a0aa1d4fea90677e59b04b5ce808"
+    "bytes": 456,
+    "sha256": "01c1162ee482f5f066b1d99dcd959f72baa4fb993f45aae7423e47566cfbeec3"
   },
   "statistics": {
     "messages": 1,

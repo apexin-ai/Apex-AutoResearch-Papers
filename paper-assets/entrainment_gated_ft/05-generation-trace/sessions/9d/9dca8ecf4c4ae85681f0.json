@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_e1_confidence_selection_20260522T095139_result.json",
     "occurrence": 1,
-    "bytes": 1317,
-    "sha256": "fc0f6a7ddae67c8589e90cdbcb511e51419c95c76f45520956c650b9bf645b3d"
+    "bytes": 1316,
+    "sha256": "c6e413b7c73babce5fb5f11743d31818c2468d185408743103ec60d7fa807c39"
   },
   "statistics": {
     "messages": 1,

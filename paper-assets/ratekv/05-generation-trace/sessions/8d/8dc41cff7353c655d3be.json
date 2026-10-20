@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_gpu_gemma2_kill_and_debug_20260514T160301_result.json",
     "occurrence": 1,
-    "bytes": 1065,
-    "sha256": "4d19703a64d9285a0a691675ed9408dc6ae8798067ec436f526922c5b66aff46"
+    "bytes": 1064,
+    "sha256": "15e6958db203edfa724e308232abfc403225448e8b343042797f49b750efb9b3"
   },
   "statistics": {
     "messages": 1,

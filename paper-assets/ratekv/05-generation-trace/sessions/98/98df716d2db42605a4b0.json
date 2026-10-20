@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ops_phi3_download_check_20260515T180645_result.json",
     "occurrence": 1,
-    "bytes": 1670,
-    "sha256": "d3ab71dc016e80283bca0503eff8709523b68229af574fa343948cffb111be92"
+    "bytes": 1669,
+    "sha256": "de53f9bbfd94a7dfe930e1d49ba651c89568bba7279242e9348dafc632dc1efa"
   },
   "statistics": {
     "messages": 1,

@@ -1,0 +1,14 @@
+{
+  "exp_id": "mvp-001",
+  "project": "demo_calibrated_sim",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-12T11:58:21.010Z",
+    "updated_at": "2026-05-12T11:58:26.246Z"
+  },
+  "timestamp": "2026-05-12T11:58:26.252608+00:00",
+  "trigger": "update_registry"
+}

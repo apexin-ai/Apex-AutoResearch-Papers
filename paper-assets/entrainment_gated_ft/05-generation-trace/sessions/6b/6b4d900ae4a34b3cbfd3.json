@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_eval_arc-easy-per-example-setup_20260520T060613_result.json",
     "occurrence": 1,
-    "bytes": 574,
-    "sha256": "af836b3a49edb100c5b4dab2c4da29b66f7407b7239f322e2e5dff30ad2f3746"
+    "bytes": 573,
+    "sha256": "2018d662a8bb884fa5eb5ee89314fe6e00051f0165d256895ac2a9042d507eb8"
   },
   "statistics": {
     "messages": 1,

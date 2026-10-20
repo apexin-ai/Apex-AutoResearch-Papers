@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_cross-benchmark-confidence-margin_20260520T140423_result.json",
     "occurrence": 1,
-    "bytes": 1468,
-    "sha256": "2c8f7b94bd725c203f2e6715e2f71ab000520f41d911e69e41ca5c9723c452bb"
+    "bytes": 1467,
+    "sha256": "b63a95d1fb5c7f8046c995670da4f47709927ff49fbe468effcc8437880c1abb"
   },
   "statistics": {
     "messages": 1,

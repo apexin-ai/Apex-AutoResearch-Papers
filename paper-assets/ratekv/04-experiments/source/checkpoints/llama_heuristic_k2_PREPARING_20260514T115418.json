@@ -1,0 +1,27 @@
+{
+  "exp_id": "llama_heuristic_k2",
+  "project": "ratekv",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T11:54:18.622Z",
+    "updated_at": "2026-05-14T11:54:18.622Z",
+    "spec": {
+      "hypothesis": "D041 Reviewer critical fix: Llama-3.1-8B heuristic baselines 用 per-model optimal k=2 (而非 k=16) 重跑。L0-random (5 seeds) + Naive Positional。k=2 匹配 MCKP 的 max_2bit=2，消除 compounding 不公平比较。",
+      "plan_id": "plan_015",
+      "claim": [
+        2
+      ],
+      "model_name": "Llama-3.1-8B",
+      "server": "westd-37397",
+      "data_path": "wikitext-103-raw-v1 train (calibration) + wikitext-2-raw-v1 test (eval)",
+      "data_count": "hires profiling 64x2048",
+      "seed": "0,1,2,3,4",
+      "parent": "l0_heuristic_corrected"
+    }
+  },
+  "timestamp": "2026-05-14T11:54:18.797689+00:00",
+  "trigger": "update_registry"
+}

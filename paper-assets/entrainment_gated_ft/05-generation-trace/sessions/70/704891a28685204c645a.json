@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_recon_340m-eval-prep_20260521T222040_result.json",
     "occurrence": 1,
-    "bytes": 3339,
-    "sha256": "5863a9564e5f5689876305e1cdbd1792120770499ee88426736c9a9ca65b3423"
+    "bytes": 3338,
+    "sha256": "af21f0e2bcc050650a44d8bce4c334aa1ca4523af5d58e04e3941e3ea207090f"
   },
   "statistics": {
     "messages": 1,

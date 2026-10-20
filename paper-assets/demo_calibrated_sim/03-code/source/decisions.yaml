@@ -1,0 +1,260 @@
+_next_id: 16
+decisions:
+- id: D001
+  date: 2026-05-12 09:57 UTC
+  summary: MVP 方案确定：三阶段验证行为率校准可行性（Phase A 基线测量 → Phase B BCP prompting → Phase C DPO），聚焦
+    AAVE 单组
+  rationale: 13 天 ARR deadline 限制下，MVP 需尽快验证核心假设。Phase A/B 不需 GPU 可立即启动，Phase C 仅需单卡
+    ~8h。聚焦 AAVE 单组（数据最丰富、gap 最大）降低 MVP 复杂度。Pass 标准：复现过度合作性 + 至少一种方法缩小 ≥30% relative
+    gap。
+  related_experiments: []
+  depends_on: []
+- id: D002
+  date: 2026-05-12 12:51 UTC
+  summary: MVP H-gate 重构：politeness 为主维度，question rate 降为 secondary metric（D001 修订）
+  rationale: QuestionDetector 修复后（precision 19%→100%），baseline question_rate 从 65%
+    降至 11.4%，已接近 AAVE 真实用户 ~10%。question 维度不存在显著偏差需校准。politeness 偏差稳健（baseline 45%
+    vs 目标 20%，+125% relative），足以独立支撑校准假设。这本身是一个发现：Seshadri 报告的 question rate gap (18.8%
+    vs 10%) 在严格定义 info-seeking question 后大幅缩小，说明 question rate 偏差部分是测量定义差异而非真实行为偏差。论文可报告为
+    measurement artifact finding + 聚焦 politeness 校准。
+  related_experiments: []
+  depends_on:
+  - D001
+- id: D003
+  date: 2026-05-12 14:55 UTC
+  summary: BCP 路线判定失败（completion 崩溃 + 校准不足），DPO 为 MVP 唯一剩余路径
+  rationale: 'mvp-004 Phase 2 前两个 BCP variant（aave_target, indian_english_target）n=20
+    结果：completion 从 baseline 37% 崩到 10-15%（H3 要求 ≥29.6%），politeness gap 缩小仅 25%（H2
+    要求 ≥30%），question_rate 反向过冲。两个独立 variant 一致呈现同一模式，排除噪声。BCP prompt 同时压低所有行为维度并摧毁
+    task completion，方法论根本问题。让 mvp-004 剩余 variant 跑完收集诊断数据，但战略重心立即转向 DPO LoRA 微调。同时确立
+    n=20 canonical baselines: completion=37%, politeness=55.9%, question_rate=4.4%。'
+  related_experiments:
+  - exp_id: mvp-004
+    role: evidence
+    result: BCP aave_target completion=10%, indian_english_target completion=15%,
+      both far below H3 threshold
+  depends_on:
+  - D002
+- id: D004
+  date: 2026-05-12 15:13 UTC
+  summary: BCP 失败根因诊断：三个机制——全局行为抑制、跨维度干扰、过校正反弹，均为可发表 negative result
+  rationale: mvp-004 完整数据（4/5 BCP variants 完成，含 2 ablation）揭示：(a) completion 崩溃是普遍的——4/4
+    variant 均低于 H3 阈值，包括单维度 ablation，排除"多约束冲突"假设，说明 BCP prompt 对 7B 模型产生全局行为抑制；(b)
+    跨维度干扰——single_dim_question 只约束 q_rate 但 politeness 从 55.9% 暴跌至 41.6%，BCP 无法定向校准；(c)
+    overcorrection paradox——要求 p=10% 实际产出 60.5%（超 baseline），极端约束触发模型 safe fallback
+    反弹。这三个机制为 DPO 提供强 motivation：不是"没试 BCP"而是"系统验证 BCP 在所有配置下失败"。完整 BCP 数据表应作为论文 artifact
+    保留。
+  related_experiments:
+  - exp_id: mvp-004
+    role: evidence
+    result: 4/4 completed BCP variants all fail H3; single_dim_question ablation confirms
+      global suppression; overcorrected shows paradoxical rebound
+  depends_on:
+  - D003
+- id: D005
+  date: 2026-05-12 17:06 UTC
+  summary: 采纳决策树：dpo-002 为分支节点；多模型 BCP 复现（Llama-3-8B）立即并行启动；不 KILL
+  rationale: 'Reviewer 评估 Plan B（纯 negative result paper）当前数据不足——单模型+单 benchmark 接受率
+    <30%。决策树：dpo-002 H2+H3 双 PASS → Plan A（提出 DPO 方法）；H2 PASS H3 边缘 → 混合叙事；双 FAIL
+    → Plan B 但需多模型复现。无论哪条路，多模型 BCP 复现（Llama-3-8B-Instruct, 3 variants: baseline+aave_target+single_dim_politeness,
+    ~14 GPU-h）是必须项，回答 generalizability。GPU 预算充裕（624 GPU-h 剩余，总需 ~41 GPU-h）。多模型实验与
+    dpo-002 并行，最晚 5/16 完成所有数据，9 天写论文。'
+  related_experiments:
+  - exp_id: dpo-001
+    role: evidence
+    result: train_loss=0.6814 near random, accuracy=0.5, tokenizer mismatch 48% —
+      learning signal negligible
+  - exp_id: mvp-004
+    role: evidence
+    result: BCP 6/6 variants fail, but single-model limitation identified by Reviewer
+  depends_on:
+  - D003
+  - D004
+- id: D006
+  date: 2026-05-12 17:35 UTC
+  summary: TRL+Qwen2.5 mismatch 根因确认，dpo-002 继续跑 + 并行调查修复方案准备 dpo-003
+  rationale: Reviewer 核实 v2 数据 100% tokenizer mismatch 源于 TRL DPOTrainer 与 Qwen2.5
+    chat template 兼容性问题，非数据格式问题。dpo-002 继续跑（对比价值），同时 Agent 立即调查修复方案（手动tokenize/TRL升级/配置调整），确保
+    dpo-003 能在干净条件下验证 DPO 有效性。若不修复，无法区分"方法无效"还是"实现 bug"，对 Plan A 和 Plan B 都致命。
+  related_experiments:
+  - exp_id: dpo-001
+    role: predecessor
+    result: FAIL - 48% mismatch
+  - exp_id: hgate-dpo001
+    role: eval
+    result: FAIL - completion 21.3%
+  - exp_id: dpo-002
+    role: current
+    result: RUNNING - 100% mismatch
+  depends_on:
+  - D005
+  - D003
+- id: D007
+  date: 2026-05-12 18:22 UTC
+  summary: Llama BCP 无效（floor effect），cuda:3 释放后试 Mistral-7B；Llama 过校正数据保留为辅助证据
+  rationale: Llama-3-8B completion=5%（tool-calling 能力不足），无法验证 BCP 三个失败机制中的全局抑制和跨维度干扰。但过校正反弹确实复现（politeness
+    31%→51.4%）。多模型 generalizability 需要一个能完成 tau-bench 的模型。Mistral-7B-Instruct-v0.3
+    tool-calling 支持较好，下载+部署+eval ~3h，在 cuda:3 释放后并行执行不影响 dpo-003 决策节点。Llama 数据不丢弃——作为"低能力模型仍展现偏差"的辅助证据。
+  related_experiments:
+  - exp_id: llama-bcp-001
+    role: trigger
+    result: negative - floor effect, completion 5%
+  depends_on:
+  - D005
+  - D006
+- id: D008
+  date: 2026-05-12 18:22 UTC
+  summary: Llama BCP generalizability 不足，hedge 下载 Mistral-7B，最终决策等 dpo-003
+  rationale: Llama-3-8B completion=5%（tool-calling 不足），BCP 三机制中仅过校正可复现，全局抑制和跨维度干扰因
+    floor effect 无法验证。Plan A（DPO 方法）不依赖多模型 BCP，Plan B（empirical analysis）需要 completion>20%
+    的第二模型。hedge 策略：先下载 Mistral-7B（CPU，不占 GPU），dpo-003 结果决定是否需要部署。
+  related_experiments:
+  - exp_id: llama-bcp-001
+    role: multi-model replication
+    result: negative - completion 5% floor effect
+  - exp_id: mvp-004
+    role: original BCP
+    result: negative - Qwen BCP 3 failure mechanisms
+  - exp_id: dpo-003
+    role: decision node
+    result: RUNNING
+  depends_on:
+  - D005
+  - D006
+- id: D009
+  date: 2026-05-12 18:26 UTC
+  summary: Reviewer critical 修正：llama-bcp-001 overclaim 降级；Plan B Mistral≤20% 终态改为
+    KILL；cuda:2 立即释放给 dpo-003
+  rationale: Reviewer 核实发现三个问题：(1) llama-bcp-001 三 variant completion 完全一致(均 task
+    17)，"2/3 BCP 机制跨模型复现"是 overclaim，降级为"低能力模型在 BCP 下展现行为偏移"；(2) Plan B "弱化"分支无明确终态，现明确：Mistral
+    completion≤20% 则 KILL，单模型 empirical 不够投稿；(3) cuda:2 仍跑已判无效的 llama-bcp-001 而 dpo-003(决策节点)等
+    cuda:3 释放，资源错配需立即修正。
+  related_experiments:
+  - exp_id: llama-bcp-001
+    role: evidence
+    result: overclaim corrected
+  - exp_id: dpo-003
+    role: target
+    result: pending - elevated to cuda:2
+  depends_on:
+  - D007
+  - D008
+- id: D010
+  date: 2026-05-13 01:37 UTC
+  summary: vLLM LoRA serving bug 确认：merged DPO-003 completion 60% vs LoRA serving
+    15%；kill hgate-dpo003，双 GPU 并行跑 merged 模型 H-gate eval
+  rationale: 诊断实验（5 tasks, cuda:3）证实 vLLM LoRA 动态加载严重压低 completion（15% vs merged 60%
+    vs base 40%）。DPO-003 实际改善了 tool-calling 能力。当前 hgate-dpo003 数据不可靠，需用 merged 模型重跑。两
+    GPU 并行可将 10h 缩短至 ~5h。
+  related_experiments:
+  - exp_id: hgate-dpo003
+    role: invalidated
+    result: LoRA serving bug 导致 completion 失真
+  - exp_id: dpo-003
+    role: source
+    result: merged 模型 completion 60% > base 40%
+  depends_on:
+  - D006
+  - D009
+- id: D011
+  date: 2026-05-13 05:50 UTC
+  summary: Plan A FAIL：hgate-dpo003-merged 2/4 runs H2+H3 双 FAIL，DPO+BCP 交互反转。按 D005
+    决策树转 Plan B（Mistral empirical analysis）
+  rationale: Run 1/3 数据一致：BCP variants politeness 反升（47.5→60.9%, 53.2→58.3%），completion
+    降至 15-30%。DPO 改变了模型对 BCP 的响应模式，从"部分校准但毁 completion"变成"反向偏移+仍毁 completion"。DPO
+    baseline（无 BCP）有轻微正面信号（politeness 略降，completion 可比），但不足以支撑方法论文。Run 2/4 未完成但 2/4
+    一致 FAIL 翻盘概率极低。按 D005：H2+H3 双 FAIL → Plan B，需 Mistral BCP 数据。Mistral completion
+    ≤20% → KILL。
+  related_experiments:
+  - exp_id: hgate-dpo003-merged
+    role: decision_node
+    result: H2+H3 双 FAIL (2/4 runs)
+  - exp_id: mvp-004
+    role: baseline
+    result: BCP 6/6 FAIL
+  - exp_id: diag-lora-merge
+    role: diagnostic
+    result: 确认 merged model serving 正常
+  depends_on:
+  - D005
+  - D010
+- id: D012
+  date: 2026-05-13 06:53 UTC
+  summary: Mistral completion=0%（tool-calling 能力不足），Plan B multi-model 路线 FAIL。三选一：KILL
+    / Qwen-only 短论文 / 换更强模型获取跨 scale 数据
+  rationale: Mistral-7B 在 16-tool τ-bench 下 0/35 次产生 structured tool_calls，远低于 20%
+    阈值。Llama-8B 同样 floor effect（5%）。7B 开源模型在复杂 tool-calling 场景下普遍能力不足是 confounding
+    factor。单模型（Qwen2.5-7B）数据扎实（BCP 4 机制 + DPO+BCP 反转，4 runs n=480），taxonomy 本身是文献空白。选项
+    C（Qwen2.5-14B 跨 scale 验证）可在 1-2 天内完成，仍在 deadline 内。需用户决策。
+  related_experiments:
+  - exp_id: mistral-bcp-001
+    role: decision_node
+    result: completion=0%, FAIL
+  - exp_id: llama-bcp-001
+    role: reference
+    result: completion=5%, floor effect
+  - exp_id: hgate-dpo003-merged
+    role: reference
+    result: H2+H3 FAIL, DPO+BCP反转效应
+  depends_on:
+  - D011
+  - D005
+- id: D013
+  date: 2026-05-13 15:23 UTC
+  summary: 'MVP PASS (Plan C): BCP 失败是结构性的，非容量限制。进入 research 阶段，走 8 页 empirical analysis
+    全文路线。'
+  rationale: qwen14b-bcp-001 结果：14B completion 61.6%（远超 20% gate），但 H2 仅 1/4 PASS。BCP
+    校准在 7B 和 14B 上均结构性失败，验证了 "alignment non-compositionality" 假设。7B (C1 FM1-3, C2
+    DPO reversal) + 14B (C3 cross-scale) 数据足以支撑 8 页全文。
+  related_experiments:
+  - exp_id: qwen14b-bcp-001
+    role: Plan C 关键验证
+    result: 14B completion 61.6%, H2 1/4, BCP 结构性失败确认
+  - exp_id: mvp-004
+    role: 7B baseline BCP
+    result: completion 36.8%, BCP 失败
+  - exp_id: hgate-dpo003-merged
+    role: Plan A DPO 校准
+    result: negative, DPO+BCP 反转
+  - exp_id: mistral-bcp-001
+    role: Plan B 跨模型
+    result: negative, 0% completion
+  depends_on:
+  - D012
+- id: D014
+  date: 2026-05-13 15:25 UTC
+  summary: C3 framing 修正：从"cross-scale replication of FM1-3"改为"scale-dependent failure
+    severity"——BCP 在 7B/14B 均失效，但破坏性副作用(FM1/FM3)仅限 7B，14B 只有"校准力度不足"
+  rationale: Reviewer 审查 qwen14b-bcp-001 per-variant 数据发现：FM1(completion collapse)
+    14B 未复现(H3 4/4 PASS)，FM3(overcorrection rebound) 14B 未复现(0/4 runs)。FM2 部分复现(H2
+    3/4 FAIL 但属 insufficient calibration 非 destructive)。Agent 原报告"BCP 失败是结构性的"为 overclaim。实际是更有趣的发现：失败严重度随
+    scale 递减，大模型能抵抗 BCP 破坏性副作用但仍无法被有效校准。
+  related_experiments:
+  - exp_id: qwen14b-bcp-001
+    role: 14B cross-scale data
+    result: H2 1/4, FM1 not replicated, FM3 not replicated, FM2 partial
+  - exp_id: mvp-004
+    role: 7B baseline
+    result: FM1-FM3 confirmed at 7B
+  - exp_id: hgate-dpo003-merged
+    role: 7B DPO+BCP
+    result: FM3 confirmed 4/4 runs at 7B
+  depends_on:
+  - D013
+- id: D015
+  date: 2026-05-13 15:38 UTC
+  summary: 接受 Reviewer 评估：当前 claims 多处 overclaim，必须补 GPT-4o-mini 跨家族验证 + 7B multi-run
+    复现 + 全面收紧 claim 措辞
+  rationale: Reviewer 独立审查确认用户担忧合理：(1) C1 FM1/FM2 基于单 run，evidence 偏弱；(2) "taxonomy"
+    需多家族支撑；(3) C3 仅 2 个同家族 scale 点不足以支撑 "safety-efficacy gap" 作为 core claim；(4) GPT-4o-mini
+    是最高 ROI 补充（~$5, 2-4h, LiteLLM 原生支持，代码改动最小）。不加模型的 Qwen-only 论文接受率估 30-40%，加 GPT-4o-mini
+    后估 50-60%。
+  related_experiments:
+  - exp_id: mvp-004
+    role: C1 主证据（单 run 缺口）
+    result: FM1/FM2 observed but single run
+  - exp_id: qwen14b-bcp-001
+    role: C3 唯一跨 scale 点
+    result: FM1/FM3 未复现，同家族
+  depends_on:
+  - D014

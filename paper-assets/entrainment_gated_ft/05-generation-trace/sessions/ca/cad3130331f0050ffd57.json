@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_1_3b-hfmirror-download_20260518T085450_result.json",
     "occurrence": 1,
-    "bytes": 2462,
-    "sha256": "5f3afd099d17947a29d7474b6db20a41c3e871a6afe8181ad820e27561c057b8"
+    "bytes": 2461,
+    "sha256": "a5e015dd29a346dbb9a199c875b92aa2f6a84a39840d3a0d22485e2c64f501dc"
   },
   "statistics": {
     "messages": 1,

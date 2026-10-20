@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_r16-paired-ttest_20260523T170538_result.json",
     "occurrence": 1,
-    "bytes": 1075,
-    "sha256": "259f99feb2813b5b6094da3979cc3211c4e3b81b135c6624484a956842ea79f2"
+    "bytes": 1074,
+    "sha256": "61745a3810d51166d3cae24b13316e7ce6d43201fcc399225f5a9f9383f624ac"
   },
   "statistics": {
     "messages": 1,

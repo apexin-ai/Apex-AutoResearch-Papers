@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_within-arch-helped-stability_20260520T024536_result.json",
     "occurrence": 1,
-    "bytes": 1072,
-    "sha256": "3ba6860bd23582601c6eb0cb4728c811d444ed64b0fdbbdfdb794a8908694c2d"
+    "bytes": 1071,
+    "sha256": "e21ff17ef17f8e5cfbf2321041029d3e011fb7df1995b6e240ad3cd4bd59cc4a"
   },
   "statistics": {
     "messages": 1,

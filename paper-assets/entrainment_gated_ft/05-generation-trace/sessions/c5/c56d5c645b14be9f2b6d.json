@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_340m-lambada-per-example_20260521T132510_result.json",
     "occurrence": 1,
-    "bytes": 1038,
-    "sha256": "4112ae2158f69ab06a853be8704e4b7d769c485ba15b030460d89d5e39c252ad"
+    "bytes": 1037,
+    "sha256": "8a9293511fcc715f64044fde172c9ed8ef1772fce5bd223cc6fd3f5548b0010f"
   },
   "statistics": {
     "messages": 1,

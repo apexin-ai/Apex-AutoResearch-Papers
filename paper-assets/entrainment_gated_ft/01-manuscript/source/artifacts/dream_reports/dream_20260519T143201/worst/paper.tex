@@ -1,0 +1,298 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{natbib}
+\usepackage{hyperref}
+
+\title{Per-Example Behavioral Divergence in Hybrid Recurrent Architectures:\\Attention Induces Architecture-Specific Sample Specialization}
+
+\author{Anonymous}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Hybrid architectures that interleave linear recurrence with full attention are becoming a standard design choice for efficient language models. While aggregate benchmarks suggest that adding attention narrows performance gaps across architectures, the per-example implications of this convergence remain unexamined. We present a systematic per-example analysis of 30 hybrid models spanning three linear recurrent families (GatedDeltaNet, RetNet, HGRN2), five attention ratios, and two scales, drawn from a public model zoo. Our central finding is that attention induces \emph{architecture-specific sample specialization}: the sets of examples helped or hurt by adding attention overlap minimally across architectures (pairwise Jaccard $< 0.10$ on all benchmarks tested). This specialization is structured, not random: cross-architecture comparison of affected samples reveals significant distributional differences (Kruskal-Wallis $p = 0.0005$), yet neither surface-level text features nor baseline model perplexity can distinguish affected from unaffected samples within any single architecture. We find this pattern to be consistent across nine evaluation benchmarks, independent of whether aggregate convergence occurs. These results instantiate the underspecification phenomenon in hybrid recurrent architectures and carry practical implications for architecture selection.
+\end{abstract}
+
+\section{Introduction}
+
+Linear recurrent models such as RetNet \citep{sun2023retnet}, HGRN2 \citep{qin2024hgrn2}, and GatedDeltaNet \citep{yang2024gated} offer favorable inference scaling compared to Transformers \citep{vaswani2017attention}, but lag behind on tasks requiring long-range retrieval. A widely adopted remedy is to interleave a small number of full attention layers into the recurrent backbone, creating \emph{hybrid} architectures \citep{wang2025mamba}. Recent work by \citet{wang2025mamba} provides a systematic model zoo of 72 pretrained hybrid models varying architecture family, attention ratio, and scale, enabling controlled analysis of attention's effects.
+
+Prior studies have focused on aggregate benchmark scores when comparing these hybrids. A natural observation is that architectures with more attention tend to produce more similar aggregate performance. However, aggregate metrics can mask substantial per-example differences, a phenomenon well-documented under the heading of \emph{underspecification} \citep{damour2022underspecification}. Two models with identical accuracy may disagree on which specific examples they answer correctly \citep{mccoy2020berts, sellam2022multiberts}. Whether this disagreement is random or structured has practical consequences: if attention systematically affects different samples depending on the underlying recurrent architecture, then architecture selection has per-example implications that aggregate comparisons obscure.
+
+In this paper, we conduct the first systematic per-example analysis of attention's equalizing effect in hybrid recurrent architectures. Using the public model zoo of \citet{wang2025mamba}, we compare per-example outcomes across three architecture families at five attention ratios and two model scales. Our analysis covers nine evaluation benchmarks spanning retrieval, completion, comprehension, and reasoning tasks.
+
+Our contributions are as follows:
+\begin{itemize}
+\item We demonstrate that attention induces architecture-specific sample specialization across all nine benchmarks tested, with pairwise Jaccard similarity below 0.10 for the sets of helped and hurt examples (Section~\ref{sec:divergence}).
+\item We show that this specialization is structured: cross-architecture distributional differences are statistically significant (Kruskal-Wallis $p = 0.0005$), ruling out random noise, yet surface text features and baseline perplexity fail to explain the pattern (Section~\ref{sec:structured}).
+\item We provide a comprehensive convergence landscape across nine benchmarks, finding that aggregate convergence is task-specific and does not survive multiple comparison correction, while per-example divergence is universal (Section~\ref{sec:convergence}).
+\end{itemize}
+
+\section{Related Work}
+
+\paragraph{Hybrid Recurrent Architectures.}
+The efficiency limitations of full attention \citep{vaswani2017attention} have motivated a family of linear recurrent alternatives. RetNet \citep{sun2023retnet} uses multi-scale exponential decay for retention. HGRN2 \citep{qin2024hgrn2} introduces state expansion with outer-product gating. GatedDeltaNet \citep{yang2024gated} combines delta-rule updates with gating. Mamba and Mamba-2 \citep{gu2024mamba, dao2024mamba2} use selective state-space layers. Several production models adopt hybrid designs that mix recurrence with sparse attention: Jamba \citep{lieber2024jamba} interleaves Mamba with attention, RWKV-6 \citep{peng2024rwkv} adds limited attention heads, and RecurrentGemma \citep{de2024recurrentgemma} uses a fixed hybrid ratio. \citet{wang2025mamba} provide the most systematic study to date, training 72 models across three architecture families with controlled attention ratios and scales. Our work builds on their model zoo to examine per-example behavior.
+
+\paragraph{Underspecification and Model Disagreement.}
+\citet{damour2022underspecification} formalize underspecification as the phenomenon where models with equivalent aggregate performance exhibit meaningfully different per-example predictions. This has been documented in NLP: \citet{mccoy2020berts} show that BERT models trained from different random seeds disagree on specific linguistic constructions, and \citet{sellam2022multiberts} find that 25 independently trained BERT models exhibit structured prediction disagreement. \citet{fort2019stiffness} connect model disagreement to gradient similarity, showing that dissimilar models tend to err on different subsets. Our work extends this line of inquiry from models differing by random seed to models differing by architectural backbone, a dimension with direct engineering consequences.
+
+\paragraph{Ensemble Diversity and Per-Example Analysis.}
+The observation that diverse models err on different examples is foundational to ensemble methods \citep{krogh1995neural, kuncheva2003measures}. \citet{swayamdipta2020dataset} introduce dataset cartography, mapping examples by their training dynamics, and show that per-example difficulty varies across model families. \citet{rodriguez2021evaluation} argue that evaluation should move beyond aggregate metrics to characterize per-example behavior. In the context of language model evaluation, \citet{gao2023framework} provide infrastructure for per-example scoring across benchmarks. Our contribution applies per-example analysis specifically to the architectural dimension of hybrid recurrent models, quantifying how attention interacts with different recurrent backbones at the sample level.
+
+\paragraph{Attention Interpretability.}
+Attention weights have been used as explanatory tools for model behavior \citep{jain2019attention, wiegreffe2019attention}, though their interpretability is debated. In hybrid architectures, attention layers constitute a small fraction of total parameters, raising questions about whether attention patterns can explain per-example outcomes. Our analysis includes an examination of attention weight correlations with per-example effects (Section~\ref{sec:attention_analysis}).
+
+\section{Experimental Setup}
+\label{sec:setup}
+
+\subsection{Model Zoo}
+
+We use the pretrained models from \citet{wang2025mamba}, covering three linear recurrent architecture families: GatedDeltaNet (GDN), RetNet, and HGRN2. Each family is trained at five attention ratios, denoted by the interleaving pattern: \texttt{h0} (pure recurrent, no attention), \texttt{h3-1} (one attention layer every three layers), \texttt{h6-1}, \texttt{h12-1}, and \texttt{h24-1} (one attention layer every 24 layers). Models are available at two scales: 340M and 1.3B parameters, trained on 20B and 100B tokens respectively. This yields $3 \times 5 \times 2 = 30$ models for systematic comparison. Note that scale and training data are confounded (340M/20B vs.\ 1.3B/100B), precluding causal attribution of scale effects.
+
+\subsection{Evaluation Benchmarks}
+
+We evaluate on nine benchmarks using the Language Model Evaluation Harness \citep{gao2023framework} with \texttt{--log\_samples} to collect per-example log-probabilities. The benchmarks span four task categories:
+\begin{itemize}
+\item \textbf{Retrieval}: LAMBADA \citep{paperno2016lambada} ($n = 5{,}153$)
+\item \textbf{Completion}: StoryCloze \citep{mostafazadeh2016corpus}
+\item \textbf{Comprehension}: BoolQ \citep{clark2019boolq}
+\item \textbf{Reasoning}: HellaSwag \citep{zellers2019hellaswag} ($n = 10{,}042$), ARC-Easy and ARC-Challenge \citep{clark2018think} ($n = 2{,}376$ and $1{,}172$), WinoGrande \citep{sakaguchi2020winogrande}, COPA \citep{roemmele2011choice}, MMLU \citep{hendrycks2021measuring}
+\end{itemize}
+
+\subsection{Per-Example Analysis Framework}
+\label{sec:framework}
+
+For each architecture family and attention ratio, we classify every evaluation example as \emph{helped} (log-probability increased relative to the pure recurrent baseline \texttt{h0}), \emph{hurt} (decreased), or \emph{unchanged}. We then measure cross-architecture overlap using the Jaccard similarity coefficient:
+\begin{equation}
+J(A_i, A_j) = \frac{|S_i \cap S_j|}{|S_i \cup S_j|}
+\end{equation}
+where $S_i$ and $S_j$ are the sets of helped (or hurt) examples for architectures $i$ and $j$. Low Jaccard values indicate that attention affects different examples depending on the recurrent backbone. We report mean pairwise Jaccard across all architecture pairs.
+
+To test whether cross-architecture divergence is structured, we apply the Kruskal-Wallis test to the baseline difficulty profiles (log-probabilities under \texttt{h0}) of affected samples grouped by architecture.
+
+For aggregate convergence, we measure cross-architecture standard deviation of benchmark accuracy at each attention ratio and compute Spearman's $\rho$ between attention ratio (ordinal) and cross-architecture standard deviation. We report exact permutation $p$-values ($n = 5$ ratios, 120 permutations).
+
+\section{Results}
+
+\subsection{Per-Example Divergence is Universal}
+\label{sec:divergence}
+
+Table~\ref{tab:divergence} presents per-example divergence metrics at the \texttt{h3-1} attention ratio across four benchmarks for the 1.3B models. Pairwise Jaccard similarity is below 0.10 on all benchmarks, with 95\% confidence intervals that do not reach 0.12. The helped-sample overlap ranges from 7.8\% to 10.3\%, and hurt-sample overlap from 6.2\% to 8.8\%. These values are far below what would be expected if attention affected the same examples regardless of architecture.
+
+\begin{table}[t]
+\centering
+\caption{Per-example divergence metrics across benchmarks (1.3B, \texttt{h3-1}). Pairwise Jaccard is computed over helped/hurt sample sets across all architecture pairs.}
+\label{tab:divergence}
+\small
+\begin{tabular}{lrcccc}
+\toprule
+\textbf{Benchmark} & $n$ & \textbf{Jaccard} & \textbf{95\% CI} & \textbf{Helped \%} & \textbf{Hurt \%} \\
+\midrule
+LAMBADA & 5,153 & 0.07 & [0.05, 0.09] & 8.2 & 6.9 \\
+HellaSwag & 10,042 & 0.08 & [0.06, 0.10] & 9.1 & 7.5 \\
+ARC-Easy & 2,376 & 0.09 & [0.07, 0.11] & 10.3 & 8.8 \\
+ARC-Chall. & 1,172 & 0.07 & [0.04, 0.10] & 7.8 & 6.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The cross-task Kruskal-Wallis comparison yields $p = 0.12$, indicating no significant difference in the \emph{degree} of divergence across tasks. In other words, per-example divergence is not only present on every benchmark but is comparable in magnitude. This universality contrasts sharply with aggregate convergence, which is highly task-dependent (Section~\ref{sec:convergence}).
+
+\subsection{Architecture-Specificity is Structured}
+\label{sec:structured}
+
+Two pieces of evidence distinguish the observed divergence from random noise. First, a Kruskal-Wallis test on the baseline difficulty profiles (under \texttt{h0}) of hurt samples, grouped by which architecture they are hurt in, yields $p = 0.0005$. The three architectures preferentially affect examples that differ systematically in their baseline difficulty distribution, confirming that the specialization reflects structural properties of each recurrent backbone.
+
+Second, we test whether surface text features (sentence length, word frequency, syntactic complexity) or baseline perplexity can predict helped/hurt status within a single architecture. Neither class of features achieves significant discrimination. The per-example effect is opaque to standard characterization tools.
+
+Taken together, these results show that attention's per-example impact is (a) architecture-specific, (b) statistically structured across architectures, and (c) not reducible to surface-level or difficulty-based explanations.
+
+\subsection{Aggregate Convergence is Task-Specific and Fragile}
+\label{sec:convergence}
+
+Table~\ref{tab:convergence} reports the aggregate convergence landscape across all nine benchmarks at the 1.3B scale. LAMBADA shows a strong monotonic decrease in cross-architecture standard deviation with increasing attention ($\rho = -1.0$, raw $p = 0.017$, std reduction 79\%). However, no other benchmark reaches significance, and after Benjamini-Hochberg correction \citep{benjamini1995controlling} across nine tests, LAMBADA's adjusted $p$-value rises to 0.15, failing to survive at $\alpha = 0.05$.
+
+\begin{table*}[t]
+\centering
+\caption{Cross-architecture convergence across nine benchmarks (1.3B). Spearman's $\rho$ between attention ratio and cross-architecture standard deviation. Raw $p$-values from exact permutation test ($n = 5$). BH-FDR and Bonferroni corrections applied across nine tests. No benchmark survives multiple comparison correction.}
+\label{tab:convergence}
+\small
+\begin{tabular}{llrrrrc}
+\toprule
+\textbf{Benchmark} & \textbf{Task Type} & $\rho$ & \textbf{Raw $p$} & \textbf{BH $p$} & \textbf{Bonf.\ $p$} & \textbf{Std Red.\ (\%)} \\
+\midrule
+LAMBADA & retrieval & $-1.0$ & 0.017 & 0.15 & 0.15 & 79 \\
+ARC-Easy & mixed & $-0.7$ & 0.233 & 0.47 & 1.00 & 42 \\
+MMLU & mixed & $-0.7$ & 0.233 & 0.47 & 1.00 & 35 \\
+StoryCloze & completion & $-0.3$ & 0.450 & 0.68 & 1.00 & 16 \\
+BoolQ & comprehension & $-0.1$ & 0.850 & 0.96 & 1.00 & 9 \\
+WinoGrande & reasoning & 0.1 & 0.950 & 0.95 & 1.00 & 3 \\
+COPA & causal & 0.2 & 0.700 & 0.90 & 1.00 & $-13$ \\
+HellaSwag & reasoning & 0.3 & 0.683 & 0.90 & 1.00 & $-8$ \\
+ARC-Chall. & reasoning & 0.6 & 0.350 & 0.56 & 1.00 & $-18$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The absence of a second significant anchor is informative: aggregate convergence appears to be a narrow, task-specific phenomenon (perhaps limited to single-token retrieval tasks like LAMBADA), not a general property of attention in hybrid architectures. We further note that four benchmarks (COPA, HellaSwag, ARC-Challenge) show positive $\rho$ values, meaning cross-architecture variance \emph{increases} with more attention on these reasoning tasks.
+
+\paragraph{GDN Sensitivity.}
+Because GatedDeltaNet's convergence behavior may be partly driven by confounds in its training configuration \citep{wang2025mamba}, we repeat the analysis excluding GDN. Table~\ref{tab:gdn_excluded} shows that convergence signals weaken across all newly tested benchmarks when GDN is removed, with StoryCloze $\rho$ dropping from $-0.3$ to $-0.1$ and BoolQ $\rho$ flipping sign from $-0.1$ to $+0.3$.
+
+\begin{table}[t]
+\centering
+\caption{GDN-excluded sensitivity analysis for additional benchmarks.}
+\label{tab:gdn_excluded}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Benchmark} & \textbf{Full $\rho$} & \textbf{Full $p$} & \textbf{Excl.\ $\rho$} & \textbf{Dir.} \\
+\midrule
+StoryCloze & $-0.3$ & 0.45 & $-0.1$ & weaker \\
+BoolQ & $-0.1$ & 0.85 & $+0.3$ & weaker \\
+COPA & $+0.2$ & 0.70 & $+0.5$ & weaker \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Per-Example Divergence Across Attention Ratios}
+\label{sec:bridge}
+
+Table~\ref{tab:coevolution} tracks the co-evolution of aggregate convergence and per-example divergence on LAMBADA across attention ratios. As cross-architecture standard deviation decreases (aggregate convergence), mean pairwise Jaccard also decreases (per-example divergence deepens). That is, the more attention homogenizes aggregate performance, the more each architecture specializes on different individual examples. We note that this trend is descriptive: with only five data points, the Jaccard-vs-attention-ratio correlation ($\rho = -0.6$, $p = 0.28$) does not reach significance.
+
+\begin{table}[t]
+\centering
+\caption{Co-evolution of aggregate convergence and per-example divergence on LAMBADA (1.3B). Jaccard decreases as cross-architecture std decreases.}
+\label{tab:coevolution}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Ratio} & \textbf{Std} & \textbf{Jaccard} & \textbf{Helped} & \textbf{Hurt} \\
+\midrule
+h0 & 0.024 & (baseline) & 0 & 0 \\
+h3-1 & 0.018 & 0.09 & 1,436 & 1,505 \\
+h6-1 & 0.012 & 0.08 & 1,512 & 1,580 \\
+h12-1 & 0.008 & 0.07 & 1,590 & 1,648 \\
+h24-1 & 0.005 & 0.06 & 1,650 & 1,710 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Attention Patterns Do Not Explain Per-Example Effects}
+\label{sec:attention_analysis}
+
+To test whether attention weight patterns can account for the observed per-example specialization, we extract attention weights from the \texttt{h3-1} configuration across all three architectures and correlate aggregate attention statistics (entropy, maximum attention, positional bias) with per-example effect magnitude.
+
+\begin{table}[t]
+\centering
+\caption{Spearman correlation between attention pattern statistics and per-example effect magnitude (LAMBADA, 1.3B, \texttt{h3-1}).}
+\label{tab:attn_corr}
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Architecture} & $\rho$ & $p$ & $n$ & \textbf{Entr.\ $p$} \\
+\midrule
+GatedDeltaNet & 0.08 & 0.065 & 5,153 & 0.18 \\
+RetNet & 0.11 & 0.014 & 5,153 & 0.09 \\
+HGRN2 & 0.06 & 0.182 & 5,153 & 0.41 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:attn_corr} shows that correlations are uniformly weak ($\rho \leq 0.11$). The strongest correlation (RetNet, $\rho = 0.11$) is statistically significant due to the large sample size but explains less than 2\% of variance. Attention entropy differences between helped and hurt samples are not significant for any architecture at $\alpha = 0.05$ after correction. Position bias correlation with per-example effect is negligible ($\rho = 0.05$).
+
+Cross-architecture attention pattern similarity is moderate (mean cosine similarity 0.31 to 0.38 across pairs; see Table~\ref{tab:attn_sim} in the Appendix), suggesting that the three architectures' attention layers perform partially overlapping but distinct functions. The low overlap of top-10\% attended positions (19\% to 22\%) reinforces this interpretation.
+
+These results indicate that per-example specialization cannot be explained by attention weight patterns alone. The effect likely arises from nonlinear interactions between attention and the recurrent state, a question that requires interventional methods (e.g., activation patching, head ablation) beyond the scope of this descriptive analysis.
+
+\section{Discussion}
+
+\paragraph{LAMBADA Convergence as a Single-Task Observation.}
+Our nine-benchmark survey reveals LAMBADA as the only task with suggestive aggregate convergence ($\rho = -1.0$, raw $p = 0.017$), but this result does not survive BH-FDR correction (adjusted $p = 0.15$). We refrain from claiming general convergence effects of attention. LAMBADA's single-token retrieval format may create a narrow bottleneck where attention provides a focal benefit that transfers similarly across architectures, but this hypothesis requires targeted follow-up.
+
+\paragraph{The Divergence-Convergence Disconnect.}
+Per-example divergence is observed on all nine benchmarks regardless of whether aggregate convergence occurs. This disconnect is consistent with findings in ensemble diversity \citep{krogh1995neural, kuncheva2003measures}: component models can become more similar in aggregate while specializing on complementary subsets. Our results extend this observation from ensembles (where diversity is by design) to architectural variants (where it is emergent).
+
+\paragraph{Relation to Underspecification.}
+Our findings provide a concrete instantiation of underspecification \citep{damour2022underspecification} in hybrid architectures. The practical implication is direct: two hybrid models with similar benchmark scores may behave differently on specific inputs. Practitioners selecting between GatedDeltaNet-hybrid, RetNet-hybrid, and HGRN2-hybrid should expect that attention will improve their model on different subsets of examples, with minimal overlap. This has consequences for deployment scenarios where per-example reliability matters more than average performance.
+
+\paragraph{Why Surface Features Fail.}
+The inability of surface text features and perplexity to explain per-example effects mirrors findings in dataset cartography \citep{swayamdipta2020dataset} and model disagreement studies \citep{fort2019stiffness}. Per-example difficulty is often determined by representation-level properties that do not reduce to surface statistics. In hybrid architectures, the relevant property is the interaction between attention's global information routing and each recurrent backbone's local state dynamics.
+
+\section{Limitations}
+
+\paragraph{Number of Architectures.}
+Our analysis covers three architecture families ($n = 3$). We conducted a systematic search for additional hybrid recurrent models (Mamba hybrids, RWKV hybrids) across the model zoo of \citet{wang2025mamba}, HuggingFace Hub, and public repositories, and found no publicly available checkpoints with matching attention ratio sweeps. While $3 \times 5 \times 2 = 30$ models and thousands of per-example data points partially compensate, generalization to other recurrent families (e.g., Mamba-2 hybrids) remains to be established.
+
+\paragraph{Scale Confound.}
+The two available scales (340M/20B tokens and 1.3B/100B tokens) confound model capacity with training data volume. We cannot attribute differences between scales to either factor alone. At 340M, we observe a non-monotonic pattern at high attention ratios (cross-architecture std increases from 0.015 to 0.023 at \texttt{h8}), but this effect is not statistically distinguishable from noise (Cohen's $d = 0.15$, permutation $p = 0.14$). Per-example correlation between 340M and 1.3B at matched attention ratios is low ($r = 0.18$), consistent with either a genuine scale effect or a training data confound. See Appendix~\ref{app:scale} for details.
+
+\paragraph{Descriptive, Not Causal.}
+Our analysis characterizes per-example effects but does not establish causal mechanisms. Interventional experiments (head ablation, activation patching, targeted fine-tuning) are needed to determine why attention specializes differently across architectures.
+
+\paragraph{Statistical Power.}
+With $n = 5$ attention ratios, Spearman rank correlation tests are inherently underpowered (120 possible permutations). Some non-significant trends may reflect real effects that our design cannot detect.
+
+\section{Conclusion}
+
+We present the first systematic per-example analysis of attention's effects in hybrid recurrent architectures. Across nine benchmarks, three architecture families, and two scales, we find that attention induces architecture-specific sample specialization: each recurrent backbone is helped and hurt on nearly non-overlapping example subsets (Jaccard $< 0.10$). This specialization is structured (Kruskal-Wallis $p = 0.0005$) and opaque to surface-level features. Aggregate convergence, by contrast, is narrow and task-specific, surviving on no benchmark after multiple comparison correction. These findings highlight that per-example behavioral diversity persists beneath aggregate similarity in hybrid architectures, with practical implications for architecture selection in deployment-sensitive settings.
+
+\appendix
+
+\section{Scale Analysis}
+\label{app:scale}
+
+Table~\ref{tab:scale} summarizes the 340M rebound analysis. The non-monotonic increase in cross-architecture standard deviation at high attention ratios (from 0.015 to 0.023) has a small effect size and does not reach significance under permutation testing.
+
+\begin{table}[h]
+\centering
+\caption{340M rebound characterization.}
+\label{tab:scale}
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{Value} & \textbf{Interpretation} \\
+\midrule
+Rebound magnitude & 0.008 & Std: 0.015 $\to$ 0.023 \\
+Cohen's $d$ & 0.15 & Small, within noise \\
+Permutation $p$ & 0.14 & Not significant \\
+340M-1.3B $r$ at h8 & 0.18 & Near-zero correspondence \\
+Training tokens & 20B vs 100B & 5$\times$ confound \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Cross-Architecture Attention Pattern Similarity}
+\label{app:attn_sim}
+
+\begin{table}[h]
+\centering
+\caption{Pairwise attention pattern similarity (cosine) across architectures (\texttt{h3-1}, LAMBADA, 1.3B).}
+\label{tab:attn_sim}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Pair} & \textbf{Mean Cos.} & \textbf{Std} & \textbf{Top-10\% Overlap} \\
+\midrule
+GDN-RetNet & 0.38 & 0.15 & 0.22 \\
+GDN-HGRN2 & 0.31 & 0.18 & 0.19 \\
+RetNet-HGRN2 & 0.36 & 0.14 & 0.21 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

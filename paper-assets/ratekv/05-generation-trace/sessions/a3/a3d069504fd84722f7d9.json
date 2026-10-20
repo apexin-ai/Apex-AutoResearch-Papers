@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_qwen_compounding_sweep_20260515T184057_result.json",
     "occurrence": 1,
-    "bytes": 471,
-    "sha256": "c0818352a1690b622a990b7c51bf9d00e0a54d35e8f6962bcba216c18d6f411e"
+    "bytes": 470,
+    "sha256": "7f217184ed1c4cda60949c96bb047550bb298794e9d998ef22d7df28e5532033"
   },
   "statistics": {
     "messages": 1,

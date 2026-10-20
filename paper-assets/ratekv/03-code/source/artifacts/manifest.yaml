@@ -1,0 +1,896 @@
+- id: art_20260514_3765b8
+  name: compounding_sweep_results
+  type: data
+  description: 'Compounding effect sweep: max_2bit vs PPL curve data (8 configs, budget=0.25)'
+  path: projects/ratekv/artifacts/compounding_sweep/data/compounding_sweep_results.csv
+  url: null
+  project: ratekv
+  exp_id: compounding_sweep
+  skill: ''
+  created_at: '2026-05-14T00:42:07.219264+00:00'
+  tags:
+  - sweep
+  - compounding
+  - 2bit
+  - ppl
+- id: art_20260514_549941
+  name: compounding_k10_12_results
+  type: data
+  description: 'Compounding sweep k=10,12 补充数据点: k10 PPL=11.50, k12 PPL=11.42, 确认k=8为极值点'
+  path: projects/ratekv/artifacts/compounding_sweep_k10_12/data/compounding_k10_12_results.txt
+  url: null
+  project: ratekv
+  exp_id: compounding_sweep_k10_12
+  skill: ''
+  created_at: '2026-05-14T01:00:49.642132+00:00'
+  tags: []
+- id: art_20260514_9a1405
+  name: ratequant_greedy_comparison_results
+  type: data
+  description: 'RateQuant greedy vs MCKP: Greedy PPL=32.45 vs MCKP PPL=11.23, delta=+21.22'
+  path: projects/ratekv/artifacts/ratequant_greedy_comparison/data/ratequant_greedy_comparison.txt
+  url: null
+  project: ratekv
+  exp_id: ratequant_greedy_comparison
+  skill: ''
+  created_at: '2026-05-14T01:00:53.464843+00:00'
+  tags: []
+- id: art_20260514_dc3d96
+  name: budget_sweep_results
+  type: data
+  description: 'Budget sweep: MCKP vs uniform at 2x/4x/8x compression on Qwen2.5-7B
+    WikiText-2'
+  path: projects/ratekv/artifacts/budget_sweep/data/budget_sweep_results.csv
+  url: null
+  project: ratekv
+  exp_id: budget_sweep
+  skill: ''
+  created_at: '2026-05-14T01:14:18.738248+00:00'
+  tags:
+  - budget_sweep
+  - mckp
+  - ppl
+  - compression
+- id: art_20260514_e4e5b8
+  name: C4 Cross-Dataset Eval
+  type: data
+  description: 'C4 calibration cross-dataset eval: C4-MCKP PPL=11.33, uniform=15.45,
+    delta=4.12. Allocation agreement with WT2: 98.2% (110/112).'
+  path: projects/ratekv/artifacts/c4_cross_dataset_eval/data/c4_cross_dataset_summary.txt
+  url: null
+  project: ratekv
+  exp_id: c4_cross_dataset_eval
+  skill: ''
+  created_at: '2026-05-14T01:29:54.436872+00:00'
+  tags:
+  - c4
+  - cross-dataset
+  - mckp
+  - ppl
+- id: art_20260514_da564e
+  name: results_summary
+  type: data
+  description: '统一实验数据 CSV (远程: /root/ratekv/results_summary.csv)，20 行覆盖全部已完成实验。含
+    baseline/mckp/uniform PPL、eval precision、bit distribution、conclusion。'
+  path: projects/ratekv/artifacts/_project/data/results_summary_pointer.txt
+  url: null
+  project: ratekv
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T03:27:49.365992+00:00'
+  tags:
+  - metrics
+  - summary
+  - csv
+- id: art_20260514_9ce770
+  name: heterogeneity_analysis
+  type: data
+  description: Head sensitivity heterogeneity 分析：CV/Gini/Top5% 集中度 vs MCKP margin
+    相关性。Top5% share (ρ=0.80) 是最佳预测指标。
+  path: projects/ratekv/artifacts/_project/data/heterogeneity_analysis_pointer.txt
+  url: null
+  project: ratekv
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T05:27:12.280520+00:00'
+  tags:
+  - analysis
+  - heterogeneity
+  - paper
+- id: art_20260514_c6ef22
+  name: fig1_head_delta_heatmap
+  type: chart
+  description: 'Per-head 2-bit quantization sensitivity heatmap for Qwen2.5-7B / Llama-3.1-8B
+    / Mistral-7B-v0.3, unified colorbar. Server path: /root/ratekv/figures/fig1_head_delta_heatmap.pdf'
+  path: projects/ratekv/artifacts/plan_011/chart/fig1_head_delta_heatmap.md
+  url: null
+  project: ratekv
+  exp_id: plan_011
+  skill: ''
+  created_at: '2026-05-14T05:58:07.902302+00:00'
+  tags:
+  - figure
+  - heatmap
+  - head-sensitivity
+- id: art_20260514_9ccde3
+  name: fig2_compounding_curve
+  type: chart
+  description: 'Compounding effect curve: PPL vs max 2-bit heads (k) for Qwen2.5-7B,
+    optimal at k=8. Server path: /root/ratekv/figures/fig2_compounding_curve.pdf'
+  path: projects/ratekv/artifacts/plan_011/chart/fig2_compounding_curve.md
+  url: null
+  project: ratekv
+  exp_id: plan_011
+  skill: ''
+  created_at: '2026-05-14T05:58:12.675892+00:00'
+  tags:
+  - figure
+  - compounding
+  - sweep
+- id: art_20260514_a9344e
+  name: fig3_allocation_comparison
+  type: chart
+  description: 'Uniform vs MCKP bit-width allocation per layer stacked bar chart,
+    Qwen2.5-7B budget=0.25. Server path: /root/ratekv/figures/fig3_allocation_comparison.pdf'
+  path: projects/ratekv/artifacts/plan_011/chart/fig3_allocation_comparison.md
+  url: null
+  project: ratekv
+  exp_id: plan_011
+  skill: ''
+  created_at: '2026-05-14T05:58:16.999210+00:00'
+  tags:
+  - figure
+  - allocation
+  - mckp
+- id: art_20260514_891bc9
+  name: greedy_cardinality_ablation_results
+  type: data
+  description: 'Plan_016 ablation: Greedy+max_2bit=8 vs MCKP constrained. PPL=11.2312
+    vs 11.23. Delta=+0.0012. Identical bit distribution.'
+  path: projects/ratekv/artifacts/greedy_cardinality_ablation/data/greedy_constrained_k8_results.txt
+  url: null
+  project: ratekv
+  exp_id: greedy_cardinality_ablation
+  skill: ''
+  created_at: '2026-05-14T06:17:04.607354+00:00'
+  tags:
+  - plan_016
+  - ablation
+  - greedy
+  - cardinality
+- id: art_20260514_371162
+  name: fig1_head_delta_heatmap
+  type: chart
+  description: 3 模型并排 per-head delta heatmap (Qwen/Llama/Mistral)，展示 L0 sensitivity
+    和跨架构异质性差异
+  path: projects/ratekv/artifacts/head_sensitivity_viz/chart/fig1_head_delta_heatmap_info.txt
+  url: null
+  project: ratekv
+  exp_id: head_sensitivity_viz
+  skill: ''
+  created_at: '2026-05-14T06:18:25.710450+00:00'
+  tags:
+  - paper
+  - figure
+  - heatmap
+- id: art_20260514_d3f436
+  name: fig2_compounding_curve
+  type: chart
+  description: 'Compounding effect curve: max_2bit (k) vs PPL，k=8 最优点，U 型曲线'
+  path: projects/ratekv/artifacts/head_sensitivity_viz/chart/fig2_compounding_curve_info.txt
+  url: null
+  project: ratekv
+  exp_id: head_sensitivity_viz
+  skill: ''
+  created_at: '2026-05-14T06:18:28.960549+00:00'
+  tags:
+  - paper
+  - figure
+  - compounding
+- id: art_20260514_a88298
+  name: fig3_allocation_comparison
+  type: chart
+  description: Uniform vs MCKP(k=8) bit-width 分配对比 stacked bar
+  path: projects/ratekv/artifacts/head_sensitivity_viz/chart/fig3_allocation_comparison_info.txt
+  url: null
+  project: ratekv
+  exp_id: head_sensitivity_viz
+  skill: ''
+  created_at: '2026-05-14T06:18:31.462456+00:00'
+  tags:
+  - paper
+  - figure
+  - allocation
+- id: art_20260514_066c4b
+  name: bf16_reeval_results
+  type: data
+  description: 'Qwen2.5-7B bf16 consistency re-eval: baseline PPL bf16=9.8106 (fp16=9.81,
+    delta=0.0006), uniform 4-bit PPL bf16=15.4454 (fp16=15.45, delta=0.0046). No compounding
+    sweep rerun needed.'
+  path: projects/ratekv/artifacts/qwen_bf16_reeval/data/run_bf16_reeval.py
+  url: null
+  project: ratekv
+  exp_id: qwen_bf16_reeval
+  skill: ''
+  created_at: '2026-05-14T06:32:21.235948+00:00'
+  tags: []
+- id: art_20260514_3800f5
+  name: hires_mckp_reeval_results
+  type: data
+  description: 'Hires MCKP allocation re-eval with current eval_ppl.py: baseline=9.8106,
+    MCKP=10.9131, uniform_4bit=15.4454'
+  path: projects/ratekv/artifacts/hires_mckp_reeval/data/hires_reeval_results.txt
+  url: null
+  project: ratekv
+  exp_id: hires_mckp_reeval
+  skill: ''
+  created_at: '2026-05-14T06:51:52.495084+00:00'
+  tags:
+  - reeval
+  - mckp
+  - hires
+  - headline
+- id: art_20260514_3ff612
+  name: plan_015_l0_heuristic_corrected_results
+  type: data
+  description: 'Plan 015 complete results: L0 heuristic baselines + actual MCKP eval
+    at budget=0.25, bf16, WikiText-2 test. Bug fixed: MCKP now evaluated with same
+    eval_ppl function. Server path: /root/ratekv/l0_heuristic_corrected_results.json'
+  path: null
+  url: file:///root/ratekv/l0_heuristic_corrected_results.json
+  project: ratekv
+  exp_id: l0_heuristic_corrected
+  skill: ''
+  created_at: '2026-05-14T06:57:29.170894+00:00'
+  tags:
+  - plan_015
+  - mckp
+  - l0_heuristic
+  - budget_0.25
+  - bf16
+- id: art_20260514_0b07c9
+  name: hires_reeval_results
+  type: data
+  description: 'Hires MCKP re-evaluation with current eval_ppl.py: baseline=9.8106,
+    uniform-4bit=15.4454, hires-MCKP=10.9131 (all bf16, WikiText-2, stride=512)'
+  path: projects/ratekv/artifacts/hires_reeval/data/hires_reeval_results.txt
+  url: null
+  project: ratekv
+  exp_id: hires_reeval
+  skill: ''
+  created_at: '2026-05-14T06:58:38.424779+00:00'
+  tags:
+  - ppl
+  - eval
+  - hires
+  - mckp
+  - bf16
+- id: art_20260514_b740e2
+  name: mistral_k_ablation_results
+  type: data
+  description: 'Mistral-7B k ablation sweep results: PPL monotonically increases with
+    k (4→7.165, 8→7.200, 12→7.245, 16→7.311, 18→7.323). Best k=4, but still worse
+    than uniform 4-bit (7.131).'
+  path: projects/ratekv/artifacts/mistral_k_ablation/data/mistral_k_ablation_results.json
+  url: null
+  project: ratekv
+  exp_id: mistral_k_ablation
+  skill: ''
+  created_at: '2026-05-14T07:24:39.679928+00:00'
+  tags: []
+- id: art_20260514_1fe39c
+  name: llama_k_ablation_results
+  type: data
+  description: 'Llama-3.1-8B k ablation sweep results: all k values identical (PPL=8.4498,
+    n_2bit=2). MCKP naturally uses only 2 heads at 2-bit, constraint never binding.
+    Marginal improvement over uniform (8.469→8.450).'
+  path: projects/ratekv/artifacts/llama_k_ablation/data/llama_k_ablation_results.json
+  url: null
+  project: ratekv
+  exp_id: llama_k_ablation
+  skill: ''
+  created_at: '2026-05-14T07:24:42.708477+00:00'
+  tags: []
+- id: art_20260514_1180ff
+  name: fig1_head_delta_heatmap
+  type: chart
+  description: '3-model side-by-side per-head 2-bit quantization sensitivity heatmap
+    (Qwen 28L×4H / Llama 32L×8H / Mistral 32L×8H). Data: exp_e_hires_profile, llama_hires_pipeline,
+    mistral_hires_pipeline.'
+  path: projects/ratekv/artifacts/_project/chart/fig1_head_delta_heatmap.pdf
+  url: null
+  project: ratekv
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-14T07:51:16.539460+00:00'
+  tags:
+  - paper
+  - analysis
+  - heatmap
+  - head-sensitivity
+- id: art_20260514_f1cda3
+  name: fig2_compounding_curve
+  type: chart
+  description: 'Compounding effect curve: max_2bit (k) vs PPL on Qwen2.5-7B. U-shaped,
+    k=8 optimal (11.23). Data: compounding_sweep, compounding_sweep_k10_12.'
+  path: projects/ratekv/artifacts/_project/chart/fig2_compounding_curve.pdf
+  url: null
+  project: ratekv
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-14T07:51:20.317113+00:00'
+  tags:
+  - paper
+  - method
+  - compounding
+  - sweep
+- id: art_20260514_a82ae2
+  name: fig3_allocation_comparison
+  type: chart
+  description: 'Uniform vs constrained MCKP (k=8) bit-width allocation per layer stacked
+    bar, Qwen2.5-7B. L0@8-bit protection visible. Data: exp_c_constrained_mckp, hires_reeval.'
+  path: projects/ratekv/artifacts/_project/chart/fig3_allocation_comparison.pdf
+  url: null
+  project: ratekv
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-14T07:51:24.019960+00:00'
+  tags:
+  - paper
+  - experiments
+  - allocation
+  - stacked-bar
+- id: art_20260514_217377
+  name: method.tex
+  type: paper
+  description: 'Method section (§3) for ratekv paper: problem formulation, per-head
+    profiling, compounding effect, cardinality constraint, solver equivalence'
+  path: projects/ratekv/artifacts/_project/paper/method.tex
+  url: null
+  project: ratekv
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:25:11.687559+00:00'
+  tags:
+  - paper
+  - method
+  - latex
+- id: art_20260514_b48a10
+  name: introduction.tex
+  type: paper
+  description: Introduction section (§1) for the EMNLP 2026 ratekv paper — covers
+    compounding failure, cardinality constraint, solver equivalence, heterogeneity
+    diagnostic, and negative results.
+  path: projects/ratekv/artifacts/_project/paper/introduction.tex
+  url: null
+  project: ratekv
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T10:17:10.859559+00:00'
+  tags:
+  - paper
+  - introduction
+  - latex
+- id: art_20260514_8a3265
+  name: run_multi_seed_lowres.py
+  type: intermediate
+  description: 'Lowres multi-seed script: 16×512 profiling, 3 seeds, constrained MCKP
+    on Qwen2.5-7B. Validates standard profiling main result stability.'
+  path: projects/ratekv/artifacts/multi_seed_lowres/intermediate/run_multi_seed_lowres.py
+  url: null
+  project: ratekv
+  exp_id: multi_seed_lowres
+  skill: ''
+  created_at: '2026-05-14T11:04:51.725533+00:00'
+  tags:
+  - multi-seed
+  - lowres
+  - profiling
+  - error-bars
+- id: art_20260514_844d42
+  name: oracle_comparison_results
+  type: data
+  description: 'Plan 009: Per-layer exhaustive oracle vs MCKP comparison. MCKP PPL=10.9131,
+    max gap=0.0183, avg gap=0.0046. MCKP optimal on 5/8 layers.'
+  path: null
+  url: westd-37397:/root/ratekv/oracle_comparison_results.json
+  project: ratekv
+  exp_id: oracle_comparison
+  skill: ''
+  created_at: '2026-05-14T11:40:11.498237+00:00'
+  tags: []
+- id: art_20260514_01377b
+  name: mistral_heuristic_k4_results
+  type: data
+  description: Mistral-7B heuristic baselines k=4 (D041 reviewer fix). L0-random mean=7.2411,
+    naive=7.2105, MCKP=7.1648.
+  path: projects/ratekv/artifacts/mistral_heuristic_k4/data/mistral_heuristic_k4_results.txt
+  url: null
+  project: ratekv
+  exp_id: mistral_heuristic_k4
+  skill: ''
+  created_at: '2026-05-14T12:08:22.493090+00:00'
+  tags:
+  - d041
+  - heuristic
+  - mistral
+  - k4
+  - reviewer-fix
+- id: art_20260514_5466f8
+  name: reference_audit_report
+  type: report
+  description: 论文引用审计报告：19条bib全部匹配，5篇抽查真实，2处key命名年份不一致（不影响编译）
+  path: projects/ratekv/artifacts/_project/report/reference_audit_report.md
+  url: null
+  project: ratekv
+  exp_id: null
+  skill: reference-audit
+  created_at: '2026-05-14T12:13:11.605232+00:00'
+  tags:
+  - paper
+  - reference-audit
+  - pre-submission
+- id: art_20260514_2eabb8
+  name: paper_patch_audit
+  type: report
+  description: 'D047/D048 paper patch audit: all LaTeX locations needing Yi-1.5 counterexample,
+    Gemma-2 addition, concentration value updates, and 3→5 model expansion'
+  path: projects/ratekv/artifacts/_project/report/paper_patch_audit.md
+  url: null
+  project: ratekv
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T18:43:01.164469+00:00'
+  tags:
+  - paper
+  - D047
+  - D048
+  - patch
+  - audit
+- id: art_20260514_6bd271
+  name: Qwen2.5-7B hires f32 constrained MCKP results
+  type: data
+  description: Qwen2.5-7B constrained MCKP (max_2bit=8) using correct hires float32
+    profiles. Baseline PPL=9.81, MCKP PPL=10.89, Uniform 4-bit PPL=15.45. top5_concentration=0.6156.
+  path: projects/ratekv/artifacts/_project/data/qwen_hires_f32_constrained_results.txt
+  url: null
+  project: ratekv
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T20:12:53.332792+00:00'
+  tags:
+  - qwen
+  - hires
+  - mckp
+  - constrained
+  - wikitext2
+- id: art_20260514_793b9a
+  name: shape_metrics_5models
+  type: data
+  description: '5-model spike vs spread shape metrics (top1/top5, top1/top2, Gini,
+    CV) for Claim 3 joint diagnostic. 5/5 accuracy with rule: concentration > 0.50
+    AND t1/t5 < 0.70.'
+  path: projects/ratekv/artifacts/_project/data/shape_metrics.json
+  url: null
+  project: ratekv
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T20:39:12.543802+00:00'
+  tags:
+  - claim3
+  - shape
+  - concentration
+  - diagnostic
+- id: art_20260515_af9c89
+  name: fig_concentration_scatter_hires
+  type: chart
+  description: Scatter plot of top-5% concentration vs MCKP benefit, updated with
+    hires values (Mistral 0.241). Generated from gen_scatter_concentration.py on westd-37397.
+  path: projects/ratekv/artifacts/_project/chart/fig_concentration_scatter.pdf
+  url: null
+  project: ratekv
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T01:05:24.228507+00:00'
+  tags:
+  - scatter
+  - concentration
+  - hires
+  - paper-figure
+- id: art_20260515_e7a5c4
+  name: W2 Unconstrained Baselines Results
+  type: data
+  description: Unconstrained greedy & MCKP PPL for Yi-1.5/Llama/Mistral/Gemma-2 (2bitonly
+    profiles, budget=0.25)
+  path: projects/ratekv/artifacts/w2_unconstrained_baselines/data/w2_unconstrained_baselines_results.json
+  url: null
+  project: ratekv
+  exp_id: w2_unconstrained_baselines
+  skill: ''
+  created_at: '2026-05-15T04:50:45.637934+00:00'
+  tags:
+  - table2
+  - unconstrained
+  - greedy
+  - mckp
+  - baseline
+- id: art_20260515_bfe7e5
+  name: w9_compounding_scaling_results
+  type: data
+  description: 'Compounding scaling: super-additive ratio when quantizing top-n heads
+    to 2-bit (Qwen2.5-7B). n=1 ratio=1.0, n=2 ratio=3.84, n>=4 catastrophic (ratio>280).'
+  path: projects/ratekv/artifacts/w9_compounding_scaling/data/w9_compounding_scaling_results.json
+  url: null
+  project: ratekv
+  exp_id: w9_compounding_scaling
+  skill: ''
+  created_at: '2026-05-15T04:55:51.585917+00:00'
+  tags:
+  - compounding
+  - super-additive
+  - qwen
+  - reviewer-response
+- id: art_20260515_2b73c9
+  name: fig_compounding_scaling
+  type: chart
+  description: 'Dual-axis plot: super-additive ratio (left y) and measured vs predicted
+    PPL (right y) vs n heads quantized to 2-bit. Shows dramatic compounding beyond
+    n=2 (Qwen2.5-7B).'
+  path: projects/ratekv/artifacts/w9_compounding_scaling/chart/fig_compounding_scaling.png
+  url: null
+  project: ratekv
+  exp_id: w9_compounding_scaling
+  skill: ''
+  created_at: '2026-05-15T04:55:54.070876+00:00'
+  tags:
+  - compounding
+  - figure
+  - qwen
+  - reviewer-response
+- id: art_20260515_3f6045
+  name: w2_unconstrained_v2_results
+  type: data
+  description: 'W2 v2 unconstrained baselines: 4 models × {greedy, MCKP, uniform 4-bit}
+    on WikiText-2 test. Yi/Llama/Mistral valid, Gemma-2 broken (BOS bug).'
+  path: projects/ratekv/artifacts/w2_unconstrained_v2/data/w2_unconstrained_v2_results.json
+  url: null
+  project: ratekv
+  exp_id: w2_unconstrained_v2
+  skill: ''
+  created_at: '2026-05-15T06:05:17.052027+00:00'
+  tags:
+  - w2
+  - unconstrained
+  - wikitext2
+  - ppl
+- id: art_20260515_edda97
+  name: W3 downstream Yi-1.5 results
+  type: data
+  description: 'W3 downstream task evaluation results for Yi-1.5-9B: 0-shot accuracy
+    on 5 tasks (arc_easy, arc_challenge, hellaswag, winogrande, piqa) under baseline/uniform-4bit/constrained-MCKP'
+  path: projects/ratekv/artifacts/w3_downstream_eval/data/w3_downstream_yi_results.json
+  url: null
+  project: ratekv
+  exp_id: w3_downstream_eval
+  skill: ''
+  created_at: '2026-05-15T06:40:55.920197+00:00'
+  tags:
+  - w3
+  - downstream
+  - yi15
+  - lm-eval
+- id: art_20260515_256c68
+  name: W3 downstream Llama results
+  type: data
+  description: 'W3 downstream task evaluation results for Llama-3.1-8B: 0-shot accuracy
+    on 5 tasks (arc_easy, arc_challenge, hellaswag, winogrande, piqa) under baseline/uniform-4bit/constrained-MCKP'
+  path: projects/ratekv/artifacts/w3_downstream_eval/data/w3_downstream_llama_results.json
+  url: null
+  project: ratekv
+  exp_id: w3_downstream_eval
+  skill: ''
+  created_at: '2026-05-15T06:40:58.031027+00:00'
+  tags:
+  - w3
+  - downstream
+  - llama
+  - lm-eval
+- id: art_20260515_2f402d
+  name: W2 Gemma-2 BOS fix results
+  type: data
+  description: W2 unconstrained baselines for Gemma-2-9B with BOS fix + sliding window
+    eval. Baseline=6.03, Uniform=6.17, Greedy/MCKP=8.85 (1.47x). 106/336 2-bit heads
+    unconstrained.
+  path: projects/ratekv/artifacts/w2_unconstrained_v2/data/w2_gemma2_bos_fix_results.json
+  url: null
+  project: ratekv
+  exp_id: w2_unconstrained_v2
+  skill: ''
+  created_at: '2026-05-15T07:34:31.163511+00:00'
+  tags:
+  - w2
+  - gemma2
+  - bos-fix
+  - unconstrained
+- id: art_20260515_c95d88
+  name: w3_downstream_mistral_results
+  type: data
+  description: 'Mistral-7B W3 downstream eval: 0-shot 5-task (ARC-E/C, HellaSwag,
+    WinoGrande, PIQA). Baseline avg=0.6917, uniform=0.6894, MCKP=0.6846. MCKP -0.48pp
+    vs uniform.'
+  path: projects/ratekv/artifacts/w3_downstream_eval/data/w3_downstream_mistral_results.json
+  url: null
+  project: ratekv
+  exp_id: w3_downstream_eval
+  skill: ''
+  created_at: '2026-05-15T08:15:57.936449+00:00'
+  tags:
+  - w3
+  - downstream
+  - mistral
+  - flat
+- id: art_20260515_03e3d9
+  name: w3_downstream_gemma2_results
+  type: data
+  description: 'Gemma-2-9B W3 downstream eval: 0-shot 5-task (ARC-E/C, HellaSwag,
+    WinoGrande, PIQA). Baseline avg=0.7307, uniform=0.7251, MCKP=0.7265. MCKP +0.14pp
+    vs uniform (noise).'
+  path: projects/ratekv/artifacts/w3_downstream_eval/data/w3_downstream_gemma2_results.json
+  url: null
+  project: ratekv
+  exp_id: w3_downstream_eval
+  skill: ''
+  created_at: '2026-05-15T08:15:59.888681+00:00'
+  tags:
+  - w3
+  - downstream
+  - gemma2
+  - flat
+- id: art_20260515_286986
+  name: KIVI Baseline PPL - All Models
+  type: data
+  description: KIVI baseline perplexity on WikiText-2 for Qwen2.5-7B and Llama-3.1-8B
+    at 2-bit and 4-bit, both r128 and r0
+  path: projects/ratekv/artifacts/kivi_baseline_qwen_llama/data/kivi_baseline_all_results.txt
+  url: null
+  project: ratekv
+  exp_id: kivi_baseline_qwen_llama
+  skill: ''
+  created_at: '2026-05-15T11:53:29.680982+00:00'
+  tags:
+  - kivi
+  - baseline
+  - ppl
+  - wikitext
+  - qwen
+  - llama
+  - r0
+  - r128
+- id: art_20260515_0a930b
+  name: qwen7b_8k_spotcheck_results
+  type: data
+  description: 'Qwen2.5-7B 8K context PPL spot-check: BF16=6.97, MCKP=8.59, Uniform-4bit=77.75.
+    Concentration-dependent benefit amplifies dramatically at longer context.'
+  path: projects/ratekv/artifacts/qwen7b_8k_context_eval/data/qwen7b_8k_spotcheck_results.json
+  url: null
+  project: ratekv
+  exp_id: qwen7b_8k_context_eval
+  skill: ''
+  created_at: '2026-05-15T13:22:10.741327+00:00'
+  tags:
+  - 8k-context
+  - qwen-7b
+  - spread-model
+  - ppl-eval
+  - long-context
+- id: art_20260515_24cee8
+  name: kivi_baseline_qwen7b_v2_results
+  type: data
+  description: KIVI-4bit baseline (per-channel K + per-token V, g32, r128) on Qwen2.5-7B
+    WikiText-2 PPL=9.90
+  path: projects/ratekv/artifacts/kivi_baseline_qwen7b_v2/data/kivi_baseline_qwen7b_v2_results.json
+  url: null
+  project: ratekv
+  exp_id: kivi_baseline_qwen7b_v2
+  skill: ''
+  created_at: '2026-05-15T14:42:06.503226+00:00'
+  tags:
+  - kivi
+  - baseline
+  - qwen7b
+  - 4bit
+  - wikitext2
+- id: art_20260515_be96f7
+  name: kivi_mckp_combined_results
+  type: data
+  description: 'KIVI+MCKP orthogonality test on Qwen2.5-7B: BF16=9.81, KIVI=9.90,
+    MCKP=10.89, Combined=9.90. Orthogonal complementarity confirmed.'
+  path: projects/ratekv/artifacts/kivi_mckp_combined_qwen7b/data/kivi_mckp_combined_results.json
+  url: null
+  project: ratekv
+  exp_id: kivi_mckp_combined_qwen7b
+  skill: ''
+  created_at: '2026-05-15T14:57:18.341347+00:00'
+  tags:
+  - kivi
+  - mckp
+  - orthogonality
+  - qwen2.5-7b
+- id: art_20260515_22b620
+  name: qwen14b_greedy_constrained_results
+  type: data
+  description: 'Qwen2.5-14B greedy constrained ablation (max_2bit=8, budget=0.25):
+    PPL=7.2206, identical to MCKP constrained. Table 1 Greedy column.'
+  path: projects/ratekv/artifacts/qwen14b_greedy_constrained/data/qwen14b_greedy_constrained_results.json
+  url: null
+  project: ratekv
+  exp_id: qwen14b_greedy_constrained
+  skill: ''
+  created_at: '2026-05-15T15:01:52.230155+00:00'
+  tags:
+  - table1
+  - greedy
+  - qwen14b
+  - ablation
+- id: art_20260515_fef0f0
+  name: llama_compounding_sweep_results
+  type: data
+  description: 'Llama-3.1-8B compounding sweep: PPL vs max_2bit k (0-256), 9 data
+    points showing dramatic super-additive compounding'
+  path: projects/ratekv/artifacts/llama_compounding_sweep/data/llama_compounding_sweep_summary.txt
+  url: null
+  project: ratekv
+  exp_id: llama_compounding_sweep
+  skill: ''
+  created_at: '2026-05-15T16:38:04.880541+00:00'
+  tags:
+  - compounding
+  - llama
+  - spike
+  - k_ablation
+- id: art_20260515_8a6da2
+  name: llama_downstream_eval_k2
+  type: data
+  description: 'Llama-3.1-8B downstream eval (ARC-C, HellaSwag, PIQA, WinoGrande)
+    - MCKP k=2 vs uniform 4-bit, 0-shot. Results on server: /root/ratekv/artifacts/llama_downstream_eval_results.json'
+  path: projects/ratekv/artifacts/llama_downstream_eval/data/llama_downstream_eval_summary.txt
+  url: null
+  project: ratekv
+  exp_id: llama_downstream_eval
+  skill: ''
+  created_at: '2026-05-15T17:39:06.623953+00:00'
+  tags:
+  - downstream
+  - llama
+  - k2
+  - mckp
+- id: art_20260515_0f13fc
+  name: compounding_analysis_draft
+  type: paper
+  description: 'Draft LaTeX paragraph: cross-architecture compounding curve analysis
+    (Llama spike 188x vs Mistral flat 1.065x), for integration into §5 analysis.tex'
+  path: projects/ratekv/artifacts/_project/paper/compounding_analysis_draft.tex
+  url: null
+  project: ratekv
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:02:21.437935+00:00'
+  tags:
+  - paper
+  - compounding
+  - analysis
+  - llama
+  - mistral
+- id: art_20260515_6d4f63
+  name: fig_compounding_curves
+  type: chart
+  description: 'Compounding curves figure: PPL vs cardinality constraint k for Llama-3.1-8B
+    (spike) and Mistral-7B-v0.3 (flat). Log-scale y-axis, Okabe-Ito colors, paper-ready
+    PDF/PNG.'
+  path: projects/ratekv/artifacts/_project/chart/fig_compounding_curves.pdf
+  url: null
+  project: ratekv
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:09:19.913939+00:00'
+  tags:
+  - figure
+  - compounding
+  - paper
+- id: art_20260515_ba2ca9
+  name: table4_k2_update_template
+  type: intermediate
+  description: 'Table 4 k=2 update template: current LaTeX verbatim, Llama k=2 values
+    filled, Yi/Mistral placeholders, caption update, provenance checklist'
+  path: projects/ratekv/artifacts/_project/intermediate/table4_k2_update_template.md
+  url: null
+  project: ratekv
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:13:56.610227+00:00'
+  tags:
+  - table4
+  - downstream
+  - k2
+  - D063
+- id: art_20260515_c8a751
+  name: compounding_curves_data
+  type: data
+  description: 'Figure 2 data: PPL vs forced 2-bit head count (k) for Llama-3.1-8B
+    (spike) and Mistral-7B-v0.3 (flat), including per-k bit distributions, mem_ratio,
+    and distortion'
+  path: projects/ratekv/artifacts/_project/data/compounding_curves_data.json
+  url: null
+  project: ratekv
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T18:39:56.318159+00:00'
+  tags:
+  - figure2
+  - compounding
+  - spike-vs-flat
+- id: art_20260515_dfb641
+  name: fig_compounding_curves
+  type: chart
+  description: Cross-architecture compounding curves (k vs PPL) for Qwen-7B (Spread),
+    Llama-8B (Spike), Mistral-7B (Flat). Log-log plot showing architecture-dependent
+    compounding trajectories. Used as Figure in experiments.tex §3 compounding analysis.
+  path: projects/ratekv/artifacts/_project/chart/fig_compounding_curves_dfb641.pdf
+  url: null
+  project: ratekv
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T19:50:43.476711+00:00'
+  tags:
+  - figure
+  - compounding
+  - cross-architecture
+  - paper
+- id: art_20260516_38cd9e
+  name: fig_compounding_curves
+  type: chart
+  description: 'Cross-architecture compounding curves: PPL vs k (2-bit heads) for
+    Qwen (spread), Llama (spike), Mistral (flat). Corrected concentration values and
+    colors.'
+  path: projects/ratekv/artifacts/_project/chart/fig_compounding_curves_38cd9e.pdf
+  url: null
+  project: ratekv
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T01:58:07.604873+00:00'
+  tags:
+  - paper
+  - figure
+  - compounding
+- id: art_20260516_c43a6c
+  name: fig_compounding_curves_v2
+  type: chart
+  description: 'Compounding curves figure (corrected): Llama concentration 0.85→0.57,
+    colorblind-safe palette (Qwen=#D55E00, Llama=#0072B2, Mistral=#009E73), full model
+    names. PDF+PNG for Section 5.3.'
+  path: projects/ratekv/artifacts/_project/chart/fig_compounding_curves_c43a6c.pdf
+  url: null
+  project: ratekv
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:37:22.239070+00:00'
+  tags:
+  - compounding
+  - figure
+  - paper
+  - round2
+- id: art_20260516_22bc8e
+  name: paper_data_audit
+  type: report
+  description: Paper data integration audit for ARR May 25 — compounding curves, downstream
+    CI, Phi-3 coverage
+  path: projects/ratekv/artifacts/_project/report/paper_data_audit.md
+  url: null
+  project: ratekv
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:40:18.066257+00:00'
+  tags:
+  - paper
+  - audit
+  - arr-may25

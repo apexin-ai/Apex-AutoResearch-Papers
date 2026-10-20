@@ -1,0 +1,83 @@
+{
+  "exp_id": "w1_qwen14b_hires_profiling",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T08:22:15.199Z",
+    "updated_at": "2026-05-15T11:24:35.022Z",
+    "hypothesis": "W1 new model: Qwen2.5-14B hires bf16 2-bit-only profiling. 48L x 8KV (GQA 5:1), 384 heads. Same Qwen family as 7B (Spread, concentration=0.61) — tests whether diagnostic generalizes within model family at larger scale.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python -u run_qwen14b_hires_profiling.py",
+      "server": "westd-37397",
+      "gpu": "cuda:1",
+      "pid": 315787,
+      "data_path": "calibration_hires.json (64 seq x 2048 tok)",
+      "data_count": "384 heads (48L x 8KV)",
+      "model_name": "Qwen2.5-14B",
+      "seed": "N/A",
+      "log_path": "/root/ratekv/logs/qwen14b_hires_profiling.log",
+      "checkpoint_path": "N/A (profiling-only)"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "baseline_ppl": 5.8432,
+      "concentration": 0.3312,
+      "t1_t5": 24.35,
+      "shape": "Spike",
+      "l0_dominance": 15.5,
+      "cv": 3.7418,
+      "positive_heads": 370,
+      "total_heads": 384,
+      "top10_heads": [
+        {
+          "head": "L0H5",
+          "delta": 1.84494
+        },
+        {
+          "head": "L0H4",
+          "delta": 0.236669
+        },
+        {
+          "head": "L0H2",
+          "delta": 0.136971
+        },
+        {
+          "head": "L28H4",
+          "delta": 0.099279
+        },
+        {
+          "head": "L28H5",
+          "delta": 0.07576
+        },
+        {
+          "head": "L27H4",
+          "delta": 0.071269
+        },
+        {
+          "head": "L0H0",
+          "delta": 0.070018
+        },
+        {
+          "head": "L28H6",
+          "delta": 0.063737
+        },
+        {
+          "head": "L26H0",
+          "delta": 0.061462
+        },
+        {
+          "head": "L31H3",
+          "delta": 0.061062
+        }
+      ],
+      "elapsed_min": 161.3
+    },
+    "notes": "Qwen2.5-14B (48L×8KV, GQA 5:1): Extreme Spike — t1/t5=24.35 (highest of all models). L0H5 delta=1.845 is 7.8× Top-2. L0 dominance 15.5x. L28 is secondary hotspot (3 heads in Top-10). CRITICAL FINDING: Qwen2.5-14B is Spike despite Qwen2.5-7B being Spread — same family, different scale, different shape. This challenges any simple architecture→shape mapping and strengthens the case for per-model profiling. Predicts: unconstrained MCKP safe (single dominant head easily handled by constraint), cardinality constraint mostly irrelevant (only 1 truly dangerous head).",
+    "completed_at": "2026-05-15T11:24:35.023Z"
+  },
+  "timestamp": "2026-05-15T11:24:35.285135+00:00",
+  "trigger": "update_registry"
+}

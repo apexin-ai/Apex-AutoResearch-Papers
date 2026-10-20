@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_kivi_llama_and_r0_20260515T114602_result.json",
     "occurrence": 1,
-    "bytes": 989,
-    "sha256": "6d977f7167f8a9e22e60f45ee8fc1e05d5acc92003768a89da8feaff6584fb02"
+    "bytes": 988,
+    "sha256": "99efed6e2b83acfdb4cb2db486e53945ed1e867333b0b89f42daa014719ffa3d"
   },
   "statistics": {
     "messages": 1,

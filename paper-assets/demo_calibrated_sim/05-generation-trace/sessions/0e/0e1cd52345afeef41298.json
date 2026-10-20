@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e1cd52345afeef41298",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "monitor hgate dpo003 merged progress",
+  "task_key": "worker_monitor_hgate-dpo003-merged-progress_20260513T054541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_hgate-dpo003-merged-progress_20260513T054541_result.json",
+    "occurrence": 1,
+    "bytes": 1747,
+    "sha256": "eec2bd293e2fb57fc99f3083af58221799f06ea085f8b904c5c43b16e17c6167"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇报\n\n### 进程状态\n- PID 688636: **存活**，已运行 4h00m03s\n- 结构：4 runs（每 run 6 variants × 20 tasks = 120 tasks），双 GPU 并行\n\n### 进度\n\n| Run | 状态 | 进度 | 备注 |\n|-----|------|------|------|\n| Run 1 | **完成** | 120/120 | 结果已保存 |\n| Run 2 | 运行中 | ~105/120 (87%) | 第6个 variant，task 5/20 |\n| Run 3 | **完成** | 120/120 | 结果已保存 |\n| Run 4 | 运行中 | ~103/120 (86%) | 第6个 variant，task 3/20 |\n\n**总进度：~448/480 (93%)**\n\n### 已完成 Runs 的 H-gate 结果\n\n| | Run 1 | Run 3 |\n|---|---|---|\n| **H1** (baseline quality) | **PASS** (politeness=0.475) | **PASS** (politeness=0.532) |\n| **H2** (calibration improvement ≥30%) | **FAIL** | **FAIL** |\n| **H3** (task completion retention ≥80%) | **FAIL** | **FAIL** |\n| Baseline completion | 27.8% | 40% |\n| Best calibrated completion | 30% (single_dim_politeness) | 35% (single_dim_politeness) |\n\n**核心问题**：H2 全部 variant 的 politeness calibration 为负改善（校准后 politeness rate 反而更高，远离目标值）。H3 也因 completion 下降而失败。\n\n### GPU 占用\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| GPU 0 | 21% | 15.1/24.6 GB |\n| GPU 1 | 31% | 16.2/24.6 GB |\n| **GPU 2** | **100%** | **22.1/24.6 GB** |\n| **GPU 3** | **95%** | **22.1/24.6 GB** |\n| GPU 4-5 | 0% | 空闲 |\n\nGPU 0/1 跑的是 vLLM serving，GPU 2/3 满负载推理，符合预期。\n\n### Mistral-7B 下载状态\n**已存在**：`/root/autodl-tmp/models/Mistral-7B-Instruct-v0.3/`\n\n### 预估剩余时间\n每个 variant round 约 18-20 分钟。Run 2 和 Run 4 各剩 ~15 个 task，预计 **15-20 分钟内全部完成**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-hgate-dpo003-merged-progress.md"
+}

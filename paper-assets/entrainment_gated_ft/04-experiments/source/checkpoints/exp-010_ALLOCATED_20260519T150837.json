@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp-010",
+  "project": "entrainment_gated_ft",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T15:08:21.255Z",
+    "updated_at": "2026-05-19T15:08:37.051Z",
+    "hypothesis": "Aggregate convergence (cross-arch std decreasing with attention ratio) and per-example divergence (low Jaccard of helped/hurt sets) co-evolve as attention ratio increases on LAMBADA — demonstrating underspecification: architectures converge in aggregate performance while helping/hurting almost entirely different samples",
+    "parent": "exp-001"
+  },
+  "timestamp": "2026-05-19T15:08:37.086031+00:00",
+  "trigger": "update_registry"
+}

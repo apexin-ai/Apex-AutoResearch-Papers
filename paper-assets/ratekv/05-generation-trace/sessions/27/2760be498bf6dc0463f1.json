@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_architectural_bottleneck_20260516T102156_result.json",
     "occurrence": 1,
-    "bytes": 468,
-    "sha256": "13e4e2f9c644aaec21be20393f52e8605f3c5f3eec93506e9bc5d433dcb20b4f"
+    "bytes": 467,
+    "sha256": "463cb05da8c36b33946eb0ce674351ee3162e89b4599239285ae755724f44b12"
   },
   "statistics": {
     "messages": 1,

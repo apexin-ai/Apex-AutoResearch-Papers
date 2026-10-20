@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp-009",
+  "project": "entrainment_gated_ft",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:32:43.818Z",
+    "updated_at": "2026-05-19T13:33:15.328Z",
+    "hypothesis": "Our equalizer effect analysis provides fully novel contributions relative to Wang et al. (arXiv 2507.06457) across 4 dimensions: convergence quantification (Spearman ρ + permutation test vs qualitative observation), scale dependency (quantitative 1.3B vs 340M contrast vs binary statement), per-example mechanism (Jaccard + net effect analysis vs absent), and task-specificity (convergence-strength by task type vs ratio-sensitivity)"
+  },
+  "timestamp": "2026-05-19T13:33:15.337189+00:00",
+  "trigger": "update_registry"
+}

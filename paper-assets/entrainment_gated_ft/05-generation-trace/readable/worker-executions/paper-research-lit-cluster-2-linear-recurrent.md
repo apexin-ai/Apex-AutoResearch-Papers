@@ -2646,7 +2646,7 @@ _source line 60_
 
 ```json
 {
-  "command": "echo \"SEMANTIC_SCHOLAR_API_KEY=${SEMANTIC_SCHOLAR_API_KEY:-(not set)}\"",
+  "command": "echo \"SEMANTIC_SCHOLAR_API_KEY=[REDACTED] set)}\"",
   "description": "Check if Semantic Scholar API key is set"
 }
 ```
@@ -2698,7 +2698,7 @@ _source line 61 · 2026-05-19T18:45:51.288Z_
 <details><summary>↩ Tool result · `toolu_017rCtTsjCiTPReewTkf72rJ`</summary>
 
 ```text
-SEMANTIC_SCHOLAR_API_KEY=(not set)
+SEMANTIC_SCHOLAR_API_KEY=[REDACTED] set)
 ```
 
 </details>

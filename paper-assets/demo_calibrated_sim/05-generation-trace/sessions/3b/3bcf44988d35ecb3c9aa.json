@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bcf44988d35ecb3c9aa",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "infra dpo001 exit check",
+  "task_key": "worker_infra_dpo001-exit-check_20260512T162725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_dpo001-exit-check_20260512T162725_result.json",
+    "occurrence": 1,
+    "bytes": 487,
+    "sha256": "72462a2f17de483d553a0bd28cc6b79f82c453cbb26a968df8e7ef910311cda5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**dpo-001 训练成功完成。**\n\n| 项目 | 值 |\n|------|-----|\n| 状态 | 3/3 epoch 完成，日志末尾 \"Training complete\" |\n| train_loss | 0.6814 |\n| 训练时长 | 1:14:41 (4481s) |\n| throughput | 0.96 samples/s, 0.24 steps/s |\n| adapter 路径 | `/root/democalib/dpo_output/final_adapter/` (adapter_model.safetensors 10MB) |\n| checkpoints | checkpoint-718, checkpoint-1077 |\n| registry | → DONE / success，metrics 已写入 |\n| cron | 已删除 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-dpo001-exit-check.md"
+}

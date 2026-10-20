@@ -1,0 +1,52 @@
+{
+  "exp_id": "c4_rerun_d032",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:37:29.678Z",
+    "updated_at": "2026-05-14T11:10:49.705Z",
+    "spec": {
+      "hypothesis": "D032 C4 rerun: plan_007 + plan_010 with verified allenai/c4 en validation data. Concatenation-based calibration (not per-text). Replaces contaminated WikiText-as-C4 results.",
+      "plan_id": "plan_007+plan_010",
+      "claim": [
+        1,
+        2,
+        3
+      ],
+      "model_name": "Qwen2.5-7B / Llama-3.1-8B / Mistral-7B",
+      "server": "westd-37397",
+      "data_path": "c4_calibration.json (real C4 allenai/c4 en validation) + wikitext-2-raw-v1",
+      "data_count": 200,
+      "seed": 0,
+      "command": "python run_c4_rerun.py",
+      "gpu": "cuda:1",
+      "pid": 210299,
+      "log_path": "/root/ratekv/c4_rerun.log",
+      "checkpoint_path": "/root/ratekv/c4_rerun_results/"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "c4_cal_wt2_eval_mckp_ppl": 11.2942,
+      "c4_cal_wt2_eval_uniform_ppl": 15.4454,
+      "c4_cal_wt2_eval_delta": 4.1512,
+      "c4_cal_bf16_baseline": 12.6505,
+      "wt2_bf16_baseline": 9.8106,
+      "allocation_agreement_c4_vs_wt2": 0.964,
+      "agreement_heads": "108/112",
+      "bit_dist": "2bit:8, 4bit:100, 8bit:4",
+      "cross_domain_wt2_to_c4_mckp_ppl": 20.5601,
+      "cross_domain_wt2_to_c4_uniform_ppl": 35.4232,
+      "cross_domain_c4_bf16": 15.3246,
+      "old_contaminated_ppl": 11.3285,
+      "contamination_impact": 0.0343,
+      "models_completed": "Qwen2.5-7B only"
+    },
+    "notes": "Qwen2.5-7B 完成（Llama/Mistral 未包含在脚本中）。\n\nPlan 007 (C4-cal → WT2-eval): MCKP PPL=11.2942, uniform=15.4454, Δ=4.15。Bit dist={8:4, 4:100, 2:8}。与 WT2-calibrated allocation agreement=96.4% (108/112 heads)。\n\nPlan 010 (Cross-domain): C4→WT2 PPL=11.2942; WT2→C4 PPL=20.5601 (uniform C4=35.4232)。双向均显著优于 uniform。\n\n关键发现：真实 C4 (11.2942) vs 旧污染数据 (11.3285)，差异仅 0.034 PPL — D032 数据污染对 Qwen 分配结果影响极小。96.4% agreement 证明分配方案对 calibration 数据源高度鲁棒。",
+    "completed_at": "2026-05-14T11:10:49.705Z"
+  },
+  "timestamp": "2026-05-14T11:10:49.782288+00:00",
+  "trigger": "update_registry"
+}

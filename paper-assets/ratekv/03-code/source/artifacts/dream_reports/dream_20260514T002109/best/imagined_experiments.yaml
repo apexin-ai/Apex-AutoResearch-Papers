@@ -1,0 +1,975 @@
+tier: best
+narrative_guidance: '原始 framing 完全成立。三条 claims 在 Qwen/Llama/Mistral 三模型、WikiText-2/C4
+  双数据集上 完整成立。compounding effect 有干净的 elbow curve（SNR≥5），solver 在去掉 L0 exclusion 后
+  仍自动将 8-bit 分配给 Layer 0 heads。叙事核心："cardinality-constrained MCKP as principled regularization
+  for compounding effects"。与 RateQuant 差异化清晰：discrete vs continuous + compounding
+  regularization 是 qualitatively different contribution。论文可以直接用 "三模型一致性"作为 generalizability
+  的强证据，用 compounding elbow curve 作为 cardinality constraint 的 principled motivation。
+
+  '
+imagined_experiments:
+- name: L0 Auto-Discovery (No Exclusion)
+  plan_id: plan_001
+  description: '移除 solver 中的 L0 exclusion 硬约束，仅保留 max_2bit=8 的 cardinality constraint。
+    验证 solver 是否仅凭 profiling delta 数据自动将 8-bit 分配给 Layer 0 全部 4 个 KV heads。
+
+    '
+  expected_results:
+    l0_auto_discovery: true
+    l0_heads_assigned_8bit: 4/4 (100%)
+    ppl_wikitext: 11.28
+    ppl_delta_vs_with_exclusion: 0.05
+    allocation_agreement_with_exclusion: 108/112 heads identical (96.4%)
+    solver_time_seconds: 0.03
+  result_rationale: 'Layer 0 heads 的 profiling delta 比 mid-layer heads 高 ~100×（delta
+    ≈ 2.1 vs 均值 0.02）。 在 MCKP 的 objective 中，将 L0 heads 从 4-bit 提升到 8-bit 的边际收益远超任何
+    mid-layer head， 因此即使没有 exclusion 硬约束，纯 cost-benefit optimization 也会自动选择保护 L0。
+    PPL 几乎不变（+0.05）是因为 solver 自由度增加后在 mid-layer 有微小重分配，但 L0 保护 这个核心决策完全一致。少数 4 个 head
+    的分配差异出现在 delta 接近的 mid-layer 边界 heads。
+
+    '
+  tables:
+  - name: 'Table: L0 Head Allocation Comparison'
+    columns:
+    - Head
+    - Delta (×10⁻²)
+    - With Exclusion
+    - Without Exclusion
+    rows:
+    - - L0-H0
+      - '215.3'
+      - 8-bit (forced)
+      - 8-bit (auto)
+    - - L0-H1
+      - '198.7'
+      - 8-bit (forced)
+      - 8-bit (auto)
+    - - L0-H2
+      - '201.4'
+      - 8-bit (forced)
+      - 8-bit (auto)
+    - - L0-H3
+      - '189.2'
+      - 8-bit (forced)
+      - 8-bit (auto)
+    - - L1-H0
+      - '3.41'
+      - 4-bit
+      - 4-bit
+    - - avg mid-layer
+      - '1.87'
+      - 4-bit
+      - 4-bit
+  - name: 'Table: PPL Comparison'
+    columns:
+    - Configuration
+    - PPL (WikiText-2)
+    rows:
+    - - Constrained MCKP (with L0 exclusion)
+      - '11.23'
+    - - Constrained MCKP (without L0 exclusion)
+      - '11.28'
+    - - Uniform 4-bit
+      - '15.45'
+  figures_description:
+  - 'Bar chart: per-head bit-width allocation side-by-side (with vs without exclusion),
+    color-coded by bit-width. Visual emphasis on L0 heads being identical in both
+    conditions.'
+  analysis: '这是论文中最具叙事力的实验之一。它把 "solver automatically discovers architectural sensitivity
+    structure" 从修辞变成了实证。4/4 L0 heads 被自动发现说明 profiling delta 的 signal-to-noise 足够高，不需要任何领域先验。96.4%
+    的 allocation 一致率说明 exclusion constraint 本来就是冗余的——solver 自己就会做出正确决策。 PPL 差异 <0.5%
+    进一步确认了这一点。论文叙事可以正面使用： "We initially included L0 exclusion as a safety constraint,
+    but found the solver independently discovers L0 criticality from profiling data
+    alone."
+
+    '
+- name: Llama-3.1-8B Full Pipeline
+  plan_id: plan_002
+  description: '在 Llama-3.1-8B（GQA 4:1, 8 KV heads/layer × 32 layers = 256 KV heads）上
+    完整复现 pipeline：profiling → constrained MCKP → evaluation。
+
+    '
+  expected_results:
+    fp16_baseline_ppl: 6.24
+    uniform_4bit_ppl: 8.95
+    constrained_mckp_ppl: 6.78
+    unconstrained_mckp_ppl: 14.31
+    ppl_improvement_pct: 24.2
+    max_2bit_used: 16
+    l0_heads_assigned_8bit: 8/8 (100%)
+    heads_at_2bit: 16
+    heads_at_4bit: 192
+    heads_at_8bit: 32
+    heads_at_16bit: 16
+    compression_ratio: 3.97×
+    top_sensitive_heads_pct: 4.7%
+    top_sensitive_heads_ppl_contribution_pct: 65%
+  result_rationale: 'Llama-3.1-8B 的 GQA ratio 为 4:1（32 query heads / 8 KV heads），KV
+    heads 数量是 Qwen 的 2.3 倍（256 vs 112）。更多的 heads 意味着 per-head 分配的自由度更高，MCKP 有更大的 优化空间。但
+    GQA 4:1 也意味着每个 KV head 被更少的 query heads 共享（4 vs 7）， 所以单个 head 的影响力相对更分散，sensitivity
+    heterogeneity 可能略低于 Qwen。 24.2% 的 PPL improvement 在 best tier 范围 [20,30] 内，略低于
+    Qwen 的 27% 是因为 Llama 的 attention head 结构更均匀（GQA ratio 更低→ per-KV-head 影响更分散）。
+    Unconstrained MCKP 仍然崩溃（14.31 vs 6.78）确认 compounding effect 在不同架构上一致存在， 但绝对恶化程度低于
+    Qwen（Qwen 36.92/11.23 = 3.3× vs Llama 14.31/6.78 = 2.1×）， 因为 256 heads 中同时被分配
+    2-bit 的比例在相同 max_2bit 约束下更低。 L0 dominance pattern 复现：Layer 0 的 8 个 KV heads profiling
+    delta 显著高于其他层。
+
+    '
+  tables:
+  - name: 'Table: Llama-3.1-8B Allocation Results'
+    columns:
+    - Method
+    - PPL ↓
+    - Compression
+    - Heads@2bit
+    - Heads@8bit+
+    rows:
+    - - FP16 (baseline)
+      - '6.24'
+      - 1×
+      - '0'
+      - '256'
+    - - Uniform 4-bit
+      - '8.95'
+      - 4×
+      - '0'
+      - '0'
+    - - Unconstrained MCKP
+      - '14.31'
+      - 4×
+      - '89'
+      - '24'
+    - - Constrained MCKP (max_2bit=16)
+      - '6.78'
+      - 4×
+      - '16'
+      - '48'
+  - name: 'Table: Layer 0 Sensitivity (Llama)'
+    columns:
+    - Head
+    - Delta (×10⁻²)
+    - Assigned
+    rows:
+    - - L0-H0 ~ L0-H7
+      - 58.3 ~ 89.1
+      - all 8-bit
+    - - L1-H0 ~ L1-H7
+      - 2.1 ~ 4.8
+      - mixed 4/8-bit
+    - - avg mid-layer
+      - '0.9'
+      - 4-bit
+  figures_description:
+  - 'Heatmap: 32×8 grid of per-head profiling delta for Llama-3.1-8B, showing L0 dominance
+    and sparse mid-layer heterogeneity.'
+  - 'Side-by-side allocation map: Qwen (28×4) vs Llama (32×8), demonstrating consistent
+    L0 protection pattern across architectures.'
+  analysis: 'Llama-3.1-8B 的成功复现是论文 generalizability 的关键支撑。GQA 4:1 vs 7:1 的差异 测试了方法对不同
+    KV head 共享结构的鲁棒性。24.2% 的改进虽然略低于 Qwen 的 27%， 但仍然显著且一致。unconstrained 崩溃的复现（2.1×
+    恶化）确认 compounding effect 不是 Qwen 特有的 artifact。跨架构 L0 dominance 的一致性支持 Claim 1
+    的强形式： "Layer 0 sensitivity is an architectural invariant, not a model-specific
+    phenomenon."
+
+    '
+- name: Mistral-7B-v0.3 Full Pipeline
+  plan_id: plan_003
+  description: '在 Mistral-7B-v0.3（GQA 4:1, 8 KV heads/layer × 32 layers = 256 KV heads，
+    sliding window attention）上完整复现 pipeline。
+
+    '
+  expected_results:
+    fp16_baseline_ppl: 7.01
+    uniform_4bit_ppl: 9.87
+    constrained_mckp_ppl: 7.68
+    unconstrained_mckp_ppl: 16.54
+    ppl_improvement_pct: 22.2
+    max_2bit_used: 14
+    l0_heads_assigned_8bit: 8/8 (100%)
+    heads_at_2bit: 14
+    heads_at_4bit: 198
+    heads_at_8bit: 28
+    heads_at_16bit: 16
+    compression_ratio: 3.98×
+    sliding_window_impact: window boundary layers show elevated sensitivity
+  result_rationale: 'Mistral-7B-v0.3 使用 sliding window attention（window=4096），这在 KV
+    cache 的使用模式 上与 full attention 不同：window 边界附近的 layers 承担更多的"信息中继"职责， sensitivity
+    分布可能比 Llama 更不均匀。22.2% 的 PPL improvement 在 best tier 范围 [18,28] 内，略低于 Llama 的
+    24.2%，因为 Mistral 的 sliding window 使得 KV cache 在长序列上的有效利用率本来就较高（无需缓存超出 window 的
+    KV），4-bit uniform 对 Mistral 的相对伤害比 full-attention 模型更小。但 constrained MCKP 仍然显著优于
+    uniform，确认方法在 sliding window 架构下同样有效。 L0 dominance pattern 第三次复现：即使有 sliding window，Layer
+    0 heads 仍然是最敏感的， 因为它们处理的是 token embedding 的直接变换，与 attention pattern 无关。
+
+    '
+  tables:
+  - name: 'Table: Mistral-7B Results'
+    columns:
+    - Method
+    - PPL ↓
+    - Compression
+    - Improvement
+    rows:
+    - - FP16 (baseline)
+      - '7.01'
+      - 1×
+      - —
+    - - Uniform 4-bit
+      - '9.87'
+      - 4×
+      - —
+    - - Unconstrained MCKP
+      - '16.54'
+      - 4×
+      - −67.6%
+    - - Constrained MCKP
+      - '7.68'
+      - 4×
+      - +22.2%
+  figures_description:
+  - Per-head delta heatmap for Mistral, annotating sliding window boundary layers
+    with elevated sensitivity.
+  analysis: '三模型中最低的 PPL improvement（22.2%），但仍在 best tier 范围内。Sliding window 是一个有意义的
+    architectural variation，成功复现说明方法不依赖于 full attention 假设。 论文可以额外指出 sliding window
+    boundary layers 的 elevated sensitivity 作为 一个 interesting observation，但不要过度解释。
+
+    '
+- name: Compounding Effect Elbow Curve
+  plan_id: plan_004
+  description: '在 Qwen2.5-7B 上 sweep max_2bit 从 0 到 112（全部 KV heads）， 8 个点：0, 4, 8,
+    16, 24, 48, 75, 112。绘制 PPL vs max_2bit 曲线， 定位 compounding threshold（elbow point）。
+
+    '
+  expected_results:
+    sweep_results:
+      max_2bit_0:
+        ppl: 12.01
+        heads_at_2bit: 0
+        note: no 2-bit allowed, solver uses 4/8/16 only
+      max_2bit_4:
+        ppl: 11.34
+        heads_at_2bit: 4
+        note: 4 most expendable heads at 2-bit, frees budget for 8-bit on L0
+      max_2bit_8:
+        ppl: 11.08
+        heads_at_2bit: 8
+        note: near-optimal, all freed budget protecting critical heads
+      max_2bit_16:
+        ppl: 11.52
+        heads_at_2bit: 16
+        note: slight degradation begins, compounding starts
+      max_2bit_24:
+        ppl: 13.41
+        heads_at_2bit: 24
+        note: clear compounding, 2-bit heads interacting
+      max_2bit_48:
+        ppl: 21.87
+        heads_at_2bit: 48
+        note: severe compounding, 43% of heads at extreme quant
+      max_2bit_75:
+        ppl: 30.12
+        heads_at_2bit: 67
+        note: catastrophic, solver can't use all 75 slots optimally
+      max_2bit_112:
+        ppl: 36.92
+        heads_at_2bit: 78
+        note: unconstrained equivalent, full compounding
+    elbow_k: 12
+    elbow_snr: 7.3
+    optimal_k: 8
+    optimal_ppl: 11.08
+    pre_elbow_slope: 0.055
+    post_elbow_slope: 1.29
+  result_rationale: 'Compounding effect 的物理机制：当多个 heads 同时被 quantize 到 2-bit 时，每个
+    head 的 quantization error 通过 residual stream 传播到下游 layers。单个 head 的 2-bit error
+    可以被其他 head 的正常精度"吸收"，但当足够多的 heads 同时 degraded 时，error 累积 超过模型的 error correction
+    capacity。这是一个典型的 threshold phenomenon。 elbow 在 k≈8-12 是因为 Qwen2.5-7B 有 112 个 KV
+    heads（28 layers × 4 heads）， 当 ~7-10% 的 heads 被设为 2-bit 时达到 compounding onset。k=8（7.1%
+    of heads） 是 optimal：此时 freed budget 恰好足够保护所有 critical heads（L0 + 少量 high-delta
+    mid-layer heads）at 8/16-bit，而 2-bit heads 都是 truly expendable 的。 SNR=7.3 远超阈值
+    5，说明 elbow 是 sharp 的，不是 gradual degradation。 pre-elbow slope 0.055 PPL/head 说明在
+    safe region 内每增加一个 2-bit head 几乎 无影响；post-elbow slope 1.29 PPL/head 说明超过 elbow
+    后每增加一个 2-bit head 带来 >1 PPL 的恶化——23× 的 slope ratio 是 compounding non-additivity
+    的直接证据。
+
+    '
+  tables:
+  - name: 'Table: Compounding Effect Sweep'
+    columns:
+    - max_2bit (k)
+    - PPL ↓
+    - Δ PPL vs k=0
+    - Heads@2bit
+    - '% Heads@2bit'
+    rows:
+    - - '0'
+      - '12.01'
+      - —
+      - '0'
+      - 0%
+    - - '4'
+      - '11.34'
+      - −0.67
+      - '4'
+      - 3.6%
+    - - '8'
+      - '11.08'
+      - −0.93
+      - '8'
+      - 7.1%
+    - - '16'
+      - '11.52'
+      - −0.49
+      - '16'
+      - 14.3%
+    - - '24'
+      - '13.41'
+      - '+1.40'
+      - '24'
+      - 21.4%
+    - - '48'
+      - '21.87'
+      - '+9.86'
+      - '48'
+      - 42.9%
+    - - '75'
+      - '30.12'
+      - '+18.11'
+      - '67'
+      - 59.8%
+    - - '112'
+      - '36.92'
+      - '+24.91'
+      - '78'
+      - 69.6%
+  figures_description:
+  - '核心 Figure：PPL vs max_2bit (k) 曲线。X 轴为 max_2bit constraint value， Y 轴为 PPL（log
+    scale）。标注 elbow point (k=12) 和 optimal point (k=8)。 用灰色 band 标注 "safe zone" (k≤12)
+    和 "compounding zone" (k>12)。 右侧 y 轴叠加 Δ PPL per additional 2-bit head（local slope），
+    清晰展示 slope 在 elbow 处的 discontinuity。
+
+    '
+  - 'Inset figure：log-log plot of residual PPL increment vs k， 展示 pre-elbow region
+    为 sublinear（additive model valid）、 post-elbow region 为 superlinear（compounding
+    dominates）。
+
+    '
+  analysis: '这是论文的 signature figure，直接支撑 Claim 3。elbow curve 提供了 cardinality constraint
+    的 principled justification：不是 arbitrary heuristic，而是 compounding non-additivity
+    的 empirical boundary。23× slope ratio 是一个 striking result，可以用一句话总结论文的核心发现： "Below
+    the compounding threshold, per-head distortion is approximately additive (slope=0.055);
+    above it, each additional extreme-quantized head incurs 23× more damage due to
+    error propagation through the residual stream." 建议在论文 Introduction 的 Figure 1
+    位置放置此图。
+
+    '
+- name: Budget Sweep (2×/4×/8× Compression)
+  plan_id: plan_005
+  description: '在 Qwen2.5-7B 上测试 constrained MCKP 在三个压缩比下的表现： 2×（budget=0.5）、4×（budget=0.25）、8×（budget=0.125），
+    每个压缩比与同 budget 的 uniform baseline 对比。
+
+    '
+  expected_results:
+    results_2x:
+      uniform_8bit_ppl: 10.12
+      constrained_mckp_ppl: 9.94
+      improvement_pct: 1.8
+      allocation: mostly 8-bit with 12 heads at 16-bit, 8 heads at 4-bit
+    results_4x:
+      uniform_4bit_ppl: 15.45
+      constrained_mckp_ppl: 11.08
+      improvement_pct: 28.3
+      allocation: 8 heads@2bit, 76 heads@4bit, 20 heads@8bit, 8 heads@16bit
+    results_8x:
+      uniform_2bit_ppl: 78.34
+      constrained_mckp_ppl: 28.67
+      improvement_pct: 63.4
+      allocation: 64 heads@2bit, 32 heads@4bit, 12 heads@8bit, 4 heads@16bit
+    fp16_baseline: 9.82
+  result_rationale: '不同压缩比下 MCKP 优势的差异源于 sensitivity heterogeneity 的利用空间： (1) 2× 压缩：budget
+    充裕，uniform 8-bit 已经接近 FP16（+3.1%），MCKP 只能通过 将少量 insensitive heads 降到 4-bit 并将
+    freed budget 给最 sensitive heads 升到 16-bit 来获得微小改进。1.8% 的 improvement 虽小但说明 heterogeneity
+    确实存在。 (2) 4× 压缩：sweet spot——uniform 4-bit 已有 57% 的 PPL degradation，而 MCKP 可以充分利用
+    head 间的 sensitivity 差异。28.3% 的 improvement 是 headline result。 (3) 8× 压缩：uniform
+    2-bit 是灾难性的（PPL 78.34, 8× baseline），MCKP 通过 保护 ~15% 的 critical heads 在 8/16-bit
+    将 PPL 控制在 28.67——仍然很差， 但比 uniform 好 63.4%。这说明即使在极端压缩下，intelligent allocation 仍然
+    有巨大价值，但也诚实地表明 8× 压缩的绝对质量不够实用。 整体趋势：MCKP 的相对优势随压缩比增加而增大，因为更激进的压缩放大了 sensitivity
+    heterogeneity 的重要性。
+
+    '
+  tables:
+  - name: 'Table: Budget Sweep Results (Qwen2.5-7B, WikiText-2)'
+    columns:
+    - Compression
+    - Budget
+    - Uniform PPL
+    - MCKP PPL
+    - Improvement
+    - Δ vs FP16
+    rows:
+    - - 2×
+      - '0.50'
+      - '10.12'
+      - '9.94'
+      - 1.8%
+      - +1.2%
+    - - 4×
+      - '0.25'
+      - '15.45'
+      - '11.08'
+      - 28.3%
+      - +12.8%
+    - - 8×
+      - '0.125'
+      - '78.34'
+      - '28.67'
+      - 63.4%
+      - +192%
+    - - FP16
+      - '1.00'
+      - '9.82'
+      - —
+      - —
+      - —
+  figures_description:
+  - '双 Y 轴图：左 Y 轴为 PPL（log scale），X 轴为 compression ratio， 两条线（uniform vs constrained
+    MCKP）。右 Y 轴为 improvement percentage。 Fan-out pattern 清晰展示：压缩比越高，MCKP 优势越大。 标注
+    4× 为 "practical sweet spot"。
+
+    '
+  analysis: 'Budget sweep 回应了 reviewer concern #4（"How does this work at different
+    compression ratios?"）。1.8% → 28.3% → 63.4% 的递增趋势是一个 clean story： mixed-precision
+    的价值在压缩压力大时最显著。4× 是论文的 headline compression ratio， 既是实际部署最常见的 target，也是 MCKP 优势最
+    striking 的 sweet spot。 8× 的结果可以诚实报告：MCKP 大幅优于 uniform 但绝对 PPL 仍然高， 说明方法的局限性（不能
+    violate information-theoretic limits）。
+
+    '
+- name: High-Resolution Profiling
+  plan_id: plan_006
+  description: '将 profiling 从 16 seq × 512 tokens 提升到 64 seq × 2048 tokens（8× 数据量）。
+    在 Qwen2.5-7B 上重新 profile，rerun MCKP，评估是否能区分 mid-layer heads。
+
+    '
+  expected_results:
+    lores_nonzero_head_pct: 16.1
+    hires_nonzero_head_pct: 58.0
+    lores_delta_std_midlayers: 0.0003
+    hires_delta_std_midlayers: 0.0089
+    hires_mckp_ppl: 10.72
+    lores_mckp_ppl: 11.08
+    ppl_improvement_from_hires: 3.2
+    new_sensitive_heads_discovered: 14
+    l0_delta_change_pct: +2.1%
+    mid_layer_delta_change_pct: +1400%
+    profiling_time_hours: 2.8
+  result_rationale: '低分辨率 profiling（16×512 = 8K tokens）的 mid-layer delta 被 sampling
+    noise 淹没：大多数 mid-layer heads 的 true delta 在 10⁻⁴ 量级，而 sampling variance 在 ~10⁻³
+    量级，导致 84% 的 heads 被 round 到 delta=0。高分辨率（64×2048 = 128K tokens） 将 sampling variance
+    降低 √16 ≈ 4×，使得 10⁻⁴ 量级的 true delta 开始可分辨。 58% nonzero（从 16.1% 提升）意味着约 47 个之前被认为
+    delta=0 的 head 现在有了 可测量的 sensitivity signal。其中 14 个 head 的 delta 足够大以改变 MCKP allocation。
+    3.2% 的 PPL improvement（10.72 vs 11.08）说明 mid-layer heterogeneity 确实存在且 有实际价值，但主要贡献仍来自
+    L0 的 correct allocation（L0 delta 变化仅 2.1%， 说明 L0 signal 在低分辨率下就已经 saturated）。
+    1400% 的 mid-layer delta std 提升是最 striking 的数字： 从 0.0003 到 0.0089，说明 mid-layer
+    内部确实有显著的 head-level heterogeneity， 只是之前被 noise 掩盖了。
+
+    '
+  tables:
+  - name: 'Table: Profiling Resolution Comparison'
+    columns:
+    - Metric
+    - Lo-Res (16×512)
+    - Hi-Res (64×2048)
+    - Change
+    rows:
+    - - Total profiling tokens
+      - 8,192
+      - 131,072
+      - 16×
+    - - Nonzero-delta heads
+      - 18/112 (16.1%)
+      - 65/112 (58.0%)
+      - +261%
+    - - Mid-layer delta std
+      - 3×10⁻⁴
+      - 8.9×10⁻³
+      - +1400%
+    - - L0 avg delta
+      - '2.08'
+      - '2.12'
+      - +2.1%
+    - - MCKP PPL
+      - '11.08'
+      - '10.72'
+      - −3.2%
+    - - Allocation changes vs lo-res
+      - —
+      - 14 heads
+      - —
+    - - Profiling wall-time
+      - 0.4h
+      - 2.8h
+      - 7×
+  - name: 'Table: Discovered Mid-Layer Sensitive Heads'
+    columns:
+    - Head
+    - Lo-Res Delta
+    - Hi-Res Delta
+    - New Allocation
+    rows:
+    - - L12-H2
+      - '0.000'
+      - '0.0134'
+      - 4→8 bit
+    - - L15-H0
+      - '0.000'
+      - '0.0118'
+      - 4→8 bit
+    - - L7-H3
+      - '0.000'
+      - '0.0097'
+      - 4→8 bit
+    - - L21-H1
+      - '0.000'
+      - '0.0091'
+      - 2→4 bit
+    - - '... (10 more)'
+      - —
+      - —
+      - —
+  figures_description:
+  - '双面板 heatmap：左为 lo-res delta（28×4 grid，大量 white=0）， 右为 hi-res delta（同 grid，明显更多
+    non-zero entries，color gradient 揭示 mid-layer heterogeneity）。共享 colorbar（log scale）。
+
+    '
+  - 'Histogram：lo-res vs hi-res delta 分布，展示 hi-res 下 delta=0 的 spike 大幅缩小，被一个 continuous
+    distribution 取代。
+
+    '
+  analysis: '高分辨率 profiling 的 3.2% PPL improvement 不大，但它的主要价值是 scientific： 证明了 mid-layer
+    heterogeneity 的存在（之前被 noise 掩盖），使 Claim 1 从 "L0 dominates" 扩展为 "sensitivity is
+    hierarchically structured — L0 dominates, but mid-layer heterogeneity also matters
+    at finer resolution"。 论文建议：hi-res profiling 可以作为一个 optional enhancement， main
+    results 使用 lo-res（更实用），hi-res 在 analysis section 展示 以支持 Claim 1 的完整叙事。2.8h 的 profiling
+    成本说明 hi-res 在实践中 不是 free 的，但对于 one-time offline allocation 是可接受的。
+
+    '
+- name: C4 Cross-Dataset Evaluation
+  plan_id: plan_007
+  description: '在 Qwen2.5-7B 上用 WikiText-2 calibrated allocations 在 C4 上评估， 同时用 C4
+    数据 rerun profiling + MCKP 并在 C4 上评估。 计算两种 allocation 的 rank correlation。
+
+    '
+  expected_results:
+    c4_fp16_ppl: 11.87
+    c4_uniform_4bit_ppl: 17.42
+    c4_constrained_mckp_ppl_wikitext_calib: 12.61
+    c4_constrained_mckp_ppl_c4_calib: 12.48
+    c4_ppl_improvement_pct: 27.6
+    wikitext_c4_rank_correlation: 0.94
+    allocation_agreement_rate: 101/112 heads (90.2%)
+    l0_protection_consistent: true
+    cross_calib_ppl_gap: 0.13
+  result_rationale: 'C4 是 web-crawl 数据，domain 比 WikiText-2 更广。PPL 绝对值更高（FP16 11.87
+    vs 9.82） 是因为 C4 的 vocabulary diversity 和 noise。但 quantization sensitivity 的 relative
+    ordering 高度一致（rank correlation 0.94）：哪些 heads 敏感、哪些不敏感， 这是 architectural property
+    而非 data-dependent property。L0 heads 在 C4 profiling 下同样是最敏感的，进一步支持 "sensitivity
+    is architecturally determined"。 90.2% 的 allocation agreement 说明 WikiText-2 calibrated
+    allocation 在 C4 上 几乎同样有效（PPL gap 仅 0.13）。27.6% 的 improvement 与 WikiText-2 上的 28.3%
+    接近，说明方法的效果不依赖于特定 dataset。 0.94 的 rank correlation 在 best tier 范围 [0.88, 0.98]
+    内。
+
+    '
+  tables:
+  - name: 'Table: C4 Evaluation Results'
+    columns:
+    - Method
+    - WikiText-2 PPL
+    - C4 PPL
+    - Improvement
+    rows:
+    - - FP16
+      - '9.82'
+      - '11.87'
+      - —
+    - - Uniform 4-bit
+      - '15.45'
+      - '17.42'
+      - —
+    - - Constrained MCKP (WT2-calib)
+      - '11.08'
+      - '12.61'
+      - 27.6%
+    - - Constrained MCKP (C4-calib)
+      - —
+      - '12.48'
+      - 28.3%
+    - - Unconstrained MCKP
+      - '36.92'
+      - '41.23'
+      - −136.5%
+  - name: 'Table: Cross-Dataset Calibration Robustness'
+    columns:
+    - Metric
+    - Value
+    rows:
+    - - Rank correlation (head delta ordering)
+      - '0.94'
+    - - Allocation agreement (same bit-width)
+      - 90.2%
+    - - Cross-calib PPL gap
+      - '0.13'
+    - - L0 8-bit protection consistent
+      - 'Yes'
+  figures_description:
+  - 'Scatter plot：WikiText-2 per-head delta (x-axis) vs C4 per-head delta (y-axis)，
+    112 个点，标注 Spearman ρ=0.94。L0 heads 用不同 marker 标注， 位于右上角，远离 cluster。
+
+    '
+  analysis: 'C4 实验完成了 "multi-dataset" 维度的验证。0.94 的 rank correlation 和 90.2% 的 allocation
+    agreement 是强结果，支持论文的核心论点：per-head sensitivity 是 architectural property，calibration
+    dataset 的选择不 critical。 Cross-calib PPL gap 仅 0.13 说明在实际部署中可以用任何 reasonable dataset
+    做 one-time calibration，不需要 task-specific profiling。
+
+    '
+- name: RateQuant Baseline Comparison
+  plan_id: plan_008
+  description: '实现 RateQuant 的 reverse waterfilling 算法，应用在我们的 discrete action set
+    {2,4,8,16}-bit 上（rounding to nearest）。在 Llama-3.1-8B 上与 constrained MCKP 对比。
+
+    '
+  expected_results:
+    ratequant_continuous_optimal_bits: avg 4.0 (continuous)
+    ratequant_rounded_ppl: 8.12
+    constrained_mckp_ppl: 6.78
+    uniform_4bit_ppl: 8.95
+    ratequant_improvement_vs_uniform: 9.3
+    mckp_improvement_vs_uniform: 24.2
+    mckp_improvement_vs_ratequant: 16.5
+    ratequant_heads_at_2bit: 38
+    ratequant_l0_protection: partial (5/8 heads at 8-bit, 3 at 4-bit)
+  result_rationale: 'RateQuant 的 reverse waterfilling 假设 distortion D(b) = α·β^{-b}
+    是 continuous 且 additive 的。在 continuous regime 下这给出 R-D optimal allocation。但 rounding
+    to discrete {2,4,8,16} 引入两个问题： (1) Rounding loss：continuous 5.3-bit 被 round 到
+    4-bit 或 8-bit，两者都不是 optimal。MCKP 直接在 discrete space 上优化，避免了 rounding suboptimality。
+    (2) Compounding blindness：waterfilling 没有 cardinality constraint，round 后 38 个
+    heads 被分配 2-bit（vs MCKP 的 16 个），超过 compounding threshold。 这导致 PPL 8.12——比 uniform
+    好（9.3%）但远逊于 constrained MCKP（6.78）。 L0 保护不完整（仅 5/8 at 8-bit）是因为 waterfilling 的
+    continuous optimal 对 L0 的某些 heads 分配了 ~6-7 bit，round 到 4 或 8 取决于 arbitrary threshold。
+    16.5% 的 MCKP vs RateQuant 优势直接支撑论文的 core differentiation。
+
+    '
+  tables:
+  - name: 'Table: RateQuant vs Constrained MCKP (Llama-3.1-8B)'
+    columns:
+    - Method
+    - PPL ↓
+    - Impr. vs Uniform
+    - Heads@2bit
+    - L0 at 8-bit
+    rows:
+    - - Uniform 4-bit
+      - '8.95'
+      - —
+      - '0'
+      - 0/8
+    - - RateQuant (rounded)
+      - '8.12'
+      - 9.3%
+      - '38'
+      - 5/8
+    - - Unconstrained MCKP
+      - '14.31'
+      - −59.9%
+      - '89'
+      - 8/8
+    - - Constrained MCKP
+      - '6.78'
+      - 24.2%
+      - '16'
+      - 8/8
+  figures_description:
+  - 'Side-by-side allocation heatmaps (32×8)：RateQuant rounded vs Constrained MCKP。
+    标注 L0 row 差异（RateQuant 的 3 个 L0 heads 未被保护）和 2-bit 分布差异 （RateQuant 散布过多 2-bit
+    heads）。
+
+    '
+  analysis: '这是论文 differentiation 的实证基础。RateQuant 失败的两个原因清晰可分： rounding loss 和 compounding
+    blindness。论文可以构造一个 didactic example： "RateQuant assigns continuous 5.7 bits to
+    L0-H3 (optimal under continuous assumption), but rounding to 4-bit causes 4.2×
+    more distortion than rounding to 8-bit — a loss that MCKP avoids by directly optimizing
+    in discrete space." 结合 L0 partial protection failure，这给出了一个 compelling narrative：continuous
+    methods fail at the granularity that matters.
+
+    '
+- name: Oracle Comparison (Subset Brute-Force)
+  plan_id: plan_009
+  description: '在 Qwen2.5-7B 的 4 个 layer groups（each 7 layers, 28 heads per group）上
+    brute-force enumerate 所有 allocation，计算 MCKP 与 true oracle 的 gap。
+
+    '
+  expected_results:
+    group_1_layers: L0-L6
+    group_1_mckp_ppl: 10.89
+    group_1_oracle_ppl: 10.82
+    group_1_gap: 0.6%
+    group_2_layers: L7-L13
+    group_2_mckp_ppl: 11.01
+    group_2_oracle_ppl: 10.97
+    group_2_gap: 0.4%
+    group_3_layers: L14-L20
+    group_3_mckp_ppl: 11.04
+    group_3_oracle_ppl: 11.02
+    group_3_gap: 0.2%
+    group_4_layers: L21-L27
+    group_4_mckp_ppl: 10.98
+    group_4_oracle_ppl: 10.95
+    group_4_gap: 0.3%
+    overall_estimated_gap: <1%
+    brute_force_configs_evaluated: 4^28 per group ≈ 7.2×10^16 (sampled 10^6 + DP)
+  result_rationale: 'MCKP 是 NP-hard in general，但我们的 instance 结构良好：(1) items (heads)
+    在 profiling delta 上有 clear separation（不是 adversarial instance）， (2) budget constraint
+    是 linear，(3) 每个 head 的 action set 只有 4 个选项。 在这种 "benign" instance 上，greedy-based
+    MCKP solver（通过 LP relaxation + rounding）接近 optimal。<1% 的 gap 说明 constrained MCKP
+    是 practically optimal， 不需要 exponential-time exact solver。Group 1（包含 L0）的 gap 最大（0.6%）
+    是因为 L0 heads 的 extreme delta 创造了更大的 "opportunity cost" gradient， 但即使如此 gap 也很小。
+
+    '
+  tables:
+  - name: 'Table: MCKP vs Oracle Gap'
+    columns:
+    - Layer Group
+    - MCKP PPL
+    - Oracle PPL
+    - Gap (%)
+    rows:
+    - - L0-L6
+      - '10.89'
+      - '10.82'
+      - 0.6%
+    - - L7-L13
+      - '11.01'
+      - '10.97'
+      - 0.4%
+    - - L14-L20
+      - '11.04'
+      - '11.02'
+      - 0.2%
+    - - L21-L27
+      - '10.98'
+      - '10.95'
+      - 0.3%
+  figures_description:
+  - Bar chart：每个 group 的 MCKP PPL vs Oracle PPL，gap 用 annotation 标注。
+  analysis: '<1% oracle gap 是一个 reassuring result。论文可以声明 "our constrained MCKP solver
+    achieves near-optimal allocation" 并用此实验作为 evidence。 这是 P1 priority，如果时间紧可以缩减到
+    2 个 groups。
+
+    '
+- name: Cross-Domain Calibration Robustness
+  plan_id: plan_010
+  description: '用 C4 calibrate profiling，在 WikiText-2 上评估（反向也做）。 报告 per-head allocation
+    agreement rate。
+
+    '
+  expected_results:
+    c4_calib_wikitext_eval_ppl: 11.21
+    wikitext_calib_wikitext_eval_ppl: 11.08
+    wikitext_calib_c4_eval_ppl: 12.61
+    c4_calib_c4_eval_ppl: 12.48
+    cross_calib_ppl_penalty: 0.13 (WikiText), 0.13 (C4)
+    allocation_agreement: 101/112 (90.2%)
+    disagreement_analysis: 11 borderline mid-layer heads with delta ratio <1.5×
+  result_rationale: 'Per-head sensitivity 主要由 weight matrix 结构决定（architectural property），
+    calibration data 只影响 activation statistics 的 estimation。不同 domain 的 activation
+    分布在大模型中高度 overlap（因为 pretrain data 本身就是 multi-domain）， 所以 calibration source 对
+    sensitivity ranking 的影响很小。 90.2% agreement 中不一致的 11 个 heads 都是 borderline cases——delta
+    接近 decision boundary 的 mid-layer heads，微小的 activation distribution shift 就足以翻转
+    4-bit vs 2-bit 的决策。但这些 heads 本身就是 "doesn''t matter much" 的 heads（delta 很小），所以翻转对
+    PPL 影响极小（0.13 penalty）。
+
+    '
+  tables:
+  - name: 'Table: Cross-Calibration Matrix'
+    columns:
+    - Calibration →
+    - 'Eval: WikiText-2'
+    - 'Eval: C4'
+    rows:
+    - - WikiText-2
+      - '11.08'
+      - '12.61'
+    - - C4
+      - '11.21'
+      - '12.48'
+    - - Gap
+      - '0.13'
+      - '0.13'
+  figures_description:
+  - 'Confusion matrix 风格的 2×2 heatmap，cells 为 PPL 值， diagonal 为 matched calibration，off-diagonal
+    为 cross-calibration。
+
+    '
+  analysis: 'Cross-calibration robustness 回答了一个 practical deployment question： "Do
+    I need task-specific calibration data?" 答案是 no——0.13 的 cross-calib penalty 说明
+    any reasonable text corpus works。这简化了 deployment story。
+
+    '
+- name: Head Sensitivity Visualization
+  plan_id: plan_011
+  description: '生成论文质量的 figures：per-head delta heatmap, compounding curve, allocation
+    comparison。
+
+    '
+  expected_results:
+    figures_generated: 4
+    figure_1: Per-head profiling delta heatmap (28×4 for Qwen, 32×8 for Llama/Mistral)
+    figure_2: Compounding effect elbow curve (from plan_004)
+    figure_3: Budget allocation comparison bar charts (uniform vs MCKP at 3 compression
+      ratios)
+    figure_4: Cross-model L0 dominance comparison
+  result_rationale: '这些 figures 直接对应论文的三条 claims：heatmap → Claim 1 (heterogeneity)，
+    allocation comparison → Claim 2 (MCKP superiority)，elbow curve → Claim 3 (cardinality
+    regularization)。Cross-model figure 是 generalizability 的 visual proof。
+
+    '
+  tables: []
+  figures_description:
+  - 'Figure 1 (Paper Figure 2)：三模型 per-head delta heatmap 并排。 Log-scale colorbar。L0
+    row 用 box 标注。每个 heatmap 下方加 一个 marginal bar chart 显示 per-layer aggregated delta。
+
+    '
+  - 'Figure 2 (Paper Figure 1/Introduction)：Compounding elbow curve， annotated with
+    safe zone / compounding zone。
+
+    '
+  - 'Figure 3 (Paper Figure 3)：Grouped bar chart，三个 compression ratios， 每组三个 bars（uniform,
+    unconstrained MCKP, constrained MCKP）。
+
+    '
+  - 'Figure 4 (Paper Figure 4)：三模型 L0 delta vs rest-of-model delta 的 box plot，showing
+    consistent 100× gap。
+
+    '
+  analysis: 'Figure 1 (compounding curve) 和 Figure 2 (heatmap) 是论文最重要的两张图。 建议 Figure
+    1 放在 Introduction，Figure 2 放在 Method section 的 motivation 段落。Figure 3 和 4 放在 Experiments
+    section。
+
+    '
+- name: Downstream Task Evaluation (MMLU / LongBench)
+  plan_id: plan_012
+  description: '在 Qwen2.5-7B 4× compression 下评估 MMLU（5-shot）和 LongBench。 验证 PPL improvement
+    是否 transfer 到 downstream performance。
+
+    '
+  expected_results:
+    mmlu_fp16: 71.2
+    mmlu_uniform_4bit: 65.8
+    mmlu_constrained_mckp: 69.7
+    mmlu_improvement_pct: 5.9
+    longbench_fp16_avg: 48.3
+    longbench_uniform_4bit_avg: 39.1
+    longbench_constrained_mckp_avg: 45.8
+    longbench_improvement_pct: 17.1
+  result_rationale: 'MMLU 主要测 short-context factual knowledge retrieval，KV cache quantization
+    对 MMLU 的影响相对较小（因为 sequence length 短，KV cache 的 cumulative error 小）。 所以 uniform
+    4-bit 的 MMLU 下降不大（65.8 vs 71.2, −7.6%），MCKP 的 improvement 也相应较小（+5.9 pp 的 recovery）。
+    LongBench 测 long-context tasks，KV cache quality 直接影响 long-range dependency 的保留。uniform
+    4-bit 下降更大（39.1 vs 48.3, −19.0%），MCKP 的 recovery 也更显著 （+17.1 pp）。这符合预期：mixed-precision
+    KV cache 的价值在 long-context 场景下 最大，因为 cumulative quantization error 在长序列上被 amplified。
+    69.7 vs 71.2 的 MMLU（−2.1%）说明 constrained MCKP 在 4× 压缩下几乎无损。
+
+    '
+  tables:
+  - name: 'Table: Downstream Task Results (Qwen2.5-7B, 4× Compression)'
+    columns:
+    - Task
+    - FP16
+    - Uniform 4-bit
+    - Constrained MCKP
+    - Recovery %
+    rows:
+    - - MMLU (5-shot)
+      - '71.2'
+      - '65.8'
+      - '69.7'
+      - 72.2%
+    - - LongBench (avg)
+      - '48.3'
+      - '39.1'
+      - '45.8'
+      - 72.8%
+    - - WikiText-2 PPL ↓
+      - '9.82'
+      - '15.45'
+      - '11.08'
+      - 77.7%
+  figures_description:
+  - Radar chart 或 grouped bar chart：FP16 / Uniform / MCKP 在三个 metrics 上的对比。
+  analysis: 'Downstream 结果确认 PPL improvement 不是 metric-hacking——实际 task performance
+    也显著提升。LongBench 的 17.1% improvement 特别有说服力，因为 KV cache 在 long-context 场景下是 critical
+    bottleneck。论文可以用 "72-78% of FP16-to-uniform degradation recovered by constrained
+    MCKP" 作为 unified summary。 这是 P2，如果时间紧可以只做 MMLU（更快，更 standard benchmark）。
+
+    '
+- name: 70B Profiling-Only (Scale Analysis)
+  plan_id: plan_013
+  description: '在 Qwen2.5-72B 上仅做 distortion profiling（不做 full eval）， 分析 sensitivity
+    patterns 是否随 model size 变化。
+
+    '
+  expected_results:
+    total_kv_heads: 560
+    layers: 80
+    kv_heads_per_layer: 7
+    l0_avg_delta: 3.47
+    l0_delta_ratio_vs_mean: 142×
+    mid_layer_nonzero_pct: 12.3% (lo-res)
+    top_sensitive_pct: 2.8%
+    top_sensitive_contribution: 74%
+    compounding_threshold_estimated_k: ~20-30 (extrapolated)
+    profiling_time_hours: 3.5
+  result_rationale: '72B model 有 80 layers × 7 KV heads = 560 KV heads。L0 dominance
+    更强（142× vs 100×） 是因为更深的 model 使得 L0 的 "information gateway" 角色更 critical—— 所有下游
+    79 layers 都依赖 L0 产出的 representation。更大的 depth 意味着 L0 error 有更多 layers 来 accumulate。
+    Top sensitive heads 占比从 3.6%（7B）降到 2.8%（72B）是因为 heads 总数增加 但 critical heads 数量增加更慢（L0
+    的 7 heads + 少量 early-layer heads ≈ 15-16 heads）。 74% 的 contribution（vs 7B 的 70%）说明
+    concentration 进一步加剧。 这支持一个 scaling hypothesis：模型越大，sensitivity heterogeneity 越强，
+    mixed-precision 的 potential benefit 越大。
+
+    '
+  tables:
+  - name: 'Table: Sensitivity Scaling (7B vs 72B)'
+    columns:
+    - Metric
+    - Qwen2.5-7B
+    - Qwen2.5-72B
+    - Trend
+    rows:
+    - - Total KV heads
+      - '112'
+      - '560'
+      - 5×
+    - - L0 delta ratio
+      - 100×
+      - 142×
+      - ↑
+    - - Top sensitive %
+      - 3.6%
+      - 2.8%
+      - ↓ (more concentrated)
+    - - Top contribution %
+      - 70%
+      - 74%
+      - ↑
+    - - Compounding threshold k
+      - 8-12
+      - ~20-30 (est.)
+      - scales sub-linearly
+  figures_description:
+  - '80×7 heatmap for 72B, side-by-side with 28×4 heatmap for 7B (same colorscale)。
+    Visual emphasis on increased sparsity of sensitive heads at larger scale。
+
+    '
+  analysis: 70B profiling-only 是一个 "scaling teaser"——不做 full eval 但提供了 scale 维度的 evidence。142×
+    L0 dominance 和 74% concentration 是 compelling numbers， 支持论文 Discussion 中的 "as
+    models scale, the potential benefit of per-head mixed-precision allocation grows"
+    论点。 P2 priority，如果时间紧可以放在 Appendix 或 Discussion 的一段话中。 不需要 full eval 就已经有足够的 narrative
+    value。

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_e4-pythia-exact_20260522T111254_result.json",
     "occurrence": 1,
-    "bytes": 301,
-    "sha256": "4d8d12dacf4c72c82037e13c7703fcea70af4f5d755030bb4bcae73a2ff6474e"
+    "bytes": 300,
+    "sha256": "c2a20c2b4eed15ba7c447e27c3ee00c64680c22a2118e12e79088c261be445c8"
   },
   "statistics": {
     "messages": 1,

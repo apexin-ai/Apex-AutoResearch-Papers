@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp-005-eval",
+  "project": "entrainment_gated_ft",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T14:22:49.860Z",
+    "updated_at": "2026-05-22T14:23:14.938Z",
+    "spec": {
+      "command": "bash -c '\nset -eo pipefail\nsource /etc/network_turbo\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_HUB_DISABLE_XET=1\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\n\nMODELS_DIR=\"/root/entrainment_gated_ft/models\"\nRESULTS_DIR=\"/root/entrainment_gated_ft/results/exp005_zoo_expansion\"\nLOG=\"$RESULTS_DIR/run_all.log\"\nmkdir -p \"$RESULTS_DIR\"\n\necho \"=== EXP-005 FULL RUN $(date) ===\" | tee \"$LOG\"\n\n# Phase 1: Download missing Priority 1 models (GLA already done)\nfor arch in DeltaNet HGRN; do\n  MODEL_NAME=\"340M-20B-${arch}-hybrid-3-1\"\n  MODEL_DIR=\"$MODELS_DIR/$MODEL_NAME\"\n  if [ ! -f \"$MODEL_DIR/model.safetensors\" ]; then\n    echo \"Downloading $MODEL_NAME ...\" | tee -a \"$LOG\"\n    rm -rf \"$MODEL_DIR\"\n    huggingface-cli download \"m-a-p/$MODEL_NAME\" --local-dir \"$MODEL_DIR\" 2>&1 | tail -5 | tee -a \"$LOG\"\n    echo \"Downloaded $MODEL_NAME $(date)\" | tee -a \"$LOG\"\n  else\n    echo \"Already have $MODEL_NAME\" | tee -a \"$LOG\"\n  fi\ndone\n\n# Phase 2: Evaluate Priority 1 (h3-1 x 3 new archs)\nfor arch in GLA DeltaNet HGRN; do\n  MODEL_NAME=\"340M-20B-${arch}-hybrid-3-1\"\n  MODEL_DIR=\"$MODELS_DIR/$MODEL_NAME\"\n  OUT_DIR=\"$RESULTS_DIR/${arch}_hybrid-3-1\"\n  echo \"EVAL $MODEL_NAME START $(date)\" | tee -a \"$LOG\"\n  python -m lm_eval \\\n    --model hf \\\n    --model_args pretrained=$MODEL_DIR,trust_remote_code=True \\\n    --tasks lambada_openai,arc_easy \\\n    --device cuda:0 \\\n    --batch_size auto \\\n    --log_samples \\\n    --output_path \"$OUT_DIR/\" 2>&1 | tail -10 | tee -a \"$LOG\"\n  echo \"EVAL $MODEL_NAME DONE $(date)\" | tee -a \"$LOG\"\ndone\n\necho \"=== PRIORITY 1 COMPLETE $(date) ===\" | tee -a \"$LOG\"\n\n# Phase 3: Download + evaluate remaining ratios\nfor arch in GLA DeltaNet HGRN; do\n  for ratio in pure-baseline hybrid-24-1 hybrid-12-1 hybrid-6-1; do\n    MODEL_NAME=\"340M-20B-${arch}-${ratio}\"\n    MODEL_DIR=\"$MODELS_DIR/$MODEL_NAME\"\n    OUT_DIR=\"$RESULTS_DIR/${arch}_${ratio}\"\n\n    if [ ! -f \"$MODEL_DIR/model.safetensors\" ]; then\n      echo \"Downloading $MODEL_NAME ...\" | tee -a \"$LOG\"\n      rm -rf \"$MODEL_DIR\"\n      huggingface-cli download \"m-a-p/$MODEL_NAME\" --local-dir \"$MODEL_DIR\" 2>&1 | tail -3 | tee -a \"$LOG\"\n      if [ ! -f \"$MODEL_DIR/model.safetensors\" ]; then\n        ALT_NAME=\"340M-20B-${arch}-pure\"\n        if [ \"$ratio\" = \"pure-baseline\" ]; then\n          echo \"Trying alternate: $ALT_NAME ...\" | tee -a \"$LOG\"\n          huggingface-cli download \"m-a-p/$ALT_NAME\" --local-dir \"$MODELS_DIR/$ALT_NAME\" 2>&1 | tail -3 | tee -a \"$LOG\"\n          MODEL_DIR=\"$MODELS_DIR/$ALT_NAME\"\n        fi\n      fi\n      echo \"Downloaded $(date)\" | tee -a \"$LOG\"\n    fi\n\n    echo \"EVAL $MODEL_NAME START $(date)\" | tee -a \"$LOG\"\n    python -m lm_eval \\\n      --model hf \\\n      --model_args pretrained=$MODEL_DIR,trust_remote_code=True \\\n      --tasks lambada_openai,arc_easy \\\n      --device cuda:0 \\\n      --batch_size auto \\\n      --log_samples \\\n      --output_path \"$OUT_DIR/\" 2>&1 | tail -10 | tee -a \"$LOG\"\n    echo \"EVAL $MODEL_NAME DONE $(date)\" | tee -a \"$LOG\"\n  done\ndone\n\necho \"=== ALL EVALUATIONS COMPLETE $(date) ===\" | tee -a \"$LOG\"\n'",
+      "server": "westb-48145",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/entrainment_gated_ft/exp-005-eval.log",
+      "submitted_at": "2026-05-22T14:22:49.797Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T14:23:13.448Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-22T14:23:14.988875+00:00",
+  "trigger": "update_registry"
+}

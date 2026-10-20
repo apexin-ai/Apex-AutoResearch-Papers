@@ -1,0 +1,14 @@
+{
+  "exp_id": "hgrn2_eval_h3_1",
+  "project": "entrainment_gated_ft",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:47:57.853Z",
+    "updated_at": "2026-05-18T16:47:57.853Z"
+  },
+  "timestamp": "2026-05-18T16:47:57.883194+00:00",
+  "trigger": "update_registry"
+}

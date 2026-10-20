@@ -1,0 +1,23 @@
+{
+  "exp_id": "hgrn2_eval_1_3b_all",
+  "project": "entrainment_gated_ft",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T15:57:15.535Z",
+    "updated_at": "2026-05-18T16:00:09.659Z",
+    "spec": {
+      "command": "python run_lmeval_clean.py --model_path {MODEL} --tasks lambada_openai,hellaswag,winogrande,arc_easy,arc_challenge,mmlu --output_dir lm_eval_clean/ --batch_size 8 (x3 models: hybrid-12-1, hybrid-24-1, hybrid-3-1)",
+      "server": "westb-48145",
+      "data_path": "/root/autodl-tmp/models_1.3b/",
+      "data_count": 3,
+      "model_name": "HGRN2-1.3B (3 hybrid variants)",
+      "seed": 0
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-18T16:00:09.696566+00:00",
+  "trigger": "update_registry"
+}

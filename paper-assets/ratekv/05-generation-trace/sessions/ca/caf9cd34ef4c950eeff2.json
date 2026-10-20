@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_mistral_aggressive_compression_20260514T055948_result.json",
     "occurrence": 1,
-    "bytes": 567,
-    "sha256": "516b905d83e77d21616675cf7cfe73147a92f774b3ae42c255241817e14dcd0c"
+    "bytes": 566,
+    "sha256": "1034061e2cb9a154dd2c4759dad3b3635984008a106de0ee579ea1e9bac8e31a"
   },
   "statistics": {
     "messages": 1,

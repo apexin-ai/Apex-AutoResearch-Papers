@@ -1,0 +1,70 @@
+{
+  "exp_id": "w3-winogrande-piqa-eval",
+  "project": "entrainment_gated_ft",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:28:29.577Z",
+    "updated_at": "2026-05-21T10:27:33.995Z",
+    "spec": {
+      "command": "bash run_winogrande_piqa_all.sh (run_lmeval_clean.py × 30 tasks)",
+      "server": "westb-48145",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "722233",
+      "log_path": "/root/entrainment_gated_ft/lm_eval_clean/winogrande_piqa_eval.log",
+      "submitted_at": "2026-05-21T08:28:29.524Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "lm-eval-harness winogrande + piqa",
+      "data_count": "winogrande=1267, piqa=1838",
+      "model_name": "GDN/RetNet/HGRN2 × 5 ratios (1.3B)",
+      "seed": "default",
+      "checkpoint_path": "artifacts/paper_data/winogrande_per_example.json + piqa_per_example.json",
+      "wall_clock_seconds": 7144.5,
+      "gpu_hours": 1.98
+    },
+    "hypothesis": "WinoGrande + PIQA per-example multiplicity analysis to decouple format (2-choice vs 4-way MC) from task-type as driver of ambiguity α spectrum, addressing Round 5 W3 format confound concern",
+    "conclusion": "success",
+    "metrics": {
+      "winogrande": {
+        "n_samples": 1267,
+        "alpha_pure": 0.463,
+        "alpha_range": [
+          0.409,
+          0.463
+        ],
+        "convergence_rho": -0.2,
+        "convergence_p": 0.783
+      },
+      "piqa": {
+        "n_samples": 1838,
+        "alpha_pure": 0.143,
+        "alpha_range": [
+          0.132,
+          0.143
+        ],
+        "convergence_rho": -0.5,
+        "convergence_p": 0.45
+      },
+      "format_confound_test": {
+        "finding": "PIQA (2-choice, α=0.14) vs WinoGrande (2-choice, α=0.46) vs BoolQ (2-choice, α=0.51) — same format, 3.5× α variation. Format confound refuted.",
+        "alpha_vs_accuracy_rho": 0.03,
+        "alpha_vs_accuracy_p_exact": 1
+      },
+      "artifacts": [
+        "winogrande_per_example.json",
+        "piqa_per_example.json",
+        "winogrande_jaccard_analysis.json",
+        "piqa_jaccard_analysis.json"
+      ]
+    },
+    "completed_at": "2026-05-21T10:27:33.995Z"
+  },
+  "timestamp": "2026-05-21T10:27:34.062615+00:00",
+  "trigger": "update_registry"
+}

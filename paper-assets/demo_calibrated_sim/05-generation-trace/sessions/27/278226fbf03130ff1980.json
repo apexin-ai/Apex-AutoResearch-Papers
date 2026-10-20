@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "278226fbf03130ff1980",
+  "project": "demo_calibrated_sim",
+  "kind": "result",
+  "title": "code bootstrap ci plan005",
+  "task_key": "worker_code_bootstrap-ci-plan005_20260513T153228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bootstrap-ci-plan005_20260513T153228_result.json",
+    "occurrence": 1,
+    "bytes": 959,
+    "sha256": "913fc356e5e9103b2dc45e82cc6fcd8c2e17dcf8311672734abc5c589cb5c04e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**C1 (FM3 rebound)**: overcorrected_pol − baseline_pol = +0.071, CI [-0.017, 0.156]。方向一致（正向 rebound），但 CI 包含 0——4 runs pooled 后接近显著。\n\n**C2 (FM4 reversal)**: 方向一致但未达统计显著：\n- Base BCP AAVE gap = −0.091 (baseline 高于 variant)\n- DPO+BCP AAVE gap = +0.064 (variant 反超 baseline)\n- 两个 CI 都跨 0，因 7B base 只有 1 run (n≈19-20)\n\n**C3 (7B vs 14B completion)**: **显著**。Overall 14B−7B = +0.411, CI [0.322, 0.495]。5/6 variants 的 CI 排除 0，14B 完成率系统性高于 7B。\n\n**C4 (H2 calibration gap)**:\n- 14B AAVE/Indian gap reduction **显著** (CI > 0)：分别 +0.070 [0.003, 0.136]、+0.072 [0.007, 0.137]\n- 7B 的 gap reduction CI 跨 0（样本量不足）\n\n输出文件在服务器 `/root/democalib/results/bootstrap_ci_results.json` 和 `bootstrap_ci_report.md`，实验注册为 `bootstrap-ci-001`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bootstrap-ci-plan005.md"
+}

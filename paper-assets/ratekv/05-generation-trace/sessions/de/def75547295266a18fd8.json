@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_yi15_hires_bf16_2bitonly_20260514T191141_result.json",
     "occurrence": 1,
-    "bytes": 692,
-    "sha256": "e79ee5a2f2737ae33c977e05591de329e5f90680653e909956faec5ba5f7a84f"
+    "bytes": 691,
+    "sha256": "f68386f83b9182028419cab4bb3cb21173e3108d75c80c78b296e4bfcdac765e"
   },
   "statistics": {
     "messages": 1,

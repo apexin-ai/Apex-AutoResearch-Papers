@@ -245,7 +245,7 @@
           "content": [
             {
               "type": "text",
-              "text": "1\t{\n2\t  \"repo_public\": \"https://github.com/anonymous-nlp-2026-2/entrainment_gated_ft\",\n3\t  \"push_url\": \"https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git\",\n4\t  \"github_user\": \"anonymous-nlp-2026-2\",\n5\t  \"repo_name\": \"entrainment_gated_ft\"\n6\t}\n7\t"
+              "text": "1\t{\n2\t  \"repo_public\": \"https://github.com/anonymous-nlp-2026-2/entrainment_gated_ft\",\n3\t  \"push_url\": \"https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git\",\n4\t  \"github_user\": \"anonymous-nlp-2026-2\",\n5\t  \"repo_name\": \"entrainment_gated_ft\"\n6\t}\n7\t"
             }
           ],
           "metadata": {
@@ -470,8 +470,8 @@
             "tool_args": {
               "replace_all": "False",
               "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_2/projects/entrainment_gated_ft/_anonymous_repo.json",
-              "old_string": "\"push_url\": \"https://anonymous-nlp-2026-2:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git\",\n  \"github_user\": \"anonymous-nlp-2026-2\",",
-              "new_string": "\"push_url\": \"https://caoxiaoyu001:[REDACTED_GITHUB_TOKEN]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git\",\n  \"github_user\": \"caoxiaoyu001\","
+              "old_string": "\"push_url\": \"https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git\",\n  \"github_user\": \"anonymous-nlp-2026-2\",",
+              "new_string": "\"push_url\": \"https://[REDACTED]@github.com/anonymous-nlp-2026-2/entrainment_gated_ft.git\",\n  \"github_user\": \"caoxiaoyu001\","
             }
           },
           "id": "event-000384"

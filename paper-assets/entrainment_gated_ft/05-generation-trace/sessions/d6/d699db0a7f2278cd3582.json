@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_analysis_copa-rho-recompute_20260519T170027_result.json",
     "occurrence": 1,
-    "bytes": 1692,
-    "sha256": "acea8f6e774dbc6c31180e33b4aefc8db30f50f9b9c5979efebfc5c5e6604916"
+    "bytes": 1691,
+    "sha256": "9ed5971f38aed09328701634bda073ff6a446c05f37cdc5f41da080af3c0c444"
   },
   "statistics": {
     "messages": 1,

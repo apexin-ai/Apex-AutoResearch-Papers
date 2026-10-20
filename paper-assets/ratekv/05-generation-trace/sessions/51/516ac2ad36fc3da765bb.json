@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_mistral_hires_bf16_v3_20260515T143158_result.json",
     "occurrence": 1,
-    "bytes": 293,
-    "sha256": "9aa9cd9f27af9a34380407788eb2e8f54d80134b1568d745a7b6da13d6a54d33"
+    "bytes": 292,
+    "sha256": "a24e0490a63a5aacc313ebf33831d9ef6a06b106ba546bc93a765d79ff246281"
   },
   "statistics": {
     "messages": 1,

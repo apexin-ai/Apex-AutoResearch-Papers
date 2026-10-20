@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp-boolq-hellaswag-eval",
+  "project": "entrainment_gated_ft",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:32:21.428Z",
+    "updated_at": "2026-05-20T13:04:44.631Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/entrainment_gated_ft && bash run_boolq_hellaswag_all.sh 2>&1 | tee /root/entrainment_gated_ft/lm_eval_clean/boolq_hellaswag_eval.log\"",
+      "server": "westb-48145",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "653104",
+      "log_path": "~/runs/entrainment_gated_ft/exp-boolq-hellaswag-eval.log",
+      "submitted_at": "2026-05-20T11:32:21.381Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T12:47:53.740Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T12:47:55.697105+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T13:04:44.698744+00:00",
+  "trigger": "update_registry"
+}

@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_paper_llama_table3_update_20260514T214809_result.json",
     "occurrence": 1,
-    "bytes": 1059,
-    "sha256": "3f4332909d8e3d1526046355a8b2dd863092844bd32ce7bad96ead5ae003aa75"
+    "bytes": 1058,
+    "sha256": "5dff9fd880591a64f043cb24703b93a78e39478e3b38090edb3916d3ac137232"
   },
   "statistics": {
     "messages": 1,

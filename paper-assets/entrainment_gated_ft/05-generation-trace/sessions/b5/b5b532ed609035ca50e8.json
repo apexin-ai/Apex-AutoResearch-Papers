@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_check-smoke-results_20260518T112500_result.json",
     "occurrence": 1,
-    "bytes": 1057,
-    "sha256": "1c789de8764507c99712755629c91f43b1e69795c8fd7bc98a5683ceffcbf5b5"
+    "bytes": 1056,
+    "sha256": "316bc86a14c87282f86fd0276ca99e4c82f382d64ac7228491d2c35c91c2646f"
   },
   "statistics": {
     "messages": 1,

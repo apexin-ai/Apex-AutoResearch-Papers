@@ -1,0 +1,14 @@
+{
+  "exp_id": "yi_8k_eval",
+  "project": "ratekv",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:13:23.584Z",
+    "updated_at": "2026-05-16T03:13:23.584Z"
+  },
+  "timestamp": "2026-05-16T03:13:23.924832+00:00",
+  "trigger": "update_registry"
+}

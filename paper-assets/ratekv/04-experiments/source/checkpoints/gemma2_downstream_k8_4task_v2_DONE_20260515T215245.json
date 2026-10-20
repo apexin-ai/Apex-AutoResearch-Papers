@@ -1,0 +1,69 @@
+{
+  "exp_id": "gemma2_downstream_k8_4task_v2",
+  "project": "ratekv",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:39:01.643Z",
+    "updated_at": "2026-05-15T21:52:45.334Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/ratekv && python run_gemma2_downstream_k8_4task.py\"",
+      "server": "westd-37397",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "369813",
+      "log_path": "~/runs/ratekv/gemma2_downstream_k8_4task_v2.log",
+      "submitted_at": "2026-05-15T19:53:45.178Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "gemma-2-9b",
+      "data_path": "gemma2_hires_profiles.json",
+      "data_count": 64,
+      "seed": 42,
+      "wall_clock_seconds": 7140.2,
+      "gpu_hours": 1.98
+    },
+    "conclusion": "success",
+    "metrics": {
+      "arc_challenge": {
+        "baseline": 0.6135,
+        "uniform": 0.6058,
+        "mckp_k8": 0.6049,
+        "delta": -0.0009
+      },
+      "hellaswag": {
+        "baseline": 0.6093,
+        "uniform": 0.6092,
+        "mckp_k8": 0.6089,
+        "delta": -0.0003
+      },
+      "winogrande": {
+        "baseline": 0.7443,
+        "uniform": 0.738,
+        "mckp_k8": 0.7443,
+        "delta": 0.0063
+      },
+      "piqa": {
+        "baseline": 0.8128,
+        "uniform": 0.8036,
+        "mckp_k8": 0.8079,
+        "delta": 0.0043
+      },
+      "avg_delta": 0.0024,
+      "bit_distribution": {
+        "4bit": 324,
+        "2bit": 8,
+        "8bit": 4
+      },
+      "elapsed_sec": 2321
+    },
+    "checkpoint_path": "/root/ratekv/artifacts/gemma2_downstream_k8_4task_results.json",
+    "completed_at": "2026-05-15T21:52:45.335Z"
+  },
+  "timestamp": "2026-05-15T21:52:45.509124+00:00",
+  "trigger": "update_registry"
+}

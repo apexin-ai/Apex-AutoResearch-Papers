@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_exp_c_no2bit_20260514T001702_result.json",
     "occurrence": 1,
-    "bytes": 671,
-    "sha256": "bb00193b1ce1278a3f5d1b5f6084dcc239aec33fbc7c0c32cf60d5df7c57483f"
+    "bytes": 670,
+    "sha256": "27764c9e6dcf7008d551447337b5e1edcb6b01a0fd96b9b87be0ed80b829faa6"
   },
   "statistics": {
     "messages": 1,

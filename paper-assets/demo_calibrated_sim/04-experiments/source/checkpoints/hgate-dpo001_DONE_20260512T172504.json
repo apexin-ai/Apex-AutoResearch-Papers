@@ -1,0 +1,71 @@
+{
+  "exp_id": "hgate-dpo001",
+  "project": "demo_calibrated_sim",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T17:24:33.723Z",
+    "updated_at": "2026-05-12T17:25:04.481Z",
+    "spec": {
+      "command": "eval_dpo_model.sh (4 complete runs + 1 incomplete)",
+      "server": "cqa1-21977",
+      "checkpoint_source": "dpo-001",
+      "eval_data": "20 tasks per run, 4 complete runs = 80 episodes",
+      "model_name": "Qwen2.5-7B-Instruct + dpo-001 LoRA adapter",
+      "log_path": "/root/democalib/results/dpo_eval/",
+      "checkpoint_path": "/root/democalib/dpo_output/final_adapter/",
+      "data_path": "/root/democalib/results/dpo_eval/",
+      "data_count": 80,
+      "seed": 0
+    },
+    "conclusion": "negative",
+    "hypothesis": "DPO LoRA (v1 data) calibration reduces politeness bias while maintaining task completion",
+    "parent": "dpo-001",
+    "metrics": {
+      "all_runs": {
+        "run1": {
+          "completion": 0.25,
+          "n": 20
+        },
+        "run2": {
+          "completion": 0.2,
+          "n": 20
+        },
+        "run3": {
+          "completion": 0.1,
+          "n": 20
+        },
+        "run4": {
+          "completion": 0.3,
+          "n": 20
+        },
+        "run5": {
+          "completion": null,
+          "n": null,
+          "note": "incomplete"
+        }
+      },
+      "aggregate": {
+        "mean_completion": 0.213,
+        "total_episodes": 80,
+        "n_complete_runs": 4
+      },
+      "h_gate": {
+        "H2": "NOT_EVALUATED",
+        "H3": "FAIL",
+        "overall": "FAIL"
+      },
+      "h3_detail": {
+        "mean_completion": "21.3%",
+        "threshold": ">=29.6%",
+        "deficit": "-8.3pp"
+      },
+      "note": "All 4 complete runs reported. No cherry-picking. dpo-001 v1 data had 48% tokenizer mismatch → weak learning signal (loss only 0.012 below random, accuracy=0.5)."
+    },
+    "completed_at": "2026-05-12T17:25:04.481Z"
+  },
+  "timestamp": "2026-05-12T17:25:04.499447+00:00",
+  "trigger": "update_registry"
+}

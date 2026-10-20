@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_verify_final-appendix-audit_20260524T042733_result.json",
     "occurrence": 1,
-    "bytes": 2476,
-    "sha256": "8629a3c34affd26b637e631aeb5469de23f2168925c5083ef65d706c92ccf7e1"
+    "bytes": 2475,
+    "sha256": "b11c11607407f15b74470339eed768f726baf4922cde590594bdfc5c10032ffa"
   },
   "statistics": {
     "messages": 1,

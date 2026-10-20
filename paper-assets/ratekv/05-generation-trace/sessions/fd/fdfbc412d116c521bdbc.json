@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_mistral_hires_constrained_eval_20260515T144810_result.json",
     "occurrence": 1,
-    "bytes": 386,
-    "sha256": "1af52e6f2f75a47ae76dcc3e528ec37ca1ff26d3347d196eeec99b46bedbd6ef"
+    "bytes": 385,
+    "sha256": "5557fb74db2d61be0c5efae9df134533132efba0d3a63bf8a6e216c757d8e6f6"
   },
   "statistics": {
     "messages": 1,

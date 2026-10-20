@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_ssh_phi3_constrained_mckp_and_compounding_20260516T021003_result.json",
     "occurrence": 1,
-    "bytes": 812,
-    "sha256": "b2a69a10e2ca7b8eacf7ebe45305c6b76ab7e95e98bcaad0a599ec15b96b81c8"
+    "bytes": 811,
+    "sha256": "4897c82f1a84baa8961bd05166a7b1c13f173d560576b9fbf44b543d9b7f02e1"
   },
   "statistics": {
     "messages": 1,

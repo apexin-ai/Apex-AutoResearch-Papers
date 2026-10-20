@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_investigate_gemma2_results_20260514T154602_result.json",
     "occurrence": 1,
-    "bytes": 1446,
-    "sha256": "db61ae7374d3745bf13de465806ecd010704cc809981276431550fa701e8ffc8"
+    "bytes": 1445,
+    "sha256": "4b018b205228987ae3c1fa2ac77d30d4eb71880f845c14828645749ab862c058"
   },
   "statistics": {
     "messages": 1,

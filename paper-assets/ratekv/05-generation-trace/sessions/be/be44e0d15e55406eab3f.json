@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_knowledge_literature-map-update_20260514T190537_result.json",
     "occurrence": 1,
-    "bytes": 809,
-    "sha256": "521b56da10d0f1a4fb45525f3f289574cb57dbb04fba0e6e8beacd68400a3aef"
+    "bytes": 808,
+    "sha256": "6c8c595fea06942b1e29d435b52756725658ed52b6b97c249c75a55f8170a502"
   },
   "statistics": {
     "messages": 1,

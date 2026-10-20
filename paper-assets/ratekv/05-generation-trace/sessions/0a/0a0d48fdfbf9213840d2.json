@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_multi_seed_error_bars_20260514T073300_result.json",
     "occurrence": 1,
-    "bytes": 707,
-    "sha256": "d7e0907fa0c3c7b264e47ff09f8f3588c18684b050b07bd5c2bf92c62b26e96a"
+    "bytes": 706,
+    "sha256": "4bd163d07cbd57b7557fa2da859edad9186e2115164b2d757f73dd3112cb2076"
   },
   "statistics": {
     "messages": 1,

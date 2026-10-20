@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp-003-p2",
+  "project": "entrainment_gated_ft",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:52:59.192Z",
+    "updated_at": "2026-05-19T13:55:35.385Z",
+    "hypothesis": "Helped samples have higher pure-model perplexity (model was uncertain → attention helped), while hurt samples have lower pure-model perplexity (model was confident → attention interfered). This pattern is architecture-specific.",
+    "parent": "exp-003",
+    "spec": {
+      "command": "python3 /root/entrainment_gated_ft/analysis/sample_perplexity_analysis.py",
+      "server": "westb-48145",
+      "data_path": "/root/entrainment_gated_ft/lm_eval_clean",
+      "data_count": 5153,
+      "model_name": "GDN-pure, RetNet-pure, HGRN2-pure (1.3B)",
+      "seed": "N/A",
+      "checkpoint_source": "/root/autodl-tmp/models_1.3b/{GDN,RetNet,HGRN2}-pure",
+      "eval_data": "LAMBADA OpenAI (5153 samples)"
+    }
+  },
+  "timestamp": "2026-05-19T13:55:35.405139+00:00",
+  "trigger": "update_registry"
+}

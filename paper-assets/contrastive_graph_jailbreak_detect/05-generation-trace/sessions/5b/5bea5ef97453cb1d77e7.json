@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5bea5ef97453cb1d77e7",
+  "project": "contrastive_graph_jailbreak_detect",
+  "kind": "result",
+  "title": "code mvp semantic collect",
+  "task_key": "worker_code_mvp-semantic-collect_20260517T074444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-semantic-collect_20260517T074444_result.json",
+    "occurrence": 1,
+    "bytes": 3211,
+    "sha256": "8b293bc6567014b80e5b1fe0ccb1308cae207e70ceb8baf69509337a1e8443dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All results collected. Here is the complete MVP Round 2 (semantic embedding) final report:\n\n---\n\n## MVP Round 2 完整结果 — 语义 Embedding\n\n### In-Distribution 5-Fold CV\n\n| Model | AUROC | F1 |\n|-------|-------|-----|\n| GIN+SupCon | 0.8687 ± 0.0303 | 0.7606 ± 0.0557 |\n| RF Baseline | 0.9704 ± 0.0062 | 0.9027 ± 0.0226 |\n\n### GIN+SupCon Leave-One-Out Holdout (10 failure modes)\n\n| Mode | AUROC | F1 | Precision | Recall | Description |\n|------|------:|---:|----------:|-------:|-------------|\n| FM1 | 0.8712 | 0.7158 | 0.7083 | 0.7234 | Generates harmful content |\n| FM2 | 0.8189 | 0.6024 | 0.6250 | 0.5814 | Fails to filter tool results |\n| FM3 | 0.9019 | 0.7789 | 0.7872 | 0.7708 | Calls tools with incomplete info |\n| FM4 | 0.9092 | 0.7706 | 0.7241 | 0.8235 | Calls tools before obtaining info |\n| FM5 | 0.7689 | 0.6542 | 0.6034 | 0.7143 | Ignores known constraints |\n| FM6 | 0.7921 | 0.6230 | 1.0000 | 0.4524 | Ignores implicit risks |\n| FM7 | 0.8515 | 0.7826 | 0.9730 | 0.6545 | Incorrect tool parameters |\n| FM8 | 0.8278 | 0.7556 | 0.8500 | 0.6800 | Ignores tool issues |\n| FM9 | 0.8721 | 0.7629 | 0.7400 | 0.7872 | Fails to call necessary tools |\n| FM10 | 0.8612 | 0.7455 | 0.6949 | 0.8039 | Trusts tool results without validation |\n| **Mean** | **0.8475 ± 0.0431** | **0.7191 ± 0.0643** | | | |\n\n### RF Baseline Leave-One-Out Holdout\n\n| Mode | AUROC | F1 | Precision | Recall |\n|------|------:|---:|----------:|-------:|\n| FM1 | 0.9674 | 0.8372 | 0.9231 | 0.7660 |\n| FM2 | 0.9651 | 0.8052 | 0.9118 | 0.7209 |\n| FM3 | 0.9814 | 0.8913 | 0.9318 | 0.8542 |\n| FM4 | 0.9671 | 0.9091 | 0.9375 | 0.8824 |\n| FM5 | 0.9342 | 0.8046 | 0.9211 | 0.7143 |\n| FM6 | 0.9683 | 0.9157 | 0.9268 | 0.9048 |\n| FM7 | 0.9774 | 0.9057 | 0.9412 | 0.8727 |\n| FM8 | 0.9237 | 0.8842 | 0.9333 | 0.8400 |\n| FM9 | 0.9735 | 0.9247 | 0.9348 | 0.9149 |\n| FM10 | 0.9643 | 0.8387 | 0.9286 | 0.7647 |\n| **Mean** | **0.9622 ± 0.0176** | **0.8716 ± 0.0436** | | |\n\n### MVP Gate Assessment\n\n| Criterion | Value | Threshold | Result |\n|-----------|-------|-----------|--------|\n| GIN holdout avg AUROC | 0.8475 | > 0.70 | **PASS** |\n| GIN vs RF delta | -11.5 pp | > +5 pp | **FAIL** |\n| **Overall** | | | **FAIL** |\n\n### Per-Graph-Size Analysis\n\n| Group | Count | Attack | Benign | Attack Rate |\n|-------|------:|-------:|-------:|------------:|\n| Small (≤3 nodes) | 913 | 480 | 433 | 52.6% |\n| Large (≥4 nodes) | 170 | 3 | 167 | 1.8% |\n\nGraph structure extremely sparse: 666/1083 graphs (61.5%) have **0 edges**. Only 66/1083 (6.1%) have ≥2 edges.\n\n### 关键发现\n\n1. GIN+SupCon 通过绝对 AUROC 门槛 (0.8475 > 0.70)，但 **大幅落后于 RF baseline** (-11.5 pp)\n2. RF 在 holdout 场景下极为稳定 (0.9622 ± 0.0176)，GIN 方差更大 (0.8475 ± 0.0431)\n3. 数据集图结构极其稀疏 (61.5% 无边)，graph size 与标签高度相关 (大图几乎全是 benign)，RF 可以直接利用这些简单统计特征\n4. GIN 无法从当前的稀疏图结构中学到比节点级特征聚合更有用的信息\n\n### 修复记录\n- FM4 和 FM10 因 BatchNorm 在 batch_size=1 时崩溃，已通过 `drop_last=True` 修复并补跑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-semantic-collect.md"
+}

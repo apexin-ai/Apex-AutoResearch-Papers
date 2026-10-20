@@ -1,0 +1,106 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{yao2024taubench}
+\citation{seshadri2026lost}
+\citation{sim2real2026gap}
+\citation{basil2025playing_pretend,hu2026expert_persona}
+\citation{lee2024dpo_toxicity}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{yao2024taubench}
+\citation{sim2real2026gap}
+\citation{seshadri2026lost}
+\citation{basil2025playing_pretend}
+\citation{hu2026expert_persona}
+\citation{gupta2026intra_fairness}
+\citation{lee2024dpo_toxicity}
+\citation{yao2024taubench}
+\citation{seshadri2026lost}
+\citation{rafailov2023dpo}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{LLM User Simulation.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Persona Prompting and Accuracy.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Alignment and Bias Spillover.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Evaluation Framework}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Behavioral Calibration Prompting (\textsc  {BCP}{})}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}DPO Fine-Tuning}{2}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Experimental design overview. Episodes = runs $\times $ variants $\times $ tasks. Exp.~2 is a training run; Exp.~6 is a statistical re-analysis.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:experiment_overview}{{1}{3}{Experimental design overview. Episodes = runs $\times $ variants $\times $ tasks. Exp.~2 is a training run; Exp.~6 is a statistical re-analysis}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces 7B \textsc  {BCP}{} baseline evaluation. Pol.\ = politeness, QRate = question rate, Compl.\ = task completion rate. All calibrated variants show substantial completion drops relative to baseline (0.368).}}{3}{table.2}\protected@file@percent }
+\newlabel{tab:7b_baseline}{{2}{3}{7B \bcp {} baseline evaluation. Pol.\ = politeness, QRate = question rate, Compl.\ = task completion rate. All calibrated variants show substantial completion drops relative to baseline (0.368)}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Hypothesis Testing}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Exp.~1: 7B \textsc  {BCP}{} Baseline}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:exp1}{{4.1}{3}{Exp.~1: 7B \bcp {} Baseline}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Exp.~2: 7B DPO Training}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:exp2}{{4.2}{3}{Exp.~2: 7B DPO Training}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces \textsc  {FM4}: DPO reverses the direction of \textsc  {BCP}{} dialect calibration. The politeness gap changes sign---from the correct direction (negative, reducing disparity) to the wrong direction (positive, amplifying it). 10/12 variant$\times $run combinations show gap expansion.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:fm4_reversal}{{3}{4}{\fm {4}: DPO reverses the direction of \bcp {} dialect calibration. The politeness gap changes sign---from the correct direction (negative, reducing disparity) to the wrong direction (positive, amplifying it). 10/12 variant$\times $run combinations show gap expansion}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Scale-dependent failure mode transition. At 14B, destructive side effects (\textsc  {FM1}, \textsc  {FM3}) disappear but \textsc  {BCP}{} calibration remains ineffective (H2 pass rate 1/4). The failure mode shifts from ``catastrophic over-response'' (7B) to ``selective ignoring'' (14B).}}{4}{table.4}\protected@file@percent }
+\newlabel{tab:scale_dependent}{{4}{4}{Scale-dependent failure mode transition. At 14B, destructive side effects (\fm {1}, \fm {3}) disappear but \bcp {} calibration remains ineffective (H2 pass rate 1/4). The failure mode shifts from ``catastrophic over-response'' (7B) to ``selective ignoring'' (14B)}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Exp.~3: 7B DPO+\textsc  {BCP}{} Evaluation}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:exp3}{{4.3}{4}{Exp.~3: 7B DPO+\bcp {} Evaluation}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Exp.~4: 14B \textsc  {BCP}{} Cross-Scale Evaluation}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:exp4}{{4.4}{4}{Exp.~4: 14B \bcp {} Cross-Scale Evaluation}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Exp.~5: 7B \textsc  {BCP}{} Multi-Run Replication}{4}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:exp5}{{4.5}{4}{Exp.~5: 7B \bcp {} Multi-Run Replication}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces \textsc  {FM1} completion retention across 4 runs. All runs fall well below the 80\% safety threshold, with low variance (SD = 2.6pp) indicating a systematic effect.}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:fm1_replication}{{5}{5}{\fm {1} completion retention across 4 runs. All runs fall well below the 80\% safety threshold, with low variance (SD = 2.6pp) indicating a systematic effect}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces \textsc  {FM2} cross-dimension interference across 4 runs. Targeting question rate reduces politeness (mean $-$23.9\%); targeting politeness reduces question rate (mean $-$51.5\%). Direction is consistent in 4/4 runs.}}{5}{table.6}\protected@file@percent }
+\newlabel{tab:fm2_replication}{{6}{5}{\fm {2} cross-dimension interference across 4 runs. Targeting question rate reduces politeness (mean $-$23.9\%); targeting politeness reduces question rate (mean $-$51.5\%). Direction is consistent in 4/4 runs}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Exp.~6: Bootstrap CI Re-Analysis}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:exp6}{{4.6}{5}{Exp.~6: Bootstrap CI Re-Analysis}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Auxiliary Evaluations}{5}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Llama-3-8B.}{5}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mistral-7B.}{5}{section*.5}\protected@file@percent }
+\citation{basil2025playing_pretend}
+\citation{hu2026expert_persona}
+\citation{gupta2026intra_fairness}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces \textsc  {FM3} overcorrection rebound across 4 runs. Requesting extreme high politeness causes a rebound above baseline in all runs (mean +5.0pp).}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:fm3_replication}{{7}{6}{\fm {3} overcorrection rebound across 4 runs. Requesting extreme high politeness causes a rebound above baseline in all runs (mean +5.0pp)}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Bootstrap CI comparison for \textsc  {FM4} gap difference before and after base data expansion. Original CIs included zero ($[-0.065, 0.360]$ and $[-0.052, 0.366]$); expanded CIs exclude zero ($[+0.018, +0.291]$ and $[+0.022, +0.296]$). 10,000 bootstrap resamples.}}{6}{table.8}\protected@file@percent }
+\newlabel{tab:bootstrap}{{8}{6}{Bootstrap CI comparison for \fm {4} gap difference before and after base data expansion. Original CIs included zero ($[-0.065, 0.360]$ and $[-0.052, 0.366]$); expanded CIs exclude zero ($[+0.018, +0.291]$ and $[+0.022, +0.296]$). 10,000 bootstrap resamples}{table.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results and Analysis}{6}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{6}{Results and Analysis}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}C1: \textsc  {BCP}{} Produces Three Systematic Failure Modes}{6}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:results_c1}{{5.1}{6}{C1: \bcp {} Produces Three Systematic Failure Modes}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{\textsc  {FM1}: Global Behavior Suppression.}{6}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\textsc  {FM2}: Cross-Dimension Interference.}{6}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{\textsc  {FM3}: Overcorrection Rebound.}{6}{section*.8}\protected@file@percent }
+\citation{lee2024dpo_toxicity}
+\citation{basil2025playing_pretend,hu2026expert_persona}
+\citation{khan2026decoding}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}C2: DPO+\textsc  {BCP}{} Interaction Produces Calibration Reversal}{7}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:results_c2}{{5.2}{7}{C2: DPO+\bcp {} Interaction Produces Calibration Reversal}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}C3: Scale-Dependent Failure Severity}{7}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:results_c3}{{5.3}{7}{C3: Scale-Dependent Failure Severity}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{7}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{7}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{I1: Completion-calibration trade-off is scale-dependent.}{7}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{I2: Behavioral dimensions are coupled.}{7}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{I3: Prompt-based and training-based calibration interact adversarially.}{7}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{I4: Smaller models have behavioral attractor basins.}{7}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{I5: Scaling does not solve calibration.}{7}{section*.13}\protected@file@percent }
+\bibcite{basil2025playing_pretend}{{1}{2025}{{Basil et~al.}}{{}}}
+\bibcite{gupta2026intra_fairness}{{2}{2026}{{Gupta et~al.}}{{}}}
+\bibcite{hu2026expert_persona}{{3}{2026}{{Hu et~al.}}{{}}}
+\bibcite{khan2026decoding}{{4}{2026}{{Khan et~al.}}{{}}}
+\bibcite{lee2024dpo_toxicity}{{5}{2024}{{Lee et~al.}}{{}}}
+\bibcite{rafailov2023dpo}{{6}{2023}{{Rafailov et~al.}}{{}}}
+\bibcite{seshadri2026lost}{{7}{2026}{{Seshadri et~al.}}{{}}}
+\bibcite{sim2real2026gap}{{8}{2026}{{Sim2Real}}{{}}}
+\bibcite{yao2024taubench}{{9}{2024}{{Yao et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{8}{section.7}\protected@file@percent }
+\newlabel{sec:limitations}{{7}{8}{Limitations}{section.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Single model family.}{8}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Single task domain.}{8}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-scale DPO interaction.}{8}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{8}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{8}{Conclusion}{section.8}{}}
+\gdef \@abspage@last{9}

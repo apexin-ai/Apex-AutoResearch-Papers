@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_gpu_gemma2_hires_bf16_2bitonly_20260514T220044_result.json",
     "occurrence": 1,
-    "bytes": 598,
-    "sha256": "30a793bfa9150dda10ab3c42643cc4e3e79d5ea80d94827a12c71f76e7bd3598"
+    "bytes": 597,
+    "sha256": "564ea63b496997f981203b6ea402e6bd88a67abe361a74f7a1964396b74ad1a1"
   },
   "statistics": {
     "messages": 1,

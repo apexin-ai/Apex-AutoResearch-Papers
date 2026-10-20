@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_figure_scatter_concentration_fix_20260514T220428_result.json",
     "occurrence": 1,
-    "bytes": 544,
-    "sha256": "cf455791e1b328a6aace9c8f263249331f4b56e29cab856ccd9806c9128371a0"
+    "bytes": 543,
+    "sha256": "8b20b9a79c4f93c556dc3c1943e27278f18ec0d2bd8aae01ec7d302636726617"
   },
   "statistics": {
     "messages": 1,

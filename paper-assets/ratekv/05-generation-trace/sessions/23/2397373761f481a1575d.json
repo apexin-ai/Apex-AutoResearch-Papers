@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_code_llama_eval_bf16_fix_20260514T021119_result.json",
     "occurrence": 1,
-    "bytes": 762,
-    "sha256": "63432949103a410e706ab8bb461d226cfa543eb9fe804b43e8e2b1d7162175ae"
+    "bytes": 761,
+    "sha256": "8d6b00e1ef4069d062dbc92b06501f08fec433a0fe508c1d37d3d848db42c44a"
   },
   "statistics": {
     "messages": 1,

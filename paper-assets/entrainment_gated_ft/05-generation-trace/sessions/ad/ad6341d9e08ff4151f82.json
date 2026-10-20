@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_fix_exp-007-use-clean-script-v3_20260519T174725_result.json",
     "occurrence": 1,
-    "bytes": 659,
-    "sha256": "718758056112e18b759adb14bd5e67d3893b321cc530c262c73de3b20eca0bcb"
+    "bytes": 658,
+    "sha256": "f48d6f678647153275de1e0f734e9f6493aa0426097dda4f8021b22fc299b781"
   },
   "statistics": {
     "messages": 1,

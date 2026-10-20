@@ -9,8 +9,8 @@
     "archive": "trace-files.tar.gz",
     "member": "logs/workers/worker_exp_e4-pythia-seed-calibration_20260522T101802_result.json",
     "occurrence": 1,
-    "bytes": 183,
-    "sha256": "1f5995bd9a7988c31aba3217899fa1d276f42aa3d518be24471c4947787dd2c4"
+    "bytes": 182,
+    "sha256": "49dbdb567dee4cdb57e2a63d31d84b5521109c0e9277e8e58f4f4e4e45979ae5"
   },
   "statistics": {
     "messages": 1,
