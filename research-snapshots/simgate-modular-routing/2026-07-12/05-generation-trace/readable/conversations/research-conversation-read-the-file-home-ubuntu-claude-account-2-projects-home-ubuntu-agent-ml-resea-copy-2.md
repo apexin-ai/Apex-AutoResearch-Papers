@@ -1,0 +1,2396 @@
+# Research conversation: Read the file /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 35
+- **Recorded user turns:** 1
+- **Tool calls:** 14
+- **Original source:** `logs/chats/exported-trajectories/account-2/agent-a15b5eaf82d5d9d02.jsonl`
+- **Structured JSON:** [`520642256412818906e0.json`](../../sessions/52/520642256412818906e0.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+35 recorded events
+
+### User
+
+_source line 1 · 2026-05-15T00:18:50.943Z_
+
+Read the file /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-reviewer-65b870d4/1158d0f4-b2d0-4b5b-89f4-c996dd76b730/tool-results/mcp-agent-ml-research-read_registry-1778804318748.txt
+
+This is a JSON file with schema {result: string}. The result string contains YAML content of experiment registry entries.
+
+I need you to find:
+1. Any experiments related to "trajectory", "death step", "step-level", or "temporal" data — do they record per-step death information?
+2. The experiment that produced DAF results — what spec/conclusion does it have? Look for experiments mentioning "DAF", "death asymmetry factor", "counterfactual".
+3. Any experiment mentioning "alfworld-counterfactual" — what trajectory data format does it use?
+
+Report back with specific exp_ids and relevant details. Quote key fields verbatim.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "f0b48b30-537d-4302-b0ad-f3f56612590d",
+  "agentId": "a15b5eaf82d5d9d02",
+  "type": "user",
+  "uuid": "17a57082-ebb7-460d-9802-53c627d2e87a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T00:18:50.948Z_
+
+```json
+{
+  "parentUuid": "17a57082-ebb7-460d-9802-53c627d2e87a",
+  "isSidechain": true,
+  "agentId": "a15b5eaf82d5d9d02",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__tail_training_logs"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reviewer_post_to_director",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__tail_training_logs"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "50920237-5422-4850-ba8f-c63bdad045be",
+  "timestamp": "2026-05-15T00:18:50.948Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T00:18:55.336Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01UkAvyGQDTpgVWpFztfmMEa`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-reviewer-65b870d4/1158d0f4-b2d0-4b5b-89f4-c996dd76b730/tool-results/mcp-agent-ml-research-read_registry-1778804318748.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "50920237-5422-4850-ba8f-c63bdad045be",
+  "isSidechain": true,
+  "agentId": "a15b5eaf82d5d9d02",
+  "requestId": "req_011Cb3PtDrtZSoZakDpLKx8s",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2613c8b0-6eeb-453f-8c29-50418f577bb5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019eC46F5sfYrgGRmkvGBNFG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 22646,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 159,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 22646
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 159,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 22646,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 22646,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T00:18:55.654Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01UkAvyGQDTpgVWpFztfmMEa`</summary>
+
+```text
+File content (25037 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2613c8b0-6eeb-453f-8c29-50418f577bb5",
+  "isSidechain": true,
+  "promptId": "f0b48b30-537d-4302-b0ad-f3f56612590d",
+  "agentId": "a15b5eaf82d5d9d02",
+  "type": "user",
+  "uuid": "586916af-8200-43ac-aac8-b701957ac98c",
+  "toolUseResult": "Error: File content (25037 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "2613c8b0-6eeb-453f-8c29-50418f577bb5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T00:18:58.834Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01C4m6F7DrUJTJRd4j9TQn5f`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-reviewer-65b870d4/1158d0f4-b2d0-4b5b-89f4-c996dd76b730/tool-results/mcp-agent-ml-research-read_registry-1778804318748.txt",
+  "limit": 500
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "586916af-8200-43ac-aac8-b701957ac98c",
+  "isSidechain": true,
+  "agentId": "a15b5eaf82d5d9d02",
+  "requestId": "req_011Cb3PtaBWurdrJhge6GTNY",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "139de1b2-3244-4186-bd0a-9a9449d3f81e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017CUXHWyaSJ1G7bT93LxUEb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1060,
+      "cache_read_input_tokens": 22646,
+      "output_tokens": 175,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1060
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 175,
+          "cache_read_input_tokens": 22646,
+          "cache_creation_input_tokens": 1060,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1060,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T00:18:59.350Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01C4m6F7DrUJTJRd4j9TQn5f`</summary>
+
+```text
+File content (25037 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "139de1b2-3244-4186-bd0a-9a9449d3f81e",
+  "isSidechain": true,
+  "promptId": "f0b48b30-537d-4302-b0ad-f3f56612590d",
+  "agentId": "a15b5eaf82d5d9d02",
+  "type": "user",
+  "uuid": "8878b727-875c-4647-be44-0ad4bffbd114",
+  "toolUseResult": "Error: File content (25037 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "139de1b2-3244-4186-bd0a-9a9449d3f81e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T00:19:02.689Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_019ZNgE18jBNZGJHoKFZo6Yu`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-reviewer-65b870d4/1158d0f4-b2d0-4b5b-89f4-c996dd76b730/tool-results/mcp-agent-ml-research-read_registry-1778804318748.txt",
+  "offset": 0,
+  "limit": 400
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8878b727-875c-4647-be44-0ad4bffbd114",
+  "isSidechain": true,
+  "agentId": "a15b5eaf82d5d9d02",
+  "requestId": "req_011Cb3Ptqnd99gfAMBC7Utdc",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3ace5327-bf5e-478c-9eda-50888a4d11ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JheKt5cRQhciUdtQSmV6Ev",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 236,
+      "cache_read_input_tokens": 23706,
+      "output_tokens": 192,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 236
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 192,
+          "cache_read_input_tokens": 23706,
+          "cache_creation_input_tokens": 236,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 236,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T00:19:02.979Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_019ZNgE18jBNZGJHoKFZo6Yu`</summary>
+
+```text
+File content (25037 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3ace5327-bf5e-478c-9eda-50888a4d11ad",
+  "isSidechain": true,
+  "promptId": "f0b48b30-537d-4302-b0ad-f3f56612590d",
+  "agentId": "a15b5eaf82d5d9d02",
+  "type": "user",
+  "uuid": "e9b7cc61-3a0b-46d2-b01d-e24511f31aba",
+  "toolUseResult": "Error: File content (25037 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "3ace5327-bf5e-478c-9eda-50888a4d11ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T00:19:06.291Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01HY8oqA2k6cZwQPoLniMt1x`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-reviewer-65b870d4/1158d0f4-b2d0-4b5b-89f4-c996dd76b730/tool-results/mcp-agent-ml-research-read_registry-1778804318748.txt",
+  "offset": 0,
+  "limit": 300
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9b7cc61-3a0b-46d2-b01d-e24511f31aba",
+  "isSidechain": true,
+  "agentId": "a15b5eaf82d5d9d02",
+  "requestId": "req_011Cb3Pu7DZcBa4MNYtcDf8R",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7a6a6ce9-2ca7-4739-84f0-8bb7926b4251",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VGZtHncL8rPWCQRV23mJ7n",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 253,
+      "cache_read_input_tokens": 23942,
+      "output_tokens": 192,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 253
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 192,
+          "cache_read_input_tokens": 23942,
+          "cache_creation_input_tokens": 253,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 253,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T00:19:06.603Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01HY8oqA2k6cZwQPoLniMt1x`</summary>
+
+```text
+File content (25037 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7a6a6ce9-2ca7-4739-84f0-8bb7926b4251",
+  "isSidechain": true,
+  "promptId": "f0b48b30-537d-4302-b0ad-f3f56612590d",
+  "agentId": "a15b5eaf82d5d9d02",
+  "type": "user",
+  "uuid": "f986c3d8-9d0d-4e74-ab36-6174576eefcb",
+  "toolUseResult": "Error: File content (25037 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "7a6a6ce9-2ca7-4739-84f0-8bb7926b4251",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-15T00:19:09.091Z_
+
+The file is too large even with limits. Let me search for the specific terms instead.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f986c3d8-9d0d-4e74-ab36-6174576eefcb",
+  "isSidechain": true,
+  "agentId": "a15b5eaf82d5d9d02",
+  "requestId": "req_011Cb3PuNmhEcew5Y3D7ijgJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "29a9768f-074c-470c-9575-3d3b354c6602",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018fkDRhXDAWvPQqHDEowzr7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 253,
+      "cache_read_input_tokens": 24195,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 253,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T00:19:11.300Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01HeZKJikTzfDnsGw8RxDZQT`</summary>
+
+```json
+{
+  "pattern": "trajectory|death.step|step.level|temporal|per.step",
+  "path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-reviewer-65b870d4/1158d0f4-b2d0-4b5b-89f4-c996dd76b730/tool-results/mcp-agent-ml-research-read_registry-1778804318748.txt",
+  "output_mode": "content",
+  "-i": true,
+  "-C": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "29a9768f-074c-470c-9575-3d3b354c6602",
+  "isSidechain": true,
+  "agentId": "a15b5eaf82d5d9d02",
+  "requestId": "req_011Cb3PuNmhEcew5Y3D7ijgJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3747b105-0d36-48ef-a16a-17e5f515c87a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018fkDRhXDAWvPQqHDEowzr7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 253,
+      "cache_read_input_tokens": 24195,
+      "output_tokens": 262,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 253
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 262,
+          "cache_read_input_tokens": 24195,
+          "cache_creation_input_tokens": 253,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 253,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T00:19:11.336Z_
+
+<details><summary>↩ Tool result · `toolu_01HeZKJikTzfDnsGw8RxDZQT`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3747b105-0d36-48ef-a16a-17e5f515c87a",
+  "isSidechain": true,
+  "promptId": "f0b48b30-537d-4302-b0ad-f3f56612590d",
+  "agentId": "a15b5eaf82d5d9d02",
+  "type": "user",
+  "uuid": "3fb37702-bb31-4685-ab75-df98aa1a3b40",
+  "sourceToolAssistantUUID": "3747b105-0d36-48ef-a16a-17e5f515c87a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T00:19:15.275Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01RiwkhrRaP7pNpM8DX3jAg6`</summary>
+
+```json
+{
+  "pattern": "DAF|death.asymmetry|counterfactual|alfworld",
+  "path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-reviewer-65b870d4/1158d0f4-b2d0-4b5b-89f4-c996dd76b730/tool-results/mcp-agent-ml-research-read_registry-1778804318748.txt",
+  "output_mode": "content",
+  "-i": true,
+  "-C": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3fb37702-bb31-4685-ab75-df98aa1a3b40",
+  "isSidechain": true,
+  "agentId": "a15b5eaf82d5d9d02",
+  "requestId": "req_011Cb3PujC2aNJ9Hem8ofA7N",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "acf5e4a0-0b81-4a1e-b750-0d88e793c08e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ULUGvLWby412sK4RznXPwh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 277,
+      "cache_read_input_tokens": 24448,
+      "output_tokens": 244,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 277
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 244,
+          "cache_read_input_tokens": 24448,
+          "cache_creation_input_tokens": 277,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 277,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T00:19:15.299Z_
+
+<details><summary>↩ Tool result · `toolu_01RiwkhrRaP7pNpM8DX3jAg6`</summary>
+
+```text
+1:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "acf5e4a0-0b81-4a1e-b750-0d88e793c08e",
+  "isSidechain": true,
+  "promptId": "f0b48b30-537d-4302-b0ad-f3f56612590d",
+  "agentId": "a15b5eaf82d5d9d02",
+  "type": "user",
+  "uuid": "346b8c1d-2f07-41a4-80fa-1fab9591d54c",
+  "sourceToolAssistantUUID": "acf5e4a0-0b81-4a1e-b750-0d88e793c08e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-15T00:19:18.045Z_
+
+The file is a single-line JSON. Let me use bash to parse it.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "346b8c1d-2f07-41a4-80fa-1fab9591d54c",
+  "isSidechain": true,
+  "agentId": "a15b5eaf82d5d9d02",
+  "requestId": "req_011Cb3Pv26X4FN1bLv1q1pyR",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6e0429e7-a9d4-4ec6-9162-95fad08f5245",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GLeBWpCugYX5hEgpGa9tgS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 265,
+      "cache_read_input_tokens": 24725,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 265,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T00:19:19.840Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01ARm67A5nHPXiEqcpsDCz9n`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-reviewer-65b870d4/1158d0f4-b2d0-4b5b-89f4-c996dd76b730/tool-results && python3 -c \"\nimport json\nwith open('mcp-agent-ml-research-read_registry-1778804318748.txt') as f:\n    data = json.load(f)\n# The result field contains YAML\nprint(data['result'][:5000])\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6e0429e7-a9d4-4ec6-9162-95fad08f5245",
+  "isSidechain": true,
+  "agentId": "a15b5eaf82d5d9d02",
+  "requestId": "req_011Cb3Pv26X4FN1bLv1q1pyR",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f3b401bf-f074-48de-9e01-e77cd0847e75",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GLeBWpCugYX5hEgpGa9tgS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 265,
+      "cache_read_input_tokens": 24725,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 265,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T00:19:20.135Z_
+
+<details><summary>↩ Tool result · `toolu_01ARm67A5nHPXiEqcpsDCz9n`</summary>
+
+```text
+{"success": true, "data": {"experiments": {"alfworld-counterfactual-full": {"status": "DONE", "spec": {"command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python src/alfworld_counterfactual.py --n_tasks 140 --output results/alfworld_counterfactual/episodes.jsonl --seed 42", "server": "westb-13313", "data_path": "/root/autodl-tmp/alfworld_data/json_2.1.1/valid_seen", "data_count": 140, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "gpu": "cuda:1", "tmux_session": "alfworld_cf", "checkpoint_path": "/root/autodl-tmp/simgate-modular-routing/results/alfworld_counterfactual/episodes.jsonl", "log_path": "/root/autodl-tmp/simgate-modular-routing/results/alfworld_counterfactual/run.log"}, "conclusion": "success", "metrics": {"n_games": 135, "det_preferred": 35, "internal_preferred": 2, "no_preference": 98, "det_preferred_pct": 25.9, "internal_preferred_pct": 1.5, "no_preference_pct": 72.6, "det_success_rate": 27.4, "internal_success_rate": 3}}, "math-200-fixed": {"status": "DONE", "spec": {"hypothesis": "MATH 200 题（Level 4-5，offset=50 跳过 pilot）counterfactual 收集，使用修复后的 code_sandbox.py（auto_print_last_expr 修复裸表达式 output 为空 bug）", "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python src/math_counterfactual.py --n_problems 200 --offset 50 --output data/math-counterfactual/math_200_fixed.jsonl --seed 42", "server": "westb-13313", "gpu": "cuda:0", "data_path": "hendrycks/competition_math (Level 4-5)", "data_count": 200, "model_name": "Qwen2.5-7B-Instruct", "seed": 42}, "conclusion": "failed"}, "math-pilot-50": {"status": "DONE", "spec": {"command": "python src/math_counterfactual.py --n_problems 50 --forced_code", "server": "westb-13313", "gpu": "cuda:0", "data_path": "MATH Level 4-5", "data_count": 50, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "checkpoint_path": "src/math_counterfactual.py", "log_path": "results/math_pilot_50/"}, "conclusion": "success", "metrics": {"n_problems": 50, "code_execution_rate": 0.82, "code_exec_count": 41, "no_code_count": 9, "internal_accuracy": 0.8, "codeinterp_accuracy": 0.72, "labels": {"det_preferred": 1, "internal_preferred": 5, "no_preference": 44}, "filtered_labels": {"det_preferred": 1, "internal_preferred": 5, "no_preference": 44}, "code_rounds_dist": {"0_rounds": 9, "1_round": 36, "2_rounds": 5}, "avg_time_per_problem_s": 12, "total_time_s": 599, "gate": "PASS", "critical_finding": "Internal reasoning (80%) outperforms code interpreter (72%). Labels heavily skewed toward internal-preferred."}}, "alfworld-counterfactual-dryrun": {"status": "DONE", "spec": {"command": "python src/alfworld_counterfactual.py --n_tasks 5 --task_types look_at_obj_in_light", "server": "westb-13313", "data_path": "/root/autodl-tmp/alfworld_data/json_2.1.1/valid_seen", "data_count": 5, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "checkpoint_path": "src/alfworld_counterfactual.py", "log_path": "/root/autodl-tmp/simgate-modular-routing/results/alfworld_dryrun/"}, "conclusion": "success", "metrics": {"n_tasks": 5, "task_type": "look_at_obj_in_light", "all_no_preference": true, "internal_success": 1, "det_success": 1, "pipeline_validated": true, "alfworld_version": "0.4.2", "total_games_available": 140, "task_types_available": 6}}, "math-counterfactual-dryrun": {"status": "DONE", "conclusion": "success", "spec": {"command": "python3 src/math_counterfactual.py --n_problems 10 --output data/math-counterfactual/dryrun.jsonl --gpu_id 0", "server": "westb-13313", "data_path": "data/math-raw", "data_count": 10, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "checkpoint_path": "N/A", "log_path": "/tmp/math_dryrun.log"}}, "plan-012-penalty-sensitivity": {"status": "DONE", "metrics": {"N": 245, "n_only_int_dies": 70, "n_only_det_dies": 5, "n_both_die": 35, "n_neither_die": 135, "delta": 0.2653, "delta_nd": 3.07, "delta_full_100": 29.6, "DAF_P10": 46.4, "DAF_P25": 68.4, "DAF_P50": 81.2, "DAF_P100": 89.6, "DAF_P200": 94.5}, "spec": {"command": "analytical decomposition", "server": "westb-13313", "data_path": "results/plan_c/", "data_count": 245, "model_name": "n/a", "seed": 0}, "conclusion": "success"}, "plan-003-bootstrap-95ci": {"status": "DONE", "spec": {"command": "python src/eval_end_to_end.py + bootstrap recompute", "server": "westb-13313", "data_path": "results/plan_c", "data_count": 245, "model_name": "n/a", "seed": 42, "checkpoint_path": "results/bootstrap_95ci.json", "log_path": "results/plan_c_95ci/"}, "conclusion": "success", "metrics": {"always-internal": {"mean": -39.07, "ci95": [-46.4, -32.27]}, "always-deterministic": {"mean": -9.47, "ci95": [-14.71, -4.29]}, "oracle": {"mean": -6.58, "ci95": [-11.54, -1.7]}, "random": {"mean": -22.38, "ci95": [-28.67, -15.75]}, "trained-router": {"mean": -10.7, "ci95": [-16.33, -5.27]}}}, "plan-013-labeling-quality": {"status": "DONE", "metrics": {"tie_rate": 0.612, "tie_rate_both_alive": 0.469, "tie_rate_both_died": 0.143, "genuine_det_fr
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f3b401bf-f074-48de-9e01-e77cd0847e75",
+  "isSidechain": true,
+  "promptId": "f0b48b30-537d-4302-b0ad-f3f56612590d",
+  "agentId": "a15b5eaf82d5d9d02",
+  "type": "user",
+  "uuid": "1acb75f3-f3d1-4aa2-8cdc-a3ae4902dc2c",
+  "sourceToolAssistantUUID": "f3b401bf-f074-48de-9e01-e77cd0847e75",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T00:19:27.249Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01SNTxpawfVfErZJ1ZLLYgqu`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-reviewer-65b870d4/1158d0f4-b2d0-4b5b-89f4-c996dd76b730/tool-results && python3 -c \"\nimport json\nwith open('mcp-agent-ml-research-read_registry-1778804318748.txt') as f:\n    data = json.load(f)\ncontent = data['result']\nprint(content[5000:10000])\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1acb75f3-f3d1-4aa2-8cdc-a3ae4902dc2c",
+  "isSidechain": true,
+  "agentId": "a15b5eaf82d5d9d02",
+  "requestId": "req_011Cb3PvNhkwi21czAzGiHfh",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ce8c992b-c77b-48b5-ac9d-cd0cafb8bef3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GdaRpnhaJaLLuR7GMe6dTa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2226,
+      "cache_read_input_tokens": 24990,
+      "output_tokens": 205,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2226
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 205,
+          "cache_read_input_tokens": 24990,
+          "cache_creation_input_tokens": 2226,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2226,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T00:19:27.481Z_
+
+<details><summary>↩ Tool result · `toolu_01SNTxpawfVfErZJ1ZLLYgqu`</summary>
+
+```text
+action": 1, "tiebreak_det_fraction": 0, "det_preferred_death_asymmetry": 70, "det_preferred_score_comparison": 16, "strict_retrain_balanced_acc": 0.5729, "strict_retrain_internal_recall": 0.7576, "strict_retrain_det_recall": 0.3883, "ablation_b_mean_balanced_acc": 0.5761, "ablation_b_std_balanced_acc": 0.0047}, "conclusion": "success", "spec": {"command": "python plan013_labeling_analysis.py", "server": "westb-13313", "data_path": "/root/autodl-tmp/simgate-modular-routing/results/plan_c/", "data_count": 245, "model_name": "Qwen3-1.7B (strict retrain comparison)", "seed": 42, "checkpoint_path": "N/A", "log_path": "/root/autodl-tmp/simgate-modular-routing/results/plan_013/"}}, "plan-012-step-tie-rate": {"status": "DONE", "spec": {"command": "python src/step_tie_rate_full.py", "server": "westb-13313", "data_path": "/root/autodl-tmp/simgate-modular-routing/results/plan_c/", "data_count": 245, "model_name": "N/A (analysis only)", "seed": "N/A", "checkpoint_path": "N/A", "log_path": "/root/autodl-tmp/simgate-modular-routing/results/step_tie_rate_full.json"}, "conclusion": "success", "metrics": {"total_steps": 6094, "tie_steps": 5935, "tie_rate": 0.9739, "both_zero_ties": 5920, "nonzero_equal_ties": 15, "det_preferred_steps": 133, "int_preferred_steps": 26, "episodes": 245, "tasks": 11, "per_task": {"chemistry-mix": {"episodes": 20, "steps": 464, "ties": 453, "rate": 0.9763}, "find-animal": {"episodes": 20, "steps": 499, "ties": 488, "rate": 0.978}, "find-non-living-thing": {"episodes": 40, "steps": 1200, "ties": 1159, "rate": 0.9658}, "freeze": {"episodes": 20, "steps": 468, "ties": 457, "rate": 0.9765}, "grow-fruit": {"episodes": 20, "steps": 489, "ties": 479, "rate": 0.9795}, "identify-life-stages-1": {"episodes": 20, "steps": 478, "ties": 467, "rate": 0.977}, "identify-life-stages-2": {"episodes": 20, "steps": 487, "ties": 477, "rate": 0.9795}, "inclined-plane-determine-angle": {"episodes": 20, "steps": 468, "ties": 457, "rate": 0.9765}, "lifespan-longest-lived": {"episodes": 25, "steps": 585, "ties": 570, "rate": 0.9744}, "lifespan-longest-lived-then-shortest-lived": {"episodes": 20, "steps": 498, "ties": 488, "rate": 0.9799}, "measure-melting-point-unknown-substance": {"episodes": 20, "steps": 458, "ties": 440, "rate": 0.9607}}, "old_mvp_comparison": {"old_rate": 0.982, "old_steps": 2948, "old_ties": 2894, "old_scope": "5 MVP tasks (oracle routing)"}}}, "research-cf-pilot-gpu1": {"status": "DONE", "conclusion": "killed"}, "plan-004-ablation-b": {"status": "DONE", "spec": {"server": "westb-13313", "gpu": ["cuda:1"], "account": "root", "command": "CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/implicit_router_sft.py --data_dir data/plan-004-implicit --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --upsample_minority --lr 2e-5 --output_dir checkpoints/plan-004-implicit --seed 42", "data_path": "data/plan-004-implicit/", "data_count": "2040 samples (train 1735 / val 305)", "model_name": "/root/autodl-tmp/models/Qwen/Qwen3-1.7B + LoRA r=16 (0.37% trainable)", "seed": 42, "pid": "225362", "checkpoint_source": "N/A (training from scratch)", "eval_data": "N/A (ablation training)", "note": "v2: CUDA_VISIBLE_DEVICES=1 隔离修复 + 本地模型路径 + HF_HUB_OFFLINE=1"}, "conclusion": "success", "metrics": {"logit_level": {"eval_accuracy": 0.6536, "eval_f1_macro": 0.5091, "eval_balanced_accuracy": 0.5927, "internal_recall": 0.5152, "per_class": {"deterministic": {"precision": 0.9196, "recall": 0.6703, "f1": 0.7754, "support": 273}, "internal": {"precision": 0.1589, "recall": 0.5152, "f1": 0.2429, "support": 33}}, "confusion": {"true_int_pred_int": 17, "true_int_pred_det": 16, "true_det_pred_det": 183, "true_det_pred_int": 90}, "training_loss_curve": {"epoch1": 0.7151, "epoch2": 0.3928, "epoch3": 0.3609}}, "generation_level": {"accuracy": 0.6536, "balanced_accuracy": 0.5927, "internal_recall": 0.5152, "internal_precision": 0.1589, "internal_f1": 0.2429, "det_recall": 0.6703, "det_precision": 0.9196, "det_f1": 0.7754, "confusion_matrix": [[17, 16], [90, 183]], "confusion_labels": ["internal", "deterministic"], "n_val": 306, "val_label_dist": {"internal": 33, "deterministic": 273}, "pred_dist": {"deterministic": 199, "internal": 107}, "enable_thinking": false, "logit_generation_gap": 0, "note": "Generation-level eval IDENTICAL to logit-level. Zero gap. Only model in project without logit-generation gap."}, "is_degenerate": false}}, "plan-003-implicit-eval-full": {"status": "DONE", "spec": {"command": "python3 src/eval_implicit_router.py --adapter checkpoints/plan-004-implicit/final_adapter --output results/plan-003-eval-implicit/", "server": "westb-13313", "data_path": "episodes_slim_FINAL.jsonl (245 episodes)", "data_count": 245, "model_name": "Qwen2.5-7B + plan-004-implicit/final_adapter (ablation-b implicit SFT)", "seed": 42, "checkpoint_source": "checkpoints/plan-004-implicit/final_adapter", "eval_data": "245 episodes / 11 tasks / 2160 steps
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ce8c992b-c77b-48b5-ac9d-cd0cafb8bef3",
+  "isSidechain": true,
+  "promptId": "f0b48b30-537d-4302-b0ad-f3f56612590d",
+  "agentId": "a15b5eaf82d5d9d02",
+  "type": "user",
+  "uuid": "d43ec8cc-3fbd-4f6c-90ea-87468e6d96e1",
+  "sourceToolAssistantUUID": "ce8c992b-c77b-48b5-ac9d-cd0cafb8bef3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T00:19:34.671Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Bxu9hXYZmy9padikLD7rRe`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-reviewer-65b870d4/1158d0f4-b2d0-4b5b-89f4-c996dd76b730/tool-results && python3 -c \"\nimport json\nwith open('mcp-agent-ml-research-read_registry-1778804318748.txt') as f:\n    data = json.load(f)\ncontent = data['result']\nprint(content[10000:15000])\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d43ec8cc-3fbd-4f6c-90ea-87468e6d96e1",
+  "isSidechain": true,
+  "agentId": "a15b5eaf82d5d9d02",
+  "requestId": "req_011Cb3Pvuzgvsu68MFftfF7x",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d073b9e9-4d23-4db6-ba32-e4fd08060315",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HtzXXRxLQCwijV32Nku5Yj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2185,
+      "cache_read_input_tokens": 27216,
+      "output_tokens": 205,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2185
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 205,
+          "cache_read_input_tokens": 27216,
+          "cache_creation_input_tokens": 2185,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2185,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T00:19:34.787Z_
+
+<details><summary>↩ Tool result · `toolu_01Bxu9hXYZmy9padikLD7rRe`</summary>
+
+```text
+", "parent": "plan-004-implicit-train", "checkpoint_path": "checkpoints/plan-004-implicit/final_adapter", "log_path": "results/plan-003-eval-implicit/"}, "conclusion": "negative", "metrics": {"continuous_score": -12.84, "ci_low": -17.52, "ci_high": -8.45, "success_rate": 0.22, "catastrophic_failure_rate": 0.192, "sim_invocation_ratio": 0.941, "step_routing_accuracy": 0.602, "episode_routing_accuracy": 0.821, "internal_recall": 0.444, "det_recall": 0.86, "routing_det": 229, "routing_internal": 16, "n_episodes": 245, "n_tasks": 11, "n_steps": 2160, "oracle_internal_preferred": 9, "oracle_det_preferred": 86, "oracle_no_preference": 150}}, "plan-003-e2e-ablation-b-correct": {"status": "DONE", "spec": {"command": "python src/eval_end_to_end.py --router_type generative --router_checkpoint checkpoints/plan-004-implicit/final_adapter --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --data_dir results/plan_c/ --output_dir results/eval_ablation_b_e2e_correct/ --conditions trained-router --gpu_id 0", "server": "westb-13313", "data_path": "results/plan_c/", "data_count": 245, "model_name": "Qwen3-1.7B + LoRA (plan-004-implicit/final_adapter)", "seed": 42, "checkpoint_source": "checkpoints/plan-004-implicit/final_adapter", "eval_data": "results/plan_c/ (245 episodes, 11 tasks)", "parent": "plan-004-implicit", "hypothesis": "End-to-end eval of ablation-b (correct checkpoint: plan-004-implicit/final_adapter, internal_recall=51.52%) on 245 episodes / 11 tasks. Test C1: trained-router > always-det (-9.47)."}, "metrics": {"continuous_score_mean": -10.7, "continuous_score_ci_low": -15.25, "continuous_score_ci_high": -6.38, "success_rate": 0.2367, "death_rate": 0.1755, "sim_ratio": 0.9703, "fallback_rate": 0.7061, "fallback_count": 173, "n_episodes": 245, "n_tasks": 11, "estimated_llm_tokens": 1464400, "baseline_always_det": -9.47, "baseline_oracle": -6.58, "delta_vs_always_det": -1.23}, "conclusion": "negative"}, "plan-004-ablation-b-seed789": {"status": "DONE", "spec": {"command": "python src/training/implicit_router_sft.py --seed 789 --gradient_accumulation_steps 8 --upsample_minority --data_path data/plan-004-implicit/implicit_sft.jsonl --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --output_dir checkpoints/plan-004-implicit-seed789", "server": "westb-13313", "data_path": "data/plan-004-implicit/implicit_sft.jsonl", "data_count": 2040, "model_name": "Qwen3-1.7B + LoRA r=16", "seed": 789, "checkpoint_path": "checkpoints/plan-004-implicit-seed789/final_adapter", "log_path": "checkpoints/plan-004-implicit-seed789/train.log"}, "conclusion": "negative", "metrics": {"generation_level": {"balanced_accuracy": 0.5831, "internal_recall": 0.8182, "det_recall": 0.348, "accuracy": 0.3987}, "parent": "plan-004-ablation-b", "note": "Seed 变体。balanced_acc ~58% 恒定，accuracy=39.87% 最低因最偏 internal。确认阈值效应。"}}, "plan-004-ablation-b-seed456": {"status": "DONE", "spec": {"command": "python src/training/implicit_router_sft.py --seed 456 --gradient_accumulation_steps 8 --upsample_minority --data_path data/plan-004-implicit/implicit_sft.jsonl --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --output_dir checkpoints/plan-004-implicit-seed456", "server": "westb-13313", "data_path": "data/plan-004-implicit/implicit_sft.jsonl", "data_count": 2040, "model_name": "Qwen3-1.7B + LoRA r=16", "seed": 456, "checkpoint_path": "checkpoints/plan-004-implicit-seed456/final_adapter", "log_path": "checkpoints/plan-004-implicit-seed456/train.log"}, "conclusion": "negative", "metrics": {"generation_level": {"balanced_accuracy": 0.5748, "internal_recall": 0.7576, "det_recall": 0.3919, "accuracy": 0.4314}, "parent": "plan-004-ablation-b", "note": "Seed 变体。balanced_acc ~58% 恒定，accuracy=43.14% 低是因为偏 internal 预测。阈值效应。"}}, "plan-004-ablation-b-seed123": {"status": "DONE", "spec": {"command": "python src/training/implicit_router_sft.py --seed 123 --gradient_accumulation_steps 8 --upsample_minority --data_path data/plan-004-implicit/implicit_sft.jsonl --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --output_dir checkpoints/plan-004-implicit-seed123", "server": "westb-13313", "data_path": "data/plan-004-implicit/implicit_sft.jsonl", "data_count": 2040, "model_name": "Qwen3-1.7B + LoRA r=16", "seed": 123, "checkpoint_path": "checkpoints/plan-004-implicit-seed123/final_adapter", "log_path": "checkpoints/plan-004-implicit-seed123/train.log"}, "conclusion": "negative", "metrics": {"generation_level": {"balanced_accuracy": 0.5736, "internal_recall": 0.5758, "det_recall": 0.5714, "accuracy": 0.5719}, "parent": "plan-004-ablation-b", "note": "Seed 变体。balanced_acc ~58% 恒定，internal_recall 波动是阈值效应。Router 判别力接近随机。"}}, "plan-003-eval-implicit": {"status": "DONE", "spec": {"command": "python src/eval_implicit_router.py --output_dir results/plan-003-eval-implicit", "server": "westb-13313", "data_path": "results/plan_c", "data_count": 245, "model_name": "Qwen3-1.7B + ablation-b LoRA", "seed": 42, "checkpoint_source": "checkpoints/plan-004-implicit/final_adapter", "eval_data
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d073b9e9-4d23-4db6-ba32-e4fd08060315",
+  "isSidechain": true,
+  "promptId": "f0b48b30-537d-4302-b0ad-f3f56612590d",
+  "agentId": "a15b5eaf82d5d9d02",
+  "type": "user",
+  "uuid": "3461216f-6f4a-427a-8e6e-3941ff7f1833",
+  "sourceToolAssistantUUID": "d073b9e9-4d23-4db6-ba32-e4fd08060315",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T00:19:42.185Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01XfdwTYDzNrauDh8SiF6STL`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-reviewer-65b870d4/1158d0f4-b2d0-4b5b-89f4-c996dd76b730/tool-results && python3 -c \"\nimport json\nwith open('mcp-agent-ml-research-read_registry-1778804318748.txt') as f:\n    data = json.load(f)\ncontent = data['result']\nprint(content[15000:20000])\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3461216f-6f4a-427a-8e6e-3941ff7f1833",
+  "isSidechain": true,
+  "agentId": "a15b5eaf82d5d9d02",
+  "requestId": "req_011Cb3PwTS3nq5pUXA5Pi3JK",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "5a9adf5b-5cc9-44a8-9813-c8dbd1d7d29d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019JBFsf97EApsQzekpHETS6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2133,
+      "cache_read_input_tokens": 29401,
+      "output_tokens": 205,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2133
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 205,
+          "cache_read_input_tokens": 29401,
+          "cache_creation_input_tokens": 2133,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2133,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T00:19:42.343Z_
+
+<details><summary>↩ Tool result · `toolu_01XfdwTYDzNrauDh8SiF6STL`</summary>
+
+```text
+": "results/plan_c (245 episodes, 2040 steps, 11 tasks)", "parent": "plan-004-implicit", "checkpoint_path": "checkpoints/plan-004-implicit/final_adapter", "log_path": "/tmp/eval_implicit_router.log"}, "conclusion": "negative", "metrics": {"continuous_score": {"mean": -12.84, "ci_low": -17.52, "ci_high": -8.45, "n": 245}, "success_rate": {"mean": 0.2204, "ci_low": 0.1796, "ci_high": 0.2653}, "catastrophic_failure_rate": {"mean": 0.1918, "ci_low": 0.151, "ci_high": 0.2327}, "simulator_invocation_ratio": 0.9411, "step_routing_accuracy": {"accuracy": 0.6023, "correct": 1301, "total": 2160}, "episode_routing_accuracy": {"accuracy": 0.8211, "correct": 78, "total": 95}, "routing_distribution": {"deterministic": 229, "internal": 16}, "baselines": {"always_internal": -39.07, "always_det": -9.47, "oracle": -6.58, "random": -22.38}, "WARNING": "trained router (-12.84) worse than always-det (-9.47) by 3.37 points"}}, "plan-003-e2e-ablation-b": {"status": "DONE", "spec": {"command": "python src/eval_end_to_end.py --router_type generative --router_checkpoint checkpoints/plan-002-generative-v1/final_adapter --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --data_dir results/plan_c/ --output_dir results/eval_ablation_b_e2e/ --conditions trained-router --gpu_id 0", "server": "westb-13313", "data_path": "results/plan_c/", "data_count": 245, "model_name": "Qwen3-1.7B + LoRA (plan-002-generative-v1)", "seed": 42, "checkpoint_source": "checkpoints/plan-002-generative-v1/final_adapter", "eval_data": "results/plan_c/ (245 eps, 11 tasks)", "checkpoint_path": "checkpoints/plan-002-generative-v1/final_adapter", "log_path": "/tmp/eval_ablation_b.log"}, "conclusion": "failed", "metrics": {"score_mean": -11.11, "score_ci_low": -15.93, "score_ci_high": -6.7, "death_rate": 0.1796, "success_rate": 0.2367, "sim_ratio": 0.9607, "fallback_rate": 0.706, "n_episodes": 245, "n_tasks": 11, "baseline_always_det": -9.47, "baseline_oracle": -6.58, "delta_vs_always_det": -1.64}}, "plan-002-generative-v1": {"status": "DONE", "spec": {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=0 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/generative_router_sft.py train --data_dir data/plan-004-implicit --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --output_dir checkpoints/plan-002-generative-v1 --seed 42 --gpu_id 0\"", "server": "westb-13313", "gpu": ["cuda:0"], "pid": "247424", "log_path": "~/runs/simgate-modular-routing/plan-002-generative-v1.log", "submitted_at": "2026-05-14T07:59:25.033Z", "submitted_via": "submit_training_job", "backend": "tmux", "account": "root", "wall_clock_seconds": 2709.7, "gpu_hours": 0.75}, "metrics": {"routing_accuracy": 0.7067, "balanced_accuracy": 0.4667, "internal_recall": 0.1667, "internal_precision": 0.0735, "internal_f1": 0.102, "det_recall": 0.7667, "det_precision": 0.8922, "det_f1": 0.8247, "val_size": 300, "val_label_dist": {"internal": 30, "deterministic": 270}, "pred_dist": {"deterministic": 232, "internal": 68}, "confusion_matrix": [[5, 25], [63, 207]], "train_final_loss": 0.2, "train_eval_loss": 0.26, "note": "enable_thinking=False required for Qwen3 inference; with thinking mode, model outputs &lt;think> tags causing all-internal parsing failure"}, "conclusion": "negative"}, "plan-004-v5": {"status": "DONE", "spec": {"command": "implicit_router_sft.py train", "server": "westb-13313", "gpu": ["cuda:1"], "pid": "247838", "log_path": "~/runs/simgate-modular-routing/plan-004-v5.log", "submitted_at": "2026-05-14T08:03:12.287Z", "submitted_via": "submit_training_job", "backend": "tmux", "account": "root", "data_path": "data/plan-004-implicit/implicit_sft.jsonl", "data_count": 2040, "model_name": "Qwen3-1.7B", "seed": 42, "wall_clock_seconds": 1297.4, "gpu_hours": 0.36}, "metrics": {"logit_level": {"accuracy": 0.7451, "balanced_accuracy": 0.7905, "internal_recall": 0.8485, "eval_loss": 0.2382, "note": "From Trainer eval during training (logit-level, not generation)"}, "generation_eval": {"accuracy": 0.5333, "balanced_accuracy": 0.4148, "internal_recall": 0.2667, "internal_precision": 0.0635, "internal_f1": 0.0941, "det_recall": 0.563, "det_precision": 0.8736, "det_f1": 0.6862, "confusion_matrix": [[152, 118], [22, 8]], "confusion_labels": ["deterministic", "internal"], "n_val": 300, "val_label_dist": {"internal": 30, "deterministic": 270}, "pred_dist": {"deterministic": 174, "internal": 126}, "enable_thinking": "identical results for thinking_on, thinking_off, and thinking_on+strip"}}, "conclusion": "negative"}, "plan-003-baseline-245eps": {"status": "DONE", "conclusion": "success", "spec": {"command": "python3 src/eval_end_to_end.py --data_dir results/plan_c --conditions always-internal,always-deterministic,oracle,random --output_dir results/baseline_245eps --seed 42", "server": "westb-13313", "data_path": "results/plan_c", "data_count"
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5a9adf5b-5cc9-44a8-9813-c8dbd1d7d29d",
+  "isSidechain": true,
+  "promptId": "f0b48b30-537d-4302-b0ad-f3f56612590d",
+  "agentId": "a15b5eaf82d5d9d02",
+  "type": "user",
+  "uuid": "d4d1e234-fcf1-449c-a1f8-0aafa9534472",
+  "sourceToolAssistantUUID": "5a9adf5b-5cc9-44a8-9813-c8dbd1d7d29d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T00:19:50.597Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_018KCZiVkng7EoiRkK6Gh8Dx`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-reviewer-65b870d4/1158d0f4-b2d0-4b5b-89f4-c996dd76b730/tool-results && python3 -c \"\nimport json\nwith open('mcp-agent-ml-research-read_registry-1778804318748.txt') as f:\n    data = json.load(f)\ncontent = data['result']\nprint(content[20000:])\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4d1e234-fcf1-449c-a1f8-0aafa9534472",
+  "isSidechain": true,
+  "agentId": "a15b5eaf82d5d9d02",
+  "requestId": "req_011Cb3Px1ZpoHGk2387UbzGL",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0a4dfa6f-ce8e-4d6d-b603-4af56d758caa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VkCittKGTxcWrC42br6n4Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2128,
+      "cache_read_input_tokens": 31534,
+      "output_tokens": 203,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2128
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 203,
+          "cache_read_input_tokens": 31534,
+          "cache_creation_input_tokens": 2128,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2128,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T00:19:50.718Z_
+
+<details><summary>↩ Tool result · `toolu_018KCZiVkng7EoiRkK6Gh8Dx`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (36.5KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-reviewer-65b870d4/1158d0f4-b2d0-4b5b-89f4-c996dd76b730/tool-results/bmgwfqal7.txt
+
+Preview (first 2KB):
+: 245, "model_name": "N/A (baselines only)", "seed": 42, "checkpoint_source": "N/A", "eval_data": "results/plan_c (245 eps, 11 tasks)", "checkpoint_path": "N/A", "log_path": "results/baseline_245eps/"}}, "plan-002-generative-v1-ga1": {"status": "DONE", "spec": {"description": "Generative router SFT 对照组：与 plan-002-generative-v1 完全一致，唯一区别 gradient_accumulation_steps=1（有效 batch_size=4 而非 32）。隔离 upsample + grad_accum confound：ablation-b 成功用 ga=1，v3/v4 失败用 ga=8。", "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/generative_router_sft.py train --data_dir data/plan-004-implicit --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 1 --output_dir checkpoints/plan-002-generative-v1-ga1 --seed 42 --gpu_id 0\"", "server": "westb-13313", "data_path": "data/plan-004-implicit/implicit_sft.jsonl", "data_count": 2040, "model_name": "Qwen3-1.7B", "seed": 42, "config": {"lora_r": 16, "lora_alpha": 32, "lora_dropout": 0.05, "lr": 2e-05, "epochs": 3, "batch_size": 4, "gradient_accumulation_steps": 1, "effective_batch_size": 4, "upsample_minority": true, "eval_split": 0.15}}, "conclusion": "killed"}, "plan-004-v4": {"status": "DONE", "spec": {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/implicit_router_sft.py train --data_dir results/plan_c_test_labels/implicit_sft.jsonl --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --lr 2e-5 --output_dir checkpoints/plan-004-v4 --seed 42 --gpu_id 0\"", "server": "westb-13313", "gpu": ["cuda:1"], "pid": "243301", "log_path": "~/runs/simgate-modular-routing/plan-004-v4.log", "submitted_at": "202
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a4dfa6f-ce8e-4d6d-b603-4af56d758caa",
+  "isSidechain": true,
+  "promptId": "f0b48b30-537d-4302-b0ad-f3f56612590d",
+  "agentId": "a15b5eaf82d5d9d02",
+  "type": "user",
+  "uuid": "3959d2da-8fa5-4dc4-a362-7a89be7646c3",
+  "sourceToolAssistantUUID": "0a4dfa6f-ce8e-4d6d-b603-4af56d758caa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T00:19:53.863Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01BLKsKDmSXATh4j5Ph47nLu`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-reviewer-65b870d4/1158d0f4-b2d0-4b5b-89f4-c996dd76b730/tool-results/bmgwfqal7.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3959d2da-8fa5-4dc4-a362-7a89be7646c3",
+  "isSidechain": true,
+  "agentId": "a15b5eaf82d5d9d02",
+  "requestId": "req_011Cb3PxdNNBXYgN1fdPB6Ho",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "69422502-c1ff-458f-b78c-7584c18dd87d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018GcrCSgeCoPB2PFuuBhaM8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1182,
+      "cache_read_input_tokens": 33662,
+      "output_tokens": 147,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1182
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 147,
+          "cache_read_input_tokens": 33662,
+          "cache_creation_input_tokens": 1182,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1182,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T00:19:54.179Z_
+
+<details><summary>↩ Tool result · `toolu_01BLKsKDmSXATh4j5Ph47nLu`</summary>
+
+```text
+1	: 245, "model_name": "N/A (baselines only)", "seed": 42, "checkpoint_source": "N/A", "eval_data": "results/plan_c (245 eps, 11 tasks)", "checkpoint_path": "N/A", "log_path": "results/baseline_245eps/"}}, "plan-002-generative-v1-ga1": {"status": "DONE", "spec": {"description": "Generative router SFT 对照组：与 plan-002-generative-v1 完全一致，唯一区别 gradient_accumulation_steps=1（有效 batch_size=4 而非 32）。隔离 upsample + grad_accum confound：ablation-b 成功用 ga=1，v3/v4 失败用 ga=8。", "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/generative_router_sft.py train --data_dir data/plan-004-implicit --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 1 --output_dir checkpoints/plan-002-generative-v1-ga1 --seed 42 --gpu_id 0\"", "server": "westb-13313", "data_path": "data/plan-004-implicit/implicit_sft.jsonl", "data_count": 2040, "model_name": "Qwen3-1.7B", "seed": 42, "config": {"lora_r": 16, "lora_alpha": 32, "lora_dropout": 0.05, "lr": 2e-05, "epochs": 3, "batch_size": 4, "gradient_accumulation_steps": 1, "effective_batch_size": 4, "upsample_minority": true, "eval_split": 0.15}}, "conclusion": "killed"}, "plan-004-v4": {"status": "DONE", "spec": {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/implicit_router_sft.py train --data_dir results/plan_c_test_labels/implicit_sft.jsonl --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --lr 2e-5 --output_dir checkpoints/plan-004-v4 --seed 42 --gpu_id 0\"", "server": "westb-13313", "gpu": ["cuda:1"], "pid": "243301", "log_path": "~/runs/simgate-modular-routing/plan-004-v4.log", "submitted_at": "2026-05-14T07:16:33.465Z", "submitted_via": "submit_training_job", "backend": "tmux", "account": "root", "wall_clock_seconds": 698.3, "gpu_hours": 0.19}, "conclusion": "negative"}, "plan-003-baseline": {"status": "PREPARING", "conclusion": "success", "metrics": {"always_internal": {"score": -37.16, "ci_90": [-43.39, -31.43], "success_rate": 0.1237, "death_rate": 0.4072, "sim_ratio": 0}, "always_deterministic": {"score": -11.64, "ci_90": [-17.39, -6.55], "success_rate": 0.2371, "death_rate": 0.1856, "sim_ratio": 1}, "oracle": {"score": -9.03, "ci_90": [-14.14, -4.15], "success_rate": 0.2423, "death_rate": 0.1649, "sim_ratio": 0.9623}, "random": {"score": -23.75, "ci_90": [-29.6, -18.11], "success_rate": 0.1649, "death_rate": 0.2835, "sim_ratio": 0.5027}, "trained_router_v6": {"score": -11.64, "ci_90": [-17.39, -6.55], "success_rate": 0.2371, "death_rate": 0.1856, "sim_ratio": 1, "note": "degenerate - identical to always-deterministic"}, "episodes": 194, "tasks": 11}}, "plan-002-formal-v6": {"status": "DONE", "spec": {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=0 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/router_sft_train.py --data_dir results/plan_c --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --lr 2e-5 --output_dir checkpoints/plan-002-formal-v6 --seed 42\"", "pid": 240633, "log_path": "/root/autodl-tmp/simgate-modular-routing/checkpoints/plan-002-formal-v6/train.log", "data_path": "results/plan_c/ (11 tasks)", "data_count": "2040 samples (train 1620: det=1440/int=180 | val 420: det=390/int=30)", "model_name": "/root/autodl-tmp/models/Qwen/Qwen3-1.7B + LoRA r=16", "seed": 42, "server": "westb-13313", "gpu": "cuda:0"}, "conclusion": "negative"}, "plan-004-v3": {"status": "DONE", "spec": {"command": "CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/implicit_router_sft.py train --data_dir data/plan-004-v3/implicit_sft.jsonl --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --lr 2e-5 --output_dir checkpoints/plan-004-v3 --seed 42 --gpu_id 0", "server": "westb-13313", "gpu": ["cuda:1"], "pid": "242217", "log_path": "~/runs/simgate-modular-routing/plan-004-v3.log", "submitted_at": "2026-05-14T07:09:57Z", "submitted_via": "submit_training_job", "backend": "tmux", "account": "root", "data_path": "data/plan-004-v3/implicit_sft.jsonl", "data_count": "2040 (train 1740: det=1560/int=180 | val 300: det=270/int=30)", "model_name": "/root/autodl-tmp/models/Qwen/Qwen3-1.7B + LoRA r=16 (0.37% trainable)", "seed": 42, "wall_clock_seconds": 109.3, "gpu_hours": 0.03}, "conclusion": "negative"}, "plan-004-v2": {"status": "DONE", "spec": {"command": "CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/implicit_router_sft.py train --data_dir results/plan_c_test_labels/implicit_sft.jsonl --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --class_weights auto --lr 2e-5 --output_dir checkpoints/plan-004-v2 --seed 42 --gpu_id 0", "server": "westb-13313", "gpu": "cuda:1", "data_path": "results/plan_c_test_labels/implicit_sft.jsonl", "data_count": 1814, "model_name": "Qwen/Qwen3-1.7B", "seed": 42, "pid": "235893", "checkpoint_path": "checkpoints/plan-004-v2", "log_path": "checkpoints/plan-004-v2/train.log"}, "conclusion": "failed", "metrics": {"train_loss_avg": 12.74, "train_loss_epoch1": [48.15, 42.05, 26.14, 13.71], "train_loss_epoch3": [4.58, 4.42, 4.15, 4.46, 4.36], "eval_loss_epoch2": 0.5509, "eval_loss_epoch3": 0.4905, "train_runtime_sec": 150.74, "note": "no accuracy/balanced_accuracy computed"}}, "plan-002-formal-v5": {"status": "DONE", "spec": {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=0 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/router_sft_train.py --data_dir results/plan_c --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --class_weights auto --lr 2e-5 --output_dir checkpoints/plan-002-formal-v5 --seed 42\"", "server": "westb-13313", "gpu": ["cuda:0"], "pid": "235437", "log_path": "~/runs/simgate-modular-routing/plan-002-formal-v5.log", "submitted_at": "2026-05-14T06:40:45Z", "submitted_via": "submit_on_allocated", "backend": "tmux", "account": "root", "data_path": "results/plan_c/ (11 tasks, all complete)", "data_count": "2040 samples (train 1620: det=1440/int=180 | val 420: det=390/int=30)", "model_name": "/root/autodl-tmp/models/Qwen/Qwen3-1.7B + LoRA r=16 (0.37% trainable)", "seed": 42, "fixes_from_v4": ["assert tokenizer.pad_token_id is not None (line 306)", "torch_dtype→dtype deprecated fix (line 303)", "pad_token_id already existed at line 305 — this run confirms whether it's effective"], "inherits_from_v4": ["stratified val split", "no upsample_minority", "class_weights auto only", "mutual exclusion check"], "wall_clock_seconds": 1309.7, "gpu_hours": 0.36}, "conclusion": "negative", "metrics": {"train_loss_avg": 5.59, "eval_loss_epoch1": 0.79, "eval_loss_epoch2": 0.78, "eval_accuracy": 0.9167, "eval_balanced_accuracy": 0.4936, "eval_f1_macro": 0.47, "per_class": {"deterministic": {"precision": 0.928, "recall": 0.987, "f1": 0.938}, "internal": {"precision": 0, "recall": 0, "f1": 0}}, "class_weights": {"internal": 4.5, "deterministic": 0.5625}, "grad_norm_range": "70-604", "is_degenerate": true, "note": "Metrics corrected per eval_report.json (D023 Reviewer audit). class_weights auto inflates train loss (4-11) and destabilizes training (grad_norm 604). Model degenerates to all-deterministic."}}, "plan-002-formal-v4": {"status": "DONE", "spec": {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=0 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/router_sft_train.py --data_dir results/plan_c --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --class_weights auto --lr 2e-5 --output_dir checkpoints/plan-002-formal-v4 --seed 42\"", "server": "westb-13313", "gpu": ["cuda:0"], "pid": "230992", "log_path": "~/runs/simgate-modular-routing/plan-002-formal-v4.log", "submitted_at": "2026-05-14T06:23:07.864Z", "submitted_via": "submit_training_job", "backend": "tmux", "account": "root", "data_path": "results/plan_c/ (11 tasks, all complete)", "data_count": "2040 samples (train 1620: det=1440/int=180 | val 420: det=390/int=30)", "model_name": "/root/autodl-tmp/models/Qwen/Qwen3-1.7B + LoRA r=16 (0.37% trainable)", "seed": 42, "fixes_from_v3": ["stratified val split via sklearn train_test_split(stratify=labels)", "removed --upsample_minority, only --class_weights auto", "mutual exclusion check: class_weights + upsample_minority triggers auto-disable of upsample"], "wall_clock_seconds": 476.8, "gpu_hours": 0.13}, "conclusion": "negative", "metrics": {"eval_accuracy": 0.919, "eval_balanced_accuracy": 0.5, "internal_recall": 0, "internal_precision": 0, "is_degenerate": true, "class_weights": {"internal": 4.5, "deterministic": 0.5625}, "note": "训练完整完成（TRAINING_COMPLETE + checkpoint-153 + eval_report.json），但退化为全部预测 deterministic。之前误标 killed。真正问题：class_weights [4.5, 0.5625] + max_grad_norm=1.0 交互导致 internal 有效学习率≈0"}}, "plan-002-formal-v3": {"status": "DONE", "spec": {"server": "westb-13313", "gpu": ["cuda:0"], "account": "root", "command": "CUDA_VISIBLE_DEVICES=0 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/router_sft_train.py --data_dir results/plan_c --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --class_weights auto --upsample_minority --lr 2e-5 --output_dir checkpoints/plan-002-formal --seed 42", "data_path": "results/plan_c/ (11 tasks, all complete)", "data_count": "2040 samples (train 1650 / val 390)", "model_name": "/root/autodl-tmp/models/Qwen/Qwen3-1.7B + LoRA r=16 (0.37% trainable)", "seed": 42, "pid": "224543", "checkpoint_source": "N/A (training from scratch, retry of v2)", "eval_data": "N/A (training, not standalone eval)"}, "conclusion": "failed"}, "plan-012-full": {"status": "DONE", "conclusion": "success", "metrics": {"delta_full": 29.6, "delta_nd": 2.84, "death_avoidance_fraction": 0.9041, "pearson_r": 0.9698, "pearson_p": 8.12e-07, "tasks": 11, "episodes": 245, "death_rate_int": 0.429, "death_rate_det": 0.163, "label_dist": {"det_preferred": 86, "internal_preferred": 9, "no_preference": 150}}}, "plan-012-decomposition": {"status": "DONE", "spec": {"command": "python src/death_decomposition.py --data_dirs results/plan_c results/prescreening results/research --output results/decomposition_final/", "server": "westb-13313", "data_path": "results/plan_c/ + results/prescreening/ + results/research/ (30 ScienceWorld task types)", "data_count": 249, "model_name": "N/A (analysis only)", "seed": "N/A", "script_path": "src/death_decomposition.py", "task_count": 30, "checkpoint_path": "N/A (analysis only)", "log_path": "results/plan_c/death_decomposition/"}, "conclusion": "success", "metrics": {"full_11tasks": {"delta_full": 29.6, "delta_nd": 2.84, "death_avoidance_fraction": 0.9041, "pearson_r": 0.9698, "pearson_p": 8.12e-07, "tasks": 11, "episodes": 245, "death_rate_int": 0.429, "death_rate_det": 0.163, "label_dist": {"det_preferred": 86, "internal_preferred": 9, "no_preference": 150}}, "prescreening_30tasks": {"delta_full": 37.9, "delta_nd": 0.2, "death_avoidance_fraction": 0.99, "pearson_r": 0.989, "pearson_p": "<0.0001", "tasks": 30, "episodes": 249}, "key_tasks": {"find_non_living_thing": {"n": 40, "dr_int": 0, "dr_det": 0, "delta_full": 9.58, "delta_nd": 9.58, "note": "唯一零死亡 task, Δ_full 全部来自 non-death 性能差异"}, "measure_melting_point": {"n": 20, "dr_int": 0.55, "dr_det": 0.25, "delta_full": 30.05, "delta_pr": 0.05, "note": "高死亡率, 性能差距几乎完全由 death avoidance 解释"}}}}, "plan-002-formal-v2": {"status": "DONE", "spec": {"command": "bash -c \"export WANDB_MODE=offline && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && python src/router_sft_train.py --data_dir results/plan_c --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --class_weights auto --upsample_minority --lr 2e-5 --output_dir checkpoints/plan-002-formal --seed 42\"", "server": "westb-13313", "gpu": ["cuda:0"], "pid": "221772", "log_path": "~/runs/simgate-modular-routing/plan-002-formal-v2.log", "submitted_at": "2026-05-14T05:36:27.353Z", "submitted_via": "submit_training_job", "backend": "tmux", "account": "root", "wall_clock_seconds": 256.1, "gpu_hours": 0.07}, "conclusion": "failed"}, "plan-002-formal": {"status": "DONE", "spec": {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && python src/router_sft_train.py --data_dir results/plan_c --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --class_weights auto --upsample_minority --lr 2e-5 --output_dir checkpoints/plan-002-formal --seed 42 --wandb_project simgate-modular-routing\"", "server": "westb-13313", "gpu": ["cuda:0"], "pid": "221402", "log_path": "~/runs/simgate-modular-routing/plan-002-formal.log", "submitted_at": "2026-05-14T05:30:17.368Z", "submitted_via": "submit_training_job", "backend": "tmux", "account": "root", "wall_clock_seconds": 258.1, "gpu_hours": 0.07}, "conclusion": "failed"}, "plan-001b-gpu1-freeze-chem": {"status": "DONE", "spec": {"command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && python src/episode_level_collection.py --task_types freeze,chemistry-mix --episodes 20 --gpu_id 1 --reuse_dirs results/plan_c\"", "server": "westb-13313", "gpu": "cuda:1", "pid": 788058, "log_path": "~/runs/simgate-modular-routing/plan-001b-gpu1-freeze-chem.log", "submitted_at": "2026-05-14T03:12:09.644Z", "submitted_via": "submit_training_job", "backend": "tmux", "account": "root", "data_path": "results/plan_c/ (freeze + chemistry-mix)", "data_count": 40, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "note": "状态修正: 实际已在跑 (freeze 11/20 eps), registry 漏更新为 RUNNING", "wall_clock_seconds": 8664.9, "gpu_hours": 2.41}, "conclusion": "success"}, "plan-002-dryrun": {"status": "DONE", "spec": {"command": "CUDA_VISIBLE_DEVICES=0 python src/router_sft_train.py --data_dir results/plan_c --epochs 1 --batch_size 4 --lr 2e-5 --output_dir checkpoints/plan-002-dryrun --seed 42", "server": "westb-13313", "gpu": ["cuda:0"], "pid": "182475", "data_path": "results/plan_c/ (10/11 tasks, chemistry-mix incomplete)", "data_count": "5880 samples (124 eps train / 33 val)", "model_name": "Qwen/Qwen3-1.7B + LoRA r=16 (0.37% trainable)", "seed": 42}, "conclusion": "success", "metrics": {"train_loss": 0.6307, "eval_loss": 0.4762, "eval_accuracy": 0.923, "eval_f1_macro": 0.48, "eval_balanced_accuracy": 0.5, "per_class": {"deterministic": {"precision": 0.923, "recall": 1, "f1": 0.96}, "internal": {"precision": 0, "recall": 0, "f1": 0}}, "confusion": {"true_internal_pred_internal": 0, "true_internal_pred_det": 30, "true_det_pred_det": 360, "true_det_pred_internal": 0}, "per_task_eval": {"chemistry-mix": {"accuracy": 0, "n_samples": 30}, "find-animal": {"accuracy": 1, "n_samples": 30}, "find-non-living-thing": {"accuracy": 1, "n_samples": 90}, "freeze": {"accuracy": 1, "n_samples": 30}, "grow-fruit": {"accuracy": 1, "n_samples": 30}, "identify-life-stages-1": {"accuracy": 1, "n_samples": 30}, "identify-life-stages-2": {"accuracy": 1, "n_samples": 30}, "inclined-plane-determine-angle": {"accuracy": 1, "n_samples": 30}, "lifespan-longest-lived": {"accuracy": 1, "n_samples": 30}, "lifespan-longest-lived-then-shortest-lived": {"accuracy": 1, "n_samples": 30}, "measure-melting-point-unknown-substance": {"accuracy": 1, "n_samples": 30}}, "samples": 1920, "total_steps": 383, "runtime_s": 303.8, "note": "DEGENERATE: 全部预测 deterministic, internal recall=0. chemistry-mix 是唯一 internal-preferred task (30 samples 全错). 正在审计 class_weights 是否真正生效。"}}, "gpu0-v6-lifespan": {"status": "DONE", "spec": {"command": "SLIM_EPISODES=1 bash scripts/run_gpu0_v6_lifespan.sh (lifespan-longest-lived 20 eps from ep0)", "server": "westb-13313", "gpu": ["cuda:0"], "pid": "36874", "log_path": "~/runs/simgate-modular-routing/gpu0-v6-lifespan.log", "submitted_at": "2026-05-14T04:19:08.547Z", "submitted_via": "submit_training_job", "backend": "tmux", "account": "root", "data_path": "results/plan_c/lifespan-longest-lived/", "data_count": "20 episodes", "model_name": "Qwen2.5-7B-Instruct", "seed": "default", "wall_clock_seconds": 2019.1, "gpu_hours": 0.56}, "conclusion": "killed"}, "plan-001b-gpu0-v5": {"status": "DONE", "spec": {"command": "bash /tmp/run_gpu0_v5.sh (measure-melting-point 20eps → lifespan-longest-lived ep19)", "server": "westb-13313", "gpu": ["cuda:0"], "pid": "698985", "log_path": "~/runs/simgate-modular-routing/plan-001b-gpu0-v5.log", "submitted_at": "2026-05-14T02:42:04Z", "data_path": "results/plan_c/ (measure-melting-point-unknown-substance + lifespan-longest-lived)", "data_count": 21, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "note": "v5 resilient restart. measure-melting-point from scratch (20 eps), lifespan-longest-lived only ep19 (1 ep). Deduped before restart.", "wall_clock_seconds": 5859.1, "gpu_hours": 1.63}, "conclusion": "killed"}, "plan-001b-fnlt-v2": {"status": "DONE", "spec": {"command": "python src/episode_level_collection.py --task_types find-non-living-thing --episodes 40 --gpu_id 1", "server": "westb-13313", "gpu": ["cuda:1"], "pid": "557852", "log_path": "/tmp/plan-001b-gpu1-extra.log", "submitted_at": "2026-05-14T01:59:00Z", "data_path": "results/plan_c/find-non-living-thing/", "data_count": 40, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "note": "Tracking original plan-001b-gpu1-extra process. 22/40 eps completed as of last check.", "wall_clock_seconds": 4376.0, "gpu_hours": 1.22}, "conclusion": "success", "metrics": {"find-non-living-thing": {"total_episodes": 40, "ep_range": "0-39", "no_duplicates": true, "no_missing": true, "det_pref": 8, "int_pref": 0, "no_pref": 11, "avg_score_gap_non_tie": 40.5, "note": "19 new eps (ep 21-39) collected. Combined with prior 21 eps. 0% death rate confirmed at 40 ep scale."}}}, "plan-001b-gpu0-v4": {"status": "DONE", "spec": {"command": "python src/episode_level_collection.py --task_types lifespan-longest-lived,measure-melting-point-unknown-substance --episodes 20 --gpu_id 0", "server": "westb-13313", "gpu": ["cuda:0"], "pid": "582855", "log_path": "~/runs/simgate-modular-routing/plan-001b-gpu0-v4.log", "submitted_at": "2026-05-14T02:07:00Z", "data_path": "results/plan_c/ (lifespan-longest-lived + measure-melting-point-unknown-substance)", "data_count": 24, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "note": "Split from gpu0-v3. lifespan-longest-lived has 16 eps (reuse), needs 4 more. measure-melting-point fresh 20 eps.", "wall_clock_seconds": 2062.1, "gpu_hours": 0.57}, "conclusion": "killed"}, "plan-001b-gpu0-v3": {"status": "DONE", "spec": {"command": "bash run_gpu0_v3.sh", "server": "westb-13313", "data_path": "ScienceWorld API (4 tasks: lifespan-longest-lived 5eps补充 + measure-melting-point 20eps + freeze 20eps + chemistry-mix 20eps)", "data_count": 65, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "note": "v3: restart after v2 vLLM crash. Sequential execution of remaining 4 tasks on GPU0."}, "conclusion": "failed"}, "plan-001b-gpu1-extra": {"status": "DONE", "spec": {"command": "python src/episode_level_collection.py --task_types find-non-living-thing --start_episode 21 --episodes 19 --gpu_id 1", "server": "westb-13313", "gpu": ["cuda:1"], "pid": "533424", "log_path": "/tmp/plan-001b-gpu1-extra.log", "submitted_at": "2026-05-14T01:46:59.763Z", "submitted_via": "submit_training_job", "backend": "tmux", "account": "root", "data_path": "ScienceWorld API (find-non-living-thing ep21-39)", "data_count": 19, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "wall_clock_seconds": 929.2, "gpu_hours": 0.26}, "conclusion": "failed"}, "plan-001b-gpu1-rebalance": {"status": "PREPARING", "spec": {"command": "Step 1: episode_level_collection.py --task_types find-non-living-thing --episodes 20 --start_episode 20; Step 2: episode_level_collection.py --task_types freeze,chemistry-mix --episodes 20", "server": "westb-13313", "data_path": "results/plan_c/ (find-non-living-thing extra 20 + freeze 20 + chemistry-mix 20)", "data_count": 60, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "note": "GPU rebalancing: GPU1 takes over 3 tasks to parallel GPU0. GPU0 continues its remaining tasks (lifespan-longest-lived + measure-melting-point). GPU0 may also run freeze/chemistry-mix later but GPU1 should finish first."}, "conclusion": "killed"}, "plan-001b-gpu1": {"status": "DONE", "spec": {"command": "python src/episode_level_collection.py --task_types find-non-living-thing,...,identify-life-stages-2 --episodes 20 --gpu_id 1", "server": "westb-13313", "gpu": ["cuda:1"], "pid": "773109", "log_path": "~/runs/simgate-modular-routing/plan-001b-gpu1.log", "submitted_at": "2026-05-13T22:10:04.279Z", "submitted_via": "submit_training_job", "backend": "tmux", "account": "root", "data_path": "ScienceWorld API (4 tasks x 20 eps)", "data_count": 80, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "wall_clock_seconds": 13512.3, "gpu_hours": 3.75}, "conclusion": "success", "metrics": {"find-non-living-thing": {"episodes": 20, "internal_mean": 24.9, "det_mean": 24.95, "delta_int_minus_det": -0.05, "int_deaths": 0, "det_deaths": 0, "both_deaths": 0, "int_only_death": 0, "det_only_death": 0, "labels": {"det-pref": 7, "int-pref": 4, "no-pref": 9}, "alive_int_mean": 24.9, "alive_det_mean": 24.95, "note": "Prescreening 5eps showed internal-preferred, but 20eps shows essentially TIED (delta=-0.05). Direction did NOT hold. det-pref=7 vs int-pref=4 by episode count."}, "grow-fruit": {"episodes": 20, "internal_mean": -43.65, "det_mean": -18.55, "delta_int_minus_det": -25.1, "int_deaths": 9, "det_deaths": 4, "both_deaths": 3, "int_only_death": 6, "det_only_death": 1, "labels": {"det-pref": 6, "int-pref": 1, "no-pref": 13}, "alive_int_mean": 2.45, "alive_det_mean": 1.81, "note": "Death-dominated confirmed. Internal dies 6x exclusively vs det 1x. Alive scores low and similar."}, "inclined-plane-determine-angle": {"episodes": 20, "internal_mean": -55, "det_mean": -19, "delta_int_minus_det": -36, "int_deaths": 11, "det_deaths": 4, "both_deaths": 4, "int_only_death": 7, "det_only_death": 0, "labels": {"det-pref": 7, "int-pref": 0, "no-pref": 13}, "alive_int_mean": 0, "alive_det_mean": 1.25, "note": "Most extreme death-dominated. Internal dies 7x exclusively, det never dies alone. Internal NEVER preferred (0/20). Alive scores near zero."}, "identify-life-stages-2": {"episodes": 20, "internal_mean": -48.4, "det_mean": -18.4, "delta_int_minus_det": -30, "int_deaths": 10, "det_deaths": 4, "both_deaths": 4, "int_only_death": 6, "det_only_death": 0, "labels": {"det-pref": 6, "int-pref": 0, "no-pref": 14}, "alive_int_mean": 3.2, "alive_det_mean": 2, "note": "Death-dominated confirmed. Internal dies 6x exclusively, det never alone. Internal NEVER preferred (0/20)."}, "summary": {"total_episodes": 80, "all_tasks_complete": true, "death_dominated_tasks": ["grow-fruit", "inclined-plane-determine-angle", "identify-life-stages-2"], "internal_preferred_tasks": [], "key_finding": "find-non-living-thing prescreening signal (internal>det) did NOT replicate at 20 eps — essentially tied. All 3 death-dom tasks confirmed: internal router causes significantly more deaths than deterministic."}}}, "plan-001b-gpu0-v2": {"status": "DONE", "spec": {"command": "python src/episode_level_collection.py --task_types find-animal,...,chemistry-mix --episodes 20 --gpu_id 0", "server": "westb-13313", "gpu": ["cuda:0"], "pid": "853847", "log_path": "~/runs/simgate-modular-routing/plan-001b-gpu0-v2.log", "submitted_at": "2026-05-13T22:31:47.573Z", "submitted_via": "submit_training_job", "backend": "tmux", "account": "root", "data_path": "ScienceWorld API (7 tasks x 20 eps)", "data_count": 105, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "note": "v2: added cleanup_gpu_processes() fix for orphan EngineCore", "fix": "cleanup_gpu_processes() added to prevent orphan vLLM EngineCore processes", "wall_clock_seconds": 11817.5, "gpu_hours": 3.28}, "conclusion": "failed"}, "plan-011-rule-based": {"status": "DONE", "spec": {"command": "python src/rule_based_accuracy.py + python src/rule_based_inference.py", "server": "westb-13313", "data_path": "results/plan_c/ + results/prescreening/ + results/research/", "data_count": 204, "model_name": "N/A (rule-based, no model)", "seed": "N/A", "script_paths": ["src/rule_based_accuracy.py", "src/rule_based_inference.py"], "keyword_list_path": "src/rule_based_keywords.json", "keyword_list_v3_path": "src/rule_based_keywords_v3.json", "v1_spec": {"keywords": 20, "includes_connect": true, "match_rate": "85.8%", "result": "≈ always-det (degenerate)", "episodes": 204}, "v2_spec": {"keywords": 17, "science_only": true, "match_rate": "4.9%", "result": "≈ always-internal (degenerate)", "episodes": 203}, "v3_spec": {"keywords": 12, "state_change_verbs": true, "match_rate": "2.8%", "result": "≈ always-internal (degenerate)", "episodes": "same as v2"}, "checkpoint_path": "N/A (analysis only)", "log_path": "results/plan_c/rule_based_analysis/"}, "conclusion": "success", "metrics": {"v1_match_rate": "85.8%", "v1_result": "degenerate → always-det", "v2_match_rate": "4.9%", "v2_result": "degenerate → always-internal", "v3_match_rate": "2.8%", "v3_episode_accuracy": "1.5%", "v3_result": "degenerate → always-internal", "conclusion": "Keyword heuristic structurally fails on ScienceWorld — ScienceWorld actions use generic interaction verbs (connect/move/pick up), not science-specific keywords. No keyword list provides meaningful routing signal.", "note": "D014: structural failure analysis, paper positions as evidence for learned/observation-based approaches"}}, "plan-001b-gpu0": {"status": "DONE", "spec": {"command": "python src/episode_level_collection.py --task_types find-animal,...,chemistry-mix --episodes 20 --gpu_id 0", "server": "westb-13313", "data_path": "ScienceWorld API (7 tasks x 20 eps)", "data_count": 105, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "pid": "794184", "note": "Resubmitted after GPU0 OOM — killed residual prescreening vLLM process (pid 741465, 28GB)"}, "conclusion": "failed"}, "research-prescreening-gpu0": {"status": "DONE", "spec": {"server": "westb-13313", "gpu": ["cuda:0"], "account": "root", "command": "bash /root/autodl-tmp/simgate-modular-routing/run_prescreening_gpu0.sh", "pid": "649681", "data_path": "ScienceWorld API (25 untested task types)", "data_count": 125, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "log_path": "results/prescreening/run.log"}, "conclusion": "killed"}, "research-prescreening-gpu1": {"status": "DONE", "spec": {"command": "CUDA_VISIBLE_DEVICES=1 bash /root/autodl-tmp/simgate-modular-routing/run_prescreening_gpu1.sh", "server": "westb-13313", "data_path": "ScienceWorld API (8 task types: measure-melting-point-unknown-substance, mendelian-genetics-known-plant, mendelian-genetics-unknown-plant, power-component, power-component-renewable-vs-nonrenewable-energy, test-conductivity, test-conductivity-of-unknown-substances, use-thermometer)", "data_count": 40, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "pid": 265929, "log_path": "results/prescreening/gpu1_run.log"}, "conclusion": "success", "metrics": {"tasks_completed": "8/8", "all_direction": "POSITIVE", "results": {"measure-melting-point-unknown-substance": {"int_mean": -58.6, "det_mean": -32, "delta": 26.6, "signal": "death-dominated"}, "mendelian-genetics-known-plant": {"int_mean": -60, "det_mean": -20, "delta": 40, "signal": "death-dominated"}, "mendelian-genetics-unknown-plant": {"int_mean": -60, "det_mean": -40, "delta": 20, "signal": "death-dominated"}, "power-component": {"int_mean": -60, "det_mean": -20, "delta": 40, "signal": "death-dominated"}, "power-component-renewable-vs-nonrenewable-energy": {"int_mean": -60, "det_mean": 0, "delta": 60, "signal": "death-dominated"}, "test-conductivity": {"int_mean": -60, "det_mean": -20, "delta": 40, "signal": "death-dominated"}, "test-conductivity-of-unknown-substances": {"int_mean": -60, "det_mean": -20, "delta": 40, "signal": "death-dominated"}, "use-thermometer": {"int_mean": -59.4, "det_mean": -19.4, "delta": 40, "signal": "death-dominated"}}, "summary": "All 8 tasks death-dominated: internal mode hits -100 (lethal) in 3/5 episodes; deterministic mode avoids most deaths but scores remain ~0 (no genuine task progress). Delta driven by death avoidance, not task solving."}}, "mvp-p1-signal": {"status": "PREPARING", "spec": {"hypothesis": "Oracle routing 在 strong task types 上显著优于 always-internal，证明 selective routing 存在信号", "description": "Phase 1 信号检测 - 3-way comparison across 5 task types", "parent": "mvp-p0-forking"}, "conclusion": "killed"}, "research-boil-v3-gpu1": {"status": "DONE", "spec": {"command": "CUDA_VISIBLE_DEVICES=1 python src/phase1_signal.py --task_types boil --episodes 20 --gpu_id 0 --max_steps 30 --output_dir results/research/ --model_path /root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/ --use_vllm", "server": "westb-13313", "data_path": "ScienceWorld API (boil)", "data_count": 60, "model_name": "Qwen2.5-7B-Instruct", "seed": "default (no --seed flag)", "pid": 650421, "log_path": "/tmp/research-boil-v3-gpu1.log", "checkpoint_path": "results/research/", "checkpoint_source": "Qwen2.5-7B-Instruct (base, no fine-tune)", "eval_data": "ScienceWorld boil task (20 episodes × 3 modes)"}, "metrics": {"boil_v3_20ep": {"internal_mean": -44.7, "internal_std": 50, "det_mean": -9.3, "det_std": 30.3, "oracle_mean": 3.8, "oracle_std": 15.2, "oracle_minus_internal": 48.5, "oracle_minus_det": 13.1, "det_minus_internal": 35.4}, "death_distribution": {"internal_deaths": 9, "internal_total": 20, "internal_death_pct": 45, "det_deaths": 2, "det_total": 20, "det_death_pct": 10, "oracle_deaths": 0, "oracle_total": 20, "oracle_death_pct": 0}, "note": "v3 code (> tie-break, death filter det/oracle only). Oracle大幅优于两个baseline, 但绝对分低(3.8), 仅1/20 episode拿到70分. Death avoidance is primary mechanism."}, "conclusion": "success"}, "mvp-p1-gpu1-v3": {"status": "DONE", "spec": {"command": "python src/phase1_signal.py --task_types 'chemistry-mix-paint-secondary-color,grow-plant' --episodes 20 --gpu_id 0 --max_steps 30 --output_dir results/mvp/ --model_path /root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/ --use_vllm", "server": "westb-13313", "gpu": ["cuda:1"], "pid": "324895", "log_path": "~/runs/simgate-modular-routing/mvp-p1-gpu1-v3.log", "submitted_at": "2026-05-13T08:10:30.442Z", "submitted_via": "submit_training_job", "backend": "tmux", "account": "root", "data_path": "ScienceWorld API (chemistry-mix-paint-secondary-color + grow-plant)", "data_count": 40, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "wall_clock_seconds": 27033.6, "gpu_hours": 7.51}, "conclusion": "success", "metrics": {"mix_paint": {"internal_mean": -41, "det_mean": -5.5, "oracle_mean": 4.5, "det_minus_internal": 35.5, "bootstrap_90ci": [20, 55]}, "grow_plant": {"internal_mean": 0.5, "det_mean": 0.5, "oracle_mean": 0.5, "det_minus_internal": 0, "bootstrap_90ci": [0, 0]}, "n_episodes_per_task": 20, "tasks_significant": "1/2", "note": "grow-plant: NO_EFFECT (三种模式完全相同); mix-paint: 显著正向"}}, "mvp-p1-gpu0-vllm": {"status": "DONE", "spec": {"command": "python src/phase1_signal.py --task_types 'melt,change-the-state-of-matter-of' --episodes 20 --gpu_id 0 --max_steps 30 --output_dir results/mvp/ --model_path /root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/ --use_vllm", "server": "westb-13313", "gpu": ["cuda:0"], "pid": "572089", "log_path": "~/runs/simgate-modular-routing/mvp-p1-gpu0-vllm.log", "submitted_at": "2026-05-13T09:20:46.082Z", "submitted_via": "submit_training_job", "backend": "vLLM", "account": "root", "data_path": "ScienceWorld API melt+change-state", "data_count": 40, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "wall_clock_seconds": 21431.5, "gpu_hours": 5.95}, "conclusion": "success", "metrics": {"melt": {"internal_mean": -54.7, "det_mean": -14.55, "oracle_mean": 2.15, "det_minus_internal": 40.15, "bootstrap_90ci": [25, 60.15]}, "change_state": {"internal_mean": -54.7, "det_mean": -14.5, "oracle_mean": 0.45, "det_minus_internal": 40.2, "bootstrap_90ci": [25, 60.15]}, "pooled": {"det_minus_internal": 40.17, "bootstrap_90ci": [27.6, 52.77]}, "n_episodes_per_task": 20, "ci_lower_gt_0": true, "tasks_significant": "2/2"}}, "mvp-p1-gpu0": {"status": "DONE", "spec": {"command": "python src/phase1_signal.py --task_types 'boil,melt,change-the-state-of-matter-of' --episodes 20 --gpu_id 0 --max_steps 30 --output_dir results/mvp/ --model_path /root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/ --no_vllm", "server": "westb-13313", "gpu": ["cuda:0"], "pid": "20296", "log_path": "~/runs/simgate-modular-routing/mvp-p1-gpu0.log", "submitted_at": "2026-05-13T06:25:08.779Z", "submitted_via": "submit_training_job", "backend": "tmux", "account": "root", "data_path": "ScienceWorld API (boil,melt,change-the-state-of-matter-of)", "data_count": 60, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "wall_clock_seconds": 10635.8, "gpu_hours": 2.95}, "conclusion": "killed", "metrics": {"boil_20ep": {"internal_mean": -49.8, "det_mean": -19.7, "oracle_mean": -29.7}, "note": "旧代码 (>= tie-break, 无 death filter), boil 20/20 完成, melt/change-state 未跑"}}, "mvp-p1-gpu1-v2": {"status": "DONE", "spec": {"command": "python src/phase1_signal.py --task_types 'chemistry-mix-paint-secondary-color,grow-plant' --episodes 20 --gpu_id 0 --max_steps 30 --output_dir results/mvp/ --model_path /root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/ --use_vllm", "server": "westb-13313", "gpu": ["cuda:1"], "pid": "282176", "log_path": "~/runs/simgate-modular-routing/mvp-p1-gpu1-v2.log", "submitted_at": "2026-05-13T07:56:59.044Z", "submitted_via": "submit_training_job", "backend": "tmux", "account": "root", "data_path": "ScienceWorld", "data_count": 0, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "wall_clock_seconds": 115.1, "gpu_hours": 0.03}, "conclusion": "killed"}, "mvp-p1-gpu1-vllm": {"status": "DONE", "spec": {"command": "python src/phase1_signal.py --task_types 'chemistry-mix-paint-secondary-color,grow-plant' --episodes 20 --gpu_id 0 --max_steps 30 --output_dir results/mvp/ --model_path /root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/ --use_vllm", "server": "westb-13313", "gpu": ["cuda:1"], "pid": "162572", "log_path": "~/runs/simgate-modular-routing/mvp-p1-gpu1-vllm.log", "submitted_at": "2026-05-13T07:21:49.315Z", "submitted_via": "submit_training_job", "backend": "vLLM 0.18.1 (patched torch 2.10.0)", "account": "root", "data_path": "ScienceWorld API (chemistry-mix-paint-secondary-color,grow-plant)", "data_count": 40, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "note": "CUDA_VISIBLE_DEVICES=1 + --gpu_id 0; patched llm_agent.py:195 setdefault fix", "wall_clock_seconds": 1305.1, "gpu_hours": 0.36}, "conclusion": "killed"}, "mvp-p1-gpu1": {"status": "DONE", "spec": {"command": "python src/phase1_signal.py --task_types 'chemistry-mix-paint-secondary-color,grow-plant' --episodes 20 --gpu_id 0 --max_steps 30 --output_dir results/mvp/ --model_path /root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/ --no_vllm", "server": "westb-13313", "gpu": ["cuda:1"], "pid": "55775", "log_path": "~/runs/simgate-modular-routing/mvp-p1-gpu1.log", "submitted_at": "2026-05-13T06:46:01.928Z", "submitted_via": "submit_training_job", "backend": "tmux", "account": "root", "data_path": "ScienceWorld API (chemistry-mix-paint-secondary-color,grow-plant)", "data_count": 40, "model_name": "Qwen2.5-7B-Instruct", "seed": 42, "wall_clock_seconds": 1437.4, "gpu_hours": 0.4}, "conclusion": "killed"}, "mvp-p0-forking": {"status": "DONE", "spec": {"hypothesis": "ScienceWorld action-replay state forking 可行：fork 成功率≥80%，单次 fork 延迟<5s", "description": "Phase 0 工程可行性验证 - ScienceWorld state forking", "checkpoint_path": "N/A", "log_path": "/root/autodl-tmp/simgate-modular-routing/results/mvp/phase0_validation.json", "command": "python src/phase0_validate_forking.py", "server": "westb-13313", "data_path": "N/A", "data_count": 10, "model_name": "N/A", "seed": 0}, "conclusion": "success", "metrics": {"fork_success_rate": 1, "avg_latency_s": 1.67, "p50_latency_s": 1.53, "p95_latency_s": 2.37, "max_memory_mb": 20, "gate": "PASS"}}}, "count": 58, "total": 58, "baseline": null}, "error": null, "metadata": {"elapsed_seconds": 3.3984}}
+2	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "69422502-c1ff-458f-b78c-7584c18dd87d",
+  "isSidechain": true,
+  "promptId": "f0b48b30-537d-4302-b0ad-f3f56612590d",
+  "agentId": "a15b5eaf82d5d9d02",
+  "type": "user",
+  "uuid": "de5844e5-816c-483d-8c34-45897a5ba38f",
+  "sourceToolAssistantUUID": "69422502-c1ff-458f-b78c-7584c18dd87d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-15T00:19:57.431Z_
+
+Now let me search for specific DAF-related and death-step-related content more carefully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "de5844e5-816c-483d-8c34-45897a5ba38f",
+  "isSidechain": true,
+  "agentId": "a15b5eaf82d5d9d02",
+  "requestId": "req_011Cb3Pxt88AtpEUyZCfTWdR",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "d6f87b4a-28f9-40d3-b2e9-cc932d92e4ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jag3R1pjjNiy6t23RoWFnu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14834,
+      "cache_read_input_tokens": 34844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 14834,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T00:20:10.057Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0119yvZxG89QnNecgUFBDN7n`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-reviewer-65b870d4/1158d0f4-b2d0-4b5b-89f4-c996dd76b730/tool-results && python3 -c \"\nimport json\nwith open('mcp-agent-ml-research-read_registry-1778804318748.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# 1. Search for trajectory/death step/step-level/temporal\nprint('=== SEARCH: trajectory/death step/step-level/temporal/per-step ===')\nfor eid, exp in exps.items():\n    s = json.dumps(exp).lower()\n    for kw in ['trajectory', 'death_step', 'death step', 'step-level', 'step_level', 'temporal', 'per-step', 'per_step', 'death_at_step']:\n        if kw in s:\n            print(f'  {eid}: matched \\\"{kw}\\\"')\n            break\n\nprint()\nprint('=== SEARCH: DAF / death asymmetry factor ===')\nfor eid, exp in exps.items():\n    s = json.dumps(exp)\n    if 'DAF' in s or 'death_asymmetry' in s.lower() or 'death asymmetry' in s.lower() or 'death_avoidance' in s.lower():\n        print(f'--- {eid} ---')\n        print(json.dumps(exp, indent=2)[:3000])\n        print()\n\nprint()\nprint('=== SEARCH: counterfactual ===')\nfor eid, exp in exps.items():\n    if 'counterfactual' in eid.lower():\n        print(f'--- {eid} ---')\n        # Print spec and conclusion\n        print('  status:', exp.get('status'))\n        print('  conclusion:', exp.get('conclusion'))\n        if 'spec' in exp:\n            print('  spec:', json.dumps(exp['spec'], indent=4)[:2000])\n        if 'metrics' in exp:\n            print('  metrics keys:', list(exp['metrics'].keys()) if isinstance(exp['metrics'], dict) else 'N/A')\n        print()\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d6f87b4a-28f9-40d3-b2e9-cc932d92e4ea",
+  "isSidechain": true,
+  "agentId": "a15b5eaf82d5d9d02",
+  "requestId": "req_011Cb3Pxt88AtpEUyZCfTWdR",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "9302c644-4dc1-4ccf-ba56-2827eaa09916",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jag3R1pjjNiy6t23RoWFnu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14834,
+      "cache_read_input_tokens": 34844,
+      "output_tokens": 682,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 14834
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 682,
+          "cache_read_input_tokens": 34844,
+          "cache_creation_input_tokens": 14834,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 14834,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T00:20:10.220Z_
+
+<details><summary>↩ Tool result · `toolu_0119yvZxG89QnNecgUFBDN7n`</summary>
+
+```text
+=== SEARCH: trajectory/death step/step-level/temporal/per-step ===
+
+=== SEARCH: DAF / death asymmetry factor ===
+--- plan-012-penalty-sensitivity ---
+{
+  "status": "DONE",
+  "metrics": {
+    "N": 245,
+    "n_only_int_dies": 70,
+    "n_only_det_dies": 5,
+    "n_both_die": 35,
+    "n_neither_die": 135,
+    "delta": 0.2653,
+    "delta_nd": 3.07,
+    "delta_full_100": 29.6,
+    "DAF_P10": 46.4,
+    "DAF_P25": 68.4,
+    "DAF_P50": 81.2,
+    "DAF_P100": 89.6,
+    "DAF_P200": 94.5
+  },
+  "spec": {
+    "command": "analytical decomposition",
+    "server": "westb-13313",
+    "data_path": "results/plan_c/",
+    "data_count": 245,
+    "model_name": "n/a",
+    "seed": 0
+  },
+  "conclusion": "success"
+}
+
+--- plan-013-labeling-quality ---
+{
+  "status": "DONE",
+  "metrics": {
+    "tie_rate": 0.612,
+    "tie_rate_both_alive": 0.469,
+    "tie_rate_both_died": 0.143,
+    "genuine_det_fraction": 1,
+    "tiebreak_det_fraction": 0,
+    "det_preferred_death_asymmetry": 70,
+    "det_preferred_score_comparison": 16,
+    "strict_retrain_balanced_acc": 0.5729,
+    "strict_retrain_internal_recall": 0.7576,
+    "strict_retrain_det_recall": 0.3883,
+    "ablation_b_mean_balanced_acc": 0.5761,
+    "ablation_b_std_balanced_acc": 0.0047
+  },
+  "conclusion": "success",
+  "spec": {
+    "command": "python plan013_labeling_analysis.py",
+    "server": "westb-13313",
+    "data_path": "/root/autodl-tmp/simgate-modular-routing/results/plan_c/",
+    "data_count": 245,
+    "model_name": "Qwen3-1.7B (strict retrain comparison)",
+    "seed": 42,
+    "checkpoint_path": "N/A",
+    "log_path": "/root/autodl-tmp/simgate-modular-routing/results/plan_013/"
+  }
+}
+
+--- plan-012-full ---
+{
+  "status": "DONE",
+  "conclusion": "success",
+  "metrics": {
+    "delta_full": 29.6,
+    "delta_nd": 2.84,
+    "death_avoidance_fraction": 0.9041,
+    "pearson_r": 0.9698,
+    "pearson_p": 8.12e-07,
+    "tasks": 11,
+    "episodes": 245,
+    "death_rate_int": 0.429,
+    "death_rate_det": 0.163,
+    "label_dist": {
+      "det_preferred": 86,
+      "internal_preferred": 9,
+      "no_preference": 150
+    }
+  }
+}
+
+--- plan-012-decomposition ---
+{
+  "status": "DONE",
+  "spec": {
+    "command": "python src/death_decomposition.py --data_dirs results/plan_c results/prescreening results/research --output results/decomposition_final/",
+    "server": "westb-13313",
+    "data_path": "results/plan_c/ + results/prescreening/ + results/research/ (30 ScienceWorld task types)",
+    "data_count": 249,
+    "model_name": "N/A (analysis only)",
+    "seed": "N/A",
+    "script_path": "src/death_decomposition.py",
+    "task_count": 30,
+    "checkpoint_path": "N/A (analysis only)",
+    "log_path": "results/plan_c/death_decomposition/"
+  },
+  "conclusion": "success",
+  "metrics": {
+    "full_11tasks": {
+      "delta_full": 29.6,
+      "delta_nd": 2.84,
+      "death_avoidance_fraction": 0.9041,
+      "pearson_r": 0.9698,
+      "pearson_p": 8.12e-07,
+      "tasks": 11,
+      "episodes": 245,
+      "death_rate_int": 0.429,
+      "death_rate_det": 0.163,
+      "label_dist": {
+        "det_preferred": 86,
+        "internal_preferred": 9,
+        "no_preference": 150
+      }
+    },
+    "prescreening_30tasks": {
+      "delta_full": 37.9,
+      "delta_nd": 0.2,
+      "death_avoidance_fraction": 0.99,
+      "pearson_r": 0.989,
+      "pearson_p": "<0.0001",
+      "tasks": 30,
+      "episodes": 249
+    },
+    "key_tasks": {
+      "find_non_living_thing": {
+        "n": 40,
+        "dr_int": 0,
+        "dr_det": 0,
+        "delta_full": 9.58,
+        "delta_nd": 9.58,
+        "note": "\u552f\u4e00\u96f6\u6b7b\u4ea1 task, \u0394_full \u5168\u90e8\u6765\u81ea non-death \u6027\u80fd\u5dee\u5f02"
+      },
+      "measure_melting_point": {
+        "n": 20,
+        "dr_int": 0.55,
+        "dr_det": 0.25,
+        "delta_full": 30.05,
+        "delta_pr": 0.05,
+        "note": "\u9ad8\u6b7b\u4ea1\u7387, \u6027\u80fd\u5dee\u8ddd\u51e0\u4e4e\u5b8c\u5168\u7531 death avoidance \u89e3\u91ca"
+      }
+    }
+  }
+}
+
+
+=== SEARCH: counterfactual ===
+--- alfworld-counterfactual-full ---
+  status: DONE
+  conclusion: success
+  spec: {
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python src/alfworld_counterfactual.py --n_tasks 140 --output results/alfworld_counterfactual/episodes.jsonl --seed 42",
+    "server": "westb-13313",
+    "data_path": "/root/autodl-tmp/alfworld_data/json_2.1.1/valid_seen",
+    "data_count": 140,
+    "model_name": "Qwen2.5-7B-Instruct",
+    "seed": 42,
+    "gpu": "cuda:1",
+    "tmux_session": "alfworld_cf",
+    "checkpoint_path": "/root/autodl-tmp/simgate-modular-routing/results/alfworld_counterfactual/episodes.jsonl",
+    "log_path": "/root/autodl-tmp/simgate-modular-routing/results/alfworld_counterfactual/run.log"
+}
+  metrics keys: ['n_games', 'det_preferred', 'internal_preferred', 'no_preference', 'det_preferred_pct', 'internal_preferred_pct', 'no_preference_pct', 'det_success_rate', 'internal_success_rate']
+
+--- alfworld-counterfactual-dryrun ---
+  status: DONE
+  conclusion: success
+  spec: {
+    "command": "python src/alfworld_counterfactual.py --n_tasks 5 --task_types look_at_obj_in_light",
+    "server": "westb-13313",
+    "data_path": "/root/autodl-tmp/alfworld_data/json_2.1.1/valid_seen",
+    "data_count": 5,
+    "model_name": "Qwen2.5-7B-Instruct",
+    "seed": 42,
+    "checkpoint_path": "src/alfworld_counterfactual.py",
+    "log_path": "/root/autodl-tmp/simgate-modular-routing/results/alfworld_dryrun/"
+}
+  metrics keys: ['n_tasks', 'task_type', 'all_no_preference', 'internal_success', 'det_success', 'pipeline_validated', 'alfworld_version', 'total_games_available', 'task_types_available']
+
+--- math-counterfactual-dryrun ---
+  status: DONE
+  conclusion: success
+  spec: {
+    "command": "python3 src/math_counterfactual.py --n_problems 10 --output data/math-counterfactual/dryrun.jsonl --gpu_id 0",
+    "server": "westb-13313",
+    "data_path": "data/math-raw",
+    "data_count": 10,
+    "model_name": "Qwen2.5-7B-Instruct",
+    "seed": 42,
+    "checkpoint_path": "N/A",
+    "log_path": "/tmp/math_dryrun.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9302c644-4dc1-4ccf-ba56-2827eaa09916",
+  "isSidechain": true,
+  "promptId": "f0b48b30-537d-4302-b0ad-f3f56612590d",
+  "agentId": "a15b5eaf82d5d9d02",
+  "type": "user",
+  "uuid": "8959888b-263d-4b22-803d-d07029a42dd3",
+  "sourceToolAssistantUUID": "9302c644-4dc1-4ccf-ba56-2827eaa09916",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-15T00:20:13.270Z_
+
+Now let me get the step-level data details from experiments that deal with step-level routing.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8959888b-263d-4b22-803d-d07029a42dd3",
+  "isSidechain": true,
+  "agentId": "a15b5eaf82d5d9d02",
+  "requestId": "req_011Cb3Pz5FszHY5fFLkCDqV5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a035544c-094b-447d-9a80-46b5b276e1b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eaw9EfrJb61oCYkS8LAEAq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3217,
+      "cache_read_input_tokens": 49678,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3217,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T00:20:24.107Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01DqeEfHETW4Rf7U9FRjMzWG`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-reviewer-65b870d4/1158d0f4-b2d0-4b5b-89f4-c996dd76b730/tool-results && python3 -c \"\nimport json\nwith open('mcp-agent-ml-research-read_registry-1778804318748.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Search for step-related fields and death-related data in metrics\nprint('=== Experiments with step counts / step routing / death info ===')\nfor eid, exp in exps.items():\n    s = json.dumps(exp)\n    if 'n_steps' in s or 'total_steps' in s or 'step_routing' in s or 'death_rate' in s or 'death_distribution' in s or 'int_deaths' in s or 'int_only_death' in s:\n        metrics = exp.get('metrics', {})\n        # Print relevant death/step fields\n        print(f'--- {eid} ---')\n        death_fields = {}\n        def extract_death(d, prefix=''):\n            if isinstance(d, dict):\n                for k, v in d.items():\n                    full_key = f'{prefix}.{k}' if prefix else k\n                    if any(x in k.lower() for x in ['death', 'die', 'dies', 'step', 'steps']):\n                        death_fields[full_key] = v\n                    elif isinstance(v, dict):\n                        extract_death(v, full_key)\n        extract_death(metrics)\n        for k, v in death_fields.items():\n            print(f'  {k}: {v}')\n        print()\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a035544c-094b-447d-9a80-46b5b276e1b6",
+  "isSidechain": true,
+  "agentId": "a15b5eaf82d5d9d02",
+  "requestId": "req_011Cb3Pz5FszHY5fFLkCDqV5",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "09b44909-17e3-4190-8913-152d693291d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eaw9EfrJb61oCYkS8LAEAq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3217,
+      "cache_read_input_tokens": 49678,
+      "output_tokens": 555,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3217
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 555,
+          "cache_read_input_tokens": 49678,
+          "cache_creation_input_tokens": 3217,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3217,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T00:20:24.296Z_
+
+<details><summary>↩ Tool result · `toolu_01DqeEfHETW4Rf7U9FRjMzWG`</summary>
+
+```text
+=== Experiments with step counts / step routing / death info ===
+--- plan-012-step-tie-rate ---
+  total_steps: 6094
+  tie_steps: 5935
+  det_preferred_steps: 133
+  int_preferred_steps: 26
+  per_task.chemistry-mix.steps: 464
+  per_task.find-animal.steps: 499
+  per_task.find-non-living-thing.steps: 1200
+  per_task.freeze.steps: 468
+  per_task.grow-fruit.steps: 489
+  per_task.identify-life-stages-1.steps: 478
+  per_task.identify-life-stages-2.steps: 487
+  per_task.inclined-plane-determine-angle.steps: 468
+  per_task.lifespan-longest-lived.steps: 585
+  per_task.lifespan-longest-lived-then-shortest-lived.steps: 498
+  per_task.measure-melting-point-unknown-substance.steps: 458
+  old_mvp_comparison.old_steps: 2948
+
+--- plan-004-ablation-b ---
+
+--- plan-003-implicit-eval-full ---
+  step_routing_accuracy: 0.602
+  n_steps: 2160
+
+--- plan-003-e2e-ablation-b-correct ---
+  death_rate: 0.1755
+
+--- plan-004-ablation-b-seed789 ---
+
+--- plan-004-ablation-b-seed456 ---
+
+--- plan-004-ablation-b-seed123 ---
+
+--- plan-003-eval-implicit ---
+  step_routing_accuracy: {'accuracy': 0.6023, 'correct': 1301, 'total': 2160}
+
+--- plan-003-e2e-ablation-b ---
+  death_rate: 0.1796
+
+--- plan-002-generative-v1 ---
+
+--- plan-002-generative-v1-ga1 ---
+
+--- plan-004-v4 ---
+
+--- plan-003-baseline ---
+  always_internal.death_rate: 0.4072
+  always_deterministic.death_rate: 0.1856
+  oracle.death_rate: 0.1649
+  random.death_rate: 0.2835
+  trained_router_v6.death_rate: 0.1856
+
+--- plan-002-formal-v6 ---
+
+--- plan-004-v3 ---
+
+--- plan-004-v2 ---
+
+--- plan-002-formal-v5 ---
+
+--- plan-002-formal-v4 ---
+
+--- plan-002-formal-v3 ---
+
+--- plan-012-full ---
+  death_avoidance_fraction: 0.9041
+  death_rate_int: 0.429
+  death_rate_det: 0.163
+
+--- plan-012-decomposition ---
+  full_11tasks.death_avoidance_fraction: 0.9041
+  full_11tasks.death_rate_int: 0.429
+  full_11tasks.death_rate_det: 0.163
+  prescreening_30tasks.death_avoidance_fraction: 0.99
+
+--- plan-002-formal-v2 ---
+
+--- plan-002-formal ---
+
+--- plan-002-dryrun ---
+  total_steps: 383
+
+--- plan-001b-gpu1 ---
+  find-non-living-thing.int_deaths: 0
+  find-non-living-thing.det_deaths: 0
+  find-non-living-thing.both_deaths: 0
+  find-non-living-thing.int_only_death: 0
+  find-non-living-thing.det_only_death: 0
+  grow-fruit.int_deaths: 9
+  grow-fruit.det_deaths: 4
+  grow-fruit.both_deaths: 3
+  grow-fruit.int_only_death: 6
+  grow-fruit.det_only_death: 1
+  inclined-plane-determine-angle.int_deaths: 11
+  inclined-plane-determine-angle.det_deaths: 4
+  inclined-plane-determine-angle.both_deaths: 4
+  inclined-plane-determine-angle.int_only_death: 7
+  inclined-plane-determine-angle.det_only_death: 0
+  identify-life-stages-2.int_deaths: 10
+  identify-life-stages-2.det_deaths: 4
+  identify-life-stages-2.both_deaths: 4
+  identify-life-stages-2.int_only_death: 6
+  identify-life-stages-2.det_only_death: 0
+  summary.death_dominated_tasks: ['grow-fruit', 'inclined-plane-determine-angle', 'identify-life-stages-2']
+
+--- research-boil-v3-gpu1 ---
+  death_distribution: {'internal_deaths': 9, 'internal_total': 20, 'internal_death_pct': 45, 'det_deaths': 2, 'det_total': 20, 'det_death_pct': 10, 'oracle_deaths': 0, 'oracle_total': 20, 'oracle_death_pct': 0}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "09b44909-17e3-4190-8913-152d693291d9",
+  "isSidechain": true,
+  "promptId": "f0b48b30-537d-4302-b0ad-f3f56612590d",
+  "agentId": "a15b5eaf82d5d9d02",
+  "type": "user",
+  "uuid": "a388b4eb-4b49-4dc5-8dfb-9f47f1e4de68",
+  "sourceToolAssistantUUID": "09b44909-17e3-4190-8913-152d693291d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-15T00:20:55.151Z_
+
+Here are the findings from the registry:
+
+---
+
+## 1. Trajectory / death step / step-level / temporal / per-step death information
+
+**No experiments record per-step death information.** A search across all 58 experiments for keywords "trajectory", "death_step", "death step", "step-level", "step_level", "temporal", "per-step", "per_step", "death_at_step" returned zero matches.
+
+Death data is recorded only at the **episode level** (e.g., `int_deaths: 9`, `det_deaths: 4`, `int_only_death: 6` per task in `plan-001b-gpu1`). The closest step-level experiment is **`plan-012-step-tie-rate`**, which records per-step *routing preference* (6094 total steps, 5935 ties, 133 det-preferred, 26 int-preferred), but does **not** record which step death occurred at or any temporal death trajectory.
+
+**`plan-003-implicit-eval-full`** and **`plan-003-eval-implicit`** record `step_routing_accuracy` (0.602, 2160 steps) but no per-step death data.
+
+---
+
+## 2. DAF (Death Asymmetry Factor) experiments
+
+Three experiments contain DAF / death_avoidance data:
+
+### `plan-012-penalty-sensitivity`
+- **status**: DONE, **conclusion**: success
+- **spec**: `"command": "analytical decomposition"`, `data_path: "results/plan_c/"`, `data_count: 245`, `model_name: "n/a"`, `seed: 0`
+- **Key metrics**: `n_only_int_dies: 70`, `n_only_det_dies: 5`, `n_both_die: 35`, `n_neither_die: 135`, `delta: 0.2653`, `delta_nd: 3.07`, `delta_full_100: 29.6`, **`DAF_P10: 46.4`, `DAF_P25: 68.4`, `DAF_P50: 81.2`, `DAF_P100: 89.6`, `DAF_P200: 94.5`**
+- Note: spec is sparse — no `checkpoint_path` or `log_path` recorded. `command` is just "analytical decomposition" with no actual script path.
+
+### `plan-012-full`
+- **status**: DONE, **conclusion**: success
+- **Metrics**: `delta_full: 29.6`, `delta_nd: 2.84`, **`death_avoidance_fraction: 0.9041`**, `pearson_r: 0.9698`, `pearson_p: 8.12e-07`, `death_rate_int: 0.429`, `death_rate_det: 0.163`, `label_dist: {det_preferred: 86, internal_preferred: 9, no_preference: 150}`
+- No spec fields recorded.
+
+### `plan-012-decomposition`
+- **status**: DONE, **conclusion**: success
+- **spec**: `command: "python src/death_decomposition.py --data_dirs results/plan_c results/prescreening results/research --output results/decomposition_final/"`, covers 30 ScienceWorld task types, 249 episodes
+- **Metrics (full_11tasks)**: `death_avoidance_fraction: 0.9041`, `delta_full: 29.6`, `delta_nd: 2.84`, `pearson_r: 0.9698`
+- **Metrics (prescreening_30tasks)**: `death_avoidance_fraction: 0.99`, `delta_full: 37.9`, `delta_nd: 0.2`, `pearson_r: 0.989`
+- Key finding: "find_non_living_thing" is the only zero-death task where delta_full comes entirely from non-death performance differences.
+
+### `plan-013-labeling-quality`
+- Contains `det_preferred_death_asymmetry: 70` and `det_preferred_score_comparison: 16` — indicating 70 of 86 det-preferred labels come from death asymmetry, only 16 from genuine score comparison.
+
+---
+
+## 3. ALFWorld counterfactual experiments
+
+### `alfworld-counterfactual-full`
+- **status**: DONE, **conclusion**: success
+- **Data format**: Output is JSONL at `results/alfworld_counterfactual/episodes.jsonl`
+- **Input data**: `/root/autodl-tmp/alfworld_data/json_2.1.1/valid_seen`, 140 tasks (135 actually ran)
+- **Metrics**: Episode-level labels only: `det_preferred: 35 (25.9%)`, `internal_preferred: 2 (1.5%)`, `no_preference: 98 (72.6%)`, `det_success_rate: 27.4`, `internal_success_rate: 3`
+- **No per-step death or trajectory data recorded in registry.** The output format is JSONL (episodes.jsonl), with no indication of step-level death information.
+
+### `alfworld-counterfactual-dryrun`
+- **status**: DONE, **conclusion**: success
+- 5 tasks, all no_preference, `internal_success: 1`, `det_success: 1`, pipeline validated
+- Same JSONL output format, no per-step data in registry.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a388b4eb-4b49-4dc5-8dfb-9f47f1e4de68",
+  "isSidechain": true,
+  "agentId": "a15b5eaf82d5d9d02",
+  "requestId": "req_011Cb3Q16vNfVXtW9qtRn5U4",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "531cfe2a-b93d-4e59-aa18-0bcf679a029b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/reviewer_65b870d4",
+  "sessionId": "1158d0f4-b2d0-4b5b-89f4-c996dd76b730",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YbRSC3rJCe33t2MJ5RBWvz",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1859,
+      "cache_read_input_tokens": 52895,
+      "output_tokens": 1325,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1859
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1325,
+          "cache_read_input_tokens": 52895,
+          "cache_creation_input_tokens": 1859,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1859,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

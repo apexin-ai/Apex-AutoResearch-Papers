@@ -1,0 +1,23 @@
+# Research conversation: [HANDOFF] 你是 Research Reviewer，这是 Loop #15。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 白名单：仅 cuda:0 + cuda:1 on wes
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 569
+- **Recorded user turns:** 40
+- **Tool calls:** 142
+- **Original source:** `logs/chats/exported-trajectories/account-2/5ec72ee2-115e-4ddd-a2b0-8c225a73cf8a.jsonl`
+- **Structured JSON:** [`4af118d0b02c5a42e170.json`](../../sessions/4a/4af118d0b02c5a42e170.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Browse this transcript
+
+This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
+
+[Part 1](research-conversation-handoff-research-reviewer-loop-15-task-context-1-gpu-cuda-0-cuda-1-on-wes/part-001.md) · [Part 2](research-conversation-handoff-research-reviewer-loop-15-task-context-1-gpu-cuda-0-cuda-1-on-wes/part-002.md)

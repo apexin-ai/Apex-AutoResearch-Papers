@@ -1,0 +1,23 @@
+# Research conversation: [Director 指令] [Patch — W-SF4 DAF 数字填充] 72B DAF decomposition 数据已出，请立即填充之前 R15 patch 中留的 W-SF4 placeholder。 **72B DAF 核心数
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 6,977
+- **Recorded user turns:** 306
+- **Tool calls:** 1,706
+- **Original source:** `logs/chats/exported-trajectories/account-1/0523ef73-1599-429f-be17-206601cc9d71.jsonl`
+- **Structured JSON:** [`a7d44033152ae895874c.json`](../../sessions/a7/a7d44033152ae895874c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Browse this transcript
+
+This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
+
+[Part 1](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-001.md) · [Part 2](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-002.md) · [Part 3](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-003.md) · [Part 4](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-004.md) · [Part 5](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-005.md) · [Part 6](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-006.md) · [Part 7](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-007.md) · [Part 8](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-008.md) · [Part 9](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-009.md) · [Part 10](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-010.md) · [Part 11](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-011.md) · [Part 12](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-012.md) · [Part 13](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-013.md) · [Part 14](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-014.md) · [Part 15](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-015.md) · [Part 16](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-016.md) · [Part 17](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-017.md) · [Part 18](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-018.md) · [Part 19](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-019.md) · [Part 20](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-020.md) · [Part 21](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-021.md) · [Part 22](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-022.md) · [Part 23](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-023.md) · [Part 24](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-024.md) · [Part 25](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-025.md) · [Part 26](research-conversation-director-patch-w-sf4-daf-72b-daf-decomposition-r15-patch-w-sf4-placeholder-72b/part-026.md)

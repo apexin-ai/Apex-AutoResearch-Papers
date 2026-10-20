@@ -1,0 +1,2047 @@
+# Research conversation: Read the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simga
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 24
+- **Recorded user turns:** 1
+- **Tool calls:** 9
+- **Original source:** `logs/chats/exported-trajectories/account-2/agent-a1b7dfb814f5645fb.jsonl`
+- **Structured JSON:** [`5c613b14e9fa9df04f9f.json`](../../sessions/5c/5c613b14e9fa9df04f9f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+24 recorded events
+
+### User
+
+_source line 1 · 2026-05-14T07:55:32.157Z_
+
+Read the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/64bf8e9c-9c87-47ba-adf7-bb88b4fb1455/tool-results/mcp-agent-ml-research-read_registry-1778745309624.txt
+
+This is a JSON file with schema {result: string}. The result field is a JSON string containing experiment registry entries.
+
+Extract ALL entries related to these plans and return their FULL content verbatim:
+- plan-012 (or plan_012)
+- plan-003 (or plan_003)  
+- plan-011 (or plan_011)
+- plan-004 (or plan_004)
+- plan-007 (or plan_007)
+- plan-005 (or plan_005)
+
+For each matching entry, return:
+- The plan ID / experiment name
+- status, conclusion
+- ALL metrics (verbatim, every field)
+- ALL notes/details
+- created_at, updated_at
+- result_dir or any file paths mentioned
+
+Also list all unique experiment IDs/names in the registry so I can see if there are other relevant entries I'm missing.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "8f5e3863-8f23-4c69-a31a-63dbda3a511d",
+  "agentId": "a1b7dfb814f5645fb",
+  "type": "user",
+  "uuid": "f0135d68-896e-41cf-bb50-944f6d2baf4d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T07:55:32.169Z_
+
+```json
+{
+  "parentUuid": "f0135d68-896e-41cf-bb50-944f6d2baf4d",
+  "isSidechain": true,
+  "agentId": "a1b7dfb814f5645fb",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "addedLines": [
+      "EnterWorktree",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "accb457b-add5-4d0c-ad85-05694abd9f50",
+  "timestamp": "2026-05-14T07:55:32.169Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T07:55:35.385Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016vAXeDy5neGhiH5wTFheSA`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/64bf8e9c-9c87-47ba-adf7-bb88b4fb1455/tool-results/mcp-agent-ml-research-read_registry-1778745309624.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "accb457b-add5-4d0c-ad85-05694abd9f50",
+  "isSidechain": true,
+  "agentId": "a1b7dfb814f5645fb",
+  "requestId": "req_011Cb26uAndzLV7hWm21grYD",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6a0daabf-3a0c-4636-bd06-dc62e906c87a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JC9J6KQGicPkbdH6Hm2Vfu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13487,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 145,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 13487
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 145,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 13487,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 13487,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-14T07:55:35.703Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_016vAXeDy5neGhiH5wTFheSA`</summary>
+
+```text
+File content (31774 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6a0daabf-3a0c-4636-bd06-dc62e906c87a",
+  "isSidechain": true,
+  "promptId": "8f5e3863-8f23-4c69-a31a-63dbda3a511d",
+  "agentId": "a1b7dfb814f5645fb",
+  "type": "user",
+  "uuid": "72555c85-f4a7-408c-9c39-2700fc582a84",
+  "toolUseResult": "Error: File content (31774 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "6a0daabf-3a0c-4636-bd06-dc62e906c87a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T07:55:38.752Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017o2s395W7Ly7zmtz1VPbzi`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/64bf8e9c-9c87-47ba-adf7-bb88b4fb1455/tool-results/mcp-agent-ml-research-read_registry-1778745309624.txt",
+  "offset": 0,
+  "limit": 500
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "72555c85-f4a7-408c-9c39-2700fc582a84",
+  "isSidechain": true,
+  "agentId": "a1b7dfb814f5645fb",
+  "requestId": "req_011Cb26uRvDnXFPUBy3TrbkY",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "36ad8e10-311e-4361-b9d7-11d37a8c8c3a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HjiJTAUF94CURnQ7fsp1P2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1046,
+      "cache_read_input_tokens": 13487,
+      "output_tokens": 178,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1046
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 178,
+          "cache_read_input_tokens": 13487,
+          "cache_creation_input_tokens": 1046,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1046,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T07:55:39.036Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_017o2s395W7Ly7zmtz1VPbzi`</summary>
+
+```text
+File content (31774 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "36ad8e10-311e-4361-b9d7-11d37a8c8c3a",
+  "isSidechain": true,
+  "promptId": "8f5e3863-8f23-4c69-a31a-63dbda3a511d",
+  "agentId": "a1b7dfb814f5645fb",
+  "type": "user",
+  "uuid": "a1abd3fd-1004-4a57-a069-0e92d05d12d3",
+  "toolUseResult": "Error: File content (31774 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "36ad8e10-311e-4361-b9d7-11d37a8c8c3a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T07:55:42.326Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016tJW5xF4H9rGkwS8rurFob`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/64bf8e9c-9c87-47ba-adf7-bb88b4fb1455/tool-results/mcp-agent-ml-research-read_registry-1778745309624.txt",
+  "offset": 0,
+  "limit": 300
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a1abd3fd-1004-4a57-a069-0e92d05d12d3",
+  "isSidechain": true,
+  "agentId": "a1b7dfb814f5645fb",
+  "requestId": "req_011Cb26ug42S9aUpyaDy7jtw",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "bbb7faa0-30cf-4398-80fe-dfc37a78a741",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Db9eTYzrm1mUZ8H6wrkudD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 239,
+      "cache_read_input_tokens": 14533,
+      "output_tokens": 178,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 239
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 178,
+          "cache_read_input_tokens": 14533,
+          "cache_creation_input_tokens": 239,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 239,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T07:55:42.718Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_016tJW5xF4H9rGkwS8rurFob`</summary>
+
+```text
+File content (31774 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bbb7faa0-30cf-4398-80fe-dfc37a78a741",
+  "isSidechain": true,
+  "promptId": "8f5e3863-8f23-4c69-a31a-63dbda3a511d",
+  "agentId": "a1b7dfb814f5645fb",
+  "type": "user",
+  "uuid": "1465513e-5923-465d-981d-e96a9b48e048",
+  "toolUseResult": "Error: File content (31774 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "bbb7faa0-30cf-4398-80fe-dfc37a78a741",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T07:55:45.759Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Py62mGCcFxJFZ7Dke7F5u7`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/64bf8e9c-9c87-47ba-adf7-bb88b4fb1455/tool-results/mcp-agent-ml-research-read_registry-1778745309624.txt",
+  "offset": 0,
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1465513e-5923-465d-981d-e96a9b48e048",
+  "isSidechain": true,
+  "agentId": "a1b7dfb814f5645fb",
+  "requestId": "req_011Cb26uwrJF96wtwRUp1wY7",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2f9d2f0a-450f-4237-b371-1f7d5a0aa49f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GEKdzqrHjykku5EmedJ3PJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 239,
+      "cache_read_input_tokens": 14772,
+      "output_tokens": 178,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 239
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 178,
+          "cache_read_input_tokens": 14772,
+          "cache_creation_input_tokens": 239,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 239,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T07:55:46.108Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01Py62mGCcFxJFZ7Dke7F5u7`</summary>
+
+```text
+File content (31774 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2f9d2f0a-450f-4237-b371-1f7d5a0aa49f",
+  "isSidechain": true,
+  "promptId": "8f5e3863-8f23-4c69-a31a-63dbda3a511d",
+  "agentId": "a1b7dfb814f5645fb",
+  "type": "user",
+  "uuid": "d1251c6a-8c07-47f4-a3d7-4a36c0231f65",
+  "toolUseResult": "Error: File content (31774 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+  "sourceToolAssistantUUID": "2f9d2f0a-450f-4237-b371-1f7d5a0aa49f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-14T07:55:49.531Z_
+
+The file is very large. Let me use grep to search for the specific plans and also get a structural overview.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d1251c6a-8c07-47f4-a3d7-4a36c0231f65",
+  "isSidechain": true,
+  "agentId": "a1b7dfb814f5645fb",
+  "requestId": "req_011Cb26vCNfcm4YeMB8s2Xut",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "6048255e-9b6e-4a78-b592-2ac703916600",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hs8DCceybJBDrqi5WGYYtR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 239,
+      "cache_read_input_tokens": 15011,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 239,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T07:55:50.487Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01AzXrea29Mtovg8hDoJ7HG1`</summary>
+
+```json
+{
+  "command": "wc -l /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/64bf8e9c-9c87-47ba-adf7-bb88b4fb1455/tool-results/mcp-agent-ml-research-read_registry-1778745309624.txt",
+  "description": "Count lines in registry file"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6048255e-9b6e-4a78-b592-2ac703916600",
+  "isSidechain": true,
+  "agentId": "a1b7dfb814f5645fb",
+  "requestId": "req_011Cb26vCNfcm4YeMB8s2Xut",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8f7efe45-5d1f-40a2-86ab-4305d3ecca9f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hs8DCceybJBDrqi5WGYYtR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 239,
+      "cache_read_input_tokens": 15011,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 239,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T07:55:50.675Z_
+
+<details><summary>↩ Tool result · `toolu_01AzXrea29Mtovg8hDoJ7HG1`</summary>
+
+```text
+0 /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/64bf8e9c-9c87-47ba-adf7-bb88b4fb1455/tool-results/mcp-agent-ml-research-read_registry-1778745309624.txt
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f7efe45-5d1f-40a2-86ab-4305d3ecca9f",
+  "isSidechain": true,
+  "promptId": "8f5e3863-8f23-4c69-a31a-63dbda3a511d",
+  "agentId": "a1b7dfb814f5645fb",
+  "type": "user",
+  "uuid": "c13cbacd-3e9f-4047-92d8-230593c70fed",
+  "sourceToolAssistantUUID": "8f7efe45-5d1f-40a2-86ab-4305d3ecca9f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T07:55:51.828Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01QgjkUkfPwvRdJV72zJGM6k`</summary>
+
+```json
+{
+  "command": "head -c 500 /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/64bf8e9c-9c87-47ba-adf7-bb88b4fb1455/tool-results/mcp-agent-ml-research-read_registry-1778745309624.txt",
+  "description": "Peek at file structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c13cbacd-3e9f-4047-92d8-230593c70fed",
+  "isSidechain": true,
+  "agentId": "a1b7dfb814f5645fb",
+  "requestId": "req_011Cb26vCNfcm4YeMB8s2Xut",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "405947ca-ef08-4754-bb14-c404751fd5c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hs8DCceybJBDrqi5WGYYtR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 239,
+      "cache_read_input_tokens": 15011,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 239,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T07:55:51.890Z_
+
+<details><summary>↩ Tool result · `toolu_01QgjkUkfPwvRdJV72zJGM6k`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan-004-v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:16:04.007Z\", \"updated_at\": \"2026-05-14T07:38:54.065Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/implicit_router_sft.py train --data_dir results/pla
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "405947ca-ef08-4754-bb14-c404751fd5c2",
+  "isSidechain": true,
+  "promptId": "8f5e3863-8f23-4c69-a31a-63dbda3a511d",
+  "agentId": "a1b7dfb814f5645fb",
+  "type": "user",
+  "uuid": "d439202d-a9fa-45e7-a811-9daa1ff1f742",
+  "sourceToolAssistantUUID": "405947ca-ef08-4754-bb14-c404751fd5c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-14T07:55:55.022Z_
+
+It's a single line JSON file. Let me parse it properly.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d439202d-a9fa-45e7-a811-9daa1ff1f742",
+  "isSidechain": true,
+  "agentId": "a1b7dfb814f5645fb",
+  "requestId": "req_011Cb26vdLqb9DQ89fw4oss8",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7246cd89-36d9-4dfe-951c-3ea5eb07129f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Q284KRZpDMGc3krbyVWWQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 704,
+      "cache_read_input_tokens": 15250,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 704,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T07:55:57.941Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01BQwird9ra3FKX9NoEEGPaC`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/64bf8e9c-9c87-47ba-adf7-bb88b4fb1455/tool-results/mcp-agent-ml-research-read_registry-1778745309624.txt\"\npython3 -c \"\nimport json\nwith open('$FILE', 'r') as f:\n    raw = json.load(f)\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\nprint('All experiment IDs:')\nfor k in sorted(exps.keys()):\n    print(f'  {k}')\nprint(f'\\nTotal: {len(exps)} experiments')\n\"",
+  "description": "List all experiment IDs in registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7246cd89-36d9-4dfe-951c-3ea5eb07129f",
+  "isSidechain": true,
+  "agentId": "a1b7dfb814f5645fb",
+  "requestId": "req_011Cb26vdLqb9DQ89fw4oss8",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "4555771e-7d17-4b4b-9b0d-e6f889d24782",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Q284KRZpDMGc3krbyVWWQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 704,
+      "cache_read_input_tokens": 15250,
+      "output_tokens": 288,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 704
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 288,
+          "cache_read_input_tokens": 15250,
+          "cache_creation_input_tokens": 704,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 704,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T07:55:58.092Z_
+
+<details><summary>↩ Tool result · `toolu_01BQwird9ra3FKX9NoEEGPaC`</summary>
+
+```text
+All experiment IDs:
+  gpu0-v6-lifespan
+  mvp-p0-forking
+  mvp-p1-gpu0
+  mvp-p1-gpu0-vllm
+  mvp-p1-gpu1
+  mvp-p1-gpu1-v2
+  mvp-p1-gpu1-v3
+  mvp-p1-gpu1-vllm
+  mvp-p1-signal
+  plan-001b-fnlt-v2
+  plan-001b-gpu0
+  plan-001b-gpu0-v2
+  plan-001b-gpu0-v3
+  plan-001b-gpu0-v4
+  plan-001b-gpu0-v5
+  plan-001b-gpu1
+  plan-001b-gpu1-extra
+  plan-001b-gpu1-freeze-chem
+  plan-001b-gpu1-rebalance
+  plan-002-dryrun
+  plan-002-formal
+  plan-002-formal-v2
+  plan-002-formal-v3
+  plan-002-formal-v4
+  plan-002-formal-v5
+  plan-002-formal-v6
+  plan-002-generative-v1
+  plan-003-baseline
+  plan-004-ablation-b
+  plan-004-v2
+  plan-004-v3
+  plan-004-v4
+  plan-011-rule-based
+  plan-012-decomposition
+  plan-012-full
+  research-boil-v3-gpu1
+  research-cf-pilot-gpu1
+  research-prescreening-gpu0
+  research-prescreening-gpu1
+
+Total: 39 experiments
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4555771e-7d17-4b4b-9b0d-e6f889d24782",
+  "isSidechain": true,
+  "promptId": "8f5e3863-8f23-4c69-a31a-63dbda3a511d",
+  "agentId": "a1b7dfb814f5645fb",
+  "type": "user",
+  "uuid": "90406a06-c731-498a-a2e4-0b09cd55783f",
+  "sourceToolAssistantUUID": "4555771e-7d17-4b4b-9b0d-e6f889d24782",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T07:56:15.189Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0123dRLRfCigbd18fRVMyZHq`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/64bf8e9c-9c87-47ba-adf7-bb88b4fb1455/tool-results/mcp-agent-ml-research-read_registry-1778745309624.txt\"\npython3 -c \"\nimport json\nwith open('$FILE', 'r') as f:\n    raw = json.load(f)\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n\n# Extract all plan-003, plan-004, plan-005, plan-007, plan-011, plan-012 related entries\ntargets = ['plan-003', 'plan-004', 'plan-005', 'plan-007', 'plan-011', 'plan-012']\nfor key in sorted(exps.keys()):\n    for t in targets:\n        if key.startswith(t):\n            print('=' * 80)\n            print(f'EXPERIMENT: {key}')\n            print('=' * 80)\n            print(json.dumps(exps[key], indent=2))\n            print()\n            break\n\"",
+  "description": "Extract all plan-003/004/005/007/011/012 entries"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90406a06-c731-498a-a2e4-0b09cd55783f",
+  "isSidechain": true,
+  "agentId": "a1b7dfb814f5645fb",
+  "requestId": "req_011Cb26w5XgjuMrd6fiDqEs4",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ca593c79-4ac0-4e51-8cc0-f4e8466f2a2c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018rduci7ErWh1kHC3ZZ4jux",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 716,
+      "cache_read_input_tokens": 15954,
+      "output_tokens": 387,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 716
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 387,
+          "cache_read_input_tokens": 15954,
+          "cache_creation_input_tokens": 716,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 716,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T07:56:15.288Z_
+
+<details><summary>↩ Tool result · `toolu_0123dRLRfCigbd18fRVMyZHq`</summary>
+
+```text
+================================================================================
+EXPERIMENT: plan-003-baseline
+================================================================================
+{
+  "status": "PREPARING",
+  "retry_count": 0,
+  "created_at": "2026-05-14T07:29:43.220Z",
+  "updated_at": "2026-05-14T07:30:27.429Z",
+  "hypothesis": "End-to-end evaluation baselines: always-internal, always-deterministic, oracle, random, trained-router (degenerate v6). 194 episodes / 11 tasks. \u5efa\u7acb\u8bba\u6587 Table 1 \u7684 baseline \u6570\u636e\u3002",
+  "conclusion": "success",
+  "metrics": {
+    "always_internal": {
+      "score": -37.16,
+      "ci_90": [
+        -43.39,
+        -31.43
+      ],
+      "success_rate": 0.1237,
+      "death_rate": 0.4072,
+      "sim_ratio": 0
+    },
+    "always_deterministic": {
+      "score": -11.64,
+      "ci_90": [
+        -17.39,
+        -6.55
+      ],
+      "success_rate": 0.2371,
+      "death_rate": 0.1856,
+      "sim_ratio": 1
+    },
+    "oracle": {
+      "score": -9.03,
+      "ci_90": [
+        -14.14,
+        -4.15
+      ],
+      "success_rate": 0.2423,
+      "death_rate": 0.1649,
+      "sim_ratio": 0.9623
+    },
+    "random": {
+      "score": -23.75,
+      "ci_90": [
+        -29.6,
+        -18.11
+      ],
+      "success_rate": 0.1649,
+      "death_rate": 0.2835,
+      "sim_ratio": 0.5027
+    },
+    "trained_router_v6": {
+      "score": -11.64,
+      "ci_90": [
+        -17.39,
+        -6.55
+      ],
+      "success_rate": 0.2371,
+      "death_rate": 0.1856,
+      "sim_ratio": 1,
+      "note": "degenerate - identical to always-deterministic"
+    },
+    "episodes": 194,
+    "tasks": 11
+  },
+  "notes": "Retrospectively registered. Eval ran on server by worker_code_plan-003-eval-script. Output: results/plan_003_eval/. trained-router = plan-002-formal-v6 (degenerate, all-deterministic). \u9700\u7528 plan-002-generative-v1 \u7684\u975e\u9000\u5316 router \u91cd\u8dd1 trained-router \u6761\u4ef6\u3002"
+}
+
+================================================================================
+EXPERIMENT: plan-004-ablation-b
+================================================================================
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-14T05:36:59.120Z",
+  "updated_at": "2026-05-14T06:05:46.622Z",
+  "hypothesis": "Plan-004 \u6761\u4ef6 (b) implicit router SFT\uff1aQwen3-1.7B + LoRA, [SIMULATE] token \u9690\u5f0f\u8def\u7531\u3002\u4e0e plan-002 (explicit router) \u5bf9\u6bd4\uff0c\u9a8c\u8bc1\u8def\u7531 signal \u662f\u5426\u9700\u8981\u663e\u5f0f\u5206\u7c7b\u5668\u8fd8\u662f\u53ef\u901a\u8fc7 token \u5d4c\u5165\u9690\u5f0f\u5b66\u4e60\u3002\u540c\u6837\u4f7f\u7528 upsample_minority \u5904\u7406\u7c7b\u522b\u4e0d\u5e73\u8861\u3002",
+  "parent": "plan-002-formal-v2",
+  "spec": {
+    "server": "westb-13313",
+    "gpu": [
+      "cuda:1"
+    ],
+    "account": "root",
+    "command": "CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/implicit_router_sft.py --data_dir data/plan-004-implicit --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --upsample_minority --lr 2e-5 --output_dir checkpoints/plan-004-implicit --seed 42",
+    "data_path": "data/plan-004-implicit/",
+    "data_count": "2040 samples (train 1735 / val 305)",
+    "model_name": "/root/autodl-tmp/models/Qwen/Qwen3-1.7B + LoRA r=16 (0.37% trainable)",
+    "seed": 42,
+    "pid": "225362",
+    "checkpoint_source": "N/A (training from scratch)",
+    "eval_data": "N/A (ablation training)",
+    "note": "v2: CUDA_VISIBLE_DEVICES=1 \u9694\u79bb\u4fee\u590d + \u672c\u5730\u6a21\u578b\u8def\u5f84 + HF_HUB_OFFLINE=1"
+  },
+  "server": "westb-13313",
+  "gpu": "cuda:1",
+  "reproduce": {
+    "finished_at": "2026-05-14T05:53:26.481Z"
+  },
+  "failure_reason": "process dead 5\u00d7 with no sentinel/W&B \u2014 auto-resolved as failed",
+  "conclusion": "success",
+  "completed_at": "2026-05-14T05:53:27.018Z",
+  "extra": {
+    "hook_events": [
+      {
+        "event": "on_failed",
+        "action": "agent",
+        "ts": "2026-05-14T05:53:28.176854+00:00"
+      }
+    ]
+  },
+  "notes": "Cron \u8bef\u6807 failed\uff08WANDB_MODE=offline \u5bfc\u81f4\u65e0 W&B metrics + PID \u9000\u51fa\u540e 5\u00d7 dead check\uff09\u3002\u5b9e\u9645\u8bad\u7ec3\u6210\u529f\u5b8c\u6210\uff1a3 epochs, eval_loss 0.7151\u21920.3928\u21920.3609, adapter saved to checkpoints/plan-004-implicit/final_adapter, sentinel TRAINING_COMPLETE written\u3002\u5f85\u63d0\u53d6\u8be6\u7ec6\u5206\u7c7b\u6307\u6807\uff08accuracy/F1/per-class\uff09\u3002",
+  "checkpoint_path": "checkpoints/plan-004-implicit/final_adapter",
+  "log_path": "/root/autodl-tmp/simgate-modular-routing/checkpoints/plan-004-implicit/training.log",
+  "metrics": {
+    "eval_accuracy": 0.6536,
+    "eval_f1_macro": 0.5091,
+    "eval_balanced_accuracy": 0.5927,
+    "per_class": {
+      "deterministic": {
+        "precision": 0.9196,
+        "recall": 0.6703,
+        "f1": 0.7754,
+        "support": 273
+      },
+      "internal": {
+        "precision": 0.1589,
+        "recall": 0.5152,
+        "f1": 0.2429,
+        "support": 33
+      }
+    },
+    "confusion": {
+      "true_int_pred_int": 17,
+      "true_int_pred_det": 16,
+      "true_det_pred_det": 183,
+      "true_det_pred_int": 90
+    },
+    "is_degenerate": false,
+    "training_loss_curve": {
+      "epoch1": 0.7151,
+      "epoch2": 0.3928,
+      "epoch3": 0.3609
+    },
+    "note": "\u7b2c\u4e00\u4e2a\u975e\u9000\u5316\u6a21\u578b\u3002internal recall=51.5% \u7a81\u7834\u96f6\u3002\u4f46 internal precision=15.9% \u6781\u4f4e\uff0890 FP vs 17 TP\uff09\uff0caccuracy \u4ece baseline 92.3% \u964d\u5230 65.4%\u3002Qwen3 &lt;think> tag \u5e72\u6270\u63a8\u7406\u3002"
+  }
+}
+
+================================================================================
+EXPERIMENT: plan-004-v2
+================================================================================
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-14T06:41:13.286Z",
+  "updated_at": "2026-05-14T07:08:59.680Z",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/implicit_router_sft.py train --data_dir results/plan_c_test_labels/implicit_sft.jsonl --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --class_weights auto --lr 2e-5 --output_dir checkpoints/plan-004-v2 --seed 42 --gpu_id 0",
+    "server": "westb-13313",
+    "gpu": "cuda:1",
+    "data_path": "results/plan_c_test_labels/implicit_sft.jsonl",
+    "data_count": 1814,
+    "model_name": "Qwen/Qwen3-1.7B",
+    "seed": 42,
+    "pid": "235893",
+    "checkpoint_path": "checkpoints/plan-004-v2",
+    "log_path": "checkpoints/plan-004-v2/train.log"
+  },
+  "conclusion": "failed",
+  "failure_reason": "class_weights auto \u5bfc\u81f4\u8bad\u7ec3 loss \u5f02\u5e38\u504f\u9ad8\uff0848\u21924.4\uff0cavg 12.74\uff09\uff0c\u4e0e plan-002 v3/v4/v5 \u540c\u4e00\u5df2\u77e5\u95ee\u9898\u3002eval_loss 0.49 \u770b\u4f3c\u5408\u7406\u4f46\u65e0 accuracy/balanced_accuracy/per-class metrics \u53ef\u9a8c\u8bc1\u6a21\u578b\u8d28\u91cf\u3002\u65e0 eval_report.json\u3002",
+  "metrics": {
+    "train_loss_avg": 12.74,
+    "train_loss_epoch1": [
+      48.15,
+      42.05,
+      26.14,
+      13.71
+    ],
+    "train_loss_epoch3": [
+      4.58,
+      4.42,
+      4.15,
+      4.46,
+      4.36
+    ],
+    "eval_loss_epoch2": 0.5509,
+    "eval_loss_epoch3": 0.4905,
+    "train_runtime_sec": 150.74,
+    "note": "no accuracy/balanced_accuracy computed"
+  },
+  "completed_at": "2026-05-14T07:02:44.123Z",
+  "notes": "Training completed normally (3 epochs, 147 steps). TRAINING_COMPLETE sentinel present. final_adapter + checkpoint-98/147 saved. train_loss=12.74 (abnormally high due to class_weights auto), eval_loss=0.490 at epoch 3. Process exited normally after completion, not OOM/crash."
+}
+
+================================================================================
+EXPERIMENT: plan-004-v3
+================================================================================
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-14T07:06:51.091Z",
+  "updated_at": "2026-05-14T07:24:34.751Z",
+  "hypothesis": "Implicit router SFT v3\uff1a\u4fee\u590d\u4e24\u4e2a bug\u2014\u2014(1) \u53bb\u6389 class_weights auto\uff08D023 \u6839\u56e0\uff09\uff0c(2) \u7528 plan_c/ 11 task \u91cd\u751f\u6210\u6570\u636e\u4fee\u590d no-preference\u2192internal \u6620\u5c04 bug\u3002\u4e0e plan-002-formal-v6\uff08explicit classification head, \u540c\u6837\u65e0 class_weights\uff09\u5bf9\u7167\u30022040 samples from 11 tasks, no-preference \u5df2\u4e22\u5f03\u3002",
+  "parent": "plan-004-v2",
+  "server": "westb-13313",
+  "gpu": "cuda:1",
+  "account": "root",
+  "reproduce": {
+    "server": "westb-13313",
+    "gpu": "cuda:1",
+    "started_at": "2026-05-14T07:07:13.844Z",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/implicit_router_sft.py train --data_dir results/plan_c_test_labels/implicit_sft.jsonl --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --lr 2e-5 --output_dir checkpoints/plan-004-v3 --seed 42 --gpu_id 0\"",
+    "finished_at": "2026-05-14T07:11:44.941Z",
+    "training_hours": 0.08
+  },
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/implicit_router_sft.py train --data_dir data/plan-004-v3/implicit_sft.jsonl --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --lr 2e-5 --output_dir checkpoints/plan-004-v3 --seed 42 --gpu_id 0",
+    "server": "westb-13313",
+    "gpu": [
+      "cuda:1"
+    ],
+    "pid": "242217",
+    "log_path": "~/runs/simgate-modular-routing/plan-004-v3.log",
+    "submitted_at": "2026-05-14T07:09:57Z",
+    "submitted_via": "submit_training_job",
+    "backend": "tmux",
+    "account": "root",
+    "data_path": "data/plan-004-v3/implicit_sft.jsonl",
+    "data_count": "2040 (train 1740: det=1560/int=180 | val 300: det=270/int=30)",
+    "model_name": "/root/autodl-tmp/models/Qwen/Qwen3-1.7B + LoRA r=16 (0.37% trainable)",
+    "seed": 42,
+    "wall_clock_seconds": 109.3,
+    "gpu_hours": 0.03
+  },
+  "pid": "241329",
+  "log_path": "~/runs/simgate-modular-routing/plan-004-v3.log",
+  "failure_reason": "EXIT_CODE=129 (non-zero)",
+  "conclusion": "negative",
+  "completed_at": "2026-05-14T07:11:46.286Z",
+  "extra": {
+    "hook_events": [
+      {
+        "event": "on_failed",
+        "action": "agent",
+        "ts": "2026-05-14T07:11:47.584882+00:00"
+      }
+    ]
+  },
+  "notes": "## \u6570\u636e\u6587\u4ef6\u5dee\u5f02\u5206\u6790 (2026-05-14)\n\n### \u4e09\u4e2a\u6570\u636e\u6587\u4ef6\u786e\u8ba4\n| | ablation-b | v2 | v3 |\n|---|---|---|---|\n| \u8def\u5f84 | data/plan-004-implicit/implicit_sft.jsonl | results/plan_c_test_labels/implicit_sft.jsonl | data/plan-004-v3/implicit_sft.jsonl |\n| MD5 | c9b59e04de78... | eb9daacc7f97... | **c9b59e04de78... (=ablation-b)** |\n| \u6837\u672c\u6570 | 2040 | 1814 | 2040 |\n| \u6587\u4ef6\u5927\u5c0f | 1,578,366 bytes | 1,398,021 bytes | 1,578,366 bytes |\n\n**v3 \u548c ablation-b \u7684\u6570\u636e\u6587\u4ef6 100% \u76f8\u540c\uff08MD5 \u4e00\u81f4\uff09\u3002**\n\n### Schema\uff08\u4e09\u4e2a\u6587\u4ef6\u4e00\u81f4\uff09\nfields: messages, task_type, variation, step_idx, route_label\n\n### \u6807\u7b7e\u5206\u5e03\n- ablation-b / v3: **deterministic 1830 (89.7%), internal 210 (10.3%)**\n- v2: **internal 1214 (66.9%), deterministic 600 (33.1%)** \u2190 \u6807\u7b7e\u6bd4\u4f8b\u5b8c\u5168\u53cd\u8f6c\uff01\n\n### Task Type \u5206\u5e03\n- ablation-b / v3: 11 \u4e2a task_type\uff0c\u4ee5 find-non-living-thing(510), chemistry-mix(240) \u4e3a\u4e3b\n- v2: **\u4ec5 4 \u4e2a task_type**\uff1afind-non-living-thing(600), find-animal(554), grow-fruit(390), identify-life-stages-1(270)\n\n### \u6587\u672c\u957f\u5ea6\n- ablation-b / v3: n=2040, min=52, max=166, mean=87 words\n- v2: n=1814, min=52, max=200, mean=90 words\n\n### \u524d 3 \u6761\u6837\u672c\u5bf9\u6bd4\nablation-b/v3 \u9996\u6761: chemistry-mix/variation 0/step 0, [SIMULATE] connect agent to door to kitchen, route=deterministic\nv2 \u9996\u6761: find-non-living-thing/variation 0/step 0, [SIMULATE] connect agent to art studio door, route=deterministic\n\n### \u8bad\u7ec3\u914d\u7f6e\u5bf9\u6bd4\uff08\u771f\u6b63\u53d8\u91cf\uff09\n| | ablation-b (\u6b63\u5e38) | v2 (\u5f02\u5e38) | v3 (\u5f02\u5e38) |\n|---|---|---|---|\n| \u811a\u672c | training/implicit_router_sft.py | \u540c\u5de6 | \u540c\u5de6 |\n| \u6570\u636e | data/plan-004-implicit (2040) | results/plan_c_test_labels (1814) | data/plan-004-v3 (2040, **=ablation-b**) |\n| upsample_minority | **true** | false | false |\n| class_weights | \u65e0 | \"auto\" | null |\n| gradient_accumulation | 1 (\u9ed8\u8ba4) | 8 | 8 |\n| batch_size | 4 | 4 | 4 |\n| \u6709\u6548batch | 4 | 32 | 32 |\n\n### \u8bad\u7ec3\u66f2\u7ebf\u5bf9\u6bd4\n| | ablation-b | v2 | v3 |\n|---|---|---|---|\n| Step 10 loss | 5.25 | 48.15 | 48.15 (\u7528\u6237\u62a5\u544a) |\n| Epoch 1 eval_loss | ~0.68 | 0.95 | [\u65e0 train.log] |\n| Epoch 3 eval_loss | 0.36 | **0.49 (\u6536\u655b\u4e86!)** | [\u65e0 train.log] |\n| \u5e73\u5747 train_loss | 1.26 | 12.74 | [\u65e0\u6570\u636e] |\n\n**\u91cd\u8981\u53d1\u73b0: v2 \u867d\u7136\u8d77\u6b65 loss=48\uff0c\u4f46\u6700\u7ec8 eval_loss \u6536\u655b\u5230 0.49\uff0c\u6a21\u578b\u5b9e\u9645\u4e0a\u5b66\u5230\u4e86\u3002**\n\n### class_weights \u4ee3\u7801\u5206\u6790\nclass_weights \u5728 WeightedTrainer.compute_loss() \u4e2d\u6b63\u786e\u5b9e\u73b0\uff1a\n- sample_idx \u7531 ImplicitSFTDataset.__getitem__() \u8fd4\u56de (line 85)\n- PaddingCollator.__call__() \u6b63\u786e\u4f20\u9012 (line 128-136)\n- compute_loss() \u4e2d `inputs.pop(\"sample_idx\")` \u83b7\u53d6\uff0c\u6761\u4ef6 `self._class_weights is not None and sample_indices is not None` \u63a7\u5236 (line 227)\n- v2 (class_weights=\"auto\"): \u6743\u91cd internal=0.743, det=1.527\uff0c\u6b63\u786e\u8ba1\u7b97\u5e76\u5e94\u7528\n- v3 (class_weights=null): \u65e0\u6743\u91cd\uff0c`loss = per_sample_loss.mean()`\n\n**class_weights \u4ee3\u7801\u672c\u8eab\u6ca1\u6709 bug\u3002v2 \u548c v3 \u7684 step 10 loss \u4e00\u81f4\uff0848.15\uff09\uff0c\u8bc1\u660e class_weights \u4e0d\u662f loss \u5dee\u5f02\u7684\u4e3b\u56e0\u3002** class_weights \u53ea\u662f\u5bf9 per-sample loss \u7684\u4e58\u6cd5\u7f29\u653e\uff080.74x~1.53x\uff09\uff0c\u4e0d\u4f1a\u6539\u53d8 loss \u7684\u6570\u91cf\u7ea7\u3002\n\n### plan-002-formal-v6 \u6570\u636e\u8def\u5f84\n- \u6570\u636e\u6765\u6e90: `results/plan_c/` \u76ee\u5f55\uff0811 \u4e2a task_type \u5b50\u76ee\u5f55\u7684 labeled_steps.jsonl\uff09\n- \u52a0\u8f7d: 2040 samples from 11 files\n- \u6807\u7b7e\u5206\u5e03: deterministic 1830 (89.7%), internal 210 (10.3%)\n- \u4e0e ablation-b \u7684 implicit \u6570\u636e\u662f**\u540c\u6e90\u6570\u636e\uff0c\u4f46\u683c\u5f0f\u4e0d\u540c**\uff08explicit router \u7528 observation+action_history+label \u683c\u5f0f\uff0cimplicit \u7528 messages chat \u683c\u5f0f\uff09\n- **plan-002-formal-v6 \u4e5f\u9000\u5316\u4e86**: \u5168\u9884\u6d4b deterministic (internal: 0/30, deterministic: 390/390)\n\n### \u7ed3\u8bba\uff1a\u6839\u56e0\u5224\u5b9a\n\n**\"\u6570\u636e\u6587\u4ef6\u4e0d\u540c\"\u5047\u8bf4\u88ab\u8bc1\u4f2a\uff08\u5bf9 v3\uff09**\uff1av3 \u4f7f\u7528\u548c ablation-b \u5b8c\u5168\u76f8\u540c\u7684\u6570\u636e\uff08MD5 \u4e00\u81f4\uff09\uff0c\u4f46\u4ecd\u7136\u5f02\u5e38\u3002\n\n**\u771f\u6b63\u7684\u53d8\u91cf\u662f\u8bad\u7ec3\u7b56\u7565\u7684\u7ec4\u5408**\uff1a\n1. **`upsample_minority: true`**\uff08ablation-b \u72ec\u6709\uff09\uff1a\u5728 89.7% deterministic \u7684\u6781\u7aef\u4e0d\u5e73\u8861\u6570\u636e\u4e0a\uff0cWeightedRandomSampler \u786e\u4fdd internal \u6837\u672c\u88ab\u5145\u5206\u91c7\u6837\u3002\u6ca1\u6709\u5b83\uff0c\u6a21\u578b\u6bcf batch \u51e0\u4e4e\u53ea\u770b\u5230 deterministic \u6837\u672c\u3002\n2. **`gradient_accumulation_steps: 1 vs 8`**\uff1a\u6709\u6548 batch 4 vs 32\u3002\u8f83\u5927 batch + \u65e0\u4e0a\u91c7\u6837 = \u6bcf\u6b65\u770b\u5230\u7684 internal \u6837\u672c\u66f4\u5c11\u3002\n\n**v2 \u7684\u6570\u636e\u786e\u5b9e\u4e0d\u540c**\uff08\u6807\u7b7e\u6bd4\u4f8b\u53cd\u8f6c\uff1ainternal 67% vs 10%\uff0c\u53ea\u6709 4 \u4e2a task_type\uff09\uff0c\u4f46 v2 \u4f9d\u7136\u6536\u655b\u4e86\uff08eval_loss 0.49\uff09\u3002\u8fd9\u8bf4\u660e\u6570\u636e\u5dee\u5f02\u5bfc\u81f4\u8bad\u7ec3\u884c\u4e3a\u4e0d\u540c\uff0c\u4f46\u4e0d\u662f\u81f4\u547d\u95ee\u9898\u3002\n\n**\u5efa\u8bae\u4e0b\u4e00\u6b65**\uff1a\n- \u7528 ablation-b \u7684\u914d\u7f6e\uff08upsample_minority=true, gradient_accumulation=1\uff09\u91cd\u8dd1 v3 \u6570\u636e\uff0c\u9a8c\u8bc1\u662f\u5426\u6062\u590d\u6b63\u5e38 loss\n- \u5bf9 v2 \u8dd1 eval \u770b\u662f\u5426\u4e5f\u9000\u5316"
+}
+
+================================================================================
+EXPERIMENT: plan-004-v4
+================================================================================
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-14T07:16:04.007Z",
+  "updated_at": "2026-05-14T07:38:54.065Z",
+  "spec": {
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/implicit_router_sft.py train --data_dir results/plan_c_test_labels/implicit_sft.jsonl --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --lr 2e-5 --output_dir checkpoints/plan-004-v4 --seed 42 --gpu_id 0\"",
+    "server": "westb-13313",
+    "gpu": [
+      "cuda:1"
+    ],
+    "pid": "243301",
+    "log_path": "~/runs/simgate-modular-routing/plan-004-v4.log",
+    "submitted_at": "2026-05-14T07:16:33.465Z",
+    "submitted_via": "submit_training_job",
+    "backend": "tmux",
+    "account": "root",
+    "wall_clock_seconds": 698.3,
+    "gpu_hours": 0.19
+  },
+  "parent": "plan-004-v3",
+  "conclusion": "negative",
+  "notes": "## \u72b6\u6001\u62a5\u544a (2026-05-14)\n\n### \u8bad\u7ec3\u5b8c\u6210\n- \u72b6\u6001: DONE (EXIT_CODE=0)\n- \u8fd0\u884c\u65f6\u957f: 150.3s (~2.5min)\n- \u8fdb\u5ea6: 147/147 steps, 3 epochs\n- Adapter \u4fdd\u5b58: checkpoints/plan-004-v4/final_adapter\n\n### \u6570\u636e\n- \u6587\u4ef6: results/plan_c_test_labels/implicit_sft.jsonl (1814\u884c)\n- \u4e0e v2/v3 \u4f7f\u7528\u540c\u4e00\u6570\u636e\u6587\u4ef6\n- Split: 53 train / 10 val episodes \u2192 1558 train / 256 val steps\n- Route labels (train): internal=1048, deterministic=510\n\n### Loss \u66f2\u7ebf\n| Epoch | Train Loss | Grad Norm |\n|-------|-----------|-----------|\n| 0.21  | 48.1538   | 122.03    |\n| 0.41  | 42.0474   | 131.02    |\n| 0.62  | 26.1077   | 94.05     |\n| 0.82  | 13.7082   | 51.81     |\n| 1.02  | 8.463     | 36.91     |\n| 1.23  | 6.8562    | 27.10     |\n| 1.43  | 6.0505    | 15.74     |\n| 1.64  | 5.9014    | 15.58     |\n| 1.84  | 5.0414    | 10.27     |\n| 2.04  | 4.5778    | 10.58     |\n| 2.25  | 4.4344    | 16.18     |\n| 2.45  | 4.153     | 14.26     |\n| 2.66  | 4.4794    | 11.85     |\n| 2.86  | 4.3672    | 14.33     |\n\n\u5e73\u5747 train_loss: 12.74\n\n### Eval Loss\n- Epoch 1: 0.9549\n- Epoch 2: 0.5524\n- Epoch 3: 0.4922\n\n### Checkpoints\ncheckpoint-49, checkpoint-98, final_adapter\n\n### \u4e0e v2/v3 \u5bf9\u6bd4\uff08\u5173\u952e\u53d1\u73b0\uff09\n- **v4 step 10 loss = 48.1538\uff0c\u4e0e v2/v3 \u7684 48.15 \u5b8c\u5168\u4e00\u81f4**\n- \u4e09\u4e2a\u7248\u672c\u4f7f\u7528\u540c\u4e00\u6570\u636e\u6587\u4ef6 (results/plan_c_test_labels/implicit_sft.jsonl)\n- ablation-b \u7528\u4e0d\u540c\u6570\u636e (data/plan-004-implicit/)\uff0closs \u6b63\u5e38 (0.36-0.71)\n- **\u7ed3\u8bba\uff1a\u6570\u636e\u6587\u4ef6\u662f\u521d\u59cb loss \u5f02\u5e38\u9ad8\u7684\u6839\u56e0\uff0c\u975e class_weights**\n\n### \u5f02\u5e38\uff1atrain loss vs eval loss \u5de8\u5927\u5dee\u8ddd\n- Train loss \u7ec8\u6001 ~4.4 vs eval loss 0.49\n- \u53ef\u80fd\u539f\u56e0: \u8bad\u7ec3 loss \u542b class_weights \u52a0\u6743\uff0ceval loss \u662f\u539f\u59cb CE\uff1b\u6216\u6570\u636e\u683c\u5f0f/\u6807\u7b7e\u95ee\u9898\u5bfc\u81f4\u8bad\u7ec3\u76ee\u6807\u4e0e\u8bc4\u4f30\u76ee\u6807\u4e0d\u4e00\u81f4",
+  "checkpoint_path": "checkpoints/plan-004-v4/final_adapter",
+  "log_path": "checkpoints/plan-004-v4/train.log",
+  "completed_at": "2026-05-14T07:28:11.778Z"
+}
+
+================================================================================
+EXPERIMENT: plan-011-rule-based
+================================================================================
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-14T00:51:12.911Z",
+  "updated_at": "2026-05-14T01:00:59.327Z",
+  "hypothesis": "Rule-based keyword routing baseline\uff1a\u6d4b\u8bd5 keyword heuristic \u80fd\u5426\u6355\u83b7 episode-level routing signal\u3002\u4e09\u7248 keyword list \u5747\u7ed3\u6784\u6027\u5931\u6548\u2014\u2014v1 (\u542b connect) \u2248 always-det, v2 (\u79d1\u5b66\u8bcd) \u2248 always-internal, v3 (\u72b6\u6001\u53d8\u5316\u52a8\u8bcd) \u2248 always-internal\u3002",
+  "spec": {
+    "command": "python src/rule_based_accuracy.py + python src/rule_based_inference.py",
+    "server": "westb-13313",
+    "data_path": "results/plan_c/ + results/prescreening/ + results/research/",
+    "data_count": 204,
+    "model_name": "N/A (rule-based, no model)",
+    "seed": "N/A",
+    "script_paths": [
+      "src/rule_based_accuracy.py",
+      "src/rule_based_inference.py"
+    ],
+    "keyword_list_path": "src/rule_based_keywords.json",
+    "keyword_list_v3_path": "src/rule_based_keywords_v3.json",
+    "v1_spec": {
+      "keywords": 20,
+      "includes_connect": true,
+      "match_rate": "85.8%",
+      "result": "\u2248 always-det (degenerate)",
+      "episodes": 204
+    },
+    "v2_spec": {
+      "keywords": 17,
+      "science_only": true,
+      "match_rate": "4.9%",
+      "result": "\u2248 always-internal (degenerate)",
+      "episodes": 203
+    },
+    "v3_spec": {
+      "keywords": 12,
+      "state_change_verbs": true,
+      "match_rate": "2.8%",
+      "result": "\u2248 always-internal (degenerate)",
+      "episodes": "same as v2"
+    },
+    "checkpoint_path": "N/A (analysis only)",
+    "log_path": "results/plan_c/rule_based_analysis/"
+  },
+  "conclusion": "success",
+  "metrics": {
+    "v1_match_rate": "85.8%",
+    "v1_result": "degenerate \u2192 always-det",
+    "v2_match_rate": "4.9%",
+    "v2_result": "degenerate \u2192 always-internal",
+    "v3_match_rate": "2.8%",
+    "v3_episode_accuracy": "1.5%",
+    "v3_result": "degenerate \u2192 always-internal",
+    "conclusion": "Keyword heuristic structurally fails on ScienceWorld \u2014 ScienceWorld actions use generic interaction verbs (connect/move/pick up), not science-specific keywords. No keyword list provides meaningful routing signal.",
+    "note": "D014: structural failure analysis, paper positions as evidence for learned/observation-based approaches"
+  },
+  "checkpoint_path": "src/rule_based_keywords.json + src/rule_based_keywords_v3.json",
+  "log_path": "results/plan_011/",
+  "notes": "v1 204 vs v2 203 episode \u5dee\u5f02\u539f\u56e0\uff1a\u7ade\u6001\u6761\u4ef6\u2014\u2014v2 \u62a5\u544a\u5728 lifespan-shortest-lived/episodes.jsonl \u521b\u5efa\u524d 15 \u79d2\u751f\u6210\u3002\u975e\u65b9\u6cd5\u8bba\u95ee\u9898\u3002\u5f53\u524d\u91cd\u8dd1\u4e24\u7248\u5747\u4e3a 233 episodes\u3002\u8bba\u6587\u7edf\u4e00\u5f15\u7528\u6700\u7ec8 plan-001b \u5b8c\u6574\u6570\u636e\u7684 episode \u57fa\u6570\u3002",
+  "completed_at": "2026-05-14T01:00:12.893Z"
+}
+
+================================================================================
+EXPERIMENT: plan-012-decomposition
+================================================================================
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-14T00:50:01.170Z",
+  "updated_at": "2026-05-14T05:44:02.255Z",
+  "hypothesis": "Death decomposition \u4e2d\u95f4\u5206\u6790\uff1a30 tasks / 249 episodes \u4e0a\u9a8c\u8bc1 death avoidance \u5360 ~99% routing signal\uff08\u9884\u5206\u6790\uff0cplan-001b \u5b8c\u6574\u6570\u636e\u540e\u5c06\u91cd\u8dd1\u6700\u7ec8\u7248\uff09",
+  "spec": {
+    "command": "python src/death_decomposition.py --data_dirs results/plan_c results/prescreening results/research --output results/decomposition_final/",
+    "server": "westb-13313",
+    "data_path": "results/plan_c/ + results/prescreening/ + results/research/ (30 ScienceWorld task types)",
+    "data_count": 249,
+    "model_name": "N/A (analysis only)",
+    "seed": "N/A",
+    "script_path": "src/death_decomposition.py",
+    "task_count": 30,
+    "checkpoint_path": "N/A (analysis only)",
+    "log_path": "results/plan_c/death_decomposition/"
+  },
+  "conclusion": "success",
+  "metrics": {
+    "full_11tasks": {
+      "delta_full": 29.6,
+      "delta_nd": 2.84,
+      "death_avoidance_fraction": 0.9041,
+      "pearson_r": 0.9698,
+      "pearson_p": 8.12e-07,
+      "tasks": 11,
+      "episodes": 245,
+      "death_rate_int": 0.429,
+      "death_rate_det": 0.163,
+      "label_dist": {
+        "det_preferred": 86,
+        "internal_preferred": 9,
+        "no_preference": 150
+      }
+    },
+    "prescreening_30tasks": {
+      "delta_full": 37.9,
+      "delta_nd": 0.2,
+      "death_avoidance_fraction": 0.99,
+      "pearson_r": 0.989,
+      "pearson_p": "<0.0001",
+      "tasks": 30,
+      "episodes": 249
+    },
+    "key_tasks": {
+      "find_non_living_thing": {
+        "n": 40,
+        "dr_int": 0,
+        "dr_det": 0,
+        "delta_full": 9.58,
+        "delta_nd": 9.58,
+        "note": "\u552f\u4e00\u96f6\u6b7b\u4ea1 task, \u0394_full \u5168\u90e8\u6765\u81ea non-death \u6027\u80fd\u5dee\u5f02"
+      },
+      "measure_melting_point": {
+        "n": 20,
+        "dr_int": 0.55,
+        "dr_det": 0.25,
+        "delta_full": 30.05,
+        "delta_pr": 0.05,
+        "note": "\u9ad8\u6b7b\u4ea1\u7387, \u6027\u80fd\u5dee\u8ddd\u51e0\u4e4e\u5b8c\u5168\u7531 death avoidance \u89e3\u91ca"
+      }
+    }
+  },
+  "checkpoint_path": "results/death_decomposition_report.json",
+  "log_path": "results/decomposition_final/",
+  "completed_at": "2026-05-14T01:00:13.916Z"
+}
+
+================================================================================
+EXPERIMENT: plan-012-full
+================================================================================
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-14T06:02:42.659Z",
+  "updated_at": "2026-05-14T06:04:07.731Z",
+  "hypothesis": "Death decomposition \u5168\u91cf\u5206\u6790\uff1a11 tasks / 245 episodes\u3002plan-001b \u5b8c\u6574\u6570\u636e\u4e0a\u7684\u6700\u7ec8\u7248\u3002\u6838\u5fc3\u53d1\u73b0\uff1adeath avoidance fraction=90.41%, \u0394_full=29.60, \u0394_nd=2.84, r=0.9698 (p=8.12e-07)\u3002",
+  "conclusion": "success",
+  "checkpoint_path": "results/plan_012_decomposition/",
+  "log_path": "results/plan_012_decomposition/",
+  "metrics": {
+    "delta_full": 29.6,
+    "delta_nd": 2.84,
+    "death_avoidance_fraction": 0.9041,
+    "pearson_r": 0.9698,
+    "pearson_p": 8.12e-07,
+    "tasks": 11,
+    "episodes": 245,
+    "death_rate_int": 0.429,
+    "death_rate_det": 0.163,
+    "label_dist": {
+      "det_preferred": 86,
+      "internal_preferred": 9,
+      "no_preference": 150
+    }
+  },
+  "completed_at": "2026-05-14T06:04:07.731Z"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ca593c79-4ac0-4e51-8cc0-f4e8466f2a2c",
+  "isSidechain": true,
+  "promptId": "8f5e3863-8f23-4c69-a31a-63dbda3a511d",
+  "agentId": "a1b7dfb814f5645fb",
+  "type": "user",
+  "uuid": "aa666113-b823-48cb-b4e4-8c03a04967dd",
+  "sourceToolAssistantUUID": "ca593c79-4ac0-4e51-8cc0-f4e8466f2a2c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-14T07:56:18.442Z_
+
+Those are the 6 plan-003/004/011/012 entries. Now let me check for plan-005 and plan-007.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa666113-b823-48cb-b4e4-8c03a04967dd",
+  "isSidechain": true,
+  "agentId": "a1b7dfb814f5645fb",
+  "requestId": "req_011Cb26xM9ZkCmZtdUQG2ikx",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "a73eadbe-60b4-47bb-9acc-60e603c9e58e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BkwQ1ra96zjRHjZXsU1ryo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13529,
+      "cache_read_input_tokens": 16670,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 13529,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T07:56:26.031Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0182PUkJtnX1hvNBHByTWum4`</summary>
+
+```json
+{
+  "command": "FILE=\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/64bf8e9c-9c87-47ba-adf7-bb88b4fb1455/tool-results/mcp-agent-ml-research-read_registry-1778745309624.txt\"\npython3 -c \"\nimport json\nwith open('$FILE', 'r') as f:\n    raw = json.load(f)\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\nfor key in sorted(exps.keys()):\n    if 'plan-005' in key or 'plan-007' in key or 'plan_005' in key or 'plan_007' in key:\n        print(f'FOUND: {key}')\n        print(json.dumps(exps[key], indent=2))\nprint('---')\nprint('No plan-005 or plan-007 entries found in registry.') if not any('plan-005' in k or 'plan-007' in k or 'plan_005' in k or 'plan_007' in k for k in exps.keys()) else None\n\"",
+  "description": "Search for plan-005 and plan-007 entries"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a73eadbe-60b4-47bb-9acc-60e603c9e58e",
+  "isSidechain": true,
+  "agentId": "a1b7dfb814f5645fb",
+  "requestId": "req_011Cb26xM9ZkCmZtdUQG2ikx",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "1bf5ffa1-dd6a-4938-b398-2a1ff6a1b7c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BkwQ1ra96zjRHjZXsU1ryo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13529,
+      "cache_read_input_tokens": 16670,
+      "output_tokens": 415,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 13529
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 415,
+          "cache_read_input_tokens": 16670,
+          "cache_creation_input_tokens": 13529,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 13529,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T07:56:26.136Z_
+
+<details><summary>↩ Tool result · `toolu_0182PUkJtnX1hvNBHByTWum4`</summary>
+
+```text
+---
+No plan-005 or plan-007 entries found in registry.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1bf5ffa1-dd6a-4938-b398-2a1ff6a1b7c7",
+  "isSidechain": true,
+  "promptId": "8f5e3863-8f23-4c69-a31a-63dbda3a511d",
+  "agentId": "a1b7dfb814f5645fb",
+  "type": "user",
+  "uuid": "7b889e77-7f46-4970-b88b-4b192d0b83fd",
+  "sourceToolAssistantUUID": "1bf5ffa1-dd6a-4938-b398-2a1ff6a1b7c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-14T07:57:49.612Z_
+
+Here are the results.
+
+---
+
+## Matching Entries (verbatim)
+
+### plan-003-baseline
+- **status**: PREPARING
+- **conclusion**: success
+- **created_at**: 2026-05-14T07:29:43.220Z
+- **updated_at**: 2026-05-14T07:30:27.429Z
+- **hypothesis**: End-to-end evaluation baselines: always-internal, always-deterministic, oracle, random, trained-router (degenerate v6). 194 episodes / 11 tasks. 建立论文 Table 1 的 baseline 数据。
+- **notes**: Retrospectively registered. Eval ran on server by worker_code_plan-003-eval-script. Output: results/plan_003_eval/. trained-router = plan-002-formal-v6 (degenerate, all-deterministic). 需用 plan-002-generative-v1 的非退化 router 重跑 trained-router 条件。
+- **metrics**:
+  - always_internal: score=-37.16, ci_90=[-43.39, -31.43], success_rate=0.1237, death_rate=0.4072, sim_ratio=0
+  - always_deterministic: score=-11.64, ci_90=[-17.39, -6.55], success_rate=0.2371, death_rate=0.1856, sim_ratio=1
+  - oracle: score=-9.03, ci_90=[-14.14, -4.15], success_rate=0.2423, death_rate=0.1649, sim_ratio=0.9623
+  - random: score=-23.75, ci_90=[-29.6, -18.11], success_rate=0.1649, death_rate=0.2835, sim_ratio=0.5027
+  - trained_router_v6: score=-11.64, ci_90=[-17.39, -6.55], success_rate=0.2371, death_rate=0.1856, sim_ratio=1, note="degenerate - identical to always-deterministic"
+  - episodes=194, tasks=11
+
+### plan-004-ablation-b
+- **status**: DONE
+- **conclusion**: success
+- **created_at**: 2026-05-14T05:36:59.120Z
+- **updated_at**: 2026-05-14T06:05:46.622Z
+- **completed_at**: 2026-05-14T05:53:27.018Z
+- **parent**: plan-002-formal-v2
+- **hypothesis**: Plan-004 条件 (b) implicit router SFT：Qwen3-1.7B + LoRA, [SIMULATE] token 隐式路由。与 plan-002 (explicit router) 对比，验证路由 signal 是否需要显式分类器还是可通过 token 嵌入隐式学习。同样使用 upsample_minority 处理类别不平衡。
+- **checkpoint_path**: checkpoints/plan-004-implicit/final_adapter
+- **log_path**: /root/autodl-tmp/simgate-modular-routing/checkpoints/plan-004-implicit/training.log
+- **notes**: Cron 误标 failed（WANDB_MODE=offline 导致无 W&B metrics + PID 退出后 5× dead check）。实际训练成功完成：3 epochs, eval_loss 0.7151→0.3928→0.3609, adapter saved to checkpoints/plan-004-implicit/final_adapter, sentinel TRAINING_COMPLETE written。待提取详细分类指标（accuracy/F1/per-class）。
+- **metrics**:
+  - eval_accuracy: 0.6536
+  - eval_f1_macro: 0.5091
+  - eval_balanced_accuracy: 0.5927
+  - per_class: deterministic (precision=0.9196, recall=0.6703, f1=0.7754, support=273), internal (precision=0.1589, recall=0.5152, f1=0.2429, support=33)
+  - confusion: true_int_pred_int=17, true_int_pred_det=16, true_det_pred_det=183, true_det_pred_int=90
+  - is_degenerate: false
+  - training_loss_curve: epoch1=0.7151, epoch2=0.3928, epoch3=0.3609
+  - note: 第一个非退化模型。internal recall=51.5% 突破零。但 internal precision=15.9% 极低（90 FP vs 17 TP），accuracy 从 baseline 92.3% 降到 65.4%。Qwen3 \&lt;think\> tag 干扰推理。
+
+### plan-004-v2
+- **status**: DONE
+- **conclusion**: failed
+- **created_at**: 2026-05-14T06:41:13.286Z
+- **updated_at**: 2026-05-14T07:08:59.680Z
+- **completed_at**: 2026-05-14T07:02:44.123Z
+- **failure_reason**: class_weights auto 导致训练 loss 异常偏高（48→4.4，avg 12.74），与 plan-002 v3/v4/v5 同一已知问题。eval_loss 0.49 看似合理但无 accuracy/balanced_accuracy/per-class metrics 可验证模型质量。无 eval_report.json。
+- **metrics**:
+  - train_loss_avg: 12.74
+  - train_loss_epoch1: [48.15, 42.05, 26.14, 13.71]
+  - train_loss_epoch3: [4.58, 4.42, 4.15, 4.46, 4.36]
+  - eval_loss_epoch2: 0.5509
+  - eval_loss_epoch3: 0.4905
+  - train_runtime_sec: 150.74
+  - note: no accuracy/balanced_accuracy computed
+- **notes**: Training completed normally (3 epochs, 147 steps). TRAINING_COMPLETE sentinel present. final_adapter + checkpoint-98/147 saved. train_loss=12.74 (abnormally high due to class_weights auto), eval_loss=0.490 at epoch 3. Process exited normally after completion, not OOM/crash.
+
+### plan-004-v3
+- **status**: DONE
+- **conclusion**: negative
+- **created_at**: 2026-05-14T07:06:51.091Z
+- **updated_at**: 2026-05-14T07:24:34.751Z
+- **completed_at**: 2026-05-14T07:11:46.286Z
+- **parent**: plan-004-v2
+- **hypothesis**: Implicit router SFT v3：修复两个 bug——(1) 去掉 class_weights auto（D023 根因），(2) 用 plan_c/ 11 task 重生成数据修复 no-preference→internal 映射 bug。与 plan-002-formal-v6（explicit classification head, 同样无 class_weights）对照。2040 samples from 11 tasks, no-preference 已丢弃。
+- **failure_reason**: EXIT_CODE=129 (non-zero)
+- **checkpoint_path**: (not explicitly listed; checkpoints/plan-004-v3)
+- **log_path**: ~/runs/simgate-modular-routing/plan-004-v3.log
+- **notes**: Extensive analysis (see raw entry above) comparing ablation-b, v2, v3 data files. Key findings: v3 and ablation-b use identical data (MD5 match). The true variable is the training strategy combination: upsample_minority=true (ablation-b only) and gradient_accumulation_steps=1 vs 8.
+
+### plan-004-v4
+- **status**: DONE
+- **conclusion**: negative
+- **created_at**: 2026-05-14T07:16:04.007Z
+- **updated_at**: 2026-05-14T07:38:54.065Z
+- **completed_at**: 2026-05-14T07:28:11.778Z
+- **parent**: plan-004-v3
+- **checkpoint_path**: checkpoints/plan-004-v4/final_adapter
+- **log_path**: checkpoints/plan-004-v4/train.log
+- **notes**: Training completed (3 epochs, 147 steps, 150.3s). Data: results/plan_c_test_labels/implicit_sft.jsonl (1814 lines). v4 step 10 loss=48.1538, identical to v2/v3. Conclusion: the data file is the root cause of abnormally high initial loss, not class_weights. Eval loss curve: epoch1=0.9549, epoch2=0.5524, epoch3=0.4922.
+
+### plan-011-rule-based
+- **status**: DONE
+- **conclusion**: success
+- **created_at**: 2026-05-14T00:51:12.911Z
+- **updated_at**: 2026-05-14T01:00:59.327Z
+- **completed_at**: 2026-05-14T01:00:12.893Z
+- **hypothesis**: Rule-based keyword routing baseline：测试 keyword heuristic 能否捕获 episode-level routing signal。三版 keyword list 均结构性失效——v1 (含 connect) ≈ always-det, v2 (科学词) ≈ always-internal, v3 (状态变化动词) ≈ always-internal。
+- **checkpoint_path**: src/rule_based_keywords.json + src/rule_based_keywords_v3.json
+- **log_path**: results/plan_011/
+- **metrics**:
+  - v1_match_rate: 85.8%, v1_result: degenerate → always-det
+  - v2_match_rate: 4.9%, v2_result: degenerate → always-internal
+  - v3_match_rate: 2.8%, v3_episode_accuracy: 1.5%, v3_result: degenerate → always-internal
+  - conclusion: Keyword heuristic structurally fails on ScienceWorld — ScienceWorld actions use generic interaction verbs (connect/move/pick up), not science-specific keywords. No keyword list provides meaningful routing signal.
+  - note: D014: structural failure analysis, paper positions as evidence for learned/observation-based approaches
+
+### plan-012-decomposition
+- **status**: DONE
+- **conclusion**: success
+- **created_at**: 2026-05-14T00:50:01.170Z
+- **updated_at**: 2026-05-14T05:44:02.255Z
+- **completed_at**: 2026-05-14T01:00:13.916Z
+- **hypothesis**: Death decomposition 中间分析：30 tasks / 249 episodes 上验证 death avoidance 占 ~99% routing signal（预分析，plan-001b 完整数据后将重跑最终版）
+- **checkpoint_path**: results/death_decomposition_report.json
+- **log_path**: results/decomposition_final/
+- **metrics**:
+  - full_11tasks: delta_full=29.6, delta_nd=2.84, death_avoidance_fraction=0.9041, pearson_r=0.9698, pearson_p=8.12e-07, tasks=11, episodes=245, death_rate_int=0.429, death_rate_det=0.163, label_dist={det_preferred=86, internal_preferred=9, no_preference=150}
+  - prescreening_30tasks: delta_full=37.9, delta_nd=0.2, death_avoidance_fraction=0.99, pearson_r=0.989, pearson_p=<0.0001, tasks=30, episodes=249
+  - key_tasks: find_non_living_thing (n=40, dr_int=0, dr_det=0, delta_full=9.58, delta_nd=9.58, note="唯一零死亡 task, Δ_full 全部来自 non-death 性能差异"), measure_melting_point (n=20, dr_int=0.55, dr_det=0.25, delta_full=30.05, delta_pr=0.05, note="高死亡率, 性能差距几乎完全由 death avoidance 解释")
+
+### plan-012-full
+- **status**: DONE
+- **conclusion**: success
+- **created_at**: 2026-05-14T06:02:42.659Z
+- **updated_at**: 2026-05-14T06:04:07.731Z
+- **completed_at**: 2026-05-14T06:04:07.731Z
+- **hypothesis**: Death decomposition 全量分析：11 tasks / 245 episodes。plan-001b 完整数据上的最终版。核心发现：death avoidance fraction=90.41%, Δ_full=29.60, Δ_nd=2.84, r=0.9698 (p=8.12e-07)。
+- **checkpoint_path**: results/plan_012_decomposition/
+- **log_path**: results/plan_012_decomposition/
+- **metrics**:
+  - delta_full: 29.6
+  - delta_nd: 2.84
+  - death_avoidance_fraction: 0.9041
+  - pearson_r: 0.9698
+  - pearson_p: 8.12e-07
+  - tasks: 11
+  - episodes: 245
+  - death_rate_int: 0.429
+  - death_rate_det: 0.163
+  - label_dist: {det_preferred=86, internal_preferred=9, no_preference=150}
+
+---
+
+## plan-005 and plan-007: NOT FOUND
+
+No entries with prefix `plan-005`, `plan-007`, `plan_005`, or `plan_007` exist in the registry.
+
+---
+
+## All 39 Unique Experiment IDs in Registry
+
+1. gpu0-v6-lifespan
+2. mvp-p0-forking
+3. mvp-p1-gpu0
+4. mvp-p1-gpu0-vllm
+5. mvp-p1-gpu1
+6. mvp-p1-gpu1-v2
+7. mvp-p1-gpu1-v3
+8. mvp-p1-gpu1-vllm
+9. mvp-p1-signal
+10. plan-001b-fnlt-v2
+11. plan-001b-gpu0
+12. plan-001b-gpu0-v2
+13. plan-001b-gpu0-v3
+14. plan-001b-gpu0-v4
+15. plan-001b-gpu0-v5
+16. plan-001b-gpu1
+17. plan-001b-gpu1-extra
+18. plan-001b-gpu1-freeze-chem
+19. plan-001b-gpu1-rebalance
+20. plan-002-dryrun
+21. plan-002-formal
+22. plan-002-formal-v2
+23. plan-002-formal-v3
+24. plan-002-formal-v4
+25. plan-002-formal-v5
+26. plan-002-formal-v6
+27. plan-002-generative-v1
+28. **plan-003-baseline**
+29. **plan-004-ablation-b**
+30. **plan-004-v2**
+31. **plan-004-v3**
+32. **plan-004-v4**
+33. **plan-011-rule-based**
+34. **plan-012-decomposition**
+35. **plan-012-full**
+36. research-boil-v3-gpu1
+37. research-cf-pilot-gpu1
+38. research-prescreening-gpu0
+39. research-prescreening-gpu1
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b889e77-7f46-4970-b88b-4b192d0b83fd",
+  "isSidechain": true,
+  "agentId": "a1b7dfb814f5645fb",
+  "requestId": "req_011Cb26y9SPhUC25Q1KneSLU",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "bbec287d-60e5-4621-a1d1-39f3cc4a5ecd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "sessionId": "64bf8e9c-9c87-47ba-adf7-bb88b4fb1455",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015EYhzMyPa91Cx8AJZ3rpHV",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 443,
+      "cache_read_input_tokens": 30199,
+      "output_tokens": 4049,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 443
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4049,
+          "cache_read_input_tokens": 30199,
+          "cache_creation_input_tokens": 443,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 443,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---

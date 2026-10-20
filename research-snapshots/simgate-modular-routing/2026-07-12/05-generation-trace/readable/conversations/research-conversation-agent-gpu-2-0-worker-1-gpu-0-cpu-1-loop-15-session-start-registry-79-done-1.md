@@ -1,0 +1,1459 @@
+# Research conversation: [Agent 回复]: [资源] GPU 分配 2 / 实际跑 0 | Worker 池 1 (GPU 0 / CPU 1) **Loop #15 Session Start 状态汇报** **Registry**: 79 DONE + 1
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 26
+- **Recorded user turns:** 1
+- **Tool calls:** 6
+- **Original source:** `logs/chats/exported-trajectories/account-1/dff67571-fa25-49f7-8e4e-f4d8f865fa7d.jsonl`
+- **Structured JSON:** [`eff8c3a4f21d81e8fe0e.json`](../../sessions/ef/eff8c3a4f21d81e8fe0e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T01:49:47.650Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T01:49:47.650Z",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d",
+  "content": "[Agent 回复]:\n[资源] GPU 分配 2 / 实际跑 0 | Worker 池 1 (GPU 0 / CPU 1)\n\n**Loop #15 Session Start 状态汇报**\n\n**Registry**: 79 DONE + 1 ANALYZING (r7n2-data-size-ablation，进程已死，需决策关闭)\n**Worker**: leave-one-tasktype-out 仍在 running（turn 20+，SSH 监控 cross-split leave-one-tasktype-out eval）\n**Crons**: 0 active\n**GPU**: cuda:0 + cuda:1 均空闲\n\n**阻塞项**:\n1. Reviewer 最终一致性验证 ← 进行中\n2. 用户审批 Round 8 ← BLOCKING\n3. r7n2-data-size-ablation 状态清理 ← 需 Director 决策\n\n**r7n2 处置建议**: 建议标记 DONE(failed)。理由：(a) 进程 OOM 已死，3/21 runs 完成，25pct 全部 model collapse；(b) 使用 step-level split eval 有 leakage contamination；(c) EMNLP DDL 5/25 时间紧，即使重跑也不可信。\n\n**leave-one-tasktype-out**: 等待 Worker 回调，结果将作为 C2 scope 补充证据（哪些 task types router 能/不能泛化）。\n\n**两卡空闲说明**: 当前 blocking 在 Reviewer 验证 + 用户审批，无自主可启动的实验。如 Director 有补充实验需求（如 Round 8 可能暴露的问题），两卡可即刻投入。\n\n**时间线**: 5/17-19 最后修复窗口，5/20-22 定稿，5/23-25 提交。距 DDL 9 天。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T01:49:47.654Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T01:49:47.654Z",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d"
+}
+```
+
+---
+
+## Round 1
+
+24 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T01:49:47.698Z_
+
+[Agent 回复]:
+[资源] GPU 分配 2 / 实际跑 0 | Worker 池 1 (GPU 0 / CPU 1)
+
+**Loop #15 Session Start 状态汇报**
+
+**Registry**: 79 DONE + 1 ANALYZING (r7n2-data-size-ablation，进程已死，需决策关闭)
+**Worker**: leave-one-tasktype-out 仍在 running（turn 20+，SSH 监控 cross-split leave-one-tasktype-out eval）
+**Crons**: 0 active
+**GPU**: cuda:0 + cuda:1 均空闲
+
+**阻塞项**:
+1. Reviewer 最终一致性验证 ← 进行中
+2. 用户审批 Round 8 ← BLOCKING
+3. r7n2-data-size-ablation 状态清理 ← 需 Director 决策
+
+**r7n2 处置建议**: 建议标记 DONE(failed)。理由：(a) 进程 OOM 已死，3/21 runs 完成，25pct 全部 model collapse；(b) 使用 step-level split eval 有 leakage contamination；(c) EMNLP DDL 5/25 时间紧，即使重跑也不可信。
+
+**leave-one-tasktype-out**: 等待 Worker 回调，结果将作为 C2 scope 补充证据（哪些 task types router 能/不能泛化）。
+
+**两卡空闲说明**: 当前 blocking 在 Reviewer 验证 + 用户审批，无自主可启动的实验。如 Director 有补充实验需求（如 Round 8 可能暴露的问题），两卡可即刻投入。
+
+**时间线**: 5/17-19 最后修复窗口，5/20-22 定稿，5/23-25 提交。距 DDL 9 天。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "af489220-e622-4f88-8739-fe642e37337b",
+  "type": "user",
+  "uuid": "8d6b362a-2c56-43fd-828e-59c68862a661",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/director_976fe708",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T01:49:47.697Z_
+
+```json
+{
+  "parentUuid": "8d6b362a-2c56-43fd-828e-59c68862a661",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__add_constraint",
+      "mcp__agent-ml-research__approve_experiment",
+      "mcp__agent-ml-research__approve_secret_request",
+      "mcp__agent-ml-research__archive_project",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_agent_queue_item",
+      "mcp__agent-ml-research__cancel_pending_director_messages",
+      "mcp__agent-ml-research__check_credentials",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__complete_mvp",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__create_project",
+      "mcp__agent-ml-research__delete_secret",
+      "mcp__agent-ml-research__director_allocate_gpus",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_main_agent",
+      "mcp__agent-ml-research__director_post_to_manager",
+      "mcp__agent-ml-research__director_post_to_paper_agent",
+      "mcp__agent-ml-research__director_reply_to_user",
+      "mcp__agent-ml-research__dream_simulate",
+      "mcp__agent-ml-research__feishu_read_chat_history",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__feishu_upload_file",
+      "mcp__agent-ml-research__get_agent_queue_status",
+      "mcp__agent-ml-research__get_dream_status",
+      "mcp__agent-ml-research__get_dream_trend",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_project_status",
+      "mcp__agent-ml-research__get_resource_inventory",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__keepalive_respond",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_projects",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_secrets",
+      "mcp__agent-ml-research__list_ssh_hosts",
+      "mcp__agent-ml-research__list_workspace_projects",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__log_decision",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__post_to_reviewer",
+      "mcp__agent-ml-research__ralph_respond",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__register_server",
+      "mcp__agent-ml-research__reject_experiment",
+      "mcp__agent-ml-research__reject_secret_request",
+      "mcp__agent-ml-research__remove_constraint",
+      "mcp__agent-ml-research__remove_server",
+      "mcp__agent-ml-research__replace_agent_queue",
+      "mcp__agent-ml-research__request_study_approval",
+      "mcp__agent-ml-research__research_director_post_to_study_director",
+      "mcp__agent-ml-research__should_skip_dream",
+      "mcp__agent-ml-research__store_secret",
+      "mcp__agent-ml-research__submit_paper_to_review",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_project_config",
+      "mcp__agent-ml-research__update_review_issues",
+      "mcp__agent-ml-research__update_roadmap",
+      "mcp__agent-ml-research__update_skill",
+      "mcp__agent-ml-research__upgrade_to_dual_group",
+      "mcp__agent-ml-research__urgent_agent_message"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__add_constraint",
+      "mcp__agent-ml-research__approve_experiment",
+      "mcp__agent-ml-research__approve_secret_request",
+      "mcp__agent-ml-research__archive_project",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_agent_queue_item",
+      "mcp__agent-ml-research__cancel_pending_director_messages",
+      "mcp__agent-ml-research__check_credentials",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__complete_mvp",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__create_project",
+      "mcp__agent-ml-research__delete_secret",
+      "mcp__agent-ml-research__director_allocate_gpus",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_main_agent",
+      "mcp__agent-ml-research__director_post_to_manager",
+      "mcp__agent-ml-research__director_post_to_paper_agent",
+      "mcp__agent-ml-research__director_reply_to_user",
+      "mcp__agent-ml-research__dream_simulate",
+      "mcp__agent-ml-research__feishu_read_chat_history",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__feishu_upload_file",
+      "mcp__agent-ml-research__get_agent_queue_status",
+      "mcp__agent-ml-research__get_dream_status",
+      "mcp__agent-ml-research__get_dream_trend",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_project_status",
+      "mcp__agent-ml-research__get_resource_inventory",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__keepalive_respond",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_projects",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_secrets",
+      "mcp__agent-ml-research__list_ssh_hosts",
+      "mcp__agent-ml-research__list_workspace_projects",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__log_decision",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__post_to_reviewer",
+      "mcp__agent-ml-research__ralph_respond",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__register_server",
+      "mcp__agent-ml-research__reject_experiment",
+      "mcp__agent-ml-research__reject_secret_request",
+      "mcp__agent-ml-research__remove_constraint",
+      "mcp__agent-ml-research__remove_server",
+      "mcp__agent-ml-research__replace_agent_queue",
+      "mcp__agent-ml-research__request_study_approval",
+      "mcp__agent-ml-research__research_director_post_to_study_director",
+      "mcp__agent-ml-research__should_skip_dream",
+      "mcp__agent-ml-research__store_secret",
+      "mcp__agent-ml-research__submit_paper_to_review",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_project_config",
+      "mcp__agent-ml-research__update_review_issues",
+      "mcp__agent-ml-research__update_roadmap",
+      "mcp__agent-ml-research__update_skill",
+      "mcp__agent-ml-research__upgrade_to_dual_group",
+      "mcp__agent-ml-research__urgent_agent_message"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "95a8ed65-3b08-4b9f-abc2-6db44b8a37c0",
+  "timestamp": "2026-05-16T01:49:47.697Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/director_976fe708",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T01:49:47.697Z_
+
+```json
+{
+  "parentUuid": "95a8ed65-3b08-4b9f-abc2-6db44b8a37c0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "7eede9df-9acb-401b-bbf8-e0a05fe85497",
+  "timestamp": "2026-05-16T01:49:47.697Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/director_976fe708",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-16T01:49:47.697Z_
+
+```json
+{
+  "parentUuid": "7eede9df-9acb-401b-bbf8-e0a05fe85497",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "82890716-d3d6-42cf-b1ee-4537c5b525c1",
+  "timestamp": "2026-05-16T01:49:47.697Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/director_976fe708",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Monitor ablation experiments and review results",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T01:50:03.175Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the Agent's status report and decide what to do.
+
+Key points:
+1. **r7n2-data-size-ablation**: Agent recommends marking DONE(failed) - OOM, only 3/21 runs, model collapse, leakage contamination. Makes sense to close it.
+2. **leave-one-tasktype-out**: Still running, waiting for Worker callback. This is for C2 scope evidence.
+3. **GPU**: Both cuda:0 and cuda:1 are idle
+
+
+4. **Blocking**: Reviewer verification + user approval for Round 8
+5. **Timeline**: 9 days to EMNLP DDL (5/25)
+
+I'm agreeing with marking r7n2 as DONE(failed) since the reasoning is solid. But I'm concerned about the two idle GPUs - that violates my constraint against holding empty cards for extended periods. The Agent says they're blocked on Reviewer + user approval, so I need to figure out what can actually move forward right now.
+
+Let me pull the project status and experiment plan to see if there are any self-startable experiments that could keep the GPUs occupied while we wait for Round 8 approval.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "82890716-d3d6-42cf-b1ee-4537c5b525c1",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QdNymwsSy2kDWHJaFB",
+  "type": "assistant",
+  "uuid": "54e3d10a-f1c5-4a78-a3bb-18ea6e82304e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/director_976fe708",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018zAvRKB9qMYHcoWMtDRrJm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 27252,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 574,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27252,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 574,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 27252,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27252
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T01:50:03.639Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_017zyuXTYaDXPfJGoM9UwHE6`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_project_status,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__get_agent_queue_status",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "54e3d10a-f1c5-4a78-a3bb-18ea6e82304e",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QdNymwsSy2kDWHJaFB",
+  "type": "assistant",
+  "uuid": "eb5d139e-03ae-4264-a1b1-0fb739e8afee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/director_976fe708",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018zAvRKB9qMYHcoWMtDRrJm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 27252,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 574,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 27252,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 574,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 27252,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 27252
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T01:50:03.652Z_
+
+<details><summary>↩ Tool result · `toolu_017zyuXTYaDXPfJGoM9UwHE6`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_project_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_experiment_plan_with_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_agent_queue_status"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "eb5d139e-03ae-4264-a1b1-0fb739e8afee",
+  "isSidechain": false,
+  "promptId": "af489220-e622-4f88-8739-fe642e37337b",
+  "type": "user",
+  "uuid": "1aa7e5c7-6d93-49e0-bd0b-80ebadcf40f2",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__get_project_status",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__get_agent_queue_status"
+    ],
+    "query": "select:mcp__agent-ml-research__get_project_status,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__get_agent_queue_status",
+    "total_deferred_tools": 92
+  },
+  "sourceToolAssistantUUID": "eb5d139e-03ae-4264-a1b1-0fb739e8afee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/director_976fe708",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T01:50:08.562Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_status · `toolu_01514UWNZH8Xbtvrzbcrad3b`</summary>
+
+```json
+{
+  "project": "simgate-modular-routing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1aa7e5c7-6d93-49e0-bd0b-80ebadcf40f2",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QeZLQJtiwsUueLRhvs",
+  "type": "assistant",
+  "uuid": "20b76b98-0361-464c-9ffc-a737ec85cab7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/director_976fe708",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CjbAYtUuE1dAe7ZddJZafd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1142,
+      "cache_read_input_tokens": 39093,
+      "output_tokens": 183,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1142,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 183,
+          "cache_read_input_tokens": 39093,
+          "cache_creation_input_tokens": 1142,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1142
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T01:50:08.860Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status · `toolu_0141Dvwmvqcm7HT38bedDcEW`</summary>
+
+```json
+{
+  "project": "simgate-modular-routing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "20b76b98-0361-464c-9ffc-a737ec85cab7",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QeZLQJtiwsUueLRhvs",
+  "type": "assistant",
+  "uuid": "5549055c-f331-4d03-81de-384cd57e2629",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/director_976fe708",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CjbAYtUuE1dAe7ZddJZafd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1142,
+      "cache_read_input_tokens": 39093,
+      "output_tokens": 183,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1142,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 183,
+          "cache_read_input_tokens": 39093,
+          "cache_creation_input_tokens": 1142,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1142
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T01:50:08.863Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_agent_queue_status · `toolu_014JpZwpz7xEozPDcdPCRJjX`</summary>
+
+```json
+{
+  "project": "simgate-modular-routing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5549055c-f331-4d03-81de-384cd57e2629",
+  "isSidechain": false,
+  "requestId": "req_011Cb5QeZLQJtiwsUueLRhvs",
+  "type": "assistant",
+  "uuid": "37f791dd-f21f-48d2-a1fc-74d7a05b68cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/director_976fe708",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CjbAYtUuE1dAe7ZddJZafd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1142,
+      "cache_read_input_tokens": 39093,
+      "output_tokens": 183,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1142,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 183,
+          "cache_read_input_tokens": 39093,
+          "cache_creation_input_tokens": 1142,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1142
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T01:50:09.114Z_
+
+<details><summary>↩ Tool result · `toolu_01514UWNZH8Xbtvrzbcrad3b`</summary>
+
+```text
+{"result":"**项目**: `simgate-modular-routing`\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\n\n── 📋 项目配置 ──\n✓ 服务器    westb-13313 (connect.westb.seetacloud.com) [root]\n✓ 代码路径  /root/autodl-tmp/simgate-modular-routing\n· Git       未配置（可选）\n· 弹性 GPU  未启用（可选）\n· W&B       未配置（可选）\n✓ 飞书      A群 + B群 + C群\n\n── 🗺️ 研究路线图 ──\n\n**决策日志**: 89 条记录\n**论文溯源**: 覆盖率 46/52\n\n── 📊 研究进度 ──\n实验: 80 个 (分析中 1 | 完成 79 | 成功 33)\n\n  research-boil-v3-gpu1  DONE (success)\n  mvp-p1-gpu1-v3         DONE (success)\n  mvp-p1-gpu0-vllm       DONE (success)\n  mvp-p1-gpu0            DONE (killed)\n  mvp-p1-gpu1-v2         DONE (killed)\n  mvp-p1-gpu1-vllm       DONE (killed)\n  mvp-p1-gpu1            DONE (killed)\n  mvp-p0-forking         DONE (success)\n\n── 📝 最新报告 ──\n# Handover — 2026-05-16\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\n|--------|------|------|---------|-----|\n| r7n2-data-size-ablation | R7-N2 reviewer concern: router diagnostic 低 balanced_acc 可能是数据不足导致，而非 thin signal。通过 synthetic data scaling (81→200/400/800 episodes equivalent) 验证 balanced_acc 是否饱和。若饱和则确认 thin signal 是信号本身性质。 | — | — | — |\n\n## 待处理\n（无）\n\n## 近期结论\n- **majority-vote-baseline** (success): Task-type majority-vote baseline 是否 ≈ router cross-split balanced_acc (47.1%)，确认 signal 完全在 task-type level。\n- **cross-split-robustness-8seed** (negative): 验证 8"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "20b76b98-0361-464c-9ffc-a737ec85cab7",
+  "isSidechain": false,
+  "promptId": "af489220-e622-4f88-8739-fe642e37337b",
+  "type": "user",
+  "uuid": "11f62685-9dc7-4ef3-8af3-f9210f91aa77",
+  "toolUseResult": "{\"result\":\"**项目**: `simgate-modular-routing`\\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\\n\\n── 📋 项目配置 ──\\n✓ 服务器    westb-13313 (connect.westb.seetacloud.com) [root]\\n✓ 代码路径  /root/autodl-tmp/simgate-modular-routing\\n· Git       未配置（可选）\\n· 弹性 GPU  未启用（可选）\\n· W&B       未配置（可选）\\n✓ 飞书      A群 + B群 + C群\\n\\n── 🗺️ 研究路线图 ──\\n\\n**决策日志**: 89 条记录\\n**论文溯源**: 覆盖率 46/52\\n\\n── 📊 研究进度 ──\\n实验: 80 个 (分析中 1 | 完成 79 | 成功 33)\\n\\n  research-boil-v3-gpu1  DONE (success)\\n  mvp-p1-gpu1-v3         DONE (success)\\n  mvp-p1-gpu0-vllm       DONE (success)\\n  mvp-p1-gpu0            DONE (killed)\\n  mvp-p1-gpu1-v2         DONE (killed)\\n  mvp-p1-gpu1-vllm       DONE (killed)\\n  mvp-p1-gpu1            DONE (killed)\\n  mvp-p0-forking         DONE (success)\\n\\n── 📝 最新报告 ──\\n# Handover — 2026-05-16\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| r7n2-data-size-ablation | R7-N2 reviewer concern: router diagnostic 低 balanced_acc 可能是数据不足导致，而非 thin signal。通过 synthetic data scaling (81→200/400/800 episodes equivalent) 验证 balanced_acc 是否饱和。若饱和则确认 thin signal 是信号本身性质。 | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **majority-vote-baseline** (success): Task-type majority-vote baseline 是否 ≈ router cross-split balanced_acc (47.1%)，确认 signal 完全在 task-type level。\\n- **cross-split-robustness-8seed** (negative): 验证 8\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "**项目**: `simgate-modular-routing`\n**阶段**: 🔬 Research（研究阶段） + 🚀 审稿进行中\n\n── 📋 项目配置 ──\n✓ 服务器    westb-13313 (connect.westb.seetacloud.com) [root]\n✓ 代码路径  /root/autodl-tmp/simgate-modular-routing\n· Git       未配置（可选）\n· 弹性 GPU  未启用（可选）\n· W&B       未配置（可选）\n✓ 飞书      A群 + B群 + C群\n\n── 🗺️ 研究路线图 ──\n\n**决策日志**: 89 条记录\n**论文溯源**: 覆盖率 46/52\n\n── 📊 研究进度 ──\n实验: 80 个 (分析中 1 | 完成 79 | 成功 33)\n\n  research-boil-v3-gpu1  DONE (success)\n  mvp-p1-gpu1-v3         DONE (success)\n  mvp-p1-gpu0-vllm       DONE (success)\n  mvp-p1-gpu0            DONE (killed)\n  mvp-p1-gpu1-v2         DONE (killed)\n  mvp-p1-gpu1-vllm       DONE (killed)\n  mvp-p1-gpu1            DONE (killed)\n  mvp-p0-forking         DONE (success)\n\n── 📝 最新报告 ──\n# Handover — 2026-05-16\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\n|--------|------|------|---------|-----|\n| r7n2-data-size-ablation | R7-N2 reviewer concern: router diagnostic 低 balanced_acc 可能是数据不足导致，而非 thin signal。通过 synthetic data scaling (81→200/400/800 episodes equivalent) 验证 balanced_acc 是否饱和。若饱和则确认 thin signal 是信号本身性质。 | — | — | — |\n\n## 待处理\n（无）\n\n## 近期结论\n- **majority-vote-baseline** (success): Task-type majority-vote baseline 是否 ≈ router cross-split balanced_acc (47.1%)，确认 signal 完全在 task-type level。\n- **cross-split-robustness-8seed** (negative): 验证 8"
+    }
+  },
+  "sourceToolAssistantUUID": "20b76b98-0361-464c-9ffc-a737ec85cab7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/director_976fe708",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Agent 回复]: [资源] GPU 分配 2 / 实际跑 0 | Worker 池 1 (GPU 0 / CPU 1)  **Loop #15 Session Start 状态汇报**  **Registry**: 79 DONE + 1 ANALYZING (r7n2-data-size-ablation，进程已死，需决策关闭) **Worker**: leave-one-tasktype…",
+  "leafUuid": "11f62685-9dc7-4ef3-8af3-f9210f91aa77",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Monitor ablation experiments and review results",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d"
+}
+```
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T01:50:09.400Z_
+
+<details><summary>↩ Tool result · `toolu_0141Dvwmvqcm7HT38bedDcEW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"claim\": \"C1\", \"deps\": [], \"description\": \"Mini signal detection (pre-screening). Run 5 episodes per candidate task type (2-way: internal + deterministic only) to identify which tasks show det > internal signal. Screen ~20 ScienceWorld task types, keep those with positive effect direction. ~30min per task type, ~10h total for 20 types on dual GPU.\\n\", \"gpu_budget_hours\": 10, \"id\": \"plan-001a\", \"notes\": \"Reviewer W3: avoid wasting GPU on no-signal tasks like grow-plant. MVP task types (boil, melt, change-state, mix-paint) auto-pass. grow-plant confirmed no-signal (control). Target: identify 10-15 task types with signal.\\n\", \"priority\": \"P0\", \"registry_id\": \"research-prescreening-gpu0\", \"status\": \"DONE\", \"conclusion\": \"killed\"}, {\"claim\": \"C1, C2\", \"deps\": [\"plan-001a\"], \"description\": \"Episode-level counterfactual trajectory collection for death decomposition analysis. 10-15 signal-positive task types from plan-001a, each 20 episodes/modality (always-internal + always-deterministic). Three-label scheme: det-preferred, internal-preferred, no-preference (ties RETAINED, not discarded — the ~60% no-preference rate IS the C1 finding). Save complete step-level data: observations, actions, scores, death events. Data feeds plan-012 (death decomposition), plan-005 (routing pattern analysis), plan-002 (router as diagnostic probe). Prescreening + MVP episodes directly reusable (format compatible).\\n\", \"gpu_budget_hours\": 20, \"id\": \"plan-001b\", \"notes\": \"D013: Purpose changed from \\\"train balanced router\\\" to \\\"collect comprehensive data for death decomposition analysis.\\\" Key insight: 1.4% internal labels across 175 paired episodes — the imbalance IS the finding (~93% det-preferred = death avoidance dominance). No class weighting needed. Three labels: det-preferred (~38%), internal-preferred (~1-2%), no-preference (~60%). Data reuse: prescreening 5 eps/task + MVP 20 eps/task directly count toward totals. Only collect additional episodes to reach 20/task/modality. vLLM backend on both GPUs.\\n\", \"priority\": \"P0\", \"provenance_note\": \"Data collection (245 eps / 11 tasks) assembled from multiple recovery runs due to GPU0 crashes. Key contributing registry entries: plan-001b-gpu1 (success, 80 eps: find-non-living-thing/grow-fruit/inclined-plane/id-life-stages-2), plan-001b-fnlt-v2 (success, find-non-living-thing +19 eps to 40 total), plan-001b-gpu1-freeze-chem (success, 40 eps: freeze/chemistry-mix), plus GPU0 partial recoveries (plan-001b-gpu0, plan-001b-gpu0-v2, plan-001b-gpu0-v4, plan-001b-gpu0-v5, gpu0-v6-lifespan) contributing find-animal/id-life-stages-1/lifespan-longest-lived(25)/lifespan-l-then-s/measure-melting-point. Original plan-001b-gpu0 failed (vLLM crash). Final assembled data validated by plan-012-full analysis (11 tasks, 245 episodes, no duplicates).\", \"registry_id\": \"plan-012-full\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"death_avoidance_fraction\": 0.9041, \"death_rate_det\": 0.163, \"death_rate_int\": 0.429, \"delta_full\": 29.6, \"delta_nd\": 2.84, \"episodes\": 245, \"label_dist\": {\"det_preferred\": 86, \"internal_preferred\": 9, \"no_preference\": 150}, \"pearson_p\": 8.12e-07, \"pearson_r\": 0.9698, \"tasks\": 11}}, {\"claim\": \"C2\", \"deps\": [\"plan-001b\"], \"description\": \"Router SFT training. Fine-tune Qwen3-1.7B on counterfactual labels from plan-001b. Cross-entropy loss, (history, observation) → {internal, deterministic}. Train/val split by task type (leave-one-out or 80/20).\\n\", \"gpu_budget_hours\": 8, \"id\": \"plan-002\", \"notes\": \"Follow ARES training pipeline. Single GPU sufficient. Hyperparams: lr=2e-5, batch=32, epochs=3, max_seq_len=2048. 2-way classification (not 3-way) per W2 decision. Final router trained via seed-robustness-core (4 seeds, 55.4±5.2% balanced accuracy).\\n\", \"priority\": \"P0\", \"registry_id\": \"seed-robustness-core\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"decomposition_bootstrap\": {\"daf\": {\"ci95\": [0.816, 0.9876], \"mean\": 0.9058, \"point\": 0.9041, \"std\": 0.0425}, \"delta_full\": {\"ci95\": [23.76, 35.82], \"mean\": 29.61, \"point\": 29.6, \"std\": 3.18}, \"delta_nd\": {\"ci95\": [0.34, 5.57], \"mean\": 2.78, \"point\": 2.84, \"std\": 1.27}, \"n_bootstrap\": 1000, \"pearson_r\": {\"ci95\": [0.952, 0.995], \"mean\": 0.9752, \"point\": 0.9698, \"std\": 0.0108}}, \"jackknife\": {\"daf_range\": [0.89, 1], \"no_single_task_dominates\": true, \"pearson_r_range\": [0.963, 0.98]}, \"router_metrics\": {\"balanced_acc\": [0.5761, 0.4852, 0.6074, 0.5467], \"eval_loss\": [0.24, 0.4363, 0.3996, 0.3562], \"internal_recall\": [0.5152, 0.3667, 0.6, 0.6], \"mean_balanced_acc\": 0.5538, \"mean_eval_loss\": 0.358, \"mean_internal_recall\": 0.5205, \"seeds\": [42, 43, 44, 45], \"std_balanced_acc\": 0.052, \"std_eval_loss\": 0.0852, \"std_internal_recall\": 0.11}}}, {\"claim\": \"C1\", \"deps\": [\"plan-002\"], \"description\": \"SimGate end-to-end evaluation on ScienceWorld. Run trained router + Qwen2.5-7B backbone on held-out episodes. Compare against: always-internal, always-deterministic, oracle-routing, random-routing, confidence-threshold heuristic. Report: continuous score (CogRouter protocol), success rate, catastrophic failure rate, simulator invocation ratio, total LLM tokens. KEY: This confirms/denies C1's \\\"selective > unconditional\\\" sub-claim (Reviewer W1).\\n\", \"gpu_budget_hours\": 15, \"id\": \"plan-003\", \"notes\": \"CogRouter (84.6) and ITP-R (62.58) cited from papers, not reproduced. Bootstrap 90% CI on all comparisons. Per-task-type breakdown. If trained router ≤ always-det, C1 downgrades per paper_framing.md note.\\n\", \"priority\": \"P0\", \"registry_id\": \"plan-003-baseline-245eps\", \"status\": \"DONE\", \"conclusion\": \"success\"}, {\"claim\": \"C2\", \"deps\": [\"plan-001b\"], \"description\": \"Explicit vs implicit routing ablation (parameter-controlled). Three conditions: (a) 1.7B explicit router (SimGate) — Qwen3-1.7B, separate module (b) 1.7B implicit router — Qwen3-1.7B SFT'd to output [SIMULATE] token inline (c) 7B implicit routing — Qwen2.5-7B backbone decides via tool-use prompt All trained on same counterfactual data from plan-001b. Condition (b) is the parameter-matched control (Reviewer W4).\\n\", \"gpu_budget_hours\": 12, \"id\": \"plan-004\", \"notes\": \"Reviewer W4: 7B implicit vs 1.7B explicit confounds architecture with capacity. Adding 1.7B implicit isolates explicit vs implicit architectural effect. Can run in parallel with plan-002 on second GPU.\\n\", \"priority\": \"P0\", \"registry_id\": \"plan-004-v5\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"generation_eval_INVALIDATED\": {\"note\": \"OLD — used wrong split (sklearn episode-level, n_val=300). INVALIDATED.\", \"balanced_accuracy\": 0.4148, \"n_val\": 300}, \"corrected_generation_eval\": {\"balanced_accuracy\": 0.7533, \"accuracy\": 0.688, \"internal_recall\": 0.833, \"internal_precision\": 0.217, \"det_recall\": 0.673, \"det_precision\": 0.974, \"n_val\": 305, \"confusion_matrix\": {\"true_det_pred_det\": 185, \"true_det_pred_int\": 90, \"true_int_pred_det\": 5, \"true_int_pred_int\": 25}, \"gt_dist\": {\"det\": 275, \"int\": 30}, \"pred_dist\": {\"det\": 190, \"int\": 115}, \"eval_pipeline\": \"corrected_eval.py (training's load_implicit_sft_data split, seed=42, per-task step-level stratified)\", \"enable_thinking\": false}, \"logit_level\": {\"balanced_accuracy\": 0.7905, \"eval_loss\": 0.2382, \"internal_recall\": 0.8485, \"note\": \"From Trainer eval during training (logit-level, not generation). Uses training's own split — safe.\"}}}, {\"claim\": \"C1, C2\", \"deps\": [\"plan-003\"], \"description\": \"Per-task routing pattern analysis. From plan-003 outputs, analyze: (a) which task categories trigger deterministic routing most, (b) at which episode phases (early/mid/late) routing decisions concentrate, (c) router-as-diagnostic-probe — cluster deterministic-routing steps to identify systematic LLM failure modes (e.g., multi-step physical reasoning failures). Output: routing heatmap figure + failure mode taxonomy.\\n\", \"gpu_budget_hours\": 2, \"id\": \"plan-005\", \"notes\": \"Analysis-only, minimal GPU. Main output is Figure 1 for the paper.\", \"priority\": \"P0\", \"registry_id\": \"plan-005-routing-patterns\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"death_dominated_tasks\": 5, \"death_rate_det\": 0.163, \"death_rate_internal\": 0.429, \"death_ratio\": 2.62, \"failure_taxonomy\": {\"dominant_action\": \"focus on &lt;location>\", \"exploration_loop_pct\": 68, \"top_death_locations\": [\"workshop_21\", \"inventory_15\", \"kitchen_11\"]}, \"figures\": [\"routing_heatmap.pdf\", \"phase_heatmap.pdf\", \"daf_scatter.pdf\"], \"genuine_det_tasks\": 6, \"phase_analysis\": {\"deaths_100pct_late_phase\": true, \"det_mean_steps\": 30, \"internal_death_step_ratio\": 0.65, \"internal_mean_steps_at_death\": 19.4, \"score_divergence_step\": \"8-9\"}, \"total_episodes\": 245, \"total_tasks\": 11, \"weighted_daf\": 0.9614, \"weighted_delta_di\": 29.6}}, {\"claim\": \"C2\", \"deps\": [\"plan-002\"], \"description\": \"2-way vs 3-way routing ablation. Supplement plan-001b data with deep-internal modality on subset of tasks. Compare {internal, deterministic} vs {fast-internal, deep-internal, deterministic}. Tests whether the fast/deep internal distinction adds value beyond binary routing.\\n\", \"gpu_budget_hours\": 10, \"id\": \"plan-006\", \"notes\": \"D063: Data collection success (6 tasks × 20 eps). D065: Analysis complete — no significant difference between fast-internal and deep-internal (Δ=0.56, p=0.83). Conclusion: 2-way suffices, 3-way routing lacks data support.\\n\", \"priority\": \"P1\", \"registry_id\": \"plan-006-deep-internal\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"data_quality\": \"passed\", \"episodes_per_task\": 20, \"note\": \"identify-life-stages-1 has only 14 unique variations; episodes 14-19 reuse variations 0-5 (pseudo-duplicates). Use first 14 episodes for this task in analysis.\", \"tasks\": 6, \"total_episodes\": 120}}, {\"claim\": \"C1\", \"deps\": [], \"description\": \"Boil task rerun with v3 code. MVP boil data used old code (>= tie-break, death filter on all 3 modes). Rerun with clean v3 code for unified analysis.\\n\", \"gpu_budget_hours\": 3, \"id\": \"plan-007\", \"notes\": \"Can run in parallel with plan-001a as first batch.\", \"priority\": \"P1\", \"registry_id\": \"research-boil-v3-gpu1\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"boil_v3_20ep\": {\"det_mean\": -9.3, \"det_minus_internal\": 35.4, \"det_std\": 30.3, \"internal_mean\": -44.7, \"internal_std\": 50, \"oracle_mean\": 3.8, \"oracle_minus_det\": 13.1, \"oracle_minus_internal\": 48.5, \"oracle_std\": 15.2}, \"death_distribution\": {\"det_death_pct\": 10, \"det_deaths\": 2, \"det_total\": 20, \"internal_death_pct\": 45, \"internal_deaths\": 9, \"internal_total\": 20, \"oracle_death_pct\": 0, \"oracle_deaths\": 0, \"oracle_total\": 20}, \"note\": \"v3 code (> tie-break, death filter det/oracle only). Oracle大幅优于两个baseline, 但绝对分低(3.8), 仅1/20 episode拿到70分. Death avoidance is primary mechanism.\"}}, {\"claim\": \"C2\", \"deps\": [\"plan-001b\"], \"description\": \"Router size ablation. Compare Qwen3-1.7B vs Qwen2.5-1.5B vs Qwen2.5-3B as router. Tests sensitivity to router capacity.\\n\", \"gpu_budget_hours\": 12, \"id\": \"plan-008\", \"notes\": \"Important for \\\"lightweight\\\" claim. If 1.5B matches 1.7B, strengthens \\\"small router suffices\\\". Low priority relative to core experiments. D058: killed after 3 consecutive failures (plan-008-router-size, v2, v3).\\n\", \"priority\": \"P1\", \"registry_id\": \"plan-008-router-size-v4\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"corrected_eval_4seed\": {\"eval_pipeline\": \"corrected_eval.py — uses training's own load_implicit_sft_data split function + matching training seed per checkpoint. n_val=305, per-task stratified split.\", \"qwen3_0.6b\": {\"seed42\": {\"balanced_acc\": 0.547}, \"seed43\": {\"balanced_acc\": 0.5858}, \"seed44\": {\"balanced_acc\": 0.5238}, \"seed45\": {\"balanced_acc\": 0.5989}, \"mean_balanced_acc\": 0.5639, \"std_balanced_acc\": 0.0346}, \"qwen3_1.7b\": {\"seed42\": {\"balanced_acc\": 0.5706}, \"seed43\": {\"balanced_acc\": 0.6399}, \"seed44\": {\"balanced_acc\": 0.5543}, \"seed45\": {\"balanced_acc\": 0.5614}, \"mean_balanced_acc\": 0.5816, \"std_balanced_acc\": 0.0395}, \"qwen3_4b\": {\"seed42\": {\"balanced_acc\": 0.5512}, \"seed43\": {\"balanced_acc\": 0.6328}, \"seed44\": {\"balanced_acc\": 0.5778}, \"seed45\": {\"balanced_acc\": 0.6069}, \"mean_balanced_acc\": 0.5922, \"std_balanced_acc\": 0.0354}, \"ranking\": \"4B (0.592) ≈ 1.7B (0.582) ≈ 0.6B (0.564) — all within seed variance\", \"conclusion\": \"All three model sizes perform comparably under corrected eval. No significant capacity advantage from scaling. Lightweight router (0.6B) suffices.\", \"data_leakage_note\": \"All previous eval results (routing_eval_sft.py) used different split algorithm than training (sklearn episode-level vs per-task stratified). Additionally some seeds had seed mismatch. All prior results in *_nothinking.json are INVALIDATED.\"}, \"INVALIDATED_old_results\": {\"note\": \"ALL prior eval results below are INVALID due to split algorithm mismatch. Kept for audit trail only.\", \"old_generation_nothinking_2seed\": {\"0.6B\": 0.5908, \"1.7B\": 0.4167, \"4B\": 0.5852}, \"old_generation_nothinking_4seed\": {\"0.6B\": 0.6514, \"4B\": 0.6315}}}}, {\"claim\": \"C1\", \"deps\": [\"plan-001b\"], \"description\": \"Rule-based routing baseline (Dream all tiers). Keyword-matching heuristic: route actions containing state-change keywords (heat, cool, boil, melt, freeze, mix, react, pour, activate) to simulator, everything else to internal reasoning. Compares against learned router to demonstrate non-trivial learned signal.\\n\", \"gpu_budget_hours\": 2, \"id\": \"plan-011\", \"notes\": \"Dream median + worst flagged this as missing. Critical for defending \\\"the router learns beyond action-type keywords.\\\" Cheap — just inference, no training. PRE-REGISTERED keyword list at src/rule_based_keywords.json. Do NOT modify after experiment starts.\\n\", \"priority\": \"P0\", \"registry_id\": \"plan-011-rule-based\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"conclusion\": \"Keyword heuristic structurally fails on ScienceWorld — ScienceWorld actions use generic interaction verbs (connect/move/pick up), not science-specific keywords. No keyword list provides meaningful routing signal.\", \"note\": \"D014: structural failure analysis, paper positions as evidence for learned/observation-based approaches\", \"v1_match_rate\": \"85.8%\", \"v1_result\": \"degenerate → always-det\", \"v2_match_rate\": \"4.9%\", \"v2_result\": \"degenerate → always-internal\", \"v3_episode_accuracy\": \"1.5%\", \"v3_match_rate\": \"2.8%\", \"v3_result\": \"degenerate → always-internal\"}}, {\"claim\": \"C1\", \"deps\": [\"plan-001b\"], \"description\": \"Death-decomposition analysis (CORE — D013). From plan-001b episode data: (a) gains on death-risk episodes only (episodes where always-internal scores -100) (b) gains on non-death episodes only (c) fraction of routing labels: det-preferred vs internal-preferred vs no-preference (d) correlation between per-task death rate and Δ(D-I) (r value) (e) scores with -100 penalty replaced by 0 (penalty-removed variant)\\n\", \"gpu_budget_hours\": 0, \"id\": \"plan-012\", \"notes\": \"D013: This is now the CORE analysis — paper's primary contribution. Deps changed from plan-003 to plan-001b (analysis runs on raw episode data, doesn't need trained router). Three-label distribution (~38% det / ~1-2% int / ~60% tie) directly enters paper as Table 1. Death rate vs Δ correlation is the headline finding. Also report penalty-removed scores per Dream reviewer concern.\\n\", \"priority\": \"P0-CORE\", \"registry_id\": \"plan-012-full\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"death_avoidance_fraction\": 0.9041, \"death_rate_det\": 0.163, \"death_rate_int\": 0.429, \"delta_full\": 29.6, \"delta_nd\": 2.84, \"episodes\": 245, \"label_dist\": {\"det_preferred\": 86, \"internal_preferred\": 9, \"no_preference\": 150}, \"pearson_p\": 8.12e-07, \"pearson_r\": 0.9698, \"tasks\": 11}}, {\"claim\": \"C1, C2\", \"deps\": [\"plan-001b\"], \"description\": \"Labeling quality analysis (Dream best + worst). From plan-001b trajectory data, characterize: (a) fraction of steps where all modalities give identical score (tie rate) (b) fraction of \\\"deterministic-preferred\\\" labels from genuine score difference vs tie-break (c) sensitivity: retrain router on strict-only labels (excluding ties), compare performance\\n\", \"gpu_budget_hours\": 4, \"id\": \"plan-013\", \"notes\": \"Addresses oracle circularity concern from worst case Dream. If strict-only labels produce similar router, tie-break is harmless. If dramatically different, must discuss.\\n\", \"priority\": \"P1\", \"registry_id\": \"plan-013-labeling-quality\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ablation_b_mean_balanced_acc\": 0.5761, \"ablation_b_std_balanced_acc\": 0.0047, \"det_preferred_death_asymmetry\": 70, \"det_preferred_score_comparison\": 16, \"genuine_det_fraction\": 1, \"strict_retrain_balanced_acc\": 0.5729, \"strict_retrain_det_recall\": 0.3883, \"strict_retrain_internal_recall\": 0.7576, \"tie_rate\": 0.612, \"tie_rate_both_alive\": 0.469, \"tie_rate_both_died\": 0.143, \"tiebreak_det_fraction\": 0}}, {\"claim\": \"C1\", \"deps\": [\"plan-002\"], \"description\": \"MATH track — code interpreter as deterministic oracle. 500 Level 4-5 MATH problems. 2-way routing: internal / code-interpreter. Demonstrates generalization beyond environment simulators.\\n\", \"gpu_budget_hours\": 20, \"id\": \"plan-009\", \"notes\": \"Human Review Note suggested MATH as secondary track. Only if ScienceWorld experiments finish by Day 8.\\n\", \"priority\": \"P2\", \"registry_id\": \"math-negative-contrast\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy_diff\": 0.05, \"clean_n300_rerun\": {\"code_acc\": 0.767, \"code_ci\": [0.72, 0.813], \"diff\": 0.043, \"diff_ci\": [0, 0.087], \"internal_acc\": 0.81, \"internal_ci\": [0.767, 0.853], \"labels\": {\"det_preferred\": 17, \"internal_preferred\": 30, \"no_preference\": 253}, \"level_4_gap\": 0.02, \"level_5_gap\": 0.068, \"mcnemar_p\": 0.079, \"n\": 300, \"rerun_pilot_code\": 0.72, \"rerun_pilot_empty_rate\": 0.026, \"rerun_pilot_internal\": 0.76, \"significant\": false}, \"code_accuracy\": 0.767, \"code_ci_95\": [0.72, 0.813], \"contingency\": {\"both_correct\": 215, \"both_wrong\": 40, \"only_code\": 15, \"only_internal\": 30}, \"data_quality_audit\": {\"clean_code_acc\": 0.776, \"clean_code_ci\": [0.724, 0.824], \"clean_diff\": 0.044, \"clean_diff_ci\": [-0.004, 0.092], \"clean_internal_acc\": 0.82, \"clean_internal_ci\": [0.772, 0.868], \"clean_significant\": false, \"clean_subset_n\": 250, \"fixed_empty_output_rate\": 0.036, \"fixed_filtered\": 73, \"pilot_code_acc\": 0.72, \"pilot_diff\": 0.08, \"pilot_empty_output_rate\": 0.32, \"pilot_filtered\": 9, \"pilot_internal_acc\": 0.8, \"pilot_n\": 50}, \"diff_ci_95\": [0.007, 0.093], \"filtered_no_code_exec\": 82, \"framing\": \"negative contrast - no death penalty environment\", \"internal_accuracy\": 0.817, \"internal_ci_95\": [0.773, 0.86], \"labels\": {\"det_preferred\": 9, \"internal_preferred\": 25, \"no_preference\": 266}, \"level_4\": 152, \"level_5\": 148, \"level_5_gap\": 0.061, \"n_problems\": 300, \"signal_direction\": \"reversed (internal > code)\", \"significant\": true}}, {\"claim\": \"C2\", \"deps\": [\"plan-002\"], \"description\": \"Cross-task transfer within ScienceWorld. Train router on chemistry tasks only, evaluate on physics tasks (and vice versa). Tests whether routing patterns transfer across task domains.\\n\", \"gpu_budget_hours\": 5, \"id\": \"plan-010\", \"notes\": \"Killed — 原版已 kill。plan-010-cross-task-v2 是独立新实验，不影响。\\n\", \"priority\": \"P2\", \"registry_id\": \"plan-010-cross-task-transfer\", \"status\": \"DONE\", \"conclusion\": \"killed\"}], \"total\": 14}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5549055c-f331-4d03-81de-384cd57e2629",
+  "isSidechain": false,
+  "promptId": "af489220-e622-4f88-8739-fe642e37337b",
+  "type": "user",
+  "uuid": "291496fb-bcae-40e6-93a2-411e246ed8e5",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"claim\\\": \\\"C1\\\", \\\"deps\\\": [], \\\"description\\\": \\\"Mini signal detection (pre-screening). Run 5 episodes per candidate task type (2-way: internal + deterministic only) to identify which tasks show det > internal signal. Screen ~20 ScienceWorld task types, keep those with positive effect direction. ~30min per task type, ~10h total for 20 types on dual GPU.\\\\n\\\", \\\"gpu_budget_hours\\\": 10, \\\"id\\\": \\\"plan-001a\\\", \\\"notes\\\": \\\"Reviewer W3: avoid wasting GPU on no-signal tasks like grow-plant. MVP task types (boil, melt, change-state, mix-paint) auto-pass. grow-plant confirmed no-signal (control). Target: identify 10-15 task types with signal.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"registry_id\\\": \\\"research-prescreening-gpu0\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, {\\\"claim\\\": \\\"C1, C2\\\", \\\"deps\\\": [\\\"plan-001a\\\"], \\\"description\\\": \\\"Episode-level counterfactual trajectory collection for death decomposition analysis. 10-15 signal-positive task types from plan-001a, each 20 episodes/modality (always-internal + always-deterministic). Three-label scheme: det-preferred, internal-preferred, no-preference (ties RETAINED, not discarded — the ~60% no-preference rate IS the C1 finding). Save complete step-level data: observations, actions, scores, death events. Data feeds plan-012 (death decomposition), plan-005 (routing pattern analysis), plan-002 (router as diagnostic probe). Prescreening + MVP episodes directly reusable (format compatible).\\\\n\\\", \\\"gpu_budget_hours\\\": 20, \\\"id\\\": \\\"plan-001b\\\", \\\"notes\\\": \\\"D013: Purpose changed from \\\\\\\"train balanced router\\\\\\\" to \\\\\\\"collect comprehensive data for death decomposition analysis.\\\\\\\" Key insight: 1.4% internal labels across 175 paired episodes — the imbalance IS the finding (~93% det-preferred = death avoidance dominance). No class weighting needed. Three labels: det-preferred (~38%), internal-preferred (~1-2%), no-preference (~60%). Data reuse: prescreening 5 eps/task + MVP 20 eps/task directly count toward totals. Only collect additional episodes to reach 20/task/modality. vLLM backend on both GPUs.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"provenance_note\\\": \\\"Data collection (245 eps / 11 tasks) assembled from multiple recovery runs due to GPU0 crashes. Key contributing registry entries: plan-001b-gpu1 (success, 80 eps: find-non-living-thing/grow-fruit/inclined-plane/id-life-stages-2), plan-001b-fnlt-v2 (success, find-non-living-thing +19 eps to 40 total), plan-001b-gpu1-freeze-chem (success, 40 eps: freeze/chemistry-mix), plus GPU0 partial recoveries (plan-001b-gpu0, plan-001b-gpu0-v2, plan-001b-gpu0-v4, plan-001b-gpu0-v5, gpu0-v6-lifespan) contributing find-animal/id-life-stages-1/lifespan-longest-lived(25)/lifespan-l-then-s/measure-melting-point. Original plan-001b-gpu0 failed (vLLM crash). Final assembled data validated by plan-012-full analysis (11 tasks, 245 episodes, no duplicates).\\\", \\\"registry_id\\\": \\\"plan-012-full\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"death_avoidance_fraction\\\": 0.9041, \\\"death_rate_det\\\": 0.163, \\\"death_rate_int\\\": 0.429, \\\"delta_full\\\": 29.6, \\\"delta_nd\\\": 2.84, \\\"episodes\\\": 245, \\\"label_dist\\\": {\\\"det_preferred\\\": 86, \\\"internal_preferred\\\": 9, \\\"no_preference\\\": 150}, \\\"pearson_p\\\": 8.12e-07, \\\"pearson_r\\\": 0.9698, \\\"tasks\\\": 11}}, {\\\"claim\\\": \\\"C2\\\", \\\"deps\\\": [\\\"plan-001b\\\"], \\\"description\\\": \\\"Router SFT training. Fine-tune Qwen3-1.7B on counterfactual labels from plan-001b. Cross-entropy loss, (history, observation) → {internal, deterministic}. Train/val split by task type (leave-one-out or 80/20).\\\\n\\\", \\\"gpu_budget_hours\\\": 8, \\\"id\\\": \\\"plan-002\\\", \\\"notes\\\": \\\"Follow ARES training pipeline. Single GPU sufficient. Hyperparams: lr=2e-5, batch=32, epochs=3, max_seq_len=2048. 2-way classification (not 3-way) per W2 decision. Final router trained via seed-robustness-core (4 seeds, 55.4±5.2% balanced accuracy).\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"registry_id\\\": \\\"seed-robustness-core\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"decomposition_bootstrap\\\": {\\\"daf\\\": {\\\"ci95\\\": [0.816, 0.9876], \\\"mean\\\": 0.9058, \\\"point\\\": 0.9041, \\\"std\\\": 0.0425}, \\\"delta_full\\\": {\\\"ci95\\\": [23.76, 35.82], \\\"mean\\\": 29.61, \\\"point\\\": 29.6, \\\"std\\\": 3.18}, \\\"delta_nd\\\": {\\\"ci95\\\": [0.34, 5.57], \\\"mean\\\": 2.78, \\\"point\\\": 2.84, \\\"std\\\": 1.27}, \\\"n_bootstrap\\\": 1000, \\\"pearson_r\\\": {\\\"ci95\\\": [0.952, 0.995], \\\"mean\\\": 0.9752, \\\"point\\\": 0.9698, \\\"std\\\": 0.0108}}, \\\"jackknife\\\": {\\\"daf_range\\\": [0.89, 1], \\\"no_single_task_dominates\\\": true, \\\"pearson_r_range\\\": [0.963, 0.98]}, \\\"router_metrics\\\": {\\\"balanced_acc\\\": [0.5761, 0.4852, 0.6074, 0.5467], \\\"eval_loss\\\": [0.24, 0.4363, 0.3996, 0.3562], \\\"internal_recall\\\": [0.5152, 0.3667, 0.6, 0.6], \\\"mean_balanced_acc\\\": 0.5538, \\\"mean_eval_loss\\\": 0.358, \\\"mean_internal_recall\\\": 0.5205, \\\"seeds\\\": [42, 43, 44, 45], \\\"std_balanced_acc\\\": 0.052, \\\"std_eval_loss\\\": 0.0852, \\\"std_internal_recall\\\": 0.11}}}, {\\\"claim\\\": \\\"C1\\\", \\\"deps\\\": [\\\"plan-002\\\"], \\\"description\\\": \\\"SimGate end-to-end evaluation on ScienceWorld. Run trained router + Qwen2.5-7B backbone on held-out episodes. Compare against: always-internal, always-deterministic, oracle-routing, random-routing, confidence-threshold heuristic. Report: continuous score (CogRouter protocol), success rate, catastrophic failure rate, simulator invocation ratio, total LLM tokens. KEY: This confirms/denies C1's \\\\\\\"selective > unconditional\\\\\\\" sub-claim (Reviewer W1).\\\\n\\\", \\\"gpu_budget_hours\\\": 15, \\\"id\\\": \\\"plan-003\\\", \\\"notes\\\": \\\"CogRouter (84.6) and ITP-R (62.58) cited from papers, not reproduced. Bootstrap 90% CI on all comparisons. Per-task-type breakdown. If trained router ≤ always-det, C1 downgrades per paper_framing.md note.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"registry_id\\\": \\\"plan-003-baseline-245eps\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, {\\\"claim\\\": \\\"C2\\\", \\\"deps\\\": [\\\"plan-001b\\\"], \\\"description\\\": \\\"Explicit vs implicit routing ablation (parameter-controlled). Three conditions: (a) 1.7B explicit router (SimGate) — Qwen3-1.7B, separate module (b) 1.7B implicit router — Qwen3-1.7B SFT'd to output [SIMULATE] token inline (c) 7B implicit routing — Qwen2.5-7B backbone decides via tool-use prompt All trained on same counterfactual data from plan-001b. Condition (b) is the parameter-matched control (Reviewer W4).\\\\n\\\", \\\"gpu_budget_hours\\\": 12, \\\"id\\\": \\\"plan-004\\\", \\\"notes\\\": \\\"Reviewer W4: 7B implicit vs 1.7B explicit confounds architecture with capacity. Adding 1.7B implicit isolates explicit vs implicit architectural effect. Can run in parallel with plan-002 on second GPU.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"registry_id\\\": \\\"plan-004-v5\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"generation_eval_INVALIDATED\\\": {\\\"note\\\": \\\"OLD — used wrong split (sklearn episode-level, n_val=300). INVALIDATED.\\\", \\\"balanced_accuracy\\\": 0.4148, \\\"n_val\\\": 300}, \\\"corrected_generation_eval\\\": {\\\"balanced_accuracy\\\": 0.7533, \\\"accuracy\\\": 0.688, \\\"internal_recall\\\": 0.833, \\\"internal_precision\\\": 0.217, \\\"det_recall\\\": 0.673, \\\"det_precision\\\": 0.974, \\\"n_val\\\": 305, \\\"confusion_matrix\\\": {\\\"true_det_pred_det\\\": 185, \\\"true_det_pred_int\\\": 90, \\\"true_int_pred_det\\\": 5, \\\"true_int_pred_int\\\": 25}, \\\"gt_dist\\\": {\\\"det\\\": 275, \\\"int\\\": 30}, \\\"pred_dist\\\": {\\\"det\\\": 190, \\\"int\\\": 115}, \\\"eval_pipeline\\\": \\\"corrected_eval.py (training's load_implicit_sft_data split, seed=42, per-task step-level stratified)\\\", \\\"enable_thinking\\\": false}, \\\"logit_level\\\": {\\\"balanced_accuracy\\\": 0.7905, \\\"eval_loss\\\": 0.2382, \\\"internal_recall\\\": 0.8485, \\\"note\\\": \\\"From Trainer eval during training (logit-level, not generation). Uses training's own split — safe.\\\"}}}, {\\\"claim\\\": \\\"C1, C2\\\", \\\"deps\\\": [\\\"plan-003\\\"], \\\"description\\\": \\\"Per-task routing pattern analysis. From plan-003 outputs, analyze: (a) which task categories trigger deterministic routing most, (b) at which episode phases (early/mid/late) routing decisions concentrate, (c) router-as-diagnostic-probe — cluster deterministic-routing steps to identify systematic LLM failure modes (e.g., multi-step physical reasoning failures). Output: routing heatmap figure + failure mode taxonomy.\\\\n\\\", \\\"gpu_budget_hours\\\": 2, \\\"id\\\": \\\"plan-005\\\", \\\"notes\\\": \\\"Analysis-only, minimal GPU. Main output is Figure 1 for the paper.\\\", \\\"priority\\\": \\\"P0\\\", \\\"registry_id\\\": \\\"plan-005-routing-patterns\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"death_dominated_tasks\\\": 5, \\\"death_rate_det\\\": 0.163, \\\"death_rate_internal\\\": 0.429, \\\"death_ratio\\\": 2.62, \\\"failure_taxonomy\\\": {\\\"dominant_action\\\": \\\"focus on &lt;location>\\\", \\\"exploration_loop_pct\\\": 68, \\\"top_death_locations\\\": [\\\"workshop_21\\\", \\\"inventory_15\\\", \\\"kitchen_11\\\"]}, \\\"figures\\\": [\\\"routing_heatmap.pdf\\\", \\\"phase_heatmap.pdf\\\", \\\"daf_scatter.pdf\\\"], \\\"genuine_det_tasks\\\": 6, \\\"phase_analysis\\\": {\\\"deaths_100pct_late_phase\\\": true, \\\"det_mean_steps\\\": 30, \\\"internal_death_step_ratio\\\": 0.65, \\\"internal_mean_steps_at_death\\\": 19.4, \\\"score_divergence_step\\\": \\\"8-9\\\"}, \\\"total_episodes\\\": 245, \\\"total_tasks\\\": 11, \\\"weighted_daf\\\": 0.9614, \\\"weighted_delta_di\\\": 29.6}}, {\\\"claim\\\": \\\"C2\\\", \\\"deps\\\": [\\\"plan-002\\\"], \\\"description\\\": \\\"2-way vs 3-way routing ablation. Supplement plan-001b data with deep-internal modality on subset of tasks. Compare {internal, deterministic} vs {fast-internal, deep-internal, deterministic}. Tests whether the fast/deep internal distinction adds value beyond binary routing.\\\\n\\\", \\\"gpu_budget_hours\\\": 10, \\\"id\\\": \\\"plan-006\\\", \\\"notes\\\": \\\"D063: Data collection success (6 tasks × 20 eps). D065: Analysis complete — no significant difference between fast-internal and deep-internal (Δ=0.56, p=0.83). Conclusion: 2-way suffices, 3-way routing lacks data support.\\\\n\\\", \\\"priority\\\": \\\"P1\\\", \\\"registry_id\\\": \\\"plan-006-deep-internal\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"data_quality\\\": \\\"passed\\\", \\\"episodes_per_task\\\": 20, \\\"note\\\": \\\"identify-life-stages-1 has only 14 unique variations; episodes 14-19 reuse variations 0-5 (pseudo-duplicates). Use first 14 episodes for this task in analysis.\\\", \\\"tasks\\\": 6, \\\"total_episodes\\\": 120}}, {\\\"claim\\\": \\\"C1\\\", \\\"deps\\\": [], \\\"description\\\": \\\"Boil task rerun with v3 code. MVP boil data used old code (>= tie-break, death filter on all 3 modes). Rerun with clean v3 code for unified analysis.\\\\n\\\", \\\"gpu_budget_hours\\\": 3, \\\"id\\\": \\\"plan-007\\\", \\\"notes\\\": \\\"Can run in parallel with plan-001a as first batch.\\\", \\\"priority\\\": \\\"P1\\\", \\\"registry_id\\\": \\\"research-boil-v3-gpu1\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"boil_v3_20ep\\\": {\\\"det_mean\\\": -9.3, \\\"det_minus_internal\\\": 35.4, \\\"det_std\\\": 30.3, \\\"internal_mean\\\": -44.7, \\\"internal_std\\\": 50, \\\"oracle_mean\\\": 3.8, \\\"oracle_minus_det\\\": 13.1, \\\"oracle_minus_internal\\\": 48.5, \\\"oracle_std\\\": 15.2}, \\\"death_distribution\\\": {\\\"det_death_pct\\\": 10, \\\"det_deaths\\\": 2, \\\"det_total\\\": 20, \\\"internal_death_pct\\\": 45, \\\"internal_deaths\\\": 9, \\\"internal_total\\\": 20, \\\"oracle_death_pct\\\": 0, \\\"oracle_deaths\\\": 0, \\\"oracle_total\\\": 20}, \\\"note\\\": \\\"v3 code (> tie-break, death filter det/oracle only). Oracle大幅优于两个baseline, 但绝对分低(3.8), 仅1/20 episode拿到70分. Death avoidance is primary mechanism.\\\"}}, {\\\"claim\\\": \\\"C2\\\", \\\"deps\\\": [\\\"plan-001b\\\"], \\\"description\\\": \\\"Router size ablation. Compare Qwen3-1.7B vs Qwen2.5-1.5B vs Qwen2.5-3B as router. Tests sensitivity to router capacity.\\\\n\\\", \\\"gpu_budget_hours\\\": 12, \\\"id\\\": \\\"plan-008\\\", \\\"notes\\\": \\\"Important for \\\\\\\"lightweight\\\\\\\" claim. If 1.5B matches 1.7B, strengthens \\\\\\\"small router suffices\\\\\\\". Low priority relative to core experiments. D058: killed after 3 consecutive failures (plan-008-router-size, v2, v3).\\\\n\\\", \\\"priority\\\": \\\"P1\\\", \\\"registry_id\\\": \\\"plan-008-router-size-v4\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"corrected_eval_4seed\\\": {\\\"eval_pipeline\\\": \\\"corrected_eval.py — uses training's own load_implicit_sft_data split function + matching training seed per checkpoint. n_val=305, per-task stratified split.\\\", \\\"qwen3_0.6b\\\": {\\\"seed42\\\": {\\\"balanced_acc\\\": 0.547}, \\\"seed43\\\": {\\\"balanced_acc\\\": 0.5858}, \\\"seed44\\\": {\\\"balanced_acc\\\": 0.5238}, \\\"seed45\\\": {\\\"balanced_acc\\\": 0.5989}, \\\"mean_balanced_acc\\\": 0.5639, \\\"std_balanced_acc\\\": 0.0346}, \\\"qwen3_1.7b\\\": {\\\"seed42\\\": {\\\"balanced_acc\\\": 0.5706}, \\\"seed43\\\": {\\\"balanced_acc\\\": 0.6399}, \\\"seed44\\\": {\\\"balanced_acc\\\": 0.5543}, \\\"seed45\\\": {\\\"balanced_acc\\\": 0.5614}, \\\"mean_balanced_acc\\\": 0.5816, \\\"std_balanced_acc\\\": 0.0395}, \\\"qwen3_4b\\\": {\\\"seed42\\\": {\\\"balanced_acc\\\": 0.5512}, \\\"seed43\\\": {\\\"balanced_acc\\\": 0.6328}, \\\"seed44\\\": {\\\"balanced_acc\\\": 0.5778}, \\\"seed45\\\": {\\\"balanced_acc\\\": 0.6069}, \\\"mean_balanced_acc\\\": 0.5922, \\\"std_balanced_acc\\\": 0.0354}, \\\"ranking\\\": \\\"4B (0.592) ≈ 1.7B (0.582) ≈ 0.6B (0.564) — all within seed variance\\\", \\\"conclusion\\\": \\\"All three model sizes perform comparably under corrected eval. No significant capacity advantage from scaling. Lightweight router (0.6B) suffices.\\\", \\\"data_leakage_note\\\": \\\"All previous eval results (routing_eval_sft.py) used different split algorithm than training (sklearn episode-level vs per-task stratified). Additionally some seeds had seed mismatch. All prior results in *_nothinking.json are INVALIDATED.\\\"}, \\\"INVALIDATED_old_results\\\": {\\\"note\\\": \\\"ALL prior eval results below are INVALID due to split algorithm mismatch. Kept for audit trail only.\\\", \\\"old_generation_nothinking_2seed\\\": {\\\"0.6B\\\": 0.5908, \\\"1.7B\\\": 0.4167, \\\"4B\\\": 0.5852}, \\\"old_generation_nothinking_4seed\\\": {\\\"0.6B\\\": 0.6514, \\\"4B\\\": 0.6315}}}}, {\\\"claim\\\": \\\"C1\\\", \\\"deps\\\": [\\\"plan-001b\\\"], \\\"description\\\": \\\"Rule-based routing baseline (Dream all tiers). Keyword-matching heuristic: route actions containing state-change keywords (heat, cool, boil, melt, freeze, mix, react, pour, activate) to simulator, everything else to internal reasoning. Compares against learned router to demonstrate non-trivial learned signal.\\\\n\\\", \\\"gpu_budget_hours\\\": 2, \\\"id\\\": \\\"plan-011\\\", \\\"notes\\\": \\\"Dream median + worst flagged this as missing. Critical for defending \\\\\\\"the router learns beyond action-type keywords.\\\\\\\" Cheap — just inference, no training. PRE-REGISTERED keyword list at src/rule_based_keywords.json. Do NOT modify after experiment starts.\\\\n\\\", \\\"priority\\\": \\\"P0\\\", \\\"registry_id\\\": \\\"plan-011-rule-based\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"conclusion\\\": \\\"Keyword heuristic structurally fails on ScienceWorld — ScienceWorld actions use generic interaction verbs (connect/move/pick up), not science-specific keywords. No keyword list provides meaningful routing signal.\\\", \\\"note\\\": \\\"D014: structural failure analysis, paper positions as evidence for learned/observation-based approaches\\\", \\\"v1_match_rate\\\": \\\"85.8%\\\", \\\"v1_result\\\": \\\"degenerate → always-det\\\", \\\"v2_match_rate\\\": \\\"4.9%\\\", \\\"v2_result\\\": \\\"degenerate → always-internal\\\", \\\"v3_episode_accuracy\\\": \\\"1.5%\\\", \\\"v3_match_rate\\\": \\\"2.8%\\\", \\\"v3_result\\\": \\\"degenerate → always-internal\\\"}}, {\\\"claim\\\": \\\"C1\\\", \\\"deps\\\": [\\\"plan-001b\\\"], \\\"description\\\": \\\"Death-decomposition analysis (CORE — D013). From plan-001b episode data: (a) gains on death-risk episodes only (episodes where always-internal scores -100) (b) gains on non-death episodes only (c) fraction of routing labels: det-preferred vs internal-preferred vs no-preference (d) correlation between per-task death rate and Δ(D-I) (r value) (e) scores with -100 penalty replaced by 0 (penalty-removed variant)\\\\n\\\", \\\"gpu_budget_hours\\\": 0, \\\"id\\\": \\\"plan-012\\\", \\\"notes\\\": \\\"D013: This is now the CORE analysis — paper's primary contribution. Deps changed from plan-003 to plan-001b (analysis runs on raw episode data, doesn't need trained router). Three-label distribution (~38% det / ~1-2% int / ~60% tie) directly enters paper as Table 1. Death rate vs Δ correlation is the headline finding. Also report penalty-removed scores per Dream reviewer concern.\\\\n\\\", \\\"priority\\\": \\\"P0-CORE\\\", \\\"registry_id\\\": \\\"plan-012-full\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"death_avoidance_fraction\\\": 0.9041, \\\"death_rate_det\\\": 0.163, \\\"death_rate_int\\\": 0.429, \\\"delta_full\\\": 29.6, \\\"delta_nd\\\": 2.84, \\\"episodes\\\": 245, \\\"label_dist\\\": {\\\"det_preferred\\\": 86, \\\"internal_preferred\\\": 9, \\\"no_preference\\\": 150}, \\\"pearson_p\\\": 8.12e-07, \\\"pearson_r\\\": 0.9698, \\\"tasks\\\": 11}}, {\\\"claim\\\": \\\"C1, C2\\\", \\\"deps\\\": [\\\"plan-001b\\\"], \\\"description\\\": \\\"Labeling quality analysis (Dream best + worst). From plan-001b trajectory data, characterize: (a) fraction of steps where all modalities give identical score (tie rate) (b) fraction of \\\\\\\"deterministic-preferred\\\\\\\" labels from genuine score difference vs tie-break (c) sensitivity: retrain router on strict-only labels (excluding ties), compare performance\\\\n\\\", \\\"gpu_budget_hours\\\": 4, \\\"id\\\": \\\"plan-013\\\", \\\"notes\\\": \\\"Addresses oracle circularity concern from worst case Dream. If strict-only labels produce similar router, tie-break is harmless. If dramatically different, must discuss.\\\\n\\\", \\\"priority\\\": \\\"P1\\\", \\\"registry_id\\\": \\\"plan-013-labeling-quality\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"ablation_b_mean_balanced_acc\\\": 0.5761, \\\"ablation_b_std_balanced_acc\\\": 0.0047, \\\"det_preferred_death_asymmetry\\\": 70, \\\"det_preferred_score_comparison\\\": 16, \\\"genuine_det_fraction\\\": 1, \\\"strict_retrain_balanced_acc\\\": 0.5729, \\\"strict_retrain_det_recall\\\": 0.3883, \\\"strict_retrain_internal_recall\\\": 0.7576, \\\"tie_rate\\\": 0.612, \\\"tie_rate_both_alive\\\": 0.469, \\\"tie_rate_both_died\\\": 0.143, \\\"tiebreak_det_fraction\\\": 0}}, {\\\"claim\\\": \\\"C1\\\", \\\"deps\\\": [\\\"plan-002\\\"], \\\"description\\\": \\\"MATH track — code interpreter as deterministic oracle. 500 Level 4-5 MATH problems. 2-way routing: internal / code-interpreter. Demonstrates generalization beyond environment simulators.\\\\n\\\", \\\"gpu_budget_hours\\\": 20, \\\"id\\\": \\\"plan-009\\\", \\\"notes\\\": \\\"Human Review Note suggested MATH as secondary track. Only if ScienceWorld experiments finish by Day 8.\\\\n\\\", \\\"priority\\\": \\\"P2\\\", \\\"registry_id\\\": \\\"math-negative-contrast\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy_diff\\\": 0.05, \\\"clean_n300_rerun\\\": {\\\"code_acc\\\": 0.767, \\\"code_ci\\\": [0.72, 0.813], \\\"diff\\\": 0.043, \\\"diff_ci\\\": [0, 0.087], \\\"internal_acc\\\": 0.81, \\\"internal_ci\\\": [0.767, 0.853], \\\"labels\\\": {\\\"det_preferred\\\": 17, \\\"internal_preferred\\\": 30, \\\"no_preference\\\": 253}, \\\"level_4_gap\\\": 0.02, \\\"level_5_gap\\\": 0.068, \\\"mcnemar_p\\\": 0.079, \\\"n\\\": 300, \\\"rerun_pilot_code\\\": 0.72, \\\"rerun_pilot_empty_rate\\\": 0.026, \\\"rerun_pilot_internal\\\": 0.76, \\\"significant\\\": false}, \\\"code_accuracy\\\": 0.767, \\\"code_ci_95\\\": [0.72, 0.813], \\\"contingency\\\": {\\\"both_correct\\\": 215, \\\"both_wrong\\\": 40, \\\"only_code\\\": 15, \\\"only_internal\\\": 30}, \\\"data_quality_audit\\\": {\\\"clean_code_acc\\\": 0.776, \\\"clean_code_ci\\\": [0.724, 0.824], \\\"clean_diff\\\": 0.044, \\\"clean_diff_ci\\\": [-0.004, 0.092], \\\"clean_internal_acc\\\": 0.82, \\\"clean_internal_ci\\\": [0.772, 0.868], \\\"clean_significant\\\": false, \\\"clean_subset_n\\\": 250, \\\"fixed_empty_output_rate\\\": 0.036, \\\"fixed_filtered\\\": 73, \\\"pilot_code_acc\\\": 0.72, \\\"pilot_diff\\\": 0.08, \\\"pilot_empty_output_rate\\\": 0.32, \\\"pilot_filtered\\\": 9, \\\"pilot_internal_acc\\\": 0.8, \\\"pilot_n\\\": 50}, \\\"diff_ci_95\\\": [0.007, 0.093], \\\"filtered_no_code_exec\\\": 82, \\\"framing\\\": \\\"negative contrast - no death penalty environment\\\", \\\"internal_accuracy\\\": 0.817, \\\"internal_ci_95\\\": [0.773, 0.86], \\\"labels\\\": {\\\"det_preferred\\\": 9, \\\"internal_preferred\\\": 25, \\\"no_preference\\\": 266}, \\\"level_4\\\": 152, \\\"level_5\\\": 148, \\\"level_5_gap\\\": 0.061, \\\"n_problems\\\": 300, \\\"signal_direction\\\": \\\"reversed (internal > code)\\\", \\\"significant\\\": true}}, {\\\"claim\\\": \\\"C2\\\", \\\"deps\\\": [\\\"plan-002\\\"], \\\"description\\\": \\\"Cross-task transfer within ScienceWorld. Train router on chemistry tasks only, evaluate on physics tasks (and vice versa). Tests whether routing patterns transfer across task domains.\\\\n\\\", \\\"gpu_budget_hours\\\": 5, \\\"id\\\": \\\"plan-010\\\", \\\"notes\\\": \\\"Killed — 原版已 kill。plan-010-cross-task-v2 是独立新实验，不影响。\\\\n\\\", \\\"priority\\\": \\\"P2\\\", \\\"registry_id\\\": \\\"plan-010-cross-task-transfer\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}], \\\"total\\\": 14}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": [{\"claim\": \"C1\", \"deps\": [], \"description\": \"Mini signal detection (pre-screening). Run 5 episodes per candidate task type (2-way: internal + deterministic only) to identify which tasks show det > internal signal. Screen ~20 ScienceWorld task types, keep those with positive effect direction. ~30min per task type, ~10h total for 20 types on dual GPU.\\n\", \"gpu_budget_hours\": 10, \"id\": \"plan-001a\", \"notes\": \"Reviewer W3: avoid wasting GPU on no-signal tasks like grow-plant. MVP task types (boil, melt, change-state, mix-paint) auto-pass. grow-plant confirmed no-signal (control). Target: identify 10-15 task types with signal.\\n\", \"priority\": \"P0\", \"registry_id\": \"research-prescreening-gpu0\", \"status\": \"DONE\", \"conclusion\": \"killed\"}, {\"claim\": \"C1, C2\", \"deps\": [\"plan-001a\"], \"description\": \"Episode-level counterfactual trajectory collection for death decomposition analysis. 10-15 signal-positive task types from plan-001a, each 20 episodes/modality (always-internal + always-deterministic). Three-label scheme: det-preferred, internal-preferred, no-preference (ties RETAINED, not discarded — the ~60% no-preference rate IS the C1 finding). Save complete step-level data: observations, actions, scores, death events. Data feeds plan-012 (death decomposition), plan-005 (routing pattern analysis), plan-002 (router as diagnostic probe). Prescreening + MVP episodes directly reusable (format compatible).\\n\", \"gpu_budget_hours\": 20, \"id\": \"plan-001b\", \"notes\": \"D013: Purpose changed from \\\"train balanced router\\\" to \\\"collect comprehensive data for death decomposition analysis.\\\" Key insight: 1.4% internal labels across 175 paired episodes — the imbalance IS the finding (~93% det-preferred = death avoidance dominance). No class weighting needed. Three labels: det-preferred (~38%), internal-preferred (~1-2%), no-preference (~60%). Data reuse: prescreening 5 eps/task + MVP 20 eps/task directly count toward totals. Only collect additional episodes to reach 20/task/modality. vLLM backend on both GPUs.\\n\", \"priority\": \"P0\", \"provenance_note\": \"Data collection (245 eps / 11 tasks) assembled from multiple recovery runs due to GPU0 crashes. Key contributing registry entries: plan-001b-gpu1 (success, 80 eps: find-non-living-thing/grow-fruit/inclined-plane/id-life-stages-2), plan-001b-fnlt-v2 (success, find-non-living-thing +19 eps to 40 total), plan-001b-gpu1-freeze-chem (success, 40 eps: freeze/chemistry-mix), plus GPU0 partial recoveries (plan-001b-gpu0, plan-001b-gpu0-v2, plan-001b-gpu0-v4, plan-001b-gpu0-v5, gpu0-v6-lifespan) contributing find-animal/id-life-stages-1/lifespan-longest-lived(25)/lifespan-l-then-s/measure-melting-point. Original plan-001b-gpu0 failed (vLLM crash). Final assembled data validated by plan-012-full analysis (11 tasks, 245 episodes, no duplicates).\", \"registry_id\": \"plan-012-full\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"death_avoidance_fraction\": 0.9041, \"death_rate_det\": 0.163, \"death_rate_int\": 0.429, \"delta_full\": 29.6, \"delta_nd\": 2.84, \"episodes\": 245, \"label_dist\": {\"det_preferred\": 86, \"internal_preferred\": 9, \"no_preference\": 150}, \"pearson_p\": 8.12e-07, \"pearson_r\": 0.9698, \"tasks\": 11}}, {\"claim\": \"C2\", \"deps\": [\"plan-001b\"], \"description\": \"Router SFT training. Fine-tune Qwen3-1.7B on counterfactual labels from plan-001b. Cross-entropy loss, (history, observation) → {internal, deterministic}. Train/val split by task type (leave-one-out or 80/20).\\n\", \"gpu_budget_hours\": 8, \"id\": \"plan-002\", \"notes\": \"Follow ARES training pipeline. Single GPU sufficient. Hyperparams: lr=2e-5, batch=32, epochs=3, max_seq_len=2048. 2-way classification (not 3-way) per W2 decision. Final router trained via seed-robustness-core (4 seeds, 55.4±5.2% balanced accuracy).\\n\", \"priority\": \"P0\", \"registry_id\": \"seed-robustness-core\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"decomposition_bootstrap\": {\"daf\": {\"ci95\": [0.816, 0.9876], \"mean\": 0.9058, \"point\": 0.9041, \"std\": 0.0425}, \"delta_full\": {\"ci95\": [23.76, 35.82], \"mean\": 29.61, \"point\": 29.6, \"std\": 3.18}, \"delta_nd\": {\"ci95\": [0.34, 5.57], \"mean\": 2.78, \"point\": 2.84, \"std\": 1.27}, \"n_bootstrap\": 1000, \"pearson_r\": {\"ci95\": [0.952, 0.995], \"mean\": 0.9752, \"point\": 0.9698, \"std\": 0.0108}}, \"jackknife\": {\"daf_range\": [0.89, 1], \"no_single_task_dominates\": true, \"pearson_r_range\": [0.963, 0.98]}, \"router_metrics\": {\"balanced_acc\": [0.5761, 0.4852, 0.6074, 0.5467], \"eval_loss\": [0.24, 0.4363, 0.3996, 0.3562], \"internal_recall\": [0.5152, 0.3667, 0.6, 0.6], \"mean_balanced_acc\": 0.5538, \"mean_eval_loss\": 0.358, \"mean_internal_recall\": 0.5205, \"seeds\": [42, 43, 44, 45], \"std_balanced_acc\": 0.052, \"std_eval_loss\": 0.0852, \"std_internal_recall\": 0.11}}}, {\"claim\": \"C1\", \"deps\": [\"plan-002\"], \"description\": \"SimGate end-to-end evaluation on ScienceWorld. Run trained router + Qwen2.5-7B backbone on held-out episodes. Compare against: always-internal, always-deterministic, oracle-routing, random-routing, confidence-threshold heuristic. Report: continuous score (CogRouter protocol), success rate, catastrophic failure rate, simulator invocation ratio, total LLM tokens. KEY: This confirms/denies C1's \\\"selective > unconditional\\\" sub-claim (Reviewer W1).\\n\", \"gpu_budget_hours\": 15, \"id\": \"plan-003\", \"notes\": \"CogRouter (84.6) and ITP-R (62.58) cited from papers, not reproduced. Bootstrap 90% CI on all comparisons. Per-task-type breakdown. If trained router ≤ always-det, C1 downgrades per paper_framing.md note.\\n\", \"priority\": \"P0\", \"registry_id\": \"plan-003-baseline-245eps\", \"status\": \"DONE\", \"conclusion\": \"success\"}, {\"claim\": \"C2\", \"deps\": [\"plan-001b\"], \"description\": \"Explicit vs implicit routing ablation (parameter-controlled). Three conditions: (a) 1.7B explicit router (SimGate) — Qwen3-1.7B, separate module (b) 1.7B implicit router — Qwen3-1.7B SFT'd to output [SIMULATE] token inline (c) 7B implicit routing — Qwen2.5-7B backbone decides via tool-use prompt All trained on same counterfactual data from plan-001b. Condition (b) is the parameter-matched control (Reviewer W4).\\n\", \"gpu_budget_hours\": 12, \"id\": \"plan-004\", \"notes\": \"Reviewer W4: 7B implicit vs 1.7B explicit confounds architecture with capacity. Adding 1.7B implicit isolates explicit vs implicit architectural effect. Can run in parallel with plan-002 on second GPU.\\n\", \"priority\": \"P0\", \"registry_id\": \"plan-004-v5\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"generation_eval_INVALIDATED\": {\"note\": \"OLD — used wrong split (sklearn episode-level, n_val=300). INVALIDATED.\", \"balanced_accuracy\": 0.4148, \"n_val\": 300}, \"corrected_generation_eval\": {\"balanced_accuracy\": 0.7533, \"accuracy\": 0.688, \"internal_recall\": 0.833, \"internal_precision\": 0.217, \"det_recall\": 0.673, \"det_precision\": 0.974, \"n_val\": 305, \"confusion_matrix\": {\"true_det_pred_det\": 185, \"true_det_pred_int\": 90, \"true_int_pred_det\": 5, \"true_int_pred_int\": 25}, \"gt_dist\": {\"det\": 275, \"int\": 30}, \"pred_dist\": {\"det\": 190, \"int\": 115}, \"eval_pipeline\": \"corrected_eval.py (training's load_implicit_sft_data split, seed=42, per-task step-level stratified)\", \"enable_thinking\": false}, \"logit_level\": {\"balanced_accuracy\": 0.7905, \"eval_loss\": 0.2382, \"internal_recall\": 0.8485, \"note\": \"From Trainer eval during training (logit-level, not generation). Uses training's own split — safe.\"}}}, {\"claim\": \"C1, C2\", \"deps\": [\"plan-003\"], \"description\": \"Per-task routing pattern analysis. From plan-003 outputs, analyze: (a) which task categories trigger deterministic routing most, (b) at which episode phases (early/mid/late) routing decisions concentrate, (c) router-as-diagnostic-probe — cluster deterministic-routing steps to identify systematic LLM failure modes (e.g., multi-step physical reasoning failures). Output: routing heatmap figure + failure mode taxonomy.\\n\", \"gpu_budget_hours\": 2, \"id\": \"plan-005\", \"notes\": \"Analysis-only, minimal GPU. Main output is Figure 1 for the paper.\", \"priority\": \"P0\", \"registry_id\": \"plan-005-routing-patterns\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"death_dominated_tasks\": 5, \"death_rate_det\": 0.163, \"death_rate_internal\": 0.429, \"death_ratio\": 2.62, \"failure_taxonomy\": {\"dominant_action\": \"focus on &lt;location>\", \"exploration_loop_pct\": 68, \"top_death_locations\": [\"workshop_21\", \"inventory_15\", \"kitchen_11\"]}, \"figures\": [\"routing_heatmap.pdf\", \"phase_heatmap.pdf\", \"daf_scatter.pdf\"], \"genuine_det_tasks\": 6, \"phase_analysis\": {\"deaths_100pct_late_phase\": true, \"det_mean_steps\": 30, \"internal_death_step_ratio\": 0.65, \"internal_mean_steps_at_death\": 19.4, \"score_divergence_step\": \"8-9\"}, \"total_episodes\": 245, \"total_tasks\": 11, \"weighted_daf\": 0.9614, \"weighted_delta_di\": 29.6}}, {\"claim\": \"C2\", \"deps\": [\"plan-002\"], \"description\": \"2-way vs 3-way routing ablation. Supplement plan-001b data with deep-internal modality on subset of tasks. Compare {internal, deterministic} vs {fast-internal, deep-internal, deterministic}. Tests whether the fast/deep internal distinction adds value beyond binary routing.\\n\", \"gpu_budget_hours\": 10, \"id\": \"plan-006\", \"notes\": \"D063: Data collection success (6 tasks × 20 eps). D065: Analysis complete — no significant difference between fast-internal and deep-internal (Δ=0.56, p=0.83). Conclusion: 2-way suffices, 3-way routing lacks data support.\\n\", \"priority\": \"P1\", \"registry_id\": \"plan-006-deep-internal\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"data_quality\": \"passed\", \"episodes_per_task\": 20, \"note\": \"identify-life-stages-1 has only 14 unique variations; episodes 14-19 reuse variations 0-5 (pseudo-duplicates). Use first 14 episodes for this task in analysis.\", \"tasks\": 6, \"total_episodes\": 120}}, {\"claim\": \"C1\", \"deps\": [], \"description\": \"Boil task rerun with v3 code. MVP boil data used old code (>= tie-break, death filter on all 3 modes). Rerun with clean v3 code for unified analysis.\\n\", \"gpu_budget_hours\": 3, \"id\": \"plan-007\", \"notes\": \"Can run in parallel with plan-001a as first batch.\", \"priority\": \"P1\", \"registry_id\": \"research-boil-v3-gpu1\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"boil_v3_20ep\": {\"det_mean\": -9.3, \"det_minus_internal\": 35.4, \"det_std\": 30.3, \"internal_mean\": -44.7, \"internal_std\": 50, \"oracle_mean\": 3.8, \"oracle_minus_det\": 13.1, \"oracle_minus_internal\": 48.5, \"oracle_std\": 15.2}, \"death_distribution\": {\"det_death_pct\": 10, \"det_deaths\": 2, \"det_total\": 20, \"internal_death_pct\": 45, \"internal_deaths\": 9, \"internal_total\": 20, \"oracle_death_pct\": 0, \"oracle_deaths\": 0, \"oracle_total\": 20}, \"note\": \"v3 code (> tie-break, death filter det/oracle only). Oracle大幅优于两个baseline, 但绝对分低(3.8), 仅1/20 episode拿到70分. Death avoidance is primary mechanism.\"}}, {\"claim\": \"C2\", \"deps\": [\"plan-001b\"], \"description\": \"Router size ablation. Compare Qwen3-1.7B vs Qwen2.5-1.5B vs Qwen2.5-3B as router. Tests sensitivity to router capacity.\\n\", \"gpu_budget_hours\": 12, \"id\": \"plan-008\", \"notes\": \"Important for \\\"lightweight\\\" claim. If 1.5B matches 1.7B, strengthens \\\"small router suffices\\\". Low priority relative to core experiments. D058: killed after 3 consecutive failures (plan-008-router-size, v2, v3).\\n\", \"priority\": \"P1\", \"registry_id\": \"plan-008-router-size-v4\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"corrected_eval_4seed\": {\"eval_pipeline\": \"corrected_eval.py — uses training's own load_implicit_sft_data split function + matching training seed per checkpoint. n_val=305, per-task stratified split.\", \"qwen3_0.6b\": {\"seed42\": {\"balanced_acc\": 0.547}, \"seed43\": {\"balanced_acc\": 0.5858}, \"seed44\": {\"balanced_acc\": 0.5238}, \"seed45\": {\"balanced_acc\": 0.5989}, \"mean_balanced_acc\": 0.5639, \"std_balanced_acc\": 0.0346}, \"qwen3_1.7b\": {\"seed42\": {\"balanced_acc\": 0.5706}, \"seed43\": {\"balanced_acc\": 0.6399}, \"seed44\": {\"balanced_acc\": 0.5543}, \"seed45\": {\"balanced_acc\": 0.5614}, \"mean_balanced_acc\": 0.5816, \"std_balanced_acc\": 0.0395}, \"qwen3_4b\": {\"seed42\": {\"balanced_acc\": 0.5512}, \"seed43\": {\"balanced_acc\": 0.6328}, \"seed44\": {\"balanced_acc\": 0.5778}, \"seed45\": {\"balanced_acc\": 0.6069}, \"mean_balanced_acc\": 0.5922, \"std_balanced_acc\": 0.0354}, \"ranking\": \"4B (0.592) ≈ 1.7B (0.582) ≈ 0.6B (0.564) — all within seed variance\", \"conclusion\": \"All three model sizes perform comparably under corrected eval. No significant capacity advantage from scaling. Lightweight router (0.6B) suffices.\", \"data_leakage_note\": \"All previous eval results (routing_eval_sft.py) used different split algorithm than training (sklearn episode-level vs per-task stratified). Additionally some seeds had seed mismatch. All prior results in *_nothinking.json are INVALIDATED.\"}, \"INVALIDATED_old_results\": {\"note\": \"ALL prior eval results below are INVALID due to split algorithm mismatch. Kept for audit trail only.\", \"old_generation_nothinking_2seed\": {\"0.6B\": 0.5908, \"1.7B\": 0.4167, \"4B\": 0.5852}, \"old_generation_nothinking_4seed\": {\"0.6B\": 0.6514, \"4B\": 0.6315}}}}, {\"claim\": \"C1\", \"deps\": [\"plan-001b\"], \"description\": \"Rule-based routing baseline (Dream all tiers). Keyword-matching heuristic: route actions containing state-change keywords (heat, cool, boil, melt, freeze, mix, react, pour, activate) to simulator, everything else to internal reasoning. Compares against learned router to demonstrate non-trivial learned signal.\\n\", \"gpu_budget_hours\": 2, \"id\": \"plan-011\", \"notes\": \"Dream median + worst flagged this as missing. Critical for defending \\\"the router learns beyond action-type keywords.\\\" Cheap — just inference, no training. PRE-REGISTERED keyword list at src/rule_based_keywords.json. Do NOT modify after experiment starts.\\n\", \"priority\": \"P0\", \"registry_id\": \"plan-011-rule-based\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"conclusion\": \"Keyword heuristic structurally fails on ScienceWorld — ScienceWorld actions use generic interaction verbs (connect/move/pick up), not science-specific keywords. No keyword list provides meaningful routing signal.\", \"note\": \"D014: structural failure analysis, paper positions as evidence for learned/observation-based approaches\", \"v1_match_rate\": \"85.8%\", \"v1_result\": \"degenerate → always-det\", \"v2_match_rate\": \"4.9%\", \"v2_result\": \"degenerate → always-internal\", \"v3_episode_accuracy\": \"1.5%\", \"v3_match_rate\": \"2.8%\", \"v3_result\": \"degenerate → always-internal\"}}, {\"claim\": \"C1\", \"deps\": [\"plan-001b\"], \"description\": \"Death-decomposition analysis (CORE — D013). From plan-001b episode data: (a) gains on death-risk episodes only (episodes where always-internal scores -100) (b) gains on non-death episodes only (c) fraction of routing labels: det-preferred vs internal-preferred vs no-preference (d) correlation between per-task death rate and Δ(D-I) (r value) (e) scores with -100 penalty replaced by 0 (penalty-removed variant)\\n\", \"gpu_budget_hours\": 0, \"id\": \"plan-012\", \"notes\": \"D013: This is now the CORE analysis — paper's primary contribution. Deps changed from plan-003 to plan-001b (analysis runs on raw episode data, doesn't need trained router). Three-label distribution (~38% det / ~1-2% int / ~60% tie) directly enters paper as Table 1. Death rate vs Δ correlation is the headline finding. Also report penalty-removed scores per Dream reviewer concern.\\n\", \"priority\": \"P0-CORE\", \"registry_id\": \"plan-012-full\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"death_avoidance_fraction\": 0.9041, \"death_rate_det\": 0.163, \"death_rate_int\": 0.429, \"delta_full\": 29.6, \"delta_nd\": 2.84, \"episodes\": 245, \"label_dist\": {\"det_preferred\": 86, \"internal_preferred\": 9, \"no_preference\": 150}, \"pearson_p\": 8.12e-07, \"pearson_r\": 0.9698, \"tasks\": 11}}, {\"claim\": \"C1, C2\", \"deps\": [\"plan-001b\"], \"description\": \"Labeling quality analysis (Dream best + worst). From plan-001b trajectory data, characterize: (a) fraction of steps where all modalities give identical score (tie rate) (b) fraction of \\\"deterministic-preferred\\\" labels from genuine score difference vs tie-break (c) sensitivity: retrain router on strict-only labels (excluding ties), compare performance\\n\", \"gpu_budget_hours\": 4, \"id\": \"plan-013\", \"notes\": \"Addresses oracle circularity concern from worst case Dream. If strict-only labels produce similar router, tie-break is harmless. If dramatically different, must discuss.\\n\", \"priority\": \"P1\", \"registry_id\": \"plan-013-labeling-quality\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"ablation_b_mean_balanced_acc\": 0.5761, \"ablation_b_std_balanced_acc\": 0.0047, \"det_preferred_death_asymmetry\": 70, \"det_preferred_score_comparison\": 16, \"genuine_det_fraction\": 1, \"strict_retrain_balanced_acc\": 0.5729, \"strict_retrain_det_recall\": 0.3883, \"strict_retrain_internal_recall\": 0.7576, \"tie_rate\": 0.612, \"tie_rate_both_alive\": 0.469, \"tie_rate_both_died\": 0.143, \"tiebreak_det_fraction\": 0}}, {\"claim\": \"C1\", \"deps\": [\"plan-002\"], \"description\": \"MATH track — code interpreter as deterministic oracle. 500 Level 4-5 MATH problems. 2-way routing: internal / code-interpreter. Demonstrates generalization beyond environment simulators.\\n\", \"gpu_budget_hours\": 20, \"id\": \"plan-009\", \"notes\": \"Human Review Note suggested MATH as secondary track. Only if ScienceWorld experiments finish by Day 8.\\n\", \"priority\": \"P2\", \"registry_id\": \"math-negative-contrast\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"accuracy_diff\": 0.05, \"clean_n300_rerun\": {\"code_acc\": 0.767, \"code_ci\": [0.72, 0.813], \"diff\": 0.043, \"diff_ci\": [0, 0.087], \"internal_acc\": 0.81, \"internal_ci\": [0.767, 0.853], \"labels\": {\"det_preferred\": 17, \"internal_preferred\": 30, \"no_preference\": 253}, \"level_4_gap\": 0.02, \"level_5_gap\": 0.068, \"mcnemar_p\": 0.079, \"n\": 300, \"rerun_pilot_code\": 0.72, \"rerun_pilot_empty_rate\": 0.026, \"rerun_pilot_internal\": 0.76, \"significant\": false}, \"code_accuracy\": 0.767, \"code_ci_95\": [0.72, 0.813], \"contingency\": {\"both_correct\": 215, \"both_wrong\": 40, \"only_code\": 15, \"only_internal\": 30}, \"data_quality_audit\": {\"clean_code_acc\": 0.776, \"clean_code_ci\": [0.724, 0.824], \"clean_diff\": 0.044, \"clean_diff_ci\": [-0.004, 0.092], \"clean_internal_acc\": 0.82, \"clean_internal_ci\": [0.772, 0.868], \"clean_significant\": false, \"clean_subset_n\": 250, \"fixed_empty_output_rate\": 0.036, \"fixed_filtered\": 73, \"pilot_code_acc\": 0.72, \"pilot_diff\": 0.08, \"pilot_empty_output_rate\": 0.32, \"pilot_filtered\": 9, \"pilot_internal_acc\": 0.8, \"pilot_n\": 50}, \"diff_ci_95\": [0.007, 0.093], \"filtered_no_code_exec\": 82, \"framing\": \"negative contrast - no death penalty environment\", \"internal_accuracy\": 0.817, \"internal_ci_95\": [0.773, 0.86], \"labels\": {\"det_preferred\": 9, \"internal_preferred\": 25, \"no_preference\": 266}, \"level_4\": 152, \"level_5\": 148, \"level_5_gap\": 0.061, \"n_problems\": 300, \"signal_direction\": \"reversed (internal > code)\", \"significant\": true}}, {\"claim\": \"C2\", \"deps\": [\"plan-002\"], \"description\": \"Cross-task transfer within ScienceWorld. Train router on chemistry tasks only, evaluate on physics tasks (and vice versa). Tests whether routing patterns transfer across task domains.\\n\", \"gpu_budget_hours\": 5, \"id\": \"plan-010\", \"notes\": \"Killed — 原版已 kill。plan-010-cross-task-v2 是独立新实验，不影响。\\n\", \"priority\": \"P2\", \"registry_id\": \"plan-010-cross-task-transfer\", \"status\": \"DONE\", \"conclusion\": \"killed\"}], \"total\": 14}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "5549055c-f331-4d03-81de-384cd57e2629",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/director_976fe708",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T01:50:09.446Z_
+
+<details><summary>↩ Tool result · `toolu_014JpZwpz7xEozPDcdPCRJjX`</summary>
+
+```text
+{"result":"{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":393}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "37f791dd-f21f-48d2-a1fc-74d7a05b68cf",
+  "isSidechain": false,
+  "promptId": "af489220-e622-4f88-8739-fe642e37337b",
+  "type": "user",
+  "uuid": "572a0838-78de-4990-aa80-a37b55947d0d",
+  "toolUseResult": "{\"result\":\"{\\\"found\\\":true,\\\"processing\\\":false,\\\"depth\\\":0,\\\"current\\\":null,\\\"pending\\\":[],\\\"idle_seconds\\\":393}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"found\":true,\"processing\":false,\"depth\":0,\"current\":null,\"pending\":[],\"idle_seconds\":393}"
+    }
+  },
+  "sourceToolAssistantUUID": "37f791dd-f21f-48d2-a1fc-74d7a05b68cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/director_976fe708",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Agent 回复]: [资源] GPU 分配 2 / 实际跑 0 | Worker 池 1 (GPU 0 / CPU 1)  **Loop #15 Session Start 状态汇报**  **Registry**: 79 DONE + 1 ANALYZING (r7n2-data-size-ablation，进程已死，需决策关闭) **Worker**: leave-one-tasktype…",
+  "leafUuid": "572a0838-78de-4990-aa80-a37b55947d0d",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Monitor ablation experiments and review results",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-16T01:50:36.738Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the situation:
+
+1. **r7n2-data-size-ablation**: Agent recommends marking DONE(failed). Reasons are solid - OOM, only 3/21 runs, model collapse, leakage contamination. I'll approve this.
+
+2. **leave-one-tasktype-out**: Worker still running, waiting for callback. This is C2 scope evidence.
+
+3. **GPU**: Both cuda:0 and cuda:1 idle. Agent idle for 393 seconds.
+
+4. **Blocking**: Reviewer verification + user Round 8 approval.
+
+5. **Experiment plan**: All 14 planned experiments are DONE. 
+
+6. **Timeline**: EMNLP DDL 5/25, 9 days out.
+
+The experiment plan is fully executed with nothing left in planned status, so we're genuinely in review phase waiting for Round 8 approval. The remaining work is closing r7n2, waiting for leave-one-tasktype-out to finish, and getting approval to move forward.
+
+I'm checking if there's anything productive to do with the idle GPUs given the tight deadline, but the reality is all experiments are complete and the blocking items are the reviewer's consistency verification and user approval. While I have a constraint against holding idle GPUs for extended periods, there's genuinely nothing left to run until Round 8 approval potentially surfaces new issues. I should mark r7n2 as done and wait for the next phase. I'm settling on approving the r7n2 closure and accepting that the GPU idle time is justified since all planned experiments are complete and we're waiting on the review process—the right move is to have the Agent ready to pivot immediately if Round 8 feedback requires new experiments. Now I need to load the messaging tools to communicate this decision.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "572a0838-78de-4990-aa80-a37b55947d0d",
+  "isSidechain": false,
+  "requestId": "req_011Cb5Qeyt2SxZggWiwbCFwH",
+  "type": "assistant",
+  "uuid": "c1fac99a-d954-4efb-9daa-1aa9b0b7464f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/director_976fe708",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TBz189k5GsAZxdhVX1WNmX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8381,
+      "cache_read_input_tokens": 40235,
+      "output_tokens": 958,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8381,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 958,
+          "cache_read_input_tokens": 40235,
+          "cache_creation_input_tokens": 8381,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8381
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-16T01:50:36.748Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01YTg6sP99A43pcRE4vFGRWa`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__director_post_to_main_agent,mcp__agent-ml-research__director_reply_to_user",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c1fac99a-d954-4efb-9daa-1aa9b0b7464f",
+  "isSidechain": false,
+  "requestId": "req_011Cb5Qeyt2SxZggWiwbCFwH",
+  "type": "assistant",
+  "uuid": "e6ee93b7-c900-46b8-920d-e81737032f2e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/director_976fe708",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TBz189k5GsAZxdhVX1WNmX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8381,
+      "cache_read_input_tokens": 40235,
+      "output_tokens": 958,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8381,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 958,
+          "cache_read_input_tokens": 40235,
+          "cache_creation_input_tokens": 8381,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8381
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T01:50:36.759Z_
+
+<details><summary>↩ Tool result · `toolu_01YTg6sP99A43pcRE4vFGRWa`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__director_post_to_main_agent"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__director_reply_to_user"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e6ee93b7-c900-46b8-920d-e81737032f2e",
+  "isSidechain": false,
+  "promptId": "af489220-e622-4f88-8739-fe642e37337b",
+  "type": "user",
+  "uuid": "44da92ac-554f-4b15-8480-633c6ef8b3f2",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__director_post_to_main_agent",
+      "mcp__agent-ml-research__director_reply_to_user"
+    ],
+    "query": "select:mcp__agent-ml-research__director_post_to_main_agent,mcp__agent-ml-research__director_reply_to_user",
+    "total_deferred_tools": 92
+  },
+  "sourceToolAssistantUUID": "e6ee93b7-c900-46b8-920d-e81737032f2e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/director_976fe708",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-16T01:50:48.870Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the situation and make decisions:
+
+1. **r7n2-data-size-ablation**: Approve marking as DONE(failed). The reasoning is sound: OOM killed the process, only 3/21 complete, 25% data shows model collapse, and there's data leakage contamination from step-level splits. With EMNLP DDL 9 days out, no point retrying.
+
+2. **GPU idle**: All 14 planned experiments are DONE. Agent queue is empty (idle 393s). The blocking items are Reviewer verification and user Round 8 approval. 
+
+The GPUs being idle makes sense—we've completed all the core experiments needed for the paper, and we're genuinely waiting on external dependencies like reviewer verification and user approval. I could look into whether there are any gap-filling experiments or prep work, but the leave-one-tasktype-out supplementary experiment is the last piece, and everything else is in review phase.
+
+Since this is a legitimate blocking state, I should approve the r7n2 closure and instruct the Agent to close it out and stand by for Round 8 results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "44da92ac-554f-4b15-8480-633c6ef8b3f2",
+  "isSidechain": false,
+  "requestId": "req_011Cb5Qh11nrqLB6cEU46G9H",
+  "type": "assistant",
+  "uuid": "64a52cc1-b602-4737-9b93-b52f02ea46a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/director_976fe708",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWKapcDeDDe4KuCNF4RQSY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1473,
+      "cache_read_input_tokens": 48616,
+      "output_tokens": 662,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1473,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 662,
+          "cache_read_input_tokens": 48616,
+          "cache_creation_input_tokens": 1473,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1473
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T01:50:52.469Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__director_post_to_main_agent · `toolu_01Ay8TT9Bh1yufkRymD2kV99`</summary>
+
+```json
+{
+  "text": "决策：\n\n1. **r7n2-data-size-ablation** → 标记 DONE(failed)，理由同你的分析（OOM + 25% collapse + step-level leakage + 时间不够重跑）。执行关闭。\n\n2. **GPU 空闲**：当前 14 个 plan 实验全部完成，blocking 在 Reviewer 一致性验证 + 用户 Round 8 审批。合理空闲。leave-one-tasktype-out 回调后立即汇报结果。\n\n3. **待命**：Round 8 审批通过后如果暴露需要补充实验的问题，两卡即刻投入。保持待命。",
+  "project": "simgate-modular-routing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "64a52cc1-b602-4737-9b93-b52f02ea46a9",
+  "isSidechain": false,
+  "requestId": "req_011Cb5Qh11nrqLB6cEU46G9H",
+  "type": "assistant",
+  "uuid": "755c2c5e-9d5d-439a-9070-0ef93d9aa6ac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/director_976fe708",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWKapcDeDDe4KuCNF4RQSY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1473,
+      "cache_read_input_tokens": 48616,
+      "output_tokens": 662,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1473,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 662,
+          "cache_read_input_tokens": 48616,
+          "cache_creation_input_tokens": 1473,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1473
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T01:50:56.411Z_
+
+<details><summary>↩ Tool result · `toolu_01Ay8TT9Bh1yufkRymD2kV99`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"message_id\": \"om_x100b6f489935dca4c452da31b7e9512\", \"queued\": true}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "755c2c5e-9d5d-439a-9070-0ef93d9aa6ac",
+  "isSidechain": false,
+  "promptId": "af489220-e622-4f88-8739-fe642e37337b",
+  "type": "user",
+  "uuid": "c7407ff4-dc2c-41b0-83e6-22e7a2beb019",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f489935dca4c452da31b7e9512\\\", \\\"queued\\\": true}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"message_id\": \"om_x100b6f489935dca4c452da31b7e9512\", \"queued\": true}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "755c2c5e-9d5d-439a-9070-0ef93d9aa6ac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/director_976fe708",
+  "sessionId": "dff67571-fa25-49f7-8e4e-f4d8f865fa7d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---

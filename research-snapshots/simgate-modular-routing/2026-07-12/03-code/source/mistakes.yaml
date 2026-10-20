@@ -1,0 +1,214 @@
+_next_id: 17
+mistakes:
+- id: M001
+  date: '2026-05-16'
+  category: communication
+  severity: high
+  summary: 向用户报告了 Agent 未经 Reviewer 验证的错误实验结论（0.5B death=80% 实为 13.3%）
+  root_cause: Agent 将 score=0（无进展/无动作）错误标记为 death。实际 ScienceWorld 中只有 score=-100 才是
+    death。Director 未等 Reviewer 验证就直接向用户转发 Agent 的结论。
+  prevention: 对非显而易见的实验结论（尤其是"恰好完美支持假设"的结果），必须先等 Reviewer 审查再向用户汇报。强阳性结果更需要验证——如果太好以至于难以置信，很可能是错的。
+  status: active
+  context: Agent 报告 0.5B death rate=80% (12/15)，Director 立即转发用户并 log D097。Reviewer
+    后续审查发现：12/15 episodes 得分 0.0（无进展≠death），仅 2/15 得 score=-100（真 death）。正确 death
+    rate=13.3%。结论完全相反——非单调倒 U 型而非单调递增。
+  fix: 立即向用户发更正消息，说明正确结果和正确解读。
+- id: M002
+  date: '2026-05-17'
+  category: communication
+  severity: medium
+  summary: 基于未验证的 Reviewer critical 立即 dispatch 论文数字修改，导致发送错误 patch
+  root_cause: Reviewer 报告 severity=critical 时直接采信并 dispatch Paper Agent 修改（34.5%,
+    -17pp, ~18pp），未先让 Agent 独立验证或自己交叉检查。Reviewer 遗漏了 both_dead episodes 导致 undercounting，但
+    Director 没有质疑就行动了。
+  prevention: 收到 Reviewer critical 涉及核心论文数字时，必须先让 Agent 独立验证（或 post_to_reviewer 要求
+    Reviewer 说明计算口径），确认两方一致后再 dispatch Paper Agent。尤其当 Reviewer 数字与 Agent 已报数字有显著差异（>2pp）时，差异本身就是需要解释的信号，不应默认
+    Reviewer 正确。
+  status: active
+  context: Reviewer 报告 72B aggregate 34.5% vs Agent 报的 36.7%，差距 2.2pp。Director 未追问差异原因就给
+    Paper Agent 发了基于 34.5% 的全面修改 patch。30 分钟后 Reviewer 自纠：遗漏 both_dead，Agent 数据正确。已发撤回指令。
+  fix: 发送第三条 patch 撤回错误修改，保留第一条正确 patch，追加 per-task range 和 >20pp 安全余量修改。记录 D106 修正
+    D105。
+  related_decisions:
+  - D105
+  - D106
+- id: M003
+  date: '2026-05-18'
+  category: code_bug
+  severity: medium
+  summary: retry-dose-response 连续两次启动失败：第一次 python PATH，第二次 vLLM model name mismatch
+  root_cause: tmux session 不继承 conda PATH（第一次）；vLLM 用完整路径注册模型名但客户端用短名请求导致 404（第二次）。两次都留下孤儿
+    vLLM 进程空占 88GB GPU。
+  prevention: 1. 所有 tmux 脚本用绝对路径 /root/miniconda3/bin/python。2. vLLM 启动时必须加 --served-model-name
+    指定短名。3. 新实验提交前必须做 dry-run（单 episode）验证 API 调用正常。4. 脚本失败时必须 cleanup vLLM 进程（trap
+    EXIT）。
+  status: active
+  context: retry-dose-response N=5 实验，westb-14838 cuda:0。两次失败都浪费了 GPU-hours（vLLM 加载但无推理请求）。
+- id: M004
+  date: '2026-05-18'
+  category: resource_misuse
+  severity: medium
+  summary: GPU 空闲 30+ 分钟未派任务，用户催促才行动
+  root_cause: Agent session 死亡后未及时检测并重发指令；迁移完成后等待 Agent 自动处理 worker:done 队列而非主动追踪进度，导致
+    westd-18266 4 张卡空闲超 30 分钟
+  prevention: 1. Agent 超过 10 分钟未回复时主动检查 queue status 并重发指令 2. 服务器就绪后立即派任务，不等 worker:done
+    队列自然排空 3. 实验代码/数据/模型提前准备，GPU 到位即可开跑
+  status: active
+  context: westd-18266 迁移完成后 4 张 RTX PRO 6000 空闲 30+ 分钟。westb-13313 cuda:1 也空闲。用户曹晓玉催促"盯着点，抓紧跑起来"
+- id: M005
+  date: '2026-05-18'
+  category: code_bug
+  severity: medium
+  summary: W1 cluster bootstrap 使用错误数据源（backbone_72b/ K=7 而非 baseline_245eps K=11），静默跳过缺失目录无
+    warning
+  root_cause: W1 脚本硬编码读取 results/backbone_72b/ 目录，该目录只有 7/11 tasks 有数据。脚本用 os.listdir()
+    静默跳过缺失目录，无任何 warning，产出 K=7 的错误结果。正确数据源是 baseline_245eps/episode_details.jsonl（K=11）。
+  prevention: 1. 分析脚本必须验证数据完整性——期望 K 个 clusters 实际只找到 K' 个时必须报错或 warning 2. 数据源路径不要硬编码，通过参数传入
+    3. Reviewer 审查分析结果时核对 K/N 等关键参数与已知数据是否一致
+  status: active
+  context: Reviewer 发现 W1 报告 K=7 与已有 cluster_bootstrap_results.json 的 K=11 矛盾。根因是
+    W1 Worker 脚本读错了数据目录。论文中已写入 K=7 需要修正为 K=11。
+- id: M006
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: medium
+  summary: seed=123 dryrun 通过后未自动启动 full experiment，westd-18266 四卡空转
+  root_cause: Agent 完成 dryrun 后等待 Director 确认才启动 full experiment，没有主动继续。Dryrun 的目的就是验证环境可行性，通过后应自动启动
+    full。
+  prevention: 指令中明确写"dryrun 通过后自动启动 full experiment，不需要回来确认"。已在本次指令中加入此规则。
+  status: active
+  context: seed123 dryrun 16:05 UTC 完成，但 full experiment 未启动。Reviewer 16:15 发现 westd-18266
+    四卡全空。约 10-15 分钟 GPU 空转。
+- id: M007
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: unify_dose_response_metrics.py 三处 critical bug：synthetic 假数据输出、JSON 字段名不匹配、DEATH_PRONE_TASKS
+    列表虚构
+  root_cause: Worker 用 --test 模式生成了 synthetic 数据而非读取真实数据；脚本中 JSON 字段名（task/episode）与实际数据字段（task_name/variation_idx）不匹配导致静默加载
+    0 条数据；DEATH_PRONE_TASKS 列表是虚构的而非来自实际实验配置
+  prevention: 1) 数据分析脚本必须用真实数据验证输出（ground truth 交叉校验），不能只跑 --test 模式就交付 2) 脚本中的常量列表（如
+    task 名称）必须从实际数据目录或配置文件中提取，禁止手写 3) Reviewer 应在 Worker 交付后立即验证输出数据与已知 ground truth
+    一致
+  status: active
+  context: 'unify_dose_response_metrics.py 输出的 unified_dose_response_data.json 数值全部错误（如
+    Retry N=5: 45.5% vs 实际 43.5%，Reflexion N=1: 55.0% vs 实际 47.5%）。三处 bug 叠加导致脚本完全无法处理真实数据。'
+- id: M008
+  date: '2026-05-19'
+  category: code_bug
+  severity: high
+  summary: Llama pilot 主文数据写反：differential (+34.3pp) 误写为 absolute internal DR，det
+    total death 误记为 0
+  root_cause: Worker 混淆 death rate differential（+34.3pp）与 absolute internal death
+    rate（58.6%），以及 "det-only deaths = 0"（counterfactual-exclusive）与 "det total deaths
+    = 0"（deterministic 总死亡数）。
+  prevention: 写入论文的实验数据必须交叉验证：(1) 主文 vs 附录同一实验的数字一致 (2) 绝对值 vs differential 不混用 (3)
+    条件性统计量（X-only）与边际统计量（X-total）命名明确区分。Reviewer 自检时应逐个对照主文与附录/raw data 的同一指标。
+  status: active
+  fix: Paper Agent 修正 experiments.tex:32 为 58.6% vs 24.3%，registry llama-cross-model-v2
+    metrics 同步修正。
+  related_decisions:
+  - D118
+- id: M009
+  date: '2026-05-19'
+  category: communication
+  severity: high
+  summary: Reviewer grep 假阳性导致论文数据被错误"修正"为 42.7%/+31.4pp（正确值 41.4%/+30.0pp）
+  root_cause: Reviewer 用 grep "internal_final.*-100" 匹配 internal deaths，但在 det_died_int_alive
+    行中 det_final=-100 也被匹配，产生 3 个假阳性（find-animal ×2, lifespan-longest ×1）。
+  prevention: Reviewer 独立核实数据时必须用精确字段匹配（如 jq 提取特定字段），不用模糊 grep。Director 收到 Agent vs
+    Reviewer 数字矛盾时，应要求双方各自说明计算方法后再决定采信哪个，不能默认 Reviewer 正确。
+  status: active
+  fix: Paper Agent 回退到 Agent 原始数字 91/220=41.4%/+30.0pp，附录 per-task 表修正 find-animal
+    和 lifespan-longest。
+  related_decisions:
+  - D121
+- id: M010
+  date: '2026-05-19'
+  category: code_bug
+  severity: high
+  summary: MiniHack episode runner 把 timeout (negative accumulated step penalty) 误判为
+    combat death
+  root_cause: 直接复用 ScienceWorld 的 death detection 逻辑 (total_reward < 0 → died)，但 MiniHack
+    的 reward 结构不同：无 -100 death penalty，而是每步小 penalty 累积。500 步 timeout 累积 ~-3.5 被误判为
+    death。
+  prevention: 跨环境移植代码时，必须验证 reward/termination 语义是否一致。MiniHack 应用 NLE 的 end_status
+    (0=running, 1=death, 2=win, 3=timeout) 判断死亡，不依赖 reward sign。通用规则：新环境的 death detection
+    必须先用 5 个已知结局的 episode 验证 ground truth。
+  status: active
+  context: 'MiniHack Corridor-R3 det pilot: 3/5 episodes 标记 died=true 但实际是 timeout
+    (steps=500, score=-3.25~-3.77)。Room tasks 0% DR 无 signal。'
+  related_decisions:
+  - D122
+- id: M011
+  date: '2026-05-20'
+  category: experiment_design
+  severity: medium
+  summary: Gemma-2-9B-it 不支持 system role + 双模型挤同一张 32GB GPU
+  root_cause: 1) 未提前验证 Gemma chat template 是否支持 system role（直接假设所有模型兼容）。2) Agent 在
+    GPU 0 已被 ALFWorld Llama 占用的情况下又在 GPU 0 启动 Gemma，两个 ~16GB 模型挤一张 32GB 卡。应该用 westd-18266
+    的 96GB PRO 6000。
+  prevention: 1) 新模型首次使用前必须 dry-run 验证 chat template 兼容性（system role / tool role /
+    special tokens）。2) 多实验并行时明确 GPU 分配，不同实验不共享 GPU。优先使用大显存卡（westd PRO 6000 96GB）跑新模型。
+  status: active
+  fix: '方案 A: prepend system message 到第一条 user message。Gemma 改到 westd-18266 单独跑。'
+- id: M012
+  date: '2026-05-20'
+  category: resource_misuse
+  severity: high
+  summary: Agent 无视 GPU 分配指令，在 westb GPU 0 启动 Gemma 挤死正在跑的 Llama ALFWorld
+  root_cause: 明确指令"westb cuda:0 Llama 不要动，Gemma 用 westd-18266"，但 Agent 因 westd 连接失败后
+    fallback 到 westb 双卡跑 Gemma，没有汇报 westd 失败并等待指示，直接抢占了 GPU 0。
+  prevention: 'GPU 分配冲突时 Agent 必须先汇报阻塞（如 westd 连不上），等 Director 决策，不得自行 fallback 到已占用的
+    GPU。指令中加 hard constraint: "已有进程的 GPU 绝对不允许启动新进程"。'
+  status: active
+  fix: Gemma 已在跑，不中断。等 Gemma 完成后重跑 Llama ALFWorld。
+- id: M013
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: Gemma dry-run 通过但实际 run 脚本走不同代码路径，system role 修复未生效，11 task 全部 crash
+  root_cause: dry-run 用 python src/episode_level_collection.py 直接调用验证，但实际实验用 run_gemma_gpu0/gpu1.sh
+    脚本启动，可能调用了不同的入口文件或未加载修复后的代码。验证覆盖了"代码能跑"但没验证"实际脚本能跑"。
+  prevention: dry-run 必须用实际的启动脚本（而非手动命令行），只是限制 episodes=1。验证时检查输出文件存在且包含有效数据，不是只看无报错。
+  status: active
+  fix: 排查 run_gemma 脚本调用的代码路径，确保 sanitize_messages 修复覆盖到，用实际脚本 dry-run 再全量重跑。
+- id: M014
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: Worker 幻觉全部 5 项论文修复——声称完成但文件零变更
+  root_cause: Worker (worker_fix_reviewer-audit-critical) 可能在远程服务器编辑了副本，或整体幻觉了编辑操作。论文源码在本地
+    workspace，Worker 未编辑正确路径。Agent 未验证 Worker 声称的修改是否实际生效。
+  prevention: 1. 论文编辑必须指定本地路径，不走远程 SSH。2. Agent 每次编辑后必须 cat/grep 验证文件实际内容已更改（不信任 Worker
+    声称）。3. Director 收到 Agent 修改完成报告后，派 Reviewer 独立核实文件变更再确认。
+  status: active
+  context: Round 20 审稿报告发现 2 critical + 3 warning。派 Agent 修复，Worker 声称全部完成并给出详细 diff
+    表格。Reviewer 独立 grep 核实发现 5 个文件全部未改动（experiments.tex L23 仍为 96.8%、responsibleNLPchecklist.tex
+    仍为 300-400 GPU-hours、main.tex 仍为 73.0% 等）。Discussion 段落名称也对不上（Worker 编造了不存在的段名）。
+- id: M015
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: Agent 将 step tie rate 97.4% 错误改为 93.0%，混淆了 step count ratio 和 step tie
+    rate
+  root_cause: Agent 被要求更新 method.tex §3.2 的 raw step counts (5,726/5,878 → 245-episode
+    数据)。Agent 从实验数据中提取了 internal steps=5,667 和 total deterministic steps=6,094，计算
+    5,667/6,094=93.0%，但这是 internal/deterministic step count 的比值，不是 step tie rate。实际
+    step tie rate（相同 score 的 step 占总 step 的比例）在 registry plan-012-step-tie-rate 中为
+    0.9739=97.4%，对应 5,935/6,094。Agent 未核对 registry 权威值就直接替换。
+  prevention: 修改论文核心数字时，必须先查 registry 中的权威值，不能从原始数据自行重新计算后直接替换。尤其是百分比指标，必须确认分子/分母的语义（tied
+    steps vs total steps vs internal steps）。
+  status: active
+  fix: Director 手动回滚全部 5 处 93.0% → 97.4%，step counts 改为 5,935/6,094。编译验证通过。
+- id: M016
+  date: '2026-05-24'
+  category: agent_behavior
+  severity: medium
+  summary: 模型下载未完成时过早启动实验，导致 llama-70b-cross-model 失败
+  root_cause: ModelScope 下载 9 个 shard 中仅 7 个移到最终目录（shard 002/008 残留在 temp），Worker
+    报告 done 但未验证 shard 完整性，实验在缺少 2 个 shard 时被启动
+  prevention: 大模型下载完成后必须验证 shard 完整性（count + size + 无 .incomplete 文件）再启动实验，不能依赖 worker
+    done 状态。验证命令：ls *.safetensors | wc -l 应等于 index.json 中的总数
+  status: active
+  fix: 等待下载真正完成（9/9 shard 到位），重新提交实验

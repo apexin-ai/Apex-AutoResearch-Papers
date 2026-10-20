@@ -1,0 +1,327 @@
+experiments:
+- claim: C1
+  deps: []
+  description: 'Mini signal detection (pre-screening). Run 5 episodes per candidate
+    task type (2-way: internal + deterministic only) to identify which tasks show
+    det > internal signal. Screen ~20 ScienceWorld task types, keep those with positive
+    effect direction. ~30min per task type, ~10h total for 20 types on dual GPU.
+
+    '
+  gpu_budget_hours: 10
+  id: plan-001a
+  notes: 'Reviewer W3: avoid wasting GPU on no-signal tasks like grow-plant. MVP task
+    types (boil, melt, change-state, mix-paint) auto-pass. grow-plant confirmed no-signal
+    (control). Target: identify 10-15 task types with signal.
+
+    '
+  priority: P0
+  registry_id: research-prescreening-gpu0
+- claim: C1, C2
+  deps:
+  - plan-001a
+  description: 'Episode-level counterfactual trajectory collection for death decomposition
+    analysis. 10-15 signal-positive task types from plan-001a, each 20 episodes/modality
+    (always-internal + always-deterministic). Three-label scheme: det-preferred, internal-preferred,
+    no-preference (ties RETAINED, not discarded — the ~60% no-preference rate IS the
+    C1 finding). Save complete step-level data: observations, actions, scores, death
+    events. Data feeds plan-012 (death decomposition), plan-005 (routing pattern analysis),
+    plan-002 (router as diagnostic probe). Prescreening + MVP episodes directly reusable
+    (format compatible).
+
+    '
+  gpu_budget_hours: 20
+  id: plan-001b
+  notes: 'D013: Purpose changed from "train balanced router" to "collect comprehensive
+    data for death decomposition analysis." Key insight: 1.4% internal labels across
+    175 paired episodes — the imbalance IS the finding (~93% det-preferred = death
+    avoidance dominance). No class weighting needed. Three labels: det-preferred (~38%),
+    internal-preferred (~1-2%), no-preference (~60%). Data reuse: prescreening 5 eps/task
+    + MVP 20 eps/task directly count toward totals. Only collect additional episodes
+    to reach 20/task/modality. vLLM backend on both GPUs.
+
+    '
+  priority: P0
+  provenance_note: 'Data collection (245 eps / 11 tasks) assembled from multiple recovery
+    runs due to GPU0 crashes. Key contributing registry entries: plan-001b-gpu1 (success,
+    80 eps: find-non-living-thing/grow-fruit/inclined-plane/id-life-stages-2), plan-001b-fnlt-v2
+    (success, find-non-living-thing +19 eps to 40 total), plan-001b-gpu1-freeze-chem
+    (success, 40 eps: freeze/chemistry-mix), plus GPU0 partial recoveries (plan-001b-gpu0,
+    plan-001b-gpu0-v2, plan-001b-gpu0-v4, plan-001b-gpu0-v5, gpu0-v6-lifespan) contributing
+    find-animal/id-life-stages-1/lifespan-longest-lived(25)/lifespan-l-then-s/measure-melting-point.
+    Original plan-001b-gpu0 failed (vLLM crash). Final assembled data validated by
+    plan-012-full analysis (11 tasks, 245 episodes, no duplicates).'
+  registry_id: plan-012-full
+- claim: C2
+  deps:
+  - plan-001b
+  description: 'Router SFT training. Fine-tune Qwen3-1.7B on counterfactual labels
+    from plan-001b. Cross-entropy loss, (history, observation) → {internal, deterministic}.
+    Train/val split by task type (leave-one-out or 80/20).
+
+    '
+  gpu_budget_hours: 8
+  id: plan-002
+  notes: 'Follow ARES training pipeline. Single GPU sufficient. Hyperparams: lr=2e-5,
+    batch=32, epochs=3, max_seq_len=2048. 2-way classification (not 3-way) per W2
+    decision. Final router trained via seed-robustness-core (4 seeds, 55.4±5.2% balanced
+    accuracy).
+
+    '
+  priority: P0
+  registry_id: seed-robustness-core
+- claim: C1
+  deps:
+  - plan-002
+  description: 'SimGate end-to-end evaluation on ScienceWorld. Run trained router
+    + Qwen2.5-7B backbone on held-out episodes. Compare against: always-internal,
+    always-deterministic, oracle-routing, random-routing, confidence-threshold heuristic.
+    Report: continuous score (CogRouter protocol), success rate, catastrophic failure
+    rate, simulator invocation ratio, total LLM tokens. KEY: This confirms/denies
+    C1''s "selective > unconditional" sub-claim (Reviewer W1).
+
+    '
+  gpu_budget_hours: 15
+  id: plan-003
+  notes: 'CogRouter (84.6) and ITP-R (62.58) cited from papers, not reproduced. Bootstrap
+    90% CI on all comparisons. Per-task-type breakdown. If trained router ≤ always-det,
+    C1 downgrades per paper_framing.md note.
+
+    '
+  priority: P0
+  registry_id: plan-003-baseline-245eps
+- claim: C2
+  deps:
+  - plan-001b
+  description: 'Explicit vs implicit routing ablation (parameter-controlled). Three
+    conditions: (a) 1.7B explicit router (SimGate) — Qwen3-1.7B, separate module (b)
+    1.7B implicit router — Qwen3-1.7B SFT''d to output [SIMULATE] token inline (c)
+    7B implicit routing — Qwen2.5-7B backbone decides via tool-use prompt All trained
+    on same counterfactual data from plan-001b. Condition (b) is the parameter-matched
+    control (Reviewer W4).
+
+    '
+  gpu_budget_hours: 12
+  id: plan-004
+  notes: 'Reviewer W4: 7B implicit vs 1.7B explicit confounds architecture with capacity.
+    Adding 1.7B implicit isolates explicit vs implicit architectural effect. Can run
+    in parallel with plan-002 on second GPU.
+
+    '
+  priority: P0
+  registry_id: plan-004-v5
+- claim: C1, C2
+  deps:
+  - plan-003
+  description: 'Per-task routing pattern analysis. From plan-003 outputs, analyze:
+    (a) which task categories trigger deterministic routing most, (b) at which episode
+    phases (early/mid/late) routing decisions concentrate, (c) router-as-diagnostic-probe
+    — cluster deterministic-routing steps to identify systematic LLM failure modes
+    (e.g., multi-step physical reasoning failures). Output: routing heatmap figure
+    + failure mode taxonomy.
+
+    '
+  gpu_budget_hours: 2
+  id: plan-005
+  notes: Analysis-only, minimal GPU. Main output is Figure 1 for the paper.
+  priority: P0
+  registry_id: plan-005-routing-patterns
+- claim: C2
+  deps:
+  - plan-002
+  description: '2-way vs 3-way routing ablation. Supplement plan-001b data with deep-internal
+    modality on subset of tasks. Compare {internal, deterministic} vs {fast-internal,
+    deep-internal, deterministic}. Tests whether the fast/deep internal distinction
+    adds value beyond binary routing.
+
+    '
+  gpu_budget_hours: 10
+  id: plan-006
+  notes: 'D063: Data collection success (6 tasks × 20 eps). D065: Analysis complete
+    — no significant difference between fast-internal and deep-internal (Δ=0.56, p=0.83).
+    Conclusion: 2-way suffices, 3-way routing lacks data support.
+
+    '
+  priority: P1
+  registry_id: plan-006-deep-internal
+- claim: C1
+  deps: []
+  description: 'Boil task rerun with v3 code. MVP boil data used old code (>= tie-break,
+    death filter on all 3 modes). Rerun with clean v3 code for unified analysis.
+
+    '
+  gpu_budget_hours: 3
+  id: plan-007
+  notes: Can run in parallel with plan-001a as first batch.
+  priority: P1
+  registry_id: research-boil-v3-gpu1
+- claim: C2
+  deps:
+  - plan-001b
+  description: 'Router size ablation. Compare Qwen3-1.7B vs Qwen2.5-1.5B vs Qwen2.5-3B
+    as router. Tests sensitivity to router capacity.
+
+    '
+  gpu_budget_hours: 12
+  id: plan-008
+  notes: 'Important for "lightweight" claim. If 1.5B matches 1.7B, strengthens "small
+    router suffices". Low priority relative to core experiments. D058: killed after
+    3 consecutive failures (plan-008-router-size, v2, v3).
+
+    '
+  priority: P1
+  registry_id: plan-008-router-size-v4
+- claim: C1
+  deps:
+  - plan-001b
+  description: 'Rule-based routing baseline (Dream all tiers). Keyword-matching heuristic:
+    route actions containing state-change keywords (heat, cool, boil, melt, freeze,
+    mix, react, pour, activate) to simulator, everything else to internal reasoning.
+    Compares against learned router to demonstrate non-trivial learned signal.
+
+    '
+  gpu_budget_hours: 2
+  id: plan-011
+  notes: 'Dream median + worst flagged this as missing. Critical for defending "the
+    router learns beyond action-type keywords." Cheap — just inference, no training.
+    PRE-REGISTERED keyword list at src/rule_based_keywords.json. Do NOT modify after
+    experiment starts.
+
+    '
+  priority: P0
+  registry_id: plan-011-rule-based
+- claim: C1
+  deps:
+  - plan-001b
+  description: 'Death-decomposition analysis (CORE — D013). From plan-001b episode
+    data: (a) gains on death-risk episodes only (episodes where always-internal scores
+    -100) (b) gains on non-death episodes only (c) fraction of routing labels: det-preferred
+    vs internal-preferred vs no-preference (d) correlation between per-task death
+    rate and Δ(D-I) (r value) (e) scores with -100 penalty replaced by 0 (penalty-removed
+    variant)
+
+    '
+  gpu_budget_hours: 0
+  id: plan-012
+  notes: 'D013: This is now the CORE analysis — paper''s primary contribution. Deps
+    changed from plan-003 to plan-001b (analysis runs on raw episode data, doesn''t
+    need trained router). Three-label distribution (~38% det / ~1-2% int / ~60% tie)
+    directly enters paper as Table 1. Death rate vs Δ correlation is the headline
+    finding. Also report penalty-removed scores per Dream reviewer concern.
+
+    '
+  priority: P0-CORE
+  registry_id: plan-012-full
+- claim: C1, C2
+  deps:
+  - plan-001b
+  description: 'Labeling quality analysis (Dream best + worst). From plan-001b trajectory
+    data, characterize: (a) fraction of steps where all modalities give identical
+    score (tie rate) (b) fraction of "deterministic-preferred" labels from genuine
+    score difference vs tie-break (c) sensitivity: retrain router on strict-only labels
+    (excluding ties), compare performance
+
+    '
+  gpu_budget_hours: 4
+  id: plan-013
+  notes: 'Addresses oracle circularity concern from worst case Dream. If strict-only
+    labels produce similar router, tie-break is harmless. If dramatically different,
+    must discuss.
+
+    '
+  priority: P1
+  registry_id: plan-013-labeling-quality
+- claim: C1
+  deps:
+  - plan-002
+  description: 'MATH track — code interpreter as deterministic oracle. 500 Level 4-5
+    MATH problems. 2-way routing: internal / code-interpreter. Demonstrates generalization
+    beyond environment simulators.
+
+    '
+  gpu_budget_hours: 20
+  id: plan-009
+  notes: 'Human Review Note suggested MATH as secondary track. Only if ScienceWorld
+    experiments finish by Day 8.
+
+    '
+  priority: P2
+  registry_id: math-negative-contrast
+- claim: C2
+  deps:
+  - plan-002
+  description: 'Cross-task transfer within ScienceWorld. Train router on chemistry
+    tasks only, evaluate on physics tasks (and vice versa). Tests whether routing
+    patterns transfer across task domains.
+
+    '
+  gpu_budget_hours: 5
+  id: plan-010
+  notes: 'Killed — 原版已 kill。plan-010-cross-task-v2 是独立新实验，不影响。
+
+    '
+  priority: P2
+  registry_id: plan-010-cross-task-transfer
+- claim: C2
+  deps:
+  - plan-002
+  description: 'Cross-split episode-level eval. Evaluate 8-seed router checkpoints
+    on episode-level held-out split (no episode overlap between train/val). Tests
+    whether router generalizes to unseen episodes or only memorizes step-level patterns.
+    '
+  gpu_budget_hours: 1
+  id: plan-014
+  notes: 'Result: balanced_acc=47.1±2.2% (below random 50%). Router does NOT generalize
+    cross-episode. Step-level split (54.1±5.4%) inflated by within-episode memorization.
+    Confirms routing signal is task-type-level, not episode-level. Key evidence for
+    Narrative A (D086).
+    '
+  priority: P0
+  registry_id: cross-split-robustness-8seed
+- claim: C2
+  deps:
+  - plan-014
+  description: 'Task-type majority-vote baseline on cross-split. Predict using per-task-type
+    majority label from train set. Tests whether router learns anything beyond task-type
+    classification.
+    '
+  gpu_budget_hours: 0
+  id: plan-015
+  notes: 'Result: all 11 task types majority=deterministic (train 91.4% det). TT-majority-vote
+    = always-det = 0.5000 balanced_acc. Router (47.1%) < trivial baseline (50%).
+    Router over-predicts internal on unseen episodes. Conclusion negative for router
+    utility.
+    '
+  priority: P0
+  registry_id: majority-vote-baseline
+- claim: C2
+  deps:
+  - plan-002
+  description: '32x data scaling ablation (25%/50%/800%). Tests whether low balanced_acc
+    is caused by insufficient training data or inherently thin signal. Dual eval:
+    step-level + episode-level.
+    '
+  gpu_budget_hours: 3
+  id: plan-016
+  notes: 'Result: episode-level balanced_acc ≈ 50% at all scales (25% to 800%).
+    32x augmentation does not improve episode-level signal. Root cause: extreme class
+    imbalance (97.7% det at 800% scale). Confirms Outcome B — signal is inherently
+    trivial at episode level.
+    '
+  priority: P0
+  registry_id: r7n2-data-size-ablation-r3
+- claim: C2
+  deps:
+  - plan-002
+  description: 'Leave-one-task-type-out eval. Per-task-type evaluation breakdown using
+    existing checkpoints. Tests within-task-type router signal for each of 11 task
+    types.
+    '
+  gpu_budget_hours: 2
+  id: plan-017
+  notes: 'Result: 7/11 task types all-deterministic (single class, no discriminative
+    ability). 4 types with both classes show step-level signal (grand mean 59.8±1.8%).
+    This is per-type breakdown, NOT LOTO CV with retraining. Step-level weak signal
+    exists but does not change episode-level random conclusion.
+    '
+  priority: P1
+  registry_id: leave-one-tasktype-out
