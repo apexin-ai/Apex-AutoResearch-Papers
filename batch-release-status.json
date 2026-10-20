@@ -890,6 +890,38 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39384749486"
+    },
+    "recovery_aware_struct_prune/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 198882076,
+        "etag": "\"94d36ffcc6f2ee7e6e0fbfce8323c41d-24\"",
+        "modified": "2026-05-31T17:33:03+00:00"
+      },
+      "archive_sha256": "027650a0c436fe8d9380dee80e3e265c56516a8529a2aac90e3bb8aeacf3892d",
+      "projects": [
+        "schema-conform-ie-training",
+        "recovery_aware_struct_prune"
+      ],
+      "counts": [
+        {
+          "project": "schema-conform-ie-training",
+          "title": "schema conform ie training",
+          "paper_pdf": null,
+          "code_count": 35,
+          "data_count": 140,
+          "trace_count": 110
+        },
+        {
+          "project": "recovery_aware_struct_prune",
+          "title": "How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM",
+          "paper_pdf": "paper.pdf",
+          "code_count": 757,
+          "data_count": 2746,
+          "trace_count": 3747
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39384749486"
     }
   }
 }

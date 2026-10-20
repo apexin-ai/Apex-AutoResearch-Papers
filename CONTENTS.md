@@ -1,6 +1,6 @@
 # Contents
 
-This catalogue covers **37 projects with manuscript PDFs** and **22 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **38 projects with manuscript PDFs** and **23 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
@@ -36,6 +36,7 @@ This catalogue covers **37 projects with manuscript PDFs** and **22 additional p
 | [policy_ambiguity_safety](paper-assets/policy_ambiguity_safety/README.md) | [PDF](paper-assets/policy_ambiguity_safety/01-manuscript/paper.pdf) | 319 | 3,297 | 356 | 58,856 |
 | [provenance_weight_training](paper-assets/provenance_weight_training/README.md) | [PDF](paper-assets/provenance_weight_training/01-manuscript/paper.pdf) | 559 | 2,002 | 3,029 | 231,336 |
 | [ratekv](paper-assets/ratekv/README.md) | [PDF](paper-assets/ratekv/01-manuscript/paper.pdf) | 308 | 874 | 1,250 | 87,631 |
+| [recovery_aware_struct_prune](paper-assets/recovery_aware_struct_prune/README.md) | [PDF](paper-assets/recovery_aware_struct_prune/01-manuscript/paper.pdf) | 757 | 2,746 | 3,747 | 248,503 |
 | [recursive_gen_depth_est](paper-assets/recursive_gen_depth_est/README.md) | [PDF](paper-assets/recursive_gen_depth_est/01-manuscript/paper.pdf) | 86 | 80 | 1,779 | 166,550 |
 | [schema-dag-extraction](paper-assets/schema-dag-extraction/README.md) | [PDF](paper-assets/schema-dag-extraction/01-manuscript/paper.pdf) | 135 | 68 | 1,242 | 131,771 |
 | [structfuse-context](paper-assets/structfuse-context/README.md) | [PDF](paper-assets/structfuse-context/01-manuscript/paper.pdf) | 212 | 354 | 1,232 | 90,756 |
@@ -57,6 +58,7 @@ This catalogue covers **37 projects with manuscript PDFs** and **22 additional p
 | [prod42](paper-assets/prod42/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [prod43](paper-assets/prod43/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [prod_0510](paper-assets/prod_0510/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
+| [schema-conform-ie-training](paper-assets/schema-conform-ie-training/README.md) | No PDF in snapshot | 35 | 140 | 110 | 9,882 |
 | [solver-trace-ablation](paper-assets/solver-trace-ablation/README.md) | No PDF in snapshot | 26 | 27 | 31 | 1,575 |
 | [svs_formal_verification](paper-assets/svs_formal_verification/README.md) | No PDF in snapshot | 68 | 28 | 205 | 21,001 |
 | [tbab_multi_turn](paper-assets/tbab_multi_turn/README.md) | No PDF in snapshot | 45 | 60 | 116 | 10,572 |

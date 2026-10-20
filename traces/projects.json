@@ -684,6 +684,22 @@
       }
     },
     {
+      "project": "recovery_aware_struct_prune",
+      "title": "How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in a Reasoning LLM",
+      "catalog": "../paper-assets/recovery_aware_struct_prune/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 3747,
+        "messages": 248503,
+        "user_turns": 7900,
+        "tool_calls": 98256,
+        "unparsed_lines": 1410,
+        "worker": 1451,
+        "result": 1406,
+        "conversation": 768,
+        "history": 122
+      }
+    },
+    {
       "project": "recursive_gen_depth_est",
       "title": "How Deep Is Your Data? Estimating Recursive Generation Depth via Statistical Fingerprints",
       "catalog": "../paper-assets/recursive_gen_depth_est/05-generation-trace/catalog.json",
@@ -697,6 +713,22 @@
         "worker": 686,
         "conversation": 347,
         "history": 104
+      }
+    },
+    {
+      "project": "schema-conform-ie-training",
+      "title": "schema conform ie training",
+      "catalog": "../paper-assets/schema-conform-ie-training/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 110,
+        "messages": 9882,
+        "user_turns": 370,
+        "tool_calls": 3890,
+        "unparsed_lines": 47,
+        "result": 42,
+        "worker": 47,
+        "conversation": 18,
+        "history": 3
       }
     },
     {
